@@ -42,10 +42,6 @@ The content filtering system integrated in the Foundry Models service in Foundry
 * Neural multiclass classification models that detect and filter harmful content. These models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 * Other optional classification models that detect jailbreak risk and known content for text and code. These models are binary classifiers that flag whether user or model behavior qualifies as a jailbreak attack or match to known text or source code. The use of these models is optional, but use of protected material code model might be required for Customer Copyright Commitment coverage.
 
-### Risk categories
-
-The text content filtering models for the hate, sexual, violence, and self-harm categories were trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
-
 
 |Category|Description|
 |--------|-----------|
@@ -64,10 +60,15 @@ The text content filtering models for the hate, sexual, violence, and self-harm 
 
 <sup>2</sup> Not available in non-streaming scenarios; only available for streaming scenarios. The following regions support Groundedness Detection: Central US, East US, France Central, and Canada East 
 
+## Input filters
 
-[!INCLUDE [severity-levels text, four-level](../../../ai-services/content-safety/includes/severity-levels-text-four.md)]
+### Text content filters
 
-[!INCLUDE [severity-levels image](../../../ai-services/content-safety/includes/severity-levels-image.md)]
+See [Harm categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter-severity-levels) to learn more about the four content filtering categories (hate, sexual, violence, and self-harm) and their severity levels (safe, low, medium, and high).
+
+### Image content filters
+
+See [Harm categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter-severity-levels) to learn more about the four content filtering categories (hate, sexual, violence, and self-harm) and their severity levels (safe, low, medium, and high).
 
 ### Prompt shields
 
@@ -110,33 +111,33 @@ You can also enable the following special output filters:
 
 [!INCLUDE [content-filter-configurability](../includes/content-filter-configurability.md)]
 
-## Scenario details
+## Content filtering scenarios
 
-When the content filtering system detects harmful content, you receive either an error on the API call if the prompt is inappropriate, or the `finish_reason` on the response is `content_filter` to show that some of the completion is filtered. When you build your application or system, you want to account for these scenarios where the content returned by the Completions API is filtered, which might result in content that is incomplete. How you act on this information is application specific. The behavior can be summarized in the following points:
+When the content safety system detects harmful content, you receive either an error on the API call if the prompt was deemed inappropriate, or the `finish_reason` on the response will be `content_filter` to signify that some of the completion was filtered. When building your application or system, you'll want to account for these scenarios where the content returned by the Completions API is filtered, which might result in content that is incomplete.
 
--    Prompts that the content filtering system classifies at a filtered category and severity level return an HTTP 400 error.
--    Nonstreaming completions calls don't return any content when the content is filtered. The `finish_reason` value is set to `content_filter`. In rare cases with longer responses, a partial result can be returned. In these cases, the `finish_reason` is updated.
--    For streaming completions calls, segments are returned to the user as they're completed. The service continues streaming until it reaches a stop token, length, or when content that the content filtering system classifies at a filtered category and severity level is detected.  
+The behavior can be summarized in the following points:
 
-### Scenario: You send a nonstreaming completions call asking for multiple outputs; no content is classified at a filtered category and severity level
+- Prompts that are classified at a filtered category and severity level return an HTTP 400 error.
+- Non-streaming completions calls don't return any content when the content is filtered. The `finish_reason` value is set to `content_filter`. In rare cases with longer responses, a partial result can be returned. In these cases, the `finish_reason` is updated.
+- For streaming completions calls, segments are returned to the user as they're completed. The service continues streaming until either reaching a stop token, length, or when content that is classified at a filtered category and severity level is detected.
 
-The following table outlines the various ways content filtering can appear:
+### Scenario 1: Non-streaming call with no filtered content
 
- **HTTP response code** | **Response behavior** |
-|------------------------|-------------------|
-| 200 |   In the cases when all generation passes the filters as configured, no content moderation details are added to the response. The `finish_reason` for each generation is either `stop` or `length`. |
+When all generations pass the filters as configured, the response doesn't include content moderation details. The `finish_reason` for each generation is either `stop` or `length`.
+
+**HTTP Response Code:** 200
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example", 
+    "prompt": "Text example", 
     "n": 3,
     "stream": false
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
 {
@@ -153,26 +154,25 @@ The following table outlines the various ways content filtering can appear:
         }
     ]
 }
-
 ```
 
-### Scenario: Your API call asks for multiple responses (N>1) and at least one of the responses is filtered
+### Scenario 2: Multiple responses with at least one filtered
 
-| **HTTP Response Code** | **Response behavior**|
-|------------------------|----------------------|
-| 200 |The generations that are filtered have a `finish_reason` value of `content_filter`.
+When your API call asks for multiple responses (N>1) and at least one of the responses is filtered, the generations that are filtered have a `finish_reason` value of `content_filter`.
+
+**HTTP Response Code:** 200
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example",
+    "prompt": "Text example",
     "n": 3,
     "stream": false
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
 {
@@ -197,49 +197,51 @@ The following table outlines the various ways content filtering can appear:
 }
 ```
 
-### Scenario: You send an inappropriate input prompt to the completions API (either for streaming or nonstreaming)
+### Scenario 3: Inappropriate input prompt
 
-| **HTTP Response Code** | **Response behavior**|
-|------------------------|----------------------|
-|400 |The API call fails when the prompt triggers a content filter as configured. Modify the prompt and try again.|
+The API call fails when the prompt triggers a content filter as configured. Modify the prompt and try again.
 
-**Example request payload:**
-
-```json
-{
-    "prompt":"Content that triggered the filtering model"
-}
-```
-
-**Example response JSON:**
-
-```json
-"error": {
-    "message": "The response was filtered",
-    "type": null,
-    "param": "prompt",
-    "code": "content_filter",
-    "status": 400
-}
-```
-
-### Scenario: You make a streaming completions call; no output content is classified at a filtered category and severity level
-
-|**HTTP Response Code** | **Response behavior**|
-|------------|------------------------|
-|200|In this case, the call streams back with the full generation and `finish_reason` is either 'length' or 'stop' for each generated response.|
+**HTTP Response Code:** 400
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example",
+    "prompt": "Content that triggered the filtering model"
+}
+```
+
+**Example response:**
+
+```json
+{
+    "error": {
+        "message": "The response was filtered",
+        "type": null,
+        "param": "prompt",
+        "code": "content_filter",
+        "status": 400
+    }
+}
+```
+
+### Scenario 4: Streaming call with no filtered content
+
+In this case, the call streams back with the full generation and `finish_reason` is either `length` or `stop` for each generated response.
+
+**HTTP Response Code:** 200
+
+**Example request payload:**
+
+```json
+{
+    "prompt": "Text example",
     "n": 3,
     "stream": true
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
 {
@@ -258,26 +260,26 @@ The following table outlines the various ways content filtering can appear:
 }
 ```
 
-### Scenario: You make a streaming completions call asking for multiple completions and at least a portion of the output content is filtered
+### Scenario 5: Streaming call with filtered content
 
-|**HTTP Response Code** | **Response behavior**|
-|------------|------------------------|
-| 200 | For a given generation index, the last chunk of the generation includes a non-null `finish_reason` value. The value is `content_filter` when the generation is filtered.|
+For a given generation index, the last chunk of the generation includes a non-null `finish_reason` value. The value is `content_filter` when the generation is filtered.
+
+**HTTP Response Code:** 200
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example",
+    "prompt": "Text example",
     "n": 3,
     "stream": true
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
- {
+{
     "id": "cmpl-example",
     "object": "text_completion",
     "created": 1653670515,
@@ -293,23 +295,23 @@ The following table outlines the various ways content filtering can appear:
 }
 ```
 
-### Scenario: Content filtering system doesn't run on the completion
+### Scenario 6: Content filtering system unavailable
 
-| **HTTP Response Code** | **Response behavior**|
-|------------------------|----------------------|
-| 200 | If the content filtering system is down or otherwise unable to complete the operation in time, your request still completes without content filtering. You can determine that the filtering wasn't applied by looking for an error message in the `content_filter_result` object.|
+If the content filtering system is down or otherwise unable to complete the operation in time, your request still completes without content filtering. You can determine that the filtering wasn't applied by looking for an error message in the `content_filter_results` object.
+
+**HTTP Response Code:** 200
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example",
+    "prompt": "Text example",
     "n": 1,
     "stream": false
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
 {
@@ -323,7 +325,7 @@ The following table outlines the various ways content filtering can appear:
             "index": 0,
             "finish_reason": "length",
             "logprobs": null,
-            "content_filter_result": {
+            "content_filter_results": {
                 "error": {
                     "code": "content_filter_error",
                     "message": "The contents are not filtered"
@@ -334,14 +336,15 @@ The following table outlines the various ways content filtering can appear:
 }
 ```
 
+
 ## Best practices
 
 As part of your application design, consider the following best practices to deliver a positive experience with your application while minimizing potential harms:
 
-- Decide how you want to handle scenarios where your users send prompts containing content that is classified at a filtered category and severity level or otherwise misuse your application.
-- Check the `finish_reason` to see if a completion is filtered.
-- Check that there's no error object in the `content_filter_results` (indicating that content filters didn't run).
-- If you're using the protected material code model in annotate mode, display the citation URL when you're displaying the code in your application.
+- **Handle filtered content appropriately**: Decide how you want to handle scenarios where your users send prompts containing content that is classified at a filtered category and severity level or otherwise misuse your application.
+- **Check finish_reason**: Always check the `finish_reason` to see if a completion is filtered.
+- **Verify content filter execution**: Check that there's no error object in the `content_filter_results` (indicating that content filters didn't run).
+- **Display citations for protected material**: If you're using the protected material code model in annotate mode, display the citation URL when you're displaying the code in your application.
 
 ## Related content
 
