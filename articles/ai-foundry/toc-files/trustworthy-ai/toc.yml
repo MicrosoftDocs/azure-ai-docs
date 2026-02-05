@@ -15,7 +15,7 @@ items:
       href: ../../foundry-models/concepts/default-safety-policies.md
     - name: Content filters
       items:
-      - name: Content filtering severity levels
+      - name: Harm categories and severity levels
         href: ../../openai/concepts/content-filter-severity-levels.md
       - name: Prompt shields
         href: ../../openai/concepts/content-filter-prompt-shields.md
