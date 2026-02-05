@@ -26,7 +26,10 @@ zone_pivot_groups: selection-agent-sharepoint-new
 > - This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/).
 > - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
-Use the SharePoint tool (preview) for SharePoint grounding in Microsoft Foundry Agent Service by retrieving content from a SharePoint site or folder (for example, `contoso.sharepoint.com/sites/policies`). When a user asks a question, the agent can invoke the SharePoint tool to retrieve relevant text from documents the user can access (requires a Microsoft 365 Copilot license). The agent then generates a response based on that retrieved content.
+Use the SharePoint tool (preview) for SharePoint grounding in Microsoft Foundry Agent Service by retrieving content from a SharePoint site or folder (for example, `contoso.sharepoint.com/sites/policies`). When a user asks a question, the agent can invoke the SharePoint tool to retrieve relevant text from documents the user can access. The agent then generates a response based on that retrieved content.
+
+> [!NOTE]
+> SharePoint tool access requires either a Microsoft 365 Copilot license or an enabled pay-as-you-go model. See [Prerequisites](#prerequisites) for details.
 
 This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissions continue to apply to every request. For details on the underlying Microsoft 365 Copilot Retrieval API integration, see [How it works](#how-it-works).
 
@@ -38,9 +41,9 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 ## Prerequisites
 
-- Eligible license or Pay-as-you-go model:
-  - Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-  - If developers and end users don't have Microsoft 365 Copilot license, you can enable the [pay-as-you-go moodel](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
+- Eligible license or pay-as-you-go model:
+  - Developers and end users have a Microsoft 365 Copilot license, as required by the [Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+  - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 - Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md?view=foundry&preserve-view=true).
 - Developers and end users have at least `READ` access to the SharePoint site.
 - The latest prerelease package installed:
@@ -283,12 +286,12 @@ AIProjectConnection sharepointConnection = projectClient.Connections.GetConnecti
 // which will be used to create SharepointAgentTool. Use this tool to create an Agent.
 SharePointGroundingToolOptions sharepointToolOption = new()
 {
-  ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
+    ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
 };
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful assistant.",
-    Tools = { new SharepointAgentTool(sharepointToolOption), }
+    Tools = { new SharepointPreviewTool(sharepointToolOption), }
 };
 AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
@@ -296,38 +299,36 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 
 // Create the response and make sure we are always using tool.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-ResponseCreationOptions responseOptions = new()
+CreateResponseOptions responseOptions = new()
 {
-    ToolChoice = ResponseToolChoice.CreateRequiredChoice()
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("What is Contoso whistleblower policy") }
 };
-OpenAIResponse response = responseClient.CreateResponse("What is Contoso whistleblower policy", options: responseOptions);
+ResponseResult response = responseClient.CreateResponse(options: responseOptions);
 
 // SharePoint tool can create the reference to the page, grounding the data.
 // Create the GetFormattedAnnotation method to get the URI annotation.
-private static string GetFormattedAnnotation(OpenAIResponse response)
+string annotation = "";
+foreach (ResponseItem item in response.OutputItems)
 {
-    foreach (ResponseItem item in response.OutputItems)
+    if (item is MessageResponseItem messageItem)
     {
-        if (item is MessageResponseItem messageItem)
+        foreach (ResponseContentPart content in messageItem.Content)
         {
-            foreach (ResponseContentPart content in messageItem.Content)
+            foreach (ResponseMessageAnnotation messageAnnotation in content.OutputTextAnnotations)
             {
-                foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+                if (messageAnnotation is UriCitationMessageAnnotation uriAnnotation)
                 {
-                    if (annotation is UriCitationMessageAnnotation uriAnnotation)
-                    {
-                        return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
-                    }
+                    annotation = $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
                 }
             }
         }
     }
-    return "";
 }
 
 // Print the Agent output and add the annotation at the end.
 Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
-Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}");
+Console.WriteLine($"{response.GetOutputText()}{annotation}");
 
 // After the sample is completed, delete the Agent we have created.
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
@@ -645,16 +646,16 @@ The SharePoint tool makes it possible by enabling seamless integrations between 
 
 For more information about delegated access and identity passthrough in Foundry, see [Agent identity concepts in Microsoft Foundry](../../concepts/agent-identity.md).
 
-Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
+Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By using the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, this capability ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
 
-Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as Identity Passthrough/On-Behalf-Of (OBO) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, the Foundry Agent service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored towards specific end users.
+Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as identity passthrough (On-Behalf-Of) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, Foundry Agent Service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored to specific end users.
 
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
 | `AuthenticationError: AppOnly OBO tokens not supported by target service` | Using application identity instead of user identity | The SharePoint tool requires user identity (identity passthrough). Don't use application-only authentication. |
-| `Forbidden: Authorization Failed - User does not have valid license` | Missing Microsoft 365 Copilot license | Assign a Microsoft 365 Copilot license to the user, as required by the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). |
+| `Forbidden: Authorization Failed - User does not have valid license` | Missing Microsoft 365 Copilot license or pay-as-you-go model | Assign a Microsoft 365 Copilot license to the user or enable pay-as-you-go. See [Prerequisites](#prerequisites). |
 | 401 or authentication failures | Cross-tenant access attempt | Confirm the user in Foundry and Microsoft 365 is in the same tenant. |
 | Tool returns no results | User lacks access to SharePoint content | Verify the user has read access to the SharePoint sites and documents being queried. |
 | Slow response times | Large document search scope | Narrow the search scope by specifying specific sites or libraries. Consider using more specific search queries. |
