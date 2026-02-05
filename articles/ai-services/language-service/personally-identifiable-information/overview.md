@@ -11,6 +11,7 @@ ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
+<!-- markdownlint-disable MD025 -->
 # What is Azure Language PII detection?
 
 > [!IMPORTANT]
@@ -21,16 +22,28 @@ Azure Language in Foundry Tools Personally Identifiable Information (PII) detect
 > [!TIP]
 > Try PII detection [in Microsoft Foundry portal](https://ai.azure.com/). There you can [utilize a currently existing Language Studio resource or create a new Foundry resource](../../../ai-services/connect-services-foundry-portal.md).
 
+## PII Detection: video demonstration
+
+The following video provides an overview of Azure Language PII detection and demonstrates how the service can help protect sensitive information in your applications. Topics covered include:
+
+* How the service identifies and redacts sensitive data
+* The different redaction policies available
+* Common use cases for PII detection in your workflows
+
+Closed captions are available for this video.
+
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=17262a01-0c8c-40fa-98e3-826b766d5db4]
+
 ## What's new
 
 **The 2025-11-15-preview version introduces the following new PII task parameters**:
 
 * [**Multiple redaction policies**](how-to/redact-text-pii.md#redaction-policies) offer the ability to apply various redaction approaches within a single request:
 
-    * [SyntheticReplacementPolicyType 🆕](how-to/redact-text-pii.md#syntheticreplacement-policy-type-)
-    * [CharacterMaskPolicyType (default)](how-to/redact-text-pii.md#charactermask-policy-type)
-    * [NoMaskPolicyType](how-to/redact-text-pii.md#nomask-policy-type)
-    * [EntityMaskPolicyType](how-to/redact-text-pii.md#entitymask-policy-type)
+  * [SyntheticReplacementPolicyType 🆕](how-to/redact-text-pii.md#syntheticreplacement-policy-type-)
+  * [CharacterMaskPolicyType (default)](how-to/redact-text-pii.md#charactermask-policy-type)
+  * [NoMaskPolicyType](how-to/redact-text-pii.md#nomask-policy-type)
+  * [EntityMaskPolicyType](how-to/redact-text-pii.md#entitymask-policy-type)
 
 * [**Configurable confidence threshold**](how-to/redact-text-pii.md#confidencescorethreshold-) enables you to set a minimum confidence score. Entities are only included in the output if their confidence score meets or exceeds the specified threshold.
 
@@ -38,27 +51,27 @@ Azure Language in Foundry Tools Personally Identifiable Information (PII) detect
 
 * The following entities are available in preview:
 
-    * [Airport](concepts/entity-categories.md#type-airport-preview)
-    * [DateOfBirth](concepts/entity-categories.md#type-date-of-birth-preview)
-    * [BankAccountNumber](concepts/entity-categories.md#type-bank-account-number-preview)
-    * [CASocialIdentificationNumber](concepts/entity-categories.md#type-canada-social-identification-number-preview)
-    * [CVV (Card Verification Value )](concepts/entity-categories.md#type-card-verification-value-cvv-preview)
-    * [City](concepts/entity-categories.md#type-city-preview)
-    * [PassportNumber](concepts/entity-categories.md#type-passport-number-preview)
-    * [DriversLicenseNumber](concepts/entity-categories.md#type-drivers-license-number-preview)
-    * [ExpirationDate](concepts/entity-categories.md#type-expiration-date-preview)
-    * [Geopolitical Entity](concepts/entity-categories.md#type-geopolitical-entity-gpe-preview)
-    * [KRDriversLicenseNumber](concepts/entity-categories.md#type-south-korea-drivers-license-number-preview)
-    * [KRPassportNumber ](concepts/entity-categories.md#type-south-korea-passport-number-preview)
-    * [KRSocialSecurityNumber ](concepts/entity-categories.md#type-south-korea-social-security-number-preview)
-    * [LicensePlate](concepts/entity-categories.md#type-license-plate-preview)
-    * [Location](concepts/entity-categories.md#type-location-preview)
-    * [Password](concepts/entity-categories.md#type-password-preview)
-    * [SortCode](concepts/entity-categories.md#type-sort-code-preview)
-    * [State](concepts/entity-categories.md#type-state-preview)
-    * [USMedicareBeneficiaryId](concepts/entity-categories.md#type-united-states-medicare-beneficiary-identification-preview)
-    * [VIN (vehicle identification number)](concepts/entity-categories.md#type-vin-preview)
-    * [ZipCode](concepts/entity-categories.md#type-zipcode-preview)
+  * [Airport](concepts/entity-categories.md#type-airport-preview)
+  * [DateOfBirth](concepts/entity-categories.md#type-date-of-birth-preview)
+  * [BankAccountNumber](concepts/entity-categories.md#type-bank-account-number-preview)
+  * [CASocialIdentificationNumber](concepts/entity-categories.md#type-canada-social-identification-number-preview)
+  * [CVV (Card Verification Value )](concepts/entity-categories.md#type-card-verification-value-cvv-preview)
+  * [City](concepts/entity-categories.md#type-city-preview)
+  * [PassportNumber](concepts/entity-categories.md#type-passport-number-preview)
+  * [DriversLicenseNumber](concepts/entity-categories.md#type-drivers-license-number-preview)
+  * [ExpirationDate](concepts/entity-categories.md#type-expiration-date-preview)
+  * [Geopolitical Entity](concepts/entity-categories.md#type-geopolitical-entity-gpe-preview)
+  * [KRDriversLicenseNumber](concepts/entity-categories.md#type-south-korea-drivers-license-number-preview)
+  * [KRPassportNumber ](concepts/entity-categories.md#type-south-korea-passport-number-preview)
+  * [KRSocialSecurityNumber ](concepts/entity-categories.md#type-south-korea-social-security-number-preview)
+  * [LicensePlate](concepts/entity-categories.md#type-license-plate-preview)
+  * [Location](concepts/entity-categories.md#type-location-preview)
+  * [Password](concepts/entity-categories.md#type-password-preview)
+  * [SortCode](concepts/entity-categories.md#type-sort-code-preview)
+  * [State](concepts/entity-categories.md#type-state-preview)
+  * [USMedicareBeneficiaryId](concepts/entity-categories.md#type-united-states-medicare-beneficiary-identification-preview)
+  * [VIN (vehicle identification number)](concepts/entity-categories.md#type-vin-preview)
+  * [ZipCode](concepts/entity-categories.md#type-zipcode-preview)
 
 * **Conversational PII detection models (both version `2024-11-01-preview` and `GA`)** are updated to provide enhanced AI quality and accuracy. The numeric identifier entity type now also includes Drivers License and Medicare Beneficiary Identifier.
 
@@ -74,7 +87,6 @@ Azure Language in Foundry Tools Personally Identifiable Information (PII) detect
 * [General text PII detection](how-to/redact-text-pii.md) for processing sensitive information (PII) and health information (PHI) in unstructured text across several [predefined categories](concepts/entity-categories.md).
 * [Conversation PII detection](how-to/redact-conversation-pii.md), a specialized model designed to handle speech transcriptions and the informal, conversational tone found in meeting and call transcripts.
 * [Native Document PII detection](how-to/redact-document-pii.md) for processing structured document files.
-
 
 ### [Text PII](#tab/text-pii)
 
@@ -167,5 +179,6 @@ An AI system includes not only the technology, but also the people who use it, t
 ## Next steps
 
 There are two ways to get started using the entity linking feature:
+
 * [Foundry](../../../ai-foundry/what-is-foundry.md) is a web-based platform that lets you use several Language features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.
