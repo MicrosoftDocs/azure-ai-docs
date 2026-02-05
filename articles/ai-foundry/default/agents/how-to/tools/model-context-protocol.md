@@ -1,21 +1,22 @@
 ---
 title: Connect to MCP Server Endpoints for agents (Preview)
 titleSuffix: Microsoft Foundry
-description: Learn how to connect agents to Model Context Protocol (MCP) servers to extend agent capabilities with external tools and data sources.
+description: Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/05/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
 zone_pivot_groups: selection-mcp-code-new
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026
+#CustomerIntent: As a developer, I want to connect my Foundry agent to external MCP servers so that I can extend agent capabilities with third-party tools.
 ---
 
-# Connect to Model Context Protocol servers (preview)
+# Connect agents to Model Context Protocol servers (preview)
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
@@ -33,7 +34,11 @@ In this article, you learn how to:
 - Review and approve MCP tool calls.
 - Troubleshoot common MCP integration issues.
 
+For conceptual details about how MCP integration works, see [How it works](#how-it-works).
+
 ### Usage support
+
+The following table shows SDK and setup support for MCP connections.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -66,13 +71,16 @@ To learn about supported authentication options (key-based, Microsoft Entra iden
 
 ## Considerations for using non-Microsoft services and servers
 
-You're subject to the terms between you and the service provider when you use connected non-Microsoft services. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
+When you connect to a non-Microsoft MCP server, you pass some of your data (such as prompt content) to that service and might receive data from it. You're subject to the terms between you and the service provider and are responsible for your use and any associated charges.
 
-Third parties, not Microsoft, create the remote MCP servers that you decide to use with the MCP tool described in this article. Microsoft doesn't test or verify these servers. Microsoft has no responsibility to you or others in relation to your use of any remote MCP servers.
+Third parties create the remote MCP servers you use with Foundry Agent Service. Microsoft doesn't test or verify these servers and has no responsibility for your use of them.
 
-Carefully review and track what MCP servers you add to Foundry Agent Service. Rely on servers hosted by trusted service providers themselves rather than proxies.
+Follow these practices when using non-Microsoft MCP servers:
 
-The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. Review all data that you share with remote MCP servers and log the data for auditing purposes. Be aware of non-Microsoft practices for retention and location of data.
+- Carefully review and track what MCP servers you add to Foundry Agent Service.
+- Rely on servers hosted by trusted service providers rather than proxies.
+- Review all data you share with remote MCP servers and log it for auditing.
+- Be aware of non-Microsoft practices for data retention and location.
 
 ## Best practices
 
@@ -85,7 +93,7 @@ When you use MCP servers, follow these practices:
 - Review the requested tool name and arguments before you approve.
 - Log approvals and tool calls for auditing and troubleshooting.
 
-## Code example
+## Create an agent with the MCP tool
 
 Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for details.
 
@@ -901,7 +909,7 @@ For more information on using MCP, see:
 - [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
 - [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog.
 
-## Setup
+## Set up the MCP connection
 
 The following steps outline how to connect to a remote MCP server from Foundry Agent Service:
 
