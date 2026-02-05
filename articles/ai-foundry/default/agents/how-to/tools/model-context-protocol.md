@@ -288,14 +288,14 @@ while (nextResponseOptions is not null)
         {
             nextResponseOptions = new CreateResponseOptions()
             {
-                PreviousResponseId = latestResponse.PreviousResponseId,
+                PreviousResponseId = latestResponse.Id,
             };
             if (string.Equals(mcpToolCall.ServerLabel, "api-specs"))
             {
-          Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.Name})");
-          Console.Write("Approve this MCP tool call? (y/N): ");
-          bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
-          nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
+                Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.ToolName})");
+                Console.Write("Approve this MCP tool call? (y/N): ");
+                bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
+                nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
             }
             else
             {
@@ -437,14 +437,14 @@ while (nextResponseOptions is not null)
         {
             nextResponseOptions = new()
             {
-                PreviousResponseId = latestResponse.PreviousResponseId,
+                PreviousResponseId = latestResponse.Id,
             };
             if (string.Equals(mcpToolCall.ServerLabel, "api-specs"))
             {
-              Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.Name})");
-              Console.Write("Approve this MCP tool call? (y/N): ");
-              bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
-              nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
+                Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.ToolName})");
+                Console.Write("Approve this MCP tool call? (y/N): ");
+                bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
+                nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
             }
             else
             {

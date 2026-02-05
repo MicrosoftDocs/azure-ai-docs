@@ -275,9 +275,7 @@ To review the auto-generated objects:
 
 ## Clean up resources
 
-When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
-
-In the Azure portal, you can manage your Azure AI Search, Azure Blob Storage, and Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+[!INCLUDE [clean up resources (paid)](includes/resource-cleanup-paid.md)]
 
 You can also delete the knowledge source and knowledge base on their respective portal pages. When you delete the knowledge source, the portal prompts you to delete the associated data source, skillset, index, and indexer.
 

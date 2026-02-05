@@ -26,7 +26,7 @@ ai-usage: ai-assisted
 
 Use the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) with Foundry Agent Service to analyze enterprise data in chat. The Fabric data agent turns enterprise data into a conversational question and answer experience.
 
-First, build and publish a Fabric data agent. Then, connect your Fabric data agent with the published endpoint. When a user sends a query, the agent determines if it should use the Fabric data agent. If so, it uses the end user's identity to generate queries over data they have access to. Lastly, the agent generates responses based on queries returned from Fabric data agents. By using Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection.
+First, build and publish a Fabric data agent. Then, connect your Fabric data agent with the published endpoint. When a user sends a query, the agent determines if it should use the Fabric data agent. If so, it uses the end user's identity to generate queries over data they have access to. Lastly, the agent generates responses based on queries returned from the Fabric data agent. By using identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection.
 
 ### Usage support
 
@@ -256,12 +256,12 @@ AIProjectConnection fabricConnection = projectClient.Connections.GetConnection(c
 
 FabricDataAgentToolOptions fabricToolOption = new()
 {
-  ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
+    ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
 };
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful assistant.",
-    Tools = { new MicrosoftFabricAgentTool(fabricToolOption), }
+    Tools = { new MicrosoftFabricPreviewTool(fabricToolOption), }
 };
 AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
@@ -269,11 +269,12 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 
 // Create the response and make sure we are always using tool.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-ResponseCreationOptions responseOptions = new()
+CreateResponseOptions responseOptions = new()
 {
-    ToolChoice = ResponseToolChoice.CreateRequiredChoice()
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("What was the number of public holidays in Norway in 2024?") },
 };
-OpenAIResponse response = responseClient.CreateResponse("What was the number of public holidays in Norway in 2024?", options: responseOptions);
+ResponseResult response = responseClient.CreateResponse(options: responseOptions);
 
 // Print the Agent output.
 Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));

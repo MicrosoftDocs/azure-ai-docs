@@ -145,7 +145,7 @@ The following is a sample request body. You specify a number of options, defined
 ---
 
 > [!TIP]
-> For image generation token costs, see [Image tokens](../overview.md#image-generation-tokens).
+> For image generation token costs, see [Image tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 
 ### Output
