@@ -358,7 +358,7 @@ Before creating a hosted agent, complete these steps **in order**:
 |------|------|---------|
 | 1 | **Ensure your access** | Ensure that you have access to assign roles in Azure Container Registry. You need at least User Access Administrator or Owner permissions on the container registry. |
 | 2 | **Install the Azure AI Projects SDK** | pip install --pre "azure-ai-projects>=2.0.0b3" |
-| 3 | **Create an Azure Container Registry** | [Create a private container registry](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal) |
+| 3 | **Create an Azure Container Registry** | [Create a private container registry](/azure/container-registry/container-registry-get-started-portal) |
 | 4 | **Build your Docker image with the correct platform** | [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry) |
 | 5 | **Push your image to YOUR registry** | [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry) Replace sample URLs (YOUR_ACR_NAME, YOUR_IMAGE_NAME, YOUR_TAG) with your actual values for your docker image and Azure Container Registry |
 | 6 | **Configure Azure Container Registry permissions** | [Configure Azure Container Registry permissions](#configure-azure-container-registry-permissions) |
