@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 10/31/2025
+ms.date: 02/05/2026
 ms.custom: languages
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice Live API and how to configure them.
 ---
@@ -22,7 +22,7 @@ The Voice Live API supports multiple languages and configuration options. In thi
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used Voice Live speech input is processed either by one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`) or by `azure speech to text` models.
+Depending on which model is being used Voice Live speech input is processed either with one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`) or by `azure speech to text` models.
 
 ### Azure speech to text supported languages
 
@@ -30,9 +30,9 @@ Azure speech to text is used for all configuration where a non-multimodal model 
 It supports all languages documented on the [Language and voice support for the Speech service - Speech to text](./language-support.md?tabs=stt) tab.
 
 There are three options for Voice Live language processing:
-- Automatic multilingual configuration using multilingual model (default)
-- Single language configuration
-- Multilingual configuration using up to 10 defined languages
+- Automatic multilingual configuration using multilingual model (default): When setting an empty `language` configuration, Voice Live uses a multilingual model that works well for multiple languages. This is the default and recommended configuration for most customers.
+- Single language configuration: Customer can specify a single language to restrict the transcription languages detected.
+- Multilingual configuration using up to 10 defined languages: Use this ONLY if the input voice includes multiple languages that aren't fully covered by the automatic multilingual mode. Note this can incur extra latency. In some cases, for example, with short sentences, transcript quality can be lower.
 
 The current multi-lingual model supports the following languages:
 - Chinese (China) [zh-CN]
@@ -175,7 +175,7 @@ Multimodal models don't require a language configuration for the general process
 
 ## [Speech output](#tab/speechoutput)
 
-Depending on which model is being used Voice Live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-realtime-mini` or by `azure text to speech` voices.
+Depending on which model is being used Voice Live speech output is processed either with one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-realtime-mini` or by `azure text to speech` voices.
 
 ### Azure text to speech supported languages
 
