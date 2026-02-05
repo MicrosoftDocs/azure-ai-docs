@@ -23,6 +23,7 @@ The following table lists the content safety containers available in the Microso
 |--------------------------------------|----------|
 |Analyze text|Scans text for sexual content, violence, hate, and self-harm with multiple severity levels.|
 |Analyze image|Scans images for sexual content, violence, hate, and self-harm with multiple severity levels.|
+|Prompt Shields for user prompts and documents |Detects and mitigates user prompt attacks and safeguards against attacks not directly supplied by the user or developer, such as external documents. |
 
 The content safety container is available in public preview. Containers in preview are still under development and don't meet Microsoft's stability and support requirements.
 

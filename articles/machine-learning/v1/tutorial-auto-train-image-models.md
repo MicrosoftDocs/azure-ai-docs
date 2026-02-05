@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: swatig007
 ms.author: scottpolly
 ms.reviewer: sooryar
-ms.date: 10/06/2021
+ms.date: 02/05/2026
 ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
 ---
 
@@ -20,14 +20,14 @@ ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 >[!IMPORTANT]
-> The features presented in this article are in preview. They should be considered [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview features that might change at any time.
+> The features presented in this article are in preview. Consider them [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview features that might change at any time.
 
-In this tutorial, you learn how to train an object detection model using Azure Machine Learning automated ML with the Azure Machine Learning Python SDK. This object detection model identifies whether the image contains objects, such as a can, carton, milk bottle, or water bottle.
+In this tutorial, you learn how to train an object detection model by using Azure Machine Learning automated ML with the Azure Machine Learning Python SDK. This object detection model identifies whether the image contains objects, such as a can, carton, milk bottle, or water bottle.
 
-Automated ML accepts training data and configuration settings, and automatically iterates through combinations of different feature normalization/standardization methods, models, and hyperparameter settings to arrive at the best model.
+Automated ML accepts training data and configuration settings. It automatically iterates through combinations of different feature normalization and standardization methods, models, and hyperparameter settings to find the best model.
 
 
-You'll write code using the Python SDK in this tutorial and learn the following tasks:
+You write code by using the Python SDK in this tutorial and learn the following tasks:
 
 > [!div class="checklist"]
 > * Download and transform data
@@ -41,11 +41,11 @@ You'll write code using the Python SDK in this tutorial and learn the following 
 
 * If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) of Azure Machine Learning today.
 
-* Python 3.7 or 3.8 are supported for this feature
+* Python 3.10 or later is supported for this feature.
 
 * Complete the [Quickstart: Get started with Azure Machine Learning](../quickstart-create-resources.md#create-the-workspace) if you don't already have an Azure Machine Learning workspace.
 
-* Download and unzip the [**odFridgeObjects.zip*](https://cvbp-secondary.z19.web.core.windows.net/datasets/object_detection/odFridgeObjects.zip) data file. The dataset is annotated in Pascal VOC format, where each image corresponds to an xml file. Each xml file contains information on where its corresponding image file is located and also contains information about the bounding boxes and the object labels. In order to use this data, you first need to convert it to the required JSONL format as seen in the [Convert the downloaded data to JSONL](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/image-object-detection/auto-ml-image-object-detection.ipynb) section of the notebook. 
+* Download and unzip the [**odFridgeObjects.zip**](https://cvbp-secondary.z19.web.core.windows.net/datasets/object_detection/odFridgeObjects.zip) data file. The dataset is annotated in Pascal VOC format, where each image corresponds to an XML file. Each XML file contains information on where its corresponding image file is located and also contains information about the bounding boxes and the object labels. To use this data, you first need to convert it to the required JSONL format as seen in the [Convert the downloaded data to JSONL](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/image-object-detection/auto-ml-image-object-detection.ipynb) section of the notebook. 
 
 This tutorial is also available in the [azureml-examples repository on GitHub](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/image-object-detection) if you wish to run it in your own [local environment](how-to-configure-environment.md). To get the required packages,
 * Run `pip install azureml`
@@ -55,24 +55,24 @@ This tutorial is also available in the [azureml-examples repository on GitHub](h
 
 You first need to set up a compute target to use for your automated ML model training. Automated ML models for image tasks require GPU SKUs.
 
-This tutorial uses the NCsv3-series (with V100 GPUs) as this type of compute target leverages multiple GPUs to speed up training. Additionally, you can set up multiple nodes to take advantage of parallelism when tuning hyperparameters for your model.
+This tutorial uses the NCasT4_v3-series (with T4 GPUs) as this type of compute target leverages multiple GPUs to speed up training. Additionally, you can set up multiple nodes to take advantage of parallelism when tuning hyperparameters for your model.
 
-The following code creates a GPU compute of size Standard _NC24s_v3 with four nodes that are attached to the workspace, `ws`.
+The following code creates a GPU compute of size Standard_NC64as_T4_v3 with four nodes that are attached to the workspace, `ws`.
 
 > [!WARNING]
-> Ensure your subscription has sufficient quota for the compute target you wish to use.
+> Ensure your subscription has sufficient quota for the compute target you want to use.
 
 ```python
 from azureml.core.compute import AmlCompute, ComputeTarget
 
-cluster_name = "gpu-nc24sv3"
+cluster_name = "gpu-nc64ast4v3"
 
 try:
     compute_target = ComputeTarget(workspace=ws, name=cluster_name)
     print('Found existing compute target.')
 except KeyError:
     print('Creating a new compute target...')
-    compute_config = AmlCompute.provisioning_configuration(vm_size='Standard_NC24s_v3',
+    compute_config = AmlCompute.provisioning_configuration(vm_size='Standard_NC64as_T4_v3',
                                                            idle_seconds_before_scaledown=1800,
                                                            min_nodes=0,
                                                            max_nodes=4)
@@ -96,7 +96,7 @@ experiment = Experiment(ws, name=experiment_name)
 
 ## Visualize input data
 
-Once you have the input image data prepared in [JSONL](https://jsonlines.org/) (JSON Lines) format, you can visualize the ground truth bounding boxes for an image. To do so, be sure you have `matplotlib` installed.
+After preparing the input image data in [JSONL](https://jsonlines.org/) (JSON Lines) format, you can visualize the ground truth bounding boxes for an image. To do this visualization, make sure you have `matplotlib` installed.
 
 ```
 %pip install --upgrade matplotlib
@@ -173,7 +173,7 @@ def plot_ground_truth_boxes_dataset(image_file, dataset_pd):
         print("Unable to find ground truth information for image: {}".format(image_file))
 ```
 
-Using the above helper functions, for any given image, you can run the following code to display the bounding boxes.
+By using the preceding helper functions, you can display the bounding boxes for any given image.
 
 ```python
 image_file = "./odFridgeObjects/images/31.jpg"
@@ -184,16 +184,16 @@ plot_ground_truth_boxes_jsonl(image_file, jsonl_file)
 
 ## Upload data and create dataset
 
-In order to use the data for training, upload it to your workspace via a datastore. The datastore provides a mechanism for you to upload or download data, and interact with it from your remote compute targets.
+To use the data for training, upload it to your workspace through a datastore. The datastore provides a mechanism for you to upload or download data, and interact with it from your remote compute targets.
 
 ```python
 ds = ws.get_default_datastore()
 ds.upload(src_dir='./odFridgeObjects', target_path='odFridgeObjects')
 ```
 
-Once uploaded to the datastore, you can create an Azure Machine Learning dataset from the data. Datasets package your data into a consumable object for training.
+After uploading the data to the datastore, create an Azure Machine Learning dataset from the data. Datasets package your data into a consumable object for training.
 
-The following code creates a dataset for training. Since no validation dataset is specified, by default 20% of your training data is used for validation.
+The following code creates a dataset for training. Since you didn't specify a validation dataset, the default behavior uses 20% of your training data for validation.
 
 ``` python
 from azureml.core import Dataset
@@ -232,7 +232,7 @@ dflow = training_dataset._dataflow.add_column(get_portable_path(dprep.col("image
 dataset_pd = dflow.to_pandas_dataframe(extended_types=True)
 ```
 
-For any given image, you can run the following code to display the bounding boxes.
+For any given image, run the following code to display the bounding boxes.
 
 ```python
 image_file = "./odFridgeObjects/images/31.jpg"
@@ -241,19 +241,19 @@ plot_ground_truth_boxes_dataset(image_file, dataset_pd)
 
 ## Configure your object detection experiment
 
-To configure automated ML runs for image-related tasks, use the `AutoMLImageConfig` object. In your `AutoMLImageConfig`, you can specify the model algorithms with the `model_name` parameter and configure the settings to perform a hyperparameter sweep over a defined parameter space to find the optimal model.
+To configure automated ML runs for image-related tasks, use the `AutoMLImageConfig` object. In your `AutoMLImageConfig`, specify the model algorithms by using the `model_name` parameter. Configure the settings to perform a hyperparameter sweep over a defined parameter space to find the optimal model.
 
-In this example, we use the `AutoMLImageConfig` to train an object detection model with `yolov5` and `fasterrcnn_resnet50_fpn`, both of which are pretrained on COCO, a large-scale object detection, segmentation, and captioning dataset that contains over thousands of labeled images with over 80 label categories.
+In this example, use the `AutoMLImageConfig` to train an object detection model with `yolov5` and `fasterrcnn_resnet50_fpn`, both of which are pretrained on COCO, a large-scale object detection, segmentation, and captioning dataset that contains over thousands of labeled images with over 80 label categories.
 
 ### Hyperparameter sweeping for image tasks
 
-You can perform a hyperparameter sweep over a defined parameter space to find the optimal model.
+Perform a hyperparameter sweep over a defined parameter space to find the optimal model.
 
-The following code, defines the parameter space in preparation for the hyperparameter sweep for each defined algorithm, `yolov5` and `fasterrcnn_resnet50_fpn`.  In the parameter space, specify the range of values for `learning_rate`, `optimizer`, `lr_scheduler`, etc., for AutoML to choose from as it attempts to generate a model with the optimal primary metric. If hyperparameter values are not specified, then default values are used for each algorithm.
+The following code defines the parameter space in preparation for the hyperparameter sweep for each defined algorithm, `yolov5` and `fasterrcnn_resnet50_fpn`. In the parameter space, specify the range of values for `learning_rate`, `optimizer`, `lr_scheduler`, and other parameters for AutoML to choose from as it attempts to generate a model with the optimal primary metric. If you don't specify hyperparameter values, default values are used for each algorithm.
 
-For the tuning settings, use random sampling to pick samples from this parameter space by importing the `GridParameterSampling, RandomParameterSampling` and `BayesianParameterSampling` classes.  Doing so, tells automated ML to try a total of 20 iterations with these different samples, running four iterations at a time on our compute target, which was set up using four nodes. The more parameters the space has, the more iterations you need to find optimal models.
+For the tuning settings, use random sampling to pick samples from this parameter space by importing the `GridParameterSampling`, `RandomParameterSampling`, and `BayesianParameterSampling` classes. By using these classes, you tell automated ML to try a total of 20 iterations with these different samples, running four iterations at a time on your compute target, which you set up by using four nodes. The more parameters the space has, the more iterations you need to find optimal models.
 
-The Bandit early termination policy is also used. This policy terminates poor performing configurations; that is, those configurations that are not within 20% slack of the best performing configuration, which significantly saves compute resources.
+Also use the Bandit early termination policy. This policy terminates poor performing configurations - those configurations that aren't within 20% slack of the best performing configuration - which significantly saves compute resources.
 
 ```python
 from azureml.train.hyperdrive import RandomParameterSampling
@@ -286,7 +286,7 @@ tuning_settings = {
 }
 ```
 
-Once the parameter space and tuning settings are defined, you can pass them into your `AutoMLImageConfig` object and then submit the experiment to train an image model using your training dataset.
+After you define the parameter space and tuning settings, pass them into your `AutoMLImageConfig` object. Then submit the experiment to train an image model by using your training dataset.
 
 ```python
 from azureml.train.automl import AutoMLImageConfig
@@ -301,7 +301,7 @@ automl_image_run = experiment.submit(automl_image_config)
 automl_image_run.wait_for_completion(wait_post_processing=True)
 ```
 
-When doing a hyperparameter sweep, it can be useful to visualize the different configurations that were tried using the HyperDrive UI. You can navigate to this UI by going to the 'Child runs' tab in the UI of the main automl_image_run from above, which is the HyperDrive parent run. Then you can go into the 'Child runs' tab of this one. Alternatively, here below you can see directly the HyperDrive parent run and navigate to its 'Child runs' tab:
+When you do a hyperparameter sweep, it can be useful to visualize the different configurations that you tried by using the HyperDrive UI. You can navigate to this UI by going to the **Child runs** tab in the UI of the main `automl_image_run` from above, which is the HyperDrive parent run. Then you can go into the **Child runs** tab of this one. Alternatively, the following section shows the HyperDrive parent run and you can navigate to its **Child runs** tab:
 
 ```python
 from azureml.core import Run
@@ -311,7 +311,7 @@ hyperdrive_run
 
 ## Register the best model
 
-Once the run completes, we can register the model that was created from the best run.
+When the run completes, register the model that the best run creates.
 
 ```python
 best_child_run = automl_image_run.get_best_child()
@@ -321,11 +321,11 @@ model = best_child_run.register_model(model_name = model_name, model_path='outpu
 
 ## Deploy model as a web service
 
-Once you have your trained model, you can deploy the model on Azure. You can deploy your trained model as a web service on Azure Container Instances (ACI) or Azure Kubernetes Service (AKS). ACI is the perfect option for testing deployments, while AKS is better suited for high-scale, production usage.
+After you train your model, deploy it to Azure. Deploy your trained model as a web service on Azure Container Instances (ACI) or Azure Kubernetes Service (AKS). ACI is the perfect option for testing deployments, while AKS is better suited for high-scale, production usage.
 
-In this tutorial, we deploy the model as a web service in AKS.
+In this tutorial, you deploy the model as a web service in AKS.
 
-1. Create an AKS compute cluster. In this example, a GPU virtual machine SKU is used for the deployment cluster
+1. Create an AKS compute cluster. In this example, use a GPU virtual machine SKU for the deployment cluster.
 
     ```python
     from azureml.core.compute import ComputeTarget, AksCompute
@@ -353,7 +353,7 @@ In this tutorial, we deploy the model as a web service in AKS.
 1. Define the inference configuration that describes how to set up the web-service containing your model. You can use the scoring script and the environment from the training run in your inference config.
 
     > [!NOTE]
-    > To change the model's settings, open the downloaded scoring script and modify the model_settings variable before deploying the model.
+    > To change the model's settings, open the downloaded scoring script and modify the `model_settings` variable before deploying the model.
 
     ```python
     from azureml.core.model import InferenceConfig
@@ -363,7 +363,7 @@ In this tutorial, we deploy the model as a web service in AKS.
     inference_config = InferenceConfig(entry_script='score.py', environment=environment)
     ```
 
-1. You can then deploy the model as an AKS web service.
+1. Deploy the model as an AKS web service.
 
     ```python
 
@@ -390,7 +390,7 @@ In this tutorial, we deploy the model as a web service in AKS.
 
 ## Test the web service
 
-You can test the deployed web service to predict new images. For this tutorial, pass a random image from the dataset and pass it to the scoring URI.
+Test the deployed web service to predict new images. For this tutorial, pass a random image from the dataset to the scoring URI.
 
 ```python
 import requests
@@ -417,7 +417,7 @@ resp = requests.post(scoring_uri, data, headers=headers)
 print(resp.text)
 ```
 ## Visualize detections
-Now that you have scored a test image, you can visualize the bounding boxes for this image. To do so, be sure you have matplotlib installed.
+Now that you scored a test image, you can visualize the bounding boxes for this image. To do so, be sure you have matplotlib installed.
 
 ```
 %pip install --upgrade matplotlib
@@ -468,9 +468,9 @@ plt.show()
 
 ## Clean up resources
 
-Do not complete this section if you plan on running other Azure Machine Learning tutorials.
+Don't complete this section if you plan on running other Azure Machine Learning tutorials.
 
-If you don't plan to use the resources you created, delete them, so you don't incur any charges.
+If you don't plan to use the resources you created, delete them so you don't incur any charges.
 
 1. In the Azure portal, select **Resource groups** on the far left.
 1. From the list, select the resource group you created.
@@ -481,21 +481,21 @@ You can also keep the resource group but delete a single workspace. Display the 
 
 ## Next steps
 
-In this automated machine learning tutorial, you did the following tasks:
+In this automated machine learning tutorial, you completed the following tasks:
 
 > [!div class="checklist"]
 > * Configured a workspace and prepared data for an experiment.
-> * Trained an automated object detection model
-> * Specified hyperparameter values for your model
-> * Performed a hyperparameter sweep
-> * Deployed your model
-> * Visualized detections
+> * Trained an automated object detection model.
+> * Specified hyperparameter values for your model.
+> * Performed a hyperparameter sweep.
+> * Deployed your model.
+> * Visualized detections.
 
 * [Learn more about computer vision in automated ML](../concept-automated-ml.md#computer-vision).
 * [Learn how to set up AutoML to train computer vision models with Python](../how-to-auto-train-image-models.md).
 * [Learn how to configure incremental training on computer vision models](../how-to-auto-train-image-models.md#incremental-training-optional).
 * See [what hyperparameters are available for computer vision tasks](../reference-automl-images-hyperparameters.md).
-* Review detailed code examples and use cases in the [GitHub notebook repository for automated machine learning samples](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/tutorials/automl-with-azureml). Please check the folders with 'image-' prefix for samples specific to building computer vision models.
+* Review detailed code examples and use cases in the [GitHub notebook repository for automated machine learning samples](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/tutorials/automl-with-azureml). Check the folders with the 'image-' prefix for samples specific to building computer vision models.
 
 > [!NOTE]
 > Use of the fridge objects dataset is available through the license under the [MIT License](https://github.com/microsoft/computervision-recipes/blob/master/LICENSE).
