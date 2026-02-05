@@ -50,7 +50,6 @@ The following table shows SDK and setup support. A checkmark (✔️) indicates 
   - `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
   - `A2A_PROJECT_CONNECTION_NAME`: Your A2A connection name (created in the Foundry portal).
-  - `A2A_PROJECT_CONNECTION_ID`: Your A2A connection resource ID (required for some SDKs). The format is `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}`.
   - `A2A_BASE_URI` (optional): The base URI for the A2A endpoint.
 - An A2A connection configured in your Foundry project. For connection setup and REST examples, see [Create an A2A connection](#create-an-a2a-connection).
 
@@ -74,8 +73,7 @@ For details about supported authentication approaches, see [Agent2Agent (A2A) au
 
 Store your connection name in the `A2A_PROJECT_CONNECTION_NAME` environment variable. Your code uses this name to retrieve the full connection ID at runtime:
 
-- **Python/C#**: Call `project_client.connections.get(connection_name)` to get the connection object, then access `connection.id`.
-- **TypeScript**: Use the full connection resource ID directly in `A2A_PROJECT_CONNECTION_ID`.
+- **Python/C#/TypeScript**: Call `project.connections.get(connection_name)` to get the connection object, then access `connection.id`.
 - **REST API**: Include the connection ID in the `project_connection_id` field of the A2A tool definition.
 
 ## Verify your connection
@@ -476,14 +474,16 @@ import "dotenv/config";
 // Load environment variables
 const projectEndpoint = process.env.FOUNDRY_PROJECT_ENDPOINT || "<project endpoint>";
 const deploymentName = process.env.FOUNDRY_MODEL_DEPLOYMENT_NAME || "<model deployment name>";
-const a2aProjectConnectionId =
-  process.env.A2A_PROJECT_CONNECTION_ID || "<a2a project connection id>";
+const a2aConnectionName = process.env.A2A_PROJECT_CONNECTION_NAME || "<a2a connection name>";
 
 export async function main(): Promise<void> {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
 
   console.log("Creating agent with A2A tool...");
+
+  // Get the A2A connection by name to retrieve its ID
+  const a2aConnection = await project.connections.get(a2aConnectionName);
 
   // Create the agent with A2A tool
   const agent = await project.agents.createVersion("MyA2AAgent", {
@@ -494,7 +494,7 @@ export async function main(): Promise<void> {
     tools: [
       {
         type: "a2a_preview",
-        project_connection_id: a2aProjectConnectionId,
+        project_connection_id: a2aConnection.id,
       },
     ],
   });
