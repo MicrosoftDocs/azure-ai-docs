@@ -53,6 +53,6 @@ Guardrails ensure that AI-generated outputs align with ethical guidelines and sa
 
 ## Next steps
 
-- [Guardrails and controls overview](how-to-create-guardrails.md)
+- [Guardrails and controls overview](../../default/guardrails/how-to-create-guardrails.md)
 - [Understanding guardrail annotations](../../openai/concepts/content-filter-annotations.md)
 - [Learn about content filtering in Azure OpenAI](../../openai/concepts/content-filter.md)
