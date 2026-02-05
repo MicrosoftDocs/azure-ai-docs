@@ -1,6 +1,12 @@
 items:
 - name: Observability basics
-  href: ../../concepts/observability.md
+  items:
+   - name: Observability overview
+     href: ../../concepts/observability.md
+   - name: Built-in evaluators reference
+     href: ../../concepts/built-in-evaluators.md
+   - name: Virtual network support
+     href: ../../concepts/vnet-support.md
 - name: Supported evaluators
   items:
    - name: General purpose evaluators 

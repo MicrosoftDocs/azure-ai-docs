@@ -27,107 +27,37 @@ The AI application lifecycle requires robust evaluation frameworks to ensure AI 
 
 ## What is observability?
 
-AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. It involves collecting and analyzing signals such as evaluation metrics, logs, traces, and model and agent outputs to gain visibility into performance, quality, safety, and operational health.
+AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. Teams can trace and evaluate locally in their development environment, integrate automated quality gates into CI/CD pipelines (see [Evaluate with GitHub Actions](../how-to/develop/evaluation-github-action.md) and [Evaluate with Azure DevOps](../how-to/develop/evaluation-azure-devops.md)), and collect signals such as evaluation metrics, logs, traces, and model outputs to gain visibility into performance, quality, safety, and operational health.
+
+## Core observability capabilities
+
+Microsoft Foundry provides three core capabilities that work together to deliver comprehensive observability across the AI application lifecycle:
+
+### Evaluation
+
+Evaluators measure the quality, safety, and reliability of AI responses throughout development. Microsoft Foundry provides built-in evaluators for general-purpose quality metrics (coherence, fluency), RAG-specific metrics (groundedness, relevance), safety and security (hate/unfairness, violence, protected materials), and agent-specific metrics (tool call accuracy, task completion). Teams can also build custom evaluators tailored to their domain-specific requirements.
+
+For a complete list of built-in evaluators, see [Built-in evaluators reference](built-in-evaluators.md).
+
+### Monitoring
+
+Production monitoring ensures your deployed AI applications maintain quality and performance in real-world conditions. Integrated with Azure Monitor Application Insights, Microsoft Foundry delivers real-time dashboards tracking operational metrics, token consumption, latency, error rates, and quality scores. Teams can set up alerts when outputs fail quality thresholds or produce harmful content, enabling rapid issue resolution.
+
+For details on setting up production monitoring, see [Monitor agents dashboard](../default/agents/how-to/how-to-monitor-agents-dashboard.md).
+
+### Tracing
+
+Distributed tracing captures the execution flow of AI applications, providing visibility into LLM calls, tool invocations, agent decisions, and inter-service dependencies. Built on OpenTelemetry standards and integrated with Application Insights, tracing enables debugging complex agent behaviors, identifying performance bottlenecks, and understanding multi-step reasoning chains. Microsoft Foundry supports tracing for popular frameworks including LangChain, Semantic Kernel, and the OpenAI Agents SDK.
+
+For guidance on implementing tracing, see [Trace your application](../how-to/develop/trace-application.md) and [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md).
 
 ## What are evaluators?
 
-Evaluators are specialized tools that measure the quality, safety, and reliability of AI responses throughout the development lifecycle. The following evaluators provide comprehensive assessment capabilities:
+Evaluators are specialized tools that measure the quality, safety, and reliability of AI responses throughout the development lifecycle.
 
-### General purpose
+For a complete list of built-in evaluators, see [Built-in evaluators reference](built-in-evaluators.md).
 
-| Evaluator | Purpose | Inputs |
-|--|--|--|
-| Coherence | Measures logical consistency and flow of responses.| Query, response |
-| Fluency | Measures natural language quality and readability. | Response  |
-| QA | Measures comprehensively various quality aspects in question-answering.| Query, context, response, ground truth |
-
-To learn more, see [General purpose evaluators](./evaluation-evaluators/general-purpose-evaluators.md).
-
-### Textual similarity
-
-| Evaluator | Purpose | Inputs |
-|--|--|--|
-| Similarity | AI-assisted textual similarity measurement. | Query, context, ground truth |
-| F1 Score | Harmonic mean of precision and recall in token overlaps between response and ground truth. | Response, ground truth |
-| BLEU | Bilingual Evaluation Understudy score for translation quality measures overlaps in n-grams between response and ground truth. | Response, ground truth |
-| GLEU | Google-BLEU variant for sentence-level assessment measures overlaps in n-grams between response and ground truth. | Response, ground truth |
-| ROUGE | Recall-Oriented Understudy for Gisting Evaluation measures overlaps in n-grams between response and ground truth. | Response, ground truth |
-| METEOR | Metric for Evaluation of Translation with Explicit Ordering measures overlaps in n-grams between response and ground truth. | Response, ground truth |
-
-To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textual-similarity-evaluators.md)
-
-### RAG (retrieval augmented generation)
-
-| Evaluator | Purpose | Inputs |
-|--|--|--|
-| Retrieval | Measures how effectively the system retrieves relevant information. | Query, context |
-| Document Retrieval| Measures accuracy in retrieval results given ground truth. | Ground truth, retrieved documents |
-| Groundedness | Measures how consistent the response is with respect to the retrieved context. |  Query (optional), context, response |
-| Groundedness Pro (preview) | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
-| Relevance | Measures how relevant the response is with respect to the query. | Query, response| 
-| Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. | Response, ground truth |
-
-To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md).
-
-### Safety and security
-
-| Evaluator | Purpose | Inputs |
-|--|--|--|
-| Hate and Unfairness | Identifies biased, discriminatory, or hateful content. | Query, response |
-| Sexual | Identifies inappropriate sexual content. | Query, response |
-| Violence | Detects violent content or incitement. | Query, response |
-| Self-Harm | Detects content promoting or describing self-harm.| Query, response |
-| Content Safety | Comprehensive assessment of various safety concerns. | Query, response |
-| Protected Materials | Detects unauthorized use of copyrighted or protected content. | Query, response |
-| Code Vulnerability | Identifies security issues in generated code. |  Query, response |
-| Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. | Query, context, response |
-
-To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md).
-
-### Agents
-
-::: moniker range="foundry-classic"
-
-| Evaluator | Purpose | Inputs |
-|--|--|--|
-| Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. | Query, response |
-| Task Adherence (preview)| Measures how well the agent follows through on identified tasks. | Query, response, tool definitions (optional) |
-| Tool Call Accuracy (preview) | Measures how well the agent selects and calls the correct tools to. | Query, either response or tool calls, tool definitions |
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-| Evaluator | Purpose | Inputs |
-|--|--|--|
-| Task Adherence (preview)  | Measures whether the agent follows through on identified tasks according to system instructions. | Query, Response, Tool definitions (Optional) |
-| Task Completion (preview)| Measures whether the agent successfully completed the requested task end-to-end. | Query, Response, Tool definitions (Optional) |
-| Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. | Query, Response, Tool definitions (Optional)  |
-| Task Navigation Efficiency (preview) | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. | Response, Ground truth |
-| Tool Call Accuracy (preview) | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. | Query, Tool definitions, Tool calls (Optional), Response |
-| Tool Selection (preview) | Measures whether the agent selected the most appropriate and efficient tools for a task. | Query, Tool definitions, Tool calls (Optional), Response |
-| Tool Input Accuracy (preview)| Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. | Query, Response, Tool definitions |
-| Tool Output Utilization (preview)| Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. | Query, Response, Tool definitions (Optional) |
-| Tool Call Success (preview) | Evaluates whether all tool calls executed successfully without technical failures. | Response, Tool definitions (Optional) |
-
-::: moniker-end
-
-To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
-
-### Azure OpenAI graders
-
-| Evaluator | Purpose |  Inputs |
-|--|--|--|
-| Model Labeler | Classifies content using custom guidelines and labels. | Query, response, ground truth |
-| String Checker | Performs flexible text validations and pattern matching. | Response |
-| Text Similarity | Evaluates the quality of text or determine semantic closeness. | Response, ground truth |
-| Model Scorer| Generates numerical scores (customized range) for content based on custom guidelines. | Query, response, ground truth |
-
-To learn more, see [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-graders.md).
-
-### Evaluators in the development lifecycle
-
-These evaluators integrate into each stage of the AI lifecycle to ensure reliability, safety, and effectiveness.
+Evaluators integrate into each stage of the AI lifecycle to ensure reliability, safety, and effectiveness.
 
 :::image type="content" source="../media/evaluations/lifecycle.png" alt-text="Diagram of AI application lifecycle, showing model selection, building an AI application, and operationalizing." lightbox="../media/evaluations/lifecycle.png":::
 
@@ -141,7 +71,7 @@ Select the right foundation model by comparing quality, task performance, ethica
 
 ### Preproduction evaluation
 
-Before deployment, thorough testing ensures your AI agent or application is production-ready. This stage validates performance through evaluation datasets, identifies edge cases, assesses robustness, and measures key metrics including task adherence, groundedness, relevance, and safety.
+Before deployment, thorough testing ensures your AI agent or application is production-ready. This stage validates performance through evaluation datasets, identifies edge cases, assesses robustness, and measures key metrics including task adherence, groundedness, relevance, and safety. For building production-ready agents with multi-turn conversations, tool calling, and state management, see [Foundry Agent Service](../default/agents/overview.md).
 
 :::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of preproduction evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
 
@@ -151,10 +81,7 @@ Before deployment, thorough testing ensures your AI agent or application is prod
 
 - **Bring your own data**: Evaluate AI agents and applications using your own data with quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). Use Foundry's evaluation wizard or [Azure AI Evaluation SDK](../how-to/develop/evaluate-sdk.md) and [view results in the Foundry portal](../how-to/evaluate-results.md).
 
-- **Simulators and AI red teaming agent**: Generate evaluation data through [Azure AI Evaluation SDK simulators](..//how-to/develop/simulator-interaction-data.md):
-  - [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md): Simulates complex adversarial attacks using Microsoft's PyRIT framework to identify safety and security vulnerabilities. Best used with human-in-the-loop processes.
-  - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation): Inject queries mimicking security attacks like jailbreaks to test edge cases.
-  - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks): Generate realistic user conversations to test quality metrics including groundedness, relevance, coherence, and fluency.
+- **AI red teaming agent**: The [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks using Microsoft's PyRIT framework to identify safety and security vulnerabilities. Best used with human-in-the-loop processes.
 
 Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.
 
@@ -164,7 +91,7 @@ Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generati
 
 - **Bring your own data**: Evaluate AI applications using your own data with quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). Use Foundry's evaluation wizard or [Foundry SDK](../how-to/develop/evaluate-sdk.md) and [view results in the Foundry portal](../how-to/evaluate-results.md).
 
-- **Simulators and AI red teaming agent**: Generate evaluation data through simulators that test model responses to realistic or adversarial queries. The [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex attacks using Microsoft's PyRIT framework to identify safety and security vulnerabilities before deployment. Best used with human-in-the-loop processes.
+- **AI red teaming agent**: The [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex attacks using Microsoft's PyRIT framework to identify safety and security vulnerabilities before deployment. Best used with human-in-the-loop processes.
 
 You can also use [the Foundry portal](../how-to/evaluate-generative-ai-app.md) for testing generative AI applications.
 
@@ -197,9 +124,11 @@ Systematic evaluation at each stage—from model selection through production mo
 
 | Purpose | Process | Parameters, guidance, and samples |
 | -----| -----| ----|
-| What are you evaluating for? | Identify or build relevant evaluators | - [Quality and performance sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py) <br> </br> - [Agents Response Quality](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/evaluate/Supported_Evaluation_Metrics/Agent_Evaluation) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) ([Safety and Security sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) |
-| What data should you use?  | Upload or generate relevant dataset | - [Generic simulator for measuring Quality and Performance](./concept-synthetic-data.md) ([Generic simulator sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/datagen/synthetic-data-generation.ipynb)) <br></br> - [Adversarial simulator for measuring Safety and Security](../how-to/develop/simulator-interaction-data.md) ([Adversarial simulator sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/simulate_and_evaluate_online_endpoint.ipynb)) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/AI_RedTeaming/AI_RedTeaming.ipynb))|
+| What are you evaluating for? | Identify or build relevant evaluators | - [Built-in evaluators](built-in-evaluators.md) <br> </br> - [Agents Quality](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/evaluate/Supported_Evaluation_Metrics/Agent_Evaluation) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) <br> </br> - [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) |
+| What data should you use?  | Upload or generate relevant dataset | - [Synthetic dataset generation](./concept-synthetic-data.md) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/AI_RedTeaming/AI_RedTeaming.ipynb))|
 | How to run evaluations on a dataset? | Run evaluation | - [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br>- [Remote cloud run](../how-to/develop/cloud-evaluation.md) <br></br> - [Local run](../how-to/develop/evaluate-sdk.md) |
+| How to set up tracing? | Configure distributed tracing | - [Trace your application](../how-to/develop/trace-application.md) <br></br> - [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md) |
+| How to configure VNET? | Set up virtual network isolation | - [Virtual network support for evaluation](vnet-support.md) |
 | How did my model/app perform? | Analyze results  | - [View aggregate scores, view details, score details, compare evaluation runs](..//how-to/evaluate-results.md) |
 | How can I improve? | Make changes to model, app, or evaluators | - If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> - If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example of mitigations to apply: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
 
@@ -209,27 +138,15 @@ Systematic evaluation at each stage—from model selection through production mo
 
 | Purpose | Process | Parameters, guidance, and samples  |
 | -----| -----| ----|
-| What are you evaluating for? | Identify or build relevant evaluators | - [RAG Quality](https://aka.ms/rag-evaluators-samples) <br> </br> - [Agents Quality](https://aka.ms/agent-evaluator-samples) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) ([Safety and Security sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) |
+| What are you evaluating for? | Identify or build relevant evaluators | - [Built-in evaluators](built-in-evaluators.md) <br> </br> - [RAG Quality](https://aka.ms/rag-evaluators-samples) <br> </br> - [Agents Quality](https://aka.ms/agent-evaluator-samples) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) <br> </br> - [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) |
 | What data should you use?  | Upload or generate relevant dataset | - [Synthetic dataset generation](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://aka.ms/airedteamingagent-sample))|
 | How to run evaluations on a dataset? | Run evaluation | - [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> - [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
+| How to set up tracing? | Configure distributed tracing | - [Trace your application](../how-to/develop/trace-application.md) <br></br> - [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md) |
+| How to configure VNET? | Set up virtual network isolation | - [Virtual network support for evaluation](vnet-support.md) |
 | How did my model/app perform? | Analyze results  | - [View aggregate scores, view details, score details, compare evaluation runs](..//how-to/evaluate-results.md) |
 | How can I improve? | Make changes to model, app, or evaluators | - If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> - If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example of mitigations to apply: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
 
 ::: moniker-end
-
-## Bring your own virtual network for evaluation
-
-For network isolation purposes you can bring your own virtual network for evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
-
-> [!NOTE]
-> Evaluation data is sent to Application Insights if Application Insights is connected. Virtual network support for Application Insights and tracing isn't available. Inline datasource is not supported.
-
-> [!IMPORTANT]
-> To prevent evaluation and red teaming run failures, assign the Azure AI User role to the project's Managed Identity during initial project setup.
-
-### Virtual network region support
-
-Bring your own virtual network for evaluation is supported in all regions except for Central India, East Asia, North Europe and Qatar Central.
 
 ## Region support
 
@@ -267,6 +184,8 @@ Observability features such as Risk and Safety Evaluations and Continuous Evalua
 
 ::: moniker range="foundry-classic"
 
+- [Built-in evaluators reference](built-in-evaluators.md)
+- [Virtual network support for evaluation](vnet-support.md)
 - [Evaluate with the Azure AI Evaluation SDK](../how-to/develop/evaluate-sdk.md)
 - [Evaluate generative AI apps by using Foundry](../how-to/evaluate-generative-ai-app.md)
 - [See evaluation results in the Foundry portal](../how-to/evaluate-results.md)
@@ -276,6 +195,8 @@ Observability features such as Risk and Safety Evaluations and Continuous Evalua
 
 ::: moniker range="foundry"
 
+- [Built-in evaluators reference](built-in-evaluators.md)
+- [Virtual network support for evaluation](vnet-support.md)
 - [Foundry control plane](../default/control-plane/overview.md)
 - [Evaluate generative AI apps by using Foundry](../how-to/evaluate-generative-ai-app.md)
 - [See evaluation results in the Foundry portal](../how-to/evaluate-results.md)
