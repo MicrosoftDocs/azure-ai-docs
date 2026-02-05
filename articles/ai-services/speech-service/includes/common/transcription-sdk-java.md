@@ -129,26 +129,26 @@ Set the API key environment variable:
 # [Windows](#tab/windows)
 
 ```powershell
-$env:SPEECH_API_KEY="<your-speech-key>"
+$env:AZURE_SPEECH_API_KEY="<your-speech-key>"
 ```
 
 # [Linux](#tab/linux)
 
 ```bash
-export SPEECH_API_KEY=<your-speech-key>
+export AZURE_SPEECH_API_KEY=<your-speech-key>
 ```
 
 # [macOS](#tab/macos)
 
 ```bash
-export SPEECH_API_KEY=<your-speech-key>
+export AZURE_SPEECH_API_KEY=<your-speech-key>
 ```
 
 ---
 
 ### Option 2: Microsoft Entra ID authentication (recommended for production)
 
-Instead of setting `SPEECH_API_KEY`, configure one of the following credential sources:
+Instead of setting `AZURE_SPEECH_API_KEY`, configure one of the following credential sources:
 
 - **Azure CLI**: Run `az login` on your development machine.
 - **Managed Identity**: For apps running in Azure (App Service, Azure Functions, VMs).
@@ -188,8 +188,8 @@ public class TranscriptionQuickstart {
     public static void main(String[] args) {
         try {
             // Get credentials from environment variables
-            String endpoint = System.getenv("SPEECH_ENDPOINT");
-            String apiKey = System.getenv("SPEECH_API_KEY");
+            String endpoint = System.getenv("AZURE_SPEECH_ENDPOINT");
+            String apiKey = System.getenv("AZURE_SPEECH_API_KEY");
 
             // Create client with API key or Entra ID authentication
             TranscriptionClientBuilder builder = new TranscriptionClientBuilder()
