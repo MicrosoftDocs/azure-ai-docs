@@ -44,7 +44,7 @@ Once your custom voice endpoint has been deployed, you can try out your custom v
 1. Select **Deploy model** > **Deploy model**. 
 1. Select **Test endpoint**. 
 
-:::image type="content" source="../../../../media/custom-voice/professional-voice/cnv-endpoint-test.png" alt-text="Screenshot of a page to test an endpoint." lightbox="../../../../media/custom-voice/professional-voice/cnv-endpoint-test":::
+:::image type="content" source="../../../../media/custom-voice/professional-voice/cnv-endpoint-test.png" alt-text="Screenshot of a page to test an endpoint." lightbox="../../../../media/custom-voice/professional-voice/cnv-endpoint-test.png":::
 
 ## Use your custom voice
 
