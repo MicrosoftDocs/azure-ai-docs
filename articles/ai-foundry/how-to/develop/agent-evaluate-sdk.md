@@ -60,6 +60,21 @@ If you build your agents outside of Foundry, you can still use our evaluators as
 
 ::: moniker-end
 
+## Prerequisites
+
+::: moniker range="foundry-classic"
+
+[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- A [Foundry project](/azure/ai-foundry/how-to/create-projects) with a [deployed agent](/azure/ai-foundry/agents/how-to/deploy-hosted-agent).
+- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4` or `gpt-5-chat`).
+
+::: moniker-end
+
 ## Get started
 
 ::: moniker range="foundry-classic"

@@ -23,13 +23,10 @@ This article describes the integrated user experience and system behavior when y
 
 ## Prerequisites
 
-Before you begin:
-
-- Have access to the **Microsoft Foundry portal**.
-- Have one or more deployed models or agents.
-- Have access to **Ask AI** (the chat assistant).
-- Have at least one evaluation dataset in CSV or JSONL format.
-- Have sufficient permission to deploy and evaluate.
+- A [Foundry project](../../../how-to/create-projects.md) with one or more deployed models or [agents](../../agents/how-to/deploy-hosted-agent.md).
+- Access to **Ask AI** (the chat assistant) in the Foundry portal.
+- At least one [evaluation dataset](../../../how-to/develop/cloud-evaluation.md) in CSV or JSONL format.
+- Sufficient permission to deploy and evaluate.
 
 ## Start a chat with Ask AI
 

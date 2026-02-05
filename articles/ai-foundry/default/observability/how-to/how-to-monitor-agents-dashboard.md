@@ -22,11 +22,9 @@ This article covers two approaches: viewing metrics in the Foundry portal and se
 
 ## Prerequisites
 
-- A Foundry project. For more information, see [Create a Foundry project](../../../how-to/create-projects.md).
-- At least one deployed agent in your Foundry project.
+- A [Foundry project](../../../how-to/create-projects.md) with at least one [deployed agent](../../agents/how-to/deploy-hosted-agent.md).
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
 - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
-- Python 3.9 or later (required for SDK-based setup).
 
 ## Connect Application Insights
 
@@ -82,7 +80,7 @@ To access Monitor settings, select the gear icon on the **Monitor** tab. The fol
 
 ## Set up continuous evaluation (Python SDK)
 
-Use the Python SDK to set up continuous evaluation rules for agent responses.
+Use the Python SDK to set up continuous evaluation rules for agent responses. This section requires Python 3.9 or later.
 
 ```bash
 pip install "azure-ai-projects>=2.0.0b1" python-dotenv
