@@ -48,7 +48,7 @@ You can also access a compute instance terminal in the following ways:
 
 ### Copy and paste in the terminal 
 
-You can copy and paste text between the terminal and Azure Machine Learning studio notebook cells. For Windows, use **Ctrl**+**C** to copy and **Ctrl**+**V**, **Ctrl**+**Shift**+**V**, or **Shift**+**Insert** to paste. For MacOS, use **Cmd**+**C** to copy and **Cmd**+**V** to paste.
+You can copy and paste text between the terminal and Azure Machine Learning studio notebook cells. For Windows, use **Ctrl**+**C** to copy and **Ctrl**+**V**, **Ctrl**+**Shift**+**V**, or **Shift**+**Insert** to paste. For macOS, use **Cmd**+**C** to copy and **Cmd**+**V** to paste.
 
 <a name=git></a>
 ## Access Git operations and files
