@@ -12,7 +12,7 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD025 -->
 # Migrate from Language Studio to Microsoft Foundry
 
-Azure Language Studio will migrate to Microsoft Foundry on February 16, 2026. All existing capabilities, along with new feature enhancements, are fully available in Microsoft Foundry. After February 16, 2026, Language Studio will no longer be available, but none of your existing projects, data, or service endpoints are impacted. This guide provides step-by-step migration instructions to ensure uninterrupted access to Azure AI Language features and seamless project continuity within the Foundry environment.
+Azure Language Studio will migrate to Microsoft Foundry on March 20, 2027. All existing capabilities, along with new feature enhancements, are fully available in Microsoft Foundry. After February 16, 2026, Language Studio will no longer be available, but none of your existing projects, data, or service endpoints are impacted. This guide provides step-by-step migration instructions to ensure uninterrupted access to Azure AI Language features and seamless project continuity within the Foundry environment.
 
 ## Why migrate to Microsoft Foundry?
 
