@@ -14,71 +14,22 @@ ms.custom: language-service-pii
 <!-- markdownlint-disable MD025 -->
 # What is Azure Language PII detection?
 
-> [!IMPORTANT]
-> The Azure Language in Foundry Tools Text Personally Identifiable Information (PII) detection **anonymization feature** (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
-
 Azure Language in Foundry Tools Personally Identifiable Information (PII) detection is a feature offered by [Azure Language](../overview.md). The PII detection service is a cloud-based API that utilizes machine learning and AI algorithms to help you develop intelligent applications with advanced natural language understanding. Azure Language PII detection uses Named Entity Recognition (NER) to **identify and redact** sensitive information from input data. The service classifies sensitive personal data into predefined categories. These categories include phone numbers, email addresses, and identification documents. This classification helps to efficiently detect and eliminate such information.
 
 > [!TIP]
 > Try PII detection [in Microsoft Foundry portal](https://ai.azure.com/). There you can [utilize a currently existing Language Studio resource or create a new Foundry resource](../../../ai-services/connect-services-foundry-portal.md).
 
-## PII Detection: video demonstration
+## Video demonstration
 
-The following video provides an overview of Azure Language PII detection and demonstrates how the service can help protect sensitive information in your applications. Topics covered include:
+In this video, we introduce Microsoft’s PII Redaction service and show you how it helps detect and redact sensitive data across text, documents, and conversational transcripts. What you’ll learn:
 
-* How the service identifies and redacts sensitive data
-* The different redaction policies available
-* Common use cases for PII detection in your workflows
+* How to try the service in Azure Foundry Playground.
+* Key customization options for entity types, masking styles, and exclusions.
+* Why PII protection matters and the cost of data breaches.
 
 Closed captions are available for this video.
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=17262a01-0c8c-40fa-98e3-826b766d5db4]
-
-## What's new
-
-**The 2025-11-15-preview version introduces the following new PII task parameters**:
-
-* [**Multiple redaction policies**](how-to/redact-text-pii.md#redaction-policies) offer the ability to apply various redaction approaches within a single request:
-
-  * [SyntheticReplacementPolicyType 🆕](how-to/redact-text-pii.md#syntheticreplacement-policy-type-)
-  * [CharacterMaskPolicyType (default)](how-to/redact-text-pii.md#charactermask-policy-type)
-  * [NoMaskPolicyType](how-to/redact-text-pii.md#nomask-policy-type)
-  * [EntityMaskPolicyType](how-to/redact-text-pii.md#entitymask-policy-type)
-
-* [**Configurable confidence threshold**](how-to/redact-text-pii.md#confidencescorethreshold-) enables you to set a minimum confidence score. Entities are only included in the output if their confidence score meets or exceeds the specified threshold.
-
-* [**Disable type validation enforcement**](how-to/redact-text-pii.md#disableentityvalidation) enables you to bypass the entity type validation. By default, the service enforces validation across multiple entity types to ensure data integrity and minimize false positives. Disabling this enforcement can enhance operational efficiency in cases where strict validation isn't required.
-
-* The following entities are available in preview:
-
-  * [Airport](concepts/entity-categories.md#type-airport-preview)
-  * [DateOfBirth](concepts/entity-categories.md#type-date-of-birth-preview)
-  * [BankAccountNumber](concepts/entity-categories.md#type-bank-account-number-preview)
-  * [CASocialIdentificationNumber](concepts/entity-categories.md#type-canada-social-identification-number-preview)
-  * [CVV (Card Verification Value )](concepts/entity-categories.md#type-card-verification-value-cvv-preview)
-  * [City](concepts/entity-categories.md#type-city-preview)
-  * [PassportNumber](concepts/entity-categories.md#type-passport-number-preview)
-  * [DriversLicenseNumber](concepts/entity-categories.md#type-drivers-license-number-preview)
-  * [ExpirationDate](concepts/entity-categories.md#type-expiration-date-preview)
-  * [Geopolitical Entity](concepts/entity-categories.md#type-geopolitical-entity-gpe-preview)
-  * [KRDriversLicenseNumber](concepts/entity-categories.md#type-south-korea-drivers-license-number-preview)
-  * [KRPassportNumber ](concepts/entity-categories.md#type-south-korea-passport-number-preview)
-  * [KRSocialSecurityNumber ](concepts/entity-categories.md#type-south-korea-social-security-number-preview)
-  * [LicensePlate](concepts/entity-categories.md#type-license-plate-preview)
-  * [Location](concepts/entity-categories.md#type-location-preview)
-  * [Password](concepts/entity-categories.md#type-password-preview)
-  * [SortCode](concepts/entity-categories.md#type-sort-code-preview)
-  * [State](concepts/entity-categories.md#type-state-preview)
-  * [USMedicareBeneficiaryId](concepts/entity-categories.md#type-united-states-medicare-beneficiary-identification-preview)
-  * [VIN (vehicle identification number)](concepts/entity-categories.md#type-vin-preview)
-  * [ZipCode](concepts/entity-categories.md#type-zipcode-preview)
-
-* **Conversational PII detection models (both version `2024-11-01-preview` and `GA`)** are updated to provide enhanced AI quality and accuracy. The numeric identifier entity type now also includes Drivers License and Medicare Beneficiary Identifier.
-
-   > [!div class="checklist"]
-   > * As of June 2024, we now provide General Availability support for the Conversational PII service (English-language only).
-   > * Customers can now redact transcripts, chats, and other text written in a conversational style.
-   > * These capabilities provide better confidence in AI quality. They also offer Azure SLA support, production environment support, and enterprise-grade security.
 
 ## Capabilities
 
