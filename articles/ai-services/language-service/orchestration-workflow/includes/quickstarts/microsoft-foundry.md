@@ -67,7 +67,7 @@ Let's begin:
 
 * If you don't have a CLU or CQA fine-tuning task in this Foundry resource, a warning appears indicating that no tasks are available to link. 
 
-     :::image type="content" source="../../media/select-orchestration-workflow.png" alt-text="Screenshot of selecting orchestration workflow in the Foundry.":::
+     :::image type="content" source="../../media/no-tasks-warning.png" alt-text="Screenshot of no tasks warning in orchestration workflow creation in the Foundry.":::
 
 * Create a [Conversational Language Understanding](../../../conversational-language-understanding/quickstart.md) or [Custom Question Answering](../../../question-answering/quickstart/sdk.md) task first, then return to create your orchestration workflow.
 
