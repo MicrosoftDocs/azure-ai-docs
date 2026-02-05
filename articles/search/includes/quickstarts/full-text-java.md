@@ -40,21 +40,26 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Use Git to clone the sample repository.
 
-   ```console
-   git clone https://github.com/Azure-Samples/azure-search-java-samples
-   ```
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-java-samples
+    ```
 
-1. Open the `azure-search-java-samples/quickstart-keyword-search` folder in Visual Studio Code.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-1. Open the `App.java` file in the `src/main/java/azure/search/sample` folder.
+    ```bash
+    cd azure-search-java-samples/quickstart-keyword-search
+    code .
+    ```
 
-1. Replace the placeholder value for `searchServiceEndpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
+1. In `src/main/java/azure/search/sample/App.java`, replace the placeholder value for `searchServiceEndpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. Use a terminal in Visual Studio Code to install the dependencies.
+1. Install the dependencies.
 
-   ```console
-   mvn clean dependency:copy-dependencies
-   ```
+    ```bash
+    mvn clean dependency:copy-dependencies
+    ```
+
+    When the build completes, verify that no errors appear in the output.
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
@@ -66,9 +71,15 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 Compile and run the application.
 
-```console
+```bash
 javac -d target/classes -cp "target/dependency/*" src/main/java/azure/search/sample/*.java
 java -cp "target/classes;target/dependency/*" azure.search.sample.App
+```
+
+On macOS or Linux, use `:` instead of `;` as the classpath separator.
+
+```bash
+java -cp "target/classes:target/dependency/*" azure.search.sample.App
 ```
 
 ### Output

@@ -4,7 +4,7 @@ author: haileytapia
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 02/05/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -13,399 +13,141 @@ In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchserv
 
 In Azure AI Search, a vector index has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) creates the vector index.
 
-> [!NOTE]
-> This quickstart omits the vectorization step and provides inline embeddings. If you want to add [built-in data chunking and vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
+> [!TIP]
+> + Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) on GitHub.
+> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated chunking and vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md).
+- An [Azure AI Search service](../../search-create-service-portal.md). You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
 
-    + You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
-    
-    + To run the semantic hybrid query, you must [enable semantic ranker](../../semantic-how-to-enable-disable.md).
+- [Semantic ranker enabled on your search service](../../semantic-how-to-enable-disable.md) for the optional semantic hybrid query.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+- [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-## Get service information
+- [Git](https://git-scm.com/downloads) to clone the sample repository.
 
-Requests to the search endpoint must be authenticated and authorized. You can use API keys or roles for this task. We recommend [using a keyless connection via Microsoft Entra ID](../../search-get-started-rbac.md).
+- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-Select the tab that corresponds to your preferred authentication method. Use the same method for all requests in this quickstart.
+## Configure access
 
-#### [Microsoft Entra ID](#tab/keyless)
+[!INCLUDE [resource authentication](../resource-authentication.md)]
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
+## Get endpoint
 
-1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+[!INCLUDE [resource endpoint](../resource-endpoint.md)]
 
-   :::image type="content" source="../../media/search-get-started-rest/get-endpoint.png" lightbox="../../media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
+## Set up the environment
 
-1. Follow the steps in the [keyless quickstart](../../search-get-started-rbac.md) to get your Microsoft Entra token. 
+1. Use Git to clone the sample repository.
 
-    You get the token when you run the `az account get-access-token` command in step 3 of the previous quickstart.
-    
-    ```bash
-    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
-    ```
-
-#### [API key](#tab/api-key)
-
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
-
-1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
-
-   :::image type="content" source="../../media/search-get-started-rest/get-endpoint.png" lightbox="../../media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
-
-1. Select **Settings** > **Keys**. Either **API keys** or **Both** must be enabled. [Admin API keys](../../search-security-api-keys.md) are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
-
-   :::image type="content" source="../../media/search-get-started-rest/get-api-key.png" lightbox="../../media/search-get-started-rest/get-api-key.png" alt-text="Screenshot that shows the API keys in the Azure portal.":::
-
----
-
-## Create or download the code file
-
-You use one `.rest` or `.http` file to run all the requests in this quickstart. You can download the REST file that contains the code for this quickstart, or you can create a new file in Visual Studio Code and copy the code into it.
-
-To create the code file:
-
-1. In Visual Studio Code, create a file with a `.rest` or `.http` file extension, such as `az-search-vector-quickstart.rest`.
-
-1. Copy and paste the raw contents of the [az-search-vector-quickstart.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-quickstart-vectors.rest) file into the new file. 
-
-   ```http
-   @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+   ```bash
+   git clone https://github.com/Azure-Samples/azure-search-rest-samples
    ```
 
-1. Set `@baseUrl` to the endpoint you obtained in [Get service information](#get-service-information).
+1. Open the quickstart folder in Visual Studio Code.
 
-1. Set the key or token for authentication. You obtained this value in [Get service information](#get-service-information).
+   ```bash
+   cd azure-search-rest-samples/Quickstart-vectors
+   code .
+   ```
 
-   + For the **recommended** keyless authentication with Microsoft Entra ID, replace `@apiKey` with the `@token` variable.
+1. In `az-search-quickstart-vectors.rest`, set the `@baseUrl` variable to the URL you obtained in [Get endpoint](#get-endpoint).
 
-        ```http
-        @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
-        ```
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account.
 
-    + If you prefer to use an API key, replace `@apiKey` with the key you copied from the Azure portal.
-
-        ```http
-        @apiKey = PUT-YOUR-ADMIN-KEY-HERE
-        ```
-
-1. For the **recommended** keyless authentication with Microsoft Entra ID, replace all instances of `api-key: {{apiKey}}` with `Authorization: Bearer {{token}}` in the request headers.
-
-## Create a vector index
-
-You use [Indexes - Create](/rest/api/searchservice/indexes/create) (REST API) to create a vector index and set up the physical data structures on your search service.
-
-The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
-
-To create a vector index:
-
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
-
-1. Find the `### Create a new index` code block in the file. This block contains the request to create the `hotels-vector-quickstart` index on your search service. 
-    
-
-    ```http
-    ### Create a new index
-    POST  {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
-    Content-Type: application/json
-    Authorization: Bearer {{token}}
-
-    {
-        "name": "hotels-vector-quickstart",
-        "fields": [
-            {
-                "name": "HotelId", 
-                "type": "Edm.String",
-                "searchable": false, 
-                "filterable": true, 
-                "retrievable": true, 
-                "sortable": false, 
-                "facetable": false,
-                "key": true
-            },
-            {
-                "name": "HotelName", 
-                "type": "Edm.String",
-                "searchable": true, 
-                "filterable": false, 
-                "retrievable": true, 
-                "sortable": true, 
-                "facetable": false
-            },
-            {
-                "name": "Description", 
-                "type": "Edm.String",
-                "searchable": true, 
-                "filterable": false, 
-                "retrievable": true, 
-                "sortable": false, 
-                "facetable": false
-            },
-            {
-                "name": "DescriptionVector",
-                "type": "Collection(Edm.Single)",
-                "searchable": true,
-                "retrievable": true,
-                "dimensions": 1536,
-                "vectorSearchProfile": "my-vector-profile"
-            },
-            {
-                "name": "Category", 
-                "type": "Edm.String",
-                "searchable": true, 
-                "filterable": true, 
-                "retrievable": true, 
-                "sortable": true, 
-                "facetable": true
-            },
-            {
-                "name": "Tags",
-                "type": "Collection(Edm.String)",
-                "searchable": true,
-                "filterable": true,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": true
-            },
-                    {
-                "name": "ParkingIncluded",
-                "type": "Edm.Boolean",
-                "searchable": false,
-                "filterable": true,
-                "retrievable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "LastRenovationDate",
-                "type": "Edm.DateTimeOffset",
-                "searchable": false,
-                "filterable": true,
-                "retrievable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "Rating",
-                "type": "Edm.Double",
-                "searchable": false,
-                "filterable": true,
-                "retrievable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "Address", 
-                "type": "Edm.ComplexType",
-                "fields": [
-                    {
-                        "name": "StreetAddress", "type": "Edm.String",
-                        "searchable": true, "filterable": false, "retrievable": true, "sortable": false, "facetable": false
-                    },
-                    {
-                        "name": "City", "type": "Edm.String",
-                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
-                    },
-                    {
-                        "name": "StateProvince", "type": "Edm.String",
-                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
-                    },
-                    {
-                        "name": "PostalCode", "type": "Edm.String",
-                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
-                    },
-                    {
-                        "name": "Country", "type": "Edm.String",
-                        "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true
-                    }
-                ]
-            },
-            {
-                "name": "Location",
-                "type": "Edm.GeographyPoint",
-                "searchable": false, 
-                "filterable": true, 
-                "retrievable": true, 
-                "sortable": true, 
-                "facetable": false
-            }
-        ],
-        "vectorSearch": {
-            "algorithms": [
-                {
-                    "name": "hnsw-vector-config",
-                    "kind": "hnsw",
-                    "hnswParameters": 
-                    {
-                        "m": 4,
-                        "efConstruction": 400,
-                        "efSearch": 500,
-                        "metric": "cosine"
-                    }
-                },
-                {
-                    "name": "eknn-vector-config",
-                    "kind": "exhaustiveKnn",
-                    "exhaustiveKnnParameters": 
-                    {
-                        "metric": "cosine"
-                    }
-                }
-            ],
-            "profiles": [      
-                {
-                    "name": "my-vector-profile",
-                    "algorithm": "hnsw-vector-config"
-                }
-          ]
-        },
-        "semantic": {
-            "configurations": [
-                {
-                    "name": "semantic-config",
-                    "prioritizedFields": {
-                        "titleField": {
-                            "fieldName": "HotelName"
-                        },
-                        "prioritizedContentFields": [
-                            { "fieldName": "Description" }
-                        ],
-                        "prioritizedKeywordsFields": [
-                            { "fieldName": "Category" }
-                        ]
-                    }
-                }
-            ]
-        }
-    }
+    ```azurecli
+    az login
     ```
 
-1. Select **Send Request**. You should have an `HTTP/1.1 201 Created` response. 
+1. For keyless authentication with Microsoft Entra ID, generate an access token.
 
-    The response body should include the JSON representation of the index schema.
-    
-    ```json
-    {
-        "@odata.context": "https://my-demo-search.search.windows.net/$metadata#indexes/$entity",
-        "@odata.etag": "\"0x8DD2E70E6C36D8E\"",
-        "name": "hotels-vector-quickstart",
-        "defaultScoringProfile": null,
-        "fields": [
+    ```azurecli
+    az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
+    ```
+
+1. Set the `@token` variable to the access token from the previous step.
+
+## Run the code
+
+1. Under `### List existing indexes by name`, select **Send Request** to verify your connection.
+
+   A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK` or `201 Created`, you're ready for the next steps.
+
+1. Send the remaining requests in sequence to create an index, upload documents, and query the index.
+
+### Output
+
+Each query request returns JSON results. For example, the single vector search returns results like this:
+
+```json
+{
+    "@odata.count": 7,
+    "value": [
         {
-            "name": "HotelId",
-            "type": "Edm.String",
-            "searchable": false,
-            "filterable": true,
-            "retrievable": true,
-            "sortable": false,
-            "facetable": false,
-            "key": true,
-            "indexAnalyzer": null,
-            "searchAnalyzer": null,
-            "analyzer": null,
-            "dimensions": null,
-            "vectorSearchProfile": null,
-            "synonymMaps": []
+            "@search.score": 0.857736,
+            "HotelId": "48",
+            "HotelName": "Nordick's Valley Motel",
+            "Description": "Only 90 miles (about 2 hours) from the nation's capital...",
+            "Category": "Boutique"
         },
-        [MORE FIELD DEFINITIONS OMITTED FOR BREVITY]
-        ],
-        "scoringProfiles": [],
-        "corsOptions": null,
-        "suggesters": [],
-        "analyzers": [],
-        "tokenizers": [],
-        "tokenFilters": [],
-        "charFilters": [],
-        "encryptionKey": null,
-        "similarity": {
-        "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
-        "k1": null,
-        "b": null
-        },
-        "vectorSearch": {
-        "algorithms": [
-            {
-            "name": "hnsw-vector-config",
-            "kind": "hnsw",
-            "hnswParameters": {
-                "metric": "cosine",
-                "m": 4,
-                "efConstruction": 400,
-                "efSearch": 500
-            },
-            "exhaustiveKnnParameters": null
-            },
-            "exhaustiveKnnParameters": null
-            },
-            {
-            "name": "eknn-vector-config",
-            "kind": "exhaustiveKnn",
-            "hnswParameters": null,
-            "exhaustiveKnnParameters": {
-                "metric": "cosine"
-            }
-            }
-        ],
-        "profiles": [
-            {
-            "name": "my-vector-profile",
-            "algorithm": "hnsw-vector-config-1"
-            }
-        ]
-        },
-        "semantic": {
-        "defaultConfiguration": null,
-        "configurations": [
-            {
-            "name": "semantic-config",
-            "prioritizedFields": {
-                "titleField": {
-                "fieldName": "HotelName"
-                },
-                "prioritizedContentFields": [
-                {
-                    "fieldName": "Description"
-                }
-                ],
-                "prioritizedKeywordsFields": [
-                {
-                    "fieldName": "Category"
-                }
-                ]
-            }
-            }
-        ]
+        {
+            "@search.score": 0.8399129,
+            "HotelId": "49",
+            "HotelName": "Swirling Currents Hotel",
+            "Description": "Spacious rooms, glamorous suites and residences...",
+            "Category": "Luxury"
         }
-    }
-    ```
+    ]
+}
+```
 
-    Key takeaways:
-    
-    + The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
-    
-    + Vector fields must be one of the [EDM data types used for vectors](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), such as `type: Collection(Edm.Single)`. Vector fields also have `dimensions` and `vectorSearchProfile` properties.
-    
-    + The `vectorSearch` section is an array of Approximate Nearest Neighbor (ANN) algorithm configurations and profiles. Supported algorithms include Hierarchical Navigable Small World and exhaustive K-Nearest Neighbor. For more information, see [Relevance scoring in vector search](../../vector-search-ranking.md).
-    
-    + The (optional) `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](../../semantic-search-overview.md).
+The vector query string is `quintessential lodging near running trails, eateries, retail`, which is semantically similar to `historic hotel walk to restaurants and shopping` but uses different terms. Vector search finds relevant results even without matching keywords.
 
-## Upload documents to the index
+## Understand the code
 
-Creating and loading the index are separate steps. You created the index schema in the previous step. You now need to load documents into the index.
- 
-In Azure AI Search, the index contains all searchable data and queries run on the search service. For REST calls, the data is provided as JSON documents. Use [Documents - Index](/rest/api/searchservice/documents/) (REST API) for this task. The URI is extended to include the `docs` collection and the `index` operation.
+Now that you've run the code, let's break down the key steps:
 
-To upload documents to the index:
+1. [Create a vector index](#create-a-vector-index)
+1. [Upload documents to the index](#upload-documents-to-the-index)
+1. [Query the index](#query-the-index)
 
-1. Formulate an upload documents request to upload documents to the `hotels-vector-quickstart` index on your search service.
+### Create a vector index
 
-    ```http
-    ### Upload documents
+Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. This quickstart calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a vector index named `hotels-vector-quickstart` and its physical data structures on your search service.
+
+The index schema is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
+
+Key points about the index schema:
+
++ The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
+
++ Vector fields must be one of the [EDM data types used for vectors](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), such as `type: Collection(Edm.Single)`. Vector fields also have `dimensions` and `vectorSearchProfile` properties.
+
++ The `vectorSearch` section is an array of Approximate Nearest Neighbor (ANN) algorithm configurations and profiles. Supported algorithms include Hierarchical Navigable Small World and exhaustive K-Nearest Neighbor. For more information, see [Relevance scoring in vector search](../../vector-search-ranking.md).
+
++ The (optional) `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](../../semantic-search-overview.md).
+
+### Upload documents to the index
+
+Newly created indexes are empty. To populate an index and make it searchable, you must upload JSON documents that conform to the index schema.
+
+In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is often pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
+
+This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add sample hotel documents to your index. The URI is extended to include the `docs` collection and `index` operation.
+
+Each document in the `value` array represents a hotel and contains fields that match the index schema. The `@search.action` parameter specifies the operation to perform for each document. Our example uses `upload`, which adds the document if it doesn't exist or updates the document if it does exist.
+
+Key points about the documents:
+
++ Documents in the payload consist of fields defined in the index schema.
+
++ Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the `text-embedding-ada-002` model.
+
+```http
+### Upload documents
     POST {{baseUrl}}/indexes/hotels-quickstart-vectors/docs/index?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
@@ -643,42 +385,33 @@ To upload documents to the index:
             }
         ]
     }
-    ```
+```
 
-1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search documents.
+The response should be an `HTTP/1.1 200 OK`. The response body includes the JSON representation of the search documents.
 
-    Key takeaways:
-    
-    + Documents in the payload consist of fields defined in the index schema.
-    
-    + Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the `text-embedding-ada-002` model.
+Key takeaways:
 
-## Run queries
++ Documents in the payload consist of fields defined in the index schema.
+
++ Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the `text-embedding-ada-002` model.
+
+### Query the index
 
 Now that documents are loaded, you can run vector queries against them by using [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API).
-
-Queries in this section:
-
-+ [Single vector search](#single-vector-search)
-+ [Single vector search with filter](#single-vector-search-with-filter)
-+ [Hybrid search](#hybrid-search)
-+ [Semantic hybrid search](#semantic-hybrid-search)
 
 The example queries are based on two strings:
 
 + Search string: `historic hotel walk to restaurants and shopping`
 + Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
 
-The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for `quintessential lodging near running trails, eateries, retail`, results are zero in a pure keyword search without semantic ranking. We use this example to show how you can get relevant results using vectors, even if there are no matching terms.
+The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for `quintessential lodging near running trails, eateries, retail`, results are zero in a pure keyword search without semantic ranking. This example shows how you can get relevant results using vectors, even if there are no matching terms.
 
-### Single vector search
+#### Single vector search
 
-To create a single vector search:
+The single vector search demonstrates a basic scenario where you want to find document descriptions that closely match the search string.
 
-1. Formulate the request. The query is a 1536 float representation of *quintessential lodging near running trails, eateries, retail*. The query is searching `DescriptionVector` and returning k-5 results. It's using the "exhaustive" override parameter to perform a full scan of the index instead of ANN. An exhaustive search is useful for small indexes.
-
-    ```http
-    ### Run a single vector query
+```http
+### Run a single vector query
     POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
@@ -698,19 +431,17 @@ To create a single vector search:
         }
     ```
 
-    Key takeaways about [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API):
+Key takeaways about [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API):
 
-    + The `vectorQueries.vector` is the vector query string. It's a vector representation of *quintessential lodging near running trails, eateries, retail*, which is vectorized into 1,536 embeddings for this query.
++ The `vectorQueries.vector` is the vector query string. It's a vector representation of *quintessential lodging near running trails, eateries, retail*, which is vectorized into 1,536 embeddings for this query.
 
-    + `fields` determines which vector fields are searched.
++ `fields` determines which vector fields are searched.
 
-    + `kind` set to `vector` means that the query string is a vector. If `kind` was set to `text`, you would need extra capability (a [vectorizer]()) to encode a human readable text string into a vector at query time. Vectorizers are omitted from this quickstart to keep the exercise simple.
++ `kind` set to `vector` means that the query string is a vector. If `kind` was set to `text`, you would need extra capability (a [vectorizer]()) to encode a human readable text string into a vector at query time. Vectorizers are omitted from this quickstart to keep the exercise simple.
 
-    + `k` specifies the number of matches to return in the response. A `count` parameter specifies the number of matches found in the index. Including count is a best practice for queries, but it's less useful for similarity search where the algorithm can find some degree of similarity in almost any document. 
++ `k` specifies the number of matches to return in the response. A `count` parameter specifies the number of matches found in the index. Including count is a best practice for queries, but it's less useful for similarity search where the algorithm can find some degree of similarity in almost any document. 
 
-1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
-
-    The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` includes k-5 results although the search engine found 7 matches. The top results are considered the most semantically similar to the query. Each result provides a search score and the fields listed in `select`. In a similarity search, the response always includes `k` results ordered by the value similarity score.
+The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` includes k-5 results although the search engine found 7 matches. The top results are considered the most semantically similar to the query. Each result provides a search score and the fields listed in `select`. In a similarity search, the response always includes `k` results ordered by the value similarity score.
     
     ```json
     {
@@ -782,24 +513,22 @@ To create a single vector search:
     }
     ```
 
-### Single vector search with filter
+#### Single vector search with filter
 
-You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
+In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The filter query filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
-To create a single vector search with a filter:
+The filter query is the same as the previous one, with an extra filter and filter mode parameter.
 
-1. Formulate the request. This is the same request as the previous one, with an extra filter and filter mode parameter.
+```http
+### Run a vector query with a filter
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
 
-    ```http
-    ### Run a vector query with a filter
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
-        Content-Type: application/json
-        Authorization: Bearer {{token}}
-    
-        {
-            "count": true,
-            "select": "HotelId, HotelName, Category, Tags, Description",
-            "filter": "Tags/any(tag: tag eq 'free wifi')",
+    {
+        "count": true,
+        "select": "HotelId, HotelName, Category, Tags, Description",
+        "filter": "Tags/any(tag: tag eq 'free wifi')",
             "vectorFilterMode": "postFilter",
             "vectorQueries": [
             {
@@ -813,9 +542,7 @@ To create a single vector search with a filter:
     }
     ```
 
-1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
-
-    The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels that have free Wi-Fi.
+The query is the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels that have free Wi-Fi.
     
     ```json
     {
@@ -914,12 +641,9 @@ To create a single vector search with a filter:
     ]
     ```
 
-### Hybrid search
+#### Hybrid search
 
-Hybrid search consists of keyword queries and vector queries in a single search request. This example runs the vector query and full-text search concurrently:
-
-+ Search string: `historic hotel walk to restaurants and shopping`
-+ Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
+Hybrid search combines keyword queries and vector queries in a single request:
 
 To create a hybrid search:
 
@@ -948,9 +672,7 @@ To create a hybrid search:
     }
     ```
 
-1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
-
-    Because this is a hybrid query, results are [ranked by Reciprocal Rank Fusion (RRF)](../../hybrid-search-ranking.md#scores-in-hybrid-search-results). Notice that `@search.score` values have a different basis and are uniformly smaller values. RRF evaluates search scores of multiple search results, takes the inverse, and then merges and sorts the combined results. The `top` number of results are returned.
+Because this is a hybrid query, results are [ranked by Reciprocal Rank Fusion (RRF)](../../hybrid-search-ranking.md#scores-in-hybrid-search-results). Notice that `@search.score` values have a different basis and are uniformly smaller values. RRF evaluates search scores of multiple search results, takes the inverse, and then merges and sorts the combined results. The `top` number of results are returned.
     
     Review the response, consisting of the top k-5 matches out of 7 matching documents in the index:
     
@@ -989,7 +711,7 @@ To create a hybrid search:
     
     Because RRF merges results, it helps to review the inputs individually. 
     
-    The following results are from the full-text portion of the query: *historic hotel walk to restaurants and shopping*. In the full-text query, the top three results are Sublime Palace Hotel, Stay-Kay City Hotel, and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score. In the fused query, only two of these matches are in the top 3, and the second match (Stay-Kay City Hotel) doesn't appear in the top 5 at all.
+    The following results are from the full-text portion of the query: *historic hotel walk to restaurants and shopping*. In the full text query, the top three results are Sublime Palace Hotel, Stay-Kay City Hotel, and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score. In the fused query, only two of these matches are in the top 3, and the second match (Stay-Kay City Hotel) doesn't appear in the top 5 at all.
     
     ```json
       "value": [
@@ -1035,9 +757,9 @@ To create a hybrid search:
       ]
     ```
 
-### Semantic hybrid search
+#### Semantic hybrid search
 
-Here's the last query in the collection. This hybrid query adds L2 semantic ranking that applies machine reading comprehension over the L1-ranked results, promoting more relevant matches to the top.
+This query adds semantic ranking, applying machine reading comprehension to promote more relevant matches.
 
 To create a semantic hybrid search:
 
@@ -1068,9 +790,7 @@ To create a semantic hybrid search:
     }
     ```
 
-1. Select **Send Request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
-
-    Review the response, consisting of a semantic reranking of the RRF-ranked results of the hybrid query. Semantic ranking works off of text inputs. In a text or hybrid query, this input is the text portion of the query (*historic hotel walk to restaurants and shopping*). To use semantic ranking on a pure vector query, such as the first example, or to explicitly control the text used for semantic ranking, [provide a semanticQuery string](../../semantic-how-to-query-request.md#set-up-the-query).
+The response consists of a semantic reranking of the RRF-ranked results of the hybrid query. Semantic ranking works off of text inputs. In a text or hybrid query, this input is the text portion of the query (*historic hotel walk to restaurants and shopping*). To use semantic ranking on a pure vector query, such as the first example, or to explicitly control the text used for semantic ranking, [provide a semanticQuery string](../../semantic-how-to-query-request.md#set-up-the-query).
     
     After semantic reranking, Swirling Currents Hotel with its reference to *walking access to shopping, dining, entertainment and the city center* moves into the top spot. The machine comprehension model promotes *walking access to shopping and dining* as a closer match to *walk to restaurants and shopping*.
     
@@ -1143,6 +863,7 @@ DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2025-09-01 HTTP
     Authorization: Bearer {{token}}
 ```
 
-## Next steps
+## Related content
 
-+ Learn how to invoke REST API calls [without API keys](../../search-get-started-rbac.md).
++ [Quickstart: Connect to a search service](../../search-get-started-rbac.md)
++ [Vector search in Azure AI Search](../../vector-search-overview.md)

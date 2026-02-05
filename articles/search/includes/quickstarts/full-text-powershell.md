@@ -38,25 +38,23 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Use Git to clone the sample repository.
 
-   ```powershell
-   git clone https://github.com/Azure-Samples/azure-search-powershell-samples
-   ```
+    ```powershell
+    git clone https://github.com/Azure-Samples/azure-search-powershell-samples
+    ```
 
-1. Navigate to the `Quickstart` folder.
+1. Navigate to the quickstart folder.
 
-   ```powershell
-   cd azure-search-powershell-samples/Quickstart
-   ```
+    ```powershell
+    cd azure-search-powershell-samples/Quickstart
+    ```
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-   ```azurecli
-   az login
-   ```
+    ```azurecli
+    az login
+    ```
 
-1. Open the `azure-search-powershell-samples/Quickstart/azure-search-quickstart.ps1` file in a text editor.
-
-1. Replace the placeholder value for `$baseUrl` with the URL you obtained in [Get endpoint](#get-endpoint).
+1. In `azure-search-quickstart.ps1`, replace the placeholder value for `$baseUrl` with the URL you obtained in [Get endpoint](#get-endpoint).
 
 ## Run the code
 

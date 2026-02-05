@@ -40,15 +40,22 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Use Git to clone the sample repository.
 
-   ```console
-   git clone https://github.com/Azure-Samples/azure-search-python-samples
-   ```
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-python-samples
+    ```
 
-1. Open the `azure-search-python-samples/Quickstart-Keyword-Search` folder in Visual Studio Code.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-1. Open the `azure-search-quickstart.ipynb` file.
+    ```bash
+    cd azure-search-python-samples/Quickstart-Keyword-Search
+    code .
+    ```
 
-1. In the upper-right corner of the notebook, select **Select Kernel** > **Python Environments...** > **Create Python Environment**, and then follow the prompts to create a virtual environment.
+1. Press **Ctrl+Shift+P**, select **Python: Create Environment**, and then follow the prompts to create a virtual environment.
+
+    When complete, you should see a `.venv` folder in the project directory.
+
+1. Open `azure-search-quickstart.ipynb`.
 
 1. Run the first code cell to install the required packages.
 

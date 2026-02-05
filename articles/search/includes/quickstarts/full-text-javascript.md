@@ -40,21 +40,32 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Use Git to clone the sample repository.
 
-   ```console
-   git clone https://github.com/Azure-Samples/azure-search-javascript-samples
-   ```
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-javascript-samples
+    ```
 
-1. Open the `azure-search-javascript-samples/quickstart-keyword-search` folder in Visual Studio Code.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-1. Rename the `sample.env` file to `.env`, and then open the file.
+    ```bash
+    cd azure-search-javascript-samples/quickstart-keyword-search
+    code .
+    ```
 
-1. Replace the placeholder value for `SEARCH_API_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
+1. In `sample.env`, replace the placeholder value for `SEARCH_API_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. Use a terminal in Visual Studio Code to install the dependencies.
+1. Rename `sample.env` to `.env`.
 
-    ```console
+    ```bash
+    mv sample.env .env
+    ```
+
+1. Install the dependencies.
+
+    ```bash
     npm install
     ```
+
+    When the installation completes, you should see a `node_modules` folder in the project directory.
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
@@ -66,7 +77,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 Run the application.
 
-```console
+```bash
 node index.js
 ```
 

@@ -40,21 +40,26 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Use Git to clone the sample repository.
 
-   ```console
-   git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
-   ```
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
+    ```
 
-1. Open the `azure-search-dotnet-samples/quickstart-keyword-search/AzureSearchQuickstart` folder in Visual Studio Code.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-1. Open the `Program.cs` file.
+    ```bash
+    cd azure-search-dotnet-samples/quickstart-keyword-search/AzureSearchQuickstart
+    code .
+    ```
 
-1. Replace the placeholder value for `serviceEndpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
+1. In `Program.cs`, replace the placeholder value for `serviceEndpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. Install the dependencies from the `AzureSearchQuickstart.csproj` file.
+1. Install the dependencies from `AzureSearchQuickstart.csproj`.
 
-   ```console
-   dotnet restore
-   ```
+    ```bash
+    dotnet restore
+    ```
+
+    When the restore completes, verify that no errors appear in the output.
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
@@ -66,7 +71,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 Build and run the application.
 
-```console
+```bash
 dotnet run
 ```
 
