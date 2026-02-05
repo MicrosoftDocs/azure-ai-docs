@@ -70,14 +70,6 @@ Azure Functions is a serverless compute service that provides scale-to-zero capa
    func start
    ```
 
-   After the function host starts, verify the MCP endpoint is accessible:
-
-   ```bash
-   curl http://localhost:7071/runtime/webhooks/mcp
-   ```
-
-   You should receive an MCP server response. If you see errors, check the function app logs in the terminal output.
-
 1. Deploy your MCP server to Azure by using the Azure Developer CLI:
 
    ```bash
