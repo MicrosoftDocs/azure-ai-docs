@@ -9,14 +9,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: quickstart
-ms.date: 12/18/2025
+ms.date: 02/05/2026
 ---
 
 # Quickstart: Agentic retrieval in the Azure portal
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and large language models (LLMs) from Azure OpenAI in Foundry Models.
+In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
 
 The portal guides you through the process of creating the following objects:
 
@@ -87,9 +87,9 @@ On your Azure Blob Storage account:
 
 ### [Microsoft Foundry](#tab/foundry-perms)
 
-Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
+Microsoft Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
 
-On your Foundry resource:
+On your Microsoft Foundry resource:
 
 + Assign **Cognitive Services User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
@@ -131,17 +131,19 @@ To create the knowledge source for this quickstart:
 
 1. Select **Add knowledge source** > **Add knowledge source**.
 
-1. Select **Azure blob**.
+1. Select **Azure blob (Indexed)**.
 
 1. Enter **earth-at-night-ks** for the name, and then select your subscription, storage account, and container with the sample data.
 
 1. Select the **Authenticate using managed identity** checkbox. Leave the identity type as **System-assigned**.
 
-1. Select **Add vectorizer**.
+1. Under **Enable text vectorization**, select **Add vectorizer**.
 
 1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
 
 1. Select **System assigned identity** for the authentication type.
+
+1. Save the vectorizer.
 
 1. Create the knowledge source.
 
