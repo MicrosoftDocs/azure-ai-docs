@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/05/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026
@@ -15,11 +15,11 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-openapi-function-new
 ---
 
-# Connect to an OpenAPI specification
+# Connect agents to OpenAPI tools
 
-Connect your Microsoft Foundry Agent Service to external APIs by using OpenAPI 3.0 tools with support for anonymous, API key, and managed identity authentication. This integration enables scalable interoperability with existing infrastructure and web services.
+Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifications. Agents that connect to OpenAPI tools can call external services, retrieve real-time data, and extend their capabilities beyond built-in functions.
 
-OpenAPI tools improve your agent's function calling capabilities by providing standardized, automated API integrations. [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication types with OpenAPI 3.0 tools: `anonymous`, `API key`, and `managed identity`.
+[OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication methods: `anonymous`, `API key`, and `managed identity`. For help choosing an authentication method, see [Choose an authentication method](#choose-an-authentication-method).
 
 ### Usage support
 
@@ -60,7 +60,7 @@ Before you begin, make sure you have:
 > [!NOTE]
 > The `AZURE_AI_PROJECT_ENDPOINT` value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
 
-## Limitations
+## Understand limitations
 
 - Your OpenAPI spec must include `operationId` for each operation, and `operationId` can include only letters, `-`, and `_`.
 - Supported content types: `application/json`, `application/json-patch+json`.
@@ -69,7 +69,7 @@ Before you begin, make sure you have:
 ## Code example
 
 > [!NOTE]
-> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for details.
+> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for details.
 > - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 > [!IMPORTANT]
@@ -1127,9 +1127,9 @@ To set up authentication by using Managed Identity:
    1. Select **Finish**.
 1. When you finish the setup, you can continue by using the tool through the Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
 
-## Troubleshooting
+## Troubleshoot common errors
 
-| Issue | Likely cause | Resolution |
+| Symptom | Likely cause | Resolution |
 | --- | --- | --- |
 | API key isn't included in requests. | OpenAPI spec missing `securitySchemes` or `security` sections. | Verify your OpenAPI spec includes both `components.securitySchemes` and a top-level `security` section. Ensure the scheme `name` matches the key name in your project connection. |
 | Agent doesn't call the OpenAPI tool. | Tool choice not set or `operationId` not descriptive. | Use `tool_choice="required"` to force tool invocation. Ensure `operationId` values are descriptive so the model can choose the right operation. |
@@ -1139,6 +1139,16 @@ To set up authentication by using Managed Identity:
 | Tool returns unexpected response format. | Response schema not defined in OpenAPI spec. | Add response schemas to your OpenAPI spec for better model understanding. |
 | `operationId` validation error. | Invalid characters in `operationId`. | Use only letters, `-`, and `_` in `operationId` values. Remove numbers and special characters. |
 | Connection not found error. | Connection name or ID mismatch. | Verify `OPENAPI_PROJECT_CONNECTION_NAME` matches the connection name in your Foundry project. |
+
+## Choose an authentication method
+
+The following table helps you choose the right authentication method for your OpenAPI tool:
+
+| Authentication method | Best for | Setup complexity |
+| --- | --- | --- |
+| Anonymous | Public APIs with no authentication | Low |
+| API key | Third-party APIs with key-based access | Medium |
+| Managed identity | Azure services and Microsoft Entra ID-protected APIs | Medium-High |
 
 ## Related content
 
