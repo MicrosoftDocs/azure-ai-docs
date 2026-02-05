@@ -9,7 +9,7 @@ items:
 - name: Content filtering risks
   items:
   - name: Harm categories
-    href: ../../guardrails/severity-levels.md
+    href: ../../../openai/concepts/content-filter-severity-levels.md
   - name: Prompt shields
     href: ../../../openai/concepts/content-filter-prompt-shields.md
   - name: Sensitive data leakage 
