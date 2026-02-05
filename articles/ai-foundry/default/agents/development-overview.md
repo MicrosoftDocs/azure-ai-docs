@@ -47,6 +47,8 @@ To follow the code samples in this article, you need:
 >
 > Package: [`azure-ai-projects`](https://pypi.org/project/azure-ai-projects/) | Python 3.8+
 
+### Create agent
+
 :::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-create-agent.py":::
 
 Set these environment variables before running the samples:
@@ -66,6 +68,8 @@ For more samples, see [Azure SDK for Python agent samples](https://github.com/Az
 >
 > Package: [`Azure.AI.Projects`](https://www.nuget.org/packages/Azure.AI.Projects) | .NET 8.0+
 
+### Create agent
+
 :::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-create-agent.cs":::
 
 Set these environment variables before running the samples:
@@ -84,6 +88,8 @@ For more samples, see [Azure SDK for .NET agent samples](https://github.com/Azur
 > Install the package: `npm install @azure/ai-projects@2.0.0-beta.1`
 >
 > Package: [`@azure/ai-projects`](https://www.npmjs.com/package/@azure/ai-projects) | Node.js 20+
+
+### Create agent
 
 :::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-create-agent.ts":::
 
@@ -110,6 +116,8 @@ For more samples, see [Azure SDK for JavaScript agent samples](https://github.co
 >
 > Package: [`com.azure:azure-ai-agents`](https://central.sonatype.com/artifact/com.azure/azure-ai-agents) | Java 17+
 
+### Create agent
+
 :::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/CreateAgent.java":::
 
 Set these environment variables before running the samples:
@@ -121,6 +129,28 @@ Set these environment variables before running the samples:
 | `AGENT_NAME` | The name for your new aent | You can use a name of your choice, for example `MyAgent`. |
 
 For more samples, see [Azure SDK for Java agent samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples).
+
+---
+
+### Chat with agent
+
+After you create an agent, you can start a conversation by creating a thread, adding a message, and running the agent. The following code shows how to chat with the agent you created.
+
+# [Python](#tab/python)
+
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-chat-with-agent.py":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-chat-with-agent.cs":::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-chat-with-agent.ts":::
+
+# [Java](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/ChatWithAgent.java":::
 
 ---
 
