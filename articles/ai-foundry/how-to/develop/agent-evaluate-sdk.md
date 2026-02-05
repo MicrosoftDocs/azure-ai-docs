@@ -1272,7 +1272,6 @@ Try a sample for each of these evaluators in the [sample repository](https://git
 
 ::: moniker range="foundry"
 
-- [Azure AI Evaluation SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)
 - [Evaluate Generative AI applications remotely on the cloud](./cloud-evaluation.md)
 - [View evaluation results in a Foundry project](../../how-to/evaluate-results.md)
 
