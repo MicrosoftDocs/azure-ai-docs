@@ -4,7 +4,7 @@ description: Monitor and manage AI agents at scale by using Microsoft Foundry. T
 author: sonalim-0
 ms.author: scottpolly
 ms.reviewer: sonalimalik
-ms.date: 11/05/2025
+ms.date: 02/04/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom: dev-focus
@@ -23,7 +23,7 @@ Fleet monitoring serves multiple roles:
 - *Cost managers* optimize spending and identify resource inefficiencies.
 - *Security teams* monitor for prohibited behaviors and policy violations.
 
-This article shows you how to use Foundry Control Plane capabilities to track agent health, performance, compliance, and cost efficiency at scale. With centralized monitoring, you can identify issues early, optimize resource consumption, and help ensure that your AI systems operate safely and reliably.
+This article shows you how to use Foundry Control Plane capabilities to track agent health, performance, compliance, and cost efficiency at scale. By using centralized monitoring, you can identify problems early, optimize resource consumption, and help ensure that your AI systems operate safely and reliably.
 
 ## Prerequisites
 
@@ -31,14 +31,14 @@ This article shows you how to use Foundry Control Plane capabilities to track ag
 
 - The following permissions:
   - Read access to the project and subscription that you want to view data for
-  - [Log Analytics Reader](/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader) role (or higher) on the Application Insights resource that's associated with your agent
+  - [Log Analytics Reader](/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader) role or higher on the Application Insights resource that's associated with your agent
   - [Cost Management Reader](https://go.microsoft.com/fwlink/?linkid=2345241) role
 
 [!INCLUDE [capability-new-portal](../includes/capability-new-portal.md)]
 
 ## How monitoring works
 
-Foundry Control Plane discovers all the agents that you have access to. It then uses the Application Insights resources that host your agents to help you monitor and diagnose those agents.
+Foundry Control Plane discovers all the agents that you can access. It uses the Application Insights resources that host your agents to help you monitor and diagnose those agents.
 
 Foundry Control Plane supports:
 
@@ -55,7 +55,7 @@ Foundry Control Plane aggregates logs and metrics available across each Applicat
 
 :::image type="content" source="media/monitoring-across-fleet/observability-app-insights-architecture.png" alt-text="Architecture diagram that shows how Foundry Control Plane uses Application Insights to collect logs and metrics across resources." lightbox="media/monitoring-across-fleet/observability-app-insights-architecture.png":::
 
-Foundry Control Plane requires agents to log diagnostic information by following OpenTelemetry standards with semantic conventions for generative AI applications. Configuring Application Insights on each resource isn't mandatory, but we strongly recommend it. When such data is available, Foundry Control Plane can provide:
+Foundry Control Plane requires agents to log diagnostic information by following OpenTelemetry standards with [semantic conventions for Generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/) applications. You don't need to configure Application Insights on each resource, but we strongly recommend it. When Foundry Control Plane has this data, it can provide:
 
 - **Fleet health metrics**: Track active agents, run completion rates, and error trends across your entire fleet.
 - **Cost and performance tracking**: Monitor token usage, budget consumption, and resource efficiency across all agents.
@@ -63,7 +63,7 @@ Foundry Control Plane requires agents to log diagnostic information by following
 - **Drill-down analysis**: Move from fleet-level metrics to individual agent traces and logs for detailed investigation.
 
 > [!IMPORTANT]
-> Agents running on a resource without Application Insights don't have health metrics, cost tracking, or drill-down traces.
+> Agents running on resources without Application Insights don't have health metrics, cost tracking, or drill-down traces.
 
 ## Configure monitoring
 
@@ -122,7 +122,7 @@ You can view all your assets under a specific project, along with top-level metr
 
    The tab shows the details of agents discovered within the subscription. To learn about these details, see [Agent inventory](how-to-manage-agents.md#agent-inventory).
 
-1. To view more granular information on the performance of an individual agent, select an agent. The pane that appears provides quick insights into the selected agent's health and recent activity. You can use it to identify problems and take corrective actions.  
+1. To view more granular information on the performance of an individual agent, select an agent. The pane that appears provides quick insights into the selected agent's health and recent activity. Use it to identify problems and take corrective actions.  
 
     :::image type="content" source="media/monitoring-across-fleet/agent-details.png" alt-text="Screenshot of the Foundry pane that shows details of a selected agent." lightbox="media/monitoring-across-fleet/agent-details.png":::
 

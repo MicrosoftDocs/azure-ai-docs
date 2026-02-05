@@ -3,6 +3,11 @@ items:
 - name: What is the Foundry control plane?
   href: ../../control-plane/overview.md
 
+- name: Govern tools
+  items:
+  - name: Govern MCP tools by using an AI gateway
+    href: ../../agents/how-to/tools/governance.md
+
 - name: Govern agents
   items:
   - name: Monitor fleet health and performance
@@ -22,5 +27,5 @@ items:
     href: ../../control-plane/how-to-optimize-cost-performance.md
 - name: Manage compliance and security
   href: ../../control-plane/how-to-manage-compliance-security.md
-- name: Configure AI Gateway
+- name: Configure an AI gateway
   href: ../../configuration/enable-ai-api-management-gateway-portal.md

@@ -4,7 +4,7 @@ description: Learn how to register a custom agent in Microsoft Foundry Control P
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
-ms.date: 11/18/2025
+ms.date: 02/04/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -48,11 +48,11 @@ Verify that your agent meets the requirements for registration:
 > - The network where you deploy the Foundry resource can reach the agent's endpoint.
 > - The agent communicates by using one of the supported protocols: HTTP (general) or A2A (more specific).
 > - Your agent emits data by using the OpenTelemetry semantic conventions for generative AI solutions (or you don't need this capability).
-> - You can configure the endpoint that users use to communicate with the agent. After an agent is registered in Foundry Control Plane, a new URL is generated. *Clients and users must use this URL to communicate with the agent*.
+> - You can configure the endpoint that users use to communicate with the agent. After you register an agent, Foundry Control Plane generates a new URL. *Clients and users must use this URL to communicate with the agent*.
 
 ### Prepare your Foundry project
 
-Custom agents are added to Foundry projects. Before you register the agent, make sure that you configured the project correctly:
+Before you register the custom agent that you added to a Foundry project, make sure that you configured the project correctly:
 
 1. [!INCLUDE [foundry-sign-in](../../default/includes/foundry-sign-in.md)]
 
@@ -107,7 +107,7 @@ Your project is configured for observability and tracing.
     | **Agent URL** | The endpoint (URL) where your agent runs and receives requests. In general, but depending on your protocol, you indicate the base URL that your clients use. For example, if your agent uses the OpenAI Chat Completions API, you indicate `https://<host>/v1/` without `/chat/completions` because clients generally add it. | Yes |
     | **Protocol** | The communication protocol that your agent supports. Use HTTP in general. Or if your agent supports A2A more specifically, indicate that one. | Yes |
     | **A2A agent card URL** | The path to the agent card's JSON specification. If you don't specify it, the system uses the default `/.well-known/agent-card.json`. | No |
-    | **OpenTelemetry Agent ID** | The agent ID that your agent uses to emit traces according to OpenTelemetry semantic conventions for generative AI. Traces indicate it in the `gen_ai.agents.id` attribute for spans with the operation name `create_agent`. If you don't specify this ID, the system uses the **Agent name** value to find traces and logs that this new agent reports. | No |
+    | **OpenTelemetry Agent ID** | The agent ID that your agent uses to emit traces according to OpenTelemetry semantic conventions for generative AI. Traces indicate it in the `gen_ai.agents.id` attribute for spans with the operation name `create_agent`. If you don't specify this value, the system uses the **Agent name** value to find traces and logs that this new agent reports. | No |
     | **Admin portal URL** | The administration portal URL where you can perform further administration operations for this agent. Foundry can store this value for convenience. Foundry doesn't have any access to perform operations directly to this portal. | No |
 
 1. Configure how you want the agent to appear in Foundry Control Plane:
@@ -213,17 +213,17 @@ To get the best level of fidelity, Foundry expects custom agents to comply with 
     > [!TIP]
     > In this example, you can see how clients use the new agent's endpoint to communicate with the agent. The example shows an agent served with the Agent Protocol from LangChain. Clients use the route `/runs/stream`.
 
-In this example, the trace has no details beyond the HTTP post. The reason is that no further instrumentation was added to the agent's code. In the next section, you learn how to instrument your code and gain further details like tool calls and large language model (LLM) calls.
+In this example, the trace doesn't include any details beyond the HTTP post. The agent's code doesn't include any further instrumentation. In the next section, you learn how to instrument your code and get details like tool calls and large language model (LLM) calls.
 
 ### Instrument custom code agents
 
-If you build your agent by using custom code, you need to instrument your solution to emit traces according to the OpenTelemetry standard and sink them to Application Insights. Instrumentation allows Foundry to have access to higher level of detail about what your agent is doing.
+If you build your agent by using custom code, instrument your solution to emit traces according to the OpenTelemetry standard and send them to Application Insights. Instrumentation gives Foundry access to detailed information about what your agent is doing.
 
 Send traces to the Application Insights resource of your project by using its instrumentation key. To get the instrumentation key associated with your project, follow the instructions at [Enable tracing in your project](../../how-to/develop/trace-application.md#enable-tracing-in-your-project).
 
 In this example, you configure an agent developed with LangGraph to emit traces in the OpenTelemetry standard. The tracer captures all agent operations, including tool calls and model interactions. The tracer then sends the operations to Application Insights for monitoring.
 
-This code uses the [langchain-azure-ai](http://pypi.org/project/langchain-azure-ai) package. Learn how to instrument specific solutions with OpenTelemetry, depending on the programming language and the framework used in your solution, at [Language APIs & SDKs](https://opentelemetry.io/docs/languages/).
+This code uses the [langchain-azure-ai](http://pypi.org/project/langchain-azure-ai) package. For guidance on instrumenting specific solutions with OpenTelemetry, depending on the programming language and framework that your solution uses, see [Language APIs & SDKs](https://opentelemetry.io/docs/languages/).
 
 ```bash
 pip install -U langchain-azure-ai[opentelemetry]
@@ -260,7 +260,7 @@ agent = create_agent(
 
 ### Instrument platform solutions
 
-If your agent runs on a platform solution that supports OpenTelemetry but doesn't support Application Insights, you need to deploy an OpenTelemetry collector and configure your software to send OTLP data to the collector (standard OpenTelemetry configuration).
+If your agent runs on a platform solution that supports OpenTelemetry but doesn't support Application Insights, deploy an OpenTelemetry collector and configure your software to send OTLP data to the collector (standard OpenTelemetry configuration).
 
 Configure the collector with the Azure Monitor exporter to forward data to Application Insights by using your connection string. For details about how to implement it, see [Configure Azure Monitor OpenTelemetry](/azure/azure-monitor/app/opentelemetry-configuration).
 

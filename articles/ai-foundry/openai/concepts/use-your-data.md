@@ -108,7 +108,7 @@ Azure OpenAI On Your Data provides the following search types you can use when y
 * [Keyword search](/azure/search/search-lucene-query-architecture)
 
 * [Semantic search](/azure/search/semantic-search-overview)
-* [Vector search](/azure/search/vector-search-overview) using the `text-embedding-ada-002` [embedding](./understand-embeddings.md) model, available in [selected regions](models.md#embeddings-models) 
+* [Vector search](/azure/search/vector-search-overview) using the `text-embedding-ada-002` [embedding](./understand-embeddings.md) model, available in [selected regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings-models) 
 
     To enable vector search, you need an existing embedding model deployed in your Azure OpenAI resource. Select your embedding deployment when connecting your data, then select one of the vector search types under **Data management**. If you're using Azure AI Search as a data source, make sure you have a vector column in the index.
 
@@ -320,7 +320,7 @@ You can connect your MongoDB Atlas vector index with Azure OpenAI On Your Data f
 ### Prerequisites 
 
 * A [MongoDB Atlas account](https://account.mongodb.com/account/register)
-* An [Azure OpenAI ada002 embedding model](./models.md#embeddings)
+* An [Azure OpenAI ada002 embedding model](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings)
     * To achieve good retrieval quality, make sure your vector index is created with Azure OpenAI ada002 embedding model.
 
 We recommend using one of the following models for MongoDB Atlas
@@ -649,7 +649,7 @@ The estimates also depend on the nature of the documents and questions being ask
 | GPT-4o | 4000 |
 | GPT-4o-mini | 4000 |
 
-The table above shows the maximum number of tokens that can be used for the [system message](#system-message). To see the maximum tokens for the model response, see the [models article](./models.md#gpt-4-and-gpt-4-turbo-models). Additionally, the following also consume tokens:
+The table above shows the maximum number of tokens that can be used for the [system message](#system-message). To see the maximum tokens for the model response, see the [models article](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-4-and-gpt-4-turbo-models). Additionally, the following also consume tokens:
 
 
 

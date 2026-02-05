@@ -2,7 +2,7 @@
 title: What Is Microsoft Foundry Control Plane?
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 11/05/2025
+ms.date: 02/05/2026
 ms.reviewer: mesameki
 ms.author: scottpolly
 author: mesameki
@@ -13,13 +13,17 @@ ai-usage: ai-assisted
 
 # What is Microsoft Foundry Control Plane?
 
-Microsoft Foundry Control Plane is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. Foundry Control Plane serves as your central location for managing every aspect of your AI agent fleet, from build to production.
+Microsoft Foundry Control Plane is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. Use Foundry Control Plane as your central location for managing every aspect of your AI agent fleet, from build to production.
 
-As organizations evolve from isolated copilots to autonomous multi-agent fleets, they need unified oversight. Foundry Control Plane provides visibility, governance, and control for scaling with confidence.
+As your organization evolves from isolated copilots to autonomous multi-agent fleets, you need unified oversight. Foundry Control Plane provides the visibility, governance, and control that you need to scale with confidence.
+
+In this article, you learn what Foundry Control Plane offers, including fleet management, observability, compliance enforcement, and security capabilities.
 
 ## Core functionalities
 
 Foundry Control Plane consolidates *inventory, observability, compliance, and security* into one role-aware interface. It integrates seamlessly with Microsoft security and governance systems (Microsoft Defender, Microsoft Purview, Microsoft Entra) to deliver *trust at scale*.
+
+The following diagram shows how Foundry Control Plane provides unified fleet visibility with agents, models, and tools listed across projects in a subscription.
 
 :::image type="content" source="media/overview/control-plane-overall.png" alt-text="Diagram that depicts Foundry Control Plane unified fleet visibility with agents, models, and tools listed across projects in a subscription." lightbox="media/overview/control-plane-overall.png":::
 
@@ -35,7 +39,7 @@ You can use Foundry Control Plane for the following tasks.
 
 ### Observe, protect, and improve
 
-- Correlate alerts, evaluation results, and trace data to pinpoint issues instantly.
+- Correlate alerts, evaluation results, and trace data to pinpoint problems instantly.
 
 - [Continuously evaluate](../../how-to/continuous-evaluation-agents.md) agent performance, quality, and risk dimensions. Risk dimensions might include [task adherence, intent resolution, tool call success](../../concepts/evaluation-evaluators/agent-evaluators.md), [groundedness](../../concepts/evaluation-evaluators/rag-evaluators.md), sensitive data leakage, and exposure to jailbreak and cross-domain prompt injection attacks (XPIAs).
 
@@ -115,7 +119,7 @@ Use the **Quota** pane to view, adjust, and request quotas.
 
 :::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota pane that shows model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
 
-The **Quota** pane enables customers to easily see their model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps you manage resources effectively.
+The **Quota** pane shows your model deployments and how much quota each deployment is consuming. It gives insights into usage patterns and helps you manage resources effectively.
 
 ### Admin
 
@@ -137,14 +141,18 @@ Together, these capabilities make **Admin** the administrative backbone of Found
 
 ## Get started
 
-Foundry Control Plane is available in the Foundry (new) portal. To get started:
+Foundry Control Plane is available in the Foundry (new) portal. To get started, complete these steps:
 
-- [Configure an AI gateway](../configuration/enable-ai-api-management-gateway-portal.md): Configure an AI gateway in your Foundry projects to enable advanced governance features.
-- [Configure monitoring for your agent fleet](monitoring-across-fleet.md): Configure observability features in your project to enable metrics and diagnostic information.
-- [Discover agents in your subscription](how-to-manage-agents.md): See which agents are available in your subscription, and manage them in a centralized location.
-- [Register custom agents](register-custom-agent.md): Extend your governance surface by bringing external agents into the Foundry Control Plane registry.
+| Step | Description |
+| ---- | ----------- |
+| 1. [Configure an AI gateway](../configuration/enable-ai-api-management-gateway-portal.md) | Enable advanced governance features in your Foundry projects. |
+| 2. [Configure monitoring for your agent fleet](monitoring-across-fleet.md) | Enable metrics and diagnostic information with observability features. |
+| 3. [Discover agents in your subscription](how-to-manage-agents.md) | See which agents are available and manage them centrally. |
+| 4. [Register custom agents](register-custom-agent.md) | Bring external agents into the Foundry Control Plane registry. |
 
 ## Related content
 
-- [Manage compliance and security in Microsoft Foundry](how-to-manage-compliance-security.md): Learn how to enforce responsible AI policies, integrate Defender and Microsoft Purview signals, and respond to compliance alerts.
-- [Optimize model cost and performance](how-to-optimize-cost-performance.md): Analyze cost drivers, token usage, and resource consumption to achieve higher return on investment from your agent fleet.
+- [Manage compliance and security in Microsoft Foundry](how-to-manage-compliance-security.md): Enforce responsible AI policies, integrate Defender and Microsoft Purview signals, and respond to compliance alerts.
+- [Optimize model cost and performance](how-to-optimize-cost-performance.md): Analyze cost drivers, token usage, and resource consumption to maximize the return on investment from your agent fleet.
+- [Manage agents at scale](how-to-manage-agents.md): Track and manage agents from supported platforms in one unified view.
+- [Continuously evaluate your AI agents (preview)](../../how-to/continuous-evaluation-agents.md): Monitor agent performance, quality, and risk dimensions automatically.

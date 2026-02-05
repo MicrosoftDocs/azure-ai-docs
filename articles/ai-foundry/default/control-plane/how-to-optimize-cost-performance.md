@@ -3,13 +3,13 @@ title: Optimize Cost and Performance in Microsoft Foundry
 titleSuffix: Foundry
 description: Learn how to use the Ask AI agent to analyze and optimize model cost and performance directly from Microsoft Foundry.
 ms.service: azure-ai-foundry
-ms.custom:
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 02/04/2026
 ms.reviewer: hanch
 ms.author: scottpolly
 author: bhcglx
 monikerRange: 'foundry'
+ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
@@ -94,4 +94,4 @@ The Ask AI agent retrieves the latest metrics from your continuous evaluation an
 ## Related content
 
 - [Evaluate your generative AI application locally with the Azure AI Evaluation SDK](../../how-to/develop/evaluate-sdk.md)
-- [Explore Microsoft Foundry Models](../../how-to/model-catalog-overview.md)
+- [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)

@@ -37,7 +37,7 @@ Before you begin, you need:
   * (Optional) An [MCP tool](../how-to/tools/model-context-protocol.md), if you have one you want to use.
 * An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later
-* [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
+* (Optional) [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
 * [Docker Desktop](https://docs.docker.com/get-docker/) installed and running
 * [Python 3.10 or later](https://www.python.org/downloads/)
 
@@ -67,12 +67,14 @@ Initialize a new project with the Foundry starter template and configure it with
 
     This interactive command prompts you for the following configuration values:
 
-    | Value | Description | How to find it |
-    | ----- | ----------- | -------------- |
-    | **AZURE_OPENAI_ENDPOINT** | Your Azure OpenAI endpoint URL | In the [Azure portal](https://portal.azure.com), go to your Azure OpenAI resource and copy the **Endpoint** from the **Keys and Endpoint** page. |
-    | **AZURE_OPENAI_CHAT_DEPLOYMENT_NAME** | Your model deployment name (for example, `gpt-5`) | In the [Foundry portal](https://ai.azure.com), go to **Build** > **Deployments** and copy the deployment name. |
-    | **AZURE_AI_PROJECT_ENDPOINT** | Your Foundry project endpoint | In the [Foundry portal](https://ai.azure.com), open your project, select **Overview**, and copy the **Project endpoint**. |
-    | **AZURE_AI_PROJECT_TOOL_CONNECTION_ID** (optional) | Your MCP tool connection ID | In the [Foundry portal](https://ai.azure.com), go to **Management** > **Connected resources** and copy the connection ID for your MCP tool. |
+    - **Azure subscription** - select the Azure subscription where you want the Foundry resources to be created.
+    - **Location** - select a region for the resources
+    - **Model SKU** - select the SKU available for your region and subscription
+    - **Deployment name** - enter a name for the model deployment
+    - **Container memory** - enter a value for the memory allocation of the container or accept the defaults
+    - **Container CPU** - enter a value for the CPU allocation of the container or accept the defaults
+    - **Minimum replicas** - enter a value for the minimum replicas of the container
+    - **Max replicas** - enter a value for the maximum replicas of the container
 
     > [!IMPORTANT]
     > If you aren't using an MCP server, comment out or remove the following lines in the `agent.yaml` file:
@@ -84,17 +86,24 @@ Initialize a new project with the Foundry starter template and configure it with
 
 1. Provision the required Azure resources:
 
+    > [!NOTE]
+    > You need **Contributor** access on your Azure subscription for resource provisioning.
+
     ```bash
     azd provision
     ```
 
-    This command takes 5-15 minutes and creates the following resources:
+    This command takes about 5 minutes and creates the following resources:
 
     | Resource | Purpose | Cost |
     | -------- | ------- | ---- |
+    | Resource group | Organizes all related resources in the same area | No cost |
+    | Model deployment | Model used by the agent | See [Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/) |
     | Foundry project | Hosts your agent and provides AI capabilities | Consumption-based; see [Foundry pricing](https://azure.microsoft.com/pricing/details/ai-foundry/) |
     | Azure Container Registry | Stores your agent container images | Basic tier; see [ACR pricing](https://azure.microsoft.com/pricing/details/container-registry/) |
+    | Log Analytics Workspace | Manage all log data in one place | No direct cost. See [Log Analytics cost](/azure/azure-monitor/logs/log-analytics-workspace-overview) |
     | Application Insights | Monitors agent performance and logs | Pay-as-you-go; see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) |
+    | Managed identity | Authenticates your agent to Azure services | No cost |
 
     > [!TIP]
     > Run `azd down` when you finish this quickstart to delete resources and stop incurring charges.
@@ -122,51 +131,38 @@ Before deploying, verify the agent works locally.
 1. Install dependencies:
 
     ```bash
-    pip install -r requirements.txt
+    pip install -r ./src/af-agent-with-foundry-tools/requirements.txt
     ```
 
-1. Set the required environment variables:
+1. Copy the required environment variables used in the agent code to a local .env file:
 
     **Bash:**
 
     ```bash
-    export AZURE_OPENAI_ENDPOINT="https://your-openai-resource.openai.azure.com/"
-    export AZURE_OPENAI_CHAT_DEPLOYMENT_NAME="gpt-5"
-    export AZURE_AI_PROJECT_ENDPOINT="https://your-project.services.ai.azure.com/api/projects/your-project"
+    azd env get-values > .env
     ```
 
     **PowerShell:**
 
     ```powershell
-    $env:AZURE_OPENAI_ENDPOINT = "https://your-openai-resource.openai.azure.com/"
-    $env:AZURE_OPENAI_CHAT_DEPLOYMENT_NAME = "gpt-5"
-    $env:AZURE_AI_PROJECT_ENDPOINT = "https://your-project.services.ai.azure.com/api/projects/your-project"
+    azd env get-values > .env
     ```
 
-1. Sign in to Azure:
+1. Add the `AZURE_OPENAI_CHAT_DEPLOYMENT_NAME` variable to your `.env` file with the name of the model deployment:
 
-    ```bash
-    az login
-    ```
-1. Verify you’re logged in: 
-
-    ```bash
-    az account show
-    ```
-    > [!IMPORTANT]
-    > Keep this session active while testing. The agent uses `DefaultAzureCredential`, which relies on your Azure CLI sign-in for local authentication.
+    `AZURE_OPENAI_CHAT_DEPLOYMENT_NAME="gpt-5"`
 
 1. Run the agent locally:
 
     ```bash
-    python main.py
+    python ./src/af-agent-with-foundry-tools/main.py
     ```
 
     If the agent fails to start, check these common issues:
 
     | Error | Solution |
     | ----- | -------- |
-    | `AuthenticationError` or `DefaultAzureCredential` failure | Run `az login` again to refresh your session. |
+    | `AuthenticationError` or `DefaultAzureCredential` failure | Run `azd auth login` again to refresh your session. |
     | `ResourceNotFound` | Verify your endpoint URLs match the values in the Foundry portal. |
     | `DeploymentNotFound` | Check the deployment name in **Build** > **Deployments**. |
     | `Connection refused` | Ensure no other process is using port 8088. |
@@ -212,30 +208,48 @@ Deploy your agent:
 azd up
 ```
 
-The first deployment can take up to 15 minutes. Subsequent deployments are faster because infrastructure is already provisioned.
-
-### What's being created
-
-The deployment creates and configures the following Azure resources:
-
-| Resource | Purpose |
-| -------- | ------- |
-| Foundry project | Hosts your agent and provides AI capabilities |
-| Azure Container Registry | Stores your agent container images |
-| Application Insights | Monitors agent performance and logs |
-| Hosted agent endpoint | Runs your containerized agent |
-| Managed identity | Authenticates your agent to Azure services |
-
-> [!NOTE]
-> You need **Contributor** access on your Azure subscription for resource provisioning.
+The first deployment will take longer because Docker needs to build the image.
 
 > [!WARNING]
 > Your hosted agent incurs charges while deployed. After you finish testing, complete [Step 5: Clean up resources](#step-5-clean-up-resources) to delete resources and stop charges.
+
+When finished, you will see a link to the Agent Playground and the endpoint for the agent which can be used to invoke the agent programmatically.
+
+```bash
+Deploying services (azd deploy)
+                                                                                                                                                                     
+  (✓) Done: Deploying service af-agent-with-foundry-tools
+  - Agent playground (portal): https://ai.azure.com/nextgen/.../build/agents/af-agent-with-foundry-tools/build?version=1 
+  - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<project>/agents/af-agent-with-foundry-tools/versions/1
+```
+
+
 
 ## Step 4: Verify and test your agent
 
 After deployment completes, verify your agent is running.
 
+### Test in the Foundry playground
+
+Use the link provided in the output from the `azd up` command, or navigate to the agent in the portal:
+
+1. Open the [Foundry portal](https://ai.azure.com) and sign in with your Azure account.
+
+1. Select your project from the **Recent projects** list, or select **All projects** to find it.
+
+1. In the left navigation, select **Build** to expand the menu, then select **Agents**.
+
+1. In the agents list, find your deployed agent (it matches the agent name from your deployment).
+
+1. Select the agent name to open its details page, then select **Open in playground** in the top toolbar.
+
+1. In the chat interface, type a test message like "What is Microsoft Foundry?" and press **Enter**.
+
+1. Verify that the agent responds with information from web search results. The response might take a few seconds as the agent queries external sources.
+
+  > [!TIP]
+  > If the playground doesn't load or the agent doesn't respond, verify the agent status is `Started` using the CLI command below.
+  
 ### Find your resource names
 
 To use the Azure CLI verification command, you need the following values:
@@ -269,25 +283,6 @@ Look for `status: Started` in the output.
 | `Failed` | Deployment error occurred | Run `azd deploy` to retry, or check logs in the Foundry portal. |
 | `Stopped` | Agent was manually stopped | Run `az cognitiveservices agent start` to restart. |
 | `Unhealthy` | Container is crashing | Check **View deployment logs** in the Foundry portal for errors. |
-
-### Test in the Foundry playground
-
-1. Open the [Foundry portal](https://ai.azure.com) and sign in with your Azure account.
-
-1. Select your project from the **Recent projects** list, or select **All projects** to find it.
-
-1. In the left navigation, select **Build** to expand the menu, then select **Agents**.
-
-1. In the agents list, find your deployed agent (it matches the agent name from your deployment).
-
-1. Select the agent name to open its details page, then select **Open in playground** in the top toolbar.
-
-1. In the chat interface, type a test message like "What is Microsoft Foundry?" and press **Enter**.
-
-1. Verify that the agent responds with information from web search results. The response might take a few seconds as the agent queries external sources.
-
-> [!TIP]
-> If the playground doesn't load or the agent doesn't respond, verify the agent status is `Started` using the CLI command above.
 
 ## Step 5: Clean up resources
 
@@ -324,6 +319,7 @@ If you encounter issues, try these solutions for common problems:
 | `AuthorizationFailed` during provisioning | Request **Contributor** role on your subscription or resource group. |
 | Agent doesn't start locally | Verify environment variables are set and run `az login` to refresh credentials. |
 | `AcrPullUnauthorized` error | Grant **AcrPull** role to the project's managed identity on the container registry. |
+| Model not found in catalog | Fork the sample agent.yaml and change the model deployment to one available in your subscription like `gpt-4.1`. Then remove the `AZURE_LOCATION` value in the `.azure/<environment name>/.env` file. Re-run the `azd ai agent init` command with your forked `agent.yaml` file. |
 
 ## What you learned
 

@@ -87,6 +87,8 @@ items:
       href: how-to/containers/text-container.md
     - name: Image analysis container
       href: how-to/containers/image-container.md
+    - name: Prompt Shields container
+      href: how-to/containers/prompt-shields-container.md
   - name: Embedded Content Safety (preview)
     href: how-to/embedded-content-safety.md
   - name: Encryption of data at rest

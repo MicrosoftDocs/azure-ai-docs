@@ -44,9 +44,11 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 ## Prerequisites
 
-- Microsoft Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) as risk and safety evaluators. If you don't have a project, create one. See [Create a project for Foundry](../create-projects.md?tabs=ai-studio).
-- Azure OpenAI deployment with GPT model supporting `chat completion`, such as `gpt-4`.
-- Sign in to your Azure subscription by running `az login`.
+- A [Foundry project](../create-projects.md).
+- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4` or `gpt-5-chat`).
+
+> [!NOTE]
+> Some evaluation features have regional restrictions. See [supported regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
 
 ::: moniker range="foundry-classic"
 
@@ -63,9 +65,6 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
    ```bash
    pip install azure-ai-projects azure-identity
    ```
-
-   > [!NOTE]
-   > For more information, see [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations).
 
 1. Set environment variables for your Foundry resources:
 
@@ -108,9 +107,6 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
    pip install azure-ai-projects azure-identity 
 
    ```
-
-   > [!NOTE]
-   > For more information, see [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations).
 
 1. Set your environment variables for your Foundry resources:
 
@@ -920,6 +916,7 @@ Your evaluation job might remain in the **Running** state for an extended period
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
+- [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations)
 
 ::: moniker-end
 
@@ -929,5 +926,6 @@ Your evaluation job might remain in the **Running** state for an extended period
 - [Evaluate your AI agents continuously](../continuous-evaluation-agents.md)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
+- [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
 
 ::: moniker-end
