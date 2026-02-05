@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: upgrade-and-migration-article
-ms.date: 01/26/2026
+ms.date: 02/05/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
