@@ -56,7 +56,7 @@ export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt
 
 In addition to the standard OpenSSL certificate validity checks, the Speech SDK can enable an additional revocation check for the Transport Layer Security (TLS/SSL) certificate.
 The Speech SDK verifies that the certificate reported by the remote endpoint is trusted and isn't revoked.
-This verification provides a layer of protection against attacks involving spoofing and other related vectors.
+This verification provides an added layer of protection against attacks involving compromised certificates.
 The check is accomplished by retrieving a certificate revocation list (CRL) from a certificate authority (CA) used by Azure.
 A list of Azure CA download locations for updated TLS CRLs can be found in [this document](/azure/security/fundamentals/tls-certificate-changes).
 
