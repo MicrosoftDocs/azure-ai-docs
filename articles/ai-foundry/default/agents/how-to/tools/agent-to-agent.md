@@ -205,7 +205,7 @@ AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenPro
 
 // Create the A2ATool and provide it with the A2A connection ID.
 AIProjectConnection a2aConnection = projectClient.Connections.GetConnection(connectionName: a2aConnectionName);
-A2ATool a2aTool = new()
+A2APreviewTool a2aTool = new()
 {
     ProjectConnectionId = a2aConnection.Id
 };
@@ -241,7 +241,7 @@ ResponseResult response = responseClient.CreateResponse(responseOptions);
 // Print the Agent output.
 if (response.Status != ResponseStatus.Completed)
 {
-  throw new InvalidOperationException($"Response did not complete. Status: {response.Status}");
+    throw new InvalidOperationException($"Response did not complete. Status: {response.Status}");
 }
 Console.WriteLine(response.GetOutputText());
 
