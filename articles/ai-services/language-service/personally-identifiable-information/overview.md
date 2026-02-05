@@ -21,15 +21,15 @@ Azure Language in Foundry Tools Personally Identifiable Information (PII) detect
 
 ## Video demonstration
 
-In this video, we introduce Microsoft’s PII Redaction service and show you how it helps detect and redact sensitive data across text, documents, and conversational transcripts. What you’ll learn:
+In this video, we introduce the PII detection service and show you how it detects and redacts sensitive data across text, documents, and conversational transcripts. We cover:
 
-* How to try the service in Azure Foundry Playground.
-* Key customization options for entity types, masking styles, and exclusions.
-* Why PII protection matters and the cost of data breaches.
-
-Closed captions are available for this video.
+* How to try the service in the Azure Foundry portal playground
+* Key customization options for entity types, masking styles, and exclusions
+* Why PII protection matters and the business impact of data breaches
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=17262a01-0c8c-40fa-98e3-826b766d5db4]
+
+Closed captions are available for this video.
 
 ## Capabilities
 
