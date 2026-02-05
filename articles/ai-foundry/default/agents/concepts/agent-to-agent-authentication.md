@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/21/2026
+ms.date: 02/05/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 # Agent2Agent (A2A) authentication
 
-The Agent2Agent (A2A) protocol enables your agents to discover and invoke tools exposed by other agents. Most A2A endpoints require authentication to access the endpoint and its underlying service. Configuring authentication ensures that only authorized users can invoke your A2A tools in Foundry Agent Service (Agent Service).
+The Agent2Agent (A2A) protocol enables your agents to invoke other agents. Most A2A endpoints require authentication to access the endpoint and its underlying service. Configuring authentication ensures that only authorized users can invoke your A2A tools in Foundry Agent Service.
 
 This article explains the authentication methods available for A2A connections and helps you choose the right approach for your scenario.
 
@@ -32,12 +32,11 @@ In general, there are two authentication scenarios:
 Before you choose an authentication method, you need:
 
 - Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and a project. If you don't have one, see [Create projects in Foundry](../../../how-to/create-projects.md).
-- The **Azure AI Developer** role or higher on your project. This role grants permissions to create project connections and configure agents. For details, see [Role-based access control in the Foundry portal](../../../concepts/rbac-foundry.md).
+- The **Azure AI User** role or higher on your project. This role grants permissions to create project connections and configure agents. For details, see [Role-based access control in the Foundry portal](../../../concepts/rbac-foundry.md).
 - The A2A endpoint URL you want to connect to. Contact the endpoint publisher to confirm which authentication methods the endpoint supports.
 - Credentials for your selected authentication method:
   - **Key-based**: An API key, personal access token (PAT), or other secret token from the endpoint publisher.
   - **Microsoft Entra authentication**: Role assignments for the agent identity or project managed identity on the underlying service. The specific roles depend on the service (for example, **Cosmos DB Data Reader** for Azure Cosmos DB).
-  - **OAuth identity passthrough**: A managed OAuth option from the endpoint publisher, or your own OAuth app registration in Microsoft Entra ID (custom OAuth).
 
 ## Choose an authentication method
 
