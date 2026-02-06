@@ -38,33 +38,33 @@ You can use [Foundry (classic)](https://ai.azure.com/) to:
 The **Language playground** consists of four sections:
 
 
-  | Section | Purpose |
-  | --- | --- |
-  | **Top banner** | Select the **Detect language** tile. |
-  | **Left pane** | Set **Configuration** options such as API version, model version, and country hint. |
-  | **Center pane** | Enter text for processing and review results. |
-  | **Right pane** | View **Details** for detected language and script. |
+   | Section | Purpose |
+   | --- | --- |
+   | **Top banner** | Select the **Detect language** tile. |
+   | **Left pane** | Set **Configuration** options such as API version, model version, and country hint. |
+   | **Center pane** | Enter text for processing and review results. |
+   | **Right pane** | View **Details** for detected language and script. |
 
 1. Select the **Detect language** tile from the top banner.
 1. Enter or paste text in the center pane.
 1. In the **Configuration** pane, set the following options:
 
-  |Option              |Description                              |
-  |--------------------|-----------------------------------------|
-  |Select API version  | Select which version of the API to use.    |
-  |Select model version| Select which version of the model to use.|
-  |Select country hint| Select the origin country/region of the input text. |
+   |Option              |Description                              |
+   |--------------------|-----------------------------------------|
+   |Select API version  | Select which version of the API to use.    |
+   |Select model version| Select which version of the model to use.|
+   |Select country hint| Select the origin country/region of the input text. |
 
 1. Select the **Run** button to detect the language.
 
 After the operation completes, the **Details** section displays the following fields for the detected language and script:
 
-  | Field | Description |
-  | --- | --- |
-  | ISO 639-1 Code | The ISO 639-1 two-letter code for the detected language. |
-  | Confidence Score | The model's level of certainty that the language identification is correct. |
-  | Script Name | The name of the detected script in the text. |
-  | ISO 15924 Script Code | The ISO 15924 code for the detected script (writing system). |
+   | Field | Description |
+   | --- | --- |
+   | ISO 639-1 Code | The ISO 639-1 two-letter code for the detected language. |
+   | Confidence Score | The model's level of certainty that the language identification is correct. |
+   | Script Name | The name of the detected script in the text. |
+   | ISO 15924 Script Code | The ISO 15924 code for the detected script (writing system). |
 
   :::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot showing language detection results with confidence scores and ISO codes displayed in the Details pane of the Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
 
@@ -112,19 +112,19 @@ The **Detect Language** feature identifies the language used in written content.
 
 1. Select the **Configure** button. In the **Configure** side panel, set the following options:
 
- |Option|Description|
- |---|---|
- |**API version**| Select the API version that you prefer to use.|
- |**Model version**| Select the model version that you prefer to use.|
- |**Country/region hint** (optional)| You can select the origin country/region for the source text.|
+  |Option|Description|
+  |---|---|
+  |**API version**| Select the API version that you prefer to use.|
+  |**Model version**| Select the model version that you prefer to use.|
+  |**Country/region hint** (optional)| You can select the origin country/region for the source text.|
 
 After you make your selections, choose the **Detect** button. Then review the text and accompanying details written in formatted text or as a JSON response:
 
- |Field | Description|
- |---|---|
- |**Confidence**| The model's level of certainty regarding whether it correctly identified a language.|
- |**ISO 639-1 code**| A two letter code for the detected language.|
- |**Detected script**| The name of the detected script in the text.|
- |**Detected script code**| The ISO 15924 script code for the detected script (writing system).|
+  |Field | Description|
+  |---|---|
+  |**Confidence**| The model's level of certainty regarding whether it correctly identified a language.|
+  |**ISO 639-1 code**| A two letter code for the detected language.|
+  |**Detected script**| The name of the detected script in the text.|
+  |**Detected script code**| The ISO 15924 script code for the detected script (writing system).|
 
 Verify that the detected language matches the language of your input text. You can use the **Edit** button to modify the **Configure** parameters and rerun detection as needed.
