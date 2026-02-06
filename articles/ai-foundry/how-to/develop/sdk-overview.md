@@ -136,6 +136,7 @@ pip install --pre azure-identity openai
 | SDK Version   | Portal Version  | Status  | JavaScript Package                    |
 |---------------|-----------------|---------|---------------------------------|
 | 2.0.0-beta.4 (preview) | Foundry (new)   | Preview | `@azure/ai-projects 'prerelease'` |
+| 1.0.1 | Foundry classic | Stable | `@azure/ai-projects`             |
 
 ::: zone-end
 
