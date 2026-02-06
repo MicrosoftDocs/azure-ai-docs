@@ -103,6 +103,7 @@ This approach simplifies application configuration. Instead of managing multiple
 | 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1`  | `Azure.AI.Projects --prerelease` |
 | 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    | `Azure.AI.Projects`             |
 
+
 ::: zone pivot="programming-language-python"
 
 The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
@@ -256,16 +257,12 @@ print(chat_responses.choices[0].message.content)
 ::: moniker-end
 ::: moniker range="foundry"
 ```python
-try:
-    with project_client.get_openai_client() as openai_client:
-        response = openai_client.responses.create(
-            model="gpt-5.2",
-            input="What is the size of France in square miles?",
-        )
-        print(f"Response output: {response.output_text}")
-except Exception as e:
-    print(f"Error calling model: {e}")
-    # See troubleshooting section for common solutions
+with project_client.get_openai_client() as openai_client:
+    response = openai_client.responses.create(
+        model="gpt-5.2",
+        input="What is the size of France in square miles?",
+    )
+    print(f"Response output: {response.output_text}")
 ```
 
 **Expected output**:
@@ -461,12 +458,12 @@ If you see `DefaultAzureCredential failed to retrieve a token`:
    ```
 
 2. **Check RBAC role assignment**:
-   - Confirm you have at least the Azure AI User role on the Foundry resource
-   - See [Assign Azure roles](https://learn.microsoft.com/azure/role-based-access-control/role-assignments-portal)
+   - Confirm you have at least the Azure AI User role on the Foundry project
+   - See [Assign Azure roles](/azure/role-based-access-control/role-assignments-portal)
 
 3. **For managed identity in production**:
    - Ensure the managed identity has the appropriate role assigned
-   - See [Configure managed identities](/azure/ai-foundry/how-to/configure-managed-identities)
+   - See [Configure managed identities](../../concepts/authentication-authorization-foundry.md#identity-types)
 
 ### Endpoint configuration errors
 
