@@ -15,6 +15,11 @@ monikerRange: 'foundry-classic || foundry'
 
 Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. Web search is available via the `web_search_preview` tool in the **Responses API**.
 
+> [!NOTE]
+> Some SDKs may expose both `web_search_preview` and `web_search` tool types.
+> Only `web_search_preview` is currently supported for Web search in the Azure OpenAI Responses API.
+> The `web_search` tool type is not supported at this time and should not be used.
+
 > [!IMPORTANT]
 > * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When Customer uses Grounding with Bing Search and/or Grounding with Bing Custom Search, Customer Data will flow outside Customer’s compliance and Geo boundary.
@@ -48,7 +53,7 @@ Deep Research can run for several minutes and is best for background-style workl
 You use web search by declaring the tool in your request. The model may decide whether to call the tool based on the user’s prompt and your configuration.
 
 > [!NOTE]
-> Web Search in Responses API with work with gpt-4 models and later
+> Web Search in the Responses API works with GPT-4 models and later.
 
 ### Use web search with a non-reasoning model
 
