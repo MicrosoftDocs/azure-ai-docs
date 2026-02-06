@@ -10,7 +10,7 @@ ms.date: 02/06/2026
 
 > [!IMPORTANT]
 > Azure OpenAI On Your Data is deprecated and approaching retirement.
- 
+> 
 > Microsoft has stopped onboarding new models to Azure OpenAI On Your Data. This feature only supports the following GPT‑4o model versions:
 > * GPT‑4o (2024‑05‑13)
 > * GPT‑4o (2024‑08‑06)
