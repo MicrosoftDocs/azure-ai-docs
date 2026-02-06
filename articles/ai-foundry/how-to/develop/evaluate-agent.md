@@ -91,18 +91,12 @@ Create a JSONL file with test queries for your agent. Each line contains a JSON 
 Upload this file as a dataset in your project:
 
 ```python
-from azure.ai.projects.models import DatasetVersion
-
-dataset = project_client.datasets.create_or_update(
+dataset = project_client.datasets.upload_file(
     name="agent-test-queries",
     version="1",
-    dataset_version=DatasetVersion(
-        data_uri="./test-queries.jsonl",
-    ),
+    file_path="./test-queries.jsonl",
 )
 ```
-
-For more options, see [Add data to your project](../../how-to/data-add.md).
 
 ## Run an evaluation
 
@@ -180,9 +174,8 @@ eval_run = client.evals.runs.create(
     data_source={
         "type": "azure_ai_target_completions",
         "source": {
-            "type": "azure_ai_dataset",
-            "name": dataset.name,
-            "version": dataset.version,
+            "type": "file_id",
+            "id": dataset.id,
         },
         "input_messages": {
             "type": "template",
@@ -239,13 +232,7 @@ At the run level, you can see aggregated data including pass/fail counts, token 
             "prompt_tokens": 8326,
             "completion_tokens": 959
         },
-        {
-            "model_name": "azure_ai_system_model",
-            "invocation_count": 3,
-            "total_tokens": 12455,
-            "prompt_tokens": 1168,
-            "completion_tokens": 200
-        }
+        ...
     ],
     "per_testing_criteria_results": [
         {
@@ -258,9 +245,9 @@ At the run level, you can see aggregated data including pass/fail counts, token 
 }
 ```
 
-### Per-query output
+### Row level output
 
-Each evaluation run returns output items per test query, providing detailed visibility into your agent's performance. Output items include the original query, agent response, individual evaluator results with scores and reasoning, and token usage:
+Each evaluation run returns output items per row in your test dataset, providing detailed visibility into your agent's performance. Output items include the original query, agent response, individual evaluator results with scores and reasoning, and token usage:
 
 ```json
 {
