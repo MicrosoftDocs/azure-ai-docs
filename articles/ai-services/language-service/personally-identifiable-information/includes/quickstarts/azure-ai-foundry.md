@@ -179,7 +179,7 @@ The **extract PII from text** feature detects and masks personally identifying i
 After you make your selections, choose the **Detect** button. Detected entities are highlighted in the text and you can review the accompanying details in formatted text or as a JSON response:
 
 > [!NOTE]
-> The Foundry (new) playground currently supports **text PII** detection. For **conversation PII**, use the [Foundry (classic)](#tab/foundry-classic) tab.
+> The Foundry (new) playground currently supports **text PII** detection. For **conversation PII**, use the [Foundry (classic)](#foundry-classic) tab.
 
 | Field | Description |
 |--|--|
