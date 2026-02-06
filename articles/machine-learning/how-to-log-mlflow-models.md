@@ -21,12 +21,16 @@ This article describes how to log your trained machine learning models, or artif
 
 ## Prerequisites
 
-* The MLflow SDK `mlflow` package
-* The `xgboost` package
+* The MLflow SDK `mlflow` package (version 2.16.x or earlier)
+* The Azure Machine Learning MLflow plugin `azureml-mlflow`
+* The `xgboost` package (version 2.1.1 or earlier)
 * The `scikit-learn` package
 
+> [!IMPORTANT]
+> Azure Machine Learning is compatible with MLflow 2.16 and earlier. MLflow 2.17 and later introduces artifact repository and LoggedModels API changes that the `azureml-mlflow` plugin doesn't currently support. Pin your MLflow and XGBoost versions to avoid compatibility issues.
+
 ```bash
-pip install mlflow xgboost scikit-learn
+pip install "mlflow<=2.16.2" azureml-mlflow "xgboost<=2.1.1" scikit-learn
 ```
 
 ## Use automatic logging to log models
@@ -113,7 +117,7 @@ input_example = X_train.sample(n=1)
 
 # Log the model manually.
 mlflow.xgboost.log_model(model, 
-                         name="classifier", 
+                         artifact_path="classifier", 
                          pip_requirements=["xgboost>=2.0"],
                          signature=signature,
                          input_example=input_example)
@@ -193,7 +197,7 @@ accuracy = accuracy_score(y_test, y_probs.argmax(axis=1))
 mlflow.log_metric("accuracy", accuracy)
 
 signature = infer_signature(X_test, y_probs)
-mlflow.pyfunc.log_model(name="classifier", 
+mlflow.pyfunc.log_model(artifact_path="classifier", 
                         python_model=ModelWrapper(model),
                         signature=signature)
 ```
@@ -223,7 +227,7 @@ joblib.dump(encoder, encoder_path)
 model_path = 'xgb.model'
 model.save_model(model_path)
 
-mlflow.pyfunc.log_model(name="classifier", 
+mlflow.pyfunc.log_model(artifact_path="classifier", 
                         python_model=ModelWrapper(),
                         artifacts={ 
                             'encoder': encoder_path,
@@ -284,7 +288,7 @@ model_path = "xgb.model"
 model.save_model(model_path)
 
 signature = infer_signature(X, y_probs)
-mlflow.pyfunc.log_model(name="classifier", 
+mlflow.pyfunc.log_model(artifact_path="classifier", 
                         python_model=ModelWrapper(),
                         artifacts={ 
                             'encoder': encoder_path,
@@ -310,7 +314,7 @@ MLflow supports these types of models. When you use MLflow, you can specify arbi
 model_path = 'xgb.model'
 model.save_model(model_path)
 
-mlflow.pyfunc.log_model(name="classifier", 
+mlflow.pyfunc.log_model(artifact_path="classifier", 
                         data_path=model_path,
                         code_paths=['src'],
                         loader_module='loader_module',
@@ -368,7 +372,7 @@ model_path = "xgb.model"
 model.save_model(model_path)
 
 signature = infer_signature(X_test, y_probs)
-mlflow.pyfunc.log_model(name="classifier",
+mlflow.pyfunc.log_model(artifact_path="classifier",
                         data_path=model_path,
                         code_paths=["loader_module.py"],
                         loader_module="loader_module",
