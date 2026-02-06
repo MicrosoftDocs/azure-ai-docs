@@ -137,9 +137,6 @@ print(response.model_dump_json(indent=2))
 **API Key**:
 
 ```csharp
-using OpenAI;
-using System.ClientModel;
-
 OpenAIClient client = new(
     new ApiKeyCredential("{your-api-key}"),
     new OpenAIClientOptions()
