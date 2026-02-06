@@ -1,5 +1,5 @@
 ---
-title: Evaluate your Foundry agent for quality and safety
+title: Evaluate your AI agents
 description: Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors.
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
 ---
 
-# Evaluate your Foundry agent for quality and safety
+# Evaluate your AI agents
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
