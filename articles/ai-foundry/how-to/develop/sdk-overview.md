@@ -551,6 +551,8 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
+::: moniker-end
+
 **Expected output**:
 ```json
 {
@@ -563,7 +565,7 @@ print(response.model_dump_json(indent=2))
 ```
 
 For more information, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true)
-::: moniker-end
+
 
 ::: zone-end
 
