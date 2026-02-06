@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Deploy your first hosted agent"
 titleSuffix: Microsoft Foundry
-description: Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI.
+description: Learn how to deploy a containerized AI agent to Foundry Agent Service using the VS Code Foundry Extension or Azure Developer CLI.
 author: aahill
 ms.author: aahi
 ms.date: 01/26/2026
@@ -13,7 +13,7 @@ ms.custom: mode-other
 ai-usage: ai-assisted
 ---
 
-# Quickstart: Deploy your first hosted agent
+# Quickstart: Deploy your first hosted agent using Azure Developer CLI
 
 In this quickstart, you deploy a containerized AI agent with Foundry tools to Foundry Agent Service. The sample agent uses web search and optionally MCP tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground.
 
@@ -223,8 +223,6 @@ Deploying services (azd deploy)
   - Agent endpoint: https://ai-account-<name>.services.ai.azure.com/api/projects/<project>/agents/af-agent-with-foundry-tools/versions/1
 ```
 
-
-
 ## Step 4: Verify and test your agent
 
 After deployment completes, verify your agent is running.
@@ -329,6 +327,10 @@ In this quickstart, you:
 - Tested the agent locally using the hosting adapter
 - Deployed to Foundry Agent Service using `azd up`
 - Verified your agent in the Foundry playground
+
+# Deploy your first hosted agent using VS Code 
+
+Use the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) to deploy your agent code to Foundry from the IDE which just a few clicks. Refer to instructions [here](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/vs-code-agents-workflow-pro-code?view=foundry&preserve-view=true&tabs=windows-powershell&pivots=python)
 
 ## Next steps
 
