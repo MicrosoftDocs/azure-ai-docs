@@ -105,6 +105,22 @@ This approach simplifies application configuration. Instead of managing multiple
 | 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1 --pre`  |
 | 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0 --pre`    |
 
+The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+
+::: moniker range="foundry-classic"
+Run this command to install the stable packages for Foundry classic projects.
+```bash
+pip install openai azure-identity azure-ai-projects==1.0.0
+```
+::: moniker-end
+::: moniker range="foundry"
+Run these commands to install the preview packages for Foundry projects.
+```bash
+pip install --pre azure-ai-projects
+pip install --pre azure-identity openai
+```
+::: moniker-end
+
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
@@ -129,25 +145,6 @@ This approach simplifies application configuration. Instead of managing multiple
 |---------------|-----------------|---------|---------------------------------|
 | 1.2.0-beta.5 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.Openai` |
 | 1.x (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
-
-::: zone-end
-
-
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
-
-::: moniker range="foundry-classic"
-Run this command to install the stable packages for Foundry classic projects.
-```bash
-pip install openai azure-identity azure-ai-projects==1.0.0
-```
-::: moniker-end
-::: moniker range="foundry"
-Run these commands to install the preview packages for Foundry projects.
-```bash
-pip install --pre azure-ai-projects
-pip install --pre azure-identity openai
-```
-::: moniker-end
 
 ::: zone-end
 
