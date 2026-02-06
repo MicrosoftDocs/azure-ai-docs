@@ -328,7 +328,7 @@ In this quickstart, you:
 - Deployed to Foundry Agent Service using `azd up`
 - Verified your agent in the Foundry playground
 
-# Deploy your first hosted agent using VS Code 
+## Deploy your first hosted agent using VS Code 
 
 Use the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) to deploy your agent code to Foundry from the IDE which just a few clicks. See the [VS Code extension documentation](../how-to/vs-code-agents-workflow-pro-code.md?view=foundry&preserve-view=true&tabs=windows-powershell&pivots=python) for more information.
 
