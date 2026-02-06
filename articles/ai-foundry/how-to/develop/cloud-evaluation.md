@@ -1,7 +1,7 @@
 ---
 title: Cloud Evaluation with the Microsoft Foundry SDK
 titleSuffix: Microsoft Foundry
-description: The Azure AI Evaluation SDK supports running evaluations locally or in the cloud. Learn how to evaluate a generative AI application.
+description: Run scalable evaluations for generative AI applications using the Microsoft Foundry SDK. Learn how to integrate evaluations into your development pipeline.
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions

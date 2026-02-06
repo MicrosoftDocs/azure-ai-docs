@@ -350,18 +350,18 @@ This process might take up to 20 minutes to complete.
 
 When you create a hosted agent, the system registers the agent definition in Microsoft Foundry and tries to create a deployment for that agent version.
 
-### Prerequisites for deployment
+### Pre-deployment checklist
 
-Before you deploy a hosted agent, make sure that you have:
+Before creating a hosted agent, complete these steps **in order**:
 
-- A container image hosted in [Azure Container Registry](https://azure.microsoft.com/services/container-registry/).
-- For more information, see [Create a private container registry](/azure/container-registry/container-registry-get-started-portal).
-- Access to assign roles in Azure Container Registry. You need at least User Access Administrator or Owner permissions on the container registry.
-- The Azure AI Projects SDK installed.
-
-  ```bash
-  pip install azure-ai-projects
-  ```
+1. **Ensure your access**: Ensure that you have access to assign roles in Azure Container Registry. You need at least User Access Administrator or Owner permissions on the container registry.
+2. **Install the Azure AI Projects SDK**:  run the following command:
+    `pip install --pre "azure-ai-projects>=2.0.0b3"`
+3. **Create an Azure Container Registry**: [Create a private container registry](/azure/container-registry/container-registry-get-started-portal) 
+4. **Build your Docker image with the correct platform**: [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry)
+5. **Push your image to YOUR registry**: [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry) Replace the sample URLs (`YOUR_ACR_NAME, YOUR_IMAGE_NAME`, `YOUR_TAG`) with your actual values for your docker image and Azure Container Registry.
+6. **Configure Azure Container Registry permissions**: [Configure Azure Container Registry permissions](#configure-azure-container-registry-permissions)
+7. **Create capability host**: [Create an account-level capability host](#create-an-account-level-capability-host)
 
 ### Build and push your Docker image to Azure Container Registry
 
@@ -369,27 +369,30 @@ To build your agent as a Docker container and upload it to Azure Container Regis
 
 1. Build your Docker image locally:
 
+    > [!IMPORTANT]
+    > **You MUST specify `--platform linux/amd64` when building your Docker image.** Hosted agents run on Linux AMD64 infrastructure. Images built for other architectures (such as ARM64 on Apple Silicon Macs) will fail to start with container runtime errors.
+
     ```bash
-    docker build -t myagent:v1 .
+    docker build --platform linux/amd64 -t <YOUR_IMAGE_NAME>:<YOUR_TAG> .
     ```
     Refer to sample Dockerfile for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
    
 1. Sign in to Azure Container Registry:
 
    ```bash
-   az acr login --name myregistry
+   az acr login --name <YOUR_ACR_NAME>
    ```
 
 1. Tag your image for the registry:
 
    ```bash
-   docker tag myagent:v1 myregistry.azurecr.io/myagent:v1
+   docker tag <YOUR_IMAGE_NAME>:<YOUR_TAG> <YOUR_ACR_NAME>.azurecr.io/<YOUR_IMAGE_NAME>:<YOUR_TAG>
    ```
 
 1. Push the image to Azure Container Registry:
 
    ```bash
-   docker push myregistry.azurecr.io/myagent:v1
+   docker push <YOUR_ACR_NAME>.azurecr.io/<YOUR_IMAGE_NAME>:<YOUR_TAG>
    ```
 
 For detailed guidance on working with Docker images in Azure Container Registry, see [Push and pull Docker images](/azure/container-registry/container-registry-get-started-docker-cli).
