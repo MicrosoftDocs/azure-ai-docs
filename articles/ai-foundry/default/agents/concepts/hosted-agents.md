@@ -354,8 +354,6 @@ When you create a hosted agent, the system registers the agent definition in Mic
 
 Before creating a hosted agent, complete these steps **in order**:
 
-| Step | Task | Details |
-|------|------|---------|
 1. **Ensure your access**: Ensure that you have access to assign roles in Azure Container Registry. You need at least User Access Administrator or Owner permissions on the container registry.
 2. **Install the Azure AI Projects SDK**:  run the following command:
     `pip install --pre "azure-ai-projects>=2.0.0b3"`
