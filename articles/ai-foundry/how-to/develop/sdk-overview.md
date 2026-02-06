@@ -103,7 +103,7 @@ This approach simplifies application configuration. Instead of managing multiple
 | SDK Version   | Portal Version  | Status  | Python Package                |
 |---------------|-----------------|---------|-------------------------------|
 | 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1 --pre`  |
-| 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0 --pre`    |
+| 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    |
 
 The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
