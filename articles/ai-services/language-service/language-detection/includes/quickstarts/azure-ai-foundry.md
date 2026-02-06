@@ -10,7 +10,7 @@ ai-usage: ai-assisted
 ## Prerequisites
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned the Azure AI Account Owner role at the subscription level. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](../../../../../ai-foundry/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* **Requisite permissions**. Make sure the person establishing the account and project has the Azure AI Account Owner role at the subscription level assigned. Alternatively, the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](../../../../../ai-foundry/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
 * **Foundry resource**. Create a [Foundry resource](../../../../multi-service-resource.md) or see [Configure a Foundry resource](../../../concepts/configure-azure-resources.md). Alternatively, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 * **A Foundry project**. For more information, see [Create a Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 
@@ -31,41 +31,42 @@ You can use [Foundry (classic)](https://ai.azure.com/) to:
 1. In the left pane, select **Playgrounds**.
 1. Select the **Try Azure Language Playground** button.
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="Screenshot showing the Playgrounds navigation and the Try Azure Language Playground button in Foundry (classic)." lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
+   :::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="Screenshot showing the Playgrounds navigation and the Try Azure Language Playground button in Foundry (classic)." lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
 ## Detect language in the Foundry playground
 
 The **Language playground** consists of four sections:
 
-| Section | Purpose |
-| --- | --- |
-| **Top banner** | Select the **Detect language** tile. |
-| **Left pane** | Set **Configuration** options such as API version, model version, and country hint. |
-| **Center pane** | Enter text for processing and review results. |
-| **Right pane** | View **Details** for detected language and script. |
+
+    | Section | Purpose |
+    | --- | --- |
+    | **Top banner** | Select the **Detect language** tile. |
+    | **Left pane** | Set **Configuration** options such as API version, model version, and country hint. |
+    | **Center pane** | Enter text for processing and review results. |
+    | **Right pane** | View **Details** for detected language and script. |
 
 1. Select the **Detect language** tile from the top banner.
 1. Enter or paste text in the center pane.
 1. In the **Configuration** pane, set the following options:
 
-|Option              |Description                              |
-|--------------------|-----------------------------------------|
-|Select API version  | Select which version of the API to use.    |
-|Select model version| Select which version of the model to use.|
-|Select country hint| Select the origin country/region of the input text. |
+    |Option              |Description                              |
+    |--------------------|-----------------------------------------|
+    |Select API version  | Select which version of the API to use.    |
+    |Select model version| Select which version of the model to use.|
+    |Select country hint| Select the origin country/region of the input text. |
 
 1. Select the **Run** button to detect the language.
 
 After the operation completes, the **Details** section displays the following fields for the detected language and script:
 
-| Field | Description |
-| --- | --- |
-| ISO 639-1 Code | The ISO 639-1 two-letter code for the detected language. |
-| Confidence Score | The model's level of certainty that the language identification is correct. |
-| Script Name | The name of the detected script in the text. |
-| ISO 15924 Script Code | The ISO 15924 code for the detected script (writing system). |
+    | Field | Description |
+    | --- | --- |
+    | ISO 639-1 Code | The ISO 639-1 two-letter code for the detected language. |
+    | Confidence Score | The model's level of certainty that the language identification is correct. |
+    | Script Name | The name of the detected script in the text. |
+    | ISO 15924 Script Code | The ISO 15924 code for the detected script (writing system). |
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot showing language detection results with confidence scores and ISO codes displayed in the Details pane of the Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
+    :::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot showing language detection results with confidence scores and ISO codes displayed in the Details pane of the Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
 
 Verify that the detected language matches the language of your input text. If the result shows `unknown`, provide a longer text sample or set a **Country hint** for better accuracy.
 
