@@ -15,7 +15,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 > [!TIP]
 > + Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-vector-ts) on GitHub.
-> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated chunking and vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
+> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
 
 ## Prerequisites
 
@@ -25,7 +25,9 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 - [Semantic ranker enabled on your search service](../../semantic-how-to-enable-disable.md) for the optional semantic hybrid query.
 
-- The latest LTS version of [Node.js](https://nodejs.org/en/download/) and [TypeScript](https://www.typescriptlang.org/download).
+- [Node.js 20 LTS](https://nodejs.org/en/download/) or later to run the compiled code.
+
+- [TypeScript](https://www.typescriptlang.org/download/) to compile TypeScript to JavaScript.
 
 - [Visual Studio Code](https://code.visualstudio.com/download).
 
@@ -49,14 +51,14 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
    git clone https://github.com/Azure-Samples/azure-search-javascript-samples
    ```
 
-1. Open the quickstart folder in Visual Studio Code.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
    ```bash
    cd azure-search-javascript-samples/quickstart-vector-ts
    code .
    ```
 
-1. In `sample.env`, set the `AZURE_SEARCH_ENDPOINT` variable to the URL you obtained in [Get endpoint](#get-endpoint).
+1. In `sample.env`, replace the placeholder value for `AZURE_SEARCH_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
 
 1. Rename `sample.env` to `.env`.
 
@@ -72,21 +74,21 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
    When the installation completes, you should see a `node_modules` folder in the project directory.
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-    ```azurecli
-    az login
-    ```
+   ```azurecli
+   az login
+   ```
 
 ## Run the code
 
-1. Create the index.
+1. Create a vector index.
 
     ```bash
     npm run build && node -r dotenv/config dist/createIndex.js
     ```
 
-1. Upload documents to the index.
+1. Load documents that contain precomputed embeddings.
 
     ```bash
     npm run build && node -r dotenv/config dist/uploadDocuments.js
@@ -109,7 +111,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 ### Output
 
-`createIndex.ts` creates the index:
+The output of `createIndex.ts` shows the index name and confirmation.
 
 ```output
 Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -118,7 +120,7 @@ Creating index...
 hotels-vector-quickstart created
 ```
 
-`uploadDocuments.ts` uploads documents:
+The output of `uploadDocuments.ts` shows the success status for each indexed document.
 
 ```output
 Uploading documents...
@@ -129,16 +131,12 @@ Key: 4, Succeeded: true, ErrorMessage: none
 Key: 48, Succeeded: true, ErrorMessage: none
 Key: 49, Succeeded: true, ErrorMessage: none
 Key: 13, Succeeded: true, ErrorMessage: none
-Waiting for indexing... Current count: 0
 All documents indexed successfully.
 ```
 
-`searchSingle.ts` returns single vector search results:
+The output of `searchSingle.ts` shows vector search results ranked by similarity score.
 
 ```output
-Using Azure Search endpoint: https://<search-service-name>.search.windows.net
-Using Azure Search index: hotels-vector-quickstart
-
 Single Vector search found 5
 - HotelId: 48, HotelName: Nordick's Valley Motel, Tags: ["continental breakfast","air conditioning","free wifi"], Score 0.6605852
 - HotelId: 13, HotelName: Luxury Lion Resort, Tags: ["bar","concierge","restaurant"], Score 0.6333684
@@ -157,9 +155,64 @@ Now that you've run the code, let's break down the key steps:
 
 ### Create a vector index
 
-The following code in `createIndex.ts` creates the index schema, including the vector field `DescriptionVector`:
+The following code in `createIndex.ts` creates the index schema, including the vector field `DescriptionVector`.
 
-:::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/createIndex.ts":::
+```typescript
+const searchFields: SearchField[] = [
+    { name: "HotelId", type: "Edm.String", key: true, sortable: true, filterable: true, facetable: true },
+    { name: "HotelName", type: "Edm.String", searchable: true, filterable: true },
+    { name: "Description", type: "Edm.String", searchable: true },
+    {
+        name: "DescriptionVector",
+        type: "Collection(Edm.Single)",
+        searchable: true,
+        vectorSearchDimensions: 1536,
+        vectorSearchProfileName: "vector-profile"
+    },
+    { name: "Category", type: "Edm.String", filterable: true, facetable: true },
+    { name: "Tags", type: "Collection(Edm.String)", filterable: true },
+    // Additional fields: ParkingIncluded, LastRenovationDate, Rating, Address, Location
+];
+
+const vectorSearch: VectorSearch = {
+    profiles: [
+        {
+            name: "vector-profile",
+            algorithmConfigurationName: "vector-search-algorithm"
+        }
+    ],
+    algorithms: [
+        {
+            name: "vector-search-algorithm",
+            kind: "hnsw",
+            parameters: { m: 4, efConstruction: 400, efSearch: 1000, metric: "cosine" }
+        }
+    ]
+};
+
+const semanticSearch: SemanticSearch = {
+    configurations: [
+        {
+            name: "semantic-config",
+            prioritizedFields: {
+                contentFields: [{ name: "Description" }],
+                keywordsFields: [{ name: "Category" }],
+                titleField: { name: "HotelName" }
+            }
+        }
+    ]
+};
+
+const searchIndex: SearchIndex = {
+    name: indexName,
+    fields: searchFields,
+    vectorSearch: vectorSearch,
+    semanticSearch: semanticSearch,
+    suggesters: [{ name: "sg", searchMode: "analyzingInfixMatching", sourceFields: ["HotelName"] }]
+};
+
+const result = await indexClient.createOrUpdateIndex(searchIndex);
+```
 
 Key takeaways:
 
@@ -171,9 +224,22 @@ Key takeaways:
 
 ### Upload documents to the index
 
-The following code in `uploadDocuments.ts` uploads JSON-formatted documents to your search service:
+The following code in `uploadDocuments.ts` uploads JSON-formatted documents to your search service.
 
-:::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/uploadDocuments.ts" :::
+```typescript
+const DOCUMENTS = [
+    // Array of hotel documents with embedded 1536-dimension vectors
+    // Each document contains: HotelId, HotelName, Description, DescriptionVector,
+    // Category, Tags, ParkingIncluded, LastRenovationDate, Rating, Address, Location
+];
+
+const searchClient = new SearchClient(searchEndpoint, indexName, credential);
+
+const result = await searchClient.uploadDocuments(DOCUMENTS);
+for (const r of result.results) {
+    console.log(`Key: ${r.key}, Succeeded: ${r.succeeded}`);
+}
+```
 
 Key takeaways:
 
@@ -196,33 +262,126 @@ The vector query string is semantically similar to the search string, but it inc
 
 #### Single vector search
 
-The `searchSingle.ts` file demonstrates a basic scenario where you want to find document descriptions that closely match the search string:
+The `searchSingle.ts` file demonstrates a basic scenario where you want to find document descriptions that closely match the search string.
 
-:::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/searchSingle.ts" :::
+```typescript
+const vectorQuery: VectorQuery<HotelDocument> = {
+    vector: vector,
+    kNearestNeighborsCount: 5,
+    fields: ["DescriptionVector"],
+    kind: "vector",
+    exhaustive: true
+};
+
+const searchOptions: SearchOptions<HotelDocument> = {
+    top: 7,
+    select: ["HotelId", "HotelName", "Description", "Category", "Tags"] as const,
+    includeTotalCount: true,
+    vectorSearchOptions: {
+        queries: [vectorQuery],
+        filterMode: "postFilter"
+    }
+};
+
+const results: SearchDocumentsResult<HotelDocument> = await searchClient.search("*", searchOptions);
+
+for await (const result of results.results) {
+    const doc = result.document;
+    console.log(`HotelId: ${doc.HotelId}, HotelName: ${doc.HotelName}, Score: ${result.score}`);
+}
+```
 
 #### Single vector search with filter
 
-In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `searchSingleWithFilter.ts` file filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi:
+In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `searchSingleWithFilter.ts` file filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
-:::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/searchSingleWithFilter.ts" :::
+```typescript
+const searchOptions: SearchOptions<HotelDocument> = {
+    top: 7,
+    select: ["HotelId", "HotelName", "Description", "Category", "Tags"] as const,
+    includeTotalCount: true,
+    filter: "Tags/any(tag: tag eq 'free wifi')", // Adding filter for "free wifi" tag
+    vectorSearchOptions: {
+        queries: [vectorQuery],
+        filterMode: "postFilter"
+    }
+};
 
-For a geo filter, you can specify a geospatial filter to limit results to a specific geographic area. The `searchSingleWithFilterGeo.ts` file limits results to hotels within 300 kilometers of Washington D.C.:
+const results: SearchDocumentsResult<HotelDocument> = await searchClient.search("*", searchOptions);
+```
 
-:::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/searchSingleWithFilterGeo.ts" :::
+For a geo filter, you can specify a geospatial filter to limit results to a specific geographic area. The `searchSingleWithFilterGeo.ts` file limits results to hotels within 300 kilometers of Washington D.C.
+
+```typescript
+const searchOptions: SearchOptions<HotelDocument> = {
+    top: 5,
+    includeTotalCount: true,
+    select: ["HotelId", "HotelName", "Category", "Description", "Address/City", "Address/StateProvince"] as const,
+    facets: ["Address/StateProvince"],
+    filter: "geo.distance(Location, geography'POINT(-77.03241 38.90166)') le 300",
+    vectorSearchOptions: {
+        queries: [vectorQuery],
+        filterMode: "postFilter"
+    }
+};
+```
 
 #### Hybrid search
 
-[Hybrid search](../../hybrid-search-overview.md) combines keyword and vector queries in one request. The `searchHybrid.ts` file runs the full-text and vector query strings concurrently:
+[Hybrid search](../../hybrid-search-overview.md) combines keyword and vector queries in one request. The `searchHybrid.ts` file runs the full-text and vector query strings concurrently.
 
-:::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/searchHybrid.ts" :::
+```typescript
+const vectorQuery: VectorQuery<HotelDocument> = {
+    vector: vector,
+    kNearestNeighborsCount: 5,
+    fields: ["DescriptionVector"],
+    kind: "vector",
+    exhaustive: true
+};
+
+const searchOptions: SearchOptions<HotelDocument> = {
+    top: 5,
+    includeTotalCount: true,
+    select: ["HotelId", "HotelName", "Description", "Category", "Tags"] as const,
+    vectorSearchOptions: {
+        queries: [vectorQuery],
+        filterMode: "postFilter"
+    }
+};
+
+// Use search text for keyword search (hybrid search = vector + keyword)
+const searchText = "historic hotel walk to restaurants and shopping";
+const results: SearchDocumentsResult<HotelDocument> = await searchClient.search(searchText, searchOptions);
+```
 
 Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. In the full-text query only, the top two results are Sublime Palace Hotel and Luxury Lion Resort, with Sublime Palace Hotel having a stronger BM25 relevance score. In the vector-only query using HNSW, Sublime Palace Hotel drops to the fourth position. Luxury Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
 
 #### Semantic hybrid search
 
-Add [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding. The `searchSemanticHybrid.ts` file adds semantic ranking:
+Add [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding. The `searchSemanticHybrid.ts` file adds semantic ranking.
 
-:::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/searchSemanticHybrid.ts" :::
+```typescript
+const searchOptions: SearchOptions<HotelDocument> = {
+    top: 5,
+    includeTotalCount: true,
+    select: ["HotelId", "HotelName", "Category", "Description"] as const,
+    queryType: "semantic" as const,
+    semanticSearchOptions: {
+        configurationName: "semantic-config"
+    },
+    vectorSearchOptions: {
+        queries: [vectorQuery],
+        filterMode: "postFilter"
+    }
+};
+
+const searchText = "historic hotel walk to restaurants and shopping";
+const results: SearchDocumentsResult<HotelDocument> = await searchClient.search(searchText, searchOptions);
+
+for await (const result of results.results) {
+    console.log(`Score: ${result.score}, Re-ranker Score: ${result.rerankerScore}`);
+}
+```
 
 With semantic ranking, the Swirling Currents Hotel moves to the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel within walking distance to dining (restaurants) and shopping."
 
@@ -234,25 +393,10 @@ Key takeaways:
 
 ## Clean up resources
 
-When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
+[!INCLUDE [resource-cleanup-paid](../resource-cleanup-paid.md)]
 
-You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
+Otherwise, run the following command to delete the index you created in this quickstart.
 
-Alternatively, to delete the vector index you created in this quickstart programmatically:
-
-1. Create a `deleteIndex.ts` file in the `src` directory.
-
-1. Add the following code to delete the index.
-
-    :::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/deleteIndex.ts" :::
-
-1. Build and run the file.
-
-    ```bash
-    npm run build && node -r dotenv/config dist/deleteIndex.js
-    ```
-
-## Related content
-
-+ Review the repository of code samples for vector search capabilities in Azure AI Search for [TypeScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).
-
+```bash
+npm run build && node -r dotenv/config dist/deleteIndex.js
+```

@@ -14,7 +14,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 > [!TIP]
 > + Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-vector-search) on GitHub.
-> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated chunking and vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
+> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
    git clone https://github.com/Azure-Samples/azure-search-java-samples
    ```
 
-1. Open the quickstart folder in Visual Studio Code.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
    ```bash
    cd azure-search-java-samples/quickstart-vector-search
@@ -65,44 +65,44 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
    When the build completes, you should see a `target/dependency` folder in the project directory.
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-    ```azurecli
-    az login
-    ```
+   ```azurecli
+   az login
+   ```
 
 ## Run the code
 
-1. Create the index.
+1. Create a vector index.
 
     ```bash
-    mvn compile exec:java -Dexec.mainClass="com.example.search.CreateIndex"
+    mvn compile exec:java "-Dexec.mainClass=com.example.search.CreateIndex"
     ```
 
-1. Upload documents to the index.
+1. Load documents that contain precomputed embeddings.
 
     ```bash
-    mvn compile exec:java -Dexec.mainClass="com.example.search.UploadDocuments"
+    mvn compile exec:java "-Dexec.mainClass=com.example.search.UploadDocuments"
     ```
 
 1. Run queries. Start with a single vector search.
 
     ```bash
-    mvn compile exec:java -Dexec.mainClass="com.example.search.SearchSingle"
+    mvn compile exec:java "-Dexec.mainClass=com.example.search.SearchSingle"
     ```
 
 1. (Optional) Run additional query variations.
 
     ```bash
-    mvn compile exec:java -Dexec.mainClass="com.example.search.SearchSingleWithFilter"
-    mvn compile exec:java -Dexec.mainClass="com.example.search.SearchSingleWithFilterGeo"
-    mvn compile exec:java -Dexec.mainClass="com.example.search.SearchHybrid"
-    mvn compile exec:java -Dexec.mainClass="com.example.search.SearchSemanticHybrid"
+    mvn compile exec:java "-Dexec.mainClass=com.example.search.SearchSingleWithFilter"
+    mvn compile exec:java "-Dexec.mainClass=com.example.search.SearchSingleWithFilterGeo"
+    mvn compile exec:java "-Dexec.mainClass=com.example.search.SearchHybrid"
+    mvn compile exec:java "-Dexec.mainClass=com.example.search.SearchSemanticHybrid"
     ```
 
 ### Output
 
-`CreateIndex.java` creates the index:
+The output of `CreateIndex.java` shows the index name and confirmation.
 
 ```output
 Using Azure Search endpoint: https://<search-service-name>.search.windows.net
@@ -111,11 +111,9 @@ Creating index...
 hotels-vector-quickstart created
 ```
 
-`UploadDocuments.java` uploads documents:
+The output of `UploadDocuments.java` shows the success status for each indexed document.
 
 ```output
-Using Azure Search endpoint: https://<search-service-name>.search.windows.net
-Using Azure Search index: hotels-vector-quickstart
 Uploading documents...
 Key: 1, Succeeded: true, ErrorMessage: none
 Key: 2, Succeeded: true, ErrorMessage: none
@@ -128,12 +126,9 @@ Waiting for indexing... Current count: 0
 All documents indexed successfully.
 ```
 
-`SearchSingle.java` returns single vector search results:
+The output of `SearchSingle.java` shows vector search results ranked by similarity score.
 
 ```output
-Using Azure Search endpoint: https://<search-service-name>.search.windows.net
-Using Azure Search index: hotels-vector-quickstart
-
 Single Vector search found 5
 - HotelId: 48, HotelName: Nordick's Valley Motel, Tags: ["continental breakfast","air conditioning","free wifi"], Score 0.6605852
 - HotelId: 13, HotelName: Luxury Lion Resort, Tags: ["bar","concierge","restaurant"], Score 0.6333684
@@ -152,9 +147,70 @@ Now that you've run the code, let's break down the key steps:
 
 ### Create a vector index
 
-The following code in `CreateIndex.java` creates the index schema, including the vector field `DescriptionVector`:
+The following code in `CreateIndex.java` creates the index schema, including the vector field `DescriptionVector`.
 
-:::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/CreateIndex.java" :::
+```java
+// Define fields
+List<SearchField> fields = Arrays.asList(
+    new SearchField("HotelId", SearchFieldDataType.STRING)
+        .setKey(true)
+        .setFilterable(true),
+    new SearchField("HotelName", SearchFieldDataType.STRING)
+        .setSortable(true)
+        .setSearchable(true),
+    new SearchField("Description", SearchFieldDataType.STRING)
+        .setSearchable(true),
+    new SearchField("DescriptionVector",
+        SearchFieldDataType.collection(SearchFieldDataType.SINGLE))
+        .setSearchable(true)
+        .setVectorSearchDimensions(1536)
+        .setVectorSearchProfileName("my-vector-profile"),
+    new SearchField("Category", SearchFieldDataType.STRING)
+        .setSortable(true)
+        .setFilterable(true)
+        .setFacetable(true)
+        .setSearchable(true),
+    new SearchField("Tags", SearchFieldDataType.collection(
+        SearchFieldDataType.STRING))
+        .setSearchable(true)
+        .setFilterable(true)
+        .setFacetable(true),
+    // Additional fields: ParkingIncluded, LastRenovationDate, Rating, Address, Location
+);
+
+var searchIndex = new SearchIndex(indexName, fields);
+
+// Define vector search configuration
+var hnswParams = new HnswParameters()
+    .setM(16)
+    .setEfConstruction(200)
+    .setEfSearch(128);
+var hnsw = new HnswAlgorithmConfiguration("hnsw-vector-config");
+hnsw.setParameters(hnswParams);
+
+var vectorProfile = new VectorSearchProfile(
+    "my-vector-profile",
+    "hnsw-vector-config");
+var vectorSearch = new VectorSearch()
+    .setAlgorithms(Arrays.asList(hnsw))
+    .setProfiles(Arrays.asList(vectorProfile));
+searchIndex.setVectorSearch(vectorSearch);
+
+// Define semantic configuration
+var prioritizedFields = new SemanticPrioritizedFields()
+    .setTitleField(new SemanticField("HotelName"))
+    .setContentFields(Arrays.asList(new SemanticField("Description")))
+    .setKeywordsFields(Arrays.asList(new SemanticField("Category")));
+var semanticConfig = new SemanticConfiguration(
+    "semantic-config",
+    prioritizedFields);
+var semanticSearch = new SemanticSearch()
+    .setConfigurations(Arrays.asList(semanticConfig));
+searchIndex.setSemanticSearch(semanticSearch);
+
+// Create the search index
+SearchIndex result = searchIndexClient.createOrUpdateIndex(searchIndex);
+```
 
 Key takeaways:
 
@@ -166,9 +222,30 @@ Key takeaways:
 
 ### Upload documents to the index
 
-The following code in `UploadDocuments.java` uploads JSON-formatted documents to your search service:
+The following code in `UploadDocuments.java` uploads JSON-formatted documents to your search service.
 
-:::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/UploadDocuments.java" :::
+```java
+// DOCUMENTS contains hotel data with 1536-dimension vectors for DescriptionVector
+static final List<Map<String, Object>> DOCUMENTS = Arrays.asList(
+    new HashMap<>() {{
+        put("@search.action", "mergeOrUpload");
+        put("HotelId", "1");
+        put("HotelName", "Stay-Kay City Hotel");
+        put("Description", "This classic hotel is fully-refurbished...");
+        put("DescriptionVector", Arrays.asList(/* 1536 float values */));
+        put("Category", "Boutique");
+        put("Tags", Arrays.asList("view", "air conditioning", "concierge"));
+        // Additional fields...
+    }}
+    // Additional hotel documents
+);
+
+// Upload documents to the index
+IndexDocumentsResult result = searchClient.uploadDocuments(DOCUMENTS);
+for (IndexingResult r : result.getResults()) {
+    System.out.println("Key: %s, Succeeded: %s".formatted(r.getKey(), r.isSucceeded()));
+}
+```
 
 Key takeaways:
 
@@ -189,33 +266,128 @@ The vector query string is semantically similar to the search string, but it inc
 
 #### Single vector search
 
-The `SearchSingle.java` demonstrates a basic scenario where you want to find document descriptions that closely match the search string:
+The `SearchSingle.java` demonstrates a basic scenario where you want to find document descriptions that closely match the search string.
 
-:::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchSingle.java" :::
+```java
+var vectorQuery = new VectorizedQuery(QueryVector.getVectorList())
+    .setKNearestNeighborsCount(5)
+    .setFields("DescriptionVector")
+    .setExhaustive(true);
+
+var vectorSearchOptions = new VectorSearchOptions()
+    .setQueries(vectorQuery)
+    .setFilterMode(VectorFilterMode.POST_FILTER);
+
+var searchOptions = new SearchOptions()
+    .setTop(7)
+    .setIncludeTotalCount(true)
+    .setSelect("HotelId", "HotelName", "Description", "Category", "Tags")
+    .setVectorSearchOptions(vectorSearchOptions);
+
+var results = searchClient.search("*", searchOptions, Context.NONE);
+
+for (SearchResult result : results) {
+    SearchDocument document = result.getDocument(SearchDocument.class);
+    System.out.println("HotelId: %s, HotelName: %s, Score: %s".formatted(
+        document.get("HotelId"), document.get("HotelName"), result.getScore()));
+}
+```
 
 #### Single vector search with filter
 
-In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `SearchSingleWithFilter.java` file filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi:
+In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `SearchSingleWithFilter.java` file filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
-:::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchSingleWithFilter.java" :::
+```java
+var vectorQuery = new VectorizedQuery(QueryVector.getVectorList())
+    .setKNearestNeighborsCount(5)
+    .setFields("DescriptionVector")
+    .setExhaustive(true);
 
-For a geo filter, you can specify a geospatial filter to limit results to a specific geographic area. The `SearchSingleWithFilterGeo.java` file limits results to hotels within 300 kilometers of Washington D.C.:
+var vectorSearchOptions = new VectorSearchOptions()
+    .setQueries(vectorQuery)
+    .setFilterMode(VectorFilterMode.POST_FILTER);
 
-:::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchSingleWithFilterGeo.java" :::
+// Add filter for "free wifi" tag
+var searchOptions = new SearchOptions()
+    .setTop(7)
+    .setIncludeTotalCount(true)
+    .setSelect("HotelId", "HotelName", "Description", "Category", "Tags")
+    .setFilter("Tags/any(tag: tag eq 'free wifi')")
+    .setVectorSearchOptions(vectorSearchOptions);
+
+var results = searchClient.search("*", searchOptions, Context.NONE);
+```
+
+For a geo filter, you can specify a geospatial filter to limit results to a specific geographic area. The `SearchSingleWithFilterGeo.java` file limits results to hotels within 300 kilometers of Washington D.C.
+
+```java
+var searchOptions = new SearchOptions()
+    .setTop(5)
+    .setIncludeTotalCount(true)
+    .setSelect("HotelId", "HotelName", "Category", "Description",
+               "Address/City", "Address/StateProvince")
+    .setFacets("Address/StateProvince")
+    .setFilter("geo.distance(Location, geography'POINT(-77.03241 38.90166)') le 300")
+    .setVectorSearchOptions(vectorSearchOptions);
+```
 
 #### Hybrid search
 
-[Hybrid search](../../hybrid-search-overview.md) combines keyword and vector queries in one request. The `SearchHybrid.java` file runs the full-text and vector query strings concurrently:
+[Hybrid search](../../hybrid-search-overview.md) combines keyword and vector queries in one request. The `SearchHybrid.java` file runs the full-text and vector query strings concurrently.
 
-:::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchHybrid.java" :::
+```java
+var vectorQuery = new VectorizedQuery(QueryVector.getVectorList())
+    .setKNearestNeighborsCount(5)
+    .setFields("DescriptionVector")
+    .setExhaustive(true);
+
+var vectorSearchOptions = new VectorSearchOptions()
+    .setQueries(vectorQuery)
+    .setFilterMode(VectorFilterMode.POST_FILTER);
+
+var searchOptions = new SearchOptions()
+    .setTop(5)
+    .setIncludeTotalCount(true)
+    .setSelect("HotelId", "HotelName", "Description", "Category", "Tags")
+    .setVectorSearchOptions(vectorSearchOptions);
+
+// Pass both text query and vector search options
+var results = searchClient.search(
+    "historic hotel walk to restaurants and shopping",
+    searchOptions, Context.NONE);
+```
 
 Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. In the full-text query only, the top two results are Sublime Palace Hotel and Luxury Lion Resort, with Sublime Palace Hotel having a stronger BM25 relevance score. In the vector-only query using HNSW, Sublime Palace Hotel drops to the fourth position. Luxury Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
 
 #### Semantic hybrid search
 
-Add [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding. The `SearchSemanticHybrid.java` file adds semantic ranking:
+Add [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding. The `SearchSemanticHybrid.java` file adds semantic ranking.
 
-:::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/SearchSemanticHybrid.java" :::
+```java
+var vectorQuery = new VectorizedQuery(QueryVector.getVectorList())
+    .setKNearestNeighborsCount(5)
+    .setFields("DescriptionVector")
+    .setExhaustive(true);
+
+var vectorSearchOptions = new VectorSearchOptions()
+    .setQueries(vectorQuery)
+    .setFilterMode(VectorFilterMode.POST_FILTER);
+
+SemanticSearchOptions semanticSearchOptions = new SemanticSearchOptions()
+    .setSemanticConfigurationName("semantic-config");
+
+var searchOptions = new SearchOptions()
+    .setTop(5)
+    .setIncludeTotalCount(true)
+    .setSelect("HotelId", "HotelName", "Category", "Description")
+    .setQueryType(QueryType.SEMANTIC)
+    .setSemanticSearchOptions(semanticSearchOptions)
+    .setVectorSearchOptions(vectorSearchOptions);
+
+var results = searchClient.search(
+    "historic hotel walk to restaurants and shopping",
+    searchOptions, Context.NONE);
+```
 
 With semantic ranking, the Swirling Currents Hotel moves to the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel within walking distance to dining (restaurants) and shopping."
 
@@ -227,24 +399,10 @@ Key takeaways:
 
 ## Clean up resources
 
-When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
+[!INCLUDE [resource-cleanup-paid](../resource-cleanup-paid.md)]
 
-You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
+Otherwise, run the following command to delete the index you created in this quickstart.
 
-Alternatively, to delete the vector index you created in this quickstart programmatically:
-
-1. Create a `DeleteIndex.java` file in the `src/main/java/com/example/search` directory.
-
-1. Add the following code to the file.
-
-    :::code language="java" source="~/azure-search-java-samples/quickstart-vector-search/src/main/java/com/example/search/DeleteIndex.java" :::
-
-1. Build and run the file.
-
-    ```bash
-    mvn compile exec:java -Dexec.mainClass="com.example.search.DeleteIndex"
-    ```
-
-## Related content
-
-+ Review the repository of code samples for vector search capabilities in Azure AI Search for [Java](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-java).
+```bash
+mvn compile exec:java "-Dexec.mainClass=com.example.search.DeleteIndex"
+```

@@ -20,7 +20,9 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 - An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
-- The latest LTS version of [Node.js](https://nodejs.org/en/download/).
+- [Node.js 20 LTS](https://nodejs.org/en/download/) or later to run the compiled code.
+
+- [TypeScript](https://www.typescriptlang.org/download/) to compile TypeScript to JavaScript.
 
 - [Visual Studio Code](https://code.visualstudio.com/download).
 
@@ -71,9 +73,9 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-    ```azurecli
-    az login
-    ```
+   ```azurecli
+   az login
+   ```
 
 ## Run the code
 
@@ -493,7 +495,7 @@ let index: SearchIndex = await searchIndexClient.createIndex(indexDefinition);
 
 In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this quickstart, you programmatically push the documents to the index.
 
-Document inputs might be rows in a database, blobs in Azure Blob Storage, or JSON documents on disk, as in this quickstart. The hotel data is imported at the top of the file:
+Document inputs might be rows in a database, blobs in Azure Blob Storage, or JSON documents on disk, as in this quickstart. The hotel data is imported at the top of the file.
 
 ```typescript
 import hotelData from './hotels.json' with { type: "json" };
@@ -517,7 +519,7 @@ let indexDocumentsResult = await searchClient.mergeOrUploadDocuments(hotelData['
 
 With an index created and documents uploaded, you're ready to send queries to the index. This section sends five different queries to the search index to demonstrate different pieces of query functionality available to you.
 
-The queries are written in a `sendQueries()` function that is called in the main function:
+The queries are written in a `sendQueries()` function that is called in the main function.
 
 ```typescript
 await sendQueries(searchClient);

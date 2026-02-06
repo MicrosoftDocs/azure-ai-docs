@@ -63,9 +63,9 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-    ```azurecli
-    az login
-    ```
+   ```azurecli
+   az login
+   ```
 
 ## Run the code
 
