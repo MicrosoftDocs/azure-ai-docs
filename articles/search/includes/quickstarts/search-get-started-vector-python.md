@@ -88,7 +88,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 1. Run the `Create the vector query string` cell to load the vectorized query data.
 
-1. Run the search cells. Start with `Single vector search`, and then try `Single vector search with filter`, `Hybrid search`, and `Semantic hybrid search`.
+1. Run the search cells. Start with `Single vector search`, and then try `Single vector search with filter`, `Vector query with a geo filter`, `Hybrid search`, and `Semantic hybrid search`.
 
 ### Output
 
@@ -231,6 +231,28 @@ results = search_client.search(
 )
 ```
 
+#### Vector query with a geo filter
+
+The `Vector query with a geo filter` cell uses [geo-spatial functions](../../search-query-odata-geo-spatial-functions.md) to filter results based on location. In this example, the filter returns hotels within 300 kilometers of Washington D.C.
+
+```python
+# vector_query omitted for brevity
+
+results = search_client.search(
+    include_total_count=True,
+    top=5,
+    select=[
+        "HotelId", "HotelName", "Category", "Description", "Address/City", "Address/StateProvince"
+    ],
+    facets=["Address/StateProvince"],
+    filter="geo.distance(Location, geography'POINT(-77.03241 38.90166)') le 300",
+    vector_filter_mode="postFilter",
+    vector_queries=[vector_query]
+)
+```
+
+The `filter` parameter specifies a geographic point (Washington D.C., using longitude and latitude coordinates) and returns hotels within 300 kilometers. The `vector_filter_mode` parameter determines when the filter runs. In this case, `postFilter` runs the filter after the vector search.
+
 #### Hybrid search
 
 [Hybrid search](../../hybrid-search-overview.md) combines keyword and vector queries in one request. The `Hybrid search` cell runs the full-text and vector query strings concurrently.
@@ -273,7 +295,7 @@ Key takeaways:
 
 + In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors.
 
-+ Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
++ Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request using REST.
 
 ## Clean up resources
 

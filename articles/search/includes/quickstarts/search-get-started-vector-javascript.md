@@ -388,7 +388,7 @@ Key takeaways:
 
 + In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors.
 
-+ Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
++ Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request using REST.
 
 ## Clean up resources
 

@@ -288,6 +288,36 @@ Authorization: Bearer {{token}}
 
 This search returns only hotels that provide free Wi-Fi.
 
+#### Single vector search with geo filter
+
+You can also apply a geo filter to limit results to a specific geographic area. The `### Run a vector query with a geo filter` request limits results to hotels within 300 kilometers of Washington D.C.:
+
+```http
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "count": true,
+    "select": "HotelId, HotelName, Address/City, Address/StateProvince, Description",
+    "filter": "geo.distance(Location, geography'POINT(-77.03241 38.90166)') le 300",
+    "vectorFilterMode": "postFilter",
+    "top": 5,
+    "facets": [ "Address/StateProvince"],
+    "vectorQueries": [
+        {
+            "vector": [ ... ],  // 1536-dimensional vector
+            "k": 5,
+            "fields": "DescriptionVector",
+            "kind": "vector",
+            "exhaustive": true
+        }
+    ]
+}
+```
+
+This search returns only hotels within 300 kilometers of the specified coordinates.
+
 #### Hybrid search
 
 [Hybrid search](../../hybrid-search-overview.md) combines keyword and vector queries in one request. The `### Run a hybrid query` request runs the full-text and vector query strings concurrently:
@@ -349,8 +379,6 @@ With semantic ranking, the Swirling Currents Hotel moves to the top spot. Withou
 Key takeaways:
 
 + In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors.
-
-+ Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
 
 ## Clean up resources
 
