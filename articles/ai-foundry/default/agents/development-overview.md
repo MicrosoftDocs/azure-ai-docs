@@ -254,7 +254,7 @@ Most developers use a hybrid approach: prototype in the portal to validate conce
 For SDK details, see [Microsoft Foundry SDKs](../../how-to/develop/sdk-overview.md).
 
 > [!TIP]
-> Agent Service usage is billed based on model tokens consumed and tool executions. For production planning, see [Azure AI Foundry pricing](https://azure.microsoft.com/pricing/details/azure-ai-foundry/).
+> Agent Service usage is billed based on model tokens consumed and tool executions. For production planning, see [Azure AI Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/).
 
 ## Troubleshooting
 
@@ -325,6 +325,3 @@ If you created resources for testing, delete them to avoid ongoing charges:
 - [Build agent workflows in VS Code](how-to/vs-code-agents-workflow-low-code.md)
 - [Migrate from Azure OpenAI Assistants](how-to/migrate.md)
 - [Business continuity and disaster recovery](../../how-to/high-availability-resiliency.md)
-
-> [!div class="nextstepaction"]
-> [Create your first agent with the quickstart](../../quickstarts/get-started-code.md)
