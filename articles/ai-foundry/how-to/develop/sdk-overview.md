@@ -98,13 +98,40 @@ This approach simplifies application configuration. Instead of managing multiple
 > [!NOTE]
 > **SDK versions:** The 2.x preview SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.
 
-| SDK Version   | Portal Version  | Status  | Python Package                | .NET Package                    |
-|---------------|-----------------|---------|-------------------------------|---------------------------------|
-| 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1`  | `Azure.AI.Projects --prerelease` |
-| 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    | `Azure.AI.Projects`             |
-
-
 ::: zone pivot="programming-language-python"
+
+| SDK Version   | Portal Version  | Status  | Python Package                |
+|---------------|-----------------|---------|-------------------------------|
+| 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1 --pre`  |
+| 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0 --pre`    |
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+| SDK Version   | Portal Version  | Status  | Java Package                    |
+|---------------|-----------------|---------|---------------------------------|
+| 1.0.0-beta.3<br>1.0.0-beta.1 | Foundry (new)   | Preview | `azure-ai-projects`<br>`azure-ai-agents` |
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+| SDK Version   | Portal Version  | Status  | JavaScript Package                    |
+|---------------|-----------------|---------|---------------------------------|
+| 2.0.0-beta.4 (preview) | Foundry (new)   | Preview | `@azure/ai-projects \`prerelease\`` |
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+| SDK Version   | Portal Version  | Status  | .NET Package                    |
+|---------------|-----------------|---------|---------------------------------|
+| 1.2.0-beta.5 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.Openai` |
+| 1.x (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
+
+::: zone-end
+
 
 The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
@@ -118,7 +145,7 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 Run these commands to install the preview packages for Foundry projects.
 ```bash
 pip install --pre azure-ai-projects
-pip install azure-identity openai
+pip install --pre azure-identity openai
 ```
 ::: moniker-end
 
