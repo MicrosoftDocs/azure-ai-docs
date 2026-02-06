@@ -66,7 +66,7 @@ After the operation completes, the **Details** section displays the following fi
   | Script Name | The name of the detected script in the text. |
   | ISO 15924 Script Code | The ISO 15924 code for the detected script (writing system). |
 
-    :::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot showing language detection results with confidence scores and ISO codes displayed in the Details pane of the Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
+  :::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot showing language detection results with confidence scores and ISO codes displayed in the Details pane of the Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
 
 Verify that the detected language matches the language of your input text. If the result shows `unknown`, provide a longer text sample or set a **Country hint** for better accuracy.
 
