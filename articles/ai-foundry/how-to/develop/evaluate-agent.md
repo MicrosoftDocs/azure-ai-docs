@@ -24,13 +24,13 @@ In this article, you:
 
 - Set up the SDK client for evaluation
 - Choose evaluators for quality, safety, and agent behavior
-- Define test queries and run an evaluation
+- Create a test dataset and run an evaluation
 - Interpret results and integrate into your workflow
 
 ## Prerequisites
 
 - A [Foundry project](../create-projects.md) with an [agent](../../agents/overview.md)
-- A model deployment (for example, `gpt-4o`) to act as the judge for AI-assisted evaluators
+- A model deployment to act as the judge for AI-assisted evaluators
 - Python 3.9 or later
 
 > [!NOTE]
@@ -61,7 +61,7 @@ client = project_client.get_openai_client()
 
 ## Choose evaluators
 
-Evaluators are functions that assess your agent's responses. Some use AI models as judges (like Task Adherence and Coherence), while others use rules or algorithms (like Violence detection). For agent evaluation, start with this recommended set:
+Evaluators are functions that assess your agent's responses. Some use AI models as judges, while others use rules or algorithms. For agent evaluation, consider this set:
 
 | Evaluator | What it measures |
 |-----------|------------------|
@@ -69,31 +69,51 @@ Evaluators are functions that assess your agent's responses. Some use AI models 
 | **Coherence** | Is the response logical and well-structured? |
 | **Violence** | Does the response contain violent content? |
 
-For more evaluators, see:
+For more built-in evaluators, see:
 
 - [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) - Tool Call Accuracy, Intent Resolution, Response Completeness
 - [Quality evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) - Fluency, Relevance, Groundedness
 - [Text similarity evaluators](../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) - F1 Score, BLEU, ROUGE
 - [Safety evaluators](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) - Hate, Self-Harm, Sexual Content
 
-## Create test queries
+To build your own evaluators, see [Custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
-Define test queries for your agent. The evaluation runs each query through your agent and evaluates the responses:
+## Create a test dataset
+
+Create a JSONL file with test queries for your agent. Each line contains a JSON object with a `query` field:
+
+```jsonl
+{"query": "What's the weather in Seattle?"}
+{"query": "Book a flight to Paris"}
+{"query": "Tell me a joke"}
+```
+
+Upload this file as a dataset in your project:
 
 ```python
-test_queries = [
-    {"query": "What's the weather in Seattle?"},
-    {"query": "Book a flight to Paris"},
-    {"query": "Tell me a joke"},
-]
+from azure.ai.projects.models import DatasetVersion
+
+dataset = project_client.datasets.create_or_update(
+    name="agent-test-queries",
+    version="1",
+    dataset_version=DatasetVersion(
+        data_uri="./test-queries.jsonl",
+    ),
+)
 ```
+
+For more options, see [Add data to your project](../../how-to/data-add.md).
 
 ## Run an evaluation
 
-Define the evaluators with their data mappings. Data mappings tell evaluators where to find inputs:
+When you run an evaluation, the service sends each test query to your agent, captures the response, and applies your selected evaluators to score the results.
+
+First, configure your evaluators. Each evaluator needs a data mapping that tells it where to find inputs:
 - `{{item.X}}` references fields from your test data (like `query`)
-- `{{sample.output_items}}` references the full agent response JSON
+- `{{sample.output_items}}` references the full agent response including tool calls
 - `{{sample.output_text}}` references just the response message text
+
+AI-assisted evaluators (like Task Adherence and Coherence) require a model deployment in `initialization_parameters`. Some evaluators might require additional fields like `ground_truth` or tool definitions. For details, see the [evaluator documentation](../../concepts/evaluation-evaluators/general-purpose-evaluators.md).
 
 ```python
 testing_criteria = [
@@ -129,7 +149,7 @@ testing_criteria = [
 ]
 ```
 
-Create and run the evaluation against your agent. First, define the schema for your test data:
+Next, create the evaluation. An evaluation defines the test data schema and testing criteria, and serves as a container for multiple runs. All runs under the same evaluation conform to the same schema and produce the same set of metrics, which is important for comparing results across runs.
 
 ```python
 data_source_config = {
@@ -144,24 +164,25 @@ data_source_config = {
     "include_sample_schema": True,
 }
 
-eval_group = client.evals.create(
+evaluation = client.evals.create(
     name="Agent Quality Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
 ```
 
-Then create a run that sends your test queries to the agent and applies the evaluators:
+Finally, create a run that sends your test queries to the agent and applies the evaluators:
 
 ```python
 eval_run = client.evals.runs.create(
-    eval_id=eval_group.id,
+    eval_id=evaluation.id,
     name="Agent Evaluation Run",
     data_source={
         "type": "azure_ai_target_completions",
         "source": {
-            "type": "file_content",
-            "content": [{"item": q} for q in test_queries],
+            "type": "azure_ai_dataset",
+            "name": dataset.name,
+            "version": dataset.version,
         },
         "input_messages": {
             "type": "template",
@@ -180,14 +201,14 @@ print(f"Evaluation run started: {eval_run.id}")
 
 ## Interpret results
 
-Evaluations typically complete in a few minutes, depending on the number of queries. Poll for completion and retrieve the report URL:
+Evaluations typically complete in a few minutes, depending on the number of queries. Poll for completion and retrieve the report URL to view the results in the Microsoft Foundry portal under the **Evaluations** tab:
 
 ```python
 import time
 
 # Wait for completion
 while True:
-    run = client.evals.runs.retrieve(run_id=eval_run.id, eval_id=eval_group.id)
+    run = client.evals.runs.retrieve(run_id=eval_run.id, eval_id=evaluation.id)
     if run.status in ["completed", "failed"]:
         break
     time.sleep(5)
@@ -196,13 +217,50 @@ print(f"Status: {run.status}")
 print(f"Report URL: {run.report_url}")
 ```
 
-You can also view results in the Microsoft Foundry portal by navigating to **Evaluation** > **Runs**.
-
 :::image type="content" source="../../media/evaluations/view-results/evals-results.png" alt-text="Screenshot showing evaluation results for an agent in the Microsoft Foundry portal.":::
 
-### Sample output
+### Aggregated results
 
-Each evaluation run returns output items per sample. Here's a simplified example:
+At the run level, you can see aggregated data including pass/fail counts, token usage per model, and results per evaluator:
+
+```json
+{
+    "result_counts": {
+        "total": 3,
+        "passed": 1,
+        "failed": 2,
+        "errored": 0
+    },
+    "per_model_usage": [
+        {
+            "model_name": "gpt-4o-mini-2024-07-18",
+            "invocation_count": 6,
+            "total_tokens": 9285,
+            "prompt_tokens": 8326,
+            "completion_tokens": 959
+        },
+        {
+            "model_name": "azure_ai_system_model",
+            "invocation_count": 3,
+            "total_tokens": 12455,
+            "prompt_tokens": 1168,
+            "completion_tokens": 200
+        }
+    ],
+    "per_testing_criteria_results": [
+        {
+            "testing_criteria": "Task Adherence",
+            "passed": 1,
+            "failed": 2
+        },
+        ... // remaining testing criteria
+    ]
+}
+```
+
+### Per-query output
+
+Each evaluation run returns output items per test query, providing detailed visibility into your agent's performance. Output items include the original query, agent response, individual evaluator results with scores and reasoning, and token usage:
 
 ```json
 {
@@ -212,9 +270,16 @@ Each evaluation run returns output items per sample. Here's a simplified example
     "eval_id": "eval_xyz789",
     "status": "completed",
     "datasource_item": {
-        "query": "What's the weather in Seattle?"
+        "query": "What's the weather in Seattle?",
+        "response_id": "resp_abc123",
+        "agent_name": "my-agent",
+        "agent_version": "10",
+        "sample.output_text": "I'd be happy to help with the weather! However, I need to check the current conditions. Let me look that up for you.",
+        "sample.output_items": [
+            ... // agent response messages with tool calls
+        ]
     },
-    "sample.output_text": "I'd be happy to help with the weather! However, I need to check the current conditions. Let me look that up for you.",
+    
     "results": [
         {
             "type": "azure_ai_evaluator",
@@ -223,37 +288,21 @@ Each evaluation run returns output items per sample. Here's a simplified example
             "label": "pass",
             "reason": "Agent followed system instructions correctly",
             "threshold": 3,
-            "passed": true
+            "passed": true,
+            "sample":
+            {
+               ... // evaluator input/output and token usage
+            }
         },
-        {
-            "type": "azure_ai_evaluator",
-            "name": "Coherence",
-            "metric": "coherence",
-            "label": "pass",
-            "reason": "Response is logical and well-structured",
-            "threshold": 3,
-            "passed": true
-        },
-        {
-            "type": "azure_ai_evaluator",
-            "name": "Violence",
-            "metric": "violence",
-            "label": "pass",
-            "reason": "No violent content detected",
-            "threshold": null,
-            "passed": true
-        }
+        ... // remaining evaluation results
     ]
 }
 ```
 
-## Integrate into CI/CD
+## Integrate into your workflow
 
-Use evaluation as a quality gate in your deployment pipeline. For detailed integration, see [Run evaluations with GitHub Actions](../evaluation-github-action.md).
-
-## Set up continuous evaluation
-
-Monitor your agent in production with continuous evaluation. For setup instructions, see [Set up continuous evaluation](../../default/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
+- **CI/CD pipeline**: Use evaluation as a quality gate in your deployment pipeline. For detailed integration, see [Run evaluations with GitHub Actions](../evaluation-github-action.md).
+- **Production monitoring**: Monitor your agent in production with continuous evaluation. For setup instructions, see [Set up continuous evaluation](../../default/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
 
 ## Optimize and compare versions
 
