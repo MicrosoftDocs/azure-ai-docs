@@ -8,13 +8,15 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.date: 11/20/2025
+ms.date: 02/06/2026
 recommendations: false
 ---
 
 # Network and access configuration for Azure OpenAI On Your Data
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
 Use this article to learn how to configure networking and access when using Azure OpenAI On Your Data with Microsoft Entra ID role-based access control, virtual networks, and private endpoints.
 
@@ -218,7 +220,7 @@ az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" \
 ### Create shared private link
 
 > [!TIP]
-> If you are using a basic or standard pricing tier, or if it is your first time to setup all of your resources securely, you should skip this advanced topic.
+> If you are using a basic or standard pricing tier, or if it is your first time to set up all of your resources securely, you should skip this advanced topic.
 
 This section is only applicable for S2 pricing tier search resource, because it requires [private endpoint support for indexers with a skill set](/azure/search/search-limits-quotas-capacity#shared-private-link-resource-limits).
 

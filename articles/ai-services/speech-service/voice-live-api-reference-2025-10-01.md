@@ -497,7 +497,7 @@ The Voice Live API sends the following server events to communicate status, resp
 | Event | Description |
 |-------|-------------|
 | [error](#error) | Indicates an error occurred during processing |
-| [warning](#warning) | Indicates a warning occurred that does not interrupt the conversation flow |
+| [warning](#warning) | Indicates a warning occurred that doesn't interrupt the conversation flow |
 | [session.created](#sessioncreated) | Sent when a new session is successfully established |
 | [session.updated](#sessionupdated) | Sent when session configuration is updated |
 | [session.avatar.connecting](#sessionavatarconnecting) | Indicates avatar WebRTC connection is being established |
@@ -508,8 +508,8 @@ The Voice Live API sends the following server events to communicate status, resp
 | [conversation.item.input_audio_transcription.completed](#conversationiteminput_audio_transcriptioncompleted) | Input audio transcription is complete |
 | [conversation.item.input_audio_transcription.delta](#conversationiteminput_audio_transcriptiondelta) | Streaming input audio transcription |
 | [conversation.item.input_audio_transcription.failed](#conversationiteminput_audio_transcriptionfailed) | Input audio transcription failed |
-| [input_audio_buffer.committed](#input_audio_buffercommitted) | Input audio buffer has been committed for processing |
-| [input_audio_buffer.cleared](#input_audio_buffercleared) | Input audio buffer has been cleared |
+| [input_audio_buffer.committed](#input_audio_buffercommitted) | Input audio buffer was for processing |
+| [input_audio_buffer.cleared](#input_audio_buffercleared) | Input audio buffer was cleared |
 | [input_audio_buffer.speech_started](#input_audio_bufferspeech_started) | Speech detected in input audio buffer (VAD) |
 | [input_audio_buffer.speech_stopped](#input_audio_bufferspeech_stopped) | Speech ended in input audio buffer (VAD) |
 | [response.created](#responsecreated) | New response generation has started |
@@ -2087,7 +2087,7 @@ Configuration for input audio transcription.
 | Field | Type | Description |
 |-------|------|-------------|
 | model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech` |
-| language | string | Optional language code in BCP-47 (e.g., `en-US`), or ISO-639-1 (e.g., `en`), or multi languages with auto detection, (e.g., `en,zh`). |
+| language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection, (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
 | prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe` and `gpt-4o-transcribe-diarize` models. |
@@ -2154,12 +2154,12 @@ Azure standard voice configuration.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure-standard"` |
-| name | string | Voice name (cannot be empty) |
+| name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| prefer_locales | string[] | Optional. Preferred locales<br/>Prefered locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. for example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. For example, set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
 | rate | string | Optional. Speech rate adjustment |
@@ -2172,13 +2172,13 @@ Azure custom voice configuration (preferred for custom voices).
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure-custom"` |
-| name | string | Voice name (cannot be empty) |
-| endpoint_id | string | Endpoint ID (cannot be empty) |
+| name | string | Voice name (can't be empty) |
+| endpoint_id | string | Endpoint ID (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| prefer_locales | string[] | Optional. Preferred locales<br/>Prefered locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. For example set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
 | rate | string | Optional. Speech rate adjustment |
@@ -2203,13 +2203,13 @@ Azure personal voice configuration.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure-personal"` |
-| name | string | Voice name (cannot be empty) |
+| name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | model | string | Underlying neural model: `DragonLatestNeural`, `PhoenixLatestNeural`, `PhoenixV2Neural` |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. For example set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | pitch | string | Optional. Pitch adjustment |
 | rate | string | Optional. Speech rate adjustment |
 | volume | string | Optional. Volume adjustment |
@@ -2243,7 +2243,7 @@ OpenAI semantic VAD configuration which uses a model to determine when the user 
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"semantic_vad"` |
-| eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` will let the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
+| eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` lets the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 
@@ -2260,7 +2260,7 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
-| languages | string[] | Optional. Supports English. Other languages will be ignored. |
+| languages | string[] | Optional. Supports English. Other languages are ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
@@ -2278,7 +2278,7 @@ Azure semantic VAD (default variant).
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false). |
-| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages will be ignored. |
+| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages are ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
