@@ -9,7 +9,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/03/2026
+ms.date: 02/06/2026
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -22,7 +22,7 @@ monikerRange: foundry-classic || foundry
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Creating a Foundry resource unlocks access to models, agents, and tools through a unified set of SDKs and endpoints. This article covers what each SDK is for and which endpoint to use.
+A Foundry resource provides unified access to models, agents, and tools. This article explains which SDK and endpoint to use for your scenario.
 
 | SDK | What it's for | Endpoint |
 | --- | --- | --- |
@@ -30,6 +30,12 @@ Creating a Foundry resource unlocks access to models, agents, and tools through 
 | **OpenAI SDK** | Latest OpenAI SDK models and features with the full OpenAI API surface. Foundry direct models available through Chat Completions API (not Responses). | `https://<resource-name>.openai.azure.com/openai/v1` |
 | **Foundry Tools SDKs** | Prebuilt solutions (Vision, Speech, Content Safety, and more). | Tool-specific endpoints (varies by service). |
 | **Agent Framework** | Multi-agent orchestration in code. Cloud-agnostic. | Uses the project endpoint via the Foundry SDK. |
+
+**Choose your SDK**:
+- Use **Foundry SDK** when building apps with agents, evaluations, or Foundry-specific features
+- Use **OpenAI SDK** when maximum OpenAI compatibility is required, or using Foundry direct models via Chat Completions
+- Use **Foundry Tools SDKs** when working with specific AI services (Vision, Speech, Language, etc.)
+- Use **Agent Framework** when building multi-agent systems in code (local orchestration)
 
 > [!NOTE]
 > **Resource types:** A Foundry resource provides all endpoints previously listed. An Azure OpenAI resource provides only the `/openai/v1` endpoint.
@@ -55,6 +61,18 @@ Creating a Foundry resource unlocks access to models, agents, and tools through 
 > This article focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
 >
 
+### Verify prerequisites
+
+Before proceeding, confirm:
+
+- [ ] Azure subscription is active: `az account show`
+- [ ] You have the required RBAC role: Check Azure portal → Foundry resource → Access control (IAM)
+- [ ] Language runtime installed:
+  - Python: `python --version` (≥3.8)
+  - Node.js: `node --version` (≥18)
+  - .NET: `dotnet --version` (≥6.0)
+  - Java: `java --version` (≥11)
+
 ## Foundry SDK
 
 The Foundry SDK connects to a single project endpoint that provides access to the most popular Foundry capabilities:
@@ -79,6 +97,11 @@ This approach simplifies application configuration. Instead of managing multiple
 
 > [!NOTE]
 > **SDK versions:** The 2.x preview SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.
+
+| SDK Version   | Portal Version  | Status  | Python Package                | .NET Package                    |
+|---------------|-----------------|---------|-------------------------------|---------------------------------|
+| 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1`  | `Azure.AI.Projects --prerelease` |
+| 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    | `Azure.AI.Projects`             |
 
 ::: zone pivot="programming-language-python"
 
@@ -233,12 +256,21 @@ print(chat_responses.choices[0].message.content)
 ::: moniker-end
 ::: moniker range="foundry"
 ```python
-with project_client.get_openai_client() as openai_client:
-    response = openai_client.responses.create(
-        model="gpt-5.2",
-        input="What is the size of France in square miles?",
-    )
-    print(f"Response output: {response.output_text}")
+try:
+    with project_client.get_openai_client() as openai_client:
+        response = openai_client.responses.create(
+            model="gpt-5.2",
+            input="What is the size of France in square miles?",
+        )
+        print(f"Response output: {response.output_text}")
+except Exception as e:
+    print(f"Error calling model: {e}")
+    # See troubleshooting section for common solutions
+```
+
+**Expected output**:
+```
+Response output: France has an area of approximately 213,011 square miles (551,695 square kilometers).
 ```
 ::: moniker-end
 ::: zone-end
@@ -416,6 +448,47 @@ Console.WriteLine(response.GetOutputText());
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?view=foundry&tabs=azure-openai&pivots=programming-language-python&preserve-view=true)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more
 
+## Troubleshooting
+
+### Authentication errors
+
+If you see `DefaultAzureCredential failed to retrieve a token`:
+
+1. **Verify Azure CLI is authenticated**:
+   ```bash
+   az account show
+   az login  # if not logged in
+   ```
+
+2. **Check RBAC role assignment**:
+   - Confirm you have at least the Azure AI User role on the Foundry resource
+   - See [Assign Azure roles](https://learn.microsoft.com/azure/role-based-access-control/role-assignments-portal)
+
+3. **For managed identity in production**:
+   - Ensure the managed identity has the appropriate role assigned
+   - See [Configure managed identities](/azure/ai-foundry/how-to/configure-managed-identities)
+
+### Endpoint configuration errors
+
+If you see `Connection refused` or `404 Not Found`:
+
+- **Verify resource and project names** match your actual deployment
+- **Check endpoint URL format**: Should be `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>`
+- **For custom subdomains**: Replace `<resource-name>` with your custom subdomain
+
+### SDK version mismatches
+
+If code samples fail with `AttributeError` or `ModuleNotFoundError`:
+
+- **Check SDK version**:
+  ```bash
+  pip show azure-ai-projects  # Python
+  npm list @azure/ai-projects  # JavaScript
+  dotnet list package  # .NET
+  ```
+- **Verify moniker alignment**: 2.x SDK requires Foundry portal, 1.x SDK requires Foundry classic
+- **Reinstall with correct version flags**: See installation commands in each language section above
+
 ## OpenAI SDK
 
 ::: moniker range="foundry-classic"
@@ -479,6 +552,17 @@ response = client.responses.create(
 )
 
 print(response.model_dump_json(indent=2)) 
+```
+
+**Expected output**:
+```json
+{
+  "id": "resp_abc123",
+  "object": "response",
+  "created": 1234567890,
+  "model": "gpt-5.2",
+  "output_text": "France has an area of approximately 213,011 square miles (551,695 square kilometers)."
+}
 ```
 
 For more information, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true)
