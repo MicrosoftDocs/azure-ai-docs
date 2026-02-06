@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI in Microsoft Foundry Models API version lifecycle
-description: Learn more about API version retirement in Azure OpenAI.
+description: Learn about the Azure OpenAI API lifecycle, including the v1 API and changes from previous API versions.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,7 +15,7 @@ monikerRange: 'foundry-classic || foundry'
 
 # Azure OpenAI in Microsoft Foundry Models API lifecycle
 
-This article is to help you understand the support lifecycle for Azure OpenAI APIs.
+Azure OpenAI APIs follow a structured lifecycle. This article covers the new v1 API, which simplifies authentication, removes the need for dated `api-version` parameters, and supports cross-provider model calls.
 
 > [!NOTE]
 > New API response objects may be added to the API response at any time. We recommend you only parse the response objects you require.
@@ -431,7 +431,7 @@ public class OpenAITest {
         // Get API key from environment variable for security
         String apiKey = System.getenv("OPENAI_API_KEY");
         String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
-        String modelDeploymentName = "MAI-DS-R1"; //replace with you model deployment name
+        String modelDeploymentName = "MAI-DS-R1"; //replace with your model deployment name
 
         try {
             OpenAIClient client = OpenAIOkHttpClient.builder()
@@ -578,10 +578,13 @@ Generally Available features are supported for use in production.
 
 ## Known issues
 
-- The `2025-04-01-preview` Azure OpenAI spec uses OpenAPI 3.1, is a known issue that this is currently not fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts)
+- The `2025-04-01-preview` Azure OpenAI spec uses OpenAPI 3.1. It's a known issue that this version isn't fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts).
 
 
 ## Next steps
 
 - [Learn more about Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Learn about working with Azure OpenAI models](./how-to/working-with-models.md)
+- [Supported programming languages for the v1 API](./supported-languages.md)
+- [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits)
+- [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
