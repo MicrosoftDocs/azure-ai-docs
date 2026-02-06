@@ -103,24 +103,25 @@ from mlflow.models import infer_signature
 
 mlflow.autolog(log_models=False)
 
-model = XGBClassifier(eval_metric="logloss")
-model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=False)
-y_pred = model.predict(X_test)
+with mlflow.start_run():
+    model = XGBClassifier(eval_metric="logloss")
+    model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=False)
+    y_pred = model.predict(X_test)
 
-accuracy = accuracy_score(y_test, y_pred)
+    accuracy = accuracy_score(y_test, y_pred)
 
-# Infer the signature.
-signature = infer_signature(X_test, y_test)
+    # Infer the signature.
+    signature = infer_signature(X_test, y_test)
 
-# Sample the data.
-input_example = X_train.sample(n=1)
+    # Sample the data.
+    input_example = X_train.sample(n=1)
 
-# Log the model manually.
-mlflow.xgboost.log_model(model, 
-                         artifact_path="classifier", 
-                         pip_requirements=["xgboost>=2.0"],
-                         signature=signature,
-                         input_example=input_example)
+    # Log the model manually.
+    mlflow.xgboost.log_model(model, 
+                             artifact_path="classifier", 
+                             pip_requirements=["xgboost>=2.0"],
+                             signature=signature,
+                             input_example=input_example)
 ```
 
 **Reference:** [`mlflow.xgboost.log_model`](https://mlflow.org/docs/latest/python_api/mlflow.xgboost.html#mlflow.xgboost.log_model) | [`infer_signature`](https://mlflow.org/docs/latest/python_api/mlflow.models.html#mlflow.models.infer_signature)
@@ -189,17 +190,18 @@ from mlflow.models import infer_signature
 
 mlflow.xgboost.autolog(log_models=False)
 
-model = XGBClassifier(eval_metric="logloss")
-model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=False)
-y_probs = model.predict_proba(X_test)
+with mlflow.start_run():
+    model = XGBClassifier(eval_metric="logloss")
+    model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=False)
+    y_probs = model.predict_proba(X_test)
 
-accuracy = accuracy_score(y_test, y_probs.argmax(axis=1))
-mlflow.log_metric("accuracy", accuracy)
+    accuracy = accuracy_score(y_test, y_probs.argmax(axis=1))
+    mlflow.log_metric("accuracy", accuracy)
 
-signature = infer_signature(X_test, y_probs)
-mlflow.pyfunc.log_model(artifact_path="classifier", 
-                        python_model=ModelWrapper(model),
-                        signature=signature)
+    signature = infer_signature(X_test, y_probs)
+    mlflow.pyfunc.log_model(artifact_path="classifier", 
+                            python_model=ModelWrapper(model),
+                            signature=signature)
 ```
 
 **Reference:** [`mlflow.pyfunc.log_model`](https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html#mlflow.pyfunc.log_model) | [`PythonModel`](https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html#mlflow.pyfunc.PythonModel)
@@ -271,30 +273,42 @@ from mlflow.models import infer_signature
 
 mlflow.xgboost.autolog(log_models=False)
 
-encoder = OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=np.nan)
-X_train['thal'] = encoder.fit_transform(X_train['thal'].to_frame())
-X_test['thal'] = encoder.transform(X_test['thal'].to_frame())
+with mlflow.start_run():
+    encoder = OrdinalEncoder(
+        handle_unknown='use_encoded_value', unknown_value=np.nan
+    )
+    X_train['thal'] = encoder.fit_transform(
+        X_train['thal'].to_frame()
+    )
+    X_test['thal'] = encoder.transform(
+        X_test['thal'].to_frame()
+    )
 
-model = XGBClassifier(eval_metric="logloss")
-model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=False)
-y_probs = model.predict_proba(X_test)
+    model = XGBClassifier(eval_metric="logloss")
+    model.fit(
+        X_train, y_train,
+        eval_set=[(X_test, y_test)], verbose=False
+    )
+    y_probs = model.predict_proba(X_test)
 
-accuracy = accuracy_score(y_test, y_probs.argmax(axis=1))
-mlflow.log_metric("accuracy", accuracy)
+    accuracy = accuracy_score(y_test, y_probs.argmax(axis=1))
+    mlflow.log_metric("accuracy", accuracy)
 
-encoder_path = 'encoder.pkl'
-joblib.dump(encoder, encoder_path)
-model_path = "xgb.model"
-model.save_model(model_path)
+    encoder_path = 'encoder.pkl'
+    joblib.dump(encoder, encoder_path)
+    model_path = "xgb.model"
+    model.save_model(model_path)
 
-signature = infer_signature(X, y_probs)
-mlflow.pyfunc.log_model(artifact_path="classifier", 
-                        python_model=ModelWrapper(),
-                        artifacts={ 
-                            'encoder': encoder_path,
-                            'model': model_path 
-                        },
-                        signature=signature)
+    signature = infer_signature(X, y_probs)
+    mlflow.pyfunc.log_model(
+        artifact_path="classifier", 
+        python_model=ModelWrapper(),
+        artifacts={ 
+            'encoder': encoder_path,
+            'model': model_path 
+        },
+        signature=signature
+    )
 ```
 
 # [Use a model loader](#tab/loader)
@@ -361,22 +375,28 @@ from mlflow.models import infer_signature
 
 mlflow.xgboost.autolog(log_models=False)
 
-model = XGBClassifier(eval_metric="logloss")
-model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=False)
-y_probs = model.predict_proba(X_test)
+with mlflow.start_run():
+    model = XGBClassifier(eval_metric="logloss")
+    model.fit(
+        X_train, y_train,
+        eval_set=[(X_test, y_test)], verbose=False
+    )
+    y_probs = model.predict_proba(X_test)
 
-accuracy = accuracy_score(y_test, y_probs.argmax(axis=1))
-mlflow.log_metric("accuracy", accuracy)
+    accuracy = accuracy_score(y_test, y_probs.argmax(axis=1))
+    mlflow.log_metric("accuracy", accuracy)
 
-model_path = "xgb.model"
-model.save_model(model_path)
+    model_path = "xgb.model"
+    model.save_model(model_path)
 
-signature = infer_signature(X_test, y_probs)
-mlflow.pyfunc.log_model(artifact_path="classifier",
-                        data_path=model_path,
-                        code_paths=["loader_module.py"],
-                        loader_module="loader_module",
-                        signature=signature)
+    signature = infer_signature(X_test, y_probs)
+    mlflow.pyfunc.log_model(
+        artifact_path="classifier",
+        data_path=model_path,
+        code_paths=["loader_module.py"],
+        loader_module="loader_module",
+        signature=signature
+    )
 ```
 
 **Reference:** [`mlflow.pyfunc.log_model`](https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html#mlflow.pyfunc.log_model) | [`_load_pyfunc`](https://mlflow.org/docs/latest/python_api/mlflow.pyfunc.html#creating-custom-pyfunc-models)
