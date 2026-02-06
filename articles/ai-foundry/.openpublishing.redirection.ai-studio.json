@@ -536,7 +536,12 @@
           },
           {
             "source_path_from_root": "/articles/ai-foundry/openai/use-your-data-quickstart.md",
-            "redirect_url": "/azure/ai-foundry/agents/overview",
+            "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code?view=foundry",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/openai/how-to/azure-developer-cli.md",
+            "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code?view=foundry",
             "redirect_document_id": true
           },
           {
