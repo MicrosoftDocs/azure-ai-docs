@@ -535,6 +535,11 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/openai/use-your-data-quickstart.md",
+            "redirect_url": "/azure/ai-foundry/agents/overview",
+            "redirect_document_id": true
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/how-to/use-blocklists.md",
             "redirect_url": "/azure/ai-foundry/foundry-models/how-to/use-blocklists",
             "redirect_document_id": false

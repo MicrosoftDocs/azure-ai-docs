@@ -8,7 +8,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 author: aahill
 ms.author: aahi
-ms.date: 12/02/2025
+ms.date: 02/06/2026
 recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
@@ -16,6 +16,8 @@ ms.custom: references_regions, ignite-2024
 # Azure OpenAI On Your Data 
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
 Use this article to learn about Azure OpenAI On Your Data, which makes it easier for developers to connect, ingest and ground their enterprise data to create personalized copilots (preview) rapidly. It enhances user comprehension, expedites task completion, improves operational efficiency, and aids decision-making.
 

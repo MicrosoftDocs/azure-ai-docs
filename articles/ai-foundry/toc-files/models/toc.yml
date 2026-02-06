@@ -150,8 +150,6 @@ items:
         href: ../../openai/dall-e-quickstart.md
       - name: Video generation
         href: ../../openai/video-generation-quickstart.md
-      - name: Use your data
-        href: ../../openai/use-your-data-quickstart.md
       - name: Realtime API for speech and audio
         href: ../../openai/realtime-audio-quickstart.md
       - name: Speech to text with Whisper
