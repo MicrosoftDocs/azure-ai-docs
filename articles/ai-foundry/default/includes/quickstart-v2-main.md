@@ -55,8 +55,8 @@ MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Idea to prototype - Build and evaluate an enterprise agent](../tutorials/developer-journey-idea-to-prototype.md)
+> [How to evaluate your agent](../../how-to/develop/evaluate-agent.md)
+
 
 > [!div class="nextstepaction"]
-> [Evaluate your agent for quality and safety](../../how-to/develop/evaluate-agent.md)
-
+> [Idea to prototype - Build and evaluate an enterprise agent](../tutorials/developer-journey-idea-to-prototype.md)

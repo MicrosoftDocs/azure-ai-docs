@@ -22,7 +22,7 @@ In this article, you:
 
 - Set up the SDK client for evaluation
 - Choose evaluators for quality, safety, and agent behavior
-- Create a test dataset and run an evaluation
+- Define test queries and run an evaluation
 - Interpret results and integrate into your workflow
 
 ## Prerequisites
@@ -42,7 +42,7 @@ Install the Foundry SDK and set up authentication:
 pip install azure-ai-projects azure-identity
 ```
 
-Create the project client:
+Create the project client. The following code samples assume you run them within this context:
 
 ```python
 import os
@@ -52,9 +52,9 @@ from azure.ai.projects import AIProjectClient
 endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
 model_deployment = os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"]
 
-with DefaultAzureCredential() as credential:
-    with AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
-        client = project_client.get_openai_client()
+credential = DefaultAzureCredential()
+project_client = AIProjectClient(endpoint=endpoint, credential=credential)
+client = project_client.get_openai_client()
 ```
 
 ## Choose evaluators
@@ -127,10 +127,9 @@ testing_criteria = [
 ]
 ```
 
-Create and run the evaluation against your agent:
+Create and run the evaluation against your agent. First, define the schema for your test data:
 
 ```python
-# Define the data source schema
 data_source_config = {
     "type": "custom",
     "item_schema": {
@@ -143,14 +142,16 @@ data_source_config = {
     "include_sample_schema": True,
 }
 
-# Create the evaluation
 eval_group = client.evals.create(
     name="Agent Quality Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
+```
 
-# Run the evaluation against your agent
+Then create a run that sends your test queries to the agent and applies the evaluators:
+
+```python
 eval_run = client.evals.runs.create(
     eval_id=eval_group.id,
     name="Agent Evaluation Run",
