@@ -14,7 +14,7 @@ ms.topic: include
 > - Black Forest Labs: `FLUX.2-pro`, `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
 > - Cohere: `Cohere-command-a`, `embed-v-4-0`, `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast`
 > - DeepSeek: `DeepSeek-V3.2`, `DeepSeek-V3.2-Speciale`, `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
-> - Moonshot AI: `Kimi-K2-Thinking`
+> - Moonshot AI: `Kimi-K2.5`, `Kimi-K2-Thinking`
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
 > - Microsoft: `MAI-DS-R1`, `model-router`
 > - Mistral: `mistral-document-ai-2505`, `Mistral-Large-3`
@@ -529,5 +529,5 @@ For the latest information on model retirements, refer to the [model retirement 
 - [Foundry Models from partners and community](../../foundry-models/concepts/models-from-partners.md)
 - [Model retirement and deprecation](../concepts/model-retirements.md)
 - [Learn more about working with Azure OpenAI models](../how-to/working-with-models.md)
-- [Learn more about Azure OpenAI](../overview.md)
+- [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Learn more about fine-tuning Azure OpenAI models](../how-to/fine-tuning.md)

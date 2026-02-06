@@ -1,21 +1,22 @@
 ---
 title: Connect to MCP Server Endpoints for agents (Preview)
 titleSuffix: Microsoft Foundry
-description: Learn how to connect agents to Model Context Protocol (MCP) servers to extend agent capabilities with external tools and data sources.
+description: Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/05/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
 zone_pivot_groups: selection-mcp-code-new
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026
+#CustomerIntent: As a developer, I want to connect my Foundry agent to external MCP servers so that I can extend agent capabilities with third-party tools.
 ---
 
-# Connect to Model Context Protocol servers (preview)
+# Connect agents to Model Context Protocol servers (preview)
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
@@ -33,7 +34,11 @@ In this article, you learn how to:
 - Review and approve MCP tool calls.
 - Troubleshoot common MCP integration issues.
 
+For conceptual details about how MCP integration works, see [How it works](#how-it-works).
+
 ### Usage support
+
+The following table shows SDK and setup support for MCP connections.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -64,6 +69,7 @@ To learn about supported authentication options (key-based, Microsoft Entra iden
 > [!NOTE]
 > Set `project_connection_id` to the ID of your project connection.
 
+<!-- The verbiage in the following section was provided by Foundry CELA. Do not modify. -->
 ## Considerations for using non-Microsoft services and servers
 
 You're subject to the terms between you and the service provider when you use connected non-Microsoft services. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
@@ -85,7 +91,7 @@ When you use MCP servers, follow these practices:
 - Review the requested tool name and arguments before you approve.
 - Log approvals and tool calls for auditing and troubleshooting.
 
-## Code example
+## Create an agent in Python with the MCP tool
 
 Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for details.
 
@@ -288,14 +294,14 @@ while (nextResponseOptions is not null)
         {
             nextResponseOptions = new CreateResponseOptions()
             {
-                PreviousResponseId = latestResponse.PreviousResponseId,
+                PreviousResponseId = latestResponse.Id,
             };
             if (string.Equals(mcpToolCall.ServerLabel, "api-specs"))
             {
-          Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.Name})");
-          Console.Write("Approve this MCP tool call? (y/N): ");
-          bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
-          nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
+                Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.ToolName})");
+                Console.Write("Approve this MCP tool call? (y/N): ");
+                bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
+                nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
             }
             else
             {
@@ -437,14 +443,14 @@ while (nextResponseOptions is not null)
         {
             nextResponseOptions = new()
             {
-                PreviousResponseId = latestResponse.PreviousResponseId,
+                PreviousResponseId = latestResponse.Id,
             };
             if (string.Equals(mcpToolCall.ServerLabel, "api-specs"))
             {
-              Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.Name})");
-              Console.Write("Approve this MCP tool call? (y/N): ");
-              bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
-              nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
+                Console.WriteLine($"Approval requested for {mcpToolCall.ServerLabel} (tool: {mcpToolCall.ToolName})");
+                Console.Write("Approve this MCP tool call? (y/N): ");
+                bool approved = string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase);
+                nextResponseOptions.InputItems.Add(ResponseItem.CreateMcpApprovalResponseItem(approvalRequestId: mcpToolCall.Id, approved: approved));
             }
             else
             {
@@ -473,7 +479,7 @@ Response: Your GitHub username is "example-username".
 :::zone-end
 
 :::zone pivot="typescript"
-## Create an agent with the MCP tool
+## Create an agent in TypeScript with the MCP tool
 
 The following TypeScript sample demonstrates how to create an agent with MCP tool capabilities, send requests that trigger MCP approval workflows, handle approval requests, and clean up resources. For a JavaScript version, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcp.js) on the Azure SDK for JavaScript repository on GitHub.
 
@@ -901,7 +907,7 @@ For more information on using MCP, see:
 - [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
 - [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog.
 
-## Setup
+## Set up the MCP connection
 
 The following steps outline how to connect to a remote MCP server from Foundry Agent Service:
 

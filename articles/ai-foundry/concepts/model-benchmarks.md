@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 
-Model leaderboards (preview) in Microsoft Foundry portal help you compare models in the Foundry [model catalog](../how-to/model-catalog-overview.md) using industry-standard benchmarks. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models by:
+Model leaderboards (preview) in Microsoft Foundry portal help you compare models in the Foundry [model catalog](foundry-models-overview.md) using industry-standard benchmarks. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models by:
 
 - [Quality, safety, cost, and performance leaderboards](../how-to/benchmark-model-in-catalog.md#access-model-leaderboards) to identify leading models on a single metric (quality, safety, cost, or throughput)
 - [Trade-off charts](../how-to/benchmark-model-in-catalog.md#trade-off-charts) to compare performance across two metrics, such as quality versus cost
@@ -33,7 +33,7 @@ Model leaderboards (preview) in Microsoft Foundry portal help you compare models
 
 ::: moniker range="foundry"
 
-Model leaderboards (preview) in Foundry portal help you compare models in the Foundry [model catalog](../how-to/model-catalog-overview.md) using industry-standard benchmarks.
+Model leaderboards (preview) in Foundry portal help you compare models in the Foundry [model catalog](foundry-models-overview.md) using industry-standard benchmarks.
 
 You can review detailed benchmarking methodology for each leaderboard category:
 
@@ -138,7 +138,7 @@ Performance metrics are aggregated over 14 days using 24 trails per day, with tw
 
 | Parameter | Value | Applicable for |
 |--|--|--|
-| Region | East US/East US2 | [serverless API deployments](../how-to/model-catalog-overview.md#serverless-api-deployment-pay-per-token-offer-billing) and [Azure OpenAI](/azure/ai-foundry/openai/overview) |
+| Region | East US/East US2 | [serverless API deployments](./foundry-models-overview.md) and [Azure OpenAI](/azure/ai-foundry/openai/overview) |
 | Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (serverless API deployments) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (serverless API, global, global standard, and so on.) <br> For serverless API deployments, this setting is abstracted. |
 | Number of requests | Two requests in a trail for every hour (24 trails per day) | serverless API deployments, Azure OpenAI |
 | Number of trails/runs | 14 days with 24 trails per day for 336 runs | serverless API deployments, Azure OpenAI |
@@ -148,7 +148,7 @@ Performance metrics are aggregated over 14 days using 24 trails per day, with tw
 | Data | Synthetic (input prompts prepared from static text) | serverless API deployments, Azure OpenAI |
 | Region | East US/East US2 | serverless API deployments and Azure OpenAI |
 | Deployment type | serverless API | Applicable only for Azure OpenAI |
-| Streaming | True | Applies to serverless API deployments and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), or for endpoints when streaming isn't supported TTFT is represented as P50 of latency metric. |
+| Streaming | True | Applies to serverless API deployments and Azure OpenAI. For models deployed via [managed compute](./foundry-models-overview.md), or for endpoints when streaming isn't supported TTFT is represented as P50 of latency metric. |
 | SKU | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage) | Applicable only for Managed Compute (to estimate the cost and performance metrics) |
 	
 The performance of LLMs and SLMs is assessed across the following metrics:
@@ -235,4 +235,4 @@ Prompt construction follows best practices for each dataset, as specified by the
 ## Related content
 
 - [Compare and select models using the model leaderboard in Foundry portal](../how-to/benchmark-model-in-catalog.md)
-- [Model catalog and collections in Foundry portal](../how-to/model-catalog-overview.md)
+- [Model catalog and collections in Foundry portal](foundry-models-overview.md)

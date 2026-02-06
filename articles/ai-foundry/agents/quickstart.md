@@ -62,5 +62,5 @@ Foundry Agent Service allows you to create AI agents tailored to your needs thro
 
 ## Next steps
 
-Learn about the [**tools**](./how-to/tools/overview.md) you can use to extend your agents' capabilities, such as accessing the web, provide grounding information, and more. 
+Learn about the [**tools**](how-to/tools-classic/overview.md) you can use to extend your agents' capabilities, such as accessing the web, provide grounding information, and more. 
 

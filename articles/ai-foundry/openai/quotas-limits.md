@@ -29,7 +29,7 @@ Quotas and limits aren't enforced at the tenant level. Instead, the highest leve
 
 Tokens per minute (TPM) and requests per minute (RPM) limits are defined *per region*, *per subscription*, and *per model or deployment type*.
 
-For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](./concepts/models.md) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
+For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](../foundry-models/concepts/models-sold-directly-by-azure.md) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
 
 ## Quotas and limits reference
 
@@ -44,9 +44,9 @@ The following section provides you with a quick guide to the default quotas and 
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |
 | Default Sora quota limits | 60 requests per minute. |
-| Default Sora 2 quota limits | 2 parallel tasks | 
+| Default Sora 2 quota limits | 2 job requests<sup>1</sup> per minute| 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
-| Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md).|
+| Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](../foundry-models/concepts/models-sold-directly-by-azure.md).|
 | Maximum standard deployments per resource | 32. |
 | Maximum fine-tuned model deployments | 10. |
 | Total number of training jobs per resource | 100. |
@@ -69,11 +69,14 @@ The following section provides you with a quick guide to the default quotas and 
 | Assistants token limit | 2,000,000 token limit. |
 | `GPT-4o` and `GPT-4.1` maximum images per request (number of images in the messages array or conversation history) | 50. |
 | `GPT-4 vision-preview` and `GPT-4 turbo-2024-04-09` default maximum tokens | 16. <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. `GPT-4o` maximum tokens defaults to 4,096. |
-| Maximum number of custom headers in API requests<sup>1</sup> | 10. |
+| Maximum number of custom headers in API requests<sup>2</sup> | 10. |
 | Message character limit | 1,048,576. |
 | Message size for audio files | 20 MB. |
 
-<sup>1</sup> Our current APIs allow up to 10 custom headers, which are passed through the pipeline and returned. Some customers now exceed this header count, which results in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. In future API versions, we won't pass through custom headers. We recommend that customers don't depend on custom headers in future system architectures.
+<sup>1</sup> The Sora 2 RPM quota only counts video job requests. Other types of requests are not rate-limited.
+
+<sup>2</sup> Our current APIs allow up to 10 custom headers, which are passed through the pipeline and returned. Some customers now exceed this header count, which results in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. In future API versions, we won't pass through custom headers. We recommend that customers don't depend on custom headers in future system architectures.
+
 
 > [!NOTE]
 > Quota limits are subject to change.
@@ -470,4 +473,4 @@ print(json.dumps(model_capacity, indent=2))
 ## Related content
 
 - Explore how to [manage quota](./how-to/quota.md) for your Azure OpenAI deployments.
-- Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+- Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).

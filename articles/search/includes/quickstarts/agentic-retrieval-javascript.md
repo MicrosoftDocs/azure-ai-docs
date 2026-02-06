@@ -937,9 +937,7 @@ if (result2.references) {
 
 ## Clean up resources
 
-When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
-
-In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Microsoft Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+[!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
 Otherwise, the following code from `index.js` deleted the objects you created in this quickstart.
 

@@ -43,7 +43,7 @@ Read [Consume serverless APIs from a different hub or project](deploy-models-ser
 
 ## Related content
 
-- [Model Catalog and Collections](model-catalog-overview.md)
+- [Model Catalog and Collections](../concepts/foundry-models-overview.md)
 - [Deploy models as serverless API](deploy-models-serverless.md)
 
 

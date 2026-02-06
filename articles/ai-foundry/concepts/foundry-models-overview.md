@@ -132,7 +132,7 @@ Network isolation | [Configure managed networks for Foundry hubs](../how-to/conf
 
 ### Available models for supported deployment options
 
-For Azure OpenAI models, see [Azure OpenAI](../openai/concepts/models.md).
+For Azure OpenAI models, see [Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 To view a list of supported models for serverless API deployment or Managed Compute, go to the home page of the model catalog in [Foundry](https://ai.azure.com/?cid=learnDocs). Use the **Deployment options** filter to select either **serverless API deployment** or **Managed Compute**. 
 
@@ -171,7 +171,7 @@ Models available for deployment to managed compute can be deployed to Azure Mach
 
 Learn more about deploying models:
 
-* [Deploy Meta Llama models](../how-to/deploy-models-llama.md)
+* [Deploy Meta Llama models](./models-inference-examples.md)
 * [Deploy Foundry open models](../how-to/deploy-models-managed.md)
 
 ### Building generative AI apps with managed compute

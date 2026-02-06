@@ -184,7 +184,7 @@ You set the value using the format shown in this example:
 }
 ```
 
-For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../overview.md#image-input-tokens)
+For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 
 
 ## Output
@@ -383,7 +383,7 @@ Every response includes a `"finish_reason"` field. It has the following possible
 
 ## Related content
 
-* [Learn more about Azure OpenAI](../overview.md).
+* [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * [Vision-enabled chats quickstart](../gpt-v-quickstart.md)
 * [Vision chats frequently asked questions](../faq.yml#gpt-4-turbo-with-vision)
 * [Chat completions API reference](https://aka.ms/gpt-v-api-ref)

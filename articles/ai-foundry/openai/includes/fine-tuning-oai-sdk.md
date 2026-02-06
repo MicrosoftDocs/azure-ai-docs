@@ -25,7 +25,7 @@ ms.custom:
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../concepts/models.md?pivots=azure-openai#fine-tuning-models).
+To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
 
@@ -72,7 +72,7 @@ If you want a step-by-step walkthrough of fine-tuning `gpt-4o-mini-2024-07-18`, 
 Multiple turns of a conversation in a single line of your JSONL training file are also supported. To skip fine-tuning on specific assistant messages, add the optional `weight` key/value pair. Currently, `weight` can be set to `0` or `1`.  
 
 ```json
-{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
+{"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "What's the capital/major city of France?"}, {"role": "assistant", "content": "Paris", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Paris, as if everyone doesn't know that already.", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "Who wrote 'Romeo and Juliet'?"}, {"role": "assistant", "content": "William Shakespeare", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Oh, just some guy named William Shakespeare. Ever heard of him?", "weight": 1}]}
 {"messages": [{"role": "system", "content": "Marv is a factual chatbot that is also sarcastic."}, {"role": "user", "content": "How far is the Moon from Earth?"}, {"role": "assistant", "content": "384,400 kilometers", "weight": 0}, {"role": "user", "content": "Can you be more sarcastic?"}, {"role": "assistant", "content": "Around 384,400 kilometers. Give or take a few, like that really matters.", "weight": 1}]}
 ```
@@ -149,7 +149,7 @@ print(response.model_dump_json(indent=2))
 ```
 
 > [!NOTE]
-> We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../concepts/models.md?pivots=azure-openai#fine-tuning-models) that supports Standard-tier training.
+> We recommend using the Global Standard tier for the training type, because it offers [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) and uses global capacity for faster queuing times. However, it does copy data and weights outside the current resource region. If [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) is a requirement, use a [model](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models) that supports Standard-tier training.
 
 You can also pass additional optional parameters, like hyperparameters, to take greater control of the fine-tuning process. For initial training, we recommend using the automatic defaults that are present without specifying these parameters.
 
