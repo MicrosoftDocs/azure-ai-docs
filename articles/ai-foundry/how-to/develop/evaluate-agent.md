@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 # Evaluate your AI agents
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds (for example, 85% task adherence passing rate) before releasing to users.
