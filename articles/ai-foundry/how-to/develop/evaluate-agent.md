@@ -44,7 +44,7 @@ Install the Foundry SDK and set up authentication:
 pip install azure-ai-projects azure-identity
 ```
 
-Create the project client. The following code samples assume you run them within this context:
+Create the project client. The following code samples assume you run them in this context:
 
 ```python
 import os
@@ -180,7 +180,7 @@ print(f"Evaluation run started: {eval_run.id}")
 
 ## Interpret results
 
-Evaluations typically complete in a few minutes, depending on dataset size. Poll for completion and retrieve the report URL:
+Evaluations typically complete in a few minutes, depending on the number of queries. Poll for completion and retrieve the report URL:
 
 ```python
 import time
@@ -198,8 +198,7 @@ print(f"Report URL: {run.report_url}")
 
 You can also view results in the Microsoft Foundry portal by navigating to **Evaluation** > **Runs**.
 
-<!-- TODO: Add screenshot of evaluation results in portal - suggested path: ../media/evaluations/agent-evaluation-results.png -->
-<!-- :::image type="content" source="../media/evaluations/agent-evaluation-results.png" alt-text="Screenshot showing evaluation results for an agent in the Microsoft Foundry portal."::: -->
+:::image type="content" source="../../media/evaluations/view-results/evals-results.png" alt-text="Screenshot showing evaluation results for an agent in the Microsoft Foundry portal.":::
 
 ### Sample output
 
