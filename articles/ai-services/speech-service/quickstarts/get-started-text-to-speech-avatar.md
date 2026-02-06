@@ -8,7 +8,6 @@ ms.service: azure-ai-speech
 ms.topic: quickstart
 ms.date: 1/29/2026
 ms.author: pafarley
-ms.devlang: cpp
 ---
 # Quickstart: text to speech avatar
 
