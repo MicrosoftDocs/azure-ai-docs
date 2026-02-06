@@ -21,6 +21,12 @@ Azure OpenAI APIs follow a structured lifecycle. This article covers the new v1 
 > New API response objects may be added to the API response at any time. We recommend you only parse the response objects you require.
 >
 
+## Prerequisites
+
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+- An [Azure OpenAI resource](/azure/ai-foundry/openai/how-to/create-resource) deployed in a [supported region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services)
+- At least one [model deployment](../foundry-models/how-to/deploy-foundry-models.md)
+
 ## API evolution
 
 Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI.
