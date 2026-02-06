@@ -220,7 +220,7 @@ az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" \
 ### Create shared private link
 
 > [!TIP]
-> If you are using a basic or standard pricing tier, or if it is your first time to setup all of your resources securely, you should skip this advanced topic.
+> If you are using a basic or standard pricing tier, or if it is your first time to set up all of your resources securely, you should skip this advanced topic.
 
 This section is only applicable for S2 pricing tier search resource, because it requires [private endpoint support for indexers with a skill set](/azure/search/search-limits-quotas-capacity#shared-private-link-resource-limits).
 

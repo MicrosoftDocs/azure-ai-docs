@@ -26,7 +26,7 @@ This article provides reference documentation for Python and REST for the new Az
 > * The API path is changed from `/extensions/chat/completions` to `/chat/completions`.
 > * The naming convention of property keys and enum values is changed from camel casing to snake casing. Example: `deploymentName` is changed to `deployment_name`.
 > * The data source type `AzureCognitiveSearch` is changed to `azure_search`.
-> * The citations and intent is moved from assistant message's context tool messages to assistant message's context root level with explicit [schema defined](#context).
+> * The citations and intent are moved from assistant message's context tool messages to assistant message's context root level with explicit [schema defined](#context).
 
 ```http
 POST {endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version={api-version}
