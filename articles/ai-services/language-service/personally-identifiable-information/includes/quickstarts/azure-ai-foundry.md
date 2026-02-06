@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 02/06/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ai-usage: ai-assisted
@@ -14,11 +14,11 @@ ai-usage: ai-assisted
 >
 > * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Microsoft Foundry portal. 
 > * For more information, see [Connect services in the Microsoft Foundry portal](../../../../connect-services-foundry-portal.md).
-> * We recommend that you use a Foundry resource. You can also follow these instructions with a Language resource.
+> * Consider using a Foundry resource for the best experience. You can also follow these instructions with a Language resource.
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, see [Role based access control (RBAC)](../../../../../ai-foundry/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
-*  [Foundry resource](../../../../multi-service-resource.md). For more information, see [Configure a Foundry resource](../../../concepts/configure-azure-resources.md). Alternately, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* **Foundry resource**. Create a [Foundry resource](../../../../multi-service-resource.md) or see [Configure a Foundry resource](../../../concepts/configure-azure-resources.md). Alternatively, you can use a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 * **A Foundry project**. For more information, see [Create a Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 
 
@@ -31,29 +31,31 @@ ai-usage: ai-assisted
 You can use [Foundry (classic)](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
-> * Create a project
-> * Deploy a model
-> * Run a chat completion
-> * Create and run an agent
-> * Upload files to your agent
+> * Extract PII from conversations
+> * Extract PII from text
+> * Configure redaction policies
+> * Review detected entities and confidence scores
 
 
-## Navigate to the [Foundry (classic)](https://ai.azure.com/) Playground
+## Navigate to the Foundry (classic) playground
 
-Using the left side pane, select **Playgrounds**. Then select the **Try Azure Language Playground** button.
+1. In the left pane, select **Playgrounds**.
+1. Select the **Try Azure Language Playground** button.
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png" alt-text="Screenshot showing the Playgrounds navigation and the Try Azure Language Playground button in Foundry (classic)." lightbox="../../media/quickstarts/azure-ai-foundry/foundry-playground-navigation.png":::
 
-## Use PII in the Foundry Playground
+## Detect PII in the Foundry playground
 
 The **Language Playground** consists of four sections:
 
-* Top banner: You can select any of the currently available languages here.
-* Left pane: This pane contains **Configuration** options for the service, such as the API version and model version.
-* Center pane: This pane is where you enter text for processing and review results.
-* Right pane: This pane shows **Details** about the run.
+| Section | Purpose |
+| --- | --- |
+| **Top banner** | Select the input language and choose a PII detection capability. |
+| **Left pane** | Set **Configuration** options such as API version, model version, and redaction policy. |
+| **Center pane** | Enter text for processing and review highlighted results. |
+| **Right pane** | View **Details** for each detected entity. |
 
-Here you can select from two Personally Identifying Information (PII) detection capabilities by choosing the top banner tiles, **Extract PII from conversation** or **Extract PII from text**. Each is for a different scenario.
+Select either **Extract PII from conversation** or **Extract PII from text** from the top banner tiles. Each capability targets a different scenario.
 
 ### Extract PII from conversation
 
@@ -65,22 +67,26 @@ In **Configuration** there are the following options:
 |--------------------|-----------------------------------------|
 |Select API version  | Select which version of the API to use.    |
 |Select model version| Select which version of the model to use.|
-|Select text language| Select which language the language is input in.|
-|Select types to include| Select they types of information you want to redact.|
+|Select text language| Select the language of your input text.|
+|Select types to include| Select the types of information you want to redact.|
 |Specify redaction policy| Select the method of redaction.|
-|Specify redaction character| Select which character is used for redaction. Only available with the **CharacterMask** redaction policy.|
+|Specify redaction character| Select the character used for redaction. Only available with the **CharacterMask** redaction policy.|
 
-After your operation is completed, the type of entity is displayed beneath each entity in the center pane. The **Details** section contains the following fields for each entity:
+After the operation completes, each detected entity is highlighted in the center pane with its type label displayed beneath it.
+
+The **Details** section contains the following fields for each entity:
 
 |Field | Description                |
 |------|----------------------------|
 |Entity|The detected entity.|
 |Category| The entity type that was detected.|
-|Offset| The number of characters that the entity was detected from the beginning of the line.|
+|Offset| The number of characters from the beginning of the line to the entity.|
 |Length| The character length of the entity.|
-|Confidence| How confident the model is in the correctness of identification of entity's type.|
+|Confidence| The model's level of certainty that the entity type is correct.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/conversation-pii.png" alt-text="A screenshot of an example of extract PII from conversation in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/conversation-pii.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/conversation-pii.png" alt-text="A screenshot showing detected PII entities highlighted in a conversation with entity details displayed in the right pane of the Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/conversation-pii.png":::
+
+Verify that each PII entity appears highlighted with the correct category label. If no entities appear, check that the input text contains recognizable PII patterns and that the **Types** filter includes the expected categories.
 
 ### Extract PII from text
 
@@ -92,23 +98,27 @@ In **Configuration** you can select from the following options:
 |--------------------|-----------------------------------------|
 |Select API version  | Select which version of the API to use.    |
 |Select model version| Select which version of the model to use.|
-|Select text language| Select which language the language is input in.|
+|Select text language| Select the language of your input text.|
 |Select types to include| Select the types of information you want to redact.|
 |Specify redaction policy| Select the method of redaction.|
-|Specify redaction character| Select which character is used for redaction. Only available with the **CharacterMask** redaction policy.|
+|Specify redaction character| Select the character used for redaction. Only available with the **CharacterMask** redaction policy.|
 
-After your operation is completed, the type of entity is displayed beneath each entity in the center pane. The **Details** section contains the following fields for each entity:
+After the operation completes, each detected entity is highlighted in the center pane with its type label displayed beneath it.
+
+The **Details** section contains the following fields for each entity:
 
 |Field | Description                |
 |------|----------------------------|
 |Entity|The detected entity.|
 |Category| The entity type that was detected.|
-|Offset| The number of characters that the entity was detected from the beginning of the line.|
+|Offset| The number of characters from the beginning of the line to the entity.|
 |Length| The character length of the entity.|
-|Confidence| How confident the model is in the correctness of identification of entity's type.|
-|Tags| How confident the model is in the correctness for each identified entity type.|
+|Confidence| The model's level of certainty that the entity type is correct.|
+|Tags| The model's confidence scores for each identified entity subtype.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-pii.png" alt-text="A screenshot of an example of extract PII from text in Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/text-pii.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-pii.png" alt-text="A screenshot showing detected PII entities highlighted in text with entity details and confidence scores displayed in the right pane of the Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/text-pii.png":::
+
+Verify that each PII entity appears highlighted with the correct category label. The **Tags** column shows subcategory confidence scores when applicable.
 
 ### [Foundry (new)](#tab/foundry-new)
 
@@ -119,18 +129,18 @@ After your operation is completed, the type of entity is displayed beneath each 
 You can use [Foundry (new)](https://ai.azure.com/) to:
 
 > [!div class="checklist"]
-> * Create a project
-> * Deploy a model
-> * Create and run an agent
-> * Upload files to the agent
+> * Extract PII from text
+> * Configure redaction policies and excluded values
+> * Review detected entities and confidence scores
 
 
-## Navigate to [Foundry (new)](https://ai.azure.com/)
+## Navigate to the Foundry (new) playground
 
-* The project you're working on appears in the upper-left corner.  
-* You can select to create a new project from the drop-down menu:
-  * Select the provided project name or create a new project name.
-  * Finally, select **Create project**.
+The active project appears in the upper-left corner. To create a new project:
+
+1. Open the project drop-down menu.
+1. Enter a project name or select an existing one.
+1. Select **Create project**.
 
    :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the Foundry (new) homepage":::
 
@@ -148,15 +158,13 @@ There are two ways to access the PII interface:
    * Next, select **Azure-Language-Text-PII redaction** to go to the playground.
 
 
-## Use playground: extract PII from text
-
-The Foundry playground is an interactive environment where you can engage with deployed AI models.
+## Detect PII in the Foundry playground
 
 The **extract PII from text** feature detects and masks personally identifying information within written content.
 
-1. On the **Playground** tab, select the sample tab, use the paperclip icon to upload your text, or enter your own text.
+1. On the **Playground** tab, select the sample text, use the paperclip icon to upload your text, or enter your own text.
 
-1. Next select the **Configure** button. In the **Configure** side panel, you can select from the following options:
+1. Select the **Configure** button. In the **Configure** side panel, set the following options:
 
 | Option | Description |
 |--|--|
@@ -168,7 +176,10 @@ The **extract PII from text** feature detects and masks personally identifying i
 | **Excluded values** | Select the values that you want to exclude. |
 | **Synonyms** | Select a category for your redaction type values to target related synonyms. |
 
-After you make your selections, choose the **Detect** button. Then review the text and accompanying details written in formatted text or as a JSON response:
+After you make your selections, choose the **Detect** button. Detected entities are highlighted in the text and you can review the accompanying details in formatted text or as a JSON response:
+
+> [!NOTE]
+> The Foundry (new) playground currently supports **text PII** detection. For **conversation PII**, use the [Foundry (classic)](#tab/foundry-classic) tab.
 
 | Field | Description |
 |--|--|
@@ -177,4 +188,4 @@ After you make your selections, choose the **Detect** button. Then review the te
 | **Offset** | The number of characters that the entity was detected from the beginning of the text. |
 | **Length** | The character length of the entity. |
 
-You can use the **Edit** button to modify the **Configure** parameters and customize your response as needed.
+Verify that the detected entities match the PII in your input text. You can use the **Edit** button to modify the **Configure** parameters and rerun detection as needed.
