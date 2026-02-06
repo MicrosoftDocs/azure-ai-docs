@@ -1,37 +1,39 @@
 ---
-title: Azure OpenAI in Microsoft Foundry Models API version lifecycle
-description: Learn about the Azure OpenAI API lifecycle, including the v1 API and changes from previous API versions.
+title: Azure OpenAI in Microsoft Foundry Models v1 API
+description: Learn how to use the Azure OpenAI v1 API, which simplifies authentication, removes api-version parameters, and supports cross-provider model calls.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: concept-article 
-ms.date: 01/31/2026
+ms.topic: how-to
+ms.date: 02/06/2026
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
-# Azure OpenAI in Microsoft Foundry Models API lifecycle
+# Azure OpenAI in Microsoft Foundry Models v1 API
 
-Azure OpenAI APIs follow a structured lifecycle. This article covers the new v1 API, which simplifies authentication, removes the need for dated `api-version` parameters, and supports cross-provider model calls.
+This article shows you how to use the v1 Azure OpenAI API. The v1 API simplifies authentication, removes the need for dated `api-version` parameters, and supports cross-provider model calls.
 
 > [!NOTE]
-> New API response objects may be added to the API response at any time. We recommend you only parse the response objects you require.
->
+> New API response objects might be added to the API response at any time. We recommend you only parse the response objects you require.
 
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
 - An [Azure OpenAI resource](/azure/ai-foundry/openai/how-to/create-resource) deployed in a [supported region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services)
 - At least one [model deployment](../foundry-models/how-to/deploy-foundry-models.md)
+- For Microsoft Entra ID authentication: the `Cognitive Services OpenAI User` role assigned to your identity. For more information, see [Role-based access control for Azure OpenAI](/azure/ai-foundry/openai/how-to/role-based-access-control)
+
 
 ## API evolution
 
 Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI.
 
-Starting in August 2025, you can now opt in to our next generation v1 Azure OpenAI APIs which add support for:
+Starting in August 2025, you can opt in to the next generation v1 Azure OpenAI APIs which add support for:
 
 - Ongoing access to the latest features with no need to specify new `api-version`'s each month.
 - Faster API release cycle with new features launching more frequently.
@@ -46,7 +48,7 @@ Examples:
 - `/openai/v1/evals` is in preview and requires passing an `"aoai-evals":"preview"` header.
 - `/openai/v1/fine_tuning/alpha/graders/` is in preview and requires no custom header due to the presence of `alpha` in the API path.
 
-For the initial v1 Generally Available (GA) API launch we're only supporting a subset of the inference and authoring API capabilities. All GA features are supported for use in production. We'll be rapidly adding support for more capabilities soon.  
+For the initial v1 Generally Available (GA) API launch, only a subset of the inference and authoring API capabilities are supported. All GA features are supported for use in production. Support for more capabilities is being added rapidly.
 
 ## Code changes
 
@@ -75,11 +77,23 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
+
+Key differences from the previous API:
+
 - `OpenAI()` client is used instead of `AzureOpenAI()`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
 - `api-version` is no longer a required parameter with the v1 GA API.
 
-**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+**API Key** with environment variables:
+
+Set the following environment variables before running the code:
+
+| Variable          | Value                                                     |
+|-------------------|-----------------------------------------------------------|
+| `OPENAI_BASE_URL` | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` |
+| `OPENAI_API_KEY`  | Your Azure OpenAI API key                                 |
+
+Then create the client without parameters:
 
 ```python
 client = OpenAI()
@@ -123,6 +137,9 @@ print(response.model_dump_json(indent=2))
 **API Key**:
 
 ```csharp
+using OpenAI;
+using System.ClientModel;
+
 OpenAIClient client = new(
     new ApiKeyCredential("{your-api-key}"),
     new OpenAIClientOptions()
@@ -506,7 +523,11 @@ Generally Available features are supported for use in production.
 | `/openai/v1/evals`                    | `"aoai-evals":"preview"` |
 | `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | `"aoai-copy-ft-checkpoints" : "preview"` |
 
-## Changes between v1 preview release and 2025-04-01-preview
+## API version changelog
+
+The following sections summarize changes between API versions.
+
+### Changes between v1 preview release and 2025-04-01-preview
 
 - [v1 preview API](#api-evolution)
 - [Video generation support](./concepts/video-generation.md)
@@ -516,40 +537,40 @@ Generally Available features are supported for use in production.
     * Encrypted reasoning items
     * Image generation  
 
-## Changes between 2025-04-01-preview and 2025-03-01-preview
+### Changes between 2025-04-01-preview and 2025-03-01-preview
 
 - [`GPT-image-1` support](/azure/ai-foundry/openai/how-to/dall-e)
 - [Reasoning summary for `o3` and `o4-mini`](/azure/ai-foundry/openai/how-to/reasoning)
 - [Evaluation API](/azure/ai-foundry/openai/authoring-reference-preview#evaluation---create)
 
-## Changes between 2025-03-01-preview and 2025-02-01-preview
+### Changes between 2025-03-01-preview and 2025-02-01-preview
 
 - [Responses API](./how-to/responses.md)
 - Computer use
 
-## Changes between 2025-02-01-preview and 2025-01-01-preview
+### Changes between 2025-02-01-preview and 2025-01-01-preview
 
 - Stored completions (distillation API support).
 
-## Changes between 2025-01-01-preview and 2024-12-01-preview
+### Changes between 2025-01-01-preview and 2024-12-01-preview
 
 - `prediction` parameter added for [predicted outputs](./how-to/predicted-outputs.md) support.
 - `gpt-4o-audio-preview` [model support](./audio-completions-quickstart.md).
 
-## Changes between 2024-12-01-preview and 2024-10-01-preview
+### Changes between 2024-12-01-preview and 2024-10-01-preview
 
 - `store`, and `metadata` parameters added for stored completions support.
 - `reasoning_effort` added for latest [reasoning models](./how-to/reasoning.md).
 - `user_security_context` added for [Microsoft Defender for Cloud integration](https://aka.ms/TP4AI/Documentation/EndUserContext).
 
-## Changes between 2024-09-01-preview and 2024-08-01-preview
+### Changes between 2024-09-01-preview and 2024-08-01-preview
 
 - `max_completion_tokens` added to support `o1-preview` and `o1-mini` models. `max_tokens` doesn't work with the **o1 series** models.
 - `parallel_tool_calls` added.
 - `completion_tokens_details` & `reasoning_tokens` added.
 - `stream_options` & `include_usage` added.
 
-## Changes between 2024-07-01-preview and 2024-08-01-preview API specification
+### Changes between 2024-07-01-preview and 2024-08-01-preview API specification
 
 - [Structured outputs support](./how-to/structured-outputs.md).
 - Large file upload API added.
@@ -560,13 +581,13 @@ Generally Available features are supported for use in production.
     * AML datasource removed.
     * AI Search vectorization integration improvements.
 
-## Changes between 2024-5-01-preview and 2024-07-01-preview API specification
+### Changes between 2024-05-01-preview and 2024-07-01-preview API specification
 
 - [Batch API support added](./how-to/batch.md)
 - [Vector store chunking strategy parameters](/azure/ai-foundry/openai/reference-preview?#request-body-17)
 - `max_num_results` that the file search tool should output.
 
-## Changes between 2024-04-01-preview and 2024-05-01-preview API specification
+### Changes between 2024-04-01-preview and 2024-05-01-preview API specification
 
 - Assistants v2 support - [File search tool and vector storage](https://go.microsoft.com/fwlink/?linkid=2272425)
 - Fine-tuning [checkpoints](https://github.com/Azure/azure-rest-api-specs/blob/9583ed6c26ce1f10bbea92346e28a46394a784b4/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-05-01-preview/azureopenai.json#L586), [seed](https://github.com/Azure/azure-rest-api-specs/blob/9583ed6c26ce1f10bbea92346e28a46394a784b4/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-05-01-preview/azureopenai.json#L1574), [events](https://github.com/Azure/azure-rest-api-specs/blob/9583ed6c26ce1f10bbea92346e28a46394a784b4/specification/cognitiveservices/data-plane/AzureOpenAI/authoring/preview/2024-05-01-preview/azureopenai.json#L529)
@@ -574,13 +595,22 @@ Generally Available features are supported for use in production.
 - DALL-E 2 now supports model deployment and can be used with the latest preview API.
 - Content filtering updates
 
-## Changes between 2024-03-01-preview and 2024-04-01-preview API specification
+### Changes between 2024-03-01-preview and 2024-04-01-preview API specification
 
 - **Breaking Change**: Enhancements parameters removed. This impacts the `gpt-4` **Version:** `vision-preview` model.
 - [timestamp_granularities](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5217) parameter added.
 - [`audioWord`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5286) object added.
 - Additional TTS [`response_formats: wav & pcm`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5333).
 
+## Troubleshooting
+
+| Issue | Cause | Solution |
+| ----- | ----- | -------- |
+| `404 Not Found` when calling the v1 API | Incorrect `base_url` format | Verify the URL ends with `/openai/v1/`. Both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` are valid. |
+| `401 Unauthorized` with Entra ID | Missing or incorrect role assignment | Assign the `Cognitive Services OpenAI User` role to your identity. Role assignments can take up to 5 minutes to propagate. |
+| `AzureOpenAI()` client doesn't work with v1 | v1 API uses the `OpenAI()` client | Replace `AzureOpenAI()` with `OpenAI()` and set `base_url` to your Azure endpoint with `/openai/v1/` appended. |
+| `api-version` parameter rejected | v1 API doesn't use `api-version` | Remove any `api-version` query parameters from your requests. The v1 API doesn't require or accept them. |
+| Preview features not available | Missing preview header | For preview APIs like `/openai/v1/evals`, pass the required preview header (for example, `"aoai-evals":"preview"`). See [Preview headers](#preview-headers). |
 
 ## Known issues
 
@@ -589,8 +619,8 @@ Generally Available features are supported for use in production.
 
 ## Next steps
 
-- [Learn more about Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md)
-- [Learn about working with Azure OpenAI models](./how-to/working-with-models.md)
 - [Supported programming languages for the v1 API](./supported-languages.md)
+- [Azure OpenAI models](../foundry-models/concepts/models-sold-directly-by-azure.md)
+- [Working with Azure OpenAI models](./how-to/working-with-models.md)
 - [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits)
 - [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
