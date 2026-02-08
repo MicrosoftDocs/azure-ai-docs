@@ -212,7 +212,7 @@ hate_unfairness_eval(
 }
 ```
 
-Safety evaluations annotate hateful and unfair content using a 0-7 scale that maps to corresponding severity labels. Given a numerical threshold (default to 3), evaluations also output *pass* if the score =< threshold, or *fail* otherwise. Use the reason field to help understand why a severity label and score was assigned.
+Safety evaluations annotate hateful and unfair content using a 0-7 scale that maps to corresponding severity labels. Given a numerical threshold (default to 3), evaluations also output *pass* if the score <= threshold, or *fail* otherwise. Use the reason field to help understand why a severity label and score was assigned.
 
 ::: moniker-end
 
@@ -257,7 +257,7 @@ sexual_eval(
 }
 ```
 
-Safety evaluations annotate sexual content using a 0-7 scale that maps to corresponding severity labels. Given a numerical threshold (default to 3), evaluations also output *pass* if the score =< threshold, or *fail* otherwise. Use the reason field to help understand why a severity label and score was assigned.
+Safety evaluations annotate sexual content using a 0-7 scale that maps to corresponding severity labels. Given a numerical threshold (default to 3), evaluations also output *pass* if the score <= threshold, or *fail* otherwise. Use the reason field to help understand why a severity label and score was assigned.
 
 ::: moniker-end
 
@@ -302,7 +302,7 @@ violence_eval(
 }
 ```
 
-Safety evaluations annotate violent content using a 0-7 scale that maps to corresponding severity labels. Given a numerical threshold (default to 3), evaluations also output *pass* if the score =< threshold, or *fail* otherwise. Use the reason field to help understand why a severity label and score was assigned.
+Safety evaluations annotate violent content using a 0-7 scale that maps to corresponding severity labels. Given a numerical threshold (default to 3), evaluations also output *pass* if the score <= threshold, or *fail* otherwise. Use the reason field to help understand why a severity label and score was assigned.
 
 ::: moniker-end
 
@@ -347,7 +347,7 @@ self_harm_eval(
 }
 ```
 
-Safety evaluations annotate self-harm-related content using a 0-7 scale that maps to corresponding severity labels. Given a numerical threshold (default to 3), evaluations also output *pass* if the score =< threshold, or *fail* otherwise. Use the reason field to help understand why a severity label and score was assigned.
+Safety evaluations annotate self-harm-related content using a 0-7 scale that maps to corresponding severity labels. Given a numerical threshold (default to 3), evaluations also output *pass* if the score <= threshold, or *fail* otherwise. Use the reason field to help understand why a severity label and score was assigned.
 
 ::: moniker-end
 

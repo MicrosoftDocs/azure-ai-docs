@@ -50,7 +50,7 @@ model_config = AzureOpenAIModelConfiguration(
 
 ### Evaluator model support
 
-Foundry supports  AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the large language model judge (LLM-judge) depending on the evaluators:
+Foundry supports  AzureOpenAI or OpenAI [reasoning models](../../openai/how-to/reasoning.md) and non-reasoning models for the large language model judge (LLM-judge) depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|
