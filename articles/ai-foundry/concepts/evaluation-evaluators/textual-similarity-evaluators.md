@@ -47,18 +47,6 @@ model_config = AzureOpenAIModelConfiguration(
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-``` python 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]  # Sample : https://<account_name>.services.ai.azure.com/api/projects/<project_name>
-model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")  # Sample : gpt-4o-mini
-dataset_name = os.environ.get("DATASET_NAME", "")
-dataset_version = os.environ.get("DATASET_VERSION", "1")
-
-```
-
-::: moniker-end
-
 ::: moniker range="foundry-classic"
 
 ### Evaluator model support
@@ -279,191 +267,78 @@ The numerical score is a 0-1 float. A higher score is better. Given a numerical 
 
 ::: moniker range="foundry"
 
-## Example using textual similarity evaluators
+## Using textual similarity evaluators
 
-``` python
+Textual similarity evaluators compare generated responses against ground truth text using different algorithms. Some are LLM-based (similarity) while others are algorithmic (BLEU, ROUGE, METEOR, F1, GLEU).
 
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import (
-    DatasetVersion,
-)
-import json
-import time
-from pprint import pprint
-from openai.types.evals.create_eval_jsonl_run_data_source_param import CreateEvalJSONLRunDataSourceParam, SourceFileID
-from dotenv import load_dotenv
-from datetime import datetime
+| Evaluator | What it measures | Type | Output range | Default threshold |
+|---|---|---|---|---|
+| `similarity` | Semantic similarity to ground truth | LLM-based | 1-5 integer | 3 |
+| `f1_score` | Token overlap using precision and recall | Algorithmic | 0-1 float | 0.5 |
+| `bleu_score` | N-gram overlap (machine translation metric) | Algorithmic | 0-1 float | 0.5 |
+| `gleu_score` | Per-sentence reward variant of BLEU | Algorithmic | 0-1 float | 0.5 |
+| `rouge_score` | Recall-oriented n-gram overlap | Algorithmic | 0-1 float | 0.5 |
+| `meteor_score` | Weighted alignment with synonyms | Algorithmic | 0-1 float | 0.5 |
 
+### Configuration example
 
-load_dotenv()
-
-endpoint = os.environ[
-    "AZURE_AI_PROJECT_ENDPOINT"
-]  # Sample : https://<account_name>.services.ai.azure.com/api/projects/<project_name>
-
-connection_name = os.environ.get("CONNECTION_NAME", "")
-model_endpoint = os.environ.get("MODEL_ENDPOINT", "")  # Sample: https://<account_name>.openai.azure.com.
-model_api_key = os.environ.get("MODEL_API_KEY", "")
-model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")  # Sample : gpt-4o-mini
-dataset_name = os.environ.get("DATASET_NAME", "")
-dataset_version = os.environ.get("DATASET_VERSION", "1")
-
-# Construct the paths to the data folder and data file used in this sample
-script_dir = os.path.dirname(os.path.abspath(__file__))
-data_folder = os.environ.get("DATA_FOLDER", os.path.join(script_dir, "data_folder"))
-data_file = os.path.join(data_folder, "sample_data_evaluation.jsonl")
-
-with DefaultAzureCredential() as credential:
-
-    with AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
-
-        print("Upload a single file and create a new Dataset to reference the file.")
-        dataset: DatasetVersion = project_client.datasets.upload_file(
-            name=dataset_name or f"eval-data-{datetime.utcnow().strftime('%Y-%m-%d_%H%M%S_UTC')}",
-            version=dataset_version,
-            file_path=data_file,
-        )
-        pprint(dataset)
-
-        print("Creating an OpenAI client from the AI Project client")
-
-        client = project_client.get_openai_client()
-
-        data_source_config = {
-            "type": "custom",
-            "item_schema": {
-                "type": "object",
-                "properties": {
-                    "response": {"type": "string"},
-                    "ground_truth": {"type": "string"},
-                },
-                "required": [],
-            },
-            "include_sample_schema": False,
-        }
-
-        testing_criteria = [
-            {
-                "type": "azure_ai_evaluator",
-                "name": "Similarity",
-                "evaluator_name": "builtin.similarity",
-                "data_mapping": {
-                    "response": "{{item.answer}}",
-                    "ground_truth": "{{item.ground_truth}}"
-                },
-                "initialization_parameters": {
-                    "deployment_name": f"{model_deployment_name}",
-                    "threshold": 3
-                }
-            },
-            {
-                "type": "azure_ai_evaluator",
-                "name": "ROUGEScore",
-                "evaluator_name": "builtin.rouge_score",
-                "data_mapping": {
-                    "response": "{{item.answer}}",
-                    "ground_truth": "{{item.ground_truth}}"
-                },
-                "initialization_parameters": {
-                    "rouge_type": "rouge1",
-                    "f1_score_threshold": 0.5,
-                    "precision_threshold": 0.5,
-                    "recall_threshold": 0.5
-                }
-            },
-            {
-                "type": "azure_ai_evaluator",
-                "name": "METEORScore",
-                "evaluator_name": "builtin.meteor_score",
-                "data_mapping": {
-                    "response": "{{item.answer}}",
-                    "ground_truth": "{{item.ground_truth}}"
-                },
-                "initialization_parameters": {
-                    "threshold": 0.5
-                }
-            },
-            {
-                "type": "azure_ai_evaluator",
-                "name": "GLEUScore",
-                "evaluator_name": "builtin.gleu_score",
-                "data_mapping": {
-                    "response": "{{item.answer}}",
-                    "ground_truth": "{{item.ground_truth}}"
-                },
-                "initialization_parameters": {
-                    "threshold": 0.5
-                }
-            },
-            {
-                "type": "azure_ai_evaluator",
-                "name": "F1Score",
-                "evaluator_name": "builtin.f1_score",
-                "data_mapping": {
-                    "response": "{{item.answer}}",
-                    "ground_truth": "{{item.ground_truth}}"
-                },
-                "initialization_parameters": {
-                    "threshold": 0.5
-                }
-            },
-            {
-                "type": "azure_ai_evaluator",
-                "name": "BLEUScore",
-                "evaluator_name": "builtin.bleu_score",
-                "data_mapping": {
-                    "response": "{{item.answer}}",
-                    "ground_truth": "{{item.ground_truth}}"
-                },
-                "initialization_parameters": {
-                    "threshold": 0.5
-                }
-            }
-        ]
-
-        print("Creating Eval Group")
-        eval_object = client.evals.create(
-            name="ai assisted evaluators test",
-            data_source_config=data_source_config,
-            testing_criteria=testing_criteria,
-        )
-        print(f"Eval Group created")
-
-        print("Get Eval Group by Id")
-        eval_object_response = client.evals.retrieve(eval_object.id)
-        print("Eval Run Response:")
-        pprint(eval_object_response)
-
-        print("Creating Eval Run")
-        eval_run_object = client.evals.runs.create(
-            eval_id=eval_object.id,
-            name="dataset",
-            metadata={"team": "eval-exp", "scenario": "notifications-v1"},
-            data_source=CreateEvalJSONLRunDataSourceParam(
-                source=SourceFileID(id=dataset.id or "", type="file_id"), type="jsonl"
-            ),
-        )
-        print(f"Eval Run created")
-        pprint(eval_run_object)
-
-        print("Get Eval Run by Id")
-        eval_run_response = client.evals.runs.retrieve(run_id=eval_run_object.id, eval_id=eval_object.id)
-        print("Eval Run Response:")
-        pprint(eval_run_response)
-
-        while True:
-            run = client.evals.runs.retrieve(run_id=eval_run_response.id, eval_id=eval_object.id)
-            if run.status == "completed" or run.status == "failed":
-                output_items = list(client.evals.runs.output_items.list(run_id=run.id, eval_id=eval_object.id))
-                pprint(output_items)
-                print(f"Eval Run Report URL: {run.report_url}")
-                
-                break
-            time.sleep(5)
-            print("Waiting for eval run to complete...")
-
+```python
+testing_criteria = [
+    {
+        "type": "azure_ai_evaluator",
+        "name": "Similarity",
+        "evaluator_name": "builtin.similarity",
+        "data_mapping": {
+            "response": "{{item.answer}}",
+            "ground_truth": "{{item.ground_truth}}",
+        },
+        "initialization_parameters": {
+            "deployment_name": model_deployment,
+            "threshold": 3,
+        },
+    },
+    {
+        "type": "azure_ai_evaluator",
+        "name": "BLEUScore",
+        "evaluator_name": "builtin.bleu_score",
+        "data_mapping": {
+            "response": "{{item.answer}}",
+            "ground_truth": "{{item.ground_truth}}",
+        },
+        "initialization_parameters": {"threshold": 0.5},
+    },
+    {
+        "type": "azure_ai_evaluator",
+        "name": "ROUGEScore",
+        "evaluator_name": "builtin.rouge_score",
+        "data_mapping": {
+            "response": "{{item.answer}}",
+            "ground_truth": "{{item.ground_truth}}",
+        },
+        "initialization_parameters": {
+            "rouge_type": "rouge1",  # Options: rouge1, rouge2, rougeL, rougeLsum
+            "f1_score_threshold": 0.5,
+        },
+    },
+]
 ```
+
+### Output
+
+LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evaluators output 0-1 floats. All evaluators output *pass* or *fail* based on their thresholds.
+
+```json
+{
+    "similarity": 4,
+    "similarity_result": "pass",
+    "similarity_threshold": 3,
+    "bleu_score": 0.42,
+    "bleu_result": "fail",
+    "bleu_threshold": 0.5
+}
+```
+
+For complete SDK samples, see [textual similarity evaluator samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_ai_assisted.py).
 
 ::: moniker-end
 
