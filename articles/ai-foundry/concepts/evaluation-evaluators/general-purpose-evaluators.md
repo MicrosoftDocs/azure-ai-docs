@@ -192,136 +192,72 @@ While F1 score outputs a numerical score on 0-1 float scale, the other evaluator
 
 ::: moniker range="foundry"
 
-## Example using coherence and fluency
+## Using general-purpose evaluators
+
+General-purpose evaluators assess the quality of AI-generated text independent of specific use cases. Configure them in your `testing_criteria`:
+
+| Evaluator | What it measures | Required inputs |
+|-----------|------------------|-----------------|
+| `builtin.coherence` | Logical flow and organization of ideas | `query`, `response` |
+| `builtin.fluency` | Grammatical accuracy and readability | `query`, `response` |
+
+**Data mapping syntax:**
+
+- Use `{{item.field_name}}` to reference fields from your test dataset (for example, `{{item.query}}`).
+- Use `{{sample.output_items}}` to reference response messages when evaluating with an agent/model target or agent response data source.
+
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on data sources.
+
+### Configuration example
 
 ```python
-from dotenv import load_dotenv
-import json
-import os
-import time
-from pprint import pprint
-
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from openai.types.evals.create_eval_jsonl_run_data_source_param import (
-    CreateEvalJSONLRunDataSourceParam,
-    SourceFileContent,
-    SourceFileContentContent,
-)
-load_dotenv()
-
-def main() -> None:
-    endpoint = os.environ[
-        "AZURE_AI_PROJECT_ENDPOINT"
-    ]  # Sample : https://<account_name>.services.ai.azure.com/api/projects/<project_name>
-    model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")  # Sample : gpt-4o-mini
-
-    with DefaultAzureCredential() as credential:
-        with AIProjectClient(
-            endpoint=endpoint, credential=credential
-        ) as project_client:
-            print("Creating an OpenAI client from the AI Project client")
-
-            client = project_client.get_openai_client()
-
-            data_source_config = {
-                "type": "custom",
-                "item_schema": {
-                    "type": "object",
-                    "properties": {"query": {"type": "string"}, "response": {"type": "string"}},
-                    "required": [],
-                },
-                "include_sample_schema": True,
-            }
-
-            testing_criteria = [
-                {
-                    "type": "azure_ai_evaluator",
-                    "name": "coherence",
-                    "evaluator_name": "builtin.coherence",
-                    "initialization_parameters": {"deployment_name": f"{model_deployment_name}"},
-                    "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
-                },
-                {
-                    "type": "azure_ai_evaluator",
-                    "name": "fluency",
-                    "evaluator_name": "builtin.fluency",
-                    "initialization_parameters": {"deployment_name": f"{model_deployment_name}"},
-                    "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
-                }
-            ]
-
-            print("Creating Eval Group")
-            eval_object = client.evals.create(
-                name="Test Coherence Evaluator with inline data",
-                data_source_config=data_source_config,
-                testing_criteria=testing_criteria,
-            )
-            print(f"Eval Group created")
-
-            print("Get Eval Group by Id")
-            eval_object_response = client.evals.retrieve(eval_object.id)
-            print("Eval Run Response:")
-            pprint(eval_object_response)
-
-            # Sample inline data
-            success_query = "What is the capital/major city of France?"
-            success_response = "The capital/major city of France is Paris."
-
-            # Failure example - incoherent response
-            failure_query = "What is the capital/major city of France?"
-            failure_response = "France capital/major city is... well, the city where government sits is Paris but no wait, Lyon is bigger actually maybe Rome? The French people live in many cities but the main one, I think it's definitely Paris or maybe not, depends on what you mean by capital/major city."
-
-            print("Creating Eval Run with Inline Data")
-            eval_run_object = client.evals.runs.create(
-                eval_id=eval_object.id,
-                name="inline_data_run",
-                metadata={"team": "eval-exp", "scenario": "inline-data-v1"},
-                data_source=CreateEvalJSONLRunDataSourceParam(
-                    type="jsonl",
-                    source=SourceFileContent(
-                        type="file_content",
-                        content=[
-                            # Success example - coherent response
-                            SourceFileContentContent(item={"query": success_query, "response": success_response}),
-                            # Failure example - incoherent response
-                            SourceFileContentContent(item={"query": failure_query, "response": failure_response}),
-                        ],
-                    ),
-                ),
-            )
-
-            print(f"Eval Run created")
-            pprint(eval_run_object)
-
-            print("Get Eval Run by Id")
-            eval_run_response = client.evals.runs.retrieve(run_id=eval_run_object.id, eval_id=eval_object.id)
-            print("Eval Run Response:")
-            pprint(eval_run_response)
-
-            print("\n\n----Eval Run Output Items----\n\n")
-
-            while True:
-                run = client.evals.runs.retrieve(run_id=eval_run_response.id, eval_id=eval_object.id)
-                if run.status == "completed" or run.status == "failed":
-                    output_items = list(client.evals.runs.output_items.list(run_id=run.id, eval_id=eval_object.id))
-                    pprint(output_items)
-                    print(f"Eval Run Status: {run.status}")
-                    print(f"Eval Run Report URL: {run.report_url}")
-                    break
-                time.sleep(5)
-                print("Waiting for eval run to complete...")
-
-
-if __name__ == "__main__":
-    main()
+testing_criteria = [
+    {
+        "type": "azure_ai_evaluator",
+        "name": "coherence",
+        "evaluator_name": "builtin.coherence",
+        "initialization_parameters": {"deployment_name": model_deployment},
+        "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
+    },
+    {
+        "type": "azure_ai_evaluator",
+        "name": "fluency",
+        "evaluator_name": "builtin.fluency",
+        "initialization_parameters": {"deployment_name": model_deployment},
+        "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
+    },
+]
 ```
 
-For more details, see the [complete working sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_coherence.py).
+### Output
+
+These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. The following shows a simplified example:
+
+```json
+{
+    "type": "azure_ai_evaluator",
+    "name": "coherence",
+    "score": 4,
+    "passed": true,
+    "reason": "The response directly addresses the question with clear, logical connections between ideas."
+}
+```
+
+For full working examples, see the [coherence sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_coherence.py) and [fluency sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_fluency.py).
 
 ::: moniker-end
 
 ## Related content
 
+::: moniker range="foundry-classic"
+
 - [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+
+::: moniker-end
