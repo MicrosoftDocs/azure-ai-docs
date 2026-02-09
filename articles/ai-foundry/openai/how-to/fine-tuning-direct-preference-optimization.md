@@ -9,8 +9,8 @@ ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 monikerRange: 'foundry-classic || foundry'
 ms.topic: how-to
 ms.date: 11/26/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 ---
 
 # Direct preference optimization (preview)
