@@ -167,6 +167,9 @@ To use RAG evaluators, configure them in your `testing_criteria`. Each evaluator
 | Retrieval | `query`, `context` |
 | Document Retrieval | `retrieval_ground_truth`, `retrieval_documents` |
 
+> [!NOTE]
+> For agent target or agent response evaluation, `context` is optional if the response contains tool calls. The evaluator can extract context from tool call results.
+
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
