@@ -258,6 +258,7 @@ General:
 Indexing APIs:
 
 + Supported maximum 1,000 documents per batch of index uploads, merges, or deletes.
++ Each request supports between 1 and 32,000 indexing actions.
 
 Query APIs:
 

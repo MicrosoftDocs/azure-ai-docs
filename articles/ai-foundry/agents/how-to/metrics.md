@@ -1,13 +1,13 @@
 ---
 title: Monitor Foundry Agent Service with Azure Monitor
 description: Learn how to use Azure Monitor to view, analyze, and alert on platform metrics for Foundry Agent Service, including Log Analytics export and KQL queries.
-ms.date: 01/20/2026
+ms.date: 02/03/2026
 ms.custom: horz-monitor, subject-monitoring, pilot-ai-workflow-jan-2026
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: concept-article
+ms.topic: how-to
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
@@ -35,8 +35,8 @@ Monitoring is available for agents in a [standard agent setup](../concepts/stand
 ## Prerequisites
 
 - An agent running in a [standard agent setup](../concepts/standard-agent-setup.md).
-- Access to the Azure resource you want to monitor (and permissions to view monitoring data).
-- If you want to export metrics to Log Analytics or create alerts, you need permissions that allow you to create diagnostic settings and alert rules in your Azure subscription.
+- Access to the Azure resource you want to monitor. To view metrics, you need the **Monitoring Reader** role or equivalent permissions.
+- To export metrics to Log Analytics or create alerts, you need the **Monitoring Contributor** role or equivalent permissions to create diagnostic settings and alert rules in your Azure subscription.
 
 ## Dashboards
 
@@ -53,7 +53,9 @@ To access the monitoring dashboards, sign in to the [Azure portal](https://porta
 
 Azure Monitor collects platform metrics automatically for Azure resources. Platform metrics are stored in the Azure Monitor metrics database and are suitable for near real-time charts and metric alerts.
 
-If you want to query metrics in Log Analytics, build workbooks, export to external systems, or retain data longer, configure diagnostic settings to route metrics to other destinations. For more information, see [Monitoring data from Azure resources](/azure/azure-monitor/essentials/monitor-azure-resource#monitoring-data-from-azure-resources) and [Create diagnostic settings to collect platform logs and metrics in Azure](/azure/azure-monitor/platform/diagnostic-settings).
+If you want to query metrics in Log Analytics, build workbooks, export to external systems, or retain data longer, configure diagnostic settings to route metrics to other destinations. For more information, see [Monitoring data from Azure resources](/azure/azure-monitor/essentials/monitor-azure-resource#monitoring-data-from-azure-resources) and [Create diagnostic settings to collect platform logs and metrics in Azure](/azure/azure-monitor/essentials/diagnostic-settings).
+
+Platform metrics are retained for 93 days by default. If you route metrics to Log Analytics, retention depends on your workspace configuration.
 
 Routing metrics to Log Analytics can increase costs. For more information, see [Azure Monitor Logs cost calculations and options](/azure/azure-monitor/logs/cost-logs).
 
@@ -67,7 +69,7 @@ Azure Monitor provides platform metrics for most services. These metrics are:
 - Used to track the performance of a resource over time.
 - Collected automatically by Azure Monitor (no configuration required).
 
-For a list of all metrics it's possible to gather for all resources in Azure Monitor, see [Supported metrics in Azure Monitor](/azure/azure-monitor/platform/metrics-supported).
+For a list of all metrics it's possible to gather for all resources in Azure Monitor, see [Supported metrics in Azure Monitor](/azure/azure-monitor/essentials/metrics-supported).
 
 ## Agent Service metrics
 
@@ -116,7 +118,9 @@ To configure diagnostic settings in the Azure portal:
 1. Create a diagnostic setting and choose to export metrics to your destination (for example, a Log Analytics workspace).
 1. Save the diagnostic setting.
 
-For more information, see [Create diagnostic settings to collect platform logs and metrics in Azure](/azure/azure-monitor/platform/diagnostic-settings).
+After you save the setting, it appears in the **Diagnostic settings** list for the resource. Metrics typically begin flowing to the destination within a few minutes.
+
+For more information, see [Create diagnostic settings to collect platform logs and metrics in Azure](/azure/azure-monitor/essentials/diagnostic-settings).
 
 ### Query metrics with Log Analytics (KQL)
 
@@ -154,6 +158,8 @@ To create a metric alert rule:
 1. If needed, use dimensions (for example, `RunStatus` or `StatusCode`) to scope the alert.
 1. Configure the action group, severity, and evaluation frequency.
 1. Select **Create**.
+
+After you create the rule, it appears in the **Alert rules** list. The rule becomes active immediately and evaluates based on the frequency you configured.
 
 For application-layer observability, see [Monitor your generative AI applications (preview)](../../how-to/monitor-applications.md).
 

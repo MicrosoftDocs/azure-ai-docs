@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: reference
-ms.date: 02/27/2025
+ms.date: 02/06/2026
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -17,6 +17,8 @@ ms.custom: devx-track-python
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
+
 This article provides reference documentation for Python and REST for the new Azure OpenAI On Your Data API. The latest API version is `2024-05-01-preview` [Swagger spec](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-05-01-preview).
 
 > [!NOTE]
@@ -24,7 +26,7 @@ This article provides reference documentation for Python and REST for the new Az
 > * The API path is changed from `/extensions/chat/completions` to `/chat/completions`.
 > * The naming convention of property keys and enum values is changed from camel casing to snake casing. Example: `deploymentName` is changed to `deployment_name`.
 > * The data source type `AzureCognitiveSearch` is changed to `azure_search`.
-> * The citations and intent is moved from assistant message's context tool messages to assistant message's context root level with explicit [schema defined](#context).
+> * The citations and intent are moved from assistant message's context tool messages to assistant message's context root level with explicit [schema defined](#context).
 
 ```http
 POST {endpoint}/openai/deployments/{deployment-id}/chat/completions?api-version={api-version}

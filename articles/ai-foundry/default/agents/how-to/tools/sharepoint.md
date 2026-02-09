@@ -26,7 +26,10 @@ zone_pivot_groups: selection-agent-sharepoint-new
 > - This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/).
 > - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
-Use the SharePoint tool (preview) for SharePoint grounding in Microsoft Foundry Agent Service by retrieving content from a SharePoint site or folder (for example, `contoso.sharepoint.com/sites/policies`). When a user asks a question, the agent can invoke the SharePoint tool to retrieve relevant text from documents the user can access (requires a Microsoft 365 Copilot license). The agent then generates a response based on that retrieved content.
+Use the SharePoint tool (preview) for SharePoint grounding in Microsoft Foundry Agent Service by retrieving content from a SharePoint site or folder (for example, `contoso.sharepoint.com/sites/policies`). When a user asks a question, the agent can invoke the SharePoint tool to retrieve relevant text from documents the user can access. The agent then generates a response based on that retrieved content.
+
+> [!NOTE]
+> SharePoint tool access requires either a Microsoft 365 Copilot license or an enabled pay-as-you-go model. See [Prerequisites](#prerequisites) for details.
 
 This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissions continue to apply to every request. For details on the underlying Microsoft 365 Copilot Retrieval API integration, see [How it works](#how-it-works).
 
@@ -38,9 +41,9 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 ## Prerequisites
 
-- Eligible license or Pay-as-you-go model:
-  - Developers and end users have Microsoft 365 Copilot license, as required by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-  - If developers and end users don't have Microsoft 365 Copilot license, you can enable the [pay-as-you-go moodel](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
+- Eligible license or pay-as-you-go model:
+  - Developers and end users have a Microsoft 365 Copilot license, as required by the [Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+  - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 - Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md?view=foundry&preserve-view=true).
 - Developers and end users have at least `READ` access to the SharePoint site.
 - The latest prerelease package installed:
@@ -65,18 +68,48 @@ The SharePoint tool uses your project connection to determine which SharePoint s
 
 If you need to create a SharePoint connection for your project, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
 
-## Quick verification
-
-Before you run the full samples, validate these basics:
-
-1. `AZURE_AI_PROJECT_ENDPOINT` points to your Foundry project.
-1. `SHAREPOINT_PROJECT_CONNECTION_ID` starts with `/subscriptions/` and matches your project connection.
-1. Your first successful response includes a `url_citation` annotation pointing to a SharePoint URL.
-
 ## Code example
 
 :::zone pivot="python"
-## Sample for use of an Agent with SharePoint
+
+### Quick verification
+
+Before running the full sample, verify your SharePoint connection exists:
+
+```python
+import os
+
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+
+load_dotenv()
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+    print("Connected to project.")
+    
+    # Verify SharePoint connection exists
+    connection_name = os.environ.get("SHAREPOINT_PROJECT_CONNECTION_NAME")
+    if connection_name:
+        try:
+            conn = project_client.connections.get(connection_name)
+            print(f"SharePoint connection verified: {conn.name}")
+            print(f"Connection ID: {conn.id}")
+        except Exception as e:
+            print(f"SharePoint connection '{connection_name}' not found: {e}")
+    else:
+        # List available connections to help find the right one
+        print("SHAREPOINT_PROJECT_CONNECTION_NAME not set. Available connections:")
+        for conn in project_client.connections.list():
+            print(f"  - {conn.name}")
+```
+
+If this code runs without errors, your credentials and SharePoint connection are configured correctly.
+
+### Full sample
 
 The following sample demonstrates how to create an Agent that uses the SharePoint tool to ground responses with content from a SharePoint site.
 
@@ -94,26 +127,25 @@ from azure.ai.projects.models import (
 
 load_dotenv()
 
-project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
-
-# Get the OpenAI client for responses and conversations
-openai_client = project_client.get_openai_client()
-
-connection_id = os.environ["SHAREPOINT_PROJECT_CONNECTION_ID"]
-print(f"SharePoint connection ID: {connection_id}")
-
-sharepoint_tool = SharepointAgentTool(
-    sharepoint_grounding_preview=SharepointGroundingToolParameters(
-        project_connections=[
-            ToolProjectConnection(project_connection_id=connection_id)
-        ]
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    # Get connection ID from connection name
+    sharepoint_connection = project_client.connections.get(
+        os.environ["SHAREPOINT_PROJECT_CONNECTION_NAME"],
     )
-)
+    print(f"SharePoint connection ID: {sharepoint_connection.id}")
 
-with project_client:
+    sharepoint_tool = SharepointAgentTool(
+        sharepoint_grounding_preview=SharepointGroundingToolParameters(
+            project_connections=[
+                ToolProjectConnection(project_connection_id=sharepoint_connection.id)
+            ]
+        )
+    )
+
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
@@ -194,7 +226,42 @@ Full response: Based on the meeting notes from your SharePoint site, the last me
 :::zone-end
 
 :::zone pivot="csharp"
-## Sample for use of an Agent with SharePoint
+
+### Quick verification
+
+Before running the full sample, verify your SharePoint connection exists:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+
+var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
+var sharepointConnectionName = System.Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_NAME");
+
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Verify SharePoint connection exists
+try
+{
+    AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: sharepointConnectionName);
+    Console.WriteLine($"SharePoint connection verified: {conn.Name}");
+    Console.WriteLine($"Connection ID: {conn.Id}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"SharePoint connection '{sharepointConnectionName}' not found: {ex.Message}");
+    // List available connections
+    Console.WriteLine("Available connections:");
+    foreach (var conn in projectClient.Connections.GetConnections())
+    {
+        Console.WriteLine($"  - {conn.Name}");
+    }
+}
+```
+
+If this code runs without errors, your credentials and SharePoint connection are configured correctly.
+
+### Full sample
 
 The following sample demonstrates how to create an Agent that uses the SharePoint tool to ground responses with content from a SharePoint site. This example uses synchronous methods for simplicity. For an asynchronous version, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample24_Sharepoint.md) on the Azure SDK for .NET GitHub repository.
 
@@ -209,19 +276,22 @@ using Azure.Identity;
 // Create an agent client and read the environment variables, which will be used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
-var sharepointConnectionId = System.Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_ID");
+var sharepointConnectionName = System.Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_NAME");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Get connection ID from connection name
+AIProjectConnection sharepointConnection = projectClient.Connections.GetConnection(connectionName: sharepointConnectionName);
 
 // Use the SharePoint connection ID to initialize the SharePointGroundingToolOptions,
 // which will be used to create SharepointAgentTool. Use this tool to create an Agent.
 SharePointGroundingToolOptions sharepointToolOption = new()
 {
-  ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnectionId) }
+    ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
 };
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful assistant.",
-    Tools = { new SharepointAgentTool(sharepointToolOption), }
+    Tools = { new SharepointPreviewTool(sharepointToolOption), }
 };
 AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
@@ -229,38 +299,36 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 
 // Create the response and make sure we are always using tool.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-ResponseCreationOptions responseOptions = new()
+CreateResponseOptions responseOptions = new()
 {
-    ToolChoice = ResponseToolChoice.CreateRequiredChoice()
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("What is Contoso whistleblower policy") }
 };
-OpenAIResponse response = responseClient.CreateResponse("What is Contoso whistleblower policy", options: responseOptions);
+ResponseResult response = responseClient.CreateResponse(options: responseOptions);
 
 // SharePoint tool can create the reference to the page, grounding the data.
 // Create the GetFormattedAnnotation method to get the URI annotation.
-private static string GetFormattedAnnotation(OpenAIResponse response)
+string annotation = "";
+foreach (ResponseItem item in response.OutputItems)
 {
-    foreach (ResponseItem item in response.OutputItems)
+    if (item is MessageResponseItem messageItem)
     {
-        if (item is MessageResponseItem messageItem)
+        foreach (ResponseContentPart content in messageItem.Content)
         {
-            foreach (ResponseContentPart content in messageItem.Content)
+            foreach (ResponseMessageAnnotation messageAnnotation in content.OutputTextAnnotations)
             {
-                foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+                if (messageAnnotation is UriCitationMessageAnnotation uriAnnotation)
                 {
-                    if (annotation is UriCitationMessageAnnotation uriAnnotation)
-                    {
-                        return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
-                    }
+                    annotation = $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
                 }
             }
         }
     }
-    return "";
 }
 
 // Print the Agent output and add the annotation at the end.
 Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
-Console.WriteLine($"{response.GetOutputText()}{GetFormattedAnnotation(response)}");
+Console.WriteLine($"{response.GetOutputText()}{annotation}");
 
 // After the sample is completed, delete the Agent we have created.
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
@@ -366,7 +434,43 @@ The API returns a JSON response with the agent's answer and citation information
 :::zone-end
 
 :::zone pivot="typescript"
-## Sample for use of an Agent with SharePoint
+
+### Quick verification
+
+Before running the full sample, verify your SharePoint connection exists:
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const sharepointConnectionName = process.env["SHAREPOINT_PROJECT_CONNECTION_NAME"] || "<sharepoint connection name>";
+
+async function verifyConnection(): Promise<void> {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  console.log("Connected to project.");
+
+  try {
+    const conn = await project.connections.get(sharepointConnectionName);
+    console.log(`SharePoint connection verified: ${conn.name}`);
+    console.log(`Connection ID: ${conn.id}`);
+  } catch (error) {
+    console.log(`SharePoint connection '${sharepointConnectionName}' not found: ${error}`);
+    // List available connections
+    console.log("Available connections:");
+    for await (const conn of project.connections.list()) {
+      console.log(`  - ${conn.name}`);
+    }
+  }
+}
+
+verifyConnection().catch(console.error);
+```
+
+If this code runs without errors, your credentials and SharePoint connection are configured correctly.
+
+### Full sample
 
 This sample demonstrates how to create an AI agent with SharePoint capabilities using the `SharepointAgentTool` and synchronous Azure AI Projects client. The agent can search SharePoint content and provide responses with relevant information from SharePoint sites. For a JavaScript version of this sample, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentSharepoint.js) in the Azure SDK for JavaScript GitHub repository.
 
@@ -377,12 +481,16 @@ import "dotenv/config";
 
 const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const sharepointProjectConnectionId =
-  process.env["SHAREPOINT_PROJECT_CONNECTION_ID"] || "<sharepoint project connection id>";
+const sharepointConnectionName =
+  process.env["SHAREPOINT_PROJECT_CONNECTION_NAME"] || "<sharepoint connection name>";
 
 export async function main(): Promise<void> {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
+
+  // Get connection ID from connection name
+  const sharepointConnection = await project.connections.get(sharepointConnectionName);
+  console.log(`SharePoint connection ID: ${sharepointConnection.id}`);
 
   console.log("Creating agent with SharePoint tool...");
 
@@ -398,7 +506,7 @@ export async function main(): Promise<void> {
         sharepoint_grounding_preview: {
           project_connections: [
             {
-              project_connection_id: sharepointProjectConnectionId,
+              project_connection_id: sharepointConnection.id,
             },
           ],
         },
@@ -538,23 +646,22 @@ The SharePoint tool makes it possible by enabling seamless integrations between 
 
 For more information about delegated access and identity passthrough in Foundry, see [Agent identity concepts in Microsoft Foundry](../../concepts/agent-identity.md).
 
-Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
+Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By using the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, this capability ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
 
-Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as Identity Passthrough/On-Behalf-Of (OBO) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, the Foundry Agent service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored towards specific end users.
+Customers rely on data security in SharePoint to access, create, and share documents with flexible document-level access control. Enterprise features such as identity passthrough (On-Behalf-Of) authentication ensure proper access control. End users receive responses generated from SharePoint documents they have permission to access. By using OBO authentication, Foundry Agent Service uses the end user's identity to authorize and retrieve relevant SharePoint documents, generating responses tailored to specific end users.
 
 ## Troubleshooting
 
-- **AuthenticationError: AppOnly OBO tokens not supported by target service**
-
-  You're using an application's identity to authenticate with Foundry Agent Service and the SharePoint tool. Use a user identity (identity passthrough).
-
-- **Forbidden: Authorization Failed - User does not have valid license**
-
-  The user doesn't have a Microsoft 365 Copilot license. Assign a Microsoft 365 Copilot license, as required by the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-
-- **401 or authentication failures**
-
-  Confirm the user in Foundry and Microsoft 365 is in the same tenant.
+| Issue | Cause | Resolution |
+| --- | --- | --- |
+| `AuthenticationError: AppOnly OBO tokens not supported by target service` | Using application identity instead of user identity | The SharePoint tool requires user identity (identity passthrough). Don't use application-only authentication. |
+| `Forbidden: Authorization Failed - User does not have valid license` | Missing Microsoft 365 Copilot license or pay-as-you-go model | Assign a Microsoft 365 Copilot license to the user or enable pay-as-you-go. See [Prerequisites](#prerequisites). |
+| 401 or authentication failures | Cross-tenant access attempt | Confirm the user in Foundry and Microsoft 365 is in the same tenant. |
+| Tool returns no results | User lacks access to SharePoint content | Verify the user has read access to the SharePoint sites and documents being queried. |
+| Slow response times | Large document search scope | Narrow the search scope by specifying specific sites or libraries. Consider using more specific search queries. |
+| Incomplete document retrieval | Content not indexed | Confirm the SharePoint content is indexed by Microsoft Search. Recently added content might need time to be indexed. |
+| `Resource not found` errors | Invalid site or library path | Verify the SharePoint site URL and library paths are correct and accessible to the user. |
+| Inconsistent search results | Semantic index sync delay | Wait for the semantic index to sync. Large content changes might take time to propagate. See [Semantic indexing for Microsoft 365 Copilot](/microsoftsearch/semantic-index-for-copilot). |
 
 ## Next steps
 

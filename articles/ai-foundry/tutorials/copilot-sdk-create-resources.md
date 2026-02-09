@@ -50,7 +50,7 @@ If you completed other tutorials or quickstarts, you might have already created 
 
 You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Foundry project by using this set of steps for each model.
 
-These steps deploy a model to a real-time endpoint from the Foundry portal [model catalog](../how-to/model-catalog-overview.md):
+These steps deploy a model to a real-time endpoint from the Foundry portal [model catalog](../concepts/foundry-models-overview.md):
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 

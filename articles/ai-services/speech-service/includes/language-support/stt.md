@@ -154,6 +154,7 @@ ms.author: pafarley
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) |   |
 | `zu-ZA` | isiZulu (South Africa) | ✅ |
 
+
 <sup>1</sup> The model is bilingual and also supports English.
 
 ### Custom speech

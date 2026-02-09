@@ -1,12 +1,12 @@
 ---
 title: Overview of web grounding capabilities in Foundry
 titleSuffix: Microsoft Foundry
-description: Learn how to ground agent responses with web data.
+description: Learn how to choose the right web grounding tool for your Microsoft Foundry agents. Compare Web Search, Grounding with Bing Search, and Bing Custom Search.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: how-to
+ms.topic: concept-article
 ms.date: 01/20/2026
 author: alvinashcraft
 ms.author: aashcraft
@@ -16,16 +16,26 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Web Grounding Tools Overview
+# Web grounding tools overview
 
-Large language models work with a knowledge cutoff. They can't access new information beyond a fixed point in time. By connecting with web, your agents can incorporate real-time public web data when generating responses. By using these tools, you can ask questions such as "what is the top AI news today". 
+Large language models work with a knowledge cutoff. They can't access new information beyond a fixed point in time. By connecting with web grounding tools, your agents can incorporate real-time public web data when generating responses. For example, you can ask questions such as "what is the top AI news today" and receive current, cited answers.
 
-The grounding process involves several key steps: 
+## How web grounding works
 
-- Query formulation: The agent identifies information gaps and constructs search queries.
-- Search execution: The grounding tool submits queries to search engines and retrieves results.
-- Information synthesis: The agent processes search results and integrates findings into responses.
-- Source attribution: The agent provides transparency by citing search sources. 
+The grounding process involves several key steps:
+
+1. **Query formulation**: The agent identifies information gaps and constructs search queries based on the user's input.
+1. **Search execution**: The grounding tool submits queries to Bing and retrieves results.
+1. **Information synthesis**: The agent processes search results and integrates findings into responses.
+1. **Source attribution**: The agent provides transparency by citing search sources with URLs.
+
+## Prerequisites
+
+Before using any web grounding tool, ensure you have:
+
+- A [basic or standard agent environment](../../../../agents/environment-setup.md).
+- The latest prerelease SDK package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for installation steps.
+- An Azure OpenAI model deployment in your Foundry project.
 
 >[!IMPORTANT]
 > - Web Search (preview) uses Grounding with Bing Search and Grounding with Bing Custom Search are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:~:text=First-Party%20Consumption%20Services) with [terms for online services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS). They're governed by the [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). 
@@ -53,7 +63,37 @@ The grounding process involves several key steps:
 | **Other parameters**          |  - `count`: the maximum number of results returned by Bing <br>- `freshness`: specifies the period for the search results<br>- `market`: specifies the region for the search results <br>- `set_lang`: specifies the language for the search results <br> Learn more [here](./bing-tools.md#optional-parameters) |
 | **Supported models**          |  Azure OpenAI models and Azure direct models |
 
-## Next Steps
+## Common questions
 
-- Use  [Web Search tool(preview)](./web-search.md)
-- Use [Grounding with Bing Custom Search tool(preview)](./bing-tools.md)
+### Which tool should I use if I'm just getting started?
+
+Use [Web Search (preview)](./web-search.md). It requires no additional Azure resources, handles Bing resource management automatically, and provides geo-relevant results with the `user_location` parameter.
+
+### Can I use web grounding tools with network-secured Foundry projects?
+
+Web grounding tools don't respect VPN or private endpoints. They act as public endpoints. Consider this security implication when using network-secured Foundry with these tools.
+
+### How do I restrict search results to specific websites?
+
+Use [Grounding with Bing Custom Search (preview)](./bing-tools.md). This tool lets you define an allow-list or block-list of domains, so search results come only from sources you approve.
+
+### Are there additional costs for web grounding?
+
+Yes. Web Search (preview), Grounding with Bing Search and Grounding with Bing Custom Search (preview) incur costs beyond standard Azure OpenAI usage. See [pricing details](https://www.microsoft.com/bing/apis/grounding-pricing).
+
+## Troubleshooting
+
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| Agent doesn't use web grounding | Tool not configured or model doesn't support the tool. | Verify the tool is added to your agent definition. Use `tool_choice="required"` to force tool use. Check that your model deployment supports the tool. |
+| No citations in response | The model generated a response without using search results. | Add explicit instructions to always cite sources. Use `tool_choice="required"` to ensure tool invocation. |
+| Search results aren't relevant | Query formulation didn't capture user intent. | Improve agent instructions to guide query construction. For Bing tools, adjust `market` and `set_lang` parameters. |
+| Tool blocked by administrator | Your organization disabled web grounding tools. | Contact your Azure administrator to enable access. See [administrator control](./web-search.md#administrator-control-for-the-web-search-tool). |
+| Unexpected costs | Web grounding tools have usage-based pricing. | Review [pricing details](https://www.microsoft.com/bing/apis/grounding-pricing) and implement rate limiting if needed. |
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Use Web Search tool (preview)](./web-search.md)
+- [Use Grounding with Bing Search and Grounding with Bing Custom Search](./bing-tools.md)
+- [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)

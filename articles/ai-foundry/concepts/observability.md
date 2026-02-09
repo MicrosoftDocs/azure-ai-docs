@@ -188,7 +188,7 @@ Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generati
 
 ::: moniker range="foundry"
 
-- Bring your own data: You can evaluate your AI applications in preproduction using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators, and view results via the Foundry portal. Use Foundry's evaluation wizard or [Azure AI Evaluation SDK's](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md), and [view results via the Foundry portal](../how-to/evaluate-results.md).
+- Bring your own data: You can evaluate your AI applications in preproduction using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators, and view results via the Foundry portal. Use Foundry's evaluation wizard or [Foundry SDK's](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md), and [view results via the Foundry portal](../how-to/evaluate-results.md).
 
 - Simulators and AI red teaming agent: If you don't have evaluation data (test data), simulators can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
 

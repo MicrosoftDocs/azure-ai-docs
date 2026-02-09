@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 01/21/2026
+ms.date: 02/02/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026
@@ -16,12 +16,15 @@ ai-usage: ai-assisted
 
 # Agent development lifecycle
 
-The agent building experience in Microsoft Foundry includes tools for development and observability, from agent creation to embedding your agent into your applications. You can use the Foundry portal or code to build, customize, and test your agent's behavior. You can then iterate with tracing, evaluation, and monitoring to improve quality and reliability. When you're ready, publish your agent as an agent application to share it and integrate it into your apps.
+The agent development lifecycle in Microsoft Foundry spans from initial creation through production monitoring. Following this lifecycle helps you build reliable agents, catch issues early, and ship with confidence. Use the Foundry portal or code to build, customize, and test your agent's behavior. Then iterate with tracing, evaluation, and monitoring to improve quality and reliability. When you're ready, publish your agent as an agent application to share it and integrate it into your apps.
+
+This article is for developers who want to build, test, and ship production-ready agents.
 
 ## Prerequisites
 
 - A [Microsoft Foundry project](../../../how-to/create-projects.md)
 - Familiarity with the [Agents playground](../../../concepts/concept-playgrounds.md)
+- For code development: Familiarity with the [development environment setup](../../../how-to/develop/install-cli-sdk.md)
 
 ## Lifecycle at a glance
 
@@ -36,17 +39,17 @@ Use this lifecycle as a practical checklist while you build and ship an agent.
 1. **Publish and integrate**: Publish a stable endpoint and integrate it into your application. For steps, see [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md).
 1. **Monitor and iterate**: Monitor performance and quality in production, then update and republish as needed. For guidance, see [Monitor quality and safety](../../../how-to/monitor-quality-safety.md).
 
-## Types of agents
+## Agent types in Microsoft Foundry
 
 There are three types of agents:
 
-- **Prompt-based**: A prompt-based agent is a declaratively defined single agent that combines model configuration, instructions, tools, and natural language prompts to drive behavior. You can extend it by attaching tools for knowledge and memory. You can edit, version, test, evaluate, monitor, and publish prompt-based agents from the [Agents playground](../../../concepts/concept-playgrounds.md) in the Foundry portal.
+- **Prompt-based**: A prompt-based agent is a declaratively defined single agent that combines model configuration, instructions, tools, and natural language prompts to drive behavior. Extend it by attaching tools for knowledge and memory. Edit, version, test, evaluate, monitor, and publish prompt-based agents from the [Agents playground](../../../concepts/concept-playgrounds.md) in the Foundry portal.
 
 - **Workflow**: Use workflows to build a more advanced workflow that orchestrates a sequence of actions or coordinates multiple agents. Workflows have their own interface in the portal, but the same lifecycle applies. For details, see [Build a workflow in Microsoft Foundry](./workflow.md).
 
-- **Hosted**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see [What are hosted agents?](./hosted-agents.md)
+- **Hosted (preview)**: Hosted agents are containerized agents that you build in code by using supported frameworks or custom code. Foundry Agent Service deploys and manages these agents. You don't edit hosted agents in the agent-building UI, but you can still invoke, evaluate, monitor, and publish them. For details, see [What are hosted agents?](./hosted-agents.md)
 
-You can create prompt-based agents and workflows in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+Create prompt-based agents and workflows in the Foundry portal or your own development environment by using the CLI, SDK, or REST API. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 ## Creating a prompt-based agent
 
@@ -55,7 +58,7 @@ If you already know what kind of agent you want to create, name it and then star
 > [!NOTE]
 > After you name your agent, you can't change the name. In code, you refer to your agent by `<agent_name>:<version>`.
 
-## Develop in code
+## Develop agents in code
 
 If you prefer to work in code, use supported ways to bring your agent code into a development environment from which you can test locally and then deploy to Azure.
 
@@ -74,19 +77,21 @@ Agent versioning provides the following capabilities for managing agent configur
 - **Version immutability**: Each version of an agent is immutable after you save it. Any modifications to an existing version require saving and creating a new version. This requirement helps ensure version integrity and prevents accidental overwrites.
 - **Draft state management**: You can test agents in an unsaved state for experimentation. You lose unsaved changes if you leave the Foundry portal, so save frequently to preserve important modifications.
 - **Version control operations**: You can direct requests to specific agent versions to enable controlled deployment and rollback capabilities.
-- **Version history navigation**: You can access the version history for any agent, go to any specific version, and perform the following comparisons:
+- **Version history navigation**: Access the version history for any agent, go to any specific version, and perform the following comparisons:
 
-  - Agent setup comparison: Compare configuration settings between versions. You can choose which versions you want to compare by using the version dropdown list.
-  - Chat output comparison: Analyze response differences between agent versions by using identical inputs.
-  - YAML definition comparison: Review differences in agent definitions.
+  | Comparison type | Description |
+  | --------------- | ----------- |
+  | Agent setup | Compare configuration settings between versions using the version dropdown list |
+  | Chat output | Analyze response differences between agent versions using identical inputs |
+  | YAML definition | Review differences in agent definitions |
 
 ### Add tools
 
-You can make your agent more powerful by giving it knowledge (specific files or indexes) or by allowing it to take actions (calling external APIs). Tools are available for most use cases, from simple file uploads to custom Model Context Protocol (MCP) server connections. For more complicated tools, you might need to configure authentication or add connections as part of attaching them to an agent.
+Make your agent more powerful by giving it knowledge (specific files or indexes) or by allowing it to take actions (calling external APIs). Tools are available for most use cases, from simple file uploads to custom Model Context Protocol (MCP) server connections. For more complicated tools, you might need to configure authentication or add connections as part of attaching them to an agent.
 
-To save an agent with a tool attached, you must successfully configure the tool. You can reuse configured tools across agents. For information about available tools, see the [tools catalog](./tool-catalog.md).
+To save an agent with a tool attached, you must successfully configure the tool. Reuse configured tools across agents. For information about available tools, see the [tools catalog](./tool-catalog.md).
 
-### Debug and validate by using tracing
+### Debug and validate by using tracing (preview)
 
 As you add tools and iterate on prompts, use tracing to validate end-to-end behavior:
 
@@ -96,7 +101,7 @@ As you add tools and iterate on prompts, use tracing to validate end-to-end beha
 
 For more information, see [Agent tracing overview](../../observability/concepts/trace-agent-concept.md).
 
-### Evaluate quality and safety
+### Evaluate quality and safety (preview)
 
 Before you publish your agent (and after any meaningful change), run evaluations to catch regressions and measure quality consistently across versions.
 
@@ -129,9 +134,12 @@ Treat your agent configuration like application code. Protect secrets and permis
 
 ### Publish your agent or workflow
 
-After you create an agent or workflow version that you're happy with, [publish it as an agent application](../how-to/publish-agent.md). You get a stable endpoint that you can open and test in the browser, share with others, or embed in your existing applications. You and your collaborators can validate performance and identify what needs refinement. You can make any necessary updates and republish a new version at any time.
+After you create an agent or workflow version that you're happy with, [publish it as an agent application](../how-to/publish-agent.md). You get a stable endpoint that you can open and test in the browser, share with others, or embed in your existing applications. You and your collaborators can validate performance and identify what needs refinement. Make any necessary updates and republish a new version at any time.
 
-## Common pitfalls
+> [!IMPORTANT]
+> Permissions assigned to the project identity don't automatically transfer to the published agent. After publishing, reassign the necessary privileges to the agent application's identity.
+
+## Common agent development pitfalls
 
 - **Unsaved changes are temporary**: If you want to compare versions, view history, or run full evaluations, save your changes as a version.
 - **Tools must be configured before saving**: If a tool requires authentication or a connection, complete setup before you save.
@@ -139,11 +147,22 @@ After you create an agent or workflow version that you're happy with, [publish i
 
 ## Related content
 
-- [Agent runtime components](./runtime-components.md)
-- [Discover tools in the Foundry Tools](./tool-catalog.md)
-- [Best practices for using tools in Microsoft Foundry Agent Service](./tool-best-practice.md)
+**Learn more about agent types:**
+
 - [What are hosted agents?](./hosted-agents.md)
+- [Agent runtime components](./runtime-components.md)
+
+**Configure and extend agents:**
+
+- [Discover tools in Foundry Tools](./tool-catalog.md)
+- [Best practices for using tools in Microsoft Foundry Agent Service](./tool-best-practice.md)
+
+**Publish and monitor agents:**
+
 - [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
+- [Monitor quality and safety](../../../how-to/monitor-quality-safety.md)
+
+**Debug and evaluate:**
+
 - [Agent tracing overview](../../observability/concepts/trace-agent-concept.md)
 - [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md)
-- [Monitor quality and safety](../../../how-to/monitor-quality-safety.md)

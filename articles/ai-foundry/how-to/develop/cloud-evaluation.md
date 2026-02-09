@@ -1,7 +1,7 @@
 ---
 title: Cloud Evaluation with the Microsoft Foundry SDK
 titleSuffix: Microsoft Foundry
-description: The Azure AI Evaluation SDK supports running evaluations locally or in the cloud. Learn how to evaluate a generative AI application.
+description: Run scalable evaluations for generative AI applications using the Microsoft Foundry SDK. Learn how to integrate evaluations into your development pipeline.
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
@@ -44,9 +44,11 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 ## Prerequisites
 
-- Microsoft Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) as risk and safety evaluators. If you don't have a project, create one. See [Create a project for Foundry](../create-projects.md?tabs=ai-studio).
-- Azure OpenAI deployment with GPT model supporting `chat completion`, such as `gpt-4`.
-- Sign in to your Azure subscription by running `az login`.
+- A [Foundry project](../create-projects.md).
+- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4` or `gpt-5-chat`).
+
+> [!NOTE]
+> Some evaluation features have regional restrictions. See [supported regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
 
 ::: moniker range="foundry-classic"
 
@@ -60,12 +62,9 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 1. Install the Microsoft Foundry SDK project client to run evaluations in the cloud:
 
-   ```python
-   uv install azure-ai-projects azure-identity
+   ```bash
+   pip install azure-ai-projects azure-identity
    ```
-
-   > [!NOTE]
-   > For more information, see [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations).
 
 1. Set environment variables for your Foundry resources:
 
@@ -103,19 +102,15 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 1. Install the Microsoft Foundry SDK project client that runs the evaluations in the cloud:
 
-   ```python
+   ```bash
 
-   uv install azure-ai-projects azure-identity 
+   pip install azure-ai-projects azure-identity 
 
    ```
 
-   > [!NOTE]
-   > For more information, see [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations).
-
 1. Set your environment variables for your Foundry resources:
 
-    ``` python
-    
+    ```python
     import os
     
     # Azure AI Project endpoint
@@ -129,23 +124,19 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
     # Dataset details
     dataset_name = os.environ.get("DATASET_NAME", "")
     dataset_version = os.environ.get("DATASET_VERSION", "1")
-    
     ```
 
 1. Define a client that runs your evaluations in the cloud:
 
    ```python
-
    from azure.identity import DefaultAzureCredential 
    from azure.ai.projects import AIProjectClient 
 
    # Create the project client (Foundry project and credentials): 
-
    project_client = AIProjectClient( 
        endpoint=endpoint, 
        credential=DefaultAzureCredential(), 
    ) 
-
    ```
 
 ::: moniker-end
@@ -925,6 +916,7 @@ Your evaluation job might remain in the **Running** state for an extended period
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
+- [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations)
 
 ::: moniker-end
 
@@ -934,5 +926,6 @@ Your evaluation job might remain in the **Running** state for an extended period
 - [Evaluate your AI agents continuously](../continuous-evaluation-agents.md)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
+- [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
 
 ::: moniker-end

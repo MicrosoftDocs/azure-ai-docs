@@ -45,8 +45,6 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 - Environment variables configured:
   - `AZURE_AI_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`): Your Foundry project endpoint URL.
   - `AZURE_AI_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`): Your model deployment name.
-Before you begin, make sure you have:
-
 
 ## Code examples
 
@@ -340,9 +338,14 @@ You can configure web search behavior when you create your agent.
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
-| Web search isn’t used and no citations appear | The model didn’t determine that web search was needed, or the prompt didn’t request current information | Update your instructions to explicitly allow web search for up-to-date questions, and ask a query that requires current information. |
+| Web search isn't used and no citations appear | Model didn't determine web search was needed | Update your instructions to explicitly allow web search for up-to-date questions, and ask a query that requires current information. |
 | Requests fail after enabling web search | Web search is disabled at the subscription level | Ask an admin to enable web search. See [Administrator control for the web search tool](#administrator-control-for-the-web-search-tool). |
-| REST requests return authentication errors | The bearer token is missing, expired, or has insufficient permissions | Refresh your token and confirm your access to the project and agent. |
+| REST requests return authentication errors | Bearer token is missing, expired, or has insufficient permissions | Refresh your token and confirm your access to the project and agent. |
+| Search returns outdated information | Web content not recently indexed | Refine your query to explicitly request the most recent information. Results depend on Bing's indexing schedule. |
+| No results for specific topics | Query too narrow or content not indexed | Broaden your search query. Some niche topics might have limited web coverage. |
+| Rate limiting errors (429) | Too many requests in a short time period | Implement exponential backoff and retry logic. Consider spacing out requests. |
+| Inconsistent citation formatting | Response format varies by query type | Standardize citation handling in your application code. Parse both inline and reference-style citations. |
+| Tool not available for deployment | Regional or model limitations | Confirm web search is available in your region and with your model deployment. Check [tool best practices](../../concepts/tool-best-practice.md). |
 
 ## Administrator control for the web search tool
 

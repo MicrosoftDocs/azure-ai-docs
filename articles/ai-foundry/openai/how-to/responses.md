@@ -1328,7 +1328,7 @@ The responses API is currently available in the following regions:
 - `o3` (Version: `2025-04-16`)
 - `o4-mini` (Version: `2025-04-16`)
 
-Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models.md) for model region availability.
+Not every model is available in the regions supported by the responses API. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability.
 
 > [!NOTE]
 > Not currently supported:

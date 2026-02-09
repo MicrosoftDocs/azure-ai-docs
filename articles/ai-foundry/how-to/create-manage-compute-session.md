@@ -26,7 +26,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-You need a compute session to run [prompt flows](prompt-flow.md). Use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to create and manage prompt flow compute sessions.
+You need a compute session to run [prompt flows](../concepts/prompt-flow.md). Use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to create and manage prompt flow compute sessions.
 
 A prompt flow compute session has computing resources that are required for the application to run, including a Docker image that contains all necessary dependency packages. In addition to flow execution, Foundry uses the compute session to ensure the accuracy and functionality of the tools incorporated within the flow when you make updates to the prompt or code content.
 

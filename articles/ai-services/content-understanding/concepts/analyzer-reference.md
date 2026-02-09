@@ -30,16 +30,16 @@ Analyzers are the core building blocks of Content Understanding. They combine co
 
 Content Understanding provides several types of analyzers:
 
-- **Base analyzers**: Foundational analyzers that provide core processing capabilities for each content type (`prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, `prebuilt-image`). These analyzers are typically used as building blocks for custom analyzers.
-- **RAG analyzers**: Optimized for retrieval-augmented generation scenarios, extracting content with semantic understanding for search and AI applications (ex. `prebuilt-documentSearch`, `prebuilt-videoSearch`).
-- **Domain-specific analyzers**: Preconfigured for specific document types and industries, like invoices, receipts, ID documents, and contracts (ex. `prebuilt-invoice`, `prebuilt-receipt`, `prebuilt-idDocument`).
+- **Base analyzers**: Foundational analyzers that provide core processing capabilities for each content type (`prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, `prebuilt-image`). Use these analyzers as building blocks for custom analyzers.
+- **RAG analyzers**: Extract content with semantic understanding for search and AI applications. They're optimized for retrieval-augmented generation scenarios. Examples include `prebuilt-documentSearch` and `prebuilt-videoSearch`.
+- **Domain-specific analyzers**: Preconfigured for specific document types and industries, like invoices, receipts, ID documents, and contracts. Examples include `prebuilt-invoice`, `prebuilt-receipt`, and `prebuilt-idDocument`.
 - **Custom analyzers**: Analyzers you create by extending base analyzers with custom field schemas and configurations to meet your specific requirements.
 
 For more information and a complete list of available domain-specific analyzers, see [Prebuilt analyzers](prebuilt-analyzers.md).
 
 ## Analyzer configuration structure
 
-An analyzer configuration is defined using a JSON object that contains several top-level properties. You can configure the following components:
+Define an analyzer configuration using a JSON object with several top-level properties. You can configure the following components:
 
 * [Analyzer properties](#analyzer-properties) - Core identity and metadata
   * [analyzerId](#analyzerid) - Unique identifier
@@ -53,7 +53,7 @@ An analyzer configuration is defined using a JSON object that contains several t
 * [Field schema](#field-configuration) - Structured data extraction
   * [fieldSchema](#field-schema-structure) - Field definitions
 
-Here's a condensed example showing the overall structure of an analyzer configuration:
+Here's a condensed example that shows the overall structure of an analyzer configuration:
 
 ```json
 {
@@ -79,31 +79,31 @@ Here's a condensed example showing the overall structure of an analyzer configur
 
 ## Analyzer properties
 
-These properties uniquely identify and describe your analyzer:
+Use these properties to uniquely identify and describe your analyzer:
 
 ### `analyzerId`
-- **Description:** Unique identifier for the analyzer. This identifier is how you reference the analyzer in API calls.
+- **Description:** Unique identifier for the analyzer. Use this identifier to reference the analyzer in API calls.
 - **Example:** `"prebuilt-invoice"`, `"my-custom-analyzer"`
 - **Guidelines:**
-  - Use descriptive names that indicate the analyzer's purpose
-  - For custom analyzers, choose names that don't conflict with prebuilt analyzer names
-  - Use lowercase with hyphens for consistency
+  - Use descriptive names that indicate the analyzer's purpose.
+  - For custom analyzers, choose names that don't conflict with prebuilt analyzer names.
+  - Use lowercase with hyphens for consistency.
 
 ### `name`
-- **Description:** Human-readable display name shown in user interfaces and documentation
+- **Description:** Human-readable display name shown in user interfaces and documentation.
 - **Example:** `"Invoice document understanding"`, `"Custom receipt processor"`
 
 ### `description`
-- **Description:** Brief explanation of what the analyzer does and what content it processes. This description is used as context by the AI model during field extraction, so clear descriptions improve extraction accuracy.
+- **Description:** Brief explanation of what the analyzer does and what content it processes. The AI model uses this description as context during field extraction, so clear descriptions improve extraction accuracy.
 - **Example:** `"Analyzes invoice documents to extract line items, totals, vendor information, and payment terms"`
 - **Guidelines:**
-  - Be specific about what the analyzer extracts
-  - Mention the content types it supports
-  - Keep it concise but informative
-  - Write clear descriptions as they guide the AI model's understanding
+  - Be specific about what the analyzer extracts.
+  - Mention the content types it supports.
+  - Keep it concise but informative.
+  - Write clear descriptions as they guide the AI model's understanding.
 
 ### `baseAnalyzerId`
-- **Description:** References a parent analyzer from which this analyzer inherits configuration
+- **Description:** References a parent analyzer from which this analyzer inherits configuration.
 - **Supported base analyzers:**
   - `"prebuilt-document"` - for document-based custom analyzers
   - `"prebuilt-audio"` - for audio-based custom analyzers
@@ -112,7 +112,7 @@ These properties uniquely identify and describe your analyzer:
 - **Example:** `"baseAnalyzerId": "prebuilt-document"`
 
 > [!NOTE]
->When you specify a base analyzer, your custom analyzer inherits all default configurations and can override specific settings.
+> When you specify a base analyzer, your custom analyzer inherits all default configurations and can override specific settings.
 
 ## Model configuration
 
@@ -121,7 +121,7 @@ These properties uniquely identify and describe your analyzer:
 - **Properties:**
   - `completion` - Model name for completion tasks (field extraction, segmentation, figure analysis, for example)
   - `embedding` - Model name for embedding tasks (using a knowledge base)
-- **Important:** These are model names from the Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
+- **Important:** These model names come from the Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
 - **Example:**
   ```json
   {
@@ -142,97 +142,97 @@ The `config` object contains all processing options that control how content is 
 
 ##### `returnDetails`
 - **Default:** false (varies by analyzer)
-- **Description:** Controls whether to include detailed information in the response (confidence scores, bounding boxes, text spans, metadata)
+- **Description:** Controls whether to include detailed information in the response, such as confidence scores, bounding boxes, text spans, and metadata.
 - **When to use:**
-  - Set to `true` when debugging extraction issues
-  - When you need location information for extracted data
-  - When confidence scores are required for validation
-  - For quality assurance and testing
-- **Impact on response:** Significantly increases response size with more metadata
+  - Set to `true` when debugging extraction problems.
+  - When you need location information for extracted data.
+  - When confidence scores are required for validation.
+  - For quality assurance and testing.
+- **Impact on response:** Significantly increases response size with more metadata.
 
 #### Document content extraction options
 
 ##### `enableOcr`
 - **Default:** true
-- **Description:** Enables Optical Character Recognition to extract text from images and scanned documents
+- **Description:** Enables Optical Character Recognition to extract text from images and scanned documents.
 - **When to use:**
-  - Enable for scanned documents, photos, and image-based PDFs
-  - Disable for native digital PDFs to improve performance
-- **Supported by:** Document analyzers
+  - Enable for scanned documents, photos, and image-based PDFs.
+  - Disable for native digital PDFs to improve performance.
+- **Supported by:** Document analyzers.
 
 ##### `enableLayout`
 - **Default:** true
-- **Description:** Extracts layout information including paragraphs, lines, words, reading order, and structural elements
+- **Description:** Extracts layout information including paragraphs, lines, words, reading order, and structural elements.
 - **When to use:**
-  - Required for understanding document structure and hierarchy
-  - Needed for accurate paragraph and section extraction
-  - Disable if only raw text extraction is needed
-- **Supported by:** Document-based analyzers
+  - Required for understanding document structure and hierarchy.
+  - Needed for accurate paragraph and section extraction.
+  - Disable if only raw text extraction is needed.
+- **Supported by:** Document-based analyzers.
 
 ##### `enableFormula`
 - **Default:** true
-- **Description:** Detects and extracts mathematical formulas and equations in LaTeX format
+- **Description:** Detects and extracts mathematical formulas and equations in LaTeX format.
 - **When to use:**
-  - Enable for scientific papers, research documents, technical documentation
-  - Disable for general business documents to improve performance
-- **Supported by:** Document-based analyzers
+  - Enable for scientific papers, research documents, technical documentation.
+  - Disable for general business documents to improve performance.
+- **Supported by:** Document-based analyzers.
 
 ##### `enableBarcode`
 - **Default:** true
-- **Description:** Detects and extracts barcodes and QR codes, returning the decoded values
+- **Description:** Detects and extracts barcodes and QR codes, returning the decoded values.
 - **When to use:**
-  - Enable for inventory documents, shipping labels, product documentation
-  - Disable when barcodes aren't present to improve performance
-- **Supported by:** Document-based analyzers
-- **Supported barcode types:** QR Code, PDF417, UPC-A, UPC-E, Code 39, Code 128, EAN-8, EAN-13, DataBar, Code 93, Codabar, ITF, Micro QR Code, Aztec, Data Matrix, MaxiCode
+  - Enable for inventory documents, shipping labels, product documentation.
+  - Disable when barcodes aren't present to improve performance.
+- **Supported by:** Document-based analyzers.
+- **Supported barcode types:** QR Code, PDF417, UPC-A, UPC-E, Code 39, Code 128, EAN-8, EAN-13, DataBar, Code 93, Codabar, ITF, Micro QR Code, Aztec, Data Matrix, MaxiCode.
 
 #### Table and chart options
 
 ##### `tableFormat`
 - **Default:** `"html"`
 - **Supported values:** `"html"`, `"markdown"`
-- **Description:** Specifies the output format for extracted tables
+- **Description:** Specifies the output format for extracted tables.
 - **When to use:**
-  - Use `"html"` for web rendering or when complex table structures need preservation
-  - Use `"markdown"` for simple tables in documentation or text-based processing
-- **Supported by:** Document-based analyzers
+  - Use `"html"` for web rendering or when complex table structures need preservation.
+  - Use `"markdown"` for simple tables in documentation or text-based processing.
+- **Supported by:** Document-based analyzers.
 
 ##### `chartFormat`
 - **Default:** `"chartjs"`
 - **Supported values:** `"chartjs"`
-- **Description:** Specifies the format for extracted chart and graph data (compatible with Chart.js library)
+- **Description:** Specifies the format for extracted chart and graph data. Compatible with Chart.js library.
 - **When to use:**
-  - When extracting data from bar charts, line graphs, pie charts
-  - Converting visual charts to structured data for re-rendering
-- **Supported by:** Document-based analyzers
+  - When extracting data from bar charts, line graphs, and pie charts.
+  - When converting visual charts to structured data for re-rendering.
+- **Supported by:** Document-based analyzers.
 
 #### Figure and image analysis options
 
 ##### `enableFigureDescription`
 - **Default:** false
-- **Description:** Generates natural language text descriptions for figures, diagrams, images, and illustrations
+- **Description:** Generates natural language text descriptions for figures, diagrams, images, and illustrations.
 - **When to use:**
-  - For accessibility requirements (alt text generation)
-  - Understanding diagrams and flowcharts
-  - Extracting insights from infographics
-- **Supported by:** Document-based analyzers
+  - For accessibility requirements (alt text generation).
+  - For understanding diagrams and flowcharts.
+  - For extracting insights from infographics.
+- **Supported by:** Document-based analyzers.
 
 ##### `enableFigureAnalysis`
 - **Default:** false
-- **Description:** Performs deeper analysis of figures including chart data extraction and diagram component identification
+- **Description:** Performs deeper analysis of figures including chart data extraction and diagram component identification.
 - **When to use:**
-  - Extracting structured data from charts embedded in documents
-  - Understanding complex diagrams
-  - Detailed figure classification
-- **Supported by:** Document-based analyzers
+  - For extracting structured data from charts embedded in documents.
+  - For understanding complex diagrams.
+  - For detailed figure classification.
+- **Supported by:** Document-based analyzers.
 
 #### Annotation options
 
 ##### `annotationFormat`
 - **Default:** `"markdown"`
 - **Supported values:** `"markdown"`
-- **Description:** Specifies the format for returned annotations
-- **Supported by:** Document-based analyzers
+- **Description:** Specifies the format for returned annotations.
+- **Supported by:** Document-based analyzers.
 
 #### Field extraction options
 
@@ -240,22 +240,22 @@ The `config` object contains all processing options that control how content is 
 - **Default:** false (varies by analyzer)
 - **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value.
 - **When to use:**
-  - Validation and quality assurance workflows
-  - Understanding extraction accuracy
-  - Debugging extraction issues
-  - Highlighting source text in user interfaces
+  - For validation and quality assurance workflows.
+  - For understanding extraction accuracy.
+  - For debugging extraction issues.
+  - For highlighting source text in user interfaces.
 - **Supported by:** Document analyzers (invoice, receipt, ID documents, tax forms)
 
 #### Audio and video options
 
 ##### `locales`
 - **Default:** `[]` (empty array)
-- **Description:** List of locale/language codes for language-specific processing (primarily for transcription)
+- **Description:** List of locale and language codes for language-specific processing, primarily for transcription.
 - **Supported values:** BCP-47 language codes (for example, `["en-US", "es-ES", "fr-FR", "de-DE"]`)
 - **When to use:**
-  - Multi-language audio transcription
-  - Specifying expected language for better accuracy
-  - Processing content in specific regional variants
+  - For multi-language audio transcription.
+  - For specifying expected language for better accuracy.
+  - For processing content in specific regional variants.
 - **Supported by:** `prebuilt-audio`, `prebuilt-video`, `prebuilt-callCenter`
 
 >[!NOTE] 
@@ -263,10 +263,10 @@ The `config` object contains all processing options that control how content is 
 
 ##### `disableFaceBlurring`
 - **Default:** false
-- **Description:** Controls whether faces in images and videos should be blurred for privacy protection
+- **Description:** Controls whether faces in images and videos are blurred for privacy protection.
 - **When to use:**
-  - Set to `true` when face visibility is required for analysis
-  - Set to `false` when de-identification of individuals in shared content in desired
+  - Set to `true` when face visibility is required for analysis.
+  - Set to `false` when de-identification of individuals in shared content is desired.
 - **Supported by:** `prebuilt-image`, `prebuilt-video`
 
 > [!IMPORTANT]
@@ -278,51 +278,51 @@ The `config` object contains all processing options that control how content is 
 - **Default:** Not set
 - **Description:** Defines categories or content types for automatic classification and routing to specialized handlers. When used with `enableSegment set to false` is currently only supported for documents. It classifies the entire file. When used with `enableSegment=true`, the file is broken into chunks based on these categories, with each segment classified and optionally processed by a category-specific analyzer. Always selects a single option from the list of available categories. 
 - **Structure:** Each category contains:
-  - `description` - (Required) Detailed description of the category/document type. This description acts as a prompt that guides the AI model in determining segment boundaries and classification. Include distinguishing characteristics to help identify where one category ends and another begins.
+  - `description` - (Required) Detailed description of the category or document type. This description acts as a prompt that guides the AI model in determining segment boundaries and classification. Include distinguishing characteristics to help identify where one category ends and another begins.
   - `analyzerId` - (Optional) Reference to another analyzer to use for this category. The referenced analyzer is linked, not copied, ensuring consistent behavior. If omitted, only categorization is performed without more processing (split-only scenario).
 - **Model usage:** The models specified in the parent analyzer's `models` property are used only for segmentation and classification. Each subanalyzer uses its own model configuration for extraction.
 - **Behavior with `enableSegment`:**
   - **`enableSegment: true`:** Content is split into segments based on the category descriptions. Each segment is classified into one of the defined categories. Returns segment metadata in the original content object, plus more content objects for segments with `analyzerId` specified.
   - **`enableSegment: false`:** The entire content is classified as a whole into one category and routed accordingly. Useful for hierarchical classification without splitting.
 - **Category matching:** If an "other" or "default" category isn't defined, content is forced to classify into one of the listed categories. Include an "other" category to handle unmatched content gracefully.
-- **Supported by:** Document and video analyzers. For video, only you can only define one contentCategory.
+- **Supported by:** Document and video analyzers. For video, you can only define one contentCategory.
 
 ##### `enableSegment`
 - **Default:** false
 - **Description:** Enables content segmentation, breaking the file into chunks based on the categories specified in `contentCategories`. Each segment is then classified into one of the defined categories for selective processing.
 - **Segmentation behavior:** The service divides content into logical units by analyzing the content against the category descriptions. Segment boundaries are determined using:
-  - **Documents:** Category descriptions combined with content structure (pages, sections, formatting changes)
+  - **Documents:** Category descriptions combined with content structure (pages, sections, formatting changes).
   - **Videos:** Category descriptions combined with visual cues (shot changes, scene transitions, temporal boundaries). Only one contentCategory is supported.
 - **When to use:**
-  - Processing mixed-content batches where different parts need different handling (for example, a PDF containing both invoices and receipts)
-  - Splitting long documents into categorized chunks for selective analysis
-  - Analyzing videos by content type (for example, separate ads from main content)
+  - Processing mixed-content batches where different parts need different handling (for example, a PDF containing both invoices and receipts).
+  - Splitting long documents into categorized chunks for selective analysis.
+  - Analyzing videos by content type (for example, separate ads from main content).
 - **Output structure:**
-  - Returns a `segments` array in the content object containing metadata for each segment (ID, boundaries, category)
-  - Each segment includes its classified category from `contentCategories`
-  - More content objects are returned for segments with category `analyzerId` specified
-- **Hierarchical segmentation:** If a category's analyzer also has `enableSegment: true`, segments can be recursively split, enabling multi-level content breakdown
-- **Performance impact:** Increases processing time for large files, especially with many segments
-- **Supported by:** Document and video analyzers
+  - Returns a `segments` array in the content object containing metadata for each segment (ID, boundaries, category).
+  - Each segment includes its classified category from `contentCategories`.
+  - More content objects are returned for segments with category `analyzerId` specified.
+- **Hierarchical segmentation:** If a category's analyzer also has `enableSegment: true`, segments can be recursively split, enabling multi-level content breakdown.
+- **Performance impact:** Increases processing time for large files, especially with many segments.
+- **Supported by:** Document and video analyzers.
 
 ##### `segmentPerPage`
 - **Default:** false
 - **Description:** When segmentation is enabled, force one segment per page instead of using logical content boundaries. Replaces the need for separate "perPage" split modes.
 - **When to use:**
-  - Page-by-page processing workflows
-  - Each page should be treated as an independent unit
-  - Parallel processing of individual pages
-  - Page-level field extraction in multi-page documents
-  - Mixed document batches where each page is a different document type
-- **Supported by:** Document-based analyzers
+  - Page-by-page processing workflows.
+  - Each page should be treated as an independent unit.
+  - Parallel processing of individual pages.
+  - Page-level field extraction in multi-page documents.
+  - Mixed document batches where each page is a different document type.
+- **Supported by:** Document-based analyzers.
 
 ##### `omitContent`
 - **Default:** false
-- **Description:** When `true`, excludes the original content object from the response, returning only structured field data or content objects from subanalyzers (when using `contentCategories`)
+- **Description:** When `true`, excludes the original content object from the response. The response includes only structured field data or content objects from subanalyzers when using `contentCategories`.
 - **When to use:**
-  - When you only need extracted field values
-  - In composed analyzers with `contentCategories` to return only categorized results
-  - For hierarchical classification chains, return only leaf analyzer results
+  - When you only need extracted field values.
+  - In composed analyzers with `contentCategories` to return only categorized results.
+  - For hierarchical classification chains, return only leaf analyzer results.
 - **Example - Selective analysis:**
   ```json
   {
@@ -336,7 +336,7 @@ The `config` object contains all processing options that control how content is 
     }
   }
   ```
-- **Supported by:** Document analyzers
+- **Supported by:** Document analyzers.
 
 ## Field configuration
 
@@ -391,9 +391,9 @@ Field schemas transform unstructured content into structured, queryable data. Th
 - **Example:** `"InvoiceAnalysis"`, `"ReceiptExtraction"`, `"ContractFields"`
 
 #### `fields`
-- **Description:** Object defining each field to extract, with field names as keys. Empty object `{}` indicates no structured fields are extracted (for example, layout-only analyzers).
+- **Description:** Object defining each field to extract, with field names as keys. An empty object `{}` indicates no structured fields are extracted (for example, layout-only analyzers).
 - **Hierarchical support:** Supports nested fields through `object` and `array` types for representing complex data structures
-- **Best practice:** Avoid deep nesting (more than 2-3 levels) as it can reduce performance and extraction accuracy
+- **Best practice:** Avoid deep nesting (more than two or three levels) as it can reduce performance and extraction accuracy
 
 
 ### Field definition properties
@@ -405,26 +405,26 @@ Each field in the `fields` object has the following properties:
 - **Description:** Data type of the field value. Choose the type that best matches your data semantics for optimal extraction.
 
 #### `description`
-- **Description:** Clear explanation of what the field contains and where to find it. This description is processed by the AI model as a mini-prompt to guide field extraction, so specificity and clarity directly improve extraction accuracy.
+- **Description:** Clear explanation of what the field contains and where to find it. The AI model processes this description as a mini-prompt to guide field extraction, so specificity and clarity directly improve extraction accuracy.
 
 For information about writing effective field descriptions, see [Best practices for field extraction](best-practices.md).
 
 #### `method`
 - **Supported values:** `"generate"`, `"extract"`, `"classify"`
-- **Description:** Extraction method to use for this field. When not specified, the system automatically determines the best method based on the field type and description.
+- **Description:** Extraction method to use for this field. When you don't specify a method, the system automatically determines the best method based on the field type and description.
 - **Method types:**
-  - `"generate"` - Values are generated freely based on the content using AI models (best for complex or variable fields requiring interpretation)
+  - `"generate"` - Values are generated freely based on the content by using AI models (best for complex or variable fields requiring interpretation)
   - `"extract"` - Values are extracted as they appear in the content (best for literal text extraction from specific locations). Extract requires `enableSourceGroundingAndConfidence` to be set to true for this field.
   - `"classify"` - Values are classified against a predefined set of categories (best when using `enum` with a fixed set of possible values)
 
 ##### `estimateSourceAndConfidence`
 - **Default:** false
-- **Description:** Returns source location (page number, bounding box) and confidence score for this field value. Must be true for fields with `method` = extract. This property will override the analyzer level `estimateFieldSourceAndConfidence` property. 
+- **Description:** Returns source location (page number, bounding box) and confidence score for this field value. Must be true for fields with `method` = extract. This property overrides the analyzer level `estimateFieldSourceAndConfidence` property. 
 - **When to use:**
-  - Validation and quality assurance workflows
-  - Understanding extraction accuracy
-  - Debugging extraction issues
-  - Highlighting source text in user interfaces
+  - For validation and quality assurance workflows.
+  - For understanding extraction accuracy.
+  - For debugging extraction issues.
+  - For highlighting source text in user interfaces.
 - **Supported by:** Document analyzers (invoice, receipt, ID documents, tax forms)
 
 #### `items` (for array types)
@@ -644,9 +644,9 @@ Different content types support different configuration options. Here's a quick 
 
 ## Related content
 
-* Learn about [prebuilt analyzers](prebuilt-analyzers.md) available in Content Understanding
-* Explore [analyzer templates](analyzer-templates.md) to get started quickly
-* Create your own analyzer by following the [custom analyzer tutorial](../tutorial/create-custom-analyzer.md) 
-* Understand [best practices](best-practices.md) for optimal extraction results
-* Review [document elements](../document/elements.md) and [video elements](../video/elements.md) for details on extracted content
-* Get started by create and test analyzers in [Foundry](../quickstart/use-ai-foundry.md)
+* Learn about [prebuilt analyzers](prebuilt-analyzers.md) available in Content Understanding.
+* Explore [analyzer templates](analyzer-templates.md) to get started quickly.
+* Create your own analyzer by following the [custom analyzer tutorial](../tutorial/create-custom-analyzer.md). 
+* Understand [best practices](best-practices.md) for optimal extraction results.
+* Review [document elements](../document/elements.md) and [video elements](../video/elements.md) for details on extracted content.
+* Get started by creating and testing analyzers in [Foundry](../quickstart/use-ai-foundry.md).

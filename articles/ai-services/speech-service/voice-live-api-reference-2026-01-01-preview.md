@@ -1,16 +1,16 @@
 ---
-title: Voice Live API Reference
+title: Voice Live API Reference 2026-01-01-preview
 titleSuffix: Foundry Tools
-description: Complete reference for the Voice Live API events, models, and configuration options.
+description: Complete reference for the Voice Live API events, models, and configuration options. Version 2026-01-01-preview
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
-ms.date: 9/26/2025
+ms.date: 1/30/2026
 author: PatrickFarley
 ms.author: pafarley
 ---
 
-# Voice Live API Reference
+# Voice Live `2026-01-01-preview` API Reference (preview)
 
 The Voice Live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
 
@@ -32,18 +32,17 @@ The Voice Live API supports the following client events that can be sent from th
 
 | Event | Description |
 |-------|-------------|
-| [session.update](#realtimeclienteventsessionupdate) | Update the session configuration including voice, modalities, turn detection, and other settings |
+| [session.update](#sessionupdate) | Update the session configuration including voice, modalities, turn detection, and other settings |
 | [session.avatar.connect](#sessionavatarconnect) | Establish avatar connection by providing client SDP for WebRTC negotiation |
-| [input_audio_buffer.append](#realtimeclienteventinputaudiobufferappend) | Append audio bytes to the input audio buffer |
-| [input_audio_buffer.commit](#realtimeclienteventinputaudiobuffercommit) | Commit the input audio buffer for processing |
-| [input_audio_buffer.clear](#realtimeclienteventinputaudiobufferclear) | Clear the input audio buffer |
+| [input_audio_buffer.append](#input_audio_bufferappend) | Append audio bytes to the input audio buffer |
+| [input_audio_buffer.commit](#input_audio_buffercommit) | Commit the input audio buffer for processing |
+| [input_audio_buffer.clear](#input_audio_bufferclear) | Clear the input audio buffer |
 | [conversation.item.create](#conversationitemcreate) | Add a new item to the conversation context |
 | [conversation.item.retrieve](#conversationitemretrieve) | Retrieve a specific item from the conversation |
-| [conversation.item.truncate](#realtimeclienteventconversationitemtruncate) | Truncate an assistant audio message |
+| [conversation.item.truncate](#conversationitemtruncate) | Truncate an assistant audio message |
 | [conversation.item.delete](#conversationitemdelete) | Remove an item from the conversation |
-| [response.create](#realtimeclienteventresponsecreate) | Instruct the server to create a response via model inference |
-| [response.cancel](#realtimeclienteventresponsecancel) | Cancel an in-progress response |
-| [mcp_approval_response](#realtimemcpapprovalresponseitem) | Send approval or rejection for an MCP tool call that requires approval |
+| [response.create](#responsecreate) | Instruct the server to create a response via model inference |
+| [response.cancel](#responsecancel) | Cancel an in-progress response |
 
 ### session.update
 
@@ -132,7 +131,7 @@ Establish an avatar connection by providing the client's SDP (Session Descriptio
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"session.avatar.connect"` |
-| client_sdp | string | The client's SDP offer for WebRTC connection establishment |
+| client_sdp | string | The client's SDP offer for WebRTC connection establishment, encoded with base64 |
 
 ### input_audio_buffer.append
 
@@ -241,32 +240,27 @@ Add a new item to the conversation context. This can include messages, function 
 }
 ```
 
-#### Example with Function Call
+#### Example with Function Call output
 
 ```json
 {
   "type": "conversation.item.create",
   "item": {
-    "type": "function_call",
-    "name": "get_weather",
+    "type": "function_call_output",
     "call_id": "call_123",
-    "arguments": "{\"location\": \"San Francisco\", \"unit\": \"celsius\"}"
+    "output": "{\"location\": \"San Francisco\", \"temperature\": \"70\"}"
   }
 }
 ```
 
-#### Example with MCP call
+#### Example with MCP approval response
 ```json
 {
   "type": "conversation.item.create",
   "item": {
-    "type": "mcp_call",
-    "approval_request_id": null,
-    "arguments": "",
-    "server_label": "deepwiki",
-    "name": "ask_question",
-    "output": null,
-    "error": null
+    "type": "mcp_approval_response",
+    "approval_request_id": "mcp_approval_req_456",
+    "approve": true,
   }
 }
 ```
@@ -428,43 +422,7 @@ Cancel an in-progress response. This immediately stops response generation and r
 |-------|------|-------------|
 | type | string | Must be `"response.cancel"` |
 
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `conversation.item.retrieve`. |
-| item_id | string | The ID of the item to retrieve. |
-| event_id | string | The ID of the event. |
-
-### RealtimeClientEventConversationItemTruncate
-
-The client `conversation.item.truncate` event is used to truncate a previous assistant message's audio. The server produces audio faster than realtime, so this event is useful when the user interrupts to truncate audio that was sent to the client but not yet played. The server's understanding of the audio with the client's playback is synchronized.
-
-Truncating audio deletes the server-side text transcript to ensure there isn't text in the context that the user doesn't know about.
-
-If the client event is successful, the server responds with a `conversation.item.truncated` event.
-
-#### Event structure
-
-```json
-{
-  "type": "conversation.item.truncate",
-  "item_id": "<item_id>",
-  "content_index": 0,
-  "audio_end_ms": 0
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `conversation.item.truncate`. |
-| item_id | string | The ID of the assistant message item to truncate. Only assistant message items can be truncated. |
-| content_index | integer | The index of the content part to truncate. Set this property to "0". |
-| audio_end_ms | integer | Inclusive duration up to which audio is truncated, in milliseconds. If the audio_end_ms is greater than the actual audio duration, the server responds with an error. |
-
-### RealtimeClientEventInputAudioBufferAppend
+### input_audio_buffer.append
 
 The client `input_audio_buffer.append` event is used to append audio bytes to the input audio buffer. The audio buffer is temporary storage you can write to and later commit.
 
@@ -488,7 +446,7 @@ Unlike most other client events, the server doesn't send a confirmation response
 | type | string | The event type must be `input_audio_buffer.append`. |
 | audio | string | Base64-encoded audio bytes. This value must be in the format specified by the `input_audio_format` field in the session configuration. |
 
-### RealtimeClientEventInputAudioBufferClear
+### input_audio_buffer.clear
 
 The client `input_audio_buffer.clear` event is used to clear the audio bytes in the buffer.
 
@@ -508,7 +466,7 @@ The server responds with an `input_audio_buffer.cleared` event.
 |-------|------|-------------|
 | type | string | The event type must be `input_audio_buffer.clear`. |
 
-### RealtimeClientEventInputAudioBufferCommit
+### input_audio_buffer.commit
 
 The client `input_audio_buffer.commit` event is used to commit the user input audio buffer, which creates a new user message item in the conversation. Audio is transcribed if `input_audio_transcription` is configured for the session.
 
@@ -532,72 +490,6 @@ The server responds with an `input_audio_buffer.committed` event.
 |-------|------|-------------|
 | type | string | The event type must be `input_audio_buffer.commit`. |
 
-### RealtimeClientEventResponseCancel
-
-The client `response.cancel` event is used to cancel an in-progress response.
-
-The server will respond with a `response.done` event with a status of `response.status=cancelled`.
-
-#### Event structure
-
-```json
-{
-  "type": "response.cancel"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `response.cancel`. |
-
-### RealtimeClientEventResponseCreate
-
-The client `response.create` event is used to instruct the server to create a response via model inference. When the session is configured in server VAD mode, the server creates responses automatically.
-
-A response includes at least one `item`, and can have two, in which case the second is a function call. These items are appended to the conversation history.
-
-The server responds with a [`response.created`](#responsecreated) event, one or more item and content events (such as `conversation.item.created` and `response.content_part.added`), and finally a [`response.done`](#responsedone) event to indicate the response is complete.
-
-#### Event structure
-
-```json
-{
-  "type": "response.create"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `response.create`. |
-| response | [RealtimeResponseOptions](#realtimeresponseoptions) | The response options. |
-
-### RealtimeClientEventSessionUpdate
-
-The client `session.update` event is used to update the session's default configuration. The client can send this event at any time to update the session configuration, and any field can be updated at any time, except for voice.
-
-Only fields that are present are updated. To clear a field (such as `instructions`), pass an empty string.
-
-The server responds with a `session.updated` event that contains the full effective configuration.
-
-#### Event structure
-
-```json
-{
-  "type": "session.update"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `session.update`. |
-| session | [RealtimeRequestSession](#realtimerequestsession) | The session configuration. |
-
 ## Server Events
 
 The Voice Live API sends the following server events to communicate status, responses, and data to the client:
@@ -605,6 +497,7 @@ The Voice Live API sends the following server events to communicate status, resp
 | Event | Description |
 |-------|-------------|
 | [error](#error) | Indicates an error occurred during processing |
+| [warning](#warning) | Indicates a warning occurred that doesn't interrupt the conversation flow |
 | [session.created](#sessioncreated) | Sent when a new session is successfully established |
 | [session.updated](#sessionupdated) | Sent when session configuration is updated |
 | [session.avatar.connecting](#sessionavatarconnecting) | Indicates avatar WebRTC connection is being established |
@@ -615,11 +508,11 @@ The Voice Live API sends the following server events to communicate status, resp
 | [conversation.item.input_audio_transcription.completed](#conversationiteminput_audio_transcriptioncompleted) | Input audio transcription is complete |
 | [conversation.item.input_audio_transcription.delta](#conversationiteminput_audio_transcriptiondelta) | Streaming input audio transcription |
 | [conversation.item.input_audio_transcription.failed](#conversationiteminput_audio_transcriptionfailed) | Input audio transcription failed |
-| [input_audio_buffer.committed](#input_audio_buffercommitted) | Input audio buffer has been committed for processing |
-| [input_audio_buffer.cleared](#input_audio_buffercleared) | Input audio buffer has been cleared |
+| [input_audio_buffer.committed](#input_audio_buffercommitted) | Input audio buffer was for processing |
+| [input_audio_buffer.cleared](#input_audio_buffercleared) | Input audio buffer was cleared |
 | [input_audio_buffer.speech_started](#input_audio_bufferspeech_started) | Speech detected in input audio buffer (VAD) |
 | [input_audio_buffer.speech_stopped](#input_audio_bufferspeech_stopped) | Speech ended in input audio buffer (VAD) |
-| [response.created](#responsecreated) | New response generation has started |
+| [response.created](#responsecreated) | New response generation started |
 | [response.done](#responsedone) | Response generation is complete |
 | [response.output_item.added](#responseoutput_itemadded) | New output item added to response |
 | [response.output_item.done](#responseoutput_itemdone) | Output item is complete |
@@ -647,6 +540,11 @@ The Voice Live API sends the following server events to communicate status, resp
 | [response.mcp_call.in_progress](#responsemcp_callin_progress) | MCP call is in progress |
 | [response.mcp_call.completed](#responsemcp_callcompleted) | MCP call is completed |
 | [response.mcp_call.failed](#responsemcp_callfailed) | MCP call has failed |
+| [response.foundry_agent_call_arguments.delta](#responsefoundry_agent_call_argumentsdelta) | Streaming foundry agent call arguments |
+| [response.foundry_agent_call_arguments.done](#responsefoundry_agent_call_argumentsdone) | Foundry agent call arguments are complete |
+| [response.foundry_agent_call.in_progress](#responsefoundry_agent_callin_progress) | Foundry agent call is in progress |
+| [response.foundry_agent_call.completed](#responsefoundry_agent_callcompleted) | Foundry agent call is completed |
+| [response.foundry_agent_call.failed](#responsefoundry_agent_callfailed) | Foundry agent call has failed |
 
 ### session.created
 
@@ -799,12 +697,34 @@ Sent when a new item is added to the conversation, either through a client `conv
 
 Sent in response to a `conversation.item.retrieve` client event, providing the requested conversation item.
 
+#### Event Structure
+
+```json
+{
+  "type": "conversation.item.retrieved",
+  "item": {
+    "id": "item_ABC123",
+    "object": "realtime.item",
+    "type": "message",
+    "status": "completed",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "audio",
+        "audio": "UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=",
+        "transcript": "Hello! I'm doing well, thank you for asking. How can I help you today?"
+      }
+    ]
+  }
+}
+```
+
 #### Properties
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | string | Must be `"conversation.item.created"` |
-| item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The created conversation item |
+| type | string | Must be `"conversation.item.retrieved"` |
+| item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The retrieved conversation item |
 
 ### conversation.item.truncated
 
@@ -834,7 +754,7 @@ This event truncates the audio and removes the server-side text transcript to en
 
 ### conversation.item.deleted
 
-Sent in response to a `conversation.item.delete` client event, confirming that the specified item has been removed from the conversation.
+Sent in response to a `conversation.item.delete` client event, confirming that the specified item was removed from the conversation.
 
 #### Event Structure
 
@@ -1496,8 +1416,6 @@ The server `response.animation_viseme.done` event is returned when the model has
 | output_index | integer | Index of the item in the response |
 | content_index | integer | Index of the content part |
 
-The server `response.animation_viseme.delta` event is returned when the model generates animation viseme data as part of a response. This event provides incremental viseme data as it becomes available.
-
 ### error
 
 The server `error` event is returned when an error occurs, which could be a client problem or a server problem. Most errors are recoverable and the session stays open.
@@ -1532,6 +1450,38 @@ The server `error` event is returned when an error occurs, which could be a clie
 | message | string | A human-readable error message. |
 | param | string | Parameter related to the error, if any. |
 | event_id | string | The ID of the client event that caused the error, if applicable. |
+
+### warning
+
+The server `warning` event is returned when a warning occurs that doesn't interrupt the conversation flow. Warnings are informational and the session continues normally.
+
+#### Event structure
+
+```json
+{
+  "type": "warning",
+  "warning": {
+    "code": "<code>",
+    "message": "<message>",
+    "param": "<param>"
+  }
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `warning`. |
+| warning | object | Details of the warning. See nested properties in the next table. |
+
+#### Warning properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| message | string | A human-readable warning message. |
+| code | string | Optional. Warning code, if any. |
+| param | string | Optional. Parameter related to the warning, if any. |
 
 ### input_audio_buffer.cleared
 
@@ -2003,6 +1953,126 @@ The server `response.mcp_call.failed` event is returned when an MCP tool call fa
 | item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 
+### response.foundry_agent_call_arguments.delta
+
+The server `response.foundry_agent_call_arguments.delta` event is returned when the model-generated foundry agent call arguments are updated.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call_arguments.delta",
+  "response_id": "<response_id>",
+  "item_id": "<item_id>",
+  "output_index": 0,
+  "delta": "<delta>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call_arguments.delta`. |
+| response_id | string | The ID of the response. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output_index | integer | The index of the output item in the response. |
+| delta | string | The arguments delta as a JSON string. |
+
+### response.foundry_agent_call_arguments.done
+
+The server `response.foundry_agent_call_arguments.done` event is returned when the model-generated foundry agent call arguments are done streaming.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call_arguments.done",
+  "response_id": "<response_id>",
+  "item_id": "<item_id>",
+  "output_index": 0,
+  "arguments": "<arguments>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call_arguments.done`. |
+| response_id | string | The ID of the response. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output_index | integer | The index of the output item in the response. |
+| arguments | string | The final arguments as a JSON string. |
+
+### response.foundry_agent_call.in_progress
+
+The server `response.foundry_agent_call.in_progress` event is returned when a foundry agent call starts processing.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call.in_progress",
+  "item_id": "<item_id>",
+  "output_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call.in_progress`. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| agent_response_id | string | The response ID from the foundry agent. |
+| output_index | integer | The index of the output item in the response. |
+
+### response.foundry_agent_call.completed
+
+The server `response.foundry_agent_call.completed` event is returned when a foundry agent call completes successfully.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call.completed",
+  "item_id": "<item_id>",
+  "agent_response_id": "<agent_response_id>",
+  "output_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call.completed`. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output_index | integer | The index of the output item in the response. |
+
+### response.foundry_agent_call.failed
+
+The server `response.foundry_agent_call.failed` event is returned when a foundry agent call fails.
+
+#### Event structure
+
+```json
+{
+  "type": "response.foundry_agent_call.failed",
+  "item_id": "<item_id>",
+  "output_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.foundry_agent_call.failed`. |
+| item_id | string | The ID of the [foundry agent call item](#realtimeconversationfoundryagentcallitem). |
+| output_index | integer | The index of the output item in the response. |
+
 ### response.output_item.added
 
 The server `response.output_item.added` event is returned when a new item is created during response generation.
@@ -2142,7 +2212,7 @@ Configuration for input audio transcription.
 | Field | Type | Description |
 |-------|------|-------------|
 | model | string | The transcription model.<br>Supported with `gpt-realtime` and `gpt-realtime-mini`:<br>`whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-transcribe-diarize`.<br>Supported with **all other models** and **agents**: `azure-speech` |
-| language | string | Optional language code in BCP-47 (e.g., `en-US`), or ISO-639-1 (e.g., `en`), or multi languages with auto detection, (e.g., `en,zh`). |
+| language | string | Optional language code in BCP-47 (for example, `en-US`), or ISO-639-1 (for example, `en`), or multi languages with auto detection (for example, `en,zh`).<br><br>See [Azure speech to text supported languages](./voice-live-language-support.md?tabs=speechinput#azure-speech-to-text-supported-languages) for recommended usage of this setting. |
 | custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
 | phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
 | prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe` and `gpt-4o-transcribe-diarize` models. |
@@ -2209,11 +2279,12 @@ Azure standard voice configuration.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure-standard"` |
-| name | string | Voice name (cannot be empty) |
+| name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| custom_text_normalization_url | string | Optional. URL to custom text normalization |
+| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS always uses the given locale to speak. For example set locale to `en-US`, TTS always uses American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
 | rate | string | Optional. Speech rate adjustment |
@@ -2226,12 +2297,13 @@ Azure custom voice configuration (preferred for custom voices).
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure-custom"` |
-| name | string | Voice name (cannot be empty) |
-| endpoint_id | string | Endpoint ID (cannot be empty) |
+| name | string | Voice name (can't be empty) |
+| endpoint_id | string | Endpoint ID (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| custom_text_normalization_url | string | Optional. URL to custom text normalization |
+| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example When TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS always uses the given locale to speak. For example set locale to `en-US`, TTS always uses American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | style | string | Optional. Voice style |
 | pitch | string | Optional. Pitch adjustment |
 | rate | string | Optional. Speech rate adjustment |
@@ -2256,12 +2328,13 @@ Azure personal voice configuration.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure-personal"` |
-| name | string | Voice name (cannot be empty) |
+| name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
 | model | string | Underlying neural model: `DragonLatestNeural`, `PhoenixLatestNeural`, `PhoenixV2Neural` |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
-| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales will change the accents of languages. If the value is not set, TTS will use default accent of each language. e.g. When TTS speaking English, it will use the American English accent. And when speaking Spanish, it will use the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent will be British English and the Spanish accent will be European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
-| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS will always use the given locale to speak. e.g. set locale to `en-US`, TTS will always use American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
+| custom_text_normalization_url | string | Optional. URL to custom text normalization |
+| prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
+| locale | string | Optional. Locale specification<br/> Enforce The locale for TTS output. If not set, TTS always uses the given locale to speak. For example set locale to `en-US`, TTS always uses American English accent to speak the text content, even the text content is in another language. And TTS will output silence if the text content is in Chinese. |
 | pitch | string | Optional. Pitch adjustment |
 | rate | string | Optional. Speech rate adjustment |
 | volume | string | Optional. Volume adjustment |
@@ -2295,7 +2368,7 @@ OpenAI semantic VAD configuration which uses a model to determine when the user 
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"semantic_vad"` |
-| eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` will let the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
+| eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` lets the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 
@@ -2312,7 +2385,7 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
-| languages | string[] | Optional. Supports English. Other languages will be ignored. |
+| languages | string[] | Optional. Supports English. Other languages are ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
@@ -2330,7 +2403,7 @@ Azure semantic VAD (default variant).
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false). |
-| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages will be ignored. |
+| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages are ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
@@ -2358,6 +2431,9 @@ Configuration for avatar streaming and behavior.
 | style | string | Optional. Avatar style (emotional tone, speaking style) |
 | customized | boolean | Whether the avatar is customized |
 | video | [RealtimeVideoParams](#realtimevideoparams) | Optional. Video configuration |
+| scene | [RealtimeAvatarScene](#realtimeavatarscene) | Optional. Configuration for the avatar's zoom level, position, rotation and movement amplitude in the video frame |
+| output_protocol | string | Optional. Output protocol for avatar streaming. Default is `webrtc` |
+| output_audit_audio | boolean | Optional. When enabled, forwards audit audio via WebSocket for review/debugging purposes, even when avatar output is delivered via WebRTC. Default is `false` |
 
 #### RealtimeIceServer
 
@@ -2397,6 +2473,20 @@ Video resolution specification.
 |-------|------|-------------|
 | width | integer | Width in pixels (must be > 0) |
 | height | integer | Height in pixels (must be > 0) |
+
+#### RealtimeAvatarScene
+
+Configuration for avatar's zoom level, position, rotation and movement amplitude in the video frame.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| zoom | number | Optional. Zoom level of the avatar. Range is (0, +∞). Values less than 1 zoom out, values greater than 1 zoom in. Default is 0 |
+| position_x | number | Optional. Horizontal position of the avatar. Range is [-1, 1], as a proportion of frame width. Negative values move left, positive values move right. Default is 0 |
+| position_y | number | Optional. Vertical position of the avatar. Range is [-1, 1], as a proportion of frame height. Negative values move up, positive values move down. Default is 0 |
+| rotation_x | number | Optional. Rotation around the X-axis (pitch). Range is [-π, π] in radians. Negative values rotate up, positive values rotate down. Default is 0 |
+| rotation_y | number | Optional. Rotation around the Y-axis (yaw). Range is [-π, π] in radians. Negative values rotate left, positive values rotate right. Default is 0 |
+| rotation_z | number | Optional. Rotation around the Z-axis (roll). Range is [-π, π] in radians. Negative values rotate anticlockwise, positive values rotate clockwise. Default is 0 |
+| amplitude | number | Optional. Amplitude of the avatar movement. Range is (0, 1]. Values in (0, 1) mean reduced amplitude, 1 means full amplitude. Default is 0 |
 
 ### Animation Configuration
 
@@ -2441,6 +2531,8 @@ Session configuration object used in `session.update` events.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
+| filler_response | [FillerResponseConfig](#fillerresponseconfig) | Optional. Configuration for filler response generation during latency or tool calls. |
+| reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](../../ai-foundry/openai/how-to/reasoning.md#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  |
 | avatar | [RealtimeAvatarConfig](#realtimeavatarconfig) | Optional. Avatar configuration |
 | output_audio_timestamp_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
 
@@ -2460,6 +2552,18 @@ Output timestamp types supported in audio response content.
 
 **Allowed Values:**
 * `word` - Timestamps per word in the output audio
+
+#### ReasoningEffort
+
+Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+
+**Allowed Values:**
+* `none` - No reasoning effort
+* `minimal` - Minimal reasoning effort
+* `low` - Low reasoning effort - faster responses with less reasoning
+* `medium` - Medium reasoning effort - balanced between speed and reasoning depth
+* `high` - High reasoning effort - more thorough reasoning, may take longer
+* `xhigh` - Extra high reasoning effort - maximum reasoning depth
 
 ### Tool Configuration
 
@@ -2498,6 +2602,110 @@ MCP tool configuration.
 | headers | object | Optional. Additional headers to include in MCP requests. |
 | authorization | string | Optional. Authorization token for MCP requests. |
 | require_approval | string or dictionary | Optional. <br/>If set to a string, The value must be `never` or `always`. <br/>If set to a dictionary, it must be in format `{"never": ["<tool_name_1>", "<tool_name_2>"], "always": ["<tool_name_3>"]}`. <br/>Default value is `always`. <br/> When set to `always`, the tool execution requires approval, [mcp_approval_request](#realtimeconversationmcpapprovalrequestitem) will be sent to client when mcp argument done, and will only be executed when [mcp_approval_response](#realtimemcpapprovalresponseitem) with `approve=true` is received. <br/>When set to `never`, the tool will be executed automatically without approval. |
+
+#### FoundryAgentTool
+
+Tool definition for integrating a Foundry agent as a tool. This enables a chat-supervisor pattern where a realtime-based chat agent handles basic interactions while delegating complex tasks to a more intelligent Foundry agent.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"foundry_agent"` |
+| agent_name | string | Required. The name of the Foundry agent to call. |
+| agent_version | string | Optional. The version of the Foundry agent to call. |
+| project_name | string | Required. The name of the Foundry project containing the agent. |
+| client_id | string | Optional. The client ID associated with the Foundry agent. |
+| description | string | Optional. An optional description for the Foundry agent tool. If provided, it's used instead of the agent's description in Foundry portal. |
+| foundry_resource_override | string | Optional. Override for the Foundry resource used to execute the agent. |
+| agent_context_type | string | Optional. The context type to use when invoking the Foundry agent. Possible values: `no_context`, `agent_context`. Default is `agent_context`.<br/><br/>`no_context`: Only the current user input is sent, no context maintained.<br/><br/>`agent_context`: Agent maintains its own context (thread), only current input sent per call. |
+| return_agent_response_directly | boolean | Optional. Whether to return the agent's response directly in the Voice Live response. Default is `true`. When set to `false`, the response is sent to the chat agent to rephrase. |
+
+Example:
+```json
+{
+  "instructions": "You are a helpful assistant. Please respond with a short message like 'working on this' before calling the agent tool.",
+  "tools": [
+    {
+      "type": "foundry_agent",
+      "agent_name": "customer-service-agent",
+      "agent_version": "2",
+      "project_name": "my-foundry-project",
+      "description": "A helpful agent that can search online information and handle complex customer requests"
+    }
+  ]
+}
+```
+
+### Filler Response Configuration
+
+Filler responses allow the system to generate placeholder audio responses during latency or while tools are being executed, improving user experience by avoiding silence.
+
+#### FillerResponseConfig
+
+Configuration for filler response generation. This is a union type that can be one of the following:
+- [BasicFillerResponseConfig](#basicfillerresponseconfig) - Static filler responses randomly selected from a list
+- [LlmFillerResponseConfig](#llmfillerresponseconfig) - LLM-generated context-aware filler responses
+
+#### BasicFillerResponseConfig
+
+Configuration for basic/static filler response generation. Randomly selects from configured texts when any trigger condition is met.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"static_filler"` |
+| triggers | [FillerTrigger](#fillertrigger)[] | Optional. List of triggers that can fire the filler. Any trigger can activate the filler (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
+| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering filler response. Default is 2000ms. Minimum value is 0. |
+| texts | string[] | Optional. List of filler text options to randomly select from. |
+
+Example:
+```json
+{
+  "filler_response": {
+    "type": "static_filler",
+    "triggers": ["latency", "tool"],
+    "latency_threshold_ms": 1500,
+    "texts": [
+      "Let me think about that...",
+      "One moment please...",
+      "Working on that for you..."
+    ]
+  }
+}
+```
+
+#### LlmFillerResponseConfig
+
+Configuration for LLM-based filler response generation. Uses LLM to generate context-aware filler responses when any trigger condition is met.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"llm_filler"` |
+| triggers | [FillerTrigger](#fillertrigger)[] | Optional. List of triggers that can fire the filler. Any trigger can activate the filler (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
+| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering filler response. Default is 2000ms. Minimum value is 0. |
+| model | string | Optional. The model to use for LLM-based filler generation. Default is `gpt-4.1-mini`. |
+| instructions | string | Optional. Custom instructions for generating filler responses. If not provided, a default prompt is used. |
+| max_completion_tokens | integer | Optional. Maximum number of tokens to generate for the filler response. Default is 50. Minimum value is 1. |
+
+Example:
+```json
+{
+  "filler_response": {
+    "type": "llm_filler",
+    "triggers": ["tool"],
+    "latency_threshold_ms": 2000,
+    "model": "gpt-4.1-mini",
+    "instructions": "Generate a brief, friendly acknowledgment that you're working on the user's request.",
+    "max_completion_tokens": 30
+  }
+}
+```
+
+#### FillerTrigger
+
+Triggers that can activate filler response generation.
+
+**Allowed Values:**
+* `latency` - Trigger filler when response latency exceeds threshold
+* `tool` - Trigger filler when a tool call is being executed
 
 ### RealtimeConversationResponseItem
 
@@ -2606,6 +2814,21 @@ MCP approval request item.
 | server_label | string | The label of the MCP server. |
 | name | string | The name of the tool to call. |
 | arguments | string | The arguments for the MCP call. |
+
+#### RealtimeConversationFoundryAgentCallItem
+
+Foundry agent call response item.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | string | The unique ID of the item. |
+| type | string | Must be `"foundry_agent_call"` |
+| name | string | The name of the Foundry agent. |
+| call_id | string | The ID of the call. |
+| arguments | string | The arguments for the foundry agent call. |
+| agent_response_id | string | Optional. The response ID from the foundry agent. |
+| output | string | Optional. The output of the foundry agent call. |
+| error | object | Optional. The error details if the foundry agent call failed. |
 
 ### RealtimeItemStatus
 
@@ -2796,6 +3019,7 @@ An MCP approval response item.
 | type | string | The type of the item.<br><br>Allowed values: `mcp_approval_response` |
 | approve | boolean | Whether the MCP request is approved. |
 | approval_request_id | string | The ID of the MCP approval request. |
+| id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
 ### RealtimeFunctionTool
 
@@ -2852,6 +3076,8 @@ The definition of a function tool as used by the realtime endpoint.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
+| filler_response | [FillerResponseConfig](#fillerresponseconfig) | Optional. Configuration for filler response generation during latency or tool calls. |
+| reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. <br><br>Defaults to `"auto"` |
 | metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
 
@@ -2878,6 +3104,7 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`. |
+| filler_response | [FillerResponseConfig](#fillerresponseconfig) | Configuration for filler response generation during latency or tool calls. |
 
 ### RealtimeResponseStatusDetails
 

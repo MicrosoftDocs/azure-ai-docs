@@ -29,7 +29,7 @@ Code Interpreter allows the Assistants API to write and run Python code in a san
 
 ### Supported models
 
-The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants and code interpreter are supported.
+The [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants and code interpreter are supported.
 
 We recommend using assistants with the latest models to take advantage of the new features, larger context windows, and more up-to-date training data.
 
