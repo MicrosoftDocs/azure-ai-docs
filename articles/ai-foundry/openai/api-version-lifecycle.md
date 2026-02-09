@@ -10,6 +10,7 @@ ms.date: 02/06/2026
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
+ms.custom: pilot-ai-workflow-jan-2026
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
