@@ -97,6 +97,7 @@ At any point in the chat session, you can enable the **Show raw JSON** switch at
 ]
 ```
 
+<!--
 ## Troubleshooting
 
 | Error | Cause | Solution |
@@ -105,6 +106,7 @@ At any point in the chat session, you can enable the **Show raw JSON** switch at
 | Image upload fails | Image too large or unsupported format | Use JPEG, PNG, GIF, or WebP. Maximum 20 MB per image. |
 | Response seems incomplete | `max_tokens` not set or too low | Increase the token limit in **Parameters** panel. |
 | Content filtered response | Image triggered content filter | GPT-4 Turbo with Vision has mandatory content filtering that can't be disabled. |
+-->
 
 ## Clean up resources
 

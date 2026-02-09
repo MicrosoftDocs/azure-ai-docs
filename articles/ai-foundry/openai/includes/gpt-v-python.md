@@ -106,6 +106,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     ```
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
+<!--
 ## Troubleshooting
 
 | Error | Cause | Solution |
@@ -115,6 +116,8 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
 | `RateLimitError` | Quota exceeded | Wait and retry, or request a quota increase in Azure portal. |
 | Truncated response | `max_tokens` too low | Increase the `max_tokens` value in your request. |
 | `BadRequestError` with content filter | Image triggered content filter | GPT-4 Turbo with Vision has mandatory content filtering that can't be disabled. |
+
+-->
 
 ## Clean up resources
 

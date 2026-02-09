@@ -241,6 +241,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 
 ---
 
+<!--
 ## Troubleshooting
 
 | Error | Cause | Solution |
@@ -251,6 +252,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 | Truncated response | `max_tokens` too low | Increase the `max_tokens` value in your request. |
 | Content filtered response | Image triggered content filter | GPT-4 Turbo with Vision has mandatory content filtering that can't be disabled. |
 
+--> 
 ## Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
