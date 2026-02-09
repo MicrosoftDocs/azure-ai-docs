@@ -6,12 +6,22 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 02/09/2026
 ms.author: lajanuar
 ---
+<!-- markdownlint-disable MD025 -->
 # Migrating to Azure Language in Foundry Tools
 
 On November 2, 2021, Azure Language in Foundry Tools was released into public preview. Azure Language unifies the Text Analytics, QnA Maker, and Language Understanding (LUIS) service offerings, and provides several new features as well.
+
+> [!IMPORTANT]
+>
+> * You may experience intermittent interruptions when calling the Language Understanding (LUIS) service. Microsoft is in the final phase of retiring LUIS. These interruptions are temporary but expected during this retirement phase.
+> * Beginning March 31, 2026, LUIS runtime and authoring endpoints (including REST API calls) are fully retired, and all LUIS requests fail.
+> * To ensure uninterrupted operation, export all of your LUIS app data as soon as possible in order to:
+>   * Start using Conversational Language Understanding (CLU), or
+>   * Try out a Microsoft Foundry-based architecture.
+> * Use the following API to export your data: [LUIS Versions - Export](/rest/api/luis/versions/export?view=rest-luis-v2.0&tabs=HTTP).
 
 ## Do I need to migrate to Azure Language if I'm using Text Analytics?
 
@@ -21,7 +31,7 @@ Consider using one of the available quickstart articles to see the latest inform
 
 ## How do I migrate to Azure Language if I'm using Language Understanding (LUIS)?
 
-If you're using Language Understanding (Language Understanding (LUIS)), you can [import your Language Understanding (LUIS) JSON file](../conversational-language-understanding/how-to/migrate-from-Language Understanding (LUIS).md) to the new Conversational language understanding feature.
+If you're using Language Understanding (LUIS), you can [import your Language Understanding (LUIS) JSON file](../conversational-language-understanding/) to the new Conversational language understanding feature.
 
 ## How do I migrate to Azure Language if I'm using QnA Maker?
 
