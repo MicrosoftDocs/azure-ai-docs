@@ -14,15 +14,15 @@ ms.date: 01/31/2026
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.oracle.com/java/technologies/downloads/" target="_blank">Java Development Kit (JDK) 8 or later</a>.
 - <a href="https://maven.apache.org/download.cgi" target="_blank">Apache Maven</a> for dependency management and building the project.
-- A [Microsoft Foundry resource](../../../multi-service-resource.md) in one of the supported regions. For more information about region availability, see [Speech service supported regions](../../regions.md).
+- A [Speech resource](../../../multi-service-resource.md) in one of the supported regions. For more information about region availability, see [Speech service supported regions](../../regions.md).
 - A sample `.wav` audio file to transcribe.
 
 ## Set up the environment
 
-1. Create a new folder named `transcription-quickstart` and navigate to it:
+1. Create a new folder named `llm-speech-quickstart` and navigate to it:
 
     ```shell
-    mkdir transcription-quickstart && cd transcription-quickstart
+    mkdir llm-speech-quickstart && cd llm-speech-quickstart
     ```
 
 1. Create a `pom.xml` file in the root of your project directory with the following content:
@@ -128,8 +128,8 @@ Set the API key environment variable:
 
 # [Windows](#tab/windows)
 
-```powershell
-$env:AZURE_SPEECH_API_KEY="<your-speech-key>"
+```shell
+setx AZURE_SPEECH_API_KEY <your-speech-key>
 ```
 
 # [Linux](#tab/linux)
@@ -166,25 +166,27 @@ az role assignment create --assignee <your-identity> \
 > [!NOTE]
 > After setting environment variables on Windows, restart any running programs that need to read them, including the console window. On Linux or macOS, run `source ~/.bashrc` (or your equivalent shell configuration file) to make the changes effective.
 
-## Create the application
+## Transcribe audio with LLM speech
 
-Create a file named `TranscriptionQuickstart.java` in your project directory with the following code:
+LLM speech uses the `EnhancedModeOptions` class to enable large-language-model-enhanced transcription. Enhanced mode is automatically enabled when you create an `EnhancedModeOptions` instance. The model automatically detects the language in your audio.
+
+Create a file named `LlmSpeechQuickstart.java` in your project directory with the following code:
 
 ```java
 import com.azure.ai.speech.transcription.TranscriptionClient;
 import com.azure.ai.speech.transcription.TranscriptionClientBuilder;
 import com.azure.ai.speech.transcription.models.AudioFileDetails;
+import com.azure.ai.speech.transcription.models.EnhancedModeOptions;
 import com.azure.ai.speech.transcription.models.TranscriptionOptions;
 import com.azure.ai.speech.transcription.models.TranscriptionResult;
 import com.azure.core.credential.KeyCredential;
 import com.azure.core.util.BinaryData;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class TranscriptionQuickstart {
+public class LlmSpeechQuickstart {
     public static void main(String[] args) {
         try {
             // Get credentials from environment variables
@@ -211,12 +213,108 @@ public class TranscriptionQuickstart {
             // Create audio file details
             AudioFileDetails audioFileDetails = new AudioFileDetails(BinaryData.fromBytes(audioData));
 
-            // Transcribe
-            TranscriptionOptions options = new TranscriptionOptions(audioFileDetails);
+            // Create enhanced mode options for LLM speech transcription
+            // Enhanced mode is automatically enabled when you create EnhancedModeOptions
+            EnhancedModeOptions enhancedModeOptions = new EnhancedModeOptions()
+                .setTask("transcribe");
+
+            // Create transcription options with enhanced mode
+            TranscriptionOptions options = new TranscriptionOptions(audioFileDetails)
+                .setEnhancedModeOptions(enhancedModeOptions);
+
+            // Transcribe the audio
             TranscriptionResult result = client.transcribe(options);
 
             // Print result
             System.out.println("Transcription:");
+            result.getCombinedPhrases().forEach(phrase ->
+                System.out.println(phrase.getText())
+            );
+
+            // Print detailed phrase information
+            if (result.getPhrases() != null) {
+                System.out.println("\nDetailed phrases:");
+                result.getPhrases().forEach(phrase ->
+                    System.out.println(String.format("  [%dms] (%s): %s",
+                        phrase.getOffset(),
+                        phrase.getLocale(),
+                        phrase.getText()))
+                );
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+Replace `<path-to-your-audio-file.wav>` with the path to your audio file. The service supports WAV, MP3, FLAC, OGG, and other common audio formats.
+
+
+## Run the application
+
+Run the application using Maven:
+
+```shell
+mvn compile exec:java
+```
+
+## Translate audio by using LLM speech
+
+You can also use LLM speech to translate audio into a target language. Modify the `EnhancedModeOptions` configuration to set the task to `translate` and specify the target language.
+
+Create a file named `LlmSpeechTranslate.java` with the following code:
+
+```java
+import com.azure.ai.speech.transcription.TranscriptionClient;
+import com.azure.ai.speech.transcription.TranscriptionClientBuilder;
+import com.azure.ai.speech.transcription.models.AudioFileDetails;
+import com.azure.ai.speech.transcription.models.EnhancedModeOptions;
+import com.azure.ai.speech.transcription.models.TranscriptionOptions;
+import com.azure.ai.speech.transcription.models.TranscriptionResult;
+import com.azure.core.credential.KeyCredential;
+import com.azure.core.util.BinaryData;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class LlmSpeechTranslate {
+    public static void main(String[] args) {
+        try {
+            // Get credentials from environment variables
+            String endpoint = System.getenv("AZURE_SPEECH_ENDPOINT");
+            String apiKey = System.getenv("AZURE_SPEECH_API_KEY");
+
+            // Create client
+            TranscriptionClient client = new TranscriptionClientBuilder()
+                .endpoint(endpoint)
+                .credential(new KeyCredential(apiKey))
+                .buildClient();
+
+            // Load audio file
+            String audioFilePath = "<path-to-your-audio-file.wav>";
+            byte[] audioData = Files.readAllBytes(Paths.get(audioFilePath));
+
+            // Create audio file details
+            AudioFileDetails audioFileDetails = new AudioFileDetails(BinaryData.fromBytes(audioData));
+
+            // Create enhanced mode options for LLM speech translation
+            // Translate to Korean (supported languages: en, zh, de, fr, it, ja, es, pt, ko)
+            EnhancedModeOptions enhancedModeOptions = new EnhancedModeOptions()
+                .setTask("translate")
+                .setTargetLanguage("ko");
+
+            // Create transcription options with enhanced mode
+            TranscriptionOptions options = new TranscriptionOptions(audioFileDetails)
+                .setEnhancedModeOptions(enhancedModeOptions);
+
+            // Translate the audio
+            TranscriptionResult result = client.transcribe(options);
+
+            // Print translation result
+            System.out.println("Translation:");
             result.getCombinedPhrases().forEach(phrase ->
                 System.out.println(phrase.getText())
             );
@@ -229,22 +327,42 @@ public class TranscriptionQuickstart {
 }
 ```
 
-Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
+Replace `<path-to-your-audio-file.wav>` with the path to your audio file. 
 
 
-## Run the application
-
-Run the application using Maven:
+To run the translation example, update the `pom.xml` main class configuration or run:
 
 ```shell
-mvn compile exec:java
+mvn exec:java -Dexec.mainClass="LlmSpeechTranslate"
 ```
+
+## Use prompt-tuning
+
+You can provide an optional prompt to guide the output style for transcription or translation tasks.
+
+```java
+import java.util.Arrays;
+
+// Create enhanced mode options with prompt-tuning
+EnhancedModeOptions enhancedModeOptions = new EnhancedModeOptions()
+    .setTask("transcribe")
+    .setPrompts(Arrays.asList("Output must be in lexical format."));
+
+// Create transcription options with enhanced mode
+TranscriptionOptions options = new TranscriptionOptions(audioFileDetails)
+    .setEnhancedModeOptions(enhancedModeOptions);
+```
+
+### Best practices for prompts:
+- Prompts are subject to a maximum length of 4,096 characters.
+- Prompts should preferably be written in English.
+- Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
+- Use `Pay attention to *phrase1*, *phrase2*, …` to improve recognition of specific phrases or acronyms.
 
 ## Clean up resources
 
-When you're done with the quickstart, you can delete the project folder:
+When you finish the quickstart, delete the project folder:
 
 ```shell
-rm -rf transcription-quickstart
+rm -rf llm-speech-quickstart
 ```
-

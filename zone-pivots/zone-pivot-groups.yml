@@ -1851,3 +1851,25 @@ groups:
     title: REST
   - id: csharp
     title: C#
+# Owner: pafarley
+- id: fast-transcription-quickstart
+  title: Programming languages
+  prompt: Choose an API
+  pivots:
+  - id: programming-language-rest
+    title: REST API
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-java
+    title: Java
+# Owner: pafarley
+- id: llm-speech-quickstart
+  title: Programming languages
+  prompt: Choose an API
+  pivots:
+  - id: programming-language-rest
+    title: REST API
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-java
+    title: Java
