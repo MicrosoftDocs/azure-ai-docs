@@ -6,7 +6,7 @@ ms.date: 08/01/2024
 ms.author: pafarley
 ---
 
-### Speech CLI 1.48.0: 2026-Feburary release
+### Speech CLI 1.48.0: 2026-February release
 Updated to use Speech SDK 1.48.0
 #### New features
 * none
