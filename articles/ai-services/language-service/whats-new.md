@@ -6,13 +6,25 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
-ms.date: 01/14/2026
+ms.date: 02/09/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
 # What's new in Azure Language in Foundry Tools?
 
 Stay informed about recent releases and enhancements designed to help you get the most out of Azure Language capabilities. Azure Language in Foundry Tools is updated on an ongoing basis. Bookmark this page and stay up to date with release notes, feature enhancements, and our newest documentation.
+
+## February 2026
+
+* **Text PII detection quality improvement**. Backend validation for the Phone Number entity type is updated to broaden detection coverage, resulting in improved recall across supported languages. This change is applied at the service level and requires no updates to your API calls or request parameters.
+
+* **Orchestration workflow playground update**. The Foundry playground experience for orchestration workflow introduces a redesigned task-linking interface. The **Schema definition** page previously available in Language Studio is replaced by the **Configure orchestration** page, which provides a streamlined way to associate fine-tuning tasks with an orchestration workflow task. For more information, see the [Orchestration workflow quickstart](orchestration-workflow/quickstart.md).
+
+* **Language Studio retirement**. Azure Language Studio is scheduled for retirement on **March 20, 2027**. After that date, the Language Studio portal is no longer accessible, but your existing projects, data, and service endpoints remain unaffected. All features and new enhancements are available in Microsoft Foundry. For step-by-step migration instructions, see [Migrate from Language Studio to Microsoft Foundry](migration-studio-to-foundry.md).
+
+* **Foundry (classic) Language playground card is generally available**. The Language playground card in [Microsoft Foundry (classic)](https://ai.azure.com/) exits preview and is now generally available. You can access all Language authoring, testing, and deployment capabilities directly from the playground without any feature restrictions.
+
+* **Updated LUIS migration guidance**. Migration documentation for **LUIS** (language understanding) is updated to reflect current Foundry workflows and Conversational Language Understanding (CLU) import procedures. If you're migrating from **LUIS**, see [Migrating to Azure Language in Foundry Tools](reference/migrate.md) for the latest instructions.
 
 ## January 2026
 
