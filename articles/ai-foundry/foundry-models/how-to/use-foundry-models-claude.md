@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 02/05/2026
-ms.custom: ignite-2024, dev-focus
+ms.custom: ignite-2024, dev-focus, pilot-ai-workflow-jan-2026 
 author: msakande
 ms.author: mopeakande
 ms.reviewer: ambadal
