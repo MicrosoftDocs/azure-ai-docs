@@ -425,7 +425,7 @@ The text similarity grader (`text_similarity`) compares two text strings using s
 
 ### Example output
 
-Graders return results with pass/fail status.The following snippet shows representative fields from the full output object:
+Graders return results with pass/fail status. Key output fields:
 
 ```json
 {

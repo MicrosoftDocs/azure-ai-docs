@@ -19,9 +19,9 @@ ms.custom:
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-A Retrieval-Augmented Generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. A user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response.
-
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
+A Retrieval-Augmented Generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. A user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response.
 
 ::: moniker range="foundry-classic"
 
@@ -168,14 +168,6 @@ To use RAG evaluators, configure them in your `testing_criteria`. Each evaluator
 | Retrieval | `query`, `context` | `deployment_name` |
 | Document Retrieval | `retrieval_ground_truth`, `retrieval_documents` | `ground_truth_label_min`, `ground_truth_label_max` |
 
-> [!NOTE]
-> For agent target or agent response evaluation, `context` is optional if the response contains tool calls. The evaluator can extract context from tool call results.
-
-**Data mapping syntax:**
-
-- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
-
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example input
@@ -188,6 +180,11 @@ Your test dataset should contain the fields referenced in your data mappings. Fo
 ```
 
 ### Configuration example
+
+**Data mapping syntax:**
+
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
+- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source. For agent evaluation, `context` is optional if the response contains tool calls—the evaluator can extract context from tool call results.
 
 ```python
 testing_criteria = [
@@ -220,7 +217,7 @@ testing_criteria = [
 
 ### Example output
 
-These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. The following snippet shows representative fields from the full output object:
+These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. Key output fields:
 
 ```json
 {

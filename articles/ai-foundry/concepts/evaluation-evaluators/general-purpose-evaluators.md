@@ -191,10 +191,7 @@ While F1 score outputs a numerical score on 0-1 float scale, the other evaluator
 
 ## Using general-purpose evaluators
 
-General-purpose evaluators assess the quality of AI-generated text independent of specific use cases:
-
-- Coherence - Measures logical flow and organization of ideas in the response
-- Fluency - Measures grammatical accuracy and readability of the response
+General-purpose evaluators assess the quality of AI-generated text independent of specific use cases.
 
 Examples:
 
@@ -208,11 +205,6 @@ Configure them in your `testing_criteria`:
 | `builtin.coherence` | Logical flow and organization of ideas | `query`, `response` | `deployment_name` |
 | `builtin.fluency` | Grammatical accuracy and readability | `response` | `deployment_name` |
 
-**Data mapping syntax:**
-
-- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_text}}` references response text generated or retrieved during evaluation. Use this when evaluating with a model target or agent target.
-
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example input
@@ -225,6 +217,11 @@ Your test dataset should contain the fields referenced in your data mappings. Fo
 ```
 
 ### Configuration example
+
+**Data mapping syntax:**
+
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
+- `{{sample.output_text}}` references response text generated or retrieved during evaluation. Use this when evaluating with a model target or agent target.
 
 ```python
 testing_criteria = [
@@ -247,7 +244,7 @@ testing_criteria = [
 
 ### Example output
 
-These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. The following snippet shows representative fields from the full output object:
+These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. Key output fields:
 
 ```json
 {

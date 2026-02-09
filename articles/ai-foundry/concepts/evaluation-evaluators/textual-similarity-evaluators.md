@@ -283,10 +283,6 @@ Examples:
 | `builtin.rouge_score` | Recall-oriented n-gram overlap | `response`, `ground_truth` | `rouge_type` | 0-1 float | 0.5 |
 | `builtin.meteor_score` | Weighted alignment with synonyms | `response`, `ground_truth` | *(none)* | 0-1 float | 0.5 |
 
-**Data mapping syntax:**
-
-- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.response}}`).
-
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example input
@@ -299,6 +295,10 @@ Your test dataset should contain the fields referenced in your data mappings. Fo
 ```
 
 ### Configuration example
+
+**Data mapping syntax:**
+
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.response}}`).
 
 ```python
 testing_criteria = [
@@ -337,7 +337,7 @@ testing_criteria = [
 
 ### Example output
 
-LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evaluators output 0-1 floats. All evaluators output *pass* or *fail* based on their thresholds. The following snippet shows representative fields from the full output object:
+LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evaluators output 0-1 floats. All evaluators output *pass* or *fail* based on their thresholds. Key output fields:
 
 ```json
 {

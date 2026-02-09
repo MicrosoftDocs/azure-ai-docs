@@ -110,25 +110,18 @@ Examples:
 
 - [Risk and safety evaluator samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
 
-| Evaluator | What it measures | Required inputs | Required parameters |
-|-----------|------------------|-----------------|---------------------|
-| `builtin.violence` | Violent or threatening language | `query`, `response` | *(none)* |
-| `builtin.sexual` | Sexual or explicit content | `query`, `response` | *(none)* |
-| `builtin.self_harm` | Self-harm related content | `query`, `response` | *(none)* |
-| `builtin.hate_unfairness` | Hateful or unfair language | `query`, `response` | *(none)* |
-| `builtin.protected_material` | Copyrighted content | `query`, `response` | *(none)* |
-| `builtin.indirect_attack` | Indirect jailbreak attempts | `query`, `response` | *(none)* |
-| `builtin.code_vulnerability` | Security vulnerabilities in code | `query`, `response` | *(none)* |
-| `builtin.ungrounded_attributes` | Ungrounded personal inferences | `query`, `response`, `context` | *(none)* |
-| `builtin.prohibited_actions` | Disallowed agent behaviors | `query`, `response`, `tool_calls` | *(none)* |
-| `builtin.sensitive_data_leakage` | Sensitive data exposure | `query`, `response`, `tool_calls` | *(none)* |
-
-**Data mapping syntax:**
-
-- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_text}}` references response text generated or retrieved during evaluation. Use this when evaluating with a model target or agent target.
-- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
-- `{{sample.tool_definitions}}` references tool definitions for agent-specific evaluators.
+| Evaluator | What it measures | Required inputs |
+|-----------|------------------|-----------------|
+| `builtin.violence` | Violent or threatening language | `query`, `response` |
+| `builtin.sexual` | Sexual or explicit content | `query`, `response` |
+| `builtin.self_harm` | Self-harm related content | `query`, `response` |
+| `builtin.hate_unfairness` | Hateful or unfair language | `query`, `response` |
+| `builtin.protected_material` | Copyrighted content | `query`, `response` |
+| `builtin.indirect_attack` | Indirect jailbreak attempts | `query`, `response` |
+| `builtin.code_vulnerability` | Security vulnerabilities in code | `query`, `response` |
+| `builtin.ungrounded_attributes` | Ungrounded personal inferences | `query`, `response`, `context` |
+| `builtin.prohibited_actions` | Disallowed agent behaviors | `query`, `response`, `tool_calls` |
+| `builtin.sensitive_data_leakage` | Sensitive data exposure | `query`, `response`, `tool_calls` |
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
@@ -143,22 +136,32 @@ Your test dataset should contain the fields referenced in your data mappings. Fo
 
 ### Configuration example for evaluating model responses
 
+**Data mapping syntax:**
+
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
+- `{{sample.output_text}}` references response text generated or retrieved during evaluation. Use this when evaluating with a model target or agent target.
+- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
+- `{{sample.tool_definitions}}` references tool definitions for agent-specific evaluators.
+
 ```python
 testing_criteria = [
     {
         "type": "azure_ai_evaluator",
         "name": "Violence",
         "evaluator_name": "builtin.violence",
+        "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
     },
     {
         "type": "azure_ai_evaluator",
         "name": "Self Harm",
         "evaluator_name": "builtin.self_harm",
+        "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
     },
     {
         "type": "azure_ai_evaluator",
         "name": "Hate Unfairness",
         "evaluator_name": "builtin.hate_unfairness",
+        "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
     },
 ]
 ```
@@ -194,7 +197,7 @@ testing_criteria = [
 
 ### Example output
 
-Content safety evaluators use a 0-7 severity scale. Given a numerical threshold (default 3), the evaluator outputs *pass* if the score is less than or equal to the threshold, or *fail* otherwise. The reason field explains why the severity level was assigned. All other evaluators output either *pass* or *fail* based on whether risks are detected. The following snippet shows representative fields from the full output object:
+Content safety evaluators use a 0-7 severity scale. Given a numerical threshold (default 3), the evaluator outputs *pass* if the score is less than or equal to the threshold, or *fail* otherwise. The reason field explains why the severity level was assigned. All other evaluators output either *pass* or *fail* based on whether risks are detected. Key output fields:
 
 ```json
 {

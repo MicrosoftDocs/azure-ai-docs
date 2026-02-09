@@ -395,12 +395,6 @@ To use agent evaluators, configure them in your `testing_criteria`. Each evaluat
 | Tool Call Success | `response` | `deployment_name` |
 | Task Navigation Efficiency | `actions`, `expected_actions` | *(none)* |
 
-**Data mapping syntax:**
-
-- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
-- `{{sample.tool_definitions}}` references tool definitions. These are auto-populated for supported built-in tools or inferred for custom functions.
-
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example input
@@ -430,6 +424,12 @@ For more complex agent interactions with tool calls, use the conversation array 
 
 ### Configuration example
 
+**Data mapping syntax:**
+
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
+- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
+- `{{sample.tool_definitions}}` references tool definitions. These are auto-populated for supported built-in tools or inferred for custom functions.
+
 Here's an example configuration for Task Adherence:
 
 ```python
@@ -449,7 +449,7 @@ testing_criteria = [
 
 ### Example output
 
-Agent evaluators return Pass/Fail results with reasoning. The following snippet shows representative fields from the full output object:
+Agent evaluators return Pass/Fail results with reasoning. Key output fields:
 
 ```json
 {
