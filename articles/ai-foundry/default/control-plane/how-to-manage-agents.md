@@ -108,7 +108,7 @@ Foundry Control Plane uses the Application Insights resources that host your age
 If you don't see such information for your agent, you need to [configure Application Insights](monitoring-across-fleet.md#configure-monitoring). Ensure that you also have [the appropriate permissions to view Application Insights data and cost metrics](monitoring-across-fleet.md#prerequisites).
 
 > [!TIP]
-> We strongly advise configuring Application Insights for each of the resources that host agents. For Foundry agents, Applications Insights is configured per Foundry project. However, you can connect multiple Foundry projects to the same Applications Insights resources to optimize those resources.
+> We strongly advise configuring Application Insights for each of the resources that host agents. For Foundry agents, Application Insights is configured per Foundry project. However, you can connect multiple Foundry projects to the same Application Insights resources to optimize those resources.
 
 ### View traces
 
