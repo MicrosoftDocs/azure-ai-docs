@@ -297,13 +297,11 @@ testing_criteria = [
         "type": "azure_ai_evaluator",
         "name": "Similarity",
         "evaluator_name": "builtin.similarity",
+        "initialization_parameters": {"deployment_name": model_deployment},
         "data_mapping": {
-            "response": "{{item.answer}}",
+            "query": "{{item.query}}",
+            "response": "{{item.response}}",
             "ground_truth": "{{item.ground_truth}}",
-        },
-        "initialization_parameters": {
-            "deployment_name": model_deployment,
-            "threshold": 3,
         },
     },
     {
@@ -311,22 +309,18 @@ testing_criteria = [
         "name": "BLEUScore",
         "evaluator_name": "builtin.bleu_score",
         "data_mapping": {
-            "response": "{{item.answer}}",
+            "response": "{{item.response}}",
             "ground_truth": "{{item.ground_truth}}",
         },
-        "initialization_parameters": {"threshold": 0.5},
     },
     {
         "type": "azure_ai_evaluator",
         "name": "ROUGEScore",
         "evaluator_name": "builtin.rouge_score",
+        "initialization_parameters": {"rouge_type": "rouge1"},
         "data_mapping": {
-            "response": "{{item.answer}}",
+            "response": "{{item.response}}",
             "ground_truth": "{{item.ground_truth}}",
-        },
-        "initialization_parameters": {
-            "rouge_type": "rouge1",  # Options: rouge1, rouge2, rougeL, rougeLsum
-            "f1_score_threshold": 0.5,
         },
     },
 ]

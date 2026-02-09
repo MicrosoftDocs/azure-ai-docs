@@ -132,7 +132,7 @@ Examples:
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
-### Configuration example for model evaluation
+### Configuration example for evaluating model responses
 
 ```python
 testing_criteria = [
@@ -154,7 +154,7 @@ testing_criteria = [
 ]
 ```
 
-### Configuration example for agent evaluation
+### Configuration example for evaluating agents
 
 Agent-specific safety evaluators like `prohibited_actions` and `sensitive_data_leakage` require tool calls:
 

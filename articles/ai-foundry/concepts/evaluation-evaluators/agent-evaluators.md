@@ -19,8 +19,6 @@ ms.custom:
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 ::: moniker range="foundry-classic"
@@ -441,7 +439,7 @@ response = [
 ]
 ```
 
-### Example output
+### Output
 
 Agent evaluators return Pass/Fail results with reasoning. The following snippet shows representative fields from the full output object:
 

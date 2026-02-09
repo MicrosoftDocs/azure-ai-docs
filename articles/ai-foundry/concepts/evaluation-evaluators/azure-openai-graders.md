@@ -19,6 +19,8 @@ ms.custom:
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
+[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
 Azure OpenAI graders are a new set of evaluation tools in the Microsoft Foundry SDK that evaluate the performance of AI models and their outputs. These graders include:
 
 ::: moniker range="foundry-classic"
@@ -32,12 +34,12 @@ Azure OpenAI graders are a new set of evaluation tools in the Microsoft Foundry 
 
 ::: moniker range="foundry"
 
-| Name                  | Type             | What it does                                                                 |
-|-----------------------|------------------|------------------------------------------------------------------------------|
-| `label_grader`        | `label_model`   | Classifies sentiment as **positive**, **neutral**, or **negative** using an LLM. |
-| `text_check_grader`   | `text_similarity`| Compares ground truth and response using BLEU score for similarity.          |
-| `string_check_grader` | `string_check`  | Performs a string equality check between two values.                         |
-| `score`               | `score_model`   | Assigns a similarity score (1–5) based on semantic and structural comparison. |
+| Grader | What it measures | Required parameters | Output |
+|--------|------------------|---------------------|--------|
+| `label_model` | Classifies text into predefined categories | `model`, `input`, `labels`, `passing_labels` | Pass/Fail based on label |
+| `score_model` | Assigns a numeric score based on criteria | `model`, `input`, `range`, `pass_threshold` | 0-1 float |
+| `string_check` | Exact or pattern string matching | `input`, `reference`, `operation` | Pass/Fail |
+| `text_similarity` | Similarity between two text strings | `input`, `reference`, `evaluation_metric`, `pass_threshold` | 0-1 float |
 
 ::: moniker-end
 
@@ -412,7 +414,7 @@ The text similarity grader (`text_similarity`) compares two text strings using s
 
 **Output:** Returns a similarity score as a float (higher means more similar). The grader passes if the score meets or exceeds `pass_threshold`.
 
-### Example output
+### Output
 
 Graders return results with pass/fail status. The following snippet shows representative fields from the full output object:
 
