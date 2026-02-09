@@ -333,12 +333,11 @@ LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evalu
 
 ```json
 {
-    "similarity": 4,
-    "similarity_result": "pass",
-    "similarity_threshold": 3,
-    "bleu_score": 0.42,
-    "bleu_result": "fail",
-    "bleu_threshold": 0.5
+    "type": "azure_ai_evaluator",
+    "name": "similarity",
+    "score": 4,
+    "passed": true,
+    "reason": "The response accurately conveys the same meaning as the ground truth."
 }
 ```
 
