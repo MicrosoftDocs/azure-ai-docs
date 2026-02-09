@@ -51,7 +51,7 @@ ms.date: 01/31/2026
             <dependency>
                 <groupId>com.azure</groupId>
                 <artifactId>azure-ai-speech-transcription</artifactId>
-                <version>1.0.0-beta.1</version>
+                <version>1.0.0-beta.2</version>
             </dependency>
             <dependency>
                 <groupId>com.azure</groupId>
