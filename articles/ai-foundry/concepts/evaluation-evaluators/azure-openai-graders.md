@@ -287,9 +287,9 @@ evaluation = evaluate(
 evaluation
 ```
 
-### Output
+### Example output
 
-For each set of sample data in the data file, the Python grader returns a numerical score based on the defined function. Given a numerical threshold defined as part of the custom grader, we also output `True` if the score >= threshold, or `False` otherwise.
+For each set of sample data in the data file, the Python grader returns a numerical score based on the defined function.Given a numerical threshold defined as part of the custom grader, we also output `True` if the score >= threshold, or `False` otherwise.
 
 For example:
 
@@ -320,6 +320,15 @@ Examples:
 - [Azure OpenAI graders sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_graders.py)
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+
+### Example input
+
+Your test dataset should contain the fields referenced in your grader configurations. For example, include `query`, `response`, and optionally `ground_truth` fields:
+
+```jsonl
+{"query": "What is the weather like today?", "response": "It's sunny and warm with clear skies.", "ground_truth": "Today is sunny with temperatures around 75°F."}
+{"query": "Summarize the meeting notes.", "response": "The team discussed Q3 goals and assigned action items.", "ground_truth": "Meeting covered quarterly objectives and task assignments."}
+```
 
 ### Label grader
 
@@ -414,9 +423,9 @@ The text similarity grader (`text_similarity`) compares two text strings using s
 
 **Output:** Returns a similarity score as a float (higher means more similar). The grader passes if the score meets or exceeds `pass_threshold`.
 
-### Output
+### Example output
 
-Graders return results with pass/fail status. The following snippet shows representative fields from the full output object:
+Graders return results with pass/fail status.The following snippet shows representative fields from the full output object:
 
 ```json
 {

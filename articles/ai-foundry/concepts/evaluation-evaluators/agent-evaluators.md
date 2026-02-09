@@ -403,6 +403,33 @@ To use agent evaluators, configure them in your `testing_criteria`. Each evaluat
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
+### Example input
+
+Your test dataset should contain the fields referenced in your data mappings. For agent evaluators, include `query` and `response` fields. Both fields accept simple strings or conversation arrays:
+
+```jsonl
+{"query": "What's the weather in Seattle?", "response": "The weather in Seattle is rainy, 14°C."}
+{"query": "Book a flight to Paris for next Monday", "response": "I've booked your flight to Paris departing next Monday at 9:00 AM."}
+```
+
+For more complex agent interactions with tool calls, use the conversation array format. This format follows the OpenAI message schema (see [Agent message schema](#agent-message-schema)). The system message is optional but useful for evaluators like Task Adherence that assess whether the agent follows its instructions:
+
+```json
+{
+    "query": [
+        {"role": "system", "content": "You are a travel booking agent."},
+        {"role": "user", "content": "Book a flight to Paris for next Monday"}
+    ],
+    "response": [
+        {"role": "assistant", "content": [{"type": "tool_call", "name": "search_flights", "arguments": {"destination": "Paris", "date": "next Monday"}}]},
+        {"role": "tool", "content": [{"type": "tool_result", "tool_result": {"flight": "AF123", "time": "9:00 AM"}}]},
+        {"role": "assistant", "content": "I've booked flight AF123 to Paris departing next Monday at 9:00 AM."}
+    ]
+}
+```
+
+### Configuration example
+
 Here's an example configuration for Task Adherence:
 
 ```python
@@ -420,26 +447,7 @@ testing_criteria = [
 ]
 ```
 
-For the `query` input, include the system message to let the evaluator examine agent instructions:
-
-```python
-query = [
-    {"role": "system", "content": "You are a weather report agent."},
-    {"role": "user", "content": [{"type": "text", "text": "What's the weather in Seattle?"}]},
-]
-```
-
-The `response` input follows the OpenAI response format:
-
-```python
-response = [
-    {"role": "assistant", "content": [{"type": "tool_call", "name": "fetch_weather", "arguments": {"location": "Seattle"}}]},
-    {"role": "tool", "content": [{"type": "tool_result", "tool_result": {"weather": "Rainy, 14°C"}}]},
-    {"role": "assistant", "content": [{"type": "text", "text": "The weather in Seattle is rainy, 14°C."}]},
-]
-```
-
-### Output
+### Example output
 
 Agent evaluators return Pass/Fail results with reasoning. The following snippet shows representative fields from the full output object:
 
@@ -515,6 +523,58 @@ Returns a binary pass/fail result plus precision, recall, and F1 scores:
         "recall_score": 1.0,
         "f1_score": 0.92
     }
+}
+```
+
+## Agent message schema
+
+When using conversation array format, `query` and `response` follow the OpenAI message structure:
+
+- **query**: Contains the conversation history leading up to the user's request. Include the system message to let evaluators examine agent instructions.
+- **response**: Contains the agent's reply, including any tool calls and their results.
+
+**Message schema:**
+
+```
+[
+  {
+    "role": "system" | "user" | "assistant" | "tool",
+    "content": "string" | [                // string or array of content items
+      {
+        "type": "text" | "tool_call" | "tool_result",
+        "text": "string",                  // if type == text
+        "tool_call_id": "string",          // if type == tool_call
+        "name": "string",                  // tool name if type == tool_call
+        "arguments": { ... },              // tool args if type == tool_call
+        "tool_result": { ... }             // result if type == tool_result
+      }
+    ]
+  }
+]
+```
+
+**Role types:**
+
+| Role | Description |
+|------|-------------|
+| `system` | Agent instructions (optional, placed at start of query) |
+| `user` | User messages and requests |
+| `assistant` | Agent responses, including tool calls |
+| `tool` | Tool execution results |
+
+**Example:**
+
+```json
+{
+  "query": [
+    {"role": "system", "content": "You are a weather assistant."},
+    {"role": "user", "content": [{"type": "text", "text": "What's the weather in Seattle?"}]}
+  ],
+  "response": [
+    {"role": "assistant", "content": [{"type": "tool_call", "tool_call_id": "call_123", "name": "get_weather", "arguments": {"city": "Seattle"}}]},
+    {"role": "tool", "content": [{"type": "tool_result", "tool_result": {"temp": "62°F", "condition": "Cloudy"}}]},
+    {"role": "assistant", "content": [{"type": "text", "text": "It's currently 62°F and cloudy in Seattle."}]}
+  ]
 }
 ```
 

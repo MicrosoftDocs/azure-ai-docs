@@ -272,7 +272,7 @@ Textual similarity evaluators compare generated responses against ground truth t
 
 Examples:
 
-- [Similarity sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_ai_assisted.py)
+- [Textual similarity evaluator sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_ai_assisted.py)
 
 | Evaluator | What it measures | Required inputs | Required parameters | Output | Default threshold |
 |---|---|---|---|---|---|
@@ -288,6 +288,15 @@ Examples:
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.response}}`).
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+
+### Example input
+
+Your test dataset should contain the fields referenced in your data mappings. For textual similarity evaluators, include `query`, `response`, and `ground_truth` fields:
+
+```jsonl
+{"query": "What is the capital of France?", "response": "Paris is the capital of France.", "ground_truth": "The capital of France is Paris."}
+{"query": "Explain machine learning.", "response": "Machine learning is a subset of AI that enables systems to learn from data.", "ground_truth": "Machine learning is an AI technique where computers learn patterns from data."}
+```
 
 ### Configuration example
 
@@ -326,7 +335,7 @@ testing_criteria = [
 ]
 ```
 
-### Output
+### Example output
 
 LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evaluators output 0-1 floats. All evaluators output *pass* or *fail* based on their thresholds. The following snippet shows representative fields from the full output object:
 

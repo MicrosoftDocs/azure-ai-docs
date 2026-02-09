@@ -215,6 +215,15 @@ Configure them in your `testing_criteria`:
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
+### Example input
+
+Your test dataset should contain the fields referenced in your data mappings. For general-purpose evaluators, include `query` and `response` fields:
+
+```jsonl
+{"query": "What are the benefits of renewable energy?", "response": "Renewable energy reduces carbon emissions, lowers long-term costs, and provides energy independence."}
+{"query": "How does photosynthesis work?", "response": "Plants convert sunlight, water, and carbon dioxide into glucose and oxygen through chlorophyll in their leaves."}
+```
+
 ### Configuration example
 
 ```python
@@ -236,7 +245,7 @@ testing_criteria = [
 ]
 ```
 
-### Output
+### Example output
 
 These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. The following snippet shows representative fields from the full output object:
 

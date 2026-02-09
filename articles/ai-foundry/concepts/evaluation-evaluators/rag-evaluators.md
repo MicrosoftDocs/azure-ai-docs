@@ -178,6 +178,15 @@ To use RAG evaluators, configure them in your `testing_criteria`. Each evaluator
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
+### Example input
+
+Your test dataset should contain the fields referenced in your data mappings. For RAG evaluators, include `query`, `context`, and `response` fields:
+
+```jsonl
+{"query": "What are the store hours?", "context": "Our store is open Monday-Friday 9am-6pm and Saturday 10am-4pm.", "response": "The store is open weekdays from 9am to 6pm and Saturdays from 10am to 4pm."}
+{"query": "What is the return policy?", "context": "Items can be returned within 30 days with original receipt for full refund.", "response": "You can return items within 30 days if you have your receipt."}
+```
+
 ### Configuration example
 
 ```python
@@ -209,7 +218,7 @@ testing_criteria = [
 ]
 ```
 
-### Output
+### Example output
 
 These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. The following snippet shows representative fields from the full output object:
 
