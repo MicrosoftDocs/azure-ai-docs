@@ -335,8 +335,6 @@ document_retrieval_evaluator(retrieval_ground_truth=retrieval_ground_truth, retr
 
 ::: moniker range="foundry"
 
-### Document retrieval example
-
 ```python
 testing_criteria = [
     {

@@ -106,7 +106,7 @@ Risk and safety evaluators assess whether AI responses contain harmful or inappr
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_text}}` references response output text when evaluating with an agent/modle target or agent response data source.
+- `{{sample.output_text}}` references response output text when evaluating with an agent/model target or agent response data source.
 - `{{sample.tool_definitions}}` references tool definitions for agent-specific evaluators.
 
 ### Configuration example for model evaluation

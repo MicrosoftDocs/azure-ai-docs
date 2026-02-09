@@ -45,10 +45,6 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
-::: moniker-end
-
-::: moniker range="foundry-classic"
-
 ### Evaluator model support
 
 We support AzureOpenAI or OpenAI [reasoning models](../../openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
