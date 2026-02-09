@@ -276,7 +276,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
         {
           "type": "module",
           "dependencies": {
-            "@anthropic-ai/foundry-sdk": "latest"
+            "@anthropic-ai/sdk": "latest"
           }
         }
         ```
