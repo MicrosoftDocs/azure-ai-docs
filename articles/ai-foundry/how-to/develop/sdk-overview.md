@@ -117,7 +117,7 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 Run these commands to install the preview packages for Foundry projects.
 ```bash
 pip install --pre azure-ai-projects
-pip install --pre azure-identity openai
+pip install azure-identity openai
 ```
 ::: moniker-end
 
@@ -520,14 +520,11 @@ Use the OpenAI SDK when you want the full OpenAI API surface and maximum client 
 ::: moniker range="foundry"
 Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API). It doesn't provide access to Foundry-specific features like agents and evaluations.
 
-> [!TIP]
-> Use non-OpenAI models hosted in Foundry (Foundry direct models) through the OpenAI SDK by specifying the model deployment name in your requests. For more information, see [Develop reasoning apps with DeepSeek models on Azure AI Foundry using the OpenAI SDK](/azure/developer/ai/how-to/use-reasoning-model-inference?tabs=github-codespaces).
 ::: moniker-end
 
 The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
 ::: zone pivot="programming-language-python"
-
 
 ::: moniker range="foundry-classic"
 ```python
@@ -550,6 +547,8 @@ response = client.responses.create(
 
 print(response.model_dump_json(indent=2)) 
 ```
+
+
 
 For more information, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true).
 ::: moniker-end
