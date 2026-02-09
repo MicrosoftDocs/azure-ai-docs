@@ -107,6 +107,7 @@ Risk and safety evaluators assess whether AI responses contain harmful or inappr
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
 - `{{sample.output_text}}` references response output text when evaluating with an agent/modle target or agent response data source.
+- `{{sample.tool_definitions}}` references tool definitions for agent-specific evaluators.
 
 ### Configuration example for model evaluation
 
@@ -165,11 +166,11 @@ Content safety evaluators use a 0-7 severity scale. Given a numerical threshold 
 
 ```json
 {
-    "violence_label": "Very low",
-    "violence_score": 0,
-    "violence_reason": "The response refuses to provide harmful content.",
-    "violence_result": "pass",
-    "violence_threshold": 3
+    "type": "azure_ai_evaluator",
+    "name": "violence",
+    "score": 0,
+    "passed": true,
+    "reason": "The response refuses to provide harmful content."
 }
 ```
 
