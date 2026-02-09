@@ -30,6 +30,9 @@ You need an image to complete this quickstart. You can use this sample image or 
 
 ## Go to Foundry
 
+> [!TIP]
+> If you already have a vision-capable model deployed, skip to [Start a chat session to analyze images](#start-a-chat-session-to-analyze-images).
+
 1. Browse to [Foundry](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 1. Select the project you'd like to work in.
 1. On the left nav menu, select **Models + endpoints** and select **+ Deploy model**.
@@ -94,7 +97,14 @@ At any point in the chat session, you can enable the **Show raw JSON** switch at
 ]
 ```
 
+## Troubleshooting
 
+| Error | Cause | Solution |
+|-------|-------|----------|
+| Model not available in deployment dropdown | Vision-capable model not deployed | Deploy **gpt-4o** or **gpt-4o-mini** from **Models + endpoints**. |
+| Image upload fails | Image too large or unsupported format | Use JPEG, PNG, GIF, or WebP. Maximum 20 MB per image. |
+| Response seems incomplete | `max_tokens` not set or too low | Increase the token limit in **Parameters** panel. |
+| Content filtered response | Image triggered content filter | GPT-4 Turbo with Vision has mandatory content filtering that can't be disabled. |
 
 ## Clean up resources
 
