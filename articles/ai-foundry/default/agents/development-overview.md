@@ -61,7 +61,7 @@ Set these environment variables before running the samples:
 | -------- | ----------- | ---------------- |
 | `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
 | `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
-| `AGENT_NAME` | The name for your new aent | You can use a name of your choice, for example `MyAgent`. |
+| `AGENT_NAME` | The name for your new agent | You can use a name of your choice, for example `MyAgent`. |
 
 For more samples, see [Azure SDK for Python agent samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents).
 
@@ -86,7 +86,7 @@ Set these environment variables before running the samples:
 | -------- | ----------- | ---------------- |
 | `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
 | `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
-| `AGENT_NAME` | The name for your new aent | You can use a name of your choice, for example `MyAgent`. |
+| `AGENT_NAME` | The name for your new agent | You can use a name of your choice, for example `MyAgent`. |
 
 For more samples, see [Azure SDK for .NET agent samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples).
 
@@ -142,7 +142,7 @@ Set these environment variables before running the samples:
 | -------- | ----------- | ---------------- |
 | `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
 | `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
-| `AGENT_NAME` | The name for your new aent | You can use a name of your choice, for example `MyAgent`. |
+| `AGENT_NAME` | The name for your new agent | You can use a name of your choice, for example `MyAgent`. |
 
 For more samples, see [Azure SDK for Java agent samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples).
 
