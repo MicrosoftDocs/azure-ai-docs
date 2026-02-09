@@ -822,7 +822,7 @@ items:
           href: ../speech-service/call-center-quickstart.md?context=%2fazure%2fai-services%2flanguage-service%2fcontext%2fcontext
         - name: Ingestion Client
           href: ../speech-service/ingestion-client.md?context=%2fazure%2fai-services%2flanguage-service%2fcontext%2fcontext
-- name: Reference
+- name: API reference
   items:
   - name: REST API
     href: /rest/api/language/
@@ -942,7 +942,7 @@ items:
         href: concepts/encryption-data-at-rest.md
       - name: Compliance and certification
         href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
-- name: Reference
+- name: Migration and release history
   items:
     - name: Migrate from LUIS, QnA Maker, and Text Analytics
       displayName: text analytics, luis, qna

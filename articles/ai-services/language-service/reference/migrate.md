@@ -31,7 +31,7 @@ Consider using one of the available quickstart articles to see the latest inform
 
 ## How do I migrate to Azure Language if I'm using Language Understanding (LUIS)?
 
-If you're using Language Understanding (LUIS), you can [import your Language Understanding (LUIS) JSON file](../conversational-language-understanding/) to the new Conversational language understanding feature.
+If you're using Language Understanding (LUIS), you can [import your Language Understanding (LUIS) JSON file](../conversational-language-understanding/how-to/fail-over.md#import-to-a-new-project) to the new Conversational language understanding feature.
 
 ## How do I migrate to Azure Language if I'm using QnA Maker?
 
