@@ -187,6 +187,9 @@ Wait a few moments to get the response.
 
 The script generates an audio file named _dog.wav_ in the same directory as the script. The audio file contains the spoken response to the prompt, "Is a golden retriever a good family dog?"
 
+> [!TIP]
+> Play the generated _dog.wav_ file to verify the audio was generated correctly. You can use any media player or double-click the file to open it in your default audio player.
+
 ## Generate audio and text from audio input
 
 ## [Microsoft Entra ID](#tab/keyless)
@@ -323,6 +326,9 @@ Wait a few moments to get the response.
 ### Output for audio and text generation from audio input
 
 The script generates a transcript of the summary of the spoken audio input. It also generates an audio file named _analysis.wav_ in the same directory as the script. The audio file contains the spoken response to the prompt.
+
+> [!TIP]
+> Play the generated _analysis.wav_ file to hear the audio description of the input.
 
 
 ## Generate audio and use multi-turn chat completions
@@ -498,6 +504,9 @@ Wait a few moments to get the response.
 
 ### Output for multi-turn chat completions
 
-The script generates a transcript of the summary of the spoken audio input. Then, it makes a multi-turn chat completion to briefly summarize the spoken audio input. 
+The script generates a transcript of the summary of the spoken audio input. Then, it makes a multi-turn chat completion to briefly summarize the spoken audio input.
+
+> [!TIP]
+> Review the console output to see the transcript and verify the multi-turn conversation completed successfully. 
 
 
