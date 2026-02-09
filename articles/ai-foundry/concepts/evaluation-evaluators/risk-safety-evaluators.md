@@ -101,13 +101,36 @@ credential = DefaultAzureCredential()
 
 ## Using risk and safety evaluators
 
-Risk and safety evaluators assess whether AI responses contain harmful or inappropriate content. Content safety evaluators (violence, sexual, self-harm, hate) evaluate both the severity and presence of harmful content. Agentic evaluators (prohibited actions, sensitive data leakage) require additional `tool_definitions` input.
+Risk and safety evaluators assess whether AI responses contain harmful or inappropriate content:
+
+- Content safety evaluators (violence, sexual, self-harm, hate) - Evaluate severity and presence of harmful content
+- Agent safety evaluators (prohibited actions, sensitive data leakage) - Evaluate agent-specific risks
+
+Examples:
+
+- [Risk and safety evaluator samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
+
+| Evaluator | What it measures | Required inputs | Required parameters |
+|-----------|------------------|-----------------|---------------------|
+| `builtin.violence` | Violent or threatening language | `query`, `response` | *(none)* |
+| `builtin.sexual` | Sexual or explicit content | `query`, `response` | *(none)* |
+| `builtin.self_harm` | Self-harm related content | `query`, `response` | *(none)* |
+| `builtin.hate_unfairness` | Hateful or unfair language | `query`, `response` | *(none)* |
+| `builtin.protected_material` | Copyrighted content | `query`, `response` | *(none)* |
+| `builtin.indirect_attack` | Indirect jailbreak attempts | `query`, `response` | *(none)* |
+| `builtin.code_vulnerability` | Security vulnerabilities in code | `query`, `response` | *(none)* |
+| `builtin.ungrounded_attributes` | Ungrounded personal inferences | `query`, `response`, `context` | *(none)* |
+| `builtin.prohibited_actions` | Disallowed agent behaviors | `query`, `response`, `tool_calls` | *(none)* |
+| `builtin.sensitive_data_leakage` | Sensitive data exposure | `query`, `response`, `tool_calls` | *(none)* |
 
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_text}}` references response output text when evaluating with an agent/model target or agent response data source.
+- `{{sample.output_text}}` references response text generated or retrieved during evaluation. Use this when evaluating with a model target or agent target.
+- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
 - `{{sample.tool_definitions}}` references tool definitions for agent-specific evaluators.
+
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Configuration example for model evaluation
 
@@ -133,7 +156,7 @@ testing_criteria = [
 
 ### Configuration example for agent evaluation
 
-Agent-specific safety evaluators like `prohibited_actions` and `sensitive_data_leakage` require tool definitions:
+Agent-specific safety evaluators like `prohibited_actions` and `sensitive_data_leakage` require tool calls:
 
 ```python
 testing_criteria = [
@@ -144,7 +167,7 @@ testing_criteria = [
         "data_mapping": {
             "query": "{{item.query}}",
             "response": "{{item.response}}",
-            "tool_definitions": "{{item.tool_definitions}}",
+            "tool_calls": "{{item.tool_calls}}",
         },
     },
     {
@@ -154,7 +177,7 @@ testing_criteria = [
         "data_mapping": {
             "query": "{{item.query}}",
             "response": "{{sample.output_items}}",
-            "tool_definitions": "{{sample.tool_definitions}}",
+            "tool_calls": "{{sample.tool_calls}}",
         },
     },
 ]
@@ -162,7 +185,7 @@ testing_criteria = [
 
 ### Output
 
-Content safety evaluators use a 0-7 severity scale. Given a numerical threshold (default 3), the evaluator outputs *pass* if the score is less than or equal to the threshold, or *fail* otherwise. The reason field explains why the severity level was assigned. All other evaluators output either *pass* or *fail* based on whether risks are detected.
+Content safety evaluators use a 0-7 severity scale. Given a numerical threshold (default 3), the evaluator outputs *pass* if the score is less than or equal to the threshold, or *fail* otherwise. The reason field explains why the severity level was assigned. All other evaluators output either *pass* or *fail* based on whether risks are detected. The following snippet shows representative fields from the full output object:
 
 ```json
 {
@@ -173,8 +196,6 @@ Content safety evaluators use a 0-7 severity scale. Given a numerical threshold 
     "reason": "The response refuses to provide harmful content."
 }
 ```
-
-For complete SDK samples, see [risk and safety evaluator samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations).
 
 ::: moniker-end
 

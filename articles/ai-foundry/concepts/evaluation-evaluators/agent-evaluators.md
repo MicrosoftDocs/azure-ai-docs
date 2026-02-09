@@ -385,19 +385,25 @@ If a non-supported tool is used in the agent run, the evaluator outputs a *pass*
 
 To use agent evaluators, configure them in your `testing_criteria`. Each evaluator requires specific data mappings:
 
-| Evaluator | Required mappings |
-|-----------|-------------------|
-| Task Completion, Task Adherence, Intent Resolution | `query`, `response`, `tool_definitions` (optional) |
-| Tool Call Accuracy, Tool Selection | `query`, `response`, `tool_definitions`, `tool_calls` (optional) |
-| Tool Input Accuracy, Tool Output Utilization | `query`, `response`, `tool_definitions` |
-| Tool Call Success | `response`, `tool_definitions` (optional) |
-| Task Navigation Efficiency | `response`, `ground_truth` |
+| Evaluator | Required inputs | Required parameters |
+|-----------|-----------------|---------------------|
+| Task Completion | `query`, `response` | `deployment_name` |
+| Task Adherence | `query`, `response` | `deployment_name` |
+| Intent Resolution | `query`, `response` | `deployment_name` |
+| Tool Call Accuracy | `query`, `tool_definitions` | `deployment_name` |
+| Tool Selection | `query`, `tool_definitions` | `deployment_name` |
+| Tool Input Accuracy | `query`, `response`, `tool_definitions` | `deployment_name` |
+| Tool Output Utilization | `query`, `response` | `deployment_name` |
+| Tool Call Success | `response` | `deployment_name` |
+| Task Navigation Efficiency | `actions`, `expected_actions` | *(none)* |
 
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source. See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details.
+- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
 - `{{sample.tool_definitions}}` references tool definitions. These are auto-populated for supported built-in tools or inferred for custom functions.
+
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 Here's an example configuration for Task Adherence:
 
@@ -407,13 +413,10 @@ testing_criteria = [
         "type": "azure_ai_evaluator",
         "name": "task_adherence",
         "evaluator_name": "builtin.task_adherence",
-        "initialization_parameters": {
-            "deployment_name": model_deployment,
-        },
+        "initialization_parameters": {"deployment_name": model_deployment},
         "data_mapping": {
             "query": "{{item.query}}",
             "response": "{{item.response}}",
-            "tool_definitions": "{{item.tool_definitions}}",
         },
     },
 ]
@@ -440,7 +443,7 @@ response = [
 
 ### Example output
 
-Agent evaluators return Pass/Fail results with reasoning:
+Agent evaluators return Pass/Fail results with reasoning. The following snippet shows representative fields from the full output object:
 
 ```json
 {
@@ -452,8 +455,6 @@ Agent evaluators return Pass/Fail results with reasoning:
     "passed": true
 }
 ```
-
-For full working examples, see the [agent evaluator samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators).
 
 ## Task navigation efficiency
 

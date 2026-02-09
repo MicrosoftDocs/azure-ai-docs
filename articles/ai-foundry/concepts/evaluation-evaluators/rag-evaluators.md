@@ -159,13 +159,14 @@ For more examples, see [all quality evaluator samples](https://github.com/Azure/
 
 To use RAG evaluators, configure them in your `testing_criteria`. Each evaluator requires specific data mappings:
 
-| Evaluator | Required mappings |
-|-----------|-------------------|
-| Groundedness, Groundedness Pro | `query`, `context`, `response` |
-| Relevance | `query`, `response` |
-| Response Completeness | `response`, `ground_truth` |
-| Retrieval | `query`, `context` |
-| Document Retrieval | `retrieval_ground_truth`, `retrieval_documents` |
+| Evaluator | Required inputs | Required parameters |
+|-----------|-----------------|---------------------|
+| Groundedness | `response`, `context` (or `tool_definitions`) | `deployment_name` |
+| Groundedness Pro | `query`, `response`, `context` | *(none)* |
+| Relevance | `query`, `response` | `deployment_name` |
+| Response Completeness | `response`, `ground_truth` | `deployment_name` |
+| Retrieval | `query`, `context` | `deployment_name` |
+| Document Retrieval | `retrieval_ground_truth`, `retrieval_documents` | `ground_truth_label_min`, `ground_truth_label_max` |
 
 > [!NOTE]
 > For agent target or agent response evaluation, `context` is optional if the response contains tool calls. The evaluator can extract context from tool call results.
@@ -173,9 +174,9 @@ To use RAG evaluators, configure them in your `testing_criteria`. Each evaluator
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_items}}` references response messages when evaluating with an agent/model target or agent response data source.
+- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on data sources.
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Configuration example
 
@@ -188,7 +189,6 @@ testing_criteria = [
         "initialization_parameters": {"deployment_name": model_deployment},
         "data_mapping": {
             "context": "{{item.context}}",
-            "query": "{{item.query}}",
             "response": "{{item.response}}",
         },
     },
@@ -211,7 +211,7 @@ testing_criteria = [
 
 ### Output
 
-These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. The following shows a simplified example:
+These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. The following snippet shows representative fields from the full output object:
 
 ```json
 {

@@ -308,10 +308,16 @@ Aside from individual data evaluation results, the grader also returns a metric 
 
 ## Using Azure OpenAI graders
 
-To use graders, configure them in your `testing_criteria`. Each grader type serves a different evaluation purpose. Graders fall into two categories:
+Azure OpenAI graders provide flexible evaluation using LLM-based or deterministic approaches:
 
-- **Model-based graders** (`label_model`, `score_model`) use an LLM to evaluate outputs
-- **Deterministic graders** (`string_check`, `text_similarity`) use algorithmic comparison
+- **Model-based graders** (`label_model`, `score_model`) - Use an LLM to evaluate outputs
+- **Deterministic graders** (`string_check`, `text_similarity`) - Use algorithmic comparison
+
+Examples:
+
+- [Azure OpenAI graders sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_graders.py)
+
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Label grader
 
@@ -408,7 +414,7 @@ The text similarity grader (`text_similarity`) compares two text strings using s
 
 ### Example output
 
-Graders return results with pass/fail status:
+Graders return results with pass/fail status. The following snippet shows representative fields from the full output object:
 
 ```json
 {
@@ -418,8 +424,6 @@ Graders return results with pass/fail status:
     "passed": true
 }
 ```
-
-For full working examples, see the [Azure OpenAI graders sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_graders.py).
 
 ::: moniker-end
 

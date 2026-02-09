@@ -19,12 +19,9 @@ ms.custom:
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Microsoft Foundry supports evaluating:
-
-- [Coherence](#coherence)
-- [Fluency](#fluency)
-
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
+AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Microsoft Foundry supports evaluating coherence and fluency.
 
 ::: moniker range="foundry-classic"
 
@@ -64,7 +61,7 @@ For complex evaluation that requires refined reasoning, we recommend a strong re
 
 ## Coherence
 
-`CoherenceEvaluator` measures the logical and orderly presentation of ideas in a response, which allows the reader to easily follow and understand the writer's train of thought. A *coherent* response directly addresses the question with clear connections between sentences and paragraphs, using appropriate transitions and a logical sequence of ideas. Higher scores mean better coherence.
+The coherence evaluator measures the logical and orderly presentation of ideas in a response, which allows the reader to easily follow and understand the writer's train of thought. A *coherent* response directly addresses the question with clear connections between sentences and paragraphs, using appropriate transitions and a logical sequence of ideas. Higher scores mean better coherence.
 
 ::: moniker range="foundry-classic"
 
@@ -98,7 +95,7 @@ The numerical score on a Likert scale (integer 1 to 5). A higher score is better
 
 ## Fluency
 
-`FluencyEvaluator` measures the effectiveness and clarity of written communication. This measure focuses on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. It assesses how smoothly ideas are conveyed and how easily the reader can understand the text.
+The fluency evaluator measures the effectiveness and clarity of written communication. This measure focuses on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. It assesses how smoothly ideas are conveyed and how easily the reader can understand the text.
 
 ::: moniker range="foundry-classic"
 
@@ -194,19 +191,29 @@ While F1 score outputs a numerical score on 0-1 float scale, the other evaluator
 
 ## Using general-purpose evaluators
 
-General-purpose evaluators assess the quality of AI-generated text independent of specific use cases. Configure them in your `testing_criteria`:
+General-purpose evaluators assess the quality of AI-generated text independent of specific use cases:
 
-| Evaluator | What it measures | Required inputs |
-|-----------|------------------|-----------------|
-| `builtin.coherence` | Logical flow and organization of ideas | `query`, `response` |
-| `builtin.fluency` | Grammatical accuracy and readability | `query`, `response` |
+- Coherence - Measures logical flow and organization of ideas in the response
+- Fluency - Measures grammatical accuracy and readability of the response
+
+Examples:
+
+- [Coherence sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_coherence.py)
+- [Fluency sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_fluency.py)
+
+Configure them in your `testing_criteria`:
+
+| Evaluator | What it measures | Required inputs | Required parameters |
+|-----------|------------------|-----------------|---------------------|
+| `builtin.coherence` | Logical flow and organization of ideas | `query`, `response` | `deployment_name` |
+| `builtin.fluency` | Grammatical accuracy and readability | `response` | `deployment_name` |
 
 **Data mapping syntax:**
 
-- Use `{{item.field_name}}` to reference fields from your test dataset (for example, `{{item.query}}`).
-- Use `{{sample.output_text}}` to reference response output text when evaluating with an agent/model target or agent response data source.
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
+- `{{sample.output_text}}` references response text generated or retrieved during evaluation. Use this when evaluating with a model target or agent target.
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on data sources.
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Configuration example
 
@@ -224,14 +231,14 @@ testing_criteria = [
         "name": "fluency",
         "evaluator_name": "builtin.fluency",
         "initialization_parameters": {"deployment_name": model_deployment},
-        "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
+        "data_mapping": {"response": "{{item.response}}"},
     },
 ]
 ```
 
 ### Output
 
-These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. The following shows a simplified example:
+These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. The following snippet shows representative fields from the full output object:
 
 ```json
 {
@@ -242,8 +249,6 @@ These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excelle
     "reason": "The response directly addresses the question with clear, logical connections between ideas."
 }
 ```
-
-For full working examples, see the [coherence sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_coherence.py) and [fluency sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_fluency.py).
 
 ::: moniker-end
 
