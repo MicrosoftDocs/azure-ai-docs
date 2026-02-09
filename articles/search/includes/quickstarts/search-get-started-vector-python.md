@@ -117,13 +117,13 @@ Total results: 7
 
 ## Understand the code
 
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
 Now that you've run the code, let's break down the key steps:
 
 1. [Create a vector index](#create-a-vector-index)
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Query the index](#query-the-index)
-
-[!INCLUDE [understand code note](../understand-code-note.md)]
 
 ### Create a vector index
 
@@ -189,21 +189,20 @@ for r in result:
     print(f"Key: {r.key}, Succeeded: {r.succeeded}, ErrorMessage: {r.error_message}")
 ```
 
-Key takeaways:
+Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the [`azure-search-documents`](/python/api/overview/azure/search-documents-readme) package. The `SearchClient` provides access to index operations, such as:
 
-+ Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the `azure-search-documents` package. The `SearchClient` provides access to index operations, such as:
++ Data ingestion: `upload_documents()`, `merge_documents()`, `delete_documents()`
 
-    + Data ingestion: `upload_documents()`, `merge_documents()`, `delete_documents()`
-    
-    + Search operations: `search()`, `autocomplete()`, `suggest()`
++ Search operations: `search()`, `autocomplete()`, `suggest()`
 
-    + Index management operations: `get_index_statistics()`, `get_document_count()`
++ Index management operations: `get_index_statistics()`, `get_document_count()`
 
 ### Query the index
 
 The queries in the notebook demonstrate different search patterns. The example vector queries are based on two strings:
 
-+ Search string: "historic hotel walk to restaurants and shopping"
++ Full-text search string: "historic hotel walk to restaurants and shopping"
+
 + Vector query string: "quintessential lodging near running trails, eateries, retail" (vectorized into a mathematical representation)
 
 The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for "quintessential lodging near running trails, eateries, retail", results are zero. This example shows how you can get relevant results even if there are no matching terms.
@@ -229,7 +228,7 @@ results = search_client.search(
 )
 ```
 
-#### Single vector search with filter
+#### Single vector search with a filter
 
 In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `Single vector search with filter` cell filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
@@ -245,7 +244,7 @@ results = search_client.search(
 )
 ```
 
-#### Vector query with a geo filter
+#### Single vector search with a geo filter
 
 The `Vector query with a geo filter` cell uses [geo-spatial functions](../../search-query-odata-geo-spatial-functions.md) to filter results based on location. In this example, the filter returns hotels within 300 kilometers of Washington D.C.
 
@@ -287,7 +286,7 @@ Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inpu
 
 #### Semantic hybrid search
 
-This example adds [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding. The `Semantic hybrid search` cell adds semantic ranking.
+The `Semantic hybrid search` cell demonstrates [semantic ranking](../../semantic-search-overview.md), which reranks results based on language understanding.
 
 ```python
 # vector_query omitted for brevity

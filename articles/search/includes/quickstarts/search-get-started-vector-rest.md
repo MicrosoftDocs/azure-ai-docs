@@ -108,25 +108,21 @@ The vector query string is "quintessential lodging near running trails, eateries
 
 ## Understand the code
 
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
 Now that you've run the code, let's break down the key steps:
 
 1. [Create a vector index](#create-a-vector-index)
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Query the index](#query-the-index)
 
-[!INCLUDE [understand code note](../understand-code-note.md)]
-
 ### Create a vector index
 
 Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. This quickstart calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a vector index named `hotels-vector-quickstart` and its physical data structures on your search service.
 
-The index schema is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. The following excerpt shows the key structure of the `### Create a new index` request in the `.rest` file:
+The index schema is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. The following excerpt shows the key structure of the `### Create a new index` request in the `az-search-quickstart-vectors.rest`:
 
 ```http
-POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
 {
     "name": "hotels-vector-quickstart",
     "fields": [
@@ -174,7 +170,7 @@ Key takeaways:
 
 + The `vectorSearch` section is an array of Approximate Nearest Neighbor (ANN) algorithm configurations and profiles. Supported algorithms include Hierarchical Navigable Small World (HNSW) and exhaustive K-Nearest Neighbor. For more information, see [Relevance scoring in vector search](../../vector-search-ranking.md).
 
-+ The (optional) `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](../../semantic-search-overview.md).
++ The optional `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](../../semantic-search-overview.md).
 
 ### Upload documents to the index
 
@@ -185,10 +181,6 @@ In Azure AI Search, documents serve as both inputs for indexing and outputs for 
 This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add sample hotel documents to your index. The following excerpt shows the structure of the `### Upload 7 documents` request:
 
 ```http
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/index?api-version=2025-09-01  HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
 {
     "value": [
         {
@@ -222,6 +214,7 @@ Key takeaways:
 The queries in the sample file demonstrate different search patterns. The example vector queries are based on two strings:
 
 + Full-text search string: "historic hotel walk to restaurants and shopping"
+
 + Vector query string: "quintessential lodging near running trails, eateries, retail" (vectorized into a mathematical representation)
 
 The vector query string is semantically similar to the search string, but includes terms that don't exist in the search index. If you do a keyword search for "quintessential lodging near running trails, eateries, retail", results are zero. This example shows how vector search finds relevant results even without matching keywords.
@@ -231,10 +224,6 @@ The vector query string is semantically similar to the search string, but includ
 The `### Run a single vector query` request demonstrates a basic scenario where you want to find document descriptions that closely match the search string:
 
 ```http
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
 {
     "count": true,
     "select": "HotelId, HotelName, Description, Category, Tags",
@@ -262,7 +251,7 @@ Key takeaways about [Documents - Search Post](/rest/api/searchservice/documents/
 
 The response includes k-5 results although the search engine found 7 matches. The top results are considered the most semantically similar to the query. Each result provides a search score and the fields listed in `select`. In a similarity search, the response always includes `k` results ordered by the similarity score.
 
-#### Single vector search with filter
+#### Single vector search with a filter
 
 In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `### Run a vector query with a filter` request filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi:
 
@@ -290,7 +279,7 @@ Authorization: Bearer {{token}}
 
 This search returns only hotels that provide free Wi-Fi.
 
-#### Single vector search with geo filter
+#### Single vector search with a geo filter
 
 You can also apply a geo filter to limit results to a specific geographic area. The `### Run a vector query with a geo filter` request limits results to hotels within 300 kilometers of Washington D.C.:
 
@@ -350,7 +339,7 @@ Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inpu
 
 #### Semantic hybrid search
 
-This example adds [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding. The `### Run a hybrid query with semantic reranking` request adds semantic ranking:
+The `Run a hybrid query with semantic reranking` request demonstrates [semantic ranking](../../semantic-search-overview.md), which reranks results based on language understanding.
 
 ```http
 POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1

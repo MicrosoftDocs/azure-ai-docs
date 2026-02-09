@@ -139,13 +139,13 @@ Single Vector search found 5
 
 ## Understand the code
 
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
 Now that you've run the code, let's break down the key steps:
 
 1. [Create a vector index](#create-a-vector-index)
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Query the index](#query-the-index)
-
-[!INCLUDE [understand code note](../understand-code-note.md)]
 
 ### Create a vector index
 
@@ -243,7 +243,7 @@ Key takeaways:
 The following code in `UploadDocuments.java` uploads JSON-formatted documents to your search service.
 
 ```java
-// Documents contains hotel data with 1536-dimension vectors for DescriptionVector
+// Documents contain hotel data with 1536-dimension vectors for DescriptionVector
 static final List<Map<String, Object>> DOCUMENTS = Arrays.asList(
     new HashMap<>() {{
         put("@search.action", "mergeOrUpload");
@@ -265,19 +265,20 @@ for (IndexingResult r : result.getResults()) {
 }
 ```
 
-Key takeaways:
+Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the [`azure-search-documents`](/java/api/overview/azure/search-documents-readme) package. The `SearchClient` provides access to operations such as:
 
-+ Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the Azure Search Documents package. The `SearchClient` provides access to operations such as:
++ Data ingestion: `uploadDocuments`, `mergeDocuments`, `deleteDocuments`
 
-    + Data ingestion: `uploadDocuments`, `mergeDocuments`, `deleteDocuments`
++ Search operations: `search`, `autocomplete`, `suggest`
 
-    + Search operations: `search`, `autocomplete`, `suggest`
++ Index management operations: `createOrUpdateIndex`, `deleteIndex`, `getIndex`
 
 ### Query the index
 
 The queries in the search files demonstrate different search patterns. The example vector queries are based on two strings:
 
-+ Search string: "historic hotel walk to restaurants and shopping"
++ Full-text search string: "historic hotel walk to restaurants and shopping"
+
 + Vector query string: "quintessential lodging near running trails, eateries, retail" (vectorized into a mathematical representation)
 
 The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for "quintessential lodging near running trails, eateries, retail", results are zero. This example shows how you can get relevant results even if there are no matching terms.
@@ -311,7 +312,7 @@ for (SearchResult result : results) {
 }
 ```
 
-#### Single vector search with filter
+#### Single vector search with a filter
 
 In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. `SearchSingleWithFilter.java` filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
@@ -336,7 +337,9 @@ var searchOptions = new SearchOptions()
 var results = searchClient.search("*", searchOptions, Context.NONE);
 ```
 
-For a geo filter, you can specify a geospatial filter to limit results to a specific geographic area. `SearchSingleWithFilterGeo.java` limits results to hotels within 300 kilometers of Washington D.C.
+#### Single vector search with a geo filter
+
+You can specify a [geo-spatial filter](../../search-query-odata-geo-spatial-functions.md) to limit results to a specific geographic area. `SearchSingleWithFilterGeo.java` limits results to hotels within 300 kilometers of Washington D.C.
 
 ```java
 var searchOptions = new SearchOptions()
@@ -379,7 +382,7 @@ Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inpu
 
 #### Semantic hybrid search
 
-This example adds [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding. `SearchSemanticHybrid.java` adds semantic ranking.
+`SearchSemanticHybrid.java` demonstrates [semantic ranking](../../semantic-search-overview.md), which reranks results based on language understanding.
 
 ```java
 var vectorQuery = new VectorizedQuery(QueryVector.getVectorList())

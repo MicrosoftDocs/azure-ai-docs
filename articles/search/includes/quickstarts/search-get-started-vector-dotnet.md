@@ -114,13 +114,13 @@ Score: 0.57902366, HotelId: 2, HotelName: Old Century Hotel
 
 ## Understand the code
 
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
 Now that you've run the code, let's break down the key steps:
 
 1. [Create a vector index](#create-a-vector-index)
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Query the index](#query-the-index)
-
-[!INCLUDE [understand code note](../understand-code-note.md)]
 
 ### Create a vector index
 
@@ -257,21 +257,20 @@ static async Task UploadDocs(SearchClient searchClient)
 }
 ```
 
-Key takeaways:
+Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the [`Azure.Search.Documents`](/dotnet/api/overview/azure/search.documents-readme) package. The `SearchClient` provides access to index operations, such as:
 
-+ Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the `Azure.Search.Documents` package. The `SearchClient` provides access to index operations, such as:
++ Data ingestion: `UploadDocuments()`, `MergeDocuments()`, `DeleteDocuments()`
 
-    + Data ingestion: `UploadDocuments()`, `MergeDocuments()`, `DeleteDocuments()`
++ Search operations: `Search()`, `Autocomplete()`, `Suggest()`
 
-    + Search operations: `Search()`, `Autocomplete()`, `Suggest()`
-
-    + Index management operations: `CreateOrUpdateIndex()`
++ Index management operations: `CreateOrUpdateIndex()`
 
 ### Query the index
 
 The queries in `VectorSearchExamples` demonstrate different search patterns. The example vector queries are based on two strings:
 
-+ Search string: "historic hotel walk to restaurants and shopping"
++ Full-text search string: "historic hotel walk to restaurants and shopping"
+
 + Vector query string: "quintessential lodging near running trails, eateries, retail" (vectorized into a mathematical representation)
 
 The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for "quintessential lodging near running trails, eateries, retail", results are zero. This example shows how you can get relevant results even if there are no matching terms.
@@ -303,7 +302,7 @@ public static async Task SearchSingleVector(SearchClient searchClient, ReadOnlyM
 }
 ```
 
-#### Single vector search with filter
+#### Single vector search with a filter
 
 In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. This example filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
@@ -333,7 +332,9 @@ public static async Task SearchSingleVectorWithFilter(SearchClient searchClient,
 
 This search returns only hotels that provide free Wi-Fi.
 
-For a geo filter, you can specify a geospatial filter to limit results to a specific geographic area. The following example limits results to hotels within 300 kilometers of Washington D.C.
+#### Single vector search with a geo filter
+
+You can specify a [geo-spatial filter](../../search-query-odata-geo-spatial-functions.md) to limit results to a specific geographic area. The following example limits results to hotels within 300 kilometers of Washington D.C.
 
 ```csharp
 public static async Task SingleSearchWithGeoFilter(SearchClient searchClient, ReadOnlyMemory<float> precalculatedVector)
@@ -405,7 +406,7 @@ Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inpu
 
 #### Semantic hybrid search
 
-This example adds [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding.
+`SearchHybridVectorAndSemantic` demonstrates [semantic ranking](../../semantic-search-overview.md), which reranks results based on language understanding.
 
 ```csharp
 public static async Task SearchHybridVectorAndSemantic(SearchClient searchClient, ReadOnlyMemory<float> precalculatedVector)

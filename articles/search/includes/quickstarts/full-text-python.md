@@ -97,6 +97,8 @@ Description: This classic hotel is fully-refurbished and ideally located on the 
 
 ## Understand the code
 
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
 Now that you've run the code, let's break down the key steps:
 
 1. [Create the clients](#create-the-clients)
@@ -104,8 +106,6 @@ Now that you've run the code, let's break down the key steps:
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Query the index](#query-the-index)
 1. [Remove the index](#remove-the-index)
-
-[!INCLUDE [understand code note](../understand-code-note.md)]
 
 ### Create the clients
 

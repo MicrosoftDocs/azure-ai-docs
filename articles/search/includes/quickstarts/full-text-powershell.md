@@ -89,13 +89,13 @@ The script deletes any existing index, creates a new index, uploads documents, a
 
 ## Understand the code
 
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
 Now that you've run the code, let's break down the key steps:
 
 1. [Create a search index](#create-a-search-index)
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Query the index](#query-the-index)
-
-[!INCLUDE [understand code note](../understand-code-note.md)]
 
 ### Create a search index
 
