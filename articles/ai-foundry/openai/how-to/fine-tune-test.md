@@ -2,8 +2,8 @@
 title: "Test a fine-tuned model"
 titleSuffix: Azure OpenAI
 description: Learn how to test your fine-tuned model with Azure OpenAI in Microsoft Foundry Models by using Python, the REST APIs, or Microsoft Foundry portal.
-author: voutilad
-ms.author: davevoutila
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.date: 09/30/2025
 ms.service: azure-ai-foundry
