@@ -104,7 +104,7 @@ Each query request returns JSON results. For example, the single vector search r
 }
 ```
 
-The vector query string is `quintessential lodging near running trails, eateries, retail`, which is semantically similar to `historic hotel walk to restaurants and shopping` but uses different terms. Vector search finds relevant results even without matching keywords.
+The vector query string is "quintessential lodging near running trails, eateries, retail", which is semantically similar to "historic hotel walk to restaurants and shopping" but uses different terms. Vector search finds relevant results even without matching keywords.
 
 ## Understand the code
 
@@ -113,6 +113,8 @@ Now that you've run the code, let's break down the key steps:
 1. [Create a vector index](#create-a-vector-index)
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Query the index](#query-the-index)
+
+[!INCLUDE [understand code note](../understand-code-note.md)]
 
 ### Create a vector index
 
@@ -219,10 +221,10 @@ Key takeaways:
 
 The queries in the sample file demonstrate different search patterns. The example vector queries are based on two strings:
 
-+ Full-text search string: `historic hotel walk to restaurants and shopping`
-+ Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
++ Full-text search string: "historic hotel walk to restaurants and shopping"
++ Vector query string: "quintessential lodging near running trails, eateries, retail" (vectorized into a mathematical representation)
 
-The vector query string is semantically similar to the search string, but includes terms that don't exist in the search index. If you do a keyword search for `quintessential lodging near running trails, eateries, retail`, results are zero. This example shows how vector search finds relevant results even without matching keywords.
+The vector query string is semantically similar to the search string, but includes terms that don't exist in the search index. If you do a keyword search for "quintessential lodging near running trails, eateries, retail", results are zero. This example shows how vector search finds relevant results even without matching keywords.
 
 #### Single vector search
 
@@ -250,7 +252,7 @@ Authorization: Bearer {{token}}
 
 Key takeaways about [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API):
 
-+ The `vectorQueries.vector` is the vector query string. It's a vector representation of *quintessential lodging near running trails, eateries, retail*, which is vectorized into 1,536 embeddings for this query.
++ The `vectorQueries.vector` is the vector query string. It's a vector representation of "quintessential lodging near running trails, eateries, retail", which is vectorized into 1,536 embeddings for this query.
 
 + `fields` determines which vector fields are searched.
 
@@ -348,7 +350,7 @@ Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inpu
 
 #### Semantic hybrid search
 
-Add [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding. The `### Run a hybrid query with semantic reranking` request adds semantic ranking:
+This example adds [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding. The `### Run a hybrid query with semantic reranking` request adds semantic ranking:
 
 ```http
 POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1

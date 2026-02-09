@@ -135,6 +135,8 @@ Now that you've run the code, let's break down the key steps:
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Query the index](#query-the-index)
 
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
 ### Create a search client
 
 In `App.java`, you create two clients:

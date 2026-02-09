@@ -103,6 +103,8 @@ Now that you've run the code, let's break down the key steps:
 1. [Upload documents to the index](#upload-documents-to-the-index)
 1. [Query the index](#query-the-index)
 
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
 ### Create a search index
 
 Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. An index is conceptually similar to a table in a relational database, but it's specifically designed for search operations, such as full-text search.

@@ -105,6 +105,8 @@ Now that you've run the code, let's break down the key steps:
 1. [Query the index](#query-the-index)
 1. [Remove the index](#remove-the-index)
 
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
 ### Create the clients
 
 The notebook creates two clients:
