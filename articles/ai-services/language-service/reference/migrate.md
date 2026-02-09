@@ -19,9 +19,9 @@ On November 2, 2021, Azure Language in Foundry Tools was released into public pr
 > * You may experience intermittent interruptions when calling the Language Understanding (LUIS) service. Microsoft is in the final phase of retiring LUIS. These interruptions are temporary but expected during this retirement phase.
 > * Beginning March 31, 2026, LUIS runtime and authoring endpoints (including REST API calls) are fully retired, and all LUIS requests fail.
 > * To ensure uninterrupted operation, export all of your LUIS app data as soon as possible in order to:
->   * Start using Conversational Language Understanding (CLU), or
->   * Try out a Microsoft Foundry-based architecture.
-> * Use the following API to export your data: [LUIS Versions - Export](/rest/api/luis/versions/export?view=rest-luis-v2.0&tabs=HTTP).
+>   * Start using [Conversational Language Understanding (CLU)](../conversational-language-understanding/overview.md), or
+>   * Try out a [Microsoft Foundry](../conversational-language-understanding/quickstart.md).
+> * Use the following API to export your data: [LUIS Versions - Export](/rest/api/luis/versions/export?view=rest-luis-v2.0&preserve-view=true&tabs=HTTP).
 
 ## Do I need to migrate to Azure Language if I'm using Text Analytics?
 
