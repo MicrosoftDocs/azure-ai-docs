@@ -44,14 +44,14 @@ These evaluators focus on three aspects:
 
 ::: moniker range="foundry"
 
-| Evaluator | Best practice | Use when | Purpose | Inputs | Output |
-|--|--|--|--|--|--|
-| Document Retrieval | Process evaluation | Retrieval quality is a bottleneck for your RAG, and you have query relevance labels (ground truth) for precise search quality metrics for debugging and parameter optimization | Measures search quality metrics (Fidelity, NDCG, XDCG, Max Relevance, Holes) by comparing retrieved documents against ground truth labels | `retrieval_ground_truth`, `retrieval_documents` | Composite: Fidelity, NDCG, XDCG, Max Relevance, Holes (with Pass/Fail) |
-| Retrieval | Process evaluation | You want to assess textual quality of retrieved context, but you don't have ground truths | Measures how relevant the retrieved context chunks are to addressing a query using an LLM judge | Query, Context | Binary: Pass/Fail based on threshold (1-5 scale) |
-| Groundedness | System evaluation |  You want a well-rounded groundedness definition that works with agent inputs, and bring your own GPT models as the LLM-judge | Measures how well the generated response aligns with the given context without fabricating content (precision aspect) | Query, Context, Response | Binary: Pass/Fail based on threshold (1-5 scale) |
-| Groundedness Pro (preview)| System evaluation | You want a strict groundedness definition powered by Azure AI Content Safety and use our service model | Detects if the response is strictly consistent with the context using the Azure AI Content Safety service | Query, Context, Response | Binary: True/False |
-| Relevance | System evaluation | You want to assess how well the RAG response addresses the query but don't have ground truths | Measures the accuracy, completeness, and direct relevance of the response to the query | Query, Response | Binary: Pass/Fail based on threshold (1-5 scale) |
-| Response Completeness | System evaluation | You want to ensure the RAG response doesn't miss critical information (recall aspect) from your ground truth | Measures how completely the response covers the expected information compared to ground truth | Response, Ground truth | Binary: Pass/Fail based on threshold (1-5 scale) |
+| Evaluator | Best practice | Use when | Purpose | Output |
+|--|--|--|--|--|
+| Document Retrieval | Process evaluation | Retrieval quality is a bottleneck for your RAG, and you have query relevance labels (ground truth) for precise search quality metrics for debugging and parameter optimization | Measures search quality metrics (Fidelity, NDCG, XDCG, Max Relevance, Holes) by comparing retrieved documents against ground truth labels | Composite: Fidelity, NDCG, XDCG, Max Relevance, Holes (with Pass/Fail) |
+| Retrieval | Process evaluation | You want to assess textual quality of retrieved context, but you don't have ground truths | Measures how relevant the retrieved context chunks are to addressing a query using an LLM judge | Binary: Pass/Fail based on threshold (1-5 scale) |
+| Groundedness | System evaluation | You want a well-rounded groundedness definition that works with agent inputs, and bring your own GPT models as the LLM-judge | Measures how well the generated response aligns with the given context without fabricating content (precision aspect) | Binary: Pass/Fail based on threshold (1-5 scale) |
+| Groundedness Pro (preview) | System evaluation | You want a strict groundedness definition powered by Azure AI Content Safety and use our service model | Detects if the response is strictly consistent with the context using the Azure AI Content Safety service | Binary: True/False |
+| Relevance | System evaluation | You want to assess how well the RAG response addresses the query but don't have ground truths | Measures the accuracy, completeness, and direct relevance of the response to the query | Binary: Pass/Fail based on threshold (1-5 scale) |
+| Response Completeness | System evaluation | You want to ensure the RAG response doesn't miss critical information (recall aspect) from your ground truth | Measures how completely the response covers the expected information compared to ground truth | Binary: Pass/Fail based on threshold (1-5 scale) |
 
 ::: moniker-end
 
@@ -127,23 +127,50 @@ The numerical score is based on a Likert scale (integer 1 to 5), where a higher 
 
 ::: moniker range="foundry"
 
+## System evaluation
+
+System evaluation examines the quality of the final response in your RAG workflow. These evaluators ensure that the AI-generated content is accurate, relevant, and complete based on the provided context and user query:
+
+- Groundedness - Is the response grounded in the provided context without fabrication?
+- Groundedness Pro - Does the response strictly adhere to the context (Azure AI Content Safety)?
+- Relevance - Does the response accurately address the user's query?
+- Response Completeness - Does the response cover all critical information from ground truth?
+
+Examples:
+
+- [Groundedness sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_groundedness.py)
+- [Relevance sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_relevance.py)
+- [Response completeness sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_response_completeness.py)
+
+## Process evaluation
+
+Process evaluation assesses the quality of the document retrieval step in RAG systems. The retrieval step is crucial for providing relevant context to the language model:
+
+- Retrieval - How relevant are the retrieved context chunks to the query?
+- Document Retrieval - How well does retrieval match ground truth labels (requires qrels)?
+
+Examples:
+
+- [Retrieval sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_retrieval.py)
+
+For more examples, see [all quality evaluator samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations).
+
 ## Using RAG evaluators
 
-RAG evaluators assess the quality of retrieval-augmented generation systems. Configure them in your `testing_criteria`:
+To use RAG evaluators, configure them in your `testing_criteria`. Each evaluator requires specific data mappings:
 
-| Evaluator | Category | Required inputs |
-|-----------|----------|-----------------|
-| `builtin.groundedness` | System | `query`, `context`, `response` |
-| `builtin.groundedness_pro` | System | `query`, `context`, `response` |
-| `builtin.relevance` | System | `query`, `response` |
-| `builtin.response_completeness` | System | `response`, `ground_truth` |
-| `builtin.retrieval` | Process | `query`, `context` |
-| `builtin.document_retrieval` | Process | `retrieval_ground_truth`, `retrieval_documents` |
+| Evaluator | Required mappings |
+|-----------|-------------------|
+| Groundedness, Groundedness Pro | `query`, `context`, `response` |
+| Relevance | `query`, `response` |
+| Response Completeness | `response`, `ground_truth` |
+| Retrieval | `query`, `context` |
+| Document Retrieval | `retrieval_ground_truth`, `retrieval_documents` |
 
 **Data mapping syntax:**
 
-- Use `{{item.field_name}}` to reference fields from your test dataset (for example, `{{item.query}}`).
-- Use `{{sample.output_items}}` to reference response messages when evaluating with an agent/model target or agent response data source.
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
+- `{{sample.output_items}}` references response messages when evaluating with an agent/model target or agent response data source.
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on data sources.
 
@@ -192,8 +219,6 @@ These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excelle
     "reason": "The response is well-grounded in the provided context without fabricating content."
 }
 ```
-
-For full working examples, see the [groundedness sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_groundedness.py) and [relevance sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_relevance.py).
 
 ::: moniker-end
 
