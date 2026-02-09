@@ -21,7 +21,7 @@ For more information about prerequisites, validating that a container is running
 
 The content safety prompt shields container image for all supported versions can be found on the [Microsoft Container Registry (MCR)](https://aka.ms/aacscontainermcr) syndicate. It resides within the `azure-cognitive-services/contentsafety` repository and is named `promptshields`. 
 
-:::image type="content" source="../../media/text-container.png" lightbox="../../media/text-container.png" alt-text="Screenshot of text container on registry website.":::
+:::image type="content" source="../../media/prompt-shields-container.png" lightbox="../../media/prompt-shields-container.png" alt-text="Screenshot of Prompt Shields container on registry website.":::
 
 The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-services/contentsafety/promptshields`. Append a specific container version, or append `:latest` to get the most recent version. For example:
 

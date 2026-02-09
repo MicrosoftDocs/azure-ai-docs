@@ -581,7 +581,7 @@ The console displays streamed response text as the A2A agent processes the reque
 | Connection timeout | Remote agent slow to respond | Increase timeout settings or verify the remote agent's performance. Consider implementing retry logic with exponential backoff. |
 | Missing A2A tool in response | Tool not enabled for the agent | Recreate the agent with the A2A tool explicitly enabled, and verify the connection is active and properly configured. |
 
-<!-- The verbiage in the following section was provided by Foundry CELA. Do not modify. -->
+<!-- The verbiage in the following section is required. Do not remove or modify. -->
 ## Considerations for using non-Microsoft services
 
 You're subject to the terms between you and the service provider when you use connected non-Microsoft services and servers ("non-Microsoft services"). Under your agreement governing use of Microsoft Online services, non-Microsoft services are non-Microsoft Products. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft services, or your application might receive data from the non-Microsoft services. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use. 

@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/22/2026
+ms.date: 02/06/2026
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
@@ -74,7 +74,9 @@ $env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.
 
 The `scope` parameter controls how memory is partitioned. Each scope in the memory store keeps an isolated collection of memory items. For example, if you create a customer support agent with memory, each customer should have their own individual memory.
 
-As a developer, you choose the key used to store and retrieve memory items, such as a UUID or a unique user ID in your system.
+As a developer, you choose the key used to store and retrieve memory items. You can pass a static value, such as a universally unique identifier (UUID) or another stable identifier from your system.
+
+Alternatively, when you specify `{{$userId}}` as the scope, the system automatically extracts the tenant ID (TID) and object ID (OID) from the request authentication header. This approach gives each authenticated user their own isolated memory partition, eliminating the need to manage identifiers manually.
 
 ## Create a memory store
 
@@ -233,7 +235,7 @@ After you create a memory store, you can attach the memory search tool to a prom
 from azure.ai.projects.models import MemorySearchTool, PromptAgentDefinition
 
 # Set scope to associate the memories with
-# You can also use "{{$userId}}" to take the oid of the request authentication header
+# You can also use "{{$userId}}" to take the TID and OID of the request authentication header
 scope = "user_123"
 
 openai_client = project_client.get_openai_client()

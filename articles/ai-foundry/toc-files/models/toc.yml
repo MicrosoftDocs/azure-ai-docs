@@ -150,8 +150,6 @@ items:
         href: ../../openai/dall-e-quickstart.md
       - name: Video generation
         href: ../../openai/video-generation-quickstart.md
-      - name: Use your data
-        href: ../../openai/use-your-data-quickstart.md
       - name: Realtime API for speech and audio
         href: ../../openai/realtime-audio-quickstart.md
       - name: Speech to text with Whisper
@@ -238,28 +236,6 @@ items:
         href: ../../openai/concepts/abuse-monitoring.md
       - name: Audio
         href: ../../openai/concepts/audio.md
-      - name: Content filtering
-        items:
-        - name: Content filtering overview
-          href: ../../openai/concepts/content-filter.md
-        - name: Content filtering severity levels
-          href: ../../openai/concepts/content-filter-severity-levels.md
-        - name: Prompt shields
-          href: ../../openai/concepts/content-filter-prompt-shields.md
-        - name: Groundedness detection
-          href: ../../openai/concepts/content-filter-groundedness.md
-        - name: Protected material detection
-          href: ../../openai/concepts/content-filter-protected-material.md
-        - name: Personally identifiable information (PII) detection
-          href: ../../openai/concepts/content-filter-personal-information.md
-        - name: Content filter configurability
-          href: ../../openai/concepts/content-filter-configurability.md
-        - name: Content filter annotations
-          href: ../../openai/concepts/content-filter-annotations.md
-        - name: Document embedding in prompts
-          href: ../../openai/concepts/content-filter-document-embedding.md
-        - name: Content streaming
-          href: ../../openai/concepts/content-streaming.md
       - name: Default safety policies
         href: ../../openai/concepts/default-safety-policies.md
       - name: Prompt transformations
@@ -329,8 +305,6 @@ items:
           href: ../../openai/how-to/on-your-data-configuration.md
         - name: Deploy and use web apps
           href: ../../openai/how-to/use-web-app.md
-        - name: Use the Azure Developer CLI
-          href: ../../openai/how-to/azure-developer-cli.md
         - name: Troubleshooting and best practices
           href: ../../openai/how-to/on-your-data-best-practices.md
     - name: Migrate to OpenAI Python v1.x
