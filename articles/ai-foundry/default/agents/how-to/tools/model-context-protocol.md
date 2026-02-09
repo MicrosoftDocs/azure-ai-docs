@@ -69,7 +69,7 @@ To learn about supported authentication options (key-based, Microsoft Entra iden
 > [!NOTE]
 > Set `project_connection_id` to the ID of your project connection.
 
-<!-- The verbiage in the following section was provided by Foundry CELA. Do not modify. -->
+<!-- The verbiage in the following section is required. Do not remove or modify. -->
 ## Considerations for using non-Microsoft services and servers
 
 You're subject to the terms between you and the service provider when you use connected non-Microsoft services. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
