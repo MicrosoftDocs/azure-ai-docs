@@ -74,37 +74,82 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 1. Under `### List existing indexes by name`, select **Send Request** to verify your connection.
 
-   A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK` or `201 Created`, you're ready for the next steps.
+   A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready to proceed.
 
-1. Send the remaining requests in sequence to create an index, upload documents, and query the index.
+1. Send the remaining requests sequentially to create a vector index, upload documents, and run different types of vector queries.
 
 ### Output
 
-Each query request returns JSON results. For example, the single vector search returns results like this:
+Each query request returns JSON results. The following example is the output of the `### Run a single vector query` request, which shows vector search results ranked by similarity score.
 
 ```json
 {
-    "@odata.count": 7,
-    "value": [
-        {
-            "@search.score": 0.857736,
-            "HotelId": "48",
-            "HotelName": "Nordick's Valley Motel",
-            "Description": "Only 90 miles (about 2 hours) from the nation's capital...",
-            "Category": "Boutique"
-        },
-        {
-            "@search.score": 0.8399129,
-            "HotelId": "49",
-            "HotelName": "Swirling Currents Hotel",
-            "Description": "Spacious rooms, glamorous suites and residences...",
-            "Category": "Luxury"
-        }
-    ]
+  "@odata.count": 5,
+  "value": [
+    {
+      "@search.score": 0.6605852,
+      "HotelId": "48",
+      "HotelName": "Nordick's Valley Motel",
+      "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
+      "Category": "Boutique",
+      "Tags": [
+        "continental breakfast",
+        "air conditioning",
+        "free wifi"
+      ]
+    },
+    {
+      "@search.score": 0.6333684,
+      "HotelId": "13",
+      "HotelName": "Luxury Lion Resort",
+      "Description": "Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort.",
+      "Category": "Luxury",
+      "Tags": [
+        "bar",
+        "concierge",
+        "restaurant"
+      ]
+    },
+    {
+      "@search.score": 0.605672,
+      "HotelId": "4",
+      "HotelName": "Sublime Palace Hotel",
+      "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
+      "Category": "Boutique",
+      "Tags": [
+        "concierge",
+        "view",
+        "air conditioning"
+      ]
+    },
+    {
+      "@search.score": 0.6026341,
+      "HotelId": "49",
+      "HotelName": "Swirling Currents Hotel",
+      "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.",
+      "Category": "Suite",
+      "Tags": [
+        "air conditioning",
+        "laundry service",
+        "24-hour front desk service"
+      ]
+    },
+    {
+      "@search.score": 0.57902366,
+      "HotelId": "2",
+      "HotelName": "Old Century Hotel",
+      "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
+      "Category": "Boutique",
+      "Tags": [
+        "pool",
+        "free wifi",
+        "air conditioning",
+        "concierge"
+      ]
+    }
+  ]
 }
 ```
-
-The vector query string is "quintessential lodging near running trails, eateries, retail", which is semantically similar to "historic hotel walk to restaurants and shopping" but uses different terms. Vector search finds relevant results even without matching keywords.
 
 ## Understand the code
 
@@ -120,7 +165,7 @@ Now that you've run the code, let's break down the key steps:
 
 Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. This quickstart calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a vector index named `hotels-vector-quickstart` and its physical data structures on your search service.
 
-The index schema is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. The following excerpt shows the key structure of the `### Create a new index` request in the `az-search-quickstart-vectors.rest`:
+The index schema is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. The following excerpt shows the key structure of the `### Create a new index` request.
 
 ```http
 {
@@ -166,9 +211,9 @@ Key takeaways:
 
 + The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
 
-+ Vector fields must be one of the [EDM data types used for vectors](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), such as `type: Collection(Edm.Single)`. Vector fields also have `dimensions` and `vectorSearchProfile` properties. Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the `text-embedding-ada-002` model.
++ The `dimensions` property must match the output size of your embedding model. This quickstart uses 1,536 dimensions to match the `text-embedding-ada-002` model.
 
-+ The `vectorSearch` section is an array of Approximate Nearest Neighbor (ANN) algorithm configurations and profiles. Supported algorithms include Hierarchical Navigable Small World (HNSW) and exhaustive K-Nearest Neighbor. For more information, see [Relevance scoring in vector search](../../vector-search-ranking.md).
++ The `vectorSearch` section is an array of Approximate Nearest Neighbor (ANN) algorithm configurations and profiles. Supported algorithms include Hierarchical Navigable Small World (HNSW) and exhaustive K-Nearest Neighbor (KNN). For more information, see [Relevance in vector search](../../vector-search-ranking.md).
 
 + The optional `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](../../semantic-search-overview.md).
 
@@ -178,7 +223,7 @@ Newly created indexes are empty. To populate an index and make it searchable, yo
 
 In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is often pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
 
-This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add sample hotel documents to your index. The following excerpt shows the structure of the `### Upload 7 documents` request:
+This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add sample hotel documents to your index. The following excerpt shows the structure of the `### Upload 7 documents` request.
 
 ```http
 {
@@ -207,21 +252,19 @@ Key takeaways:
 
 + Documents in the payload consist of fields defined in the index schema.
 
-+ Vector fields contain floating point values. Each document includes a `DescriptionVector` field with 1,536 embeddings, which is the size generated by the `text-embedding-ada-002` model.
-
 ### Query the index
 
 The queries in the sample file demonstrate different search patterns. The example vector queries are based on two strings:
 
-+ Full-text search string: "historic hotel walk to restaurants and shopping"
++ Full-text search string: `"historic hotel walk to restaurants and shopping"`
 
-+ Vector query string: "quintessential lodging near running trails, eateries, retail" (vectorized into a mathematical representation)
++ Vector query string: `"quintessential lodging near running trails, eateries, retail"` (vectorized into a mathematical representation)
 
-The vector query string is semantically similar to the search string, but includes terms that don't exist in the search index. If you do a keyword search for "quintessential lodging near running trails, eateries, retail", results are zero. This example shows how vector search finds relevant results even without matching keywords.
+The vector query string is semantically similar to the full-text search string, but it includes terms that don't exist in the index. A keyword-only search for the vector query string returns zero results. However, vector search finds relevant matches based on meaning rather than exact keywords. The following examples demonstrate this capability and other ways to query the index.
 
 #### Single vector search
 
-The `### Run a single vector query` request demonstrates a basic scenario where you want to find document descriptions that closely match the search string:
+The `### Run a single vector query` request demonstrates a basic scenario where you want to find document descriptions that closely match the vector query string.
 
 ```http
 {
@@ -239,27 +282,11 @@ The `### Run a single vector query` request demonstrates a basic scenario where 
 }
 ```
 
-Key takeaways about [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API):
-
-+ The `vectorQueries.vector` is the vector query string. It's a vector representation of "quintessential lodging near running trails, eateries, retail", which is vectorized into 1,536 embeddings for this query.
-
-+ `fields` determines which vector fields are searched.
-
-+ `kind` set to `vector` means that the query string is a vector. If `kind` was set to `text`, you would need extra capability (a [vectorizer](../../vector-search-how-to-configure-vectorizer.md)) to encode a human readable text string into a vector at query time. Vectorizers are omitted from this quickstart to keep the exercise simple.
-
-+ `k` specifies the number of matches to return in the response. A `count` parameter specifies the number of matches found in the index. Including count is a best practice for queries, but it's less useful for similarity search where the algorithm can find some degree of similarity in almost any document.
-
-The response includes k-5 results although the search engine found 7 matches. The top results are considered the most semantically similar to the query. Each result provides a search score and the fields listed in `select`. In a similarity search, the response always includes `k` results ordered by the similarity score.
-
 #### Single vector search with a filter
 
-In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `### Run a vector query with a filter` request filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi:
+In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `### Run a vector query with a filter` request filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
 ```http
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
 {
     "count": true,
     "select": "HotelId, HotelName, Description, Category, Tags",
@@ -277,17 +304,11 @@ Authorization: Bearer {{token}}
 }
 ```
 
-This search returns only hotels that provide free Wi-Fi.
-
 #### Single vector search with a geo filter
 
-You can also apply a geo filter to limit results to a specific geographic area. The `### Run a vector query with a geo filter` request limits results to hotels within 300 kilometers of Washington D.C.:
+You can specify a [geo-spatial filter](../../search-query-odata-geo-spatial-functions.md) to limit results to a specific geographic area. The `### Run a vector query with a geo filter` request specifies a geographic point (Washington D.C., using longitude and latitude coordinates) and returns hotels within 300 kilometers. The `vectorFilterMode` parameter determines when the filter runs. In this case, `postFilter` runs the filter after the vector search.
 
 ```http
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
 {
     "count": true,
     "select": "HotelId, HotelName, Address/City, Address/StateProvince, Description",
@@ -307,17 +328,11 @@ Authorization: Bearer {{token}}
 }
 ```
 
-This search returns only hotels within 300 kilometers of the specified coordinates.
-
 #### Hybrid search
 
-[Hybrid search](../../hybrid-search-overview.md) combines keyword and vector queries in one request. The `### Run a hybrid query` request runs the full-text and vector query strings concurrently:
+[Hybrid search](../../hybrid-search-overview.md) combines full-text and vector queries in a single request. The `### Run a hybrid query` request runs both query types concurrently, and then uses Reciprocal Rank Fusion (RRF) to merge the results into a unified ranking. RRF uses the inverse of result rankings from each result set to produce a merged ranking. Notice that hybrid search scores are uniformly smaller than single-query scores.
 
 ```http
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
 {
     "count": true,
     "search": "historic hotel walk to restaurants and shopping",
@@ -335,17 +350,11 @@ Authorization: Bearer {{token}}
 }
 ```
 
-Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. In the full-text query only, the top two results are Sublime Palace Hotel and Luxury Lion Resort, with Sublime Palace Hotel having a stronger BM25 relevance score. In the vector-only query using HNSW, Sublime Palace Hotel drops to the fourth position. Luxury Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
-
 #### Semantic hybrid search
 
-The `Run a hybrid query with semantic reranking` request demonstrates [semantic ranking](../../semantic-search-overview.md), which reranks results based on language understanding.
+The `### Run a hybrid query with semantic reranking` request demonstrates [semantic ranking](../../semantic-search-overview.md), which reranks results based on language understanding.
 
 ```http
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
 {
     "count": true,
     "search": "historic hotel walk to restaurants and shopping",
@@ -365,11 +374,13 @@ Authorization: Bearer {{token}}
 }
 ```
 
-With semantic ranking, the Swirling Currents Hotel moves to the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel within walking distance to dining (restaurants) and shopping."
+Compare these results with the hybrid search results from the previous query. Without semantic reranking, Sublime Palace Hotel ranks first because Reciprocal Rank Fusion (RRF) combines the text and vector scores to produce a merged result. After semantic reranking, Swirling Currents Hotel moves to the top spot.
+
+The semantic ranker uses machine comprehension models to evaluate how well each result matches the intent of the query. Swirling Currents Hotel's description mentions `"walking access to shopping, dining, entertainment and the city center"`, which aligns closely with the search query's `"walk to restaurants and shopping"`. This semantic match for nearby dining and shopping elevates it above Sublime Palace Hotel, which doesn't emphasize walkable amenities in its description.
 
 Key takeaways:
 
-+ In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors.
++ In a hybrid search, you can integrate vector search with full-text search over keywords. Filters and semantic ranking apply to textual content only, not vectors.
 
 ## Clean up resources
 

@@ -9,4 +9,4 @@ ms.date: 02/09/2026
 ---
 
 > [!NOTE]
-> The code snippets in this section are for illustration and might have been modified for readability. For a complete working example, see this quickstart's source code.
+> The code snippets in this section might have been modified for readability. For a complete working example, see the source code.
