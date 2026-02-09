@@ -474,10 +474,49 @@ Task Navigation Efficiency measures whether the agent took an optimal sequence o
 }
 ```
 
-The `ground_truth` defines the expected sequence of actions:
+**Matching modes:**
+
+| Mode | Description |
+|------|-------------|
+| `exact_match` | Agent's trajectory must match the ground truth exactly (order and content) |
+| `in_order_match` | All ground truth steps must appear in the agent's trajectory in correct order (extra steps allowed) |
+| `any_order_match` | All ground truth steps must appear in the agent's trajectory, order doesn't matter (extra steps allowed) |
+
+**Ground truth format:**
+
+The `ground_truth` can be a simple list of expected steps:
 
 ```python
 ground_truth = ["identify_tools_to_call", "call_tool_A", "call_tool_B", "response_synthesis"]
+```
+
+Or a tuple with tool names and parameters for more detailed validation:
+
+```python
+ground_truth = (
+    ["func_name1", "func_name2"],
+    {
+        "func_name1": {"param_key": "param_value"},
+        "func_name2": {"param_key": "param_value"},
+    }
+)
+```
+
+**Output:**
+
+Returns a binary pass/fail result plus precision, recall, and F1 scores:
+
+```json
+{
+    "type": "azure_ai_evaluator",
+    "name": "task_navigation_efficiency",
+    "passed": true,
+    "details": {
+        "precision_score": 0.85,
+        "recall_score": 1.0,
+        "f1_score": 0.92
+    }
+}
 ```
 
 ::: moniker-end
