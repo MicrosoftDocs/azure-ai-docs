@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/09/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -923,6 +923,10 @@ The following steps outline how to connect to a remote MCP server from Foundry A
   1. `project_connection_id`: The project connection ID that stores authentication and other connection details for the MCP server.
 1. If the model tries to invoke a tool in your MCP server with approval required, you get a response output item type as `mcp_approval_request`. In the response output item, you can get more details on which tool in the MCP server is called and arguments to be passed. Review the tool and arguments so that you can make an informed decision for approval.
 1. Submit your approval to the agent by using `response_id` and setting `approve` to `true`.
+
+## Known limitations
+
+- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 120 seconds. If your MCP server takes longer than 120 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
 
 ## Common questions and errors
 

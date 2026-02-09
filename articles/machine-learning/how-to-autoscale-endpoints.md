@@ -314,7 +314,7 @@ A scale-in rule can reduce the number of VM instances when the average CPU load 
 
 The following steps adjust the **Rules** configuration to support a scale in rule.
 
-1. On the Azure portal **Scaling** page with **Custom autoscale** selected, select **Scale based on a metric** and then select the **Add a rule** link.
+1. On the Azure portal **Scaling** page with **Custom autoscale** selected, select **Scale based on a metric**, and then select the **Add a rule** link.
 
 1. On the **Scale rule** page, configure the following values:
 
@@ -436,7 +436,7 @@ You can use other metrics when you set up autoscale rules.
 
 - For the names of deployment metrics to use in code, see the values in the **Name in REST API** column in the tables in [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpointsdeployments).
 
-- To select other metrics on the Azure portal **Scale rule** page, select the metric source under **Metric source** and then select from the available metrics under **Metric name**.
+- To select other metrics on the Azure portal **Scale rule** page, select the metric source under **Metric source**, and then select from the available metrics under **Metric name**.
 
 ## Create a scale rule based on schedule
 
