@@ -617,7 +617,7 @@ The following sections summarize changes between API versions.
 ## Next steps
 
 - [Supported programming languages for the v1 API](./supported-languages.md)
-- [Azure OpenAI models](../foundry-models/concepts/models-sold-directly-by-azure.md)
+- [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Working with Azure OpenAI models](./how-to/working-with-models.md)
 - [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits)
 - [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
