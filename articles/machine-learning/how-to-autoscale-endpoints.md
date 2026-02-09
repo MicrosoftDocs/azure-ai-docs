@@ -26,7 +26,7 @@ Azure Monitor autoscale allows you to set rules that trigger one or more autosca
 
 :::image type="content" source="media/how-to-autoscale-endpoints/concept-autoscale.png" border="false" alt-text="Diagram that shows how autoscale adds and removes instances as needed.":::
 
-This article explains how to manage autoscaling by using the Azure Machine Learning CLI v2, Azure Machine Learning Python SDK v2, or Machine Learning studio and the Azure portal. You can also use REST APIs.
+You can manage autoscaling by using REST APIs, Azure Resource Manager, Azure CLI v2, Python SDK v2, or the Azure portal via Azure Machine Learning studio.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ This article explains how to manage autoscaling by using the Azure Machine Learn
 
 ## Define an autoscale profile
 
-To enable autoscale for an online endpoint, you first define an autoscale profile. The profile specifies the default, minimum, and maximum scale set capacity. The following example shows how to set the number of virtual machine (VM) instances for the default, minimum, and maximum scale capacity.
+To enable autoscale for an online endpoint, you first define an autoscale profile. The profile specifies the default, minimum, and maximum scale set capacity. The following example shows how to set the number of virtual machine (VM) instances for minimum, maximum, and default scale capacity.
 
 # [Azure CLI](#tab/cli)
 
@@ -149,11 +149,11 @@ To define an autoscale profile:
 
    :::image type="content" source="media/how-to-autoscale-endpoints/select-endpoint.png" alt-text="Screenshot that shows how to select an endpoint deployment entry for a Machine Learning workspace in the studio." lightbox="media/how-to-autoscale-endpoints/select-endpoint.png":::
 
-1. On the **Details** tab for the selected endpoint, scroll down and select the **Configure auto scaling** link under **Scaling**. The Azure portal **Scaling** page for the deployment opens.
+1. On the **Details** tab for the selected endpoint, scroll down and select the **Configure auto scaling** link under **Scaling**.
 
    :::image type="content" source="media/how-to-autoscale-endpoints/configure-auto-scaling.png" alt-text="Screenshot that shows how to select the option to configure autoscaling for an endpoint.":::
 
-1. On the Azure portal **Scaling** page for the deployment, select **Custom autoscale** under **Choose how to scale your resources**.
+1. The Azure portal **Scaling** page for the deployment opens. On this page, select **Custom autoscale** under **Choose how to scale your resources**.
 
 1. In the **Default** pane, select **Scale based on a metric**.
 
@@ -340,7 +340,7 @@ If you configure both scale-out and scale-in rules, the **Rules** section of the
 
 ## Create a scale rule based on endpoint metrics
 
-In the preceding sections, you created rules to scale in or out based on deployment metrics. You can also create a rule that applies to the deployment endpoint. In this section, you learn how to allocate another node when the request latency is greater than an average of 70 milliseconds for five minutes.
+In the preceding sections, you created rules to scale in or out based on deployment metrics. You can also create rules that apply to deployment endpoint metrics. For example, you can allocate another node when the request latency is greater than an average of 70 milliseconds for five minutes.
 
 # [Azure CLI](#tab/cli)
 
@@ -436,11 +436,11 @@ You can use other metrics when you set up autoscale rules.
 
 - For the names of deployment metrics to use in code, see the values in the **Name in REST API** column in the tables in [Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments](monitor-azure-machine-learning-reference.md#supported-metrics-for-microsoftmachinelearningservicesworkspacesonlineendpointsdeployments).
 
-- To select other metrics on the Azure portal **Scale rule** page, select the metric source under **Metric source**, and then select from the available metrics under **Metric name**.
+- To select other metrics on the Azure portal **Scale rule** screen, select the metric source under **Metric source**, and then select from the available metrics under **Metric name**.
 
 ## Create a scale rule based on schedule
 
-You can also create rules that apply only on certain days or at certain times. In this section, you create a rule that sets the node count to two on weekends.
+You can create autoscale rules that apply only on certain days or at certain times. For example, you can create a rule that sets the node count to two on weekends.
 
 # [Azure CLI](#tab/cli)
 
@@ -526,17 +526,13 @@ On the Azure portal **Scaling** page:
 
 ## Delete resources
 
-If you're not going to use your deployments, you can delete the resources.
+The following commands delete both the autoscaling profile and the endpoint.
 
 # [Azure CLI](#tab/cli)
-
-Run the following code:
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-moe-autoscale.sh" ID="delete_endpoint" :::
 
 # [Python SDK](#tab/python)
-
-Run the following code:
 
 ```python
 mon_client.autoscale_settings.delete(
@@ -550,7 +546,7 @@ ml_client.online_endpoints.begin_delete(endpoint_name)
 # [Studio](#tab/azure-studio)
 
 1. In your workspace in [Azure Machine Learning studio](https://ml.azure.com), select **Endpoints** from the left menu.
-1. Select the endpoint to delete by selecting the circle next to the endpoint name.
+1. Select the circle next to the endpoint name you want to delete.
 1. Select **Delete**.
 
 You can also delete a managed online endpoint from the [endpoint details page](how-to-use-managed-online-endpoint-studio.md#view-managed-online-endpoints). 
