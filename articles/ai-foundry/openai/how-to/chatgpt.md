@@ -23,13 +23,10 @@ This article walks you through getting started with chat completions models. To 
 
 ## Prerequisites
 
-- An Azure OpenAI resource.
-- A chat model deployment in the resource. You use the deployment name in the `model` parameter.
-- Python 3.9 or later.
+- An Azure OpenAI chat competions model deployed
 - Install the OpenAI Python library: `pip install openai`.
 - For Microsoft Entra ID authentication, install Azure Identity: `pip install azure-identity`.
 - For the token-counting example, install tiktoken: `pip install tiktoken`.
 - If you use API keys, set `AZURE_OPENAI_API_KEY` (or `OPENAI_API_KEY`).
-- Ensure your `base_url` ends with `/openai/v1/`.
 
 [!INCLUDE [Chat Completions](../includes/chat-completion.md)]
