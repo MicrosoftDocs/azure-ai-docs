@@ -4,14 +4,14 @@ description: Learn how to deploy Microsoft Foundry Models in the Foundry portal 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 11/21/2025
-ms.custom: ignite-2024, github-universe-2024
+ms.date: 02/09/2026
+ms.custom: ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
 author: msakande   
 ms.author: mopeakande
 manager: nitinme
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
-ai.usage: ai-assisted
+ai-usage: ai-assisted
 
 #CustomerIntent: As a developer or AI practitioner, I want to deploy Microsoft Foundry Models in the Foundry portal so that I can integrate these AI models into my applications and perform inference tasks for my business needs.
 ---
@@ -20,9 +20,9 @@ ai.usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-In this article, you learn how to use the Foundry portal to deploy a Foundry Model in a Foundry resource for use in performing inferencing tasks. Foundry Models include models such as Azure OpenAI models, Meta Llama models, and more. Once you deploy a Foundry Model, you can interact with it by using the Foundry Playground and inference it by using code. 
+In this article, you learn how to use the Foundry portal to deploy a Foundry Model in a Foundry resource for inference. Foundry Models include models such as Azure OpenAI models, Meta Llama models, and more. After you deploy a Foundry Model, you can interact with it in the Foundry Playground and use it from code.
 
-This article uses a Foundry Model from partners and community `Llama-3.2-90B-Vision-Instruct` for illustration. Models from partners and community require that you subscribe to Azure Marketplace before deployment. On the other hand, Foundry Models sold directly by Azure, such as Azure Open AI in Foundry Models, don't have this requirement. For more information about Foundry Models, including the regions where they're available for deployment, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) and [Foundry Models from partners and community](../concepts/models-from-partners.md).
+This article uses a Foundry Model from partners and community `Llama-3.2-90B-Vision-Instruct` for illustration. Models from partners and community require that you subscribe to Azure Marketplace before deployment. On the other hand, Foundry Models sold directly by Azure, such as Azure OpenAI in Foundry Models, don't have this requirement. For more information about Foundry Models, including the regions where they're available for deployment, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) and [Foundry Models from partners and community](../concepts/models-from-partners.md).
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ To complete this article, you need:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can [upgrade to Foundry Models](quickstart-github-models.md) and create an Azure subscription in the process.
 
-- Access to Microsoft Foundry with appropriate permissions to create and manage resources.
+- The **Cognitive Services Contributor** role or equivalent permissions on the Foundry resource to create and manage deployments. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
 - A [Microsoft Foundry project](../../how-to/create-projects.md). This kind of project is managed under a Foundry resource.
 
@@ -92,9 +92,7 @@ Deploy a model by following these steps in the Foundry portal:
    > [!TIP]
    > Each model supports different deployment types, providing different data residency or throughput guarantees. See [deployment types](../concepts/deployment-types.md) for more details. In this example, the model supports the Global Standard deployment type.
 
-1. The Foundry portal automatically deploys your model in the Foundry resource associated with your project. Your project and resource must be in one of the supported regions of deployment for the model. 
-
-1. Select **Deploy**. When the deployment completes, you land on the [Foundry Playgrounds](../../concepts/concept-playgrounds.md) where you can interactively test the model.
+1. When the deployment completes, you land on the [Foundry Playgrounds](../../concepts/concept-playgrounds.md) where you can interactively test the model. Your project and resource must be in one of the supported regions of deployment for the model.
 
 ::: moniker-end
 
@@ -119,6 +117,8 @@ You can manage the existing model deployments in the resource by using the Found
 1. Select **Build** in the upper-right navigation.
 
 1. Select **Models** in the left pane to see the list of deployments in the resource.
+
+From a deployment's detail page, you can view endpoint details and keys, adjust deployment settings, or delete a deployment that you no longer need.
 
 ::: moniker-end
 
@@ -152,9 +152,9 @@ You can interact with the new model in the Foundry portal by using the playgroun
 ::: moniker-end
 
 
-## Inference the model with code
+## Use the model with code
 
-To perform inferencing on the deployed model with code samples, see the following examples:
+To run inference on the deployed model, see the following examples:
 
 - To use the **Responses API with Foundry Models sold directly by Azure**, such as Microsoft AI, DeepSeek, and Grok models, see [How to generate text responses with Microsoft Foundry Models](generate-responses.md).
 
@@ -166,9 +166,9 @@ To perform inferencing on the deployed model with code samples, see the followin
 
 For Foundry Models, the default quota varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI in Microsoft Foundry Models quotas and limits](../../openai/quotas-limits.md) and [Microsoft Foundry Models quotas and limits](../quotas-limits.md).
 
-## Quota for deploying and inferencing a model
+## Quota for deploying and running inference on a model
 
-For Foundry Models, deploying and inferencing consume quota that Azure assigns to your subscription on a per-region, per-model basis in units of Tokens-per-Minute (TPM). When you sign up for Foundry, you receive default quota for most of the available models. Then, you assign TPM to each deployment as you create it, which reduces the available quota for that model. You can continue to create deployments and assign them TPMs until you reach your quota limit.
+For Foundry Models, deploying and running inference consume quota that Azure assigns to your subscription on a per-region, per-model basis in units of Tokens-per-Minute (TPM). When you sign up for Foundry, you receive default quota for most of the available models. Then, you assign TPM to each deployment as you create it, which reduces the available quota for that model. You can continue to create deployments and assign them TPMs until you reach your quota limit.
 
 When you reach your quota limit, you can only create new deployments of that model if you:
 
@@ -180,4 +180,6 @@ For more information about quota, see [Microsoft Foundry Models quotas and limit
 ## Related content
 
 - [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
+- [Deployment types for Foundry Models](../concepts/deployment-types.md)
+- [Deploy models using Azure CLI and Bicep](create-model-deployments.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
