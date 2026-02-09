@@ -26,7 +26,7 @@ Azure Monitor autoscale allows you to set rules that trigger one or more autosca
 
 :::image type="content" source="media/how-to-autoscale-endpoints/concept-autoscale.png" border="false" alt-text="Diagram that shows how autoscale adds and removes instances as needed.":::
 
-You can manage autoscaling by using REST APIs, Azure Resource Manager, Azure Machine Learning CLI v2, Azure Machine Learning Python SDK v2, or Machine Learning studio and the Azure portal.
+This article explains how to manage autoscaling by using the Azure Machine Learning CLI v2, Azure Machine Learning Python SDK v2, or Machine Learning studio and the Azure portal. You can also use REST APIs.
 
 ## Prerequisites
 
@@ -149,19 +149,19 @@ To define an autoscale profile:
 
    :::image type="content" source="media/how-to-autoscale-endpoints/select-endpoint.png" alt-text="Screenshot that shows how to select an endpoint deployment entry for a Machine Learning workspace in the studio." lightbox="media/how-to-autoscale-endpoints/select-endpoint.png":::
 
-1. On the **Details** tab for the selected endpoint, scroll down and select the **Configure auto scaling** link under **Scaling**.
+1. On the **Details** tab for the selected endpoint, scroll down and select the **Configure auto scaling** link under **Scaling**. The Azure portal **Scaling** page for the deployment opens.
 
-   :::image type="content" source="media/how-to-autoscale-endpoints/configure-auto-scaling.png" alt-text="Screenshot that shows how to select the option to configure autoscaling for an endpoint." lightbox="media/how-to-autoscale-endpoints/configure-auto-scaling.png":::
+   :::image type="content" source="media/how-to-autoscale-endpoints/configure-auto-scaling.png" alt-text="Screenshot that shows how to select the option to configure autoscaling for an endpoint.":::
 
 1. On the Azure portal **Scaling** page for the deployment, select **Custom autoscale** under **Choose how to scale your resources**.
-
-   :::image type="content" source="media/how-to-autoscale-endpoints/choose-custom-autoscale.png" alt-text="Screenshot that shows how to configure the autoscale settings in the studio." lightbox="media/how-to-autoscale-endpoints/choose-custom-autoscale.png":::
 
 1. In the **Default** pane, select **Scale based on a metric**.
 
 1. Under **Instance limits**, set **Minimum** to *2*, **Maximum** to *5*, and **Default** to *2*.
 
 1. Under **Rules**, select the **Add a rule** link.
+
+   :::image type="content" source="media/how-to-autoscale-endpoints/choose-custom-autoscale.png" alt-text="Screenshot that shows how to configure the autoscale settings in the studio." lightbox="media/how-to-autoscale-endpoints/choose-custom-autoscale.png":::
 
 ---
 
@@ -275,7 +275,7 @@ A scale-in rule can reduce the number of VM instances when the average CPU load 
            threshold = 30
        ), 
        scale_action = ScaleAction(
-           direction = "Increase", 
+           direction = "Decrease", 
            type = "ChangeCount", 
            value = 1, 
            cooldown = datetime.timedelta(hours = 1)
@@ -334,7 +334,7 @@ The following steps adjust the **Rules** configuration to support a scale in rul
 
 If you configure both scale-out and scale-in rules, the **Rules** section of the **Scaling** page looks similar to the following screenshot. The rules specify that if average CPU load exceeds 70% for 5 minutes, two more nodes should be allocated, up to the limit of five. If CPU load is less than 30% for 5 minutes, a single node should be released, down to the minimum of two. 
 
-:::image type="content" source="media/how-to-autoscale-endpoints/autoscale-rules-final.png" lightbox="media/how-to-autoscale-endpoints/autoscale-rules-final.png" alt-text="Screenshot that shows the autoscale settings including the scale in and scale-out rules.":::
+:::image type="content" source="media/how-to-autoscale-endpoints/autoscale-rules-final.png" alt-text="Screenshot that shows the autoscale settings including the scale in and scale-out rules.":::
 
 ---
 
@@ -403,7 +403,7 @@ In the preceding sections, you created rules to scale in or out based on deploym
 
 # [Studio](#tab/azure-studio)
 
-1. At the bottom of the Azure portal **Scaling** page with **Custom autoscale** selected, select the **Add a scale condition* link.
+1. At the bottom of the Azure portal **Scaling** page with **Custom autoscale** selected, select the **Add a scale condition** link.
 
 1. In the **Profile** section, select **Scale based on a metric** and then select the **Add a rule** link.
 
@@ -422,7 +422,7 @@ In the preceding sections, you created rules to scale in or out based on deploym
 
 1. Select **Add**.
 
-   :::image type="content" source="media/how-to-autoscale-endpoints/endpoint-rule.png" lightbox="media/how-to-autoscale-endpoints/endpoint-rule.png" alt-text="Screenshot that shows how to configure a scale rule by using endpoint metrics.":::
+   :::image type="content" source="media/how-to-autoscale-endpoints/endpoint-rule.png" alt-text="Screenshot that shows how to configure a scale rule by using endpoint metrics.":::
 
 1. On the **Scaling** page, select **Save**.
 
@@ -482,20 +482,14 @@ mon_client.autoscale_settings.create_or_update(
 # [Studio](#tab/azure-studio)
 
 1. At the bottom of the Azure portal **Scaling** page with **Custom autoscale** selected, select **Add a scale condition**.
-
 1. In the **Profile** section, select **Scale to a specific instance count**.
-
 1. Set **Instance count** to *2*.
-
 1. For **Schedule**, select **Repeat specific days**.
-
 1. For **Repeat every**, select **Saturday** and **Sunday**.
 
-1. Select **Add**.
+   :::image type="content" source="media/how-to-autoscale-endpoints/schedule-rules.png" alt-text="Screenshot that shows how to create a rule based on a schedule.":::
 
-   :::image type="content" source="media/how-to-autoscale-endpoints/schedule-rules.png" lightbox="media/how-to-autoscale-endpoints/schedule-rules.png" alt-text="Screenshot that shows how to create a rule based on a schedule.":::
-
-1. Select **Save** at the top of the page.
+1. Select **Save** at the top of the **Scaling** page.
 
 ---
 
