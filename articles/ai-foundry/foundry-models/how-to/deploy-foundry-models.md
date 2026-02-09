@@ -55,7 +55,10 @@ Deploy a model by following these steps in the Foundry portal:
    > [!NOTE]
    > For [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as the Azure OpenAI model `gpt-4o-mini`, you don't subscribe to Azure Marketplace.
 
-1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying, but you can modify the name as needed before deploying the model. Later during inferencing, the deployment name is used in the `model` parameter to route requests to this particular model deployment. This convention allows you to configure specific names for your model deployments.
+1. Configure the deployment settings:
+
+   - By default, the deployment uses the model name. You can modify this name before deploying.
+   - During inference, the deployment name is used in the `model` parameter to route requests to this particular deployment.
 
    > [!TIP]
    > Each model supports different deployment types, providing different data residency or throughput guarantees. See [deployment types](../concepts/deployment-types.md) for more details. In this example, the model supports the Global Standard deployment type.
@@ -87,12 +90,17 @@ Deploy a model by following these steps in the Foundry portal:
    > [!NOTE]
    > For [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as the Azure OpenAI model `gpt-4o-mini`, you don't subscribe to Azure Marketplace.
 
-1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying, but you can modify the name as needed before deploying the model. Later during inferencing, the deployment name is used in the `model` parameter to route requests to this particular model deployment. This convention allows you to configure specific names for your model deployments. Select **Deploy** to create your deployment.
+1. Configure the deployment settings:
+
+   - By default, the deployment uses the model name. You can modify this name before deploying.
+   - During inference, the deployment name is used in the `model` parameter to route requests to this particular deployment.
+
+   Select **Deploy** to create your deployment.
 
    > [!TIP]
    > Each model supports different deployment types, providing different data residency or throughput guarantees. See [deployment types](../concepts/deployment-types.md) for more details. In this example, the model supports the Global Standard deployment type.
 
-1. When the deployment completes, you land on the [Foundry Playgrounds](../../concepts/concept-playgrounds.md) where you can interactively test the model. Your project and resource must be in one of the supported regions of deployment for the model.
+1. When the deployment completes, you land on the [Foundry Playgrounds](../../concepts/concept-playgrounds.md) where you can interactively test the model. Your project and resource must be in one of the supported regions of deployment for the model. Verify that the deployment status shows **Succeeded** in your deployment list.
 
 ::: moniker-end
 
@@ -176,6 +184,15 @@ When you reach your quota limit, you can only create new deployments of that mod
 - Adjust the allocated quota on other model deployments in the Foundry portal, to free up tokens for new deployments.
 
 For more information about quota, see [Microsoft Foundry Models quotas and limits](../quotas-limits.md) and [Manage Azure OpenAI quota](../../openai/how-to/quota.md?tabs=rest).
+
+## Troubleshooting
+
+| Issue | Resolution |
+| --- | --- |
+| Quota exceeded | [Request more quota](https://aka.ms/oai/stuquotarequest) or reallocate TPM from existing deployments. |
+| Region not supported | Check [regional availability](../quotas-limits.md) and deploy in a supported region. |
+| Marketplace subscription error | Verify you have the [required permissions](configure-marketplace.md) to subscribe to Azure Marketplace offerings. |
+| Deployment status shows **Failed** | Confirm that the model is available in your selected region and that you have sufficient quota. |
 
 ## Related content
 
