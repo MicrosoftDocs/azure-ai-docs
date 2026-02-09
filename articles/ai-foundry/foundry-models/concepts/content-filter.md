@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 
 
 > [!IMPORTANT]
-> The content filtering system doesn't apply to prompts and completions processed by audio models such as Whisper in Azure OpenAI in Microsoft Foundry Models. For more information, see [Audio models in Azure OpenAI](../../../ai-services/openai/concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
+> The content filtering system doesn't apply to prompts and completions processed by audio models such as Whisper in Azure OpenAI in Microsoft Foundry Models. For more information, see [Audio models in Azure OpenAI](../../../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
 
 Foundry Models includes a content filtering system that works alongside core models and is powered by [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety). This system runs both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 

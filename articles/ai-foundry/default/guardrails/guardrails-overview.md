@@ -22,7 +22,7 @@ Risks are flagged via a set of classification models designed to detect and prev
 Variations in API configurations and application design might affect completions and thus filtering behavior.
 
 > [!IMPORTANT]
-> The guardrail system applies to all Models sold directly by Azure, except for prompts and completions processed by the audio models such as Whisper. For more information, see [Audio models in Azure OpenAI](../../openai/concepts/models.md#audio-models). The guardrail system currently applies only to agents developed in the Foundry Agent Service, not to other agents registered in the Foundry Control Plane.
+> The guardrail system applies to all Models sold directly by Azure, except for prompts and completions processed by the audio models such as Whisper. For more information, see [Audio models in Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the Foundry Agent Service, not to other agents registered in the Foundry Control Plane.
 
 ## Guardrails for agents vs models
 
