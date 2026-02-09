@@ -158,7 +158,7 @@ To perform inferencing on the deployed model with code samples, see the followin
 
 - To use the **Responses API with Foundry Models sold directly by Azure**, such as Microsoft AI, DeepSeek, and Grok models, see [How to generate text responses with Microsoft Foundry Models](generate-responses.md).
 
-- To use the **Responses API with OpenAI models**, see [Getting started with the responses API](../../openai/how-to/responses.md#getting-started-with-the-responses-api).
+- To use the **Responses API with OpenAI models**, see [Getting started with the responses API](../../openai/how-to/responses.md).
 
 - To use the **Chat completions API with models sold by partners**, such as the Llama model deployed in this article, see [Model support for chat completions](../../openai/api-version-lifecycle.md#model-support).
 
