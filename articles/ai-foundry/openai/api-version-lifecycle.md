@@ -24,7 +24,7 @@ This article shows you how to use the v1 Azure OpenAI API. The v1 API simplifies
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
-- An [Azure OpenAI resource](/azure/ai-foundry/openai/how-to/create-resource) deployed in a [supported region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services)
+- A [Foundry resource](../../ai-services/multi-service-resource.md) or [Azure OpenAI resource](/azure/ai-foundry/openai/how-to/create-resource) deployed in a [supported region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services)
 - At least one [model deployment](../foundry-models/how-to/deploy-foundry-models.md)
 - For Microsoft Entra ID authentication: the `Cognitive Services OpenAI User` role assigned to your identity. For more information, see [Role-based access control for Azure OpenAI](/azure/ai-foundry/openai/how-to/role-based-access-control)
 
