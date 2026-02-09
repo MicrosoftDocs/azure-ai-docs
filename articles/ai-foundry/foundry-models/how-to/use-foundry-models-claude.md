@@ -215,7 +215,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
         {
           "type": "module",
           "dependencies": {
-            "@anthropic-ai/foundry-sdk": "latest",
+            "@anthropic-ai/sdk": "latest",
             "@azure/identity": "latest"
           }
         }
