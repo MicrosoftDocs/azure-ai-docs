@@ -204,7 +204,7 @@ General-purpose evaluators assess the quality of AI-generated text independent o
 **Data mapping syntax:**
 
 - Use `{{item.field_name}}` to reference fields from your test dataset (for example, `{{item.query}}`).
-- Use `{{sample.output_items}}` to reference response messages when evaluating with an agent/model target or agent response data source.
+- Use `{{sample.output_text}}` to reference response output text when evaluating with an agent/model target or agent response data source.
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on data sources.
 

@@ -106,8 +106,7 @@ Risk and safety evaluators assess whether AI responses contain harmful or inappr
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_items}}` references response messages when evaluating with an agent target or agent response data source.
-- `{{sample.tool_definitions}}` references tool definitions for agent-specific evaluators.
+- `{{sample.output_text}}` references response output text when evaluating with an agent/modle target or agent response data source.
 
 ### Configuration example for model evaluation
 
@@ -117,19 +116,16 @@ testing_criteria = [
         "type": "azure_ai_evaluator",
         "name": "Violence",
         "evaluator_name": "builtin.violence",
-        "evaluator_version": "1",
     },
     {
         "type": "azure_ai_evaluator",
         "name": "Self Harm",
         "evaluator_name": "builtin.self_harm",
-        "evaluator_version": "1",
     },
     {
         "type": "azure_ai_evaluator",
         "name": "Hate Unfairness",
         "evaluator_name": "builtin.hate_unfairness",
-        "evaluator_version": "1",
     },
 ]
 ```
@@ -144,7 +140,6 @@ testing_criteria = [
         "type": "azure_ai_evaluator",
         "name": "Prohibited Actions",
         "evaluator_name": "builtin.prohibited_actions",
-        "evaluator_version": "1",
         "data_mapping": {
             "query": "{{item.query}}",
             "response": "{{item.response}}",
@@ -155,7 +150,6 @@ testing_criteria = [
         "type": "azure_ai_evaluator",
         "name": "Sensitive Data Leakage",
         "evaluator_name": "builtin.sensitive_data_leakage",
-        "evaluator_version": "1",
         "data_mapping": {
             "query": "{{item.query}}",
             "response": "{{sample.output_items}}",
