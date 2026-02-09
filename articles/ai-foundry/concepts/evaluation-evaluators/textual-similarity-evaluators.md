@@ -280,6 +280,10 @@ Textual similarity evaluators compare generated responses against ground truth t
 | `rouge_score` | Recall-oriented n-gram overlap | Algorithmic | 0-1 float | 0.5 |
 | `meteor_score` | Weighted alignment with synonyms | Algorithmic | 0-1 float | 0.5 |
 
+**Data mapping syntax:**
+
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.response}}`).
+
 ### Configuration example
 
 ```python

@@ -103,6 +103,12 @@ credential = DefaultAzureCredential()
 
 Risk and safety evaluators assess whether AI responses contain harmful or inappropriate content. Content safety evaluators (violence, sexual, self-harm, hate) evaluate both the severity and presence of harmful content. Agentic evaluators (prohibited actions, sensitive data leakage) require additional `tool_definitions` input.
 
+**Data mapping syntax:**
+
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
+- `{{sample.output_items}}` references response messages when evaluating with an agent target or agent response data source.
+- `{{sample.tool_definitions}}` references tool definitions for agent-specific evaluators.
+
 ### Configuration example for model evaluation
 
 ```python
@@ -158,8 +164,6 @@ testing_criteria = [
     },
 ]
 ```
-
-Use `{{sample.output_items}}` and `{{sample.tool_definitions}}` when evaluating with an agent target or agent response data source.
 
 ### Output
 
