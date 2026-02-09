@@ -36,18 +36,11 @@ Choose a feature:
 
 The table in this section summarizes the locales supported for [real-time transcription](speech-to-text.md#real-time-transcription), [fast transcription](speech-to-text.md#fast-transcription), and [batch transcription](speech-to-text.md#batch-transcription).
 
-More remarks for speech to text locales are included in the [Custom speech](#custom-speech) section of this article.
+[!INCLUDE [Language support include](includes/language-support/stt.md)]
+
 
 > [!TIP]
 > To build and run samples in Visual Studio Code, try the [Azure Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
-
-[!INCLUDE [Language support include](includes/language-support/stt.md)]
-
-### Custom speech
-
-To improve the accuracy of speech-to-text recognition, you can customize some languages and base models. Depending on the locale, you can upload audio with human-labeled transcripts, plain text, structured text, and pronunciation data. By default, all available base models support plain-text customization. For more information about customization, see [What is custom speech?](./custom-speech-overview.md).
-
-These locales support the [display text format feature](./how-to-custom-speech-display-text-format.md): `da-DK`, `de-DE`, `en-AU`, `en-CA`, `en-GB`, `en-HK`, `en-IE`, `en-IN`, `en-NG`, `en-NZ`, `en-PH`, `en-SG`, `en-US`, `es-ES`, `es-MX`, `fi-FI`, `fr-CA`, `fr-FR`, `hi-IN`, `it-IT`, `ja-JP`, `ko-KR`, `nb-NO`, `nl-NL`, `pl-PL`, `pt-BR`, `pt-PT`, `sv-SE`, `tr-TR`, `zh-CN`, `zh-HK`.
 
 # [Text to speech](#tab/tts)
 

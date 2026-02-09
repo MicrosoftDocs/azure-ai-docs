@@ -10,10 +10,10 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
+<!-- markdownlint-disable MD025 -->
 # Detect and redact Personally Identifying Information in text
 
 Azure Language in Foundry Tools is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The PII feature can evaluate unstructured text, extract, and redact sensitive information (PII) and health information (PHI) in text across several [predefined categories](../concepts/entity-categories.md).
-
 
 ## Development options
 
@@ -42,6 +42,7 @@ Starting with version `2025-11-15-preview` and onward, you can specify the `reda
 The policy field accepts four policy types:
 
 > [!div class="checklist"]
+>
 > * [`SyntheticReplacement 🆕`](#syntheticreplacement-policy-type-)
 > * [`CharacterMask` (default)](#charactermask-policy-type)
 > * [`NoMask`](#nomask-policy-type)
@@ -49,9 +50,13 @@ The policy field accepts four policy types:
 
 For more information, *see* [REST API PII task parameters](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
 
+<!-- markdownlint-disable MD001 -->
 ##### syntheticReplacement policy type 🆕
 
-The **syntheticReplacement** policy type** replaces a detected PII entity with a replacement value. For instance, an input like "John Doe received a call from 424-878-9193." can be transformed into "Sam Johnson received a call from 401-255-6901." These substitutes are randomly selected from a predefined set of alternative values.
+> [!IMPORTANT]
+> The Azure Language in Foundry Tools Text Personally Identifiable Information (PII) detection **anonymization feature** (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+
+The **syntheticReplacement** policy type replaces a detected PII entity with a replacement value. For instance, an input like "John Doe received a call from 424-878-9193." can be transformed into "Sam Johnson received a call from 401-255-6901." These substitutes are randomly selected from a predefined set of alternative values.
 
    ```bash
 

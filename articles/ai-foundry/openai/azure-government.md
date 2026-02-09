@@ -61,8 +61,8 @@ Not all model capabilities are deployed to Azure Government. General information
 
 |  Model ID  | Context window | 
 |  --- |  :--- |
-| `gpt-4.1` (2025-04-14)   | - 1,047,576 (not offered) <br> - 128,000 (standard & provisioned managed deployments) |
-| `gpt-4.1-mini` (2025-04-14) | - 1,047,576 (not offered) <br> - 128,000 (standard & provisioned managed deployments) 
+| `gpt-4.1` (2025-04-14)   | - 1,047,576 (not offered) <br> - 300,000 (standard & provisioned managed deployments) |
+| `gpt-4.1-mini` (2025-04-14) | - 1,047,576 (not offered) <br> - 300,000 (standard & provisioned managed deployments) 
 
 <br>
 

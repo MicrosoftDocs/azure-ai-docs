@@ -8,7 +8,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 author: aahill
 ms.author: aahi
-ms.date: 12/02/2025
+ms.date: 02/06/2026
 recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
@@ -16,6 +16,8 @@ ms.custom: references_regions, ignite-2024
 # Azure OpenAI On Your Data 
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
 Use this article to learn about Azure OpenAI On Your Data, which makes it easier for developers to connect, ingest and ground their enterprise data to create personalized copilots (preview) rapidly. It enhances user comprehension, expedites task completion, improves operational efficiency, and aids decision-making.
 
@@ -715,35 +717,9 @@ Each user message can translate to multiple search queries, all of which get sen
 
 ## Regional availability and model support
 
-> [!NOTE]
-> * The following models are not supported by Azure OpenAI On Your Data:
->     * o1 models
->     * o3 models
->     * model-router
->     * GPT 4.1 models
->     * GPT 5 and 5.1 models
-> * Azure OpenAI On Your Data only supports the `text-embedding-ada-002` embedding model for vector search. See the [Azure OpenAI documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai&tabs=global-standard-aoai.md#model-summary-table-and-region-availability) for a list of supported regions. 
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
-| Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
-|------|---|---|---|---|---|----|----|----|
-| Australia East | ✅ | ✅ | ✅ |✅ |   | ✅ | | | 
-| Canada East | ✅ | ✅ | ✅ |✅ |   | ✅ |  | | 
-| East US | ✅ |   |   |  |✅  |  | ✅ |  |
-| East US 2 | ✅ |  |  |✅ |  |  |✅ | ✅|
-| France Central | ✅ | ✅ | ✅ |✅ |   | ✅ |  | | 
-| Japan East | ✅ |   |   |  |   |   |  | | 
-| North Central US | ✅ |   |   | |✅  |   |✅  | |
-| Norway East | ✅ |   |   |✅ |   |  |  | | 
-| South Central US |  |   |   | | ✅ |   | ✅ |  |
-| South India |  | ✅ |   |✅ |   |    |  | |  
-| Sweden Central | ✅ | ✅ | ✅ |✅ |    | ✅ | | ✅|
-| Switzerland North | ✅ |   | ✅ |  |  | ✅ |  | | 
-| UK South | ✅ | ✅ | |✅ |✅  |  |  | |
-| West US  |  |✅ | |✅|   |   | ✅ | |
-
-\*\*This is a text-only implementation
-
-If your Azure OpenAI resource is in another region, you won't be able to use Azure OpenAI On Your Data.
+See the [model summary table](../../foundry-models/concepts/models-sold-directly-by-azure.md?view=foundry&preserve-view=true#model-summary-table-and-region-availability) for regional availability.
 
 ## Next steps
 * [Get started using your data with Azure OpenAI](../use-your-data-quickstart.md)

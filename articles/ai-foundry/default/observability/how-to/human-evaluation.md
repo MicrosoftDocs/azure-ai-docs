@@ -17,11 +17,8 @@ In this article, you’ll learn how to set up human evaluation for your Foundry 
 
 ## Prerequisites
 
-Before you begin:
-
-- You have access to the **Microsoft Foundry portal**.
-- You have one or more agents built.
-- You have configured Application Insights for your project
+- A [Foundry project](../../../how-to/create-projects.md) with one or more [agents](../../../agents/overview.md).
+- [Application Insights configured](trace-agent-setup.md) for your project.
 
 ## Create a human evaluation template
 
