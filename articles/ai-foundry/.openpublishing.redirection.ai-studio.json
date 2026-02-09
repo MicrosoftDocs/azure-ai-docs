@@ -1168,6 +1168,16 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/concepts/content-filtering.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/content-filter",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/openai/concepts/content-filter-configurability.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/content-filter",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/ai-services/concepts/quotas-limits.md",
             "redirect_url": "/azure/ai-foundry/model-inference/quotas-limits",
             "redirect_document_id": false
@@ -1565,6 +1575,16 @@
         {
           "source_path_from_root": "/articles/ai-foundry/default/agents/how-to/how-to-monitor-agents-dashboard.md",
           "redirect_url": "/azure/ai-foundry/observability/how-to/how-to-monitor-agents-dashboard",
+          "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/concepts/content-filter.md",
+          "redirect_url": "/azure/ai-foundry/foundry-models/concepts/content-filter",
+          "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/default/guardrails/severity-levels.md",
+          "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-severity-levels",
           "redirect_document_id": true
         }
     ]
