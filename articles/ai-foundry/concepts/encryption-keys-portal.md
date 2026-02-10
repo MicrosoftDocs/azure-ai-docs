@@ -47,9 +47,7 @@ This article explains the concept of encryption with CMKs and provides step-by-s
 ## Benefits of CMKs
 
 - The ability to use your own keys to encrypt data at rest.
-
 - Integration with organizational security and compliance policies.
-
 - The ability to rotate or revoke keys for enhanced control over access to encrypted data.
 
 ## Prerequisites
@@ -62,7 +60,7 @@ To configure a CMK for Foundry, you need:
   - Deploy the key vault and the Foundry resource in the same Azure region.
   - Enable soft delete and purge protection on the key vault to help safeguard customer-managed keys from accidental or malicious deletion (required by Azure).
   
-  To create a key vault, see [Quickstart: Create a key vault by using Azure portal](/azure/key-vault/general/quick-create-portal).
+  To create a key vault, see [Quickstart: Create a key vault by using the Azure portal](/azure/key-vault/general/quick-create-portal).
 
 - A managed identity configuration:
 
@@ -78,7 +76,7 @@ Before you configure a CMK, be sure to deploy your resources in a supported regi
 
 ## Steps to configure a CMK
 
-### Step 1: Create or import a key within the key vault
+### Step 1: Create or import a key in the key vault
 
 To generate a key:
 
@@ -147,7 +145,7 @@ Azure Key Vault supports two models for managing access permissions:
 
 - Vault access policies:
   - Allow granular access control specific to Key Vault resources.
-  - Suitable for configurations where legacy or isolated permission settings are necessary.
+  - Are suitable for configurations where legacy or isolated permission settings are necessary.
 
 Choose the model that aligns with your organizational requirements.
 
