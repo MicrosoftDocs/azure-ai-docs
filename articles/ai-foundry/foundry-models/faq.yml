@@ -41,13 +41,13 @@ sections:
       - question: |
           Why aren't all the models in the Microsoft model catalog supported in Microsoft Foundry services?
         answer: |
-          Foundry Models support all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](concepts/models.md).
+          Foundry Models support all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](./concepts/models-sold-directly-by-azure.md).
 
           The Microsoft model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Microsoft Foundry](../../ai-studio/concepts/deployments-overview.md).
       - question: |
           My company hasn't approved specific models for use. How can I prevent users from deploying them?
         answer: |
-          You can restrict the models available for deployment in Foundry Tools by using the Azure policies. Models are listed in the catalog but any attempt to deploy them is blocked. Read [Control AI model deployment with custom policies](../model-inference/how-to/configure-deployment-policies.md).
+          You can restrict the models available for deployment in Foundry Tools by using the Azure policies. Models are listed in the catalog but any attempt to deploy them is blocked. Read [Control AI model deployment with custom policies](./how-to/configure-deployment-policies.md).
   - name: SDKs and programming languages
     questions:
       - question: |
@@ -57,7 +57,7 @@ sections:
 
           Cohere SDK, Mistral SDK, and model provider-specific SDKs aren't supported when connected to Foundry Tools.
 
-          For more information, see [supported SDKs and programming languages](../model-inference/supported-languages.md).
+          For more information, see [supported SDKs and programming languages](./supported-languages.md).
       - question: |
           Do Foundry Models work with the latest Python library released by OpenAI (version>=1.0)?
         answer: |
@@ -85,7 +85,7 @@ sections:
         answer: |
           You're billed for inputs and outputs to the APIs, typically in tokens. There are no cost associated with the resource itself or the deployments.
 
-          The token price varies per each model and you're billed per 1,000 tokens. You can see the pricing details before deploying a given model. For more information about billing, see [Manage cost](../model-inference/how-to/manage-costs.md).
+          The token price varies per each model and you're billed per 1,000 tokens. You can see the pricing details before deploying a given model. For more information about billing, see [Manage cost](../concepts/manage-costs.md).
       - question: |
           Where can I see the bill details?
         answer: |

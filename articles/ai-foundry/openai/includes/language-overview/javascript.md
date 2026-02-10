@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 09/15/2025
+ai-usage: ai-assisted
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../reference.md) |
@@ -74,7 +75,7 @@ const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
 const client = new OpenAI({
-    baseURL: "https://YOUR-RESORCE-NAME.openai.azure.com/openai/v1/",
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
 
@@ -97,7 +98,7 @@ const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
 const client = new OpenAI({
-    baseURL: "https://YOUR-RESORCE-NAME.openai.azure.com/openai/v1/",
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
 
@@ -124,7 +125,7 @@ const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
 const client = new OpenAI({
-    baseURL: "https://YOUR-RESORCE-NAME.openai.azure.com/openai/v1/",
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
 
@@ -157,7 +158,7 @@ const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
 const client = new OpenAI({
-    baseURL: "https://france-central-test-001.openai.azure.com/openai/v1/",
+  baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
 
@@ -197,8 +198,7 @@ console.log('Response content:', result.choices[0].message.content);
 | 504         | `Gateway Timeout` |
 
 ### Retries
-
-The following errors are automatically retired twice by default with a brief exponential backoff:
+The following errors are automatically retried twice by default with a brief exponential backoff:
 
 - Connection Errors
 - 408 Request Timeout

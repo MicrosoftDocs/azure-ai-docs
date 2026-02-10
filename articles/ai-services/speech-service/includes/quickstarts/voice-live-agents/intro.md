@@ -6,7 +6,7 @@ ms.date: 7/31/2025
 ms.author: pafarley
 ---
 
-You can create and run an application to use voice live with agents for real-time voice agents.
+You can create and run an application to use Voice Live with agents for real-time voice agents.
 
 - Using agents allows leveraging a built-in prompt and configuration managed within the agent itself, rather than specifying instructions in the session code. 
 
@@ -16,4 +16,4 @@ You can create and run an application to use voice live with agents for real-tim
 
 - This separation also supports better maintainability and scalability for scenarios where multiple conversational experiences or business logic variations are needed.
 
-To instead use the Voice live API without agents, see the [Voice live API quickstart](/azure/ai-services/speech-service/voice-live-quickstart).
+To instead use the Voice Live API without agents, see the [Voice Live API quickstart](/azure/ai-services/speech-service/voice-live-quickstart).

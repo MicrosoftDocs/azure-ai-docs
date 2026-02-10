@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/1/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to use the batch processing kit to scale Speech container requests.
 ---
@@ -17,7 +17,7 @@ Use the batch processing kit to complement and scale out workloads on Speech con
 
 :::image type="content" source="media/containers/general-diagram.png" alt-text="A diagram showing an example batch-kit container workflow.":::
 
-The batch kit container is available for free on [GitHub](https://github.com/microsoft/batch-processing-kit) and [Docker hub](https://hub.docker.com/r/batchkit/speech-batch-kit/tags). You're only [billed](speech-container-overview.md#billing-information) for the Speech containers you use.
+The batch kit container is available for free on [GitHub](https://github.com/microsoft/batch-processing-kit) and [Docker hub](https://hub.docker.com/r/batchkit/speech-batch-kit/tags). You're only [billed](speech-container-overview.md#billing-information) for the Speech containers that you use.
 
 | Feature  | Description  |
 |---------|---------|

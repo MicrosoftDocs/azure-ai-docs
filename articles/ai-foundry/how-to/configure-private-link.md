@@ -50,7 +50,7 @@ To connect to Foundry secured by a virtual network, use one of these methods:
 * [ExpressRoute](/azure/expressroute/) - Connect on-premises networks to Azure over a private connection through a connectivity provider.
 * [Azure Bastion](/azure/bastion/bastion-overview) - Create an Azure virtual machine (a jump box) in the virtual network, then connect to it through Azure Bastion using RDP or SSH from your browser. Use the VM as your development environment. Because it's in the virtual network, it can access the workspace directly.
 
-## Create a Foundry project that uses a private endpoint
+## Create a Foundry project 
 
 When creating a new project, use the following steps to create the project.
 
@@ -67,7 +67,7 @@ When creating a new project, use the following steps to create the project.
 
 1. Continue through the forms to create the project. When you reach the **Review + create** tab, review your settings and select **Create** to create the project.
 
-## Add a private endpoint to a project
+## Add a private endpoint to a resource
 
 1. From the [Azure portal](https://portal.azure.com), select your project.
 1. From the left side of the page, select **Resource Management**, **Networking**, and then select the **Private endpoint connections** tab. Select **+ Private endpoint**.
@@ -77,7 +77,7 @@ When creating a new project, use the following steps to create the project.
     - From the **Virtual Network** form, select the virtual network and subnet that you want to connect to.
 
     > [!NOTE]
-    > The portal refers to the private endpoint target as an "account" or "resource". Choose your Foundry project resource as the target.
+    > The portal refers to the private endpoint target as an "account" or "resource". Choose your Foundry resource as the target.
 
 1. After you populate the forms with any other network configurations you require, use the **Review + create** tab to review your settings and select **Create** to create the private endpoint.
 

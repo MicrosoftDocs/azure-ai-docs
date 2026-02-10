@@ -8,8 +8,8 @@ ms.custom:
   - ignite-2023
   - build-2024
   - hub-only
-ms.topic: reference
-ms.date: 06/30/2025
+ms.topic: article
+ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -17,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Guardrails & controls tool for flows in Microsoft Foundry portal
+# Guardrails and controls tool for flows in Microsoft Foundry portal
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -36,7 +36,7 @@ To create an Azure Content Safety connection:
 1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
 1. Go to **Project settings** > **Connections**.
 1. Select **+ New connection**.
-1. Complete all steps in the **Create a new connection** dialog. You can use a Foundry hub or Azure AI Content Safety resource. We recommend that you use a hub that supports multiple Foundry Tools.
+1. Complete all steps in the **Create a new connection** dialog. You can use a Foundry hub or Azure AI Content Safety resource. Use a hub that supports multiple Foundry Tools.
 
 ## Build with the Content Safety tool
 
@@ -57,10 +57,10 @@ The following input parameters are available.
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | text | string | The text that needs to be moderated. | Yes |
-| hate_category | string | The moderation sensitivity for the Hate category. You can choose from four options: `disable`, `low_sensitivity`, `medium_sensitivity`, or `high_sensitivity`. The `disable` option means no moderation for the Hate category. The other three options mean different degrees of strictness in filtering out hate content. The default option is `medium_sensitivity`. | Yes |
-| sexual_category | string | The moderation sensitivity for the Sexual category. You can choose from four options: `disable`, `low_sensitivity`, `medium_sensitivity`, or `high_sensitivity`. The `disable` option means no moderation for the Sexual category. The other three options mean different degrees of strictness in filtering out sexual content. The default option is `medium_sensitivity`. | Yes |
-| self_harm_category | string | The moderation sensitivity for the Self-harm category. You can choose from four options: `disable`, `low_sensitivity`, `medium_sensitivity`, or `high_sensitivity`. The `disable` option means no moderation for the Self-harm category. The other three options mean different degrees of strictness in filtering out self-harm content. The default option is `medium_sensitivity`. | Yes |
-| violence_category | string | The moderation sensitivity for the Violence category. You can choose from four options: `disable`, `low_sensitivity`, `medium_sensitivity`, or `high_sensitivity`. The `disable` option means no moderation for the Violence category. The other three options mean different degrees of strictness in filtering out violence content. The default option is `medium_sensitivity`. | Yes |
+| hate_category | string | The moderation sensitivity for the Hate category. Choose from four options: `disable`, `low_sensitivity`, `medium_sensitivity`, or `high_sensitivity`. The `disable` option means no moderation for the Hate category. The other three options mean different degrees of strictness in filtering out hate content. The default option is `medium_sensitivity`. | Yes |
+| sexual_category | string | The moderation sensitivity for the Sexual category. Choose from four options: `disable`, `low_sensitivity`, `medium_sensitivity`, or `high_sensitivity`. The `disable` option means no moderation for the Sexual category. The other three options mean different degrees of strictness in filtering out sexual content. The default option is `medium_sensitivity`. | Yes |
+| self_harm_category | string | The moderation sensitivity for the Self-harm category. Choose from four options: `disable`, `low_sensitivity`, `medium_sensitivity`, or `high_sensitivity`. The `disable` option means no moderation for the Self-harm category. The other three options mean different degrees of strictness in filtering out self-harm content. The default option is `medium_sensitivity`. | Yes |
+| violence_category | string | The moderation sensitivity for the Violence category. Choose from four options: `disable`, `low_sensitivity`, `medium_sensitivity`, or `high_sensitivity`. The `disable` option means no moderation for the Violence category. The other three options mean different degrees of strictness in filtering out violence content. The default option is `medium_sensitivity`. | Yes |
 
 ## Outputs
 
@@ -78,7 +78,7 @@ The following JSON format response is an example returned by the tool:
   }
 ```
 
-You can use the following parameters as inputs for this tool.
+Use the following parameters as inputs for this tool.
 
 | Name | Type | Description | 
 | ---- | ---- | ----------- | 

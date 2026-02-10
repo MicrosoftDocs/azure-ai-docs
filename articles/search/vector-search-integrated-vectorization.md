@@ -35,7 +35,7 @@ For integrated data chunking and vector conversions, you're taking a dependency 
 
 + [A skillset](cognitive-search-working-with-skillsets.md) configured for:
 
-  + A chunking strategy: [Text Split skill](cognitive-search-skill-textsplit.md), [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), [Continent Understanding skill](cognitive-search-skill-content-understanding.md), or one of the [document parsing modes](vector-search-how-to-chunk-documents.md#common-chunking-techniques). 
+  + A chunking strategy: [Text Split skill](cognitive-search-skill-textsplit.md), [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), or one of the [document parsing modes](vector-search-how-to-chunk-documents.md#common-chunking-techniques). 
   
   + An embedding skill, used to generate vector arrays, which can be any of the following:
 

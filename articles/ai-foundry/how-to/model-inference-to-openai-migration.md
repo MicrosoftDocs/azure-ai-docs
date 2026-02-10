@@ -149,7 +149,7 @@ If you receive "model not found" errors:
 ## Related content
 
 - [Azure OpenAI supported programming languages](../openai/supported-languages.md)
-- [How to generate chat completions with Foundry Models](../foundry-models/how-to/use-chat-completions.md)
+- [How to generate chat completions with Foundry Models](../openai/api-version-lifecycle.md)
 - [API evolution and version lifecycle](../openai/api-version-lifecycle.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
 

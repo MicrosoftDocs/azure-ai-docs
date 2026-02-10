@@ -8,7 +8,7 @@ ms.author: pafarley #delegenz
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 01/29/2026
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -26,6 +26,7 @@ The vision-enabled models can answer general questions about what's present in t
 
 > [!TIP]
 > To use vision-enabled models, you call the Chat Completion API on a supported model that you have deployed. If you're not familiar with the Chat Completion API, see the [Vision-enabled chat how-to guide](/azure/ai-foundry/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
+
 
 ## Call the Chat Completion APIs
 
@@ -183,7 +184,7 @@ You set the value using the format shown in this example:
 }
 ```
 
-For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../overview.md#image-input-tokens)
+For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 
 
 ## Output
@@ -382,7 +383,7 @@ Every response includes a `"finish_reason"` field. It has the following possible
 
 ## Related content
 
-* [Learn more about Azure OpenAI](../overview.md).
+* [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * [Vision-enabled chats quickstart](../gpt-v-quickstart.md)
 * [Vision chats frequently asked questions](../faq.yml#gpt-4-turbo-with-vision)
 * [Chat completions API reference](https://aka.ms/gpt-v-api-ref)

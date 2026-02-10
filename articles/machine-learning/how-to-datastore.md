@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: soumyapatro
-ms.date: 02/28/2025
+ms.date: 02/03/2026
 ms.custom: data4ml, ignite-2023, devx-track-azurecli
 # Customer intent: As an experienced Python developer, I need to make my data in Azure storage available to my remote compute resource to train my machine learning models.
 ---
@@ -18,16 +18,17 @@ ms.custom: data4ml, ignite-2023, devx-track-azurecli
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-In this article, you learn how to connect to Azure data storage services with Azure Machine Learning datastores.
+In this article, you learn how to connect to Azure data storage services by using Azure Machine Learning datastores.
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- Python 3.10 or later.
 - The [Azure Machine Learning SDK for Python](https://aka.ms/sdk-v2-install).
 - A Machine Learning workspace.
 
 > [!NOTE]
-> Machine Learning datastores do *not* create the underlying storage account resources. Instead, they link an *existing* storage account for Machine Learning use. Machine Learning datastores aren't required. If you have access to the underlying data, you can use storage URIs directly.
+> Machine Learning datastores *don't* create the underlying storage account resources. Instead, they link an *existing* storage account for Machine Learning use. You don't need Machine Learning datastores. If you have access to the underlying data, you can use storage URIs directly.
 
 ## Create an Azure Blob datastore
 
@@ -326,7 +327,7 @@ Create this YAML file (update the values):
 $schema: https://azuremlschemas.azureedge.net/latest/azureFile.schema.json
 name: file_sas_example
 type: azure_file
-description: Datastore pointing to an Azure File Share using an SAS token.
+description: Datastore pointing to an Azure File Share using a SAS token.
 account_name: mytestfilestore
 file_share_name: my-share
 credentials:
@@ -341,6 +342,9 @@ az ml datastore create --file my_files_datastore.yml
 ---
 
 ## Create an Azure Data Lake Storage Gen1 datastore
+
+> [!IMPORTANT]
+> Azure Data Lake Storage Gen1 retired on February 29, 2024. You can't create new Gen1 accounts, and existing Gen1 resources are no longer accessible. The following content is provided for reference only. For new datastores, use [Azure Data Lake Storage Gen2](#create-an-azure-data-lake-storage-gen2-datastore) instead. To learn about migrating existing data, see [Migrate Azure Data Lake Storage from Gen1 to Gen2](/azure/storage/blobs/data-lake-storage-migrate-gen1-to-gen2).
 
 # [Python SDK: Identity-based access](#tab/sdk-adlsgen1-identity-access)
 
@@ -428,7 +432,7 @@ az ml datastore create --file my_adls_datastore.yml
 
 ## Create a OneLake (Microsoft Fabric) datastore (preview)
 
-This section describes various options to create a OneLake datastore. The OneLake datastore is part of Microsoft Fabric. At this time, Machine Learning supports connection to Microsoft Fabric lakehouse artifacts in "Files" folder that include folders or files and Amazon S3 shortcuts. For more information about lakehouses, see [What is a lakehouse in Microsoft Fabric?](/fabric/data-engineering/lakehouse-overview).
+This section describes various options to create a OneLake datastore. The OneLake datastore is part of Microsoft Fabric. At this time, Machine Learning supports connection to Microsoft Fabric lakehouse artifacts in the "Files" folder that include folders or files and Amazon S3 shortcuts. For more information about lakehouses, see [What is a lakehouse in Microsoft Fabric?](/fabric/data-engineering/lakehouse-overview).
 
 OneLake datastore creation requires the following information from your Microsoft Fabric instance:
 
@@ -436,11 +440,11 @@ OneLake datastore creation requires the following information from your Microsof
 - Workspace GUID
 - Artifact GUID
 
- The following screenshots describe the retrieval of these required information resources from your Microsoft Fabric instance.
+ The following screenshots describe how to retrieve these required information resources from your Microsoft Fabric instance.
 
 :::image type="content" source="media/how-to-datastore/onelake-properties.png" alt-text="Screenshot that shows how to click into artifact properties of Microsoft Fabric workspace artifact in Microsoft Fabric UI." lightbox="./media/how-to-datastore/onelake-properties.png":::
 
-You will then find "Endpoint", "Workspace GUID" and "Artifact GUID" in "URL" and "ABFS path" from the "Properties" page:
+You can find the "Endpoint", "Workspace GUID", and "Artifact GUID" in the "URL" and "ABFS path" from the "Properties" page:
 
 - **URL format**: https://**{your_one_lake_endpoint}**/**{your_one_lake_workspace_guid}**/**{your_one_lake_artifact_guid}**/Files
 - **ABFS path format**: abfss://**{your_one_lake_workspace_guid}**@**{your_one_lake_endpoint}**/**{your_one_lake_artifact_guid}**/Files
@@ -462,8 +466,8 @@ store = OneLakeDatastore(
     name="onelake_example_id",
     description="Datastore pointing to a Microsoft fabric artifact.",
     one_lake_workspace_name="bbbbbbbb-7777-8888-9999-cccccccccccc", #{your_one_lake_workspace_guid}
-    endpoint="msit-onelake.dfs.fabric.microsoft.com" #{your_one_lake_endpoint}
-    artifact = OneLakeArtifact(
+    endpoint="msit-onelake.dfs.fabric.microsoft.com", #{your_one_lake_endpoint}
+    artifact=OneLakeArtifact(
         name="cccccccc-8888-9999-0000-dddddddddddd/Files", #{your_one_lake_artifact_guid}/Files
         type="lake_house"
     )
@@ -486,11 +490,11 @@ store = OneLakeDatastore(
     name="onelake_example_sp",
     description="Datastore pointing to a Microsoft fabric artifact.",
     one_lake_workspace_name="bbbbbbbb-7777-8888-9999-cccccccccccc", #{your_one_lake_workspace_guid}
-    endpoint="msit-onelake.dfs.fabric.microsoft.com" #{your_one_lake_endpoint}
-    artifact = OneLakeArtifact(
-    name="cccccccc-8888-9999-0000-dddddddddddd/Files", #{your_one_lake_artifact_guid}/Files
-    type="lake_house"
-    )
+    endpoint="msit-onelake.dfs.fabric.microsoft.com", #{your_one_lake_endpoint}
+    artifact=OneLakeArtifact(
+        name="cccccccc-8888-9999-0000-dddddddddddd/Files", #{your_one_lake_artifact_guid}/Files
+        type="lake_house"
+    ),
     credentials=ServicePrincipalCredentials(
         tenant_id= "bbbbcccc-1111-dddd-2222-eeee3333ffff",
         client_id= "44445555-eeee-6666-ffff-7777aaaa8888",
@@ -502,7 +506,7 @@ ml_client.create_or_update(store)
 ```
 
 # [CLI: Identity-based access](#tab/cli-onelake-identity-based-access)
-Create the following YAML file (update the values):
+Create the following YAML file. Update the values:
 
 ```yaml
 # my_onelake_datastore.yml
@@ -524,7 +528,7 @@ az ml datastore create --file my_onelake_datastore.yml
 ```
 
 # [CLI: Service principal](#tab/cli-onelake-sp)
-Create the following YAML file (update the values):
+Create the following YAML file. Update the values:
 
 ```yaml
 # my_onelakesp_datastore.yml

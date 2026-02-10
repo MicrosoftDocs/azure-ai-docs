@@ -60,7 +60,7 @@ Customers rely on data security in SharePoint to access, create, and share docum
 1. Select **SharePoint** and follow the prompts to add the tool. You can only add one per agent.
 
 1. Click to add a new connection. Once you have added a connection, you can directly select from existing list.
-   1. To create a new connection, you need to find `site_url` in your SharePoint site. You can add either a SharePoint site or a SharePoint folder. For a SharePoint site, it will look like `https://microsoft.sharepoint.com/teams/<site_name>`. For a SharePoint folder, it will look like `https://microsoft.sharepoint.com/teams/<site_name>/Shared%20documents/<folder_name>`
+   1. To create a new connection, you need to find `site_url` in your SharePoint site. You can add either a SharePoint site or a SharePoint folder. For a SharePoint site, it will look like `https://<company>.sharepoint.com/teams/<site_name>`. For a SharePoint folder, it will look like `https://<company>.sharepoint.com/teams/<site_name>/Shared%20documents/<folder_name>`
 
        > [!NOTE]
        > * Your `site_url` needs to follow the format above. If you copy the entire value from the address bar of your SharePoint, it won't work.

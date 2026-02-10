@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
+ms.topic: upgrade-and-migration-article
 ms.date: 09/26/2025
 ms.author: pafarley
 ROBOTS: NOINDEX

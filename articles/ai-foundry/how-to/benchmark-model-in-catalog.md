@@ -21,13 +21,13 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 
-This article shows you how to streamline model selection in the Microsoft Foundry [model catalog](../how-to/model-catalog-overview.md) by comparing models in the model leaderboards (preview) available in Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application.
+This article shows you how to streamline model selection in the Microsoft Foundry [model catalog](../concepts/foundry-models-overview.md) by comparing models in the model leaderboards (preview) available in Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application.
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-This article shows you how to streamline model selection in the Microsoft Foundry [model catalog](../how-to/model-catalog-overview.md) by using the model leaderboards (preview) and side-by-side comparison features in Microsoft Foundry portal. These features enable you to understand model performance through comprehensive leaderboards and direct comparisons, helping you make informed decisions about which models best meet your specific use case or application requirements. 
+This article shows you how to streamline model selection in the Microsoft Foundry [model catalog](../concepts/foundry-models-overview.md) by using the model leaderboards (preview) and side-by-side comparison features in Microsoft Foundry portal. These features enable you to understand model performance through comprehensive leaderboards and direct comparisons, helping you make informed decisions about which models best meet your specific use case or application requirements. 
 
 ::: moniker-end
 

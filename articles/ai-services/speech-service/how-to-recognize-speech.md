@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/12/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: cpp
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python

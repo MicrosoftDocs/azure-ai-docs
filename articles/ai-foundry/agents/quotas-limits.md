@@ -1,14 +1,14 @@
 ---
 title: Quotas and limits for Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: Learn the quotas and limits for Foundry Agent Service, including file sizes, vector store limits, thread and message limits, and tool limits.
+description: Learn the quotas and limits for Foundry Agent Service, including file sizes, vector stores, threads, messages, tools, and how to handle limit errors.
 manager: nitinme
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 01/21/2026
+ms.date: 02/02/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-This article describes the quotas and limits for Foundry Agent Service.
+This article describes the quotas and limits for Foundry Agent Service. Understanding these limits helps you design agents that scale reliably and avoid runtime errors in production.
 
 ## How quotas and limits apply
 
@@ -31,7 +31,7 @@ If you're using threads and messages, see [Threads, runs, and messages in Foundr
 
 ## Default quotas and limits for the service
 
-The following table lists default limits enforced by the Agent Service.
+The following table lists default limits enforced by the Agent Service. These limits apply to all Foundry projects regardless of subscription type or region.
 
 | Limit name | Limit value |
 | --- | --- |
@@ -43,9 +43,22 @@ The following table lists default limits enforced by the Agent Service.
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
 
-## What happens when you reach a limit
+Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../openai/quotas-limits.md) for model-specific rate limits.
 
-When you exceed one of the limits in this article, the related operation fails. For example:
+## Handle limit errors
+
+When you exceed a limit, the Agent Service returns an error. Handle these errors gracefully in your application.
+
+| Error scenario | HTTP status | Error code | Recommended action |
+| --- | --- | --- | --- |
+| File too large | 400 | `file_size_exceeded` | Split content into smaller files |
+| Vector store token limit | 400 | `token_limit_exceeded` | Reduce file content or split files |
+| Thread message cap | 400 | `message_limit_exceeded` | Create a new thread |
+| Message content too large | 400 | `content_size_exceeded` | Use file search for large content |
+| Too many tools | 400 | `tool_limit_exceeded` | Remove unused tools |
+| Rate limit exceeded | 429 | `rate_limit_exceeded` | Implement exponential backoff |
+
+For example:
 
 - **File exceeds the maximum size**: Uploading the file fails. Split the content into smaller files or reduce file size before you upload.
 - **Vector store token limit**: Attaching a file to a vector store fails if the file exceeds the token limit. Reduce the file content or split it into multiple files.
@@ -63,7 +76,7 @@ Use the following practices to reduce limit-related failures:
 - **Avoid very large messages**. Put long content in uploaded files and query it by using file search.
 - **Plan for long conversations**. Treat threads as session state and rotate to new threads when conversations become very long.
 - **Register only required tools**. Remove unused tools from agent definitions.
-- **Monitor usage trends**. Track agent activity and tokens to identify growth early.
+- **Monitor usage trends**. Track agent activity using [Foundry Agent Service metrics](how-to/metrics.md) to identify growth before you hit limits.
 
 ## Quotas and limits for models
 
@@ -75,6 +88,13 @@ For current model quotas and limits, see:
 - [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md).
 
 To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../how-to/quota.md).
+
+## Request a limit increase
+
+The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
+
+- **Model quotas**: You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../how-to/quota.md).
+- **Agent Service limits**: The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints using the best practices described earlier.
 
 ## Related content
 

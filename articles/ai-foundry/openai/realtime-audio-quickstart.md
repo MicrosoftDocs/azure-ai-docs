@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 01/29/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions, ignite-2024
@@ -28,7 +28,7 @@ You can use the Realtime API via WebRTC or WebSocket to send audio input to the 
 Follow the instructions in this article to get started with the Realtime API via WebSockets. Use the Realtime API via WebSockets in server-to-server scenarios where low latency isn't a requirement.
 
 > [!TIP] 
-> In most cases, we recommend using the [Realtime API via WebRTC](./how-to/realtime-audio-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming and is the best choice for most use cases.
+> In most cases, use the [Realtime API via WebRTC](./how-to/realtime-audio-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming and is the best choice for most scenarios.
 
 ## Supported models
 
@@ -45,7 +45,7 @@ For more information, see the [models and versions documentation](/azure/ai-foun
 
 :::moniker range="foundry-classic"
 
-For more information, see the [models and versions documentation](./concepts/models.md#audio-models).
+For more information, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 :::moniker-end
 
 

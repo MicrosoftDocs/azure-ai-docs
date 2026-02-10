@@ -1,10 +1,10 @@
 ---
 title: Monitor AI Agent Fleets with Microsoft Foundry
-description: "Monitor and manage AI agents at scale with Microsoft Foundry. Track health, compliance, and performance trends using a centralized dashboard. Get started today."
+description: Monitor and manage AI agents at scale by using Microsoft Foundry. Track health, compliance, and performance trends by using a centralized dashboard.
 author: sonalim-0
 ms.author: scottpolly
 ms.reviewer: sonalimalik
-ms.date: 11/05/2025
+ms.date: 02/04/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom: dev-focus
@@ -14,87 +14,81 @@ ai-usage: ai-assisted
 
 # Monitor agent health and performance across your fleet
 
-As your organization scales from isolated copilots to autonomous multi-agent fleets, maintaining visibility and control becomes critical. The Foundry Control Plane provides a unified command center where you can monitor all agents, models, and tools across your enterprise from build to production. Fleet monitoring serves multiple roles:
+As your organization scales from isolated copilots to autonomous multi-agent fleets, maintaining visibility and control becomes critical. Microsoft Foundry Control Plane provides a unified command center where you can monitor all agents, models, and tools across your enterprise from build to production.
 
-- **Team managers** gain oversight of agent operations and team productivity
-- **Administrators** enforce governance policies and track compliance posture
-- **Cost managers** optimize spending and identify resource inefficiencies
-- **Security teams** monitor for prohibited behaviors and policy violations
+Fleet monitoring serves multiple roles:
 
-This article shows you how to use the Foundry Control Plane's capabilities to track agent health, performance, compliance, and cost efficiency at scale. With centralized monitoring, you can identify issues early, optimize resource consumption, and ensure your AI systems operate safely and reliably.
+- *Team managers* gain oversight of agent operations and team productivity.
+- *Administrators* enforce governance policies and track compliance posture.
+- *Cost managers* optimize spending and identify resource inefficiencies.
+- *Security teams* monitor for prohibited behaviors and policy violations.
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+This article shows you how to use Foundry Control Plane capabilities to track agent health, performance, compliance, and cost efficiency at scale. By using centralized monitoring, you can identify problems early, optimize resource consumption, and help ensure that your AI systems operate safely and reliably.
 
 ## Prerequisites
 
 [!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
 
-- You need the following permissions:
-    - Read access to the project and subscription you want to view data for.
-    - [Log Analytics Reader](/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader) role (or above) on the Azure Application Insights resource associated with your agent. 
-    - [Cost Management reader](https://go.microsoft.com/fwlink/?linkid=2345241) role.
+- The following permissions:
+  - Read access to the project and subscription that you want to view data for
+  - [Log Analytics Reader](/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader) role or higher on the Application Insights resource that's associated with your agent
+  - [Cost Management Reader](https://go.microsoft.com/fwlink/?linkid=2345241) role
 
 [!INCLUDE [capability-new-portal](../includes/capability-new-portal.md)]
 
 ## How monitoring works
 
-Control Plane discovers all the agents you have access to and uses the Azure Application Insights associated with the resources hosting your agent to help you monitor and diagnose your agents. 
+Foundry Control Plane discovers all the agents that you can access. It uses the Application Insights resources that host your agents to help you monitor and diagnose those agents.
 
-Control Plane supports:
+Foundry Control Plane supports:
 
 > [!div class="checklist"]
-> * Foundry agents, including [prompt-based agents](../../agents/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted-agents](../agents/concepts/hosted-agents.md). 
-> * [Azure SRE Agent](/azure/sre-agent/)
-> * [Azure Logic App agent loops](/azure/logic-apps/agent-workflows-concepts)
-> * [Custom agents](register-custom-agent.md) registered manually
+>
+> - Foundry agents, including [prompt-based agents](../../agents/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted agents](../agents/concepts/hosted-agents.md).
+> - [Azure SRE Agent](/azure/sre-agent/).
+> - [Azure Logic Apps agent loops](/azure/logic-apps/agent-workflows-concepts).
+> - [Custom agents](register-custom-agent.md) registered manually.
 
-Because Control Plane aggregates information across resources within the subscription, different users may see different agents listed depending on their access. 
+Because Foundry Control Plane aggregates information across resources within the subscription, different users might see different agents listed, depending on their access.
 
-Control Plane **aggregates logs and metrics available across each of the Azure Application Insights** connected to each of the agents:
+Foundry Control Plane aggregates logs and metrics available across each Application Insights resource that's connected to each agent.
 
-:::image type="content" source="media/monitoring-across-fleet/observability-app-insights-architecture.png" alt-text="An architecture diagram about how Foundry Control Plane uses Azure Application Insights to collect logs and metrics across resources." lightbox="media/monitoring-across-fleet/observability-app-insights-architecture.png":::
+:::image type="content" source="media/monitoring-across-fleet/observability-app-insights-architecture.png" alt-text="Architecture diagram that shows how Foundry Control Plane uses Application Insights to collect logs and metrics across resources." lightbox="media/monitoring-across-fleet/observability-app-insights-architecture.png":::
 
-Control Plane requires agents to log diagnostic information following OpenTelemetry standard with semantic conventions for Generative AI applications. Configuring Azure Application Insights on each resource isn't mandatory but **it's strongly advisable**. When such telemetry is available, Control Plane can:
+Foundry Control Plane requires agents to log diagnostic information by following OpenTelemetry standards with [semantic conventions for Generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/) applications. You don't need to configure Application Insights on each resource, but we strongly recommend it. When Foundry Control Plane has this data, it can provide:
 
-- **Fleet health metrics**: Track active agents, run completion rates, and error trends across your entire fleet
-- **Cost and performance tracking**: Monitor token usage, budget consumption, and resource efficiency across all agents
-- **Anomaly detection**: Identify cost spikes, performance degradation, and emerging issues through trend analysis
-- **Drill-down analysis**: Navigate from fleet-level metrics to individual agent traces and logs for detailed investigation
+- **Fleet health metrics**: Track active agents, run completion rates, and error trends across your entire fleet.
+- **Cost and performance tracking**: Monitor token usage, budget consumption, and resource efficiency across all agents.
+- **Anomaly detection**: Identify cost spikes, performance degradation, and emerging issues through trend analysis.
+- **Drill-down analysis**: Move from fleet-level metrics to individual agent traces and logs for detailed investigation.
 
 > [!IMPORTANT]
-> Agents running on resource without Azure Application Insights don't have health metrics, cost tracking, or drill-down traces. 
+> Agents running on resources without Application Insights don't have health metrics, cost tracking, or drill-down traces.
 
 ## Configure monitoring
 
 Follow these steps for each project where you want to configure monitoring:
 
-1. Select **Operate** > **Admin console**.
+1. On the toolbar, select **Operate**.
+
+1. On the left pane, select **Admin**.
 
 1. Under **All projects**, use the search box to look for your project.
 
 1. Select the project.
 
-1. Select the tab **Connected resources**.
+1. Select the **Connected resources** tab.
 
-1. Ensure there's a resource associated under the category **Application Insights**.
+1. Ensure that there's an associated resource for the category **AppInsights**.
 
-    :::image type="content" source="media/register-custom-agent/verify-app-insights.png" alt-text="Screenshot of the administration portal showing how to verify if your project has an Azure Application Insights associated." lightbox="media/register-custom-agent/verify-app-insights.png":::
+    :::image type="content" source="media/register-custom-agent/verify-app-insights.png" alt-text="Screenshot of the administration portal that shows how to verify if a project has an associated Application Insights resource." lightbox="media/register-custom-agent/verify-app-insights.png":::
 
-1. If there is no resource associated, add one by selecting **Add connection** and select **Application Insights**.
+1. If there's no associated resource, add one by selecting **Add connection** and then selecting **Application Insights**.
 
     > [!TIP]
-    > You can sink traces to either different Azure Application Insight resources or to the same one depending on your governance and security requirements.
+    > You can sink traces to either different Application Insights resources or to the same resource, depending on your governance and security requirements.
 
-1. Your project is configured for observability and tracing.
-
-### Permissions
-
-Once you configured observability, ensure you have the following permissions:
-    
-- [Log Analytics Reader](/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader) role (or above) on the Azure Application Insights resource. 
-
-- [Cost Management reader](https://go.microsoft.com/fwlink/?linkid=2345241) role.
-
+Your project is configured for observability and tracing.
 
 ## View metrics
 
@@ -102,47 +96,44 @@ You can view aggregated metrics for all agents within a selected project by usin
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate** from the upper-right navigation.
+1. On the toolbar, select **Operate**.
 
-1. The **Overview** pane displays common metrics and insights for all discovered agents within the subscription by default:
+1. The **Overview** pane displays common metrics and insights for all discovered agents within the subscription by default.
 
-    :::image type="content" source="media/overview/control-plane-overview.gif" alt-text="Animation of the Fleet Overview page displaying trend-based health scores, alert summaries, and aggregated compliance metrics." lightbox="media/overview/control-plane-overview.gif":::
+    :::image type="content" source="media/overview/control-plane-overview.gif" alt-text="Animation of the Overview pane that displays trend-based health scores, alert summaries, and aggregated compliance metrics for a fleet." lightbox="media/overview/control-plane-overview.gif":::
 
-1. Use the project drop-down to scope down the metrics to specific projects if needed.
+1. Use the project dropdown list to scope down the metrics to specific projects, if necessary.
 
-1. Configure the dates range you are seeing using the date selectors located in the upper right corner.
-
+1. Configure the date range by using the date selectors in the upper-right corner.
 
 ## View agents' metrics
 
-You can view all your assets under a specific project along with top-level metrics from Foundry.
+You can view all your assets under a specific project, along with top-level metrics, from Foundry.
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
-1. Select **Operate** from the upper-right navigation.
+1. On the toolbar, select **Operate**.
 
-1. Select **Assets** in the left pane.
+1. On the left pane, select **Assets**.
 
 1. Select the **Agents** tab.
 
-    :::image type="content" source="media/monitoring-across-fleet/agents-tab-overview-metrics.png" alt-text="Screenshot of Foundry Agents tab showing all registered agents with top-level metrics." lightbox="media/monitoring-across-fleet/agents-tab-overview-metrics.png":::
+    :::image type="content" source="media/monitoring-across-fleet/agents-tab-overview-metrics.png" alt-text="Screenshot of the Agents tab that shows all registered agents with top-level metrics." lightbox="media/monitoring-across-fleet/agents-tab-overview-metrics.png":::
 
-1. You can see the details of agents discovered within the subscription. See [agent inventory](how-to-manage-agents.md#agents-inventory) to learn about the details of this page.
+   The tab shows the details of agents discovered within the subscription. To learn about these details, see [Agent inventory](how-to-manage-agents.md#agent-inventory).
 
-1. To view more granular information on the performance of an individual agent, the side panel provides quick insights into the selected agent's health and recent activity. You can use it to identify issues and take corrective actions.  
+1. To view more granular information on the performance of an individual agent, select an agent. The pane that appears provides quick insights into the selected agent's health and recent activity. Use it to identify problems and take corrective actions.  
 
-    :::image type="content" source="media/monitoring-across-fleet/agent-details.png" alt-text="Screenshot of Foundry Control Plane agent details pane showing details of a selected agent." lightbox="media/monitoring-across-fleet/agent-details.png":::
+    :::image type="content" source="media/monitoring-across-fleet/agent-details.png" alt-text="Screenshot of the Foundry pane that shows details of a selected agent." lightbox="media/monitoring-across-fleet/agent-details.png":::
 
-1. In this section, you see: 
+    The pane contains these sections:
 
-    - Active alerts: View policy, security, and evaluation alerts grouped by severity and take action. 
-    
-    - Activity: See key metrics such as error rate over time, total run information, and information on token usage. 
+    - **Active alerts**: View policy, security, and evaluation alerts grouped by severity and take action.
+    - **Activity**: See key metrics such as error rate over time, total run information, and information on token usage.
 
-1. To learn more about how to manage individual agents see [Manage agents at scale](how-to-manage-agents.md).
+To learn more about how to manage individual agents, see [Manage agents at scale](how-to-manage-agents.md).
 
 ## Related content
 
-- [Foundry Control Plane overview](overview.md)
-- [Register an agent](register-custom-agent.md)
-
+- [What is Microsoft Foundry Control Plane?](overview.md)
+- [Register and manage custom agents](register-custom-agent.md)

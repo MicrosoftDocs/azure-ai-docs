@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Multi-turn conversational language understanding (CLU) models with entity slot filling"
 titleSuffix: Foundry Tools
-description: Create a multi-turn conversational language understanding (CLU) model with entity slot filling in Foundry (classic).
+description: Create a multi-turn conversational language understanding (CLU) model with entity slot filling in Microsoft Foundry (classic).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 01/21/2026
+ms.date: 02/06/2026
 ms.author: lajanuar
 ai-usage: ai-assisted
 ms.custom: 
@@ -17,6 +17,8 @@ ms.custom:
 # Quickstart: Multi-turn CLU models with entity slot filling
 
 In this article, get started building a CLU model that uses entity slot filling to enable multi-turn conversations. This approach allows your model to collect information progressively across multiple conversation turns, rather than requiring users to provide all details in a single interaction to complete tasks naturally and efficiently.
+
+If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 > [!NOTE]
 > Multi-turn entity slot filling is available only in Microsoft Foundry (classic). This quickstart uses the classic portal at [https://ai.azure.com/](https://ai.azure.com/). For more information about the portals, see [What is Microsoft Foundry?](../../../../ai-foundry/what-is-foundry.md).
@@ -88,13 +90,13 @@ Deploy an OpenAI model to provide the foundational intelligence and advanced rea
 
 1. Select **Models + endpoints** from the **My assets** section of the navigation menu.
 
-   :::image type="content" source="../media/models-endpoints.png" alt-text="Screenshot of the deploy model button menu in Foundry.":::
+   :::image type="content" source="../media/models-endpoints.png" alt-text="Screenshot of the Models and endpoints page in Foundry.":::
 
 1. From the main window, select **+ Deploy model**.
 
 1. Select **Deploy base model** from the dropdown menu.
 
-   :::image type="content" source="../media/deploy-model-button.png" alt-text="Screenshot of the connected resources menu selection in Foundry.":::
+   :::image type="content" source="../media/deploy-model-button.png" alt-text="Screenshot of the Deploy base model dropdown menu in Foundry.":::
 
 1. In the **Select a model** window, choose a model. The **gpt-4** base model is recommended for this project.
 
@@ -146,7 +148,7 @@ In this section, you create a travel agent model and deploy it using Quick Deplo
    * **Language** - English is set as the default and should already appear in the field.
    * **Description** - Optionally provide a description or leave this field empty.
 
-1. Select **Create**. The creation operation may take a few minutes to complete.
+1. Select **Create**. The creation operation might take a few minutes to complete. After it finishes, your new CLU project appears in the **AI Service fine-tuning** list.
 
 ### Add your intents
 
@@ -271,7 +273,7 @@ Now that all entities have associations, you can proceed with Quick Deploy using
 
     :::image type="content" source="../media/multi-turn/details.png" alt-text="Screenshot of the Details response window.":::
 
-You successfully created a multi-turn CLU model with entity slot filling capabilities to collect required information across multiple dialog turns.
+You successfully created a multi-turn CLU model with entity slot filling capabilities to collect required information across multiple dialog turns. To learn more about how CLU handles entity slot filling across conversation turns, see [Multi-turn conversations](../concepts/multi-turn-conversations.md).
 
 ## Troubleshooting
 
@@ -294,6 +296,8 @@ If you created an OpenAI deployment for this quickstart, delete the deployment f
 
 For more information, see [Deploy models in Foundry](../../../../ai-foundry/how-to/deploy-models-managed.md).
 
+To delete the Foundry project:
+
 1. Go to [Microsoft Foundry (classic)](https://ai.azure.com/).
 1. Select the project you want to delete.
 1. Select **Management center**.
@@ -302,12 +306,10 @@ For more information, see [Deploy models in Foundry](../../../../ai-foundry/how-
 If you want to remove Azure resources, delete either the individual resource or the entire resource group. Deleting the resource group removes all contained resources.
 
 > [!TIP]
-> If you plan to delete an Azure AI resource that has model deployments, delete deployments first.
+> If you plan to delete a resource that has model deployments, delete the deployments first.
 
-## Next steps
+## Related content
 
-* [Learn how CLU handles entity slot filling across multi-turn conversations](../concepts/multi-turn-conversations.md)
+* [Multi-turn conversations in CLU](../concepts/multi-turn-conversations.md)
 * [Build a multi-turn model](build-multi-turn-model.md)
-* [Call the CLU API](call-api.md)
-* [How to use Foundry Tools in the Foundry portal](../../../connect-services-foundry-portal.md)
-* [Language role-based access control](../../concepts/role-based-access-control.md)
+

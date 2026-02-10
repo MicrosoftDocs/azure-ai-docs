@@ -10,7 +10,7 @@ ms.date: 11/10/2025
 ms.subservice: azure-ai-foundry-openai
 ---
 
-In this article, you learn how to use voice live with [Microsoft Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Java.
+In this article, you learn how to use Voice Live with [Microsoft Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Java.
 
 [!INCLUDE [Header](../../common/voice-live-java.md)]
 
@@ -25,7 +25,7 @@ In this article, you learn how to use voice live with [Microsoft Foundry models]
 - API key or [Azure CLI](/cli/azure/install-azure-cli) for authentication.
 
 > [!TIP]
-> To use voice live, you don't need to deploy an audio model with your Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
+> To use Voice Live, you don't need to deploy an audio model with your Foundry resource. Voice Live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [Voice Live overview documentation](../../../voice-live.md).
 
 > [!NOTE]
 > For keyless authentication with Microsoft Entra ID, install the [Azure CLI](/cli/azure/install-azure-cli) and assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.

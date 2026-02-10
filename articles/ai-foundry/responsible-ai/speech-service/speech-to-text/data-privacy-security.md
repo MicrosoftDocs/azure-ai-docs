@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 06/30/2021
 ---
 

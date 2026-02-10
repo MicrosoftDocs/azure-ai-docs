@@ -5,7 +5,8 @@ description: Learn how to best use Azure Content Understanding in Foundry Tools 
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -14,7 +15,7 @@ ms.custom:
 
 # Best practices for Azure Content Understanding in Foundry Tools
 
-Azure Content Understanding in Foundry Tools uses generative AI to process documents, images, videos, and audio, transforming them into structured output formats. This guide provides best practices to maximize accuracy and efficiency.
+Azure Content Understanding in Foundry Tools uses generative AI to process documents, images, videos, and audio, transforming them into structured output formats. This article provides best practices to maximize accuracy and efficiency.
 
 ## Define effective field schemas
 
@@ -25,7 +26,7 @@ Clear and detailed field definitions are critical to accurate extraction. Follow
 Provide clear, specific descriptions that guide the model to the correct information. Include location hints, format expectations, and alternative labels.
 
 **Example - Invoice date field:**
-```
+```text
 The date when the invoice was issued, typically found at the top right corner. May be labeled as 'Invoice Date', 'Billing Date', or 'Issue Date'. Format is usually MM/DD/YYYY or DD-MM-YYYY.
 ```
 
@@ -34,13 +35,13 @@ The date when the invoice was issued, typically found at the top right corner. M
 List all possible names for each field, when possible, especially when working with diverse file templates. This diversity helps the model recognize the field regardless of labeling variations.
 
 **Example - Investment distributions:**
-```
+```text
 Equal to the 'Distributions' column. Also disclosed as 'Realizations' or 'Realized Proceeds'.
 ```
 
 ### Use affirmative language
 
-Describe what the field *is* rather than what it *isn't*. Positive descriptions are clearer and more effective.
+Describe what the field is rather than what it isn't. Positive descriptions are clearer and more effective.
 
 **Instead of:** "This field isn't the invoice date and isn't the due date."  
 **Use:** "The date when goods or services were delivered, found in the delivery information section."
@@ -79,7 +80,7 @@ Explicitly set the method (`extract`, `generate`, or `classify`) for each field 
 - **Extract**: Values appearing directly in the content, such as invoice number or date.
 
 > [!NOTE]
-> Extract is only supported for Document analyzers. 
+> `extract` is only supported for document analyzers.
 
 ## Optimize classification and categorization
 
@@ -111,10 +112,10 @@ Confidence scores help determine when human review is needed. Set different thre
 * **Important fields** (VendorName, InvoiceNumber): Use medium thresholds (≥0.80)  
 * **Non-critical fields** (Comments, Notes): Use lower thresholds (≥0.70)
 
-Currently, only document analyzers support confidence score. 
+Currently, only document analyzers support confidence scores.
 
 > [!NOTE]
-> These thresholds are included as an illustration. Determine thresholds experimentally for each use case. 
+> These thresholds are included as an illustration. Determine thresholds experimentally for each use case.
 
 ## Improve accuracy over time
 

@@ -8,7 +8,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 08/21/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: csharp
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
@@ -21,7 +21,7 @@ This guide describes how to mitigate network latency and improve service perform
 
 ## Mitigate latency
 
-You may encounter latency when using the Face service. Latency refers to any kind of delay that occurs when systems communicate over a network. In general, possible causes of latency include:
+You might encounter latency when using the Face service. Latency refers to any kind of delay that occurs when systems communicate over a network. In general, possible causes of latency include:
 - The physical distance each packet must travel from source to destination.
 - Problems with the transmission medium.
 - Errors in routers or switches along the transmission path.
@@ -37,7 +37,7 @@ This section describes how you can mitigate various causes of latency specific t
 
 The network latency, the time it takes for information to travel from source (your application) to destination (your Azure resource), is strongly affected by the geographical distance between the application making requests and the Azure server responding to those requests. For example, if your Face resource is located in `EastUS`, it has a faster response time for users in New York, and users in Asia experience a longer delay. 
 
-We recommend that you select a region that is closest to your users to minimize latency. If your users are distributed across the world, consider creating multiple resources in different regions and routing requests to the region nearest to your customers. Alternatively, you may choose a region that is near the geographic center of all your customers.
+We recommend that you select a region that is closest to your users to minimize latency. If your users are distributed across the world, consider creating multiple resources in different regions and routing requests to the region nearest to your customers. Alternatively, you can choose a region that is near the geographic center of all your customers.
 
 ### Use Azure blob storage for remote URLs
 

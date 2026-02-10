@@ -13,6 +13,8 @@ ms.custom: devx-track-csharp
 
 # Image Analysis SDK overview
 
+[!INCLUDE [image-analysis-deprecation](../includes/image-analysis-deprecation.md)]
+
 The Image Analysis SDK provides a convenient way to access the Image Analysis service using [version 4.0 of the REST API](https://aka.ms/vision-4-0-ref).
 
 > [!IMPORTANT]

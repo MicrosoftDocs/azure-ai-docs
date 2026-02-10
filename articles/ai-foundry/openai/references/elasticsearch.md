@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: reference
-ms.date: 02/27/2025
+ms.date: 02/06/2026
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -16,6 +16,8 @@ ms.custom: devx-track-python
 # Data source - Elasticsearch (preview)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
 The configurable options for Elasticsearch when using Azure OpenAI On Your Data. This data source is supported starting in API version `2024-02-15-preview`.
 

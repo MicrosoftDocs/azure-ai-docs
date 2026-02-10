@@ -5,7 +5,7 @@ titleSuffix: Azure AI services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/16/2025
 ms.author: pafarley
 ms.custom:

@@ -23,6 +23,8 @@ items:
     displayName: get started
 - name: Speech tools
   items:
+  - name: Speech tools documentation
+    href: index-speech-tools.yml
   - name: Speech MCP server
     href: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
   - name: Speech Studio
@@ -70,6 +72,8 @@ items:
     - name: Generate a REST API client library
       href: swagger-documentation.md
       displayName: rest, swagger
+  - name: Voice Live SDK
+    href: voice-live-sdk.md
   - name: Speech Transcription SDK
     href: transcription-sdk.md
 - name: Speech to text
@@ -293,11 +297,11 @@ items:
       href: llm-speech.md
     - name: LLM speech REST API reference
       href: /rest/api/speechtotext/transcriptions/transcribe
-- name: Voice live
+- name: Voice Live
   items:
-    - name: Voice live overview
+    - name: Voice Live overview
       href: voice-live.md
-    - name: Voice live language support
+    - name: Voice Live language support
       href: voice-live-language-support.md
     - name: Quickstarts
       expanded: true
@@ -308,24 +312,32 @@ items:
         href: voice-live-agents-quickstart.md
       - name: Function calling in Voice Live
         href: how-to-voice-live-function-calling.md
-      - name: Bring your own model with Voice live
+      - name: Bring your own model with Voice Live
         href: how-to-bring-your-own-model.md
     - name: How-to guides
       expanded: true
       items:
-      - name: How to use voice live
+      - name: How to use Voice Live
         href: voice-live-how-to.md
-      - name: How to customize voice live input and output
+      - name: How to customize Voice Live input and output
         href: voice-live-how-to-customize.md
-      - name: Voice live telephony integration
+      - name: How to add proactive messages (preview)
+        href: how-to-voice-live-proactive-messages.md
+      - name: Handle voice interruptions in chat history (preview)
+        href: how-to-voice-live-auto-truncation.md
+      - name: Voice Live telephony integration
         href: voice-live-telephony.md
-    - name: Voice live FAQ
+    - name: Voice Live FAQ
       href: voice-live-faq.yml
       displayName: FAQ,frequently asked questions
     - name: Reference
       items:
-      - name: Voice live API reference
-        href: voice-live-api-reference.md
+      - name: Voice Live API reference
+        items:
+        - name: '2025-10-01'
+          href: voice-live-api-reference-2025-10-01.md
+        - name: '2026-01-01-preview'
+          href: voice-live-api-reference-2026-01-01-preview.md          
       - name: Voice Live SDK
         items:
           - name: 'C#'
@@ -334,10 +346,10 @@ items:
           - name: Python
             displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
             href: /python/api/overview/azure/ai-voicelive-readme
-          - name: Java (Preview)
+          - name: Java (preview)
             displayName: Java SDK,Java dev kit,reference,reference docs,ref documentation
             href: /java/api/overview/azure/ai-voicelive-readme
-          - name: JavaScript (Preview)
+          - name: JavaScript (preview)
             displayName: JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
             href: /javascript/api/overview/azure/ai-voicelive-readme
 - name: Keyword recognition
@@ -594,7 +606,7 @@ items:
           href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns-avatar.md
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security.md
-    - name: Voice live
+    - name: Voice Live
       items:
       - name: Transparency note
         href: ../../ai-foundry/responsible-ai/speech-service/voice-live/transparency-note.md

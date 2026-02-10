@@ -322,10 +322,6 @@ Azure Marketplace offers serverless API deployments. Model publishers might appl
 
 1. Sign in to the [Azure portal](https://portal.azure.com/)
 
-1. Select the portal menu icon to open the left pane.
-
-   :::image type="content" source="../media/manage-costs/azure-portal-menu-icon.png" alt-text="Screenshot of the portal menu icon.":::
-
 1. On the left pane, select **Cost Management + Billing** and then select **Cost Management**.
 
 1. On the left pane, under the section for **Reporting + analytics**, select **Cost Analysis**.

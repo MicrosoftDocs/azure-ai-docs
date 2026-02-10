@@ -27,11 +27,13 @@ Azure Speech in Foundry Tools lets your agent convert speech to text and generat
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry resource](../../../../../ai-services/multi-service-resource.md) created in a [supported region](../../../../../ai-services/speech-service/regions.md). Your Foundry resource includes speech capabilities and is used by the Speech MCP server.
+- A [Microsoft Foundry resource](../../../../../ai-services/multi-service-resource.md) created in a [supported region](../../../../../ai-services/speech-service/regions.md). Your Foundry resource includes speech capabilities and is used by the Speech MCP server. The Speech MCP Server is available in all regions where Foundry Agent Service supports [MCP tools](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
 ## Usage support
 
-This article shows how to connect the tool in Foundry portal. For code-first MCP guidance, see [Connect to Model Context Protocol servers](./model-context-protocol.md).
+This article shows how to connect the tool in Foundry portal.
+
+If you want to work with code, see [Connect to Model Context Protocol servers](./model-context-protocol.md) for SDK examples in Python, C#, and JavaScript.
 
 ## Security and privacy
 
@@ -40,7 +42,7 @@ Treat your Speech resource key and storage SAS URLs as secrets:
 - Don’t paste keys or SAS URLs into agent prompts, chat transcripts, screenshots, or source control.
 - Use the shortest practical SAS expiry time.
 - Scope SAS URLs to the minimum required resource (for example, a single container).
-- Rotate keys if you suspect they’re exposed.
+- Rotate keys periodically as a security best practice, or immediately if you suspect they're exposed.
 
 ## Set up storage
 
@@ -72,6 +74,8 @@ Create one or more blob containers to store the input and output audio files.
     
 1. Select **Connect** to add the remote Speech MCP server as a tool for your agent.
 
+   After connecting, the Speech tool appears in your agent's **Tools** list with a connected status.
+
 ## Test the Azure Speech tool
 
 In the agent playground chat, enter `What can you do?`.
@@ -84,6 +88,9 @@ The agent lists its available capabilities, including the newly added Speech Cap
 ### Test speech-to-text
 
 The Speech tool can convert an audio file to text. The audio file can be stored in Azure Blob Storage and accessed with a SAS URL, or it can be any publicly accessible URL to an audio file.
+
+> [!NOTE]
+> Supported audio formats include WAV, MP3, OGG, FLAC, and other common formats. For best results with speech recognition, use WAV files with 16 kHz sample rate and 16-bit depth.
 
 1. Upload your audio file to your Azure blob storage container.  
 1. Generate a SAS URL for the file:
@@ -107,7 +114,7 @@ Start a new chat in the agent playground, and use one of the following example p
 - `Convert text to speech with Chinese language: <your text to speak>` 
 - `Synthesize speech with voice en-US-JennyNeural from text <your text to speak>` 
 
-An audio link is displayed in the chat window (its source is in your blob storage container). Select it to listen to the output.
+The output audio is saved as a WAV file in your blob container. An audio link is displayed in the chat window. Select it to listen to the output.
 
 ## Troubleshooting
 

@@ -6,7 +6,7 @@ ms.topic: include
 ms.author: pafarley
 ---
 
-| Locale (BCP-47) | Language | Text to speech voices |
+| Locale (BCP-47) | Language | Text-to-speech voices |
 | ----- | ----- | ----- |
 | `en-US` | English (United States) | `en-US-AdamMultilingualNeural` (Male) |
 | `en-US` | English (United States) | `en-US-AlloyTurboMultilingualNeural` (Male) |

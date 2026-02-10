@@ -5,7 +5,7 @@ description: Learn how to generate a synthetic dataset in Microsoft Foundry port
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 01/29/2026
 ms.reviewer: vkann
 reviewer: anshirga
 ms.author: ssalgado
@@ -39,7 +39,8 @@ To see how to generate synthetic data, you can use the [sample notebook](https:/
 ## Related content
 
 - [What is Foundry?](../what-is-foundry.md)
-- [Deploy Meta Llama 3.1 models with Foundry](../how-to/deploy-models-llama.md)
+- [Deploy Meta Llama 3.1 models with Foundry](./models-inference-examples.md)
 - [Foundry FAQ](../faq.yml)
+
 
 

@@ -9,8 +9,8 @@ reviewer: ychang-msft
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 12/08/2025
-ms.custom: ignite-2024, github-universe-2024
+ms.date: 02/04/2026
+ms.custom: ignite-2024, github-universe-2024, template-concept, devx-track-python
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer building applications with Microsoft Foundry Models, I want to understand how the content filtering system works, including the risk categories, severity levels, and API response behaviors so that I can properly handle content moderation in my application and ensure compliance with safety requirements.
@@ -21,17 +21,19 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
+[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) includes a content filtering system that works alongside core models and image generation models and is powered by [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety). This system runs both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
 > [!IMPORTANT]
 > The content filtering system doesn't apply to prompts and completions processed by audio models such as Whisper in Azure OpenAI in Microsoft Foundry Models. For more information, see [Audio models in Azure OpenAI](../../../ai-services/openai/concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint).
 
-Foundry Models includes a content filtering system that works alongside core models and is powered by [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety). This system runs both the prompt and completion through an ensemble of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
-
-The text content filtering models for the hate, sexual, violence, and self-harm categories were trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
+The following sections provide information about the content filtering categories, the filtering severity levels and their configurability, and API scenarios to consider in application design and implementation. 
 
 In addition to the content filtering system, Azure OpenAI performs monitoring to detect content and behaviors that suggest use of the service in a manner that might violate applicable product terms. For more information about understanding and mitigating risks associated with your application, see the [Transparency Note for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=text). For more information about how data is processed for content filtering and abuse monitoring, see [Data, privacy, and security for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy#preventing-abuse-and-harmful-content-generation).  
 
-The following sections provide information about the content filtering categories, the filtering severity levels and their configurability, and API scenarios to consider in application design and implementation. 
+
+> [!NOTE]
+> We don't store prompts or completions for the purposes of content filtering. We don't use prompts or completions to train, retrain, or improve the content filtering system without user consent. For more information, see [Data, privacy, and security](/azure/ai-foundry/responsible-ai/openai/data-privacy).
+
 
 ## Content filter types
 
@@ -39,32 +41,41 @@ The content filtering system integrated in the Foundry Models service in Foundry
 * Neural multiclass classification models that detect and filter harmful content. These models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 * Other optional classification models that detect jailbreak risk and known content for text and code. These models are binary classifiers that flag whether user or model behavior qualifies as a jailbreak attack or match to known text or source code. The use of these models is optional, but use of protected material code model might be required for Customer Copyright Commitment coverage.
 
-### Risk categories
 
 |Category|Description|
 |--------|-----------|
-| Hate and Fairness      | Hate and fairness-related harms refer to any content that attacks or uses discriminatory language with reference to a person or identity group based on certain differentiating attributes of these groups. <br><br>This category includes, but isn't limited to:<ul><li>Race, ethnicity, nationality</li><li>Gender identity groups and expression</li><li>Sexual orientation</li><li>Religion</li><li>Personal appearance and body size</li><li>Disability status</li><li>Harassment and bullying</li></ul> |
-| Sexual  | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one's will. <br><br> This category includes but isn't limited to:<ul><li>Vulgar content</li><li>Prostitution</li><li>Nudity and Pornography</li><li>Abuse</li><li>Child exploitation, child abuse, child grooming</li></ul>   |
-| Violence  | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns, and related entities. <br><br>This category includes, but isn't limited to:  <ul><li>Weapons</li><li>Bullying and intimidation</li><li>Terrorist and violent extremism</li><li>Stalking</li></ul>  |
-| Self-Harm  | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one's body or kill oneself. <br><br> This category includes, but isn't limited to: <ul><li>Eating Disorders</li><li>Bullying and intimidation</li></ul>  |
-| Protected Material for Text<sup>*</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that large language models can return as output.
-| Protected Material for Code | Protected material code describes source code that matches a set of source code from public repositories, which large language models can output without proper citation of source repositories.
-| Personally identifiable information (PII) | Personally identifiable information (PII) refers to any information that can be used to identify a particular individual. PII detection involves analyzing text content in LLM completions and filtering any PII that was returned. |
-|User Prompt Attacks |User prompt attacks are user prompts designed to provoke the generative AI model into exhibiting behaviors it was trained to avoid or to break the rules set in the system message. Such attacks can vary from intricate roleplay to subtle subversion of the safety objective. |
-|Indirect Attacks |Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, are a potential vulnerability where third parties place malicious instructions inside of documents that the generative AI system can access and process. Requires [OpenAI models with document embedding and formatting](../../openai/concepts/content-filter-document-embedding.md). |
+| [Hate and Fairness](/azure/ai-foundry/openai/concepts/content-filter-severity-levels)        | Hate and fairness-related harms refer to any content that attacks or uses discriminatory language with reference to a person or identity group based on certain differentiating attributes of these groups. <br><br>This category includes, but isn't limited to:<ul><li>Race, ethnicity, nationality</li><li>Gender identity groups and expression</li><li>Sexual orientation</li><li>Religion</li><li>Personal appearance and body size</li><li>Disability status</li><li>Harassment and bullying</li></ul> |
+| [Sexual](/azure/ai-foundry/openai/concepts/content-filter-severity-levels)   | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one's will. <br><br> This category includes but isn't limited to:<ul><li>Vulgar content</li><li>Prostitution</li><li>Nudity and Pornography</li><li>Abuse</li><li>Child exploitation, child abuse, child grooming</li></ul>   |
+| [Violence](/azure/ai-foundry/openai/concepts/content-filter-severity-levels)   | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns, and related entities. <br><br>This category includes, but isn't limited to:  <ul><li>Weapons</li><li>Bullying and intimidation</li><li>Terrorist and violent extremism</li><li>Stalking</li></ul>  |
+| [Self-Harm](/azure/ai-foundry/openai/concepts/content-filter-severity-levels)   | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one's body or kill oneself. <br><br> This category includes, but isn't limited to: <ul><li>Eating Disorders</li><li>Bullying and intimidation</li></ul>  |
+| [Groundedness](/azure/ai-foundry/openai/concepts/content-filter-groundedness)<sup>2</sup> | Groundedness detection flags whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungrounded material refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires [document embedding and formatting](/azure/ai-foundry/openai/concepts/content-filter-document-embedding.md). |
+| [Protected Material for Text](/azure/ai-foundry/openai/concepts/content-filter-protected-material)<sup>1</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that large language models can return as output.
+| [Protected Material for Code](/azure/ai-foundry/openai/concepts/content-filter-protected-material)  | Protected material code describes source code that matches a set of source code from public repositories, which large language models can output without proper citation of source repositories.
+| [Personally identifiable information (PII)](/azure/ai-services/openai/concepts/content-filter-personal-information)  | Personally identifiable information (PII) refers to any information that can be used to identify a particular individual. PII detection involves analyzing text content in LLM completions and filtering any PII that was returned. |
+|[User Prompt Attacks](/azure/ai-foundry/openai/concepts/content-filter-prompt-shields) |User prompt attacks are user prompts designed to provoke the generative AI model into exhibiting behaviors it was trained to avoid or to break the rules set in the system message. Such attacks can vary from intricate roleplay to subtle subversion of the safety objective. |
+|[Indirect Attacks](/azure/ai-foundry/openai/concepts/content-filter-prompt-shields) |Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, are a potential vulnerability where third parties place malicious instructions inside of documents that the generative AI system can access and process. Requires [OpenAI models with document embedding and formatting](../../openai/concepts/content-filter-document-embedding.md). |
 
-<sup>*</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
+<sup>1</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
 
+<sup>2</sup> Not available in non-streaming scenarios; only available for streaming scenarios. The following regions support Groundedness Detection: Central US, East US, France Central, and Canada East 
 
-[!INCLUDE [severity-levels text, four-level](../../../ai-services/content-safety/includes/severity-levels-text-four.md)]
+## Input filters
 
-[!INCLUDE [severity-levels image](../../../ai-services/content-safety/includes/severity-levels-image.md)]
+### Text content filters
 
-## Prompt shield content
+See [Harm categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter-severity-levels) to learn more about the four content filtering categories (hate, sexual, violence, and self-harm) and their severity levels (safe, low, medium, and high).
+
+### Image content filters
+
+See [Harm categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter-severity-levels) to learn more about the four content filtering categories (hate, sexual, violence, and self-harm) and their severity levels (safe, low, medium, and high).
+
+### Prompt shields
+
+Prompt shields is a safety filter for the inputs to generative AI models.
 
 #### [User prompt attacks](#tab/user-prompt)
 
-### User prompt attack severity definitions
+#### User prompt attack severity definitions
 
 | Classification | Description | Example |
 |----------------|-------------|---------|
@@ -73,7 +84,7 @@ The content filtering system integrated in the Foundry Models service in Foundry
 
 #### [Indirect attacks](#tab/indirect)
 
-### Indirect attack severity definitions
+#### Indirect attack severity definitions
 
 | Classification | Description | Example |
 |----------------|-------------|---------|
@@ -84,37 +95,48 @@ Detecting indirect attacks requires using document delimiters when constructing 
 
 ---
 
+## Output filters
+
+You can also enable the following special output filters:
+- **Protected material for text**: Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that a large language model might output.
+- **Protected material for code**: Protected material code describes source code that matches a set of source code from public repositories, which a large language models might output without proper citation of source repositories.
+- **Groundedness**: The groundedness detection filter detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users.
+- **Personally identifiable information (PII)**: The PII filter detects whether the text responses of large language models (LLMs) contain personally identifiable information (PII). PII refers to any information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information.
+
+[!INCLUDE [create-content-filter](../../includes/create-content-filter.md)]
+
+
 ## Configurability
 
 [!INCLUDE [content-filter-configurability](../includes/content-filter-configurability.md)]
 
-## Scenario details
+## Content filtering scenarios
 
-When the content filtering system detects harmful content, you receive either an error on the API call if the prompt is inappropriate, or the `finish_reason` on the response is `content_filter` to show that some of the completion is filtered. When you build your application or system, you want to account for these scenarios where the content returned by the Completions API is filtered, which might result in content that is incomplete. How you act on this information is application specific. The behavior can be summarized in the following points:
+When the content safety system detects harmful content, you receive either an error on the API call if the prompt was deemed inappropriate, or the `finish_reason` on the response will be `content_filter` to signify that some of the completion was filtered. When building your application or system, you'll want to account for these scenarios where the content returned by the Completions API is filtered, which might result in content that is incomplete.
 
--    Prompts that the content filtering system classifies at a filtered category and severity level return an HTTP 400 error.
--    Nonstreaming completions calls don't return any content when the content is filtered. The `finish_reason` value is set to `content_filter`. In rare cases with longer responses, a partial result can be returned. In these cases, the `finish_reason` is updated.
--    For streaming completions calls, segments are returned to the user as they're completed. The service continues streaming until it reaches a stop token, length, or when content that the content filtering system classifies at a filtered category and severity level is detected.  
+The behavior can be summarized in the following points:
 
-### Scenario: You send a nonstreaming completions call asking for multiple outputs; no content is classified at a filtered category and severity level
+- Prompts that are classified at a filtered category and severity level return an HTTP 400 error.
+- Non-streaming completions calls don't return any content when the content is filtered. The `finish_reason` value is set to `content_filter`. In rare cases with longer responses, a partial result can be returned. In these cases, the `finish_reason` is updated.
+- For streaming completions calls, segments are returned to the user as they're completed. The service continues streaming until either reaching a stop token, length, or when content that is classified at a filtered category and severity level is detected.
 
-The following table outlines the various ways content filtering can appear:
+### Scenario 1: Non-streaming call with no filtered content
 
- **HTTP response code** | **Response behavior** |
-|------------------------|-------------------|
-| 200 |   In the cases when all generation passes the filters as configured, no content moderation details are added to the response. The `finish_reason` for each generation is either `stop` or `length`. |
+When all generations pass the filters as configured, the response doesn't include content moderation details. The `finish_reason` for each generation is either `stop` or `length`.
+
+**HTTP Response Code:** 200
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example", 
+    "prompt": "Text example", 
     "n": 3,
     "stream": false
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
 {
@@ -131,26 +153,25 @@ The following table outlines the various ways content filtering can appear:
         }
     ]
 }
-
 ```
 
-### Scenario: Your API call asks for multiple responses (N>1) and at least one of the responses is filtered
+### Scenario 2: Multiple responses with at least one filtered
 
-| **HTTP Response Code** | **Response behavior**|
-|------------------------|----------------------|
-| 200 |The generations that are filtered have a `finish_reason` value of `content_filter`.
+When your API call asks for multiple responses (N>1) and at least one of the responses is filtered, the generations that are filtered have a `finish_reason` value of `content_filter`.
+
+**HTTP Response Code:** 200
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example",
+    "prompt": "Text example",
     "n": 3,
     "stream": false
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
 {
@@ -175,49 +196,51 @@ The following table outlines the various ways content filtering can appear:
 }
 ```
 
-### Scenario: You send an inappropriate input prompt to the completions API (either for streaming or nonstreaming)
+### Scenario 3: Inappropriate input prompt
 
-| **HTTP Response Code** | **Response behavior**|
-|------------------------|----------------------|
-|400 |The API call fails when the prompt triggers a content filter as configured. Modify the prompt and try again.|
+The API call fails when the prompt triggers a content filter as configured. Modify the prompt and try again.
 
-**Example request payload:**
-
-```json
-{
-    "prompt":"Content that triggered the filtering model"
-}
-```
-
-**Example response JSON:**
-
-```json
-"error": {
-    "message": "The response was filtered",
-    "type": null,
-    "param": "prompt",
-    "code": "content_filter",
-    "status": 400
-}
-```
-
-### Scenario: You make a streaming completions call; no output content is classified at a filtered category and severity level
-
-|**HTTP Response Code** | **Response behavior**|
-|------------|------------------------|
-|200|In this case, the call streams back with the full generation and `finish_reason` is either 'length' or 'stop' for each generated response.|
+**HTTP Response Code:** 400
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example",
+    "prompt": "Content that triggered the filtering model"
+}
+```
+
+**Example response:**
+
+```json
+{
+    "error": {
+        "message": "The response was filtered",
+        "type": null,
+        "param": "prompt",
+        "code": "content_filter",
+        "status": 400
+    }
+}
+```
+
+### Scenario 4: Streaming call with no filtered content
+
+In this case, the call streams back with the full generation and `finish_reason` is either `length` or `stop` for each generated response.
+
+**HTTP Response Code:** 200
+
+**Example request payload:**
+
+```json
+{
+    "prompt": "Text example",
     "n": 3,
     "stream": true
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
 {
@@ -236,26 +259,26 @@ The following table outlines the various ways content filtering can appear:
 }
 ```
 
-### Scenario: You make a streaming completions call asking for multiple completions and at least a portion of the output content is filtered
+### Scenario 5: Streaming call with filtered content
 
-|**HTTP Response Code** | **Response behavior**|
-|------------|------------------------|
-| 200 | For a given generation index, the last chunk of the generation includes a non-null `finish_reason` value. The value is `content_filter` when the generation is filtered.|
+For a given generation index, the last chunk of the generation includes a non-null `finish_reason` value. The value is `content_filter` when the generation is filtered.
+
+**HTTP Response Code:** 200
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example",
+    "prompt": "Text example",
     "n": 3,
     "stream": true
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
- {
+{
     "id": "cmpl-example",
     "object": "text_completion",
     "created": 1653670515,
@@ -271,23 +294,23 @@ The following table outlines the various ways content filtering can appear:
 }
 ```
 
-### Scenario: Content filtering system doesn't run on the completion
+### Scenario 6: Content filtering system unavailable
 
-| **HTTP Response Code** | **Response behavior**|
-|------------------------|----------------------|
-| 200 | If the content filtering system is down or otherwise unable to complete the operation in time, your request still completes without content filtering. You can determine that the filtering wasn't applied by looking for an error message in the `content_filter_result` object.|
+If the content filtering system is down or otherwise unable to complete the operation in time, your request still completes without content filtering. You can determine that the filtering wasn't applied by looking for an error message in the `content_filter_results` object.
+
+**HTTP Response Code:** 200
 
 **Example request payload:**
 
 ```json
 {
-    "prompt":"Text example",
+    "prompt": "Text example",
     "n": 1,
     "stream": false
 }
 ```
 
-**Example response JSON:**
+**Example response:**
 
 ```json
 {
@@ -301,7 +324,7 @@ The following table outlines the various ways content filtering can appear:
             "index": 0,
             "finish_reason": "length",
             "logprobs": null,
-            "content_filter_result": {
+            "content_filter_results": {
                 "error": {
                     "code": "content_filter_error",
                     "message": "The contents are not filtered"
@@ -311,6 +334,16 @@ The following table outlines the various ways content filtering can appear:
     ]
 }
 ```
+
+
+## Best practices
+
+As part of your application design, consider the following best practices to deliver a positive experience with your application while minimizing potential harms:
+
+- **Handle filtered content appropriately**: Decide how you want to handle scenarios where your users send prompts containing content that is classified at a filtered category and severity level or otherwise misuse your application.
+- **Check finish_reason**: Always check the `finish_reason` to see if a completion is filtered.
+- **Verify content filter execution**: Check that there's no error object in the `content_filter_results` (indicating that content filters didn't run).
+- **Display citations for protected material**: If you're using the protected material code model in annotate mode, display the citation URL when you're displaying the code in your application.
 
 ## Related content
 

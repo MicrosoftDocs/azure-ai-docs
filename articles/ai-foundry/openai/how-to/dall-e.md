@@ -145,7 +145,7 @@ The following is a sample request body. You specify a number of options, defined
 ---
 
 > [!TIP]
-> For image generation token costs, see [Image tokens](../overview.md#image-generation-tokens).
+> For image generation token costs, see [Image tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 
 ### Output
@@ -448,7 +448,7 @@ DALL-E models don't support the Image Edit API.
 
 ## Related content
 
-* [What is Azure OpenAI?](../overview.md)
+* [What is Azure OpenAI?](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 * [Quickstart: Generate images with Azure OpenAI](../dall-e-quickstart.md)
 * [Image API reference](/azure/ai-foundry/openai/reference#image-generation)
 * [Image API (preview) reference](/azure/ai-foundry/openai/reference-preview)

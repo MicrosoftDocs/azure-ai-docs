@@ -41,7 +41,7 @@ In this article, you'll learn how to deploy a model by using no-code deployment 
 
 [!INCLUDE [basic prereqs](includes/machine-learning-cli-prereqs.md)]
 
-* A working Python 3.8 or later environment. 
+* A working Python 3.10 or later environment. 
 
 * You must have additional Python packages installed for scoring. You can install them by using the following code. They include:
     * NumPy. An array and numerical computing library.
@@ -73,7 +73,7 @@ In this article, you'll learn how to deploy a model by using no-code deployment 
 
 [!INCLUDE [sdk](includes/machine-learning-sdk-v2-prereqs.md)]
 
-* A working Python 3.8 or later environment.
+* A working Python 3.10 or later environment.
 
 * You must have additional Python packages installed for scoring. You can install them by using the following code. They include:
     * NumPy. An array and numerical computing library.

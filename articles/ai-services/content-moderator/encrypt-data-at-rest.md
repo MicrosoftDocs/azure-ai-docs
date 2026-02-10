@@ -5,7 +5,7 @@ description: Content Moderator encryption of data at rest.
 author: erindormier
 manager: nitinme
 ms.service: azure-ai-content-moderator
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/12/2025
 ms.author: egeaney
 #Customer intent: As a user of the Content Moderator service, I want to learn how encryption at rest works.

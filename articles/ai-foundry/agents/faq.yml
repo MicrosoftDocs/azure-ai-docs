@@ -8,7 +8,7 @@ metadata:
   ms.service: azure-ai-foundry
   ms.subservice: azure-ai-foundry-agent-service
   ms.topic: faq
-  ms.date: 01/20/2026
+  ms.date: 02/02/2026
   ms.author: aahi
   author: aahill
   ms.custom:
@@ -39,9 +39,15 @@ sections:
       - question: |
           What permissions (RBAC roles) do I need?
         answer: |
-          Role requirements depend on what you're doing. For example, you typically need permissions to create an account and project, and separate permissions to create and edit agents.
+          Role requirements depend on what you're doing. Common roles include:
 
-          For the current role requirements, see [Required permissions](environment-setup.md#required-permissions) and [Role-based access control (RBAC) in Microsoft Foundry](../concepts/rbac-foundry.md).
+          * **Azure AI Account Owner**: Create accounts and projects
+          * **Azure AI User**: Create and edit agents
+          * **Role Based Access Control Administrator** (or **Owner**): Required for standard setup to assign roles to connected resources
+
+          For standard setup, you also need the `Microsoft.Authorization/roleAssignments/write` permission.
+
+          For complete role requirements, see [Required permissions](environment-setup.md#required-permissions) and [Role-based access control (RBAC) in Microsoft Foundry](../concepts/rbac-foundry.md).
       - question: |
           Where should I start if I'm new to Foundry Agent Service?
         answer: |
@@ -63,13 +69,16 @@ sections:
           Where is this data stored?
         answer: |
           * **Basic setup**: Data is stored in a secure, Microsoft-managed storage account that's logically separated.  
-          * **Standard setup**: Data is stored in your own Azure resources, so you have full ownership and control.
+          * **Standard setup**: Data is stored in your own Azure resources, so you have full ownership and control:
+            * **Azure Storage**: Files and attachments
+            * **Azure Cosmos DB**: Threads and conversation history
+            * **Azure AI Search**: Vector stores
 
           To learn about setup options that control where data is stored, see [Set up your environment](environment-setup.md#choose-your-setup).
       - question: |
           How long is this data stored?
         answer: |
-          Data persists unless you explicitly delete it.
+          Data persists unless you explicitly delete it. To delete agent data, use the API or SDK to delete threads, files, or vector stores.
 
           For concepts and terminology (for example, conversation and response), see [Agent runtime components](../default/agents/concepts/runtime-components.md).
       - question: | 
@@ -140,13 +149,19 @@ sections:
 
           For details, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md) and [Virtual network configuration](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
       - question: |
-          What regions are supported for Class A? 
+          What regions support virtual network isolation?
         answer: | 
-          Region availability and limitations can change. For the current requirements and limitations, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md).
+          Region availability for virtual network isolation can change. For the current supported regions and limitations, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md).
       - question: |
           What class range is supported for public or private Class A, B, and C subnets? 
         answer: |
-          Only private Class A, B, and C ranges are supported. No public class ranges are supported.  
+          Only private IP ranges are supported:
+
+          * **Class A**: 10.0.0.0/8
+          * **Class B**: 172.16.0.0/12
+          * **Class C**: 192.168.0.0/16
+
+          Public IP ranges aren't supported for agent subnets.  
       - question: |
           What is the minimum size for the agent subnet, and how many IPs should I use?
         answer: |
@@ -170,7 +185,7 @@ sections:
       - question: 
           Can multiple Microsoft Foundry resources reuse the virtual network? 
         answer: |
-          Yes, multiple Microsoft Foundry resources can reuse a virtual network. But the agent runtime subnet is per Microsoft Foundry account.
+          Yes, multiple Microsoft Foundry resources can reuse the same virtual network. However, each Foundry resource requires its own dedicated agent runtime subnet—the agent subnet can't be shared across multiple Foundry resources.
       - question: |
           Does the virtual network need to be in the same resource group as Foundry?
         answer: |

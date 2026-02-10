@@ -37,7 +37,7 @@ The steps in this tutorial are:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
-- A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Finish the [Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you don't have one.
+- A [deployed Azure OpenAI](../foundry-models/how-to/deploy-foundry-models.md) chat model. Finish the [Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you don't have one.
 
 - A Search service connection to index the sample product data. If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-an-azure-ai-search-service) and [connect](copilot-sdk-create-resources.md#connect-the-azure-ai-search-to-your-project) a search service.
 

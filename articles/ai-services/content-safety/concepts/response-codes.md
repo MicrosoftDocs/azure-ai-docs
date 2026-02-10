@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
-ms.topic: conceptual
+ms.topic: error-reference
 ms.date: 09/16/2025
 ms.author: pafarley
 ---

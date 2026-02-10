@@ -5,7 +5,7 @@ description: Learn about groundedness in large language model (LLM) responses, a
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/21/2025
 ms.author: pafarley
 ---

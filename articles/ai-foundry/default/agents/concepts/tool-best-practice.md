@@ -1,20 +1,21 @@
 ---
 title: "Tool best practices for Microsoft Foundry Agent Service"
-description: "Best practices for configuring and using agent tools in Microsoft Foundry Agent Service, including security guidance, availability, and troubleshooting."
+description: "Learn tool best practices for Foundry Agent Service: configure tool_choice, secure tool usage, and troubleshoot tool-calling issues."
 author: aahill
 ms.author: aahi
-ms.date: 01/20/2026
-ms.custom: references_regions
+ms.date: 02/03/2026
+ms.custom: references_regions, pilot-ai-workflow-jan-2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
+#CustomerIntent: As a developer building agents, I want to understand tool best practices so that I can configure reliable and secure tool usage.
 ---
 
 # Tool best practices for Microsoft Foundry Agent Service
 
-Tools help your agent retrieve information, take actions, and use external capabilities (such as retrieval, search, and API calls). Use the guidance in this article to choose tools, improve tool-calling reliability, and protect sensitive data.
+When you build agents in Microsoft Foundry Agent Service, tools extend what your agent can do—retrieving information, calling APIs, and connecting to external services. This article helps you configure tools effectively, control when the model calls them, and keep your data secure.
 
 > [!TIP]
 > In your agent instructions, describe what each tool is for and when to use it. For example:
@@ -23,7 +24,7 @@ Tools help your agent retrieve information, take actions, and use external capab
 
 ## Prerequisites
 
-- Access to a Foundry project in the Foundry portal.
+- Access to a Foundry project in the Foundry portal with the **Azure AI Developer** role or equivalent permissions.
 - A model deployed in the same project.
 - Any required connections configured for the tools you plan to use (for example, Azure AI Search, SharePoint, or Bing grounding).
 
@@ -36,11 +37,11 @@ Tools help your agent retrieve information, take actions, and use external capab
 
 ### Control tool calling with `tool_choice`
 
-`tool_choice` is the most deterministic way to control whether the model calls a tool.
+Use `tool_choice` for the most deterministic control over tool calling.
 
 - `auto`: The model decides whether to call tools.
 - `required`: The model must call one or more tools.
-- `none`: The model does not call tools.
+- `none`: The model doesn't call tools.
 
 For details, see `tool_choice` in [Foundry project REST (preview)](../../../reference/foundry-project-rest-preview.md).
 
@@ -52,7 +53,7 @@ For details, see `tool_choice` in [Foundry project REST (preview)](../../../refe
 
 ## Secure tool usage
 
-Tools can send and receive data outside the model. Use these practices to reduce security and privacy risks:
+Tools send and receive data outside the model. Reduce security and privacy risks with these practices:
 
 - Treat tool outputs as untrusted input and validate critical values before acting on them.
 - Send only the information required to complete the task.
@@ -63,15 +64,13 @@ Tools can send and receive data outside the model. Use these practices to reduce
 
 ## Tool support by region and model
 
-Tool availability depends on both **region** and **model**.
+Region and model determine which tools are available to your agent.
 
-**How to use the tables**:
+> [!NOTE]
+> In the tables below: **Yes** means fully supported, **No** means not supported, and **Limited** means partial support that varies by tool configuration. Check individual tool documentation for details.
 
-- **Yes**/**yes**: Supported.
-- **No**/**no**: Not supported.
-- **Limited**: Partially supported (capability depends on the tool and model).
+The following table shows tool availability by [region](../../../openai/how-to/responses.md#region-availability).
 
-Tools are available in the following [regions](../../../openai/how-to/responses.md#region-availability) with the following limitations.
 > [!NOTE]
 > This region availability table only accounts for service availability. You need to make sure the model you want to use is also available in the same region.
 
@@ -103,6 +102,7 @@ Tools are available in the following [regions](../../../openai/how-to/responses.
 | westus3             | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 
 Tools are supported by the following models.
+
 > [!NOTE]
 > For the image generation tool, you need both the `gpt-image-1` model and a large language model (LLM) as the orchestrator in the same Microsoft Foundry project.
 
@@ -160,20 +160,30 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 
 ## Related content
 
+### Tool management
+
 - [Discover and manage tools in the Foundry tool catalog (preview)](tool-catalog.md)
 - [Tools governance with AI Gateway (preview)](../how-to/tools/governance.md)
-- Tool how-tos:
-    - [Azure AI Search](../how-to/tools/ai-search.md)
-    - [File search](../how-to/tools/file-search.md)
-    - [Web search (preview)](../how-to/tools/web-search.md)
-    - [Grounding with Bing tools](../how-to/tools/bing-tools.md)
-    - [SharePoint (preview)](../how-to/tools/sharepoint.md)
-    - [Fabric data agent (preview)](../how-to/tools/fabric.md)
-    - [Model Context Protocol (MCP) (preview)](../how-to/tools/model-context-protocol.md)
-    - [OpenAPI tool](../how-to/tools/openapi.md)
-    - [Function calling](../how-to/tools/function-calling.md)
-    - [Code interpreter](../how-to/tools/code-interpreter.md)
-    - [Browser automation (preview)](../how-to/tools/browser-automation.md)
-    - [Computer Use (preview)](../how-to/tools/computer-use.md)
-    - [Image generation (preview)](../how-to/tools/image-generation.md)
-    - [Agent2Agent (A2A) tool (preview)](../how-to/tools/agent-to-agent.md)
+
+### Retrieval and search tools
+
+- [Azure AI Search](../how-to/tools/ai-search.md)
+- [File search](../how-to/tools/file-search.md)
+- [Web search (preview)](../how-to/tools/web-search.md)
+- [Grounding with Bing tools](../how-to/tools/bing-tools.md)
+- [SharePoint (preview)](../how-to/tools/sharepoint.md)
+
+### Data and integration tools
+
+- [Fabric data agent (preview)](../how-to/tools/fabric.md)
+- [Model Context Protocol (MCP) (preview)](../how-to/tools/model-context-protocol.md)
+- [OpenAPI tool](../how-to/tools/openapi.md)
+- [Function calling](../how-to/tools/function-calling.md)
+
+### Automation and generation tools
+
+- [Code interpreter](../how-to/tools/code-interpreter.md)
+- [Browser automation (preview)](../how-to/tools/browser-automation.md)
+- [Computer Use (preview)](../how-to/tools/computer-use.md)
+- [Image generation (preview)](../how-to/tools/image-generation.md)
+- [Agent2Agent (A2A) tool (preview)](../how-to/tools/agent-to-agent.md)

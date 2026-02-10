@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: overview
-ms.date: 11/04/2024
+ms.date: 01/30/2026
 ms.author: pafarley
 ---
 

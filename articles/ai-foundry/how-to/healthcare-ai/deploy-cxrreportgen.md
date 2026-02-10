@@ -1,125 +1,171 @@
 ---
-title: How to deploy and use CXRReportGen healthcare AI model with Microsoft Foundry
+title: Deploy CXRReportGen Healthcare AI Model in Foundry
 titleSuffix: Microsoft Foundry
-description: Learn how to use CXRReportGen Healthcare AI Model with Microsoft Foundry.
+description: Learn how to deploy and use the CXRReportGen healthcare AI model with Microsoft Foundry to generate grounded findings from chest X-ray studies. Follow step-by-step instructions to deploy, configure, and invoke the model endpoint.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 01/26/2026
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
 manager: nitinme
 author: msakande
-#Customer intent: As a Data Scientist I want to learn how to use the CXRReportGen healthcare AI model to generate grounded findings.
+ms.custom: dev-focus
+ai-usage: ai-assisted
+#customer intent: As a data scientist, I want to deploy the CXRReportGen healthcare AI model so that I can generate grounded findings from chest X-ray studies.
 
 ---
 
-# How to use CXRReportGen Healthcare AI model to generate grounded findings
+# How to use CXRReportGen healthcare AI model to generate grounded findings
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [health-ai-models-meddev-disclaimer](../../includes/health-ai-models-meddev-disclaimer.md)]
 
-In this article, you learn how to deploy CXRReportGen as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
+CXRReportGen is a multimodal model that generates grounded findings from chest X-ray studies. In this article, you learn how to deploy CXRReportGen as an online endpoint for real-time inference and issue a basic call to the API. The steps you take are:
 
-* Deploy the model to a self-hosted managed compute.
-* Grant permissions to the endpoint.
-* Send test data to the model, receive, and interpret results.
+1. Deploy the model to a self-hosted managed compute.
+1. Grant permissions to the endpoint.
+1. Send test data to the model, receive results, and interpret them.
 
-## CXRReportGen - grounded report generation model for chest X-rays
-Radiology reporting demands detailed image understanding, integration of multiple inputs (including comparisons with prior imaging), and precise language generation. These requirements make it an ideal candidate for generative multimodal models. CXRReportGen generates a list of findings from a chest X-ray study and also performs a _grounded report generation_ or _grounding_ task. That task incorporates the localization of individual findings on the image. Grounding enhances the clarity of image interpretation and the transparency of AI-generated text, which ends up improving the utility of automated report drafting.
-
-The following animation demonstrates the conceptual architecture of the CXRReportGen model, which consists of an embedding model paired with a general reasoner large language model (LLM). 
-
-:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-reportgen.gif" alt-text="Animation of CXRReportGen architecture and data flow.":::
-
-The CXRReportGen model combines a radiology-specific image encoder with a large language model and takes as inputs a more comprehensive set of data than many traditional approaches. The input data includes the current frontal image, the current lateral image, the prior frontal image, the prior report, and the indication, technique, and comparison sections of the current report. These additions significantly enhance report quality and reduce incorrect information. They ultimately demonstrate the feasibility of grounded reporting as a novel and richer task in automated radiology.
+CXRReportGen generates a list of findings from a chest X-ray study and also performs a *grounded report generation or grounding task*. That task incorporates the localization of individual findings on the image. The model combines a radiology-specific image encoder with a large language model and takes as inputs a more comprehensive set of data than many traditional approaches to enhance report quality and reduce incorrect information. To learn more about the model, see [Learn more about the model](#learn-more-about-the-model).
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md)
 
-- Azure role-based access controls (Azure RBAC) to grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../../concepts/rbac-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) grant access to operations in Microsoft Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. Deploying models and invoking endpoints requires this role. For more information, see [Role-based access control in Foundry portal](../../concepts/rbac-foundry.md).
+
+- Python 3.8 or later.
+
+- Install the required Python packages:
+  ```bash
+  pip install azure-ai-ml azure-identity
+  ```
+
+## Sample notebook
+
+For a complete working example, see this interactive Python notebook:
+
+* [Deploying and Using CXRReportGen](https://aka.ms/healthcare-ai-examples-cxr-deploy): Learn how to deploy the CXRReportGen model and integrate it into your workflow. This notebook also covers bounding-box parsing and visualization techniques.
+
 
 ## Deploy the model to a managed compute
 
-When you deploy to a self-hosted managed inference solution, you can customize and control all the details about how the model is served. You can deploy the model from its model card in the catalog UI of [Foundry](https://aka.ms/healthcaremodelstudio), [Azure Machine Learning studio](https://ml.azure.com/model/catalog), or [deploy it programmatically](../deploy-models-managed.md).
+Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model's served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. This endpoint lets you send inference requests to your model. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
 
-To __deploy the model through the UI__:
+To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md). After deployment completes, note your endpoint name and deployment name for use in the inference code.
 
-1. Go to the model catalog.
-1. Search for the _CxrReportGen_ model and select its model card.
-1. On the model's overview page, select __Use this model__ to open the deployment window. 
-    
-    > [!NOTE]
-    > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
-
-1. Select the checkbox in the deployment window to use the temporary shared quota.
-1. The deployment window displays settings that include a virtual machine selection, an endpoint name, and a deployment name. You can modify these settings. Once you're satisfied with them, select **Deploy**.
-
-To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
-
-
-## Work with a grounded report generation model for chest X-ray analysis
+## Send inference requests to the grounded report generation model
 
 In this section, you consume the model and make basic calls to it.
 
 ### Use REST API to consume the model
 
-Consume the CXRReportGen report generation model as a REST API, using simple GET requests or by creating a client as follows:
+Use the model as a REST API, by using simple GET requests or by creating a client as follows:
 
 ```python
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
+# Authenticate using Azure credentials
 credential = DefaultAzureCredential()
 
+# Create ML client from workspace configuration file (config.json)
+# The config file is automatically created on Azure ML compute instances
 ml_client_workspace = MLClient.from_config(credential)
 ```
 
-In the deployment configuration, you choose an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see the [corresponding documentation page](../../../machine-learning/how-to-setup-authentication.md). Also, the client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more on the [corresponding API documentation page](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
+This code authenticates your session and creates a workspace client that you use to invoke the deployed endpoint. The `DefaultAzureCredential` automatically uses available authentication methods in your environment (managed identity, Azure CLI, and environment variables).
+
+Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
+
+In the deployment configuration, you select an authentication method. This example uses Azure Machine Learning token-based authentication. For more authentication options, see [Set up authentication](../../../machine-learning/how-to-setup-authentication.md). The client is created from a configuration file that's created automatically for Azure Machine Learning virtual machines (VMs). Learn more in the [MLClient.from_config API reference](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config).
 
 ### Make basic calls to the model
 
-After deploying the model, use the following code to send data and get a list of findings and the corresponding bounding boxes.
+After you deploy the model, use the following code to send data and get a list of findings and the corresponding bounding boxes.
 
 ```python
+import base64
+import json
+import os
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+
+# Helper function to read image as bytes
+def read_image(image_path):
+    with open(image_path, "rb") as f:
+        return f.read()
+
+# Set your endpoint and deployment names from the deployment step
+endpoint_name = "your-endpoint-name"  # Replace with your endpoint name
+deployment_name = "your-deployment-name"  # Replace with your deployment name
+
+# Set paths to your chest X-ray images
+frontal_path = "path/to/frontal_image.png"  # Replace with your frontal image path
+lateral_path = "path/to/lateral_image.png"  # Replace with your lateral image path (optional)
+
+# Set clinical context
+indication = "Cough and wheezing for 5 months"
+technique = "PA and lateral views of the chest were obtained"
+comparison = "None"
+
+# Encode images to base64 and prepare input data
 input_data = {
-        "frontal_image": base64.encodebytes(read_image(frontal_path)).decode("utf-8"),
-        "lateral_image": base64.encodebytes(read_image(lateral_path)).decode("utf-8"),
-        "indication": indication,
-        "technique": technique,
-        "comparison": comparison,
+    "frontal_image": base64.encodebytes(read_image(frontal_path)).decode("utf-8"),
+    "lateral_image": base64.encodebytes(read_image(lateral_path)).decode("utf-8"),
+    "indication": indication,
+    "technique": technique,
+    "comparison": comparison,
+}
+
+# Structure data according to the model's expected schema
+data = {
+    "input_data": {
+        "columns": list(input_data.keys()),
+        "index": [0],  # Set to number of concurrent requests (keep under 10)
+        "data": [
+            list(input_data.values()),
+        ],
     }
+}
 
-    data = {
-        "input_data": {
-            "columns": list(input_data.keys()),
-            #  IMPORTANT: Modify the index as needed
-            "index": [0],  # 1, 2],
-            "data": [
-                list(input_data.values()),
-            ],
-        }
-    }
+# Create request JSON file
+request_file_name = "sample_request_data.json"
+with open(request_file_name, "w") as request_file:
+    json.dump(data, request_file)
 
-    # Create request json
-    request_file_name = "sample_request_data.json"
-    with open(request_file_name, "w") as request_file:
-        json.dump(data, request_file)
+# Authenticate and create workspace client
+credential = DefaultAzureCredential()
+ml_client_workspace = MLClient.from_config(credential)
 
-    response = ml_client_workspace.online_endpoints.invoke(
-        endpoint_name=endpoint_name,
-        deployment_name=deployment_name,
-        request_file=request_file_name,
-    )
+# Invoke the endpoint
+response = ml_client_workspace.online_endpoints.invoke(
+    endpoint_name=endpoint_name,
+    deployment_name=deployment_name,
+    request_file=request_file_name,
+)
+
+# Parse and display the response
+result = json.loads(response)
+print("Generated Findings:")
+for finding_text, bounding_boxes in result["output"]:
+    print(f"- {finding_text}")
+    if bounding_boxes:
+        print(f"  Bounding boxes: {bounding_boxes}")
 ```
 
-## Use CXRReportGen REST API
-The CXRReportGen model works with a simple single-turn interaction where one request generates one response. 
+This code prepares a request with chest X-ray images and clinical context, sends it to your deployed endpoint, and receives a structured response. The model returns a list of clinical findings, each with optional bounding box coordinates indicating where on the image the finding is located. Bounding box coordinates are normalized (0-1 range), so multiply by image dimensions to get pixel coordinates.
+
+Reference: [MLClient.online_endpoints](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations), [base64 module](https://docs.python.org/3/library/base64.html)
+
+## Reference for REST API
+
+The CXRReportGen model assumes a simple single-turn interaction where one request produces one response. 
 
 ### Request schema
 
@@ -201,11 +247,15 @@ The response payload is a JSON-formatted string containing the following fields:
 
 The deployed model API supports images encoded in PNG or JPEG formats. For optimal results, we recommend using uncompressed or lossless PNGs with 8-bit monochromatic images.
 
-## Learn more from samples
+## Learn more about the model
 
-CXRReportGen is a versatile model that you can apply to a wide range of tasks and imaging modalities. For more examples, see the following interactive Python notebook: 
+Radiology reporting demands detailed image understanding, integration of multiple inputs (including comparisons with prior imaging), and precise language generation. These requirements make it an ideal candidate for generative multimodal models. CXRReportGen generates a list of findings from a chest X-ray study and also performs a _grounded report generation_ or _grounding_ task. That task incorporates the localization of individual findings on the image. Grounding enhances the clarity of image interpretation and the transparency of AI-generated text, which ends up improving the utility of automated report drafting.
 
-* [Deploying and Using CXRReportGen](https://aka.ms/healthcare-ai-examples-cxr-deploy): Learn how to deploy the CXRReportGen model and integrate it into your workflow. This notebook also covers bounding-box parsing and visualization techniques.
+The following animation demonstrates the conceptual architecture of the CXRReportGen model, which consists of an embedding model paired with a general reasoner large language model (LLM). 
+
+:::image type="content" source="../../media/how-to/healthcare-ai/healthcare-reportgen.gif" alt-text="Screenshot of an animated diagram showing the CXRReportGen model architecture with a radiology-specific image encoder processing chest X-ray inputs, followed by a large language model that generates findings with bounding box coordinates for grounded report generation.":::
+
+The CXRReportGen model combines a radiology-specific image encoder with a large language model and takes as inputs a more comprehensive set of data than many traditional approaches. The input data includes the current frontal image, the current lateral image, the prior frontal image, the prior report, and the indication, technique, and comparison sections of the current report. These additions significantly enhance report quality and reduce incorrect information. They ultimately demonstrate the feasibility of grounded reporting as a novel and richer task in automated radiology.
 
 ## Related content
 

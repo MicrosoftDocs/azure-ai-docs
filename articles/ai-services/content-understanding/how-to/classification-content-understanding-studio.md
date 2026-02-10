@@ -5,7 +5,8 @@ description: Learn about how to classify and route your data using Content Under
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 10/30/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
@@ -16,19 +17,20 @@ ms.custom:
 
 # Classify and route your data using Content Understanding Studio
 
-Content Understanding Studio enables you to create custom classification workflows that route your data to the right custom analyzer. With routing, you can input multiple different data streams into the same pipeline and ensure your data is always routed to the best analyzer. 
+Content Understanding Studio enables you to create custom classification workflows that route your data to the right analyzer. With routing, you can send multiple data streams through the same pipeline and ensure your data is routed to the best analyzer.
 
 ## Prerequisites
 
 To get started, make sure you have the following resources and permissions:
+
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
-   * This resource is listed under **Foundry** > **Foundry** in the portal.
+* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal, created in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+  * This resource is listed under **Foundry** > **Foundry** in the portal.
 * [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
 
 ## Sign in to Content Understanding Studio
 
-Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in with your credentials. You might recognize the classic Azure Document Intelligence in Foundry Tools Studio experience. Content Understanding extends the same content and field extraction that you're familiar with in Document Intelligence across all modalities - document, image, video, and audio. Select the option to try out the new Content Understanding experience to get all of the multimodal capabilities of the service. 
+Go to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in with your credentials. If you're familiar with the classic Azure Document Intelligence in Foundry Tools Studio experience, Content Understanding extends the same content and field extraction across all modalities—document, image, video, and audio. Select the option to try the new Content Understanding experience to access multimodal capabilities.
 
 ## Create your custom categories
 
@@ -52,7 +54,7 @@ Custom categories let you route your data to a specific analyzer so you get the 
 
 1. **Use your classification analyzer**: Now you have an analyzer endpoint that you can use in your own application via the REST API.
 
-## Next step
+## Next steps
 
-* Learn more about [Best practices for Azure Content Understanding in Foundry Tools](../concepts/best-practices.md)  
+* Learn more about [best practices for Azure Content Understanding in Foundry Tools](../concepts/best-practices.md).
 

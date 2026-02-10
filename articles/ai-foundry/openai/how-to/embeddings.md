@@ -189,7 +189,7 @@ Our embedding models may be unreliable or pose social risks in certain cases, an
 ## Next steps
 
 * Learn more about using Azure OpenAI and embeddings to perform document search with our [embeddings tutorial](../tutorials/embeddings.md).
-* Learn more about the [underlying models that power Azure OpenAI](../concepts/models.md).
+* Learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * Store your embeddings and perform vector (similarity) search using your choice of service:
   * [Azure AI Search](/azure/search/vector-search-overview)
   * [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search)

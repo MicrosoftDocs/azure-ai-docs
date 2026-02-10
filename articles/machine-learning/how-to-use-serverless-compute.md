@@ -8,7 +8,9 @@ ms.subservice: core
 ms.custom:
   - build-2023
   - ignite-2023
+  - dev-focus
 ms.topic: how-to
+ai-usage: ai-assisted
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: bijuv
@@ -27,6 +29,81 @@ You can specify the resources the job needs. Azure Machine Learning manages the 
 Enterprises can also reduce costs by specifying optimal resources for each job. IT administrators can still apply control by specifying core quota at subscription and workspace levels and applying Azure policies.
 
 You can use serverless compute to fine-tune models in the model catalog. You can use it to run all types of jobs by using Azure Machine Learning studio, the Python SDK, and Azure CLI. You can also use serverless compute to build environment images and for responsible AI dashboard scenarios. Serverless jobs consume the same quota as Azure Machine Learning compute quota. You can choose standard (dedicated) tier or spot (low-priority) VMs. Managed identity and user identity are supported for serverless jobs. The billing model is the same as the model for Azure Machine Learning compute.
+
+## Prerequisites
+
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- An [Azure Machine Learning workspace](how-to-manage-workspace.md).
+- The Azure CLI with the `ml` extension, or the Azure Machine Learning Python SDK v2:
+
+  # [Python SDK](#tab/python)
+
+  ```bash
+  pip install azure-ai-ml azure-identity
+  ```
+
+  # [Azure CLI](#tab/cli)
+
+  ```azurecli
+  az extension add --name ml
+  ```
+
+  ---
+
+- **Role requirements**: You need at least **Contributor** or **Azure ML Data Scientist** role on the workspace to submit jobs.
+
+## Submit your first serverless job
+
+The following example shows a minimal command job that runs on serverless compute. When you omit the `compute` parameter, the job automatically uses serverless compute.
+
+# [Python SDK](#tab/python)
+
+```python
+from azure.ai.ml import command, MLClient
+from azure.identity import DefaultAzureCredential
+
+# Initialize the ML client
+credential = DefaultAzureCredential()
+ml_client = MLClient(
+    credential=credential,
+    subscription_id="<Azure-subscription-ID>",
+    resource_group_name="<Azure-resource-group>",
+    workspace_name="<Azure-Machine-Learning-workspace>",
+)
+
+# Create a simple command job - omitting 'compute' uses serverless
+job = command(
+    command="echo 'hello world'",
+    environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
+)
+
+# Submit the job
+returned_job = ml_client.create_or_update(job)
+print(f"Job submitted: {returned_job.name}")
+```
+
+# [Azure CLI](#tab/cli)
+
+Create a file named `hello-serverless.yaml`:
+
+```yaml
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+command: echo "hello world"
+environment:
+  image: library/python:latest
+```
+
+Submit the job:
+
+```azurecli
+az ml job create --file hello-serverless.yaml --resource-group <resource-group> --workspace-name <workspace>
+```
+
+---
+
+**Expected output:** The job is created and returns a job object with status `NotStarted` or `Starting`. Monitor progress in Azure ML studio or by calling `ml_client.jobs.get(returned_job.name)`.
+
+**Reference:** [command function](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-command) | [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 
 ## Advantages of serverless compute
 
@@ -78,6 +155,11 @@ When you [view your usage and quotas in the Azure portal](how-to-manage-quotas.m
 
 ## Identity support and credential passthrough
 
+Serverless compute supports two identity options for accessing storage and other resources:
+
+- **User credential passthrough**: Uses your Microsoft Entra ID token. Best for interactive development and testing.
+- **User-assigned managed identity**: Uses the workspace's managed identity. Best for production scenarios and automation.
+
 * **User credential passthrough**: Serverless compute fully supports user credential passthrough. The user token of the user submitting the job is used for storage access. These credentials are from Microsoft Entra ID.
 
   Serverless compute doesn't support system-assigned identity.
@@ -88,7 +170,6 @@ When you [view your usage and quotas in the Azure portal](how-to-manage-quotas.m
     from azure.ai.ml import command
     from azure.ai.ml import MLClient     # Handle to the workspace.
     from azure.identity import DefaultAzureCredential     # Authentication package.
-    from azure.ai.ml.entities import ResourceConfiguration
     from azure.ai.ml.entities import UserIdentityConfiguration 
 
     credential = DefaultAzureCredential()
@@ -102,7 +183,7 @@ When you [view your usage and quotas in the Azure portal](how-to-manage-quotas.m
     job = command(
         command="echo 'hello world'",
         environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
-            identity=UserIdentityConfiguration(),
+        identity=UserIdentityConfiguration(),
     )
     # Submit the command job.
     ml_client.create_or_update(job)
@@ -130,6 +211,8 @@ When you [view your usage and quotas in the Azure portal](how-to-manage-quotas.m
     The rest of the Azure CLI examples show variations of the hello.yaml file. Run each of them in the same way.
 
     ---
+
+    **Reference:** [UserIdentityConfiguration](/python/api/azure-ai-ml/azure.ai.ml.entities.useridentityconfiguration) | [command function](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-command)
 
 * **User-assigned managed identity**: When you have a workspace configured with [user-assigned managed identity](how-to-identity-based-service-authentication.md#workspace), you can use that identity with the serverless job for storage access. For information about accessing secrets, see [Use authentication credential secrets in Azure Machine Learning jobs](how-to-use-secrets-in-runs.md).  
 
@@ -176,7 +259,6 @@ When you [view your usage and quotas in the Azure portal](how-to-manage-quotas.m
     from azure.ai.ml import command
     from azure.ai.ml import MLClient     # Handle to the workspace.
     from azure.identity import DefaultAzureCredential    # Authentication package.
-    from azure.ai.ml.entities import ResourceConfiguration
     from azure.ai.ml.entities import ManagedIdentityConfiguration
     
     credential = DefaultAzureCredential()
@@ -208,6 +290,8 @@ When you [view your usage and quotas in the Azure portal](how-to-manage-quotas.m
     ```
     
     ---
+
+**Reference:** [ManagedIdentityConfiguration](/python/api/azure-ai-ml/azure.ai.ml.entities.managedidentityconfiguration)
 
 ## Configure properties for command jobs
 
@@ -298,6 +382,8 @@ You can override these defaults. If you want to specify the VM type or number of
 
     ---
 
+    **Reference:** [JobResourceConfiguration](/python/api/azure-ai-ml/azure.ai.ml.entities.jobresourceconfiguration)
+
 * To change the job tier, use `queue_settings` to choose between dedicated VMs (`job_tier: Standard`) and low priority VMs (`job_tier: Spot`).
 
     # [Python SDK](#tab/python)
@@ -343,7 +429,7 @@ Here's an example that shows all fields specified, including the identity the jo
 from azure.ai.ml import command
 from azure.ai.ml import MLClient      # Handle to the workspace.
 from azure.identity import DefaultAzureCredential     # Authentication package.
-from azure.ai.ml.entities import ResourceConfiguration
+from azure.ai.ml.entities import JobResourceConfiguration
 from azure.ai.ml.entities import UserIdentityConfiguration 
 
 credential = DefaultAzureCredential()
@@ -357,12 +443,12 @@ ml_client = MLClient(
 job = command(
     command="echo 'hello world'",
     environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
-         identity=UserIdentityConfiguration(),
+    identity=UserIdentityConfiguration(),
     queue_settings={
-      "job_tier": "Standard"  
+        "job_tier": "Standard"
     }
 )
-job.resources = ResourceConfiguration(instance_type="Standard_E4s_v3", instance_count=1)
+job.resources = JobResourceConfiguration(instance_type="Standard_E4s_v3", instance_count=1)
 # Submit the command job.
 ml_client.create_or_update(job)
 ```
@@ -384,6 +470,9 @@ resources:
 ```
 
 ---
+
+**Reference:** [JobResourceConfiguration](/python/api/azure-ai-ml/azure.ai.ml.entities.jobresourceconfiguration) | [UserIdentityConfiguration](/python/api/azure-ai-ml/azure.ai.ml.entities.useridentityconfiguration) | [command function](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-command)
+
 Here are two more examples of using serverless compute for training:
 * [First look at Azure Machine Learning](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/quickstart.ipynb)
 * [Train a model](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/train-model.ipynb)

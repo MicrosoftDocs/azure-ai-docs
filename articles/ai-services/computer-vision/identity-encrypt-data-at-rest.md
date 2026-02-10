@@ -9,7 +9,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 08/21/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 #Customer intent: As a user of the Face service, I want to learn how encryption at rest works.

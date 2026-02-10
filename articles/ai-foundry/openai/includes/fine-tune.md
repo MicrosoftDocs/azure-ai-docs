@@ -18,4 +18,4 @@ keywords: ChatGPT
 >
 > The deletion of an inactive deployment doesn't delete or affect the underlying customized model. The customized model can be redeployed at any time.
 >
-> As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](../how-to/manage-costs.md#fine-tuned-models).
+> As described in [Azure OpenAI in Microsoft Foundry Models pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether chat completions or response API calls are made to the model. To learn more about planning and managing costs with Azure OpenAI, see [Plan and manage costs for Azure OpenAI](../../concepts/manage-costs.md#fine-tuned-models).

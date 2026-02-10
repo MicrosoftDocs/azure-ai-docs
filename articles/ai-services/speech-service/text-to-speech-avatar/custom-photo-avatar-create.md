@@ -14,7 +14,7 @@ zone_pivot_groups: foundry-speech-studio
 
 # How to create a custom photo avatar
 
-Custom photo avatar enables users to create a talking head avatar with only a photo. With custom photo avatar, users can efficiently create a personalized and more engaging voice live agent. 
+Custom photo avatar enables users to create a talking head avatar with only a photo. With custom photo avatar, users can efficiently create a personalized and more engaging Voice Live agent. 
 
 Custom photo avatar creation is a manual process. You can follow the below process, and after custom photo avatars are set up, you can access them in the Microsoft Foundry or through API.
 
@@ -53,10 +53,10 @@ You can use the custom photo avatar in a voice agent or create video content in 
 
 ### Use in Microsoft Foundry
 
-To use custom photo avatar in **Voice live** to create personalized voice agent:
+To use custom photo avatar in **Voice Live** to create personalized voice agent:
 1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the New Foundry toggle is on. 
 2. Select an existing project or create a new project in the resource where your custom photo avatars are deployed.
-3. Find the Voice live model playground
+3. Find the Voice Live model playground
    1. Select **Discover** in the upper-right navigation.
    1. Select **Models**.
    1. Search "speech"
@@ -78,6 +78,6 @@ To use custom photo avatar in **Text to speech avatar** to create talking head v
 
 * [Batch synthesis (REST)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch-avatar)
 * [Real-time synthesis (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
-* [Use avatar in Voice live API](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node/web/voice-live-avatar)
+* [Use avatar in Voice Live API](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node/web/voice-live-avatar)
 
 

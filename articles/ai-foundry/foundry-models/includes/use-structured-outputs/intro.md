@@ -29,6 +29,6 @@ To use structured outputs with chat completions models in your application, you 
 
 * A chat completions model deployment with JSON and structured outputs support. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md).
 
-    * You can check which models support structured outputs by checking the column **Response format** in the [Models](../../concepts/models.md) article.
+    * You can check which models support structured outputs by checking the column **Response format** in the [Models](../../concepts/models-sold-directly-by-azure.md) article.
 
     * This article uses `gpt-4o`.

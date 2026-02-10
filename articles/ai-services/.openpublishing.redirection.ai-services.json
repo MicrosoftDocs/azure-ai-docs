@@ -181,6 +181,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/voice-live-api-reference.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-live-api-reference-2025-10-01",
+      "redirect_document_id": false
+    },    
+    {
       "source_path_from_root": "/articles/ai-services/containers/index.yml",
       "redirect_url": "/azure/ai-services/cognitive-services-container-support",
       "redirect_document_id": false

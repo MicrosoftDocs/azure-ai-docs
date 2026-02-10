@@ -57,10 +57,6 @@ items:
   - name: Audio events reference
     href: ../../../openai/realtime-audio-reference.md
 
-# Specialized SDKs
-- name: Azure AI Evaluation SDK
-  href: /python/api/overview/azure/ai-evaluation-readme
-
 # Foundry Tools APIs and SDKs
 - name: Foundry Tools SDKs
   displayName: client library libraries development kit

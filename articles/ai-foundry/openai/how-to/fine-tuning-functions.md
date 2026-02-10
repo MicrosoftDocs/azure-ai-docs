@@ -6,8 +6,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 11/26/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 monikerRange: 'foundry-classic || foundry'
 ---
 
@@ -58,7 +58,7 @@ When constructing a training file of tool calling examples, you would take a fun
                     "properties": {
                         "location": {
                             "type": "string",
-                            "description": "The city and country, eg. San Francisco, USA"
+                            "description": "The city and country/region, eg. San Francisco, USA"
                         },
                         "format": { "type": "string", "enum": ["celsius", "fahrenheit"] }
                     },
@@ -73,7 +73,7 @@ When constructing a training file of tool calling examples, you would take a fun
 And express the information as a single line within your `.jsonl` training file as below:
 
 ```jsonl
-{"messages":[{"role":"user","content":"What is the weather in San Francisco?"},{"role":"assistant","tool_calls":[{"id":"call_id","type":"function","function":{"name":"get_current_weather","arguments":"{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}]}],"tools":[{"type":"function","function":{"name":"get_current_weather","description":"Get the current weather","parameters":{"type":"object","properties":{"location":{"type":"string","description":"The city and country, eg. San Francisco, USA"},"format":{"type":"string","enum":["celsius","fahrenheit"]}},"required":["location","format"]}}}]}
+{"messages":[{"role":"user","content":"What is the weather in San Francisco?"},{"role":"assistant","tool_calls":[{"id":"call_id","type":"function","function":{"name":"get_current_weather","arguments":"{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}]}],"tools":[{"type":"function","function":{"name":"get_current_weather","description":"Get the current weather","parameters":{"type":"object","properties":{"location":{"type":"string","description":"The city and country/region, eg. San Francisco, USA"},"format":{"type":"string","enum":["celsius","fahrenheit"]}},"required":["location","format"]}}}]}
 ```
 
 As with all fine-tuning training your example file requires at least 10 examples.
@@ -141,7 +141,7 @@ When constructing a training file of function calling examples, you would take a
 And express the information as a single line within your `.jsonl` training file as below:
 
 ```jsonl
-{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}], "functions": [{"name": "get_current_weather", "description": "Get the current weather", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "The city and country, eg. San Francisco, USA"}, "format": {"type": "string", "enum": ["celsius", "fahrenheit"]}}, "required": ["location", "format"]}}]}
+{"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}], "functions": [{"name": "get_current_weather", "description": "Get the current weather", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "The city and country/region, eg. San Francisco, USA"}, "format": {"type": "string", "enum": ["celsius", "fahrenheit"]}}, "required": ["location", "format"]}}]}
 ```
 
 As with all fine-tuning training your example file requires at least 10 examples.
@@ -185,4 +185,4 @@ As with the example before, this example is artificially expanded for readabilit
 
 * [Function calling fine-tuning scenarios](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/fine-tuning-with-function-calling-on-azure-openai-service/ba-p/4065968).
 * Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md).
-* Review fine-tuning [model regional availability](../concepts/models.md#fine-tuning-models).
+* Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).

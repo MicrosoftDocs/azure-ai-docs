@@ -5,7 +5,8 @@ description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vert
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -14,7 +15,7 @@ ms.custom:
 
 # Prebuilt analyzers in Azure Content Understanding in Foundry Tools
 
-Azure Content Understanding prebuilt analyzers provide a rich set of domain-specific extraction capabilities that go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. They understand how information is structured and used, adapting to the nuances of each content type.
+Azure Content Understanding prebuilt analyzers provide a set of domain-specific extraction capabilities that go beyond predefined schemas. They're powered by knowledge bases of real-world document examples. They understand how information is structured and used, adapting to the nuances of each content type.
 
 Prebuilt analyzers are ready-to-use tools that streamline common content processing tasks. You can use them for content ingestion in search and retrieval-augmented generation (RAG) workflows. You can also use them for intelligent document processing (IDP) to extract data from invoices or analyze call center recordings. These analyzers can also be used in agentic flows as tools for extracting structured representations from input files. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract other fields or refine outputs to better fit your specific workflow requirements.
 
@@ -34,22 +35,22 @@ Content extraction analyzers focus on optical character recognition and layout a
 
 #### `prebuilt-read`
 
-* Extracts various content elements such as words, paragraphs, formulas, and barcodes from documents
-* Provides basic optical character recognition (OCR) capabilities
-* Foundational text extraction without layout analysis
+* Extracts content elements such as words, paragraphs, formulas, and barcodes from documents.
+* Provides basic optical character recognition (OCR) capabilities.
+* Provides foundational text extraction without layout analysis.
 
-This prebuilt doesn't require a large language model (LLM) or Embeddings model.
+This prebuilt doesn't require a language model or embedding model.
 
 #### `prebuilt-layout`
 
-* Extracts various content and layout elements such as words, figures, paragraphs, and tables from documents
-* Identifies document structure including sections and formatting
-* Extracts hyperlinks embedded within documents
-* Captures annotations such as highlights, underlines, and strikethroughs in digital PDFs
-* Provides detailed layout information beyond basic text extraction
-* Detects all figure types including charts, diagrams, pictures, icons, and other images providing location information (PDF files only)
+* Extracts content and layout elements such as words, figures, paragraphs, and tables from documents.
+* Identifies document structure, including sections and formatting.
+* Extracts hyperlinks embedded within documents.
+* Captures annotations such as highlights, underlines, and strikethroughs in digital PDFs.
+* Provides detailed layout information beyond basic text extraction.
+* Detects figure types including charts, diagrams, pictures, icons, and other images, providing location information (PDF files only).
 
-This prebuilt doesn't require a large language model (LLM) or Embeddings model.
+This prebuilt doesn't require a language model or embedding model.
 
 ### Base analyzers
 
@@ -61,11 +62,11 @@ Base analyzers provide fundamental content processing capabilities specific to a
 * `prebuilt-video` - Base video processing
 
 > [!NOTE]
-> Currently, you can only derive custom analyzers from this set of five base analyzers.
+> Currently, you can only derive custom analyzers from this set of four base analyzers.
 
 ### Retrieval-augmented generation (RAG) analyzers
 
-Content understanding provides a set of analyzers optimized for retrieval-augmented generation (RAG) scenarios. These analyzers extract content with layout as markdown and perform semantic analysis to enhance retrieval quality for downstream applications.
+Content Understanding provides a set of analyzers optimized for retrieval-augmented generation (RAG) scenarios. These analyzers extract content with layout as markdown and perform semantic analysis to enhance retrieval quality for downstream applications.
 
 #### `prebuilt-documentSearch`
 

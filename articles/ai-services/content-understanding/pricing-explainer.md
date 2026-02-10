@@ -6,7 +6,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: concept-article
-ms.date: 10/03/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.custom:
   - build-2025
 ---
@@ -31,7 +32,7 @@ Content extraction transforms unstructured input (documents, audio, video) into 
 
 When you use AI-powered features that call large language models (LLMs), you incur two types of charges:
 
-- **Contextualization charges**: Prepares context, generate confidence scores, source grounding, and output formatting. For details see [Contextualization tokens](#contextualization-tokens).
+- **Contextualization charges**: Prepares context, generates confidence scores, provides source grounding, and formats output. For details, see [Contextualization tokens](#contextualization-tokens).
 - **Generative model charges**: Token-based costs from Microsoft Foundry model deployments (LLMs for generation, embeddings for training examples). Content Understanding uses the Foundry model deployment you provide for all generative AI-related calls. You won't see any LLM or embedding token usage billing in Content Understanding—that usage appears on your Foundry model deployment. For details see [Generative model charges](#generative-model-charges-llm). 
 
 **Generative features include**: Field extraction, figure analysis, segmentation, categorization, training.
@@ -51,7 +52,7 @@ If you only use content extraction without generative capabilities, you're charg
 ### 1. Test with representative files  
 Run a small test analysis with your actual files and schema. Check the `usage` object in the Analyzers API response to see actual token consumption:
 
-```json
+```jsonc
   "usage": {
     "documentPagesMinimal": 0, // Pages processed at the minimal level (i.e. txt, xlsx, html, and other digital file types)
     "documentPagesBasic": 0, // Pages processed at the basic level (i.e. read)
@@ -60,7 +61,7 @@ Run a small test analysis with your actual files and schema. Check the `usage` o
     "contextualizationToken": 2000,
     "tokens": {
       "gpt-4.1-input": 10400,
-      "gpt-4.1-output": 360,
+         "gpt-4.1-output": 360
     }
   }
 ```
@@ -112,8 +113,8 @@ Using GPT-4o-mini global deployment with the following pricing assumptions:
 Total Cost = $5.00 + $1.00 + $0.44 + $0.10 + $0.00 = $6.54 per 1000 pages
 ```
 
->[!Note] 
->These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
+> [!NOTE]
+> These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates.
 
 
 ## Detailed cost components

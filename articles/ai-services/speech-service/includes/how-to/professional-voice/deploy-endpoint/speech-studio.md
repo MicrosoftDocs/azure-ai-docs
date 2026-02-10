@@ -32,6 +32,15 @@ To create a custom voice endpoint:
 
 After your endpoint is deployed, the endpoint name appears as a link. Select the link to display information specific to your endpoint, such as the endpoint key, endpoint URL, and sample code. When the status of the deployment is **Succeeded**, the endpoint is ready for use.
 
+## Test your custom voice
+
+Once your custom voice endpoint has been deployed, you can try out your custom voice directly in the portal.
+
+1. Select **Deploy model** > **Deploy model**. 
+1. Select **Test endpoint**. 
+
+:::image type="content" source="../../../../media/custom-voice/cnv-endpoint-test.png" alt-text="Screenshot of a page to test an endpoint in Speech Studio." lightbox="../../../../media/custom-voice/cnv-endpoint-test.png":::
+
 ## Application settings
 
 The application settings that you use as REST API request parameters are available on the **Deploy model** tab in [Speech Studio](https://aka.ms/custom-voice-portal).

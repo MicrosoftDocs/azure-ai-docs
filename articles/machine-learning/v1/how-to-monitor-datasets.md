@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.reviewer: soumyapatro 
 ms.author: scottpolly
 author: s-polly
-ms.date: 02/04/2025
+ms.date: 01/28/2026
 ms.topic: how-to
 ms.custom:
   - UpdateFrequency5
@@ -24,9 +24,8 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks.
-Please check the content below to understand the replacement, feature gaps and manual change steps.
-
+> [!IMPORTANT]
+> Data drift (preview) was retired on September 1, 2025. Migrate to [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks. The content below explains the replacement, feature gaps, and migration steps.
 
 Learn how to monitor data drift and set alerts when drift is high.
 

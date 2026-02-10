@@ -71,7 +71,7 @@ sections:
 
           For more information, see [overview of RAG in Document Intelligence](concept/retrieval-augmented-generation.md)
 
-  - name: Document Intelligence Studio
+  - name: Document Intelligence/Content Understanding Studio
     questions:
       - question: |
           Do I need specific permissions to access Document Intelligence Studio?

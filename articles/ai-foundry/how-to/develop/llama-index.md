@@ -105,7 +105,7 @@ llm = AzureAICompletionsModel(
 > If your model deployment is hosted in Azure OpenAI in Foundry Models or Foundry Tools resource, configure the client as indicated at [Azure OpenAI models and Foundry Models service](#azure-openai-models-and-foundry-models-service).
 
 
-If your endpoint serves more than one model, like with the [Foundry Models service](../../model-inference/overview.md) or [GitHub Models](https://github.com/marketplace/models), you need to specify the `model_name` parameter:
+If your endpoint serves more than one model, like with the [Foundry Models service](../../foundry-models/concepts/models-sold-directly-by-azure.md) or [GitHub Models](https://github.com/marketplace/models), you need to specify the `model_name` parameter:
 
 ```python
 import os
@@ -176,9 +176,9 @@ llm = AzureAICompletionsModel(
 
 ### Azure OpenAI models and Foundry Models service
 
-If you're using Azure OpenAI or [Foundry Models service](../../model-inference/overview.md), make sure you have at least version `0.2.4` of the LlamaIndex integration. Use the `api_version` parameter if you need to select a specific `api_version`. 
+If you're using Azure OpenAI or [Foundry Models service](../../foundry-models/concepts/models-sold-directly-by-azure.md), make sure you have at least version `0.2.4` of the LlamaIndex integration. Use the `api_version` parameter if you need to select a specific `api_version`. 
 
-For the [Foundry Models service](../../model-inference/overview.md), you need to pass the `model_name` parameter:
+For the [Foundry Models service](../../foundry-models/concepts/models-sold-directly-by-azure.md), you need to pass the `model_name` parameter:
 
 ```python
 from llama_index.llms.azure_inference import AzureAICompletionsModel

@@ -25,7 +25,7 @@ Azure Language provides both remote and local MCP server options:
 * **Remote server**: Available through Foundry Tool Catalog for cloud-hosted deployments.
 * **Local server**: Available for developers who prefer to host the server in their own environment.
 
-For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-).
+For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-preview).
 
 ## Available agents
 
@@ -35,13 +35,13 @@ Azure Language offers prebuilt agents that handle specific conversational AI sce
 
 The Intent Routing agent intelligently manages conversation flows by understanding user intentions and delivering accurate responses in conversational AI applications. This agent uses predictable decision-making processes combined with controlled response generation to ensure consistent, reliable interactions that organizations can trust and monitor. 
 
-For more information, *see* [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-).
+For more information, *see* [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-preview).
 
 ### Azure Language Exact Question Answering agent 🆕
 
 The Exact Question Answering agent provides reliable, word-for-word responses to your most important business questions. This agent automates frequently asked questions while maintaining human oversight and quality control to ensure accuracy and compliance.
 
-For more information, *see* [Azure Language Exact Question Answering agent](concepts/foundry-tools-agents.md#azure-language-exact-question-answering-agent-).
+For more information, *see* [Azure Language Exact Question Answering agent](concepts/foundry-tools-agents.md#azure-language-exact-question-answering-agent-preview).
 
 ## Available features
 

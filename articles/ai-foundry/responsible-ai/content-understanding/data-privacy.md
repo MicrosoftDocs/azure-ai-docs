@@ -6,8 +6,9 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-content-understanding
-ms.topic: article
+ms.topic: concept-article
 ms.date: 11/17/2024
+ai-usage: ai-assisted
 ---
 
 # Data, privacy, and security for Content Understanding 
@@ -31,17 +32,20 @@ Content Understanding first requires users to authenticate access to Content Und
 
 ### Secure data in transit 
 
-All Foundry Tools endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
-
+All Foundry Tools endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.3 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). 
 
 ### Encrypts input data for processing 
 
-The incoming data is processed in the same region where the Content Understanding resource was created. When you submit your files to a Content Understanding operation, it starts the process of analyzing the input. Your data and results are then temporarily encrypted and stored in Azure Storage before it's sent to Azure OpenAI for further processing. While compute resources aren't dedicated per customer, requests are processed in logically isolated, sandboxed containers to ensure workload separation and prevent cross-tenant data exposure. 
+When you submit your files to a Content Understanding operation, it starts the process of analyzing the input. Your data and results are then temporarily encrypted and stored in Azure Storage in the same region as your Content Understanding resource before being sent to Azure OpenAI for further processing. While compute resources aren't dedicated per customer, requests are processed in logically isolated, sandboxed containers to ensure workload separation and prevent cross-tenant data exposure. 
 
-Customer data is always encrypted at rest with Microsoft’s AES-256-encryption by default, with the option of using a customer managed key (certain preview features may not support customer-managed keys). Microsoft-managed keys are always used to ensure baseline encryption for all stored data.
+### Data at rest and processing locations 
 
+Content Understanding stores customer data at rest in the same region as the Content Understanding resource.
 
- 
+Processing locations depend on the type of operation:
+
+- **Analyzers `prebuilt-read` and `prebuilt-layout` only**: You can control where data is processed on a per-request basis using the `processingLocation` parameter. You can select a geography (for example, Japan or United States), a data zone (for example, Europe or United States), or a global setting (any geography).
+- **Content extraction (document, audio, and video)**: You bring your own LLM instance and capacity, which Content Understanding uses to process the data. Customer data might be processed outside the resource region based on the LLM deployment type you choose: geography (for example, Japan or United States), data zone (for example, Europe or United States), or global (any geography).
 
 ### Retrieve the results 
 
@@ -65,4 +69,4 @@ Face is a gated feature as it processes biometric data. We detect faces in the i
 
 ### Azure OpenAI 
 
-Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying Foundry Tools. Refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information. 
+Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying Foundry Tools. Refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information.

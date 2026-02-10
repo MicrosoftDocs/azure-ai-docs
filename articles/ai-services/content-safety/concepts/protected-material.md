@@ -6,7 +6,7 @@ services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/02/2025
 ms.author: pafarley
 keywords: 

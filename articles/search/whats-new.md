@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 12/18/2025
+ms.date: 02/02/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## February 2026
+
+| Item | Description |
+|--|--|
+| [Expanded 2025-11-01-preview portal support for agentic retrieval](get-started-portal-agentic-retrieval.md) | The Azure portal now supports the following 2025-11-01-preview knowledge sources:<p><ul><li>[Indexed OneLake](agentic-knowledge-source-how-to-onelake.md)</li><li>[Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md)</li><li>[Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md)</li><li>[Web](agentic-knowledge-source-how-to-web.md)</li></ul><p>For [search index knowledge sources](agentic-knowledge-source-how-to-search-index.md), the portal adds optional configurations for specifying search fields and a semantic configuration. For [blob knowledge sources](agentic-knowledge-source-how-to-blob.md), the portal now supports Azure Data Lake Storage (ADLS) Gen2 accounts. Blob, indexed OneLake, and indexed SharePoint knowledge sources also support the content extraction mode for optional use of the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md).<p>New retrieval options in the knowledge base playground provide settings for maximum runtime, maximum output size, and inclusion of query activity.<p>If you previously created knowledge bases or knowledge sources in the portal, those objects still use the 2025-08-01-preview schema. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
 
 ## December 2025
 
@@ -37,7 +43,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Knowledge sources (preview)](agentic-knowledge-source-overview.md) | New types of knowledge sources: [indexed OneLake](agentic-knowledge-source-how-to-onelake.md), [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md), [remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md), and [web](agentic-knowledge-source-how-to-web.md). For indexed knowledge sources, the new `ingestionParameters` object provides properties to control content ingestion and processing, including `contentExtractionMode` for use of the [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) and `ingestionPermissionOptions` for use of ACLs in the generated indexer. |
 | [Knowledge retrieval (preview)](agentic-retrieval-how-to-retrieve.md) | Execute retrieval operations with support for [reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md), zero-model-call mode for efficiency, and partial responses. |
 | [Portal support for knowledge sources and knowledge bases (preview)](get-started-portal-agentic-retrieval.md) | Use the Azure portal to create and manage knowledge sources and knowledge bases, with a new chat playground for sending retrieval requests. These portal-generated objects use the 2025-08-01-preview schema and have breaking changes with the 2025-11-01-preview. For help with migration, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md). |
-| [Foundry IQ (preview)](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) | New integration that allows agents in Foundry Agent Service to invoke knowledge bases in Azure AI Search. Foundry IQ offloads complex retrieval operations to the knowledge base, enabling the agent to provide accurate, citation-backed responses based on enterprise data and web sources. |
+| [Foundry IQ (preview)](/azure/ai-foundry/agents/concepts/what-is-foundry-iq) | New integration that allows agents in Foundry Agent Service to invoke knowledge bases in Azure AI Search. Foundry IQ offloads complex retrieval operations to the knowledge base, enabling the agent to provide accurate, citation-backed responses based on enterprise data and web sources. |
 | [Azure Content Understanding skill (preview)](cognitive-search-skill-content-understanding.md) | New skill that wraps Azure Content Understanding in Foundry Tools to extract structured Markdown from text, images, PDFs, Microsoft PowerPoint, Microsoft Word, and more. This skill provides advanced document parsing with better table extraction (including cross-page tables), image descriptions, and semantic chunking. For indexed knowledge sources, this skill is available through the `contentExtractionMode` property within `ingestionParameters`. |
 | [SharePoint indexer ACL support (preview)](search-indexer-sharepoint-access-control-lists.md) | Extended ACL support to flow basic SharePoint permissions to indexed documents, enabling document-level access control. |
 | [Elevated read permissions for ACLs (preview)](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) | New capability to assign elevated read permissions to administrators for investigating problems with ACL configurations used in document access control. |

@@ -23,7 +23,7 @@ we now maintain two corresponding versions of the documentation to support each 
 Available in Foundry (new) only:
 - [Developer journey: Idea to prototype](default/tutorials/developer-journey-idea-to-prototype.md)
 - [Publish agents in Microsoft Foundry](default/agents/how-to/publish-agent.md)
-- [Agent memory concepts](default/agents/concepts/agent-memory.md)
+- [Agent memory concepts](default/agents/concepts/what-is-memory.md)
 - [Build your own MCP server](default/mcp/build-your-own-mcp-server.md)
 - [Manage agent identities with Microsoft Entra ID](default/agents/concepts/agent-identity.md)
 - [Optimization model upgrade](default/observability/how-to/optimization-model-upgrade.md)

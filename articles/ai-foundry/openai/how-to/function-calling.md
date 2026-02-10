@@ -818,6 +818,6 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 
 ## Next steps
 
-* [Learn more about Azure OpenAI](../overview.md).
+* [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * For more examples on working with functions, check out the [Azure OpenAI Samples GitHub repository](https://aka.ms/oai/functions-samples)
 

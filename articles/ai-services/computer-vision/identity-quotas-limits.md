@@ -8,8 +8,8 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
-ms.topic: conceptual
-ms.date: 09/26/2025
+ms.topic: limits-and-quotas
+ms.date: 01/30/2026
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -41,9 +41,7 @@ This article contains a reference and a detailed description of the quotas and l
 
 ### Request an increase to the default limits 
 
-To increase rate limits and resource limits for a paid subscription, submit a support request.
-
-[Submit a support request](https://azure.microsoft.com/support/create-ticket/) and provide the following information: 
+To increase rate limits and resource limits for a paid subscription, [submit a support request](https://azure.microsoft.com/support/create-ticket/) and provide the following information: 
 - A description of your Face use case.
 - The reason for requesting an increase in your current limits. 
 - Which of your subscriptions or resources are affected? 

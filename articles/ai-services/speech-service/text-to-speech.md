@@ -6,8 +6,10 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 01/14/2026
+ms.date: 01/30/2026
 ms.author: pafarley
+ms.custom: dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the text to speech feature of the Speech service.
 ---
 
@@ -17,22 +19,38 @@ In this overview, you learn about the benefits and capabilities of the text to s
 
 Text to speech enables your applications, tools, or devices to convert text into human like synthesized speech. The text to speech capability is also known as speech synthesis. Use human like standard voices out of the box, or create a custom voice that's unique to your product or brand. For a full list of supported voices, languages, and locales, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
-## Core features
 
-Text to speech includes the following features:
+The Speech service provides standard (neural) voices and custom voice options:
+
+- **Standard voices**: High-quality neural voices available out of the box in 100+ languages and locales
+- **Custom voices**: Create unique brand voices with professional voice fine-tuning or personal voice options
+
+For a complete list of available voices and languages, see [Language and voice support](language-support.md?tabs=tts).
+
+## Get started
+
+For more comprehensive tutorials and examples:
+
+- [Text to speech quickstart](get-started-text-to-speech.md) - Complete tutorial with multiple languages
+- [Speech SDK documentation](speech-sdk.md) - Full SDK reference and samples  
+- [REST API reference](rest-text-to-speech.md) - HTTP-based integration
+- [Speech CLI](spx-overview.md) - Command-line tools
+
+> [!TIP]
+> To convert text to speech with a no-code approach, try the [Audio Content Creation](how-to-audio-content-creation.md) tool in [Speech Studio](https://aka.ms/speechstudio/audiocontentcreation).
+
+## Neural text to speech features
+
+Text to speech uses deep neural networks to make computer voices nearly indistinguishable from human recordings. With clear articulation, neural text to speech reduces listening fatigue during AI interactions.
+
+## Key features
 
 | Feature | Summary | Demo |
 | --- | --- | --- |
 | Standard voice (called *Neural* on the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)) | Highly natural out-of-the-box voices. Create an Azure subscription and Speech resource, and then use the [Speech SDK](./get-started-text-to-speech.md) or visit the [Speech Studio portal](https://speech.microsoft.com/portal) and select standard voices to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs. |
 | Custom voice | Easy-to-use self-service for creating a natural brand voice, with limited access for responsible use. Create an Azure subscription and Microsoft Foundry resource and then [apply to use custom voice](https://aka.ms/customneural). After you're granted access, go to the [professional voice fine-tuning documentation](./professional-voice-create-project.md) to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [voice samples](https://aka.ms/customvoice). |
 
-### More about neural text to speech features
-
-Text to speech uses deep neural networks to make the voices of computers nearly indistinguishable from the recordings of people. With the clear articulation of words, neural text to speech significantly reduces listening fatigue when users interact with AI systems.
-
-The patterns of stress and intonation in spoken language are called _prosody_. Traditional text to speech systems break down prosody into separate linguistic analysis and acoustic prediction steps governed by independent models. That can result in muffled, buzzy voice synthesis.
-
-Here's more information about neural text to speech features in the Speech service, and how they overcome the limits of traditional text to speech systems:
+## Advanced features
 
 * **Real-time speech synthesis**: Use the [Speech SDK](./get-started-text-to-speech.md) or [REST API](rest-text-to-speech.md) to convert text to speech by using [standard voices](language-support.md?tabs=tts) or [custom voices](custom-neural-voice.md).
 
@@ -61,13 +79,6 @@ Here's more information about neural text to speech features in the Speech servi
 - For Azure Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-speech-hd-voices). 
 - For personal voice, you can find the SSML support [here](personal-voice-how-to-use.md#supported-and-unsupported-ssml-elements-for-personal-voice). 
 - For embedded voices, check the SSML support [here](embedded-speech.md#embedded-voices-capabilities).
-
-## Get started
-
-To get started with text to speech, see the [quickstart](get-started-text-to-speech.md). Text to speech is available via the [Speech SDK](speech-sdk.md), the [REST API](rest-text-to-speech.md), and the [Speech CLI](spx-overview.md).
-
-> [!TIP]
-> To convert text to speech with a no-code approach, try the [Audio Content Creation](how-to-audio-content-creation.md) tool in [Speech Studio](https://aka.ms/speechstudio/audiocontentcreation).
 
 ## Sample code
 

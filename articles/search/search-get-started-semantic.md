@@ -55,9 +55,7 @@ zone_pivot_groups: search-get-started-semantic
 
 ## Clean up resources
 
-When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
-
-You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+[!INCLUDE [clean up resources (paid)](includes/resource-cleanup-paid.md)]
 
 ## Related content
 

@@ -5,7 +5,8 @@ description: Learn about Azure Content Understanding in Foundry Tools document l
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 10/19/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:

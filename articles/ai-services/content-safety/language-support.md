@@ -5,7 +5,7 @@ description: This is a list of natural languages that the Azure AI Content Safet
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/16/2025
 ms.author: pafarley
 

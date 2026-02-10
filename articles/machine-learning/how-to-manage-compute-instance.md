@@ -5,12 +5,13 @@ description: Learn how to manage an Azure Machine Learning compute instance. Use
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
-ms.custom: devx-track-azurecli
+ms.custom: devx-track-azurecli, dev-focus
+ai-usage: ai-assisted
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: jturuk
-ms.date: 05/03/2024
+ms.date: 02/05/2026
 ---
 
 # Manage an Azure Machine Learning compute instance
@@ -19,12 +20,12 @@ ms.date: 05/03/2024
 
 Learn how to manage a [compute instance](concept-compute-instance.md) in your Azure Machine Learning workspace. 
 
-Use a compute instance as your fully configured and managed development environment in the cloud. For development and testing, you can also use the instance as a [training compute target](concept-compute-target.md#training-compute-targets).  A compute instance can run multiple jobs in parallel and has a job queue. As a development environment, a compute instance can't be shared with other users in your workspace.
+Use a compute instance as your fully configured and managed development environment in the cloud. For development and testing, you can also use the instance as a [training compute target](concept-compute-target.md#training-compute-targets). A compute instance can run multiple jobs in parallel and has a job queue. As a development environment, a compute instance isn't shared with other users in your workspace.
 
-In this article, you learn how to start, stop, restart, delete a compute instance. To learn how to create a compute instance, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
+In this article, you learn how to start, stop, restart, and delete a compute instance. To learn how to create a compute instance, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
 
 > [!NOTE]
-> This article shows CLI v2 in the sections below. If you are still using CLI v1, see [Create an Azure Machine Learning compute cluster CLI v1](v1/how-to-create-manage-compute-instance.md?view=azureml-api-1&preserve-view=true).
+> This article shows CLI v2 in the sections. If you're still using CLI v1, see [Create an Azure Machine Learning compute cluster CLI v1](v1/how-to-create-manage-compute-instance.md?view=azureml-api-1&preserve-view=true).
 
 
 ## Prerequisites
@@ -56,24 +57,24 @@ Start at [Azure Machine Learning studio](https://ml.azure.com).
 ---
 
 > [!NOTE]
-> When configuring a Virtual Network (VNet) located in a different resource group from your Azure Machine Learning workspace, be aware that resources such as Network Security Groups (NSGs), Public IPs, and Load Balancers will be created in the same resource group as the VNet. This behavior ensures proper network management and isolation.
+> When you configure a Virtual Network (VNet) located in a different resource group from your Azure Machine Learning workspace, resources such as Network Security Groups (NSGs), public IPs, and load balancers are created in the same resource group as the VNet. This behavior ensures proper network management and isolation.
 
 ## Manage
 
-Start, stop, restart, and delete a compute instance. A compute instance doesn't always automatically scale down, so make sure to stop the resource to prevent ongoing charges. Stopping a compute instance deallocates it. Then start it again when you need it. While stopping the compute instance stops the billing for compute hours, you'll still be billed for disk, public IP, and standard load balancer. 
+You can start, stop, restart, and delete a compute instance. A compute instance doesn't always automatically scale down, so make sure to stop the resource to prevent ongoing charges. Stopping a compute instance deallocates it. Then start it again when you need it. While stopping the compute instance stops the billing for compute hours, you still pay for disk, public IP, and standard load balancer. 
 
 You can [enable automatic shutdown](how-to-create-compute-instance.md#configure-idle-shutdown) to automatically stop the compute instance after a specified time.
 
 You can also [create a schedule](how-to-create-compute-instance.md#schedule-automatic-start-and-stop) for the compute instance to automatically start and stop based on a time and day of week.
 
 > [!TIP]
-> The compute instance has 120GB OS disk. If you run out of disk space, [use the terminal](how-to-access-terminal.md) to clear at least 5 GB before you stop or restart the compute instance. Please do not stop the compute instance by issuing sudo shutdown from the terminal. The temp disk size on compute instance depends on the VM size chosen and is mounted on /mnt.
+> The compute instance has a 120-GB OS disk. If you run out of disk space, [use the terminal](how-to-access-terminal.md) to clear at least 5 GB before you stop or restart the compute instance. Don't stop the compute instance by issuing sudo shutdown from the terminal. The temp disk size on compute instance depends on the VM size chosen and is mounted on /mnt.
 
 # [Python SDK](#tab/python)
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-In these examples, the name of the compute instance is stored in the variable `ci_basic_name`.
+In these examples, the variable `ci_basic_name` stores the name of the compute instance.
 
 * Get status
 
@@ -146,7 +147,7 @@ You can perform the following actions:
 
 For each compute instance in a workspace that you created (or that was created for you), you can:
 
-* Access Jupyter, JupyterLab, RStudio on the compute instance.
+* Access Jupyter, JupyterLab on the compute instance, and RStudio or Posit Workbench if [configured as a custom application](how-to-create-compute-instance.md#add-custom-applications-such-as-rstudio-or-posit-workbench).
 * SSH into compute instance. SSH access is disabled by default but can be enabled at compute instance creation time. SSH access is through public/private key mechanism. The tab gives you details for SSH connection such as IP address, username, and port number. In a virtual network deployment, disabling SSH prevents SSH access from public internet. You can still SSH from within virtual network using private IP address of compute instance node and port 22.
 
     > [!TIP]
@@ -161,7 +162,7 @@ For each compute instance in a workspace that you created (or that was created f
 > [!Caution]
 > Applying resource locks, such as "Delete" or "Read-only", to the resource group that contains your Machine Learning workspace or to a separate resource group where you've configured a virtual network can prevent operations like creation, resizing, or deletion of these instances. Ensure that resource locks are configured appropriately to avoid unintended disruptions. 
 
-[Azure RBAC](/azure/role-based-access-control/overview) allows you to control which users in the workspace can create, delete, start, stop, restart a compute instance. All users in the workspace contributor and owner role can create, delete, start, stop, and restart compute instances across the workspace. However, only the creator of a specific compute instance, or the user assigned if it was created on their behalf, is allowed to access Jupyter, JupyterLab, and RStudio on that compute instance. A compute instance is dedicated to a single user who has root access. That user has access to Jupyter/JupyterLab/RStudio running on the instance. Compute instance has single-user sign-in and all actions use that user's identity for Azure RBAC and attribution of experiment jobs. SSH access is controlled through public/private key mechanism.
+[Azure RBAC](/azure/role-based-access-control/overview) allows you to control which users in the workspace can create, delete, start, stop, restart a compute instance. All users in the workspace contributor and owner role can create, delete, start, stop, and restart compute instances across the workspace. However, only the creator of a specific compute instance, or the user assigned if it was created on their behalf, is allowed to access Jupyter, JupyterLab, and RStudio (if configured) on that compute instance. A compute instance is dedicated to a single user who has root access. That user has access to Jupyter/JupyterLab and any configured custom applications running on the instance. Compute instance has single-user sign-in and all actions use that user's identity for Azure RBAC and attribution of experiment jobs. SSH access is controlled through public/private key mechanism.
 
 These actions can be controlled by Azure RBAC:
 * *Microsoft.MachineLearningServices/workspaces/computes/read*
@@ -191,7 +192,7 @@ from azure.ai.ml.entities import ComputeInstance, AmlCompute
 
 # Display operating system version
 instance = ml_client.compute.get("myci")
-print instance.os_image_metadata
+print(instance.os_image_metadata)
 ```
 
 For more information on the classes, methods, and parameters used in this example, see the following reference documents:

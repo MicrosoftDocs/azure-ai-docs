@@ -8,7 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/16/2025
+ms.date: 01/29/2026
+ms.custom: dev-focus
 zone_pivot_groups: openai-video-generation
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -35,12 +36,12 @@ ai-usage: ai-assisted
 ::: zone-end
 
 
-## Clean-up resources
+## Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource. Before deleting the resource, you must first delete any deployed models.
 
-- [Azure portal](../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
-- [Azure CLI](../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
+- [Azure portal](../../ai-services/multi-service-resource.md?pivots=azportal)
+- [Azure CLI](../../ai-services/multi-service-resource.md?pivots=azcli)
 
 ## Related content
 

@@ -42,17 +42,29 @@ items:
     href: ../../agents/how-to/tools/file-search.md
   - name: Vector stores for file search
     href: ../../agents/concepts/vector-stores.md
-  - name: Foundry IQ (preview)
-    href: ../../agents/how-to/tools/knowledge-retrieval.md
   - name: SharePoint (preview)
     href: ../../agents/how-to/tools/sharepoint.md
-  - name: Web search (preview)
-    href: ../../agents/how-to/tools/web-search.md
-  - name: Grounding with Bing tools
-    href: ../../agents/how-to/tools/bing-tools.md
+  - name: Web search capabilities
+    items:
+    - name: Web search overview
+      href: ../../agents/how-to/tools/web-overview.md
+    - name: Web search tool (preview)
+      href: ../../agents/how-to/tools/web-search.md
+    - name: Grounding with Bing tools
+      href: ../../agents/how-to/tools/bing-tools.md
   - name: Fabric data agent (preview)
     href: ../../agents/how-to/tools/fabric.md
 
+# Foundry IQ
+- name: Foundry IQ (preview)
+  items:
+  - name: What is Foundry IQ?
+    href: ../../agents/concepts/what-is-foundry-iq.md
+  - name: FAQ
+    href: ../../agents/concepts/foundry-iq-faq.yml
+  - name: Connect knowledge base to agents
+    href: ../../agents/how-to/foundry-iq-connect.md
+  
 # Azure AI Services Integration
 - name: Foundry Tools
   items:

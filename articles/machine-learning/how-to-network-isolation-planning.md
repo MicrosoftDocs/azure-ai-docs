@@ -15,7 +15,7 @@ ms.date: 01/08/2026
 
 # Plan for network isolation in Azure Machine Learning
 
-In this article, you learn how to plan your network isolation for Azure Machine Learning and our recommendations. This article is for IT administrators who want to design network architecture. 
+In this article, you learn how to plan your network isolation for Azure Machine Learning and our recommendations. This article is for IT administrators who want to design network architecture. Azure Machine Learning supports IPv6. 
 
 ## What is network isolation?
 

@@ -24,7 +24,7 @@ The Foundry model catalog offers a large selection of Microsoft Foundry Models f
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../foundry-models/concepts/models-sold-directly-by-azure.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Foundry portal](https://ai.azure.com/explore/models).
 
 
 ## Cohere
@@ -59,7 +59,7 @@ The following table provides links to examples of how to use Cohere models.
 
 ### Cohere rerank
 
-To perform inferencing with Cohere rerank models, you're required to use Cohere's custom rerank APIs. For more information on the Cohere rerank model and its capabilities, see [Cohere rerank](../foundry-models/concepts/models.md#cohere-rerank).
+To perform inferencing with Cohere rerank models, you're required to use Cohere's custom rerank APIs. For more information on the Cohere rerank model and its capabilities, see [Cohere rerank](../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 
 #### Pricing for Cohere rerank models
@@ -165,7 +165,7 @@ The following table provides links to examples of how to use Mistral models.
 
 Nixtla's TimeGEN-1 is a generative pre-trained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 
-To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.  For more information on the TimeGEN-1 model and its capabilities, see [Nixtla](../foundry-models/concepts/models.md#nixtla).
+To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.  For more information on the TimeGEN-1 model and its capabilities, see [Nixtla](../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 #### Estimate the number of tokens needed
 
@@ -227,7 +227,7 @@ Gretel Navigator employs a compound AI architecture specifically engineered for 
 
 - [Deploy models as serverless API deployments](../how-to/deploy-models-serverless.md)
 - [Explore Foundry Models](foundry-models-overview.md)
-- [Foundry Models and their capabilities](../foundry-models/concepts/models.md)
+- [Foundry Models and their capabilities](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Region availability for models in serverless API deployments](../how-to/deploy-models-serverless-availability.md)
 - [Content safety for  Models Sold Directly by Azure ](model-catalog-content-safety.md)
 
