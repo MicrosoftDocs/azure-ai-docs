@@ -10,9 +10,9 @@ ms.topic: concept-article
 ms.date: 02/10/2026
 ms.author: mopeakande
 author: msakande
-ms.reviewer: tgokal
+ms.reviewer: lebaro #amipatel
 manager: nitinme
-reviewer: tgokal
+reviewer: lebaro-msft #amibp
 ms.custom: build-2025, pilot-ai-workflow-jan-2026 
 #CustomerIntent: As a developer, I want to use Microsoft Foundry playgrounds for rapid prototyping and experimentation with AI models and agents so that I can validate ideas, test API behavior, and optimize prompts before writing production code.
 ---
