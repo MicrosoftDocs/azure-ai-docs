@@ -182,7 +182,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. At the top of the page, select the subscription, one or more projects, and a date range. 
 1. The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates.  These estimates do not currently include prompt agent and non-Foundry agent costs.
 
-:::image type="content" source="../default/media/manage-costs/agent-costs.png" alt-text="Screenshot of the Agents tab under Assets, showing the Estimated costs column with monthly cost estimates for each agent based on configuration and usage." lightbox="../default/media/manage-costs/agent-costs.png":::
+:::image type="content" source="media/manage-costs/agent-costs.png" alt-text="Screenshot of the Agents tab under Assets, showing the Estimated costs column with monthly cost estimates for each agent based on configuration and usage." lightbox="media/manage-costs/agent-costs.png":::
 
 For individual agent estimates:
 
