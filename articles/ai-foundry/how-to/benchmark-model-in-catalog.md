@@ -190,7 +190,7 @@ When you're in the "Benchmarks" tab for a specific model, you can gather extensi
 - **Comparative charts**: These charts display the model's relative position compared to related models.
 - **Metric comparison table**: This table presents detailed results for each metric.
 
-    :::image type="content" source="../default/media/observability/model-benchmarks/benchmark-overview.png" alt-text="Screenshot showing the metric comparison table on the benchmarks tab." lightbox="../default/media/observability/model-benchmarks/benchmark-overview.png":::
+    :::image type="content" source="media/observability/model-benchmarks/benchmark-overview.png" alt-text="Screenshot showing the metric comparison table on the benchmarks tab." lightbox="media/observability/model-benchmarks/benchmark-overview.png":::
 
 By default, Microsoft Foundry displays an average index across various metrics and datasets to provide a high-level overview of model performance.
 
