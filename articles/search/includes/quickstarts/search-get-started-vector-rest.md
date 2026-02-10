@@ -168,6 +168,10 @@ Before you add content to Azure AI Search, you must create an index to define ho
 The index schema is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. The following excerpt shows the key structure of the `### Create a new index` request.
 
 ```http
+PUT {{baseUrl}}/indexes/hotels-vector-quickstart?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
 {
     "name": "hotels-vector-quickstart",
     "fields": [
@@ -209,13 +213,23 @@ The index schema is organized around hotel content. Sample data consists of vect
 
 Key takeaways:
 
-+ The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
++ This particular index supports multiple search capabilities:
+
+    + [Full-text search](../../search-lucene-query-architecture.md) (fields with `searchable` set to `true`)
+
+    + [Vector search](../../vector-search-overview.md) (`DescriptionVector` with `vectorSearchProfile`)
+
+    + [Semantic ranking](../../semantic-search-overview.md) (`semantic` configuration)
+
+    + [Faceted search](../../search-faceted-navigation.md) (fields with `facetable` set to `true`)
+
+    + [Geo-spatial search](../../search-query-odata-geo-spatial-functions.md) (`Location` field with `Edm.GeographyPoint`)
+
+    + [Filtering](../../search-filters.md) and sorting (fields with `filterable` and `sortable` set to `true`)
 
 + The `dimensions` property must match the output size of your embedding model. This quickstart uses 1,536 dimensions to match the `text-embedding-ada-002` model.
 
-+ The `vectorSearch` section is an array of Approximate Nearest Neighbor (ANN) algorithm configurations and profiles. Supported algorithms include Hierarchical Navigable Small World (HNSW) and exhaustive K-Nearest Neighbor (KNN). For more information, see [Relevance in vector search](../../vector-search-ranking.md).
-
-+ The optional `semantic` configuration enables reranking of search results. You can rerank results in queries of type `semantic` for string fields that are specified in the configuration. To learn more, see [Semantic ranking overview](../../semantic-search-overview.md).
++ The `vectorSearch` section defines the Approximate Nearest Neighbor (ANN) algorithm. Supported algorithms include Hierarchical Navigable Small World (HNSW) and exhaustive K-Nearest Neighbor (KNN). For more information, see [Relevance in vector search](../../vector-search-ranking.md).
 
 ### Upload documents to the index
 
@@ -226,6 +240,10 @@ In Azure AI Search, documents serve as both inputs for indexing and outputs for 
 This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add sample hotel documents to your index. The following excerpt shows the structure of the `### Upload 7 documents` request.
 
 ```http
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/index?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
 {
     "value": [
         {
@@ -260,13 +278,22 @@ The queries in the sample file demonstrate different search patterns. The exampl
 
 + Vector query string: `"quintessential lodging near running trails, eateries, retail"` (vectorized into a mathematical representation)
 
-The vector query string is semantically similar to the full-text search string, but it includes terms that don't exist in the index. A keyword-only search for the vector query string returns zero results. However, vector search finds relevant matches based on meaning rather than exact keywords. The following examples demonstrate this capability and other ways to query the index.
+The vector query string is semantically similar to the full-text search string, but it includes terms that don't exist in the index. A keyword-only search for the vector query string returns zero results. However, vector search finds relevant matches based on meaning rather than exact keywords.
+
+The following examples start with a basic vector query and progressively add filters, keyword search, and semantic reranking.
 
 #### Single vector search
 
-The `### Run a single vector query` request demonstrates a basic scenario where you want to find document descriptions that closely match the vector query string.
+The `### Run a single vector query` request demonstrates a basic scenario where you want to find document descriptions that closely match the vector query string. The `vectorQueries` array configures the vector search:
+
++ `k` limits how many results are returned based on vector similarity.
++ `fields` specifies the vector field to search against.
 
 ```http
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
 {
     "count": true,
     "select": "HotelId, HotelName, Description, Category, Tags",
@@ -287,6 +314,10 @@ The `### Run a single vector query` request demonstrates a basic scenario where 
 In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `### Run a vector query with a filter` request filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
 ```http
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
 {
     "count": true,
     "select": "HotelId, HotelName, Description, Category, Tags",
@@ -309,6 +340,10 @@ In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector
 You can specify a [geo-spatial filter](../../search-query-odata-geo-spatial-functions.md) to limit results to a specific geographic area. The `### Run a vector query with a geo filter` request specifies a geographic point (Washington D.C., using longitude and latitude coordinates) and returns hotels within 300 kilometers. The `vectorFilterMode` parameter determines when the filter runs. In this case, `postFilter` runs the filter after the vector search.
 
 ```http
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
 {
     "count": true,
     "select": "HotelId, HotelName, Address/City, Address/StateProvince, Description",
@@ -333,6 +368,10 @@ You can specify a [geo-spatial filter](../../search-query-odata-geo-spatial-func
 [Hybrid search](../../hybrid-search-overview.md) combines full-text and vector queries in a single request. The `### Run a hybrid query` request runs both query types concurrently, and then uses Reciprocal Rank Fusion (RRF) to merge the results into a unified ranking. RRF uses the inverse of result rankings from each result set to produce a merged ranking. Notice that hybrid search scores are uniformly smaller than single-query scores.
 
 ```http
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
 {
     "count": true,
     "search": "historic hotel walk to restaurants and shopping",
@@ -355,6 +394,10 @@ You can specify a [geo-spatial filter](../../search-query-odata-geo-spatial-func
 The `### Run a hybrid query with semantic reranking` request demonstrates [semantic ranking](../../semantic-search-overview.md), which reranks results based on language understanding.
 
 ```http
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
 {
     "count": true,
     "search": "historic hotel walk to restaurants and shopping",
@@ -386,11 +429,5 @@ Key takeaways:
 
 [!INCLUDE [resource-cleanup-paid](../resource-cleanup-paid.md)]
 
-Otherwise, you can send the following request to delete the index you created in this quickstart.
+Otherwise, you can send the `### Delete an index` request to delete the index you created in this quickstart.
 
-```http
-### Delete an index
-DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2025-09-01 HTTP/1.1
-    Content-Type: application/json
-    Authorization: Bearer {{token}}
-```

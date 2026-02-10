@@ -191,11 +191,16 @@ The queries in the notebook demonstrate different search patterns. The example v
 
 + Vector query string: `"quintessential lodging near running trails, eateries, retail"` (vectorized into a mathematical representation)
 
-The vector query string is semantically similar to the full-text search string, but it includes terms that don't exist in the index. A keyword-only search for the vector query string returns zero results. However, vector search finds relevant matches based on meaning rather than exact keywords. The following examples demonstrate this capability and other ways to query the index.
+The vector query string is semantically similar to the full-text search string, but it includes terms that don't exist in the index. A keyword-only search for the vector query string returns zero results. However, vector search finds relevant matches based on meaning rather than exact keywords.
+
+The following examples start with a basic vector query and progressively add filters, keyword search, and semantic reranking.
 
 #### Single vector search
 
-The `Single vector search` cell demonstrates a basic scenario where you want to find document descriptions that closely match the vector query string. `VectorizedQuery` contains the configuration of the vectorized query.
+The `Single vector search` cell demonstrates a basic scenario where you want to find document descriptions that closely match the vector query string. `VectorizedQuery` configures the vector search:
+
++ `k_nearest_neighbors` limits how many results are returned based on vector similarity.
++ `fields` specifies the vector field to search against.
 
 ```python
 vector_query = VectorizedQuery(

@@ -276,11 +276,16 @@ The queries in the search files demonstrate different search patterns. The examp
 
 + Vector query string: `"quintessential lodging near running trails, eateries, retail"` (vectorized into a mathematical representation)
 
-The vector query string is semantically similar to the full-text search string, but it includes terms that don't exist in the index. A keyword-only search for the vector query string returns zero results. However, vector search finds relevant matches based on meaning rather than exact keywords. The following examples demonstrate this capability and other ways to query the index.
+The vector query string is semantically similar to the full-text search string, but it includes terms that don't exist in the index. A keyword-only search for the vector query string returns zero results. However, vector search finds relevant matches based on meaning rather than exact keywords.
+
+The following examples start with a basic vector query and progressively add filters, keyword search, and semantic reranking.
 
 #### Single vector search
 
-`searchSingle.js` demonstrates a basic scenario where you want to find document descriptions that closely match the vector query string.
+`searchSingle.js` demonstrates a basic scenario where you want to find document descriptions that closely match the vector query string. The `vectorQuery` object configures the vector search:
+
++ `kNearestNeighborsCount` limits how many results are returned based on vector similarity.
++ `fields` specifies the vector field to search against.
 
 ```javascript
 const vectorQuery = {
