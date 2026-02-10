@@ -76,6 +76,7 @@ For example, the schema from step 1 is updated to:
 ```
 
 > [!TIP]
+> To maximize similarly with preview behavior, use a GPT-4o `2024-08-06` generative deployment. For new analyzers, we recommend GPT-4.1 for Content Understanding.
 
 ### Step 3: Create a new analyzer
 
@@ -85,7 +86,7 @@ You can use the updated definition to create a new analyzer:
 PUT /analyzers/{analyzerName}_updated
 ```
 
-You need to delete the existing analyzer to reuse the same analyzer name.
+You need to delete the existing analyzer to reuse the name.
 
 ## Consider these other API changes
 
@@ -93,7 +94,7 @@ You need to delete the existing analyzer to reuse the same analyzer name.
 
 - Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding. To add confidence and grounding, set the `estimateFieldSourceAndConfidence` to `true`. This behavior is unchanged from the `2025-05-01-preview` API.
 
-- The request to get specific components of the analyze result is simplified. To get embedded images or content, call:
+- The request to get specific components of the `analyze` result is simplified. To get embedded images or content, call:
 
 ```http
 GET /analyzerResults/{operationId}/files/{path}
@@ -104,14 +105,14 @@ Here, `path` can include:
 * `contents/{contentIndex}/pages/{pageNumber}` - `DocumentContent.pages[*].pageNumber`
 * `contents/{contentIndex}/figures/{figureId}` - `DocumentContent.figures[*].id`
 
-- The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. Learn more about the [analyzeBinary operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
+- The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. Learn more about the [`analyzeBinary` operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
 - The **Analyze** operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a URL pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
 
   > [!NOTE]
   > The inputs array only supports a single item in the `2025-11-01` version.
 
-  Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
+Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
 
   ``` jsonc
 
@@ -124,13 +125,13 @@ Here, `path` can include:
   }
   ```
 
-- If you used in-context learning or labeled data, the API payload that defines the labeled dataset now specifies the labeled data as a type of ```knowledgeSources```. For more information on how to define an analyzer to use labeled data, see [`knowledgeSources`](/rest/api/contentunderstanding/content-analyzers/create-or-replace).
+- If you used in-context learning or labeled data, the API payload that defines the labeled dataset now specifies the labeled data as a type of `knowledgeSources`. For more information, see [Create or replace](/rest/api/contentunderstanding/content-analyzers/create-or-replace).
 
-- For video modality analyzers, the key frames are now returned as an array of ```keyFrames```. Learn more about the [analyzer response](/rest/api/contentunderstanding/content-analyzers/analyze).
+- For video analyzers, the key frames are now returned as an array of `keyFrames`. Learn more in [Analyze](/rest/api/contentunderstanding/content-analyzers/analyze).
 
 ### New features
 
-- The field extraction method is now optional. When not set, the analyzer determines the approach (extract or generate). The best practice is to not add the method property to the analyzer. Set the method to extract only if you need the value to be extracted verbatim.
+- The field extraction method is optional. When not set, the analyzer determines the approach (`extract` or `generate`). Don't add the `method` property unless you need the value extracted verbatim.
 - There's added support for confidence scores and source grounding for fields in document analyzers that have the method set to generate.
 - There are now increased field limits to 1,000 fields per analyzer.
 - For documents, classification and segmentation supports up to 200 distinct types.
@@ -139,36 +140,7 @@ Here, `path` can include:
 
 - The GA API doesn't include Pro mode, which is still experimental. As a result, `AnalysisMode` is being deprecated and standard is the only mode supported in the GA API.
 - Person directory and Face API aren't part of the GA APIs, including the video analyzer features to detect and recognize faces in videos.
-- The `TrainingData` feature is being deprecated and replaced with the `knowledgeSources` feature.
-
-Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
-
-```jsonc
-{
-  "inputs": [
-    {
-      "url": "https://documentintelligence.ai.azure.com/documents/samples/read/read-healthcare.png" /* This is the file to be analyzed */
-    }
-  ]
-}
-```
-
-6. If you used in-context learning or labeled data, the API payload to define the labeled dataset is now updated to specify labeled data as a type of `knowledgeSources`. For more information, see [Create or replace](/rest/api/contentunderstanding/content-analyzers/create-or-replace).
-
-7. For video analyzers, key frames are returned as an array of `keyFrames`. Learn more in [Analyze](/rest/api/contentunderstanding/content-analyzers/analyze).
- 
-### New features
-
-1. Field extraction method is optional. When it's not set, the analyzer determines the approach (`extract` or `generate`). Don't add the `method` property unless you need the value extracted verbatim.
-2. Added support for confidence scores and source grounding for fields with method set to generate in document analyzers.
-3. Increased field limits to 1,000 fields per analyzer.
-4. Classification/segmentation supports up to 200 distinct types for documents.
-
-### Deprecated features
-
-1. Pro mode isn't part of the GA API. This feature is still experimental. As a result, `AnalysisMode` is deprecated and standard is the only mode supported in the GA API.
-2. Person directory and Face API aren't part of the GA APIs. This includes the video analyzer features to detect and recognize faces in videos.
-3. `TrainingData` is being deprecated and replaced with `knowledgeSources`.
+- The `TrainingData` feature is being deprecated and replaced with the `knowledgeSources` feature..
 
 - [Learn more about Content Understanding pricing](../pricing-explainer.md)
 - [Learn more about Content Understanding analyzers](../concepts/analyzer-reference.md)
