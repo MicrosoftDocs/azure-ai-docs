@@ -23,7 +23,9 @@ Get started using images in your chats with Azure OpenAI in Microsoft Foundry Mo
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!IMPORTANT]
-> Extra usage fees might apply when using chat completion models with vision functionality.
+> - Extra usage fees might apply when using chat completion models with vision functionality.
+> - When uploading images, there's a limit of **10 images per chat request**.
+> - Always set `max_tokens` in your API requests, or responses might be truncated.
 
 
 ::: zone pivot="ai-foundry-portal"

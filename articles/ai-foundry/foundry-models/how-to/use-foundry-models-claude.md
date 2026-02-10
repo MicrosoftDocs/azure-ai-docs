@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 02/05/2026
-ms.custom: ignite-2024, dev-focus
+ms.custom: ignite-2024, dev-focus, pilot-ai-workflow-jan-2026 
 author: msakande
 ms.author: mopeakande
 ms.reviewer: ambadal
@@ -28,7 +28,7 @@ In this article, you learn how to:
 - Deploy Claude models in Microsoft Foundry
 - Authenticate by using Microsoft Entra ID or API keys
 - Call the Claude Messages API from Python, JavaScript, or REST
-- Choose the right Claude model for your use case.
+- Choose the right Claude model for your use case
 
 Claude models in Foundry include:
 
@@ -58,7 +58,7 @@ After deployment, use the [Foundry playground](../../concepts/concept-playground
 
 ## Call the Claude Messages API
 
-Once deployed, you can interact with Claude models to generate text responses:
+After you deploy a Claude model, interact with it to generate text responses:
 
 - Use the [Anthropic SDKs](https://docs.claude.com/en/api/client-sdks) and the following Claude APIs:
 
@@ -85,7 +85,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
 1. **Install the Azure Identity client library**: Install this library to use the `DefaultAzureCredential`. Authorization is easiest when you use `DefaultAzureCredential` because it finds the best credential to use in its running environment.
 
     ```bash
-    pip install azure.identity
+    pip install azure-identity
     ```
 
     Set the values of the client ID, tenant ID, and client secret of the Microsoft Entra ID application as environment variables: `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_CLIENT_SECRET`.
@@ -129,7 +129,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     message = client.messages.create(
         model=deploymentName,
         messages=[
-            {"role": "user", "content": "What is the capital/major city of France?"}
+            {"role": "user", "content": "What is the capital of France?"}
         ],
         max_tokens=1024,
     )
@@ -137,7 +137,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     print(message.content)
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital of France is Paris."`
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
@@ -173,7 +173,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     message = client.messages.create(
         model=deploymentName,
         messages=[
-            {"role": "user", "content": "What is the capital/major city of France?"}
+            {"role": "user", "content": "What is the capital of France?"}
         ],
         max_tokens=1024,
     )
@@ -181,7 +181,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     print(message.content)
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital of France is Paris."`
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks)
 
@@ -252,13 +252,13 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     // Send request
     const message = await client.messages.create({
         model: deploymentName,
-        messages: [{ role: "user", content: "What is the capital/major city of France?" }],
+        messages: [{ role: "user", content: "What is the capital of France?" }],
         max_tokens: 1024,
     });
     console.log(message);
     ```
 
-    **Expected output:** A JSON response containing the model's text completion.
+    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital of France is Paris."`
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential)
 
@@ -307,13 +307,13 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     // Send request
     const message = await client.messages.create({
         model: deploymentName,
-        messages: [{ role: "user", content: "What is the capital/major city of France?" }],
+        messages: [{ role: "user", content: "What is the capital of France?" }],
         max_tokens: 1024,
     });
     console.log(message);
     ```
 
-    **Expected output:** A JSON response containing the model's text completion.
+    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital of France is Paris."`
 
     **Reference:** [AnthropicFoundry SDK](https://docs.claude.com/en/api/client-sdks)
 
@@ -441,7 +441,7 @@ Claude Opus 4.6 is the latest version of Anthropic's most intelligent model, and
 
 ### Claude Opus 4.5 (preview)
 
-Claude Opus 4.5 is Anthropic's most intelligent model, and an industry leader in coding, agents, computer use, and enterprise workflows. With a 200K token context window and 64K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use tasks.
+Claude Opus 4.5 is an industry leader in coding, agents, computer use, and enterprise workflows. With a 200K token context window and 64K max output, Opus 4.5 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use tasks.
 
 ### Claude Opus 4.1 (preview)
 
@@ -534,7 +534,7 @@ When using Claude models in Foundry, consider these responsible AI practices:
 
 Follow these best practices when working with Claude models in Foundry:
 
-#### Model selection
+### Model selection
 
 Choose the appropriate Claude model based on your specific requirements:
 
@@ -545,19 +545,32 @@ Choose the appropriate Claude model based on your specific requirements:
 - **Claude Haiku 4.5**: Speed and cost optimization, high-volume processing.
 
 
-#### Prompt engineering
+### Prompt engineering
 
 - **Clear instructions**: Provide specific and detailed prompts.
 - **Context management**: Use the available context window effectively.
 - **Role definitions**: Use system messages to define the assistant's role and behavior.
 - **Structured prompts**: Use consistent formatting for better results.
 
-#### Cost optimization
+### Cost optimization
 
 - **Token management**: Monitor and optimize token usage.
 - **Model selection**: Use the most cost-effective model for your use case.
 - **Caching**: Implement [explicit prompt caching](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#continuing-a-multi-turn-conversation) where appropriate.
 - **Request batching**: Combine multiple requests when possible.
+
+## Troubleshooting
+
+The following table lists common errors when you work with Claude models in Foundry and their solutions:
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| 401 Unauthorized | Invalid or expired API key, or incorrect Entra ID token scope. | Verify your API key is correct. For Entra ID, confirm you use scope `https://cognitiveservices.azure.com/.default`. |
+| 403 Forbidden | Insufficient permissions on the resource or subscription. | Verify you have **Contributor** or **Owner** role on the resource group. For Entra ID, ensure the **Cognitive Services User** role is assigned. |
+| 404 Not Found | Incorrect endpoint URL or deployment name. | Confirm your base URL follows the pattern `https://<resource-name>.services.ai.azure.com/anthropic` and the deployment name matches your configuration. |
+| 429 Too Many Requests | Rate limit exceeded for your subscription tier. | Implement exponential backoff with retry logic. Consider reducing request frequency or requesting a [quota increase](https://aka.ms/oai/stuquotarequest). |
+| Subscription eligibility error | Non-Enterprise or non-MCA-E subscription. | Claude models require an Enterprise or MCA-E subscription. See [API quotas and limits](#api-quotas-and-limits) for details. |
+| Region not available | Deployment attempted in an unsupported region. | Deploy to **East US2** or **Sweden Central**, the supported regions for Claude models. |
 
 ## Related content
 
