@@ -62,7 +62,7 @@ You can view the quota available to you in a region by visiting the **Quota** pa
 
 ::: moniker-end
 
-Additional quota can be requested by clicking the **Request Quota** button.
+Additional quota can be requested by Selecting the **Request Quota** button.
 
 ## Create a Foundry resource 
 
@@ -93,9 +93,12 @@ Once you have verified your quota, you can create a deployment. Navigate to Foun
 ::: moniker range="foundry"
 
 1. [!INCLUDE [foundry-sign-in](../../default/includes/foundry-sign-in.md)]
-1. Choose the subscription that was enabled for provisioned deployments & select the desired resource in a region where you have the quota. 
-1. You can select models by filtering **Direct from Azure** in the model collections filter. Those are models held and served by Azure directly and support provisioned throughput deployment option. 
-1. Select the model that you want to deploy and check the model details in the model card.
+1. From the Foundry portal homepage, choose the subscription that was enabled for provisioned deployments & select the desired resource in a region where you have the quota. 
+1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
+1. Select the **Collections** filter and filter by **Direct from Azure** to see the models held and served by Azure directly. A selection of these models support provisioned throughput deployment option. 
+1. Select the model that you want to deploy to open its model card.
+1. Select **Deploy** > **Custom settings** to customize your deployment. 
+1. Select the **Deployment type** drop down menu to  see if provisioned deployment is available for the model.
 
 ::: moniker-end 
 
@@ -108,7 +111,7 @@ To create a provisioned deployment, you can follow these steps; the choices desc
 
 :::image type="content" source="../media/provisioned/deployment-screen.png" alt-text="Screenshot of the Foundry portal deployment page for a provisioned deployment." lightbox="../media/provisioned/deployment-screen.png":::
 
-1. Click **Use this model** and configure the following fields. 
+1. Select **Use this model** and configure the following fields. 
 
 1. Select "Global Provisioned Throughput"," Data Zone Provisioned Throughput" or" Regional Provisioned Throughput" as you required in the Deployment type drop-down for your provisioned deployment. 
 
@@ -128,7 +131,7 @@ To create a provisioned deployment, you can follow these steps; the choices desc
 > [!NOTE]
 > The deployment dialog contains a reminder that you can purchase an Azure Reservation for Foundry Provisioned Throughput to obtain a significant discount for a term commitment. 
 
-Once you have entered the deployment settings, click **Confirm Pricing** to continue.  A pricing confirmation dialog will appear that will display the list price for the deployment, if you choose to pay for it on an hourly basis, with no Azure Reservation to provide a term discount.
+Once you have entered the deployment settings, select **Confirm Pricing** to continue.  A pricing confirmation dialog will appear that will display the list price for the deployment, if you choose to pay for it on an hourly basis, with no Azure Reservation to provide a term discount.
 
 If you are unsure of the costs, cancel the deployment and proceed once you understand the payment model and underlying costs for provisioned deployment. This step may prevent unexpected, high charges on your payment invoice. Resources to educate yourself include: 
 
@@ -170,11 +173,11 @@ In this event, the wizard in [!INCLUDE [foundry-link](../../default/includes/fou
 Things to notice: 
 
 * A message displays showing you many PTUs you have in available quota, and how many can currently be deployed at this time. 
-* If you select a number of PTUs greater than service capacity, a message will appear that provides options for you to obtain more capacity, and a button to allow you to select an alternate region. Clicking the "See other regions" button will display a dialog that shows a list of Foundry resources where you can create a deployment, along with the maximum sized deployment that can be created based on available quota and service capacity in each region. 
+* If you select a number of PTUs greater than service capacity, a message will appear that provides options for you to obtain more capacity, and a button to allow you to select an alternate region. Selecting the "See other regions" button will display a dialog that shows a list of Foundry resources where you can create a deployment, along with the maximum sized deployment that can be created based on available quota and service capacity in each region. 
 
 :::image type="content" source="../media/provisioned/choose-different-resource.png" alt-text="Screenshot of the Foundry portal deployment page for choosing a different resource and region." lightbox="../media/provisioned/choose-different-resource.png":::
 
-Selecting a resource and clicking **Switch resource** will cause the deployment dialog to redisplay using the selected resource. You can then proceed to create your deployment in the new region.
+Selecting a resource and selecting **Switch resource** will cause the deployment dialog to redisplay using the selected resource. You can then proceed to create your deployment in the new region.
 
 ## Create a new deployment or exchange models with your quota
 
@@ -250,7 +253,7 @@ When you deploy a specified number of provisioned throughput units (PTUs), a set
 
 PTU deployment utilization = (PTUs consumed in the time period) / (PTUs deployed in the time period)
 
-You can find the utilization measure in the Azure-Monitor section for your resource. To access the monitoring dashboards sign-in to [https://portal.azure.com](https://portal.azure.com), go to your Azure OpenAI resource and select the Metrics page from the left nav. On the metrics page, select the 'Provisioned-managed utilization V2' metric. If you have more than one deployment in the resource, you should also split the values by each deployment by clicking the 'Apply Splitting' button.
+You can find the utilization measure in the Azure-Monitor section for your resource. To access the monitoring dashboards sign-in to [https://portal.azure.com](https://portal.azure.com), go to your Azure OpenAI resource and select the Metrics page from the left nav. On the metrics page, select the 'Provisioned-managed utilization V2' metric. If you have more than one deployment in the resource, you should also split the values by each deployment by selecting the 'Apply Splitting' button.
 
 :::image type="content" source="../media/provisioned/azure-monitor-utilization.jpg" alt-text="Screenshot of the provisioned managed utilization on the resource's metrics blade in the Azure portal." lightbox="../media/provisioned/azure-monitor-utilization.jpg":::
 
