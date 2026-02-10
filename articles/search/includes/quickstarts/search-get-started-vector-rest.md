@@ -379,7 +379,7 @@ Authorization: Bearer {{token}}
     "top": 5,
     "vectorQueries": [
         {
-            "vector": [ ... ],  // 1536-dimensional vector of "quintessential lodging near running trails, eateries, retail"
+            "vector": [ ... ],  // 1536-dimensional vector
             "k": 5,
             "fields": "DescriptionVector",
             "kind": "vector",
