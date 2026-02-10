@@ -4,7 +4,7 @@ description: Learn about the latest news and features updates for Azure model ro
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 11/06/2025
+ms.date: 02/10/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: whats-new
@@ -14,7 +14,7 @@ monikerRange: 'foundry-classic || foundry'
 
 # What's new in model router in Microsoft Foundry Models?
 
-This article provides a summary of the latest releases and major documentation updates for Azure model router.
+This article provides a summary of the latest releases and major documentation updates for Azure model router, including new supported models, routing features, and deployment options.
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
@@ -32,6 +32,7 @@ A new model router model is now available. Version `2025-11-18` includes support
 It also includes new features that make it more versatile and effective.
 - **Routing profiles** let you skew model router's choices to optimize for quality or cost while maintaining a baseline level of performance.
 - Model router supports **custom subsets**: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics.
+- Model router supports **Global Standard** and **Data Zone Standard** deployment types in East US 2 and Sweden Central regions.
 
 For more information on model router and its capabilities, see the [Model router concepts guide](../openai/concepts/model-router.md).
 
