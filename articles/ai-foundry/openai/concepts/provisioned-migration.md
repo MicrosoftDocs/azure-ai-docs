@@ -86,7 +86,7 @@ We also recommend that customers using commitments now create their deployments 
 See the following links for more information. The guidance for reservations and commitments is the same:
 
 * [Capacity Transparency](#self-service-migration)
-* [Sizing reservations](../how-to/provisioned-throughput-onboarding.md#important-sizing-foundry-provisioned-throughput-reservation)
+* [Sizing reservations](../how-to/provisioned-throughput-onboarding.md#size-your-foundry-provisioned-throughput-reservation)
 
 ## New hourly reservation payment model
 

@@ -331,6 +331,6 @@ After a reservation is created, monitor it via the Azure Reservation portal or A
 - [Provisioned Throughput Units (PTU) getting started guide](./provisioned-get-started.md)
 - [Provisioned Throughput Units (PTU) concepts](../concepts/provisioned-throughput.md)
 - [Provisioned Throughput reservation documentation](https://aka.ms/oai/docs/ptum-reservations)
-- [Performance and latency optimization](./latency.md)
+- [Performance and latency](./latency.md)
 - [Deployment types](../../foundry-models/concepts/deployment-types.md)
 - [Azure OpenAI provisioned Managed offering updates](../concepts/provisioned-migration.md)
