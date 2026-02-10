@@ -614,7 +614,7 @@ You can create a new deployment to add to your managed online endpoint. To creat
 
 1. On **Review**, review your deployment settings, and then select **Create**.
 
-    :::image type="content" source="media/how-to-safely-rollout-managed-endpoints/add-green-deployment-endpoint-page.png" lightbox="media/how-to-safely-rollout-managed-endpoints/add-green-deployment-endpoints.png" alt-text="Screenshot of the Review page. Information about the endpoint, deployment, model, environment, compute instance, and traffic is visible.":::
+    :::image type="content" source="media/how-to-safely-rollout-managed-endpoints/add-green-deployment-endpoint-page.png" lightbox="media/how-to-safely-rollout-managed-endpoints/add-green-deployment-endpoint-page.png" alt-text="Screenshot of the Review page. Information about the endpoint, deployment, model, environment, compute instance, and traffic is visible.":::
 
 ### Add a deployment from the Models page
 
