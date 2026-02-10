@@ -1,24 +1,24 @@
 ---
-title: 'Quickstart - Get started using Provisioned Deployments with Azure OpenAI in Microsoft Foundry Models'
+title: Get started with provisioned deployments in Microsoft Foundry
 titleSuffix: Azure OpenAI
-description: Walkthrough on how to get started provisioned deployments on Azure OpenAI.
+description: Learn how to create and configure provisioned throughput deployments for Microsoft Foundry Models.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.custom: openai
+ms.custom: openai, pilot-ai-workflow-jan-2026 
 ms.topic: how-to
 author: msakande
 ms.author: mopeakande
 ms.reviewer: seramasu
 reviewer: rsethur
-ms.date: 01/30/2026
+ms.date: 02/10/2026
 recommendations: false
 #customerIntent: As a developer, I want to create and configure provisioned deployments so I can optimize performance and throughput for my AI applications.
 ---
 
-# Get started using provisioned deployments on the Azure OpenAI in Microsoft Foundry Models
+# Get started with provisioned deployments in Microsoft Foundry
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -29,9 +29,11 @@ The following guide walks you through key steps in creating a provisioned deploy
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-- Azure Contributor or Cognitive Services Contributor role 
+- Azure Contributor or Cognitive Services Contributor role
+- A [Foundry resource](./create-resource.md) in a region with available PTU quota
+- Azure CLI - [Install the Azure CLI](/cli/azure/install-azure-cli) (required only for CLI-based deployment)
 
-## Obtain/verify PTU quota availability
+## Verify PTU quota availability
 
 Provisioned throughput deployments are sized in units called Provisioned Throughput Units (PTUs). PTU quota for each provisioned deployment type is granted to a subscription regionally and limits the total number of PTUs that can be deployed in that region across all models and versions. 
 
@@ -119,7 +121,7 @@ To create a provisioned deployment, you can follow these steps; the choices desc
 | Select a model|    Choose the specific model you wish to deploy.    | GPT-4 |
 | Model version |    Choose the version of the model to deploy.     | 0613 |
 | Deployment Name     | The deployment name is used in your code to call the model by using the client libraries and the REST APIs.    | gpt-4|
-| Content filter    | Specify the filtering policy to apply to the deployment. Learn more on our [Content Filtering](../concepts/content-filter.md) how-to. |     Default |
+| Content filter    | Specify the filtering policy to apply to the deployment. Learn more on our [Content Filtering](../../foundry-models/concepts/content-filter.md) how-to. |     Default |
 | Deployment Type    |This impacts the throughput and performance. Choose Global Provisioned Throughput, Data Zone Provisioned Throughput or Regional Provisioned Throughput from the deployment dialog dropdown for your deployment     | Global Provisioned Throughput |
 | Provisioned Throughput Units |    Choose the amount of throughput you wish to include in the deployment. |    100 |
 
@@ -182,7 +184,7 @@ The steps are the same as the above example. When you create a new deployment, y
 
 :::image type="content" source="../media/provisioned/deepseek-deployment.png" alt-text="Screenshot of the fungible PTU to deploy flagship models." lightbox="../media/provisioned/deepseek-deployment.png":::
 
-After you deployed the new model, you can check the quota usage in [Foundry portal](https://ai.azure.com/managementCenter/quota?wsid=/subscriptions/6a6fff00-4464-4eab-a6b1-0b533c7202e0/resourceGroups/rg-fokikioluai/providers/Microsoft.CognitiveServices/accounts/ai-fokikioluai889906014325&tid=72f988bf-86f1-41af-91ab-2d7cd011db47#aoaiProvisionedManaged). You can manage your quota by either requesting new quota or deleting existing deployments to free up PTU quotas for new provisioned deployments. 
+After you deploy the new model, check the quota usage in [Foundry portal](https://ai.azure.com). You can manage your quota by either requesting new quota or deleting existing deployments to free up PTU quotas for new provisioned deployments. 
 
 :::image type="content" source="../media/provisioned/fungible-quota.png" alt-text="Screenshot of the fungible PTU quota in quota page." lightbox="../media/provisioned/fungible-quota.png":::
 
@@ -231,7 +233,7 @@ The inferencing code for provisioned deployments is the same a standard deployme
 > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../../ai-services/security-features.md) article.
 
 
-## Understanding expected throughput
+## Understand expected throughput
 
 The amount of throughput that you can achieve on the endpoint is a factor of the number of PTUs deployed, input size, output size, and call rate. The number of concurrent calls and total tokens processed can vary based on these values. 
 
@@ -243,7 +245,7 @@ Our recommended way for determining the throughput for your deployment is as fol
 
 ::: moniker-end
 
-## Measuring your deployment utilization
+## Measure deployment utilization
 When you deploy a specified number of provisioned throughput units (PTUs), a set amount of inference throughput is made available to that endpoint. Utilization of this throughput is a complex formula based on the model, model-version call rate, prompt size, generation size. To simplify this calculation, we provide a utilization metric in Azure Monitor. Your deployment returns a 429 on any new calls after the utilization rises above 100%. The Provisioned utilization is defined as follows:
 
 PTU deployment utilization = (PTUs consumed in the time period) / (PTUs deployed in the time period)
@@ -258,10 +260,10 @@ For more information about monitoring your deployments, see the [Monitoring Azur
 
 ::: moniker-end
 
-## Handling high utilization
+## Handle high utilization
 Provisioned deployments provide you with an allocated amount of compute capacity to run a given model. The 'Provisioned-Managed Utilization V2' metric in Azure Monitor measures the utilization of the deployment in one-minute increments. Provisioned-Managed deployments are also optimized so that calls accepted are processed with a consistent per-call max latency. When the workload exceeds its allocated capacity, the service returns a 429 HTTP status code until the utilization drops down below 100%. The time before retrying is provided in the `retry-after` and `retry-after-ms` response headers that provide the time in seconds and milliseconds respectively. This approach maintains the per-call latency targets while giving the developer control over how to handle high-load situations – for example retry or divert to another experience/endpoint. 
 
-### What should  I do when I receive a 429 response?
+### What should I do when I receive a 429 response?
 A 429 response indicates that the allocated PTUs are fully consumed at the time of the call. The response includes the `retry-after-ms` and `retry-after` headers that tell you the time to wait before the next call will be accepted. How you choose to handle a 429 response depends on your application requirements. Here are some considerations:
 -    If you are okay with longer per-call latencies, implement client-side retry logic to wait the `retry-after-ms` time and retry. This approach lets you maximize the throughput on the deployment. Microsoft-supplied client SDKs already handle it with reasonable defaults. You might still need further tuning based on your use-cases.
 -    Consider redirecting the traffic to other models, deployments, or experiences. This approach is the lowest-latency solution because this action can be taken as soon as you receive the 429 signal.
@@ -274,6 +276,7 @@ The Azure OpenAI SDKs retry 429 responses by default and behind the scenes in th
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
+import os
 from openai import AzureOpenAI
 
 # Configure the default for all requests:
@@ -309,8 +312,16 @@ We recommend the following workflow:
 1. Run a benchmark with your own traffic shape and workloads using your client implementation. Be sure to implement retry logic using either an Azure OpenAI client library or custom logic. 
 
 
+## Troubleshoot provisioned deployments
 
-## Next Steps
+| Issue | Cause | Resolution |
+|-------|-------|------------|
+| Deployment creation fails with quota error | Not enough PTU quota available in the selected region | Check quota usage in the Foundry portal **Quota** pane and request more quota or free up existing deployments |
+| Deployment stuck in provisioning state | Capacity constraints in the region | Wait and retry, or try deploying in a different region with available capacity |
+| Unexpected high charges on invoice | Provisioned deployments bill hourly regardless of usage | Consider purchasing an [Azure Reservation](/azure/cost-management-billing/reservations/azure-openai) for a term discount, or delete unused deployments |
+| 429 responses despite low utilization | Burst of requests exceeding momentary capacity | Implement retry logic as described in the [handle high utilization](#handle-high-utilization) section |
+
+## Related content
 
 * For more information on cloud application best practices, check out [Best practices in cloud applications](/azure/architecture/best-practices/index-best-practices)
 * For more information on provisioned deployments, check out [What is provisioned throughput?](../concepts/provisioned-throughput.md)
