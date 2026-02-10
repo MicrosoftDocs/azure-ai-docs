@@ -15,7 +15,7 @@ ms.custom:
 
 # Migrate from Azure Content Understanding Preview to GA
 
-The Content Understanding API has reached general availability (GA). It introduces several new capabilities and updates to features that were launched in earlier preview API versions. The [What's new](../whats-new.md) page provides an overview of all the changes in the `2025-11-01` Content Understanding GA API version.
+The Azure Content Understanding API has reached general availability (GA). It introduces several new capabilities and updates to features that were released in earlier preview API versions. The [What's new](../whats-new.md) page provides an overview of all the changes in the `2025-11-01` Content Understanding GA API version.
 
 Learn about the changes you need to make to migrate analyzers and applications that were built with one of the preview API versions (`2024-12-01 preview` and `2025-05-01 preview`).
 
@@ -51,11 +51,11 @@ The analyzer definition might look like this if it was created with the `2025-05
 
 ### Step 2: Update the analyzer definition for the GA API
 
-You need to make the following changes so that the analyzer works with the GA API.
+Make the following changes so that the analyzer works with the GA API.
 
-1. Add or update the `baseAnalyzerId` property so that it's included at the top level of the analyzer definition and set to one of the supported values: `prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, or `prebuilt-image`. Select the one that corresponds with the files that you plan to process with this analyzer. The `Scenario` property from the preview release is deprecated. The replacement is `baseAnalyzerId`.
+1. Add or update the `baseAnalyzerId` property so that it's included at the top level of the analyzer definition and set to one of the supported values: `prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, or `prebuilt-image`. Select the one that corresponds to the files that you plan to process with this analyzer. The `Scenario` property from the preview release is deprecated. The replacement is `baseAnalyzerId`.
 
-1. Add a `models` object and specify the completion and embeddings model. This object sets the default generative models that this analyzer uses
+1. Add a `models` object and specify the completion and embeddings model. This object sets the default generative models that this analyzer uses.
 
 For example, the schema from step 1 is updated to:
 
@@ -92,7 +92,7 @@ You need to delete the existing analyzer to reuse the name.
 
 - Content classifiers and video segmentation are now merged into content analyzers. To segment and classify content, use the `contentCategories` properties of the analyzer. See [Build a robotic process automation (RPA) solution](../tutorial/robotic-process-automation.md) and [Video segmentation](../video/overview.md#segmentation-mode) for guidance.
 
-- Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding. To add confidence and grounding, set the `estimateFieldSourceAndConfidence` to `true`. This behavior is unchanged from the `2025-05-01-preview` API.
+- Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding. To add confidence and grounding, set `estimateFieldSourceAndConfidence` to `true`. This behavior is unchanged from the `2025-05-01-preview` API.
 
 - The request to get specific components of the `analyze` result is simplified. To get embedded images or content, call:
 
@@ -105,12 +105,12 @@ You need to delete the existing analyzer to reuse the name.
   * `contents/{contentIndex}/pages/{pageNumber}` - `DocumentContent.pages[*].pageNumber`
   * `contents/{contentIndex}/figures/{figureId}` - `DocumentContent.figures[*].id`
 
-- The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. Learn more about the [`analyzeBinary` operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
+- The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. [Learn more about the `analyzeBinary` operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
 - The **Analyze** operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a URL pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
 
   > [!NOTE]
-  > The inputs array only supports a single item in the `2025-11-01` version.
+  > The inputs array supports only a single item in the `2025-11-01` version.
 
   Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
 
@@ -141,6 +141,8 @@ You need to delete the existing analyzer to reuse the name.
 - The GA API doesn't include Pro mode, which is still experimental. As a result, `AnalysisMode` is being deprecated and standard is the only mode supported in the GA API.
 - Person directory and Face API aren't part of the GA APIs, including the video analyzer features to detect and recognize faces in videos.
 - The `TrainingData` feature is being deprecated and replaced with the `knowledgeSources` feature.
+
+# Related content
 
 - [Learn more about Content Understanding pricing](../pricing-explainer.md)
 - [Learn more about Content Understanding analyzers](../concepts/analyzer-reference.md)
