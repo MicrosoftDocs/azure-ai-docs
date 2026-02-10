@@ -96,14 +96,14 @@ You need to delete the existing analyzer to reuse the name.
 
 - The request to get specific components of the `analyze` result is simplified. To get embedded images or content, call:
 
-```http
-GET /analyzerResults/{operationId}/files/{path}
-```
+  ```http
+  GET /analyzerResults/{operationId}/files/{path}
+  ```
 
-Here, `path` can include:
+  Here, `path` can include:
 
-* `contents/{contentIndex}/pages/{pageNumber}` - `DocumentContent.pages[*].pageNumber`
-* `contents/{contentIndex}/figures/{figureId}` - `DocumentContent.figures[*].id`
+  * `contents/{contentIndex}/pages/{pageNumber}` - `DocumentContent.pages[*].pageNumber`
+  * `contents/{contentIndex}/figures/{figureId}` - `DocumentContent.figures[*].id`
 
 - The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. Learn more about the [`analyzeBinary` operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
@@ -112,7 +112,7 @@ Here, `path` can include:
   > [!NOTE]
   > The inputs array only supports a single item in the `2025-11-01` version.
 
-Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
+  Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
 
   ``` jsonc
 
