@@ -17,7 +17,8 @@ Choose one of the following methods:
 1. Select the **+ Add resource** button in the upper left.
 
 1. Select the Foundry resource that you want to use and select **Next** > **Save**.
-   - Make sure that the checkbox for **Enable autodeployment for required models if no defaults are available** is selected. This selection ensures your resource is fully set up with the required `GPT-4.1`, `GPT-4.1-mini`, and `text-embedding-3-large` models. Different prebuilt analyzers require different models.
+
+   Make sure that the **Enable autodeployment for required models if no defaults are available** checkbox is selected. This selection ensures your resource is fully set up with the required `GPT-4.1`, `GPT-4.1-mini`, and `text-embedding-3-large` models. Different prebuilt analyzers require different models.
 
 By taking these steps, you set up a connection between Content Understanding and Foundry models in your Foundry resource.
 
