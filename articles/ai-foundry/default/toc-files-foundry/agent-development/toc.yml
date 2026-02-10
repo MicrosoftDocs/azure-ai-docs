@@ -1,7 +1,7 @@
 items:
 # Getting Started
 - name: Agent development overview
-  href: ../../agents/development-overview.md
+  href: ../../../agents/overview.md
 - name: FAQ
   href: ../../../agents/faq.yml
 - name: Quotas, limits, models and region support
