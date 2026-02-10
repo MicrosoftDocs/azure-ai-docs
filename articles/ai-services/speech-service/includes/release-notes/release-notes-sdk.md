@@ -13,30 +13,30 @@ ms.reviewer: pafarley
 
 ### Speech SDK 1.48.1: 2026-February release
 
-> Notes on target platform support:
->  * Android x86 support will be dropped after this release.
+Notes on target platform support:
+ * Android x86 support will be dropped after this release.
    
 #### New features:
   * Disabled CRL checks by default on Linux and Android.
   * Enhanced network error handling and logging.
   * Optimized the construction time of large phrase lists.
-  * [Java] Added support for speech synthesis input text streaming.
-  * [Java] Improved JNI memory management.
-  * [JavaScript] Recognition Latency Metrics - Recognition results now include SpeechServiceResponse_RecognitionLatencyMs property measuring end-to-end latency from audio input to result.
-   * [JavaScript] Stop Timeout for Recognizers - New Recognizer_StopTimeoutMs property enables timeout protection for stopContinuousRecognitionAsync(). When set, if the service doesn't complete within the specified time, the
+  * **Java:** Added support for speech synthesis input text streaming.
+  * **Java:** Improved JNI memory management.
+  * **JavaScript:** Recognition Latency Metrics - Recognition results now include SpeechServiceResponse_RecognitionLatencyMs property measuring end-to-end latency from audio input to result.
+   * **JavaScript:** Stop Timeout for Recognizers - New Recognizer_StopTimeoutMs property enables timeout protection for stopContinuousRecognitionAsync(). When set, if the service doesn't complete within the specified time, the
   operation cancels immediately rather than waiting indefinitely.
-   * [JavaScript] Avatar Scene Configuration - New AvatarSceneConfig class allows configuring avatar zoom, position (X/Y), rotation (X/Y/Z), and amplitude. Scene can be updated at runtime via AvatarSynthesizer.updateSceneAsync().
+   * **JavaScript:** Avatar Scene Configuration - New AvatarSceneConfig class allows configuring avatar zoom, position (X/Y), rotation (X/Y/Z), and amplitude. Scene can be updated at runtime via AvatarSynthesizer.updateSceneAsync().
 #### Bug fixes:
   * Fixed a crash in dictation mode when logging is enabled.
   * Fixed CRL related memory leaks in the network stack.
   * Fixed performance counters data sometimes missing in embedded speech recognition.
   * Fixed silence length mapping to punctuation in embedded speech synthesis.
   * Fixed word boundary caching in hybrid speech synthesis.
-  * [JavaScript] Auto source language detection now accepts blank/empty "from" language parameter.
-  * [JavaScript] Added @azure/core-auth as SDK dependency for improved Azure identity integration.
+  * **JavaScript:** Auto source language detection now accepts blank/empty "from" language parameter.
+  * **JavaScript:** Added @azure/core-auth as SDK dependency for improved Azure identity integration.
   
 #### Samples:
-[Java, Python] Updated versions of multiple dependencies to address security vulnerabilities.
+**Java, Python:** Updated versions of multiple dependencies to address security vulnerabilities.
 
 ### Speech SDK 1.47: 2025-November release
 > [!IMPORTANT]
@@ -86,7 +86,7 @@ ms.reviewer: pafarley
   * [JavaScript] Fixed an issue where `fromHost` did not work with Docker container service. 
 
 #### Samples
-  * Updated samples to demonstrate the usage of `AzureKeyCredential` and `AAD token credential` authentications. 
+  * Updated samples to demonstrate the usage of `AzureKeyCredential` and `Microsoft Entra ID token credential` authentications. 
   * [JavaScript, Python] Updated samples to use `fromEndpoint`. 
 
 ### Speech SDK 1.45: 2025-July release
@@ -105,7 +105,7 @@ ms.reviewer: pafarley
   * Fixed custom domain resolution not working with Node.js v22 or newer.
 
 #### Samples
-  * [Java] Added sample code to demonstrate AAD token credential authentication.
+  * [Java] Added sample code to demonstrate Microsoft Entra ID token credential authentication.
 
 ### Speech SDK 1.44.1: Patch release
 
@@ -184,11 +184,11 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
   * Updated TranslationRecognizer to use V2 endpoints by default.
     * This moves control parameters from the URL to in-channel messages when using a V2 endpoint.
     * Behavior change: The default language returned for "zh" is now "zh-CN" instead of "zh-hans"
-  * Added property ids for SpeechSynthesis_FrameTimeoutInterval and SpeechSynthesis_RtfTimeoutThreshold.
+  * Added property IDs for SpeechSynthesis_FrameTimeoutInterval and SpeechSynthesis_RtfTimeoutThreshold.
   * Optimized the number of times the SDK reconnects for long running recognitions.
   * [C++, Python] Added support for specifying the style and temperature in text streaming requests.
-  * [C#] Added support for automatic AAD token refresh when using FromEndpoint to construct a config object.
-    * This adds a dependency from the Speech SDK to the Azure.Core nuget package.
+  * [C#] Added support for automatic Microsoft Entra ID token refresh when using FromEndpoint to construct a config object.
+    * This adds a dependency from the Speech SDK to the Azure.Core NuGet package.
     * The Speech SDK can now accept TokenCredential derived objects for authentication when using:
       * SpeechRecognizer
       * TranslationRecognizer
@@ -212,7 +212,7 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
   * [C#] Added a scenario sample for a multi-tier speech recognition application.
     * Demonstrates a methodology for audio replay and reconnection from an edge device to a middle tier service that 
 then forwards audio to the Speech Service via the Speech SDK
-  * [C#] Updated samples to use automatic AAD token refresh.
+  * [C#] Updated samples to use automatic Microsoft Entra ID token refresh.
   * [Python] Added samples for new diagnostics APIs.
   * [Unity] Added instructions for installing the new Azure.Core dependency.
 
@@ -291,7 +291,7 @@ We added text to speech avatar code samples for [Android](https://github.com/Azu
 *  Added support for pitch, rate, and volume setting in input text streaming in speech synthesis.
 *  Added support for personal voice input text streaming by introducing `PersonalVoiceSynthesisRequest` in speech synthesis. This API is in preview and subject to change in future versions.
 *  Added support for diarization of intermediate results when `ConversationTranscriber` is used.
-*  Removed CentOS/RHEL 7 support due to [CentOS 7 EOL](https://www.redhat.com/topics/linux/centos-linux-eol) and [the end of RHEL 7 Maintenance Support 2](https://access.redhat.com/product-life-cycles?product=Red%20Hat%20Enterprise%20Linux,OpenShift%20Container%20Platform%204).
+*  Removed CentOS/RHEL 7 support due to [CentOS 7 end of support](https://www.redhat.com/topics/linux/centos-linux-eol) and [the end of RHEL 7 Maintenance Support 2](https://access.redhat.com/product-life-cycles?product=Red%20Hat%20Enterprise%20Linux,OpenShift%20Container%20Platform%204).
 *  Use of embedded speech models now requires a model license instead of a model key. If you're an existing embedded speech customer and want to upgrade, please contact your support person at Microsoft for details on model updates.
 
 #### Bug fixes
