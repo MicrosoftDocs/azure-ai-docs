@@ -32,7 +32,7 @@ A new model router model is now available. Version `2025-11-18` includes support
 It also includes new features that make it more versatile and effective.
 - **Routing profiles** let you skew model router's choices to optimize for quality or cost while maintaining a baseline level of performance.
 - Model router supports **custom subsets**: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics.
-- Model router supports **Global Standard** and **Data Zone Standard** deployment types in East US 2 and Sweden Central regions.
+- Model router supports **Global Standard** and **Data Zone Standard** deployment types.
 
 For more information on model router and its capabilities, see the [Model router concepts guide](../openai/concepts/model-router.md).
 
