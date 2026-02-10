@@ -163,12 +163,6 @@ items:
         displayName: Data privacy, logging, data retention
     - name: How-to guides
       items:
-      - name: Migrate from QnA Maker to custom question Answering
-        href: question-answering/how-to/migrate-qnamaker-to-question-answering.md
-        displayName: migration, custom question answering
-      - name: Migrate projects from QnA Maker
-        href: question-answering/how-to/migrate-qnamaker.md
-        displayName: migration, transfer
       - name: Create, test, and deploy a knowledge base
         href: question-answering/how-to/create-test-deploy.md
         displayName: knowledge base, test deploy
@@ -944,10 +938,10 @@ items:
         href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
 - name: Migration and release history
   items:
-    - name: Migrate from LUIS, QnA Maker, and Text Analytics
+    - name: "FAQ: migrate from LUIS, QnA Maker, or Text Analytics"
       displayName: text analytics, luis, qna
       href: reference/migrate.md
-    - name: Migrate from Text Analytics API to Language Service API
+    - name: Migrate from Text Analytics API to Language Service
       displayName: api versions, versioning
       href: reference/migrate-language-service-latest.md
     - name: Azure Language release history
