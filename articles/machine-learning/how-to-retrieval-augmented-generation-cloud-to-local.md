@@ -9,10 +9,11 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 11/24/2025
+ms.date: 02/10/2026
 ms.custom:
   - prompt-flow
   - ignite-2023
+ai-usage: ai-assisted
 ---
 
 # Work with RAG prompt flows locally (preview)
@@ -98,7 +99,9 @@ To use the vector index lookup tool locally, you need to create the same connect
 
 1. If you used an Azure AI Search index as the data source for your vector index, also create a new Azure AI Search connection for the local vector index lookup tool to use. For more information, see [Index Lookup tool for Azure Machine Learning (Preview)](prompt-flow/tools-reference/index-lookup-tool.md).
 
-### Check the files
+### Check the files and configure local index retrieval
+
+The downloaded flow references your cloud-based vector index. To run the flow locally, you must update the index paths so the lookup node can retrieve data from your local environment. You can choose one of two approaches: authenticate to Azure to access the cloud index remotely, or download the index files and point to a local copy.
 
 1. Open the *flow.dag.yaml* file and select the **Visual editor** link at the top of the file.
 
@@ -108,27 +111,130 @@ To use the vector index lookup tool locally, you need to create the same connect
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/search-blob.png" alt-text="Screenshot of indexed docs node in VS Code showing the inputs.":::
 
-   > [!NOTE]
-   > If your indexed docs are a data asset in your workspace, local consumption requires Azure authentication. Make sure you're signed in to the correct Azure tenant and connected to your Azure Machine Learning workspace.
-
 1. Select the **Edit** icon in the **queries** input box, which opens the raw *flow.dag.yaml* file to the `lookup` node definition.
 
 1. Ensure that the value of the `tool` section in this node is set to `promptflow_vectordb.tool.vector_index_lookup.VectorIndexLookup.search`, which is the local version of the vector index lookup tool.
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/search-tool.png" alt-text="Screenshot of the tool section of the lookup node.":::
 
-   >[!NOTE]
-   >If you have any issues with the local `promptflow_vectordb` tool, see [Package tool isn't found error](prompt-flow/tools-reference/troubleshoot-guidance.md#package-tool-isnt-found-error-occurs-when-you-update-the-flow-for-a-code-first-experience) and [Migrate from legacy tools to the Index Lookup tool](/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool#migrate-from-legacy-tools-to-the-index-lookup-tool) for troubleshooting.
+   > [!NOTE]
+   > If you have any issues with the local `promptflow_vectordb` tool, see [Package tool isn't found error](prompt-flow/tools-reference/troubleshoot-guidance.md#package-tool-isnt-found-error-occurs-when-you-update-the-flow-for-a-code-first-experience) and [Migrate from legacy tools to the Index Lookup tool](/azure/ai-studio/how-to/prompt-flow-tools/index-lookup-tool#migrate-from-legacy-tools-to-the-index-lookup-tool) for troubleshooting.
+
+#### Configure index access for local execution
+
+The `mlindex_content` input in the **lookup** node contains the paths to your vector index and embedding configuration. When you download the flow from the cloud, these paths typically point to an `azureml://` URI or Azure blob storage location. To run the flow locally, update these paths by using one of the following options.
+
+##### Option 1: Authenticate to Azure and keep cloud index references
+
+If you want to keep the index in your cloud workspace and access it remotely from your local flow, sign in to Azure so the local tool can authenticate and reach the cloud-hosted data.
+
+1. Install the Azure CLI if you don't already have it, and sign in to the correct tenant:
+
+   ```bash
+   az login --tenant <your-tenant-id>
+   ```
+
+1. Set the default subscription that contains your Azure Machine Learning workspace:
+
+   ```bash
+   az account set --subscription <your-subscription-id>
+   ```
+
+1. Verify that the `mlindex_content` paths in your *flow.dag.yaml* still reference the cloud index. The paths should look similar to the following example:
+
+   ```yaml
+   mlindex_content: >
+     embeddings:
+       api_base: "https://<your-openai-resource>.openai.azure.com/"
+       api_type: "azure"
+       api_version: "2023-07-01-preview"
+       connection:
+         id: "<your-embedding-connection>"
+       deployment: "text-embedding-ada-002"
+       model: "text-embedding-ada-002"
+     index:
+       kind: "acs"
+       connection:
+         id: "<your-search-connection>"
+       index: "<your-index-name>"
+       field_mapping:
+         content: "content"
+         embedding: "contentVector"
+   ```
+
+   > [!NOTE]
+   > If you use an Azure AI Search connection, make sure the local Azure AI Search connection you created in the previous section matches the connection name referenced here.
+
+##### Option 2: Download the index and use local file paths
+
+If you prefer a fully offline experience or don't want to authenticate against Azure each time, download the index files and update the paths to point to your local file system.
+
+1. Download the vector index files from your Azure Machine Learning workspace. You can use the Azure CLI `az ml data download` command or download them manually from the studio. For example:
+
+   ```bash
+   az ml data download --name <your-index-data-asset-name> --version 1 --download-path ./local-index --resource-group <your-rg> --workspace-name <your-ws>
+   ```
+
+1. After downloading, verify that the index folder contains an *MLIndex* file and the supporting index data files.
+
+1. Update the `mlindex_content` input in *flow.dag.yaml* to reference the local path. Replace the cloud URI with a relative path to the downloaded index folder:
+
+   ```yaml
+   mlindex_content: >
+     embeddings:
+       api_base: "https://<your-openai-resource>.openai.azure.com/"
+       api_type: "azure"
+       api_version: "2023-07-01-preview"
+       connection:
+         id: "<your-local-embedding-connection-name>"
+       deployment: "text-embedding-ada-002"
+       model: "text-embedding-ada-002"
+     index:
+       kind: "faiss"
+       path: "./local-index"
+       field_mapping:
+         content: "content"
+         embedding: "contentVector"
+   ```
+
+   > [!IMPORTANT]
+   > Update the `connection` `id` values to match the local connection names you created in the [Create the connections](#create-the-connections) section. The cloud connection IDs don't work in the local environment.
+
+   The key changes are:
+   - Set `kind` to `faiss` (or the index type that matches your downloaded index, such as `acs` for Azure AI Search).
+   - Set `path` to the relative or absolute path where you downloaded the index files.
+   - Update the `connection` `id` to reference the local connection name.
+
+### Update the generate_prompt_context node
 
 1. Scroll to the **generate_prompt_context** node, and in the raw *flow.dag.yaml* file, select the **Open code file** link.
 
-1. In the Python code file, make sure the package name of the vector tool is `promptflow_vectordb`.
+1. In the Python code file, verify the following items:
 
-    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/generate-node.png" alt-text="Screenshot of the Python code file with the vector tool package name highlighted.":::
+   - The import statement references the `promptflow_vectordb` package. For example:
 
-1. Scroll to the **answer_the_question_with_context** node and make sure it uses the local connection you created. Check the **deployment_name**, which is the model you use here for the embedding.
+     ```python
+     from promptflow_vectordb.tool.common_index_lookup import search
+     ```
+
+   - If the code contains hard-coded cloud paths or references to `azureml://` URIs, update them to match your local configuration. The function should receive the index content from the node input rather than using a hard-coded path.
+
+   :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/generate-node.png" alt-text="Screenshot of the Python code file with the vector tool package name highlighted.":::
+
+### Verify the answer node connection
+
+1. Scroll to the **answer_the_question_with_context** node and make sure it uses the local connection you created. Check the **deployment_name**, which is the model you use here for the chat completion.
 
    :::image type="content" source="./media/how-to-retrieval-augmented-generation-cloud-to-local/answer-connection.png" alt-text="Screenshot of answer the question with context node with the connection highlighted.":::
+
+### Troubleshoot local index issues
+
+If the flow fails during the **lookup** step, check for these common issues:
+
+- **Connection name mismatch**: The `connection` `id` values in `mlindex_content` must match the exact names of the local connections you created. Run `pf connection list` in the terminal to see available connections.
+- **Invalid index path**: If you downloaded the index locally, verify that the `path` value in the `index` section points to a valid directory that contains the index files. Use a relative path from the flow folder or an absolute path.
+- **Authentication errors**: If you kept cloud index references (Option 1), make sure you're signed in with `az login` and that your account has access to the workspace. Run `az account show` to verify the active subscription.
+- **Missing package**: If you see `ModuleNotFoundError: No module named 'promptflow_vectordb'`, reinstall the package by running `pip install promptflow-vectordb`.
 
 ### Test and run the flow
 
