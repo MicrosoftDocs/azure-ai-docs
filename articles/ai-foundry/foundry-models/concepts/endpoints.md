@@ -9,7 +9,7 @@ ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 11/21/2025
 ms.author: mopeakande
-ms.custom: ignite-2024, github-universe-2024
+ms.custom: build-2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer using Microsoft Foundry Models, I want to understand how to access and use Foundry Model endpoints so that I can integrate models into my applications with secure authentication and flexible deployment options.
@@ -53,6 +53,9 @@ Foundry services provide multiple endpoints depending on the type of work you wa
 
 
 ## Azure AI inference endpoint
+
+> [!NOTE]
+> The Azure AI Inference SDK samples in this section remain fully functional. However, for new projects, we recommend using the [Azure OpenAI endpoint](#azure-openai-inference-endpoint) with the OpenAI SDK. For migration guidance, see [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration.md).
 
 The **Azure AI inference endpoint**, usually of the form `https://<resource-name>.services.ai.azure.com/models`, enables you to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All Foundry Models support this capability. This endpoint follows the [Azure AI Model Inference API](/rest/api/aifoundry/modelinference), which supports the following modalities:
 
@@ -115,5 +118,6 @@ To use keyless authentication, [configure your resource and grant access to user
 
 - [Foundry Models and capabilities](./models-sold-directly-by-azure.md)
 - [Deployment types in Foundry Models](deployment-types.md)
+- [Model and region availability for Foundry Models](../../how-to/deploy-models-serverless-availability.md)
 - [What is Azure OpenAI in Foundry Models?](models-sold-directly-by-azure.md)
 

@@ -106,6 +106,19 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     ```
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
+<!--
+## Troubleshooting
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `AuthenticationError` | Invalid or missing API key | Verify `AZURE_OPENAI_API_KEY` environment variable is set correctly. |
+| `NotFoundError` | Incorrect endpoint or deployment | Check `AZURE_OPENAI_ENDPOINT` and `deployment_name` match your Azure resource. |
+| `RateLimitError` | Quota exceeded | Wait and retry, or request a quota increase in Azure portal. |
+| Truncated response | `max_tokens` too low | Increase the `max_tokens` value in your request. |
+| `BadRequestError` with content filter | Image triggered content filter | GPT-4 Turbo with Vision has mandatory content filtering that can't be disabled. |
+
+-->
+
 ## Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.

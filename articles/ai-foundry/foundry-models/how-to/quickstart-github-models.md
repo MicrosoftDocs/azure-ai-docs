@@ -5,8 +5,8 @@ description: Learn how to upgrade from GitHub Models to Microsoft Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 12/05/2025
-ms.custom: ignite-2024, github-universe-2024
+ms.date: 02/09/2026
+ms.custom: ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
 author: msakande   
 ms.author: mopeakande
 recommendations: false
@@ -23,11 +23,11 @@ In this article, you learn to develop a generative AI application by starting fr
 
 [GitHub Models](https://docs.github.com/en/github-models/) are useful when you want to find and experiment with AI models for free as you develop a generative AI application. When you're ready to bring your application to production, upgrade your experience by deploying a Foundry Tools resource in an Azure subscription and start using Foundry Models. You don't need to change anything else in your code.
 
-The playground and free API usage for GitHub Models are [rate limited](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you need to wait for the rate limit that you hit to reset before you can make more requests.
+The playground and free API usage for GitHub Models are [rate limited](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you need to wait for the rate limit that you hit to reset before you can make more requests.
 
 ## Prerequisites
 
-To complete this tutorial, you need:
+You need:
 
 - A GitHub account with access to [GitHub Models](https://docs.github.com/en/github-models/).
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. Alternatively, you can wait until you're ready to deploy your model to production, at which point you'll be prompted to create or update your Azure account to a standard account.
@@ -37,6 +37,9 @@ To complete this tutorial, you need:
 ## Upgrade to Foundry Models
 
 The rate limits for the playground and free API usage help you experiment with models and develop your AI application. When you're ready to bring your application to production, use a key and endpoint from a paid Azure account. You don't need to change anything else in your code.
+
+> [!NOTE]
+> GitHub Models are free with rate limits. After you upgrade to Foundry Models, usage is billed to your Azure subscription based on the [deployment type](../concepts/deployment-types.md) you choose.
 
 To get the key and endpoint:
 
@@ -60,19 +63,14 @@ To get the key and endpoint:
 
     1. Sign in to your Azure account.
 
-1.  You're taken to [Foundry > GitHub](https://ai.azure.com/GitHub) and land on the home page in a Foundry project. The Foundry experience that opens up depends on the one you last used, either: 
+1.  You're taken to [Foundry > GitHub](https://ai.azure.com/GitHub) and land on the home page in a Foundry project.
 
-    1. You might land in the Foundry (new) experience. Notice the **New Foundry** toggle is on in the upper-right navigation.
-    
-        :::image type="icon" source="../../default/media/version-banner/new-foundry.png" border="false":::
-
-    1.  Alternatively, you might land in the Foundry (classic) experience. Notice the **New Foundry** toggle is off in the upper-right navigation. 
-    
-        :::image type="icon" source="../../default/media/version-banner/classic-foundry.png" border="false":::
-
-1. Toggle the **New Foundry** switcher if you prefer to switch to a different Foundry experience.
+    > [!TIP]
+    > If you land in the Foundry (classic) experience, toggle the **New Foundry** switcher in the upper-right navigation to switch to the new Foundry experience.
 
 1. Follow the steps in [Deploy a model](deploy-foundry-models.md#deploy-a-model) to deploy the model of your choice, test it in the Playground, and inference the deployed model with code.
+
+1. Verify the deployment works by sending a test prompt in the Playground. If you receive a response, your model is ready to use from code.
 
 
 > [!IMPORTANT]
@@ -80,14 +78,24 @@ To get the key and endpoint:
 
 ## Explore additional features
 
-Foundry Models supports extra features that aren't available in GitHub Models, including:
+Foundry Models supports features that aren't available in GitHub Models:
 
-* The Model catalog
-* Keyless authentication with Microsoft Entra ID
-* Content filtering
-* Rate limiting for specific models
-* Additional [deployment SKUs for specific models](../../foundry-models/concepts/deployment-types.md).
+* **[Model catalog](https://ai.azure.com/explore/models)** — Browse, compare, and evaluate models from Azure, partners, and the open-source community.
+* **[Keyless authentication](configure-entra-id.md)** — Use Microsoft Entra ID for token-based authentication without managing API keys.
+* **[Content filtering](../concepts/content-filter.md)** — Configure content safety filters for your deployments.
+* **Rate limiting** — Set custom rate limits for specific models in your resource.
+* **[Deployment types](../concepts/deployment-types.md)** — Choose from multiple deployment SKUs such as pay-per-token, provisioned, and batch.
 
-## Next Step
+## Troubleshoot common issues
+
+| Issue | Resolution |
+| --- | --- |
+| Model not available in your region | Check the model's region availability on its [model catalog page](https://ai.azure.com/explore/models) and choose a supported region. |
+| Authentication error after key swap | Verify you copied the correct key from the Foundry portal. Select **Project settings** > **Keys and endpoints** to view your keys. |
+| Rate limit errors after upgrade | Foundry Models rate limits depend on your [deployment type](../concepts/deployment-types.md). Scale up or choose a higher-throughput deployment. |
+
+## Related content
 
 * [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md)
+* [Create model deployments](create-model-deployments.md)
+* [Deployment types for Foundry Models](../concepts/deployment-types.md)

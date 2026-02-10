@@ -6,8 +6,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article 
 ms.date: 12/6/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 recommendations: false
 ms.custom: ignite2025
 monikerRange: 'foundry-classic || foundry'
