@@ -11,6 +11,33 @@ ms.reviewer: pafarley
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
 
+### Speech SDK 1.48.1: 2026-February release
+
+> Notes on target platform support:
+>  * Android x86 support will be dropped after this release.
+   
+#### New features:
+  * Disabled CRL checks by default on Linux and Android.
+  * Enhanced network error handling and logging.
+  * Optimized the construction time of large phrase lists.
+  * [Java] Added support for speech synthesis input text streaming.
+  * [Java] Improved JNI memory management.
+  * [JavaScript] Recognition Latency Metrics - Recognition results now include SpeechServiceResponse_RecognitionLatencyMs property measuring end-to-end latency from audio input to result.
+   * [JavaScript] Stop Timeout for Recognizers - New Recognizer_StopTimeoutMs property enables timeout protection for stopContinuousRecognitionAsync(). When set, if the service doesn't complete within the specified time, the
+  operation cancels immediately rather than waiting indefinitely.
+   * [JavaScript] Avatar Scene Configuration - New AvatarSceneConfig class allows configuring avatar zoom, position (X/Y), rotation (X/Y/Z), and amplitude. Scene can be updated at runtime via AvatarSynthesizer.updateSceneAsync().
+#### Bug fixes:
+  * Fixed a crash in dictation mode when logging is enabled.
+  * Fixed CRL related memory leaks in the network stack.
+  * Fixed performance counters data sometimes missing in embedded speech recognition.
+  * Fixed silence length mapping to punctuation in embedded speech synthesis.
+  * Fixed word boundary caching in hybrid speech synthesis.
+  * [JavaScript] Auto source language detection now accepts blank/empty "from" language parameter.
+  * [JavaScript] Added @azure/core-auth as SDK dependency for improved Azure identity integration.
+  
+#### Samples:
+[Java, Python] Updated versions of multiple dependencies to address security vulnerabilities.
+
 ### Speech SDK 1.47: 2025-November release
 > [!IMPORTANT]
 > Windows 32-bit support is dropped due to the end of mainstream support for Windows 10 and thus 32-bit x86 and ARM (https://support.microsoft.com/windows/windows-10-support-has-ended-on-october-14-2025-2ca8b313-1946-43d3-b55c-2b95b107f281).
