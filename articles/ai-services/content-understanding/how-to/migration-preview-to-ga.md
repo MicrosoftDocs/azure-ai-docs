@@ -17,7 +17,7 @@ ms.custom:
 
 The Azure Content Understanding API has reached general availability (GA). It introduces several new capabilities and updates to features that were released in earlier preview API versions. The [What's new](../whats-new.md) page provides an overview of all the changes in the `2025-11-01` Content Understanding GA API version.
 
-Learn about the changes you need to make to migrate analyzers and applications that were built with one of the preview API versions (`2024-12-01 preview` and `2025-05-01 preview`).
+This article highlights changes needed to migrate analyzers and applications that were built with one of the preview API versions (`2024-12-01 preview` and `2025-05-01 preview`).
 
 ## Prerequisites
 
@@ -53,7 +53,7 @@ The analyzer definition might look like this if it was created with the `2025-05
 
 Make the following changes so that the analyzer works with the GA API.
 
-1. Add or update the `baseAnalyzerId` property so that it's included at the top level of the analyzer definition and set to one of the supported values: `prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, or `prebuilt-image`. Select the one that corresponds to the files that you plan to process with this analyzer. The `Scenario` property from the preview release is deprecated. The replacement is `baseAnalyzerId`.
+1. Add or update the `baseAnalyzerId` property at the top level of the analyzer definition and set it to one of the supported values: `prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, or `prebuilt-image`. Select the one that corresponds to the files that you plan to process with this analyzer. The `Scenario` property from the preview release is deprecated.
 
 1. Add a `models` object and specify the completion and embeddings model. This object sets the default generative models that this analyzer uses.
 
@@ -105,9 +105,9 @@ You need to delete the existing analyzer to reuse the name.
   * `contents/{contentIndex}/pages/{pageNumber}` - `DocumentContent.pages[*].pageNumber`
   * `contents/{contentIndex}/figures/{figureId}` - `DocumentContent.figures[*].id`
 
-- The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. [Learn more about the `analyzeBinary` operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
+- The `analyze` operation now supports only analyzing files by URL. Use the new `analyzeBinary` operation to upload files as part of the request body as a base64-encoded string. If you previously used the `analyze` operation to upload files inline in your code, you need to update your code to instead use the `analyzeBinary` operation. [Learn more about the `analyzeBinary` operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
-- The **Analyze** operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a URL pointer to a file. Learn more about the [Analyze operation](/rest/api/contentunderstanding/content-analyzers/analyze).
+- The `analyze` operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a URL pointer to a file. Learn more about the [`analyze` operation](/rest/api/contentunderstanding/content-analyzers/analyze).
 
   > [!NOTE]
   > The inputs array supports only a single item in the `2025-11-01` version.
@@ -127,11 +127,11 @@ You need to delete the existing analyzer to reuse the name.
 
 - If you used in-context learning or labeled data, the API payload that defines the labeled dataset now specifies the labeled data as a type of `knowledgeSources`. For more information, see [Create or replace](/rest/api/contentunderstanding/content-analyzers/create-or-replace).
 
-- For video analyzers, the key frames are now returned as an array of `keyFrames`. Learn more in [Analyze](/rest/api/contentunderstanding/content-analyzers/analyze).
+- For video analyzers, the key frames are now returned as an array of `keyFrames`. [Learn more in Analyze](/rest/api/contentunderstanding/content-analyzers/analyze).
 
 ### New features
 
-- The field extraction method is optional. When not set, the analyzer determines the approach (`extract` or `generate`). Don't add the `method` property unless you need the value extracted verbatim.
+- The field extraction method is optional. When the method isn't set, the analyzer determines the approach (`extract` or `generate`). Don't add the `method` property unless you need the value extracted verbatim.
 - There's added support for confidence scores and source grounding for fields in document analyzers that have the method set to generate.
 - There are now increased field limits to 1,000 fields per analyzer.
 - For documents, classification and segmentation supports up to 200 distinct types.
