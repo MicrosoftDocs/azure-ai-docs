@@ -3,7 +3,7 @@ title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
 description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 01/21/2026
+ms.date: 02/10/2026
 ms.author: jburchel
 author: jonburchel
 ms.reviewer: dantaylo
@@ -175,13 +175,13 @@ Start by running the agent so you see working functionality before diving into i
 
 1. Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
-1. Verify that your `requirements.txt` uses these published package versions (MCP support requires a prerelease of `azure-ai-agents`):
+1. Verify that your `requirements.txt` uses these published package versions:
 
    ```text
-   azure-ai-agents==1.2.0b6
-   azure-ai-projects==1.0.0
+   azure-ai-projects==2.0.0b3
    azure-identity
    python-dotenv
+   openai
    ```
 
 1. Install dependencies:
@@ -228,8 +228,8 @@ MODEL_DEPLOYMENT_NAME=gpt-4o-mini
 # The Microsoft Learn MCP Server (optional)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 
-# SharePoint integration (optional - requires connection setup)
-SHAREPOINT_RESOURCE_NAME=<your-sharepoint-connection-name>
+# SharePoint integration (optional - requires connection ID)
+SHAREPOINT_CONNECTION_ID=<your-sharepoint-connection-id>
 ```
 
 # [C#](#tab/csharp)
@@ -287,15 +287,15 @@ Successful run with SharePoint:
 
 ```text
 🤖 Creating Modern Workplace Assistant...
-✅ SharePoint connected: YourConnection
-✅ Agent created: asst_abc123
+✅ SharePoint tool configured successfully
+✅ Agent created successfully (id: asst_abc123, version: 1)
 ```
 
 Graceful degradation without SharePoint:
 
 ```text
-⚠️  SharePoint connection not found: Connection 'YourConnection' not found
-✅ Agent created: asst_abc123
+📁 SharePoint integration skipped (SHAREPOINT_CONNECTION_ID not set)
+✅ Agent created successfully (id: asst_abc123, version: 1)
 ```
 
 Now that you have a working agent, the next sections explain how it works. You don't need to take any action while reading these sections—they're for explanation.
@@ -429,13 +429,11 @@ When you run the agent, you see output similar to the following example. The out
 ```bash
 ✅ Connected to Foundry
 🚀 Foundry - Modern Workplace Assistant
-Tutorial 1: Building Enterprise Agents with Microsoft Foundry Project SDK
+Tutorial 1: Building Enterprise Agents with Microsoft Foundry SDK
 ======================================================================
 🤖 Creating Modern Workplace Assistant...
 📁 Configuring SharePoint integration...
-   Connection name: ContosoCorpPoliciesProcedures
-   🔍 Resolving connection name to ARM resource ID...
-   ✅ Resolved
+   Connection ID: /subscriptions/.../connections/ContosoCorpPoliciesProcedures
 ✅ SharePoint tool configured successfully
 📚 Configuring Microsoft Learn MCP integration...
    Server URL: https://learn.microsoft.com/api/mcp
@@ -444,13 +442,13 @@ Tutorial 1: Building Enterprise Agents with Microsoft Foundry Project SDK
    ✓ SharePoint tool added
    ✓ MCP tool added
    Total tools: 2
-✅ Agent created successfully
+✅ Agent created successfully (id: asst_abc123, version: 1)
 
 ======================================================================
 🏢 MODERN WORKPLACE ASSISTANT - BUSINESS SCENARIO DEMONSTRATION
 ======================================================================
 This demonstration shows how AI agents solve real business problems
-using the Azure AI Agents SDK v2.
+using the Microsoft Foundry SDK.
 ======================================================================
 
 📊 SCENARIO 1/3: 📋 Company Policy Question (SharePoint Only)
@@ -500,8 +498,8 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 
 ✅ DEMONSTRATION COMPLETED!
 🎓 Key Learning Outcomes:
-   • Microsoft Foundry Project SDK usage for enterprise AI
-   • Proper thread and message management
+   • Microsoft Foundry SDK usage for enterprise AI
+   • Conversation management via the Responses API
    • Real business value through AI assistance
    • Foundation for governance and monitoring (Tutorials 2-3)
 
