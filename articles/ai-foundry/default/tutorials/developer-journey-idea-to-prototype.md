@@ -288,14 +288,14 @@ Successful run with SharePoint:
 ```text
 🤖 Creating Modern Workplace Assistant...
 ✅ SharePoint tool configured successfully
-✅ Agent created successfully (id: asst_abc123, version: 1)
+✅ Agent created successfully (name: Modern Workplace Assistant, version: 1)
 ```
 
 Graceful degradation without SharePoint:
 
 ```text
 📁 SharePoint integration skipped (SHAREPOINT_CONNECTION_ID not set)
-✅ Agent created successfully (id: asst_abc123, version: 1)
+✅ Agent created successfully (name: Modern Workplace Assistant, version: 1)
 ```
 
 Now that you have a working agent, the next sections explain how it works. You don't need to take any action while reading these sections—they're for explanation.
@@ -442,7 +442,7 @@ Tutorial 1: Building Enterprise Agents with Microsoft Foundry SDK
    ✓ SharePoint tool added
    ✓ MCP tool added
    Total tools: 2
-✅ Agent created successfully (id: asst_abc123, version: 1)
+✅ Agent created successfully (name: Modern Workplace Assistant, version: 1)
 
 ======================================================================
 🏢 MODERN WORKPLACE ASSISTANT - BUSINESS SCENARIO DEMONSTRATION
@@ -457,7 +457,7 @@ using the Microsoft Foundry SDK.
 🎯 BUSINESS CONTEXT: Employee needs to understand company-specific remote work requirements
 🎓 LEARNING POINT: SharePoint tool retrieves internal company policies
 --------------------------------------------------
-🤖 ASSISTANT RESPONSE:
+🤖 AGENT RESPONSE:
 ✅ SUCCESS: Contosoʹs remote work policy, effective January 2024, outlines the following key points:
 
 ### Overview
@@ -475,7 +475,7 @@ Contoso Corp supports flexible work arrangements, including remote work, to enha
 🎯 BUSINESS CONTEXT: IT administrator needs authoritative Microsoft technical guidance
 🎓 LEARNING POINT: MCP tool accesses Microsoft Learn for official documentation with links
 --------------------------------------------------
-🤖 ASSISTANT RESPONSE:
+🤖 AGENT RESPONSE:
 ✅ SUCCESS: To implement Azure AD Conditional Access policies correctly, follow these key steps outlined in the Microsoft Learn documentation:
 
 ### 1. Understanding Conditional Access
@@ -490,7 +490,7 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 🎯 BUSINESS CONTEXT: Need to map company policy to technical implementation with official guidance
 🎓 LEARNING POINT: Both tools work together: SharePoint for policy + MCP for implementation docs
 --------------------------------------------------
-🤖 ASSISTANT RESPONSE:
+🤖 AGENT RESPONSE:
 ✅ SUCCESS: To configure your Azure environment in compliance with Contoso Corpʹs remote work security policy, you need to focus on several key areas, including enabling Multi-Factor Authentication (MFA), utilizing Azure Security Center, and implementing proper access management. Below are specific steps and li...
    📏 Full response: 3436 characters
 📈 STATUS: completed
