@@ -15,7 +15,7 @@ In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview
 
 A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
 
-Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
+Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
 ## Prerequisites
 
@@ -25,11 +25,19 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
+
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
+
++ The latest LTS version of [Node.js](https://nodejs.org/en/download/).
+
++ [Visual Studio Code](https://code.visualstudio.com/download).
+
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) and the latest LTS version of [Node.js](https://nodejs.org/en/download/).
++ [Git](https://git-scm.com/downloads) to clone the sample repository.
 
-[!INCLUDE [Setup](./agentic-retrieval-setup.md)]
+[!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
 ## Set up the environment
 
@@ -562,6 +570,8 @@ References:
 ```
 
 ## Understand the code
+
+[!INCLUDE [understand code note](../understand-code-note.md)]
 
 Now that you have the code, let's break down the key components:
 

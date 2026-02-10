@@ -15,10 +15,10 @@ In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview
 
 A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
 
-Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
+Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
 > [!TIP]
-> Want to get started right away? See the [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) GitHub repository.
+> Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) on GitHub.
 
 ## Prerequisites
 
@@ -28,45 +28,43 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
+
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
+
++ [.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
 
 + [Visual Studio Code](https://code.visualstudio.com/download).
 
-[!INCLUDE [Setup](./agentic-retrieval-setup.md)]
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+
++ [Git](https://git-scm.com/downloads) to clone the sample repository.
+
+[!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
 ## Set up the environment
 
-To set up the console application for this quickstart:
-
-1. Create a folder named `quickstart-agentic-retrieval` to contain the application.
-
-1. Open the folder in Visual Studio Code.
-
-1. Select **Terminal** > **New Terminal**, and then run the following command to create a console application.
+1. Use Git to clone the sample repository.
 
     ```console
-    dotnet new console
+    git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
     ```
 
-1. Install the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search.documents-readme).
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
     ```console
-    dotnet add package Azure.Search.Documents --version 11.8.0-beta.1
+    cd azure-search-dotnet-samples/quickstart-agentic-retrieval
+    code .
     ```
 
-1. Install the `dotenv.net` package to load environment variables from a `.env` file.
+1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder and add the following content. Replace the placeholder values with the endpoints you obtained in [Get endpoints](#get-endpoints).
 
-    ```console
-    dotnet add package dotenv.net
+    ```
+    SEARCH_ENDPOINT = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+    AOAI_ENDPOINT = PUT-YOUR-AOAI-FOUNDRY-URL-HERE
     ```
 
-1. For keyless authentication with Microsoft Entra ID, install the [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package.
-
-    ```console
-    dotnet add package Azure.Identity
-    ```
-
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Foundry project.
 
     ```console
     az login
@@ -74,326 +72,11 @@ To set up the console application for this quickstart:
 
 ## Run the code
 
-To create and run the agentic retrieval pipeline:
+Run the application to create an index, upload documents, configure knowledge sources and bases, and run agentic retrieval queries.
 
-1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder.
-
-1. Paste the following environment variables into the `.env` file.
-
-    ```
-    SEARCH_ENDPOINT = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-    AOAI_ENDPOINT = PUT-YOUR-AOAI-FOUNDRY-URL-HERE
-    ```
-
-1. Set `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` to the values you obtained in [Get endpoints](#get-endpoints).
-
-1. Paste the following code into the `Program.cs` file.
-
-    ```csharp
-    using dotenv.net;
-    using System.Text.Json;
-    using Azure.Identity;
-    using Azure.Search.Documents;
-    using Azure.Search.Documents.Indexes;
-    using Azure.Search.Documents.Indexes.Models;
-    using Azure.Search.Documents.KnowledgeBases;
-    using Azure.Search.Documents.KnowledgeBases.Models;
-    
-    namespace AzureSearch.Quickstart
-    {
-        class Program
-        {
-            static async Task Main(string[] args)
-            {
-                // Load environment variables from the .env file
-                // Ensure your .env file is in the same directory with the required variables
-                DotEnv.Load();
-    
-                string searchEndpoint = Environment.GetEnvironmentVariable("SEARCH_ENDPOINT")
-                    ?? throw new InvalidOperationException("SEARCH_ENDPOINT isn't set.");
-                string aoaiEndpoint = Environment.GetEnvironmentVariable("AOAI_ENDPOINT")
-                    ?? throw new InvalidOperationException("AOAI_ENDPOINT isn't set.");
-    
-                string aoaiEmbeddingModel = "text-embedding-3-large";
-                string aoaiEmbeddingDeployment = "text-embedding-3-large";
-                string aoaiGptModel = "gpt-5-mini";
-                string aoaiGptDeployment = "gpt-5-mini";
-    
-                string indexName = "earth-at-night";
-                string knowledgeSourceName = "earth-knowledge-source";
-                string knowledgeBaseName = "earth-knowledge-base";
-    
-                var credential = new DefaultAzureCredential();
-    
-                // Define fields for the index
-                var fields = new List<SearchField>
-                {
-                    new SimpleField("id", SearchFieldDataType.String) { IsKey = true, IsFilterable = true, IsSortable = true, IsFacetable = true },
-                    new SearchField("page_chunk", SearchFieldDataType.String) { IsFilterable = false, IsSortable = false, IsFacetable = false },
-                    new SearchField("page_embedding_text_3_large", SearchFieldDataType.Collection(SearchFieldDataType.Single)) { VectorSearchDimensions = 3072, VectorSearchProfileName = "hnsw_text_3_large" },
-                    new SimpleField("page_number", SearchFieldDataType.Int32) { IsFilterable = true, IsSortable = true, IsFacetable = true }
-                };
-    
-                // Define a vectorizer
-                var vectorizer = new AzureOpenAIVectorizer(vectorizerName: "azure_openai_text_3_large")
-                {
-                    Parameters = new AzureOpenAIVectorizerParameters
-                    {
-                        ResourceUri = new Uri(aoaiEndpoint),
-                        DeploymentName = aoaiEmbeddingDeployment,
-                        ModelName = aoaiEmbeddingModel
-                    }
-                };
-    
-                // Define a vector search profile and algorithm
-                var vectorSearch = new VectorSearch()
-                {
-                    Profiles =
-                    {
-                        new VectorSearchProfile(
-                            name: "hnsw_text_3_large",
-                            algorithmConfigurationName: "alg"
-                        )
-                        {
-                            VectorizerName = "azure_openai_text_3_large"
-                        }
-                    },
-                    Algorithms =
-                    {
-                        new HnswAlgorithmConfiguration(name: "alg")
-                    },
-                    Vectorizers =
-                    {
-                        vectorizer
-                    }
-                };
-    
-                // Define a semantic configuration
-                var semanticConfig = new SemanticConfiguration(
-                    name: "semantic_config",
-                    prioritizedFields: new SemanticPrioritizedFields
-                    {
-                        ContentFields = { new SemanticField("page_chunk") }
-                    }
-                );
-    
-                var semanticSearch = new SemanticSearch()
-                {
-                    DefaultConfigurationName = "semantic_config",
-                    Configurations = { semanticConfig }
-                };
-    
-                // Create the index
-                var index = new SearchIndex(indexName)
-                {
-                    Fields = fields,
-                    VectorSearch = vectorSearch,
-                    SemanticSearch = semanticSearch
-                };
-    
-                // Create the index client, deleting and recreating the index if it exists
-                var indexClient = new SearchIndexClient(new Uri(searchEndpoint), credential);
-                await indexClient.CreateOrUpdateIndexAsync(index);
-                Console.WriteLine($"Index '{indexName}' created or updated successfully.");
-    
-                // Upload sample documents from the GitHub URL
-                string url = "https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json";
-                var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                var json = await response.Content.ReadAsStringAsync();
-                var documents = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(json);
-                var searchClient = new SearchClient(new Uri(searchEndpoint), indexName, credential);
-                var searchIndexingBufferedSender = new SearchIndexingBufferedSender<Dictionary<string, object>>(
-                    searchClient,
-                    new SearchIndexingBufferedSenderOptions<Dictionary<string, object>>
-                    {
-                        KeyFieldAccessor = doc => doc["id"].ToString(),
-                    }
-                );
-
-                await searchIndexingBufferedSender.UploadDocumentsAsync(documents);
-                await searchIndexingBufferedSender.FlushAsync();
-                Console.WriteLine($"Documents uploaded to index '{indexName}' successfully.");
-    
-                // Create a knowledge source
-                var indexKnowledgeSource = new SearchIndexKnowledgeSource(
-                    name: knowledgeSourceName,
-                    searchIndexParameters: new SearchIndexKnowledgeSourceParameters(searchIndexName: indexName)
-                    {
-                        SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
-                    }
-                );
-    
-                await indexClient.CreateOrUpdateKnowledgeSourceAsync(indexKnowledgeSource);
-                Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated successfully.");
-    
-                // Create a knowledge base
-                var openAiParameters = new AzureOpenAIVectorizerParameters
-                {
-                    ResourceUri = new Uri(aoaiEndpoint),
-                    DeploymentName = aoaiGptDeployment,
-                    ModelName = aoaiGptModel
-                };
-    
-                var model = new KnowledgeBaseAzureOpenAIModel(azureOpenAIParameters: openAiParameters);
-    
-                var knowledgeBase = new KnowledgeBase(
-                    name: knowledgeBaseName,
-                    knowledgeSources: new KnowledgeSourceReference[] { new KnowledgeSourceReference(knowledgeSourceName) }
-                )
-                {
-                    RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort(),
-                    AnswerInstructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
-                    Models = { model }
-                };
-    
-                await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
-                Console.WriteLine($"Knowledge base '{knowledgeBaseName}' created or updated successfully.");
-    
-                // Set up messages
-                string instructions = @"A Q&A agent that can answer questions about the Earth at night.
-                If you don't have the answer, respond with ""I don't know"".";
-
-                var messages = new List<Dictionary<string, string>>
-                {
-                    new Dictionary<string, string>
-                    {
-                        { "role", "system" },
-                        { "content", instructions }
-                    }
-                };
-    
-                // Run agentic retrieval
-                var baseClient = new KnowledgeBaseRetrievalClient(
-                    endpoint: new Uri(searchEndpoint),
-                    knowledgeBaseName: knowledgeBaseName,
-                    tokenCredential: new DefaultAzureCredential()
-                );
-
-                string query = @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?";
-
-                messages.Add(new Dictionary<string, string>
-                {
-                    { "role", "user" },
-                    { "content", query }
-                });
-
-                Console.WriteLine($"Running the query...{query}");
-                var retrievalRequest = new KnowledgeBaseRetrievalRequest();
-                foreach (Dictionary<string, string> message in messages) {
-                    if (message["role"] != "system") {
-                        retrievalRequest.Messages.Add(new KnowledgeBaseMessage(content: new[] { new KnowledgeBaseMessageTextContent(message["content"]) }) { Role = message["role"] });
-                    }
-                }
-                retrievalRequest.RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort();
-                var retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
-    
-                messages.Add(new Dictionary<string, string>
-                {
-                    { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
-                });
-    
-                // Print the response, activity, and references
-                Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
-    
-                Console.WriteLine("Activity:");
-                foreach (var activity in retrievalResult.Value.Activity)
-                {
-                    Console.WriteLine($"Activity Type: {activity.GetType().Name}");
-                    string activityJson = JsonSerializer.Serialize(
-                        activity,
-                        activity.GetType(),
-                        new JsonSerializerOptions { WriteIndented = true }
-                    );
-                    Console.WriteLine(activityJson);
-                }
-    
-                Console.WriteLine("References:");
-                foreach (var reference in retrievalResult.Value.References)
-                {
-                    Console.WriteLine($"Reference Type: {reference.GetType().Name}");
-                    string referenceJson = JsonSerializer.Serialize(
-                        reference,
-                        reference.GetType(),
-                        new JsonSerializerOptions { WriteIndented = true }
-                    );
-                    Console.WriteLine(referenceJson);
-                }
-    
-                // Continue the conversation
-                string nextQuery = "How do I find lava at night?";
-                Console.WriteLine($"Continue the conversation with this query: {nextQuery}");
-                messages.Add(new Dictionary<string, string>
-                {
-                    { "role", "user" },
-                    { "content", nextQuery }
-                });
-    
-                retrievalRequest = new KnowledgeBaseRetrievalRequest();
-                foreach (Dictionary<string, string> message in messages) {
-                    if (message["role"] != "system") {
-                        retrievalRequest.Messages.Add(new KnowledgeBaseMessage(content: new[] { new KnowledgeBaseMessageTextContent(message["content"]) }) { Role = message["role"] });
-                    }
-                }
-                retrievalRequest.RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort();
-                retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
-    
-                messages.Add(new Dictionary<string, string>
-                {
-                    { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
-                });
-    
-                // Print the new response, activity, and references
-                Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
-    
-                Console.WriteLine("Activity:");
-                foreach (var activity in retrievalResult.Value.Activity)
-                {
-                    Console.WriteLine($"Activity Type: {activity.GetType().Name}");
-                    string activityJson = JsonSerializer.Serialize(
-                        activity,
-                        activity.GetType(),
-                        new JsonSerializerOptions { WriteIndented = true }
-                    );
-                    Console.WriteLine(activityJson);
-                }
-    
-                Console.WriteLine("References:");
-                foreach (var reference in retrievalResult.Value.References)
-                {
-                    Console.WriteLine($"Reference Type: {reference.GetType().Name}");
-                    string referenceJson = JsonSerializer.Serialize(
-                        reference,
-                        reference.GetType(),
-                        new JsonSerializerOptions { WriteIndented = true }
-                    );
-                    Console.WriteLine(referenceJson);
-                }
-    
-                // Clean up resources
-                await indexClient.DeleteKnowledgeBaseAsync(knowledgeBaseName);
-                Console.WriteLine($"Knowledge base '{knowledgeBaseName}' deleted successfully.");
-    
-                await indexClient.DeleteKnowledgeSourceAsync(knowledgeSourceName);
-                Console.WriteLine($"Knowledge source '{knowledgeSourceName}' deleted successfully.");
-    
-                await indexClient.DeleteIndexAsync(indexName);
-                Console.WriteLine($"Index '{indexName}' deleted successfully.");
-            }
-        }
-    }
-    ```
-
-1. Build and run the application.
-
-    ```console
-    dotnet run
-    ```
+```console
+dotnet run
+```
 
 ### Output
 
@@ -501,6 +184,8 @@ Index 'earth-at-night' deleted successfully.
 ```
 
 ## Understand the code
+
+[!INCLUDE [understand code note](../understand-code-note.md)]
 
 Now that you've run the code, let's break down the key steps:
 
