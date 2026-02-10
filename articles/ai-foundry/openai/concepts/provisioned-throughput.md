@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 01/30/2026
+ms.date: 02/10/2026
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026 
 manager: nitinme
 author: msakande 
