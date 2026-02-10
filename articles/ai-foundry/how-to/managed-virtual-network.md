@@ -25,6 +25,9 @@ When you enable managed virtual network isolation, you create a managed virtual 
 
 :::image type="content" source="media/managed-virtual-network/diagram-managed-network.png" alt-text="Diagram of managed virtual network configuration." lightbox="media/managed-virtual-network/diagram-managed-network.png":::
 
+> [!NOTE]
+> The diagrams in this article represent logical connectivity only. Managed private endpoints in a Foundry managed virtual network do not create customer-visible network interfaces (NICs). All private endpoint connectivity is fully managed by Microsoft and abstracted from the customer’s virtual network resources.
+
 Two different configuration modes exist for outbound traffic from the managed virtual network:
 
 | Outbound mode | Description | Scenarios |
@@ -103,7 +106,7 @@ Foundry requires a set of service tags for private networking. The solution adds
 
 ## Private endpoints
 
-When you enable a managed virtual network, you can create managed private endpoints so Agents can securely reach required Azure resources without using the public internet. These private endpoints provide an isolated, private IP–based connection from the managed network to services such as Storage, AI Search, and other dependencies used in your Foundry projects. 
+When you enable a managed virtual network, you can create managed private endpoints so Agents can securely reach required Azure resources without using the public internet. These private endpoints provide an isolated, private IP–based connection from the managed network to services such as Storage, AI Search, and other dependencies used in your Foundry projects. Unlike customer-managed virtual networks, managed private endpoints in Foundry do not expose a network interface or subnet configuration to the customer. The private IP–based connectivity is fully managed by Microsoft and is not represented as a NIC in the customer’s subscription.
 
 The following resources support private endpoints from the managed network. You must use the CLI to create private endpoints. 
 

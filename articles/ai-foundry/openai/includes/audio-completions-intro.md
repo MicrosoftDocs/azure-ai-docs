@@ -26,9 +26,11 @@ By using audio generation capabilities, you can achieve more dynamic and interac
 
 Currently only `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17` supports audio generation.
 
-For more information about region availability, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
+For more information about region availability, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
-Currently the following voices are supported for audio out: Alloy, Echo, and Shimmer.
+The following voices are supported for audio out: Alloy, Ash, Ballad, Coral, Echo, Sage, Shimmer, Verse, Marin, and Cedar.
+
+The following audio output formats are supported: wav, mp3, flac, opus, pcm16, and aac.
 
 The maximum audio file size is 20 MB.
 
