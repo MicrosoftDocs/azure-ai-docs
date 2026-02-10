@@ -140,7 +140,7 @@ You need to delete the existing analyzer to reuse the name.
 
 - The GA API doesn't include Pro mode, which is still experimental. As a result, `AnalysisMode` is being deprecated and standard is the only mode supported in the GA API.
 - Person directory and Face API aren't part of the GA APIs, including the video analyzer features to detect and recognize faces in videos.
-- The `TrainingData` feature is being deprecated and replaced with the `knowledgeSources` feature..
+- The `TrainingData` feature is being deprecated and replaced with the `knowledgeSources` feature.
 
 - [Learn more about Content Understanding pricing](../pricing-explainer.md)
 - [Learn more about Content Understanding analyzers](../concepts/analyzer-reference.md)
