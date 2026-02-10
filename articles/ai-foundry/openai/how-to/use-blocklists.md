@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 02/10/2026
 author: PatrickFarley
 ms.author: pafarley
 monikerRange: 'foundry-classic || foundry'
@@ -19,13 +19,27 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry"
 
-The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Microsoft Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.
+The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Microsoft Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case—such as competitor names, internal project codenames, or domain-specific sensitive terms. For this, you can create custom block lists that automatically filter content containing your specified terms.
+
+In this article, you learn how to:
+
+- Create and manage custom blocklists
+- Add terms using exact match or regex patterns
+- Apply blocklists to your content filters
+- Test blocklist behavior with your deployments
 
 ::: moniker-end
 
 ::: moniker range="foundry-classic"
 
-The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom block lists.
+The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case—such as competitor names, internal project codenames, or domain-specific sensitive terms. For this, you can create custom block lists that automatically filter content containing your specified terms.
+
+In this article, you learn how to:
+
+- Create and manage custom blocklists
+- Add terms using exact match or regex patterns
+- Apply blocklists to your content filters
+- Test blocklist behavior with your deployments
 
 ::: moniker-end
 
@@ -34,7 +48,7 @@ The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filte
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Once you have your Azure subscription, create an Azure OpenAI resource in the Azure portal to get your token, key, and endpoint. Enter a unique name for your resource, select the subscription you entered on the application form, select a resource group, supported region, and supported pricing tier. Then select **Create**.
     - The resource takes a few minutes to deploy. After it finishes, select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
-- [Azure CLI](/cli/azure/install-azure-cli) installed
+- [Azure CLI](/cli/azure/install-azure-cli) version 2.50 or later
 - [cURL](https://curl.haxx.se/) installed
 
 ## Use block lists
@@ -118,7 +132,7 @@ Copy the cURL command below to a text editor and make the following changes:
 1. Replace {raiBlocklistName} (in the URL) with a custom name for your list. Allowed characters: `0-9, A-Z, a-z, - . _ ~`. 
 1. Replace {raiBlocklistItemName} with a custom name for your list item. 
 1. Replace {token} with the token you got from the "Get your token" step above. 
-1. Replace the value of the `"blocking pattern"` field with the item you'd like to add to your blocklist. The maximum length of a blockItem is 1,000 characters. Also specify whether the pattern is regex or exact match. 
+1. Replace the value of the `"pattern"` field with the item you'd like to add to your blocklist. The maximum length of a blockItem is 1,000 characters. Also specify whether the pattern is regex or exact match. 
 
 ```bash
 curl --location --request PUT 'https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/raiBlocklistItems/{raiBlocklistItemName}?api-version=2024-04-01-preview' \ 
@@ -247,12 +261,76 @@ If the completion itself is blocked, the response returns `200`, as the completi
 } 
 ```
 
+**Key fields in the response:**
+
+- `finish_reason: "content_filter"` indicates the completion was stopped by a blocklist match
+- `custom_blocklists[].id` shows which blocklist triggered the filter
+- `custom_blocklists[].filtered: true` confirms the content was blocked
+
+### Delete a blocklist item
+
+To delete a blocklist item, use the following cURL command:
+
+1. Replace {subscriptionId} with your subscription ID.
+1. Replace {resourceGroupName} with your resource group name.
+1. Replace {accountName} with your resource name.
+1. Replace {raiBlocklistName} with the name of your blocklist.
+1. Replace {raiBlocklistItemName} with the name of the item to delete.
+1. Replace {token} with the token you got from the "Get your token" step above.
+
+```bash
+curl --location --request DELETE 'https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/raiBlocklistItems/{raiBlocklistItemName}?api-version=2024-10-01' \
+--header 'Authorization: Bearer {token}'
+```
+
+The response code should be `200` (item deleted) or `204` (no content).
+
+### Delete a blocklist
+
+To delete an entire blocklist, use the following cURL command:
+
+1. Replace {subscriptionId} with your subscription ID.
+1. Replace {resourceGroupName} with your resource group name.
+1. Replace {accountName} with your resource name.
+1. Replace {raiBlocklistName} with the name of the blocklist to delete.
+1. Replace {token} with the token you got from the "Get your token" step above.
+
+```bash
+curl --location --request DELETE 'https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}?api-version=2024-10-01' \
+--header 'Authorization: Bearer {token}'
+```
+
+> [!WARNING]
+> Deleting a blocklist removes all items in that list and cannot be undone.
+
 
 #### [Foundry](#tab/foundry)
 
 [!INCLUDE [use-blocklists](../../../ai-foundry/includes/use-blocklists.md)]
 
 ---
+
+## Troubleshooting
+
+### 403 Forbidden error
+
+Ensure your Azure AD token has the correct permissions. The account must have **Cognitive Services Contributor** or **Owner** role on the Azure OpenAI resource.
+
+### Blocklist not taking effect
+
+New blocklist terms can take up to 5 minutes to propagate. Wait and test again. If the issue persists, verify the blocklist is correctly applied to your content filter.
+
+### Pattern not matching expected content
+
+If using regex patterns, ensure the pattern syntax is valid. Test your regex pattern separately before adding it to the blocklist. Common issues include:
+
+- Unescaped special characters
+- Case sensitivity (patterns are case-sensitive by default)
+- Anchors (`^` and `$`) might not behave as expected in streaming scenarios
+
+### Quota limit reached
+
+Each blocklist can contain a maximum of 10,000 terms. If you need more, create additional blocklists and apply them to the same content filter.
 
 ## Related content
 
