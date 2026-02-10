@@ -69,11 +69,11 @@ Select the right foundation model by comparing quality, task performance, ethica
 
 **Tools available**: [Microsoft Foundry benchmark](model-benchmarks.md) for comparing models on public datasets or your own data, and the Azure AI Evaluation SDK for [testing specific model endpoints](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Supported_Evaluation_Targets/Evaluate_Base_Model_Endpoint/Evaluate_Base_Model_Endpoint.ipynb).
 
-### Pre-Production evaluation
+### Pre-production evaluation
 
 Before deployment, thorough testing ensures your AI agent or application is production-ready. This stage validates performance through evaluation datasets, identifies edge cases, assesses robustness, and measures key metrics including task adherence, groundedness, relevance, and safety. For building production-ready agents with multi-turn conversations, tool calling, and state management, see [Foundry Agent Service](../default/agents/overview.md).
 
-:::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of Pre-Production evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
+:::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of Pre-production evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
 
 **Evaluation tools and approaches:**
 
