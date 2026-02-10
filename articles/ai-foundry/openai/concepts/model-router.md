@@ -33,11 +33,6 @@ To try model router quickly, follow [How to use model router](../how-to/model-ro
 > The [Microsoft Foundry (new)](../../what-is-foundry.md) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
 ::: moniker-end
 
-## Prerequisites
-
-- An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- A [Foundry resource](../how-to/create-resource.md) in **East US 2** or **Sweden Central** region.
-- To include Claude models in routing, first [deploy them](../../foundry-models/how-to/use-foundry-models-claude.md) to your Foundry resource.
 
 ## How model router works
 As a trained language model, model router analyzes your prompts in real time based on complexity, reasoning, task type, and other attributes. It does not store your prompts. It routes only to eligible models based on your access and deployment types, honoring data zone boundaries.
