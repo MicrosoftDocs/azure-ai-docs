@@ -26,7 +26,7 @@ To start, call the **Responses API** with the model set to your o3-deep-research
 
 ## Prerequisites
 
-- An Azure OpenAI resource with a deployment of the o3-deep-research model.
+- An Azure OpenAI deployment of the o3-deep-research model.
 - An authentication method:
   - API key, or
   - Microsoft Entra ID.
@@ -89,46 +89,7 @@ print(response.output_text)
 ```
 
 > [!NOTE]
-> Deep research requests can take time. Run them in `background` mode, then poll the response status until it reaches a terminal state.
-
-## Get the response status and results
-
-Use the `GET` endpoint to retrieve a response by ID. Continue polling while the status is `queued` or `in_progress`.
-
-```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id} \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
-```
-
-```python
-from time import sleep
-import os
-from openai import OpenAI
-
-client = OpenAI(
-  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-)
-
-input_text = "Research the economic impact of semaglutide on global healthcare systems."
-
-response = client.responses.create(
-  model="o3-deep-research",  # Replace with your model deployment name.
-  input=input_text,
-  background=True,
-  tools=[
-    {"type": "web_search_preview"},
-    {"type": "code_interpreter", "container": {"type": "auto"}},
-  ],
-)
-
-while response.status in {"queued", "in_progress"}:
-  sleep(2)
-  response = client.responses.retrieve(response.id)
-
-print(response.output_text)
-```
+> Deep research requests can take time. Run them in `background` mode and configure a `webhook` to receive notifications when the task completes.
 
 ## Output structure
 
@@ -184,7 +145,7 @@ Example `message` (final answer):
 ## Best practices
 
 * Use background mode to avoid timeouts.
-* Poll the response status while it's `queued` or `in_progress`.
+* Configure webhooks for completion notifications.
 * Increase timeout settings if not using background mode.
 * Use `max_tool_calls` to control tool usage and manage cost/latency.
 
