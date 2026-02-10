@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 01/30/2026
-ms.custom: dev-focus
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026 
 manager: nitinme
 author: msakande 
 ms.author: mopeakande
@@ -29,7 +29,7 @@ recommendations: false
 
 ::: moniker-end
 
-The Microsoft Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Foundry then allocates the necessary model processing capacity and ensures it's ready for you. Use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek, Azure Grok, Azure Llama, and more within Foundry Models.
+The Microsoft Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Foundry then allocates the necessary model processing capacity and ensures it's ready for you. Use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek within Foundry Models, with more model families onboarding over time.
 
 Provisioned throughput provides:
 
@@ -46,13 +46,30 @@ Provisioned throughput provides:
 > * Take advantage of more cost savings when you buy [Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/azure-openai#buy-a-microsoft-azure-openai-service-reservation).
 > * Provisioned throughput is available as the following deployment types: [global provisioned](../../foundry-models/concepts/deployment-types.md#global-provisioned), [data zone provisioned](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned) and [regional provisioned](../../foundry-models/concepts/deployment-types.md#regional-provisioned).
 
+## Prerequisites
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+- A [Microsoft Foundry project](../../how-to/create-projects.md) with a model deployed using a provisioned throughput deployment type.
+- Provisioned throughput quota allocated to your subscription in your target region.
+- [Azure CLI](/cli/azure/install-azure-cli) (if you plan to create deployments via the command line).
 
 ## When to use provisioned throughput
 
 Consider provisioned throughput deployments when you have well-defined, predictable throughput and latency requirements—typically for production applications with known traffic patterns. Provisioned throughput is also useful for real-time or latency-sensitive applications.
 
-## Key concepts
-The sections that follow describe key concepts that you should be aware of when using the provisioned throughput offering.
+The following table compares provisioned and standard deployments to help you choose the right option:
+
+| Scenario | Provisioned throughput | Standard deployment |
+|---|---|---|
+| Predictable, steady traffic | ✅ Best fit | Possible, but less cost-efficient |
+| Variable or exploratory traffic | Not recommended | ✅ Best fit |
+| Latency-sensitive production apps | ✅ Consistent latency | Variable latency |
+| Cost optimization at scale | ✅ Reservation discounts available | Pay-per-token |
+| Guaranteed capacity | ✅ Allocated at deployment | Shared capacity |
+
+## Understand PTU allocation
+
+Provisioned throughput units (PTU) and deployment types are the building blocks of provisioned throughput. The following sections explain how they work.
 
 ### Provisioned throughput units (PTU)
 
@@ -96,14 +113,23 @@ az cognitiveservices account deployment create \
 --sku-name GlobalProvisionedManaged
 ```
 
+## Manage capacity and availability
+
+Capacity for provisioned throughput is subject to regional availability and real-time demand. The following sections describe how capacity works and how to find it.
+
 ### Capacity transparency
 
-The models sold directly by Azure are highly sought-after services where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTU in a desired region—even if they have quota available in that region. Generally speaking:
+The models sold directly by Azure are highly sought-after services where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTU in a desired region—even if they have quota available in that region.
 
-- Quota places a limit on the maximum number of PTUs that can be deployed in a subscription and region and doesn't guarantee capacity availability.
-- Capacity is allocated at deployment time and is held for as long as the deployment exists. If service capacity isn't available, the deployment fails.
-- Customers use real-time information on quota/capacity availability to choose an appropriate region for their scenario with the necessary model capacity.
-- Scaling down or deleting a deployment releases capacity back to the region. There's no guarantee that the capacity is available if the deployment is scaled up or re-created later.
+> [!IMPORTANT]
+> Quota limits the maximum number of PTUs that can be deployed in a subscription and region, but it doesn't guarantee capacity availability. Capacity is allocated at deployment time.
+
+Generally speaking:
+
+- **Quota doesn't guarantee capacity.** Quota places a limit on the maximum number of PTUs that can be deployed in a subscription and region.
+- **Capacity is allocated at deployment time** and is held for as long as the deployment exists. If service capacity isn't available, the deployment fails.
+- **Use real-time information** on quota and capacity availability to choose an appropriate region for your scenario.
+- **Scaling down or deleting a deployment** releases capacity back to the region. There's no guarantee that the capacity is available if the deployment is scaled up or re-created later.
 
 ### Regional capacity guidance
 
@@ -120,6 +146,10 @@ If an acceptable region isn't available to support the desired model, version, a
 - Attempt the deployment with a smaller number of PTUs.
 - Attempt the deployment at a different time. Capacity availability changes dynamically based on customer demand, and more capacity might become available later.
 - Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) and Foundry experience consider quota availability in returning alternative regions for creating a deployment.
+
+## Monitor utilization and performance
+
+Provisioned deployments provide allocated model processing capacity. The following sections explain how to monitor utilization and handle capacity limits.
 
 ### Monitor capacity
 
@@ -139,9 +169,9 @@ The  `retry-after-ms` and `retry-after` headers in the response tell you the tim
 -    Consider redirecting the traffic to other models, deployments, or experiences. This option is the lowest-latency solution because the action can be taken as soon as you receive the 429 signal. For ideas on how to effectively implement this pattern see this [community post](https://github.com/Azure/aoai-apim).
 -    If you're okay with longer per-call latencies, implement client-side retry logic. This option gives you the highest amount of throughput per PTU. The Foundry client libraries include built-in capabilities for handling retries.
 
-### How does the service decide when to send a 429?
+### Utilization-based request evaluation
 
-In all provisioned deployment types, each request is evaluated individually according to its prompt size, expected generation size, and model, to determine its expected utilization. This behavior is in contrast to standard deployments, which have a [custom rate limiting behavior](../how-to/quota.md) based on the estimated traffic load. For standard deployments, this custom rate limiting behavior can lead to HTTP 429 errors being generated before defined quota values are exceeded if traffic isn't evenly distributed.
+In all provisioned deployment types, each request is evaluated individually according to its prompt size, expected generation size, and model to determine its expected utilization. This behavior is in contrast to standard deployments, which have a [custom rate limiting behavior](../how-to/quota.md) based on the estimated traffic load. For standard deployments, this custom rate limiting behavior can lead to HTTP 429 errors before defined quota values are exceeded if traffic isn't evenly distributed.
 
 For provisioned deployments, we use a variation of the leaky bucket algorithm to maintain utilization below 100% while allowing some burstiness in the traffic. The high-level logic is as follows:
 
@@ -231,7 +261,21 @@ This section lists Foundry Models that support the provisioned throughput capabi
 > [!NOTE]
 > The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
 
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+|---|---|---|
+| Deployment creation fails | Insufficient capacity in the target region | Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) or Foundry portal to find an alternative region with available capacity. |
+| HTTP 429 responses | Deployment utilization exceeded 100% | Redirect traffic to an alternate deployment, implement client-side retry logic using the `retry-after-ms` header, or scale up your PTU allocation. |
+| Can't create deployment despite available quota | Quota doesn't guarantee capacity—capacity is allocated at deployment time | Try a smaller PTU count, attempt the deployment at a different time, or choose an alternative region. |
+| Unexpected high latency or low concurrency | `max_tokens` not set or set much higher than actual generation size | Set `max_tokens` as close as possible to your actual expected generation size for best concurrency. |
+
 ## Related content
 
 - [Learn about the onboarding steps for provisioned deployments](../how-to/provisioned-throughput-onboarding.md)
 - [Provisioned Throughput Units (PTU) getting started guide](../how-to/provisioned-get-started.md)
+- [Understand deployment types](../../foundry-models/concepts/deployment-types.md)
+- [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md)
+- [Monitor Azure OpenAI models](../how-to/monitor-openai.md)
+- [Manage quota for Azure OpenAI](../how-to/quota.md)
+- [Save costs with Microsoft Foundry Provisioned Throughput Reservations](/azure/cost-management-billing/reservations/azure-openai)
