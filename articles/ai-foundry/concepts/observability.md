@@ -114,37 +114,33 @@ After deployment, [continuous monitoring](../default/agents/how-to/how-to-monito
 
 Integrated with Azure Monitor Application Insights, the Foundry Observability dashboard delivers real-time insights into performance, safety, and quality metrics, enabling rapid issue resolution and maintaining user trust.
 
-## Building trust through systematic evaluation
-
-Systematic evaluation at each stage—from model selection through production monitoring—ensures AI solutions are powerful, trustworthy, and safe.
-
-### Evaluation cheat sheet
+## Evaluation cheat sheet
 
 ::: moniker range="foundry-classic"
 
 | Purpose | Process | Parameters, guidance, and samples |
 | -----| -----| ----|
-| What are you evaluating for? | Identify or build relevant evaluators | - [Built-in evaluators](built-in-evaluators.md) <br> </br> - [Agents Quality](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/evaluate/Supported_Evaluation_Metrics/Agent_Evaluation) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) <br> </br> - [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) |
-| What data should you use?  | Upload or generate relevant dataset | - [Synthetic dataset generation](./concept-synthetic-data.md) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/AI_RedTeaming/AI_RedTeaming.ipynb))|
-| How to run evaluations on a dataset? | Run evaluation | - [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br>- [Remote cloud run](../how-to/develop/cloud-evaluation.md) <br></br> - [Local run](../how-to/develop/evaluate-sdk.md) |
-| How to set up tracing? | Configure distributed tracing | - [Trace your application](../how-to/develop/trace-application.md) <br></br> - [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md) |
-| How to configure VNET? | Set up virtual network isolation | - [Virtual network support for evaluation](vnet-support.md) |
-| How did my model/app perform? | Analyze results  | - [View aggregate scores, view details, score details, compare evaluation runs](..//how-to/evaluate-results.md) |
-| How can I improve? | Make changes to model, app, or evaluators | - If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> - If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example of mitigations to apply: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
+| How to set up tracing? | Configure distributed tracing | [Trace your application](../how-to/develop/trace-application.md) <br></br> [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md) |
+| What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/Sample_Agent_Functions.cs) |
+| What data should you use? | Upload or generate relevant dataset | [Synthetic dataset generation](./concept-synthetic-data.md) <br></br> [Run AI red teaming in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md) |
+| How to run evaluations? | Run evaluation | [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) <br></br> [Local run](../how-to/develop/evaluate-sdk.md) |
+| How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../how-to/evaluate-results.md#cluster-analysis) |
+| How can I improve? | Make changes to model, app, or evaluators | If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
+| How to configure VNET? | Set up virtual network isolation | [Virtual network support for evaluation](vnet-support.md) |
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-| Purpose | Process | Parameters, guidance, and samples  |
+| Purpose | Process | Parameters, guidance, and samples |
 | -----| -----| ----|
-| What are you evaluating for? | Identify or build relevant evaluators | - [Built-in evaluators](built-in-evaluators.md) <br> </br> - [RAG Quality](https://aka.ms/rag-evaluators-samples) <br> </br> - [Agents Quality](https://aka.ms/agent-evaluator-samples) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) <br> </br> - [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) |
-| What data should you use?  | Upload or generate relevant dataset | - [Synthetic dataset generation](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://aka.ms/airedteamingagent-sample))|
-| How to run evaluations on a dataset? | Run evaluation | - [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> - [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
-| How to set up tracing? | Configure distributed tracing | - [Trace your application](../how-to/develop/trace-application.md) <br></br> - [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md) |
-| How to configure VNET? | Set up virtual network isolation | - [Virtual network support for evaluation](vnet-support.md) |
-| How did my model/app perform? | Analyze results  | - [View aggregate scores, view details, score details, compare evaluation runs](..//how-to/evaluate-results.md) |
-| How can I improve? | Make changes to model, app, or evaluators | - If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> - If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example of mitigations to apply: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
+| How to set up tracing? | Configure distributed tracing | [Trace your application](../how-to/develop/trace-application.md) <br></br> [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md) |
+| What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/Sample_Agent_Functions.cs) |
+| What data should you use? | Upload or generate relevant dataset | [Synthetic dataset generation](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) <br></br> [Run AI red teaming in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md) |
+| How to run evaluations? | Run evaluation | [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
+| How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../how-to/evaluate-results.md#cluster-analysis) |
+| How can I improve? | Make changes to model, app, or evaluators | If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
+| How to configure VNET? | Set up virtual network isolation | [Virtual network support for evaluation](vnet-support.md) |
 
 ::: moniker-end
 
@@ -175,6 +171,32 @@ Currently certain AI-assisted evaluators are available only in the following reg
 | France Central | Supported |
 | Norway East | Supported |
 | Sweden Central | Supported |
+
+### ACA excluded regions (all evaluation tests)
+
+All evaluation tests are skipped in regions where Azure Container Apps (ACA) is unavailable:
+
+- South Central US
+- Central US
+- Spain Central
+- Southeast Asia
+- Canada Central
+
+### OpenAI grader excluded regions
+
+The following tests are skipped in regions where OpenAI grader/custom code evaluator isn't supported:
+
+- East US
+- Canada East
+
+## Rate limits
+
+The following rate limits apply to evaluation runs:
+
+| Limit | Value |
+|--|--|
+| Maximum size per row | 2 MB |
+| Maximum rows per batch evaluation | 100,000 |
 
 ## Pricing
 
