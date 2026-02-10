@@ -126,7 +126,7 @@ items:
     href: ../../openai/quotas-limits.md
     displayName: openai 
   - name: Azure OpenAI Models
-    href: ../../openai/concepts/models.md
+    href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
     displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini, gpt-5-chat
   - name: Model retirements
     href: ../../openai/concepts/model-retirements.md

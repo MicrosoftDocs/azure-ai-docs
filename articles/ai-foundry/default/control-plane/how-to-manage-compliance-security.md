@@ -174,7 +174,7 @@ This capability helps your organization manage and monitor AI-generated data in 
 
 - Integration with Microsoft Purview for the preceding features in Foundry doesn't yet support network isolation.
 
-- Integration with Microsoft Purview is currently available only for calls made on the OpenAI Completions API.
+- Integration with Microsoft Purview is currently available for calls made through the Microsoft Foundry inference endpoint (aka OpenAI-compatible chat completions API or /chat/completions endpoint). Every model deployed through Foundry's managed inference stack is covered by Purview.
 
 This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview data security and compliance protections for generative AI apps](/purview/ai-microsoft-purview).
 
