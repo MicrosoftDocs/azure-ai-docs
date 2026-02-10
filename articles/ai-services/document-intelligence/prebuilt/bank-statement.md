@@ -5,7 +5,7 @@ description: OCR and machine learning based bank statement US extraction in Docu
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: references_regions

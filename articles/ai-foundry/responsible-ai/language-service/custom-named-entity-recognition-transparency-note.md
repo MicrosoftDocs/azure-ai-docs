@@ -6,7 +6,7 @@ author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 09/29/2021
 ---
 
@@ -60,7 +60,7 @@ Be aware of the following guidance when you use custom NER:
 
 * **Avoid using custom NER for decisions that might have serious adverse impacts.** For example, avoid scenarios that include medical or health diagnosis based on extracted information from an individual’s medical history form, or charging a user’s bank account based on extracted values. Additionally, it's advisable to include human review of decisions that have the potential for serious impacts on individuals.
 
-* **Avoid creating custom entities that extract unnecessary or sensitive information.** Avoid extracting sensitive user information if it's not required for your use case. For example, if your scenario requires extracting your user's city and country, create entities that extract only the city and country from a user's address instead of extracting the entire address
+* **Avoid creating custom entities that extract unnecessary or sensitive information.** Avoid extracting sensitive user information if it's not required for your use case. For example, if your scenario requires extracting your user's city and country/region, create entities that extract only the city and country/region from a user's address instead of extracting the entire address
 
 * [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 

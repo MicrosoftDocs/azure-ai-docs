@@ -7,7 +7,7 @@ ms.author: haileytapia
 manager: nitinme
 ms.date: 11/19/2025
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - references_regions
   - build-2025

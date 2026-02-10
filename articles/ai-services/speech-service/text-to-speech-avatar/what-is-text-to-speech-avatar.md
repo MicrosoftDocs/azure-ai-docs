@@ -32,7 +32,7 @@ Text to speech avatar capabilities include:
 - Synthesizes text to speech avatar video asynchronously with the [batch synthesis API](./batch-synthesis-avatar.md) or in [real-time](./real-time-synthesis-avatar.md).
 - Use Text to speech avatar tool in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) or in [Speech Studio](https://speech.microsoft.com/portal/talkingavatar) for creating video content without coding.
 - Enables real-time avatar conversations through the [live chat avatar tool](https://speech.microsoft.com/portal/livechat) in Speech Studio.
-- Create voice agent with avatar in [Voice live](../voice-live.md) 
+- Create voice agent with avatar in [Voice Live](../voice-live.md) 
 
 With text to speech avatar's advanced neural network models and Photo avatar's VASA-1 models, the feature empowers you to deliver lifelike and high-quality synthetic talking avatar videos for various applications while adhering to responsible AI practices.
 
@@ -88,7 +88,7 @@ Sample code for text to speech avatar is available on [GitHub](https://github.co
 * [Real-time synthesis (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
 * [Live chat with Azure OpenAI in behind (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar#chat-sample)
 * To create a live chat APP with Azure OpenAI [On Your Data](/azure/ai-foundry/openai/concepts/use-your-data), you can refer to [this sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "On Your Data")
-* [Use avatar in Voice live API](https://github.com/azure-ai-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar)
+* [Use avatar in Voice Live API](https://github.com/azure-ai-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar)
 
 ## Pricing
 

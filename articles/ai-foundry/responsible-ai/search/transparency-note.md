@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
-ms.topic: article
+ms.topic: concept-article
 ms.date: 05/16/2025
 ---
 

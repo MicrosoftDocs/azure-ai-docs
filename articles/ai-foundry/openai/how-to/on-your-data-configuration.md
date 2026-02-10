@@ -8,13 +8,15 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.date: 11/20/2025
+ms.date: 02/06/2026
 recommendations: false
 ---
 
 # Network and access configuration for Azure OpenAI On Your Data
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
 Use this article to learn how to configure networking and access when using Azure OpenAI On Your Data with Microsoft Entra ID role-based access control, virtual networks, and private endpoints.
 
@@ -218,7 +220,7 @@ az rest --uri "https://management.azure.com$rid?api-version=$apiVersion" \
 ### Create shared private link
 
 > [!TIP]
-> If you are using a basic or standard pricing tier, or if it is your first time to setup all of your resources securely, you should skip this advanced topic.
+> If you are using a basic or standard pricing tier, or if it is your first time to set up all of your resources securely, you should skip this advanced topic.
 
 This section is only applicable for S2 pricing tier search resource, because it requires [private endpoint support for indexers with a skill set](/azure/search/search-limits-quotas-capacity#shared-private-link-resource-limits).
 
@@ -253,7 +255,7 @@ So far you have already setup each resource work independently. Next you need to
 | `Search Index Data Reader` | Azure OpenAI | Azure AI Search | Inference service queries the data from the index. |
 | `Search Service Contributor` | Azure OpenAI | Azure AI Search | Inference service queries the index schema for auto fields mapping. Data ingestion service creates index, data sources, skill set, indexer, and queries the indexer status. |
 | `Storage Blob Data Contributor` | Azure OpenAI | Storage Account | Reads from the input container, and writes the preprocessed result to the output container. |
-| `Cognitive Services OpenAI Contributor` | Azure AI Search | Azure OpenAI | to allow the Azure AI Search resource access to the Azure OpenAI embedding endpoint. |
+| `Cognitive Services OpenAI Contributor` | Azure AI Search | Azure OpenAI, Microsoft Foundry Project | Allows the Azure AI Search resource access to the Azure OpenAI embedding endpoint. This role must be assigned on both the Azure OpenAI resource and the Microsoft Foundry project. |
 | `Storage Blob Data Reader` | Azure AI Search | Storage Account | Reads document blobs and chunk blobs. |
 | `Reader` | Foundry Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within a Foundry Project. |
 | `Cognitive Services OpenAI User` | Web app | Azure OpenAI | Inference. |

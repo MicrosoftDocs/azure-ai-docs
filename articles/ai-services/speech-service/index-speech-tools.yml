@@ -1,0 +1,93 @@
+### YamlMime:Landing
+
+title: Speech tools documentation
+summary: Use Speech tools to build, test, and deploy speech-enabled applications. Access Foundry Portal or Speech Studio for no-code experiences, the Speech CLI for command-line operations, and SDKs for programmatic integration.
+metadata:
+  title: Speech tools documentation - Tutorials, API Reference - Foundry Tools | Microsoft Docs
+  titleSuffix: Foundry Tools
+  author: PatrickFarley
+  manager: nitinme
+  ms.service: azure-ai-speech
+  ms.topic: landing-page
+  ms.date: 02/03/2026
+  ms.author: pafarley
+
+landingContent:
+- title: Tools and portals
+  linkLists:
+    - linkListType: overview
+      links:
+      - text: About Speech Studio
+        url: speech-studio-overview.md
+      - text: Speech in Microsoft Foundry
+        url: speech-features-foundry.md
+      - text: Speech MCP server
+        url: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
+- title: Speech CLI
+  linkLists:
+    - linkListType: overview
+      links:
+      - text: What is the Speech CLI?
+        url: spx-overview.md
+    - linkListType: quickstart
+      links:
+        - text: Get started with the Speech CLI
+          url: spx-basics.md
+    - linkListType: how-to-guide
+      links:
+        - text: Configure the datastore
+          url: spx-data-store-configuration.md
+        - text: Configure output options
+          url: spx-output-options.md
+        - text: Run batch operations
+          url: spx-batch-operations.md
+- title: Speech SDK
+  linkLists:
+    - linkListType: overview
+      links:
+      - text: What is the Speech SDK?
+        url: speech-sdk.md
+    - linkListType: quickstart
+      links:
+        - text: Install the Speech SDK
+          url: quickstarts/setup-platform.md
+    - linkListType: how-to-guide
+      links:
+        - text: Enable logs in SDK
+          url: how-to-use-logging.md
+        - text: Log audio and transcriptions
+          url: logging-audio-transcription.md
+        - text: Troubleshoot the Speech SDK
+          url: troubleshooting.md
+        - text: Get Speech to text Session ID
+          url: how-to-get-speech-session-id.md
+        - text: Track memory usage
+          url: how-to-track-speech-sdk-memory-usage.md
+        - text: Generate a REST API client library
+          url: swagger-documentation.md
+- title: Voice Live SDK
+  linkLists:
+    - linkListType: overview
+      links:
+      - text: What is the Voice Live SDK?
+        url: voice-live-sdk.md
+    - linkListType: quickstart
+      links:
+        - text: Get started with Voice Live
+          url: voice-live-quickstart.md
+- title: Speech Transcription SDK
+  linkLists:
+    - linkListType: overview
+      links:
+      - text: What is the Speech Transcription SDK?
+        url: transcription-sdk.md
+    - linkListType: quickstart
+      links:
+        - text: Try the Fast Transcription API
+          url: fast-transcription-create.md
+- title: Help and feedback
+  linkLists:
+  - linkListType: reference
+    links:
+      - text: Support and help options
+        url: ../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context

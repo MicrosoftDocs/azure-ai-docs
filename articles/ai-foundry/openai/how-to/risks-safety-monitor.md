@@ -7,7 +7,7 @@ ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 01/30/2026
 manager: nitinme
 ---
 

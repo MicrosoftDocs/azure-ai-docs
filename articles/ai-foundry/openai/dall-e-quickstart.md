@@ -5,11 +5,11 @@ description: Learn how to get started generating images with Azure OpenAI by usi
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-ts
+ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-ts, dev-focus
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/16/2025
+ms.date: 01/29/2026
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 zone_pivot_groups: openai-quickstart-dall-e

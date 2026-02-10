@@ -2,7 +2,7 @@
 title: Azure OpenAI in Microsoft Foundry Models getting started with customizing a large language model (LLM)
 titleSuffix: Azure OpenAI
 description: Learn more about the concepts behind customizing an LLM with Azure OpenAI.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/6/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -61,7 +61,7 @@ A corporate HR department is looking to provide an intelligent assistant that an
 
 - RAG is helpful when there is a need to answer questions based on private proprietary data.
 
-- RAG is helpful when you might want questions answered that are recent (for example, before the cutoff date of when the [model version](./models.md) was last trained).
+- RAG is helpful when you might want questions answered that are recent (for example, before the cutoff date of when the [model version](../../foundry-models/concepts/models-sold-directly-by-azure.md) was last trained).
 
 ### Getting started
 

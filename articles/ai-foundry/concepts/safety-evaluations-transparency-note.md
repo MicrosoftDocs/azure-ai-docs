@@ -5,7 +5,7 @@ description: Microsoft Foundry safety evaluations intended purpose, capabilities
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
-ms.topic: article
+ms.topic: concept-article
 ms.date: 12/23/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
@@ -117,7 +117,7 @@ Due to the non-deterministic nature of the LLMs, you might experience false nega
 
 ## Learn more about Foundry safety evaluations
 
-- [Microsoft concept documentation on our approach to evaluating generative AI applications](evaluation-approach-gen-ai.md)
+- [Microsoft concept documentation on our approach to evaluating generative AI applications](./observability.md)
 - [Microsoft concept documentation on how safety evaluation works](./evaluation-evaluators/risk-safety-evaluators.md)
 - [Microsoft how-to documentation on using safety evaluations](../how-to/evaluate-generative-ai-app.md)
 - [Technical blog on how to evaluate content and security risks in your generative AI applications](https://techcommunity.microsoft.com/t5/ai-ai-platform-blog/introducing-ai-assisted-safety-evaluations-in-azure-ai-studio/ba-p/4098595)

@@ -23,19 +23,19 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry-classic"
 
-Model leaderboards (preview) in Microsoft Foundry portal allow you to streamline the model selection process in the Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards are backed by industry-standard benchmarks that can help you to find the best model for your custom AI solution. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models as follows:
+Model leaderboards (preview) in Microsoft Foundry portal help you compare models in the Foundry [model catalog](foundry-models-overview.md) using industry-standard benchmarks. From the model leaderboards section of the model catalog, you can [browse leaderboards](https://aka.ms/model-leaderboards) to compare available models by:
 
-- [Quality, safety, cost, and performance leaderboards](../how-to/benchmark-model-in-catalog.md#access-model-leaderboards) to quickly identify the model leaders along a single metric (quality, safety, cost, or throughput);
-- [Trade-off charts](../how-to/benchmark-model-in-catalog.md#trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
-- [Leaderboards by scenario](../how-to/benchmark-model-in-catalog.md#view-leaderboards-by-scenario) to find the best leaderboards that suite your scenario.
+- [Quality, safety, cost, and performance leaderboards](../how-to/benchmark-model-in-catalog.md#access-model-leaderboards) to identify leading models on a single metric (quality, safety, cost, or throughput)
+- [Trade-off charts](../how-to/benchmark-model-in-catalog.md#trade-off-charts) to compare performance across two metrics, such as quality versus cost
+- [Leaderboards by scenario](../how-to/benchmark-model-in-catalog.md#view-leaderboards-by-scenario) to find models aligned to specific use cases
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
-Model leaderboards (preview) in Foundry portal allow you to streamline the model selection process in the  Foundry [model catalog](../how-to/model-catalog-overview.md). The model leaderboards are backed by industry-standard benchmarks that can help you to find the best model for your custom AI solution. 
+Model leaderboards (preview) in Foundry portal help you compare models in the Foundry [model catalog](foundry-models-overview.md) using industry-standard benchmarks.
 
-You'll find more details of the benchmarking methodology for each section:
+You can review detailed benchmarking methodology for each leaderboard category:
 
 - [Quality benchmarking](#quality-benchmarks-of-language-models) of language models to understand how well models perform on cores tasks including reasoning, knowledge, question answering, math, and coding;
 - [Safety benchmarking](#safety-benchmarks-of-language-models) of language models to understand how safe models are against harmful behavior generation;
@@ -44,31 +44,30 @@ You'll find more details of the benchmarking methodology for each section:
 - [Scenario leaderboard benchmarking](#scenario-leaderboard-benchmarking) of language models to help you find the best model for your specific use case or scenario.
 - [Quality benchmarking](#quality-benchmarks-of-embedding-models) of embedding models to understand how well models perform on embedding-based tasks including search and retrieval.
 
-
 ::: moniker-end
 
-Whenever you find a model to your liking, you can select it and zoom into the **Detailed benchmarking results** of the model within the model catalog. If satisfied with the model, you can deploy it, try it in the playground, or evaluate it on your data. The leaderboards support benchmarking across text language models (large language models (LLMs) and small language models (SLMs)) and embedding models.
+When you find a suitable model, you can open its **Detailed benchmarking results** in the model catalog. From there, you can deploy the model, try it in the playground, or evaluate it on your own data. The leaderboards support benchmarking for text language models (including large language models (LLMs) and small language models (SLMs)) and embedding models.
 
-Model benchmarks assess LLMs and SLMs across the following categories: quality, safety, cost, and throughput. In addition, we assess the quality of embedding models using standard benchmarks. The leaderboards are updated regularly as better and more unsaturated benchmarks are onboarded, and as new models are added to the model catalog.
+Model benchmarks assess LLMs and SLMs across quality, safety, cost, and throughput. Embedding models are evaluated using standard quality benchmarks. Leaderboards are updated regularly as new models and benchmarks are added.
 
-## Model Benchmarking Scope
+## Model benchmarking scope
 
 The model leaderboards feature a curated selection of text-based language models from the Foundry model catalog. Models are included based on the following criteria:
 
-- **Azure Direct Models prioritized**: Azure Direct Models are rigorously selected for the most relevant models recommended for customers' GenAI scenarios.
-- **Core benchmark applicability**: Models must be suitable for general-purpose language tasks including reasoning, knowledge, QA, mathematical reasoning, and coding capabilities. Specialized models (for example, protein folding or domain-specific QA) or other modalities aren't supported.
+- **Azure Direct Models prioritized**: Azure Direct Models are selected for relevance to common generative AI scenarios.
+- **Core benchmark applicability**: Models must support general-purpose language tasks such as reasoning, knowledge, question answering, mathematical reasoning, and coding. Specialized models (for example, protein folding or domain-specific QA) and other modalities aren't supported.
 
 This scoping ensures the leaderboards reflect current, high-quality models relevant to core AI scenarios.
 
 ## Quality benchmarks of language models
 
-Foundry assesses the quality of LLMs and SLMs using accuracy scores from standard, comprehensive benchmark datasets measuring model capabilities such as reasoning, knowledge, question answering, math, and coding. 
+Foundry assesses the quality of LLMs and SLMs using accuracy scores from standard benchmark datasets that measure reasoning, knowledge, question answering, math, and coding capabilities.
 
 | Index | Description |
 |--|--|
-| Quality index | Quality index is calculated by averaging applicable accuracy scores (exact_match, pass@1, arena_hard) over comprehensive, standard benchmark datasets. |
+| Quality index | Calculated by averaging applicable accuracy scores (`exact_match`, `pass@1`, `arena_hard`) across benchmark datasets. |
 
-Quality index is provided on a scale of zero to one. Higher values of quality index are better. The datasets included in quality index are: 
+Quality index values range from zero to one, where higher values indicate better performance. The datasets included in the quality index are:
 
 | Dataset Name | Category |
 |--|--|
@@ -79,17 +78,15 @@ Quality index is provided on a scale of zero to one. Higher values of quality in
 | [ifeval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | Reasoning |
 | [math](https://github.com/hendrycks/math) | Math |
 | [mbppplus](https://github.com/evalplus/evalplus) | Coding |
-| [mmlu_pro](https://github.com/TIGER-AI-Lab/MMLU-Pro) (downsampled to 1,000 examples) | General Knowledge |
-
-
+| [mmlu_pro](https://github.com/TIGER-AI-Lab/MMLU-Pro) (downsampled to 1,000 examples) | General knowledge |
 
 See more details in accuracy scores:
 
 | Metric | Description |
 |--|--|
-| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_  and _MBPP_ datasets that use a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
+| Accuracy | Accuracy scores are available at the dataset and the model levels. At the dataset level, the score is the average value of an accuracy metric computed over all examples in the dataset. The accuracy metric used is `exact-match` in all cases, except for the _HumanEval_ and _MBPP_ datasets that use a `pass@1` metric. Exact match compares model generated text with the correct answer according to the dataset, reporting one if the generated text matches the answer exactly and zero otherwise. The `pass@1` metric measures the proportion of model solutions that pass a set of unit tests in a code generation task. At the model level, the accuracy score is the average of the dataset-level accuracies for each model. |
 
-Accuracy scores are provided on a scale of zero to one. Higher values are better.
+Accuracy scores range from zero to one, where higher values are better.
 
 ## Safety benchmarks of language models
 
@@ -99,33 +96,33 @@ To guide the selection of safety benchmarks for evaluation, we apply a structure
 |--|--|--|--|
 | HarmBench (standard) | Standard harmful behaviors | Attack Success Rate | Lower values means better robustness against attacks designed to illicit standard harmful content |
 | HarmBench (contextual) | Contextually harmful behaviors | Attack Success Rate | Lower values means better robustness against attacks designed to illicit contextually harmful content |
-| HarmBench (copyright violations) | Copyright violations | Attack Success Rate | Lower values means better robustness against attacks designed to illicit copyright violations |
-| WMDP | Knowledge in sensitive domains | Accuracy | Higher values denotes more knowledge in sensitive domains (cybersecurity, biosecurity, and chemical security) |
-| Toxigen | Ability to detect toxic content | F1 Score | Higher values means better ability to detect toxic content |
+| HarmBench (copyright violations) | Copyright violations | Attack Success Rate | Lower values indicate stronger robustness against copyright violations |
+| WMDP | Knowledge in sensitive domains | Accuracy | Higher values indicate greater knowledge in sensitive domains |
+| Toxigen | Toxic content detection | F1 Score | Higher values indicate better detection performance |
 
 ### Model harmful behaviors
 
-The [HarmBench](https://github.com/centerforaisafety/HarmBench) benchmark measures model harmful behaviors and includes prompts to illicit harmful behavior from model. As it relates to safety, the benchmark covers seven semantic categories of behavior:
+The [HarmBench](https://github.com/centerforaisafety/HarmBench) benchmark measures harmful behaviors using prompts designed to elicit unsafe responses. It covers seven semantic categories:
 
-- Cybercrime & Unauthorized Intrusion
-- Chemical & Biological Weapons/Drugs
-- Copyright Violations
-- Misinformation & Disinformation
-- Harassment & Bullying
-- Illegal Activities
-- General Harm
-  
-These seven categories can be summarized into three functional categories
+- Cybercrime and unauthorized intrusion
+- Chemical and biological weapons or drugs
+- Copyright violations
+- Misinformation and disinformation
+- Harassment and bullying
+- Illegal activities
+- General harm
 
-- standard harmful behaviors
-- contextually harmful behaviors
-- copyright violations
+These categories are grouped into three functional areas:
+
+- Standard harmful behaviors
+- Contextually harmful behaviors
+- Copyright violations
 
 Each functional category is featured in a separate scenario leaderboard. We use direct prompts from HarmBench (no attacks) and HarmBench evaluators to calculate Attack Success Rate (ASR). Lower ASR values mean safer models. We don't explore any attack strategy for evaluation, and model benchmarking is performed with Foundry Content Safety Filter turned off.
 
 ### Model ability to detect toxic content
 
-[Toxigen](https://github.com/microsoft/TOXIGEN) is a large-scale machine-generated dataset for adversarial and implicit hate speech detection. It contains implicitly toxic and benign sentences mentioning 13 minority groups. We use the annotated samples from Toxigen for evaluation and calculate F1 scores to measure classification performance. Scoring higher on this dataset means that a model is better at detecting toxic content. Model benchmarking is performed with Foundry Content Safety Filter turned off.
+[Toxigen](https://github.com/microsoft/TOXIGEN) is a large-scale dataset for detecting adversarial and implicit hate speech. It includes implicitly toxic and benign sentences referencing 13 minority groups. Foundry uses annotated Toxigen samples and calculates F1 scores to measure classification performance. Higher scores indicate better toxic content detection. Benchmarking is performed with the Foundry Content Safety Filter turned off.
 
 ### Model knowledge in sensitive domains
 
@@ -133,15 +130,15 @@ The [Weapons of Mass Destruction Proxy](https://github.com/centerforaisafety/wmd
 
 ### Limitations of safety benchmarks
 
-We understand and acknowledge that safety is a complex topic and has several dimensions. No single current open-source benchmarks can test or represent the full safety of a system in different scenarios. Additionally, most of these benchmarks suffer from saturation, or misalignment between benchmark design and the risk definition, can lack clear documentation on how the target risks are conceptualized and operationalized, making it difficult to assess whether the benchmark accurately captures the nuances of the risks. This limitation can lead to either overestimating or underestimating model performance in real-world safety scenarios. 
+We understand and acknowledge that safety is a complex topic and has several dimensions. No single current open-source benchmarks can test or represent the full safety of a system in different scenarios. Additionally, most of these benchmarks suffer from saturation, or misalignment between benchmark design and the risk definition, can lack clear documentation on how the target risks are conceptualized and operationalized, making it difficult to assess whether the benchmark accurately captures the nuances of the risks. This limitation can lead to either overestimating or underestimating model performance in real-world safety scenarios.
 
 ## Performance benchmarks of language models
 
-Performance metrics are calculated as an aggregate over 14 days, based on 24 trails (two requests per trail) sent daily with a one-hour interval between every trail. The following default parameters are used for each request to the model endpoint:
+Performance metrics are aggregated over 14 days using 24 trails per day, with two requests per trail sent at one-hour intervals. The following default parameters are used:
 
-| Parameter | Value | Applicable For |
+| Parameter | Value | Applicable for |
 |--|--|--|
-| Region | East US/East US2 | [serverless API deployments](../how-to/model-catalog-overview.md#serverless-api-deployment-pay-per-token-offer-billing) and [Azure OpenAI](/azure/ai-foundry/openai/overview) |
+| Region | East US/East US2 | [serverless API deployments](./foundry-models-overview.md) and [Azure OpenAI](/azure/ai-foundry/openai/overview) |
 | Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (serverless API deployments) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (serverless API, global, global standard, and so on.) <br> For serverless API deployments, this setting is abstracted. |
 | Number of requests | Two requests in a trail for every hour (24 trails per day) | serverless API deployments, Azure OpenAI |
 | Number of trails/runs | 14 days with 24 trails per day for 336 runs | serverless API deployments, Azure OpenAI |
@@ -151,9 +148,9 @@ Performance metrics are calculated as an aggregate over 14 days, based on 24 tra
 | Data | Synthetic (input prompts prepared from static text) | serverless API deployments, Azure OpenAI |
 | Region | East US/East US2 | serverless API deployments and Azure OpenAI |
 | Deployment type | serverless API | Applicable only for Azure OpenAI |
-| Streaming | True | Applies to serverless API deployments and Azure OpenAI. For models deployed via [managed compute](../how-to/model-catalog-overview.md#managed-compute), or for endpoints when streaming isn't supported TTFT is represented as P50 of latency metric. |
-| SKU | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage) | Applicable only for Managed Compute (to estimate the cost and perf metrics) |
-
+| Streaming | True | Applies to serverless API deployments and Azure OpenAI. For models deployed via [managed compute](./foundry-models-overview.md), or for endpoints when streaming isn't supported TTFT is represented as P50 of latency metric. |
+| SKU | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage) | Applicable only for Managed Compute (to estimate the cost and performance metrics) |
+	
 The performance of LLMs and SLMs is assessed across the following metrics:
 
 | Metric | Description |
@@ -168,12 +165,12 @@ The performance of LLMs and SLMs is assessed across the following metrics:
 | Latency TTFT | Total time to first token (TTFT) is the time taken for the first token in the response to be returned from the endpoint when streaming is enabled. |
 | Time between tokens | This metric is the time between tokens received. |
 
-Foundry also displays performance metrics for latency and throughput as follows:
+Foundry summarizes performance using:
 
 | Metric | Description |
 |-------|-------------|
-| Latency | Mean time to first token. Lower values are better. |
-| Throughput | Mean generated tokens per second. Higher values are better. |
+| Latency | Mean time to first token. Lower is better. |
+| Throughput | Mean generated tokens per second. Higher is better. |
 
 For performance metrics like latency or throughput, the time to first token and the generated tokens per second give a better overall sense of the typical performance and behavior of the model. We refresh our performance numbers on regular cadence.
 
@@ -190,13 +187,13 @@ The cost of LLMs and SLMs is assessed across the following metrics:
 | Estimated cost | Cost for the sum of cost per input tokens and cost per output tokens, with a ratio of 3:1. |
 
 Foundry also displays the cost as follows:
-
+	
 | Metric | Description |
 |-------|-------------|
 | Cost | Estimated US dollar cost per 1 million tokens. The estimated workload uses the three-to-one ratio between input and output tokens. Lower values are better. |
-
+	
 ## Scenario leaderboard benchmarking
-
+	
 Scenario leaderboards group benchmark datasets by common real-world evaluation goals so you can quickly identify a model's strengths and weaknesses by use case. Each scenario aggregates one or more public benchmark datasets. The following table summarizes the available scenario leaderboards and their associated datasets and descriptions:
 
 | Scenario | Datasets | Description |
@@ -217,8 +214,6 @@ Scenario leaderboards group benchmark datasets by common real-world evaluation g
 
 The quality index of embedding models is defined as the averaged accuracy scores of a comprehensive set of serverless API benchmark datasets targeting Information Retrieval, Document Clustering, and Summarization tasks.
 
-See more details in accuracy score definitions specific to each dataset:
-
 | Metric | Description |
 |--------|-------------|
 | Accuracy | Accuracy is the proportion of correct predictions among the total number of predictions processed. |
@@ -234,10 +229,10 @@ See more details in accuracy score definitions specific to each dataset:
 ### Individual scores
 
 Benchmark results originate from public datasets that are commonly used for language model evaluation. In most cases, the data is hosted in GitHub repositories maintained by the creators or curators of the data. Foundry evaluation pipelines download data from their original sources, extract prompts from each example row, generate model responses, and then compute relevant accuracy metrics.
-
+	
 Prompt construction follows best practices for each dataset, as specified by the paper introducing the dataset and industry standards. In most cases, each prompt contains several _shots_, that is, several examples of complete questions and answers to prime the model for the task. The evaluation pipelines create shots by sampling questions and answers from a portion of the data held out from evaluation.
 
 ## Related content
 
 - [Compare and select models using the model leaderboard in Foundry portal](../how-to/benchmark-model-in-catalog.md)
-- [Model catalog and collections in Foundry portal](../how-to/model-catalog-overview.md)
+- [Model catalog and collections in Foundry portal](foundry-models-overview.md)

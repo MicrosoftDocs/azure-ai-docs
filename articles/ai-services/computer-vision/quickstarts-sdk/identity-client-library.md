@@ -9,7 +9,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: quickstart
-ms.date: 09/26/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: csharp
 # ms.devlang: csharp, golang, javascript, python

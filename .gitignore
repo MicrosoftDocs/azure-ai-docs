@@ -24,7 +24,19 @@ _repo.*/
 .github/*.*
 
 # Dev-kit instructions and prompts
+
+dk-env/
+dockit/
+specs/
+# Doc-Kit workspace files
 .github/AGENTS.md
-.github/agents/*.md
-.github/instructions/*md
+.github/agents/
+.github/instructions/
+.github/prompts/
 .github/skills/
+.vscode/settings.json
+.dockit/
+.env
+.env.example
+requirements.txt
+.roo

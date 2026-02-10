@@ -1,14 +1,14 @@
 ---
-title: 'Azure OpenAI Provisioned August 2024 Update'
+title: 'Azure OpenAI Provisioned 2024 Updates'
 titleSuffix: Azure OpenAI
-description: Learn about the improvements to Provisioned Throughput
+description: Learn about the improvements to Provisioned Throughput including model-independent quota, hourly/reservation payment models, and global and data zone deployments.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/03/2025
+ms.date: 01/30/2026
 author: msakande
 ms.author: mopeakande
 ms.reviewer: seramasu
@@ -24,7 +24,7 @@ Microsoft launched improvements to its Provisioned Throughput offering that addr
 
 This article is intended for existing users of the provisioned throughput offering. New customers should refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md).
 
-## What's changing?
+## What changed?
 
 
 > [!IMPORTANT]
@@ -53,11 +53,11 @@ This article is intended for existing users of the provisioned throughput offeri
 
 ## Usability improvement details
 
-Provisioned quota granularity is changing from model-specific to model-independent. Rather than each model and version within subscription and region having its own quota limit, there's a single quota item per subscription and region that limits the total number of PTUs that can be deployed across all supported models and versions.
+Provisioned quota granularity changed from model-specific to model-independent. Rather than each model and version within subscription and region having its own quota limit, there's a single quota item per subscription and region that limits the total number of PTUs that can be deployed across all supported models and versions.
 
 ## Model-independent quota
 
-As of August 12, 2024, existing customers' current, model-specific quota has been converted to model-independent. This happens automatically. No quota is lost in the transition. Existing quota limits are summed and assigned to a new model-independent quota item.
+As of August 12, 2024, existing customers' current, model-specific quota were converted to model-independent. This happened automatically. No quota was lost in the transition. Existing quota limits were summed and assigned to a new model-independent quota item.
 
 :::image type="content" source="../media/provisioned/consolidation.png" alt-text="Diagram showing quota consolidation." lightbox="../media/provisioned/consolidation.png":::
 
@@ -144,7 +144,7 @@ In addition to the updates for the hourly payment model, in December 2024 new [A
 - Supports all models, both old and new.
 
 > [!IMPORTANT]
-> More latest models are available in provisioned offering with Hourly/Reservation payment model. Check the list [**here**](./models.md#global-standard-model-availability) for the availabilityModels that aren't in the above [**list**](./provisioned-migration.md#supported-models-on-commitment-payment-model) aren't deployable on Azure OpenAI resources that have active commitments. To deploy models newer models, you must either:
+> More latest models are available in provisioned offering with Hourly/Reservation payment model. Check the list [**here**](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) for the availabilityModels that aren't in the above [**list**](./provisioned-migration.md#supported-models-on-commitment-payment-model) aren't deployable on Azure OpenAI resources that have active commitments. To deploy models newer models, you must either:
 > - Create deployments on Azure OpenAI resources without commitments.
 > - Migrate an existing resource off its commitments.
 

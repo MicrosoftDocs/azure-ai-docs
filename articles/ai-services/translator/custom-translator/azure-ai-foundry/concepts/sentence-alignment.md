@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.date: 11/18/2025
 ms.author: lajanuar
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a custom translation user, I want to know how sentence alignment works, so that I can have better understanding of underlying process of sentence extraction, pairing, filtering, aligning.
 ---

@@ -5,10 +5,10 @@ description: Use this article to learn about using your data for better text gen
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.topic: concept-article
 author: aahill
 ms.author: aahi
-ms.date: 12/02/2025
+ms.date: 02/06/2026
 recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
@@ -16,6 +16,8 @@ ms.custom: references_regions, ignite-2024
 # Azure OpenAI On Your Data 
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
 Use this article to learn about Azure OpenAI On Your Data, which makes it easier for developers to connect, ingest and ground their enterprise data to create personalized copilots (preview) rapidly. It enhances user comprehension, expedites task completion, improves operational efficiency, and aids decision-making.
 
@@ -108,7 +110,7 @@ Azure OpenAI On Your Data provides the following search types you can use when y
 * [Keyword search](/azure/search/search-lucene-query-architecture)
 
 * [Semantic search](/azure/search/semantic-search-overview)
-* [Vector search](/azure/search/vector-search-overview) using the `text-embedding-ada-002` [embedding](./understand-embeddings.md) model, available in [selected regions](models.md#embeddings-models) 
+* [Vector search](/azure/search/vector-search-overview) using the `text-embedding-ada-002` [embedding](./understand-embeddings.md) model, available in [selected regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings-models) 
 
     To enable vector search, you need an existing embedding model deployed in your Azure OpenAI resource. Select your embedding deployment when connecting your data, then select one of the vector search types under **Data management**. If you're using Azure AI Search as a data source, make sure you have a vector column in the index.
 
@@ -320,7 +322,7 @@ You can connect your MongoDB Atlas vector index with Azure OpenAI On Your Data f
 ### Prerequisites 
 
 * A [MongoDB Atlas account](https://account.mongodb.com/account/register)
-* An [Azure OpenAI ada002 embedding model](./models.md#embeddings)
+* An [Azure OpenAI ada002 embedding model](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings)
     * To achieve good retrieval quality, make sure your vector index is created with Azure OpenAI ada002 embedding model.
 
 We recommend using one of the following models for MongoDB Atlas
@@ -649,7 +651,7 @@ The estimates also depend on the nature of the documents and questions being ask
 | GPT-4o | 4000 |
 | GPT-4o-mini | 4000 |
 
-The table above shows the maximum number of tokens that can be used for the [system message](#system-message). To see the maximum tokens for the model response, see the [models article](./models.md#gpt-4-and-gpt-4-turbo-models). Additionally, the following also consume tokens:
+The table above shows the maximum number of tokens that can be used for the [system message](#system-message). To see the maximum tokens for the model response, see the [models article](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-4-and-gpt-4-turbo-models). Additionally, the following also consume tokens:
 
 
 
@@ -715,35 +717,9 @@ Each user message can translate to multiple search queries, all of which get sen
 
 ## Regional availability and model support
 
-> [!NOTE]
-> * The following models are not supported by Azure OpenAI On Your Data:
->     * o1 models
->     * o3 models
->     * model-router
->     * GPT 4.1 models
->     * GPT 5 and 5.1 models
-> * Azure OpenAI On Your Data only supports the `text-embedding-ada-002` embedding model for vector search. See the [Azure OpenAI documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai&tabs=global-standard-aoai.md#model-summary-table-and-region-availability) for a list of supported regions. 
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
-| Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
-|------|---|---|---|---|---|----|----|----|
-| Australia East | ✅ | ✅ | ✅ |✅ |   | ✅ | | | 
-| Canada East | ✅ | ✅ | ✅ |✅ |   | ✅ |  | | 
-| East US | ✅ |   |   |  |✅  |  | ✅ |  |
-| East US 2 | ✅ |  |  |✅ |  |  |✅ | ✅|
-| France Central | ✅ | ✅ | ✅ |✅ |   | ✅ |  | | 
-| Japan East | ✅ |   |   |  |   |   |  | | 
-| North Central US | ✅ |   |   | |✅  |   |✅  | |
-| Norway East | ✅ |   |   |✅ |   |  |  | | 
-| South Central US |  |   |   | | ✅ |   | ✅ |  |
-| South India |  | ✅ |   |✅ |   |    |  | |  
-| Sweden Central | ✅ | ✅ | ✅ |✅ |    | ✅ | | ✅|
-| Switzerland North | ✅ |   | ✅ |  |  | ✅ |  | | 
-| UK South | ✅ | ✅ | |✅ |✅  |  |  | |
-| West US  |  |✅ | |✅|   |   | ✅ | |
-
-\*\*This is a text-only implementation
-
-If your Azure OpenAI resource is in another region, you won't be able to use Azure OpenAI On Your Data.
+See the [model summary table](../../foundry-models/concepts/models-sold-directly-by-azure.md?view=foundry&preserve-view=true#model-summary-table-and-region-availability) for regional availability.
 
 ## Next steps
 * [Get started using your data with Azure OpenAI](../use-your-data-quickstart.md)

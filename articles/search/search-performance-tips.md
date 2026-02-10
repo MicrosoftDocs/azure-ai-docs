@@ -5,7 +5,7 @@ description: Learn about tips and best practices for maximizing performance on a
 author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: best-practice
 ms.date: 08/01/2025
 ms.update-cycle: 365-days
 ---

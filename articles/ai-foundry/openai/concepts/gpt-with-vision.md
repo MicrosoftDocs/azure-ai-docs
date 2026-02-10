@@ -1,13 +1,13 @@
 ---
 title: Vision-enabled chat model concepts
 titleSuffix: Azure OpenAI
-description: Learn concepts related to using images in your AI model chats, enabled through GPT-4 Turbo with Vision and other models.
+description: Learn concepts for using images in your AI model chats, with GPT-4 Turbo with Vision and other models.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article 
-ms.date: 09/16/2025
+ms.topic: concept-article 
+ms.date: 01/30/2026
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](./models.md).
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 To try out vision-enabled chat models, see the [quickstart](/azure/ai-foundry/openai/gpt-v-quickstart).
 

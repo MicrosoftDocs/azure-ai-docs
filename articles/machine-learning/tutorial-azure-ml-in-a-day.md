@@ -9,7 +9,7 @@ ms.topic: quickstart
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: scottpolly
-ms.date: 12/12/2025
+ms.date: 01/22/2026
 ms.custom:
   - sdkv2
   - build-2023
@@ -25,7 +25,13 @@ ms.custom:
 
 This tutorial introduces some of the most used features of the Azure Machine Learning service. You create, register, and deploy a model. This tutorial helps you become familiar with the core concepts of Azure Machine Learning and their most common usage.
 
-You learn how to run a training job on a scalable compute resource, then deploy it, and finally test the deployment.
+In this quickstart, you train, register, and deploy a machine learning model using Azure Machine Learning—all from a Python notebook. By the end, you'll have a working endpoint you can call for predictions.
+
+You learn how to:
+- Run a training job on scalable cloud compute
+- Register your trained model
+- Deploy the model as an online endpoint
+- Test the endpoint with sample data
 
 You create a training script to handle the data preparation, train, and register a model. After you train the model, you deploy it as an *endpoint*, then call the endpoint for *inferencing*.
 
@@ -39,9 +45,6 @@ The steps you take are:
 > * View the output of your training script
 > * Deploy the newly-trained model as an endpoint
 > * Call the Azure Machine Learning endpoint for inferencing
-
-For an overview of the steps in this quickstart, watch this video.
-> [!VIDEO https://learn-video.azurefd.net/vod/player?id=02ca158d-103d-4934-a8aa-fe6667533433]
 
 
 ## Prerequisites
@@ -62,13 +65,13 @@ For an overview of the steps in this quickstart, watch this video.
 
 Before you dive into the code, you need a way to reference your workspace. The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the artifacts you create when you use Azure Machine Learning.
 
-Create `ml_client` as a handle to the workspace. Use `ml_client` to manage resources and jobs.
+Create `ml_client` as a handle to your workspace—this client manages all your resources and jobs.
 
 In the next cell, enter your Subscription ID, Resource Group name, and Workspace name. To find these values:
 
 1. In the upper right Azure Machine Learning studio toolbar, select your workspace name.
 1. Copy the value for workspace, resource group, and subscription ID into the code. 
-1. You need to copy one value, close the area, and paste it. Then come back for the next value.
+1. Copy one value, close the area, and paste it. Then come back for the next value.
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/find-credentials.png" alt-text="Screenshot: find the credentials for your code in the upper right of the toolbar.":::
 
@@ -309,7 +312,12 @@ The output of this job looks like this in the Azure Machine Learning studio. Exp
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/view-job.gif" alt-text="Screenshot shows the overview page for the job.":::
 
 > [!IMPORTANT]
-> Wait until the status of the job is complete before returning to this notebook to continue. The job takes two to three minutes to run. It can take longer (up to 10 minutes) if the compute cluster scales down to zero nodes and custom environment is still building.
+> Wait until the job status shows **Completed** before continuing—typically 2-3 minutes. If the compute cluster scaled to zero, expect up to 10 minutes while it provisions.
+
+While you wait, explore the job details in the studio:
+- **Metrics** tab: View training metrics logged by MLflow
+- **Outputs + logs** tab: Check the training logs
+- **Models** tab: See the registered model (after completion)
 
 ## Deploy the model as an online endpoint
 
@@ -452,7 +460,7 @@ ml_client.online_endpoints.invoke(
 
 ## Clean up resources
 
-If you don't need the endpoint, delete it to stop using the resource. Make sure no other deployments are using an endpoint before you delete it.
+If you don't need the endpoint, delete it to stop using the resource. Make sure no other deployments use an endpoint before you delete it.
 
 
 > [!NOTE]
@@ -481,12 +489,14 @@ If you don't need it now, stop the compute instance:
 
 ## Next steps
 
-Now that you have an idea of what's involved in training and deploying a model, learn more about the process in these tutorials:
+> [!div class="nextstepaction"]
+> [Train a model in Azure Machine Learning](tutorial-train-model.md)
 
-|Tutorial  |Description  |
-|---------|---------|
-| [Upload, access, and explore your data in Azure Machine Learning](tutorial-explore-data.md)     |  Store large data in the cloud and retrieve it from notebooks and scripts |
-| [Model development on a cloud workstation](tutorial-cloud-workstation.md) | Start prototyping and developing machine learning models |
-| [Train a model in Azure Machine Learning](tutorial-train-model.md) |    Dive in to the details of training a model     |
-| [Deploy a model as an online endpoint](tutorial-deploy-model.md)  |   Dive in to the details of deploying a model      |
-| [Create production machine learning pipelines](tutorial-pipeline-python-sdk.md) | Split a complete machine learning task into a multistep workflow. |
+Explore more ways to build with Azure Machine Learning:
+
+| Tutorial | Description |
+|----------|-------------|
+| [Upload, access, and explore your data](tutorial-explore-data.md) | Store large data in the cloud and access it from notebooks |
+| [Model development on a cloud workstation](tutorial-cloud-workstation.md) | Prototype and develop models interactively |
+| [Deploy a model as an online endpoint](tutorial-deploy-model.md) | Learn advanced deployment configurations |
+| [Create production pipelines](tutorial-pipeline-python-sdk.md) | Build automated, reusable ML workflows |

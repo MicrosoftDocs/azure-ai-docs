@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: shshubhe
-ms.date: 12/12/2025
+ms.date: 01/27/2026
 ms.topic: how-to
 ms.custom:
   - troubleshooting
@@ -49,7 +49,6 @@ This section describes the default and maximum quotas and limits for the followi
 + Azure Machine Learning shared quota
 + Azure Machine Learning online endpoints (both managed and Kubernetes) and batch endpoints
 + Azure Machine Learning pipelines
-+ Azure Machine Learning integration with Synapse
 + Virtual machines
 + Azure Container Instances
 + Azure Storage
@@ -79,13 +78,13 @@ The maximum **run time** is 30 days and the maximum number of **metrics logged p
 
 To raise the limits for the following items, [Request a quota increase](#request-quota-and-limit-increases):
 
-* VM family core quotas. To learn more about which VM family to request a quota increase for, see [virtual machine sizes in Azure](/azure/virtual-machines/sizes). For example, GPU VM families start with an "N" in their family name (such as the NCv3 series).
+* VM family core quotas. To learn more about which VM family to request a quota increase for, see [virtual machine sizes in Azure](/azure/virtual-machines/sizes). For example, GPU VM families start with an "N" in their family name (such as the NCasT4_v3 series).
 * Total subscription core quotas
 * Cluster quota
 * Other resources in this section
 
 Available resources:
-+ **Dedicated cores per region** have a default limit of 24 to 300, depending on your subscription offer type. You can increase the number of dedicated cores per subscription for each VM family. Specialized VM families like NCv2, NCv3, or ND series start with a default of zero cores. GPUs also default to zero cores.
++ **Dedicated cores per region** have a default limit of 24 to 300, depending on your subscription offer type. You can increase the number of dedicated cores per subscription for each VM family. Specialized VM families like NCasT4_v3, NC_A100_v4, or NDv2 series start with a default of zero cores. GPUs also default to zero cores.
 
 + **Low-priority cores per region** have a default limit of 100 to 3,000, depending on your subscription offer type. You can increase the number of low-priority cores per subscription. This limit is a single value across VM families.
 
@@ -170,15 +169,6 @@ To request an exception from the Azure Machine Learning product team, use the st
 | --- | --- |
 | Steps in a pipeline | 30,000 |
 | Workspaces per resource group | 800 |
-
-
-### Azure Machine Learning integration with Synapse
-
-Azure Machine Learning serverless Spark provides easy access to distributed computing capability for scaling Apache Spark jobs. Serverless Spark uses the same dedicated quota as Azure Machine Learning Compute. You can increase quota limits by submitting a support ticket and [requesting for quota and limit increase](#request-quota-and-limit-increases) for ESv3 series under the "Machine Learning Service: Virtual Machine Quota" category.
- 
- To view quota usage, go to Machine Learning studio and select the subscription name that you want to see usage for. Select **Quota** in the left panel.
-
-:::image type="content" source="media/how-to-manage-quotas/azure-machine-learning-quota.png" lightbox="media/how-to-manage-quotas/azure-machine-learning-quota.png" alt-text="Screenshot of the Azure Machine Learning quotas.":::
 
 ### Virtual machines
 Each Azure subscription has a limit on the number of virtual machines across all services. Virtual machine cores have a regional total limit and a regional limit per size series. Both limits are separately enforced.
@@ -294,7 +284,7 @@ Be sure to add the following information into the reason for limit increase:
 
 ### Compute limit increases
 
-To increase the total compute limit, [open an online customer support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade/callerWorkflowId/5088c408-f627-4398-9aa3-c41cdd93a6eb/callerName/Microsoft_Azure_Support%2FHelpAndSupportOverview.ReactView). Provide the following information:
+To increase the total compute limit, [open an online customer support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade/callerWorkflowId/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb/callerName/Microsoft_Azure_Support%2FHelpAndSupportOverview.ReactView). Provide the following information:
 
 1. Select **Technical** as the **Issue type**.
 1. Select the subscription you want to use.

@@ -8,7 +8,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions
-ms.date: 11/02/2023
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this article to get started using the Azure OpenAI REST APIs to deploy and use vision-enabled chat models. 
@@ -18,7 +19,7 @@ Use this article to get started using the Azure OpenAI REST APIs to deploy and u
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - The following Python libraries: `requests`, `json`.
-- An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled model deployed. See [Model availability](../concepts/models.md) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
+- An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled model deployed. See [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
 
 > [!NOTE]
 > It is currently not supported to turn off content filtering for the GPT-4 Turbo with Vision model.

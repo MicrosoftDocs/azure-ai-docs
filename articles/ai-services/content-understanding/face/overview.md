@@ -5,7 +5,8 @@ description: Learn about Azure Content Understanding in Foundry Tools face solut
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -16,10 +17,11 @@ ms.custom:
 # Azure Content Understanding in Foundry Tools face solutions (preview)
 
 > [!IMPORTANT]
+> Azure Content Understanding in Foundry Tools is available in preview. Preview releases provide early access to features that are in active development.
 >
-> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, see [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+> Features, approaches, and processes can change or have limited capabilities before general availability (GA).
+>
+> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Azure Content Understanding provides a cloud-based solution for face detection, enrollment, and recognition, enabling secure and intelligent applications. Developers can apply these capabilities to detect faces, organize them into a structured directory, and perform recognition tasks for identity verification and content management.
 
@@ -27,9 +29,10 @@ This service is ideal for building secure access systems, streamlining photo man
 
 ## Key benefits
 
-Content Understanding offers advanced face recognition capabilities tailored for secure, scalable, and intelligent applications:
-* **Comprehensive face intelligence**: Detect, enroll, and recognize faces seamlessly using a unified cloud-based service. It supports both standalone face records and structured person identity management.
-* **Adaptable and scalable for diverse scenarios**: Enables secure access, streamlined check-ins, customer recognition, and efficient photo management with rapid, accurate face searches across extensive collections.
+Content Understanding offers face recognition capabilities for secure, scalable, and intelligent applications:
+
+* **Comprehensive face intelligence**: Detect, enroll, and recognize faces using a unified cloud-based service. It supports both standalone face records and structured person identity management.
+* **Adaptable and scalable for diverse scenarios**: Enable secure access, streamlined check-ins, customer recognition, and efficient photo management with rapid, accurate face searches across extensive collections.
 
 ## Business use cases
 
@@ -74,6 +77,7 @@ Content Understanding offers robust face capabilities, including detection, qual
 ### Person Directory
 
 The person directory is a flexible system for organizing face data and identity profiles. Key features include:
+
 * **Face enrollment**: Add detected faces as standalone entries or associate them with specific persons.
 * **Person enrollment**: Create identity records that link to one or more enrolled faces.
 * **Metadata management**: Update metadata, apply tags, and manage relationships between persons and faces.
@@ -84,6 +88,7 @@ The person directory is a flexible system for organizing face data and identity 
 ### Search capabilities
 
 The person directory enables powerful search and matching functionalities:
+
 * **Identify candidate persons**: Match an input face to candidate persons in the directory.
 * **Find similar faces**: Search for similar faces across the entire directory.
 

@@ -7,18 +7,26 @@ author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/21/2026
+ms.date: 01/29/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Configure IP firewall rules to allow indexer connections from Azure AI Search
 
-On behalf of an indexer, a search service makes outbound calls to an external Azure resource to pull in data during indexing. If your Azure resource uses IP firewall rules to filter incoming calls, you must create an inbound rule in your firewall that admits indexer requests.
+Azure AI Search makes external, outbound calls during indexer processing for content and skills, and for agentic retrieval requests that include calls to large language models (LLMs). If the target Azure resource uses IP firewall rules to filter incoming calls, you must create an inbound rule in your firewall that admits requests from Azure AI Search.
 
 This article explains how to find the IP address of your search service and configure an inbound IP rule on an Azure Storage account. While specific to Azure Storage, this approach also works for other Azure resources that use IP firewall rules for data access, such as Azure Cosmos DB and Azure SQL.
+
+## Prerequisites
+
++ [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). You can't set firewall rules on the Free tier.
++ An existing target Azure resource protected by a firewall.
++ **Contributor** or **Owner** role on the search service.
 
 > [!NOTE]
 > + Applicable to Azure Storage only. To define IP firewall rules, your storage account and search service must be in different regions. If your setup doesn't permit different regions, try the [trusted service exception](search-indexer-howto-access-trusted-service-exception.md) or [resource instance rule](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances) instead.
@@ -50,6 +58,8 @@ This article explains how to find the IP address of your search service and conf
    aliases:  my-search-service.search.windows.net
    ```
 
+   The IP address in the `Address` field under "Non-authoritative answer" (150.0.0.1 in this example) is the value you need for the firewall rule.
+
 ## Allow access from your client IP address
 
 Client applications that push indexing and query requests to the search service must be represented in an IP range. On Azure, you can generally determine the IP address by pinging the FQDN of a service. For example, `ping <your-search-service-name>.search.windows.net` returns the IP address of a search service.
@@ -72,28 +82,9 @@ Add your client IP address to allow access to the service from the Azure portal 
 
 ## Get the Azure portal IP address
 
-If you're using the Azure portal or an [import wizard](search-import-data-portal.md) to create an indexer, you need an inbound rule for the Azure portal as well.
+If you're using the [legacy Import data wizard](search-import-data-portal.md) in the Azure portal to create an indexer that pulls from Azure Cosmos DB or Azure SQL, you must grant the Azure portal IP address inbound access to your SQL Azure virtual machine. For more information, see [Allow access from the Azure portal IP address](service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address).
 
-To get the Azure portal's IP address, perform `nslookup` (or `ping`) on `stamp2.ext.search.windows.net`, which is the domain of the traffic manager. For nslookup, the IP address is visible in the "Non-authoritative answer" portion of the response. 
-
-In the following example, the IP address that you should copy is `52.252.175.48`.
-
-```bash
-$ nslookup stamp2.ext.search.windows.net
-Server:  ZenWiFi_ET8-0410
-Address:  192.168.50.1
-
-Non-authoritative answer:
-Name:    azsyrie.northcentralus.cloudapp.azure.com
-Address:  52.252.175.48
-Aliases:  stamp2.ext.search.windows.net
-          azs-ux-prod.trafficmanager.net
-          azspncuux.management.search.windows.net
-```
-
-Services in different regions connect to different traffic managers. Regardless of the domain name, the IP address returned from the ping is the correct one to use when defining an inbound firewall rule for the Azure portal in your region.
-
-For ping, the request times out, but the IP address is visible in the response. For example, in the message `Pinging azsyrie.northcentralus.cloudapp.azure.com [52.252.175.48]`, the IP address is `52.252.175.48`.
+We recommend using the [Import data (new) wizard](search-get-started-portal.md), which doesn't have this limitation. 
 
 ## Get IP addresses for "AzureCognitiveSearch" service tag
 
@@ -131,7 +122,9 @@ You can get this IP address range from the `AzureCognitiveSearch` service tag.
     },
     ```
 
-1. For IP addresses that have the `/32` suffix, drop the `/32`. For example, `40.91.93.84/32` becomes `40.91.93.84` in the rule definition. All other IP addresses can be used verbatim.
+    Copy all IP addresses in the `addressPrefixes` array for your region.
+
+1. For IP addresses having the "/32" suffix, drop the "/32" (40.91.93.84/32 becomes 40.91.93.84 in the rule definition). All other IP addresses can be used verbatim.
 
 1. Copy all of the IP addresses for the region.
 

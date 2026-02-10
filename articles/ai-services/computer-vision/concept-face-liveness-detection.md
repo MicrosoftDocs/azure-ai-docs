@@ -8,8 +8,8 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
-ms.topic: conceptual
-ms.date: 08/21/2025
+ms.topic: concept-article
+ms.date: 01/30/2026
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -36,7 +36,7 @@ The liveness solution integration involves two distinct components: a frontend m
 
 :::image type="content" source="./media/liveness/liveness-diagram.jpg" alt-text="Diagram of the liveness workflow in Azure AI Face." lightbox="./media/liveness/liveness-diagram.jpg":::
 
-- **Orchestrate Azure AI Face service in your app server**: The app server acts as the backend to create liveness detection sessions, obtain a short-lived authorization token from the Azure AI Face service for each session, authorize the frontend application to perform liveness detection, and retrieve and view liveness detection results.This design ensures secure session management and controlled access for the frontend.
+- **Orchestrate Azure AI Face service in your app server**: The app server acts as the backend to create liveness detection sessions, obtain a short-lived authorization token from the Azure AI Face service for each session, authorize the frontend application to perform liveness detection, and retrieve and view liveness detection results. This design ensures secure session management and controlled access for the frontend.
 - **Integrate Azure Vision in Foundry Tools Face SDK in the frontend**: Embed the Vision Face SDK (iOS, Android, or Web) in your frontend application. The SDK opens the camera, guides the user through passive or passive-active flows, captures images, and sends them to the Azure AI Face endpoint to perform liveness classification. We follow strict data privacy standards as outlined here: [Data and privacy for Face](../../ai-foundry/responsible-ai/face/data-privacy-security.md).
 - **Optional: Use Microsoft-Hosted Liveness Quick Link**: To reduce developer integration effort, you can skip embedding the SDK and use a Microsoft-hosted experience instead. Exchange the session token for a one-time Liveness Quick Link: Liveness Quick Link (`https://liveness.face.azure.com/?s=…`). Redirect the user to this URL, and Azure hosts the entire capture flow in the browser. Completion status can be received via an optional callback. This option removes the need to integrate the SDK into your application while ensuring you automatically receive all updates, so you stay aligned with Azure’s latest enhancements.
 
@@ -46,7 +46,7 @@ Azure Face liveness detection API includes options for both Passive and Passive-
 
 The **Passive mode** utilizes a passive liveness technique that requires no extra actions from the user. It requires a nonbright lighting environment to succeed and might fail in bright lighting environments with an "Environment not supported" error. It also requires high screen brightness for optimal performance, which is configured automatically in the Mobile (iOS and Android) solutions. This mode can be chosen if you prefer minimal end-user interaction and expect end-users to primarily be in non-bright environments. A Passive mode check takes around 12 seconds on an average to complete.
 
-The **Passive-Active mode** behaves the same as the Passive mode in non-bright lighting environments and only trigger the Active mode in bright lighting environments. This mode is preferable on Web browser solutions due to the lack of automatic screen brightness control available on browsers, which hinders the Passive mode's operational envelope. This mode can be chosen if you want the liveness-check to work in any lighting environment. If the Active check is triggered due to a bright lighting environment, then the total completion time may take up to 20 seconds on average.
+The **Passive-Active mode** behaves the same as the Passive mode in non-bright lighting environments and only triggers the Active mode in bright lighting environments. This mode is preferable on Web browser solutions due to the lack of automatic screen brightness control available on browsers, which hinders the Passive mode's operational envelope. This mode can be chosen if you want the liveness check to work in any lighting environment. If the Active check is triggered due to a bright lighting environment, then the total completion time might take up to 20 seconds on average.
 
 You can set the detection mode during the session creation step (see [Perform liveness detection](./tutorials/liveness.md#perform-liveness-detection)).
 

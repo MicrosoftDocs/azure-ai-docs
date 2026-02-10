@@ -121,3 +121,5 @@ The Document translation API now supports two translation operations:
 
 [Azure Translator release history](release-history.md)
 
+
+

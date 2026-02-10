@@ -5,7 +5,7 @@ description: Label and train customized models for your documents and compose mu
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
@@ -14,6 +14,7 @@ monikerRange: '<=doc-intel-4.0.0'
 
 # Document Intelligence custom models
 
+::: moniker range="doc-intel-4.0.0"
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
 

@@ -8,8 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
 ms.date: 12/01/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 zone_pivot_groups: openai-fine-tuning
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -88,7 +88,7 @@ In this article, you learn how to:
 ## Related content
 
 - [Fine-tuning tutorial (step-by-step)](../tutorials/fine-tune.md)
-- [Model catalog and regional availability](../concepts/models.md)
+- [Model catalog and regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Quotas and limits](../quotas-limits.md)
 - [View and interpret evaluation results](../../how-to/evaluate-results.md)
 - [Trace AI application usage (OpenAI SDK)](../../how-to/develop/trace-application.md)

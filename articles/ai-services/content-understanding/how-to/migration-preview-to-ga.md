@@ -6,12 +6,12 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
-ms.date: 10/30/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.custom:
   - references_regions
   - ignite-2025
 ---
-
 
 # Migrate from Azure Content Understanding Preview to GA
 
@@ -19,7 +19,7 @@ The Content Understanding API has reached general availability (GA). It introduc
 
 Learn about the changes you need to make to migrate analyzers and applications that were built with one of the preview API versions (`2024-12-01 preview` and `2025-05-01 preview`).
 
-## Prerequisite
+## Prerequisites
 
 [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
 
@@ -29,9 +29,13 @@ To update your existing analyzers, we recommend that you follow this three-step 
 
 ### Step 1: Get the analyzer definition
 
-Get the analyzer definition by calling `GET /analyzers/{analyzer name}/`.
+Get the analyzer definition by calling:
 
-The analyzer definition might look something like this if it was created with the `2025-05-01-preview` API.
+```http
+GET /analyzers/{analyzerName}
+```
+
+The analyzer definition might look like this if it was created with the `2025-05-01-preview` API.
 
 ```jsonc
 {
@@ -41,19 +45,19 @@ The analyzer definition might look something like this if it was created with th
   "config": {
     /*...*/
   },
-  "fieldSchema": {/*...*/},
+  "fieldSchema": {/*...*/}
 }
 ```
 
-### Step 2: Make analyzer changes to target the GA API
+### Step 2: Update the analyzer definition for the GA API
 
 You need to make the following changes so that the analyzer works with the GA API.
 
-1. Add or update the `BaseAnalyzerID` property so that it's included at the top-level of the analyzer definition and set to one of the four supported values: `prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, or `prebuilt-image`. Select the one that corresponds with the files that you plan to process with this analyzer. The `Scenario` property from the preview release is deprecated. The replacement is `baseAnalyzerId`.
+1. Add or update the `baseAnalyzerId` property so that it's included at the top level of the analyzer definition and set to one of the supported values: `prebuilt-document`, `prebuilt-audio`, `prebuilt-video`, or `prebuilt-image`. Select the one that corresponds with the files that you plan to process with this analyzer. The `Scenario` property from the preview release is deprecated. The replacement is `baseAnalyzerId`.
 
-1. Add a models object and specify the completion and embeddings model. This object specifies the default generative models that this analyzer uses.
+1. Add a `models` object and specify the completion and embeddings model. This object sets the default generative models that this analyzer uses
 
-For example, the schema from Step 1 would be updated to:
+For example, the schema from step 1 is updated to:
 
 ```jsonc
 {
@@ -72,28 +76,33 @@ For example, the schema from Step 1 would be updated to:
 ```
 
 > [!TIP]
-> To maximize similarly with preview behavior, use a GPT-4o `2024-08-06` generative deployment. For new analyzers, we recommend GPT-4.1 for Content Understanding.
 
 ### Step 3: Create a new analyzer
 
-You can use the updated definition to create a new analyzer. Call `PUT /analyzers/{analyzer name}_updated/` with the updated definition. You need to delete the existing analyzer to reuse the name.
+You can use the updated definition to create a new analyzer:
+
+```http
+PUT /analyzers/{analyzerName}_updated
+```
+
+You need to delete the existing analyzer to reuse the same analyzer name.
 
 ## Consider these other API changes
 
-- Content classifiers and video segmentation are now merged into content analyzers. To segment and classify content, use the `contentCategories` properties of the analyzer. See [build a robotic process automation (RPA) solution](../tutorial/robotic-process-automation.md) and [video segmentation](../video/overview.md#segmentation-mode) for guidance on how to classify or classify and analyze.
+- Content classifiers and video segmentation are now merged into content analyzers. To segment and classify content, use the `contentCategories` properties of the analyzer. See [Build a robotic process automation (RPA) solution](../tutorial/robotic-process-automation.md) and [Video segmentation](../video/overview.md#segmentation-mode) for guidance.
 
 - Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding. To add confidence and grounding, set the `estimateFieldSourceAndConfidence` to `true`. This behavior is unchanged from the `2025-05-01-preview` API.
 
-- The request to use the `GET` function to get specific components of the Analyze result is simplified. Use the `GET` function to get the embedded images or content with the API call.
+- The request to get specific components of the analyze result is simplified. To get embedded images or content, call:
 
-  ``` JSON
-  GET /analyzerResults/{operationId}/files/{path}
-  ```
+```http
+GET /analyzerResults/{operationId}/files/{path}
+```
 
-  Here, the ```path``` value can include:
+Here, `path` can include:
 
-  - `contents/{contentIndex}/pages/{pageNumber} - DocumentContent.pages[*].pageNumber`
-  - `contents/{contentIndex}/figures/{figureId} - DocumentContent.figures[*].id`
+* `contents/{contentIndex}/pages/{pageNumber}` - `DocumentContent.pages[*].pageNumber`
+* `contents/{contentIndex}/figures/{figureId}` - `DocumentContent.figures[*].id`
 
 - The **Analyze** operation now supports only analyzing files by URL. Use the new **analyzeBinary** operation to upload files as part of the request body as a base64-encoded string. If you previously used the **Analyze** operation to upload files inline in your code, you need to update your code to instead use the **analyzeBinary** operation. Learn more about the [analyzeBinary operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
@@ -132,65 +141,34 @@ You can use the updated definition to create a new analyzer. Call `PUT /analyzer
 - Person directory and Face API aren't part of the GA APIs, including the video analyzer features to detect and recognize faces in videos.
 - The `TrainingData` feature is being deprecated and replaced with the `knowledgeSources` feature.
 
----
+Here's an example of the updated schema for `PUT /analyzers/{analyzerName}`:
 
-<!--
+```jsonc
+{
+  "inputs": [
+    {
+      "url": "https://documentintelligence.ai.azure.com/documents/samples/read/read-healthcare.png" /* This is the file to be analyzed */
+    }
+  ]
+}
+```
 
-## Breaking changes
+6. If you used in-context learning or labeled data, the API payload to define the labeled dataset is now updated to specify labeled data as a type of `knowledgeSources`. For more information, see [Create or replace](/rest/api/contentunderstanding/content-analyzers/create-or-replace).
 
-[List of breaking changes from Preview to GA]
+7. For video analyzers, key frames are returned as an array of `keyFrames`. Learn more in [Analyze](/rest/api/contentunderstanding/content-analyzers/analyze).
+ 
+### New features
 
-## API changes
+1. Field extraction method is optional. When it's not set, the analyzer determines the approach (`extract` or `generate`). Don't add the `method` property unless you need the value extracted verbatim.
+2. Added support for confidence scores and source grounding for fields with method set to generate in document analyzers.
+3. Increased field limits to 1,000 fields per analyzer.
+4. Classification/segmentation supports up to 200 distinct types for documents.
 
-[Detailed API changes]
+### Deprecated features
 
-### Endpoint changes
-
-[URL and endpoint modifications]
-
-### Request/response format changes
-
-[Schema and format updates]
-
-### Authentication changes
-
-[Authentication method updates]
-
-## Migration steps
-
-[Step-by-step migration process]
-
-### Step 1: Update endpoints
-
-[Endpoint migration instructions]
-
-### Step 2: Update authentication
-
-[Authentication migration instructions]
-
-### Step 3: Update request formats
-
-[Request format updates]
-
-### Step 4: Update response handling
-
-[Response handling updates]
-
-### Step 5: Test and validate
-
-[Testing and validation steps]
-
-## Best practices
-
-[Migration best practices]
-
-## Troubleshooting
-
-[Common migration issues and solutions]
-
--->
-
-## Related content
+1. Pro mode isn't part of the GA API. This feature is still experimental. As a result, `AnalysisMode` is deprecated and standard is the only mode supported in the GA API.
+2. Person directory and Face API aren't part of the GA APIs. This includes the video analyzer features to detect and recognize faces in videos.
+3. `TrainingData` is being deprecated and replaced with `knowledgeSources`.
 
 - [Learn more about Content Understanding pricing](../pricing-explainer.md)
 - [Learn more about Content Understanding analyzers](../concepts/analyzer-reference.md)

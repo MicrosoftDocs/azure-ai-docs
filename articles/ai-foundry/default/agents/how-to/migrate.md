@@ -119,6 +119,19 @@ while run.status in ("queued", "in_progress"):
   run = project_client.agents.runs.get(thread_id=thread_id, run_id=run.id) 
 ```
 
+**Current - responses**
+
+```python
+conversation_id = "conv_11112222AAAABBBB"
+
+response = openai_client.responses.create(
+    model="gpt-4.1",
+    input=[{"role": "user", "content": "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9."}],
+    conversation=conversation_id
+)
+```
+
+
 ### Responses
 
 **Previous - runs**

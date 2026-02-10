@@ -13,7 +13,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: seramasu
 reviewer: rsethur
-ms.date: 09/03/2025
+ms.date: 01/30/2026
 recommendations: false
 #customerIntent: As a developer, I want to create and configure provisioned deployments so I can optimize performance and throughput for my AI applications.
 ---
@@ -161,19 +161,6 @@ REST, ARM template, Bicep, and Terraform can also be used to create deployments.
 
 Due to the dynamic nature of capacity availability, it is possible that the region of your selected resource might not have the service capacity to create the deployment of the specified model, version, and number of PTUs. 
 
-In this event, the wizard in [Foundry portal](https://ai.azure.com/?cid=learnDocs) will direct you to other regions with available quota and capacity to create a deployment of the desired model. If this happens, the deployment dialog will look like this: 
-
-:::image type="content" source="../media/provisioned/deployment-screen-2.png" alt-text="Screenshot of the Foundry portal deployment page for a provisioned deployment with no capacity available." lightbox="../media/provisioned/deployment-screen-2.png":::
-
-Things to notice: 
-
-* A message displays showing you many PTUs you have in available quota, and how many can currently be deployed at this time. 
-* If you select a number of PTUs greater than service capacity, a message will appear that provides options for you to obtain more capacity, and a button to allow you to select an alternate region. Clicking the "See other regions" button will display a dialog that shows a list of Foundry resources where you can create a deployment, along with the maximum sized deployment that can be created based on available quota and service capacity in each region. 
-
-:::image type="content" source="../media/provisioned/choose-different-resource.png" alt-text="Screenshot of the Foundry portal deployment page for choosing a different resource and region." lightbox="../media/provisioned/choose-different-resource.png":::
-
-Selecting a resource and clicking **Switch resource** will cause the deployment dialog to redisplay using the selected resource. You can then proceed to create your deployment in the new region.
-
 In this event, the wizard in [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] will direct you to other regions with available quota and capacity to create a deployment of the desired model. If this happens, the deployment dialog will look like this: 
 
 :::image type="content" source="../media/provisioned/deployment-screen-2.png" alt-text="Screenshot of the Foundry portal deployment page for a provisioned deployment with no capacity available." lightbox="../media/provisioned/deployment-screen-2.png":::
@@ -214,7 +201,7 @@ For more information on the purchase model and reservations, see:
 > Capacity availability for model deployments is dynamic and changes frequently across regions and models. To prevent you from purchasing a reservation for more PTUs than you can use, create deployments first, and then purchase the Azure Reservation to cover the PTUs you have deployed. This best practice will ensure that you can take full advantage of the reservation discount and prevent you from purchasing a term commitment that you cannot use.
 
 ## Make your first inferencing calls
-The inferencing code for provisioned deployments is the same a standard deployment type. The following code snippet shows a chat completions call to a GPT-4 model. For your first time using these models programmatically, we recommend starting with our [quickstart guide](../chatgpt-quickstart.md). Our recommendation is to use the OpenAI library with version 1.0 or greater since this includes retry logic within the library.
+The inferencing code for provisioned deployments is the same a standard deployment type. The following code snippet shows a chat completions call to a GPT-4 model. For your first time using these models programmatically, we recommend starting with our [quickstart guide](./responses.md). Our recommendation is to use the OpenAI library with version 1.0 or greater since this includes retry logic within the library.
 
 
 ```python

@@ -1,44 +1,44 @@
 ### YamlMime:FAQ
 metadata:
-  title: Microsoft Foundry frequently asked questions
+  title: Microsoft Foundry (classic) frequently asked questions
   titleSuffix: Microsoft Foundry
-  description: Get answers to the most popular questions about Foundry Tools.
+  description: Get answers to the most popular questions about Microsoft Foundry (classic).
   ms.service: azure-ai-foundry
   ms.custom:
     - build-2024
   ms.topic: faq
-  ms.date: 06/09/2025
+  ms.date: 01/23/2026
   ms.reviewer: sgilley
   ms.author: sgilley
   author: sdgilley
-title: Microsoft Foundry frequently asked questions
+title: Microsoft Foundry (classic) frequently asked questions
 summary: |
   FAQ for [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). If you can't find answers to your questions in this document, and still need help check the [Foundry Tools support options guide](../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context). Azure OpenAI is part of Foundry Tools.
 sections:
   - name: General questions
     questions:
       - question: |
-          Who is Microsoft Foundry intended for? 
+          Who is Microsoft Foundry (classic) intended for? 
         answer: |
-          Microsoft Foundry is intended for AI software developers - including cloud architects and technical decision-makers who want to create generative AI applications and custom copilot experiences.
+          Microsoft Foundry (classic) is intended for AI software developers - including cloud architects and technical decision-makers who want to create generative AI applications and custom copilot experiences.
       - question: |
-          How can customers access Microsoft Foundry? 
+          How can customers access Microsoft Foundry (classic)? 
         answer: |
-          Customers can explore Microsoft Foundry unauthenticated - including its cutting-edge AI capabilities. When you're ready to begin using templates, tools, and the robust model catalog to stitch together your own AI solutions, you're prompted to register or sign in to your Azure account. Currently, there's no extra charge for using Microsoft Foundry. When deploying solutions, you're billed for the Foundry Tools, Azure Machine Learning, and other Azure resources used inside of Microsoft Foundry at their existing rates.
+          Customers can explore Microsoft Foundry (classic) unauthenticated - including its cutting-edge AI capabilities. When you're ready to begin using templates, tools, and the robust model catalog to stitch together your own AI solutions, you're prompted to register or sign in to your Azure account. Currently, there's no extra charge for using Microsoft Foundry. When deploying solutions, you're billed for the Foundry Tools, Azure Machine Learning, and other Azure resources used inside of Microsoft Foundry (classic) at their existing rates.
       - question: |
-          What regions is Microsoft Foundry available in?
+          What regions is Microsoft Foundry (classic) available in?
         answer: | 
-          Microsoft Foundry is available in most regions where Foundry Tools are available. For more information, see [region support for Microsoft Foundry](reference/region-support.md).
+          Microsoft Foundry (classic) is available in most regions where Foundry Tools are available. For more information, see [region support for Microsoft Foundry](reference/region-support.md).
       - question: |
           Can I integrate Microsoft Fabric data into Microsoft Foundry? 
         answer: |
-          Yes. Microsoft Foundry supports seamless access to data in the Microsoft Fabric datastore Lakehouse without having to move or copy data. Data from Amazon S3 bucket can be accessed via Fabric shortcuts in Microsoft Foundry portal directly from Amazon S3 location without having to create a copy of the data in Azure.
+          Yes. Microsoft Foundry (classic) supports seamless access to data in the Microsoft Fabric datastore Lakehouse without having to move or copy data. Data from Amazon S3 bucket can be accessed via Fabric shortcuts in Microsoft Foundry (classic) portal directly from Amazon S3 location without having to create a copy of the data in Azure.
       - question: |
-          Can I use models other than ChatGPT in Microsoft Foundry portal? 
+          Can I use models other than ChatGPT in Microsoft Foundry (classic) portal? 
         answer: |
-          Yes. Microsoft Foundry includes a robust and growing catalog of frontier and open-source models from OpenAI, Hugging Face, Meta, and more that can be applied over your data. You can even compare models by task using open-source datasets and evaluate the model with your own test data to see how the pretrained model would perform to fit your own use case.
+          Yes. Microsoft Foundry (classic) includes a robust and growing catalog of frontier and open-source models from OpenAI, Hugging Face, Meta, and more that can be applied over your data. You can even compare models by task using open-source datasets and evaluate the model with your own test data to see how the pretrained model would perform to fit your own use case.
       - question: |
-          Will there be multiple varying model benchmarks in Microsoft Foundry portal based on individual projects and data sources? 
+          Will there be multiple varying model benchmarks in Microsoft Foundry (classic) portal based on individual projects and data sources? 
         answer: |
           In the model benchmarks view, customers can view varying model benchmarks published by Microsoft Foundry. 
       - question: |
@@ -52,11 +52,11 @@ sections:
       - question: |
           What is the billing model for serverless API deployments? 
         answer: |
-          Microsoft Foundry offers serverless API deployment models and hosted fine-tuning for [Llama 2 family models](how-to/deploy-models-llama.md). Currently, there's no extra charge for Microsoft Foundry outside of typical Foundry Tools and other Azure resource charges.
+          Microsoft Foundry (classic) offers serverless API deployment models and hosted fine-tuning for [Llama 2 family models](./concepts/models-inference-examples.md). Currently, there's no extra charge for Microsoft Foundry (classic) outside of typical Foundry Tools and other Azure resource charges.
       - question: |
           Can all models be secured with content filtering? 
         answer: |
-          Azure AI Content Safety can be used for AI-generated content from Azure OpenAI in Microsoft Foundry Models, open-source, and frontier models. For more information, see [How Azure AI Content Safety helps protect users from the classroom to the chatroom](https://aka.ms/contentsafety_GA_blog).
+          Azure AI Content Safety can be used for AI-generated content from Azure OpenAI in Microsoft Foundry (classic) Models, open-source, and frontier models. For more information, see [How Azure AI Content Safety helps protect users from the classroom to the chatroom](https://aka.ms/contentsafety_GA_blog).
       - question: |
           Do you use my company data to train any of the models? 
         answer: |
@@ -80,6 +80,6 @@ sections:
       
 additionalContent: |
 
-  ## Next steps
+  ## Related content
   - [Microsoft Foundry](what-is-foundry.md)
   - [Plan and manage costs](./how-to/costs-plan-manage.md)

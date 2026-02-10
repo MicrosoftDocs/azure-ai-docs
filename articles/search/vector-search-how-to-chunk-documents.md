@@ -8,15 +8,15 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/30/2025
 ---
 
-# Chunk large documents for agentic retrieval and vector search in Azure AI Search
+# Chunk large documents for RAG and vector search in Azure AI Search
 
 Partitioning large documents into smaller chunks can help you stay under the maximum token input limits of chat completion and  embedding models. For example, the maximum length of input text for the [Azure OpenAI](/azure/ai-services/openai/how-to/embeddings) text-embedding-3-small model is 8,191 tokens. Given that each token is around four characters of text for common OpenAI models, this maximum limit is equivalent to around 6,000 words of text. If you're using these models to generate embeddings, it's critical that the input text stays under the limit. 
 
-Chat completion models have the same input token restrictions, so chunking is helpful for retrieval augmented generation (RAG) or agentic retrieval as well. Partitioning your content into chunks helps you meet input token requirements and prevents data loss due to truncation.
+Chat completion models have the same input token restrictions, so chunking is helpful for [retrieval augmented generation (RAG)](retrieval-augmented-generation-overview.md) or [agentic retrieval](agentic-retrieval-overview.md) as well. Partitioning your content into chunks helps you meet input token requirements and prevents data loss due to truncation.
 
 Azure AI Search has built-in solutions for chunking content, and also for vectorizing chunked content if you're using vector search. The built-in approach takes a dependency on [built-in indexers](search-indexer-overview.md) and [skillsets](vector-search-integrated-vectorization.md) that enable text splitting and embeddings generation. If you can't use integrated vectorization, this article describes some alternative approaches for chunking your content.
 

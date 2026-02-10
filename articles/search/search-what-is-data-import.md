@@ -9,12 +9,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/23/2025
+ms.date: 01/23/2026
 ---
 
 # Data import in Azure AI Search
 
-In Azure AI Search, queries execute over your content that's loaded into a [search index](search-what-is-an-index.md). This article describes the two basic workflows for populating an index: *push* your data into the index programmatically, or *pull* in the data using a [search indexer](search-indexer-overview.md).
+In Azure AI Search, queries execute over content that's loaded into a [search index](search-what-is-an-index.md), or over [remote knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources) if you use agentic retrieval.
+
+This article describes the two basic workflows for populating an index on a search service: *push* your data into the index programmatically, or *pull* in the data using a [search indexer](search-indexer-overview.md).
 
 Both approaches load documents from an external data source. Although you can create an empty index, it's not queryable until you add the content.
 
@@ -49,7 +51,6 @@ For an introduction to the push APIs, see:
 
 + [Quickstart: Full-text search](search-get-started-text.md)
 + [C# Tutorial: Optimize indexing with the push API](tutorial-optimize-indexing-push-api.md)
-+ [REST Quickstart: Create an Azure AI Search index using PowerShell](search-get-started-text.md)
 
 <a name="indexing-actions"></a>
 
@@ -69,7 +70,9 @@ Whether you use the REST API or an Azure SDK, the following document operations 
 
 ## Pulling data into an index
 
-The pull model uses *indexers* connecting to a supported data source, automatically uploading the data into your index. Indexers from Microsoft are available for these platforms:
+The pull model uses *indexers* anx *Logic Apps workflows* connecting to a supported data source, automatically uploading the data into your index. 
+
+Indexers from Microsoft are available for these platforms:
 
 + [Azure Blob storage](search-how-to-index-azure-blob-storage.md)
 + [Azure Table storage](search-how-to-index-azure-tables.md)
@@ -80,9 +83,11 @@ The pull model uses *indexers* connecting to a supported data source, automatica
 + [Microsoft OneLake files and shortcuts](search-how-to-index-onelake-files.md)
 + [SharePoint in Microsoft 365 (preview)](search-how-to-index-sharepoint-online.md)
 
-You can use third-party connectors, developed and maintained by Microsoft partners. For more information and links, see [Data source gallery](search-data-sources-gallery.md).
+If you configure an [indexed knowledge source](agentic-knowledge-source-overview.md#supported-knowledge-sources) for agentic retrieval, Azure AI Search creates an indexer pipeline and loads an index using properties in the knowledge source.
 
-Indexers connect an index to a data source (usually a table, view, or equivalent structure), and map source fields to equivalent fields in the index. During execution, the rowset is automatically transformed to JSON and loaded into the specified index. All indexers support schedules so that you can specify how frequently the data is to be refreshed. Most indexers provide change tracking if the data source supports it. By tracking changes and deletes to existing documents in addition to recognizing new documents, indexers remove the need to actively manage the data in your index.
+You can also use [Logic Apps workflows](search-how-to-index-logic-apps.md) or third-party connectors, developed and maintained by Microsoft partners. For more information and links, see [Data source gallery](search-data-sources-gallery.md).
+
+With these automated approaches, you connect your index to a data source (usually a table, view, container, or equivalent structure), and map source fields to equivalent fields in the index. During execution, the rowset is automatically transformed to JSON and loaded into the specified index. All indexers support schedules so that you can specify how frequently the data is to be refreshed. Most indexers provide change tracking if the data source supports it. By tracking changes and deletes to existing documents in addition to recognizing new documents, indexers remove the need to actively manage the data in your index.
 
 ### How to pull data into an Azure AI Search index
 

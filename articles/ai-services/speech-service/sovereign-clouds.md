@@ -47,7 +47,7 @@ Available to US government entities and their partners only. See more informatio
     - Fast transcription
     - Pronunciation assessment
     - Custom keyword
-    - Voice live
+    - Voice Live
     - Live interpreter
     - Video translation
     - LLM speech
@@ -145,7 +145,7 @@ Available to organizations with a business presence in China. See more informati
     - Personal voice
     - Text to speech avatar
     - Custom keyword
-    - Voice live
+    - Voice Live
     - Live interpreter
     - Video translation
     - LLM speech

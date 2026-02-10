@@ -8,7 +8,7 @@ ms.author: arjagann
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/14/2026
 ms.update-cycle: 365-days
 ---

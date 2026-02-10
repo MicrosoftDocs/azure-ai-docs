@@ -21,6 +21,7 @@ ms.author: pafarley
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 * Once you have your Azure subscription, <a href="https://aka.ms/acs-create"  title="Create a Content Safety resource"  target="_blank">create a Content Safety resource </a> in the Azure portal to get your key and endpoint. Enter a unique name for your resource, select your subscription, and select a resource group, supported region (see [Region availability](/azure/ai-services/content-safety/overview#region-availability)), and supported pricing tier. Then select **Create**.
   * The resource takes a few minutes to deploy. After it finishes, Select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
+* **Cognitive Services User** role or higher on the Content Safety resource
 
 ## Set up application
 Create a new Gradle project.
@@ -126,9 +127,15 @@ gradle run
 
 ## Output
 
+The application outputs severity scores for each content category:
+
 ```console
 Hate severity: 0
 SelfHarm severity: 0
 Sexual severity: 0
 Violence severity: 0
 ```
+
+Severity levels range from 0 (safe) to 6 (high risk). Higher scores indicate more severe content in that category.
+
+**References**: [ContentSafetyClient](/java/api/com.azure.ai.contentsafety.contentsafetyclient), [AnalyzeTextOptions](/java/api/com.azure.ai.contentsafety.models.analyzetextoptions), [AnalyzeTextResult](/java/api/com.azure.ai.contentsafety.models.analyzetextresult)

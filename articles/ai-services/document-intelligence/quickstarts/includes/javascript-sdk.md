@@ -6,13 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 01/30/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
 
 :::moniker range="doc-intel-4.0.0"
-[Client library](/javascript/api/overview/azure/ai-document-intelligence-rest-readme?view=azure-node-latest&preserve-view=true) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (npm)]( https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.0.0) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest/samples/v1/javascript) |[Supported REST API version](../../sdk-overview-v4-0.md)
+[Client library](/javascript/api/overview/azure/ai-document-intelligence-rest-readme?view=azure-node-latest&preserve-view=true) | [REST API reference](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-document-intelligence/v/1.1.0) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest/samples/v1/javascript) |[Supported REST API version](../../sdk-overview-v4-0.md)
 :::moniker-end
 
 :::moniker range="doc-intel-3.1.0"
@@ -73,7 +73,7 @@ In this quickstart, use the following features to analyze and extract data and v
  4. Install the `ai-document-intelligence` client library and `azure/identity` npm packages:
 
     ```console
-    npm i @azure-rest/ai-document-intelligence@1.0.0 @azure/core-auth
+    npm i @azure-rest/ai-document-intelligence@1.1.0
     ```
 
     Your app's `package.json` file is updated with the dependencies.
@@ -144,56 +144,64 @@ Extract text, selection marks, text styles, table structures, and bounding regio
 :::moniker range="doc-intel-4.0.0"
 
 ```javascript
-    const DocumentIntelligence = require("@azure-rest/ai-document-intelligence").default,
-  { getLongRunningPoller, isUnexpected } = require("@azure-rest/ai-document-intelligence");
+const DocumentIntelligence = require("@azure-rest/ai-document-intelligence").default,
+{ getLongRunningPoller, isUnexpected } = require("@azure-rest/ai-document-intelligence");
 
-  const { AzureKeyCredential } = require("@azure/core-auth");
+// set `<your-key>` and `<your-endpoint>` variables with the values from the Azure portal.
+const key = "<your-key>";
+const endpoint = "<your-endpoint>";
 
-    // set `<your-key>` and `<your-endpoint>` variables with the values from the Azure portal.
-    const key = "<your-key>";
-    const endpoint = "<your-endpoint>";
+// sample document
+const formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf"
 
-    // sample document
-    const formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf"
+async function main() {
+  const client = DocumentIntelligence(endpoint, { key });
 
-   async function main() {
-    const client = DocumentIntelligence(endpoint, new AzureKeyCredential(key));
+  const initialResponse = await client
+    .path("/documentModels/{modelId}:analyze", "prebuilt-layout")
+    .post({
+      contentType: "application/json",
+      body: {
+        urlSource: formUrl
+      },
+    });
 
+  if (isUnexpected(initialResponse)) {
+    throw initialResponse.body.error;
+  }
 
-    const initialResponse = await client
-      .path("/documentModels/{modelId}:analyze", "prebuilt-layout")
-      .post({
-        contentType: "application/json",
-        body: {
-          urlSource: formUrl
-        },
-       });
+  const poller = getLongRunningPoller(client, initialResponse);
+  const analyzeResult = (await poller.pollUntilDone()).body.analyzeResult;
 
-       if (isUnexpected(initialResponse)) {
-       throw initialResponse.body.error;
-     }
+  const pages = analyzeResult?.pages;
+  const tables = analyzeResult?.tables;
 
-    const poller = await getLongRunningPoller(client, initialResponse);
-    const analyzeResult = (await poller.pollUntilDone()).body.analyzeResult;
-
-    const documents = analyzeResult?.documents;
-
-    const document = documents && documents[0];
-    if (!document) {
-    throw new Error("Expected at least one document in the result.");
+  if (pages && pages.length > 0) {
+    console.log("Pages:");
+    for (const page of pages) {
+      console.log("- Page", page.pageNumber, `(unit: ${page.unit})`);
+      console.log(`  ${page.width}x${page.height}`);
+      console.log(`  ${page.lines?.length || 0} lines, ${page.words?.length || 0} words`);
     }
+  } else {
+    console.log("No pages were extracted from the document.");
+  }
 
-    console.log(
-    "Extracted document:",
-    document.docType,
-    `(confidence: ${document.confidence || "<undefined>"})`,
-    );
-    console.log("Fields:", document.fields);
+  if (tables && tables.length > 0) {
+    console.log("Tables:");
+    for (const table of tables) {
+      console.log(
+        `- Extracted table: ${table.columnCount} columns, ${table.rowCount} rows (${table.cells.length} cells)`
+      );
+    }
+  } else {
+    console.log("No tables were extracted from the document.");
+  }
 }
 
 main().catch((error) => {
-    console.error("An error occurred:", error);
-    process.exit(1);
+  console.error("An error occurred:", error);
+  process.exit(1);
 });
 
 ```
@@ -313,63 +321,53 @@ In this example, we analyze an invoice using the **prebuilt-invoice** model.
 :::moniker range="doc-intel-4.0.0"
 
 ```javascript
-
 const DocumentIntelligence = require("@azure-rest/ai-document-intelligence").default,
-  { getLongRunningPoller, isUnexpected } = require("@azure-rest/ai-document-intelligence");
+{ getLongRunningPoller, isUnexpected } = require("@azure-rest/ai-document-intelligence");
 
-const { AzureKeyCredential } = require("@azure/core-auth");
+// set `<your-key>` and `<your-endpoint>` variables with the values from the Azure portal.
+const key = "<your-key>";
+const endpoint = "<your-endpoint>";
 
-    // set `<your-key>` and `<your-endpoint>` variables with the values from the Azure portal.
-    const key = "<your-key>";
-    const endpoint = "<your-endpoint>";
-
-    // sample document
-    const invoiceUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf"
+// sample document
+const invoiceUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf"
 
 async function main() {
+  const client = DocumentIntelligence(endpoint, { key });
 
-    const client = DocumentIntelligence(endpoint, new AzureKeyCredential(key));
-
-    const initialResponse = await client
+  const initialResponse = await client
     .path("/documentModels/{modelId}:analyze", "prebuilt-invoice")
     .post({
       contentType: "application/json",
       body: {
-        // The Document Intelligence service will access the URL to the invoice image and extract data from it
         urlSource: invoiceUrl,
       },
     });
 
-    if (isUnexpected(initialResponse)) {
-       throw initialResponse.body.error;
-     }
+  if (isUnexpected(initialResponse)) {
+    throw initialResponse.body.error;
+  }
 
-    const poller = await getLongRunningPoller(client, initialResponse);
+  const poller = getLongRunningPoller(client, initialResponse);
+  const analyzeResult = (await poller.pollUntilDone()).body.analyzeResult;
 
-    poller.onProgress((state) => console.log("Operation:", state.result, state.status));
-    const analyzeResult = (await poller.pollUntilDone()).body.analyzeResult;
+  const documents = analyzeResult?.documents;
 
-    const documents = analyzeResult?.documents;
+  const invoice = documents && documents[0];
+  if (!invoice) {
+    throw new Error("Expected at least one invoice in the result.");
+  }
 
-    const result = documents && documents[0];
-    if (result) {
-      console.log(result.fields);
-    } else {
-      throw new Error("Expected at least one invoice in the result.");
-    }
-
-console.log(
+  console.log(
     "Extracted invoice:",
-    document.docType,
-    `(confidence: ${document.confidence || "<undefined>"})`,
+    invoice.docType,
+    `(confidence: ${invoice.confidence || "<undefined>"})`
   );
-  console.log("Fields:", document.fields);
+  console.log("Fields:", invoice.fields);
 }
 
-
 main().catch((error) => {
-    console.error("An error occurred:", error);
-    process.exit(1);
+  console.error("An error occurred:", error);
+  process.exit(1);
 });
 ```
 

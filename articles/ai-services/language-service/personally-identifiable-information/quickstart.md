@@ -1,22 +1,36 @@
 ---
-title: "Quickstart: Detect Personally Identifying Information (PII) in text"
+title: "Quickstart: Detect personally identifiable information (PII) in text"
 titleSuffix: Foundry Tools
-description: Use this quickstart to start using the PII detection API.
+description: Use Azure Language in Foundry Tools to detect and redact personally identifiable information (PII) in text with client libraries, the REST API, or the Microsoft Foundry portal.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 02/06/2026
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
-ms.custom: language-service-pii, mode-other, devx-track-extended-java, devx-track-js, devx-track-python
+ms.custom:
+- language-service-pii
+- mode-other
+- devx-track-extended-java
+- devx-track-js
+- devx-track-python
+- pilot-ai-workflow-jan-2026
+keywords: pii, personally identifiable information, redaction, text analytics
 zone_pivot_groups: programming-languages-text-analytics
+ai-usage: ai-assisted
 ---
-# Quickstart: Detect Personally Identifiable Information (PII)
+
+# Quickstart: Detect personally identifiable information (PII)
+<!-- markdownlint-disable MD025 -->
+
+In this quickstart, you use the Azure Language in Foundry Tools PII detection feature to identify and redact personally identifiable information in text. You can get started using your preferred client library, the REST API, or the Microsoft Foundry portal.
+
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 > [!NOTE]
-> This quickstart guides you through the process of identifying personally identifiable information (PII) in documents. To learn about detecting PII in conversations, see [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md). To learn about detecting PII in text, see [How to detect and redact PII in text](how-to/redact-text-pii.md).
+> This quickstart covers PII detection in documents. To detect PII in conversations, see [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md). To detect PII in text, see [How to detect and redact PII in text](how-to/redact-text-pii.md).
 
 ::: zone pivot="programming-language-csharp"
 
@@ -54,15 +68,26 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone-end
 
+## Troubleshooting
+
+| Issue | Resolution |
+| --- | --- |
+| You get a `401` or `403` error when calling the API. | Confirm your key and endpoint are correct for the same Azure AI resource. If you recently changed role assignments, wait a few minutes and try again. |
+| You get an error about missing environment variables. | Confirm `LANGUAGE_KEY` and `LANGUAGE_ENDPOINT` are set in your environment before you run the sample. |
+| The Foundry experience doesn't match the steps. | In the Foundry portal, use the version toggle to switch between Foundry (classic) and Foundry (new), then follow the matching tab in the Foundry section. |
+| No entities are detected in your text. | Verify that the input text contains recognizable PII patterns (names, addresses, phone numbers). Check that the **Types** filter includes the entity categories you expect. |
+| The API returns an `InvalidLanguage` error. | Confirm the language code in the request matches one of the [supported languages](language-support.md). |
+
 ## Clean up resources
 
-To clean up and remove an Azure AI resource, you can delete either the individual resource or the entire resource group. If you delete the resource group, all resources contained within are also deleted.
+If you no longer need the resources you created in this quickstart, delete the individual resource or the entire resource group. Deleting the resource group also deletes all other resources associated with it.
 
 * [Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)
 
+## Related content
 
-
-## Next steps
-
-* [Overview](overview.md)
+* [PII overview](overview.md)
+* [How to detect and redact PII in text](how-to/redact-text-pii.md)
+* [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md)
+* [Supported entity categories for text](concepts/entity-categories.md)

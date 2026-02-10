@@ -6,7 +6,7 @@ author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 04/09/2022
 ---
 

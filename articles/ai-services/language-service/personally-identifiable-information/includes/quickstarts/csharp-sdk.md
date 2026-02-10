@@ -2,16 +2,17 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 12/11/2025
+ms.date: 01/30/2026
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
   - language-service-pii
   - ignite-2024
   - build-2025
+ai-usage: ai-assisted
 ---
 <!-- markdownlint-disable MD041 -->
-[Reference documentation](/dotnet/api/azure.ai.textanalytics?preserve-view=true&view=azure-dotnet) | [More samples](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics/samples) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.TextAnalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics)
+[Reference documentation](/dotnet/api/azure.ai.textanalytics?view=azure-dotnet&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics/samples) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.TextAnalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/textanalytics/Azure.AI.TextAnalytics)
 
 Use this quickstart to create a Personally Identifiable Information (PII) detection application with the client library for .NET. In the following example, you create a C# application that can identify [recognized sensitive information](../../concepts/entity-categories.md) in text.
 
@@ -24,6 +25,10 @@ Use this quickstart to create a Personally Identifiable Information (PII) detect
 * The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/)
 
 ## Setting up
+
+[!INCLUDE [Create an Azure resource](../../../includes/create-resource.md)]
+
+[!INCLUDE [Get your key and endpoint](../../../includes/get-key-endpoint.md)]
 
 [!INCLUDE [Create environment variables](../../../includes/environment-variables.md)]
 
@@ -50,9 +55,6 @@ namespace Example
         static string languageKey = Environment.GetEnvironmentVariable("LANGUAGE_KEY");
         static string languageEndpoint = Environment.GetEnvironmentVariable("LANGUAGE_ENDPOINT");
 
-        private static readonly AzureKeyCredential credentials = new AzureKeyCredential(languageKey);
-        private static readonly Uri endpoint = new Uri(languageEndpoint);
-
         // Example method for detecting sensitive information (PII) from text 
         static void RecognizePIIExample(TextAnalyticsClient client)
         {
@@ -77,6 +79,14 @@ namespace Example
 
         static void Main(string[] args)
         {
+            if (string.IsNullOrWhiteSpace(languageKey) || string.IsNullOrWhiteSpace(languageEndpoint))
+            {
+                Console.WriteLine("Missing LANGUAGE_KEY or LANGUAGE_ENDPOINT environment variables.");
+                return;
+            }
+
+            var endpoint = new Uri(languageEndpoint);
+            var credentials = new AzureKeyCredential(languageKey);
             var client = new TextAnalyticsClient(endpoint, credentials);
             RecognizePIIExample(client);
 

@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/06/2026
 ms.custom: azure-ai-agents, dev-focus
 ai-usage: ai-assisted
@@ -42,7 +42,7 @@ Threads are conversation sessions between an agent and a user. They store messag
 
 ## Messages
 
-Messages are the individual pieces of communication within a thread. Either the agent or the user can create messages. Messages can include text or other files. The thread stores messages as a list, so the conversation flow stays structured and organized. You can attach up to 100,000 messages to a single thread.
+Messages are the individual pieces of communication within a thread. They can be created by either the agent or the user and can include text, or other files. Messages are stored as a list within the thread, allowing for a structured and organized conversation flow.
 
 ## Runs
 

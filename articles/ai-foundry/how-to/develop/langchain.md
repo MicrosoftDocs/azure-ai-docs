@@ -206,7 +206,7 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 Because models in Foundry expose a common Model Inference API, you can chain multiple LLM operations and choose the model best suited to each step.
 
-In the following example, you create two model clients: one producer and one verifier. To make the distinction clear, use a multi-model endpoint such as the [Model Inference API](../../model-inference/overview.md) and pass the `model` parameter to a large model for generation and a small model for verification. Producing content generally requires a larger model, while verification can use a smaller one.
+In the following example, you create two model clients: one producer and one verifier. To make the distinction clear, use a multi-model endpoint such as the [Model Inference API](../../foundry-models/concepts/models-sold-directly-by-azure.md) and pass the `model` parameter to a large model for generation and a small model for verification. Producing content generally requires a larger model, while verification can use a smaller one.
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_producer_verifier)]
 
@@ -418,7 +418,7 @@ chain = chain.with_config({"callbacks": [azure_tracer]})
 Then use the `invoke()` method as usual:
 
 ```python
-chain.invoke({"topic": "living in a foreign country"})
+chain.invoke({"topic": "living in a foreign country/region"})
 ```
 
 ### View traces
@@ -448,11 +448,11 @@ To see traces:
 
 
 
-Learn more about [how to visualize and manage traces](visualize-traces.md).
+Learn more about [how to visualize and manage traces](./trace-application.md).
 
 ## Next steps
 
 * [Develop applications with LlamaIndex](llama-index.md)
-* [Visualize and manage traces in Foundry](visualize-traces.md)
-* [Use Foundry Models](../../model-inference/overview.md)
+* [Visualize and manage traces in Foundry](./trace-application.md)
+* [Use Foundry Models](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 * [Reference: Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md)

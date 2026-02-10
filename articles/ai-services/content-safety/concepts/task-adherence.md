@@ -4,7 +4,7 @@ description: Learn about Task Adherence, a feature in Azure AI Content Safety th
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-content-safety
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/13/2025
 manager: nitinme
 ---

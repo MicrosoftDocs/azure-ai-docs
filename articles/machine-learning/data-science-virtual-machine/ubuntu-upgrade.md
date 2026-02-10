@@ -8,7 +8,7 @@ ms.service: azure-data-science-virtual-machines
 ms.custom: linux-related-content
 author: s-polly 
 ms.author: scottpolly 
-ms.topic: conceptual
+ms.topic: upgrade-and-migration-article
 ms.reviewer: jcioffi
 ms.date: 05/08/2024
 ---

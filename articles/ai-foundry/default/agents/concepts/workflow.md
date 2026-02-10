@@ -1,39 +1,55 @@
 ---
-title: Build a Workflow in Microsoft Foundry
+title: Build a workflow in Microsoft Foundry
 titleSuffix: Microsoft Foundry
-description: This article explains how to build a workflow in Microsoft Foundry by using agents. 
+description: Build workflows in Microsoft Foundry to orchestrate AI agents with visual logic, branching, and Power Fx formulas. Create intelligent automation without writing code.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2025
   - code01
+  - pilot-ai-workflow-jan-2026 
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 02/02/2026
 ms.reviewer: fniedtner
 ms.author: ssalgado
 manager: nitinme
 author: ssalgadodev
+ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to build a workflow so that I can solve real-world problems collaboratively.
 ---
 
 # Build a workflow in Microsoft Foundry
 
-Workflows are UI-based tools in Microsoft Foundry. You can use them to create declarative, predefined sequences of actions that include agents, as in Microsoft Agent Framework workflows.
+Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
 Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
 
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
-- A project in Microsoft Foundry.
+- A project in Microsoft Foundry. For more information, see [Create projects](../../../how-to/create-projects.md).
+- Access to create and run workflows in your Foundry project. For more information, see [Azure role-based access control (RBAC) in Foundry](../../../concepts/rbac-foundry.md).
 
-## Workflow concepts
+## Decide when to use workflows
 
-To create a workflow in Foundry, you can begin with a blank workflow or select one of the templates of predefined orchestration patterns:
+Workflows are ideal for scenarios where you need to:
+
+- Orchestrate multiple agents in a repeatable process.
+- Add branching logic (for example, if/else) and variable handling without writing code.
+- Create human-in-the-loop steps (for example, approvals or clarifying questions).
+
+If you want to edit workflow YAML in Visual Studio Code or run workflows in a local playground, see:
+
+- [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
+- [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)
+
+## Understand workflow patterns
+
+Foundry provides templates for common orchestration patterns. Start with a blank workflow or select a template:
 
 | Pattern    | Description                                                        | Typical use case                                         |
 |------------|--------------------------------------------------------------------|----------------------------------------------------------|
-| Human in the loop  | Asks the user a question and awaits user input to proceed | Creating approval requests during workflow execution and waiting for human approval, or obtaining information form the user |
+| Human in the loop  | Asks the user a question and awaits user input to proceed | Creating approval requests during workflow execution and waiting for human approval, or obtaining information from the user |
 | Sequential | Passes the result from one agent to the next in a defined order   | Step-by-step workflows, pipelines, or multiple-stage processing |
 | Group chat    | Dynamically passes control between agents based on context or rules| Dynamic workflows, escalation, fallback, or expert handoff scenarios |
 
@@ -41,7 +57,7 @@ For more information, see [Microsoft Agent Framework workflow orchestrations](/a
 
 ## Create a workflow
 
-The following steps show you how to create a sequential type of workflow as an example:
+This procedure shows how to create a sequential workflow. The same general steps apply to other workflow types.
 
 1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 
@@ -49,12 +65,12 @@ The following steps show you how to create a sequential type of workflow as an e
 
 1. Select **Create new workflow** > **Sequential**.
 
-1. Assign an agent to the agent nodes by selecting each agent node in the workflow and either selecting the desired agent or creating a new one. For more information, see [Add agents to your workflow](#add-agents-to-your-workflow) later in this article.
+1. Assign an agent to the agent nodes by selecting each agent node in the workflow and either selecting the desired agent or creating a new one. For more information, see [Add agents](#add-agents) later in this article.
 
 1. Select **Save** in the visualizer to save the changes.
 
    > [!IMPORTANT]
-   > Workflows aren't saved automatically. Select **Save** every time you want to save changes to your workflow.
+   > Foundry doesn't save workflows automatically. Select **Save** after every change to preserve your work.
 
 1. Select **Run Workflow**.
 
@@ -62,22 +78,32 @@ The following steps show you how to create a sequential type of workflow as an e
 
 1. Optionally, add new nodes to your workflow. The next section in this article provides information about nodes.
 
-## Add nodes to your workflow
+## Verify your workflow run
 
-Nodes define the building blocks of your workflow. Common node types include:
+After you select **Run Workflow**, verify that:
+
+- Each node completes in the visualizer.
+- You see the expected responses in the chat window.
+- Any variables you save (for example, JSON output from an agent node) contain the values you expect.
+
+## Add nodes
+
+Nodes are the building blocks of your workflow. Each node performs a specific action in sequence.
+
+Common node types include:
 
 - **Agent**: Invoke an agent.
 - **Logic**: Use *if/else*, *go to*, or *for each*.
 - **Data transformation**: Set a variable or parse a value.
 - **Basic chat**: Send a message or ask a question to an agent.
 
-When you select a prebuilt workflow, a workflow of nodes appears in the builder. Each node corresponds to a specific action or component, and it performs a step in sequence. You can modify the order of the nodes by selecting the three dots on a node and then selecting **move**. You can add new nodes by selecting the plus (**+**) icon in the workspace.
+When you select a prebuilt workflow, the builder displays the nodes in sequence. To reorder nodes, select the three dots on a node and then select **move**. To add nodes, select the plus (**+**) icon in the workspace.
 
-## Add agents to your workflow
+## Add agents
 
-You can add any Foundry agent from your project to the workflow. Agent nodes also allow you to create new agents and give them customized capabilities by configuring their model, prompt, and tools.
+Add any Foundry agent from your project to the workflow. Agent nodes also let you create new agents with customized capabilities by configuring their model, prompt, and tools.
 
-For advanced options and comprehensive information about agent creation, go to the **Foundry Agent** tab in the Foundry portal.
+For advanced agent creation options, go to the **Foundry Agent** tab in the Foundry portal.
 
 ### Add an existing agent
 
@@ -105,9 +131,9 @@ For advanced options and comprehensive information about agent creation, go to t
 
 6. Select **Save**.
 
-### Configure an output response format for invoking an agent
+### Configure an output response format
 
-1. Create an **Invoke agent** node.
+To configure an agent to return structured JSON output:
 
 1. In the **Invoke agent** configuration window, select **Create a new agent**.
 
@@ -123,44 +149,47 @@ For advanced options and comprehensive information about agent creation, go to t
 
    :::image type="content" source="../../media/workflows/response-format.png" alt-text="Screenshot that shows the addition of a response format in JSON." lightbox="../../media/workflows/response-format.png":::
 
-    ```json
-    {
-      "name": "math_response",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "steps": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "explanation": {
-                  "type": "string"
-                },
-                "output": {
-                  "type": "string"
-                }
+  > [!IMPORTANT]
+  > Don't include secrets (passwords, keys, tokens) in JSON schemas, prompts, or saved workflow variables.
+
+  ```json
+  {
+    "name": "math_response",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "explanation": {
+                "type": "string"
               },
-              "required": [
-                "explanation",
-                "output"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "final_answer": {
-            "type": "string"
+              "output": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "explanation",
+              "output"
+            ],
+            "additionalProperties": false
           }
         },
-        "additionalProperties": false,
-        "required": [
-          "steps",
-          "final_answer"
-        ]
+        "final_answer": {
+          "type": "string"
+        }
       },
-      "strict": true
-    }
-    ```
+      "additionalProperties": false,
+      "required": [
+        "steps",
+        "final_answer"
+      ]
+    },
+    "strict": true
+  }
+  ```
 
 1. Select **Action settings**. Then select **Save output json_object/json_schema as**.
 
@@ -168,17 +197,17 @@ For advanced options and comprehensive information about agent creation, go to t
 
    :::image type="content" source="../../media/workflows/save-output.png" alt-text="Screenshot that shows options for creating a new variable in a Microsoft Foundry workflow." lightbox="../../media/workflows/save-output.png":::
 
-## Use additional features
+## Configure additional features
 
-- **YAML visualizer view**: When you set the **YAML Visualizer View** toggle to **On**, the workflow is stored in a YAML file. You can modify it in the visualizer and the YAML view. Saving creates a new version, and you have access to the version history.
+- **YAML visualizer view**: Set the **YAML Visualizer View** toggle to **On** to store the workflow as a YAML file. Edit in either the visualizer or the YAML view. Saving creates a new version with full version history.
 
-  The visualizer and the YAML are editable. Any changes to the YAML file are reflected in the visualizer.
-- **Versioning**: Each time you save your workflow, a new, unchangeable version is created. To view the version history or delete older versions, open the **Version** dropdown list to the left of the **Save** button.
-- **Notes on your workflow visualizer**: You can add notes on the workflow visualizer to add more context or information for your workflow. In the upper-left corner of the workflow visualizer, select **Add note**.
+  Both the visualizer and YAML are editable. Changes to the YAML file appear immediately in the visualizer.
+- **Versioning**: Each save creates a new, unchangeable version. To view version history or delete older versions, open the **Version** dropdown list to the left of the **Save** button.
+- **Notes**: Add notes to the workflow visualizer for extra context. In the upper-left corner of the visualizer, select **Add note**.
 
-## Create expressions by using Power Fx
+## Create expressions with Power Fx
 
-Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to create complex logic that allows your agents to manipulate data. For instance, a Power Fx formula can set the value of a variable, parse a string, or use an expression in a condition. For more information, see the [Power Fx overview](/power-platform/power-fx/overview) and [formula reference](/power-platform/power-fx/formula-reference-copilot-studio).
+Power Fx is a low-code language that uses Excel-like formulas. Use Power Fx to create complex logic that lets your agents manipulate data. For example, a Power Fx formula can set a variable value, parse a string, or evaluate a condition. For more information, see the [Power Fx overview](/power-platform/power-fx/overview) and [formula reference](/power-platform/power-fx/formula-reference-copilot-studio).
 
 ### Use variables in a formula
 
@@ -232,16 +261,16 @@ The following table lists the Power Fx formulas that you can use with each data 
 
 | Type             | Power Fx formulas                                                                                                                                                                                                                                                                                                               |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| String           | `[Text function][1]`<br>`[Concat and Concatenate functions][2]`<br>`[Len function][3]`<br>`[Lower, Upper, and Proper functions][4]`<br>`[IsMatch, Match, and MatchAll functions][5]`<br>`[EndsWith and StartsWith functions][6]`<br>`[Find function][7]`<br>`[Replace and Substitute function][8]`                                              |
-| Boolean          | `[Boolean function][9]`<br>`[And, Or, and Not functions][10]`<br>`[If and Switch functions][11]`                                                                                                                                                                                                                                      |
-| Number           | `[Decimal, Float, and Value functions][12]`<br>`[Int, Round, RoundDown, RoundUp, and Trunc functions][13]`                                                                                                                                                                                                                          |
-| Record and table | `[Concat and Concatenate functions][14]`<br>`[Count, CountA, CountIf, and CountRows functions][15]`<br>`[ForAll function][16]`<br>`[First, FirstN, Index, Last, and LastN functions][17]`<br>`[Filter, Search, and LookUp functions][18]`<br>`[JSON function][19]`<br>`[ParseJSON function][20]`                                              |
-| Date and time         | `[Date, DateTime, and Time functions][21]`<br>`[DateValue, TimeValue, and DateTimeValue functions][22]`<br>`[Day, Month, Year, Hour, Minute, Second, and Weekday functions][23]`<br>`[Now, Today, IsToday, UTCNow, UTCToday, IsUTCToday functions][24]`<br>`[DateAdd, DateDiff, and TimeZoneOffset functions][25]`<br>`[Text function][26]` |
-| Blank            | `[Blank, Coalesce, IsBlank, and IsEmpty functions][27]`<br>`[Error, IfError, IsError, IsBlankOrError functions][28]`                                                                                                                                                                                                                |
+| String           | [Text function](/power-platform/power-fx/reference/function-text)<br>[Concat and Concatenate functions](/power-platform/power-fx/reference/function-concatenate)<br>[Len function](/power-platform/power-fx/reference/function-len)<br>[Lower, Upper, and Proper functions](/power-platform/power-fx/reference/function-lower-upper-proper)<br>[IsMatch, Match, and MatchAll functions](/power-platform/power-fx/reference/function-ismatch)<br>[EndsWith and StartsWith functions](/power-platform/power-fx/reference/function-startswith)<br>[Find function](/power-platform/power-fx/reference/function-find)<br>[Replace and Substitute function](/power-platform/power-fx/reference/function-replace-substitute) |
+| Boolean          | [Boolean function](/power-platform/power-fx/reference/function-boolean)<br>[And, Or, and Not functions](/power-platform/power-fx/reference/function-logicals)<br>[If and Switch functions](/power-platform/power-fx/reference/function-if) |
+| Number           | [Decimal, Float, and Value functions](/power-platform/power-fx/reference/function-value)<br>[Int, Round, RoundDown, RoundUp, and Trunc functions](/power-platform/power-fx/reference/function-round) |
+| Record and table | [Concat and Concatenate functions](/power-platform/power-fx/reference/function-concatenate)<br>[Count, CountA, CountIf, and CountRows functions](/power-platform/power-fx/reference/function-table-counts)<br>[ForAll function](/power-platform/power-fx/reference/function-forall)<br>[First, FirstN, Index, Last, and LastN functions](/power-platform/power-fx/reference/function-first-last)<br>[Filter, Search, and LookUp functions](/power-platform/power-fx/reference/function-filter-lookup)<br>[JSON function](/power-platform/power-fx/reference/function-json)<br>[ParseJSON function](/power-platform/power-fx/reference/function-parsejson) |
+| Date and time    | [Date, DateTime, and Time functions](/power-platform/power-fx/reference/function-date-time)<br>[DateValue, TimeValue, and DateTimeValue functions](/power-platform/power-fx/reference/function-datevalue-timevalue)<br>[Day, Month, Year, Hour, Minute, Second, and Weekday functions](/power-platform/power-fx/reference/function-datetime-parts)<br>[Now, Today, IsToday, UTCNow, UTCToday, IsUTCToday functions](/power-platform/power-fx/reference/function-now-today-istoday)<br>[DateAdd, DateDiff, and TimeZoneOffset functions](/power-platform/power-fx/reference/function-dateadd-datediff)<br>[Text function](/power-platform/power-fx/reference/function-text) |
+| Blank            | [Blank, Coalesce, IsBlank, and IsEmpty functions](/power-platform/power-fx/reference/function-isblank-isempty)<br>[Error, IfError, IsError, IsBlankOrError functions](/power-platform/power-fx/reference/function-iferror) |
 
-### Use Power Fx to set a variable
+### Set a variable with Power Fx
 
-In this example, a Power Fx expression stores and outputs the customer's name in capital letters:
+This example shows how to store and output a customer's name in capital letters:
 
 1. Create a workflow and add an **Ask a question** node.
 
@@ -259,20 +288,45 @@ In this example, a Power Fx expression stores and outputs the customer's name in
 
    :::image type="content" source="../../media/workflows/type-question.png" alt-text="Screenshot that shows the preview of a question for the action of sending a message." lightbox="../../media/workflows/type-question.png":::
 
-## Use Power Fx to create if/else flows
+## Create if/else flows with Power Fx
 
-In this example, a Power Fx expression stores and outputs the customer's name in capital letters.
+This example shows how to add an if/else flow and build a condition with system variables.
 
 1. Create a workflow and add an **Ask a question** node.
 
 1. Select the **+** icon and add an **if/else** flow.
-1. Type `System.` in the **Condition** text box to create a condition statement for each if/else combination.
+
+1. Type `System.` in the **Condition** box to build a condition statement for each if/else branch.
+
    :::image type="content" source="../../media/workflows/if-else-condition.png" alt-text="A screenshot showing the system variables in the if-else condition text box." lightbox="../../media/workflows/if-else-condition.png":::
-1. Select a **Next Action** for the next desired step in the workflow.
-1. Select **Done**. Select **Save** to save your workflow
+
+1. Select a **Next Action** for the next step in the workflow.
+
+1. Select **Done**. Select **Save** to save your workflow.
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| **Workflows** option not visible or can't create/edit workflows | Confirm you have the **Contributor** role or higher on your project. See [Azure role-based access control (RBAC) in Foundry](../../../concepts/rbac-foundry.md). |
+| Changes don't appear after editing | Select **Save** in the visualizer. Foundry doesn't save changes automatically. |
+| Workflow run produces unexpected output | Verify each agent node has an agent assigned. Check that saved outputs (JSON schema) are valid. |
+| Power Fx formula error: "Name isn't valid" | Add the correct scope prefix. Use `System.` for system variables and `Local.` for local variables. |
+| Power Fx formula error: "Type mismatch" | Verify the variable type matches the expected input. Use conversion functions like `Text()` or `Value()` if needed. |
+| Workflow times out | Break complex workflows into smaller segments. Check that external services respond within expected timeframes. |
+
+## Clean up resources
+
+To delete a workflow you no longer need:
+
+1. Open the workflow in the Foundry portal.
+1. Select the **Version** dropdown list to the left of the **Save** button.
+1. Select **Delete** for the version you want to remove.
 
 
 ## Related content
 
-
-- [Microsoft Foundry Agent Service FAQ](../../../agents/faq.yml)
+- [Foundry Agent Service FAQ](../../../agents/faq.yml)
+- [Tool best practices for Foundry agents](tool-best-practice.md)
+- [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
+- [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)

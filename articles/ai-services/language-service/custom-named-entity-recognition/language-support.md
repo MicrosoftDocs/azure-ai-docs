@@ -5,7 +5,7 @@ description: Learn about the languages and regions supported by custom named ent
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.custom: language-service-custom-ner
 ms.author: lajanuar

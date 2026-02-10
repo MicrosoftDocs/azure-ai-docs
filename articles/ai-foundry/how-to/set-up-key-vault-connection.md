@@ -5,9 +5,10 @@ monikerRange: 'foundry-classic || foundry'
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
-ms.date: 11/20/2025
+ms.date: 02/02/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
+ms.custom: dev-focus
 ai-usage: ai-assisted
 # zone_pivot_groups: set-up-key-vault
 ---
@@ -16,12 +17,19 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-If you don't set up a Key Vault connection, Microsoft Foundry stores connection details in a Microsoft-managed Key Vault outside your subscription. To manage your own secrets, connect your Azure Key Vault to Foundry.
+If you don't set up a Key Vault connection, Microsoft Foundry stores connection details in a Microsoft-managed Key Vault outside your subscription. To manage your own secrets, connect your Azure Key Vault to Foundry. Before you begin, review the [limitations](#limitations) for Key Vault connections.
 
 Azure Key Vault is a cloud service for securely storing and accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, certificates, or cryptographic keys. For more information, see [About Azure Key Vault](/azure/key-vault/general/overview).
 
-> [!NOTE]
-> Review limitations before you set up a Key Vault connection.
+## Prerequisites
+
+- An Azure subscription.
+- A Foundry resource with no existing connections at the resource or project level.
+- An Azure Key Vault in your subscription, or permissions to create one.
+- One of the following Azure RBAC roles on your Key Vault:
+  - [Key Vault Secrets Officer](/azure/role-based-access-control/built-in-roles/security#key-vault-secrets-officer) (minimal permissions)
+  - [Key Vault Contributor](/azure/role-based-access-control/built-in-roles/security#key-vault-contributor)
+  - [Key Vault Administrator](/azure/role-based-access-control/built-in-roles/security#key-vault-administrator)
 
 ## Limitations
 
@@ -59,9 +67,12 @@ Create a connection to Azure Key Vault in the Foundry (classic) portal.
 
    :::image type="content" source="../media/setup-key-vault-connection/azure-key-vault-connection.jpeg" alt-text="Screenshot of the Azure Key Vault selection dialog with Azure Key Vault selected.":::
 
-1. Select your **Azure Key Vault**, then select **Connect**.
+1. Select your **Azure Key Vault**, and then select **Connect**.
 1. It might take a few minutes after these steps are completed before you can use the connection.
 
+### Verify the connection
+
+After you create the connection, verify that the Key Vault appears in the **Connected resources** list. Select the connection to view its properties and confirm the Key Vault resource ID.
 
 <!-- ::: zone-end -->
 <!-- ::: zone pivot="bicep" -->
@@ -69,9 +80,34 @@ Create a connection to Azure Key Vault in the Foundry (classic) portal.
 
 ## Use a Bicep template
 
-Use this template:
+Deploy a Key Vault connection by using Azure Bicep. The following template creates a connection between your Foundry resource and an existing Azure Key Vault, and assigns the Key Vault Secrets Officer role to the Foundry resource's managed identity.
 
 :::code language="bicep" source="~/foundry-samples-main/infrastructure/infrastructure-setup-bicep/01-connections/connection-key-vault.bicep"
+
+### Parameters
+
+| Parameter        | Description                                 |
+|------------------|---------------------------------------------|
+| `aiFoundryName`  | The name of your Foundry resource.          |
+| `keyVaultName`   | The name of your existing Azure Key Vault.  |
+
+### Deploy the template
+
+Run the following command to deploy the template:
+
+```azurecli
+az deployment group create \
+  --name AzDeploy \
+  --resource-group <resource-group-name> \
+  --template-file connection-key-vault.bicep \
+  --parameters aiFoundryName=<foundry-resource-name> keyVaultName=<keyvault-name>
+```
+
+### Reference
+
+- [Microsoft.CognitiveServices/accounts/connections](/azure/templates/microsoft.cognitiveservices/accounts/connections)
+- [Microsoft.Authorization/roleAssignments](/azure/templates/microsoft.authorization/roleassignments)
+- [Key Vault Secrets Officer role](/azure/role-based-access-control/built-in-roles/security#key-vault-secrets-officer)
 
 <!-- ::: zone-end -->
 
@@ -81,11 +117,11 @@ Use this template:
 ### Creation
 
 Make sure no other connections exist at the Foundry resource or project level.
-The service blocks Key Vault connection creation if other connections are present.
+The service blocks Key Vault connection creation if other connections exist.
 If the UI doesn't show a Key Vault connection category when you choose a connection,
-this issue might be the reason. Delete other connections, and then try again.
+this problem might be the reason. Delete other connections, and then try again.
 
-When you create a Key Vault connection, the managed Key Vault in Azure isn't used.
+When you create a Key Vault connection, the service doesn't use the managed Key Vault in Azure.
 
 ### Deletion
 

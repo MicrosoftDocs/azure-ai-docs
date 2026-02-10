@@ -4,8 +4,8 @@ titleSuffix: Microsoft Foundry
 description: This article introduces you to the Rerank tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
-ms.topic: reference
-ms.date: 6/30/2025
+ms.topic: article
+ms.date: 01/27/2026
 ms.reviewer: jingyizhu
 ms.author: lagayhar
 author: lgayhardt
@@ -19,7 +19,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-The prompt flow Rerank tool improves search quality of relevant documents given a query for retrieval-augment generation (RAG) in prompt flow. This tool works best with [Index Look up tool](index-lookup-tool.md) as a ranker after the initial retrieval.
+The prompt flow Rerank tool improves the search quality of relevant documents given a query for retrieval-augment generation (RAG) in prompt flow. This tool works best with the [Index Look up tool](index-lookup-tool.md) as a ranker after the initial retrieval.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -36,11 +36,11 @@ The prompt flow Rerank tool improves search quality of relevant documents given 
 
 1. Enter values for the Rerank tool input parameters.
 1. Add more tools to your flow as needed, or select **Run** to run the flow.
-1. To learn more about the returned output, see [outputs](#outputs).
+1. For more information about the returned output, see [outputs](#outputs).
 
 ## Inputs
 
-The following are available input parameters:
+The following input parameters are available:
 
 | Name                | Type    | Description                                                     |
 |---------------------|---------|-----------------------------------------------------------------|
@@ -57,7 +57,7 @@ The following JSON format response is an example returned by the tool that inclu
 | Field Name          | Description                      |
 |---------------------|----------------------------------|
 | `text`              | Content of the document chunk.   |
-| `Metadata`          | Metadata like file path and url. |
+| `Metadata`          | Metadata like file path and URL. |
 | `additional_fields` | Metadata and rerank score.       |
 
 ```json

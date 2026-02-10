@@ -33,15 +33,16 @@ Speech Transcription SDK code samples are available in the documentation and Git
 
 ### Docs samples
 
-At the top of documentation pages that contain samples, options to select include Java or Python.
-
-:::image type="content" source="./media/sdk/pivot-programming-languages-speech-sdk.png" alt-text="Screenshot showing how to select a programming language in the documentation.":::
+| Programming language | Quickstart doc |
+|----------------------|--------------------|
+| Java | [Fast transcription](/azure/ai-services/speech-service/fast-transcription-create?pivots=programming-language-java)<br><br>[LLM speech](/azure/ai-services/speech-service/llm-speech?pivots=programming-language-java) |
+| Python | [Fast transcription](/azure/ai-services/speech-service/fast-transcription-create?pivots=programming-language-python)<br><br>[LLM speech](/azure/ai-services/speech-service/llm-speech?pivots=programming-language-python) |
 
 If a sample isn't available in your preferred programming language, you can select another programming language to get started and learn about the concepts, or see the reference and samples linked from the beginning of the article.
 
 ### GitHub samples
 
-Samples can be found for each programming language in the respective GitHub repositories.
+You can find samples for each programming language in the respective GitHub repositories.
 
 | Programming language | Samples Repository |
 |----------------------|--------------------|
@@ -50,7 +51,7 @@ Samples can be found for each programming language in the respective GitHub repo
 
 ## Help options
 
-The [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums are available for the developer community to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community didn't yet answer. To make sure that we see your question, tag it with 'azure-speech'.
+The developer community can use the [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-speech) forums to ask and answer questions about Azure Cognitive Speech and other services. Microsoft monitors the forums and replies to questions that the community didn't yet answer. To make sure that Microsoft sees your question, tag it with 'azure-speech'.
 
 You can suggest an idea or report a bug by creating an issue on GitHub.
 
@@ -60,3 +61,4 @@ See also [Foundry Tools support and help options](../cognitive-services-support-
 
 * [Try the Fast Transcription API](./fast-transcription-create.md)
 - [Try LLM Speech API](./llm-speech.md)
+- [Learn about the Speech SDK](./speech-sdk.md) for broader speech capabilities

@@ -5,7 +5,7 @@ titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 #Customer intent: As a user of Azure Language service, I want to learn how encryption at rest works.

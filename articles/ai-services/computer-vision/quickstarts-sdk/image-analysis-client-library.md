@@ -17,6 +17,8 @@ keywords: Azure Vision in Foundry Tools, Azure Vision in Foundry Tools
 
 # Quickstart: Image Analysis
 
+[!INCLUDE [image-analysis-deprecation](../includes/image-analysis-deprecation.md)]
+
 This article explains how to set up a basic image tagging script by using the Image Analysis REST API or client libraries. The Analyze Image service provides you with AI algorithms for processing images and returning information about their visual features. Follow these steps to install a package to your application and try out the sample code.
 
 ::: zone pivot="programming-language-csharp"

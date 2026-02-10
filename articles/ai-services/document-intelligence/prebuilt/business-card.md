@@ -5,7 +5,7 @@ description: OCR and machine learning based business card scanning in Document I
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---

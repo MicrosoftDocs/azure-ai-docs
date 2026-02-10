@@ -25,7 +25,7 @@ Azure Language provides both remote and local MCP server options:
 * **Remote server**: Available through Foundry Tool Catalog for cloud-hosted deployments.
 * **Local server**: Available for developers who prefer to host the server in their own environment.
 
-For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-).
+For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-preview).
 
 ## Available agents
 
@@ -35,27 +35,20 @@ Azure Language offers prebuilt agents that handle specific conversational AI sce
 
 The Intent Routing agent intelligently manages conversation flows by understanding user intentions and delivering accurate responses in conversational AI applications. This agent uses predictable decision-making processes combined with controlled response generation to ensure consistent, reliable interactions that organizations can trust and monitor. 
 
-For more information, *see* [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-).
+For more information, *see* [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-preview).
 
 ### Azure Language Exact Question Answering agent 🆕
 
 The Exact Question Answering agent provides reliable, word-for-word responses to your most important business questions. This agent automates frequently asked questions while maintaining human oversight and quality control to ensure accuracy and compliance.
 
-For more information, *see* [Azure Language Exact Question Answering agent](concepts/foundry-tools-agents.md#azure-language-exact-question-answering-agent-).
+For more information, *see* [Azure Language Exact Question Answering agent](concepts/foundry-tools-agents.md#azure-language-exact-question-answering-agent-preview).
 
 ## Available features
-
-This Language service unifies the following previously available Foundry Tools: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
-
-The Language also provides several new features as well, which can either be:
-
-* Preconfigured, which means the AI models that the feature uses aren't customizable. You just send your data, and use the feature's output in your applications.
-* Customizable, which means you train an AI model using our tools to fit your data specifically.
 
 > [!TIP]
 > Unsure which feature to use? See [Which Language feature should I use](#which-language-feature-should-i-use) to help you decide.
 
-[**Foundry**](https://ai.azure.com/?cid=learnDocs) enables you to use most of the following service features without needing to write code.
+[**Microsoft Foundry**](https://ai.azure.com/) enables you to use most of the following service features without the need to write code.
 
 ### Named Entity Recognition (NER)
 
@@ -242,10 +235,6 @@ This section helps you decide which Language feature you should use for your app
 | Connect apps from conversational language understanding, LUIS, and question answering. | Unstructured user inputs | [Orchestration workflow](./orchestration-workflow/overview.md) | ✓ |
 
 \* If a feature is customizable, you can train an AI model using our tools to fit your data specifically. Otherwise a feature is preconfigured, meaning the AI models it uses can't be changed. You just send your data, and use the feature's output in your applications.
-
-## Migrate from Text Analytics, QnA Maker, or Language Understanding (LUIS)
-
-Azure Language unifies three individual Languages in Foundry Tools - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure Language. For instructions see [Migrating to Azure Language](concepts/migrate.md).
 
 ## Tutorials
 

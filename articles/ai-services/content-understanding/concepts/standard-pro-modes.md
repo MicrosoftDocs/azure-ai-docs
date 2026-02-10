@@ -5,20 +5,21 @@ description: Learn about Azure Content Understanding in Foundry Tools standard a
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
 ---
 
-# Azure Content Understanding in Foundry Tools pro and standard modes (preview)
+# Azure Content Understanding in Foundry Tools standard and pro modes (preview)
 
-Azure Content Understanding in Foundry Tools is an advanced generative AI service designed to derive structured insights from multi-modal content such as documents, images, videos, and audio. With the introduction of the `2025-05-01-preview` version, the service now offers two distinct modes: `standard` and `pro`.
+Azure Content Understanding in Foundry Tools is a generative AI service designed to derive structured insights from multimodal content such as documents, images, videos, and audio. With the introduction of the `2025-05-01-preview` version, the service offers two modes: `standard` and `pro`.
 
-* **Standard**: This mode serves as the default solution for processing diverse content types. It's optimized to provide efficient schema extraction tailored to specific tasks across all data formats. This mode emphasizes cost-effectiveness and reduced latency, ensuring structured insights are accessible for your general processing needs.
+* **Standard**: This mode is the default for processing diverse content types. It's optimized to provide efficient schema extraction tailored to specific tasks across data formats. This mode emphasizes cost-effectiveness and reduced latency.
 
-* **Pro**: This mode is designed for advanced use cases, particularly those requiring multi-step reasoning, and complex decision-making (for instance, identifying inconsistencies, drawing inferences, and making sophisticated decisions). The pro mode allows input from multiple content files and includes the option to provide reference data at analyzer creation time. Currently, pro mode is only offered for your document-based data.
+* **Pro**: This mode is designed for advanced use cases that require multi-step reasoning and complex decision-making (for example, identifying inconsistencies, drawing inferences, and making decisions). The pro mode supports multiple input documents and lets you provide reference data at analyzer creation time. Currently, pro mode is available only for document data.
 
 
 ## Standard mode overview
@@ -27,7 +28,7 @@ The Content Understanding standard mode delivers structured insights across vari
 
 ### Standard mode: use case
 
-Standard is the ideal service for extracting the exact insights you need on any type of data. If you're just looking to unlock the content of your data, your scenario may not require complex reasoning or decision making. Scenarios that standard mode works great for include:
+Standard mode is ideal for extracting the exact insights you need on any type of data. If you need to unlock the content of your data, your scenario might not require complex reasoning or decision-making. Scenarios that standard mode works well for include:
 
 * Structuring data to power your RAG search workflows and integrating with [AI Search](../../../search/search-what-is-azure-search.md).
 * Extracting data to integrate with [Microsoft Fabric](https://blog.fabric.microsoft.com/en-US/blog/).
@@ -41,11 +42,11 @@ Content Understanding pro mode is tailored for customers with complex use cases,
 
 ### Pro mode reference data
 
-During analyzer creation, you can provide documents that can aid in providing context that references the service at inference time. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, you can supply the invoice and other relevant documents (for example, a purchase order) as inputs, and supply the contract files as reference data. The service applies reasoning to validate the input documents according to your schema, which might be to identify discrepancies to flag for further review. If your documents are within the pro mode's input document service limits, we also recommend trying to supply all of your documents as input documents if you encounter any quality issues.
+During analyzer creation, you can provide reference documents that add context at analysis time. For example, to analyze invoices for consistency with a contractual agreement, you can provide the invoice and related documents (for example, a purchase order) as inputs, and provide the contract files as reference data. The service applies reasoning to validate input documents according to your schema, such as identifying discrepancies to flag for review. If your documents are within the pro mode input document limits, try supplying all related documents as inputs if you encounter quality issues.
 
 ### Multi-step reasoning
 
-Multi-step reasoning offers the ability to decompose complex problems into simple tasks. Multi-step reasoning takes data analysis a step further than extracting and aggregating structured data and allows you to draw conclusions on that data, minimizing the need for human review. Examples of the types of questions pro mode can answer with multi-step reasoning include:
+Multi-step reasoning decomposes complex problems into simpler tasks. It takes data analysis beyond extracting and aggregating structured data and lets you draw conclusions on that data, minimizing the need for human review. Examples of questions that pro mode can answer include:
 
 * Does x match y?
 * Does x pass the outlined criteria?
@@ -58,7 +59,7 @@ Multi-step reasoning offers the ability to decompose complex problems into simpl
 Not sure which mode is right for your scenario? The following charts compare standard and pro mode features.
 
 | Feature | Standard mode | Pro mode |
-|----|----|----|
+|---|---|---|
 | **Large documents** | &check;  | &check; |
 | **Field mode** | &check; | &check; |
 | **Extract, classify, and generate fields** | &check; | &check; |
@@ -72,10 +73,10 @@ Not sure which mode is right for your scenario? The following charts compare sta
 
 ## Apply standard or pro mode to your scenarios
 
- You can apply both Content Understanding standard and pro modes to just about any scenario, but how you build your solution depends on the questions you're aiming to answer. The following scenarios present examples of how you might apply standard and pro modes to your data.
+You can apply both Content Understanding standard and pro modes to many scenarios. How you build your solution depends on the questions you're aiming to answer. The following scenarios provide examples.
 
 | Scenario | Standard mode | Pro mode|
-|----|----|----|
+|---|---|---|
 | **Invoice analysis** | Extract insights on invoice data at scale and enable RAG search and further data analysis and visualization. Answer questions like: <br> &bullet; Extract purchase order number, total, due date, and line items for entry into database. | Analyze invoices and contractual agreements with clients and apply multi-step reasoning to draw conclusions on that data. Answer questions like: <br> &bullet; Does this invoice fulfill the contractual agreement we have in place with this client? <br> &bullet; Does this invoice need further review? |
 | **Call center transcript analytics** | Extract insights on large volumes of call center data to gain valuable insights on sentiment, understand customer issues, and create targeted training to address major pain points. Answer questions like: <br> &bullet; What are the main issues customers are calling about? <br> &bullet; What is the average length of calls made about x issue? | Analyze call center transcript data and apply multi-step reasoning to understand how call center employees are addressing customer needs, and if they're following guidelines. Answer questions like: <br> &bullet; Did the call center employee introduce themselves? <br> &bullet; Did this answer *pass* certain criteria? |
 | **Mortgage application processing** | Extract the key values from mortgage application data and make it searchable and more easily accessible. Answer questions like: <br> &bullet;  What year was the mortgage application submitted? <br> &bullet; What are the names on the application? | Analyze supplementary supporting documentation and mortgage applications to determine whether a prospective home buyer provides all the necessary documentation to secure a mortgage. Answer questions like: <br> &bullet;  Do the names and social security numbers on the mortgage application match the supporting documentation? |
@@ -86,11 +87,11 @@ You can try out the features of both Content Understanding standard and pro mode
 
 ### Pro mode known limitations and best practices
 
-* Content Understanding pro mode currently doesn't offer confidence scores or grounding. It currently supports generative and classification of your fields but doesn't support extraction only.
+* Content Understanding pro mode currently doesn't offer confidence scores or grounding. It supports `classify` and `generate` fields, but it doesn't support `extract` fields.
 
 * Content Understanding pro mode is currently only available for documents.
 
-* The system operates in *lookup mode* when referencing documents. As a result, comprehensive information retrieval shouldn't be expected. If exhaustive recovery of data is required, we recommend that you incorporate the document into the input set.
+* The system operates in lookup mode when referencing documents. If you need exhaustive recovery of data, incorporate the content into the input set.
 
 * Schemas should be designed with the highest level of specificity possible. For instance, instead of presenting a generalized list of inconsistencies, it's advisable to create distinct fields for each type of inconsistency, accompanied by detailed descriptions. Additionally, wherever feasible, references to specific sections of relevant documents that should be reviewed should be included.
 

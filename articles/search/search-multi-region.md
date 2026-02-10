@@ -5,7 +5,7 @@ description: Learn about multi-region deployments in Azure AI Search, including 
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/08/2025
 ms.update-cycle: 365-days
 ---

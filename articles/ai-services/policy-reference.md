@@ -5,7 +5,7 @@ ms.date: 10/02/2025
 author: nitinme
 ms.author: nitinme
 ms.service: azure-ai-services
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: subject-policy-reference
 ---
 # Azure Policy built-in policy definitions for Foundry Tools

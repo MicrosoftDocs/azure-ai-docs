@@ -8,7 +8,7 @@ author: laujan
 ms.author: lajanuar
 recommendations: false
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---

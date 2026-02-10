@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 01/29/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
@@ -28,18 +28,7 @@ You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input t
 Follow the instructions in this article to get started with the Realtime API via WebSockets. Use the Realtime API via WebSockets in server-to-server scenarios where low latency isn't a requirement.
 
 > [!TIP] 
-> In most cases, we recommend using the [Realtime API via WebRTC](./realtime-audio-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming and is the best choice for most use cases.
-
-## Supported models
-
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
-- `gpt-4o-mini-realtime-preview` (`2024-12-17`)
-- `gpt-4o-realtime-preview` (`2024-12-17`)
-- `gpt-realtime` (`2025-08-28`)
-- `gpt-realtime-mini` (`2025-10-06`)
-- `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
-
-For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
+> In most cases, use the [Realtime API via WebRTC](./realtime-audio-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming and is the best choice for most scenarios.
 
 ## Prerequisites
 
@@ -47,18 +36,29 @@ Before you can use GPT real-time audio, you need:
 
 
 :::moniker range="foundry"
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the [supported regions](#supported-models).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A Microsoft Foundry resource. Create the resource in one of the [supported regions](#supported-models). For setup steps, see [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal).
 - A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article.
-    - In the Microsoft Foundry portal, load your project. Select **Build** in the upper right menu, then select the **Models** tab on the left pane, and **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
+  - In the Foundry portal, load your project. Select **Build** in the upper-right menu, then select the **Models** tab on the left pane, and select **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 :::moniker-end
 
 :::moniker range="foundry-classic"
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Microsoft Foundry portal. 
+- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in the Foundry portal.
 :::moniker-end
+
+## Supported models
+
+The GPT real-time models are available for global deployments in the [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
+- `gpt-4o-mini-realtime-preview` (`2024-12-17`)
+- `gpt-4o-realtime-preview` (`2024-12-17`)
+- `gpt-realtime` (`2025-08-28`)
+- `gpt-realtime-mini` (`2025-10-06`)
+- `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
+
+For more information about supported models, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 
 ## Connection and authentication
 
@@ -72,7 +72,7 @@ You can construct a full request URI by concatenating:
 - Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
 - The `openai/realtime` API path.
 - A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, or `gpt-realtime` model deployment.
-- - **(Preview version only)** An `api-version` query string parameter for a supported API version such as `2025-04-01-preview`
+- **(Preview version only)** An `api-version` query string parameter for a supported API version such as `2025-04-01-preview`.
 
 The following example is a well-constructed `/realtime` request URI:
 
@@ -93,8 +93,8 @@ wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=20
 To authenticate:
 - **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
 - **API key**: An `api-key` can be provided in one of two ways:
-  - Using an `api-key` connection header on the prehandshake connection. This option isn't available in a browser environment.
-  - Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using https/wss.
+  - Using an `api-key` connection header on the pre-handshake connection. This option isn't available in a browser environment.
+  - Using an `api-key` query string parameter on the request URI. Query string parameters are encrypted when using HTTPS/WSS.
 
 ## Realtime API via WebSockets architecture
 

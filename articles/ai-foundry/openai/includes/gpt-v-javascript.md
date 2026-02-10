@@ -8,7 +8,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions
-ms.date: 10/23/2024
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this article to get started using the OpenAI JavaScript SDK to deploy and use a vision-enabled chat model. 
@@ -240,6 +241,18 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
 
 ---
 
+<!--
+## Troubleshooting
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `401 Unauthorized` | Invalid API key or token | Verify `AZURE_OPENAI_API_KEY` is set, or for keyless auth, run `az login` and check role assignment. |
+| `404 Not Found` | Incorrect endpoint or deployment | Check `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_DEPLOYMENT_NAME` match your Azure resource. |
+| `429 Too Many Requests` | Rate limit exceeded | Wait and retry, or request a quota increase in Azure portal. |
+| Truncated response | `max_tokens` too low | Increase the `max_tokens` value in your request. |
+| Content filtered response | Image triggered content filter | GPT-4 Turbo with Vision has mandatory content filtering that can't be disabled. |
+
+--> 
 ## Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.

@@ -7,12 +7,11 @@ ms.custom:
   - hub-only
   - dev-focus
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 02/02/2026
 ms.reviewer: meerakurup 
 ms.author: jburchel 
 author: jonburchel 
 ai-usage: ai-assisted
-zone_pivot_groups: azure-ai-studio-sdk-cli
 # Customer intent: As an administrator, I want to make sure that my data is handled securely when used in the playground chat.
 ---
 
@@ -20,7 +19,7 @@ zone_pivot_groups: azure-ai-studio-sdk-cli
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-Use this article to learn how to securely use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs)'s playground chat on your data. The following sections provide our recommended configuration to protect your data and resources by using Microsoft Entra ID role-based access control, a managed network, and private endpoints. We recommend disabling public network access for Azure OpenAI resources, Azure AI Search resources, and storage accounts. Using selected networks with IP rules isn't supported because the services' IP addresses are dynamic.
+Use this article to learn how to securely use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs)'s playground chat on your data. The following sections provide our recommended configuration to protect your data and resources by using Microsoft Entra ID role-based access control, a managed network, and private endpoints. Disable public network access for Azure OpenAI resources, Azure AI Search resources, and storage accounts. Using selected networks with IP rules isn't supported because the services' IP addresses are dynamic.
 
 > [!NOTE]
 > Foundry's managed virtual network settings apply only to Foundry's managed compute resources, not platform as a service (PaaS) services like Azure OpenAI or Azure AI Search. When you use PaaS services, there's no data exfiltration risk because Microsoft manages the services.
@@ -36,18 +35,29 @@ The following table summarizes the changes made in this article:
 
 ## Prerequisites
 
+### Account and roles
+
 - **Azure Subscription**: You need an [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to create resources.
 - **Azure Roles**:
     - **Contributor** or **Owner** on the Resource Group to configure networking and resources.
     - **Cognitive Services OpenAI User** on the Azure OpenAI resource to run the verification code.
-- **Foundry Hub**: Ensure that the Foundry hub is deployed with the **Identity-based access** setting for the Storage account. This configuration is required for the correct access control and security of your Foundry Hub. You can verify this configuration using one of the following methods:
+- **RBAC Knowledge**: Be familiar with using Microsoft Entra ID role-based access control to assign roles to resources and users. For more information, visit the [Role-based access control](/azure/role-based-access-control/overview) article.
+
+### Foundry hub configuration
+
+- **Foundry Hub**: Ensure that the Foundry hub is deployed with the **Identity-based access** setting for the Storage account. This configuration is required for the correct access control and security of your Foundry Hub. You can verify this configuration by using one of the following methods:
     - In the Azure portal, select the hub and then select **Settings**, **Properties**, and **Options**. At the bottom of the page, verify that **Storage account access type** is set to **Identity-based access**.
-    - If deploying using Azure Resource Manager or Bicep templates, include the `systemDatastoresAuthMode: 'identity'` property in your deployment template.
+    - If deploying by using Azure Resource Manager or Bicep templates, include the `systemDatastoresAuthMode: 'identity'` property in your deployment template.
+
+### Development environment
+
 - **Python Environment**: To run the verification code, you need Python 3.8 or later with the following packages installed:
-    - `openai`
+    - `openai` (version 1.0.0 or later)
     - `azure-identity`
+
+### Network access
+
 - **Network Access**: To run the verification code, you must have access to a machine within the virtual network (for example, an Azure VM) that has access to the private endpoints.
-- **RBAC Knowledge**: You must be familiar with using Microsoft Entra ID role-based access control to assign roles to resources and users. For more information, visit the [Role-based access control](/azure/role-based-access-control/overview) article.
 
 ## Configure network isolated Foundry hub
 
@@ -72,7 +82,7 @@ If you have an **existing Foundry hub** that isn't configured to use a managed n
 Depending on your configuration, you might use a Foundry Tools resource that also includes Azure OpenAI or a standalone Azure OpenAI resource. The steps in this section configure an AI services resource. The same steps apply to an Azure OpenAI resource.
 
 1. If you don't have an existing Foundry Tools resource for your Foundry hub, [create one](/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal).
-1. From the Azure portal, select the AI services resource, then select **Resource Management**, **Identity**, and **System assigned**. 
+1. From the Azure portal, select the AI services resource, and then select **Resource Management**, **Identity**, and **System assigned**. 
 1. To create a managed identity for the AI services resource, set the **Status** to **On**. Select **Save** to apply the changes.
 
     :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-services-managed-identity.png" alt-text="Screenshot of setting the status of managed identity to on.":::
@@ -89,9 +99,9 @@ Depending on your configuration, you might use a Foundry Tools resource that als
     1. From the **Resource** tab, accept the target subresource of **account**.
     1. From the **Virtual Network** tab, select the _Azure Virtual Network_ that the private endpoint connects to. This network should be the same one that your clients connect to, and that the Foundry hub has a private endpoint connection to.
     1. From the **DNS** tab, select the defaults for the DNS settings.
-    1. Continue to the **Review + create** tab, then select **Create** to create the private endpoint.
+    1. Continue to the **Review + create** tab, and then select **Create** to create the private endpoint.
 
-1. Currently you can't disable local (shared key) authentication to Foundry Tools through the Azure portal. Instead, you can use the following [Azure PowerShell](/powershell/azure/what-is-azure-powershell) cmdlet:
+1. Currently, you can't disable local (shared key) authentication to Foundry Tools through the Azure portal. Instead, use the following [Azure PowerShell](/powershell/azure/what-is-azure-powershell) cmdlet:
 
     ```azurepowershell
     # Connect to Azure
@@ -107,7 +117,7 @@ Depending on your configuration, you might use a Foundry Tools resource that als
 
     Reference: [Set-AzCognitiveServicesAccount](/powershell/module/az.cognitiveservices/set-azcognitiveservicesaccount)
 
-    For more information, visit the [Disable local authentication in Foundry Tools](/azure/ai-services/disable-local-auth) article.
+    For more information, see the [Disable local authentication in Foundry Tools](/azure/ai-services/disable-local-auth) article.
 
 ## Configure Azure AI Search
 
@@ -125,7 +135,7 @@ To use an existing index, it must have at least one searchable field. Ensure at 
 > - [Configure a search service to connect using a managed identity](/azure/search/search-howto-managed-identities-data-sources)
 
 1. If you don't have an existing Azure AI Search resource for your Foundry hub, [create one](/azure/search/search-create-service-portal).
-1. From the Azure portal, select the AI Search resource, then select **Settings**, **Identity**, and **System assigned**.
+1. From the Azure portal, select the AI Search resource, and then select **Settings**, **Identity**, and **System assigned**.
 1. To create a managed identity for the AI Search resource, set the **Status** to **On**. Select **Save** to apply the changes.
 
     :::image type="content" source="../media/how-to/secure-playground-on-your-data/ai-search-managed-identity.png" alt-text="Screenshot of AI Search with a system-managed identity configuration.":::
@@ -142,9 +152,9 @@ To use an existing index, it must have at least one searchable field. Ensure at 
     1. From the __Resource__ tab, select the __Subscription__ that contains the resource, set the __Resource type__ to __Microsoft.Search/searchServices__, and select the Azure AI Search resource. The only available subresource is __searchService__.
     1. From the **Virtual Network** tab, select the _Azure Virtual Network_ that the private endpoint connects to. This network should be the same one that your clients connect to, and that the Foundry hub has a private endpoint connection to.
     1. From the **DNS** tab, select the defaults for the DNS settings.
-    1. Continue to the **Review + create** tab, then select **Create** to create the private endpoint.
+    1. Continue to the **Review + create** tab, and then select **Create** to create the private endpoint.
 
-1. To enable API access based on role-based access controls, select __Settings__, __Keys__, and then set __API Access control__ to __Role-based access control__ or __Both__. Select __Yes_ to apply the changes.
+1. To enable API access based on role-based access controls, select __Settings__, __Keys__, and then set __API Access control__ to __Role-based access control__ or __Both__. Select __Yes__ to apply the changes.
 
     > [!NOTE]
     > Select __Both__ if you have other services that use a key to access the Azure AI Search. Select __Role-based access control__ to disable key-based access.
@@ -156,7 +166,7 @@ To use an existing index, it must have at least one searchable field. Ensure at 
 If you use Azure Storage for the ingestion scenario with the Foundry portal playground, you need to configure your Azure Storage Account.
 
 1. Create a Storage Account resource. 
-1. From the Azure portal, select the Storage Account resource, then select **Security + networking**, **Networking**, and **Firewalls and virtual networks**.
+1. From the Azure portal, select the Storage Account resource, and then select **Security + networking**, **Networking**, and **Firewalls and virtual networks**.
 1. To disable public network access and allow access from trusted services, set **Public network access** to **Enabled from selected virtual networks and IP addresses**. Under **Exceptions**, make sure that **Allow Azure services on the trusted services list** is enabled.
 
     :::image type="content" source="../media/how-to/secure-playground-on-your-data/storage-account-public-access-disable.png" alt-text="Screenshot of storage account network configuration.":::
@@ -170,7 +180,7 @@ If you use Azure Storage for the ingestion scenario with the Foundry portal play
     1. From the **Resource** tab, set the **Target sub-resource** to **blob**.
     1. From the **Virtual Network** tab, select the _Azure Virtual Network_ that the private endpoint connects to. This network should be the same one that your clients connect to, and that the Foundry hub has a private endpoint connection to.
     1. From the **DNS** tab, select the defaults for the DNS settings.
-    1. Continue to the **Review + create** tab, then select **Create** to create the private endpoint.
+    1. Continue to the **Review + create** tab, and then select **Create** to create the private endpoint.
 
 1. Repeat the previous step to create a private endpoint, but set the **Target sub-resource** to **file**. The previous private endpoint allows secure communication to blob storage, and this private endpoint allows secure communication to file storage.
 1. To disable local (shared key) authentication to storage, select **Configuration**, under **Settings**. Set **Allow storage account key access** to **Disabled**, and then select **Save** to apply the changes. For more information, see the [Prevent authorization with shared key](/azure/storage/common/shared-key-authorization-prevent) article. 
@@ -182,7 +192,7 @@ Foundry uses Azure Key Vault to securely store and manage secrets. To grant acce
 > [!NOTE]
 > These steps assume that you already configured the key vault for network isolation when you created your Foundry Hub.
 
-1. In the Azure portal, select the Key Vault resource, then select **Settings**, **Networking**, and **Firewalls and virtual networks**.
+1. In the Azure portal, select the Key Vault resource, and then select **Settings**, **Networking**, and **Firewalls and virtual networks**.
 1. In the **Exception** section of the page, make sure that **Allow trusted Microsoft services to bypass firewall** is **enabled**.
 
 ## Configure connections to use Microsoft Entra ID
@@ -192,8 +202,8 @@ Connections from Foundry to Foundry Tools and Azure AI Search should use Microso
 > [!IMPORTANT]
 > Using Microsoft Entra ID with Azure AI Search is currently a preview feature. For more information on connections, visit the [Add connections](connections-add.md#create-a-new-connection) article.
 
-1. From Foundry, select **Connections**. If you have existing connections to the resources, you can select the connection and then select the **pencil icon** in the **Access details** section to update the connection. Set the **Authentication** field to **Microsoft Entra ID**, then select **Update**.
-1. To create a new connection, select **+ New connection**, then select the resource type. Browse for the resource or enter the required information, then set **Authentication** to **Microsoft Entra ID**. Select **Add connection** to create the connection.
+1. From Foundry, select **Connections**. If you have existing connections to the resources, you can select the connection and then select the **pencil icon** in the **Access details** section to update the connection. Set the **Authentication** field to **Microsoft Entra ID**, and then select **Update**.
+1. To create a new connection, select **+ New connection**, and then select the resource type. Browse for the resource or enter the required information, set **Authentication** to **Microsoft Entra ID**, and select **Add connection** to create the connection.
 
 Repeat these steps for each resource that you want to connect to by using Microsoft Entra ID.
 
@@ -288,7 +298,18 @@ except Exception as e:
     print("Error:", e)
 ```
 
-Reference: [AzureOpenAI](/python/api/azure-ai-inference/azure.ai.inference.aio.chatcompletionsclient) | [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
+Reference: [AzureOpenAI](https://github.com/openai/openai-python) | [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
+
+**Expected output:**
+
+If your secure connection is configured correctly, you see output similar to:
+
+```output
+Connection successful!
+Response: Yes, this connection is secure. Your request was processed...
+```
+
+If you see "Connection failed" with an error message, verify that your private endpoints are configured correctly and that you're running the script from within the virtual network.
 
 ## Related content
 

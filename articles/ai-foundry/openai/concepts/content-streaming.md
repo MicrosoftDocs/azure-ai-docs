@@ -6,7 +6,7 @@ ms.author: ssalgado
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/15/2026
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted

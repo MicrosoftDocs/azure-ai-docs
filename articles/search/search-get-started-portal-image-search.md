@@ -64,7 +64,7 @@ The portal supports the following models for each method. Deployment instruction
 
 <sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. Currently, the wizard requires your search service and multi-service account to be in the [same supported region for the Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md#supported-regions), even when using keyless connections.
 
-<sup>2</sup> To use this model in the wizard, you must provision it as a serverless API deployment. You can use an [ARM/Bicep template](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample/blob/42b4d07f2dd9f7720fdc0b0788bf107bdac5eecb/infra/ai/modules/project.bicep#L37C1-L38C1) for this task.
+<sup>2</sup> To use this model in the wizard, you must provision it as a serverless API deployment. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment.
 
 <sup>3</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
@@ -469,7 +469,7 @@ To query your multimodal index:
 
 ## Clean up resources
 
-This quickstart uses billable Azure resources. If you no longer need the resources, delete them from your subscription to avoid charges.
+[!INCLUDE [clean up resources (paid)](includes/resource-cleanup-paid.md)]
 
 ## Next steps
 

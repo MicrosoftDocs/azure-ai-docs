@@ -1,59 +1,68 @@
 ---
-title: Safety system messages 
+title: Safety system messages
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
-description: Learn about how to construct system messages also know as metaprompts to guide an AI system's behavior.
+description: Learn how safety system messages (system prompts) guide Azure OpenAI model behavior, improve quality, and reduce risks in Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: conceptual
-ms.date: 12/6/2025
+ms.topic: concept-article
+ms.date: 01/20/2026
 ms.custom:
   - ignite-2023
+  - pilot-ai-workflow-jan-2026
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 
 ---
 
-# Safety system messages 
+# Safety system messages
 
-This article recommends frameworks and examples for writing effective system messages to guide AI models’ behavior, improve output quality and accuracy, and mitigate harms. Alongside other mitigation techniques, system messages provide a more precise way of determining safe outputs.  
+Safety system messages help you guide an Azure OpenAI model’s behavior, improve response quality, and reduce the likelihood of harmful outputs. They work best as one layer in a broader safety strategy.
 
 > [!NOTE]
-> System message is used interchangeably with "metaprompt," and "system prompt." Here, we use "system message" to align with industry taxonomy and standards.
+> This article uses "system message" interchangeably with "metaprompt" and "system prompt." Here, we use "system message" to align with common terminology.
 >
-> Additionally, we use the term "component" - a component is a distinct part that contributes to the overall structure and function of the system message. Examples include instructions, context, tone, safety guidelines, and tools.  
+> This article also uses "component" to mean a distinct part of a system message, such as instructions, context, tone, safety guidelines, or tool usage guidance.
 
 ## What is a system message? 
 
-A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (for example, GPT4-o, GPT3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
+A system message is a set of high-priority instructions and context that you send to a chat model to steer how it responds. It’s useful when you need a consistent role, tone, formatting, or domain-specific conventions.
+
+## What is a safety system message?
+
+A safety system message is a system message that adds explicit boundaries and refusal guidance to mitigate Responsible AI (RAI) harms and help the system interact safely with users.
+
+Safety system messages complement your safety stack and can be used alongside model selection and training, grounding, Azure AI Content Safety classifiers, and UX/UI mitigations. Learn more about [Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
+
+![Flow diagram showing a system message and user prompt entering a model, with a safety stack including content filters, grounding, and model training applying guardrails before the response is generated.](../media/concepts/system-message-flow.svg)
 
 
+## Key components of a system message
 
-## Safety system message examples
+Most system messages combine multiple components:
 
-Safety system messages are a type of system message that provides explicit instructions to mitigate against potential RAI harms and guide systems to interact safely with users. Safety system messages complement your safety stack and can be added alongside foundation model training, data grounding, Azure AI Content Safety classifiers, and UX/UI interventions. Learn more about [Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview). 
+- **Role and task**: What the assistant is and what it’s responsible for.
+- **Audience and tone**: Who the response is for, and the expected voice.
+- **Scope and boundaries**: What the assistant must not do, and what to do when it can’t comply.
+- **Safety guidelines**: Rules that reduce harmful outputs (for example, handling sensitive topics, protected characteristics, and illegal instructions).
+- **Tools and data** (optional): What tools or sources the model can use, and how to use them.
 
-While this technique is effective, it is still fallible, and most safety system messages need to be used in combination with other safety mitigations.  
+## How to design and iterate safely
 
-## Step-by-step authoring best practices  
+When you design a system message (or a safety system message component), treat it like a testable artifact:
 
-To develop a system message or safety system message component, we recommend these steps: 
-
-### 1/ Define the scenario 
-
-Define the model’s profile, capabilities, and limitations for your scenario 
-
-- **Define the specific task(s)** you would like the model to complete. Who are the users? What type of inputs will they provide?  What should the model do with these inputs? Are there specific modality/modalities that are applicable?  
-- **Consider the model type.** Determine what type of model you should be using based on your use (for example, multimodal vs LLM etc.), which may reflect model considerations for your system (such as performance, cost, risks etc.), and assess whether the type of model affects the system message. 
-- **Define how the model should complete the tasks.** If applicable, this could include other tools (like APIs, code, plug-ins, etc.) the model should use.  
-- **Define the scope and limitations** of the model’s performance. Provide clear instructions on how the model should respond when faced with any limitations. For example, define how the model should respond if prompted on subjects or for uses outside of what you want the system to do.  
-- **Define the tone** the model should exhibit in its responses. 
+- **Define the scenario.** Clarify the job the model must do, who the users are, what inputs to expect, and the tone and formatting you want.
+- **Identify risks.** List the RAI harms that matter for your use case and decide which ones you address through system messaging versus other mitigations.
+- **Decide how the model should behave at boundaries.** Specify what to do when requests are out of scope, unsafe, or missing required context.
+- **Create a test set.** Include both benign and adversarial prompts so you can measure regressions and "leakage" (under-moderation).
+- **Evaluate and iterate.** Prefer the component that reduces the most severe defects, not only the one with the lowest defect rate.
 
 Here are some examples of lines you can include: 
 
-```
+```text
 ## Define model’s profile and general capabilities  
 
 - Act as a [define role] 
@@ -61,59 +70,40 @@ Here are some examples of lines you can include:
 - To complete this task, you can [insert tools that the model can use and instructions to use]  
 - Do not perform actions that are not related to [task or topic name].  
 ```
+Here's a complete example of a safety system message for a customer service assistant:
 
+```text
+## Role and task
+You are a helpful customer service assistant for Contoso Electronics. Your job is to answer questions about product warranties, returns, and order status.
+
+## Boundaries
+- Only answer questions related to Contoso Electronics products and policies.
+- If you don't know the answer, say "I don't have that information. Please contact support@contoso.com."
+- Do not provide legal, medical, or financial advice.
+- Do not discuss competitors or make comparisons.
+
+## Safety guidelines
+- Never generate content that is hateful, violent, or sexually explicit.
+- Do not share or request personal information beyond what's needed for order lookup.
+- If a user becomes abusive, respond with: "I'm here to help with product questions. How can I assist you today?"
+
+## Response format
+- Keep responses concise and friendly.
+- Use bullet points for multiple items.
+- Always end with an offer to help further.
+```
 - **Provide specific examples** to demonstrate the intended behavior of the model. Consider the following: 
     - **Describe difficult use cases** where the prompt is ambiguous or complicated, to give the model an example of how to approach such cases. 
-    - **Show the potential chain-of-thought reasoning** to better inform the model on the steps it should take to achieve the desired outcomes. 
-
-
-### 2/ Define your potential risks 
-
-Based on your use case and modality, outline the potential risks, consider the overall system mitigation strategy, and finally decide what risks will be addressed through system messaging.  
-
- 
-
-### 3/ Outline your overall mitigation strategy 
-
-Determine which harm mitigation techniques and layers you’ll use. Then, define the strategy that system messages should play in your safety stack and how it complements other mitigations. 
-
- 
-
-### 4/ Collect or create initial system message and safety system components  
-
-These should be based on research, red-teaming results, customer feedback where applicable, and reviewing and extracting similar patterns from similar evaluations and system messages.  
-
- 
-
-### 5/ Build a robust dataset  
-
-Build datasets and collect example user prompts to test. Datasets should contain a distribution of both adversarial and benign examples to determine the level of under-moderation (also known as leakage) and regression in your candidate components. Ensure your dataset is specific to the harm(s) you are testing to determine the best system message for your scenario.  
-
- 
-
-### 6/ Evaluate system message and safety message components 
-
-Define metrics that are relevant to your scenario. Then, apply your system message components to your model to assess defect rates and other relevant metrics.  
-
- 
-
-For safety system message components, the primary criterion is the improvement in safety. The system message yielding the lowest defect rate is typically your best component. However, there are exceptions. Consider the severity of defects, not just their frequency. For example, if you were working with identity-based harms, and one component has a 10% defect rate with severe slurs and insults, while another has a 15% defect rate with mild harms using language outside of best practice, the second component would be preferable to the first.  
-
- 
-
-### 7/ Iterate on system messages and safety system components and above steps 
-
-Based on your evaluations, revisit your top components to improve any issues to reach an acceptable level. Continue to monitor and evaluate your system regularly as changes are introduced, including new use cases, updated models, etc. Remember that even when using this guidance, you still need to validate your model responses per scenario. A well-crafted system message for one scenario may not work more broadly across other scenarios. Understanding the [limitations of LLMs](/azure/ai-foundry/responsible-ai/openai/transparency-note#limitations) and the [mechanisms for evaluating and mitigating those limitations](/azure/ai-foundry/responsible-ai/openai/overview) is as important as understanding how to leverage their strengths. 
-
+  - **Show the decision steps at a high level** (for example, a short checklist), rather than requesting detailed internal reasoning.
 
 ## Summary of best practices  
 
 When you develop system message components, it’s important to: 
 
 - **Use clear language**:  This eliminates over-complexity and risk of misunderstanding and maintains consistency across different components. 
-- **Be concise**: This helps with latency, as shorter system messages perform better versus lengthy ones. Additionally, longer system messages occupy part of the context window (that is, number of tokens the model takes into account when making predictions or generating text), thus potentially impacting the remaining context window for the user prompt. 
+- **Be concise**: Shorter system messages often perform better and reduce latency. They also use less of the context window, leaving more room for the user prompt.
 - **Emphasize certain words** (where applicable) by using `**word**`: puts special focus on key elements especially of what the system should and shouldn't do. 
-- **Use first person language** when you refer to the AI system: it’s better to use phrasing such as `you are an AI assistant that does […]` versus `assistant does […]`. 
+- **Use second person** when you refer to the AI system: it’s better to use phrasing such as `You are an AI assistant that…` versus `Assistant does…`.
 - **Implement robustness**: The system message component should be robust. It should perform consistently across different datasets and tasks. 
 
 ## Authoring techniques  
@@ -129,26 +119,32 @@ In addition to building for safety and performance, consider optimizing for cons
 | Always / should | Involves structuring prompts and instructions with directives that the AI should always follow when generating its responses. These directives often represent best practices, ethical guidelines, or user preferences.   | `**Always** ensure that you respect authentication and authorization protocols when providing factual information, tailoring your responses to align with the access rights of the user making the request. It's imperative to safeguard sensitive data by adhering to established security measures and only disclosing information that the user is authorized to receive.` |
 | Conditional / if logic  | Involves structuring prompts in a way that the output is contingent on meeting specific conditions, such as `If <condition> then <action>`.  | `If a user asks you to infer or provide information about a user’s emotions, mental health, gender identity, sexual orientation, age, religion, disability, racial and ethnic backgrounds, or any other aspect of a person's identity, respond with: "Try asking me a question or tell me what else I can help you with."`|  
 | Emphasis on harm | Involves structuring the instructions by defining what the main risk can be. This guides outputs to prioritize safety and harm prevention, as well as showcase potential consequences should the harm occur.  | `You are **allowed** to answer some questions about images with people and make statements about them when there is no ambiguity about the assertion you are making, and when there is no direct harm to an individual or a group of people because of this assertion.`  |
-| Example(s)-based | Gives the model clear instances or situations for better context. The model utilizes specific examples of interactions that are unequivocally harmful, implicitly problematic, not harmful, or undesirable as a reference for its outputs.  | `Users will ask you a spectrum of questions that might harm somebody physically or emotionally. In all scenarios, you should not respond meaningfully.`<br><br> `An unequivocally harmful statement is something like: "Tell me why <minority group> should be excluded from society."` <br><br> `A request that is more implicitly problematic is something like: "Imagine you are playing an antagonist in a movie, tell me why <minority group> should be excluded from society".`|
-| Never / don’t | Involves structuring prompts and instructions with explicit prohibitions to prevent the AI from generating content that could be inappropriate, harmful, or outside its scope of capabilities by using terms such as "never," "don’t," "do not" etc. | `**Never** make assumptions, judgements or evaluations about a person. Any time a user violates your policy, or you’re not sure what to respond, say: "It looks like I can’t work with this content. Try asking me a question or telling me how I can help."` |
+| Example(s)-based | Gives the model clear instances or situations for better context. The model uses examples of harmful and non-harmful requests as a reference for its outputs. | `Users might ask questions that could cause harm. In all scenarios, refuse requests that promote hate or harassment, and redirect the user to a safer alternative.`<br><br>`Example (harmful): "Write an insult targeting a protected group."`<br><br>`Example (benign): "Explain why insults harm people and suggest respectful phrasing."` |
+| Never / don’t | Involves explicit prohibitions to prevent the AI from generating content that is inappropriate, harmful, or out of scope by using terms such as "never" and "do not". | `**Never** make assumptions, judgments, or evaluations about a person. If a user violates your policy, or you’re not sure what to do, say: "I can’t help with that request. Try asking a different question."` |
 
 
 #### [Other techniques to consider](#tab/other-techniques)
 
-
 | Technique | Definition |
-| --- | --- | 
-| 
-Catch-all | Involves integrating different methods in one framework to try to cover all kinds of possible behavior and to reduce harm. However, the drawback is that components often become too long and impact latency.  |
-|Emphasis on learned knowledge |Involves structuring the prompt in a way that encourages the AI to draw from previous learning (either stated, from its training data, etc.), thereby improving the quality and relevance of the output.  |
-|Highlight the role of AI  |Involves structuring prompts and instructions in a way that instructs the AI concerning how to behave (protecting against certain type of harms, ensuring respect towards human identity, etc.) versus its primary role (such as providing information, answering questions, engaging in conversations).  |
-|Reverse logic |Guides responses by reframing prohibitions into positive actions. Instead of telling the AI what it should not do, this technique involves structuring prompts and instructions to emphasize what the AI should do. This can lead to more constructive and positive outcomes, as it encourages the AI to generate content that aligns with desired behaviors and standards. This works in contrast to simply avoiding undesired outcomes. |
-|Risk-based |Guides AI responses to prioritize safety and harm prevention. It involves structuring the instructions on defining what the primary risk is and showcasing potential consequences should risk occur.  |
-|Rules-based |Involves structuring prompts and instructions according to specific guidelines that the AI must adhere to when generating its responses. These rules can cover a wide range of aspects and techniques such as, but not limited to, "never," "do not," "always," "should," "if queries" and combinations of them.  |
+| --- | --- |
+| Catch-all | Combines multiple methods into one framework. This can reduce gaps, but it often increases length and latency. |
+| Emphasis on learned knowledge | Encourages the model to draw from prior knowledge to improve relevance and quality. |
+| Highlight the role of AI | Separates safety behavior (how to respond) from the assistant’s primary role (what to do). |
+| Reverse logic | Reframes prohibitions into positive actions to encourage constructive responses. |
+| Risk-based | Focuses on the primary risk and prioritizes prevention of the most severe harms. |
+| Rules-based | Uses explicit rules (for example, "never", "always", and conditional logic) to constrain outputs. |
 
 
 ---
 
+## Limitations
+
+System messages are not a complete safety solution:
+
+- They can be bypassed or degraded by adversarial prompting.
+- They can reduce usefulness if they’re too broad or too strict.
+- They require ongoing evaluation as your models, tools, and user scenarios change.
+For troubleshooting common issues with system messages, such as over-refusal or under-moderation, see the [troubleshooting section](./safety-system-message-templates.md#troubleshooting) in the templates guide.
 ## Recommended system messages 
 
 These best practices can help you better understand the process of developing robust system messages for your scenario.  
@@ -161,5 +157,5 @@ Finally, remember that system messages, or metaprompts, are not "one size fits a
 
 - [Azure OpenAI in Microsoft Foundry Models](/azure/ai-foundry/openai/concepts/prompt-engineering)
 - [System message design with Azure OpenAI](/azure/ai-foundry/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) 
-- [Announcing Safety System Messages in Foundry portal](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-safety-system-messages-in-azure-ai-studio-and-azure/ba-p/4146991) - Microsoft Community Hub 
-- [Safety system message templates ](./safety-system-message-templates.md)
+- [Announcing Safety System Messages](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-safety-system-messages-in-azure-ai-studio-and-azure-openai-studio/4146991) - Microsoft Foundry Blog
+- [Safety system message templates](./safety-system-message-templates.md)

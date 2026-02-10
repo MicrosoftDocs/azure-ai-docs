@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to use the REST API for indexing documents with ACLs and RBAC metadata.  
 ms.service: azure-ai-search  
 ms.topic: how-to 
-ms.date: 09/18/2025 
+ms.date: 01/28/2025 
 author: admayber
 ms.author: admayber  
 ---  
@@ -33,7 +33,7 @@ This article explains how to use the push REST API to index document-level permi
 
 ## Limitations
 
-- An ACL field with permission filter type `userIds` or `groupIds` can hold at most 32 values.
+- An ACL field with permission filter type `userIds` or `groupIds` can hold at most 1000 values.
 
 - An index can hold at most five unique values among fields of type `rbacScope` on all documents. There's no limit on the number of documents that share the same value of `rbacScope`.
 

@@ -2,16 +2,16 @@
 title: "Disable shared key access to the workspace storage account"
 titleSuffix: Azure Machine Learning
 description: "Disable shared key access to the default storage account used by your Azure Machine Learning workspace."
-author: AmarBadal
 ms.author: scottpolly
+author: shshubhe
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.reviewer: fsolomon
-ms.date: 10/24/2025
-reviewer: AmarBadal
+ms.date: 1/30/2026
+
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
 ---
 
@@ -222,7 +222,7 @@ After you create the workspace, identify all the users that will use it - for ex
 
 ## Update an existing workspace
 
-If you have an existing Azure Machine Learning workspace, use the steps in this section to update the workspace to use Microsoft Entra ID, to authorize access to the storage account. Then, disable shared key access on the storage account.
+If you have an existing Azure Machine Learning workspace, use the steps in this section to update the workspace to use Microsoft Entra ID to authorize access to the storage account. Then, disable shared key access on the storage account.
 
 # [Azure portal](#tab/portal)
 
@@ -343,10 +343,9 @@ az ml workspace update --name myworkspace --system-datastores-auth-mode accesske
 
 # [ARM template](#tab/armtemplate)
 
-If you have an existing Azure Machine Learning workspace, use the steps in this section to update the workspace to use Microsoft Entra ID, to authorize access to the storage account. Then, disable shared key access on the storage account.
+To revert the workspace to use shared keys for storage account access, use the following ARM template.
 
 In the following JSON template example, substitute your own values for the following placeholders:
-
 
 - **[workspace name]**
 - **[workspace friendly name]**
@@ -399,7 +398,7 @@ After you create the workspace, identify all the users that will use it - for ex
 
 ---
 
-After reverting the workspace, update the storage account to disable shared key access. For more information about disabling shared key access, visit the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) article.
+After reverting the workspace, you can re-enable shared key access on the storage account if it was previously disabled. For more information about managing shared key access, visit the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) article.
 
 ## Scenarios for role assignments
 
@@ -420,7 +419,9 @@ To work with a storage account that has disabled shared key access, you might ne
 | Data: datastores and datasets | User's identity | Storage Blob Data Contributor |  |
 
 ## Limitations
-- Creating a compute instance with system-assigned managed identity isn't supported for identity-based workspace. If the workspace's storage account access type is identity-based access, compute instances currently don't support system assigned identity to mount data store. Use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Privileged Contributor** on the storage account.
+- Creating a compute instance with system-assigned managed identity isn't supported for identity-based workspaces. If the workspace's storage account access type is identity-based access, compute instances currently don't support system assigned identity to mount data store. Use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Privileged Contributor** on the storage account.
+
+- `git clone` operations in identity-based Azure Machine Learning workspaces are slow or fail, especially for repositories with many small files. The recommended workarounds are to clone into a local directory such as `/tmp` and then copy or symlink files, or to use credential-based access.
 
 ## Related content
 

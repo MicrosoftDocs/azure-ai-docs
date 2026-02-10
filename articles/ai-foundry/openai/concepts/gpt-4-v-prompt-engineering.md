@@ -6,8 +6,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.topic: article 
-ms.date: 09/16/2025
+ms.topic: concept-article
+ms.date: 01/30/2026
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -21,14 +21,14 @@ ai-usage: ai-assisted
 
 To unlock the full potential of vision-enabled chat models, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
 
+> [!NOTE]
+> These prompt engineering techniques apply to vision-enabled models including GPT-4 Turbo with Vision, GPT-4o, and GPT-4o-mini. To deploy a vision-enabled model, see [Deploy models](../../how-to/deploy-models-managed.md).
+
 ## Fundamentals of writing an image prompt
 
 - **Contextual specificity:** Adding context to the scenario at hand gives the model a better understanding of an appropriate output. This level of specificity aids in focusing on relevant aspects and avoiding extraneous details.
 - **Task-oriented prompts:** Focusing on a specific task helps the model to develop the output while taking that perspective into consideration.  
-- **Handle refusals:** When the model indicates an inability to perform a task, refining the prompt can be an effective solution. More specific prompts can guide the model towards a clearer understanding and better execution of the task. Keep these tips in mind:
-   - Request explanations for generated responses to enhance transparency in the model's output <br>
-   - If using a single-image prompt, place the image before the text <br>
-   - Ask the model to describe the image in details first and complete your specific task from the description
+- **Handle refusals:** When the model indicates an inability to perform a task, refining the prompt can be an effective solution. More specific prompts can guide the model towards a clearer understanding and better execution of the task. Request explanations for generated responses, place the image before the text for single-image prompts, and ask the model to describe the image in detail first before completing your specific task.
 - **Add examples:** Add examples that represent the type of responses you're looking for
 - **Break down requests:** Try breaking down complex requests step-by-step to create manageable sub-goals
 - **Define output format:** Clearly mention the desired format for the output, such as markdown, JSON, HTML, etc. You can also suggest a specific structure, length, or specific attributes about the response.
@@ -106,3 +106,18 @@ When you receive a refusal output from a model, there are several ways you can t
 
 
 These guidelines and examples demonstrate how tailored system prompts can significantly enhance the performance of vision-enabled models, ensuring that the responses are not only accurate but also perfectly suited to the specific context of the task at hand.
+
+## Next steps
+
+Now that you understand image prompt engineering techniques, try them in practice:
+
+1. Open the [Microsoft Foundry playground](https://ai.azure.com/?cid=learnDocs) and deploy a vision-enabled model.
+1. Upload an image and experiment with contextual specificity.
+1. Compare basic prompts with task-oriented prompts to see the difference in output quality.
+
+## Related content
+
+- [Vision-enabled chat model concepts](gpt-with-vision.md)
+- [Quickstart: Use GPT-4 Turbo with Vision](../gpt-v-quickstart.md)
+- [How to use GPT-4 Turbo with Vision](../how-to/gpt-with-vision.md)
+- [Prompt engineering techniques](prompt-engineering.md)

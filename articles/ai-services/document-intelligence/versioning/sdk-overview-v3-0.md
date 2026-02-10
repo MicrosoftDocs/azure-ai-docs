@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom:
   - devx-track-python
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.0.0'

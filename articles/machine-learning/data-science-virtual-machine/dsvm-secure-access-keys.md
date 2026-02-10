@@ -9,7 +9,7 @@ ms.custom: devx-track-azurecli, devx-track-python
 
 author: s-polly
 ms.author: scottpolly 
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: vijetaj
 ms.date: 04/16/2024
 ---

@@ -7,7 +7,7 @@ ms.author: jlembicz
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/21/2026
 ---
 

@@ -5,7 +5,7 @@ description: Learn how to use global batch with Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 11/26/2025
+ms.date: 01/27/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -14,6 +14,7 @@ ms.custom:
   - build-2025
 zone_pivot_groups: openai-fine-tuning-batch
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Getting started with Azure OpenAI batch deployments
@@ -54,7 +55,7 @@ Key use cases include:
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
-Registration is required for access to `gpt-5` and `o3` For more information see, our [reasoning models guide](./reasoning.md).
+Registration is required for access to `gpt-5` and `o3`. For more information, see the [reasoning models guide](./reasoning.md).
 
 # [Data Zone Batch](#tab/datazone-batch)
 
@@ -62,24 +63,13 @@ Registration is required for access to `gpt-5` and `o3` For more information see
 
 [!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
 
-Registration is required for access to `gpt-5` and `o3`. For more information see, our [reasoning models guide](./reasoning.md).
+Registration is required for access to `gpt-5` and `o3`. For more information, see the [reasoning models guide](./reasoning.md).
 
 ---
 
-The following models support global batch:
-
-| Model | Version | Input format |
-|---|---|---|
-| `gpt-5` | `2025-08-7`  | text + image |
-| `o3` | `2025-04-16`  | text + image   |
-| `o3-mini` | 2025-01-31 | text |
-|`gpt-4o` | 2024-08-06 |text + image |
-|`gpt-4o-mini`| 2024-07-18 | text + image |
-|`gpt-4o` | 2024-05-13 |text + image |
-
 
 > [!NOTE]
-> While Global Batch supports older API versions, some models require newer preview API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the latest preview API version.
+> While Global Batch supports older API versions, some models require newer API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access newer models with Global Batch, use the v1 API.
 
 ### Feature support
 
@@ -91,7 +81,7 @@ The following aren't currently supported:
 ### Batch deployment
 
 > [!NOTE]
-> In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../../foundry-models/concepts/deployment-types.md).
+> In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see the [deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
 > [!TIP]
 > We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Using dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
@@ -120,24 +110,24 @@ The following aren't currently supported:
 
 |Property | Type | Definition|
 |---|---|---|
-| `id` | string | |
+| `id` | string | The identifier of the batch. |
 | `object` | string| `batch` |
 | `endpoint` | string | The API endpoint used by the batch |
-| `errors` | object | |
+| `errors` | object | Error information for the batch, if any. |
 | `input_file_id` | string | The ID of the input file for the batch |
 | `completion_window` | string | The time frame within which the batch should be processed |
 | `status` | string | The current status of the batch. Possible values: `validating`, `failed`, `in_progress`, `finalizing`, `completed`, `expired`, `cancelling`, `cancelled`. |
 | `output_file_id` | string |The ID of the file containing the outputs of successfully executed requests. |
 | `error_file_id` | string | The ID of the file containing the outputs of requests with errors. |
-| `created_at` | integer | A timestamp when this batch was created (in unix epochs). |
-| `in_progress_at` | integer | A timestamp when this batch started progressing (in unix epochs). |
-| `expires_at` | integer | A timestamp when this batch will expire (in unix epochs). |
-| `finalizing_at` | integer | A timestamp when this batch started finalizing (in unix epochs). |
-| `completed_at` | integer | A timestamp when this batch started finalizing (in unix epochs). |
-| `failed_at` | integer | A timestamp when this batch failed (in unix epochs) |
-| `expired_at` | integer | A timestamp when this batch expired (in unix epochs).|
-| `cancelling_at` | integer | A timestamp when this batch started `cancelling` (in unix epochs). |
-| `cancelled_at` | integer | A timestamp when this batch was `cancelled` (in unix epochs). |
+| `created_at` | integer | A timestamp when this batch was created (in Unix epoch seconds). |
+| `in_progress_at` | integer | A timestamp when this batch started progressing (in Unix epoch seconds). |
+| `expires_at` | integer | A timestamp when this batch will expire (in Unix epoch seconds). |
+| `finalizing_at` | integer | A timestamp when this batch started finalizing (in Unix epoch seconds). |
+| `completed_at` | integer | A timestamp when this batch completed (in Unix epoch seconds). |
+| `failed_at` | integer | A timestamp when this batch failed (in Unix epoch seconds). |
+| `expired_at` | integer | A timestamp when this batch expired (in Unix epoch seconds). |
+| `cancelling_at` | integer | A timestamp when this batch started `cancelling` (in Unix epoch seconds). |
+| `cancelled_at` | integer | A timestamp when this batch was `cancelled` (in Unix epoch seconds). |
 | `request_counts` | object | Object structure:<br><br> `total` *integer* <br> The total number of requests in the batch.  <br>`completed`  *integer* <br> The number of requests in the batch that have been completed successfully. <br> `failed` *integer* <br> The number of requests in the batch that have failed. 
 | `metadata` | map | A set of key-value pairs that can be attached to the batch. This property can be useful for storing additional information about the batch in a structured format. |
 
@@ -145,7 +135,7 @@ The following aren't currently supported:
 
 ### Can images be used with the batch API?
 
-This capability is limited to certain multi-modal models. Currently only GPT-4o support images as part of batch requests. Images can be provided as input either via [image url or a base64 encoded representation of the image](#input-format). Images for batch are currently not supported with GPT-4 Turbo.
+This capability is limited to certain multimodal models. Images can be provided as input either via [image url or a base64 encoded representation of the image](#input-format).
 
 ### Can I use the batch API with fine-tuned models?
 
@@ -175,47 +165,49 @@ Once your batch request is completed, your batch rate limit is reset, as your in
 
 ## Troubleshooting
 
-A job is successful when `status` is `Completed`. Successful jobs will still generate an error_file_id, but it will be associated with an empty file with zero bytes.
+A job is successful when `status` is `completed`. Successful jobs will still generate an `error_file_id`, but it will be associated with an empty file with zero bytes.
 
 When a job failure occurs, you'll find details about the failure in the `errors` property:
 
 ```json
-"value": [
-        {
-          "id": "batch_80f5ad38-e05b-49bf-b2d6-a799db8466da",
-          "completion_window": "24h",
-          "created_at": 1725419394,
-          "endpoint": "/chat/completions",
-          "input_file_id": "file-c2d9a7881c8a466285e6f76f6321a681",
-          "object": "batch",
-          "status": "failed",
-          "cancelled_at": null,
-          "cancelling_at": null,
-          "completed_at": 1725419955,
-          "error_file_id": "file-3b0f9beb-11ce-4796-bc31-d54e675f28fb",
-          "errors": {
-                "object": “list”,
-                "data": [
-                {
-               "code": "empty_file",
-               "message": "The input file is empty. Please ensure that the batch contains at least one   request."
-                    }
-                ]
-          },
-          "expired_at": null,
-          "expires_at": 1725505794,
-          "failed_at": null,
-          "finalizing_at": 1725419710,
-          "in_progress_at": 1725419572,
-          "metadata": null,
-          "output_file_id": "file-ef12af98-dbbc-4d27-8309-2df57feed572",
-
-            "request_counts": {
-                "total": 10,
-                "completed": null,
-                "failed": null
-            },
-        }
+{
+  "value": [
+    {
+      "id": "batch_80f5ad38-e05b-49bf-b2d6-a799db8466da",
+      "completion_window": "24h",
+      "created_at": 1725419394,
+      "endpoint": "/chat/completions",
+      "input_file_id": "file-c2d9a7881c8a466285e6f76f6321a681",
+      "object": "batch",
+      "status": "failed",
+      "cancelled_at": null,
+      "cancelling_at": null,
+      "completed_at": 1725419955,
+      "error_file_id": "file-3b0f9beb-11ce-4796-bc31-d54e675f28fb",
+      "errors": {
+        "object": "list",
+        "data": [
+          {
+            "code": "empty_file",
+            "message": "The input file is empty. Please ensure that the batch contains at least one request."
+          }
+        ]
+      },
+      "expired_at": null,
+      "expires_at": 1725505794,
+      "failed_at": null,
+      "finalizing_at": 1725419710,
+      "in_progress_at": 1725419572,
+      "metadata": null,
+      "output_file_id": "file-ef12af98-dbbc-4d27-8309-2df57feed572",
+      "request_counts": {
+        "total": 10,
+        "completed": null,
+        "failed": null
+      }
+    }
+  ]
+}
 ```
 
 ### Error codes
@@ -227,7 +219,7 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 | `url_mismatch` | Either a row in your input file has a URL that doesn’t match the rest of the rows, or the URL specified in the input file doesn’t match the expected endpoint URL. <br><br>Please ensure all request URLs are the same, and that they match the endpoint URL associated with your Azure OpenAI deployment.|
 |`model_not_found`|The Azure OpenAI model deployment name that was specified in the `model` property of the input file wasn't found.<br><br> Please ensure this name points to a valid Azure OpenAI model deployment.|
 | `duplicate_custom_id` | The custom ID for this request is a duplicate of the custom ID in another request. |
-|`empty_batch` | Please check your input file to ensure that the custom ID parameter is unique for each request in the batch.|
+|`empty_file`| The input file is empty. Please ensure the batch contains at least one request. |
 |`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same Azure OpenAI in Foundry Models model deployment in the `model` property of the request.|
 |`invalid_request`| The schema of the input line is invalid or the deployment SKU is invalid. <br><br>Please ensure the properties of the request in your input file match the expected input properties, and that the Azure OpenAI deployment SKU is `globalbatch` for batch API requests.|
 | `input_modified` |Blob input has been modified after the batch job has been submitted. |

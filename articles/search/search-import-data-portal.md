@@ -5,7 +5,7 @@ description: Learn about the Azure portal wizards that create and load an index 
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 12/05/2025
+ms.date: 01/29/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -22,7 +22,7 @@ ms.custom:
 > + The **Import and vectorize data** wizard is now called **Import data (new)**.
 > + The **Import data** workflow is now available in **Import data (new)**.
 >
-> The **Import data** wizard will eventually be deprecated. For now, you can still use this wizard, but we recommend the new wizard for an improved search experience that uses the latest frameworks.
+> The **Import data** wizard will be deprecated soon. For now, you can still use this wizard, but we recommend the new wizard for an improved search experience that uses the latest frameworks.
 >
 > The wizards don't have identical keyword search workflows. Certain skills and capabilities are only available in the old wizard. For more information about their similarities and differences, continue reading this article.
 
@@ -163,33 +163,56 @@ The wizards have the following limitations:
 
 + Source content must reside in a [supported data source](search-indexer-overview.md#supported-data-sources).
 
-+ Sampling occurs over a subset of source data. For large data sources, it's possible for the wizards to miss fields. If sampling is insufficient, you might need to extend the schema or correct the inferred data types.
++ Sampling, used to infer a preliminary index schema, occurs over a subset of source data. For large data sources, it's possible for the wizards to miss fields. If sampling is insufficient, you might need to manually add fields to the index or correct the inferred data types.
 
-+ [AI enrichment](cognitive-search-concept-intro.md), as exposed in the Azure portal, is limited to a subset of built-in skills.
++ [AI enrichment](cognitive-search-concept-intro.md) and [integrated vectorization](vector-search-integrated-vectorization.md), as exposed in the wizards, is limited to a subset of built-in skills.
 
-+ A [knowledge store](knowledge-store-concept-intro.md), which is only available through the **Import data** wizard, is limited to a few default projections and uses a default naming convention. To customize projections and names, you must create the knowledge store through the REST APIs or Azure SDKs.
++ A [knowledge store](knowledge-store-concept-intro.md), which is only available through the legacy **Import data** wizard, is limited to a few default projections and uses a default naming convention. To customize projections and names, you must create the knowledge store through the REST APIs or Azure SDKs.
 
 ## Secure connections
 
-The wizards use the Azure portal controller and public endpoints to make outbound connections. You can't use the wizards if Azure resources are accessed over a private connection or through a shared private link.
+Network protections affect the portal-to-endpoint connection and also the endpoint-to-external-resource connections during portal operations.
 
-You can use the wizards over restricted public connections, but not all functionality is available.
+### Portal connections to a search service
 
-+ On supported Azure data sources protected by firewalls, you can retrieve data if you have the right firewall rules in place.
+Portal connections to a network-protected endpoint are made using your client IP address.
 
-  The Azure resource must admit network requests from the IP address of the device used on the connection. You should also list Azure AI Search as a trusted service on the resource's network configuration. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
++ For a firewall-protected search service, [add your client IP address to an inbound rule](service-configure-firewall.md#configure-network-access-and-firewall-rules-for-azure-ai-search).
 
-+ On connections to a Foundry resource for AI enrichment, or on connections to embedding models deployed in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
++ For a search service configured for a [private endpoint](service-create-private-endpoint.md), use a browser on an allow-listed virtual machine to open portal pages and run wizards.
 
-  For AI enrichment, connections to Foundry resources are for [billing purposes](cognitive-search-attach-cognitive-services.md). You're billed when API calls for built-in skills (in the **Import data** wizard or the keyword search workflow in the **Import data (new)** wizard) and integrated vectorization (in the **Import data (new)** wizard) exceed the free transaction count (20 per indexer run).
++ For a search service joined to a network security perimeter, [add your client IP address to an inbound rule](search-security-network-security-perimeter.md#add-an-inbound-access-rule).
 
-  If Azure AI Search can't connect:
+> [!TIP]
+> The portal detects your client IP address and prompts you add it to the search service firewall.
 
-  + In the **Import data (new)** wizard, the error is `"Access denied due to Virtual Network/Firewall rules."`.
+### Portal connections to external resources
 
-  + In the **Import data** wizard, there's no error, but the skillset won't be created.
+The portal wizards connect to external resources for:
 
-If firewall settings prevent your wizard workflows from succeeding, consider scripted or programmatic approaches instead.
++ Data retrieval during indexing
++ AI processing for [enrichment](cognitive-search-concept-intro.md) and [integrated vectorization](vector-search-integrated-vectorization.md) performed by a Foundry resource or model
+
+From the portal wizards, almost every outbound request for network-protected data and AI processing is made using the IP address of your client, with the exception of:
+
++ The legacy Import data wizard
++ Connecting to either Azure Cosmos DB or Azure SQL
+
+This section explains connection requirements for outbound requests, and how to handle the exception.
+
+#### Configuring portal access to external resources
+
++ **IP-protected resources**: Add your client IP address to the external resource's `allowList`. If supported, list `Microsoft.Search/searchServices` as a trusted service. For example, in Azure Storage, you can list `Microsoft.Search/searchServices` as a trusted service.
+
++ **Private connections**: The wizards use [shared private links](search-indexer-howto-access-private.md). Verify your search service meets tier and region requirements. Verify your external data source is supported for shared private links.
+
+#### Exception: Legacy wizard with Cosmos DB and Azure SQL
+
+The legacy wizard connects through a portal controller with its own IP address. You must use a public endpoint (no private link support) and [add the portal controller IP to inbound rules](service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address).
+
+You can avoid this restriction by using the **Import data (new)** wizard.
+
+If the wizards can't connect, you'll see `"Access denied due to Virtual Network/Firewall rules"` in the new wizard, or the skillset silently fails to create in the legacy wizard. Consider scripted or programmatic approaches as an alternative.
 
 ## Workflow
 

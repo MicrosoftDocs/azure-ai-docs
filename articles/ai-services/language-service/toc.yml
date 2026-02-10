@@ -25,6 +25,9 @@ items:
   - name: Configure Azure resources
     href: conversational-language-understanding/how-to/configure-azure-resources.md
     displayName: configuration, fine-tuning, azure ai foundry, azure portal
+  - name: Migrate to Microsoft Foundry 🆕
+    href: migration-studio-to-foundry.md
+    displayName: migrate, foundry, studio, permissions, roles, access, requisites, requirements
 - name: Azure Language in Foundry Tools capabilities
   items:
 
@@ -796,9 +799,6 @@ items:
     displayName: Data privacy, logging, data retention
 - name: How-tos
   items:
-  - name: Migrate from LUIS, QnA Maker, and Text Analytics
-    displayName: text analytics, luis, qna
-    href: concepts/migrate.md
   - name: Use Azure Kubernetes Service
     href: tutorials/use-kubernetes-service.md
   - name: Use language in Power Automate flows
@@ -942,3 +942,14 @@ items:
         href: concepts/encryption-data-at-rest.md
       - name: Compliance and certification
         href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
+- name: Reference
+  items:
+    - name: Migrate from LUIS, QnA Maker, and Text Analytics
+      displayName: text analytics, luis, qna
+      href: reference/migrate.md
+    - name: Migrate from Text Analytics API to Language Service API
+      displayName: api versions, versioning
+      href: reference/migrate-language-service-latest.md
+    - name: Azure Language release history
+      displayName: changelog, release notes
+      href: reference/release-history.md
