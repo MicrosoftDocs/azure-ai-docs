@@ -5,7 +5,7 @@ titleSuffix: Azure Machine Learning
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sooryar
-ms.date: 02/09/2026
+ms.date: 02/11/2026
 ms.topic: how-to
 services: machine-learning
 ms.service: azure-machine-learning
@@ -19,14 +19,14 @@ ms.custom: automl, devx-track-dotnet
 
 In this article, you learn how to use an Azure Machine Learning AutoML Open Neural Network Exchange (ONNX) model to make predictions in a C# console application using ML.NET. [ML.NET](/dotnet/machine-learning/) is an open-source, cross-platform, machine learning framework for the .NET ecosystem that lets you train and consume custom machine learning models. ML.NET supports a code-first approach like C# or F#, or low-code tooling like [Model Builder](/dotnet/machine-learning/automate-training-with-model-builder) and the [ML.NET CLI](/dotnet/machine-learning/automate-training-with-cli).
 
-The ML.NET framework is extensible so you can use other popular machine learning frameworks like TensorFlow and ONNX. ONNX is an open-source format for AI models that supports interoperability between frameworks. You can train a model in a popular machine learning framework like PyTorch, convert it into ONNX format, and consume the ONNX model in a different framework like ML.NET. For more information, see the [ONNX website](https://onnx.ai/).
+The ML.NET framework is extensible so you can use other popular machine learning frameworks like TensorFlow and ONNX. [ONNX](https://onnx.ai/) is an open-source format for AI models that supports interoperability between frameworks. You can train a model in a popular machine learning framework like PyTorch, convert it into ONNX format, and consume the ONNX model in a different framework like ML.NET.
 
 ## Prerequisites
 
 - [.NET 6 SDK or later](https://dotnet.microsoft.com/download).
 - A command shell and text editor or an IDE such as [Visual Studio](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/Download).
 - An ONNX model. You can follow the [NYC taxi data regression notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/2c_nyc_taxi_data_regression/nyc_taxi_data_regression.ipynb) to create an example model.
-- Optionally, a tool like [Netron](https://github.com/lutzroeder/netron) to inspect the ONNX model.
+- Optionally, a tool like [`Netron`](https://github.com/lutzroeder/netron) to inspect the ONNX model.
 
 ## Create a C# console application
 
@@ -96,23 +96,23 @@ The [`MLContext`](xref:Microsoft.ML.MLContext) class is a starting point for all
 
 ## Define the model data schema
 
-A model expects input and output data in a specific format. ML.NET lets you define the format of your data via classes. The following table shows a sample from a model that uses data from the NYC TLC Taxi Trip dataset.
+A model expects input and output data in a specific format. ML.NET lets you define the format of your data via classes. The following table shows a sample from a model that uses data from the NYC Taxi Trip dataset.
 
 | vendor_id | rate_code | passenger_count | trip_time_in_secs | trip_distance | payment_type | fare_amount |
 |-----------|-----------|-----------------|-------------------|---------------|--------------|-------------|
-| VTS       | 1         | 1               | 1140              | 3.75          | CRD          | 15.5        |
-| VTS       | 1         | 1               | 480               | 2.72          | CRD          | 10.0        |
-| VTS       | 1         | 1               | 1680              | 7.8           | CSH          | 26.5        |
+| `VTS`       | 1         | 1               | 1140              | 3.75          | `CRD`          | 15.5        |
+| `VTS`       | 1         | 1               | 480               | 2.72          | `CRD`          | 10.0        |
+| `VTS`       | 1         | 1               | 1680              | 7.8           | `CSH`          | 26.5        |
 
 ### Inspect the ONNX model
 
- If you don't already know what your data format looks like, you can use a tool like Netron to inspect the ONNX model. To use Netron to inspect your model's inputs and outputs:
+ If you don't already know what your data format looks like, you can use a tool like `Netron` to inspect the ONNX model. To use `Netron` to inspect your model's inputs and outputs:
 
-1. Open Netron.
+1. Open `Netron`.
 1. In the top menu bar, select **File** > **Open** and use the file browser to select your model.
-1. Your model opens. For example, the structure of the *automl-model.onnx* model looks like the following screenshot:
+1. Your model opens. For example, the structure of the `automl-model.onnx` model looks like the following screenshot:
 
-   :::image type="content" source="media/how-to-use-automl-onnx-model-dotnet/netron-automl-onnx-model.png" alt-text="Screenshot showing a Netron AutoML ONNX Model.":::
+   :::image type="content" source="media/how-to-use-automl-onnx-model-dotnet/netron-automl-onnx-model.png" alt-text="Screenshot showing a `Netron` AutoML ONNX Model." lightbox="media/how-to-use-automl-onnx-model-dotnet/netron-automl-onnx-model.png":::
 
 1. Select the last node at the bottom of the graph, `variable_out1` in this case, to display the model's metadata. The inputs and outputs on the sidebar show you the model's expected inputs, outputs, and data types. Use this information to define the input and output schema of your model.
 
@@ -191,7 +191,7 @@ A pipeline in ML.NET is typically a series of chained transformations that opera
    var outputColumns = new string [] { "variable_out1" };
    ```
 
-1. Add code to define your pipeline. An [`IEstimator`](xref:Microsoft.ML.IEstimator%601) provides a blueprint of the operations and the input and output schemas of your pipeline.
+1. Add code that defines your pipeline. An [`IEstimator`](xref:Microsoft.ML.IEstimator%601) provides a blueprint of the operations and the input and output schemas of your pipeline.
 
    ```csharp
    var onnxPredictionPipeline =
@@ -203,7 +203,7 @@ A pipeline in ML.NET is typically a series of chained transformations that opera
                ONNX_MODEL_PATH);
    ```
 
-   In this case, [`ApplyOnnxModel`](xref:Microsoft.ML.OnnxCatalog.ApplyOnnxModel%2A) is the only transform in the pipeline, which takes in the names of the input and output columns as well as the path to the ONNX model file.
+   In this case, [`ApplyOnnxModel`](xref:Microsoft.ML.OnnxCatalog.ApplyOnnxModel%2A) is the only transform in the pipeline, which takes in the names of the input and output columns and the path to the ONNX model file.
 
 1. An [`IEstimator`](xref:Microsoft.ML.IEstimator%601) only defines the set of operations to apply to your data. Use the `Fit` method to create an [`ITransformer`](xref:Microsoft.ML.ITransformer) from your `onnxPredictionPipeline` to operate on your data.
 
