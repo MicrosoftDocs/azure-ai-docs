@@ -228,8 +228,8 @@ MODEL_DEPLOYMENT_NAME=gpt-4o-mini
 # The Microsoft Learn MCP Server (optional)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 
-# SharePoint integration (optional - requires connection ID)
-SHAREPOINT_CONNECTION_ID=<your-sharepoint-connection-id>
+# SharePoint integration (optional - requires connection name)
+SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
 ```
 
 # [C#](#tab/csharp)
@@ -239,8 +239,8 @@ SHAREPOINT_CONNECTION_ID=<your-sharepoint-connection-id>
 PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
 MODEL_DEPLOYMENT_NAME=gpt-4o-mini
 
-# SharePoint integration (optional - requires full ARM resource ID)
-SHAREPOINT_CONNECTION_ID=/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/connections/<connection-name>
+# SharePoint integration (optional - requires connection name)
+SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
 
 # The Microsoft Learn MCP Server (optional)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
@@ -294,7 +294,7 @@ Successful run with SharePoint:
 Graceful degradation without SharePoint:
 
 ```text
-📁 SharePoint integration skipped (SHAREPOINT_CONNECTION_ID not set)
+📁 SharePoint integration skipped (SHAREPOINT_CONNECTION_NAME not set)
 ✅ Agent created successfully (name: Modern Workplace Assistant, version: 1)
 ```
 
@@ -602,7 +602,7 @@ When you run the evaluation script, you see output similar to the following exam
 
 ```bash
 python evaluate.py
-Agent created (id: asst_abc123, name: Modern Workplace Assistant, version: 1)
+Agent created (name: Modern_Workplace_Assistant, version: 1)
 Evaluation created (id: eval_xyz789, name: Agent Evaluation)
 Evaluation run created (id: run_def456)
 Waiting for eval run to complete... current status: running
