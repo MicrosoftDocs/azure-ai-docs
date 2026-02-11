@@ -23,7 +23,7 @@ ms.custom: build-2025, pilot-ai-workflow-jan-2026
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Microsoft Foundry playgrounds provide an on-demand, zero-setup environment for rapid prototyping, API exploration, and technical validation. Use playgrounds to experiment with models and validate ideas before you commit a single line of production code.
+Microsoft Foundry playgrounds provide an on-demand, instant chat environment for rapid prototyping, API exploration, and technical validation. Use playgrounds to experiment with models and validate ideas before you commit a single line of production code.
 
 ## Prerequisites
 
@@ -54,8 +54,10 @@ Highlights of the Foundry playgrounds experience include:
 | ------------ | ---------- | ------------------- |
 | Model playground | Prompt engineering, model comparison, parameter tuning | Compare up to three models, system prompts, tools (web search, file search, code interpreter), safety guardrails, code export |
 | Agents playground | Multi-turn agent prototyping with tools and knowledge | Tool configuration, knowledge sources, memory, tracing, evaluation |
-| Video playground (preview) | Generative video workflows | Text-to-video, prompt iteration, grid comparison, multilingual code samples |
-| Images playground | Image generation and editing | Text-to-image, inpainting, model comparison, multilingual code samples |
+| Video playground (preview)<sup>1</sup> | Generative video workflows | *This is one of the modalities of the Model and Agents playgrounds* <br> Text-to-video, prompt iteration, grid comparison, multilingual code samples |
+| Images playground<sup>2</sup> | Image generation and editing | *This is one of the modalities of the Model and Agents playgrounds* <br> Text-to-image, inpainting, model comparison, multilingual code samples |
+
+<sup>1, 2</sup> Foundry provides a Model playground and an Agent playground. When you use the playground to experiment with a model, Foundry presents you with the relevant playground for that model. For example, when you use an image generation model like gpt-image-1, you're presented with the images playground. For a video model like Sora-2, Foundry opens up a video playground.
 
 ::: moniker-end
 
@@ -142,6 +144,9 @@ To get started with the agents playground, see the [Quickstart: Create a new age
 
 ::: moniker range="foundry"
 
+> [!NOTE]
+> When you use the Agents playground to experiment with a model, Foundry presents you with the relevant playground for that model. For example, when you use an image generation model like gpt-image-1, you're presented with the images playground. For a video model like Sora-2, Foundry opens up a video playground.
+
 In the agents playground, you can:
 
 - Configure agent instructions and persona.
@@ -170,6 +175,9 @@ To learn more about the chat playground, see the [Quickstart: Get answers in the
 ## Model playground
 
 When you deploy a model in the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal, you immediately land on its playground. The model playground is an interactive experience designed for developers to test and experiment with the latest models from providers like Azure OpenAI, DeepSeek, xAI, and Meta. The playground gives you full control over model behavior, safety, and deployment so that you can tune system prompts, compare model outputs in real time, or integrate tools like web search and code execution.
+
+> [!NOTE]
+> When you use the Model playground to experiment with a model, Foundry presents you with the relevant playground for that model. For example, when you use an image generation model like gpt-image-1, you're presented with the images playground. For a video model like Sora-2, Foundry opens up a video playground.
 
 The playground is designed for fast iteration and production readiness. It supports everything from prototyping to performance benchmarking. The playground prepares you to use your model in a production workflow, easily upgrade your model as an agent, and continue to prototype in the agent playground with additional tools, knowledge, and memory before deploying as an agentic web application. 
 
@@ -364,6 +372,13 @@ The Translator playground enables real-time validation of translation quality, p
 
 The video playground (preview) is your rapid iteration environment for exploring, refining, and validating generative video workflows. It's designed for developers who need to go from idea to prototype with precision, control, and speed. The playground gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles.
 
+::: moniker range="foundry"
+
+> [!NOTE]
+> The video playground is one of the modalities of the Model playground and Agent playground in Foundry. When you use the playground to experiment with a video model like Sora-2, Foundry opens up the video playground.
+
+::: moniker-end
+
 All model endpoints are integrated with **Azure AI Content Safety**. As a result, the video playground filters out harmful and unsafe images before they appear. If content moderation policies flag your text prompt or video generation, you get a warning notification.
 
 You can use the video playground with the **Azure OpenAI Sora-2** model.
@@ -493,6 +508,9 @@ Follow these steps to use the images playground:
 ::: moniker-end
 
 ::: moniker range="foundry"
+
+> [!NOTE]
+> The images playground is one of the modalities of the Model playground and Agent playground in Foundry. When you use the playground to experiment with an image-generation model, Foundry opens up the images playground. For example, for gpt-image-1, you're presented with the images playground.
 
 You can use the images playground with these models:
 
