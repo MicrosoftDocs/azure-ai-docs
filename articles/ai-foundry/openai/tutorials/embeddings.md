@@ -3,6 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models embeddings tutorial
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's embeddings API for document search with the BillSum dataset
 manager: nitinme
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
@@ -29,6 +30,12 @@ In this tutorial, you learn how to:
 [!INCLUDE [Python](../includes/embeddings-python.md)]
 
 Using this approach, you can use embeddings as a search mechanism across documents in a knowledge base. The user can then take the top search result and use it for their downstream task, which prompted their initial query.
+
+## Troubleshooting
+
+- **401/403**: Verify `AZURE_OPENAI_API_KEY` is set and matches your resource key.
+- **404**: Verify `AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT` matches your deployment name.
+- **Invalid URL**: Verify `AZURE_OPENAI_ENDPOINT` is your resource endpoint, for example `https://<resource-name>.openai.azure.com`.
 
 ## Clean up resources
 
