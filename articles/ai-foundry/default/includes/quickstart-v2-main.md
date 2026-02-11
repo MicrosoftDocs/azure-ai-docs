@@ -52,11 +52,8 @@ MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
 [!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
 
 
-## Next steps
-
-> [!div class="nextstepaction"]
-> [How to evaluate your agent](../../how-to/develop/evaluate-agent.md)
-
-
+## Next step
+ 
 > [!div class="nextstepaction"]
 > [Idea to prototype - Build and evaluate an enterprise agent](../tutorials/developer-journey-idea-to-prototype.md)
+

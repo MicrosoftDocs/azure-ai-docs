@@ -2,7 +2,6 @@
 title: Agent Evaluation with the Microsoft Foundry SDK
 titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to evaluate an AI agent with the Microsoft Foundry SDK
-monikerRange: 'foundry-classic'
 ms.service: azure-ai-foundry
 ms.custom: 
 - build-2025
@@ -18,7 +17,7 @@ ai-usage: ai-assisted
 
 # Evaluate your AI agents (preview)
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
