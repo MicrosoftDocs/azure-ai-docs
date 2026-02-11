@@ -105,7 +105,7 @@ You can control the fidelity of image processing using the `detail` parameter in
 
 After preparing your dataset with image examples, follow the standard fine-tuning workflow to submit your job:
 
-1. Upload your training file using the Files API or the Azure AI Foundry portal. Image validation may take longer than text-only uploads due to [content moderation screening](#content-moderation-policy).
+1. Upload your training file using the Files API or the Microsoft Foundry portal. Image validation may take longer than text-only uploads due to [content moderation screening](#content-moderation-policy).
 2. Create a fine-tuning job specifying your uploaded file and a [supported vision model](#model-support).
 3. Monitor the job until completion.
 
