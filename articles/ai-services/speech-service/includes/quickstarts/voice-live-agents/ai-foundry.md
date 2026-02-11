@@ -15,17 +15,11 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 ## Prerequisites
 
-:::moniker range="foundry"
-
 #### [Foundry (new) portal](#tab/foundry-new)
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
 - A Foundry agent created in [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
-
-:::moniker-end
-
-:::moniker range="foundry-classic"
 
 #### [Foundry (classic) portal](#tab/foundry-classic)
 
@@ -33,13 +27,9 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
 - A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
 
-:::moniker-end
-
 ## Try out Voice Live in the playground
 
 To try out the Voice Live demo, follow these steps:
-
-:::moniker range="foundry"
 
 #### [Foundry (new) portal](#tab/foundry-new)
 
@@ -54,10 +44,6 @@ To try out the Voice Live demo, follow these steps:
 1. Expand the right pane, which contains the Voice Live settings. Optionally choose a voice, adjust the VAD settings, set the voice temperature and speed, and other settings to configure voice behavior. The **Proactive engagement** toggle allows the agent to speak first in the conversation.
  
 1. Select **Start** to start speaking and select **End** to end the chat session.
-
-:::moniker-end
-
-:::moniker range="foundry-classic"
 
 #### [Foundry (classic) portal](#tab/foundry-classic)
 
@@ -75,5 +61,3 @@ To try out the Voice Live demo, follow these steps:
 1. Edit other settings as needed, such as the **Voice**, **Speaking rate**, and **Voice activity detection (VAD)**. The **Proactive engagement** toggle allows the agent to speak first in the conversation.
 
 1. Select **Start** to start speaking and select **End** to end the chat session.
-
-:::moniker-end
