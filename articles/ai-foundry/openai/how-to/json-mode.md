@@ -12,12 +12,16 @@ author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 
 ---
 
 # Learn how to use JSON mode
 
-JSON mode allows you to set the models response format to return a valid JSON object as part of a chat completion. While generating valid JSON was possible previously, there could be issues with response consistency that would lead to invalid JSON objects being generated.
+JSON mode allows you to set the model's response format to return a valid JSON object as part of a chat completion. While generating valid JSON was possible previously, there could be issues with response consistency that would lead to invalid JSON objects being generated.
+
+JSON mode guarantees valid JSON output, but it doesn't guarantee the output matches a specific schema. If you need schema guarantees, use Structured Outputs.
+
 
 > [!NOTE]
 > While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generate valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
@@ -34,6 +38,11 @@ JSON mode is only currently supported with the following models:
 Support for JSON mode was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
 ## Example
+
+Before you run the examples:
+
+- Replace `YOUR-RESOURCE-NAME` with your Azure OpenAI resource name.
+- Replace `YOUR-MODEL_DEPLOYMENT_NAME` 
 
 # [Python](#tab/python)
 
@@ -156,3 +165,8 @@ You should check `finish_reason` for the value `length` before parsing the respo
 
 JSON mode produces JSON that is valid and parses without error. However, there's no guarantee for
 output to match a specific schema, even if requested in the prompt.
+
+## Troubleshooting
+
+- If `finish_reason` is `length`, increase `max_tokens` (or reduce prompt length) and retry. Don't parse partial JSON.
+- If you need schema guarantees, switch to [Structured Outputs](./structured-outputs.md).

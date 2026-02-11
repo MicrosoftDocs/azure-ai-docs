@@ -5,7 +5,7 @@ description: Learn about the model router feature in Azure OpenAI in Microsoft F
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 01/29/2026
+ms.date: 02/10/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
@@ -33,8 +33,12 @@ To try model router quickly, follow [How to use model router](../how-to/model-ro
 > The [Microsoft Foundry (new)](../../what-is-foundry.md) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) to see the latest features.
 ::: moniker-end
 
+
 ## How model router works
 As a trained language model, model router analyzes your prompts in real time based on complexity, reasoning, task type, and other attributes. It does not store your prompts. It routes only to eligible models based on your access and deployment types, honoring data zone boundaries.
+
+> [!IMPORTANT]
+> The effective context window is limited by the smallest underlying model. For larger contexts, use [model subset](#model-subset) to select models that support your requirements.
 
 - In Balanced mode (default), it considers all underlying models within a small quality range (for example, 1% to 2% compared with the highest-quality model for that prompt) and picks the most cost-effective model.
 - In Cost mode, it considers a larger quality band (for example, 5% to 6% compared with the highest-quality model for that prompt) and chooses the most cost-effective model.
@@ -48,7 +52,7 @@ Model router optimizes costs and latencies while maintaining comparable quality.
 
 The latest version, `2025-11-18` adds several capabilities:
 1. Support Global Standard and Data Zone Standard deployments.
-1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `gpt-4o`, `gpt-4o-mini`, `claude-haiku-4-5`, `claude-opus-4-1`, and `claude-sonnet-4-5`.
+1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `claude-haiku-4-5`, `claude-opus-4-1`, and `claude-sonnet-4-5`.
 1. Quick deploy or Custom deploy with **routing mode** and **model subset** options.
 1. **Routing mode**: Optimize the routing logic for your needs. Supported options: `Quality`, `Cost`, `Balanced` (default).
 1. **Model subset**: Select your preferred models to create your model subset for routing.
@@ -124,6 +128,17 @@ To overcome the limits on context window and parameters, use the Model subset fe
 Model router accepts image inputs for [Vision enabled chats](../how-to/gpt-with-vision.md) (all of the underlying models can accept image input), but the routing decision is based on the text input only.
 
 Model router doesn't process audio input.
+
+## Troubleshooting
+
+| Issue | Resolution |
+|-------|------------|
+| Deployment fails | Verify your Foundry resource is in East US 2 or Sweden Central. |
+| Claude models not routing | Ensure Claude models are deployed separately before enabling in model router. |
+| Context exceeded error | Reduce prompt size or use model subset to select models with larger context windows. |
+| Unexpected model selection | Review your routing mode setting (Balanced, Cost, Quality) and model subset configuration. |
+
+For detailed deployment troubleshooting, see [How to use model router](../how-to/model-router.md).
 
 ## Billing information
 

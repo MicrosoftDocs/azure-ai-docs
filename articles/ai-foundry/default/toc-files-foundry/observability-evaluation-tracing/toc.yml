@@ -29,7 +29,7 @@ items:
    - name: Run evaluations in the cloud 
      href: ../../../how-to/develop/cloud-evaluation.md
    - name: Evaluate your AI agents
-     href: ../../../how-to/develop/agent-evaluate-sdk.md
+     href: ../../observability/how-to/evaluate-agent.md
      displayName: code,accuracy,metrics
    - name: Run evaluations from the portal
      href: ../../../how-to/evaluate-generative-ai-app.md
@@ -46,10 +46,11 @@ items:
   items:
    - name: AI red teaming agent overview
      href: ../../../concepts/ai-red-teaming-agent.md
-   - name: Run red teaming scans locally 
-     href: ../../../how-to/develop/run-scans-ai-red-teaming-agent.md
    - name: Run red teaming scans in the cloud
      href: ../../../how-to/develop/run-ai-red-teaming-cloud.md
+   - name: Run red teaming scans locally 
+     href: ../../../how-to/develop/run-scans-ai-red-teaming-agent.md
+
 - name: CI/CD evaluations 
   items:
    - name: Evaluation in GitHub Actions 
