@@ -12,7 +12,6 @@ ms.author: pafarley
 ms.reviewer: pafarley
 zone_pivot_groups: voice-live-quickstart-agents
 recommendations: false
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live (preview)
@@ -21,7 +20,7 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../../ai-foundry/includes/version-banner.md)]
 
-:::moniker range="foundry"
+#### [Foundry (new) portal](#tab/foundry-new)
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]
@@ -35,15 +34,11 @@ monikerRange: 'foundry-classic || foundry'
 [!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)]
 ::: zone-end
 
-:::moniker-end
-
-:::moniker range="foundry-classic"
+#### [Foundry (classic) portal](#tab/foundry-classic)
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]
 ::: zone-end
-
-:::moniker-end
 
 ## Related content
 
