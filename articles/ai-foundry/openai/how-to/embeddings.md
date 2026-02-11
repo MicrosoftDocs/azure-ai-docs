@@ -27,13 +27,6 @@ An embedding is a special format of data representation that can be easily utili
 	- API key.
 	- Model deployment name.
 
-### Install the client library (optional)
-
-- C#: `dotnet add package OpenAI`
-- Go: `go get -u 'github.com/openai/openai-go'`
-- JavaScript: `npm install openai`
-- Python: `pip install openai`
-
 For more language-specific setup guidance, see [Azure OpenAI supported programming languages](../supported-languages.md).
 
 ## How to get embeddings
@@ -123,7 +116,7 @@ func main() {
 import OpenAI from "openai";
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-	apiKey: process.env['AZURE_OPENAI_API_KEY'] // Your Azure OpenAI API key.
+    apiKey: process.env['OPENAI_API_KEY'] //Your Azure OpenAI API key
 });
 
 const embedding = await client.embeddings.create({
@@ -178,7 +171,7 @@ $body = [ordered]@{
 $url = "$($openai.api_base)/openai/v1/embeddings"
 
 $response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'
-return $response.data[0].embedding
+return $response.data.embedding
 ```
 
 # [REST](#tab/console)
