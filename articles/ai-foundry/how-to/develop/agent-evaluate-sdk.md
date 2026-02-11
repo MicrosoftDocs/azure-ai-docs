@@ -52,7 +52,7 @@ As a best practice, it's crucial to perform:
 
 See [agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) for detailed information about the use case of the two practices and a sample of each agent evaluator.
 
-You can also assess other quality and safety aspects of your agentic workflows, using our [comprehensive suite of built-in evaluators](../../concepts/observability.md#what-are-evaluators) or write [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
+You can also assess other quality and safety aspects of your agentic workflows, using our [comprehensive suite of built-in evaluators](../../concepts/built-in-evaluators.md). or write [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
 If you're building Foundry Agents, you can [seamlessly evaluate them](#evaluate-microsoft-foundry-agents).
 
