@@ -77,9 +77,6 @@ If you're using QnA Maker, you can [import your QnA Maker knowledge base](../que
    * Create, test, and deploy a custom question answering knowledge base in the Microsoft Foundry (classic) Language playground.
    * [Create, test, and deploy: CQA knowledge base](../question-answering/how-to/create-test-deploy.md) provides instructions on creating and testing your project.
 
-## Do I need to migrate to Azure Language if I'm using Text Analytics?
-
-Text Analytics is incorporated into Azure Language, and its features are still available. If you're using Text Analytics features, your applications should continue to work without breaking changes. If you're using Text Analytics API (v2.x or v3), see the [Text Analytics migration guide](migrate-language-service-latest.md) to migrate your applications to the unified Language endpoint and the latest client library.
 
 Consider using one of the available quickstart articles to see the latest information on service endpoints, and API calls.
 
