@@ -142,7 +142,7 @@ You need to delete the existing analyzer to reuse the name.
 - Person directory and Face API aren't part of the GA APIs, including the video analyzer features to detect and recognize faces in videos.
 - The `TrainingData` feature is being deprecated and replaced with the `knowledgeSources` feature.
 
-# Related content
+## Related content
 
 - [Learn more about Content Understanding pricing](../pricing-explainer.md)
 - [Learn more about Content Understanding analyzers](../concepts/analyzer-reference.md)
