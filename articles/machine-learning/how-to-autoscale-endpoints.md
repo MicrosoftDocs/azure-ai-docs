@@ -40,12 +40,12 @@ To implement autoscale for an online endpoint, you enable autoscale settings and
 
 # [Azure CLI](#tab/cli)
 
-1. If you haven't already set defaults for Azure CLI, run the following commands to avoid repeatedly specifying values for your subscription, workspace, and resource group.
+1. If you didn't already set defaults for Azure CLI, run the following commands to avoid repeatedly specifying values for your subscription, workspace, and resource group.
 
-```azurecli
-az account set --subscription <subscription ID>
-az configure --defaults workspace=<Azure Machine Learning workspace name> group=<resource group>
-```
+   ```azurecli
+   az account set --subscription <subscription ID>
+   az configure --defaults workspace=<Azure Machine Learning workspace name> group=<resource group>
+   ```
 
 1. Set the endpoint and deployment names:
 
