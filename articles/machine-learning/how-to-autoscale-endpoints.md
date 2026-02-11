@@ -9,7 +9,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
 ms.custom: devplatv2, cliv2, update-code
-ms.date: 02/09/2026
+ms.date: 02/11/2026
 
 #customer intent: As a developer, I want to autoscale online endpoints in Azure Machine Learning so I can control resource usage in my deployment based on metrics or schedules.
 ---
@@ -31,23 +31,21 @@ You can manage autoscaling by using REST APIs, Azure Resource Manager, Azure CLI
 ## Prerequisites
 
 - An Azure Machine Learning workspace with a deployed endpoint. For more information, see [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md). 
-- To use the Azure Monitor service, the Python SDK `azure-mgmt-monitor` package installed by using `pip install azure-mgmt-monitor`.
+- The Python SDK `azure-mgmt-monitor` package installed by using `pip install azure-mgmt-monitor`.
 - The `microsoft.insights/autoscalesettings/write` permission assigned to the identity that manages autoscale, through any built-in or custom role that allow this action. For more information, see [Manage users and roles](how-to-assign-roles.md).
 
 ## Define an autoscale profile
 
-To enable autoscale for an online endpoint, you first define an autoscale profile. The profile specifies the default, minimum, and maximum scale set capacity. The following example shows how to set the number of virtual machine (VM) instances for minimum, maximum, and default scale capacity.
+To implement autoscale for an online endpoint, you enable autoscale settings and then define a default autoscale profile that specifies the minimum, maximum, and default scale set capacity. The following procedure enables autoscaling and sets the number of virtual machine (VM) instances for minimum, maximum, and default scale capacity.
 
 # [Azure CLI](#tab/cli)
 
-If you haven't already set the defaults for Azure CLI, run the following code to avoid repeatedly specifying values for your subscription, workspace, and resource group.
+1. If you haven't already set defaults for Azure CLI, run the following commands to avoid repeatedly specifying values for your subscription, workspace, and resource group.
 
 ```azurecli
 az account set --subscription <subscription ID>
 az configure --defaults workspace=<Azure Machine Learning workspace name> group=<resource group>
 ```
-
-To define an autoscale profile:
 
 1. Set the endpoint and deployment names:
 
@@ -64,8 +62,6 @@ To define an autoscale profile:
 For more information, see the [az monitor autoscale](/cli/azure/monitor/autoscale) reference.
 
 # [Python SDK](#tab/python)
-
-To define an autoscale profile:
 
 1. Import the necessary modules:
 
@@ -114,7 +110,7 @@ To define an autoscale profile:
    )
    ```
 
-1. Create an autoscale profile: 
+1. Create the autoscale settings and a profile named `my_scale_settings`: 
 
    ```python
    # Set a unique name for autoscale settings for this deployment. The following code appends a random number to create a unique name.
@@ -155,11 +151,11 @@ To define an autoscale profile:
 
 1. The Azure portal **Scaling** page for the deployment opens. On this page, select **Custom autoscale** under **Choose how to scale your resources**.
 
-1. In the **Default** pane, select **Scale based on a metric**.
+1. In the **Default** profile pane, select **Scale based on a metric**.
 
 1. Under **Instance limits**, set **Minimum** to *2*, **Maximum** to *5*, and **Default** to *2*.
 
-1. Under **Rules**, select the **Add a rule** link.
+1. Select **Save** at the top of the page.
 
    :::image type="content" source="media/how-to-autoscale-endpoints/choose-custom-autoscale.png" alt-text="Screenshot that shows how to configure the autoscale settings in the studio." lightbox="media/how-to-autoscale-endpoints/choose-custom-autoscale.png":::
 
@@ -231,6 +227,8 @@ For more information, see the [az monitor autoscale](/cli/azure/monitor/autoscal
    ```
 
 # [Studio](#tab/azure-studio)
+
+1. On the **Scaling** page **Default** profile, select the **Add a rule** link in the **Rules** section.
 
 1. On the **Scale rule** page, configure the following values:
 
@@ -332,7 +330,7 @@ The following steps adjust the **Rules** configuration to support a scale in rul
 
 1. On the **Scaling** page, select **Save**.
 
-If you configure both scale-out and scale-in rules, the **Rules** section of the **Scaling** page looks similar to the following screenshot. The rules specify that if average CPU load exceeds 70% for 5 minutes, two more nodes should be allocated, up to the limit of five. If CPU load is less than 30% for 5 minutes, a single node should be released, down to the minimum of two. 
+If you configure both scale-out and scale-in rules, your **Rules** for the **Default** profile look similar to the following screenshot. The rules specify that if average CPU load exceeds 70% for 5 minutes, two more nodes should be allocated, up to the limit of five. If CPU load is less than 30% for 5 minutes, a single node should be released, down to the minimum of two. 
 
 :::image type="content" source="media/how-to-autoscale-endpoints/autoscale-rules-final.png" alt-text="Screenshot that shows the autoscale settings including the scale in and scale-out rules.":::
 
