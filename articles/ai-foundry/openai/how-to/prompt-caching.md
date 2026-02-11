@@ -12,6 +12,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Prompt caching
@@ -23,11 +24,11 @@ Azure AI Foundry Model prompt caches are cleared within 24 hours. Prompt caches 
 ## Supported models
 
 - Prompt caching is supported with all Azure OpenAI models GPT-4o or newer.
-- Prompt caching applies to models that have chat-completion, completion, responses, or real-time operations. For models which don't have these operations, this feature isn't available.
+- Prompt caching applies to models that have chat-completion, completion, responses, or real-time operations. For models that don't have these operations, this feature isn't available.
 
 ## Getting started
 
-For a request to take advantage of prompt caching the request must be both:
+To take advantage of prompt caching, a request must meet both of these requirements:
 
 - A minimum of 1,024 tokens in length.
 - The first 1,024 tokens in the prompt must be identical.
@@ -73,8 +74,8 @@ Feature support of o1-series models varies by model. For more information, see o
 
 Prompt caching is supported for:
 
-|**Caching supported**|**Description**|
-|--------|--------|--------|
+| **Caching supported** | **Description** |
+| --- | --- |
 | **Messages** | The complete messages array: system, developer, user, and assistant content |
 | **Images** | Images included in user messages, both as links or as base64-encoded data. The detail parameter must be set the same across requests. |
 | **Tool use** | Both the messages array and tool definitions. |
