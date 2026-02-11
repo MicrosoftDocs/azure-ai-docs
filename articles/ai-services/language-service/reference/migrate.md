@@ -1,5 +1,5 @@
 ---
-title: "Migrate to Azure Language in Foundry Tools from: Language Understanding (LUIS), QnA Maker, and Text Analytics"
+title: "Migrate to Azure Language from Language Understanding (LUIS) or QnA Maker"
 titleSuffix: Foundry Tools
 description: Use this article to learn if you need to migrate your applications from Language Understanding (LUIS), QnA Maker, and Text Analytics.
 author: laujan
