@@ -29,7 +29,7 @@ items:
    - name: Run evaluations in the cloud 
      href: ../../../how-to/develop/cloud-evaluation.md
    - name: Evaluate your AI agents
-     href: ../../../how-to/develop/agent-evaluate-sdk.md
+     href: ../../../how-to/develop/evaluate-agent.md
      displayName: code,accuracy,metrics
    - name: Run evaluations from the portal
      href: ../../../how-to/evaluate-generative-ai-app.md
