@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/11/2026
+ms.date: 02/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -71,7 +71,7 @@ Java SDK samples are coming soon.
 | `project_connection_id` | Yes | The resource ID of the project connection to Azure AI Search. |
 | `index_name` | Yes | The name of the index in your Azure AI Search resource. |
 | `top_k` | No | Defaults to 5. |
-| `query_type` | No | Defaults to `vector_semantic_hybrid`. Supported values: `simple`, `vector`, `semantic`, `vector_simple`, `vector_semantic_hybrid`. |
+| `query_type` | No | Defaults to `vector_semantic_hybrid`. Supported values: `simple`, `vector`, `semantic`, `vector_simple_hybrid`, `vector_semantic_hybrid`. |
 | `filter` | No | Applies to all queries the agent makes to the index. |
 
 ## Code example
