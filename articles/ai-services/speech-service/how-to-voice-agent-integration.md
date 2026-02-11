@@ -24,9 +24,9 @@ __**DRAFT TO BE populated and updated from quickstart**__
 [!INCLUDE [Python quickstart](./includes/how-to/voice-live-agents/python.md)]
 ::: zone-end
 
-<!-- ::: zone pivot="programming-language-csharp"
-[!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)]
-::: zone-end -->
+::: zone pivot="programming-language-csharp"
+<!-- [!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)] -->
+::: zone-end
 
 ## Migration from the previous version
 

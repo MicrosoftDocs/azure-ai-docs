@@ -18,7 +18,7 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 ## Prerequisites
 
 > [!NOTE]
-> This document refers to the [Microsoft Foundry (new)](../what-is-foundry.md#microsoft-foundry-portals) portal and the latest Foundry Agent Service version.
+> This document refers to the [Microsoft Foundry (new)](../../../../../ai-foundry/what-is-foundry.md#microsoft-foundry-portals) portal and the latest Foundry Agent Service version.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.

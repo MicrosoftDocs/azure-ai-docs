@@ -13,33 +13,20 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 [!INCLUDE [Introduction](intro.md)]
 
-## Prerequisites
-
 #### [Foundry (new) portal](#tab/foundry-new)
 
+## Prerequisites
+
 > [!NOTE]
-> This document refers to the [Microsoft Foundry (new)](../what-is-foundry.md#microsoft-foundry-portals) portal.
+> This document refers to the [Microsoft Foundry (new)](../../../../../ai-foundry/what-is-foundry.md#microsoft-foundry-portals) portal.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
 - A Foundry agent created in [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
 
-#### [Foundry (classic) portal](#tab/foundry-classic)
-
-> [!NOTE]
-> This document refers to the [Microsoft Foundry (classic)](../what-is-foundry.md#microsoft-foundry-portals) portal.
->
-> 🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
-
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
-- A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
-
 ## Try out Voice Live in the playground
 
 To try out the Voice Live demo, follow these steps:
-
-#### [Foundry (new) portal](#tab/foundry-new)
 
 1. [!INCLUDE [foundry-sign-in](../../../../../ai-foundry/default/includes/foundry-sign-in.md)]
 
@@ -54,6 +41,21 @@ To try out the Voice Live demo, follow these steps:
 1. Select **Start** to start speaking and select **End** to end the chat session.
 
 #### [Foundry (classic) portal](#tab/foundry-classic)
+
+## Prerequisites
+
+> [!NOTE]
+> This document refers to the [Microsoft Foundry (classic)](../../../../../ai-foundry/what-is-foundry.md#microsoft-foundry-portals) portal.
+>
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
+- A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
+
+## Try out Voice Live in the playground
+
+To try out the Voice Live demo, follow these steps:
 
 1. [!INCLUDE [classic-sign-in](../../../../../ai-foundry/includes/classic-sign-in.md)] 
 1. Select **Playgrounds** from the left pane.
