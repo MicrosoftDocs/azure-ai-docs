@@ -25,6 +25,13 @@ The AI application lifecycle requires robust evaluation frameworks to ensure AI 
 
 [!INCLUDE [evaluation-preview](../includes/evaluation-preview.md)]
 
+## Prerequisites
+
+- A [Microsoft Foundry project](../how-to/create-projects.md) with a deployed model or agent.
+- **Contributor** or **Owner** role on the Foundry project to configure evaluations.
+- (Optional) An [Azure Monitor Application Insights](/azure/azure-monitor/app/app-insights-overview) resource for production monitoring and tracing. You can [create a new resource](/azure/azure-monitor/app/create-workspace-resource) or [attach an existing one](../how-to/develop/trace-application.md). Required to enable tracing.
+- (Optional) The [Microsoft Foundry SDK](../how-to/develop/evaluate-sdk.md) for running evaluations within your development environment.
+
 ## What is observability?
 
 AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. Teams can trace and evaluate locally in their development environment, integrate automated quality gates into CI/CD pipelines (see [Evaluate with GitHub Actions](../how-to/develop/evaluation-github-action.md) and [Evaluate with Azure DevOps](../how-to/develop/evaluation-azure-devops.md)), and collect signals such as evaluation metrics, logs, traces, and model outputs to gain visibility into performance, quality, safety, and operational health.
@@ -172,22 +179,26 @@ Currently certain AI-assisted evaluators are available only in the following reg
 | Norway East | Supported |
 | Sweden Central | Supported |
 
-### ACA excluded regions (all evaluation tests)
+### Batch evaluation excluded regions
 
-All evaluation tests are skipped in regions where Azure Container Apps (ACA) is unavailable:
+Batch evaluations aren't supported in the following regions:
 
-- South Central US
-- Central US
-- Spain Central
-- Southeast Asia
 - Canada Central
+- Qatar Central
+- South Central US
+- Southeast Asia
+- Spain Central
 
 ### OpenAI grader excluded regions
 
-The following tests are skipped in regions where OpenAI grader/custom code evaluator isn't supported:
+The following regions don't support OpenAI grader/custom code evaluator:
 
-- East US
 - Canada East
+- Central India
+- East Asia
+- East US
+- North Europe
+- South India
 
 ## Rate limits
 
@@ -198,9 +209,19 @@ The following rate limits apply to evaluation runs:
 | Maximum size per row | 2 MB |
 | Maximum rows per batch evaluation | 100,000 |
 
+Evaluation run creations are rate-limited at the tenant, subscription, and project levels. If you exceed the limit:
+
+- The response includes a `retry-after` header with the wait time.
+- The response body contains rate limit details.
+
+Use exponential backoff when retrying failed requests.
+
 ## Pricing
 
 Observability features such as Risk and Safety Evaluations and Continuous Evaluations are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+
+> [!NOTE]
+> Playground evaluations are enabled by default for all Foundry projects and are included in consumption-based billing. To turn off playground evaluations, unselect metrics in the upper right of the agents playground.
 
 ## Related content
 
