@@ -82,15 +82,11 @@ Priority processing provides low-latency performance with the flexibility of pay
 > [!NOTE]
 > Model and region availability might expand during the preview period. Check this page for updates.
 
-### Known issues
+### Known issue
 
-Priority processing currently has these limitations, and fixes are underway:
-
-- **Long context limit for gpt-4.1:** The service doesn't support requests that exceed 128,000 tokens and returns an HTTP 400 error.
+Priority processing currently has this limitation, and a fix is underway:
 
 - **No support for PTU spillover:** The service doesn't yet support PTU spillover to a priority-processing–enabled deployment. If you need spillover behavior, implement your own logic, such as by using Azure API Management.
-
-- **Incorrect service_tier value when using streaming in the Responses API:** When streaming responses through the Responses API, the `service_tier` field might incorrectly return "priority", even if capacity constraints or ramp limits caused the request to be served by the standard tier. In this case, the expected value for `service_tier` is "default".
 
 ## Enable priority processing at the deployment level
 
@@ -204,10 +200,9 @@ If priority processing performance degrades and a customer's traffic ramps up to
 
 | Issue | Cause | Resolution |
 | ------- | ------- | ------------ |
-| HTTP 400 error on long prompts | gpt-4.1 doesn't support requests exceeding 128,000 tokens in priority processing. | Keep total request tokens under 128,000. Split long prompts into smaller requests. |
 | Requests downgraded to standard tier | Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. | Increase traffic gradually. Consider purchasing PTU for steady-state capacity. |
 | PTU spillover not working | Priority processing doesn't yet support PTU spillover to a priority-processing–enabled deployment. | Implement custom spillover logic, such as by using Azure API Management. |
-| `service_tier` returns incorrect value during streaming | When streaming via the Responses API, `service_tier` might report `"priority"` even when the request was served by the standard tier. | Check billing records to confirm which tier actually processed the request. |
+
 
 ## API support
 
