@@ -27,7 +27,7 @@ You can call the retrieve action directly using the Search Service REST APIs or 
 
 + If the knowledge base specifies an LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
-+ The [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) REST API or a preview Azure SDK package: [.NET](/dotnet/api/azure.search.documents?view=azure-dotnet-preview&preserve-view=true) | [Java](/java/api/com.azure.search.documents?view=azure-java-preview&preserve-view=true) | [JavaScript](/javascript/api/@azure/search-documents?view=azure-node-preview&preserve-view=true) | [Python](/python/api/azure-search-documents?view=azure-python-preview&preserve-view=true).
++ The [2025-11-01-preview](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) REST API or an equivalent Azure SDK preview package: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 ## Call the retrieve action
 
@@ -77,10 +77,10 @@ Pass the following parameters to call the retrieve action.
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `messages` | Articulates the messages sent to an LLM. The message format is similar to Azure OpenAI APIs. | Object | Yes | No |
+| [`messages`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true#knowledgeagentmessage) | Articulates the messages sent to an LLM. The message format is similar to Azure OpenAI APIs. | Object | Yes | No |
 | `role` | Defines where the message came from, such as `assistant` or `user`. The model you use determines which roles are valid. | String | Yes | No |
 | `content` | The message or prompt sent to the LLM. In this preview, it must be text. | String | Yes | No |
-| `knowledgeSourceParams` | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
+| [`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true#searchindexknowledgesourceparams) | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
 
 ### Retrieval from a search index
 

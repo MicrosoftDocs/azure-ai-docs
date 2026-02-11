@@ -36,7 +36,7 @@ You can enable answer synthesis in two ways:
 
 + For outbound calls to the LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
-+ The [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) REST API or a preview Azure SDK package: [.NET](/dotnet/api/azure.search.documents?view=azure-dotnet-preview&preserve-view=true) | [Java](/java/api/com.azure.search.documents?view=azure-java-preview&preserve-view=true) | [JavaScript](/javascript/api/@azure/search-documents?view=azure-node-preview&preserve-view=true) | [Python](/python/api/azure-search-documents?view=azure-python-preview&preserve-view=true).
++ The [2025-11-01-preview](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) REST API or an equivalent Azure SDK preview package: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 ## Enable answer synthesis in a knowledge base
 
