@@ -314,16 +314,6 @@ We recommend the following workflow:
 1. Observe the utilization, tokens processed and call rate values from benchmark tool and Azure Monitor.
 1. Run a benchmark with your own traffic shape and workloads using your client implementation. Be sure to implement retry logic using either an Azure OpenAI client library or custom logic. 
 
-
-## Troubleshoot provisioned deployments
-
-| Issue | Cause | Resolution |
-|-------|-------|------------|
-| Deployment creation fails with quota error | Not enough PTU quota available in the selected region | Check quota usage in the Foundry portal **Quota** pane and request more quota or free up existing deployments |
-| Deployment stuck in provisioning state | Capacity constraints in the region | Wait and retry, or try deploying in a different region with available capacity |
-| Unexpected high charges on invoice | Provisioned deployments bill hourly regardless of usage | Consider purchasing an [Azure Reservation](/azure/cost-management-billing/reservations/azure-openai) for a term discount, or delete unused deployments |
-| 429 responses despite low utilization | Burst of requests exceeding momentary capacity | Implement retry logic as described in the [handle high utilization](#handle-high-utilization) section |
-
 ## Related content
 
 * For more information on cloud application best practices, check out [Best practices in cloud applications](/azure/architecture/best-practices/index-best-practices)
