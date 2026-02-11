@@ -4,10 +4,9 @@ author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: azure-ai-foundry
+ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 11/06/2025
-ms.subservice: azure-ai-foundry-openai
+ms.date: 2/20/2026
 ---
 
 In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for python. 
@@ -20,19 +19,13 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
+- The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../../../../ai-foundry/how-to/develop/install-cli-sdk.md).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
-- A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
+- A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../tutorials/quickstart-create-foundry-resources.md).
+<!-- - A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](../../../../../ai-foundry/quickstarts/get-started-code.md). -->
+- Assign the `Azure AI User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-> [!TIP]
-> To use Voice Live, you don't need to deploy an audio model with your Microsoft Foundry resource. Voice Live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [Voice Live overview documentation](../../../voice-live.md).
-
-## Microsoft Entra ID prerequisites
-
-For the recommended keyless authentication with Microsoft Entra ID, you need to:
-- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
-- Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
-
-## Set up
+## Prepare the environment
 
 1. Create a new folder `voice-live-quickstart` and go to the quickstart folder with the following command:
 
@@ -73,7 +66,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
     ```txt
-    azure-ai-voicelive[aiohttp]
+    azure-ai-projects>=2.0.0b3
+    openai
+    azure-ai-voicelive>=1.2.0b3
     pyaudio
     python-dotenv
     azure-identity
@@ -89,44 +84,81 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-## Start a conversation
+## Create an agent with Voice Live settings
+
+```python
+import os
+import json
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition
+
+load_dotenv()
+
+project_client = AIProjectClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+
+voice_live_configuration = {
+    "session": {
+        "voice": {"name": "en-US-Ava:DragonHDLatestNeural", "type": "azure-standard", "temperature": 0.8},
+        "input_audio_transcription": {"model": "azure-speech", "language": "en"},
+        "turn_detection": {"type": "azure_semantic_vad",
+            "end_of_utterance_detection": {
+                "model": "semantic_detection_v1"
+            },
+        },
+        "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"},
+        "input_audio_echo_cancellation": {"type": "server_echo_cancellation"}
+    }
+}
+
+agent = project_client.agents.create_version(
+    agent_name=os.environ["AGENT_NAME"],
+    definition=PromptAgentDefinition(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        instructions="You are a helpful assistant that answers general questions",
+    ),
+    metadata={
+        "microsoft.voice-live.configuration": json.dumps(voice_live_configuration)
+    },
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+
+## Talk with a voice agent
 
 The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method.
 
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 
     ```python
-    # -------------------------------------------------------------------------
-    # Copyright (c) Microsoft Corporation. All rights reserved.
-    # Licensed under the MIT License.
-    # -------------------------------------------------------------------------
     from __future__ import annotations
     import os
     import sys
-    import argparse
     import asyncio
     import base64
     from datetime import datetime
     import logging
     import queue
     import signal
-    from typing import Union, Optional, TYPE_CHECKING, cast
+    from typing import Any, Union, Optional, TYPE_CHECKING, cast
     
     from azure.core.credentials import AzureKeyCredential
     from azure.core.credentials_async import AsyncTokenCredential
-    from azure.identity.aio import AzureCliCredential, DefaultAzureCredential
+    from azure.identity.aio import AzureCliCredential
     
     from azure.ai.voicelive.aio import connect
     from azure.ai.voicelive.models import (
-        AudioEchoCancellation,
-        AudioNoiseReduction,
-        AzureStandardVoice,
         InputAudioFormat,
         Modality,
         OutputAudioFormat,
         RequestSession,
         ServerEventType,
-        ServerVad
+        MessageItem,
+        InputTextContentPart,
     )
     from dotenv import load_dotenv
     import pyaudio
@@ -135,16 +167,13 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
         # Only needed for type checking; avoids runtime import issues
         from azure.ai.voicelive.aio import VoiceLiveConnection
     
-    ## Change to the directory where this script is located
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    
     # Environment variable loading
-    load_dotenv('./.env', override=True)
+    _script_dir = os.path.dirname(os.path.abspath(__file__))
+    load_dotenv(os.path.join(_script_dir, '.env'), override=True)
     
     # Set up logging
     ## Add folder for logging
-    if not os.path.exists('logs'):
-        os.makedirs('logs')
+    os.makedirs(os.path.join(_script_dir, 'logs'), exist_ok=True)
     
     ## Add timestamp for logfiles
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -154,7 +183,7 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
     
     ## Set up logging
     logging.basicConfig(
-        filename=f'logs/{timestamp}_voicelive.log',
+        filename=os.path.join(_script_dir, 'logs', f'{timestamp}_voicelive.log'),
         filemode="w",
         format='%(asctime)s:%(name)s:%(levelname)s:%(message)s',
         level=logging.INFO
@@ -180,7 +209,7 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
                 self.seq_num = seq_num
                 self.data = data
     
-        def __init__(self, connection):
+        def __init__(self, connection: VoiceLiveConnection) -> None:
             self.connection = connection
             self.audio = pyaudio.PyAudio()
     
@@ -200,7 +229,7 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
     
             logger.info("AudioProcessor initialized with 24kHz PCM16 mono audio")
     
-        def start_capture(self):
+        def start_capture(self) -> None:
             """Start capturing audio from microphone."""
             def _capture_callback(
                 in_data,      # data
@@ -235,7 +264,7 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
                 logger.exception("Failed to start audio capture")
                 raise
     
-        def start_playback(self):
+        def start_playback(self) -> None:
             """Initialize audio playback system."""
             if self.output_stream:
                 return
@@ -298,7 +327,7 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
                 logger.exception("Failed to initialize audio playback")
                 raise
     
-        def _get_and_increase_seq_num(self):
+        def _get_and_increase_seq_num(self) -> int:
             seq = self.next_seq_num
             self.next_seq_num += 1
             return seq
@@ -310,11 +339,11 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
                     seq_num=self._get_and_increase_seq_num(),
                     data=audio_data))
     
-        def skip_pending_audio(self):
+        def skip_pending_audio(self) -> None:
             """Skip current audio in playback queue."""
             self.playback_base = self._get_and_increase_seq_num()
     
-        def shutdown(self):
+        def shutdown(self) -> None:
             """Clean up audio resources."""
             if self.input_stream:
                 self.input_stream.stop_stream()
@@ -349,40 +378,33 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
             self,
             endpoint: str,
             credential: Union[AzureKeyCredential, AsyncTokenCredential],
-            agent_id: str,
-            foundry_project_name: str,
-            voice: str,
+            agent_name: str,
+            project_name: str
         ):
     
             self.endpoint = endpoint
             self.credential = credential
-            self.agent_id = agent_id
-            self.foundry_project_name = foundry_project_name
-            self.voice = voice
+            self.agent_name = agent_name
+            self.project_name = project_name
             self.connection: Optional["VoiceLiveConnection"] = None
             self.audio_processor: Optional[AudioProcessor] = None
             self.session_ready = False
-            self.conversation_started = False
+            self.greeting_sent = False
             self._active_response = False
             self._response_api_done = False
     
-        async def start(self):
+        async def start(self) -> None:
             """Start the voice assistant session."""
             try:
-                logger.info("Connecting to VoiceLive API with Foundry agent connection %s for project %s", self.agent_id, self.foundry_project_name)
-    
-                # Get agent access token
-                agent_access_token = (await DefaultAzureCredential().get_token("https://ai.azure.com/.default")).token
-                logger.info("Obtained agent access token")
+                logger.info("Connecting to VoiceLive API with Foundry agent connection %s for project %s", self.agent_name, self.project_name)
     
                 # Connect to VoiceLive WebSocket API
                 async with connect(
                     endpoint=self.endpoint,
                     credential=self.credential,
                     query={
-                        "agent-id": self.agent_id,
-                        "agent-project-name": self.foundry_project_name,
-                        "agent-access-token": agent_access_token
+                        "agent-name": self.agent_name,
+                        "agent-project-name": self.project_name
                     },
                 ) as connection:
                     conn = connection
@@ -411,77 +433,72 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
                 if self.audio_processor:
                     self.audio_processor.shutdown()
     
-        async def _setup_session(self):
+        async def _setup_session(self) -> None:
             """Configure the VoiceLive session for audio conversation."""
             logger.info("Setting up voice conversation session...")
-    
-            # Create voice configuration
-            voice_config: Union[AzureStandardVoice, str]
-            if self.voice.startswith("en-US-") or self.voice.startswith("en-CA-") or "-" in self.voice:
-                # Azure voice
-                voice_config = AzureStandardVoice(name=self.voice)
-            else:
-                # OpenAI voice (alloy, echo, fable, onyx, nova, shimmer)
-                voice_config = self.voice
-    
-            # Create turn detection configuration
-            turn_detection_config = ServerVad(
-                threshold=0.5,
-                prefix_padding_ms=300,
-                silence_duration_ms=500)
     
             # Create session configuration
             session_config = RequestSession(
                 modalities=[Modality.TEXT, Modality.AUDIO],
-                voice=voice_config,
                 input_audio_format=InputAudioFormat.PCM16,
                 output_audio_format=OutputAudioFormat.PCM16,
-                turn_detection=turn_detection_config,
-                input_audio_echo_cancellation=AudioEchoCancellation(),
-                input_audio_noise_reduction=AudioNoiseReduction(type="azure_deep_noise_suppression"),
             )
     
             conn = self.connection
-            assert conn is not None, "Connection must be established before setting up session"
+            if conn is None:
+                raise RuntimeError("Connection must be established before setting up session")
             await conn.session.update(session=session_config)
     
             logger.info("Session configuration sent")
     
-        async def _process_events(self):
+        async def _process_events(self) -> None:
             """Process events from the VoiceLive connection."""
             try:
                 conn = self.connection
-                assert conn is not None, "Connection must be established before processing events"
+                if conn is None:
+                    raise RuntimeError("Connection must be established before processing events")
                 async for event in conn:
                     await self._handle_event(event)
             except Exception:
                 logger.exception("Error processing events")
                 raise
     
-        async def _handle_event(self, event):
+        async def _handle_event(self, event: Any) -> None:
             """Handle different types of events from VoiceLive."""
             logger.debug("Received event: %s", event.type)
             ap = self.audio_processor
             conn = self.connection
-            assert ap is not None, "AudioProcessor must be initialized"
-            assert conn is not None, "Connection must be established"
+            if ap is None or conn is None:
+                raise RuntimeError("AudioProcessor and Connection must be initialized")
     
             if event.type == ServerEventType.SESSION_UPDATED:
                 logger.info("Session ready: %s", event.session.id)
-                await write_conversation_log(f"SessionID: {event.session.id}")
-                await write_conversation_log(f"Model: {event.session.model}")
-                await write_conversation_log(f"Voice: {event.session.voice}")
-                await write_conversation_log(f"Instructions: {event.session.instructions}")
-                await write_conversation_log(f"")
+                s, a, v = event.session, event.session.agent, event.session.voice
+                await write_conversation_log("\n".join([
+                    f"SessionID: {s.id}", f"Agent Name: {a.name}",
+                    f"Agent Description: {a.description}", f"Agent ID: {a.agent_id}",
+                    f"Thread ID: {a.thread_id}",
+                    f"Voice Name: {v['name']}", f"Voice Type: {v['type']}",
+                    f"Voice Temperature: {v['temperature']}", ""
+                ]))
                 self.session_ready = True
     
                 # Invoke Proactive greeting
-                if not self.conversation_started:
-                    self.conversation_started = True
+                if not self.greeting_sent:
+                    self.greeting_sent = True
                     logger.info("Sending proactive greeting request")
                     try:
+                        await conn.conversation.item.create(
+                            item=MessageItem(
+                                role="system",
+                                content=[
+                                    InputTextContentPart(
+                                        text="Say something to welcome the user."
+                                    )
+                                ]
+                            )
+                        )
                         await conn.response.create()
-    
                     except Exception:
                         logger.exception("Failed to send proactive greeting request")
     
@@ -555,103 +572,34 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
     
     async def write_conversation_log(message: str) -> None:
         """Write a message to the conversation log."""
-        def _write_to_file():
-            with open(f'logs/{logfilename}', 'a', encoding='utf-8') as conversation_log:
-                conversation_log.write(message + "\n")
-        
-        await asyncio.to_thread(_write_to_file)
-    
-    def parse_arguments():
-        """Parse command line arguments."""
-        parser = argparse.ArgumentParser(
-            description="Basic Voice Assistant using Azure VoiceLive SDK",
-            formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        log_path = os.path.join(_script_dir, 'logs', logfilename)
+        await asyncio.to_thread(
+            lambda: open(log_path, 'a', encoding='utf-8').write(message + "\n")
         )
     
-        parser.add_argument(
-            "--api-key",
-            help="Azure VoiceLive API key. If not provided, will use AZURE_VOICELIVE_API_KEY environment variable.",
-            type=str,
-            default=os.environ.get("AZURE_VOICELIVE_API_KEY"),
-        )
-    
-        parser.add_argument(
-            "--endpoint",
-            help="Azure VoiceLive endpoint",
-            type=str,
-            default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "https://your-resource-name.services.ai.azure.com/"),
-        )
-    
-        parser.add_argument(
-            "--agent_id",
-            help="Foundry agent ID to use",
-            type=str,
-            default=os.environ.get("AZURE_VOICELIVE_AGENT_ID", ""),
-        )
-    
-        parser.add_argument(
-            "--foundry_project_name",
-            help="Foundry project name to use",
-            type=str,
-            default=os.environ.get("AZURE_VOICELIVE_PROJECT_NAME", ""),
-        )
-    
-        parser.add_argument(
-            "--voice",
-            help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
-            type=str,
-            default=os.environ.get("AZURE_VOICELIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
-        )
-    
-        parser.add_argument(
-            "--use-token-credential", help="Use Azure token credential instead of API key", action="store_true", default=True
-        )
-    
-        parser.add_argument("--verbose", help="Enable verbose logging", action="store_true")
-    
-        return parser.parse_args()
-    
-    
-    def main():
+    def main() -> None:
         """Main function."""
-        args = parse_arguments()
+        endpoint = os.environ.get("VOICELIVE_ENDPOINT", "")
+        agent_name = os.environ.get("AGENT_NAME", "")
+        project_name = os.environ.get("PROJECT_NAME", "")
     
-        # Set logging level
-        if args.verbose:
-            logging.getLogger().setLevel(logging.DEBUG)
-    
-        # Validate credentials
-        if not args.api_key and not args.use_token_credential:
-            print("❌ Error: No authentication provided")
-            print("Please provide an API key using --api-key or set AZURE_VOICELIVE_API_KEY environment variable,")
-            print("or use --use-token-credential for Azure authentication.")
-            sys.exit(1)
+        if not endpoint or not agent_name or not project_name:
+            sys.exit("Set VOICELIVE_ENDPOINT, AGENT_NAME, and PROJECT_NAME in your .env file.")
     
         # Create client with appropriate credential
-        credential: Union[AzureKeyCredential, AsyncTokenCredential]
-        if args.use_token_credential:
-            credential = AzureCliCredential()  # or DefaultAzureCredential() if needed
-            logger.info("Using Azure token credential")
-        else:
-            credential = AzureKeyCredential(args.api_key)
-            logger.info("Using API key credential")
+        credential = AzureCliCredential()
+        logger.info("Using Azure token credential")
     
         # Create and start voice assistant
         assistant = BasicVoiceAssistant(
-            endpoint=args.endpoint,
+            endpoint=endpoint,
             credential=credential,
-            agent_id=args.agent_id,
-            foundry_project_name=args.foundry_project_name,
-            voice=args.voice,
+            agent_name=agent_name,
+            project_name=project_name
         )
     
-        # Setup signal handlers for graceful shutdown
-        def signal_handler(_sig, _frame):
-            logger.info("Received shutdown signal")
-            raise KeyboardInterrupt()
-    
-        signal.signal(signal.SIGINT, signal_handler)
-        signal.signal(signal.SIGTERM, signal_handler)
+        # Handle SIGTERM for graceful shutdown (SIGINT already raises KeyboardInterrupt)
+        signal.signal(signal.SIGTERM, lambda *_: (_ for _ in ()).throw(KeyboardInterrupt()))
     
         # Start the assistant
         try:
@@ -661,39 +609,32 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
         except Exception as e:
             print("Fatal Error: ", e)
     
-    if __name__ == "__main__":
-        # Check audio system
+    def _check_audio_devices() -> None:
+        """Verify audio input/output devices are available."""
+        p = pyaudio.PyAudio()
         try:
-            p = pyaudio.PyAudio()
-            # Check for input devices
-            input_devices = [
-                i
-                for i in range(p.get_device_count())
-                if cast(Union[int, float], p.get_device_info_by_index(i).get("maxInputChannels", 0) or 0) > 0
-            ]
-            # Check for output devices
-            output_devices = [
-                i
-                for i in range(p.get_device_count())
-                if cast(Union[int, float], p.get_device_info_by_index(i).get("maxOutputChannels", 0) or 0) > 0
-            ]
+            def _has_channels(key):
+                return any(
+                    cast(Union[int, float], p.get_device_info_by_index(i).get(key, 0) or 0) > 0
+                    for i in range(p.get_device_count())
+                )
+            if not _has_channels("maxInputChannels"):
+                sys.exit("❌ No audio input devices found. Please check your microphone.")
+            if not _has_channels("maxOutputChannels"):
+                sys.exit("❌ No audio output devices found. Please check your speakers.")
+        finally:
             p.terminate()
     
-            if not input_devices:
-                print("❌ No audio input devices found. Please check your microphone.")
-                sys.exit(1)
-            if not output_devices:
-                print("❌ No audio output devices found. Please check your speakers.")
-                sys.exit(1)
-    
+    if __name__ == "__main__":
+        try:
+            _check_audio_devices()
+        except SystemExit:
+            raise
         except Exception as e:
-            print(f"❌ Audio system check failed: {e}")
-            sys.exit(1)
+            sys.exit(f"❌ Audio system check failed: {e}")
     
-        print("🎙️  Basic Voice Assistant with Azure VoiceLive SDK")
-        print("=" * 50)
-    
-        # Run the assistant
+        print("🎙️ Basic Foundry Voice Agent with Azure VoiceLive SDK")
+        print("=" * 60)
         main()
     ```
 
@@ -760,55 +701,46 @@ logging.basicConfig(
 The `voicelive.log` file contains information about the connection to the Voice Live API, including the request and response data. You can view the log file to see the details of the conversation.
 
 ```text
-2025-10-28 10:26:12,768:__main__:INFO:Using Azure token credential
-2025-10-28 10:26:12,769:__main__:INFO:Connecting to VoiceLive API with Foundry agent connection asst_JVSR1R9XpUBxZP1c4YUWy2GA for project myservice-voicelive-eus2
-2025-10-28 10:26:12,770:azure.identity.aio._credentials.environment:INFO:No environment configuration found.
-2025-10-28 10:26:12,779:azure.identity.aio._credentials.managed_identity:INFO:ManagedIdentityCredential will use IMDS
-2025-10-28 10:26:12,780:azure.core.pipeline.policies.http_logging_policy:INFO:Request URL: 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=REDACTED&resource=REDACTED'
-Request method: 'GET'
-Request headers:
-    'User-Agent': 'azsdk-python-identity/1.25.1 Python/3.11.9 (Windows-10-10.0.26200-SP0)'
-No body was attached to the request
-2025-10-28 10:26:14,527:azure.identity.aio._credentials.chained:INFO:DefaultAzureCredential acquired a token from AzureCliCredential
-2025-10-28 10:26:14,527:__main__:INFO:Obtained agent access token
-2025-10-28 10:26:16,036:azure.identity.aio._internal.decorators:INFO:AzureCliCredential.get_token succeeded
-2025-10-28 10:26:16,575:__main__:INFO:AudioProcessor initialized with 24kHz PCM16 mono audio
-2025-10-28 10:26:16,575:__main__:INFO:Setting up voice conversation session...
-2025-10-28 10:26:16,576:__main__:INFO:Session configuration sent
-2025-10-28 10:26:16,833:__main__:INFO:Audio playback system ready
-2025-10-28 10:26:16,833:__main__:INFO:Voice assistant ready! Start speaking...
-2025-10-28 10:26:17,691:__main__:INFO:Session ready: sess_Oics8h0KxxxxPne71S1k
-2025-10-28 10:26:17,713:__main__:INFO:Started audio capture
-2025-10-28 10:26:18,413:__main__:INFO:User started speaking - stopping playback
-2025-10-28 10:26:19,007:__main__:INFO:\U0001f3a4 User stopped speaking
-2025-10-28 10:26:24,009:__main__:INFO:User started speaking - stopping playback
-2025-10-28 10:26:24,771:__main__:INFO:\U0001f3a4 User stopped speaking
-2025-10-28 10:26:24,887:__main__:INFO:\U0001f916 Assistant response created
-2025-10-28 10:26:30,273:__main__:INFO:\U0001f916 Assistant finished speaking
-2025-10-28 10:26:30,275:__main__:INFO:\u2705 Response complete
-2025-10-28 10:26:38,461:__main__:INFO:User started speaking - stopping playback
-2025-10-28 10:26:39,909:__main__:INFO:\U0001f3a4 User stopped speaking
-2025-10-28 10:26:40,090:__main__:INFO:\U0001f916 Assistant response created
-2025-10-28 10:26:44,631:__main__:INFO:\U0001f916 Assistant finished speaking
-2025-10-28 10:26:44,634:__main__:INFO:\u2705 Response complete
-2025-10-28 10:26:47,190:__main__:INFO:User started speaking - stopping playback
-2025-10-28 10:26:48,959:__main__:INFO:\U0001f3a4 User stopped speaking
-2025-10-28 10:26:49,246:__main__:INFO:\U0001f916 Assistant response created
-2025-10-28 10:27:01,306:__main__:INFO:\U0001f916 Assistant finished speaking
-2025-10-28 10:27:01,315:__main__:INFO:\u2705 Response complete
-2025-10-28 10:27:09,586:__main__:INFO:Received shutdown signal
-2025-10-28 10:27:09,634:__main__:INFO:Stopped audio capture
-2025-10-28 10:27:09,758:__main__:INFO:Stopped audio playback
-2025-10-28 10:27:09,759:__main__:INFO:Audio processor cleaned up
+2026-02-10 18:40:19,183:__main__:INFO:Using Azure token credential
+2026-02-10 18:40:19,184:__main__:INFO:Connecting to VoiceLive API with Foundry agent connection MyVoiceAgent for project my-voiceagent-project
+2026-02-10 18:40:20,801:azure.identity.aio._internal.decorators:INFO:AzureCliCredential.get_token succeeded
+2026-02-10 18:40:21,847:__main__:INFO:AudioProcessor initialized with 24kHz PCM16 mono audio
+2026-02-10 18:40:21,847:__main__:INFO:Setting up voice conversation session...
+2026-02-10 18:40:21,848:__main__:INFO:Session configuration sent
+2026-02-10 18:40:22,174:__main__:INFO:Audio playback system ready
+2026-02-10 18:40:22,174:__main__:INFO:Voice assistant ready! Start speaking...
+2026-02-10 18:40:22,384:__main__:INFO:Session ready: sess_1m1zrSLJSPjJpzbEOyQpTL
+2026-02-10 18:40:22,386:__main__:INFO:Sending proactive greeting request
+2026-02-10 18:40:22,419:__main__:INFO:Started audio capture
+2026-02-10 18:40:22,722:__main__:INFO:\U0001f916 Assistant response created
+2026-02-10 18:40:26,054:__main__:INFO:\U0001f916 Assistant finished speaking
+2026-02-10 18:40:26,074:__main__:INFO:\u2705 Response complete
+2026-02-10 18:40:32,015:__main__:INFO:User started speaking - stopping playback
+2026-02-10 18:40:32,866:__main__:INFO:\U0001f3a4 User stopped speaking
+2026-02-10 18:40:32,972:__main__:INFO:\U0001f916 Assistant response created
+2026-02-10 18:40:35,750:__main__:INFO:User started speaking - stopping playback
+2026-02-10 18:40:35,751:__main__:INFO:\U0001f916 Assistant finished speaking
+2026-02-10 18:40:36,171:__main__:INFO:\u2705 Response complete
+2026-02-10 18:40:37,117:__main__:INFO:\U0001f3a4 User stopped speaking
+2026-02-10 18:40:37,207:__main__:INFO:\U0001f916 Assistant response created
+2026-02-10 18:40:41,016:__main__:INFO:\U0001f916 Assistant finished speaking
+2026-02-10 18:40:41,023:__main__:INFO:\u2705 Response complete
+2026-02-10 18:40:44,818:__main__:INFO:Stopped audio capture
+2026-02-10 18:40:44,949:__main__:INFO:Stopped audio playback
+2026-02-10 18:40:44,950:__main__:INFO:Audio processor cleaned up
 ```
 
 Further a session log file is created in the `logs` folder with the name `<timestamp>_conversation.log`. This file contains detailed information about the session, including the request and response data.
 
 ```text
-SessionID: sess_Oics8h0KxxxxPne71S1k
-Model: gpt-4.1-mini
-Voice: {'name': 'en-US-Ava:DragonHDLatestNeural', 'type': 'azure-standard'}
-Instructions: You are a helpful agent named 'Tobi the agent'.
+SessionID: sess_1m1zrSLJSPjJpzbEOyQpTL
+Agent Name: VoiceAgentQuickstartTest
+Agent Description: 
+Agent ID: None
+Thread ID: None
+Voice Name: en-US-Ava:DragonHDLatestNeural
+Voice Type: azure-standard
+Voice Temperature: 0.8
 
 User Input:	Hello.
 Agent Audio Response:	Hello! I'm Tobi the agent. How can I assist you today?
@@ -874,43 +806,4 @@ Both logs are complementary - conversation logs for conversation analysis and te
 - Reviewing what was actually said
 - Understanding user interactions and agent responses
 - Business/content analysis
-
-## Hub-based projects
-
-The quickstart uses Foundry projects instead of hub-based projects. If you have a hub-based project, you can still use the quickstart with some modifications.
-
-To use the quickstart with a hub-based project, you need to retrieve the connection string for your agent and use it instead of the ```foundry_project_name```. You can find the connection string in the Azure portal under your Foundry project.
-
-### Overview
-
-For hub-based projects, use the connection string instead of the project name to connect your agent.
-
-Further you must obtain a separate authentication token from scope 'https://ml.azure.com/.default'.
-
-Make the following changes to the quickstart code:
-
-1. Replace the all instances of `foundry_project_name` with `agent-connection-string` following lines in the code to change the authentication:
-
-1. Replace the authentication token scope in line `307`:
-    ```python
-    # Get agent access token
-    agent_access_token = (await DefaultAzureCredential().get_token("https://ml.azure.com/.default")).token
-    logger.info("Obtained agent access token")
-    ```
-
-1. Replace the query parameter in line `316`:
-    ```python
-    # Connect to VoiceLive WebSocket API
-    async with connect(
-        endpoint=self.endpoint,
-        credential=self.credential,
-        query={
-            "agent-id": self.agent_id,
-            "agent-connection-string": self.agent-connection-string,
-            "agent-access-token": agent_access_token
-        },
-    ) as connection:
-        conn = connection
-        self.connection = conn
-    ```
     

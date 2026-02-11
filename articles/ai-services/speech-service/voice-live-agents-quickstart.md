@@ -1,22 +1,26 @@
 ---
-title: Get started with Voice Live and Microsoft Foundry Agent Service
+title: Get started with Voice Live and Foundry Agent Service
 titleSuffix: Foundry Tools
-description: Learn how to use Voice Live with agents for real-time voice agents with Azure Speech in Foundry Tools.
+description: Learn how to use Voice Live with Foundry agents for real-time voice agents.
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 02/20/2026
 author: PatrickFarley
 reviewer: PatrickFarley
 ms.author: pafarley
 ms.reviewer: pafarley
 zone_pivot_groups: voice-live-quickstart-agents
 recommendations: false
-
-ms.subservice: azure-ai-foundry-openai
 ---
 
-# Quickstart: Create a Voice Live real-time voice agent with Microsoft Foundry Agent Service
+# Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live (preview)
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+[!INCLUDE [version-banner](../../ai-foundry/includes/version-banner.md)]
+
+:::moniker range="foundry"
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]
@@ -29,6 +33,16 @@ ms.subservice: azure-ai-foundry-openai
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)]
 ::: zone-end
+
+:::moniker-end
+
+:::moniker range="foundry-classic"
+
+::: zone pivot="ai-foundry-portal"
+[!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]
+::: zone-end
+
+:::moniker-end
 
 ## Related content
 
