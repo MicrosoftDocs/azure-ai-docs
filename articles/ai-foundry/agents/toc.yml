@@ -54,6 +54,12 @@ items:
             displayName: browser automation, web automation
           - name: How to use browser automation
             href: how-to/tools-classic/browser-automation-samples.md
+        - name: Voice integration (preview)
+          items:
+          - name: Quickstart - Talk to a voice agent
+            href: ../../ai-services/speech-service/voice-live-agents-quickstart.md
+          - name: How to build a voice agent
+            href: ../../ai-services/speech-service/how-to-voice-agent-integration.md
         - name: Code interpreter
           href: how-to/tools-classic/code-interpreter.md
         - name: Computer Use (preview)

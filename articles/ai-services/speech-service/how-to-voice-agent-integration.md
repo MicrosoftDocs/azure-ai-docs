@@ -10,7 +10,7 @@ author: PatrickFarley
 reviewer: PatrickFarley
 ms.author: pafarley
 ms.reviewer: pafarley
-zone_pivot_groups: voice-live-quickstart-agents
+zone_pivot_groups: voice-live-howto-agents
 recommendations: false
 ---
 

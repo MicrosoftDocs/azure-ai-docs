@@ -1608,6 +1608,15 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+- id: voice-live-howto-agents
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#    
 - id: how-to-voice-live-proactive-messages
 # Owner: eur
   title: Programming languages
