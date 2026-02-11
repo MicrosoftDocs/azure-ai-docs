@@ -107,7 +107,7 @@ You need to delete the existing analyzer to reuse the name.
 
 - The `analyze` operation now supports only analyzing files by URL. Use the new `analyzeBinary` operation to upload files as part of the request body as a base64-encoded string. If you previously used the `analyze` operation to upload files inline in your code, you need to update your code to instead use the `analyzeBinary` operation. [Learn more about the `analyzeBinary` operation](/rest/api/contentunderstanding/content-analyzers/analyze-binary).
 
-- The `analyze` operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a URL pointer to a file. Learn more about the [`analyze` operation](/rest/api/contentunderstanding/content-analyzers/analyze).
+- The `analyze` operation's JSON payload schema is updated. There's now an inputs array that contains the information on the file to be analyzed. Each input element contains a URL pointer to a file. [Learn more about the `analyze` operation](/rest/api/contentunderstanding/content-analyzers/analyze).
 
   > [!NOTE]
   > The inputs array supports only a single item in the `2025-11-01` version.
@@ -127,7 +127,7 @@ You need to delete the existing analyzer to reuse the name.
 
 - If you used in-context learning or labeled data, the API payload that defines the labeled dataset now specifies the labeled data as a type of `knowledgeSources`. For more information, see [Create or replace](/rest/api/contentunderstanding/content-analyzers/create-or-replace).
 
-- For video analyzers, the key frames are now returned as an array of `keyFrames`. [Learn more in Analyze](/rest/api/contentunderstanding/content-analyzers/analyze).
+- For video analyzers, the key frames are now returned as an array of `keyFrames`. Learn more in [Analyze](/rest/api/contentunderstanding/content-analyzers/analyze).
 
 ### New features
 
