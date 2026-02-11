@@ -10,7 +10,6 @@ ms.date: 11/21/2025
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.custom:  pilot-ai-workflow-jan-2026
-ms.custom:  pilot-ai-workflow-jan-2026
 #CustomerIntent: As an Azure administrator or developer, I want to know the requirements to configure Azure Marketplace access for Microsoft Foundry Models from partners and community to deploy and use these models effectively.
 ---
 
