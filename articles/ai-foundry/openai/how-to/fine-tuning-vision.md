@@ -22,7 +22,7 @@ Images can be provided either as publicly accessible URLs or data URIs containin
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-- An Azure AI Foundry resource. See [Create an Azure AI Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
+- An Microsoft Foundry resource. See [Create an Azure AI Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
 - Familiarity with the [fine-tuning workflow](fine-tuning.md). Vision fine-tuning follows the same process with image-specific data formatting.
 - Fine-tuning access for the supported models in a [supported region](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 
@@ -40,7 +40,7 @@ Vision fine-tuning is supported for the following models only:
 | Constraint | Limit |
 |------------|-------|
 | Max examples with images per training file | 50,000 |
-| Max images per example | 10 |
+| Max images per example | 64 |
 | Max image file size | 10 MB |
 
 ## Format
@@ -55,7 +55,7 @@ Images must be in the RGB or RGBA image mode.
 
 You cannot include images as output from messages with the assistant role.
 
-As with all fine-tuning training, your example file requires at least 10 examples.
+Your example file requires at least 10 examples.
 
 ### Image detail control
 
@@ -154,7 +154,7 @@ Images can be excluded from training for several reasons:
 
 ## Next steps
 
-- [Fine-tune an Azure OpenAI model](fine-tuning.md) — Complete fine-tuning workflow including upload, training, and monitoring.
+- [Fine-tune a model](fine-tuning.md) — Complete fine-tuning workflow including upload, training, and monitoring.
 - [Deploy a fine-tuned model](fine-tuning-deploy.md) — Deploy your customized model for inference.
 - [Fine-tuning model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models) — Check which regions support vision fine-tuning.
-- [Azure OpenAI quotas and limits](../quotas-limits.md) — Review rate limits and quotas for fine-tuned models.
+- [Model quotas and limits](../quotas-limits.md) — Review rate limits and quotas for fine-tuned models.
