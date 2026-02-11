@@ -12,6 +12,7 @@ ms.author: pafarley
 ms.reviewer: pafarley
 zone_pivot_groups: voice-live-quickstart-agents
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live (preview)
