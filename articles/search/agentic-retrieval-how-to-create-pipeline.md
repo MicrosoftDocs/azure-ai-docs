@@ -584,7 +584,7 @@ The Responses API controls what is sent to the agent and knowledge base. To opti
 
 ## Control costs and limit operations
 
-For insights into the query plan, look at output tokens in the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) of knowledge base responses.
+For insights into the query plan, look at output tokens in the [activity array](agentic-retrieval-how-to-retrieve.md#activity-array) of knowledge base responses.
 
 ## Improve performance
 
