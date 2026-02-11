@@ -119,7 +119,6 @@ Images containing the following will be excluded from your dataset and not used 
 
 - People
 - Faces
-- Children
 - CAPTCHAs
 
 > [!IMPORTANT]
