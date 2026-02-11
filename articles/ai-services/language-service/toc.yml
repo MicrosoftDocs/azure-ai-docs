@@ -938,7 +938,7 @@ items:
         href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
 - name: Migration and release history
   items:
-    - name: "FAQ: migrate from LUIS, QnA Maker, or Text Analytics"
+    - name: Migrate from LUIS, QnA Maker, or Text Analytics
       displayName: text analytics, luis, qna
       href: reference/migrate.md
     - name: Migrate from Text Analytics API to Language Service
