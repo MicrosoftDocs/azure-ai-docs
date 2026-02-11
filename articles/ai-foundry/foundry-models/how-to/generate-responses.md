@@ -33,9 +33,15 @@ To use the Responses API with deployed models in your application, you need:
 
 - A deployment of a Foundry Model, such as the `MAI-DS-R1` model used in this article. If you don't have a deployment already, see [Add and configure Foundry Models](create-model-deployments.md) to a model deployment to your resource.
 
-## Use the Responses API to generate text
+## Generate a text response
 
 Use the code in this section to make Responses API calls for Foundry Models. In the code samples, you create the client to consume the model and then send it a basic request. 
+
+> [!IMPORTANT]
+> The SDK packages used in these samples are currently in preview. API surface and behavior might change before general availability.
+
+> [!TIP]
+> When you deploy a model in the Foundry portal, you assign it a deployment name. Use this deployment name (not the model catalog ID) in the `model` parameter of your API calls.
 
 > [!NOTE]
 > Use keyless authentication with **Microsoft Entra ID**. To learn more about keyless authentication, see [What is Microsoft Entra authentication?](/entra/identity/authentication/overview-authentication) and [DefaultAzureCredential](/azure/developer/python/sdk/authentication/overview#defaultazurecredential).
@@ -191,7 +197,6 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
 curl -X POST https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME/openai/responses?api-version={{API_VERSION}} \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-
 -d '{
     "model": "MAI-DS-R1",
     "input": "What is the capital/major city of France?"
