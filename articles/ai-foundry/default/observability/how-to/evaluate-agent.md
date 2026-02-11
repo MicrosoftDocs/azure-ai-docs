@@ -11,24 +11,26 @@ ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
 ---
 
-# Evaluate your AI agents
+# Evaluate your AI agents (preview)
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds (for example, 85% task adherence passing rate) before releasing to users.
+Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.
 
-In this article, you:
+In this article, you learn how to:
 
-- Set up the SDK client for evaluation
-- Choose evaluators for quality, safety, and agent behavior
-- Create a test dataset and run an evaluation
-- Interpret results and integrate into your workflow
+- Set up the SDK client for evaluation.
+- Choose evaluators for quality, safety, and agent behavior.
+- Create a test dataset and run an evaluation.
+- Interpret results and integrate them into your workflow.
+
+[!INCLUDE [evaluation-preview-foundry](../../includes/evaluation-preview-foundry.md)]
 
 ## Prerequisites
 
-- A [Foundry project](../../../how-to/create-projects.md) with an [agent](../../../agents/overview.md)
-- A model deployment to act as the judge for AI-assisted evaluators
-- Python 3.9 or later
+- A [Foundry project](../../../how-to/create-projects.md) with an [agent](../../../agents/overview.md).
+- A model deployment to act as the judge for AI-assisted evaluators.
+- Python 3.9 or later.
 
 > [!NOTE]
 > Some evaluation features have regional restrictions. See [supported regions](../../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
@@ -58,7 +60,7 @@ client = project_client.get_openai_client()
 
 ## Choose evaluators
 
-Evaluators are functions that assess your agent's responses. Some use AI models as judges, while others use rules or algorithms. For agent evaluation, consider this set:
+Evaluators are functions that assess your agent's responses. Some evaluators use AI models as judges, while others use rules or algorithms. For agent evaluation, consider this set:
 
 | Evaluator | What it measures |
 |-----------|------------------|
@@ -100,11 +102,11 @@ dataset = project_client.datasets.upload_file(
 When you run an evaluation, the service sends each test query to your agent, captures the response, and applies your selected evaluators to score the results.
 
 First, configure your evaluators. Each evaluator needs a data mapping that tells it where to find inputs:
-- `{{item.X}}` references fields from your test data (like `query`)
-- `{{sample.output_items}}` references the full agent response including tool calls
-- `{{sample.output_text}}` references just the response message text
+- `{{item.X}}` references fields from your test data, like `query`.
+- `{{sample.output_items}}` references the full agent response, including tool calls.
+- `{{sample.output_text}}` references just the response message text.
 
-AI-assisted evaluators (like Task Adherence and Coherence) require a model deployment in `initialization_parameters`. Some evaluators might require additional fields like `ground_truth` or tool definitions. For details, see the [evaluator documentation](../../../concepts/evaluation-evaluators/general-purpose-evaluators.md).
+AI-assisted evaluators, like Task Adherence and Coherence, require a model deployment in `initialization_parameters`. Some evaluators might require additional fields, like `ground_truth` or tool definitions. For more information, see the [evaluator documentation](../../../concepts/evaluation-evaluators/general-purpose-evaluators.md).
 
 ```python
 testing_criteria = [
@@ -140,7 +142,7 @@ testing_criteria = [
 ]
 ```
 
-Next, create the evaluation. An evaluation defines the test data schema and testing criteria, and serves as a container for multiple runs. All runs under the same evaluation conform to the same schema and produce the same set of metrics, which is important for comparing results across runs.
+Next, create the evaluation. An evaluation defines the test data schema and testing criteria. It serves as a container for multiple runs. All runs under the same evaluation conform to the same schema and produce the same set of metrics. This consistency is important for comparing results across runs.
 
 ```python
 data_source_config = {
@@ -211,7 +213,7 @@ print(f"Report URL: {run.report_url}")
 
 ### Aggregated results
 
-At the run level, you can see aggregated data including pass/fail counts, token usage per model, and results per evaluator:
+At the run level, you can see aggregated data, including pass and fail counts, token usage per model, and results per evaluator:
 
 ```json
 {
@@ -285,16 +287,16 @@ Each evaluation run returns output items per row in your test dataset, providing
 
 ## Integrate into your workflow
 
-- **CI/CD pipeline**: Use evaluation as a quality gate in your deployment pipeline. For detailed integration, see [Run evaluations with GitHub Actions](../../../evaluation-github-action.md).
-- **Production monitoring**: Monitor your agent in production with continuous evaluation. For setup instructions, see [Set up continuous evaluation](how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
+- **CI/CD pipeline**: Use evaluation as a quality gate in your deployment pipeline. For detailed integration, see [Run evaluations with GitHub Actions](../../../how-to/evaluation-github-action.md).
+- **Production monitoring**: Monitor your agent in production by using continuous evaluation. For setup instructions, see [Set up continuous evaluation](how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
 
 ## Optimize and compare versions
 
 Use evaluation to iterate and improve your agent:
 
-1. Run evaluation to identify weak areas. Use [cluster analysis](../../default/observability/how-to/cluster-analysis.md) to find patterns and errors.
+1. Run evaluation to identify weak areas. Use [cluster analysis](cluster-analysis.md) to find patterns and errors.
 1. Adjust agent instructions or tools based on findings.
-1. Re-evaluate and [compare runs](../../../evaluate-results.md#compare-the-evaluation-results) to measure improvement.
+1. Reevaluate and [compare runs](../../../how-to/evaluate-results.md#compare-the-evaluation-results) to measure improvement.
 1. Repeat until quality thresholds are met.
 
 ## Related content
