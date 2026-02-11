@@ -22,7 +22,7 @@ Images can be provided either as publicly accessible URLs or data URIs containin
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-- An Microsoft Foundry resource. See [Create an Azure AI Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
+- A Microsoft Foundry resource. See [Create an Azure AI Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
 - Familiarity with the [fine-tuning workflow](fine-tuning.md). Vision fine-tuning follows the same process with image-specific data formatting.
 - Fine-tuning access for the supported models in a [supported region](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 
@@ -53,13 +53,13 @@ Images must be:
 
 Images must be in the RGB or RGBA image mode.
 
-You cannot include images as output from messages with the assistant role.
+You can't include images as output from messages with the assistant role.
 
 Your example file requires at least 10 examples.
 
 ### Image detail control
 
-You can control the fidelity of image processing using the `detail` parameter in the `image_url` object. Note that the detail parameter will impact the cost of your training job; Low will be lower cost but may lose fine visual details.
+You can control the fidelity of image processing using the `detail` parameter in the `image_url` object. Note that the detail parameter impacts the cost of your training job; Low is lower cost but might lose fine visual details.
 
 - `low` — Downscales images to 512×512 pixels. Uses fewer tokens and reduces training cost.
 - `high` — Processes images at full resolution. Provides more visual detail but increases token usage.
@@ -105,7 +105,7 @@ You can control the fidelity of image processing using the `detail` parameter in
 
 After preparing your dataset with image examples, follow the standard fine-tuning workflow to submit your job:
 
-1. Upload your training file using the Files API or the Microsoft Foundry portal. Image validation may take longer than text-only uploads due to [content moderation screening](#content-moderation-policy).
+1. Upload your training file using the Files API or the Microsoft Foundry portal. Image validation might take longer than text-only uploads due to [content moderation screening](#content-moderation-policy).
 2. Create a fine-tuning job specifying your uploaded file and a [supported vision model](#model-support).
 3. Monitor the job until completion.
 
@@ -113,7 +113,7 @@ For detailed steps, see [Fine-tune an Azure OpenAI model](fine-tuning.md).
 
 ## Content moderation policy
 
-We scan your images before training to ensure that they comply with our usage policy. For details, see the [Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note). This may introduce latency in file validation before fine-tuning begins.
+We scan your images before training to ensure that they comply with our usage policy. For details, see the [Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note). This might introduce latency in file validation before fine-tuning begins.
 
 Images containing the following will be excluded from your dataset and not used for training:
 
@@ -127,7 +127,7 @@ Images containing the following will be excluded from your dataset and not used 
 > - Images are screened for faces/people and skipped from training.
 > - The screening uses face **detection** only, not face identification.
 > - No facial templates are created, and no specific facial geometry is measured.
-> - The technology cannot uniquely identify individuals.
+> - The technology can't uniquely identify individuals.
 >
 > For more information about data privacy, see [Data and privacy for Face - Foundry Tools](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security).
 
