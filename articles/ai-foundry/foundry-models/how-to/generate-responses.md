@@ -33,12 +33,12 @@ To use the Responses API with deployed models in your application, you need:
 
 - A deployment of a Foundry Model, such as the `MAI-DS-R1` model used in this article. If you don't have a deployment already, see [Add and configure Foundry Models](create-model-deployments.md) to a model deployment to your resource.
 
-## Generate a text response
+## Use the Responses API to generate text
 
 Use the code in this section to make Responses API calls for Foundry Models. In the code samples, you create the client to consume the model and then send it a basic request. 
 
 > [!IMPORTANT]
-> The SDK packages used in these samples are currently in preview. API surface and behavior might change before general availability.
+> Some of the SDK packages used in these samples are currently in preview. API surface and behavior might change before general availability.
 
 > [!TIP]
 > When you deploy a model in the Foundry portal, you assign it a deployment name. Use this deployment name (not the model catalog ID) in the `model` parameter of your API calls.
