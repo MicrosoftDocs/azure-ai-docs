@@ -160,9 +160,15 @@ To learn more about input data formats for evaluating generative AI applications
 - [Conversation data](./evaluate-sdk.md#conversation-support-for-text)
 - [Conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multimodal-text-and-image)
 
+To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](./agent-evaluate-sdk.md#evaluate-microsoft-foundry-agents) and [Evaluate other agents](./agent-evaluate-sdk.md#evaluating-other-agents).
+
 ::: moniker-end
 
-To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](./agent-evaluate-sdk.md#evaluate-microsoft-foundry-agents) and [Evaluate other agents](./agent-evaluate-sdk.md#evaluating-other-agents).
+::: moniker range="foundry"
+
+To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](../../default/observability/how-to/evaluate-agent.md).
+
+::: moniker-end
 
 ::: moniker range="foundry-classic"
 
