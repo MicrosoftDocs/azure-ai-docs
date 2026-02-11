@@ -10,7 +10,7 @@ ms.date: 02/09/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
-# Migrating to Azure Language in Foundry Tools
+# Migrate to Azure Language in Foundry Tools
 
 On November 2, 2021, Azure Language in Foundry Tools was released into public preview. Azure Language unifies the Text Analytics, QnA Maker, and Language Understanding (LUIS) service offerings, and provides several new features as well.
 
