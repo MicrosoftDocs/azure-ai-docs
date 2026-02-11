@@ -91,7 +91,9 @@ Foundry supports multiple patterns for working with private data. Choose based o
 - **Use RAG** when you need answers grounded in private or frequently changing data.
 - **Use fine-tuning** when you need to change model behavior, style, or task performance, rather than add fresh knowledge.
 - **Use a managed “use your data” experience** if you want a more guided way to connect, ingest, and chat over your data. See [Azure OpenAI On Your Data](../openai/concepts/use-your-data.md) and [Quickstart: Chat with Azure OpenAI models using your own data](../openai/use-your-data-quickstart.md).
+:::moniker range="foundry"
 - **Use agent tools** when you're building an agent that needs retrieval as a tool. For example, see [File search tool for agents](../default/agents/how-to/tools/file-search.md).
+:::moniker-end
 
 ## Getting started with RAG in Foundry
 
@@ -164,6 +166,7 @@ For guidance on evaluating RAG effectiveness, see the tutorials and quickstarts 
 - [Azure OpenAI On Your Data](../openai/concepts/use-your-data.md)
 - [File search tool for agents](../default/agents/how-to/tools/file-search.md)
 - [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval.md)
+- [File search tool for agents](../default/agents/how-to/tools/file-search.md)
 
 ::: moniker-end
 
@@ -173,6 +176,6 @@ For guidance on evaluating RAG effectiveness, see the tutorials and quickstarts 
 - [Tutorial: Part 2 - Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK](../tutorials/copilot-sdk-build-rag.md)
 - [Quickstart: Chat with Azure OpenAI models using your own data](../openai/use-your-data-quickstart.md)
 - [Azure OpenAI On Your Data](../openai/concepts/use-your-data.md)
-- [File search tool for agents](../default/agents/how-to/tools/file-search.md)
+
 
 ::: moniker-end
