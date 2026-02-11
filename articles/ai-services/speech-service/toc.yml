@@ -319,6 +319,8 @@ items:
       items:
       - name: How to use Voice Live
         href: voice-live-how-to.md
+      - name: How to build a voice agent (preview)
+        href: how-to-build-voice-agent.md
       - name: How to customize Voice Live input and output
         href: voice-live-how-to-customize.md
       - name: How to add proactive messages (preview)
