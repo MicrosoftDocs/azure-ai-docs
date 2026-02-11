@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 ::: moniker range="foundry"
 
-The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Microsoft Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case—such as competitor names, internal project codenames, or domain-specific sensitive terms. For this, you can create custom block lists that automatically filter content containing your specified terms.
+The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Microsoft Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case—such as competitor names, internal project names, or domain-specific sensitive terms. For this, you can create custom block lists that automatically filter content containing your specified terms.
 
 In this article, you learn how to:
 
@@ -32,7 +32,7 @@ In this article, you learn how to:
 
 ::: moniker range="foundry-classic"
 
-The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case—such as competitor names, internal project codenames, or domain-specific sensitive terms. For this, you can create custom block lists that automatically filter content containing your specified terms.
+The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case—such as competitor names, internal project names, or domain-specific sensitive terms. For this, you can create custom block lists that automatically filter content containing your specified terms.
 
 In this article, you learn how to:
 
@@ -123,7 +123,7 @@ curl --location --request PUT 'https://management.azure.com/subscriptions/{subsc
 ### Add blockItems to the list
 
 > [!NOTE]
-> There is a maximum limit of 10,000 terms allowed in one list.
+> There's a maximum limit of 10,000 terms allowed in one list.
 
 Copy the cURL command below to a text editor and make the following changes:
 1. Replace {subscriptionId} with your sub ID. 
@@ -330,7 +330,7 @@ If using regex patterns, ensure the pattern syntax is valid. Test your regex pat
 
 ### Quota limit reached
 
-Each blocklist can contain a maximum of 10,000 terms. If you need more, create additional blocklists and apply them to the same content filter.
+Each blocklist can contain a maximum of 10,000 terms. If you need more, create more blocklists and apply them to the same content filter.
 
 ## Related content
 
