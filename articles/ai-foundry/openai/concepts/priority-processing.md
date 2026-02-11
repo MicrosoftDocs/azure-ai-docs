@@ -82,6 +82,16 @@ Priority processing provides low-latency performance with the flexibility of pay
 > [!NOTE]
 > Model and region availability might expand during the preview period. Check this page for updates.
 
+### Known issues
+
+Priority processing currently has these limitations, and fixes are underway:
+
+- **Long context limit for gpt-4.1:** The service doesn't support requests that exceed 128,000 tokens and returns an HTTP 400 error.
+
+- **No support for PTU spillover:** The service doesn't yet support PTU spillover to a priority-processing–enabled deployment. If you need spillover behavior, implement your own logic, such as by using Azure API Management.
+
+- **Incorrect service_tier value when using streaming in the Responses API:** When streaming responses through the Responses API, the `service_tier` field might incorrectly return "priority", even if capacity constraints or ramp limits caused the request to be served by the standard tier. In this case, the expected value for `service_tier` is "default".
+
 ## Enable priority processing at the deployment level
 
 You can enable priority processing at the deployment level and [(optionally) at the request level](#enable-priority-processing-at-the-request-level).
@@ -106,16 +116,6 @@ In the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] portal,
 > If you prefer to use code to enable priority processing at the deployment level, you can do so via the REST API for deployment by setting the `service_tier` attribute as follows: `"properties" : {"service_tier" : "priority"}`. Allowed values for the `service_tier` attribute are `default` and `priority`. `default` implies standard processing, while `priority` enables priority processing.
 
 Once a model deployment is configured to use priority processing, you can start sending requests to the model.
-
-## Verify service tier used to process request
-
-When you set the `service_tier` parameter in the request, the response includes the service tier value of the processing mode used to serve the request (`priority` or `default`). This response value might be different from the parameter value that you set in the request.
-
-To verify which service tier processed your request:
-
-1. Send a request with the `service_tier` parameter set to `priority`.
-1. Inspect the response JSON for the `service_tier` field.
-1. Compare the response value against the request value. If they differ, the service downgraded the request to standard processing. If capacity constraints or ramp limits caused a downgrade, the response shows `"service_tier": "default"` instead.
 
 ## View usage metrics
 
