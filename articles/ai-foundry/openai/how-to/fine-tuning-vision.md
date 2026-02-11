@@ -115,7 +115,7 @@ For detailed steps, see [Fine-tune an Azure OpenAI model](fine-tuning.md).
 
 We scan your images before training to ensure that they comply with our usage policy. For details, see the [Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note). This might introduce latency in file validation before fine-tuning begins.
 
-Images containing the following will be excluded from your dataset and not used for training:
+Images containing the following are excluded from your dataset and not used for training:
 
 - People
 - Faces
