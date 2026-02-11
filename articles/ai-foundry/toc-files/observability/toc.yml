@@ -5,7 +5,7 @@ items:
      href: ../../concepts/observability.md
    - name: Built-in evaluators reference
      href: ../../concepts/built-in-evaluators.md
-   - name: Region support, rate limits, and virtual network support 
+   - name: Rate limits, region and virtual network support 
      href: ../../concepts/evaluation-regions-limits-virtual-network.md
 - name: Supported evaluators
   items:

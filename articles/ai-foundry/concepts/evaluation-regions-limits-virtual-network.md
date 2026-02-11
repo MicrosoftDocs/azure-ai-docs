@@ -1,5 +1,5 @@
 ---
-title: Region support, rate limits, and virtual network support for evaluation
+title: Rate limits, region and virtual network support for evaluation
 titleSuffix: Microsoft Foundry
 description: Learn about region availability, rate limits, and virtual network support for evaluation in Microsoft Foundry.
 author: lgayhardt
@@ -11,7 +11,7 @@ ms.service: azure-ai-foundry
 monikerRange: 'foundry-classic || foundry'
 ---
 
-# Region support, rate limits, and virtual network support for evaluation
+# Rate limits, region and virtual network support for evaluation
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]  
 
