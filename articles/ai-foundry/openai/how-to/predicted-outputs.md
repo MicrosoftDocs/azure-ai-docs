@@ -68,10 +68,6 @@ To demonstrate the basics of predicted outputs, we'll start by asking a model to
 
 # [Microsoft Entra ID](#tab/python-secure)
 
-You might need to upgrade your OpenAI client library to access the `prediction` parameter.
-
-# [Microsoft Entra ID](#tab/python-secure)
-
 ```python
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
