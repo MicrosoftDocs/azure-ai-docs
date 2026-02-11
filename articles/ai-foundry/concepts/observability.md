@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 01/16/2026
+ms.date: 02/10/2026
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -34,7 +34,7 @@ The AI application lifecycle requires robust evaluation frameworks to ensure AI 
 
 ## What is observability?
 
-AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. Teams can trace and evaluate locally in their development environment, integrate automated quality gates into CI/CD pipelines (see [Evaluate with GitHub Actions](../how-to/develop/evaluation-github-action.md) and [Evaluate with Azure DevOps](../how-to/develop/evaluation-azure-devops.md)), and collect signals such as evaluation metrics, logs, traces, and model outputs to gain visibility into performance, quality, safety, and operational health.
+AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. Teams can trace and evaluate locally in their development environment, integrate automated quality gates into CI/CD pipelines (see [Evaluate with GitHub Actions](../how-to/evaluation-github-action.md) and [Evaluate with Azure DevOps](../how-to/evaluation-azure-devops.md)), and collect signals such as evaluation metrics, logs, traces, and model outputs to gain visibility into performance, quality, safety, and operational health.
 
 ## Core observability capabilities
 
@@ -78,7 +78,7 @@ Select the right foundation model by comparing quality, task performance, ethica
 
 ### Pre-production evaluation
 
-Before deployment, thorough testing ensures your AI agent or application is production-ready. This stage validates performance through evaluation datasets, identifies edge cases, assesses robustness, and measures key metrics including task adherence, groundedness, relevance, and safety. For building production-ready agents with multi-turn conversations, tool calling, and state management, see [Foundry Agent Service](../default/agents/overview.md).
+Before deployment, thorough testing ensures your AI agent or application is production-ready. This stage validates performance through evaluation datasets, identifies edge cases, assesses robustness, and measures key metrics including task adherence, groundedness, relevance, and safety. For building production-ready agents with multi-turn conversations, tool calling, and state management, see [Foundry Agent Service](../agents/overview.md).
 
 :::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of Pre-production evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
 
@@ -131,7 +131,7 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/Sample_Agent_Functions.cs) |
 | What data should you use? | Upload or generate relevant dataset | [Synthetic dataset generation](./concept-synthetic-data.md) <br></br> [Run AI red teaming in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md) |
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) <br></br> [Local run](../how-to/develop/evaluate-sdk.md) |
-| How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../how-to/evaluate-results.md#cluster-analysis) |
+| How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md)|
 | How can I improve? | Make changes to model, app, or evaluators | If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
 | How to configure VNET? | Set up virtual network isolation | [Virtual network support for evaluation](vnet-support.md) |
 
@@ -145,76 +145,15 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/Sample_Agent_Functions.cs) |
 | What data should you use? | Upload or generate relevant dataset | [Synthetic dataset generation](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) <br></br> [Run AI red teaming in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md) |
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
-| How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../how-to/evaluate-results.md#cluster-analysis) |
+| How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../default/observability/how-to/cluster-analysis.md) |
 | How can I improve? | Make changes to model, app, or evaluators | If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
 | How to configure VNET? | Set up virtual network isolation | [Virtual network support for evaluation](vnet-support.md) |
 
 ::: moniker-end
 
-## Region support
+## Region support, rate limits, and virtual network support
 
-Currently certain AI-assisted evaluators are available only in the following regions:
-
-| Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes | Groundedness Pro | Protected material |
-|--|--|--|--|
-| East US 2 | Supported | Supported | Supported |
-| Sweden Central | Supported | Supported | N/A |
-| US North Central | Supported | N/A | N/A |
-| France Central | Supported | N/A | N/A |
-| Switzerland West | Supported | N/A | N/A |
-
-> [!NOTE]
-> Red teaming agent is only available in regions where risk and safety evaluators are supported.
-
-### Agent playground evaluation region support
-
-| Region | Status |
-|--|--|
-| East US | Supported |
-| East US 2 | Supported |
-| West US | Supported |
-| West US 2 | Supported |
-| West US 3 | Supported |
-| France Central | Supported |
-| Norway East | Supported |
-| Sweden Central | Supported |
-
-### Batch evaluation excluded regions
-
-Batch evaluations aren't supported in the following regions:
-
-- Canada Central
-- Qatar Central
-- South Central US
-- Southeast Asia
-- Spain Central
-
-### OpenAI grader excluded regions
-
-The following regions don't support OpenAI grader/custom code evaluator:
-
-- Canada East
-- Central India
-- East Asia
-- East US
-- North Europe
-- South India
-
-## Rate limits
-
-The following rate limits apply to evaluation runs:
-
-| Limit | Value |
-|--|--|
-| Maximum size per row | 2 MB |
-| Maximum rows per batch evaluation | 100,000 |
-
-Evaluation run creations are rate-limited at the tenant, subscription, and project levels. If you exceed the limit:
-
-- The response includes a `retry-after` header with the wait time.
-- The response body contains rate limit details.
-
-Use exponential backoff when retrying failed requests.
+To learn which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, and how to configure virtual network support for network isolation see [region support, rate limits, and virtual network support for evaluation](evaluation-regions-limits-virtual-network.md).
 
 ## Pricing
 
@@ -228,7 +167,7 @@ Observability features such as Risk and Safety Evaluations and Continuous Evalua
 ::: moniker range="foundry-classic"
 
 - [Built-in evaluators reference](built-in-evaluators.md)
-- [Virtual network support for evaluation](vnet-support.md)
+- [Virtual network support for evaluation](evaluation-regions-limits-virtual-network.md)
 - [Evaluate with the Azure AI Evaluation SDK](../how-to/develop/evaluate-sdk.md)
 - [Evaluate generative AI apps by using Foundry](../how-to/evaluate-generative-ai-app.md)
 - [See evaluation results in the Foundry portal](../how-to/evaluate-results.md)
@@ -239,7 +178,7 @@ Observability features such as Risk and Safety Evaluations and Continuous Evalua
 ::: moniker range="foundry"
 
 - [Built-in evaluators reference](built-in-evaluators.md)
-- [Virtual network support for evaluation](vnet-support.md)
+- [Virtual network support for evaluation](evaluation-regions-limits-virtual-network.md)
 - [Foundry control plane](../default/control-plane/overview.md)
 - [Evaluate generative AI apps by using Foundry](../how-to/evaluate-generative-ai-app.md)
 - [See evaluation results in the Foundry portal](../how-to/evaluate-results.md)

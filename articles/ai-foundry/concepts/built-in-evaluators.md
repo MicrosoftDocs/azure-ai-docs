@@ -8,14 +8,18 @@ ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.date: 01/16/2026
 ms.service: azure-ai-foundry
-ms.topic: reference
+ms.topic: article
 ---
 
 # Built-in evaluators reference
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 Microsoft Foundry provides a comprehensive set of built-in evaluators to assess the quality, safety, and reliability of AI responses throughout the development lifecycle. This reference details all available evaluators, their purposes, required inputs, and guidance on selecting the right evaluator for your use case. You can also create [custom evaluators](./evaluation-evaluators/custom-evaluators.md) tailored to your specific evaluation criteria.
+
+[!INCLUDE [evaluation-preview](../includes/evaluation-preview.md)]
 
 ## General purpose evaluators
 
