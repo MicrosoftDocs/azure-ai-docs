@@ -17,11 +17,19 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 #### [Foundry (new) portal](#tab/foundry-new)
 
+> [!NOTE]
+> This document refers to the [Microsoft Foundry (new)](../what-is-foundry.md#microsoft-foundry-portals) portal.
+
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
 - A Foundry agent created in [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
 
 #### [Foundry (classic) portal](#tab/foundry-classic)
+
+> [!NOTE]
+> This document refers to the [Microsoft Foundry (classic)](../what-is-foundry.md#microsoft-foundry-portals) portal.
+>
+> 🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).

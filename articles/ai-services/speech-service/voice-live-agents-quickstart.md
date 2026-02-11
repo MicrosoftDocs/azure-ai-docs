@@ -18,10 +18,6 @@ recommendations: false
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-[!INCLUDE [version-banner](../../ai-foundry/includes/version-banner.md)]
-
-#### [Foundry (new) portal](#tab/foundry-new)
-
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]
 ::: zone-end
@@ -30,15 +26,9 @@ recommendations: false
 [!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-agents/python.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-csharp"
+<!-- ::: zone pivot="programming-language-csharp"
 [!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)]
-::: zone-end
-
-#### [Foundry (classic) portal](#tab/foundry-classic)
-
-::: zone pivot="ai-foundry-portal"
-[!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-agents/ai-foundry.md)]
-::: zone-end
+::: zone-end -->
 
 ## Related content
 
