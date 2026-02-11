@@ -12,8 +12,8 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 manager: nitinme
 author: msakande 
 ms.author: mopeakande
-ms.reviewer: shiyingfu
-reviewer: swingfu
+ms.reviewer: seramasu
+reviewer: rsethur
 recommendations: false
 #CustomerIntent As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
 ---
@@ -56,16 +56,6 @@ Provisioned throughput provides:
 ## When to use provisioned throughput
 
 Consider provisioned throughput deployments when you have well-defined, predictable throughput and latency requirements—typically for production applications with known traffic patterns. Provisioned throughput is also useful for real-time or latency-sensitive applications.
-
-The following table compares provisioned and standard deployments to help you choose the right option:
-
-| Scenario | Provisioned throughput | Standard deployment |
-|---|---|---|
-| Predictable, steady traffic | ✅ Best fit | Possible, but less cost-efficient |
-| Variable or exploratory traffic | Not recommended | ✅ Best fit |
-| Latency-sensitive production apps | ✅ Consistent latency | Variable latency |
-| Cost optimization at scale | ✅ Reservation discounts available | Pay-per-token |
-| Guaranteed capacity | ✅ Allocated at deployment | Shared capacity |
 
 ## Understand PTU allocation
 
@@ -149,7 +139,7 @@ If an acceptable region isn't available to support the desired model, version, a
 
 ## Monitor utilization and performance
 
-Provisioned deployments provide allocated model processing capacity. The following sections explain how to monitor utilization and handle capacity limits.
+The following sections explain how to monitor utilization and handle capacity limits.
 
 ### Monitor capacity
 
@@ -260,15 +250,6 @@ This section lists Foundry Models that support the provisioned throughput capabi
 
 > [!NOTE]
 > The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
-
-## Troubleshooting
-
-| Issue | Cause | Resolution |
-|---|---|---|
-| Deployment creation fails | Insufficient capacity in the target region | Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) or Foundry portal to find an alternative region with available capacity. |
-| HTTP 429 responses | Deployment utilization exceeded 100% | Redirect traffic to an alternate deployment, implement client-side retry logic using the `retry-after-ms` header, or scale up your PTU allocation. |
-| Can't create deployment despite available quota | Quota doesn't guarantee capacity—capacity is allocated at deployment time | Try a smaller PTU count, attempt the deployment at a different time, or choose an alternative region. |
-| Unexpected high latency or low concurrency | `max_tokens` not set or set much higher than actual generation size | Set `max_tokens` as close as possible to your actual expected generation size for best concurrency. |
 
 ## Related content
 
