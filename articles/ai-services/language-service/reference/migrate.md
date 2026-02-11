@@ -30,7 +30,7 @@ If you're using Language Understanding (LUIS), you can [import your Language Und
 1. Export the LUIS app
 
    * Export your LUIS application as JSON by using the LUIS authoring APIs or the LUIS portal.
-   * LUIS Versions – [Export REST API](/rest/api/luis/versions/export?view=rest-luis-v2.0&tabs=HTTP)
+   * LUIS Versions – [Export REST API](/rest/api/luis/versions/export?view=rest-luis-v2.0&preserve-view=true&tabs=HTTP)
 
 1. Map LUIS data to the CLU schema
 
@@ -54,17 +54,17 @@ If you're using Language Understanding (LUIS), you can [import your Language Und
 
 ## How do I migrate to Azure Language if I'm using QnA Maker?
 
-If you're using QnA Maker, you can [import your QnA Maker knowledge base](../question-answering/how-to/fail-over.md#import-to-a-new-project) to the custom questiona answering (CQA) feature:
+If you're using QnA Maker, you can [import your QnA Maker knowledge base](../question-answering/how-to/migrate-knowledge-base.md#import-a-project) to the custom questiona answering (CQA) feature:
 
 1. Export the QnA Maker knowledge base
 
    * Download your knowledge base by using the QnA Maker REST APIs with your endpoint key and knowledge base ID.
-   * [QnA Maker REST API reference](/rest/api/cognitiveservices-qnamaker/export?view=rest-questionanswering-2021-10-01&preserve-view=true&tabs=HTTP) provides instructions on exporting your knowledge base.
+   * [QnA Maker REST API reference](/rest/api/questionanswering/question-answering-projects/export?view=rest-questionanswering-2021-10-01&preserve-view=true&tabs=HTTP) provides instructions on exporting your knowledge base.
 
 1. Create a Custom Question Answering project
 
    * Create a new Custom Question Answering project.
-   * [Create a Custom Question Answering project](../question-answering/quickstart/) provides instructions on creating a CQA project.
+   * [Create a Custom Question Answering project](../question-answering/quickstart/sdk.md) provides instructions on creating a CQA project.
 
 1. Import the knowledge base
 

@@ -24,7 +24,7 @@ Stay informed about recent releases and enhancements designed to help you get th
 
 * **Foundry (classic) Language playground card is generally available**. The Language playground card in [Microsoft Foundry (classic)](https://ai.azure.com/) exits preview and is now generally available. You can access all Language authoring, testing, and deployment capabilities directly from the playground without any feature restrictions.
 
-* **LUIS migration guidance**. To migrate from **LUIS** to [Conversational Language Understanding (CLU)](../conversational-language-understanding/overview.md), see [Migrating to Azure Language in Foundry Tools](reference/migrate.md) for the latest instructions.
+* **LUIS migration guidance**. To migrate from **LUIS** to [Conversational Language Understanding (CLU)](conversational-language-understanding/overview.md), see [Migrating to Azure Language in Foundry Tools](reference/migrate.md) for the latest instructions.
 
 ## January 2026
 
