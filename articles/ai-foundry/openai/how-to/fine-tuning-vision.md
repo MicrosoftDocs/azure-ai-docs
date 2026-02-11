@@ -59,7 +59,7 @@ Your example file requires at least 10 examples.
 
 ### Image detail control
 
-You can control the fidelity of image processing using the `detail` parameter in the `image_url` object:
+You can control the fidelity of image processing using the `detail` parameter in the `image_url` object. Note that the detail parameter will impact the cost of your training job; Low will be lower cost but may lose fine visual details.
 
 - `low` — Downscales images to 512×512 pixels. Uses fewer tokens and reduces training cost.
 - `high` — Processes images at full resolution. Provides more visual detail but increases token usage.
@@ -77,8 +77,6 @@ You can control the fidelity of image processing using the `detail` parameter in
 
 ## Best practices
 
-- **Reduce training cost**: Set `"detail": "low"` when fine visual details aren't needed for your task. See [Image detail control](#image-detail-control).
-- **Balance quality and cost**: Use `"detail": "high"` only when fine visual details matter for your use case.
 - **Diverse examples**: Include variety in image content, angles, and lighting conditions.
 - **Consistent annotations**: Ensure assistant responses are consistent in style and detail level across examples.
 
@@ -88,11 +86,8 @@ You can control the fidelity of image processing using the `detail` parameter in
 {
   "messages": [
     { "role": "system", "content": "You are a helpful AI assistant." },
+    { "role": "user", "content": "Describe the image?" },
     { "role": "user", "content": [
-        {
-          "type": "text",
-          "text": "Describe the image?"
-        },
         {
           "type": "image_url",
           "image_url": {
