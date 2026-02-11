@@ -19,7 +19,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 zone_pivot_groups: azure-ai-model-categories
 
-#CustomerIntent: As a developer or AI practitioner, I want to explore and understand the available Microsoft Foundry Models from partners and community, including their specific capabilities, deployment types, and regional availability, so that I can select the most appropriate model for my AI application requirements.
+#CustomerIntent: As a developer or AI practitioner, I want to explore and understand the available Microsoft Foundry Models from partners and community, including their specific capabilities, supported input and output types, and language support, so that I can select the most appropriate model for my AI application requirements.
 ---
 
 # Foundry Models from partners and community
@@ -295,8 +295,7 @@ See [Stability AI models in the Foundry portal](https://ai.azure.com/explore/mod
 ## Related content
 
 - [Deployment overview for Foundry Models](../../concepts/deployments-overview.md)
-- [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
-
+- [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Deployment types in Foundry Models](deployment-types.md)
 - [Azure Marketplace requirements for Foundry Models from partners](../how-to/configure-marketplace.md)
 - [Region availability for Foundry Models](../../how-to/deploy-models-serverless-availability.md)
