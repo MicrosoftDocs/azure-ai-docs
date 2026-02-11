@@ -107,10 +107,15 @@ You can also use [the Foundry portal](../how-to/evaluate-generative-ai-app.md) f
 ### Post-production monitoring
 
 ::: moniker range="foundry-classic"
-After deployment, continuous monitoring ensures your AI application maintains quality in real-world conditions:
+
+After deployment, [continuous monitoring](../how-to/continuous-evaluation-agents.md) ensures your AI application maintains quality in real-world conditions:
+
 ::: moniker-end
+
 ::: moniker range="foundry"
+
 After deployment, [continuous monitoring](../default/agents/how-to/how-to-monitor-agents-dashboard.md) ensures your AI application maintains quality in real-world conditions:
+
 ::: moniker-end
 
 - **Operational metrics**: Regular measurement of key AI agent operational metrics
@@ -133,7 +138,7 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) <br></br> [Local run](../how-to/develop/evaluate-sdk.md) |
 | How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md)|
 | How can I improve? | Make changes to model, app, or evaluators | If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
-| How to configure VNET? | Set up virtual network isolation | [Virtual network support for evaluation](vnet-support.md) |
+| How to configure virtual network? | Set up virtual network isolation | [Virtual network support for evaluation](evaluation-regions-limits-virtual-network.md#virtual-network-support-for-evaluation) |
 
 ::: moniker-end
 
@@ -147,7 +152,7 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
 | How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../default/observability/how-to/cluster-analysis.md) |
 | How can I improve? | Make changes to model, app, or evaluators | If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
-| How to configure VNET? | Set up virtual network isolation | [Virtual network support for evaluation](vnet-support.md) |
+| How to configure virtual network? | Set up virtual network isolation | [Virtual network support for evaluation](evaluation-regions-limits-virtual-network.md#virtual-network-support-for-evaluation) |
 
 ::: moniker-end
 
