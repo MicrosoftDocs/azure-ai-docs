@@ -14,6 +14,7 @@ ms.custom:
   - tool_generated
   - build-aifnd
   - build-2025
+  - pilot-ai-workflow-jan-2026
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 zone_pivot_groups: azure-ai-model-categories
@@ -225,6 +226,8 @@ See [Mistral AI models in the Foundry portal](https://ai.azure.com/explore/model
 
 Nixtla's TimeGEN-1 is a generative pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 produces accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 
+To deploy TimeGEN-1 in Foundry, see [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
+
 To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
 
 | Model  | Type | Capabilities | Inference API | Project type |
@@ -242,6 +245,8 @@ See [Nixtla models in the Foundry portal](https://ai.azure.com/explore/models?&s
 ## NTT Data
 
 **tsuzumi** is an autoregressive language-optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
+
+To deploy tsuzumi-7b in Foundry, see [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
