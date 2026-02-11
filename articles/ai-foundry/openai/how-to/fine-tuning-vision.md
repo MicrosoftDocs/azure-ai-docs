@@ -145,7 +145,7 @@ Images can be excluded from training for several reasons:
 | Unsupported format | Convert to JPEG, PNG, or WEBP |
 | Not RGB/RGBA mode | Convert image color mode |
 | Content policy violation | Images with people, faces, children, or CAPTCHAs are automatically excluded |
-| Too many images in example | Reduce to 10 or fewer images per example |
+| Too many images in example | Reduce to 64 or fewer images per example |
 
 ## Next steps
 
