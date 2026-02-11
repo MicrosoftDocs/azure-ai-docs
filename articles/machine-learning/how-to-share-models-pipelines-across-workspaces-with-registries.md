@@ -499,7 +499,7 @@ az ml model create --name nyc-taxi-model --version 1 --type mlflow_model --path 
 ```
 
 > [!TIP]
-> * Use a random number for the `version` parameter if you get an error that the model name and version  already exists.
+> * Use a random number for the `version` parameter if you get an error that the model name and version already exist.
 > * If you haven't configured the default workspace and resource group as explained in the prerequisites section, you need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml model create` to work.
 
 Note down the model name and version. You can validate if the model is registered in the workspace by browsing it in the Studio UI or using `az ml model show --name nyc-taxi-model --version $model_version` command.  
