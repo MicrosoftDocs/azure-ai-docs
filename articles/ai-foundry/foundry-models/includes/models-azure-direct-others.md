@@ -74,7 +74,7 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
 - Output: One image 
 
 ```sh
-curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version=preview \
+curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version=… \
   -H "Content-Type: application/json" \ 
   -H "Authorization: Bearer {API_KEY}" \ 
   -d '{ 
