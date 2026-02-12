@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 02/06/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the speech to text feature of the Speech service.
 ---
@@ -58,6 +58,12 @@ You can access batch transcription through:
     ```azurecli-interactive
     spx help batch transcription
     ```
+
+### Diarization
+
+Diarization is the process of distinguishing and separating different speakers in an audio recording. This feature is particularly useful for transcribing conversations, meetings, or any multi-speaker audio content. The Speech service can identify up to 35 different speakers in an audio recording (if the service recognizes more than 35 speakers, it throws an error).
+
+See the [Diarization quickstart](./get-started-stt-diarization.md) to get started.
 
 ## Custom speech
 

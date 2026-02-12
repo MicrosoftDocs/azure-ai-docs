@@ -360,13 +360,14 @@ LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evalu
 
 - [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)
+- - [How to run agent evaluation](../../how-to/develop/agent-evaluate-sdk.md)
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
 - [Complete working sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_ai_assisted.py)
-- [How to run agent evaluation](../../how-to/develop/agent-evaluate-sdk.md)
+- [How to run agent evaluation](../../default/observability/how-to/evaluate-agent.md)
 - [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
 
 ::: moniker-end

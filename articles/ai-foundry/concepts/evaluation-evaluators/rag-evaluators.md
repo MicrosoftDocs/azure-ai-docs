@@ -605,13 +605,14 @@ The numerical score on a Likert scale (integer 1 to 5). A higher score is better
 
 - [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)
+- [How to run agent evaluation](../../how-to/develop/agent-evaluate-sdk.md)
 
 ::: moniker-end
 
 ::: moniker range="foundry"
 
 - [More examples for quality evaluators](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
-- [How to run agent evaluation](../../how-to/develop/agent-evaluate-sdk.md)
+- [How to run agent evaluation](../../default/observability/how-to/evaluate-agent.md)
 - [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)
 

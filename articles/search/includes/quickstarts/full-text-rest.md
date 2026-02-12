@@ -38,21 +38,24 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Use Git to clone the sample repository.
 
-   ```console
-   git clone https://github.com/Azure-Samples/azure-search-rest-samples
-   ```
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-rest-samples
+    ```
 
-1. Open the `azure-search-rest-samples/Quickstart-keyword-search` folder in Visual Studio Code.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-1. Open the `az-search-quickstart.rest` file.
+    ```bash
+    cd azure-search-rest-samples/Quickstart-keyword-search
+    code .
+    ```
 
-1. Replace the placeholder value for `@baseUrl` with the URL you obtained in [Get endpoint](#get-endpoint).
+1. In `az-search-quickstart.rest`, replace the placeholder value for `@baseUrl` with the URL you obtained in [Get endpoint](#get-endpoint).
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-    ```azurecli
-    az login
-    ```
+   ```azurecli
+   az login
+   ```
 
 1. For keyless authentication with Microsoft Entra ID, generate an access token.
 
@@ -66,7 +69,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Under `### List existing indexes by name`, select **Send Request** to verify your connection.
 
-   A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready to proceed.
+    A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready to proceed.
 
 1. Send the remaining requests sequentially to create an index, upload documents, and query the index.
 
@@ -93,6 +96,8 @@ Each request returns different JSON based on the operation.  The key output is f
 ```
 
 ## Understand the code
+
+[!INCLUDE [understand code note](../understand-code-note.md)]
 
 Now that you've run the code, let's break down the key steps:
 

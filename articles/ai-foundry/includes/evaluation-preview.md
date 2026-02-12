@@ -10,14 +10,9 @@ ms.custom: include file
 ---
 
 ::: moniker range="foundry-classic"
-> [!NOTE]
-> The Microsoft Foundry SDK for evaluation and Foundry portal are in public preview, but the APIs are generally available for model and dataset evaluation (agent evaluation remains in public preview). The Azure AI Evaluation SDK and evaluators marked (preview) in this article are currently in public preview everywhere.
-
+[!INCLUDE [evaluation-preview-classic](evaluation-preview-classic.md)]
 ::: moniker-end
 
 ::: moniker range="foundry"
-
-> [!NOTE]
-> The Microsoft Foundry SDK for evaluation and Foundry portal are in public preview, but the APIs are generally available for model and dataset evaluation (agent evaluation remains in public preview). Evaluators marked (preview) in this article are currently in public preview everywhere.
-
+[!INCLUDE [evaluation-preview-foundry](../default/includes/evaluation-preview-foundry.md)]
 ::: moniker-end

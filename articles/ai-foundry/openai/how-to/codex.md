@@ -1,6 +1,6 @@
 ---
-title: Codex with Azure OpenAI in Foundry Models
-description: Learn how to use Codex CLI and the VS Code Codex extension with Azure OpenAI and Foundry with gpt-5-codex
+title: Codex with Azure OpenAI in Microsoft Foundry Models
+description: Learn how to use the Codex CLI and the Codex extension for Visual Studio Code with Azure OpenAI in Microsoft Foundry Models.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -9,6 +9,7 @@ ms.date: 12/04/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 
@@ -20,7 +21,8 @@ OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Contributor permissions in [Microsoft Foundry](https://ai.azure.com/).
-- [`homebrew`](https://brew.sh/) or [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for installing the Codex CLI or VS Code with the Codex extension.
+- `homebrew` (macOS) or Node.js with `npm` for installing the Codex CLI. See [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+- For Windows, install and configure WSL2. See [Install WSL](https://learn.microsoft.com/windows/wsl/install).
 
 | Requirements      | Details      |
 |-------------------|--------------|
@@ -49,9 +51,11 @@ codex --version # verify installation
 # [brew](#tab/brew)
 
 ```bash
-brew install codex
+brew install --cask codex
 codex --version # verify installation
 ```
+
+If Homebrew can't find the package, follow the latest installation instructions in the [Codex CLI repository](https://github.com/openai/codex).
 
 ---
 
@@ -104,8 +108,11 @@ You can also use Codex directly inside Visual Studio Code when using the [OpenAI
 3. If you are in a new terminal session setup the environment variable for `AZURE_OPENAI_API_KEY`:
 
     ```bash
-    export OPENAI_API_KEY="your-azure-api-key-here"
+    export OPENAI_API_KEY="<your-azure-api-key-here>"
     ```
+
+    > [!NOTE]
+    > If you use WSL, also set the same environment variable on the Windows host so the extension can read it when needed.
 
 4. Launch VS Code from the same Terminal session. (Launching from an app launcher can result in your API key environment variable not being available to the Codex extension.)
 

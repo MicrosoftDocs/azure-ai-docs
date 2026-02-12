@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/09/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -69,7 +69,7 @@ To learn about supported authentication options (key-based, Microsoft Entra iden
 > [!NOTE]
 > Set `project_connection_id` to the ID of your project connection.
 
-<!-- The verbiage in the following section was provided by Foundry CELA. Do not modify. -->
+<!-- The verbiage in the following section is required. Do not remove or modify. -->
 ## Considerations for using non-Microsoft services and servers
 
 You're subject to the terms between you and the service provider when you use connected non-Microsoft services. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
@@ -923,6 +923,10 @@ The following steps outline how to connect to a remote MCP server from Foundry A
   1. `project_connection_id`: The project connection ID that stores authentication and other connection details for the MCP server.
 1. If the model tries to invoke a tool in your MCP server with approval required, you get a response output item type as `mcp_approval_request`. In the response output item, you can get more details on which tool in the MCP server is called and arguments to be passed. Review the tool and arguments so that you can make an informed decision for approval.
 1. Submit your approval to the agent by using `response_id` and setting `approve` to `true`.
+
+## Known limitations
+
+- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 120 seconds. If your MCP server takes longer than 120 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
 
 ## Common questions and errors
 

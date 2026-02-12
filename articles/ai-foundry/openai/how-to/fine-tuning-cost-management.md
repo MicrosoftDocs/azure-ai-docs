@@ -7,8 +7,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 11/26/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 show_latex: true
 ms.custom: ignite2025
 monikerRange: 'foundry-classic || foundry'

@@ -33,12 +33,14 @@ OpenAI's image generation models create images from user-provided text prompts a
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
 - Deploy a `dall-e-3` or `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 series models are newer and feature a number of improvements over DALL-E 3. They are available in limited access: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access).
+- Python 3.8 or later.
+    - Install the required packages: `pip install openai azure-identity`
 
 ## Overview
 
-- Use image generation via [image generation API](https://int.ai.azure.com/doc/azure/ai-foundry/openai/dall-e-quickstart?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key)
-- Experiment with image generation in the [image playground](https://int.ai.azure.com/doc/azure/ai-foundry/openai/dall-e-quickstart?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2)
-- Learn about [image generation tokens ](https://int.ai.azure.com/doc/azure/ai-foundry/openai/overview?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2)
+- Use image generation via [image generation API](/azure/ai-foundry/openai/dall-e-quickstart) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key)
+- Experiment with image generation in the [Foundry portal](https://ai.azure.com)
+- Learn about [image generation tokens](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#image-generation-models)
 
 | Aspect | GPT-Image-1.5 | GPT-Image-1 | GPT-Image-1-Mini | DALL·E 3 |
 |--------|---------------|--------------|------------------|-----------|
@@ -64,6 +66,16 @@ Customers can learn more about these safeguards and how to customize them here:
 
 Photorealistic images of minors are blocked by default. Customers can [request access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQVFQRDhQRjVPNllLMVZCSVNYVUs4MzhNMyQlQCN0PWcu) to this model capability. Enterprise-tier customers are automatically approved.
 
+## Quotas and limits
+
+Image generation has default rate limits per deployment:
+
+| Model | Default quota (images/min) |
+|-------|---------------------------|
+| DALL-E 3 | 2 |
+| GPT-image-1 series | 5 |
+
+To view your current quota or request an increase, see [Manage Azure OpenAI quotas](/azure/ai-foundry/openai/how-to/quota).
 
 ## Call the image generation API
 
@@ -187,6 +199,8 @@ The response from a successful image generation API call looks like the followin
 ---
 
 ### Streaming
+
+Streaming lets you receive partial images as they're generated, providing faster visual feedback for your users. This is useful for applications where you want to show generation progress. The `partial_images` parameter (1-3) controls how many intermediate images are returned before the final result.
 
 You can stream image generation requests to `gpt-image-1`-series models by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
 
@@ -445,6 +459,25 @@ Set the *background* parameter to `transparent` and *output_format* to `PNG` on 
 DALL-E models don't support the Image Edit API.
 
 ---
+
+## Troubleshooting
+
+### Rate limit errors
+
+If you receive a 429 error, you've exceeded your rate limit. Wait before retrying or request a quota increase in the Azure portal.
+
+### Authentication errors
+
+If you receive a 401 error:
+- **API key auth**: Verify your API key is correct and not expired.
+- **Managed identity**: Ensure your identity has the **Cognitive Services OpenAI User** role on the resource.
+
+### Timeout errors
+
+Image generation can take up to 60 seconds for complex prompts. If you experience timeouts:
+- Use streaming to get partial results sooner.
+- Simplify your prompt.
+- Try a smaller image size.
 
 ## Related content
 

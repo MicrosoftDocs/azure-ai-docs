@@ -21,8 +21,6 @@ ai-usage: ai-assisted
 
 You can ask AI to assist you in Microsoft Foundry. To start using AI to ask questions, select the AI icon in the upper right of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time.
 
-:::image type="content" source="../media/ask-foundry-agent/ask-foundry.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry (classic) portal.":::
-
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 ## Prerequisites
@@ -51,7 +49,7 @@ Use the agent to make the most of the Foundry experience but keep its scope and 
 
 You can ask AI to assist you in Foundry. To start using AI to ask questions or complete tasks, select its icon located in the top right bar of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time. You can also ask the agent to run tasks for you.
 
-:::image type="content" source="../default/media/ask-foundry-agent/ask-ai.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry portal.":::
+:::image type="content" source="media/ask-foundry-agent/ask-ai.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry portal.":::
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -83,13 +81,13 @@ Use the agent to make the most of the Foundry experience but keep its scope and 
 
 When you ask the Ask AI agent to perform tasks that require accessing or modifying your Azure resources, the agent proposes actions for you to review and approve before execution. This approval flow ensures you maintain oversight over what actions are performed on your behalf.
 
-:::image type="content" source="../default/media/ask-foundry-agent/ask-ai-approval-flow.png" alt-text="Screenshot shows the Ask AI chat on the right side of Foundry portal. The Ask AI agent is responding a user query by proposing to run an action for the user to approve.":::
+:::image type="content" source="media/ask-foundry-agent/ask-ai-approval-flow.png" alt-text="Screenshot shows the Ask AI chat on the right side of Foundry portal. The Ask AI agent is responding a user query by proposing to run an action for the user to approve.":::
 
 The actions come from the tools available under the [Foundry Model Context Protocol (MCP) Server](../default/mcp/available-tools.md).
 
 To make this approval flow easier, you can **change the approval settings** to pre-approve some actions depending on their scope. Access the approval settings by selecting the settings icon in the Ask AI prompt chat box. By default, this experience is set to pre-approve **System access** actions. You can change these settings anytime, and they persist beyond your session.
 
-:::image type="content" source="../default/media/ask-foundry-agent/ask-ai-approval-settings.png" alt-text="Screenshot shows the Ask AI prompt chat box, showing the location of the approval settings.":::
+:::image type="content" source="media/ask-foundry-agent/ask-ai-approval-settings.png" alt-text="Screenshot shows the Ask AI prompt chat box, showing the location of the approval settings.":::
 
 ## Best practices and security guidance
 

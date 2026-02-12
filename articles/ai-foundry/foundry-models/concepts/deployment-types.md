@@ -51,6 +51,9 @@ The service offers two main categories: *standard* (pay-per-token) and *provisio
 > [!NOTE]
 > Not all models support all deployment types. Check [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md) for model availability by deployment type and region.
 
+> [!NOTE]
+> SLA guarantees vary by deployment type. Provisioned types provide guaranteed throughput and lower latency variance. Standard types offer best-effort service. Developer deployments don't include an SLA. For details, see the [Azure SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
+
 > [!TIP]
 > For detailed pricing, see [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
@@ -109,13 +112,15 @@ Global Standard deployments use Azure's global infrastructure to dynamically rou
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../quotas-limits.md). For applications that require lower latency variance at large workload usage, consider provisioned throughput.
 
-Global Standard supports priority processing for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
+Global Standard supports priority processing (preview) for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
 ## Global Provisioned
 
 - SKU name in code: `GlobalProvisionedManaged`
 
-Global Provisioned deployments use Azure's global infrastructure to dynamically route traffic to available datacenters. This deployment type provides reserved model processing capacity for predictable throughput, combining global routing with guaranteed capacity.  
+Global Provisioned deployments use Azure's global infrastructure to dynamically route traffic to available datacenters. This deployment type provides reserved model processing capacity for predictable throughput, combining global routing with guaranteed capacity.
+
+With provisioned throughput, you purchase a fixed number of provisioned throughput units (PTUs) that guarantee a specific level of processing capacity. This deployment type provides lower and more consistent latency than Global Standard. To learn more, see [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
 
 ## Global Batch
 
@@ -132,6 +137,9 @@ Common use cases:
 - **Data extraction and analysis**: Extract and analyze information from large amounts of unstructured data.
 - **Natural language processing (NLP) tasks**: Perform sentiment analysis or translation on large datasets.
 
+> [!NOTE]
+> Batch deployments trade real-time responsiveness for cost savings. Batch requests don't have a real-time SLA — they target completion within 24 hours but might take longer.
+
 ## Data Zone Standard
 
 - SKU name in code: `DataZoneStandard`
@@ -140,7 +148,7 @@ Data Zone Standard deployments dynamically route traffic to datacenters within t
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits.md). For workloads that require low latency variance at large volume, consider provisioned deployment types.
 
-Data Zone Standard supports priority processing for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
+Data Zone Standard supports priority processing (preview) for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
 ## Data Zone Provisioned
 
@@ -158,7 +166,7 @@ Data Zone Batch deployments provide the same functionality as [Global Batch](../
 
 - SKU name in code: `Standard`
 
-Standard deployments use pay-per-call billing. You pay only for what you consume. Models available in each region and throughput might be limited.
+Standard deployments use pay-per-token billing. You pay only for what you consume. Models available in each region and throughput might be limited.
 
 Standard deployments are suited for low-to-medium volume workloads with high burstiness. Customers with high consistent volume might experience greater latency variability.
 
@@ -166,13 +174,13 @@ Standard deployments are suited for low-to-medium volume workloads with high bur
 
 - SKU name in code: `ProvisionedManaged`
 
-Regional Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units, which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of provisioned throughput units to deploy, and provides different amounts of throughput per provisioned throughput unit. Learn more in the [article about provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
+Regional Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTUs), which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTUs to deploy, and provides different amounts of throughput per PTU. Minimum PTU requirements vary by model. For current minimums and available capacity, see [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
 
 ## Developer (for fine-tuned models)
 
 - SKU name in code: `DeveloperTier`
 
-The Developer deployment type is designed for fine-tuned model evaluation only. It provides cost-efficient testing of custom models but doesn't include data residency guarantees or an SLA. To learn more about using the Developer deployment type, see the [fine-tuning guide](../../openai/how-to/fine-tune-test.md).
+The Developer deployment type is designed for fine-tuned model evaluation only. It provides cost-efficient testing of custom models but doesn't include data residency guarantees or an SLA. Developer deployments have a fixed 24-hour lifetime and are automatically deleted after expiration. To learn more about using the Developer deployment type, see the [fine-tuning guide](../../openai/how-to/fine-tune-test.md).
 
 ## Troubleshooting deployment issues
 
@@ -213,15 +221,12 @@ Use the following policy to disable access to a specific Foundry deployment type
 }
 ```
 
-## Deploy models
-
-:::image type="content" source="../../openai/media/deployment-types/deploy-models-new.png" alt-text="Screenshot of the Foundry portal deployment dialog showing the model name field and deployment options.":::
-
-To learn about creating resources and deploying models, see [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md) and [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../openai/how-to/create-resource.md).
-
 ## Related content
 
+- [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
+- [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../openai/how-to/create-resource.md)
 - [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md)
+- [Model region availability by deployment type](models-sold-directly-by-azure.md#foundry-models-sold-directly-by-azure)
 - [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 - [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 - [Global Batch processing](../../openai/how-to/batch.md)
