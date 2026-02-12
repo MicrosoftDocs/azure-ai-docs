@@ -422,8 +422,8 @@ items:
         href: multimodal-search-overview.md
       - name: Tutorials
         items:
-        - name: CONSOLIDATED TUTORIAL
-          href: tutorial-multimodal-chunking.md
+        - name: Consolidated tutorial
+          href: tutorial-multimodal.md
         - name: Vectorize images and text
           href: tutorial-document-extraction-multimodal-embeddings.md
         - name: Vectorize from a structured document layout

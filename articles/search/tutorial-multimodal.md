@@ -53,7 +53,7 @@ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vec
 
 ## Configure access
 
-[!INCLUDE [resource authentication](includes/resource-authentication.md))]
+[!INCLUDE [resource authentication](includes/resource-authentication.md)]
 
 ## Get endpoint
 
