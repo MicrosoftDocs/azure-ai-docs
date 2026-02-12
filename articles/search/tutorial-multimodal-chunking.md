@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
 ms.topic: tutorial
-ms.date: 02/06/2026
+ms.date: 02/14/2026
 ---
 
 # Tutorial: Extract, chunk, and embed multimodal content
@@ -18,13 +18,13 @@ In this tutorial, you will build a multimodal indexing pipeline that:
 
 > [!div class="checklist"]
 >
-> + Detects and describes image content using either image analysis or image verbalization.
-> + Chunks raw text and image descriptions using either the Text Split skill or the Document Layout skill (based on Content Understanding).
-> + Stores cropped images in a knowledge store for retrieval by your app.
-
-Original text and generated image descriptions are vectorized and ingested in a searchable index.
+> + Extracts and and chunks text and and image content
+> + Vectorizes text and image content for similarity search
+> + Stores reshaped and cropped images in a knowledge store for retrieval by your app
 
 Source data is a 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with original text.
+
+Multimodal indexing is implemented through a combination of skills that bring Foundry models and APIs into an indexer pipeline.
 
 <!-- + An indexer and skillset to create an indexing pipeline that includes AI enrichment through skills.
 
@@ -45,7 +45,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 + [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data and for creating a [knowledge store](knowledge-store-concept-intro.md).
 
-+ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) for image description and vectorization skills.
++ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) that provides Foundry models and APIs.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python). If you haven't installed a suitable version of Python, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
 
@@ -53,10 +53,19 @@ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vec
 
 ## Configure access
 
+[!INCLUDE [resource authentication](/includes/resource-authentication.md)]
+
+## Get endpoint
+
+[!INCLUDE [resource endpoint](/includes/resource-endpoint.md)]
 
 ## Prepare data
 
-The following instructions apply to Azure Storage which provides the sample data and also hosts the knowledge store. A search service identity needs read access to Azure Storage to retrieve the sample data, and it needs write access to create the knowledge store. The search service creates the container for cropped images during skillset processing, using the name you provide in an environment variable.
+Azure Storage provides the sample data and hosts the knowledge store. A search service managed identity needs:
+
++ Read access to Azure Storage to retrieve the sample data.
+
++ Write access to create the knowledge store. The search service creates the container for cropped images during skillset processing, using the name you provide in an environment variable.
 
 1. Download the following sample PDF: [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
 
@@ -66,31 +75,67 @@ The following instructions apply to Azure Storage which provides the sample data
 
 1. [Create role assignments and specify a managed identity in a connection string](search-howto-managed-identities-storage.md):
 
-   1. Assign **Storage Blob Data Reader** for data retrieval by the indexer. Assign **Storage Blob Data Contributor** and **Storage Table Data Contributor** to create and load the knowledge store. You can use either a system-assigned managed identity or a user-assigned managed identity for your search service role assignment.
+   1. Assign **Storage Blob Data Reader** for data retrieval by the indexer.
+  
+   1. Assign **Storage Blob Data Contributor** and **Storage Table Data Contributor** to create and load the knowledge store. 
 
-   1. For connections made using a system-assigned managed identity, get a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
+   1. For connections made using a system-assigned managed identity, get a connection string that contains a ResourceId, with no account key or password. The connection string is similar to the following example:
 
-        ```json
-        "credentials" : { 
-            "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-        }
-        ```
+    ```json
+    "credentials" : { 
+        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+    }
+    ```
 
-   1. For connections made using a user-assigned managed identity, get a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity. The connection string is similar to the following example:
+   1. For connections made using a user-assigned managed identity, get the same connection string but also provide an `identity` set to a predefined user-assigned managed identity. The connection string is similar to the following example:
 
-      ```json
-      "credentials" : { 
-          "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-      },
-      "identity" : { 
-          "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-          "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
-      }
-      ```
+    ```json
+    "credentials" : { 
+        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+    },
+    "identity" : { 
+        "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+        "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
+    }
+    ```
 
-## Prepare models
+## Choose an approach
 
-This tutorial assumes you have an existing Foundry resource through which the skill calls the Azure Vision multimodal 4.0 embedding model. The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
+The index, data source, and indexer definitions are the same for all scenarios, but you can pick different skills depending on the task.
+
+#### Extract and chunk content
+
+| Skills | Explanation |
+|--|--|
+| Document Extraction and Text Split | Uses built-in skills to extract text and images, and chunk text based on fixed size. Usage is free of charge. |
+| Document Layout | Calls Content Understanding APIs to extract text and images, and chunk text based on document structure. Usage is based on pay-as-you-go pricing. |
+
+### Describe images
+
+| Skills | Explanation |
+|--|--|
+| None | Image descriptions are optional. If you don't generate a description, you can vectorize images using Azure AI Vision and run vector queries for matches on vector content. |
+| GenAI Prompt (chat completion) | Calls a supported chat completion model in Microsoft Foundry to generate a text description for each extracted image. Generated text, rather then an image, is vectorized and used for content retrieval. Usage is based on pay-as-you-go pricing. |
+
+#### Vectorize content
+
+| Skills | Explanation |
+|--|--|
+| Azure OpenAI Embedding skill | Uses a supported embedding model to vectorize text, either raw text or generated text for image descriptions. Usage is based on pay-as-you-go pricing. |
+| Azure AI Vision skill | Calls the Azure AI Vision multimodal 4.0 API to vectorize both text and images extracted from the source document. If you want image vectors, you must use this skill. Usage is based on pay-as-you-go pricing. |
+
+<!-- ## Deploy models
+
+Model requirements vary based on how you extract and describe images, and chunk content.
+
+| Task | Skill | Dependency|
+|-|-|
+| Extract and chunk | [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting normalized images and text. [Text Split skill](cognitive-search-skill-textsplit.md) chunks the data. | Foundry resource used for billing. No model requirement. |
+| Extract and chunk | [Document Layout skill (Content Understanding)](cognitive-search-skill-document-intelligence-layout.md#supported-regions) | Foundry resource in a [supported region](cognitive-search-skill-document-intelligence-layout.md#supported-regions). |
+| Describe images | [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) | Foundry resource in a [supported region](/azure/ai-services/computer-vision/overview-image-analysis#region-availability). |
+| Describe images | [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) that calls a chat completion model to create descriptions of visual content.| Foundry resource in a [supported region](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry-classic&tabs=global-standard-aoai%2Cglobal-standard&pivots=azure-openai&preserve-view=true). |
+
+The search service connects to the model during skillset processing using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
 
 1. Sign in to the Azure portal (not the Foundry portal) and find the Foundry resource. Make sure it's in a region that provides the [multimodal 4.0 API](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
@@ -101,8 +146,11 @@ This tutorial assumes you have an existing Foundry resource through which the sk
 1. Search for **Cognitive Services User** and then select it.
 
 1. Choose **Managed identity** and then assign your [search service managed identity](search-how-to-managed-identities.md).
+ -->
 
-## Set up your REST file
+## Set up your environment
+
+### [REST API](#tab/rest-api)
 
 For this tutorial, your local REST client connection to Azure AI Search requires an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Connect to a search service](search-get-started-rbac.md).
 
@@ -131,7 +179,11 @@ To get the Azure AI Search endpoint and API key:
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
-## Create a data source
+## Create an indexer pipeline
+
+TBD
+
+### Create a data source
 
 [Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
@@ -195,7 +247,7 @@ Connection: close
 }
 ```
 
-## Create an index
+### Create an index
 
 [Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
 
@@ -346,9 +398,240 @@ Key points:
 
 + For more information on semantic ranking, see [Semantic ranking in Azure AI Search](semantic-search-overview.md)
 
-## Create a skillset
+### Stub out a skillset definition
 
 [Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that chunk and embed content prior to indexing. This skillset uses the built-in Document Extraction skill to extract text and images. It uses Text Split skill to chunk large text. It uses Azure Vision multimodal embeddings skill to vectorize image and text content.
+
+
+## Extract and chunk text
+
+```http
+### Create a skillset
+POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
+  Content-Type: application/json
+  api-key: {{searchApiKey}}
+
+{
+  "name": "doc-extraction-multimodal-embedding-skillset",
+	"description": "A test skillset",
+  "skills": [
+    {
+      "@odata.type": "#Microsoft.Skills.Util.DocumentExtractionSkill",
+      "name": "document-extraction-skill",
+      "description": "Document extraction skill to extract text and images from documents",
+      "parsingMode": "default",
+      "dataToExtract": "contentAndMetadata",
+      "configuration": {
+          "imageAction": "generateNormalizedImages",
+          "normalizedImageMaxWidth": 2000,
+          "normalizedImageMaxHeight": 2000
+      },
+      "context": "/document",
+      "inputs": [
+        {
+          "name": "file_data",
+          "source": "/document/file_data"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "content",
+          "targetName": "extracted_content"
+        },
+        {
+          "name": "normalized_images",
+          "targetName": "normalized_images"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
+      "name": "split-skill",
+      "description": "Split skill to chunk documents",
+      "context": "/document",
+      "defaultLanguageCode": "en",
+      "textSplitMode": "pages",
+      "maximumPageLength": 2000,
+      "pageOverlapLength": 200,
+      "unit": "characters",
+      "inputs": [
+        {
+          "name": "text",
+          "source": "/document/extracted_content",
+          "inputs": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "textItems",
+          "targetName": "pages"
+        }
+      ]
+    },  
+  { 
+    "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill", 
+    "name": "text-embedding-skill",
+    "description": "Vision Vectorization skill for text",
+    "context": "/document/pages/*", 
+    "modelVersion": "{{modelVersion}}", 
+    "inputs": [ 
+      { 
+        "name": "text", 
+        "source": "/document/pages/*" 
+      } 
+    ], 
+    "outputs": [ 
+      { 
+        "name": "vector",
+        "targetName": "text_vector"
+      } 
+    ] 
+  },
+  { 
+    "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill", 
+    "name": "image-embedding-skill",
+    "description": "Vision Vectorization skill for images",
+    "context": "/document/normalized_images/*", 
+    "modelVersion": "{{modelVersion}}", 
+    "inputs": [ 
+      { 
+        "name": "image", 
+        "source": "/document/normalized_images/*" 
+      } 
+    ], 
+    "outputs": [ 
+      { 
+        "name": "vector",
+  "targetName": "image_vector"
+      } 
+    ] 
+  },  
+    {
+      "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
+      "name": "shaper-skill",
+      "description": "Shaper skill to reshape the data to fit the index schema",
+      "context": "/document/normalized_images/*",
+      "inputs": [
+        {
+          "name": "normalized_images",
+          "source": "/document/normalized_images/*",
+          "inputs": []
+        },
+        {
+          "name": "imagePath",
+          "source": "='{{imageProjectionContainer}}/'+$(/document/normalized_images/*/imagePath)",
+          "inputs": []
+        },
+        {
+          "name": "dataUri",
+          "source": "='data:image/jpeg;base64,'+$(/document/normalized_images/*/data)",
+          "inputs": []
+        },
+        {
+          "name": "location_metadata",
+          "sourceContext": "/document/normalized_images/*",
+          "inputs": [
+            {
+              "name": "page_number",
+              "source": "/document/normalized_images/*/pageNumber"
+            },
+            {
+              "name": "bounding_polygons",
+              "source": "/document/normalized_images/*/boundingPolygon"
+            }              
+          ]
+        }          
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "targetName": "new_normalized_images"
+        }
+      ]
+    }  
+  ],
+  "cognitiveServices": {
+    "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
+    "subdomainUrl": "{{cognitiveServicesUrl}}",
+    "identity": null
+  },
+  "indexProjections": {
+      "selectors": [
+        {
+          "targetIndexName": "doc-extraction-multimodal-embedding-index",
+          "parentKeyFieldName": "text_document_id",
+          "sourceContext": "/document/pages/*",
+          "mappings": [              
+            {
+              "name": "content_embedding",
+              "source": "/document/pages/*/text_vector"
+            },
+            {
+              "name": "content_text",
+              "source": "/document/pages/*"
+            },             
+            {
+              "name": "document_title",
+              "source": "/document/document_title"
+            }      
+          ]
+        },
+        {
+          "targetIndexName": "doc-extraction-multimodal-embedding-index",
+          "parentKeyFieldName": "image_document_id",
+          "sourceContext": "/document/normalized_images/*",
+          "mappings": [                                   
+            {
+              "name": "content_embedding",
+              "source": "/document/normalized_images/*/image_vector"
+            },
+            {
+              "name": "content_path",
+              "source": "/document/normalized_images/*/new_normalized_images/imagePath"
+            },
+            {
+              "name": "location_metadata",
+              "source": "/document/normalized_images/*/new_normalized_images/location_metadata"
+            },                      
+            {
+              "name": "document_title",
+              "source": "/document/document_title"
+            }                
+          ]
+        }
+      ],
+      "parameters": {
+        "projectionMode": "skipIndexingParentDocuments"
+      }
+  },
+  "knowledgeStore": {
+    "storageConnectionString": "{{storageConnection}}",
+    "identity": null,
+    "projections": [
+      {
+        "files": [
+          {
+            "storageContainer": "{{imageProjectionContainer}}",
+            "source": "/document/normalized_images/*"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+This skillset extracts text and images, vectorizes both, and shapes the image metadata for projection into the index.
+
+Key points:
+
++ The `content_text` field is populated with text extracted using the Document Extraction Skill and chunked using the Split Skill
+
++ `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
+
++ The Azure Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
+
+## Vectorize multimodal content
 
 ```http
 ### Create a skillset
@@ -712,9 +995,7 @@ GET {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/status?ap
 
 ## Clean up resources
 
-When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
-
-You can use the Azure portal to delete indexes, indexers, and data sources.
+[!INCLUDE [clean up resources (paid)](/includes/resource-cleanup-paid.md)]
 
 ## See also
 
