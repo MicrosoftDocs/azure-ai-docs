@@ -223,7 +223,7 @@ az provider register --namespace 'Microsoft.ContainerService'
 
  
 
-`""Timeout of 60000ms exceeded" error when loading the Agent pages in the AI Foundry project"` 
+`"Timeout of 60000ms exceeded" error when loading the Agent pages in the AI Foundry project`
 
 **Solution**: The AI Foundry project has issues communicating with Cosmos DB to create Agents. Verify connectivity to Cosmos DB (Private Endpoint and DNS).
 When using a [firewall on the agents subnet](../how-to/virtual-networks.md#known-limitations), make sure it allows access to required Fully Qualified Domain Names (FQDNs).
