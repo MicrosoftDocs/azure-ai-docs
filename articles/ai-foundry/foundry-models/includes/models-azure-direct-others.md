@@ -64,7 +64,7 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
       "height": 1024, 
       "seed": 42, 
       "safety_tolerance": 2, 
-      "output_format": "jpeg", 
+      "output_format": "jpeg"
     }' 
 ```
 
