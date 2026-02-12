@@ -6,9 +6,7 @@ ms.topic: include
 ms.date: 11/19/2025
 ---
 
-Set up default model deployments for your Content Understanding resource. By setting defaults, you create a connection to the Microsoft Foundry models you use for Content Understanding requests.
-
-Choose one of the following methods:
+Set up default model deployments for your Content Understanding resource. By setting defaults, you create a connection to the Microsoft Foundry models you use for Content Understanding requests. Choose one of the following methods:
 
 # [Portal](#tab/portal)
 
