@@ -54,11 +54,11 @@ You can run these models through the BFL service provider API and through the [i
 - Output: One image 
 
 ```sh
-curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \ 
+curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version=preview \ 
   -H "Content-Type: application/json" \ 
   -H "Authorization: Bearer {API_KEY}" \ 
   -d '{ 
-      "model": "FLUX.2-pro" 
+      "model": "FLUX.2-pro", 
       "prompt": "A photograph of a red fox in an autumn forest", 
       "width": 1024, 
       "height": 1024, 
@@ -74,7 +74,7 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
 - Output: One image 
 
 ```sh
-curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \
+curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version=preview \
   -H "Content-Type: application/json" \ 
   -H "Authorization: Bearer {API_KEY}" \ 
   -d '{ 
