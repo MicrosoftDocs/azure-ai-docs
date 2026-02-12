@@ -53,11 +53,11 @@ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vec
 
 ## Configure access
 
-[!INCLUDE [resource authentication](/includes/resource-authentication.md)]
+[!INCLUDE [resource authentication](includes/resource-authentication.md))]
 
 ## Get endpoint
 
-[!INCLUDE [resource endpoint](/includes/resource-endpoint.md)]
+[!INCLUDE [resource endpoint](includes/resource-endpoint.md)]
 
 ## Prepare data
 
@@ -995,7 +995,7 @@ GET {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/status?ap
 
 ## Clean up resources
 
-[!INCLUDE [clean up resources (paid)](/includes/resource-cleanup-paid.md)]
+[!INCLUDE [clean up resources (paid)](includes/resource-cleanup-paid.md)]
 
 ## See also
 
