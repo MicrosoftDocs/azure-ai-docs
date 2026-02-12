@@ -50,7 +50,7 @@ To delete a control:
 2. Select **Delete**.
 
 > [!NOTE]
-> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about [modified content filtering](../../openai/concepts/content-filter-configurability.md).
+> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about [modified content filtering](/azure/ai-foundry/openai/concepts/content-filter-configurability).
 
 ## Edit controls in a guardrail
 
