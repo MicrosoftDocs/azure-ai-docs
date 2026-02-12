@@ -54,7 +54,7 @@ You can run these models through the BFL service provider API and through the [i
 - Output: One image 
 
 ```sh
-curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version=… \ 
+curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \ 
   -H "Content-Type: application/json" \ 
   -H "Authorization: Bearer {API_KEY}" \ 
   -d '{ 
@@ -64,7 +64,7 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
       "height": 1024, 
       "seed": 42, 
       "safety_tolerance": 2, 
-      "output_format": "jpeg",
+      "output_format": "jpeg", 
     }' 
 ```
 
@@ -74,7 +74,7 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
 - Output: One image 
 
 ```sh
-curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version=… \
+curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \
   -H "Content-Type: application/json" \ 
   -H "Authorization: Bearer {API_KEY}" \ 
   -d '{ 
