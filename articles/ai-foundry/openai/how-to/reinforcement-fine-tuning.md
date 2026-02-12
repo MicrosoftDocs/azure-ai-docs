@@ -4,7 +4,7 @@ description: Learn how to use reinforcement fine-tuning with reasoning models
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 11/26/2025
+ms.date: 02/11/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -19,17 +19,20 @@ ai-usage: ai-assisted
 Reinforcement fine-tuning (RFT) is a technique for improving reasoning models by training them through a reward-based process, rather than relying only on labeled data. RFT helps models develop better reasoning and problem-solving skills, especially in cases where labeled examples are limited or complex behaviors are desired.
 
 > [!NOTE]
-> The fine-tuning service automatically pauses RFT jobs once they hit $5,000 in total training costs (training + grading). Users can deploy the most recent checkpoint or resume the training job. If the user decides to resume the job, billing continues for the job with no further cost-based limits.
+> The fine-tuning service automatically pauses RFT jobs once they hit $5,000 in total training costs (training + grading). You can deploy the most recent checkpoint or resume the training job. If you decide to resume the job, billing continues for the job with no further cost-based limits.
 
 
 ## Model support
 
 Reinforcement fine-tuning is supported for the following models:
 
-- `o4-mini` version `2025-04-16`
-- `gpt-5` version `2025-08-07` (preview)
+| Model | Version | RFT support | Status |
+|-------|---------|-------------|--------|
+| `o4-mini` | `2025-04-16` | Yes | GA |
+| `gpt-5` | `2025-08-07` | Yes | Private preview |
 
-> GPT-5 support for reinforcement fine tuning is in private preview and might not be available in your subscription.
+> [!NOTE]
+> GPT-5 support for reinforcement fine-tuning is in private preview and might not be available in your subscription.
 
 ## Requirements
 
@@ -114,10 +117,13 @@ String-check graders apply a given operation to the input and a reference to ret
 ```
 
 *Operations:*
-- `eq`: Returns 1 if the input matches the reference (case-sensitive), 0 otherwise
-- `neq`: Returns 1 if the input doesn't match the reference (case-sensitive), 0 otherwise
-- `like`: Returns 1 if the input contains the reference (case-sensitive), 0 otherwise
-- `ilike`: Returns 1 if the input contains the reference (not case-sensitive), 0 otherwise
+
+| Operation | Returns 1 when | Case-sensitive |
+|-----------|----------------|----------------|
+| `eq` | Input matches reference | Yes |
+| `ne` | Input doesn't match reference | Yes |
+| `like` | Input contains reference | Yes |
+| `ilike` | Input contains reference | No |
 
 #### Text similarity
 
@@ -149,10 +155,13 @@ Model graders take a prompt to a grader model instructing it how to evaluate and
 
 The following models can be used as model graders:
 
-- `gpt-4o-2024-08-06`
-- `o3-mini-2025-01-31`
+| Model | Can be used as grader |
+|-------|-----------------------|
+| `gpt-4o-2024-08-06` | Yes |
+| `o3-mini-2025-01-31` | Yes |
 
-> Model graders do not require model deployments in Foundry.
+> [!NOTE]
+> Model graders don't require model deployments in Foundry.
 
 ### Score model
 
@@ -172,7 +181,7 @@ Score model graders output a numeric score based on their given input and prompt
 
 ### Code graders
 
-Model graders provide a flexible, but nondeterministic way to grade responses. When determinism is important, code graders provide an alternative approach to defining scoring logic.
+Model graders are flexible but nondeterministic. When you need deterministic scoring, use code graders instead.
 
 ### Python grader
 
@@ -190,11 +199,14 @@ The provided code must define a `grade` function expecting two positional argume
 
 The Python code executes in a constrained environment with the following limitations:
 
-- the provided code must be less than 256 kB in size
-- no network access is provided
-- Two (2) GB of memory and one (1) GB of disk space are available for use
-- One (1) CPU core is available
-- the total runtime of the grader is limited to 2 minutes
+| Resource | Limit |
+|----------|-------|
+| Code size | 256 KB |
+| Network | No access |
+| Memory | 2 GB |
+| Disk space | 1 GB |
+| CPU | 1 core |
+| Runtime | 2 minutes |
 
 > [!TIP]
 > Your code should handle any possible errors and always return a numeric value. If too many exceptions occur during the execution of the grader, the training job fails.
@@ -240,21 +252,27 @@ A multigrader combines the output of multiple graders to produce a single score 
 When a multigrader computes the score, the `calculate_output` expression references the individual scores from the provided `graders` by the key in the `graders` object.
 
 *Operators:*
-- `+` (addition)
-- `-` (subtraction)
-- `*` (multiplication)
-- `/` (division)
-- `^` (power)
+
+| Operator | Description |
+|----------|-------------|
+| `+` | Addition |
+| `-` | Subtraction |
+| `*` | Multiplication |
+| `/` | Division |
+| `^` | Power |
 
 *Functions:*
-- `min`: compute the minimum of a value
-- `max`: compute the maximum of a value
-- `abs`: compute the absolute value
-- `floor`: round the value down
-- `ceil`: round the value up
-- `exp`: compute `e` to the power of the provided value
-- `sqrt`: take the square root of the value
-- `log`: compute the logarithm of the provided value
+
+| Function | Description |
+|----------|-------------|
+| `min` | Compute the minimum of a value |
+| `max` | Compute the maximum of a value |
+| `abs` | Compute the absolute value |
+| `floor` | Round the value down |
+| `ceil` | Round the value up |
+| `exp` | Compute `e` to the power of the provided value |
+| `sqrt` | Take the square root of the value |
+| `log` | Compute the logarithm of the provided value |
 
 As an example, a multigrader defined with two graders, "similarity-score" and "label-checker," that must average their outputs could look like:
 
@@ -367,7 +385,7 @@ Inspecting these evaluations provides an extra data point for deciding on early-
 
 ## Example projects and datasets
 
-The following example demos and datasets provide starting points for new users of Reinforcement fine tuning:
+The following example demos and datasets provide starting points for new users of reinforcement fine-tuning:
 
 - [Countdown Demo](https://github.com/azure-ai-foundry/fine-tuning/tree/main/Demos/RFT_Countdown) - end-to-end demo of using RFT to improve mathematical reasoning.
 - [MedMCQ](https://github.com/azure-ai-foundry/fine-tuning/tree/main/Sample_Datasets/Reinforcement_Fine_Tuning/MedMCQ) - sample dataset and graders for answering multiple-choice questions from the medical domain.
