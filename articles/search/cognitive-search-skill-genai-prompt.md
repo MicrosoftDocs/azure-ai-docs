@@ -181,7 +181,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
     "jsonSchemaProperties": {
       "name": "NumericalFactObj",
       "strict": true,
-       schema": {
+      "schema": {
         "type": "object",
         "properties": "{\"facts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"number\":{\"type\":\"number\"},\"fact\":{\"type\":\"string\"}},\"required\":[\"number\",\"fact\"]}}}",
         "required": [ "facts" ],
