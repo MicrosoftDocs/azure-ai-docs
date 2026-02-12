@@ -5,7 +5,7 @@ description: Set up Claude Code CLI and VS Code extension to use Claude models i
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 02/03/2026
+ms.date: 02/12/2026
 ms.custom: dev-focus
 author: msakande
 ms.author: mopeakande
@@ -27,15 +27,15 @@ In this article, you learn how to:
 - Integrate Spec Kit for structured development workflows
 - Run Claude Code in GitHub Actions for CI/CD automation
 
+[!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
+
 ## Prerequisites
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../../how-to/deploy-models-serverless-availability.md#region-availability) for Claude models.
-- Node.js 18 or later installed for the Claude Code CLI.
+- `homebrew` (macOS) or Node.js 18 or later with `npm` for installing the Claude Code CLI. See [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 - (Optional) [Azure CLI](/cli/azure/install-azure-cli) installed with `az login` completed for Microsoft Entra ID authentication.
-
-[!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
 ### System requirements
 
@@ -45,18 +45,17 @@ In this article, you learn how to:
 | RAM | 4-GB minimum (8-GB recommended) |
 | Git (optional) | 2.23+ for pull request helpers |
 
-## Deploy a Claude model
+## Deploy a Claude model in Foundry
 
-Before configuring Claude Code, deploy an available [Claude model](../concepts/models-from-partners.md#anthropic) in Microsoft Foundry. Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). 
+Before configuring Claude Code, deploy an available [Claude model](../concepts/models-from-partners.md#anthropic), such as Opus 4.5 in Microsoft Foundry. Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). 
 
-To deploy a Claude model, such as Opus 4.5, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
+1. To deploy a Claude model, such as Opus 4.5, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
 
-After deployment, select the **Details** tab and note your **Target URI** and **Key**. You need these values for configuration.
-
+1. After deployment, select the deployment's **Details** tab and note your **Target URI** and **Key**. You need these values for configuration.
 
 ### Alternative: Use Model Router
 
-[Model Router](../../openai/concepts/model-router.md) is a Foundry model that intelligently routes each prompt to the best underlying model based on query complexity, cost, and performance. Model Router version `2025-11-18` supports Claude Haiku 4.5, Sonnet 4.5, and Opus 4.1 alongside GPT, DeepSeek, Llama, and Grok models.
+[Model Router](../../openai/concepts/model-router.md) is a Foundry model that intelligently routes each prompt to the best underlying model based on query complexity, cost, and performance. Model Router version `2025-11-18` supports Claude models, alongside other Foundry models.
 
 Benefits for Claude Code users:
 
@@ -74,14 +73,14 @@ Install the Claude Code CLI and verify the installation. Use npm or Homebrew.
 
 ```bash
 npm install -g @anthropic-ai/claude-code
-claude --version
+claude --version # verify installation
 ```
 
 **Installation with Homebrew**
 
 ```bash
 brew install claude-code
-claude --version
+claude --version # verify installation
 ```
 
 For more installation options, see [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code).
@@ -150,13 +149,13 @@ If you prefer API key authentication, set the key in your environment variables.
 # [Bash / WSL](#tab/bash)
 
 ```bash
-export ANTHROPIC_FOUNDRY_API_KEY="your-foundry-api-key"
+export ANTHROPIC_FOUNDRY_API_KEY="<your-foundry-api-key>"
 ```
 
 # [PowerShell](#tab/powershell)
 
 ```powershell
-$env:ANTHROPIC_FOUNDRY_API_KEY = "your-foundry-api-key"
+$env:ANTHROPIC_FOUNDRY_API_KEY = "<your-foundry-api-key>"
 ```
 
 ---
@@ -270,6 +269,8 @@ async with AzureAIAgentClient(async_credential=AzureCliCredential()) as client:
 - Adding Fabric connector for sales data
 ````
 
+## Experiment with Claude Code
+
 To get Claude Code to read your `CLAUDE.md` and understand your project context, run these commands in your terminal:
 
 ```bash
@@ -280,7 +281,6 @@ claude
 # Or run a one-off command
 claude "explain the agent orchestration in src/workflows/"
 ```
-
 
 ## (Optional) Integrate Spec Kit for structured development
 
