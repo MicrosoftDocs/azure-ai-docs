@@ -92,7 +92,7 @@ If the index includes vector fields, you need a valid [vectorizer definition](ve
 
 [MCP](https://modelcontextprotocol.io/) is an open protocol that standardizes how AI applications connect to external data sources and tools.
 
-In Azure AI Search, each knowledge base is a standalone MCP server that exposes the `knowledge_base_retrieve` tool. Any MCP-compatible client, including [Foundry Agent Service](/azure/ai-foundry/agents/overview), [GitHub Copilot](https://docs.github.com/copilot), [Cursor](https://cursor.com), and [Claude](https://claude.ai), can invoke this tool to query the knowledge base.
+In Azure AI Search, each knowledge base is a standalone MCP server that exposes the `knowledge_base_retrieve` tool. Any MCP-compatible client, including [Foundry Agent Service](/azure/ai-foundry/agents/overview), [GitHub Copilot](https://github.com/features/copilot), [Cursor](https://cursor.com), and [Claude](https://claude.ai), can invoke this tool to query the knowledge base.
 
 ### MCP endpoint format
 
@@ -106,14 +106,14 @@ https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-ba
 
 The MCP endpoint requires authentication via custom headers. You have two options:
 
-+ Pass a query API key (not an admin key) in the `api-key` header. The key grants read-only access, so no role assignment is needed. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
++ Pass a query key (not an admin key) in the `api-key` header. The key grants read-only access, so no role assignment is needed. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
 
 + (Recommended) Pass a bearer token in the `Authorization` header. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. This approach avoids storing keys in configuration files. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
 
 > [!TIP]
 > Each MCP client configures custom headers differently. For example:
 >
-> + In [Foundry Agent Service](azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
+> + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
 >
 > + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp), [Visual Studio Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers), and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
 
