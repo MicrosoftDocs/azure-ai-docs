@@ -8,7 +8,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-foundry
   ms.topic: faq
-  ms.date: 01/29/2026
+  ms.date: 02/12/2026
   ai-usage: ai-assisted
 title: Foundry IQ frequently asked questions
 summary: |
@@ -33,7 +33,7 @@ sections:
         answer: |
           One Foundry IQ knowledge base provides access to multiple sources, removing the need to connect each agent to each source individually.
           
-          The agentic retrieval engine plans which sources to query and performs iterative search if initial results don't meet relevance standards. Indexing and data synchronization are triggered automatically. Iterative search depends on specifying a medium retrieval reasoning effort in the knowledge base.
+          The agentic retrieval engine plans which sources to query and performs iterative search if initial results don't meet relevance standards. Indexing and data synchronization are triggered automatically. Iterative search depends on specifying a medium retrieval reasoning effort in the knowledge base or on a per-request basis.
 
   - name: "Components and requirements"
     questions:
@@ -51,13 +51,17 @@ sections:
           
           To benefit from parallel processing of multiple subqueries, LLM query planning is required. The agentic retrieval engine uses LLM query planning in low and medium retrieval reasoning efforts for more thorough retrieval.
 
+      - question: "Which LLM models are supported for query planning?"
+        answer: |
+          Only gpt-4o, gpt-4.1, and gpt-5 series models from Azure OpenAI in Foundry Models are supported for query planning. For the full list, see [Supported models](/azure/search/agentic-retrieval-how-to-create-knowledge-base#supported-models). You specify the model deployment when you create the knowledge base.
+
   - name: "Knowledge bases and knowledge sources"
     questions:
       - question: "What is a knowledge base?"
         answer: |
-            A [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) is a top-level object that groups one or more knowledge sources under a single endpoint. Its configuration controls how sources are selected (via retrieval instructions and reasoning effort) and how results are returned (via output mode and answer instructions). An LLM connection enables query planning and answer synthesis.
-            
-            At query time, the agentic retrieval engine uses this configuration to process requests. All retrieval operations enforce user-level access controls inherited from the knowledge sources.
+          A [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) is a top-level object that groups one or more knowledge sources under a single endpoint. Its configuration controls how sources are selected (via retrieval instructions and reasoning effort) and how results are returned (via output mode and answer instructions). An LLM connection enables query planning and answer synthesis.
+          
+          At query time, the agentic retrieval engine uses this configuration to process requests. All retrieval operations enforce user-level access controls inherited from the knowledge sources.
 
       - question: "What knowledge sources are supported?"
         answer: |
@@ -66,6 +70,12 @@ sections:
           + **Indexed knowledge sources** ingest data into a search index and automatically handle chunking, vectorization, metadata extraction, and access control list (ACL) synchronization. Supported indexed sources include Azure Blob Storage, OneLake, SharePoint, and existing search indexes.
 
           + **Remote knowledge sources** don't ingest or store data. Instead, they issue on-demand queries to the external system at retrieval time. Supported remote sources include SharePoint (via Copilot Retrieval API) and web (via Grounding with Bing).
+
+      - question: "How often is indexed data refreshed?"
+        answer: |
+          Indexed knowledge sources use Azure AI Search indexers for data ingestion. You can schedule recurring indexer runs for incremental data refresh. The frequency depends on your indexer schedule configuration.
+          
+          Remote knowledge sources query external systems on demand, so data is always current.
 
   - name: "Agentic retrieval"
     questions:
@@ -89,13 +99,25 @@ sections:
 
       - question: "What is the retrieval reasoning effort?"
         answer: |
-            The [retrieval reasoning effort](/azure/search/agentic-retrieval-how-to-set-retrieval-reasoning-effort) determines how much LLM-driven planning is used during agentic retrieval. Levels range from minimal to medium, influencing how deeply the system interprets the query, selects sources, and decides whether more retrieval steps are needed.
+          The [retrieval reasoning effort](/azure/search/agentic-retrieval-how-to-set-retrieval-reasoning-effort) determines how much LLM-driven planning is used during agentic retrieval. Levels range from minimal to medium, influencing how deeply the system interprets the query, selects sources, and decides whether more retrieval steps are needed.
+
+      - question: "What are the limits for each retrieval reasoning effort level?"
+        answer: |
+          Limits vary by reasoning effort level:
+          
+          + **Minimal**: Up to 10 knowledge sources. No LLM processing, no query planning, and no answer synthesis.
+
+          + **Low**: Up to three knowledge sources and three subqueries. Supports answer synthesis with a 5,000-token budget.
+          
+          + **Medium**: Up to five knowledge sources and five subqueries. Supports iterative search and answer synthesis with a 10,000-token budget.
+          
+          For more information, see [Agentic retrieval limits](/azure/search/search-limits-quotas-capacity#agentic-retrieval-limits).
 
       - question: "What is answer synthesis? Should I use it for a Foundry IQ knowledge base?"
         answer: |
-            [Answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis) uses an LLM to generate a complete, natural-language answer based on retrieved content. Answer synthesis is required for web knowledge sources.
-            
-            For most Foundry IQ scenarios, use extractive data instead of answer synthesis. Extractive data returns raw content that agents can reason over and incorporate into their responses. Reserve answer synthesis for standalone applications where the retrieval output goes directly to users without agent processing.
+          [Answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis) uses an LLM to generate a complete, natural-language answer based on retrieved content. Answer synthesis is required for web knowledge sources.
+          
+          For most Foundry IQ scenarios, use extractive data instead of answer synthesis. Extractive data returns raw content that agents can reason over and incorporate into their responses. Reserve answer synthesis for standalone applications where the retrieval output goes directly to users without agent processing.
 
   - name: "Availability and pricing"
     questions:
@@ -134,7 +156,7 @@ sections:
           + Incorrect project connection configuration.
           + Empty or misconfigured knowledge sources.
           
-          To isolate the issue, test queries against your knowledge base in the Azure portal.
+          For help isolating the issue, see [Troubleshooting](../how-to/foundry-iq-connect.md#troubleshooting).
 
       - question: "How do I debug agentic retrieval queries?"
         answer: |
