@@ -4,7 +4,7 @@ description: Learn how to use reinforcement fine-tuning with reasoning models
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 02/11/2026
+ms.date: 02/12/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
