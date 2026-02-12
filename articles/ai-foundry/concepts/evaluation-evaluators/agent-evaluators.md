@@ -372,7 +372,7 @@ Agent evaluators support the following tools:
 - MCP
 - Knowledge-based MCP
 
-The following tools currently have limited support. Avoid using `tool_call_accuracy`, `tool_output_utilization`, `tool_call_success`, or `groundedness` if your agent conversation includes calls to these tools:
+The following tools currently have limited support. Avoid using `tool_call_accuracy`, `tool input accuracy`, `tool_output_utilization`, `tool_call_success`, or `groundedness` evaluators if your agent conversation includes calls to these tools:
 
 - Azure AI Search
 - Bing Grounding
