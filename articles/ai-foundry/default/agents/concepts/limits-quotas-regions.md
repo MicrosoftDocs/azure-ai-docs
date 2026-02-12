@@ -1,5 +1,5 @@
 ---
-title: Quotas and limits for Foundry Agent Service
+title: Quotas and limits for Microsoft Foundry Agent Service
 titleSuffix: Microsoft Foundry
 description: Review default limits for Foundry Agent Service, including file sizes, vector stores, messages, tools, error handling, supported regions, and compatible models.
 manager: nitinme
