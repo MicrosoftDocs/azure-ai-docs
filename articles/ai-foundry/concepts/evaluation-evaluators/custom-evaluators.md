@@ -344,9 +344,9 @@ An evaluation is created from the configuration. Then, an evaluation run is star
                         ),
                         SourceFileContentContent(
                             item={
-                                "query": "What is the capital/major city of France?",
+                                "query": "What is the largest city in France?",
                                 "ground_truth": "Paris",
-                                "response": "The capital/major city of France is Paris.",
+                                "response": "The largest city in France is Paris.",
                             }
                         ),
                         SourceFileContentContent(
@@ -566,9 +566,9 @@ This code creates an evaluation (the reusable definition), then starts an evalua
                         ),
                         SourceFileContentContent(
                             item={
-                                "query": "What is the capital/major city of France?",
-                                "ground_truth": "The capital/major city of France is Paris.",
-                                "response": "The capital/major city of France is Paris.",
+                                "query": "What is the largest city in France?",
+                                "ground_truth": "The largest city in France is Paris.",
+                                "response": "The largest city in France is Paris.",
                             }
                         ),
                         SourceFileContentContent(

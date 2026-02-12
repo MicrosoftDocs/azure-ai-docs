@@ -288,7 +288,7 @@ Examples:
 Your test dataset should contain the fields referenced in your data mappings:
 
 ```jsonl
-{"query": "What is the capital of France?", "response": "Paris is the capital of France.", "ground_truth": "The capital of France is Paris."}
+{"query": "What is the largest city in France?", "response": "Paris is the largest city in France.", "ground_truth": "The largest city in France is Paris."}
 {"query": "Explain machine learning.", "response": "Machine learning is a subset of AI that enables systems to learn from data.", "ground_truth": "Machine learning is an AI technique where computers learn patterns from data."}
 ```
 
