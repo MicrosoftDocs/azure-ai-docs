@@ -25,7 +25,7 @@ Fine-tuned model evaluation filters are set to predefined thresholds and can't b
 
 ## Data evaluation
 
-Before training starts, the service evaluates your data for potentially harmful content across the [harm categories](#harm-categories-evaluated) listed earlier. If harmful content is detected above the specified severity level, your training job fails, and you receive a message informing you of the categories of failure.
+Before training starts, the service evaluates your data for potentially harmful content across the [harm categories](../concepts/content-filter-severity-levels#harm-category-descriptions) listed earlier. If harmful content is detected above the specified severity level, your training job fails, and you receive a message informing you of the categories of failure.
 
 **Sample message:**
 
@@ -39,7 +39,7 @@ If the fine-tuning job fails due to the detection of harmful content in training
 
 ## Model evaluation
 
-After training completes but before the fine-tuned model is available for deployment, the service evaluates the resulting model for potentially harmful responses using Azure's built-in [risk and safety metrics](/azure/ai-foundry/concepts/evaluation-metrics-built-in?tabs=warning#risk-and-safety-metrics). Using the same approach to testing used for the base large language models, the evaluation simulates a conversation with your fine-tuned model to assess the potential to output harmful content across the [harm categories](#harm-categories-evaluated) listed earlier.
+After training completes but before the fine-tuned model is available for deployment, the service evaluates the resulting model for potentially harmful responses using Azure's built-in [risk and safety metrics](/azure/ai-foundry/concepts/evaluation-metrics-built-in?tabs=warning#risk-and-safety-metrics). Using the same approach to testing used for the base large language models, the evaluation simulates a conversation with your fine-tuned model to assess the potential to output harmful content across the [harm categories](../concepts/content-filter-severity-levels#harm-category-descriptions) listed earlier.
 
 If a model is found to generate output containing content detected as harmful at above an acceptable rate, you'll be informed that your model isn't available for deployment, with information about the specific categories of harm detected:
 
