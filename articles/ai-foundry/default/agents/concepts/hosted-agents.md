@@ -148,6 +148,27 @@ Agent Service handles:
 - Python: `azure-ai-agentserver-core`, `azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`
 - .NET: `Azure.AI.AgentServer.Core`, `Azure.AI.AgentServer.AgentFramework`
 
+### Agent replica sizes
+
+Only the following CPU and memory pairs are currently supported for hosted agents. These values define the replica size; an agent can run multiple replicas.
+
+| CPU (cores) | Memory (GiB) |
+|-------------|--------------|
+| 0.25        | 0.5          |
+| 0.5         | 1            |
+| 0.75        | 1.5          |
+| 1           | 2            |
+| 1.25        | 2.5          |
+| 1.5         | 3            |
+| 1.75        | 3.5          |
+| 2           | 4            |
+| 2.25        | 4.5          |
+| 2.5         | 5            |
+| 2.75        | 5.5          |
+| 3           | 6            |
+| 3.25        | 6.5          |
+| 3.5         | 7            |
+
 ## Package code and test locally
 
 Before you deploy to Microsoft Foundry, build and test your agent locally:
