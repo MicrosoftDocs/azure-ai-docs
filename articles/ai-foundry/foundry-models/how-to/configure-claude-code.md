@@ -30,13 +30,14 @@ In this article, you learn how to:
 ## Prerequisites
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
-- A Claude model (Opus 4.5, Sonnet 4.5, or Haiku 4.5) deployed in Microsoft Foundry. See [Deploy and use Claude models in Microsoft Foundry](use-foundry-models-claude.md).
+- Access to Microsoft Foundry with appropriate permissions to create and manage resources.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../../how-to/deploy-models-serverless-availability.md#region-availability) for Claude models.
 - Node.js 18 or later installed for the Claude Code CLI.
-- Optional: [Azure CLI](/cli/azure/install-azure-cli) installed with `az login` completed for Microsoft Entra ID authentication.
+- (Optional) [Azure CLI](/cli/azure/install-azure-cli) installed with `az login` completed for Microsoft Entra ID authentication.
 
 [!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
-**System requirements:**
+### System requirements
 
 | Requirement | Details |
 | ----------- | ------- |
@@ -46,9 +47,9 @@ In this article, you learn how to:
 
 ## Deploy a Claude model
 
-Before configuring Claude Code, deploy a Claude model in Microsoft Foundry. Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). 
+Before configuring Claude Code, deploy an available [Claude model](../concepts/models-from-partners.md#anthropic) in Microsoft Foundry. Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). 
 
-To deploy a Claude model (Opus 4.5, Sonnet 4.5, or Haiku 4.5), follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
+To deploy a Claude model, such as Opus 4.5, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
 
 After deployment, select the **Details** tab and note your **Target URI** and **Key**. You need these values for configuration.
 
@@ -268,6 +269,18 @@ async with AzureAIAgentClient(async_credential=AzureCliCredential()) as client:
 - Implementing RAG grounding with Foundry IQ
 - Adding Fabric connector for sales data
 ````
+
+To get Claude Code to read your `CLAUDE.md` and understand your project context, run these commands in your terminal:
+
+```bash
+# Start Claude Code in your project
+cd your-project
+claude
+
+# Or run a one-off command
+claude "explain the agent orchestration in src/workflows/"
+```
+
 
 ## (Optional) Integrate Spec Kit for structured development
 
