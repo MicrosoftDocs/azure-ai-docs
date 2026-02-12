@@ -1,6 +1,7 @@
 ---
 services: cognitive-services
 manager: nitinme
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
