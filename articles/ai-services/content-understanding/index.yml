@@ -57,14 +57,6 @@ conceptualContent:
         - itemType: overview
           text: Overview
           url: concepts/classifier.md
-    - title: Face and person directories (preview)
-      links:
-        - itemType: overview
-          text: Overview
-          url: face/overview.md
-        - itemType: how-to-guide
-          text: Build a person directory (preview)
-          url: tutorial/build-person-directory.md
     - title: Modalities
       links:
         - itemType: concept
