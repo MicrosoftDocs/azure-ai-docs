@@ -146,6 +146,7 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 
 | Purpose | Process | Parameters, guidance, and samples |
 | -----| -----| ----|
+<<<<<<< HEAD
 | How to set up tracing? | Configure distributed tracing | [Trace your application](../how-to/develop/trace-application.md) <br></br> [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md) |
 | What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/Sample_Agent_Functions.cs) |
 | What data should you use? | Upload or generate relevant dataset | [Synthetic dataset generation](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) <br></br> [Run AI red teaming in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md) |
@@ -153,6 +154,13 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../default/observability/how-to/cluster-analysis.md) |
 | How can I improve? | Make changes to model, app, or evaluators | If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
 | How to configure virtual network? | Set up virtual network isolation | [Virtual network support for evaluation](evaluation-regions-limits-virtual-network.md#virtual-network-support-for-evaluation) |
+=======
+| What are you evaluating for? | Identify or build relevant evaluators | - [RAG Quality](https://aka.ms/rag-evaluators-samples) <br> </br> - [Agents Quality](https://aka.ms/agent-evaluator-samples) <br> </br> - [Safety and Security](./evaluation-evaluators/risk-safety-evaluators.md) ([Safety and Security sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluatesafetyrisks.py)) <br> </br> - [Custom](./evaluation-evaluators/custom-evaluators.md) ([Custom sample notebook](https://github.com/Azure-Samples/rag-data-openai-python-promptflow/blob/main/src/evaluation/evaluate.py)) |
+| What data should you use?  | Upload or generate relevant dataset | - [Synthetic dataset generation](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) <br></br> - AI red teaming agent for running automated scans to assess safety and security vulnerabilities ([AI red teaming agent sample notebook](https://aka.ms/airedteamingagent-sample))|
+| How to run evaluations on a dataset? | Run evaluation | - [Agent evaluation runs](../default/observability/how-to/evaluate-agent.md) <br></br> - [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
+| How did my model/app perform? | Analyze results  | - [View aggregate scores, view details, score details, compare evaluation runs](..//how-to/evaluate-results.md) |
+| How can I improve? | Make changes to model, app, or evaluators | - If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> - If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example of mitigations to apply: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
+>>>>>>> 171868f3bed63e7b8fe4fab85109c900ec3e0d96
 
 ::: moniker-end
 
