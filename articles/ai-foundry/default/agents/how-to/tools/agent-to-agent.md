@@ -15,9 +15,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-to-agent
 ---
 
-# Add an A2A agent endpoint to Foundry Agent Service (preview)
-
-[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+# Add an A2A agent endpoint to Foundry Agent Service
 
 > [!NOTE]
 > For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
@@ -273,7 +271,7 @@ az account get-access-token --scope https://management.azure.com/.default --quer
 
 ```bash
 curl --request PUT \
-  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=v1' \
   --header 'Authorization: Bearer {{token}}' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -307,7 +305,7 @@ This option is supported when you select **Managed OAuth** in the Foundry tool c
 
 ```bash
 curl --request PUT \
-  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=v1' \
   --header 'Authorization: Bearer {{token}}' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -341,7 +339,7 @@ If your OAuth app doesn't require a client secret, omit `ClientSecret`.
 
 ```bash
 curl --request PUT \
-  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=v1' \
   --header 'Authorization: Bearer {{token}}' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -378,7 +376,7 @@ curl --request PUT \
 
 ```bash
 curl --request PUT \
-  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=v1' \
   --header 'Authorization: Bearer {{token}}' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -407,7 +405,7 @@ curl --request PUT \
 
 ```bash
 curl --request PUT \
-  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=2025-04-01-preview' \
+  --url 'https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group_name}}/providers/Microsoft.CognitiveServices/accounts/{{foundry_account_name}}/projects/{{project_name}}/connections/{{connection_name}}?api-version=v1' \
   --header 'Authorization: Bearer {{token}}' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -434,31 +432,57 @@ curl --request PUT \
 
 ## Add A2A tool to Foundry Agent Service
 
-### Create an agent version with the A2A tool
+To get an access token for the Agent Service data-plane endpoint:
 
 ```bash
-curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "description": "Test agent version description",
-  "definition": {
-    "kind": "prompt",
-    "model": "{{model}}",
-    "tools": [ 
-      {
-         "type": "a2a_preview",
-         "base_url": "{{a2a_endpoint}}",
-         "project_connection_id": "{{project_connection_id}}"
-      }
-    ],
-    "instructions": "You are a helpful agent."
-  }
-}'
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
 ```
 
-To delete an agent version, send a `DELETE` request to the same endpoint with the agent name and version.
+### Create an agent with the A2A tool
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "name": "<AGENT_NAME>-a2a",
+    "description": "Agent with A2A tool",
+    "definition": {
+      "kind": "prompt",
+      "model": "<MODEL_DEPLOYMENT>",
+      "tools": [
+        {
+          "type": "a2a",
+          "base_url": "{{a2a_endpoint}}",
+          "project_connection_id": "{{project_connection_id}}"
+        }
+      ],
+      "instructions": "You are a helpful agent."
+    }
+  }'
+```
+
+### Generate a response with the A2A agent
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent": {"type": "agent_reference", "name": "<AGENT_NAME>-a2a"},
+    "input": [{"role": "user", "content": "What can the secondary agent do?"}]
+  }'
+```
+
+### Clean up resources
+
+Delete the agent:
+
+```bash
+curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-a2a?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
 :::zone-end
 
 :::zone pivot="typescript"

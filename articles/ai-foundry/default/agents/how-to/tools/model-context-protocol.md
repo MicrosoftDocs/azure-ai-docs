@@ -1,5 +1,5 @@
 ---
-title: Connect to MCP Server Endpoints for agents (Preview)
+title: Connect to MCP Server Endpoints for agents
 titleSuffix: Microsoft Foundry
 description: Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data.
 services: cognitive-services
@@ -16,9 +16,7 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 #CustomerIntent: As a developer, I want to connect my Foundry agent to external MCP servers so that I can extend agent capabilities with third-party tools.
 ---
 
-# Connect agents to Model Context Protocol servers (preview)
-
-[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+# Connect agents to Model Context Protocol servers
 
 > [!NOTE]
 > When you use a [Network Secured Microsoft Foundry](../../../../agents/how-to/virtual-networks.md), you can't use private MCP servers deployed in the same virtual network. You can only use publicly accessible MCP servers.
@@ -833,19 +831,23 @@ MCP with project connection sample completed!
 :::zone-end
 
 :::zone pivot="rest"
-## Create a response that uses the MCP tool (REST API)
+## Use the MCP tool with the REST API
 
-The following example shows how to call an MCP tool by using the Responses API. If the response includes an output item with `type` set to `mcp_approval_request`, send a follow-up request that includes a `mcp_approval_response` item.
+The following examples show how to create an agent with the MCP tool and call it by using the Responses API. If the response includes an output item with `type` set to `mcp_approval_request`, send a follow-up request that includes a `mcp_approval_response` item.
 
 ### Prerequisites
 
 Set these environment variables:
 
-- `PROJECT_ENDPOINT`: Your project endpoint URL.
-- `API_VERSION`: The API version (for example, `2025-11-15-preview`).
+- `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
 - `AGENT_TOKEN`: A bearer token for Foundry.
-- `MODEL_DEPLOYMENT_NAME`: Your model deployment name.
 - `MCP_PROJECT_CONNECTION_NAME` (optional): Your MCP project connection name.
+
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
 
 If your MCP server doesn't require authentication, omit `project_connection_id` from the request body.
 
@@ -855,45 +857,74 @@ If your MCP server doesn't require authentication, omit `project_connection_id` 
 > [!TIP]
 > For details on the MCP tool schema and approval items, see [OpenAI.MCPTool](../../../../reference/foundry-project-rest-preview.md#openaimcptool) and the MCP approval item types in the REST reference.
 
+### 1. Create an MCP agent
 
 ```bash
-curl --request POST \
-  --url "$PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
-  "model": "'$MODEL_DEPLOYMENT_NAME'",
-  "input": "What is my username in my GitHub profile?",
-  "tools": [
-    {
-      "type": "mcp",
-      "server_label": "github",
-      "server_url": "https://api.githubcopilot.com/mcp",
-      "project_connection_id": "'$MCP_PROJECT_CONNECTION_NAME'"
+    "name": "<AGENT_NAME>-mcp",
+    "description": "MCP agent",
+    "definition": {
+      "kind": "prompt",
+      "model": "<MODEL_DEPLOYMENT>",
+      "instructions": "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
+      "tools": [
+        {
+          "type": "mcp",
+          "server_label": "api-specs",
+          "server_url": "https://gitmcp.io/Azure/azure-rest-api-specs",
+          "require_approval": "never"
+        }
+      ]
     }
-  ]
-}'
+  }'
+```
+
+To use an authenticated MCP server with a project connection, add `"project_connection_id": "'$MCP_PROJECT_CONNECTION_NAME'"` to the tool definition and change `server_url` to the authenticated server endpoint (for example, `https://api.githubcopilot.com/mcp`).
+
+### 2. Create a response
+
+```bash
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent": {"type": "agent_reference", "name": "<AGENT_NAME>-mcp"},
+    "input": "Please summarize the Azure REST API specifications Readme"
+  }'
 ```
 
 If the response includes an output item with `type` set to `mcp_approval_request`, copy the approval request item `id` as `APPROVAL_REQUEST_ID`. Also copy the top-level response `id` as `PREVIOUS_RESPONSE_ID`.
 
-### 2. Send an approval response
+### 3. Send an approval response
+
+If the MCP tool requires approval, send a follow-up request:
 
 ```bash
-curl --request POST \
-  --url "$PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
-  "previous_response_id": "'$PREVIOUS_RESPONSE_ID'",
-  "input": [
-    {
-      "type": "mcp_approval_response",
-      "approval_request_id": "'$APPROVAL_REQUEST_ID'",
-      "approve": true
-    }
-  ]
-}'
+    "previous_response_id": "'$PREVIOUS_RESPONSE_ID'",
+    "input": [
+      {
+        "type": "mcp_approval_response",
+        "approval_request_id": "'$APPROVAL_REQUEST_ID'",
+        "approve": true
+      }
+    ]
+  }'
+```
+
+### 4. Clean up resources
+
+Delete the agent:
+
+```bash
+curl -X DELETE "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-mcp?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 :::zone-end

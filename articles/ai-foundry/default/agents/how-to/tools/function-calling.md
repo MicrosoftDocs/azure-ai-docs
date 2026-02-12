@@ -395,27 +395,25 @@ There are two ways to use function calling in Foundry Agent Service.
 Set the following environment variables before running the examples:
 
 ```bash
-export AGENT_TOKEN=$(az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv)
-export API_VERSION="2025-11-15-preview"
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
 ```
 
 ## Define a function for your agent to call
 
 Start by defining a function for your agent to call. When you create a function for an agent to call, describe its structure and any required parameters in a docstring. For example functions, see the other SDK languages.
 
-## Create an agent version
+## Create an agent
 
 ```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
-        "description": "Test agent version with function calling",
-    "metadata": { "env": "test", "owner": "user" },
+    "name": "<AGENT_NAME>-function-calling",
+    "description": "Agent with function calling",
     "definition": {
       "kind": "prompt",
-      "model": {{model}},
+      "model": "<MODEL_DEPLOYMENT>",
       "instructions": "You are a helpful agent.",
       "tools": [
         {
@@ -439,51 +437,40 @@ curl --request POST \
 ## Create a conversation
 
 ```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/conversations?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/conversations" \
   -H "Content-Type: application/json" \
-  -d ''
-```
-
-## Create a response
-
-```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
   -d '{
-    "model": {{model}},
-    "conversation": {{conversation.id}},
-    "input": [{
+    "items": [
+      {
         "type": "message",
         "role": "user",
         "content": [
-            {
-                "type": "input_text",
-                "text": "What's the weather in Dar es Salaam, Tanzania?"
-            }
+          {
+            "type": "input_text",
+            "text": "What'\''s the weather in Dar es Salaam, Tanzania?"
+          }
         ]
-    }],
-    "tools": [
-      {
-        "type": "function",
-        "name": "getCurrentWeather",
-        "description": "Get the current weather in a location",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
-            "unit": {"type": "string", "enum": ["c", "f"]}
-          },
-          "required": ["location"]
-        }
       }
-    ],
-    "stream": true
-  }
-'
+    ]
+  }'
+```
+
+Save the returned conversation ID (`conv_xyz...`) for the next step.
+
+## Create a response
+
+Replace `<CONVERSATION_ID>` with the ID from the previous step.
+
+```bash
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent": {"type": "agent_reference", "name": "<AGENT_NAME>-function-calling"},
+    "conversation": "<CONVERSATION_ID>",
+    "input": []
+  }'
 ```
 
 ### Expected output
@@ -540,10 +527,21 @@ If you use tracing in Microsoft Foundry, confirm the tool invocation occurred. F
 
 ## Clean up resources
 
-When you finish testing, delete the resources you created to avoid ongoing costs:
+When you finish testing, delete the resources you created to avoid ongoing costs.
 
-- Delete the agent version.
-- Delete conversations created for testing.
+Delete the agent:
+
+```bash
+curl -X DELETE "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-function-calling?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+Delete the conversation:
+
+```bash
+curl -X DELETE "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/conversations/<CONVERSATION_ID>" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
 
 ## Related content
 
