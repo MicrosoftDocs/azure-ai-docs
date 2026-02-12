@@ -15,39 +15,47 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 # Publish and share agents in Microsoft Foundry
 
-Publishing promotes an agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. This article shows you how to publish an agent, configure its authentication and permissions, update published versions, and consume the agent through its stable endpoint. 
+Publishing promotes an agent from a development asset inside your Foundry project into a managed Azure resource that external consumers can call through a stable endpoint. Think of it as the step that moves your agent from "works in my project" to "ready for others to use." This article shows you how to publish an agent, configure its authentication and permissions, update your Agent Application as you roll out new agent versions, and consume the Agent Application through its stable endpoint or a channel like M365/Teams.
 
-When you publish an agent, Microsoft Foundry creates an Agent Application resource with a dedicated invocation URL and its own Microsoft Entra agent identity blueprint and agent identity. A deployment is created under the application that references your agent version and registers it in the [Entra Agent Registry](/entra/agent-id/identity-platform/what-is-agent-registry) for discovery and governance.
+## What is publishing?
 
-Publishing enables you to share agents with teammates, your organization, or customers without granting access to your Foundry project or source code. The stable endpoint remains consistent as you iterate and deploy new agent versions. 
+During development, you build and test your agent inside a Foundry project. The project gives you and your teammates a shared workspace, but it isn't designed for broad distribution — everyone with project access shares the same identity, the same conversation context, and the same permissions. Publishing is the step that moves an agent out of that shared development space and into a production-ready Azure resource.
+
+When you publish an agent version, Foundry creates an **Agent Application** resource that wraps your agent version with its own invocation URL, authentication policy, unique Entra agent identity and Entra agent blueprint, and registers it in the [Entra Agent Registry](/entra/agent-id/identity-platform/what-is-agent-registry) for discoverability and governance. A **Deployment** is also created as a child resource of the application, referencing the specific agent version being published and supporting start/stop lifecycle management.
+
+### Why publish?
+
+Publishing gives you capabilities that project-level development doesn't provide:
+
+- **External Sharing** — You can provide access to teammates or customers who shouldn't have access to your Foundry project
+- **Stable endpoint** — The application URL stays the same even as you roll out new agent versions, so downstream consumers never need to update their integration.
+- **Distinct agent identity** — The published agent gets its own  Entra agent identity and Entra agent blueprint separate from the project's shared identity and blueprint.
+- **Independent RBAC and authorization** — The Agent Application is a separate Azure resource with its own RBAC scope. You can assign roles such as Azure AI User directly on the Agent Application resource to control who can invoke it.
+- **Azure policy integration** — As an ARM resource the application can be governed by Azure Policy.
+- **Integration with Microsoft 365 Copilot and Teams** — Once an Agent Application is created it can be distributed to channels such as M365 and Teams
+- **[Coming Soon] User data isolation** — Each caller's interactions are private by default, unlike the shared conversation state in a project.
+- **[Coming Soon] Govern in Agent 365** — All published agents will automatically surface in Agent 365.
+
+### What changes when you publish?
+
+The most important change is identity. Before publishing, your agent uses the project's shared agent identity. After publishing, the agent receives its own dedicated agent identity. Any tools that rely on agent identity authentication switch from the project's shared agent identity to the unique agent identity that's associated with the agent application.
+
+### What to watch for
+
+Because the identity changes, **permissions don't transfer automatically**. When you publish an agent, you must reassign RBAC permissions to the new agent identity for any resources that the agent needs to access. If you skip this step, tool calls that worked during development will fail with authorization errors once the agent is published.
 
 ## Prerequisites
 
 - A [Foundry project](../../../how-to/create-projects.md) with at least one agent version created
 - [Azure AI Project Manager role](../../../concepts/rbac-foundry.md) on the Foundry project scope to publish agents
-- [Azure AI User role](../../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent
+- [Azure AI User role](../../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md)
 
 [!INCLUDE [code-preview](../../includes/code-preview.md)]
 
-## When to use agent applications
-Anyone with the AI User role on a Foundry project can interact with all the agents it contains with conversations and state shared between all users. This is appropriate for development tasks like authoring, debugging, and testing agents, but it’s not typically suitable for distribution of an agent to non-developers. 
 
-Applications address the needs of broader agent distribution by providing a stable endpoint, unique Agent Identity with audit trails, cross-team sharing capabilities, integration with Entra Agent Registry, user data isolation, and the ability to preview the agent as a web application. 
-
-Creating an application for an agent enables: 
-- **External sharing**: You can provide access to teammates or customers who shouldn't have access to your Foundry project 
-- **SaaS-like behavior**: The application has a stable endpoint so that you can update the application with new versions within Foundry without requiring downstream consumers to make changes 
-- **Distinct identity**: The agent has its own identity, RBAC rules, and audit trail separate from the project-level default identity 
-- **User data isolation**: The inputs and interactions one user has with the agent aren’t available to any other users by default 
-- **Azure Policy integration**: As an ARM resource the application can be governed by Azure Policy 
-<!--
-It’s also a prerequisite for: 
-- **M365 publishing**: Distributing your agent through Teams and Microsoft 365 Copilot 
-- **Agent365 digital workers**: Distributing your agent as a digital worker that can interact through Teams, email, and M365 applications. 
--->
 ## Understand agent applications and deployments
 
 Before publishing, it's important to understand the relationship between projects, agent versions, applications, and deployments.
@@ -58,47 +66,17 @@ A Foundry **project** is a work organization concept that groups related resourc
 
 An **Agent Application** projects one or more agents as a service — independently addressable, governable, and equipped with lifecycle and content management capabilities. It provides a durable interface that establishes authentication, identity, and a stable entry point for consumers. A **deployment** is a running instance of an agent version inside an application that can be started, stopped, and updated to reference new agent versions.
 
-During development, all unpublished agents in a project share a default Agent Identity. Once published, an agent receives its own Agent Identity and becomes a nested Azure resource visible in the Azure portal, enabling independent governance and RBAC configuration.
-
 ### Routing and version management
 
 Each Agent Application acts as a routing table to specific agent deployments. Currently, an Agent Application supports one active deployment, directing 100% of the traffic received by the application’s endpoint to that deployment. When you publish a new agent version to an existing application, 100% of the traffic received by the application’s endpoint will be directed to the deployment referencing the new agent version.  
 
 :::image type="content" source="../../media/publish-agent/agent-application-routing-diagram.png" alt-text="Diagram of an Agent Application routing traffic to a deployment running a specific agent version, showing a stable entry point and traffic flow.":::
 
-### Anatomy of an Agent Application and deployment
-
-#### Agent Application properties
-
-| Name | Description | Value | Can be specified in request body? |
-| --- | --- | --- | --- |
-| `displayName` | The display name of the agent application | string | ✅ |
-| `baseUrl` | The agent application’s dedicated endpoint | string | ❌ (read only) |
-| `agents` | The agents exposed by the application. | array of objects | ✅ |
-| `agentIdentityBlueprint` | The agent identity blueprint associated with the agent application. | object | ❌ (read only) |
-| `defaultInstanceIdentity` | The agent identity associated with the agent application | object | ❌ (read only) |
-| `authorizationPolicy` | Defines how users are allowed to auth to the app. If not specified, this is set by default | object | ✅ |
-| `trafficRoutingPolicy` | Defines what deployment the agent sends traffic to. Currently, all traffic can only be routed to one deployment. | object | ✅ |
-| `provisioningState` | Gets the status of the agent application at the time the operation was called. | string | ❌ (read only) |
-| `isEnabled` | Specifies whether an agent application is enabled or disabled. | boolean | ✅ |
-
-#### Deployment properties
-
-| Name | Description | Value | Can be specified in request body? |
-| --- | --- | --- | --- |
-| `displayName` | The display name of the deployment. | string | ✅ |
-| `deploymentId` | This is a system-generated unique identifier for each distinct lifetime of a deployment with a given resource identifier. | string | ❌ (read only) |
-| `state` | The state of the deployment. | enum (`Starting`, `Running`, `Stopping`, `Failed`, `Deleting`, `Deleted`, `Updating`) | ❌ (read only) there are explicit APIs like start/stop to control state |
-| `protocols` | The protocols supported by the deployment | array of objects | ✅ |
-| `agents` | The agent version attached to a specific deployment. | array of objects | ✅ |
-| `provisioningState` | Gets the status of the deployment at the time the operation was called. | enum (`Succeeded`, `Failed`, `Canceled`, `Creating`, `Updating`, `Deleting`) | ❌ (read only) |
-| `deploymentType` | The type of agent attached to the deployment | Enum (`Hosted` or `Managed`) | ✅ |
-| `minReplicas` | The minimum number of replicas that are always running. | integer | ✅ (only when deploymentType: `Hosted`) |
-| `maxReplicas` | The maximum number of replicas that can be running. | integer | ✅ (only when deploymentType: `Hosted`) |
-
 ## Invoke agent applications
 
 An Agent Application resource exposes a stable endpoint with multiple protocol and authentication options. 
+
+Currently, only one protocol, either Responses or Activity Protocol can be enabled for an Agent Application. But this is a temporary limitation.
 
 ### Protocols
 
@@ -128,14 +106,13 @@ For applications this is exposed at:
 You can configure inbound end-user authentication on the application. The following option is available:
 
 - **Default (RBAC)**: The caller must have the Azure RBAC permission `/applications/invoke/action` on the application resource. 
+- **Channels**: When you publish to M365/Teams or to A365 as a digital worker, channels is the authentication that is used. This is selected automatically in the UI through the publish flow.
 <!--
 - Channels (Azure Bot Service): Requests from a linked Azure Bot Service instance are permitted. This is used for M365 and Agent365 integration, and for scenarios where an upstream service interacts with the application through Activity Protocol. 
 -->
 API key authentication is not supported for agents through projects or through applications. 
 
 ## Publish an agent  
-
-When you publish an agent, it receives its own Agent Identity separate from the project's shared identity. Tools that use agentic identity authentication run under the project identity before publishing and under the application identity after publishing. Because permissions don't transfer automatically, you must reassign the necessary RBAC roles to the new application identity.
 
 ### Foundry portal
 
@@ -148,7 +125,7 @@ This section shows you how to publish an agent using the Foundry portal interfac
 3. Configure authentication for your Agent Application:
 
    - By default, the authentication type is set to RBAC (Role-Based Access Control)
-   - End users calling the agent must have Azure RBAC permissions on the application resource
+   - Users calling the agent application using responses protocol must be granted the Azure AI User built-in Azure RBAC role or the permission `/applications/invoke/action`
    <!--
    - For Azure Bot Service integration (to support Microsoft 365/Microsoft 365 Copilot), requests from a linked Azure Bot Service instance are automatically permitted
     -->
@@ -157,13 +134,13 @@ This section shows you how to publish an agent using the Foundry portal interfac
 
    - If your agent includes tools that use Agent Identity for authentication, the newly created Agent Identity must have appropriate permissions
    - Navigate to each Azure resource your agent accesses and assign the required RBAC role to the new Agent Identity
-   - The shared development identity permissions don't carry over—you must reconfigure permissions for the published agent's identity
 
 5. After publishing, you can:
    
-   - Open app to chat with your published agent application and easily share it with others in the UI (Note: sharing the application automatically grants them the Azure AI User role on the Agent Application resource) 
+   - [Coming soon] Open app to chat with your published agent application and easily share it with others in the UI (Note: sharing the application automatically grants them the Azure AI User role on the Agent Application resource) 
    <!-- - Publish it to Teams and Microsoft 365 Copilot -->
-   - Share the published endpoint with external consumers
+   - Share the published endpoint with external consumers or integrate it into your existing application
+   - Share and chat with it in channels like Teams/M365 Copilot
 
 ### REST API
 To publish an agent version you must create an application and deployment that reference your agent version.
@@ -171,7 +148,9 @@ To publish an agent version you must create an application and deployment that r
 > [!IMPORTANT]
 > Agent Applications are Azure resources. Use the latest API version available for your subscription and account when calling the management endpoint.
 
-1. Create agent application. Update agentName field to the name of the agent you want to publish. 
+1. Create agent application. 
+
+Set the agentName field to the name of the agent you want to publish. 
 ```
 PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}?api-version={{api_version}}
 Authorization: Bearer {{token}}
@@ -185,7 +164,9 @@ Content-Type: application/json
 }
 ```
 
-2. Create a deployment. Replace agentName and agentVersion with the agent version you want to publish.
+2. Create an agent deployment. 
+
+Replace agentName and agentVersion with the agent version you want to publish.
 
 For prompt and workflow agents:
 ```
@@ -317,11 +298,19 @@ To roll out an agent with a different name, you must:
 > [!NOTE]
 > Currently, all traffic must be routed to a single deployment.
 
-## Consume your published Agent Application
+## Consume your Agent Application
 
-After publishing, you invoke your agent through its endpoint using the responses protocol. Using the OpenAI-compatible API with Agent Applications provides a familiar interface while leveraging Microsoft Foundry's enterprise capabilities including authentication, governance, and user data isolation.
+After publishing, you invoke your agent through its endpoint using either the responses protocol or the activity protocol. The activity protocol applies when your agent is published to Microsoft 365 and Teams.
 
-### Prerequisites for consuming Agent Applications
+
+> [!NOTE]
+> Agent applications currently support one protocol at a time, but this can be changed. When you create an agent application in the Foundry UI, it defaults to the responses protocol. If you later publish to Microsoft 365 or Teams, the protocol is automatically updated to the activity protocol
+
+### Consume your Agent Application using Responses API protocol
+
+Using the OpenAI-compatible API with Agent Applications provides a familiar interface while leveraging Microsoft Foundry's enterprise capabilities including authentication, governance, and user data isolation.
+
+#### Prerequisites
 
 Before running the code sample, ensure you have:
 
@@ -339,7 +328,7 @@ Before running the code sample, ensure you have:
 
 For more details on setting up your development environment, see [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md).
 
-### Use OpenAI client with Agent Applications endpoint
+#### Use OpenAI client with Agent Applications endpoint
 
 ```python
 # filepath: Direct OpenAI compatible approach
@@ -360,6 +349,9 @@ print(f"Response output: {response.output_text}")
 ```
 This approach authenticates using Azure credentials and requires the caller to have the Azure AI User role on the Agent Application resource.
 
+### Consume your Agent Application in Teams/M365
+See the [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md) guide for a step by step guide.
+
 ## Security and privacy considerations
 
 - Use least privilege. Grant users the minimum role they need (for example, separate publish permissions from invoke permissions).
@@ -367,6 +359,32 @@ This approach authenticates using Azure credentials and requires the caller to h
 - Don’t embed access tokens in source code, scripts, or client applications. Use Microsoft Entra authentication flows appropriate for your app.
 - Plan for identity changes when you publish. Tool calls authenticated by agent identity use the application identity after publishing, not the project identity.
 - Store conversation history in your client if you need multi-turn experiences. Agent Applications currently restrict APIs and don’t store responses.
+
+## Limitations
+
+Agents published as Agent Applications have the following limitations:
+
+| Limitation | Description |
+| --- | --- |
+| Entra Agent Registry visibility | Published agents don't appear in the Entra Agent Registry (EAR). |
+| No UI or CLI management | There's no user interface or command-line interface for managing published agents. Use the REST API for management operations. |
+
+Agent Applications invoked using responses api protocol have the following limitations:
+
+| Limitation | Description |
+| --- | --- |
+| Stateless Responses API only | Only the stateless Responses API is supported. Other APIs including `/conversations`, `/files`, `/vector_stores`, and `/containers` are inaccessible. |
+
+Agent Applications invoked through M365 Copilot or Teams have the following limitations:
+
+| Limitation | Description |
+| --- | --- |
+| File uploads and image generation in Microsoft 365 | File uploads and image generation don't work for agents published to Microsoft 365. These features work correctly in Microsoft Teams. |
+| Microsoft Admin Center approval | Published agents with Organization (tenant) scope don't appear in the Microsoft Admin Center (MAC) for approval. |
+| Streaming and citations | Published agents don't support streaming responses or citations. |
+| OAuth authentication for tools | Published agents don't support OAuth authentication for tools. |
+
+
 
 ## Troubleshooting
 
@@ -381,6 +399,47 @@ This approach authenticates using Azure credentials and requires the caller to h
 ## Clean up resources
 
 If you no longer need a published endpoint, delete the Agent Application Azure resource (and its deployments). Deleting the application doesn’t delete your agent versions in the Foundry project.
+
+## Reference: Agent Application and deployment properties
+
+Use the following tables when you construct REST API requests or need to understand the fields returned in responses.
+
+<br>
+
+<details>
+
+<summary>Agent Application properties</summary>
+
+| Name | Description | Value | Can be specified in request body? |
+| --- | --- | --- | --- |
+| `displayName` | The display name of the agent application | string | ✅ |
+| `baseUrl` | The agent application's dedicated endpoint | string | ❌ (read only) |
+| `agents` | The agents exposed by the application. | array of objects | ✅ |
+| `agentIdentityBlueprint` | The agent identity blueprint associated with the agent application. | object | ❌ (read only) |
+| `defaultInstanceIdentity` | The agent identity associated with the agent application | object | ❌ (read only) |
+| `authorizationPolicy` | Defines how users are allowed to auth to the app. If not specified, this is set by default | object | ✅ |
+| `trafficRoutingPolicy` | Defines what deployment the agent sends traffic to. Currently, all traffic can only be routed to one deployment. | object | ✅ |
+| `provisioningState` | Gets the status of the agent application at the time the operation was called. | string | ❌ (read only) |
+| `isEnabled` | Specifies whether an agent application is enabled or disabled. | boolean | ✅ |
+
+</details>
+
+<details>
+<summary>Deployment properties</summary>
+
+| Name | Description | Value | Can be specified in request body? |
+| --- | --- | --- | --- |
+| `displayName` | The display name of the deployment. | string | ✅ |
+| `deploymentId` | This is a system-generated unique identifier for each distinct lifetime of a deployment with a given resource identifier. | string | ❌ (read only) |
+| `state` | The state of the deployment. | enum (`Starting`, `Running`, `Stopping`, `Failed`, `Deleting`, `Deleted`, `Updating`) | ❌ (read only) there are explicit APIs like start/stop to control state |
+| `protocols` | The protocols supported by the deployment | array of objects | ✅ |
+| `agents` | The agent version attached to a specific deployment. | array of objects | ✅ |
+| `provisioningState` | Gets the status of the deployment at the time the operation was called. | enum (`Succeeded`, `Failed`, `Canceled`, `Creating`, `Updating`, `Deleting`) | ❌ (read only) |
+| `deploymentType` | The type of agent attached to the deployment | Enum (`Hosted` or `Managed`) | ✅ |
+| `minReplicas` | The minimum number of replicas that are always running. | integer | ✅ (only when deploymentType: `Hosted`) |
+| `maxReplicas` | The maximum number of replicas that can be running. | integer | ✅ (only when deploymentType: `Hosted`) |
+
+</details>
 
 ## Related content
 
