@@ -217,7 +217,7 @@ See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for
 
 ### Example output
 
-These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. Key output fields:
+These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold are considered passing. Key output fields:
 
 ```json
 {
@@ -266,29 +266,6 @@ Because of its upstream role in RAG, the retrieval quality is important. If the 
 ::: moniker range="foundry"
 
 - To optimize your RAG in a scenario called *parameter sweep*, you can use these metrics to calibrate the search parameters for the optimal RAG results. Generate different retrieval results for various search parameters such as search algorithms (vector, semantic), top_k, and chunk sizes you're interested in testing. Then use `document_retrieval` to find the search parameters that yield the highest retrieval quality.
-
-The `document_retrieval` evaluator returns multiple metrics for retrieval quality:
-
-```json
-[
-    {
-        "type": "azure_ai_evaluator",
-        "name": "Document Retrieval",
-        "metric": "ndcg@3",
-        "score": 0.646,
-        "label": "pass",
-        "passed": true
-    },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "Document Retrieval",
-        "metric": "fidelity",
-        "score": 0.019,
-        "label": "fail",
-        "passed": false
-    }
-]
-```
 
 ::: moniker-end
 
@@ -410,9 +387,9 @@ retrieved_documents = [
 
 ### Document retrieval output
 
-All numerical scores have `high_is_better=True`, except for `holes` and `holes_ratio`, which have `high_is_better=False`. With a numerical threshold (default of 3), the evaluator outputs *pass* if the score is greater than or equal to the threshold, or *fail* otherwise.
-
 ::: moniker range="foundry-classic"
+
+All numerical scores have `high_is_better=True`, except for `holes` and `holes_ratio`, which have `high_is_better=False`. With a numerical threshold (default of 3), the evaluator outputs *pass* if the score is greater than or equal to the threshold, or *fail* otherwise.
 
 ```python
 {
@@ -435,31 +412,32 @@ All numerical scores have `high_is_better=True`, except for `holes` and `holes_r
     # Omitting more fields ...
 }
 ```
-
 ::: moniker-end
 
 ::: moniker range="foundry"
 
+The `document_retrieval` evaluator returns multiple metrics for retrieval quality:
+
 ```python
-{
-    "ndcg@3": 0.6461858173,
-    "xdcg@3": 37.7551020408,
-    "fidelity": 0.0188438199,
-    "top1_relevance": 2,
-    "top3_max_relevance": 2,
-    "holes": 30,
-    "holes_ratio": 0.6000000000000001,
-    "holes_higher_is_better": False,
-    "holes_ratio_higher_is_better": False,
-    "total_retrieved_documents": 50,
-    "total_groundtruth_documents": 1565,
-    "ndcg@3_result": "pass",
-    "xdcg@3_result": "pass",
-    "fidelity_result": "fail",
-    "top1_relevance_result": "fail",
-    "top3_max_relevance_result": "fail",
-    # Omitting more fields ...
-}
+[
+    {
+        "type": "azure_ai_evaluator",
+        "name": "Document Retrieval",
+        "metric": "ndcg@3",
+        "score": 0.646,
+        "label": "pass",
+        "passed": true
+    },
+    {
+        "type": "azure_ai_evaluator",
+        "name": "Document Retrieval",
+        "metric": "fidelity",
+        "score": 0.019,
+        "label": "fail",
+        "passed": false
+    },
+    # more metrics...
+]
 ```
 
 ::: moniker-end

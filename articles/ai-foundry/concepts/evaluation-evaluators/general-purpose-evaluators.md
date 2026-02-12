@@ -198,8 +198,6 @@ Examples:
 - [Coherence sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_coherence.py)
 - [Fluency sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_fluency.py)
 
-Configure them in your `testing_criteria`:
-
 | Evaluator | What it measures | Required inputs | Required parameters |
 |-----------|------------------|-----------------|---------------------|
 | `builtin.coherence` | Logical flow and organization of ideas | `query`, `response` | `deployment_name` |
@@ -244,7 +242,7 @@ See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for
 
 ### Example output
 
-These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. Key output fields:
+These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold are considered passing. Key output fields:
 
 ```json
 {

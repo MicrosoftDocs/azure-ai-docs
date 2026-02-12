@@ -359,7 +359,7 @@ Examples:
 - [Tool output utilization (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
 - [Tool call success (preview) sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
 
-## Evaluator model support for AI-assisted evaluators
+## Evaluator model and tool support for agent evaluators
 
 For AI-assisted evaluators, you can use Azure OpenAI or OpenAI [reasoning models](../../openai/how-to/reasoning.md) and non-reasoning models for the LLM judge. For complex evaluation that requires refined reasoning, we recommend `gpt-5-mini` for its balance of performance, cost, and efficiency.
 
@@ -428,7 +428,7 @@ For more complex agent interactions with tool calls, use the conversation array 
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
 - `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
-- `{{sample.tool_definitions}}` references tool definitions. These are auto-populated for supported built-in tools or inferred for custom functions.
+- `{{sample.tool_definitions}}` references tool definitions. Use this when evaluating with an agent target or agent response data source. These are auto-populated for supported built-in tools or inferred for custom functions.
 
 Here's an example configuration for Task Adherence:
 
