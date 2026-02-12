@@ -1,31 +1,23 @@
 ---
-title: Retired Azure OpenAI models
+title: Retired Azure OpenAI models in Microsoft Foundry
 titleSuffix: Azure OpenAI
-description: Learn about retired models in Azure OpenAI.
+description: Learn about retired Azure OpenAI models in Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 02/12/2026
 ms.custom: references_regions, build-2023, build-2023-dataai
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: mrbullwinkle 
+ms.author: mbullwin 
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Retired Azure OpenAI models
+# Retired Azure OpenAI models in Microsoft Foundry
 
 Azure OpenAI offers a variety of models for different use cases. The following models are no longer available for deployment.
-
-For current model availability and lifecycle policy, see [Model deprecations and retirements](model-retirements.md).
-
-> [!NOTE]
-> - **Deprecation**: When a model is deprecated, it's no longer available for new customers. It continues to be available for use by customers who have existing deployments until the model is retired.
-> - **Retirement**: When a model is retired, it's no longer available for use. Azure OpenAI deployments of a retired model always return error responses.
->
-> Not all models go through a deprecation period before retirement. Some models or versions only have a retirement date.
 
 ## Retired models
 
