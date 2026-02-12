@@ -8,7 +8,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 monikerRange: 'foundry-classic || foundry'
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 ---
