@@ -64,7 +64,7 @@ With Microsoft Foundry (new), you can quickly test prebuilt analyzer models. You
 - **Read** (`prebuilt-read`) extracts text elements such as words, paragraphs, formulas, and barcodes. It provides OCR without layout analysis.
 - **Layout** (`prebuilt-layout`) extracts text and layout elements such as words, figures, paragraphs, and tables. It also extracts document structure (sections and formatting), hyperlinks, and (for digital PDFs) annotations such as highlights, underlines, and strikethroughs.
 
-These prebuilt analyzers don't require a language model or embedding model. For more information, see [Content extraction analyzers](../concepts/prebuilt-analyzers.md#content-extraction-analyzers).
+These prebuilt analyzers don't require a large language model or embedding model. For more information, see [Content extraction analyzers](../concepts/prebuilt-analyzers.md#content-extraction-analyzers).
 
 ## Try out prebuilt analyzers
 
