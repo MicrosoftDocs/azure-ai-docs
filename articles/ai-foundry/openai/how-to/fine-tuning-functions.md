@@ -14,20 +14,22 @@ monikerRange: 'foundry-classic || foundry'
 
 # Fine-tuning and tool calling
 
-Models that use the chat completions API support [tool calling](../how-to/function-calling.md). Unfortunately, functions defined in your chat completion calls don't always perform as expected. Fine-tuning your model with tool calling examples can improve model output by enabling you to:
+Models that use the chat completions API support [tool calling](../how-to/function-calling.md). Functions defined in your chat completion calls don't always perform as expected. Fine-tuning your model with tool calling examples can improve model output:
 
-* Get similarly formatted responses even when the full function definition isn't present. (Allowing you to potentially save money on prompt tokens.)
-* Get more accurate and consistent outputs.
+| Benefit | Description |
+|---------|-------------|
+| Reduce prompt tokens | Get similarly formatted responses even when the full function definition isn't present. |
+| Improve accuracy | Get more accurate and consistent outputs. |
 
 > [!NOTE]
-> `function_call` and `functions` have been deprecated in favor of `tools`. 
-> It is recommended to use the `tools` parameter instead.
+> `function_call` and `functions` have been deprecated in favor of `tools`.
+> Use the `tools` parameter instead.
 
 
 ## Tool calling (recommended)
 ### Constructing a training file
 
-When constructing a training file of tool calling examples, you would take a function definition like this:
+When constructing a training file of tool calling examples, take a function definition like this:
 
 ```json
 {
@@ -76,23 +78,25 @@ And express the information as a single line within your `.jsonl` training file 
 {"messages":[{"role":"user","content":"What is the weather in San Francisco?"},{"role":"assistant","tool_calls":[{"id":"call_id","type":"function","function":{"name":"get_current_weather","arguments":"{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}]}],"tools":[{"type":"function","function":{"name":"get_current_weather","description":"Get the current weather","parameters":{"type":"object","properties":{"location":{"type":"string","description":"The city and country/region, eg. San Francisco, USA"},"format":{"type":"string","enum":["celsius","fahrenheit"]}},"required":["location","format"]}}}]}
 ```
 
-As with all fine-tuning training your example file requires at least 10 examples.
+As with all fine-tuning training, your example file requires at least 10 examples.
 
 ### Optimize for cost
 
-OpenAI recommends that if you're trying to optimize to use fewer prompt tokens post fine-tuning your model on the full function definitions you can experiment with:
+To use fewer prompt tokens after fine-tuning on full function definitions, experiment with the following strategies:
 
-* Omit function and parameter descriptions: remove the description field from function and parameters.
-* Omit parameters: remove the entire properties field from the parameters object.
-* Omit function entirely: remove the entire function object from the functions array.
+| Strategy | Description |
+|----------|-------------|
+| Omit descriptions | Remove the `description` field from function and parameters. |
+| Omit parameters | Remove the entire `properties` field from the `parameters` object. |
+| Omit function entirely | Remove the entire function object from the functions array. |
 
 ### Optimize for quality
 
-Alternatively, if you're trying to improve the quality of the tool calling output, it's recommended that the function definitions present in the fine-tuning training dataset and subsequent chat completion calls remain identical.
+To improve the quality of tool calling output, keep the function definitions in your fine-tuning training dataset and subsequent chat completion calls identical.
 
 ### Customize model responses to function outputs
 
-Fine-tuning based on tool calling examples can also be used to improve the model's response to function outputs. To accomplish this, you include examples consisting of function response messages and assistant response messages where the function response is interpreted and put into context by the assistant.
+You can also fine-tune on tool calling examples to improve the model's response to function outputs. Include examples consisting of function response messages and assistant response messages where the function response is interpreted and put into context by the assistant.
 
 ```json
 {
@@ -112,10 +116,14 @@ As with the example before, this example is artificially expanded for readabilit
 {"messages":[{"role":"user","content":"What is the weather in San Francisco?"},{"role":"assistant","tool_calls":[{"id":"call_id","type":"function","function":{"name":"get_current_weather","arguments":"{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}]},{"role":"tool","tool_call_id":"call_id","content":"21.0"},{"role":"assistant","content":"It is 21 degrees celsius in San Francisco, CA"}],"tools":[]}
 ```
 
-## Function calling
+## Function calling (deprecated)
+
+> [!IMPORTANT]
+> The `function_call` and `functions` parameters are deprecated. Use the [tool calling](#tool-calling-recommended) approach instead. The following section is provided for backward compatibility only.
+
 ### Constructing a training file
 
-When constructing a training file of function calling examples, you would take a function definition like this:
+When constructing a training file of function calling examples, take a function definition like this:
 
 ```json
 {
@@ -144,23 +152,25 @@ And express the information as a single line within your `.jsonl` training file 
 {"messages": [{"role": "user", "content": "What is the weather in San Francisco?"}, {"role": "assistant", "function_call": {"name": "get_current_weather", "arguments": "{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}], "functions": [{"name": "get_current_weather", "description": "Get the current weather", "parameters": {"type": "object", "properties": {"location": {"type": "string", "description": "The city and country/region, eg. San Francisco, USA"}, "format": {"type": "string", "enum": ["celsius", "fahrenheit"]}}, "required": ["location", "format"]}}]}
 ```
 
-As with all fine-tuning training your example file requires at least 10 examples.
+As with all fine-tuning training, your example file requires at least 10 examples.
 
 ### Optimize for cost
 
-OpenAI recommends that if you're trying to optimize to use fewer prompt tokens post fine-tuning your model on the full function definitions you can experiment with:
+To use fewer prompt tokens after fine-tuning on full function definitions, experiment with the following strategies:
 
-* Omit function and parameter descriptions: remove the description field from function and parameters.
-* Omit parameters: remove the entire properties field from the parameters object.
-* Omit function entirely: remove the entire function object from the functions array.
+| Strategy | Description |
+|----------|-------------|
+| Omit descriptions | Remove the `description` field from function and parameters. |
+| Omit parameters | Remove the entire `properties` field from the `parameters` object. |
+| Omit function entirely | Remove the entire function object from the functions array. |
 
 ### Optimize for quality
 
-Alternatively, if you're trying to improve the quality of the function calling output, it's recommended that the function definitions present in the fine-tuning training dataset and subsequent chat completion calls remain identical.
+To improve the quality of function calling output, keep the function definitions in your fine-tuning training dataset and subsequent chat completion calls identical.
 
 ### Customize model responses to function outputs
 
-Fine-tuning based on function calling examples can also be used to improve the model's response to function outputs. To accomplish this, you include examples consisting of function response messages and assistant response messages where the function response is interpreted and put into context by the assistant.
+You can also fine-tune on function calling examples to improve the model's response to function outputs. Include examples consisting of function response messages and assistant response messages where the function response is interpreted and put into context by the assistant.
 
 ```json
 {
