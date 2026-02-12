@@ -61,7 +61,7 @@ sections:
         answer: |
           A [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) is a top-level object that groups one or more knowledge sources under a single endpoint. Its configuration controls how sources are selected (via retrieval instructions and reasoning effort) and how results are returned (via output mode and answer instructions). An LLM connection enables query planning and answer synthesis.
           
-          At query time, the agentic retrieval engine uses this configuration to process requests. All retrieval operations enforce user-level access controls inherited from the knowledge sources.
+          At query time, the agentic retrieval engine uses this configuration to process requests. User-level access controls are only enforced when the knowledge source supports document-level permissions and when those permissions are configured for synchronization. Unless support for out-of-the-box user permissions is explicitly stated in the knowledge source documentation, document-level access controls aren't automatically honored.
 
       - question: "What knowledge sources are supported?"
         answer: |
