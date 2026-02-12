@@ -157,7 +157,7 @@ For more examples, see [all quality evaluator samples](https://github.com/Azure/
 
 ## Using RAG evaluators
 
-To use RAG evaluators, configure them in your `testing_criteria`. Each evaluator requires specific data mappings:
+RAG evaluators assess how well AI systems retrieve and use context to generate grounded responses. Each evaluator requires specific data mappings and parameters:
 
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
@@ -168,11 +168,9 @@ To use RAG evaluators, configure them in your `testing_criteria`. Each evaluator
 | Retrieval | `query`, `context` | `deployment_name` |
 | Document Retrieval | `retrieval_ground_truth`, `retrieved_documents` | *(none)* |
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
-
 ### Example input
 
-Your test dataset should contain the fields referenced in your data mappings. For RAG evaluators, include `query`, `context`, and `response` fields:
+Your test dataset should contain the fields referenced in your data mappings:
 
 ```jsonl
 {"query": "What are the store hours?", "context": "Our store is open Monday-Friday 9am-6pm and Saturday 10am-4pm.", "response": "The store is open weekdays from 9am to 6pm and Saturdays from 10am to 4pm."}
@@ -215,6 +213,8 @@ testing_criteria = [
 ]
 ```
 
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+
 ### Example output
 
 These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. Key output fields:
@@ -222,10 +222,13 @@ These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excelle
 ```json
 {
     "type": "azure_ai_evaluator",
-    "name": "groundedness",
+    "name": "Groundedness",
+    "metric": "groundedness",
     "score": 4,
-    "passed": true,
-    "reason": "The response is well-grounded in the provided context without fabricating content."
+    "label": "pass",
+    "reason": "The response is well-grounded in the provided context without fabricating content.",
+    "threshold": 3,
+    "passed": true
 }
 ```
 
@@ -263,6 +266,29 @@ Because of its upstream role in RAG, the retrieval quality is important. If the 
 ::: moniker range="foundry"
 
 - To optimize your RAG in a scenario called *parameter sweep*, you can use these metrics to calibrate the search parameters for the optimal RAG results. Generate different retrieval results for various search parameters such as search algorithms (vector, semantic), top_k, and chunk sizes you're interested in testing. Then use `document_retrieval` to find the search parameters that yield the highest retrieval quality.
+
+The `document_retrieval` evaluator returns multiple metrics for retrieval quality:
+
+```json
+[
+    {
+        "type": "azure_ai_evaluator",
+        "name": "Document Retrieval",
+        "metric": "ndcg@3",
+        "score": 0.646,
+        "label": "pass",
+        "passed": true
+    },
+    {
+        "type": "azure_ai_evaluator",
+        "name": "Document Retrieval",
+        "metric": "fidelity",
+        "score": 0.019,
+        "label": "fail",
+        "passed": false
+    }
+]
+```
 
 ::: moniker-end
 

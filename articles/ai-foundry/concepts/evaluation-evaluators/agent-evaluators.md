@@ -361,27 +361,29 @@ Examples:
 
 ## Evaluator model support for AI-assisted evaluators
 
-For AI-assisted evaluators, you can use AzureOpenAI or OpenAI [reasoning models](../../openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators. For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `gpt-5-mini` with a balance of reasoning performance, cost-effectiveness, and efficiency.
+For AI-assisted evaluators, you can use Azure OpenAI or OpenAI [reasoning models](../../openai/how-to/reasoning.md) and non-reasoning models for the LLM judge. For complex evaluation that requires refined reasoning, we recommend `gpt-5-mini` for its balance of performance, cost, and efficiency.
 
-### Tool evaluators support
+### Supported tools
 
-Evaluators including `tool_call_accuracy`, `tool_selection`, `tool_input_accuracy`, `tool_output_utilization` support evaluation in Agent Service for the following tools:
+Agent evaluators support the following tools:
 
 - File Search
+- Function Tool (user-defined tools)
+- MCP
+- Knowledge-based MCP
+
+The following tools currently have limited support. Avoid using `tool_call_accuracy`, `tool_output_utilization`, `tool_call_success`, or `groundedness` if your agent conversation includes calls to these tools:
+
 - Azure AI Search
 - Bing Grounding
 - Bing Custom Search
 - SharePoint Grounding
-- Code Interpreter
 - Fabric Data Agent
-- OpenAPI
-- Function Tool (user-defined tools)
-
-If a non-supported tool is used in the agent run, the evaluator outputs a *pass* and a reason that evaluating the invoked tools isn't supported. This approach makes it easy to filter out these cases. We recommend that you wrap non-supported tools as user-defined tools to enable tool evaluation.
+- Web Search
 
 ## Using agent evaluators
 
-To use agent evaluators, configure them in your `testing_criteria`. Each evaluator requires specific data mappings:
+Agent evaluators assess how well AI agents perform tasks, follow instructions, and use tools effectively. Each evaluator requires specific data mappings and parameters:
 
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
@@ -395,18 +397,16 @@ To use agent evaluators, configure them in your `testing_criteria`. Each evaluat
 | Tool Call Success | `response` | `deployment_name` |
 | Task Navigation Efficiency | `actions`, `expected_actions` | *(none)* |
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
-
 ### Example input
 
-Your test dataset should contain the fields referenced in your data mappings. For agent evaluators, include `query` and `response` fields. Both fields accept simple strings or conversation arrays:
+Your test dataset should contain the fields referenced in your data mappings. Both fields accept simple strings or conversation arrays:
 
 ```jsonl
 {"query": "What's the weather in Seattle?", "response": "The weather in Seattle is rainy, 14°C."}
 {"query": "Book a flight to Paris for next Monday", "response": "I've booked your flight to Paris departing next Monday at 9:00 AM."}
 ```
 
-For more complex agent interactions with tool calls, use the conversation array format. This format follows the OpenAI message schema (see [Agent message schema](#agent-message-schema)). The system message is optional but useful for evaluators like Task Adherence that assess whether the agent follows its instructions:
+For more complex agent interactions with tool calls, use the conversation array format. This format follows the OpenAI message schema (see [Agent message schema](#agent-message-schema)). The system message is optional but useful for evaluators that assess agent behavior against instructions, including `task_adherence`, `task_completion`, `tool_call_accuracy`, `tool_selection`, `tool_input_accuracy`, `tool_output_utilization`, and `groundedness`:
 
 ```json
 {
@@ -447,6 +447,8 @@ testing_criteria = [
 ]
 ```
 
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+
 ### Example output
 
 Agent evaluators return Pass/Fail results with reasoning. Key output fields:
@@ -458,6 +460,7 @@ Agent evaluators return Pass/Fail results with reasoning. Key output fields:
     "metric": "task_adherence",
     "label": "pass",
     "reason": "Agent followed system instructions correctly",
+    "threshold": 3,
     "passed": true
 }
 ```
@@ -530,7 +533,7 @@ Returns a binary pass/fail result plus precision, recall, and F1 scores:
 
 When using conversation array format, `query` and `response` follow the OpenAI message structure:
 
-- **query**: Contains the conversation history leading up to the user's request. Include the system message to let evaluators examine agent instructions.
+- **query**: Contains the conversation history leading up to the user's request. Include the system message to provide context for evaluators that assess agent behavior against instructions.
 - **response**: Contains the agent's reply, including any tool calls and their results.
 
 **Message schema:**

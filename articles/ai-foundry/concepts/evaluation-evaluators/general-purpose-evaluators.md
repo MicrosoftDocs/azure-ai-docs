@@ -205,11 +205,9 @@ Configure them in your `testing_criteria`:
 | `builtin.coherence` | Logical flow and organization of ideas | `query`, `response` | `deployment_name` |
 | `builtin.fluency` | Grammatical accuracy and readability | `response` | `deployment_name` |
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
-
 ### Example input
 
-Your test dataset should contain the fields referenced in your data mappings. For general-purpose evaluators, include `query` and `response` fields:
+Your test dataset should contain the fields referenced in your data mappings:
 
 ```jsonl
 {"query": "What are the benefits of renewable energy?", "response": "Renewable energy reduces carbon emissions, lowers long-term costs, and provides energy independence."}
@@ -242,6 +240,8 @@ testing_criteria = [
 ]
 ```
 
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+
 ### Example output
 
 These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold result in `passed: true`. Key output fields:
@@ -249,10 +249,13 @@ These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excelle
 ```json
 {
     "type": "azure_ai_evaluator",
-    "name": "coherence",
+    "name": "Coherence",
+    "metric": "coherence",
     "score": 4,
-    "passed": true,
-    "reason": "The response directly addresses the question with clear, logical connections between ideas."
+    "label": "pass",
+    "reason": "The response directly addresses the question with clear, logical connections between ideas.",
+    "threshold": 3,
+    "passed": true
 }
 ```
 

@@ -283,11 +283,9 @@ Examples:
 | `builtin.rouge_score` | Recall-oriented n-gram overlap | `ground_truth`, `response` | `rouge_type` | 0-1 float | 0.5 |
 | `builtin.meteor_score` | Weighted alignment with synonyms | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
-
 ### Example input
 
-Your test dataset should contain the fields referenced in your data mappings. For textual similarity evaluators, include `query`, `response`, and `ground_truth` fields:
+Your test dataset should contain the fields referenced in your data mappings:
 
 ```jsonl
 {"query": "What is the capital of France?", "response": "Paris is the capital of France.", "ground_truth": "The capital of France is Paris."}
@@ -335,6 +333,8 @@ testing_criteria = [
 ]
 ```
 
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+
 ### Example output
 
 LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evaluators output 0-1 floats. All evaluators output *pass* or *fail* based on their thresholds. Key output fields:
@@ -342,10 +342,13 @@ LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evalu
 ```json
 {
     "type": "azure_ai_evaluator",
-    "name": "similarity",
+    "name": "Similarity",
+    "metric": "similarity",
     "score": 4,
-    "passed": true,
-    "reason": "The response accurately conveys the same meaning as the ground truth."
+    "label": "pass",
+    "reason": "The response accurately conveys the same meaning as the ground truth.",
+    "threshold": 3,
+    "passed": true
 }
 ```
 

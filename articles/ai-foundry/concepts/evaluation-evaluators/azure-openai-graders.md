@@ -323,7 +323,7 @@ See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for
 
 ### Example input
 
-Your test dataset should contain the fields referenced in your grader configurations. For example, include `query`, `response`, and optionally `ground_truth` fields:
+Your test dataset should contain the fields referenced in your grader configurations.
 
 ```jsonl
 {"query": "What is the weather like today?", "response": "It's sunny and warm with clear skies.", "ground_truth": "Today is sunny with temperatures around 75°F."}
@@ -379,7 +379,7 @@ The string check grader (`string_check`) performs deterministic string compariso
     "type": "string_check",
     "name": "exact_match",
     "input": "{{item.response}}",
-    "reference": "{{item.expected}}",
+    "reference": "{{item.ground_truth}}",
     "operation": "eq",
 }
 ```
