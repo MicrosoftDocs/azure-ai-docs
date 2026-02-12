@@ -45,9 +45,19 @@ This article explains how to:
 
 ## Prerequisites
 
+::: moniker range="foundry-classic"
+
 - A Foundry project or hubs based project. To learn more, see [Create a project](../create-projects.md).
 
 [!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- A [Foundry project](/azure/ai-foundry/how-to/create-projects).
+
+::: moniker-end
 
 ## Getting started
 
