@@ -116,11 +116,6 @@ As with the example before, this example is artificially expanded for readabilit
 {"messages":[{"role":"user","content":"What is the weather in San Francisco?"},{"role":"assistant","tool_calls":[{"id":"call_id","type":"function","function":{"name":"get_current_weather","arguments":"{\"location\": \"San Francisco, USA\", \"format\": \"celsius\"}"}}]},{"role":"tool","tool_call_id":"call_id","content":"21.0"},{"role":"assistant","content":"It is 21 degrees celsius in San Francisco, CA"}],"tools":[]}
 ```
 
-## Function calling (deprecated)
-
-> [!IMPORTANT]
-> The `function_call` and `functions` parameters are deprecated. Use the [tool calling](#tool-calling-recommended) approach instead. The following section is provided for backward compatibility only.
-
 ### Constructing a training file
 
 When constructing a training file of function calling examples, take a function definition like this:
