@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 monikerRange: 'foundry-classic || foundry'
