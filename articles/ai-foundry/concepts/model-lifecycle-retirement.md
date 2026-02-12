@@ -90,6 +90,8 @@ The following tables list the timelines for models that are on track for retirem
 | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
 | [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere/?cid=learnDocs) | January 14, 2026 | February 14, 2026 | May 14, 2026 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs), [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) |
+| [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | February 12, 2026 | March 12, 2026 | May 12, 2026 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere/?cid=learnDocs) |
+| [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | February 12, 2026 | March 12, 2026 | May 12, 2026 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere/?cid=learnDocs) |
 
 #### Microsoft
 
