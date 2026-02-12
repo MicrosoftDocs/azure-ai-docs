@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/12/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026
@@ -79,7 +79,8 @@ Before you begin, make sure you have:
 > 1. A project connection configured with the matching key name and value.
 > 
 > Without these configurations, the API key isn't included in requests. For detailed setup instructions, see the [Authenticate with API key](#authenticate-with-api-key) section.
-> You can also use token-based authentication (for example, a Bearer token) by storing the token in a project connection.
+>
+> You can also use token-based authentication (for example, a Bearer token) by storing the token in a project connection. For Bearer token auth, create a **Custom keys** connection with key set to `Authorization` and value set to `Bearer <token>` (replace `<token>` with your actual token). The word `Bearer` followed by a space must be included in the value. For details, see [Set up a Bearer token connection](#set-up-a-bearer-token-connection).
 
 :::zone pivot="python"
 ### Quick verification
@@ -158,6 +159,22 @@ with (
     #   },
     #   "security": [{"apiKeyHeader": []}]
     # }
+    #
+    # For Bearer token authentication, use this securitySchemes structure instead:
+    # {
+    #   "components": {
+    #     "securitySchemes": {
+    #       "bearerAuth": {
+    #         "type": "apiKey",
+    #         "name": "Authorization",
+    #         "in": "header"
+    #       }
+    #     }
+    #   },
+    #   "security": [{"bearerAuth": []}]
+    # }
+    # Then set connection key = "Authorization" and value = "Bearer <token>"
+    # The word "Bearer" followed by a space MUST be included in the value.
     
     openapi_connection = project_client.connections.get(os.environ["OPENAPI_PROJECT_CONNECTION_NAME"])
     connection_id = openapi_connection.id
@@ -1119,6 +1136,44 @@ By using API key authentication, you can authenticate your OpenAPI spec by using
       - value: YOUR_API_KEY
 1. After you create a connection, you can use it through the SDK or REST API. Use the tabs at the top of this article to see code examples.
 
+## Set up a Bearer token connection
+
+You can use token-based authentication (for example, a Bearer token) with the same `project_connection` auth type used for API keys. The key difference is how you configure both the OpenAPI spec and the project connection.
+
+1. Update your OpenAPI spec `securitySchemes` to use `Authorization` as the header name:
+
+   ```json
+   "securitySchemes": {
+       "bearerAuth": {
+           "type": "apiKey",
+           "name": "Authorization",
+           "in": "header"
+       }
+   }
+   ```
+
+1. Add a `security` section that references the scheme:
+
+   ```json
+   "security": [
+       {
+           "bearerAuth": []
+       }
+   ]
+   ```
+
+1. Create a **Custom keys** connection in your Foundry project:
+   1. Go to the [Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and open your project.
+   1. Create or select a connection that stores the secret. See [Add a new connection to your project](../../../../how-to/connections-add.md).
+   1. Enter the following values:
+      - **key**: `Authorization` (must match the `name` field in your `securitySchemes`)
+      - **value**: `Bearer <token>` (replace `<token>` with your actual token)
+
+   > [!IMPORTANT]
+   > The value must include the word `Bearer` followed by a space before the token. For example: `Bearer eyJhbGciOiJSUzI1NiIs...`. If you omit `Bearer `, the API receives a raw token without the required authorization scheme prefix, and the request fails.
+
+1. After you create the connection, use it with the `project_connection` auth type in your code, the same way you would for API key authentication. The connection ID uses the same format: `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
+
 ## Authenticate by using managed identity (Microsoft Entra ID)
 
 [Microsoft Entra ID](/entra/fundamentals/what-is-entra) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security to your APIs without needing to use API keys. When you set up managed identity authentication, the agent authenticates through the Foundry tool it uses.
@@ -1154,6 +1209,7 @@ To set up authentication by using Managed Identity:
 | Tool returns unexpected response format. | Response schema not defined in OpenAPI spec. | Add response schemas to your OpenAPI spec for better model understanding. |
 | `operationId` validation error. | Invalid characters in `operationId`. | Use only letters, `-`, and `_` in `operationId` values. Remove numbers and special characters. |
 | Connection not found error. | Connection name or ID mismatch. | Verify `OPENAPI_PROJECT_CONNECTION_NAME` matches the connection name in your Foundry project. |
+| Bearer token not sent correctly. | Connection value missing `Bearer ` prefix. | Set the connection value to `Bearer <token>` (with the word `Bearer` and a space before the token). Verify the OpenAPI spec `securitySchemes` uses `"name": "Authorization"`. |
 
 ## Choose an authentication method
 
