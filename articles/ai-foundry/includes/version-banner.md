@@ -11,7 +11,7 @@ ms.custom: include
 ---
 ::: moniker range="foundry-classic"
 > [!NOTE]
-> This document refers to the [Microsoft Foundry (classic)](../what-is-foundry.md#microsoft-foundry-portals) portal.
+> This article refers to the [Microsoft Foundry (classic)](../what-is-foundry.md#microsoft-foundry-portals) portal.
 >
 > 🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
 >
@@ -19,7 +19,7 @@ ms.custom: include
 
 ::: moniker range="foundry"
 > [!NOTE]
-> This document refers to the [Microsoft Foundry (new)](../what-is-foundry.md#microsoft-foundry-portals) portal.
+> This article refers to the [Microsoft Foundry (new)](../what-is-foundry.md#microsoft-foundry-portals) portal.
 >
 <!-- > 🔄 [Switch to the Microsoft Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) if you're using the classic portal. -->
 ::: moniker-end
