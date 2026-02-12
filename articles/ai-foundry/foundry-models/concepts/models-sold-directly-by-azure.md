@@ -14,6 +14,7 @@ ms.custom:
   - tool_generated
   - build-aifnd
   - build-2025
+  - pilot-ai-workflow-jan-2026
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 zone_pivot_groups: models-sold-directly-by-azure

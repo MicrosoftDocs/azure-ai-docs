@@ -4,11 +4,12 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 02/05/2026
+ms.date: 02/12/2026
 ms.author: mopeakande
 author: msakande
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
+ms.custom: pilot-ai-workflow-jan-2026
 ---
 
 > [!NOTE]
