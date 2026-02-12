@@ -277,11 +277,11 @@ Examples:
 | Evaluator | What it measures | Required inputs | Required parameters | Output | Default threshold |
 |---|---|---|---|---|---|
 | `builtin.similarity` | Semantic similarity to ground truth | `query`, `response`, `ground_truth` | `deployment_name` | 1-5 integer | 3 |
-| `builtin.f1_score` | Token overlap using precision and recall | `response`, `ground_truth` | *(none)* | 0-1 float | 0.5 |
-| `builtin.bleu_score` | N-gram overlap (machine translation metric) | `response`, `ground_truth` | *(none)* | 0-1 float | 0.5 |
-| `builtin.gleu_score` | Per-sentence reward variant of BLEU | `response`, `ground_truth` | *(none)* | 0-1 float | 0.5 |
-| `builtin.rouge_score` | Recall-oriented n-gram overlap | `response`, `ground_truth` | `rouge_type` | 0-1 float | 0.5 |
-| `builtin.meteor_score` | Weighted alignment with synonyms | `response`, `ground_truth` | *(none)* | 0-1 float | 0.5 |
+| `builtin.f1_score` | Token overlap using precision and recall | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
+| `builtin.bleu_score` | N-gram overlap (machine translation metric) | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
+| `builtin.gleu_score` | Per-sentence reward variant of BLEU | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
+| `builtin.rouge_score` | Recall-oriented n-gram overlap | `ground_truth`, `response` | `rouge_type` | 0-1 float | 0.5 |
+| `builtin.meteor_score` | Weighted alignment with synonyms | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
@@ -318,8 +318,8 @@ testing_criteria = [
         "name": "BLEUScore",
         "evaluator_name": "builtin.bleu_score",
         "data_mapping": {
-            "response": "{{item.response}}",
             "ground_truth": "{{item.ground_truth}}",
+            "response": "{{item.response}}",
         },
     },
     {
@@ -328,8 +328,8 @@ testing_criteria = [
         "evaluator_name": "builtin.rouge_score",
         "initialization_parameters": {"rouge_type": "rouge1"},
         "data_mapping": {
-            "response": "{{item.response}}",
             "ground_truth": "{{item.ground_truth}}",
+            "response": "{{item.response}}",
         },
     },
 ]

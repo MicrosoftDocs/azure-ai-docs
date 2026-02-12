@@ -388,10 +388,10 @@ To use agent evaluators, configure them in your `testing_criteria`. Each evaluat
 | Task Completion | `query`, `response` | `deployment_name` |
 | Task Adherence | `query`, `response` | `deployment_name` |
 | Intent Resolution | `query`, `response` | `deployment_name` |
-| Tool Call Accuracy | `query`, `tool_definitions` | `deployment_name` |
-| Tool Selection | `query`, `tool_definitions` | `deployment_name` |
+| Tool Call Accuracy | (`query`, `response`, `tool_definitions`) OR (`query`, `tool_calls`, `tool_definitions`) | `deployment_name` |
+| Tool Selection | (`query`, `response`, `tool_definitions`) OR (`query`, `tool_calls`, `tool_definitions`) | `deployment_name` |
 | Tool Input Accuracy | `query`, `response`, `tool_definitions` | `deployment_name` |
-| Tool Output Utilization | `query`, `response` | `deployment_name` |
+| Tool Output Utilization | `query`, `response`, `tool_definitions` | `deployment_name` |
 | Tool Call Success | `response` | `deployment_name` |
 | Task Navigation Efficiency | `actions`, `expected_actions` | *(none)* |
 
@@ -475,8 +475,8 @@ Task Navigation Efficiency measures whether the agent took an optimal sequence o
         "matching_mode": "exact_match"  # Options: "exact_match", "in_order_match", "any_order_match"
     },
     "data_mapping": {
-        "response": "{{item.response}}",
-        "ground_truth": "{{item.ground_truth}}"
+        "actions": "{{item.actions}}",
+        "expected_actions": "{{item.expected_actions}}"
     },
 }
 ```
@@ -489,18 +489,18 @@ Task Navigation Efficiency measures whether the agent took an optimal sequence o
 | `in_order_match` | All ground truth steps must appear in the agent's trajectory in correct order (extra steps allowed) |
 | `any_order_match` | All ground truth steps must appear in the agent's trajectory, order doesn't matter (extra steps allowed) |
 
-**Ground truth format:**
+**Expected actions format:**
 
-The `ground_truth` can be a simple list of expected steps:
+The `expected_actions` can be a simple list of expected steps:
 
 ```python
-ground_truth = ["identify_tools_to_call", "call_tool_A", "call_tool_B", "response_synthesis"]
+expected_actions = ["identify_tools_to_call", "call_tool_A", "call_tool_B", "response_synthesis"]
 ```
 
 Or a tuple with tool names and parameters for more detailed validation:
 
 ```python
-ground_truth = (
+expected_actions = (
     ["func_name1", "func_name2"],
     {
         "func_name1": {"param_key": "param_value"},

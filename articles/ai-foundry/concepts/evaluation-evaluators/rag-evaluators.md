@@ -161,12 +161,12 @@ To use RAG evaluators, configure them in your `testing_criteria`. Each evaluator
 
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
-| Groundedness | `response`, `context` (or `tool_definitions`) | `deployment_name` |
+| Groundedness | (`response`, `context`) OR (`query`, `response`) | `deployment_name` |
 | Groundedness Pro | `query`, `response`, `context` | *(none)* |
 | Relevance | `query`, `response` | `deployment_name` |
-| Response Completeness | `response`, `ground_truth` | `deployment_name` |
+| Response Completeness | `ground_truth`, `response` | `deployment_name` |
 | Retrieval | `query`, `context` | `deployment_name` |
-| Document Retrieval | `retrieval_ground_truth`, `retrieval_documents` | `ground_truth_label_min`, `ground_truth_label_max` |
+| Document Retrieval | `retrieval_ground_truth`, `retrieved_documents` | *(none)* |
 
 See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
