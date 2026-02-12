@@ -1,0 +1,83 @@
+---
+title: Chat with your Agent Application using the Responses API protocol
+description: Chat with an existing Agent Application using the Responses API protocol
+author: aahill
+ms.author: aahi
+ms.date: 02/12/2026
+ms.topic: how-to
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.custom: pilot-ai-workflow-jan-2026
+ai-usage: ai-assisted
+---
+
+# Invoke your Agent Application using the Responses API protocol
+
+After publishing, you invoke your agent application using the Responses API protocol or the Activity Protocol. The Activity Protocol is used when your agent is published to Microsoft 365 and Teams.
+
+This article focuses on how you chat with your Agent Application using the Responses API protocol. 
+
+## Prerequisites
+
+- **Test your agent thoroughly** in the Foundry portal before publishing. Confirm it responds correctly and any tools work as expected.
+- **Publish your agent as an Agent Application**: An Agent Application is a managed Azure resource that wraps your agent with a stable endpoint for external consumption. To publish your agent, see [Publish and share agents in Microsoft Foundry](publish-agent.md).
+- [Azure AI User role](../../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
+- **Before running the code sample, ensure you have**:
+    - Python 3.8 or later installed
+    - [Azure CLI](/cli/azure/install-azure-cli) installed and configured
+    - Required Python packages installed:
+      ```bash
+      pip install openai azure-identity
+      ```
+    - Authenticated to Azure CLI:
+      ```bash
+      az login
+      ```
+    For more details on setting up your development environment, see [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md).
+
+## Use OpenAI client with Agent Applications endpoint
+
+```python
+# filepath: Direct OpenAI compatible approach
+from openai import OpenAI 
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider 
+
+# edit base_url with your <foundry-resource-name>, <project-name>, and <app-name>
+openai = OpenAI(
+    api_key=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default"),
+    base_url="https://<foundry-resource-name>.services.ai.azure.com/api/projects/<project-name>/applications/<app-name>/protocols/openai",
+    default_query = {"api-version": "2025-11-15-preview"}
+)
+
+response = openai.responses.create( 
+  input="Write a haiku", 
+) 
+print(f"Response output: {response.output_text}")
+```
+This approach authenticates using Azure credentials and requires the caller to have the Azure AI User role on the Agent Application resource.
+
+## Limitations
+
+**Note**: All of these limitations are temporary and fixes are already in progress.
+
+| Limitation | Description |
+| --- | --- |
+| Stateless Responses API only | Only the stateless Responses API is supported. Other APIs including `/conversations`, `/files`, `/vector_stores`, and `/containers` are inaccessible. |
+
+## Troubleshooting
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| `403 Forbidden` when invoking the endpoint | Caller lacks invoke permissions on the Agent Application resource | Assign the Azure AI User role on the Agent Application resource to the caller. |
+| `401 Unauthorized` when invoking the endpoint | The access token is missing, expired, or for the wrong resource | Re-authenticate and request a token for `https://ai.azure.com`. |
+| Tool calls fail after publishing | The Agent Application identity doesn’t have the same access as the project identity | Reassign the required RBAC roles to the published agent identity for any downstream Azure resources it must access. |
+| Multi-turn conversations don’t work as expected | Agent Applications don’t store conversation state for you | Store conversation history in your client and send the context as part of your request. |
+
+## FAQs
+
+1. **Why are conversations not persisted for published agents (aka why is only stateless responses supported)?**
+
+Today there’s a temporary limitation where published agents only support stateless Responses API interactions (i.e., no persistent conversations). We’ve already started work to address it, with an expected landing timeframe of mid-February. 
+
+The reason for this limitation is that while Agent Service supports managed conversation history, it does not yet enforce end-user isolation between conversations within the same project. In other words, if someone knows another user’s conversation ID, they could access that conversation history even though it isn’t theirs. That’s acceptable in a development context within a single project, but it’s not acceptable for production, where customers need strict per-user conversation isolation. 
+
+Agentic applications are intended to expose functionality to a different audience (e.g. others in your org or your customers), separate from project builders, with stable versions, configuration, and controlled access. Given that goal, users of agent applications will naturally expect their interactions with the application to be private and not visible to others. This isn’t currently possible because the single-user OpenAI APIs we’ve built on top of do not provide native data isolation, and we need to build that isolation layer ourselves. While we work toward full end-user data isolation for applications, only supporting stateless responses will remain a temporary limitation. 
