@@ -18,7 +18,7 @@ Use this guide to get started generating audio with the Azure OpenAI SDK for Pyt
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
+- An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
 - Then, you need to deploy a `gpt-4o-mini-audio-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Microsoft Entra ID prerequisites
@@ -187,6 +187,9 @@ Wait a few moments to get the response.
 
 The script generates an audio file named _dog.wav_ in the same directory as the script. The audio file contains the spoken response to the prompt, "Is a golden retriever a good family dog?"
 
+> [!TIP]
+> Play the generated _dog.wav_ file to verify the audio was generated correctly. You can use any media player or double-click the file to open it in your default audio player.
+
 ## Generate audio and text from audio input
 
 ## [Microsoft Entra ID](#tab/keyless)
@@ -323,6 +326,9 @@ Wait a few moments to get the response.
 ### Output for audio and text generation from audio input
 
 The script generates a transcript of the summary of the spoken audio input. It also generates an audio file named _analysis.wav_ in the same directory as the script. The audio file contains the spoken response to the prompt.
+
+> [!TIP]
+> Play the generated _analysis.wav_ file to hear the audio description of the input.
 
 
 ## Generate audio and use multi-turn chat completions
@@ -498,6 +504,9 @@ Wait a few moments to get the response.
 
 ### Output for multi-turn chat completions
 
-The script generates a transcript of the summary of the spoken audio input. Then, it makes a multi-turn chat completion to briefly summarize the spoken audio input. 
+The script generates a transcript of the summary of the spoken audio input. Then, it makes a multi-turn chat completion to briefly summarize the spoken audio input.
+
+> [!TIP]
+> Review the console output to see the transcript and verify the multi-turn conversation completed successfully. 
 
 

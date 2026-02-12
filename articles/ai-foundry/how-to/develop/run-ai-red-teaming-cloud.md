@@ -49,7 +49,7 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 
 ::: moniker range="foundry"
 
-- A Foundry project. For more information, see [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
+- A [Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 ::: moniker-end
 
@@ -73,9 +73,6 @@ pip install azure-ai-projects>=2.0.0b1 azure-identity
 ```
 
 ::: moniker-end
-
-> [!NOTE]
-> For more detailed information, see the [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/red-teams).
 
 Then, set your environment variables for your Microsoft Foundry resources
 
@@ -589,11 +586,14 @@ curl --request GET \
 
 ::: moniker range="foundry-classic"
 
-Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/airedteamingagent-sample) in our GitHub samples.
+- [Example workflow for agent red teaming in the cloud](https://aka.ms/airedteamingagent-sample)
+- [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/red-teams)
 
 ::: moniker-end
 
 ::: moniker range="foundry"
-Try out an [example workflow for agent red teaming in the cloud](https://aka.ms/agent-redteam-sample) in our GitHub samples.
+
+- [Example workflow for agent red teaming in the cloud](https://aka.ms/agent-redteam-sample)
+- [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
 
 ::: moniker-end

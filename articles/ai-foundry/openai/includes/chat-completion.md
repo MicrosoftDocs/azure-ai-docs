@@ -11,6 +11,7 @@ ms.date: 11/04/2025
 manager: nitinme
 keywords: ChatGPT
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 
 ---
 
@@ -37,7 +38,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="gpt-4o", # model = "deployment_name".
+  model="YOUR-DEPLOYMENT-NAME",  # Replace with your model deployment name.
     messages=[
         {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
         {"role": "user", "content": "Who were the founders of Microsoft?"}
@@ -61,7 +62,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="gpt-4o", # model = "deployment_name".
+  model="YOUR-DEPLOYMENT-NAME",  # Replace with your model deployment name.
     messages=[
         {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
         {"role": "user", "content": "Who were the founders of Microsoft?"}
@@ -159,7 +160,7 @@ The format of a basic chat completion is:
 
 ```
 {"role": "system", "content": "Provide some context and/or instructions to the model"},
-{"role": "user", "content": "The users messages goes here"}
+{"role": "user", "content": "The user's message goes here"}
 ```
 
 A conversation with one example answer followed by a question would look like:
@@ -198,7 +199,7 @@ The following section shows examples of different styles of prompts that you can
 
 #### Basic example
 
-If you want you chat completions model to behave similarly to [chatgpt.com](https://chatgpt.com/), you can use a basic system message like `Assistant is a large language model trained by OpenAI.`
+If you want your chat completions model to behave similarly to [chatgpt.com](https://chatgpt.com/), you can use a basic system message like `Assistant is a large language model trained by OpenAI.`
 
 ```
 {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
@@ -293,7 +294,7 @@ while True:
     conversation.append({"role": "user", "content": user_input})
 
     response = client.chat.completions.create(
-        model="gpt-4o", # model = "deployment_name".
+      model="YOUR-DEPLOYMENT-NAME",  # Replace with your model deployment name.
         messages=conversation
     )
 
@@ -319,7 +320,7 @@ while True:
     conversation.append({"role": "user", "content": user_input})
 
     response = client.chat.completions.create(
-        model="gpt-4o", # model = "deployment_name".
+      model="YOUR-DEPLOYMENT-NAME",  # Replace with your model deployment name.
         messages=conversation
     )
 
@@ -333,7 +334,7 @@ When you run the preceding code, you get a blank console window. Enter your firs
 
 ## Manage conversations
 
-The previous example runs until you hit the model's token limit. With each question asked, and answer received, the `messages` list grows in size. The token limit for chat completions models varies across models and versions The token limits for `gpt-4` and `gpt-4-32k` are 8,192 and 32,768, respectively. These limits include the token count from both the message list sent and the model response. The number of tokens in the messages list combined with the value of the `max_tokens` parameter must stay under these limits or you receive an error. Consult the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for each model's token limits/context windows.
+The previous example runs until you hit the model's token limit (context window). With each question asked and answer received, the `messages` list grows in size. The combined token count of your `messages` plus the requested output tokens must stay within the model's limit, or the request fails. Consult the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for current token limits.
 
 It's your responsibility to ensure that the prompt and completion fall within the token limit. For longer conversations, you need to keep track of the token count and only send the model a prompt that falls within the limit. Alternatively, with the [responses API](../how-to/responses.md) you can have the API handle truncation/management of the conversation history for you.
 
@@ -421,7 +422,7 @@ while True:
         conv_history_tokens = num_tokens_from_messages(conversation, model="gpt-4o")
 
     response = client.chat.completions.create(
-        model="gpt-4o",  
+      model="YOUR-DEPLOYMENT-NAME",
         messages=conversation,
         temperature=0.7,
         max_tokens=max_response_tokens
@@ -507,7 +508,7 @@ while True:
         conv_history_tokens = num_tokens_from_messages(conversation, model="gpt-4o")
 
     response = client.chat.completions.create(
-        model="gpt-4o",  
+      model="YOUR-DEPLOYMENT-NAME",
         messages=conversation,
         temperature=0.7,
         max_tokens=max_response_tokens
@@ -531,4 +532,10 @@ The token counting portion of the code demonstrated previously is a simplified v
 
 | Error Code | Error Message | Workaround |
 |---|---|---|
-| 500 | 500 - InternalServerError: Error code: 500 - {'error': {'message': 'Failed to create completion as the model generated invalid Unicode output}}. | You can minimize the occurrence of these errors by reducing the temperature of your prompts to less than 1 and ensuring you're using a client with retry logic. Reattempting the request often results in a successful response. |
+| 500 | 500 - InternalServerError: Error code: 500 - {"error": {"message": "Failed to create completion as the model generated invalid Unicode output"}} | You can minimize the occurrence of these errors by reducing the temperature of your prompts to less than 1 and ensuring you're using a client with retry logic. Reattempting the request often results in a successful response. |
+
+### Common errors
+
+- **401/403 (authentication)**: Verify your API key, or confirm you have Microsoft Entra ID access to the Azure OpenAI resource.
+- **400/404 (deployment not found)**: Confirm that `model` matches your deployment name.
+- **Invalid URL**: Confirm that `base_url` ends with `/openai/v1/`.

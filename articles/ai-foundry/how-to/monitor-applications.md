@@ -102,4 +102,4 @@ To learn more about setting up and managing Azure Alerts to proactively address 
 
 ## Related content
 
-- [Monitor model deployments](../model-inference/how-to/monitor-models.md#metrics-explorer)
+- [Monitor model deployments](../foundry-models/how-to/monitor-models.md#metrics-explorer)

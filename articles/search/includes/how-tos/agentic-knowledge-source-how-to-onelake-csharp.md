@@ -9,9 +9,9 @@ ms.date: 01/23/2026
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
-Use a *OneLake knowledge source* to index and query Microsoft OneLake files in an agentic retrieval pipeline. [Knowledge sources](../../agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](../../agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](../../agentic-retrieval-how-to-retrieve.md) at query time.
+Use an *indexed OneLake knowledge source* to index and query Microsoft OneLake files in an agentic retrieval pipeline. [Knowledge sources](../../agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](../../agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](../../agentic-retrieval-how-to-retrieve.md) at query time.
 
-When you create a OneLake knowledge source, you specify an external data source, models, and properties to automatically generate the following Azure AI Search objects:
+When you create an indexed OneLake knowledge source, you specify an external data source, models, and properties to automatically generate the following Azure AI Search objects:
 
 + A data source that represents a lakehouse.
 + A skillset that chunks and optionally vectorizes multimodal content from the lakehouse.
@@ -24,7 +24,7 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 | [Azure portal](../../get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
 |--|--|--|--|--|--|--|
-| ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 [!INCLUDE [Check for existing knowledge sources using C#](knowledge-source-check-csharp.md)]
 
-The following JSON is an example response for a OneLake knowledge source.
+The following JSON is an example response for an indexed OneLake knowledge source.
 
 ```json
 {
@@ -98,7 +98,7 @@ The following JSON is an example response for a OneLake knowledge source.
 
 ## Create a knowledge source
 
-Run the following code to create a OneLake knowledge source.
+Run the following code to create an indexed OneLake knowledge source.
 
 ```csharp
 // Create an IndexedOneLake knowledge source
@@ -153,7 +153,7 @@ Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated
 
 ### Source-specific properties
 
-You can pass the following properties to create a OneLake knowledge source.
+You can pass the following properties to create an indexed OneLake knowledge source.
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
@@ -175,7 +175,7 @@ You can pass the following properties to create a OneLake knowledge source.
 
 ## Review the created objects
 
-When you create a OneLake knowledge source, your search service also creates an indexer, index, skillset, and data source. We don't recommend that you edit these objects, as introducing an error or incompatibility can break the pipeline.
+When you create an indexed OneLake knowledge source, your search service also creates an indexer, index, skillset, and data source. We don't recommend that you edit these objects, as introducing an error or incompatibility can break the pipeline.
 
 After you create a knowledge source, the response lists the created objects. These objects are created according to a fixed template, and their names are based on the name of the knowledge source. You can't change the object names.
 
@@ -190,7 +190,7 @@ We recommend using the Azure portal to validate output creation. The workflow is
 
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](../../search-agentic-retrieval-how-to-create.md).
 
-For any knowledge base that specifies a OneLake knowledge source, be sure to set `includeReferenceSourceData` to `true`. This step is necessary for pulling the source document URL into the citation.
+For any knowledge base that specifies an indexed OneLake knowledge source, be sure to set `includeReferenceSourceData` to `true`. This step is necessary for pulling the source document URL into the citation.
 
 After the knowledge base is configured, use the [retrieve action](../../agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 

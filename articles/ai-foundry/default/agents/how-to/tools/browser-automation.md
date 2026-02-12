@@ -1,29 +1,31 @@
 ---
-title: Use Browser Automation Tool with Foundry agents
+title: Automate browser tasks with Foundry agents
 titleSuffix: Microsoft Foundry
-description: Learn to use the Browser Automation tool with Microsoft Foundry agents to automate web tasks in Playwright workspaces. Follow the steps to get started.
+description: Automate web browsing tasks with the Browser Automation tool in Microsoft Foundry agents. Create isolated Playwright sessions for navigation and form filling.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/19/2026
+ms.date: 02/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 zone_pivot_groups: selection-browser-tool
+#CustomerIntent: As a developer building AI agents, I want to automate web browsing tasks so that my agents can interact with external websites and extract information.
 ---
 
-# Browser automation tool (preview)
+# Automate browser tasks with the Browser Automation tool (preview)
 
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+
+This article explains how to configure and use the Browser Automation tool with Foundry agents to automate web browsing workflows.
 
 > [!WARNING]
 > The Browser Automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages that the AI encounters can cause it to execute commands you or others don't intend. These actions can compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation tool, you acknowledge that you bear responsibility and liability for any use of it and of any resulting agents you create with it. This responsibility extends to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. Use the Browser Automation tool on low-privilege virtual machines with no access to sensitive data or critical resources.
 
-> [!NOTE]
-> To learn more about optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
+For guidance on optimizing tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 In Microsoft Foundry, the Browser Automation tool enables you to perform real-world browser tasks through natural language prompts. When you use it with Foundry Agent Service, it creates isolated browser sessions in your provisioned Playwright workspace.
 
@@ -35,11 +37,28 @@ By using [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-worksp
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
+## How it works
+
+The interaction starts when the user sends a query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following URL \<url\>."* When the agent receives the request, Foundry Agent Service creates an isolated browser session using your provisioned Playwright workspace. Each session is sandboxed for privacy and security.
+
+The browser performs Playwright-driven actions, such as navigating to relevant pages and applying filters or parameters based on user preferences (such as time, location, and instructor). By combining the model with Playwright, the model can parse HTML or XML into DOM documents, make decisions, and perform actions like selecting UI elements, typing, and navigating websites. Exercise caution when using this tool.
+
+An example flow is:
+
+1. A user sends a request to the model that includes a call to the Browser Automation tool with the URL you want to go to.
+1. The Browser Automation tool receives a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example, an action might be a screenshot so the model can assess the current state with an updated screenshot or click with X/Y coordinates indicating where the mouse should be moved.
+1. The Browser Automation tool executes the action in a sandboxed environment.
+1. After executing the action, the Browser Automation tool captures the updated state of the environment as a screenshot.
+1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
+
+   The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete a booking.
+
 ## Prerequisites
 
 Before you begin, make sure you have:
 
-- An Azure subscription with the right permissions.
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- Contributor or Owner role on a resource group.
 - A Foundry project with a configured endpoint.
 - An AI model deployed in your project.
 - A Playwright workspace resource.
@@ -56,16 +75,19 @@ Use the following format for your connection ID: `/subscriptions/{{subscriptionI
 ## Set up Browser Automation
 
 1. Create a [Playwright Workspace](https://aka.ms/pww/docs/manage-workspaces) resource.
-  1. [Generate an access token](https://aka.ms/pww/docs/manage-access-tokens) for the Playwright workspace resource.
+  1. [Generate an access token](/azure/app-testing/playwright-workspaces/how-to-manage-access-tokens) for the Playwright workspace resource.
   1. Copy the workspace region endpoint from the **Workspace Details** page.
-  1. Give the project identity a Contributor role on the Playwright workspace resource, or [configure a custom role](https://aka.ms/pww/docs/manage-workspace-access).
-1. Create a serverless connection in your Foundry project using the Playwright workspace region endpoint and Playwright workspace access token.
-  1. Go to the [Foundry portal](https://ai.azure.com/) and select your project.
-  1. Select **Management center**, then select **Connected resources**.
-  1. Create a new **Serverless Model** connection.
-  1. Set **Target URI** to the Playwright workspace region endpoint. It starts with `wss://`.
-     - For more information, see the Playwright documentation for [configuring the service endpoint](https://aka.ms/pww/docs/configure-service-endpoint).
-  1. Set **Key** to your Playwright access token.
+  1. Assign the Contributor role to your project's managed identity on the Playwright workspace resource. Alternatively, [configure a custom role](/azure/app-testing/playwright-workspaces/how-to-manage-workspace-access#create-a-custom-role-for-restricted-tenants).
+1. Create a connection in your Foundry project using the Playwright workspace region endpoint and Playwright workspace access token.
+   1. Go to the [Foundry portal](https://ai.azure.com/nextgen) and select your project.
+   1. Select **Operate** in the upper-right navigation, then select **Admin** in the left pane.
+   1. Select your project name in the **All projects** list.
+   1. Select **Add connection**, then select **Serverless** connection.
+   1. Enter a name for the connection (for example, `playwright-workspace`).
+   1. Set **Endpoint** to the Playwright workspace region endpoint. It starts with `wss://`.
+      - For more information, see the Playwright documentation for [configuring the service endpoint](/azure/app-testing/playwright-workspaces/quickstart-run-end-to-end-tests?tabs=playwrightcli&pivots=playwright-test-runner#configure-the-browser-endpoint).
+   1. Set **Key** to your Playwright access token.
+   1. Select **Add connection**.
 
 ## Code example
 
@@ -183,26 +205,7 @@ During streaming, you might also see deltas and tool-call details. Output varies
 :::zone pivot="csharp"
 ## Use BrowserAutomationAgentTool with agents example
 
-[Playwright](https://playwright.dev/) is a Node.js library for browser automation. Microsoft provides [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-workspaces), which can execute Playwright-based tasks triggered by an agent using the BrowserAutomationAgentTool.
-
-### Create Azure Playwright workspace
-
-1. Deploy an Azure Playwright workspace.
-1. In the **Get started** section, open **2. Set up authentication**.
-1. **Select Service Access Token**, and then choose **Generate Token**.
-   
-   > [!IMPORTANT]
-   > Save the token immediately. After you close the page, you can't view it again.
-
-### Configure Microsoft Foundry
-
-1. On the left panel, select **Management center**.
-1. Choose **Connected resources**.
-1. Create a new connection of type **Serverless Model**.
-1. Provide a name, and then paste your Access Token into the **Key** field.
-1. Set the Playwright Workspace Browser endpoint as the **Target URI**. You can find this endpoint on the Workspace **Overview page**. It begins with `wss://`.
-
-### Create the sample
+Before running this sample, complete the setup steps in [Set up Browser Automation](#set-up-browser-automation).
 
 The following C# example demonstrates how to create an AI agent with Browser Automation capabilities by using the `BrowserAutomationAgentTool` and synchronous Azure AI Projects client. The agent can navigate to websites, interact with web elements, and perform tasks such as searching for stock prices. The example uses synchronous programming model for simplicity. For an asynchronous version, see the [Sample for use of BrowserAutomationAgentTool and Agents](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample23_BrowserAutomationTool.md) sample in the Azure SDK for .NET repository on GitHub.
 
@@ -220,7 +223,7 @@ AIProjectClientOptions options = new()
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential(), options: options);
 
 // Create the Browser Automation tool using the Playwright connection.
-BrowserAutomationAgentTool playwrightTool = new(
+BrowserAutomationPreviewTool playwrightTool = new(
     new BrowserAutomationToolParameters(
     new BrowserAutomationToolConnectionParameters(playwrightConnectionId)
     ));
@@ -237,44 +240,41 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
-// To parse the stream obtained from the Agent, create a ParseResponse helper method.
-private static void ParseResponse(StreamingResponseUpdate streamResponse)
-{
-    if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
-    {
-        Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
-    }
-    else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
-    {
-        Console.WriteLine($"Delta: {textDelta.Delta}");
-    }
-    else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
-    {
-        Console.WriteLine($"Response done with full message: {textDoneUpdate.Text}");
-    }
-    else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
-    {
-        throw new InvalidOperationException($"The stream has failed with the error: {errorUpdate.Message}");
-    }
-}
-
 // Create the response stream. Also set ToolChoice = ResponseToolChoice.CreateRequiredChoice()
 // on the ResponseCreationOptions to ensure the agent uses the Browser Automation tool.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-ResponseCreationOptions responseOptions = new()
+CreateResponseOptions responseOptions = new()
 {
-    ToolChoice = ResponseToolChoice.CreateRequiredChoice()
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    StreamingEnabled = true,
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem("Your goal is to report the percent of Microsoft year-to-date stock price change.\n" +
+            "To do that, go to the website finance.yahoo.com.\n" +
+            "At the top of the page, you will find a search bar.\n" +
+            "Enter the value 'MSFT', to get information about the Microsoft stock price.\n" +
+            "At the top of the resulting page you will see a default chart of Microsoft stock price.\n" +
+            "Click on 'YTD' at the top of that chart, and report the percent value that shows up just below it.")
+    }
 };
-foreach (StreamingResponseUpdate update in responseClient.CreateResponseStreaming(
-        userInputText: "Your goal is to report the percent of Microsoft year-to-date stock price change.\n" +
-        "To do that, go to the website finance.yahoo.com.\n" +
-        "At the top of the page, you will find a search bar.\n" +
-        "Enter the value 'MSFT', to get information about the Microsoft stock price.\n" +
-        "At the top of the resulting page you will see a default chart of Microsoft stock price.\n" +
-        "Click on 'YTD' at the top of that chart, and report the percent value that shows up just below it.",
-        options: responseOptions))
+foreach (StreamingResponseUpdate update in responseClient.CreateResponseStreaming(options: responseOptions))
 {
-    ParseResponse(update);
+    if (update is StreamingResponseCreatedUpdate createUpdate)
+    {
+        Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
+    }
+    else if (update is StreamingResponseOutputTextDeltaUpdate textDelta)
+    {
+        Console.WriteLine($"Delta: {textDelta.Delta}");
+    }
+    else if (update is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
+    {
+        Console.WriteLine($"Response done with full message: {textDoneUpdate.Text}");
+    }
+    else if (update is StreamingResponseErrorUpdate errorUpdate)
+    {
+        throw new InvalidOperationException($"The stream has failed with the error: {errorUpdate.Message}");
+    }
 }
 
 // Delete the Agent version to clean up resources.
@@ -468,8 +468,9 @@ You see an "Agent created ..." message, streaming text output, and optionally, b
 
 ## Limitations
 
-- Use this tool only with sites you trust. Avoid browsing pages that prompt for credentials, payments, or other sensitive actions.
-- Web pages can change at any time. Your agent might fail if the page layout, labels, or flows change.
+- **Trusted sites only**: Use this tool only with sites you trust. Avoid pages that prompt for credentials, payments, or other sensitive actions.
+- **Page volatility**: Web pages can change at any time. Your agent might fail if the page layout, labels, or navigation flows change. Build error handling into your workflows.
+- **Complex single-page applications**: JavaScript-heavy SPAs with dynamic content might not render correctly.
 
 ## Cost considerations
 
@@ -503,26 +504,6 @@ Browser automation can take longer than typical requests.
 - Remove the project connection if it’s no longer required. For more information, see [Add a connection in Microsoft Foundry](../../../../how-to/connections-add.md).
 
 
-## How it works
-
-The interaction starts when the user sends a query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following URL \<url\>."* When the agent receives the request, Foundry Agent Service creates an isolated browser session using your provisioned Playwright workspace. Each session is sandboxed for privacy and security.
-
-The browser performs Playwright-driven actions, such as navigating to relevant pages and applying filters or parameters based on user preferences (such as time, location, and instructor). By combining the model with Playwright, the model can parse HTML or XML into DOM documents, make decisions, and perform actions like selecting UI elements, typing, and navigating websites. Exercise caution when using this tool.
-
-An example flow is:
-
-1. A user sends a request to the model that includes a call to the Browser Automation tool with the URL you want to go to.
-
-1. The Browser Automation tool receives a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example, an action might be a screenshot so the model can assess the current state with an updated screenshot or click with X/Y coordinates indicating where the mouse should be moved.
-
-1. The Browser Automation tool executes the action in a sandboxed environment.
-
-1. After executing the action, the Browser Automation tool captures the updated state of the environment as a screenshot.
-
-1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
-
-    The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete a booking.
-
 ## Example scenarios
 
 - Booking and reservations: Automate form filling and schedule confirmation across booking portals.
@@ -537,6 +518,7 @@ Review the [responsible AI considerations](../../../../responsible-ai/agents/tra
 
 ## Related content
 
-- [Add a connection in Microsoft Foundry](../../../../how-to/connections-add.md)
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Computer use tool for agents](computer-use.md)
+- [Add a connection in Microsoft Foundry](../../../../how-to/connections-add.md)
+- [Quickstart: Create your first agent](../../../../quickstarts/get-started-code.md)

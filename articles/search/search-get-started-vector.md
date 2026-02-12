@@ -51,3 +51,8 @@ zone_pivot_groups: search-get-started-vector-search
 [!INCLUDE [REST quickstart](includes/quickstarts/search-get-started-vector-rest.md)]
 
 ::: zone-end
+
+## Related content
+
++ [Vector search in Azure AI Search](vector-search-overview.md)
++ [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) GitHub repository

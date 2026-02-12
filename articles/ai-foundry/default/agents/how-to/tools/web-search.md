@@ -45,8 +45,6 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 - Environment variables configured:
   - `AZURE_AI_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`): Your Foundry project endpoint URL.
   - `AZURE_AI_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`): Your model deployment name.
-Before you begin, make sure you have:
-
 
 ## Code examples
 

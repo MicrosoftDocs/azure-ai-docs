@@ -418,7 +418,7 @@ chain = chain.with_config({"callbacks": [azure_tracer]})
 Then use the `invoke()` method as usual:
 
 ```python
-chain.invoke({"topic": "living in a foreign country"})
+chain.invoke({"topic": "living in a foreign country/region"})
 ```
 
 ### View traces

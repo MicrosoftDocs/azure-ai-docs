@@ -4,10 +4,8 @@ items:
   href: ../../../agents/overview.md
 - name: FAQ
   href: ../../../agents/faq.yml
-- name: Model and region support
-  href: ../../../agents/concepts/model-region-support.md 
-- name: Quotas and limits
-  href: ../../../agents/quotas-limits.md
+- name: Quotas, limits, models and region support
+  href: ../../agents/concepts/limits-quotas-regions.md
 
 # Core Concepts
 - name: Core concepts

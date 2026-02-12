@@ -63,8 +63,8 @@ token_provider = get_bearer_token_provider(
 )
 
 client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key = token_provider  
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider,
 )
 ```
 
@@ -73,7 +73,7 @@ client = OpenAI(
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
- import os
+import os
 from openai import OpenAI
     
 client = OpenAI(

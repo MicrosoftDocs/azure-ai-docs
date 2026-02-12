@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 01/31/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Speech SDK.
 ---
@@ -15,7 +15,7 @@ ms.author: pafarley
 
 The Speech SDK (software development kit) exposes many of the [Speech service capabilities](overview.md), so you can develop speech-enabled applications. The Speech SDK is available [in many programming languages](quickstarts/setup-platform.md) and across platforms. The Speech SDK is ideal for both real-time and non-real-time scenarios, by using local devices, files, Azure Blob Storage, and input and output streams.
 
-In some cases, you can't or shouldn't use the [Speech SDK](speech-sdk.md). In those cases, you can use REST APIs to access the Speech service. For example, use the [Speech to text REST API](rest-speech-to-text.md) for [batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md) model management.
+In some cases, you can't or shouldn't use the [Speech SDK](speech-sdk.md). In those cases, you can use REST APIs to access the Speech service. For example, use the [Speech to text REST API](rest-speech-to-text.md) for [batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md) model management. For specialized transcription scenarios with LLM Speech and Fast Transcription capabilities, use the [Speech Transcription SDK](transcription-sdk.md).
 
 ## Supported languages
 
@@ -75,3 +75,4 @@ See also [Foundry Tools support and help options](../cognitive-services-support-
 
 * [Install the SDK](quickstarts/setup-platform.md)
 * [Try the speech to text quickstart](./get-started-speech-to-text.md)
+* [Learn about the Speech Transcription SDK](./transcription-sdk.md) for specialized transcription capabilities

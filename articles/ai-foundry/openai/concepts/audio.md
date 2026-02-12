@@ -19,7 +19,7 @@ manager: nitinme
 
 Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs, and support speech recognition, translation, and text to speech.
 
-For information about the available audio models per region in Azure OpenAI, see the [audio models](models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint), [standard models by endpoint](models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint), and [global standard model availability](models.md?tabs=standard-audio#global-standard-model-availability) documentation.
+For information about the available audio models per region in Azure OpenAI, see the [audio models](../../foundry-models/concepts/models-sold-directly-by-azure.md?tabs=standard-audio), [standard models by endpoint](../../foundry-models/concepts/models-sold-directly-by-azure.md?tabs=standard-audio), and [global standard model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?tabs=standard-audio) documentation.
 
 > [!IMPORTANT]
 > The content filtering system isn't applied to prompts and completions processed by audio models in Azure OpenAI, such as Whisper.
@@ -41,7 +41,7 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 
 ## Related content
 
-- [Audio models](models.md#audio-models)
+- [Audio models](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models)
 - [Whisper quickstart](../whisper-quickstart.md)
 - [Audio generation quickstart](../audio-completions-quickstart.md)
 - [GPT real-time audio quickstart](../realtime-audio-quickstart.md)

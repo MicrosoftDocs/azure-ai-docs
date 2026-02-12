@@ -175,7 +175,7 @@ Use the dropdown to select models you want to compare.
 
 If you want to learn even more about the model, you can **View details** or if you're ready to start using the model, you can **Deploy**.
 
-:::image type="content" source="../default/media/observability/model-benchmarks/compare-model-overview.png" alt-text="Screenshot showing the compare model experience in Microsoft Foundry." lightbox="../default/media/observability/model-benchmarks/compare-model-overview.png":::
+:::image type="content" source="media/observability/model-benchmarks/compare-model-overview.png" alt-text="Screenshot showing the compare model experience in Microsoft Foundry." lightbox="media/observability/model-benchmarks/compare-model-overview.png":::
 
 ## View and analyze benchmarks from the model card
 
@@ -190,7 +190,7 @@ When you're in the "Benchmarks" tab for a specific model, you can gather extensi
 - **Comparative charts**: These charts display the model's relative position compared to related models.
 - **Metric comparison table**: This table presents detailed results for each metric.
 
-    :::image type="content" source="../default/media/observability/model-benchmarks/benchmark-overview.png" alt-text="Screenshot showing the metric comparison table on the benchmarks tab." lightbox="../default/media/observability/model-benchmarks/benchmark-overview.png":::
+    :::image type="content" source="media/observability/model-benchmarks/benchmark-overview.png" alt-text="Screenshot showing the metric comparison table on the benchmarks tab." lightbox="media/observability/model-benchmarks/benchmark-overview.png":::
 
 By default, Microsoft Foundry displays an average index across various metrics and datasets to provide a high-level overview of model performance.
 

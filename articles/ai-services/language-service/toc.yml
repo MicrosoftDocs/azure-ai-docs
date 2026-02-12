@@ -163,12 +163,6 @@ items:
         displayName: Data privacy, logging, data retention
     - name: How-to guides
       items:
-      - name: Migrate from QnA Maker to custom question Answering
-        href: question-answering/how-to/migrate-qnamaker-to-question-answering.md
-        displayName: migration, custom question answering
-      - name: Migrate projects from QnA Maker
-        href: question-answering/how-to/migrate-qnamaker.md
-        displayName: migration, transfer
       - name: Create, test, and deploy a knowledge base
         href: question-answering/how-to/create-test-deploy.md
         displayName: knowledge base, test deploy

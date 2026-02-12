@@ -6,13 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: upgrade-and-migration-article
-ms.date: 01/26/2026
+ms.date: 02/05/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
 # Migrate from Language Studio to Microsoft Foundry
 
-Azure Language Studio will migrate to Microsoft Foundry on February 16, 2026. All existing capabilities, along with new feature enhancements, are fully available in Microsoft Foundry. After February 16, 2026, Language Studio will no longer be available, but none of your existing projects, data, or service endpoints are impacted. This guide provides step-by-step migration instructions to ensure uninterrupted access to Azure AI Language features and seamless project continuity within the Foundry environment.
+Azure Language Studio will migrate to Microsoft Foundry on March 20, 2027. All existing capabilities, along with new feature enhancements, are fully available in Microsoft Foundry. After March 20, 2027, Language Studio will no longer be available, but none of your existing projects, data, or service endpoints are impacted. This guide provides step-by-step migration instructions to ensure uninterrupted access to Azure AI Language features and seamless project continuity within the Foundry environment.
 
 ## Why migrate to Microsoft Foundry?
 
@@ -213,7 +213,7 @@ After importing your projects, validate that the migration is successful:
 
 > [!IMPORTANT]
 >
-> **Post-retirement project recreation**. After the February 16, 2026 retirement date, Language Studio export functionality is no longer available. However, you can recreate your custom projects directly in Microsoft Foundry:
+> **Post-retirement project recreation**. After the March 20, 2027 retirement date, Language Studio export functionality is no longer available. However, you can recreate your custom projects directly in Microsoft Foundry:
 >
 > * **Existing Azure Language resources**. You can access and continue to use your current Azure Language resources within the Microsoft Foundry portal by creating a **Foundry hub** and an associated **hub-based project**. For more information, *see* [Create a hub in the Azure portal](/azure/ai-foundry/how-to/create-azure-ai-resource?view=foundry-classic&preserve-view=true&tabs=portal#create-a-hub-in-the-azure-portal).
 >

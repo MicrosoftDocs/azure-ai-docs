@@ -42,12 +42,12 @@ The [Computer Use](how-to/tools-classic/computer-use.md) tool is now available i
 The public preview of the Azure AI Agent Service Java SDK is available. See the following articles for code samples:
 
 * [quickstart](./quickstart.md?pivots=programming-language-java)
-* [Azure AI Search](./how-to/tools/azure-ai-search-samples.md?pivots=java)
-* [Azure Functions](./how-to/tools/azure-functions-samples.md?pivots=java) 
-* [Code interpreter](./how-to/tools/code-interpreter-samples.md?pivots=java) 
-* [File search](./how-to/tools/file-search-upload-files.md?pivots=java)
-* [Grounding with Bing Search](./how-to/tools/bing-code-samples.md?pivots=java)
-* [OpenAPI based tools](./how-to/tools/openapi-spec-samples.md?pivots=java)
+* [Azure AI Search](./how-to/tools-classic/azure-ai-search-samples.md?pivots=java)
+* [Azure Functions](./how-to/tools-classic/azure-functions-samples.md?pivots=java) 
+* [Code interpreter](./how-to/tools-classic/code-interpreter.md) 
+* [File search](./how-to/tools-classic/file-search-upload-files.md?pivots=java)
+* [Grounding with Bing Search](./how-to/tools-classic/bing-code-samples.md?pivots=java)
+* [OpenAPI based tools](./how-to/tools-classic/openapi-spec-samples.md?pivots=java)
 
 ### Browser Automation tool
 

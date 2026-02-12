@@ -20,7 +20,7 @@ Use tracing (preview) to debug your AI agents and monitor their behavior in prod
 
 ## Prerequisites
 
-- A Foundry project. For more information, see [Create a Foundry project](../../../how-to/create-projects.md).
+- A [Foundry project](../../../how-to/create-projects.md).
 - An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/app-insights-overview) to store traces (create a new one or connect an existing one).
 - Access to the Application Insights resource connected to your project.
 

@@ -1439,6 +1439,8 @@ items:
             href: reference-yaml-data.md
           - name: MLTable
             href: reference-yaml-mltable.md
+          - name: Deployment template
+            href: reference-yaml-deployment-template.md
           - name: Model
             href: reference-yaml-model.md
           - name: Schedule
@@ -1523,8 +1525,6 @@ items:
                 href: reference-yaml-deployment-kubernetes-online.md
               - name: Batch
                 href: reference-yaml-deployment-batch.md
-              - name: Deployment template
-                href: reference-yaml-deployment-template.md
           - name: Component
             items:
               - name: Spark

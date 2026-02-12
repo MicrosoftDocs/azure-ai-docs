@@ -1,14 +1,15 @@
 ---
 title: Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models 
+description: Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 01/14/2026
-author: mrbullwinkle    
+author: mrbullwinkle
 ms.author: mbullwin
+ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
 ---
 
@@ -23,6 +24,18 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 - Advanced Problem Solving: Ideal for comprehensive brainstorming sessions and addressing multifaceted challenges.
 - Complex Document Comparison: Perfect for analyzing contracts, case files, or legal documents to identify subtle differences.
 - Instruction Following and Workflow Management: Particularly effective for managing workflows requiring shorter contexts.
+
+## Prerequisites
+
+- An Azure OpenAI reasoning model deployed.
+
+- If you use the REST examples:
+  - Install the Azure CLI. For more information, see [Install the Azure CLI](/cli/azure/install-azure-cli).
+  - Sign in with `az login`, then generate a bearer token and store it in the `AZURE_OPENAI_AUTH_TOKEN` environment variable.
+
+    ```azurecli
+    az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv
+    ```
 
 ## Usage
 
@@ -88,7 +101,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="o1-new", # replace with your model deployment name 
+  model="YOUR-DEPLOYMENT-NAME", # replace with your model deployment name
     messages=[
         {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
     ],
@@ -111,7 +124,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="gpt-5-mini", # replace with the model deployment name of your o1 deployment.
+  model="YOUR-DEPLOYMENT-NAME", # replace with your model deployment name
     messages=[
         {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
     ],
@@ -245,7 +258,7 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
 
 ### Developer messages
 
-Functionally developer messages ` "role": "developer"` are the same as system messages.
+Developer messages (`"role": "developer"`) are functionally the same as system messages.
 
 Adding a developer message to the previous code example would look as follows:
 
@@ -296,7 +309,29 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
-jupy
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+  DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=token_provider,
+)
+
+response = client.chat.completions.create(
+  model="YOUR-DEPLOYMENT-NAME",  # replace with your model deployment name
+  messages=[
+    {"role": "developer", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
+  ],
+  max_completion_tokens=5000,
+  reasoning_effort="medium",  # low, medium, or high
+)
+
+print(response.model_dump_json(indent=2))
 ```
 
 **API Key:**
@@ -332,7 +367,7 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
   -d '{
       "model": "gpt-5",
       "messages": [
-          {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "developer", "content": "You are a helpful assistant."},
           {"role": "user", "content": "What steps should I think about when writing my first Python API?"}
       ],
       "max_completion_tokens": 1000,
@@ -884,23 +919,23 @@ print(response.model_dump_json(indent=2))
 | Model | Region | Limited access |
 |---|---|---|
 | `gpt-5.2-codex`| East US2 & Sweden Central (Global Standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-| `gpt-5.2`| [Model availability](../concepts/models.md#global-standard-model-availability)   | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-`gpt-5.1-codex-max` | [Model availability](../concepts/models.md#global-standard-model-availability) |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.|
-| `gpt-5.1`| [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-| `gpt-5.1-chat` | [Model availability](../concepts/models.md#global-standard-model-availability) | No access request needed.  |
-| `gpt-5.1-codex` | [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-| `gpt-5.1-codex-mini` | [Model availability](../concepts/models.md#global-standard-model-availability)  | No access request needed. | 
-| `gpt-5-pro` | [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.   |
-| `gpt-5-codex` |[Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.    |
-| `gpt-5` | [Model availability](../concepts/models.md#global-standard-model-availability)   |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.     |
-| `gpt-5-mini` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed.    |
-| `gpt-5-nano` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed. |
-| `o3-pro`  | [Model availability](../concepts/models.md#global-standard-model-availability)     |  Request access: [Limited access model application](https://aka.ms/oai/o3access). If you already have access to a limited access model no request is required.  |
-| `codex-mini`  | [Model availability](../concepts/models.md#global-standard-model-availability)     | No access request needed.    |
-| `o4-mini`  | [Model availability](../concepts/models.md#global-standard-model-availability)   | No access request needed to use the core capabilities of this model.<br><br> Request access: [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)     |
-| `o3` |  [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/o3access)     |
-| `o3-mini` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.   |
-|`o1` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.  |
+| `gpt-5.2`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
+`gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.|
+| `gpt-5.1`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
+| `gpt-5.1-chat` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | No access request needed.  |
+| `gpt-5.1-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
+| `gpt-5.1-codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | No access request needed. | 
+| `gpt-5-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.   |
+| `gpt-5-codex` |[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.    |
+| `gpt-5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.     |
+| `gpt-5-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  |  No access request needed.    |
+| `gpt-5-nano` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  |  No access request needed. |
+| `o3-pro`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)     |  Request access: [Limited access model application](https://aka.ms/oai/o3access). If you already have access to a limited access model no request is required.  |
+| `codex-mini`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)     | No access request needed.    |
+| `o4-mini`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   | No access request needed to use the core capabilities of this model.<br><br> Request access: [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)     |
+| `o3` |  [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/o3access)     |
+| `o3-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).  | Access is no longer restricted for this model.   |
+|`o1` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).  | Access is no longer restricted for this model.  |
 
 ## API & feature support
 
@@ -911,7 +946,7 @@ print(response.model_dump_json(indent=2))
 | **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
 | **[Developer Messages](#developer-messages)** | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **[Context Window](../concepts/models.md#o-series-models)** | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
+| **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)** | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
 | **[Reasoning effort](#reasoning-effort)**<sup>7</sup> | ✅ | ✅| ✅<sup>6</sup> | ✅<sup>4</sup> | ✅  | ✅  | ✅  | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
 | **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Chat Completions API | | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
@@ -953,7 +988,7 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 | **API Version** | `2025-04-01-preview` & [v1](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) |
 | **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **[Context Window](../concepts/models.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000  | 
+| **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000  | 
 | **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅| ✅ |✅ | ✅ |
 | **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | Chat Completions API | - | - | ✅ | ✅ | ✅ | ✅ |

@@ -184,7 +184,7 @@ You set the value using the format shown in this example:
 }
 ```
 
-For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../overview.md#image-input-tokens)
+For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 
 
 ## Output

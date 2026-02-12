@@ -1,29 +1,38 @@
 ---
 title: How to use function calling with Azure OpenAI in Microsoft Foundry Models
 titleSuffix: Azure OpenAI
-description: Learn how to use function calling with OpenAI models 
+description: Learn how to use function calling with OpenAI models.
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 01/14/2026
+ms.date: 02/10/2026
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # How to use function calling with Azure OpenAI in Microsoft Foundry Models
 
-If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function.
+If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines thatodel a function should be called, it responds with a JSON object including the arguments for the function.
 
 The models formulate API calls and structure data outputs, all based on the functions you specify. It's important to note that while the models can generate these calls, it's up to you to execute them, ensuring you remain in control.
 
-At a high level you can break down working with functions into three steps:
+At a high level, you can break down working with functions into three steps:
 
 1. Call the chat completions API with your functions and the user’s input
 2. Use the model’s response to call your API or function
 3. Call the chat completions API again, including the response from your function to get a final response
+
+## Prerequisites
+
+- An Azure OpenAI model deployed 
+- For Microsoft Entra ID authentication:
+    - A custom subdomain configured. For more information, see [Custom subdomain names](../../../ai-services/cognitive-services-custom-subdomains.md).
+    - Packages: `pip install openai azure-identity`.
+
 
 ## Single tool/function calling example
 
@@ -317,10 +326,10 @@ As of now, the current times are:
 
 Parallel function calls allow you to perform multiple function calls together, allowing for parallel execution and retrieval of results. This reduces the number of calls to the API that need to be made and can improve overall performance.
 
-For example in our simple time app we retrieved multiple times at the same time. This resulted in a chat completion message with three function calls in the `tool_calls` array, each with a unique `id`. If you wanted to respond to these function calls, you would add three new messages to the conversation, each containing the result of one function call, with a `tool_call_id` referencing the `id` from `tools_calls`.
+For example in our simple time app we retrieved multiple times at the same time. This resulted in a chat completion message with three function calls in the `tool_calls` array, each with a unique `id`. If you wanted to respond to these function calls, you would add three new messages to the conversation, each containing the result of one function call, with a `tool_call_id` referencing the `id` from `tool_calls`.
 
 
-To force the model to call a specific function set the `tool_choice` parameter with a specific function name. You can also force the model to generate a user-facing message by setting `tool_choice: "none"`.
+To force the model to call a specific function, set `tool_choice` to a named tool object, for example: `tool_choice={"type": "function", "function": {"name": "get_current_time"}}`. To force a user-facing message, set `tool_choice="none"`.
 
 > [!NOTE]
 > The default behavior (`tool_choice: "auto"`) is for the model to decide on its own if it should call a function and if so which function to call.

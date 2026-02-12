@@ -6,10 +6,10 @@ items:
   href: ../../guardrails/how-to-create-guardrails.md
 
 # Content Filtering and Risk Detection
-- name: Content filtering risks
+- name: Content filters
   items:
-  - name: Harm categories
-    href: ../../guardrails/severity-levels.md
+  - name: Harm categories and severity levels
+    href: ../../../openai/concepts/content-filter-severity-levels.md
   - name: Prompt shields
     href: ../../../openai/concepts/content-filter-prompt-shields.md
   - name: Sensitive data leakage 

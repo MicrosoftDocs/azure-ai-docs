@@ -51,14 +51,14 @@ Before you can use GPT real-time audio, you need:
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in the [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+The GPT real-time models are available for global deployments in the [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (`2024-12-17`)
 - `gpt-4o-realtime-preview` (`2024-12-17`)
 - `gpt-realtime` (`2025-08-28`)
 - `gpt-realtime-mini` (`2025-10-06`)
 - `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
 
-For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
+For more information about supported models, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 
 ## Connection and authentication
 

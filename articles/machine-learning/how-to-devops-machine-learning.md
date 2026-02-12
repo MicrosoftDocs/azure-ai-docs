@@ -8,7 +8,7 @@ ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 01/14/2026
+ms.date: 02/10/2026
 ms.topic: how-to
 ms.custom: devops-pipelines-deploy, dev-focus
 ai-usage: ai-assisted
@@ -32,7 +32,7 @@ This tutorial uses [Azure Machine Learning Python SDK v2](/python/api/overview/a
 ## Prerequisites
 
 * Complete the [Create resources to get started tutorial](quickstart-create-resources.md) to:
-    * Create a workspace
+    * Create a workspace.
 * [Create a cloud-based compute cluster](how-to-create-attach-compute-cluster.md#create) to use for training your model.
 * Python 3.10 or later installed for running Azure ML SDK v2 scripts locally.
 * Install the Azure Machine Learning extension for Azure Pipelines. You can install this extension from the [Visual Studio marketplace](https://marketplace.visualstudio.com/items?itemName=ms-air-aiagility.azureml-v2). 
@@ -63,7 +63,7 @@ You need an Azure Resource Manager connection to authenticate with the Azure por
 
 1. Select **Create service connection**, select **Azure Resource Manager**, and then select **Next**.
 
-1. Use the defaults for **Identity type** and **Credential**.
+1. Use the default values for **Identity type** and **Credential**.
 
 1. Create your service connection. Set your preferred scope level, subscription, resource group, and connection name. 
 
@@ -75,9 +75,9 @@ You need an Azure Resource Manager connection to authenticate with the Azure por
 
 1. Select **Create service connection**, select **Generic**, and then select **Next**.
 
-1. In **Server URL**, enter **https://management.azure.com**. 
+1. In **Server URL**, enter `https://management.azure.com`. 
 
-1. Provide a service connection name. Don't provide any authentication-related information.
+1. Enter a service connection name. Don't enter any authentication-related information.
 
 1. Select **Save**.
 
@@ -96,11 +96,11 @@ You need an Azure Resource Manager connection to authenticate with the Azure por
 
 1. You might be redirected to GitHub to install the Azure Pipelines app. If you are, select **Approve & install**.
 
-1. Select the **Starter pipeline**. You'll update the starter pipeline template.
+1. Select the **Starter pipeline**. You update the starter pipeline template.
 
 ## Step 5: Create a YAML pipeline to submit the Azure Machine Learning job
 
-Delete the starter pipeline and replace it with the following YAML code. In this pipeline, you'll:
+Delete the starter pipeline and replace it with the following YAML code. In this pipeline, you:
 
 * Use the Python version task to set up Python 3.10 and install the SDK requirements.
 * Use the Bash task to run bash scripts for the Azure Machine Learning SDK and CLI.
@@ -284,13 +284,13 @@ If you're using the generic service connection, you can't use the task provided 
 
 ## Step 7: Submit the pipeline and verify your pipeline run
 
-Select __Save and run__. The pipeline will wait for the Azure Machine Learning job to complete and end the task under `WaitForJobCompletion` with the same status as the Azure Machine Learning job. For example:
+Select **Save and run**. The pipeline waits for the Azure Machine Learning job to complete and ends the task under `WaitForJobCompletion` with the same status as the Azure Machine Learning job. For example:
 
-Azure Machine Learning job `Succeeded` == Azure DevOps Task under `WaitForJobCompletion` job `Succeeded`
+- Azure Machine Learning job `Succeeded` == Azure DevOps Task under `WaitForJobCompletion` job `Succeeded`
 
-Azure Machine Learning job `Failed` == Azure DevOps Task under `WaitForJobCompletion` job `Failed`
+- Azure Machine Learning job `Failed` == Azure DevOps Task under `WaitForJobCompletion` job `Failed`
 
-Azure Machine Learning job `Cancelled` == Azure DevOps Task under `WaitForJobCompletion` job `Cancelled`
+- Azure Machine Learning job `Cancelled` == Azure DevOps Task under `WaitForJobCompletion` job `Cancelled`
 
  
 > [!TIP]
@@ -299,4 +299,4 @@ Azure Machine Learning job `Cancelled` == Azure DevOps Task under `WaitForJobCom
 
 ## Clean up resources
 
-If you're not going to continue to use your pipeline, delete your Azure DevOps project. In the Azure portal, delete your resource group and Azure Machine Learning instance.
+If you don't plan to continue using your pipeline, delete your Azure DevOps project. In the Azure portal, delete your resource group and Azure Machine Learning instance.

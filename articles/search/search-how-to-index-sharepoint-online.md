@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/09/2025
+ms.date: 01/28/2026
 ms.custom:
   - ignite-2025
   - sfi-image-nochange
@@ -71,8 +71,6 @@ Here are the limitations of this feature:
 
   + Limited support for document-level access permissions. A basic level of Access Control Lists (ACL) sync is currently in public preview. Review the [SharePoint ACL configuration documentation](search-indexer-sharepoint-access-control-lists.md) for details and setup.
 
-> [!IMPORTANT]
-> Don't test or enable both [SharePoint ACL ingestion (preview)](search-indexer-sharepoint-access-control-lists.md) and [preserving and honoring sensitivity labels (preview)](search-indexer-sharepoint-access-control-lists.md) in the same indexer or index during preview. Use separate indexers / indexes for each feature. Coexistence of both features is not currently supported at this time.
 
 Here are some considerations when using this feature:
 

@@ -260,6 +260,7 @@ You can also test agents in the agent playground UI in the Foundry portal.
 ### Common pitfalls
 
 - **Forgetting ACR permissions**: The project's managed identity needs explicit pull access to the container registry
+- **Incorrect platform version for docker images**: Always specify `--platform linux/amd64` when doing docker build yourself 
 - **Wrong SDK version**: Hosted agents require `azure-ai-projects>=2.0.0b3`
 - **Missing capability host**: Create an account-level capability host before deploying. See [Deploy a hosted agent](deploy-hosted-agent.md#create-an-account-level-capability-host)
 - **Publishing identity mismatch**: After publishing, the agent uses a different identity. Reassign RBAC permissions

@@ -41,6 +41,10 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 - [Authentication and permissions](#authentication-and-permissions) on your search service and project.
 - The latest preview Python SDK or the 2025-11-01-preview REST API version.
 
+  ```bash
+  pip install azure-ai-projects azure-identity requests
+  ```
+
 ### Authentication and permissions
 
 We recommend role-based access control for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
@@ -79,9 +83,15 @@ Use the following values in the code samples.
 | Agent name (`agent_name`) | Choose a name for the agent version you create. | `hr-assistant` |
 | Model deployment name (`deployed_LLM`) | Find it in your Microsoft Foundry project model deployments. | `gpt-4.1-mini` |
 
+> [!TIP]
+> We recommend you store the project endpoint, search endpoint, and knowledge base name in a `.env` file for local development.
+
 ## Create a project connection
 
 Create a `RemoteTool` connection on your Microsoft Foundry project. This connection uses the project's managed identity to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
+
+> [!NOTE]
+> The `RemoteTool` category and `ProjectManagedIdentity` authentication type are specific to Microsoft Foundry project connections.
 
 ### [Python](#tab/python)
 
@@ -351,19 +361,20 @@ response = openai_client.responses.create(
 print(f"Response: {response.output_text}")
 ```
 
-The output should be similar to the following:
+The output should be similar to the following (truncated for brevity):
 
 ```
-Response: Suburban belts display larger December brightening than urban cores, even though absolute light levels are higher downtown, primarily because holiday lights increase most dramatically in the suburbs and outskirts of major cities. This is due to more yard space and a prevalence of single-family homes in suburban areas, which results in greater use of decorative holiday lighting. By contrast, central urban areas experience a smaller increase in lighting during the holidays, typically 20 to 30 percent brightening, because of their different building structures and possibly less outdoor space for such decorations. This pattern holds true across the United States as part of the nationally shared tradition of increased holiday lighting in December (Sources: earth_at_night_508_page_174, earth_at_night_508_page_176, earth_at_night_508_page_175).
+Response: Suburban belts display larger December brightening than urban cores, even 
+though absolute light levels are higher downtown, primarily because holiday lights 
+increase most dramatically in the suburbs and outskirts of major cities. This is due 
+to more yard space and a prevalence of single-family homes in suburban areas...
 
-The Phoenix nighttime street grid is sharply visible from space due to the city's layout along a regular grid of city blocks and streets with extensive street lighting. The major street grid is oriented mostly north-south, with notable diagonal thoroughfares like Grand Avenue that are also brightly lit. The illuminated grid reflects the widespread suburban and residential development fueled by automobile use in the 20th century, which led to optimal access routes to new real estate on the city's borders. Large shopping centers, strip malls, gas stations, and other commercial properties at major intersections also contribute to the brightness. Additionally, parts of the Phoenix metropolitan area remain dark where there are parks, recreational land, and agricultural fields, providing contrast that highlights the lit urban grid (Sources: earth_at_night_508_page_104, earth_at_night_508_page_105).
-
-In contrast, large stretches of the interstate between Midwestern cities remain comparatively dim because although the transportation corridors are well-established, many rural and agricultural areas lack widespread nighttime lighting. The interstate highways are visible but do not have the same continuous bright lighting found in the dense urban grids and commercial suburban zones. The transportation network is extensive, but many roadways running through less populated regions have limited illumination, which renders them less visible in nighttime satellite imagery (Sources: earth_at_night_508_page_124, earth_at_night_508_page_125).
+The Phoenix nighttime street grid is sharply visible from space due to the city's 
+layout along a regular grid of city blocks and streets with extensive street lighting...
 
 References:
-- earth_at_night_508_page_174, earth_at_night_508_page_176, earth_at_night_508_page_175 (Holiday lighting and suburban December brightening)
-- earth_at_night_508_page_104, earth_at_night_508_page_105 (Phoenix urban grid visibility)
-- earth_at_night_508_page_124, earth_at_night_508_page_125 (Interstate lighting and Midwestern dim stretches)
+- earth_at_night_508_page_174, earth_at_night_508_page_176 (Holiday lighting)
+- earth_at_night_508_page_104, earth_at_night_508_page_105 (Phoenix grid visibility)
 ```
 
 ### [REST](#tab/rest)
@@ -397,19 +408,20 @@ Content-Type: application/json
 }
 ```
 
-The response includes metadata about the agent execution, tool calls, and the generated output. The most relevant part of the response is the `text` in the `content` field, which should be similar to the following:
+The response includes metadata about the agent execution, tool calls, and the generated output. The most relevant part of the response is the `text` in the `content` field, which should be similar to the following (truncated for brevity):
 
 ```
-Suburban belts display larger December brightening in nighttime lights than urban cores, even though absolute light levels are higher downtown, primarily because suburban areas have more yard space and a prevalence of single-family homes where holiday lighting decorations are more commonly used. In contrast, central urban areas see a smaller increase in lighting during the holidays\u2014typically a 20 to 30 percent brightening\u2014as the density and types of dwellings (e.g., apartment buildings) often limit outdoor decorative lighting. This phenomenon was observed across the United States and reflects cultural practices of increased holiday lighting during Christmas and New Year\u0027s, particularly in suburban and residential neighborhoods that allow for more extensive displays [source: earth_at_night_508_page_174_verbalized, earth_at_night_508_page_176_verbalized].
+Suburban belts display larger December brightening in nighttime lights than urban 
+cores, primarily because suburban areas have more yard space and single-family homes 
+where holiday lighting decorations are more commonly used...
 
-Regarding the visibility of the Phoenix nighttime street grid from space, the sharply visible grid reflects the regular, planned layout of city blocks and streets in the Phoenix metropolitan area, common to many cities in the central and western United States. The urban grid is illuminated by street lighting, large shopping centers, strip malls, gas stations, and industrial and commercial properties concentrated along major streets and avenues such as Grand Avenue. These well-lit thoroughfares and nodes stand out distinctly from the surrounding areas, showcasing the street pattern clearly. Large stretches of interstate highways between midwestern cities, by contrast, are comparably dim because these highways connect cities but do not have the same density of lighting or concentrated commercial/residential developments lining them as urban street grids do at night. This leads to the interstate appearing as a dimmer corridor rather than a sharply lit grid [source: earth_at_night_508_page_104_verbalized, earth_at_night_508_page_105_verbalized, earth_at_night_508_page_124_verbalized].
+The Phoenix nighttime street grid is sharply visible due to the regular, planned 
+layout of city blocks with extensive street lighting, shopping centers, and 
+commercial properties along major streets...
 
 References:
-- earth_at_night_508_page_174_verbalized
-- earth_at_night_508_page_176_verbalized
-- earth_at_night_508_page_104_verbalized
-- earth_at_night_508_page_105_verbalized
-- earth_at_night_508_page_124_verbalized
+- earth_at_night_508_page_174_verbalized, earth_at_night_508_page_176_verbalized
+- earth_at_night_508_page_104_verbalized, earth_at_night_508_page_105_verbalized
 ```
 
 ---

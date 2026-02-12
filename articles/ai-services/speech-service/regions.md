@@ -85,7 +85,7 @@ The regions in the following tables support most of the core features of Azure S
 | `eastus2` | ✅ | ✅ | ✅ | | ✅ | ✅ |
 | `francecentral` | ✅ | ✅ | ✅ | | | ✅ |
 | `germanywestcentral` | ✅ | ✅ | ✅ | | | |
-| `italynorth` | ✅ | | ✅ | | | |
+| `italynorth` | ✅ | ✅ | ✅ | | | |
 | `japaneast` | ✅ | ✅ | ✅ | ✅ | | ✅ |
 | `japanwest` | ✅ | ✅ | ✅ | | | |
 | `koreacentral` | ✅ | ✅ | ✅ | | | ✅ |

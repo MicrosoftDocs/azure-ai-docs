@@ -18,7 +18,14 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. This article helps you choose an authentication method and configure it for MCP tools in Foundry Agent Service.
+Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. Proper authentication ensures your agents can securely connect to MCP servers, invoke their tools, and access protected resources while maintaining appropriate access controls.
+
+In this article, you:
+
+> [!div class="checklist"]
+> - Choose an authentication method based on your security requirements
+> - Configure key-based, Microsoft Entra, or OAuth authentication
+> - Set up and validate your MCP server connection
 
 > [!NOTE]
 > If you don't already have an account with the MCP server publisher, create one through the publisher's website.
@@ -51,6 +58,9 @@ Use the following guidance to choose a method:
 | Avoid managing secrets when the underlying service supports Microsoft Entra | Microsoft Entra authentication |
 | Connect to an MCP server that doesn't require auth | Unauthenticated access |
 
+> [!TIP]
+> When in doubt, start with Microsoft Entra authentication if the MCP server supports it. Microsoft Entra authentication eliminates the need to manage secrets and provides built-in token rotation.
+
 ## Supported authentication methods
 
 | Method | Description | User context persists |
@@ -62,6 +72,8 @@ Use the following guidance to choose a method:
 | Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
 
 ## Key-based authentication
+
+Use key-based authentication when the MCP server requires an API key, personal access token, or similar credential, and you don't need to preserve individual user context.
 
 > [!NOTE]
 > People who have access to the project can access an API key stored in a project connection. Store only shared secrets in a project connection. For user-specific access, use OAuth identity passthrough.
@@ -83,9 +95,11 @@ For security:
 
 ## Microsoft Entra authentication
 
-Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens.
+Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens. This method eliminates the need to manage secrets and provides automatic token rotation.
 
-### Agent identity
+### Use agent identity authentication
+
+Use agent identity when you want authentication scoped to a specific agent. This approach is ideal when you have multiple agents that need different levels of access to the same MCP server.
 
 Use your agent identity to authenticate with MCP servers that support agent identity authentication. If you create your agent by using Agent Service, you automatically assign an agent identity to it.
 
@@ -95,7 +109,9 @@ Make sure the agent identity has the required role assignments on the underlying
 
 When the agent invokes the MCP server, Agent Service uses the available agent identity to request an authorization token and passes it to the MCP server.
 
-### Foundry project managed identity
+### Use project managed identity authentication
+
+Use project managed identity when you want all agents in a project to share the same access level, or when the MCP server requires a managed identity rather than an agent identity.
 
 Use your Foundry project's managed identity to authenticate with MCP servers that support managed identity authentication.
 
@@ -120,21 +136,22 @@ Agent Service supports two OAuth options: **managed OAuth** and **custom OAuth**
 - With custom OAuth, you bring your own OAuth app registration.
 
 > [!NOTE]
-> If you use custom OAuth, you get a redirect URL. Add the redirect URL to your OAuth app so Agent Service can complete the flow.
+> If you use custom OAuth, you receive a redirect URL after configuration. Add the redirect URL to your OAuth app so Agent Service can complete the flow.
 
 When you set up **custom OAuth**, provide the following information:
 
-- client ID: required
-- client secret: optional (depends on your OAuth app)
-- auth URL: required
-- refresh URL: required (If you don't have a separate refresh URL, you can use token URL instead.)
-- token URL: required 
-- scopes: optional
+- Client ID: required
+- Client secret: optional (depends on your OAuth app)
+- Auth URL: required
+- Refresh URL: required (if you don't have a separate refresh URL, you can use the token URL instead)
+- Token URL: required
+- Scopes: optional
 
-### Flow using OAuth Identity Passthrough
+### Flow using OAuth identity passthrough
 
-The scope of OAuth is per tool(connection) name per Foundry project, which means, each new user using a new tool(connection) in this Foundry project will be prompted to provide consent. 
-- When a user is firstly trying to use a new tool in this Foundry project, the response output will share the consent link in `response.output_item`. You can find the consent link in item.type `oauth_consent_request`, under `consent_link`. You need to surface this consent link to user. 
+The scope of OAuth is per tool (connection) name per Foundry project. Each new user using a new tool (connection) in a Foundry project is prompted to provide consent.
+
+- When a user first tries to use a new tool in a Foundry project, the response output shares the consent link in `response.output_item`. You can find the consent link in item type `oauth_consent_request`, under `consent_link`. Surface this consent link to the user. 
    ```json
    "type":"response.output_item.done",
    "sequence_number":7,
@@ -147,10 +164,10 @@ The scope of OAuth is per tool(connection) name per Foundry project, which means
    }
    ```
    See an example:
-   :::image type="content" source="../../media/mcp/foundry-open-consent.png" alt-text="Screenshot for giving consent in Foundry NextGen Portal." lightbox="../../media/mcp/foundry-open-consent.png":::
+   :::image type="content" source="../../media/mcp/foundry-open-consent.png" alt-text="Screenshot that shows the consent dialog in the Foundry portal." lightbox="../../media/mcp/foundry-open-consent.png":::
 
-- The user will be prompted to log in and give consent after reviewing the access needed. After giving consent successfully, user should see a dialog like this: 
-   :::image type="content" source="../../media/mcp/foundry-close-me.png" alt-text="Screenshot after giving consent to OAuth in Foundry NextGen Portal." lightbox="../../media/mcp/foundry-close-me.png":::
+- The user is prompted to sign in and give consent after reviewing the access needed. After giving consent successfully, the user sees a dialog like this example:
+   :::image type="content" source="../../media/mcp/foundry-close-me.png" alt-text="Screenshot that shows the confirmation dialog after giving OAuth consent in the Foundry portal." lightbox="../../media/mcp/foundry-close-me.png":::
 
 - After the user has closed the dialog, you need to submit another response with the previous response id
 
@@ -171,8 +188,10 @@ The scope of OAuth is per tool(connection) name per Foundry project, which means
    )
    ```
 
-Once the user has signed in and given consent once, they don't need to give consent in the future. 
+Once the user has signed in and given consent once, they don't need to give consent in the future.
 
+> [!NOTE]
+> If the user declines consent, the MCP tool call fails and returns an error. Your application should handle this case gracefully and inform the user that the tool requires authorization to function.
 
 ### Bring your own Microsoft Entra app registration
 
@@ -209,18 +228,21 @@ The following steps use the Agent 365 MCP server as an example:
    - refresh URL: `https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token`
    - scopes: `ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/{permission above}`
 
-1. After you complete the configuration, you get a [redirect URL](/entra/identity-platform/how-to-add-redirect-uri) to add to your Microsoft Entra app.
+1. After you complete the configuration, you receive a [redirect URL](/entra/identity-platform/how-to-add-redirect-uri). Add it to your Microsoft Entra app.
 
 ## Unauthenticated access
 
-Use unauthenticated access only when the MCP server doesn't require authentication.
+Use unauthenticated access only when the MCP server doesn't require authentication. This method is appropriate for public MCP servers that provide open access to their tools.
+
+> [!IMPORTANT]
+> Even when authentication isn't required, ensure you understand the MCP server's terms of service and rate limits before connecting.
 
 ## Set up authentication for an MCP server
 
 1. Identify the remote MCP server you want to connect to.
 1. Create or select a project connection that stores the MCP server endpoint, authentication type, and any required credentials.
 
-   If you connect the MCP server in the Foundry portal, Foundry creates the project connection for you.
+   If you connect the MCP server in the Foundry portal, the portal creates the project connection for you.
 
 1. Create or update an agent with an `mcp` tool with the following information:
 
@@ -243,9 +265,14 @@ Use unauthenticated access only when the MCP server doesn't require authenticati
 
 ## Validate
 
-1. Trigger an MCP tool call from your agent.
-1. Confirm the tool call completes successfully.
-1. If you're using OAuth identity passthrough, confirm a new user gets a consent link and that subsequent tool calls succeed after the user consents.
+After you configure authentication, verify the connection works correctly:
+
+1. Trigger an MCP tool call from your agent by sending a prompt that causes the agent to use one of the MCP server's tools.
+1. Confirm the tool call completes successfully. You should see the tool's output in the agent's response without authentication errors.
+1. If you're using OAuth identity passthrough:
+   - Confirm a new user receives a consent link (`oauth_consent_request` in the response).
+   - After the user consents, confirm subsequent tool calls succeed without prompting for consent again.
+   - Test with a different user to verify the per-user consent flow works correctly.
 
 ## Troubleshooting
 
@@ -256,21 +283,25 @@ Use unauthenticated access only when the MCP server doesn't require authenticati
 | Key-based authentication fails | Invalid or expired key or token, or the MCP server expects a different header name or value format | Regenerate or rotate the credential and update the project connection. Confirm the required header name and value format in the MCP server documentation. |
 | Microsoft Entra authentication fails | The identity doesn't have required role assignments | Assign the required roles to the agent identity or project managed identity on the underlying service, and then try again. |
 | Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling | Update `require_approval` to match your approval requirements. |
+| MCP server returns "unauthorized" despite valid credentials | The credential header name or format doesn't match what the MCP server expects | Check the MCP server's documentation for the exact header name (for example, `Authorization`, `X-API-Key`, or `Api-Key`) and value format (for example, `Bearer <token>` vs. just `<token>`). |
+| OAuth tokens expire and tool calls fail after some time | The refresh token is invalid or the refresh URL is incorrect | Verify the refresh URL is correct. If you used the token URL as the refresh URL, confirm the OAuth provider supports token refresh at that endpoint. The user might need to consent again if refresh tokens are revoked. |
 
 ## Host a local MCP server
+
+If you developed a custom MCP server or want to use an open-source MCP server that runs locally, you need to host it in the cloud before connecting it to Agent Service.
 
 The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following points when attempting to host local MCP servers in the cloud:
 
 | Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 | :---------: | :---------: | :---------: |
 | **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required (responses must support chunked transfer encoding for SSE-style streaming). |
-| **Code changes** | The container must rebuild. | Azure Functions-specific configuration files required in the root directory. |
+| **Code changes** | Container requires a rebuild. | Azure Functions-specific configuration files required in the root directory. |
 | **Authentication** | Custom authentication implementation required. | Use [built-in authentication][app-service-auth] or custom code.<br/><br/>Azure Functions requires a key by default, but you can [disable the key requirement in host.json][func-host-json]. |
 | **Language stack** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, TypeScript, Java, .NET only. |
-| **Container requirements** | Linux (linux/amd64) only. No privileged containers. | Containerized servers are not supported. |
-| **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
+| **Container requirements** | Linux (linux/amd64) only. Privileged containers aren't supported. | Containerized servers aren't supported. |
+| **Dependencies** | All dependencies must be in the container image. | OS-level dependencies (such as Playwright) aren't supported. |
 | **State** | Stateless only. | Stateless only. |
-| **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
+| **UVX/NPX** | Supported. | Not supported. The `npx` start commands aren't supported. |
 
 [app-service-auth]: /azure/app-service/configure-authentication-mcp?toc=%2Fazure%2Fazure-functions%2Ftoc.json
 [func-host-json]: /azure/azure-functions/functions-bindings-mcp#hostjson-settings

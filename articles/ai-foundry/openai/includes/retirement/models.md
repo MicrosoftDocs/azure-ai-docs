@@ -67,7 +67,7 @@ ms.custom: references_regions, build-2025
 | `gpt-audio-mini` | 2025-10-06 | `Generally Available` | 2026-10-06 | 2027-04-07 |  |
 | `tts` | 001 | `Generally Available` | No earlier than February 28, 2026 |  |  |
 | `tts-hd` | 001 | `Generally Available` | No earlier than February 28, 2026 |  |  |
-| `whisper` | 001 | `Generally Available` | No earlier than February 28, 2026 |  |  |
+| `whisper` | 001 | `Generally Available` | No earlier than June 18, 2026 |  |  |
 | `gpt-realtime-mini` | 2025-12-15   | `Generally Available` | n/a | No earlier than December 15, 2026    |       |
 | `gpt-4o-mini-transcribe` | 2025-12-15   | `Generally Available` | n/a | No earlier than December 15, 2026    |       |
 | `gpt-4o-mini-tts` | 2025-12-15   | `Generally Available` | n/a | No earlier than December 15, 2026    |       |

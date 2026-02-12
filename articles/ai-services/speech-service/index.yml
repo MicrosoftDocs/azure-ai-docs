@@ -147,7 +147,7 @@ tools:
     url: /cpp/cognitive-services/speech/
   - title: Go
     imageSrc: /media/logos/logo_gopher.svg
-    url: https://pkg.go.dev/github.com/Microsoft/cognitive-services-speech-sdk-go
+    url: https://github.com/Microsoft/cognitive-services-speech-sdk-go
   - title: Java
     imageSrc: /media/logos/logo_java.svg
     url: /java/api/com.microsoft.cognitiveservices.speech
@@ -160,6 +160,9 @@ tools:
   - title: Python
     imageSrc: /media/logos/logo_python.svg
     url: /python/api/azure-cognitiveservices-speech/
+  - title: About the Speech SDK
+    imageSrc: /media/logos/code-sample.svg
+    url: speech-sdk.md
 
 additionalContent:
   sections:

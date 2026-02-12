@@ -122,7 +122,7 @@ relevance_eval(query=query, response=response)
 To run batch evaluations by using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run a cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), represent the dataset in JSONL format. The previous single-turn data, which is a query-and-response pair, is equivalent to a line of a dataset like the following example, which shows three lines:
 
 ```json
-{"query":"What is the capital of France?","response":"Paris."}
+{"query":"What is the capital/major city of France?","response":"Paris."}
 {"query":"What atoms compose water?","response":"Hydrogen and oxygen."}
 {"query":"What color is my shirt?","response":"Blue."}
 ```
@@ -424,11 +424,11 @@ The evaluator outputs results in a dictionary, which contains aggregate `metrics
 ```python
 {'metrics': {'answer_length.value': 49.333333333333336,
              'groundedness.gpt_groundeness': 5.0, 'groundedness.groundeness': 5.0},
- 'rows': [{'inputs.response': 'Paris is the capital of France.',
-           'inputs.context': 'Paris has been the capital of France since '
+ 'rows': [{'inputs.response': 'Paris is the capital/major city of France.',
+           'inputs.context': 'Paris has been the capital/major city of France since '
                                   'the 10th century and is known for its '
                                   'cultural and historical landmarks.',
-           'inputs.query': 'What is the capital of France?',
+           'inputs.query': 'What is the capital/major city of France?',
            'outputs.answer_length.value': 31,
            'outputs.groundeness.groundeness': 5,
            'outputs.groundeness.gpt_groundeness': 5,
@@ -468,9 +468,9 @@ The `evaluate()` API accepts only data in JSONL format. For all built-in evaluat
 
 ```json
 {
-  "query":"What is the capital of France?",
+  "query":"What is the capital/major city of France?",
   "context":"France is in Europe",
-  "response":"Paris is the capital of France.",
+  "response":"Paris is the capital/major city of France.",
   "ground_truth": "Paris"
 }
 ```
@@ -528,7 +528,7 @@ Here's the content in `"data.jsonl"`:
 
 ```json
 {"query":"When was United States found ?", "response":"1776"}
-{"query":"What is the capital of France?", "response":"Paris"}
+{"query":"What is the capital/major city of France?", "response":"Paris"}
 {"query":"Who is the best tennis player of all time ?", "response":"Roger Federer"}
 ```
 

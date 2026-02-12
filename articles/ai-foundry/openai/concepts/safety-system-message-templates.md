@@ -71,6 +71,15 @@ The following steps show how to use safety system messages in [Foundry portal](h
 
 > [!NOTE]
 > If you’re using a safety system message that isn’t built in by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 until you get the right balance of helpfulness and safety.
+## Test your safety system message
+
+After adding a safety system message, test it with both benign and adversarial prompts:
+
+1. **Benign test**: Send a normal user request to confirm the model responds helpfully.
+1. **Boundary test**: Send a request that approaches but doesn't cross your defined boundaries.
+1. **Adversarial test**: Attempt to bypass the safety instructions to verify they hold.
+
+If the model refuses too often or allows harmful content, adjust your safety system message and retest. See [Safety system messages](system-message.md) for iteration strategies.
 
 ## Troubleshooting
 
@@ -81,12 +90,13 @@ The following steps show how to use safety system messages in [Foundry portal](h
 | Responses are inconsistent across runs. | Conflicting instructions or unclear priorities. | Remove conflicts, prioritize rules, and keep the message shorter. See [Common pitfalls](advanced-prompt-engineering.md#common-pitfalls). |
 | The model invents facts when summarizing or answering from sources. | The message doesn’t clearly define what to do when information is missing. | Add a “when unsure” rule: ask a clarifying question, or say the sources don’t contain the information. |
 
-## Safety system messaging for disability-related content harms
+## Disability-related content guidance
 
-Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude people with disabilities. Examples include using slurs to describe people with disabilities, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/en-us/accessibility).
+Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude people with disabilities. Examples include using slurs to describe people with disabilities, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/accessibility).
 
 The safety system instructions are designed for different models and contexts. Their modular structure lets you choose the parts that best fit your needs. For instance, the term “impairment” may be suitable in some regions but not in others. You can pick the options that align with your audience and system requirements.
-
+> [!NOTE]
+> The model-specific guidance in this section reflects best practices at time of publication. Verify current recommendations with each vendor's documentation.
 ### OpenAI
 
 **GPT-5**:
@@ -166,7 +176,7 @@ Safety system messages aren’t a complete safety solution:
 - They can reduce usefulness if they’re too strict.
 - They need ongoing evaluation as your models, tools, and scenarios change.
 
-To reduce risk, combine system messages with other mitigations such as content filtering. See [Content filtering overview](content-filter.md).
+To reduce risk, combine system messages with other mitigations such as content filtering. See [Content filtering overview](content-filter.md) and the [Azure AI Content Safety quickstart](/azure/ai-services/content-safety/quickstart-text) for layered protection.
 
 ## Evaluation
 

@@ -208,3 +208,7 @@ When a vector store expires, the runs on that thread fail. To fix this issue, yo
 | `.sh` | `application/x-sh` |
 | `.ts` | `application/typescript` |
 
+## Limitations
+
++ Uploading files and creating vector store will fail if you have Azure Policy for your Azure Search Resource Indexes that denies non-CMK indexes for __Encryption__ value. In this case, you need to bring your indexes from the Azure AI Search resource upfront and then reference them in your Agent.
+You can't create indexes from Foundry with Encryption type = Customer-managed keys.

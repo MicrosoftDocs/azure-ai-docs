@@ -4,368 +4,463 @@ author: rotabor
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 02/05/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use a .NET app to create, load, and query a [vector index](../../vector-store.md). The code performs these operations by using the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search), which provides an abstraction over the REST APIs to access index operations.
+In this quickstart, you use the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search) to create, load, and query a [vector index](../../vector-store.md). The .NET client library provides an abstraction over the REST APIs for index operations.
 
 In Azure AI Search, a vector index has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. [Indexes - Create or Update](/rest/api/searchservice/indexes/create-or-update) (REST API) creates the vector index.
 
-> [!NOTE]
-> This quickstart omits the vectorization step and provides inline embeddings. If you want to add [built-in data chunking and vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
+> [!TIP]
+> + Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-vector-search) on GitHub.
+> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md).
+- An [Azure AI Search service](../../search-create-service-portal.md). You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
 
-    + You can use the Free tier for most of this quickstart, but we recommend Basic or higher for larger data files.
+- [Semantic ranker enabled on your search service](../../semantic-how-to-enable-disable.md) for the optional semantic hybrid query.
 
-    + For [keyless authentication](../../search-get-started-rbac.md) with Microsoft Entra ID, assign the **Search Index Data Contributor role** to your user account.
-    
-    + To run the semantic hybrid query, you must [enable semantic ranker](../../semantic-how-to-enable-disable.md).
+- [.NET 8](https://dotnet.microsoft.com/download) or later.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio](https://visualstudio.com) to run the code.
+- [Visual Studio Code](https://code.visualstudio.com/download).
 
-+ [Git](https://git-scm.com/downloads) to clone the sample repo.
+- [Git](https://git-scm.com/downloads) to clone the sample repository.
 
-## Get service information
+- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-Requests to the search endpoint must be authenticated and authorized. While it's possible to use API keys for this task, we recommend [using a keyless connection via Microsoft Entra ID](../../search-get-started-rbac.md).
+## Configure access
 
-This quickstart uses `DefaultAzureCredential`, which simplifies authentication in both development and production scenarios. However, for production scenarios, you might have more advanced requirements that require a different approach. To understand all of your options, see [Authenticate .NET apps to Azure services by using the Azure SDK for .NET](/dotnet/azure/sdk/authentication/).
+[!INCLUDE [resource authentication](../resource-authentication.md)]
 
-## Clone the code and setup environment
+## Get endpoint
 
-1. Clone the repo containing the code for this quickstart.
+[!INCLUDE [resource endpoint](../resource-endpoint.md)]
+
+## Set up the environment
+
+1. Use Git to clone the sample repository.
 
    ```bash
    git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
    ```
 
-1. Open the `quickstart-vector-search` folder in Visual Studio Code or double-click the `VectorSearchQuickstart.sln` file to open the solution in Visual Studio.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-1. Open `appsettings.json` in both `VectorSearchCreatePopulateIndex` and `VectorSearchExamples` folders. 
+   ```bash
+   cd azure-search-dotnet-samples/quickstart-vector-search
+   code .
+   ```
 
-1. Set `Endpoint` to your search service URL, which should be similar to `https://mydemo.search.windows.net`.
+1. In `VectorSearchCreatePopulateIndex/appsettings.json`, replace the placeholder value for `Endpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-1. Set `IndexName` to a unique name for your index. You can also use the default `hotels-vector-quickstart` name.
+1. Repeat the previous step for `VectorSearchExamples/appsettings.json`.
 
-## Create a vector index and upload documents
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-To run search queries against your Azure AI Search service, you must first create a search index and upload documents to the index.
+   ```azurecli
+   az login
+   ```
 
-To create and populate the index:
+## Run the code
 
-1. Open a terminal in the `VectorSearchCreatePopulateIndex` folder.
+1. Run the first project to create and populate the index.
 
-1. Use the `dotnet run` command to run the project.
-
-    ```dotnetcli
+    ```bash
+    cd VectorSearchCreatePopulateIndex
     dotnet run
     ```
 
-    The following code executes to create an index:
-    
-    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchcreatepopulateindex/program.cs" id="CreateSearchindex":::
-    
-    The following code uploads JSON-formatted documents in the `hotel-samples.json` file to your search service.
-    
-    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchcreatepopulateindex/program.cs" id="UploadDocs":::
-    
-    After you run the project, the following output is printed.
-    
-    ```output
-    Key: 1, Succeeded: True
-    Key: 2, Succeeded: True
-    Key: 3, Succeeded: True
-    Key: 4, Succeeded: True
-    Key: 48, Succeeded: True
-    Key: 49, Succeeded: True
-    Key: 13, Succeeded: True
-    ```
-    
-    Key takeaways:
+1. In `VectorSearchExamples/Program.cs`, uncomment the query methods you want to run.
 
-    + Your code interacts with a specific search index hosted in your Azure AI Search service through the SearchClient, which is the main object provided by the azure-search-documents package. The SearchClient provides access to index operations, such as:
+1. Run the second project to execute those queries against the index.
 
-        + Data ingestion: `UploadDocuments()`, `MergeDocuments()`, `DeleteDocuments()`
-
-        + Search operations: `Search()`, `Autocomplete()`, `Suggest()`
-        
-        + Index management operations: `CreateOrUpdateIndex()`
-    
-    + Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the `text-embedding-ada-002` model.
-
-## Run queries
-
-To issue the vector queries in this section, open `Program.cs` in the `VectorSearchExamples` folder, and then open a terminal in the `VectorSearchExamples` folder.
-
-Queries in this section:
-
-+ [Single vector search](#single-vector-search)
-+ [Single vector search with filter](#single-vector-search-with-filter)
-+ [Hybrid search](#hybrid-search)
-+ [Semantic hybrid search with filter](#semantic-hybrid-search-with-a-filter)
-
-### Single vector search
-
-The first query demonstrates a basic scenario where you want to find document descriptions that closely match the search string.
-
-To create a single vector search:
-
-1. In the `Program.cs` file of the `VectorSearchExamples` folder, uncomment the `SearchExamples.SearchSingleVector(searchClient, vectorizedResult);` method call.
-
-    This method executes the following search function in the `SearchExamples.cs` class.
-
-    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchexamples/SearchExamples.cs" id="SearchSingleVector":::
-
-1. Run `dotnet run` to execute the query, which returns the following results.
-    
-    ```output
-    Single Vector Search Results:
-    Score: 0.6605852, HotelId: 48, HotelName: Nordick's Valley Motel
-    Score: 0.6333684, HotelId: 13, HotelName: Luxury Lion Resort
-    Score: 0.605672, HotelId: 4, HotelName: Sublime Palace Hotel
-    Score: 0.6026341, HotelId: 49, HotelName: Swirling Currents Hotel
-    Score: 0.57902366, HotelId: 2, HotelName: Old Century Hotel
+    ```bash
+    cd ..\VectorSearchExamples
+    dotnet run
     ```
 
-### Single vector search with filter
+### Output
 
-In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. This example filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
+The output of the first project includes confirmation of index creation and successful document uploads.
 
-To create a single vector search with a filter:
+```output
+Creating or updating index 'hotels-vector-quickstart'...
+Index 'hotels-vector-quickstart' updated.
 
-1. In the `Program.cs` file of the `VectorSearchExamples` folder, uncomment the `SearchExamples.SearchSingleVectorWithFilter(searchClient, vectorizedResult);` method call.
+Key: 1, Succeeded: True
+Key: 2, Succeeded: True
+Key: 3, Succeeded: True
+Key: 4, Succeeded: True
+Key: 48, Succeeded: True
+Key: 49, Succeeded: True
+Key: 13, Succeeded: True
+```
 
-    This method executes the following search function in the `SearchExamples.cs` class.
+The output of the second project shows the search results for each enabled query method. The following example shows single vector search results.
 
-    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchexamples/SearchExamples.cs" id="SearchSingleVectorWithFilter":::
+```output
+Single Vector Search Results:
+Score: 0.6605852, HotelId: 48, HotelName: Nordick's Valley Motel
+Score: 0.6333684, HotelId: 13, HotelName: Luxury Lion Resort
+Score: 0.605672, HotelId: 4, HotelName: Sublime Palace Hotel
+Score: 0.6026341, HotelId: 49, HotelName: Swirling Currents Hotel
+Score: 0.57902366, HotelId: 2, HotelName: Old Century Hotel
+```
 
-1.  Run `dotnet run` to execute the query, which returns only hotels that provide free Wi-Fi. 
-    
-       ```output
-        Single Vector Search With Filter Results:
-        Score: 0.6605852, HotelId: 48, HotelName: Nordick's Valley Motel, Tags: continental breakfastair conditioningfree wifi
-        Score: 0.57902366, HotelId: 2, HotelName: Old Century Hotel, Tags: poolfree wifiair conditioningconcierge
-       ```
+## Understand the code
 
-1. For a geo filter, uncomment `SearchExamples.SingleSearchWithGeoFilter(searchClient, vectorizedResult);` in `Program.cs`.
+[!INCLUDE [understand code note](../understand-code-note.md)]
 
-    This method executes the following search function in the `SearchExamples.cs` class.
+Now that you've run the code, let's break down the key steps:
 
-    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchexamples/SearchExamples.cs" id="SingleSearchWithGeoFilter":::
+1. [Create a vector index](#create-a-vector-index)
+1. [Upload documents to the index](#upload-documents-to-the-index)
+1. [Query the index](#query-the-index)
 
-1.  Run `dotnet run` to execute the query, which returns only hotels within 300 kilometers.
-   
-    ```output
-    Vector query with a geo filter:
-    -HotelId: 48
-    HotelName: Nordick's Valley Motel
-    Score: 0.6605852246284485
-    City/State: Washington D.C./null
-    Description: Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.
-    
-    -HotelId: 49
-    HotelName: Swirling Currents Hotel
-    Score: 0.602634072303772
-    City/State: Arlington/VA
-    Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary Wi-Fi and flat-screen TVs.
-    ```
+### Create a vector index
 
-### Hybrid search
+Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured.
 
-[Hybrid search](../../hybrid-search-overview.md) combines keyword and vector queries in one request. This example runs the following full-text and vector query strings concurrently:
+The index schema is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. The following code in `VectorSearchCreatePopulateIndex/Program.cs` creates the index schema, including the vector field `DescriptionVector`.
 
-+ Search string: `historic hotel walk to restaurants and shopping`
-+ Vector query string: `quintessential lodging near running trails, eateries, retail` (vectorized into a mathematical representation)
+```csharp
+static async Task CreateSearchIndex(string indexName, SearchIndexClient indexClient)
+{
+    var addressField = new ComplexField("Address");
+    addressField.Fields.Add(new SearchableField("StreetAddress") { AnalyzerName = LexicalAnalyzerName.EnMicrosoft });
+    addressField.Fields.Add(new SearchableField("City") { AnalyzerName = LexicalAnalyzerName.EnMicrosoft, IsFacetable = true, IsFilterable = true });
+    addressField.Fields.Add(new SearchableField("StateProvince") { AnalyzerName = LexicalAnalyzerName.EnMicrosoft, IsFacetable = true, IsFilterable = true });
+    addressField.Fields.Add(new SearchableField("PostalCode") { AnalyzerName = LexicalAnalyzerName.EnMicrosoft, IsFacetable = true, IsFilterable = true });
+    addressField.Fields.Add(new SearchableField("Country") { AnalyzerName = LexicalAnalyzerName.EnMicrosoft, IsFacetable = true, IsFilterable = true });
 
-To create a hybrid search:
-
-1. In the `Program.cs` file, uncomment the `SearchExamples.SearchHybridVectorAndText(searchClient, vectorizedResult);` method call.
-
-    This method executes the following search function in the `SearchExamples.cs` class.
-
-    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchexamples/SearchExamples.cs" id="SearchHybridVectorAndText":::
-
-1.  Run `dotnet run` to execute the query, which returns the following results.
-
-       ```output
-       Hybrid search results:
-       Score: 0.03279569745063782
-       HotelId: 4
-       HotelName: Sublime Palace Hotel
-       Description: Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th   century resort, updated for every modern convenience.
-       Category: Boutique
-       Tags: conciergeviewair conditioning
-       
-       Score: 0.032786883413791656
-       HotelId: 13
-       HotelName: Luxury Lion Resort
-       Description: Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort.
-       Category: Luxury
-       Tags: barconciergerestaurant
-       
-       Score: 0.03205128386616707
-       HotelId: 48
-       HotelName: Nordick's Valley Motel
-       Description: Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.
-       Category: Boutique
-       Tags: continental breakfastair conditioningfree wifi
-       
-       Score: 0.0317460335791111
-       HotelId: 49
-       HotelName: Swirling Currents Hotel
-       Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
-       Category: Suite
-       Tags: air conditioninglaundry service24-hour front desk service
-       
-       Score: 0.03077651560306549
-       HotelId: 2
-       HotelName: Old Century Hotel
-       Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer   dinners, and live music.
-       Category: Boutique
-       Tags: poolfree wifiair conditioningconcierge
-       ```
-    
-    Because Reciprocal Rank Fusion (RRF) merges results, it helps to review the inputs. The following results are from the full-text query only. The top two results are Sublime Palace Hotel and Luxury Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
-
-    ```json
+    var allFields = new List<SearchField>()
     {
-        "@search.score": 2.2626662,
-        "HotelName": "Sublime Palace Hotel",
-        "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
-    },
+        new SimpleField("HotelId", SearchFieldDataType.String) { IsKey = true, IsFacetable = true, IsFilterable = true },
+        new SearchableField("HotelName") { AnalyzerName = LexicalAnalyzerName.EnMicrosoft },
+        new SearchableField("Description") { AnalyzerName = LexicalAnalyzerName.EnMicrosoft },
+        new VectorSearchField("DescriptionVector", 1536, "my-vector-profile"),
+        new SearchableField("Category") { AnalyzerName = LexicalAnalyzerName.EnMicrosoft, IsFacetable = true, IsFilterable = true },
+        new SearchableField("Tags", collection: true) { AnalyzerName = LexicalAnalyzerName.EnMicrosoft, IsFacetable = true, IsFilterable = true },
+        new SimpleField("ParkingIncluded", SearchFieldDataType.Boolean) { IsFacetable = true, IsFilterable = true },
+        new SimpleField("LastRenovationDate", SearchFieldDataType.DateTimeOffset) { IsSortable = true },
+        new SimpleField("Rating", SearchFieldDataType.Double) { IsFacetable = true, IsFilterable = true, IsSortable = true },
+        addressField,
+        new SimpleField("Location", SearchFieldDataType.GeographyPoint) { IsFilterable = true, IsSortable = true },
+    };
+
+    // Create the suggester configuration
+    var suggester = new SearchSuggester("sg", new[] { "Address/City", "Address/Country" });
+
+    // Create the semantic search
+    var semanticSearch = new SemanticSearch()
     {
-        "@search.score": 0.86421645,
-        "HotelName": "Luxury Lion Resort",
-        "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
-    },
-    ```
-
-    In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to the fourth position. Luxury Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
-
-    ```json
-    "value": [
+        Configurations =
         {
-            "@search.score": 0.857736,
-            "HotelId": "48",
-            "HotelName": "Nordick's Valley Motel",
-            "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
-            "Category": "Boutique"
-        },
-        {
-            "@search.score": 0.8399129,
-            "HotelId": "49",
-            "HotelName": "Swirling Currents Hotel",
-            "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
-            "Category": "Luxury"
-        },
-        {
-            "@search.score": 0.8383954,
-            "HotelId": "13",
-            "HotelName": "Luxury Lion Resort",
-            "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
-            "Category": "Resort and Spa"
-        },
-        {
-            "@search.score": 0.8254346,
-            "HotelId": "4",
-            "HotelName": "Sublime Palace Hotel",
-            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
-            "Category": "Boutique"
-        },
-        {
-            "@search.score": 0.82380056,
-            "HotelId": "1",
-            "HotelName": "Stay-Kay City Hotel",
-            "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
-            "Category": "Boutique"
-        },
-        {
-            "@search.score": 0.81514084,
-            "HotelId": "2",
-            "HotelName": "Old Century Hotel",
-            "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
-            "Category": "Boutique"
-        },
-        {
-            "@search.score": 0.8133763,
-            "HotelId": "3",
-            "HotelName": "Gastronomic Landscape Hotel",
-            "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-            "Category": "Resort and Spa"
+            new SemanticConfiguration(
+                name: "semantic-config",
+                prioritizedFields: new SemanticPrioritizedFields
+                {
+                    TitleField = new SemanticField("HotelName"),
+                    KeywordsFields = { new SemanticField("Category") },
+                    ContentFields = { new SemanticField("Description") }
+                })
         }
-    ]
-    ```
+    };
 
-### Semantic hybrid search with a filter
+    // Add vector search configuration
+    var vectorSearch = new VectorSearch();
+    vectorSearch.Algorithms.Add(new HnswAlgorithmConfiguration(name: "my-hnsw-vector-config-1"));
+    vectorSearch.Profiles.Add(new VectorSearchProfile(name: "my-vector-profile", algorithmConfigurationName: "my-hnsw-vector-config-1"));
 
-Add [semantic ranking](../../semantic-search-overview.md) to rerank results based on language understanding.
+    var definition = new SearchIndex(indexName)
+    {
+        Fields = allFields,
+        Suggesters = { suggester },
+        VectorSearch = vectorSearch,
+        SemanticSearch = semanticSearch
+    };
 
-To create a semantic hybrid search with a filter:
+    // Create or update the index
+    Console.WriteLine($"Creating or updating index '{indexName}'...");
+    var result = await indexClient.CreateOrUpdateIndexAsync(definition);
+    Console.WriteLine($"Index '{result.Value.Name}' updated.");
+    Console.WriteLine();
+}
+```
 
-1. In the `Program.cs` file, uncomment `SearchExamples.SearchHybridVectorAndSemantic(searchClient, vectorizedResult);` method call.
+Key takeaways:
 
-    This method executes the following search function in the `SearchExamples.cs` class.
++ You define an index by creating a list of fields.
 
-    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchexamples/SearchExamples.cs" id="SearchHybridVectorAndSemantic":::
++ This particular index supports multiple search capabilities:
 
-1. Run `dotnet run` to execute the query, which returns the following hotels. The hotels are filtered by location, faceted by `StateProvince`, and semantically reranked to promote results that are closest to the search string query (`historic hotel walk to restaurants and shopping`).
+    + [Full-text search](../../search-lucene-query-architecture.md) (`SearchableField`)
 
-    The Swirling Currents Hotel now moves to the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel within walking distance to dining (restaurants) and shopping."
-    
-    ```output
-    Total semantic hybrid results: 7
-    - Score: 0.0317460335791111
-      Re-ranker Score: 2.6550590991973877
-      HotelId: 49
-      HotelName: Swirling Currents Hotel
-      Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary Wi-Fi and flat-screen TVs.
-      Category: Suite
-    - Score: 0.03279569745063782
-      Re-ranker Score: 2.599761724472046
-      HotelId: 4
-      HotelName: Sublime Palace Hotel
-      Description: Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
-      Category: Boutique
-    - Score: 0.03125
-      Re-ranker Score: 2.3480887413024902
-      HotelId: 2
-      HotelName: Old Century Hotel
-      Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
-      Category: Boutique
-    - Score: 0.016393441706895828
-      Re-ranker Score: 2.2718777656555176
-      HotelId: 1
-      HotelName: Stay-Kay City Hotel
-      Description: This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic center of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
-      Category: Boutique
-    - Score: 0.01515151560306549
-      Re-ranker Score: 2.0582215785980225
-      HotelId: 3
-      HotelName: Gastronomic Landscape Hotel
-      Description: The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services.
-      Category: Suite
-    ```
-    
-    Key takeaways:
+    + [Vector search](../../vector-search-overview.md) (`VectorSearchField`)
 
-    + In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
-    
-    + Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
+    + [Semantic ranking](../../semantic-search-overview.md) (`SemanticSearch`)
+
+    + [Faceted search](../../search-faceted-navigation.md) (fields marked with `IsFacetable`)
+
+    + [Geo-spatial search](../../search-query-odata-geo-spatial-functions.md) (`Location` field with `SearchFieldDataType.GeographyPoint`)
+
+    + [Filtering](../../search-filters.md) and sorting (fields marked with `IsFilterable` and `IsSortable`)
+
++ The second parameter in `VectorSearchField` specifies `vectorSearchDimensions`, which must match the output size of your embedding model. This quickstart uses 1,536 dimensions to match the `text-embedding-ada-002` model.
+
++ The `VectorSearch` configuration defines the Approximate Nearest Neighbor (ANN) algorithm. Supported algorithms include Hierarchical Navigable Small World (HNSW) and exhaustive K-Nearest Neighbor (KNN). For more information, see [Relevance in vector search](../../vector-search-ranking.md).
+
+### Upload documents to the index
+
+Newly created indexes are empty. To populate an index and make it searchable, you must upload JSON documents that conform to the index schema.
+
+In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents with precomputed vectors. In production scenarios, content is often pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
+
+The following code uploads documents from `HotelData.json` to your search service.
+
+```csharp
+static async Task UploadDocs(SearchClient searchClient)
+{
+    var jsonPath = Path.Combine(Directory.GetCurrentDirectory(), "HotelData.json");
+
+    // Read and parse hotel data
+    var json = await File.ReadAllTextAsync(jsonPath);
+    List<Hotel> hotels = new List<Hotel>();
+    try
+    {
+        using var doc = JsonDocument.Parse(json);
+        if (doc.RootElement.ValueKind != JsonValueKind.Array)
+        {
+            Console.WriteLine("HotelData.json root is not a JSON array.");
+        }
+        // Deserialize all hotel objects
+        hotels = doc.RootElement.EnumerateArray()
+            .Select(e => JsonSerializer.Deserialize<Hotel>(e.GetRawText()))
+            .Where(h => h != null)
+            .ToList();
+    }
+    catch (JsonException ex)
+    {
+        Console.WriteLine($"Failed to parse HotelData.json: {ex.Message}");
+    }
+
+    try
+    {
+        // Upload hotel documents to Azure Search
+        var result = await searchClient.UploadDocumentsAsync(hotels);
+        foreach (var r in result.Value.Results)
+        {
+            Console.WriteLine($"Key: {r.Key}, Succeeded: {r.Succeeded}");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Failed to upload documents: " + ex);
+    }
+}
+```
+
+Your code interacts with a specific search index hosted in your Azure AI Search service through the `SearchClient`, which is the main object provided by the [`Azure.Search.Documents`](/dotnet/api/overview/azure/search.documents-readme) package. The `SearchClient` provides access to index operations, such as:
+
++ Data ingestion: `UploadDocuments()`, `MergeDocuments()`, `DeleteDocuments()`
+
++ Search operations: `Search()`, `Autocomplete()`, `Suggest()`
+
+### Query the index
+
+The queries in `VectorSearchExamples` demonstrate different search patterns. The example vector queries are based on two strings:
+
++ Full-text search string: `"historic hotel walk to restaurants and shopping"`
+
++ Vector query string: `"quintessential lodging near running trails, eateries, retail"` (vectorized into a mathematical representation)
+
+The vector query string is semantically similar to the full-text search string, but it includes terms that don't exist in the index. A keyword-only search for the vector query string returns zero results. However, vector search finds relevant matches based on meaning rather than exact keywords.
+
+The following examples start with a basic vector query and progressively add filters, keyword search, and semantic reranking.
+
+#### Single vector search
+
+The `SearchSingleVector` method demonstrates a basic scenario where you want to find document descriptions that closely match the vector query string. `VectorizedQuery` configures the vector search:
+
++ `KNearestNeighborsCount` limits how many results are returned based on vector similarity.
++ `Fields` specifies the vector field to search against.
+
+```csharp
+public static async Task SearchSingleVector(SearchClient searchClient, ReadOnlyMemory<float> precalculatedVector)
+{
+    SearchResults<Hotel> response = await searchClient.SearchAsync<Hotel>(
+        new SearchOptions
+        {
+            VectorSearch = new()
+            {
+                Queries = { new VectorizedQuery(precalculatedVector) { KNearestNeighborsCount = 5, Fields = { "DescriptionVector" } } }
+            },
+            Select = { "HotelId", "HotelName", "Description", "Category", "Tags" },
+        });
+
+    Console.WriteLine($"Single Vector Search Results:");
+    await foreach (SearchResult<Hotel> result in response.GetResultsAsync())
+    {
+        Hotel doc = result.Document;
+        Console.WriteLine($"Score: {result.Score}, HotelId: {doc.HotelId}, HotelName: {doc.HotelName}");
+    }
+    Console.WriteLine();
+}
+```
+
+#### Single vector search with a filter
+
+In Azure AI Search, [filters](../../vector-search-filters.md) apply to nonvector fields in an index. The `SearchSingleVectorWithFilter` method filters on the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
+
+```csharp
+public static async Task SearchSingleVectorWithFilter(SearchClient searchClient, ReadOnlyMemory<float> precalculatedVector)
+{
+    SearchResults<Hotel> responseWithFilter = await searchClient.SearchAsync<Hotel>(
+        new SearchOptions
+        {
+            VectorSearch = new()
+            {
+                Queries = { new VectorizedQuery(precalculatedVector) { KNearestNeighborsCount = 5, Fields = { "DescriptionVector" } } }
+            },
+            Filter = "Tags/any(tag: tag eq 'free wifi')",
+            Select = { "HotelId", "HotelName", "Description", "Category", "Tags" }
+        });
+
+    Console.WriteLine($"Single Vector Search With Filter Results:");
+    await foreach (SearchResult<Hotel> result in responseWithFilter.GetResultsAsync())
+    {
+        Hotel doc = result.Document;
+        Console.WriteLine($"Score: {result.Score}, HotelId: {doc.HotelId}, HotelName: {doc.HotelName}, Tags: {string.Join(String.Empty, doc.Tags)}");
+    }
+    Console.WriteLine();
+}
+```
+
+#### Single vector search with a geo filter
+
+You can specify a [geo-spatial filter](../../search-query-odata-geo-spatial-functions.md) to limit results to a specific geographic area. The `SingleSearchWithGeoFilter` method specifies a geographic point (Washington D.C., using longitude and latitude coordinates) and returns hotels within 300 kilometers. By default, filters run after the vector search.
+
+```csharp
+public static async Task SingleSearchWithGeoFilter(SearchClient searchClient, ReadOnlyMemory<float> precalculatedVector)
+{
+    SearchResults<Hotel> responseWithGeoFilter = await searchClient.SearchAsync<Hotel>(
+        new SearchOptions
+        {
+            VectorSearch = new()
+            {
+                Queries = { new VectorizedQuery(precalculatedVector) { KNearestNeighborsCount = 5, Fields = { "DescriptionVector" } } }
+            },
+            Filter = "geo.distance(Location, geography'POINT(-77.03241 38.90166)') le 300",
+            Select = { "HotelId", "HotelName", "Description", "Address", "Category", "Tags" },
+            Facets = { "Address/StateProvince" },
+        });
+
+    Console.WriteLine($"Vector query with a geo filter:");
+    await foreach (SearchResult<Hotel> result in responseWithGeoFilter.GetResultsAsync())
+    {
+        Hotel doc = result.Document;
+        Console.WriteLine($"HotelId: {doc.HotelId}");
+        Console.WriteLine($"HotelName: {doc.HotelName}");
+        Console.WriteLine($"Score: {result.Score}");
+        Console.WriteLine($"City/State: {doc.Address.City}/{doc.Address.StateProvince}");
+        Console.WriteLine($"Description: {doc.Description}");
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+```
+
+#### Hybrid search
+
+[Hybrid search](../../hybrid-search-overview.md) combines full-text and vector queries in a single request. The `SearchHybridVectorAndText` method runs both query types concurrently, and then uses Reciprocal Rank Fusion (RRF) to merge the results into a unified ranking. RRF uses the inverse of result rankings from each result set to produce a merged ranking. Notice that hybrid search scores are uniformly smaller than single-query scores.
+
+```csharp
+public static async Task<SearchResults<Hotel>> SearchHybridVectorAndText(SearchClient searchClient, ReadOnlyMemory<float> precalculatedVector)
+{
+    SearchResults<Hotel> responseWithFilter = await searchClient.SearchAsync<Hotel>(
+        "historic hotel walk to restaurants and shopping",
+        new SearchOptions
+        {
+            VectorSearch = new()
+            {
+                Queries = { new VectorizedQuery(precalculatedVector) { KNearestNeighborsCount = 5, Fields = { "DescriptionVector" } } }
+            },
+            Select = { "HotelId", "HotelName", "Description", "Category", "Tags" },
+            Size = 5,
+        });
+
+    Console.WriteLine($"Hybrid search results:");
+    await foreach (SearchResult<Hotel> result in responseWithFilter.GetResultsAsync())
+    {
+        Hotel doc = result.Document;
+        Console.WriteLine($"Score: {result.Score}");
+        Console.WriteLine($"HotelId: {doc.HotelId}");
+        Console.WriteLine($"HotelName: {doc.HotelName}");
+        Console.WriteLine($"Description: {doc.Description}");
+        Console.WriteLine($"Category: {doc.Category}");
+        Console.WriteLine($"Tags: {string.Join(String.Empty, doc.Tags)}");
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+    return responseWithFilter;
+}
+```
+
+#### Semantic hybrid search
+
+The `SearchHybridVectorAndSemantic` method demonstrates [semantic ranking](../../semantic-search-overview.md), which reranks results based on language understanding.
+
+```csharp
+public static async Task SearchHybridVectorAndSemantic(SearchClient searchClient, ReadOnlyMemory<float> precalculatedVector)
+{
+    SearchResults<Hotel> responseWithFilter = await searchClient.SearchAsync<Hotel>(
+        "historic hotel walk to restaurants and shopping",
+        new SearchOptions
+        {
+            IncludeTotalCount = true,
+            VectorSearch = new()
+            {
+                Queries = { new VectorizedQuery(precalculatedVector) { KNearestNeighborsCount = 5, Fields = { "DescriptionVector" } } }
+            },
+            Select = { "HotelId", "HotelName", "Description", "Category", "Tags" },
+            SemanticSearch = new SemanticSearchOptions
+            {
+                SemanticConfigurationName = "semantic-config"
+            },
+            QueryType = SearchQueryType.Semantic,
+            Size = 5
+        });
+
+    Console.WriteLine($"Hybrid search results:");
+    await foreach (SearchResult<Hotel> result in responseWithFilter.GetResultsAsync())
+    {
+        Hotel doc = result.Document;
+        Console.WriteLine($"Score: {result.Score}");
+        Console.WriteLine($"HotelId: {doc.HotelId}");
+        Console.WriteLine($"HotelName: {doc.HotelName}");
+        Console.WriteLine($"Description: {doc.Description}");
+        Console.WriteLine($"Category: {doc.Category}");
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+```
+
+Compare these results with the hybrid search results from the previous query. Without semantic reranking, Sublime Palace Hotel ranks first because Reciprocal Rank Fusion (RRF) combines the text and vector scores to produce a merged result. After semantic reranking, Swirling Currents Hotel moves to the top spot.
+
+The semantic ranker uses machine comprehension models to evaluate how well each result matches the intent of the query. Swirling Currents Hotel's description mentions `"walking access to shopping, dining, entertainment and the city center"`, which aligns closely with the search query's `"walk to restaurants and shopping"`. This semantic match for nearby dining and shopping elevates it above Sublime Palace Hotel, which doesn't emphasize walkable amenities in its description.
+
+Key takeaways:
+
++ In a hybrid search, you can integrate vector search with full-text search over keywords. Filters and semantic ranking apply to textual content only, not vectors.
+
++ Actual results include more detail, including semantic captions and highlights. This quickstart modifies results for readability. To get the full structure of the response, use REST to run the request.
 
 ## Clean up resources
 
-When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
-
-You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
-
-## Next steps
-
-+ Review the repository of code samples for vector search capabilities in Azure AI Search for [.NET](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet).
-+ Review the other .NET and Azure AI Search code samples in the [azure-search-dotnet-samples repo](https://github.com/Azure-Samples/azure-search-dotnet-samples).
+[!INCLUDE [resource-cleanup-paid](../resource-cleanup-paid.md)]
