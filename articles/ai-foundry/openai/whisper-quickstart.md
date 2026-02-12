@@ -1,5 +1,5 @@
 ---
-title: Convert speech to text with Azure OpenAI in Microsoft Foundry Models
+title: Speech to text with Whisper
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure OpenAI Whisper model for speech to text conversion.
 manager: nitinme
@@ -20,7 +20,10 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-In this quickstart, you use the [Azure OpenAI Whisper model](../../ai-services/speech-service/whisper-overview.md) for speech to text conversion. The Whisper model can transcribe human speech in numerous languages, and it can also translate other languages into English.
+In this quickstart, you transcribe speech to text using the [Azure OpenAI Whisper model](../../ai-services/speech-service/whisper-overview.md). The Whisper model can transcribe human speech in numerous languages and translate other languages into English.
+
+> [!TIP]
+> This quickstart takes approximately 10-15 minutes to complete.
 
 ::: zone pivot="rest-api"
 
@@ -63,6 +66,27 @@ In this quickstart, you use the [Azure OpenAI Whisper model](../../ai-services/s
 
 > [!TIP]
 > The file size limit for the Whisper model is 25 MB. If you need to transcribe a file larger than 25 MB, you can use the Azure Speech in Foundry Tools [batch transcription](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model) API.
+
+## Troubleshooting
+
+### Authentication errors
+
+If you receive 401 Unauthorized errors, verify:
+- Your API key is correctly set in environment variables
+- Your Azure OpenAI resource is active
+- Your account has the Cognitive Services Contributor role
+
+### File format errors
+
+The Whisper model supports mp3, mp4, mpeg, mpga, m4a, wav, and webm formats. Other formats will return an error.
+
+### File size limit
+
+Audio files must be 25MB or smaller. For larger files, use the [Azure Speech batch transcription API](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model).
+
+### Deployment not found
+
+Verify your deployment name matches exactly what you created in Azure OpenAI Studio. Deployment names are case-sensitive.
 
 ## Clean up resources
 
