@@ -118,9 +118,9 @@ By default, models are assigned the **Microsoft.DefaultV2** guardrail. For more 
 
 Default guardrail assignment for agents follows these rules:
 
-1. If you assign a custom guardrail to an agent, that guardrail is used.
-1. If no custom guardrail is assigned, the agent inherits the guardrail of its underlying model deployment.
-1. An agent only uses the **Microsoft.DefaultV2** guardrail if its model deployment uses that guardrail, or if you explicitly assign it.
+- If you assign a custom guardrail to an agent, that guardrail is used.
+- If no custom guardrail is assigned, the agent inherits the guardrail of its underlying model deployment.
+- An agent only uses the **Microsoft.DefaultV2** guardrail if its model deployment uses that guardrail, or if you explicitly assign it.
 
 > [!NOTE]
 > For example, if no custom guardrails are specified for an agent and that agent uses a GPT-4o mini deployment with a guardrail named "MyCustomGuardrails," the agent also uses "MyCustomGuardrails" until you assign a different guardrail.
