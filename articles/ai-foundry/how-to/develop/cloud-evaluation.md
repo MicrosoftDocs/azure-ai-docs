@@ -240,10 +240,6 @@ evaluators = {
 }
 ```
 
-::: moniker-end
-
-::: moniker range="foundry-classic"
-
 ## Create an evaluation
 
 Finally, submit the remote evaluation run:
