@@ -902,6 +902,8 @@ curl --request POST \
 
 For a complete runnable example, see [sample_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_model_evaluation.py) on GitHub.
 
+::: moniker-end
+
 ## Interpretation of results
 
 ::: moniker range="foundry"
