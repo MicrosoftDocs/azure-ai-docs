@@ -69,9 +69,9 @@ Managed customers work with Microsoft account teams. We invite you to submit a r
 ### What happens after my application is approved?
 
 Once approved, you'll receive:
-1. Email confirmation with approval details
-2. Access to the approved Limited Access features in your Azure subscription
-3. Documentation links for getting started with your approved service
+- Email confirmation with approval details
+- Access to the approved Limited Access features in your Azure subscription
+- Documentation links for getting started with your approved service
 
 You can immediately begin using the approved features through the Azure portal or SDKs.
  
