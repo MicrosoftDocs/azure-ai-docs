@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI default Guidelines & controls policies
+title: Default guardrail policies for Azure OpenAI
 titleSuffix: Azure OpenAI
-description: Learn about the default Guidelines & controls policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
+description: Learn about the default guardrail policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -15,7 +15,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Default Guidelines & controls policies
+# Default guardrail policies for Azure OpenAI
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -26,6 +26,13 @@ Azure OpenAI in Microsoft Foundry Models includes default safety policies applie
 Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about guardrail and controls, visit our documentation describing [categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
 
 All safety policies are configurable. To learn more about configurability, see the documentation on [configuring guardrails](/azure/ai-foundry/openai/how-to/content-filters).
+
+When content is detected that exceeds the severity threshold for a risk category, the API request is blocked and returns an error response indicating which category triggered the filter. This applies to both user prompts (input) and model completions (output).
+
+## Prerequisites
+
+- An Azure subscription with access to Azure OpenAI Service
+- Deployed Azure OpenAI models (excluding Whisper, which uses different safety configurations)
 
 ::: moniker-end
 
@@ -136,6 +143,26 @@ Guardrails and controls ensure that AI-generated outputs align with ethical guid
 [!INCLUDE [severity-levels text, four-level](../../../ai-services/content-safety/includes/severity-levels-text-four.md)]
 
 [!INCLUDE [severity-levels image](../../../ai-services/content-safety/includes/severity-levels-image.md)]
+
+## Testing safety policies
+
+To verify that default safety policies are active, send a test prompt that should trigger content filtering. For example:
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "[test prompt]"}]
+)
+```
+
+If safety policies are active, you'll receive a content filtering response indicating which category was triggered.
+
+## Next steps
+
+- [Configure custom safety policies](../how-to/content-filters.md)
+- [Content filtering concepts](content-filter.md)
+- [Content credentials](content-credentials.md)
+- [Prompt transformation for image generation](prompt-transformation.md)
 
 ::: moniker-end
 
