@@ -752,7 +752,16 @@ For a complete runnable example, see [sample_agent_evaluation.py](https://github
 Retrieve and evaluate Foundry agent responses by response IDs using the `azure_ai_responses` data source type. Use this scenario to evaluate specific agent interactions after they occur.
 
 > [!TIP]
-> Before you begin, complete [Get started](#get-started) and [Upload evaluation data](#uploading-evaluation-data). Your dataset should contain response IDs from previous agent interactions. For polling and retrieving results, see [Poll for results](#poll-for-results).
+> Before you begin, complete [Get started](#get-started) and [Upload evaluation data](#uploading-evaluation-data). For polling and retrieving results, see [Poll for results](#poll-for-results).
+
+A **response ID** is a unique identifier returned each time a Foundry agent generates a response. Your dataset should be a JSONL file containing one response ID per line:
+
+```json
+{"response_id": "resp_abc123"}
+{"response_id": "resp_def456"}
+```
+
+You can collect response IDs from agent interactions by using the [Responses API](/rest/api/aifoundry) or from your application's trace logs.
 
 # [Python](#tab/python) 
 
