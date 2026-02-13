@@ -413,7 +413,7 @@ After you register your custom evaluator, you can view it in your [Evaluator lib
 Evaluate pre-computed responses in a JSONL file using the `jsonl` data source type. This scenario is useful when you already have model outputs and want to assess their quality.
 
 > [!TIP]
-> Before you begin, complete [Get started](#get-started) and [Upload evaluation data](#uploading-evaluation-data) to set up your client and dataset.
+> Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
 
 ### Define the data schema and evaluators
 
