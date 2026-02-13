@@ -242,45 +242,6 @@ evaluators = {
 
 ::: moniker-end
 
-## Data mapping syntax
-
-The `data_mapping` parameter connects fields from your input data to evaluator parameters. Your input data field names must match the names used in your mapping.
-
-::: moniker range="foundry-classic"
-
-Use `${data.field}` syntax:
-
-```python
-data_mapping={
-    "query": "${data.query}",
-    "response": "${data.response}",
-}
-```
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Use `{{item.field}}` syntax:
-
-```python
-"data_mapping": {
-    "query": "{{item.query}}",
-    "response": "{{item.response}}"
-}
-```
-
-For example, if your JSONL contains `{"question": "What is AI?", "answer": "..."}`, reference those field names:
-
-```python
-"data_mapping": {
-    "query": "{{item.question}}",
-    "response": "{{item.answer}}"
-}
-```
-
-::: moniker-end
-
 ::: moniker range="foundry-classic"
 
 ## Create an evaluation
@@ -424,7 +385,7 @@ Evaluate pre-computed responses in a JSONL file using the `jsonl` data source ty
 
 ### Define the data schema and evaluators
 
-Specify the schema that matches your JSONL fields, and select the evaluators (testing criteria) to run:
+Specify the schema that matches your JSONL fields, and select the evaluators (testing criteria) to run. Use the `data_mapping` parameter to connect fields from your input data to evaluator parameters with `{{item.field}}` syntax. Your field names must match those in your JSONL file — for example, if your data has `"question"` instead of `"query"`, use `"{{item.question}}"` in the mapping.
 
 # [Python](#tab/python)
 
