@@ -24,7 +24,7 @@ Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model f
 
 You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via SIP.
 
-SIP is a protocol used to make phone calls over the internet. With SIP and the Realtime API you can direct incoming phone calls to the API.
+Session Initiation Protocol (SIP) is a signaling protocol used to establish, modify, and terminate real‑time communication sessions over IP networks, such as voice calls. With SIP support in the Realtime API, you can route inbound VoIP calls directly into an AI‑powered session for processing.
 
 ## Supported models
 
