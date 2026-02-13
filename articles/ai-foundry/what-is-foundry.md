@@ -29,7 +29,7 @@ keywords:
 
 **Microsoft Foundry** is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
 
-Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified Role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
+Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
 
 :::moniker range="foundry-classic"
 > [!TIP]
@@ -70,7 +70,7 @@ With Microsoft Foundry, you can explore a wide variety of models, services and c
 * **[Knowledge Integration](default/agents/concepts/what-is-foundry-iq.md?view=foundry&preserve-view=true)** – Connect your agent to a Foundry IQ knowledge base to ground responses in enterprise or web content. This integration provides reliable, citation-backed answers for multi-turn conversations.
 * **[Real-Time Observability](default/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk)** – Monitor performance and governance using built-in metrics and model tracking tools.
 * **Enhanced Enterprise Support** – Use open protocols in Foundry Agent Service with full authentication support in MCP and A2A tool, AI gateway integration, and Azure Policy integration.
-* **Centralized AI asset management** - Observe, optimize, and manage 100% of your AI assets (agents, models, tools) in one place, the **Operate** section. Register agents from other clouds, get alerts when an agent or model requires your attention, and effectively manage your AI fleet health as that fleet scales.
+* **Centralized AI asset management** – Observe, optimize, and manage 100% of your AI assets (agents, models, tools) in one place, the **Operate** section. Register agents from other clouds, get alerts when an agent or model requires your attention, and effectively manage your AI fleet health as that fleet scales.
 * **Optimized Developer Experience** – Experience faster load times and dynamic prefetching for smooth development and deployment.
 * **Streamlined Navigation** – Navigate efficiently with a redesigned interface that places key controls where you need them, improving workflow efficiency.
 
@@ -79,7 +79,7 @@ With Microsoft Foundry, you can explore a wide variety of models, services and c
 In the Foundry (new) portal, the project you're working with appears in the upper-left corner of most pages. 
 * If you see a long list of projects instead, select a project to begin. This brings you to the **Home** page with the project name in the upper-left corner.
 * To switch to another recently used project, select the project name in the upper-left corner, then select the other project. 
-* To see all of your Foundry projects, select the project name in the upper-left corner, the select **View all projects**. Select the next project you want to work on.
+* To see all of your Foundry projects, select the project name in the upper-left corner, then select **View all projects**. Select the next project you want to work on.
 
 ## Find other resources
 
@@ -213,11 +213,11 @@ For more information, see [Management center overview](./concepts/management-cen
 
 ## Pricing and billing
 
-Microsoft Foundry is monetized through individual products customer access and consume in the platform, including API and models, complete AI toolchain, and responsible AI and enterprise grade production at scale products. Each product has its own billing model and price. 
+Microsoft Foundry is monetized through individual products customers access and consume in the platform, including API and models, complete AI toolchain, and responsible AI and enterprise grade production at scale products. Each product has its own billing model and price. 
 
-The platform is free to use and explore. Pricing occurs at deployment level. 
+The platform is free to use and explore. Pricing occurs at the deployment level. 
 
-Using Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./concepts/manage-costs.md).
+Using Foundry also incurs costs associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./concepts/manage-costs.md).
 
 ## Region availability
 
@@ -235,7 +235,7 @@ But for full functionality, you need an [Azure account](https://azure.microsoft.
 
 :::moniker range="foundry"
 
-You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and toggle the **Try the new Foundry** on.
+You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).  Then sign in to [Microsoft Foundry](https://ai.azure.com?cid=learnDocs) and turn on the **Try the new Foundry** toggle.
 
 :::moniker-end
 
