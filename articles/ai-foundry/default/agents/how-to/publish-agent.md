@@ -37,8 +37,8 @@ Publishing gives you capabilities that project-level development doesn't provide
 - **Independent RBAC and authorization** — The Agent Application is a separate Azure resource with its own RBAC scope. You can assign roles like Azure AI User directly on the Agent Application resource to control who can invoke it.
 - **Azure Policy integration** — As an Azure Resource Manager (ARM) resource, the application can be governed by Azure Policy.
 - **Integration with Microsoft 365 Copilot and Teams** — Distribute your Agent Application to channels like Microsoft 365 Copilot and Teams.
-- **[Coming soon] User data isolation** — Each caller's interactions are private by default, unlike the shared conversation state in a project.
-- **[Coming soon] Govern in Agent 365** — Published agents automatically surface in Agent 365 and the Entra Agent Registry.
+- **(Coming soon) User data isolation** — Each caller's interactions are private by default, unlike the shared conversation state in a project.
+- **(Coming soon) Govern in Agent 365** — Published agents automatically surface in Agent 365 and the Entra Agent Registry.
 
 ### What changes when you publish?
 
@@ -108,9 +108,9 @@ For applications this is exposed at:
 
 ### Authentication
 
-You can configure inbound end-user authentication on the application. The following option is available:
+You can configure inbound end-user authentication on the application. The following options are available:
 
-- **Default (RBAC)**: The caller must have the Azure RBAC permission `/applications/invoke/action` on the application resource. 
+- **Default (RBAC)**: The caller must have the Azure RBAC permission `/applications/invoke/action` on the application resource.
 - **Channels (Azure Bot Service)**: When you publish to M365/Teams or to A365 as a digital worker, channels is the authentication that is used. This is selected automatically in the UI through the M365/Teams publish flow.
 <!--
 - Channels (Azure Bot Service): Requests from a linked Azure Bot Service instance are permitted. This is used for M365 and Agent365 integration, and for scenarios where an upstream service interacts with the application through Activity Protocol. 
@@ -142,7 +142,7 @@ This section shows you how to publish an agent using the Foundry portal interfac
 
 5. After publishing, you can:
    
-   - [Coming soon] Open app to chat with your published agent application and easily share it with others in the UI (Note: sharing the application automatically grants them the Azure AI User role on the Agent Application resource) 
+   - (Coming soon) Open app to chat with your published agent application and easily share it with others in the UI (Note: sharing the application automatically grants them the Azure AI User role on the Agent Application resource) 
    - Share the published endpoint with external consumers or integrate it into your existing application
    - Share and chat with your application in channels like Teams/M365 Copilot
 
