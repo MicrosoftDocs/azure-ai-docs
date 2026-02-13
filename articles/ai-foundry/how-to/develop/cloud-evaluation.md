@@ -921,14 +921,7 @@ Retrieve and evaluate Foundry agent responses by response IDs using the `azure_a
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
 
-A **response ID** is a unique identifier returned each time a Foundry agent generates a response. Prepare a JSONL file containing one response ID per line:
-
-```json
-{"resp_id": "resp_abc123"}
-{"resp_id": "resp_def456"}
-```
-
-You can collect response IDs from agent interactions by using the [Responses API](/rest/api/aifoundry) or from your application's trace logs. Upload the file as a dataset (see [Prepare input data](#uploading-evaluation-data)).
+A **response ID** is a unique identifier returned each time a Foundry agent generates a response. You can collect response IDs from agent interactions by using the [Responses API](/rest/api/aifoundry) or from your application's trace logs. Provide the IDs inline as file content, or upload them as a dataset (see [Prepare input data](#uploading-evaluation-data)).
 
 ### Create evaluation and run
 
