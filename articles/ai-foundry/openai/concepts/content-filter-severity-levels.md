@@ -28,7 +28,7 @@ For an overview of how guardrails work, see [Guardrails and controls overview](.
 The content safety system uses neural multiclass classification models to detect and filter harmful content for both text and image. Content detected at the "safe" severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 
 > [!NOTE]
-> The text content safety models for the hate, sexual, violence, and self-harm categories are specifically trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
+> The text content safety models for the hate, sexual, violence, and self-harm categories are trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
 
 ## Harm category descriptions
 
@@ -36,10 +36,10 @@ The following table summarizes the harm categories supported by Foundry guardrai
 
 | Category | Description |
 |----------|-------------|
-| **Hate and Fairness** | Hate and fairness-related harms refer to any content that attacks or uses discriminatory language with reference to a person or identity group based on certain differentiating attributes of these groups.<br><br>This includes, but isn't limited to:<br>• Race, ethnicity, nationality<br>• Gender identity groups and expression<br>• Sexual orientation<br>• Religion<br>• Personal appearance and body size<br>• Disability status<br>• Harassment and bullying |
-| **Sexual** | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one's will.<br><br>This includes but isn't limited to:<br>• Vulgar content<br>• Prostitution<br>• Nudity and pornography<br>• Abuse<br>• Child exploitation, child abuse, child grooming |
-| **Violence** | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns, and related entities.<br><br>This includes, but isn't limited to:<br>• Weapons<br>• Bullying and intimidation<br>• Terrorist and violent extremism<br>• Stalking |
-| **Self-Harm** | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one's body or kill oneself.<br><br>This includes, but isn't limited to:<br>• Eating disorders<br>• Bullying and intimidation |
+| **Hate and Fairness** | Hate and fairness-related harms refer to any content that attacks or uses discriminatory language with reference to a person or identity group based on certain differentiating attributes of these groups.<br><br>This category includes, but isn't limited to:<br>• Race, ethnicity, nationality<br>• Gender identity groups and expression<br>• Sexual orientation<br>• Religion<br>• Personal appearance and body size<br>• Disability status<br>• Harassment and bullying |
+| **Sexual** | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one's will.<br><br>This category includes but isn't limited to:<br>• Vulgar content<br>• Prostitution<br>• Nudity and pornography<br>• Abuse<br>• Child exploitation, child abuse, child grooming |
+| **Violence** | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns, and related entities.<br><br>This category includes, but isn't limited to:<br>• Weapons<br>• Bullying and intimidation<br>• Terrorist and violent extremism<br>• Stalking |
+| **Self-Harm** | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one's body or kill oneself.<br><br>This category includes, but isn't limited to:<br>• Eating disorders<br>• Bullying and intimidation |
 
 ## Severity levels
 
@@ -59,8 +59,8 @@ When you configure a guardrail control for a harm category, you set a severity t
 | Threshold setting | Behavior |
 |-------------------|----------|
 | **Off** | Detection is disabled for this category. No content is flagged or blocked. |
-| **Low** | Flags content at low severity and above. Least restrictive setting. |
-| **Medium** | Flags content at medium severity and above. |
+| **Low** | Flags content at low severity and higher. Least restrictive setting. |
+| **Medium** | Flags content at medium severity and higher. |
 | **High** | Flags only the most severe content. Most restrictive setting. |
 
 Content at the "safe" level is always annotated but never blocked, regardless of threshold setting. To configure these thresholds, see [How to configure guardrails and controls](../../default/guardrails/how-to-create-guardrails.md).
