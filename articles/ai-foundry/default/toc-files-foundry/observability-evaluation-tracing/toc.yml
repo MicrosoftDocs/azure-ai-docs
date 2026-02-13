@@ -1,6 +1,6 @@
 items:
 # Fundamentals
-- name: Observability basics
+- name: Observability overview
   href: ../../../concepts/observability.md
 - name: Rate limits, region and virtual network support 
   href: ../../../concepts/evaluation-regions-limits-virtual-network.md
