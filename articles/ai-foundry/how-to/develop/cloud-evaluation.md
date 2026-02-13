@@ -210,6 +210,8 @@ To learn more about input data formats for evaluating agents, see [Evaluate Azur
 
 ::: moniker-end
 
+::: moniker range="foundry-classic"
+
 ## Specify evaluators
 
 ```python
@@ -238,7 +240,9 @@ evaluators = {
 }
 ```
 
-### Data mapping syntax
+::: moniker-end
+
+## Data mapping syntax
 
 The `data_mapping` parameter connects fields from your input data to evaluator parameters. Your input data field names must match the names used in your mapping.
 
