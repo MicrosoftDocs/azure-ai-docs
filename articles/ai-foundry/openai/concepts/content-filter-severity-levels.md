@@ -19,9 +19,9 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Microsoft Foundry content filtering ensures that AI-generated outputs align with ethical guidelines and safety standards. Content filtering capabilities classifies harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
+Microsoft Foundry content filtering ensures that AI-generated outputs align with ethical guidelines and safety standards. Content filtering capabilities classify harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
 
-Guardrails in Microsoft Foundry ensures that AI-generated outputs align with ethical guidelines and safety standards. Guardrails classify harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure Guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
+Guardrails in Microsoft Foundry ensure that AI-generated outputs align with ethical guidelines and safety standards. Guardrails classify harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure Guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
 
 For an overview of how guardrails work, see [Guardrails and controls overview](../../default/guardrails/guardrails-overview.md).
 
