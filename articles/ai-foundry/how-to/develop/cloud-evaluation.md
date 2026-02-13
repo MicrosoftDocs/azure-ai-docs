@@ -206,8 +206,6 @@ To learn more about input data formats for evaluating agents, see [Evaluate Azur
 
 ::: moniker-end
 
-::: moniker range="foundry-classic"
-
 ## Specify evaluators
 
 ```python
@@ -275,7 +273,9 @@ For example, if your JSONL contains `{"question": "What is AI?", "answer": "..."
 
 ::: moniker-end
 
-## Submit an evaluation in the cloud
+::: moniker range="foundry-classic"
+
+## Create an evaluation
 
 Finally, submit the remote evaluation run:
 
