@@ -63,7 +63,7 @@ Analyze and compare models using:
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-1. Go to the **Model leaderboards** section of the model catalog. This section displays the top three model leaders ranked along [quality](../concepts/model-benchmarks.md#quality-benchmarks-of-language-models), [safety](../concepts/model-benchmarks.md#safety-benchmarks-of-language-models), [cost](../concepts/model-benchmarks.md#cost-benchmarks-of-language-models), and [performance](../concepts/model-benchmarks.md#performance-benchmarks-of-language-models). Select any of these models to view more details.
+4. Go to the **Model leaderboards** section of the model catalog. This section displays the top three model leaders ranked along [quality](../concepts/model-benchmarks.md#quality-benchmarks-of-language-models), [safety](../concepts/model-benchmarks.md#safety-benchmarks-of-language-models), [cost](../concepts/model-benchmarks.md#cost-benchmarks-of-language-models), and [performance](../concepts/model-benchmarks.md#performance-benchmarks-of-language-models). Select any of these models to view more details.
 
     :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png" alt-text="Screenshot showing the selected model from entry point of leaderboards on the model catalog homepage." lightbox="../media/how-to/model-benchmarks/leaderboard-entry-select-model.png":::
 
