@@ -204,7 +204,7 @@ To query metrics, follow these steps:
 
 1. Under **Monitoring** in the sidebar menu, select **Logs**. If the query window options populate, close the window. 
 
-1. A new query tab will populate. Select the **Sample mode** drop down and select **KQL mode**. 
+1. A new query tab will populate. Select the **Sample mode** drop-down and select **KQL mode**. 
 
 1. To examine the Azure Metrics, type a custom query or copy and paste the following query:
 
@@ -225,7 +225,7 @@ To query metrics, follow these steps:
 | Metrics not appearing in metrics explorer | The resource type filter might not be set correctly. | Ensure **Resource types** is set to **Foundry Tools** in the scope selector. |
 | No log data in Log Analytics | Diagnostic settings aren't configured, or data hasn't arrived yet. | [Configure diagnostic settings](#configure-diagnostic-settings) and wait up to 15 minutes for data to appear. |
 | Metrics show zero values | The model deployment might not have received traffic in the selected time range. | Adjust the time range in metrics explorer, or verify the deployment is receiving requests. |
-| Cost data not visible in Azure Cost Management | Missing permissions or billing delay. | Ensure you have at least *read* access to the Azure account. Cost data can take up to five hours to appear. |
+| Cost data not visible in Microsoft Cost Management | Missing permissions or billing delay. | Ensure you have at least *read* access to the Azure account. Cost data can take up to five hours to appear. |
 | 429 errors on model calls | Provisioned utilization is at or above 100%. | Check the **Provisioned Utilization** metric and scale up PTUs, or reduce request volume. |
 
 ## Next steps
