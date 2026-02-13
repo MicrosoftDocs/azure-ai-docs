@@ -78,11 +78,11 @@ If you receive 401 Unauthorized errors, verify:
 
 ### File format errors
 
-The Whisper model supports mp3, mp4, mpeg, mpga, m4a, wav, and webm formats. Other formats will return an error.
+The Whisper model supports mp3, mp4, mpeg, mpga, m4a, wav, and webm formats. Other formats return an error.
 
 ### File size limit
 
-Audio files must be 25MB or smaller. For larger files, use the [Azure Speech batch transcription API](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model).
+Audio files must be 25 MB or smaller. For larger files, use the [Azure Speech batch transcription API](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model).
 
 ### Deployment not found
 
