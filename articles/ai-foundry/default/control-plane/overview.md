@@ -1,12 +1,12 @@
 ---
-title: What Is Microsoft Foundry Control Plane?
+title: What is Microsoft Foundry Control Plane?
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 02/05/2026
 ms.reviewer: mesameki
 ms.author: scottpolly
 author: mesameki
-description: Learn about Foundry Control Plane, a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Microsoft Foundry enterprise.
+description: Learn how Microsoft Foundry Control Plane provides unified visibility, governance, and control for AI agents, models, and tools across your enterprise.
 ai-usage: ai-assisted
 #customer intent: As an enterprise administrator or AI developer, I want to understand what Foundry Control Plane is and how it provides unified visibility across my AI agent fleet so that I can determine if it meets my governance and operational needs.
 ---
@@ -18,6 +18,12 @@ Microsoft Foundry Control Plane is a unified management interface that provides 
 As your organization evolves from isolated copilots to autonomous multi-agent fleets, you need unified oversight. Foundry Control Plane provides the visibility, governance, and control that you need to scale with confidence.
 
 In this article, you learn what Foundry Control Plane offers, including fleet management, observability, compliance enforcement, and security capabilities.
+
+## Prerequisites
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- A Microsoft Foundry project. For more information, see [Create a project](../../how-to/create-projects.md).
+- An [AI gateway configured](../configuration/enable-ai-api-management-gateway-portal.md) for advanced governance features.
 
 ## Core functionalities
 
@@ -45,7 +51,7 @@ You can use Foundry Control Plane for the following tasks.
 
 - Use the [AI Red Teaming Agent](../../concepts/ai-red-teaming-agent.md) and [cluster analysis](../observability/how-to/cluster-analysis.md) for automated vulnerability probing and error root-cause discovery.
 
-- Let Foundry Agent Service recommend improvements, from prompt refinements to model version upgrades.
+- View recommendations for prompt refinements, model version upgrades, and configuration changes.
 
 ### Govern and enforce with guardrails
 
@@ -105,7 +111,7 @@ Use the **Compliance** pane to govern your AI systems and enforce the right guar
 
 :::image type="content" source="media/overview/compliance.png" alt-text="Screenshot of the Compliance pane that shows options to define, apply, and monitor AI compliance policies with Azure Policy, Microsoft Defender, and Microsoft Purview integrations." lightbox="media/overview/compliance.png":::
 
-The **Compliance** pane empowers organizations to define, apply, and continuously monitor guardrails and compliance policies across their AI estate. It provides a unified interface to operationalize responsible AI principles while helping to ensure enterprise-grade safety and regulatory alignment. You can:
+The **Compliance** pane lets you define, apply, and continuously monitor guardrails and compliance policies across your AI estate. It provides a unified interface to operationalize responsible AI principles while helping to ensure enterprise-grade safety and regulatory alignment. You can:
 
 - Define and enforce protections through deep integrations with Azure Policy, Defender, and Microsoft Purview. These integrations help ensure that identity, data, and threat safeguards work in concert.
 - Apply versioned policies and track assignments to maintain full auditability and traceability across agents and environments.
@@ -127,7 +133,7 @@ Use the **Admin** pane to view, organize, and administer all projects, users, an
 
 :::image type="content" source="media/overview/admin-tab-overview.png" alt-text="Screenshot of the Admin pane that shows a list of projects with details like owners, region, connected services, and compliance status." lightbox="media/overview/admin-tab-overview.png":::
 
-This pane extends your operational view beyond a single project. Whereas most work in Foundry happens within a project context, **Admin** provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
+This pane extends your operational view beyond a single project. Most work in Foundry happens within a project context. The **Admin** pane provides an enterprise-level lens to oversee and configure multiple projects, user permissions, and linked Azure resources from one place.
 
 From **Admin**, administrators and power users can:
 
@@ -141,7 +147,7 @@ Together, these capabilities make **Admin** the administrative backbone of Found
 
 ## Get started
 
-Foundry Control Plane is available in the Foundry (new) portal. To get started, complete these steps:
+Foundry Control Plane is available in the Foundry portal. To get started, complete these steps:
 
 | Step | Description |
 | ---- | ----------- |
