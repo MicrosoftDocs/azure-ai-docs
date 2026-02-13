@@ -28,7 +28,7 @@ In this article, you learn how to run evaluations in the cloud (preview) for pre
 
 Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large scale, automated testing workflows. After deployment, you can choose to [continuously evaluate](../continuous-evaluation-agents.md) your agents for post-deployment monitoring.
 
-When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope, role-based access control.
+When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator catalog](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope, role-based access control.
 
 ::: moniker-end
 
@@ -38,7 +38,7 @@ In this article, you learn how to run evaluations in the cloud (preview) for pre
 
 Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../default/observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../default/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk) to automatically evaluate sampled agent responses in production.
 
-Cloud evaluation results are stored in your Foundry project. You can review results in the portal, retrieve them through the SDK, or route them to Application Insights if connected. Cloud evaluation supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Evaluators are managed in the [evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) with the same project-scope, role-based access control.
+Cloud evaluation results are stored in your Foundry project. You can review results in the portal, retrieve them through the SDK, or route them to Application Insights if connected. Cloud evaluation supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Evaluators are managed in the [evaluator catalog](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) with the same project-scope, role-based access control.
 
 > [!TIP]
 > For complete runnable examples, see the [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) on GitHub.
@@ -51,7 +51,7 @@ Cloud evaluation results are stored in your Foundry project. You can review resu
 
 To run a cloud evaluation, you create an evaluation definition with your data schema and testing criteria (evaluators), then create an evaluation run. The run executes each evaluator against your data and returns scored results that you can poll for completion.
 
-### Evaluation scenarios
+Cloud evaluation supports the following scenarios:
 
 | Scenario | When to use | Data source type | Target |
 |----------|-------------|------------------|--------|
@@ -64,8 +64,6 @@ To run a cloud evaluation, you create an evaluation definition with your data sc
 > [!NOTE]
 > For red team evaluation details, see [Run AI red teaming evaluations](run-ai-red-teaming-cloud.md).
 
-### Input data source
-
 Most scenarios require input data. You can provide data in two ways:
 
 | Source type | Description | Supported by |
@@ -73,11 +71,9 @@ Most scenarios require input data. You can provide data in two ways:
 | `file_id` | Reference an uploaded dataset by ID. | `jsonl`, `azure_ai_target_completions`, `azure_ai_responses` |
 | `file_content` | Provide data inline in the request. | `jsonl`, `azure_ai_target_completions` |
 
-### Data schema and evaluators
-
 Every evaluation requires a `data_source_config` that tells the service what fields to expect in your data:
 
-- **`custom`** — You define an `item_schema` with your field names and types. Set `include_sample_schema` to `true` when using a target so evaluators can reference generated responses with `{{sample.output_text}}`.
+- **`custom`** — You define an `item_schema` with your field names and types. Set `include_sample_schema` to `true` when using a target so evaluators can reference generated responses.
 - **`azure_ai_source`** — The schema is inferred from the service. Set `"scenario"` to `"responses"` for agent response evaluation or `"red_team"` for [red teaming](run-ai-red-teaming-cloud.md).
 
 Each scenario requires evaluators that define your testing criteria. For guidance on selecting evaluators, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
@@ -87,7 +83,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md).
-- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
+- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-5-mini`).
 
 ::: moniker range="foundry-classic"
 
@@ -123,7 +119,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
    endpoint = os.environ["PROJECT_ENDPOINT"] # https://<account>.services.ai.azure.com/api/projects/<project>
    model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com
    model_api_key = os.environ["MODEL_API_KEY"]
-   model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # E.g. gpt-4o-mini
+   model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # E.g. gpt-5-mini
 
    # Optional: Reuse an existing dataset.
    dataset_name    = os.environ.get("DATASET_NAME",    "dataset-test")
@@ -158,13 +154,20 @@ pip install azure-ai-projects azure-identity
 import os
 from azure.identity import DefaultAzureCredential 
 from azure.ai.projects import AIProjectClient 
+from openai.types.eval_create_params import DataSourceConfigCustom
+from openai.types.evals.create_eval_jsonl_run_data_source_param import (
+    CreateEvalJSONLRunDataSourceParam,
+    SourceFileContent,
+    SourceFileContentContent,
+    SourceFileID,
+)
 
 # Azure AI Project endpoint
 # Example: https://<account_name>.services.ai.azure.com/api/projects/<project_name>
 endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
 
 # Model deployment name (for AI-assisted evaluators)
-# Example: gpt-4o-mini
+# Example: gpt-5-mini
 model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")
 
 # Dataset details (optional, for reusing existing datasets)
@@ -218,23 +221,23 @@ data_id = project_client.datasets.upload_file(
 For quick experimentation with small test sets, provide data directly in the evaluation request using `file_content`. This approach doesn't support versioning or reuse.
 
 ```python
-source = {
-    "type": "file_content",
-    "content": [
-        {
-            "item": {
+source = SourceFileContent(
+    type="file_content",
+    content=[
+        SourceFileContentContent(
+            item={
                 "query": "How can I safely de-escalate a tense situation?",
                 "ground_truth": "Encourage calm communication, seek help if needed, and avoid harm.",
             }
-        },
-        {
-            "item": {
+        ),
+        SourceFileContentContent(
+            item={
                 "query": "What is the largest city in France?",
                 "ground_truth": "Paris",
             }
-        }
-    ]
-}
+        ),
+    ],
+)
 ```
 
 Pass `source` as the `"source"` field in your data source configuration when creating a run. The scenario sections that follow use `file_id` by default.
@@ -344,10 +347,10 @@ pf_client = PFClient()
 local_path = "answer_len_local"
 pf_client.flows.save(entry=AnswerLengthEvaluator, path=local_path)
 
-# Specify the evaluator name that appears in the Evaluator library.
+# Specify the evaluator name that appears in the evaluator catalog.
 evaluator_name = "AnswerLenEvaluator"
 
-# Register the evaluator to the Evaluator library.
+# Register the evaluator to the evaluator catalog.
 custom_evaluator = Model(
     path=local_path,
     name=evaluator_name,
@@ -360,7 +363,7 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
-After you register your custom evaluator, view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **Evaluator library**.
+After you register your custom evaluator, view it in your [evaluator catalog](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **evaluator catalog**.
 
 
 ### Prompt-based custom evaluators
@@ -393,10 +396,10 @@ local_path = "friendliness_local"
 pf_client = PFClient()
 pf_client.flows.save(entry=FriendlinessEvaluator, path=local_path) 
 
-# Specify the evaluator name that appears in the Evaluator library.
+# Specify the evaluator name that appears in the evaluator catalog.
 evaluator_name = "FriendlinessEvaluator"
 
-# Register the evaluator to the Evaluator library.
+# Register the evaluator to the evaluator catalog.
 custom_evaluator = Model(
     path=local_path,
     name=evaluator_name,
@@ -409,7 +412,7 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
-After you register your custom evaluator, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **Evaluator library**.
+After you register your custom evaluator, you can view it in your [evaluator catalog](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library). In your Foundry project, select **Evaluation**, then select **evaluator catalog**.
 
 ::: moniker-end
 
@@ -429,9 +432,9 @@ Specify the schema that matches your JSONL fields, and select the evaluators (te
 # [Python](#tab/python)
 
 ```python
-data_source_config = {
-    "type": "custom",
-    "item_schema": {
+data_source_config = DataSourceConfigCustom(
+    type="custom",
+    item_schema={
         "type": "object",
         "properties": {
             "query": {"type": "string"},
@@ -440,8 +443,8 @@ data_source_config = {
         },
         "required": [],
     },
-    "include_sample_schema": True,
-}
+    include_sample_schema=True,
+)
 
 testing_criteria = [
     {
@@ -500,7 +503,7 @@ curl --request POST \
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
-          "deployment_name": "gpt-4o-mini"
+          "deployment_name": "gpt-5-mini"
         }
       },
       {
@@ -512,7 +515,7 @@ curl --request POST \
           "response": "{{item.response}}"
         },
         "initialization_parameters": {
-          "deployment_name": "gpt-4o-mini"
+          "deployment_name": "gpt-5-mini"
         }
       }
     ]
@@ -577,7 +580,7 @@ EVAL_ID=$(curl --silent --request POST \
         "type": "azure_ai_evaluator",
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
-        "initialization_parameters": { "deployment_name": "gpt-4o-mini" }
+        "initialization_parameters": { "deployment_name": "gpt-5-mini" }
       }
     ]
   }' | jq -r '.id')
@@ -631,7 +634,7 @@ input_messages = {
 
 target = {
     "type": "azure_ai_model",
-    "model": "gpt-4o-mini",
+    "model": "gpt-5-mini",
     "sampling_params": {
         "top_p": 1.0,
         "max_completion_tokens": 2048,
@@ -644,17 +647,17 @@ target = {
 When the model generates responses at runtime, use `{{sample.output_text}}` in `data_mapping` to reference the model's output. Use `{{item.field}}` to reference fields from your input data.
 
 ```python
-data_source_config = {
-    "type": "custom",
-    "item_schema": {
+data_source_config = DataSourceConfigCustom(
+    type="custom",
+    item_schema={
         "type": "object",
         "properties": {
             "query": {"type": "string"},
         },
         "required": ["query"],
     },
-    "include_sample_schema": True,
-}
+    include_sample_schema=True,
+)
 
 testing_criteria = [
     {
@@ -739,7 +742,7 @@ curl --request POST \
       },
       "target": {
         "type": "azure_ai_model",
-        "model": "gpt-4o-mini",
+        "model": "gpt-5-mini",
         "sampling_params": {
           "top_p": 1.0,
           "max_completion_tokens": 2048
@@ -805,17 +808,17 @@ When the agent generates responses at runtime, use `{{sample.*}}` variables in `
 | `{{item.field}}` | A field from your input data. | Input fields like `query` or `ground_truth`. |
 
 ```python
-data_source_config = {
-    "type": "custom",
-    "item_schema": {
+data_source_config = DataSourceConfigCustom(
+    type="custom",
+    item_schema={
         "type": "object",
         "properties": {
             "query": {"type": "string"},
         },
         "required": ["query"],
     },
-    "include_sample_schema": True,
-}
+    include_sample_schema=True,
+)
 
 testing_criteria = [
     {
