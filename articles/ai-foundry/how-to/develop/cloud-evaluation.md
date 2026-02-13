@@ -84,16 +84,11 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 
 - A [Foundry project](../../how-to/create-projects.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-5-mini`).
+- **Azure AI User** role on the Foundry project.
 
 ::: moniker range="foundry-classic"
 
 [!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-- **Azure AI User** role on the Foundry project.
 
 ::: moniker-end
 
@@ -218,7 +213,7 @@ data_id = project_client.datasets.upload_file(
 
 ### Provide data inline
 
-For quick experimentation with small test sets, provide data directly in the evaluation request using `file_content`. This approach doesn't support versioning or reuse.
+For quick experimentation with small test sets, provide data directly in the evaluation request using `file_content`.
 
 ```python
 source = SourceFileContent(
