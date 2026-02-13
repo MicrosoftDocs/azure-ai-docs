@@ -95,7 +95,7 @@ Other options:
 
 The key to generating an ephemeral token is the REST API using 
 
-```
+```text
 url = https://{your azure resource}.openai.azure.com/openai/v1/realtime/client_secrets
 ```
 
@@ -103,7 +103,21 @@ You use this URL with either an api-key or Microsoft Entra ID token. This reques
 
 Here's some sample python code for a token service. The web browser application can call this service by using the /token endpoint to retrieve an ephemeral token. This sample code uses the DefaultAzureCredential to authenticate to the RealtimeAPI generating ephemeral tokens.
 
-```
+> [!NOTE]
+> Replace placeholder values in the code samples:
+> - `<your azure resource>` or `<YOUR AZURE RESOURCE>` - Your Azure OpenAI resource name
+> - `<your model deployment name>` or `<YOUR MODEL DEPLOYMENT NAME>` - Your realtime model deployment name
+
+The session configuration includes:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `session.type` | Yes | Must be `realtime` |
+| `session.model` | Yes | Your model deployment name |
+| `session.instructions` | No | System prompt for the assistant |
+| `session.audio.output.voice` | No | Voice for audio output: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, or `verse` |
+
+```python
 from flask import Flask, jsonify
 
 import os
@@ -238,15 +252,14 @@ if __name__ == '__main__':
 
 Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the following URL with the ephemeral token for authentication.
 
+```text
+https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
 ```
- https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
- ```
 
 Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample HTML document to get you started.
 
-```
-html
-    <!DOCTYPE html>
+```html
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -473,13 +486,26 @@ In the sample, we use the query parameter webrtcfilter=on. This query parameter 
 * response.output_audio_transcript.delta
 * response.output_audio_transcript.done
 
+> [!TIP]
+> For the complete list of Realtime API events, see the [API reference](../realtime-audio-reference.md#server-events).
+
+When the connection succeeds, you should see these console messages:
+- `✅ RTCPeerConnection created`
+- `✅ Microphone access granted`
+- `✅ Data channel is open`
+- `🎵 Audio playback started`
+
+If the AI responds, you'll see `response.output_audio_transcript.done` events with the transcribed response.
+
+**Reference:** [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection), [Realtime API events](../realtime-audio-reference.md)
+
 ### Step 3 (optional): Create a websocket observer/controller
 
 If you proxy the session negotiation through your service application, you can parse the Location header that's returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
 
 Here's an updated version of the token_service shown earlier, now with a /connect endpoint that you can use to both get the ephemeral token and negotiate the session initiation. It also includes a websocket connection that listens to the WebRTC session. 
 
-```
+```python
 from flask import Flask, jsonify, request
 #from flask_cors import CORS
 
@@ -838,10 +864,9 @@ if __name__ == '__main__':
 
 The associated browser changes are shown here. 
 
-```
-html
-    <!DOCTYPE html>
-    <html lang="en">
+```html
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1149,6 +1174,31 @@ html
     </body>
 </html>
 ```
+
+**Reference:** [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [Flask documentation](https://flask.palletsprojects.com/)
+
+## Troubleshooting
+
+### Authentication errors
+
+- **401 Unauthorized**: Verify your API key or Microsoft Entra ID token is valid. Ensure the identity has the **Cognitive Services User** role assigned on the Azure OpenAI resource.
+- **403 Forbidden**: Check that your resource is deployed in a supported region (East US 2 or Sweden Central).
+
+### Connection errors
+
+- **WebRTC connection failed**: Ensure your browser supports WebRTC and allows microphone access. Check that you're using HTTPS (required for `getUserMedia`).
+- **Data channel not opening**: Check the browser console for ICE connection state errors. Verify the ephemeral token hasn't expired.
+- **SDP exchange failed**: Verify the WebRTC endpoint URL is correct and the ephemeral token is valid.
+
+### Model errors
+
+- **Model not found**: Verify your deployment name matches exactly (case-sensitive). Ensure you've deployed a realtime model (`gpt-4o-realtime-preview`, `gpt-realtime`, etc.).
+- **Quota exceeded**: Check your Azure OpenAI quota in the Azure portal. Realtime API has separate quota from chat completions.
+
+### Audio issues
+
+- **No audio output**: Check that `audioElement.autoplay = true` is set and browser autoplay policies aren't blocking playback. Try clicking the page first to enable audio.
+- **Poor audio quality**: WebRTC automatically adjusts for network conditions. Check your network connection and try reducing other network traffic.
 
 ## Related content
 
