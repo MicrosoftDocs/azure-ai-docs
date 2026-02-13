@@ -181,7 +181,7 @@ To configure diagnostic settings for your Foundry resource:
 
 1. Enter a name for the diagnostic setting.
 
-1. Under **Logs**, select the [log categories](#logs) you want to collect (for example, **RequestResponse**).
+1. Under **Logs**, select the [log categories](#logs) you want to collect (for example, **RequestResponseLogs**).
 
 1. Under **Metrics**, select **AllMetrics** to export metrics.
 
