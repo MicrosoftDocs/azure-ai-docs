@@ -17,13 +17,7 @@ ms.custom: azure-ai-guardrails
 
 Microsoft Foundry provides safety and security guardrails that you can apply to model deployments and agents. Use guardrails to detect harmful content, prevent undesirable outputs, and enforce responsible AI policies across your applications.
 
-A **guardrail** is a named collection of **controls**. Each control defines three elements:
-
-| Element | Description |
-|---------|-------------|
-| **Risk** | The category of harmful content to detect (for example, Violence or Hate). |
-| **Intervention point** | Where to scan for the risk: user input, tool call, tool response, or output. |
-| **Action** | What to do when the risk is detected: annotate only, or annotate and block. |
+A **guardrail** is a named collection of **controls**. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
 Risks are flagged by classification models designed to detect harmful content. Four intervention points are supported:
 
@@ -42,6 +36,8 @@ For more information about intervention points, see [Intervention points and con
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - At least one model deployment in your project.
+- Azure AI Account Owner role.
+  - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 
 ## Guardrails for agents vs models
 
@@ -73,7 +69,7 @@ For content risks (Hate, Sexual, Self-harm, Violence), each control uses a sever
 
 | Severity level | Behavior |
 |---------------|----------|
-| **Off** | Detection is disabled for this risk. |
+| **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](../../foundry-models/how-to/configure-content-filters.md |
 | **Low** | Flags content at low severity and above. Most restrictive. |
 | **Medium** | Flags content at medium severity and above. |
 | **High** | Flags only the most severe content. Least restrictive. |
@@ -84,12 +80,11 @@ For a detailed breakdown of what each severity level detects, see [Content filte
 
 The following table summarizes which intervention points are applicable to models and agents:
 
-| Intervention point | Applicable to Models | Applicable to Agents (Preview) |
-|-------------------|---------------------|---------------------|
-| User input (prompt) | ✅ | ✅ |
-| Tool call (Preview) | ❌ | ✅ |
-| Tool response (Preview) | ❌ | ✅ |
-| Output (completion) | ✅ | ✅ |
+> [!IMPORTANT]
+> Risks are detected in an agent based on the guardrail it's assigned, not the guardrail of its underlying model. The agentic guardrail fully overrides the model's guardrail.
+
+- A model deployment has a control with Violence detection set to **High** for user input and output
+- An agent using that model has a control with Violence detection set to **Low** for user input and output. The agent has no controls for Violence detection at all for tool calls and responses
 
 ### Action applicability
 
