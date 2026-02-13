@@ -62,6 +62,12 @@ When you use the Foundry SDK, it logs evaluation results in your Foundry project
 
 ::: moniker range="foundry"
 
+- Python 3.9 or later.
+- The `azure-ai-projects` and `azure-identity` packages (installed in [Get started](#get-started)).
+- **Contributor** or **Owner** role on the Foundry project.
+
+Cloud evaluation works in three steps: (1) create an evaluation that defines your data schema and testing criteria (evaluators), (2) create an evaluation run that executes the evaluators against your data, and (3) poll for results. Choose a data source type based on your scenario.
+
 ## Data source types
 
 The evaluation API supports different data source types depending on your scenario:
@@ -798,11 +804,11 @@ Send queries to a deployed model at runtime and evaluate the responses using the
 
 ### Define the data source and model
 
-Specify the uploaded dataset, message template, target model, and sampling parameters:
+Specify the uploaded dataset, message template, target model, and sampling parameters. The `model` and `sampling_params` go inside the `target` block:
 
 ```python
 data_source = {
-    "type": "completions",
+    "type": "azure_ai_target_completions",
     "source": {
         "type": "file_id",
         "id": dataset.id,
@@ -810,14 +816,6 @@ data_source = {
     "input_messages": {
         "type": "template",
         "template": [
-            {
-                "type": "message",
-                "role": "developer",
-                "content": {
-                    "type": "input_text",
-                    "text": "You are a helpful assistant. Answer the user's question accurately and concisely.",
-                },
-            },
             {
                 "type": "message",
                 "role": "user",
@@ -828,12 +826,13 @@ data_source = {
             },
         ],
     },
-    "model": "gpt-4o-mini",
-    "sampling_params": {
-        "seed": 42,
-        "temperature": 1.0,
-        "top_p": 1.0,
-        "max_completion_tokens": 2048,
+    "target": {
+        "type": "azure_ai_model",
+        "model": "gpt-4o-mini",
+        "sampling_params": {
+            "top_p": 1.0,
+            "max_completion_tokens": 2048,
+        },
     },
 }
 ```
@@ -860,7 +859,7 @@ curl --request POST \
   --data '{
     "name": "model-target-evaluation",
     "data_source": {
-      "type": "completions",
+      "type": "azure_ai_target_completions",
       "source": {
         "type": "file_id",
         "id": "YOUR_DATASET_ID"
@@ -868,14 +867,6 @@ curl --request POST \
       "input_messages": {
         "type": "template",
         "template": [
-          {
-            "type": "message",
-            "role": "developer",
-            "content": {
-              "type": "input_text",
-              "text": "You are a helpful assistant. Answer the user question accurately and concisely."
-            }
-          },
           {
             "type": "message",
             "role": "user",
@@ -886,12 +877,13 @@ curl --request POST \
           }
         ]
       },
-      "model": "gpt-4o-mini",
-      "sampling_params": {
-        "seed": 42,
-        "temperature": 1.0,
-        "top_p": 1.0,
-        "max_completion_tokens": 2048
+      "target": {
+        "type": "azure_ai_model",
+        "model": "gpt-4o-mini",
+        "sampling_params": {
+          "top_p": 1.0,
+          "max_completion_tokens": 2048
+        }
       }
     }
   }'
@@ -974,6 +966,30 @@ Your evaluation job might remain in the **Running** state for an extended period
 1. Cancel the current evaluation job using `client.evals.runs.cancel(eval_id=eval_id, run_id=run_id)`.
 1. Increase the model capacity in the Azure portal.
 1. Run the evaluation again.
+
+### Authentication errors
+
+If you receive a `401 Unauthorized` or `403 Forbidden` error, verify that:
+
+- Your `DefaultAzureCredential` is configured correctly (run `az login` if using Azure CLI).
+- Your account has **Contributor** or **Owner** role on the Foundry project.
+- The project endpoint URL is correct and includes both the account and project names.
+
+### Data format errors
+
+If the evaluation fails with a schema or data mapping error:
+
+- Verify your JSONL file has one valid JSON object per line.
+- Confirm that field names in `data_mapping` match the field names in your JSONL file exactly (case-sensitive).
+- Check that `item_schema` properties match the fields in your dataset.
+
+### Rate limit errors
+
+If you see `429 Too Many Requests`:
+
+- Reduce the size of your evaluation dataset or split it into smaller batches.
+- Increase the tokens-per-minute (TPM) quota for your model deployment in the Azure portal.
+- Add a retry with backoff in your polling loop.
 
 For more information on monitoring evaluation jobs, see [View evaluation results](../../how-to/evaluate-results.md).
 
