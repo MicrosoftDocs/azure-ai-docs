@@ -773,7 +773,7 @@ input_messages = {
 target = {
     "type": "azure_ai_agent",
     "name": "my-agent",
-    "version": "1.0"
+    "version": "1"
 }
 ```
 
@@ -904,7 +904,7 @@ curl --request POST \
       "target": {
         "type": "azure_ai_agent",
         "name": "my-agent",
-        "version": "1.0"
+        "version": "1"
       }
     }
   }'
