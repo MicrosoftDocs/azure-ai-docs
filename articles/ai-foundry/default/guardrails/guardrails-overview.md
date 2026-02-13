@@ -15,11 +15,11 @@ ms.custom: azure-ai-guardrails
 
 # Guardrails and controls overview in Microsoft Foundry
 
-Microsoft Foundry provides safety and security guardrails that you can apply to model deployments and agents. Use guardrails to detect harmful content, prevent undesirable outputs, and enforce responsible AI policies across your applications.
+Microsoft Foundry provides safety and security guardrails that you can apply to core models and agents. Agent guardrails are in preview. Guardrails consist of a set of controls. The controls define a risk to be detected, intervention points to scan for the risk, and the response action to take in the model or agent when the risk is detected. 
 
 A **guardrail** is a named collection of **controls**. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
-Risks are flagged by classification models designed to detect harmful content. Four intervention points are supported:
+Variations in API configurations and application design might affect completions and thus filtering behavior. Risks are flagged by classification models designed to detect harmful content. Four intervention points are supported:
 
 - **User input** — The prompt sent to a model or agent.
 - **Tool call** (Preview) — The action and data the agent proposes to send to a tool. Agents only.
@@ -37,7 +37,7 @@ For more information about intervention points, see [Intervention points and con
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - At least one model deployment in your project.
 - Azure AI Account Owner role.
-  - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+  - [!INCLUDE [rbac-create](../../includes/rbac-create.md)]
 
 ## Guardrails for agents vs models
 
@@ -102,19 +102,15 @@ The following table summarizes which actions are applicable to models and agents
 
 **Example scenario:**
 
-| Component | Violence detection setting |
-|-----------|---------------------------|
-| Model deployment | **High** for user input and output |
-| Agent (using that model) | **Low** for user input and output; no Violence controls for tool calls or responses |
+- A model deployment has a control with Violence detection set to **High** for user input and output
+- An agent using that model has a control with Violence detection set to **Low** for user input and output. The agent has no controls for Violence detection at all for tool calls and responses|
 
 **Expected behavior for Violence detection in that agent:**
 
-| Intervention point | Scanned? | Severity level |
-|-------------------|----------|----------------|
-| User input | Yes | **Low** (agent's setting) |
-| Tool call | No | Not configured |
-| Tool response | No | Not configured |
-| Output | Yes | **Low** (agent's setting) |
+- User queries to the agent are scanned for Violence at a **Low** level
+- Tool calls generated internally to the agent by its underlying model, including the content then sent to that tool during the tool call's execution, will **not** be scanned for Violence
+- The response back from the tool will **not** be scanned for Violence
+- The final output returned to the user in response to their original query are scanned for Violence at a **Low** level
 
 ## Default guardrails
 
