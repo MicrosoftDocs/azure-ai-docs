@@ -83,33 +83,6 @@ Most scenarios require input data. You can provide input data in two ways:
 | `file_id` | Reference an uploaded dataset by ID | `jsonl`, `azure_ai_target_completions`, `azure_ai_responses` |
 | `file_content` | Provide data inline in the request | `jsonl`, `azure_ai_target_completions` |
 
-### Data mapping syntax
-
-Evaluators use a template syntax to map fields from your input data to evaluator parameters. Use double curly braces with `item.` prefix to reference fields:
-
-```python
-"data_mapping": {
-    "query": "{{item.query}}",
-    "response": "{{item.response}}",
-    "context": "{{item.context}}"
-}
-```
-
-Your input data fields must match the names used in your data mapping. For example, if your JSONL contains:
-
-```json
-{"question": "What is AI?", "answer": "AI is artificial intelligence."}
-```
-
-Then your data mapping should reference those field names:
-
-```python
-"data_mapping": {
-    "query": "{{item.question}}",
-    "response": "{{item.answer}}"
-}
-```
-
 ::: moniker-end
 
 ## Get started
@@ -200,7 +173,7 @@ Upload your JSONL file to create a dataset. The file is stored in your Foundry p
 Your JSONL file should contain one JSON object per line with the fields your evaluators need:
 
 ```json
-{"query": "What is machine learning?", "response": "Machine learning is a subset of AI.", "context": "AI overview document", "ground_truth": "Machine learning is a type of AI that learns from data."}
+{"query": "What is machine learning?", "response": "Machine learning is a subset of AI.", "ground_truth": "Machine learning is a type of AI that learns from data."}
 {"query": "Explain neural networks.", "response": "Neural networks are computing systems inspired by biological neural networks.", "ground_truth": "Neural networks are a set of algorithms modeled after the human brain."}
 ```
 
@@ -262,6 +235,45 @@ evaluators = {
     ),
 }
 ```
+
+### Data mapping syntax
+
+The `data_mapping` parameter connects fields from your input data to evaluator parameters. Your input data field names must match the names used in your mapping.
+
+::: moniker range="foundry-classic"
+
+Use `${data.field}` syntax:
+
+```python
+data_mapping={
+    "query": "${data.query}",
+    "response": "${data.response}",
+}
+```
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Use `{{item.field}}` syntax:
+
+```python
+"data_mapping": {
+    "query": "{{item.query}}",
+    "response": "{{item.response}}"
+}
+```
+
+For example, if your JSONL contains `{"question": "What is AI?", "answer": "..."}`, reference those field names:
+
+```python
+"data_mapping": {
+    "query": "{{item.question}}",
+    "response": "{{item.answer}}"
+}
+```
+
+::: moniker-end
 
 ## Submit an evaluation in the cloud
 
