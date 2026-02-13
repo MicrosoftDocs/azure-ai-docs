@@ -1,15 +1,15 @@
 ---
-title: Monitor AI Agent Fleets with Microsoft Foundry
-description: Monitor and manage AI agents at scale by using Microsoft Foundry. Track health, compliance, and performance trends by using a centralized dashboard.
+title: Monitor AI agent fleet health and performance - Microsoft Foundry
+description: Track agent health, compliance, performance trends, and cost efficiency across your AI fleet by using Microsoft Foundry Control Plane monitoring.
 author: sonalim-0
 ms.author: scottpolly
 ms.reviewer: sonalimalik
-ms.date: 02/04/2026
+ms.date: 02/13/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom: dev-focus
 ai-usage: ai-assisted
-#customer intent: As a system administrator, I want to access top-level metrics for all registered agents so that I can maintain an overview of the fleet.
+#CustomerIntent: As a system administrator, I want to access top-level metrics for all registered agents so that I can maintain an overview of the fleet.
 ---
 
 # Monitor agent health and performance across your fleet
@@ -32,7 +32,7 @@ This article shows you how to use Foundry Control Plane capabilities to track ag
 - The following permissions:
   - Read access to the project and subscription that you want to view data for
   - [Log Analytics Reader](/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader) role or higher on the Application Insights resource that's associated with your agent
-  - [Cost Management Reader](https://go.microsoft.com/fwlink/?linkid=2345241) role
+  - [Cost Management Reader](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) role
 
 [!INCLUDE [capability-new-portal](../includes/capability-new-portal.md)]
 
@@ -55,7 +55,7 @@ Foundry Control Plane aggregates logs and metrics available across each Applicat
 
 :::image type="content" source="media/monitoring-across-fleet/observability-app-insights-architecture.png" alt-text="Architecture diagram that shows how Foundry Control Plane uses Application Insights to collect logs and metrics across resources." lightbox="media/monitoring-across-fleet/observability-app-insights-architecture.png":::
 
-Foundry Control Plane requires agents to log diagnostic information by following OpenTelemetry standards with [semantic conventions for Generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/) applications. You don't need to configure Application Insights on each resource, but we strongly recommend it. When Foundry Control Plane has this data, it can provide:
+Foundry Control Plane requires agents to log diagnostic information by following OpenTelemetry standards with [semantic conventions for Generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/) applications. You don't need to configure Application Insights on each resource, but doing so is strongly recommended. When Control Plane has this data, it can provide:
 
 - **Fleet health metrics**: Track active agents, run completion rates, and error trends across your entire fleet.
 - **Cost and performance tracking**: Monitor token usage, budget consumption, and resource efficiency across all agents.
@@ -86,9 +86,9 @@ Follow these steps for each project where you want to configure monitoring:
 1. If there's no associated resource, add one by selecting **Add connection** and then selecting **Application Insights**.
 
     > [!TIP]
-    > You can sink traces to either different Application Insights resources or to the same resource, depending on your governance and security requirements.
+    > You can send traces to either different Application Insights resources or to the same resource, depending on your governance and security requirements.
 
-Your project is configured for observability and tracing.
+Your project is now configured for observability and tracing. To verify that monitoring is active, go to **Operate** > **Overview** in the Foundry portal, select your project from the dropdown list, and confirm that agent metrics appear in the dashboard. Metrics might take a few minutes to populate after initial configuration.
 
 ## View metrics
 
@@ -106,7 +106,9 @@ You can view aggregated metrics for all agents within a selected project by usin
 
 1. Configure the date range by using the date selectors in the upper-right corner.
 
-## View agents' metrics
+The **Overview** pane shows fleet-level health scores, alert summaries, active agent counts, error rates, and compliance metrics for the selected time range. Use this view to quickly assess the operational state of your fleet and identify areas that need attention.
+
+## View individual agent metrics
 
 You can view all your assets under a specific project, along with top-level metrics, from Foundry.
 
@@ -133,7 +135,17 @@ You can view all your assets under a specific project, along with top-level metr
 
 To learn more about how to manage individual agents, see [Manage agents at scale](how-to-manage-agents.md).
 
+## Troubleshoot monitoring
+
+If you don't see expected metrics or agents in the dashboard, check the following common causes:
+
+- **Agents don't appear in the Assets pane**: Verify that you have read access to the subscription and project where the agents are deployed. Different users see different agents depending on their access level.
+- **Metrics are empty or missing**: Confirm that the Application Insights resource is connected to the project (see [Configure monitoring](#configure-monitoring)). Metrics can take several minutes to populate after the initial connection.
+- **Health metrics or traces aren't available for a specific agent**: The agent might be running on a resource without Application Insights configured. Connect an Application Insights resource to the agent's project to enable health data and drill-down traces.
+- **Cost data doesn't appear**: Verify that you have the [Cost Management Reader](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) role on the subscription.
+
 ## Related content
 
 - [What is Microsoft Foundry Control Plane?](overview.md)
+- [Manage agents at scale](how-to-manage-agents.md)
 - [Register and manage custom agents](register-custom-agent.md)

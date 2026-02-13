@@ -1,11 +1,11 @@
 ---
-title: 'How-to configure guardrails and controls in Microsoft Foundry'
+title: 'How to configure guardrails and controls in Microsoft Foundry'
 titleSuffix: Microsoft Foundry
-description: How-to guide for creating, configuring, and managing guardrails and controls in Microsoft Foundry, including UI instructions and API configuration.
+description: Create, configure, and manage guardrails and controls for model deployments and agents in Microsoft Foundry using the portal or REST API.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 10/31/2025
+ms.date: 02/13/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
@@ -15,12 +15,16 @@ ms.custom: azure-ai-guardrails
 
 # How to configure guardrails and controls in Microsoft Foundry
 
-This comprehensive guide walks you through every aspect of creating, configuring, and managing guardrails and controls in Microsoft Foundry. From basic setup to advanced features, this article covers both UI instructions and API configuration methods.
+Create, configure, and manage guardrails and controls for your model deployments and agents in Microsoft Foundry. This article covers creating guardrails through the Foundry portal and the REST API.
 
-## Prerequisites 
+For background on guardrails concepts, risks, and intervention points, see [Guardrails and controls overview](guardrails-overview.md).
 
-- An Azure account. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An [Azure AI resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AIServices). 
+## Prerequisites
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A [Microsoft Foundry project](../../how-to/create-projects.md).
+- At least one model deployment in your project.
+- **Azure AI Account Owner** role or higher on the Azure AI resource.
 
 
 ## Create a guardrail in Foundry
@@ -28,14 +32,14 @@ This comprehensive guide walks you through every aspect of creating, configuring
 1. Go to [Foundry](https://ai.azure.com) and navigate to your project.
 2. Select **Build** in the top right menu.
 3. Select the **Guardrails** page from the left navigation.
-4. Select **Create Guardrail** in the top right.
+4. Select **Create Guardrail** in the top right. The guardrail wizard opens with Step 1: Add Controls.
 
 ## Add controls to a guardrail
 
 Default controls are displayed in the right pane when you create a new guardrail.
 
 1. **Select a risk** from the dropdown menu.
-2. **Choose intervention points and actions**: Recommended intervention points and actions for that risk is shown. Select one or many intervention points and one action to configure your control.
+2. **Choose intervention points and actions**: Recommended intervention points and actions for that risk are shown. Select one or many intervention points and one action to configure your control.
 
    > [!NOTE]
    > Some intervention points will not be available for a risk if that is inapplicable at that intervention point. For example, by definition, user input attacks are malicious content added to the user input. So, that risk can be scanned only at that intervention point. 
@@ -50,11 +54,11 @@ To delete a control:
 2. Select **Delete**.
 
 > [!NOTE]
-> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about [modified content filtering](../../foundry-models/concepts/content-filter.md).
+> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about [modified content filtering](../../openai/concepts/content-filter-configurability.md).
 
 ## Edit controls in a guardrail
 
-There are two ways to edit a control: deleting it and adding a new one, or overriding an existing control. The latter is the only way to edit a control that cannot be deleted, such as Violence, Hate, Sexual, and Self-harm controls on user inputs and outputs.
+There are two ways to edit a control: deleting it and adding a new one, or overriding an existing control. The latter is the only way to edit a control that can't be deleted, such as Violence, Hate, Sexual, and Self-harm controls on user inputs and outputs.
 
 To edit a control by overriding it:
 
@@ -70,23 +74,23 @@ After adding, editing, and/or deleting controls as desired:
 1. Select **Next** to proceed to Step 2: assigning a guardrail to agents and/or models.
 2. Select **Add agents** and/or **Add models** to view a list of agents and models in this project.
 3. Select models or agents. Previously assigned agents and models can also be deselected to remove this guardrail and re-assign the Microsoft Default.
-4. Select **Save** to confirm.
+4. Select **Save** to confirm. A success notification appears.
 
 ## Review and name guardrail
 
 1. Select **Next** to proceed to Step 3: Review.
 2. Review the controls added to this guardrail and the models and/or agent it's assigned to.
 3. Name the guardrail, or leave the automatically assigned name.
-4. Select **Create** to create this new custom guardrail and assign it to the selected models and agents.
+4. Select **Create**. The guardrail appears in the list on the **Guardrails** page and applies to the selected models and agents.
 
 ## Edit an existing guardrail
 
 1. Select **Build** in the top right menu.
 2. Select the **Guardrails** page from the left navigation.
-3. Find the guardrail in the list of guardrails. Select its name directly or click on its row and select **Edit** in the right pane that pops up.
+3. Find the guardrail in the list of guardrails. Select its name directly, or select its row and then select **Edit** in the detail pane.
 
    > [!NOTE]
-   > Microsoft Default guardrails, such as Default.V2, cannot be edited.
+   > Microsoft Default guardrails, such as Default.V2, can't be edited.
 
 4. Follow the same instructions as in [Create a guardrail](#create-a-guardrail-in-foundry) to edit, add, or remove controls; assign or re-assign agents and/or models; and rename the guardrail, as needed.
 
@@ -98,7 +102,7 @@ There are two paths to assigning a guardrail to a model or agent:
 
 1. Select **Build** in the top right menu.
 2. Select the **Guardrails** page from the left navigation.
-3. Find the guardrail in the list of guardrails. Click on its name directly or click on its row and select **Edit** in the right pane that pops up.
+3. Find the guardrail in the list of guardrails. Select its name directly, or select its row and then select **Edit** in the detail pane.
 4. Select **Next** on Step 1: Add Controls to skip forward to the assignment step.
 5. Select **Add agents** or **Add models** and select and deselect models and/or agents as needed to update the guardrail's assignment.
 
@@ -106,7 +110,7 @@ There are two paths to assigning a guardrail to a model or agent:
 
 1. Select **Build** in the top right menu.
 2. Select **Agents** or **Models** in the left navigation.
-3. Select the individual agent or model that needs to update.
+3. Select the agent or model that you want to update.
 4. A section for **Guardrails** appears in the left panel of the Agent Playground or Chat Playground.
 5. Select **Manage** at the bottom of the Guardrails section.
 6. Select **Assign a new guardrail**.
@@ -120,7 +124,7 @@ There are two paths to assigning a guardrail to a model or agent:
 
 1. Select **Build** in the top right menu.
 2. Select the **Guardrails** page from the left navigation.
-3. Find the guardrail in the list of guardrails and select on its row.
+3. Find the guardrail in the list of guardrails and select its row.
 4. A panel appears on the right. Select **Delete** at the top of the panel.
 
 ### To delete a guardrail with assigned models or agents
@@ -134,24 +138,26 @@ To test the behavior of a particular guardrail:
 
 1. Select **Build** in the top right menu.
 2. Select the **Guardrails** page from the left navigation.
-3. Find the guardrail in the list of guardrails and select on its row.
+3. Find the guardrail in the list of guardrails and select its row.
 4. A panel appears on the right. Select **Try in Playground** at the top of the panel.
 
    > [!NOTE]
-   > If that button does not appear, assign this guardrail to a model or agent first. This will immediately change the safety & security behavior of the model or agent, so make sure to use one not in production that can be experimented with.
+   > If that button doesn't appear, assign this guardrail to a model or agent first. Assigning a guardrail immediately changes the safety and security behavior, so use a non-production model or agent for testing.
 
 5. In the playground, send queries to the model or agent.
 6. When a control that has "Annotate and block" as its action is triggered, a message appears in the chat with details on which risk was detected and at which intervention point.
 
-## API instructions
+## Configure guardrails with the REST API
 
-### Creating a Guardrail in Foundry 
-A guardrail is represented as a RaiPolicy in the Resource Manager. Use the [RAI Policies page](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update) to create or update a new guardrail through code. 
+In the Azure AI Services REST API, a guardrail is represented as a **RAI policy** — a resource-level object in Azure Resource Manager.
 
+### Create or update a guardrail
 
-### Assigning a Guardrail to a Model 
+Use the [RAI Policies - Create Or Update](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update) operation to create or update a guardrail. Specify the controls (content filter rules) in the request body, including the risk category, severity level, and whether to block or annotate.
 
-Assign an existing guardrail to a model via the [model deployment properties](/rest/api/aiservices/accountmanagement/deployments/create-or-update).
+### Assign a guardrail to a model deployment
+
+Set the `raiPolicyName` property on a deployment to assign a guardrail. Use the [Deployments - Create Or Update](/rest/api/aiservices/accountmanagement/deployments/create-or-update) operation and include the guardrail name in the deployment properties.
 
 
 ## Work with annotations
@@ -168,10 +174,10 @@ When annotations are enabled, the following information is returned via the API 
 
 ### Optional model annotations
 
-Optional models can be set to annotate mode (returns information when content is flagged, but not filtered) or filter mode (returns information when content is flagged and filtered).
+Optional model annotations can be set to annotate mode (returns information when content is flagged, but not filtered) or filter mode (returns information when content is flagged and filtered).
 
 | Model | Output |
-|-------|--------|
+|----------------------|--------|
 | User prompt attack | - detected (true or false)<br>- filtered (true or false) |
 | Indirect attacks | - detected (true or false)<br>- filtered (true or false) |
 | Protected material text | - detected (true or false)<br>- filtered (true or false) |
@@ -468,14 +474,30 @@ If a configuration is specified that does not exist, the following error message
 
 ## Best practices
 
-We recommend informing your guardrails configuration decisions through an iterative identification process (for example, red team testing, stress-testing, and analysis) and measurement process to address the potential harms that are relevant for a specific model, application, and deployment scenario. After you implement mitigations such as guardrails, repeat measurement to test effectiveness.
+Follow these practices when configuring guardrails:
 
-For recommendations and best practices for Responsible AI, grounded in the Microsoft Responsible AI Standard, see the [Responsible AI Overview](../../responsible-ai/openai/overview.md).
+- **Test before production**: Use the playground to test guardrail behavior before applying changes to production deployments.
+- **Start restrictive, then relax**: Begin with higher severity thresholds and adjust downward only after confirming acceptable behavior. 
+- **Red-team your configuration**: Run red-team testing, stress-testing, and analysis to identify potential harms specific to your model, application, and deployment scenario.
+- **Measure after changes**: After implementing or updating guardrails, repeat your measurement process to verify effectiveness.
 
+For full Responsible AI guidance, see the [Responsible AI Overview](../../responsible-ai/openai/overview.md).
+
+
+## Troubleshooting
+
+| Issue | Resolution |
+|-------|------------|
+| Can't delete a guardrail | Reassign or remove all models and agents from the guardrail first. See [Delete a guardrail](#delete-a-guardrail). |
+| Can't edit or delete a control | Some controls (Violence, Hate, Sexual, Self-harm) on user inputs and outputs can only be overridden, not deleted. See [Edit controls](#edit-controls-in-a-guardrail). |
+| Guardrail changes not taking effect | Verify the guardrail is assigned to the correct model or agent. For agents, the agent's guardrail overrides the model's guardrail. |
+| "InvalidContentFilterPolicy" error | The guardrail name in the `x-policy-id` header doesn't match an existing guardrail. Verify the name on the **Guardrails** page. |
+| Can't edit Default.V2 guardrail | Microsoft Default guardrails can't be modified. Create a custom guardrail instead. |
 
 ## Next steps
 
-- [Understand content filtering in Azure OpenAI](../../openai/concepts/content-filter.md)
-- [Learn about intervention points and controls](intervention-points.md)
+- [Guardrails and controls overview](guardrails-overview.md)
+- [Intervention points and controls](intervention-points.md)
+- [Content filtering](../../openai/concepts/content-filter.md)
 - [Configure content filters for Azure OpenAI](../../openai/how-to/content-filters.md)
 

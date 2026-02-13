@@ -190,6 +190,13 @@ python quickstart.py
 > [!IMPORTANT]
 > For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information, see [credential security](../../../ai-services/security-features.md).
 
+## Verify the output
+
+The response contains a `text` field with the complete transcription of your audio file. You should see output similar to the example below. If you encounter errors:
+- Verify your deployment name matches exactly
+- Check that your audio file path is correct
+- Ensure your API key and endpoint are valid
+
 ## Output
 
 ```python
