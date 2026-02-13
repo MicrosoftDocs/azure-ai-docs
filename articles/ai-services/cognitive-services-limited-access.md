@@ -74,10 +74,7 @@ Once approved, you'll receive:
 3. Documentation links for getting started with your approved service
 
 You can immediately begin using the approved features through the Azure portal or SDKs.
-
-### What happens if I'm an existing customer and I don't register?
-
-As of the June 30, 2023 implementation date, all customers are required to have submitted and received approval for registration forms to continue using Limited Access services. Allow 10 business days for review. Without an approved application, access to Limited Access features is not available.  
+ 
 
 ### I'm an existing customer who previously had access to Custom Neural Voice or Speaker Recognition. Do I need to reregister?
 
