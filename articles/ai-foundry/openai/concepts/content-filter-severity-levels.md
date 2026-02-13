@@ -19,11 +19,13 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Microsoft Foundry classifies harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and filter harmful content in your model deployments and agents.
+Microsoft Foundry content filtering ensures that AI-generated outputs align with ethical guidelines and safety standards. Content filtering capabilities classifies harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
+
+Guardrails in Microsoft Foundry ensures that AI-generated outputs align with ethical guidelines and safety standards. Guardrails classify harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure Guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
 
 For an overview of how guardrails work, see [Guardrails and controls overview](../../default/guardrails/guardrails-overview.md).
 
-The content safety system uses neural multiclass classification models to detect harmful content. Content detected at the "safe" severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
+The content safety system uses neural multiclass classification models to detect and filter harmful content for both text and image. Content detected at the "safe" severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 
 > [!NOTE]
 > The text content safety models for the hate, sexual, violence, and self-harm categories are specifically trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
@@ -57,9 +59,9 @@ When you configure a guardrail control for a harm category, you set a severity t
 | Threshold setting | Behavior |
 |-------------------|----------|
 | **Off** | Detection is disabled for this category. No content is flagged or blocked. |
-| **Low** | Flags content at low severity and above. Most restrictive setting. |
+| **Low** | Flags content at low severity and above. Least restrictive setting. |
 | **Medium** | Flags content at medium severity and above. |
-| **High** | Flags only the most severe content. Least restrictive setting. |
+| **High** | Flags only the most severe content. Most restrictive setting. |
 
 Content at the "safe" level is always annotated but never blocked, regardless of threshold setting. To configure these thresholds, see [How to configure guardrails and controls](../../default/guardrails/how-to-create-guardrails.md).
 
