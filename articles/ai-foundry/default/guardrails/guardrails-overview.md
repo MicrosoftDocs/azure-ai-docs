@@ -69,7 +69,7 @@ For content risks (Hate, Sexual, Self-harm, Violence), each control uses a sever
 
 | Severity level | Behavior |
 |---------------|----------|
-| **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](../../foundry-models/how-to/configure-content-filters.md |
+| **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](../../foundry-models/how-to/configure-content-filters.md) |
 | **Low** | Flags content at low severity and above. Most restrictive. |
 | **Medium** | Flags content at medium severity and above. |
 | **High** | Flags only the most severe content. Least restrictive. |
