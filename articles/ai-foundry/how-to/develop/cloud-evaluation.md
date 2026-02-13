@@ -79,8 +79,8 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 
 ## Prerequisites
 
-- A [Foundry project](../create-projects.md).
-- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4` or `gpt-5-chat`).
+- A [Foundry project](../../how-to/create-projects.md).
+- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
 
 ::: moniker range="foundry-classic"
 
@@ -90,8 +90,6 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 
 ::: moniker range="foundry"
 
-- A [Foundry project](../../how-to/create-projects.md).
-- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
 - **Azure AI User** role on the Foundry project.
 
 ::: moniker-end
