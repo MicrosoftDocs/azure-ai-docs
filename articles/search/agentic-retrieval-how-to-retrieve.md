@@ -106,9 +106,9 @@ https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-ba
 
 The MCP endpoint requires authentication via custom headers. You have two options:
 
-+ Pass a query key (recommended) or an admin key in the `api-key` header. The key grants read-only access, so no role assignment is needed. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
++ **(Recommended)** Pass a bearer token in the `Authorization` header. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. This approach avoids storing keys in configuration files. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
 
-+ (Recommended) Pass a bearer token in the `Authorization` header. The identity behind the token must have the **Search Index Data Reader** role assigned on the search service. This approach avoids storing keys in configuration files. For more information, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
++ Pass a query key or an admin key in the `api-key` header. We recommend a query key for read-only access, which is sufficient for retrieval and the safer choice. An admin key provides full read-write access to the search service. For more information, see [Connect to Azure AI Search using API keys](search-security-api-keys.md).
 
 > [!TIP]
 > Each MCP client configures custom headers differently. For example:
