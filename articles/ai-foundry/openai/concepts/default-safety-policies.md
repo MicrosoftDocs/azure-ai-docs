@@ -1,7 +1,7 @@
 ---
-title: Default guardrail policies for Azure OpenAI
+title: Default Guardrail policies for Azure OpenAI
 titleSuffix: Azure OpenAI
-description: Learn about the default guardrail policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
+description: Learn about the default Guardrail policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -15,7 +15,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# Default guardrail policies for Azure OpenAI
+# Default Guardrail policies for Azure OpenAI
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -23,9 +23,9 @@ ai-usage: ai-assisted
 
 Azure OpenAI in Microsoft Foundry Models includes default safety policies applied to all models (excluding Azure OpenAI Whisper). These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
 
-Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about guardrail and controls, visit our documentation describing [categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
+Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about Guardrail and Controls, visit our documentation describing [categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
 
-All safety policies are configurable. To learn more about configurability, see the documentation on [configuring guardrails](/azure/ai-foundry/openai/how-to/content-filters).
+All safety policies are configurable. To learn more about configurability, see the documentation on [configuring Guardrails](/azure/ai-foundry/openai/how-to/content-filters).
 
 When content is detected that exceeds the severity threshold for a risk category, the API request is blocked and returns an error response indicating which category triggered the filter. This applies to both user prompts (input) and model completions (output).
 
@@ -133,7 +133,7 @@ In addition to the above safety configurations, DALL-E 3 also comes with [prompt
 Text and image models support Drugs as an additional classification. This category covers advice related to Drugs and depictions of recreational and non-recreational drugs.
 -->
 
-Guardrails and controls ensure that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides guardrail capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content. This article outlines the key risk categories and their descriptions to help you better understand the built-in guardrail system.
+Guardrails and controls ensure that AI-generated outputs align with ethical guidelines and safety standards. Azure OpenAI provides Guardrail capabilities to help identify and mitigate risks associated with various categories of harmful or inappropriate content. This article outlines the key risk categories and their descriptions to help you better understand the built-in Guardrail system.
 
 
 > [!NOTE]

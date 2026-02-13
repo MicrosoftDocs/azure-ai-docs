@@ -28,7 +28,7 @@ Finally, we examine strategies for managing risks in production, including deplo
 In alignment with Microsoft's RAI practices, these recommendations are organized into three stages:
 
 * **Discover** agent quality, safety, and security risks before and after deployment. For example, test your agent with adversarial prompts to identify potential jailbreak vulnerabilities.
-* **Protect** – at both the model output and agent runtime levels – against security risks, undesirable outputs, and unsafe actions. Use content filters and guardrails to block harmful outputs before they reach users.
+* **Protect** – at both the model output and agent runtime levels – against security risks, undesirable outputs, and unsafe actions. Use content filters and Guardrails to block harmful outputs before they reach users.
 * **Govern** agents through tracing and monitoring tools and compliance integrations. Set up continuous monitoring to track agent behavior and detect anomalies in production.
 
 ## View and respond to security alerts

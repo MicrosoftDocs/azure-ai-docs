@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 ## Prerequisites 
 
 - An Azure account. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A Content Safety resource in a supported region. To create one, see <https://aka.ms/acs-create>.
+- An [Azure AI resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AIServices). 
 - An Azure AI Foundry project or hub.
 
 
@@ -31,9 +31,9 @@ Follow these steps to use the Content Safety **try it out** page:
 :::image type="content" source="/azure/ai-foundry/media/content-safety/try-it-out.png" alt-text="Screenshot of the try it out page for Guardrails & controls.":::
 
 
-## Use protected material detection
+## Use Protected material detection
 
-This feature scans AI-generated outputs for known protected text or protected code content.
+This feature scans AI-generated outputs for known protected text (for example, song lyrics, articles, recipes, selected web content) or protected code content.
 
 1. Select **Protected material detection for text** to scan text, or select **Protected material detection for code** to scan code.
 1. Paste text or code for testing. For best results, test LLM completions rather than user prompts.
