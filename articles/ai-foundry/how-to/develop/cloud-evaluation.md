@@ -51,20 +51,20 @@ Cloud evaluation results are stored in your Foundry project. You can review resu
 
 To run a cloud evaluation, you create an evaluation definition with your data schema and testing criteria (evaluators), then create an evaluation run. The run executes each evaluator against your data and returns scored results that you can poll for completion.
 
-### Choose a data source
+### Evaluation scenarios
 
 | Scenario | When to use | Data source type | Target |
 |----------|-------------|------------------|--------|
 | **[Dataset evaluation](#dataset-evaluation)** | Evaluate pre-computed responses in a JSONL file. | `jsonl` | — |
-| **[Model target evaluation](#model-target-evaluation)** | Generate and evaluate responses from a model at runtime. | `azure_ai_target_completions` | `azure_ai_model` |
-| **[Agent target evaluation](#agent-target-evaluation)** | Generate and evaluate responses from a Foundry agent at runtime. | `azure_ai_target_completions` | `azure_ai_agent` |
+| **[Model target evaluation](#model-target-evaluation)** | Provide queries and generate responses from a model at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_model` |
+| **[Agent target evaluation](#agent-target-evaluation)** | Provide queries and generate responses from a Foundry agent at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
 | **Red team evaluation** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
 > [!NOTE]
 > For red team evaluation details, see [Run AI red teaming evaluations](run-ai-red-teaming-cloud.md).
 
-### Source options
+### Input data source
 
 Most scenarios require input data. You can provide data in two ways:
 
@@ -72,6 +72,13 @@ Most scenarios require input data. You can provide data in two ways:
 |-------------|-------------|--------------|
 | `file_id` | Reference an uploaded dataset by ID. | `jsonl`, `azure_ai_target_completions`, `azure_ai_responses` |
 | `file_content` | Provide data inline in the request. | `jsonl`, `azure_ai_target_completions` |
+
+### Data schema and evaluators
+
+Every evaluation requires a `data_source_config` that tells the service what fields to expect in your data:
+
+- **`custom`** — You define an `item_schema` with your field names and types. Set `include_sample_schema` to `true` when using a target so evaluators can reference generated responses with `{{sample.output_text}}`.
+- **`azure_ai_source`** — The schema is inferred from the service. Set `"scenario"` to `"responses"` for agent response evaluation or `"red_team"` for [red teaming](run-ai-red-teaming-cloud.md).
 
 Each scenario requires evaluators that define your testing criteria. For guidance on selecting evaluators, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
 
