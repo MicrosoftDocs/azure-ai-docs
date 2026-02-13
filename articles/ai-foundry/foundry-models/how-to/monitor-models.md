@@ -202,20 +202,19 @@ To query metrics, follow these steps:
 
 1. Locate the Foundry resource you want to query.
 
-1. Under **Monitoring** in the sidebar menu, select **Logs**.
+1. Under **Monitoring** in the sidebar menu, select **Logs**. If the query window populates, close the window. 
 
-1. Select the Log Analytics workspace that you configured with diagnostics.
+1. A new query tab will populate. Select the **Sample mode** drop down and select **KQL mode**. 
 
-1. From the Log Analytics workspace page, under **Overview** on the sidebar menu, select Logs. The Azure portal displays a Queries window with sample queries and suggestions by default. You can close this window.
-
-1. To examine the Azure Metrics, use the table `AzureMetrics` for your resource, and run the following query:
+1. To examine the Azure Metrics, type a custom query or copy and paste the following query:
 
     ```kusto
     AzureMetrics
     | take 100
     | project TimeGenerated, MetricName, Total, Count, Maximum, Minimum, Average, TimeGrain, UnitName
     ```
-
+1. Select **Run**
+   
     > [!NOTE]
     > When you select **Monitoring** > **Logs** in the menu for your resource, Log Analytics opens with the query scope set to the current resource. The visible log queries include data from that specific resource only. To run a query that includes data from other resources or data from other Azure services, select **Logs** from the **Azure Monitor** menu in the Azure portal. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/logs/scope).
 
