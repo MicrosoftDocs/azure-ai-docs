@@ -11,9 +11,9 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Publish an agent to Agent 365
+# Publish an agent as a digital worker in Agent 365 
 
-Use this article to publish a Microsoft Foundry hosted agent to Microsoft Agent 365 (Agent 365) by running the FoundryA365 sample.
+Use this article to publish a Microsoft Foundry hosted agent to as a digital worker Microsoft Agent 365 (Agent 365) by running the FoundryA365 sample.
 
 The sample uses the Azure Developer CLI to create the required Azure resources, publish an agent application, and then guides you through admin approval and (optionally) Microsoft Teams configuration.
 
@@ -33,7 +33,6 @@ The sample uses the Azure Developer CLI to create the required Azure resources, 
 
 ## Before you begin
 
-- Hosted agents are only available in the **North Central US** region. Create all resources for this sample in that region.
 - Start Docker before you deploy.
 - Treat your deployment outputs as sensitive. The `azd env get-values` output can include IDs and endpoints you don't want to publish.
 

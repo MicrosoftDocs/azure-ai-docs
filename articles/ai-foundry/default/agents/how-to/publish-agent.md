@@ -21,6 +21,8 @@ This article shows you how to publish an agent, configure its authentication and
 - [Invoke your Agent Application using the Responses API protocol](./publish-responses.md)
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md) 
 
+If you specifically want to build and publish an agent as a digital worker in Agent 365. See this dedicated guide
+
 ## What is publishing?
 
 During development, you build and test your agent inside a Foundry project. The project gives you and your teammates a shared workspace, but it isn't designed for broad distribution — everyone with project access can interact with all agents and shares the same conversation context and permissions. Publishing is the step that moves an agent out of that shared development space and into a production-ready Azure resource.
