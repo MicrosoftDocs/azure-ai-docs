@@ -2,16 +2,16 @@ items:
 # Fundamentals
 - name: Observability basics
   href: ../../../concepts/observability.md
-- name: Transparency Note for safety evaluations
-  href: ../../../concepts/safety-evaluations-transparency-note.md
-- name: Built-in evaluators reference
-  href: ../../../concepts/built-in-evaluators.md
 - name: Rate limits, region and virtual network support 
   href: ../../../concepts/evaluation-regions-limits-virtual-network.md
+- name: Transparency Note for safety evaluations
+  href: ../../../concepts/safety-evaluations-transparency-note.md
 
 # Evaluation Types and Tools
 - name: Supported evaluators
   items:
+   - name: Built-in evaluators reference
+     href: ../../../concepts/built-in-evaluators.md
    - name: General purpose evaluators 
      href: ../../../concepts/evaluation-evaluators/general-purpose-evaluators.md
    - name: Textual similarity evaluators 
@@ -30,10 +30,10 @@ items:
 # Batch Evaluations
 - name: Batch evaluations
   items:
-   - name: Run evaluations in the cloud 
-     href: ../../../how-to/develop/cloud-evaluation.md
    - name: Evaluate your AI agents
      href: ../../observability/how-to/evaluate-agent.md
+   - name: Run evaluations in the cloud 
+     href: ../../../how-to/develop/cloud-evaluation.md
      displayName: code,accuracy,metrics
    - name: Run evaluations from the portal
      href: ../../../how-to/evaluate-generative-ai-app.md

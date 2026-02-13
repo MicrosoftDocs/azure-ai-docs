@@ -25,16 +25,9 @@ The AI application lifecycle requires robust evaluation frameworks to ensure AI 
 
 [!INCLUDE [evaluation-preview](../includes/evaluation-preview.md)]
 
-## Prerequisites
-
-- A [Microsoft Foundry project](../how-to/create-projects.md) with a deployed model or agent.
-- **Contributor** or **Owner** role on the Foundry project to configure evaluations.
-- (Optional) An [Azure Monitor Application Insights](/azure/azure-monitor/app/app-insights-overview) resource for production monitoring and tracing. You can [create a new resource](/azure/azure-monitor/app/create-workspace-resource) or [attach an existing one](../how-to/develop/trace-application.md). Required to enable tracing.
-- (Optional) The [Microsoft Foundry SDK](../how-to/develop/evaluate-sdk.md) for running evaluations within your development environment.
-
 ## What is observability?
 
-AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. Teams can trace and evaluate locally in their development environment, integrate automated quality gates into CI/CD pipelines (see [Evaluate with GitHub Actions](../how-to/evaluation-github-action.md) and [Evaluate with Azure DevOps](../how-to/evaluation-azure-devops.md)), and collect signals such as evaluation metrics, logs, traces, and model outputs to gain visibility into performance, quality, safety, and operational health.
+AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. Teams can trace, evaluate, integrate automated quality gates into CI/CD pipelines, and collect signals such as evaluation metrics, logs, traces, and model outputs to gain visibility into performance, quality, safety, and operational health.
 
 ## Core observability capabilities
 
@@ -96,9 +89,9 @@ Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generati
 
 ::: moniker range="foundry"
 
-- **Bring your own data**: Evaluate AI applications using your own data with quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). Use Foundry's evaluation wizard or [Foundry SDK](../how-to/develop/evaluate-sdk.md) and [view results in the Foundry portal](../how-to/evaluate-results.md).
+- **Bring your own data**: Evaluate AI applications using your own data with quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). Use Foundry's evaluation wizard or [Foundry SDK](../how-to/develop/cloud-evaluation.md) and [view results in the Foundry portal](../how-to/evaluate-results.md).
 
-- **AI red teaming agent**: The [AI red teaming agent](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex attacks using Microsoft's PyRIT framework to identify safety and security vulnerabilities before deployment. Best used with human-in-the-loop processes.
+- **AI red teaming agent**: The [AI red teaming agent](../how-to/develop/run-ai-red-teaming-cloud.md) simulates complex attacks using Microsoft's PyRIT framework to identify safety and security vulnerabilities before deployment. Best used with human-in-the-loop processes.
 
 You can also use [the Foundry portal](../how-to/evaluate-generative-ai-app.md) for testing generative AI applications.
 
@@ -146,13 +139,12 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 
 | Purpose | Process | Parameters, guidance, and samples |
 | -----| -----| ----|
-| How to set up tracing? | Configure distributed tracing | [Trace your application](../how-to/develop/trace-application.md) <br></br> [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md) |
-| What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/Sample_Agent_Functions.cs) |
-| What data should you use? | Upload or generate relevant dataset | [Synthetic dataset generation](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) <br></br> [Run AI red teaming in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md) |
+| How to set up tracing? | Configure distributed tracing | [Trace overview](../default/observability/concepts/trace-agent-concept.md) <br></br> [Trace with Agents SDK](../default/observability/how-to/trace-agent-setup.md) |
+| What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/tests/Samples/Evaluation) |
+| What data should you use? | Upload or generate relevant dataset | [Select or create a dataset](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) |
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../default/observability/how-to/evaluate-agent.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
 | How did my model/AI applicable perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../default/observability/how-to/cluster-analysis.md) |
 | How can I improve? | Make changes to model, app, or evaluators | If evaluation results didn't align to human feedback, adjust your evaluator. <br></br> If evaluation results aligned to human feedback but didn't meet quality/safety thresholds, apply targeted mitigations. Example: [Azure AI Content Safety](../ai-services/content-safety-overview.md) |
-| How to configure virtual network? | Set up virtual network isolation | [Virtual network support for evaluation](evaluation-regions-limits-virtual-network.md#virtual-network-support-for-evaluation) |
 
 ::: moniker-end
 

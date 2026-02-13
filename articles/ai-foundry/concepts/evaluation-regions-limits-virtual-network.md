@@ -1,5 +1,5 @@
 ---
-title: Rate limits, region and virtual network support for evaluation
+title: Rate limits, region, and virtual network support for evaluation
 titleSuffix: Microsoft Foundry
 description: Learn about region availability, rate limits, and virtual network support for evaluation in Microsoft Foundry.
 author: lgayhardt
@@ -11,7 +11,7 @@ ms.service: azure-ai-foundry
 monikerRange: 'foundry-classic || foundry'
 ---
 
-# Rate limits, region and virtual network support for evaluation
+# Rate limits, region, and virtual network support for evaluation
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]  
 
@@ -19,9 +19,9 @@ This article provides an overview of which regions support AI-assisted evaluator
 
 ## Region support
 
-Currently, certain AI-assisted evaluators are available only in the following regions:
+Certain AI-assisted evaluators and AI red teaming are available only in the following regions:
 
-| Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes | Groundedness Pro | Protected material |
+| Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes,  AI red teaming | Groundedness Pro | Protected material |
 |--|--|--|--|
 | East US 2 | Supported | Supported | Supported |
 | Sweden Central | Supported | Supported | N/A |
@@ -29,10 +29,7 @@ Currently, certain AI-assisted evaluators are available only in the following re
 | France Central | Supported | N/A | N/A |
 | Switzerland West | Supported | N/A | N/A |
 
-> [!NOTE]
-> Red teaming agent is available only in regions that support risk and safety evaluators.
-
-### Agent playground evaluation region support
+### Agent playground evaluation in the Foundry portal region support
 
 | Region | Status |
 |--|--|
@@ -45,7 +42,7 @@ Currently, certain AI-assisted evaluators are available only in the following re
 | Norway East | Supported |
 | Sweden Central | Supported |
 
-### Batch evaluation excluded regions
+### Unsupported regions for batch evaluation
 
 Batch evaluations aren't supported in the following regions:
 
@@ -55,7 +52,7 @@ Batch evaluations aren't supported in the following regions:
 - Southeast Asia
 - Spain Central
 
-### OpenAI grader excluded regions
+### Unsupported regions for OpenAI grader
 
 The following regions don't support OpenAI grader or custom code evaluator:
 
@@ -94,7 +91,12 @@ For network isolation purposes, you can bring your own virtual network for evalu
 
 ### Virtual network region support
 
-Bring your own virtual network for evaluation is supported in all regions except for Central India, East Asia, North Europe, and Qatar Central.
+Bring your own virtual network for evaluation is supported in all regions except:
+
+- Central India
+- East Asia
+- North Europe
+- Qatar Central
 
 ## Related content
 
