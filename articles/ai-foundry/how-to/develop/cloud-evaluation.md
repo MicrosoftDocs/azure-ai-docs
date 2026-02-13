@@ -63,10 +63,10 @@ Cloud evaluation supports the following scenarios:
 
 Most scenarios require input data. You can provide data in two ways:
 
-| Source type | Description | Supported by |
-|-------------|-------------|--------------|
-| `file_id` | Reference an uploaded dataset by ID. | `jsonl`, `azure_ai_target_completions`, `azure_ai_responses` |
-| `file_content` | Provide data inline in the request. | `jsonl`, `azure_ai_target_completions` |
+| Source type | Description |
+|-------------|-------------|
+| `file_id` | Reference an uploaded dataset by ID. |
+| `file_content` | Provide data inline in the request. |
 
 Every evaluation requires a `data_source_config` that tells the service what fields to expect in your data:
 
@@ -139,7 +139,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install azure-ai-projects azure-identity 
+pip install azure-ai-projects azure-identity openai
 ```
 
 ```python
@@ -421,6 +421,9 @@ Evaluate pre-computed responses in a JSONL file using the `jsonl` data source ty
 
 Specify the schema that matches your JSONL fields, and select the evaluators (testing criteria) to run. Use the `data_mapping` parameter to connect fields from your input data to evaluator parameters with `{{item.field}}` syntax. Your field names must match those in your JSONL file — for example, if your data has `"question"` instead of `"query"`, use `"{{item.question}}"` in the mapping.
 
+> [!NOTE]
+> Always include `data_mapping` with the required input fields for each evaluator. For the required parameters per evaluator, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
+
 # [Python](#tab/python)
 
 ```python
@@ -435,7 +438,6 @@ data_source_config = DataSourceConfigCustom(
         },
         "required": [],
     },
-    include_sample_schema=True,
 )
 
 testing_criteria = [
@@ -446,23 +448,31 @@ testing_criteria = [
         "initialization_parameters": {
             "deployment_name": model_deployment_name
         },
+        "data_mapping": {
+            "query": "{{item.query}}",
+            "response": "{{item.response}}",
+        },
     },
     {
         "type": "azure_ai_evaluator",
         "name": "violence",
         "evaluator_name": "builtin.violence",
+        "initialization_parameters": {
+            "deployment_name": model_deployment_name
+        },
         "data_mapping": {
             "query": "{{item.query}}",
             "response": "{{item.response}}",
-        },
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name
         },
     },
     {
         "type": "azure_ai_evaluator",
         "name": "f1",
         "evaluator_name": "builtin.f1_score",
+        "data_mapping": {
+            "response": "{{item.response}}",
+            "ground_truth": "{{item.ground_truth}}",
+        },
     },
 ]
 ```
@@ -486,8 +496,7 @@ curl --request POST \
           "ground_truth": { "type": "string" }
         },
         "required": []
-      },
-      "include_sample_schema": true
+      }
     },
     "testing_criteria": [
       {
@@ -496,18 +505,31 @@ curl --request POST \
         "evaluator_name": "builtin.coherence",
         "initialization_parameters": {
           "deployment_name": "gpt-5-mini"
+        },
+        "data_mapping": {
+          "query": "{{item.query}}",
+          "response": "{{item.response}}"
         }
       },
       {
         "type": "azure_ai_evaluator",
         "name": "violence",
         "evaluator_name": "builtin.violence",
+        "initialization_parameters": {
+          "deployment_name": "gpt-5-mini"
+        },
         "data_mapping": {
           "query": "{{item.query}}",
           "response": "{{item.response}}"
-        },
-        "initialization_parameters": {
-          "deployment_name": "gpt-5-mini"
+        }
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "f1",
+        "evaluator_name": "builtin.f1_score",
+        "data_mapping": {
+          "response": "{{item.response}}",
+          "ground_truth": "{{item.ground_truth}}"
         }
       }
     ]
@@ -538,7 +560,7 @@ eval_run = client.evals.runs.create(
         type="jsonl",
         source=SourceFileID(
             type="file_id",
-            id=dataset.id,
+            id=data_id,
         ),
     ),
 )
@@ -564,15 +586,37 @@ EVAL_ID=$(curl --silent --request POST \
           "ground_truth": { "type": "string" }
         },
         "required": []
-      },
-      "include_sample_schema": true
+      }
     },
     "testing_criteria": [
       {
         "type": "azure_ai_evaluator",
         "name": "coherence",
         "evaluator_name": "builtin.coherence",
-        "initialization_parameters": { "deployment_name": "gpt-5-mini" }
+        "initialization_parameters": { "deployment_name": "gpt-5-mini" },
+        "data_mapping": {
+          "query": "{{item.query}}",
+          "response": "{{item.response}}"
+        }
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "violence",
+        "evaluator_name": "builtin.violence",
+        "initialization_parameters": { "deployment_name": "gpt-5-mini" },
+        "data_mapping": {
+          "query": "{{item.query}}",
+          "response": "{{item.response}}"
+        }
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "f1",
+        "evaluator_name": "builtin.f1_score",
+        "data_mapping": {
+          "response": "{{item.response}}",
+          "ground_truth": "{{item.ground_truth}}"
+        }
       }
     ]
   }' | jq -r '.id')
@@ -674,12 +718,6 @@ testing_criteria = [
         },
     },
 ]
-
-eval_object = client.evals.create(
-    name="Model Target Evaluation",
-    data_source_config=data_source_config,
-    testing_criteria=testing_criteria,
-)
 ```
 
 ### Create evaluation and run
@@ -687,6 +725,12 @@ eval_object = client.evals.create(
 # [Python](#tab/python)
 
 ```python
+eval_object = client.evals.create(
+    name="Model Target Evaluation",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,
+)
+
 data_source = {
     "type": "azure_ai_target_completions",
     "source": {
@@ -850,12 +894,6 @@ testing_criteria = [
         },
     },
 ]
-
-eval_object = client.evals.create(
-    name="Agent Target Evaluation",
-    data_source_config=data_source_config,
-    testing_criteria=testing_criteria,
-)
 ```
 
 ### Create evaluation and run
@@ -863,6 +901,12 @@ eval_object = client.evals.create(
 # [Python](#tab/python)
 
 ```python
+eval_object = client.evals.create(
+    name="Agent Target Evaluation",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,
+)
+
 data_source = {
     "type": "azure_ai_target_completions",
     "source": {
@@ -938,7 +982,24 @@ Retrieve and evaluate Foundry agent responses by response IDs using the `azure_a
 
 A **response ID** is a unique identifier returned each time a Foundry agent generates a response. You can collect response IDs from agent interactions by using the [Responses API](/rest/api/aifoundry) or from your application's trace logs. Provide the IDs inline as file content, or upload them as a dataset (see [Prepare input data](#uploading-evaluation-data)).
 
+### Collect response IDs
+
+Each call to the Responses API returns a response object with a unique `id` field. Collect these IDs from your application's interactions, or generate them directly:
+
+```python
+# Generate response IDs by calling a model through the Responses API
+response = client.responses.create(
+    model=model_deployment_name,
+    input="What is machine learning?",
+)
+print(response.id)  # Example: resp_abc123
+```
+
+You can also collect response IDs from agent interactions in your application's trace logs or monitoring pipeline. Each response ID uniquely identifies a stored response that the evaluation service can retrieve.
+
 ### Create evaluation and run
+
+# [Python](#tab/python)
 
 ```python
 data_source_config = {"type": "azure_ai_source", "scenario": "responses"}
@@ -964,11 +1025,7 @@ eval_object = client.evals.create(
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
-```
 
-# [Python](#tab/python) 
-
-```python
 data_source = {
     "type": "azure_ai_responses",
     "item_generation_params": {
