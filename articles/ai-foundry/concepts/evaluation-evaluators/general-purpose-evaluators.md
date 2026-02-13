@@ -19,12 +19,9 @@ ms.custom:
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Microsoft Foundry supports evaluating:
-
-- [Coherence](#coherence)
-- [Fluency](#fluency)
-
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
+AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Microsoft Foundry supports evaluating coherence and fluency.
 
 ::: moniker range="foundry-classic"
 
@@ -50,7 +47,7 @@ model_config = AzureOpenAIModelConfiguration(
 
 ### Evaluator model support
 
-Foundry supports  AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the large language model judge (LLM-judge) depending on the evaluators:
+Foundry supports  AzureOpenAI or OpenAI [reasoning models](../../openai/how-to/reasoning.md) and non-reasoning models for the large language model judge (LLM-judge) depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|
@@ -64,7 +61,7 @@ For complex evaluation that requires refined reasoning, we recommend a strong re
 
 ## Coherence
 
-`CoherenceEvaluator` measures the logical and orderly presentation of ideas in a response, which allows the reader to easily follow and understand the writer's train of thought. A *coherent* response directly addresses the question with clear connections between sentences and paragraphs, using appropriate transitions and a logical sequence of ideas. Higher scores mean better coherence.
+The coherence evaluator measures the logical and orderly presentation of ideas in a response, which allows the reader to easily follow and understand the writer's train of thought. A *coherent* response directly addresses the question with clear connections between sentences and paragraphs, using appropriate transitions and a logical sequence of ideas. Higher scores mean better coherence.
 
 ::: moniker range="foundry-classic"
 
@@ -98,7 +95,7 @@ The numerical score on a Likert scale (integer 1 to 5). A higher score is better
 
 ## Fluency
 
-`FluencyEvaluator` measures the effectiveness and clarity of written communication. This measure focuses on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. It assesses how smoothly ideas are conveyed and how easily the reader can understand the text.
+The fluency evaluator measures the effectiveness and clarity of written communication. This measure focuses on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. It assesses how smoothly ideas are conveyed and how easily the reader can understand the text.
 
 ::: moniker range="foundry-classic"
 
@@ -192,136 +189,87 @@ While F1 score outputs a numerical score on 0-1 float scale, the other evaluator
 
 ::: moniker range="foundry"
 
-## Example using coherence and fluency
+## Using general-purpose evaluators
 
-```python
-from dotenv import load_dotenv
-import json
-import os
-import time
-from pprint import pprint
+General-purpose evaluators assess the quality of AI-generated text independent of specific use cases.
 
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from openai.types.evals.create_eval_jsonl_run_data_source_param import (
-    CreateEvalJSONLRunDataSourceParam,
-    SourceFileContent,
-    SourceFileContentContent,
-)
-load_dotenv()
+Examples:
 
-def main() -> None:
-    endpoint = os.environ[
-        "AZURE_AI_PROJECT_ENDPOINT"
-    ]  # Sample : https://<account_name>.services.ai.azure.com/api/projects/<project_name>
-    model_deployment_name = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "")  # Sample : gpt-4o-mini
+- [Coherence sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_coherence.py)
+- [Fluency sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_fluency.py)
 
-    with DefaultAzureCredential() as credential:
-        with AIProjectClient(
-            endpoint=endpoint, credential=credential
-        ) as project_client:
-            print("Creating an OpenAI client from the AI Project client")
+| Evaluator | What it measures | Required inputs | Required parameters |
+|-----------|------------------|-----------------|---------------------|
+| `builtin.coherence` | Logical flow and organization of ideas | `query`, `response` | `deployment_name` |
+| `builtin.fluency` | Grammatical accuracy and readability | `response` | `deployment_name` |
 
-            client = project_client.get_openai_client()
+### Example input
 
-            data_source_config = {
-                "type": "custom",
-                "item_schema": {
-                    "type": "object",
-                    "properties": {"query": {"type": "string"}, "response": {"type": "string"}},
-                    "required": [],
-                },
-                "include_sample_schema": True,
-            }
+Your test dataset should contain the fields referenced in your data mappings:
 
-            testing_criteria = [
-                {
-                    "type": "azure_ai_evaluator",
-                    "name": "coherence",
-                    "evaluator_name": "builtin.coherence",
-                    "initialization_parameters": {"deployment_name": f"{model_deployment_name}"},
-                    "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
-                },
-                {
-                    "type": "azure_ai_evaluator",
-                    "name": "fluency",
-                    "evaluator_name": "builtin.fluency",
-                    "initialization_parameters": {"deployment_name": f"{model_deployment_name}"},
-                    "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
-                }
-            ]
-
-            print("Creating Eval Group")
-            eval_object = client.evals.create(
-                name="Test Coherence Evaluator with inline data",
-                data_source_config=data_source_config,
-                testing_criteria=testing_criteria,
-            )
-            print(f"Eval Group created")
-
-            print("Get Eval Group by Id")
-            eval_object_response = client.evals.retrieve(eval_object.id)
-            print("Eval Run Response:")
-            pprint(eval_object_response)
-
-            # Sample inline data
-            success_query = "What is the capital/major city of France?"
-            success_response = "The capital/major city of France is Paris."
-
-            # Failure example - incoherent response
-            failure_query = "What is the capital/major city of France?"
-            failure_response = "France capital/major city is... well, the city where government sits is Paris but no wait, Lyon is bigger actually maybe Rome? The French people live in many cities but the main one, I think it's definitely Paris or maybe not, depends on what you mean by capital/major city."
-
-            print("Creating Eval Run with Inline Data")
-            eval_run_object = client.evals.runs.create(
-                eval_id=eval_object.id,
-                name="inline_data_run",
-                metadata={"team": "eval-exp", "scenario": "inline-data-v1"},
-                data_source=CreateEvalJSONLRunDataSourceParam(
-                    type="jsonl",
-                    source=SourceFileContent(
-                        type="file_content",
-                        content=[
-                            # Success example - coherent response
-                            SourceFileContentContent(item={"query": success_query, "response": success_response}),
-                            # Failure example - incoherent response
-                            SourceFileContentContent(item={"query": failure_query, "response": failure_response}),
-                        ],
-                    ),
-                ),
-            )
-
-            print(f"Eval Run created")
-            pprint(eval_run_object)
-
-            print("Get Eval Run by Id")
-            eval_run_response = client.evals.runs.retrieve(run_id=eval_run_object.id, eval_id=eval_object.id)
-            print("Eval Run Response:")
-            pprint(eval_run_response)
-
-            print("\n\n----Eval Run Output Items----\n\n")
-
-            while True:
-                run = client.evals.runs.retrieve(run_id=eval_run_response.id, eval_id=eval_object.id)
-                if run.status == "completed" or run.status == "failed":
-                    output_items = list(client.evals.runs.output_items.list(run_id=run.id, eval_id=eval_object.id))
-                    pprint(output_items)
-                    print(f"Eval Run Status: {run.status}")
-                    print(f"Eval Run Report URL: {run.report_url}")
-                    break
-                time.sleep(5)
-                print("Waiting for eval run to complete...")
-
-
-if __name__ == "__main__":
-    main()
+```jsonl
+{"query": "What are the benefits of renewable energy?", "response": "Renewable energy reduces carbon emissions, lowers long-term costs, and provides energy independence."}
+{"query": "How does photosynthesis work?", "response": "Plants convert sunlight, water, and carbon dioxide into glucose and oxygen through chlorophyll in their leaves."}
 ```
 
-For more details, see the [complete working sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_coherence.py).
+### Configuration example
+
+**Data mapping syntax:**
+
+- `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
+- `{{sample.output_text}}` references response text generated or retrieved during evaluation. Use this when evaluating with a model target or agent target.
+
+```python
+testing_criteria = [
+    {
+        "type": "azure_ai_evaluator",
+        "name": "coherence",
+        "evaluator_name": "builtin.coherence",
+        "initialization_parameters": {"deployment_name": model_deployment},
+        "data_mapping": {"query": "{{item.query}}", "response": "{{item.response}}"},
+    },
+    {
+        "type": "azure_ai_evaluator",
+        "name": "fluency",
+        "evaluator_name": "builtin.fluency",
+        "initialization_parameters": {"deployment_name": model_deployment},
+        "data_mapping": {"response": "{{item.response}}"},
+    },
+]
+```
+
+See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+
+### Example output
+
+These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold are considered passing. Key output fields:
+
+```json
+{
+    "type": "azure_ai_evaluator",
+    "name": "Coherence",
+    "metric": "coherence",
+    "score": 4,
+    "label": "pass",
+    "reason": "The response directly addresses the question with clear, logical connections between ideas.",
+    "threshold": 3,
+    "passed": true
+}
+```
 
 ::: moniker-end
 
 ## Related content
 
+::: moniker range="foundry-classic"
+
 - [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+
+::: moniker-end

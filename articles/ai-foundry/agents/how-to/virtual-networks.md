@@ -254,6 +254,14 @@ az provider register --namespace 'Microsoft.ContainerService'
 
 **Solution**: This error appears when you try to delete your secured standard template set-up in Azure and did not correctly delete all resources. One solution is to navigate to your Foundry resource page in the Azure portal and select **Manage deleted resources**. From there, purge the resource that the agent was associated with for this virtual network. The other option is to run the `deleteCaphost.sh` script in the secured standard template. 
 
+ 
+
+`"Timeout of 60000ms exceeded" error when loading the Agent pages in the AI Foundry project`
+
+**Solution**: The AI Foundry project has issues communicating with Cosmos DB to create Agents. Verify connectivity to Cosmos DB (Private Endpoint and DNS).
+When using a [firewall on the agents subnet](../how-to/virtual-networks.md#known-limitations), make sure it allows access to required Fully Qualified Domain Names (FQDNs).
+These FQDNs are listed under **Managed Identity** in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article. You can also add the Service Tag **AzureActiveDirectory**.
+
 ## Next steps
 
 You've now successfully configured a network-secure account and project, use the [quickstart](../quickstart.md) to create your first agent. 

@@ -8,7 +8,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 monikerRange: 'foundry-classic || foundry'
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 ---
@@ -21,16 +21,19 @@ Direct preference optimization (DPO) is an alignment technique for large languag
 
 DPO is especially useful in scenarios where there's no clear-cut correct answer, and subjective elements like tone, style, or specific content preferences are important. This approach also enables the model to learn from both positive examples (what's considered correct or ideal) and negative examples (what's less desired or incorrect).
 
-DPO is believed to be a technique that will make it easier for customers to generate high-quality training data sets. While many customers struggle to generate sufficient large data sets for supervised fine-tuning, they often have preference data already collected based on user logs, A/B tests, or smaller manual annotation efforts.
+DPO makes it easier for you to generate high-quality training datasets. While many organizations struggle to generate sufficiently large datasets for supervised fine-tuning, they often have preference data already collected based on user logs, A/B tests, or smaller manual annotation efforts.
 
 ## Direct preference optimization dataset format
 
-Direct preference optimization files have a different format than supervised fine-tuning. Customers provide a "conversation" containing the system message and the initial user message, and then "completions" with paired preference data. Users can only provide two completions.
+Direct preference optimization files have a different format than supervised fine-tuning. You provide a "conversation" containing the system message and the initial user message, and then "completions" with paired preference data. You can only provide two completions.
 
-Three top-level fields: `input`, `preferred_output` and `non_preferred_output`
+The dataset uses three top-level fields:
 
-- Each element in the preferred_output/non_preferred_output must contain at least one assistant message
-- Each element in the preferred_output/non_preferred_output can only have roles in (assistant, tool)
+| Field | Required | Description |
+|-------|----------|-------------|
+| `input` | Yes | Contains the system message and initial user message |
+| `preferred_output` | Yes | Must contain at least one assistant message (roles: assistant, tool only) |
+| `non_preferred_output` | Yes | Must contain at least one assistant message (roles: assistant, tool only) |
 
 ```json
 {  
@@ -53,9 +56,15 @@ Training datasets must be in `jsonl` format:
 
 ## Direct preference optimization model support
 
-- `gpt-4o-2024-08-06`,`gpt-4.1-2025-04-14`,`gpt-4.1-mini-2025-04-14`  supports direct preference optimization in its respective fine-tuning regions. Latest region availability is updated in the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models)
+The following models support direct preference optimization fine-tuning:
 
-Users can use preference fine tuning with base models as well as models that have already been fine-tuned using supervised fine-tuning as long as they are of a supported model/version.
+| Model | DPO support | Region availability |
+|-------|-------------|---------------------|
+| `gpt-4o-2024-08-06` | Yes | [See fine-tuning models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models) |
+| `gpt-4.1-2025-04-14` | Yes | [See fine-tuning models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models) |
+| `gpt-4.1-mini-2025-04-14` | Yes | [See fine-tuning models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models) |
+
+You can use preference fine-tuning with base models and with models already fine-tuned using supervised fine-tuning, as long as they're a supported model and version.
 
 ::: moniker range="foundry"
 
@@ -67,7 +76,7 @@ Users can use preference fine tuning with base models as well as models that hav
 4. Select a model and then select the method of customization **Direct Preference Optimization**.
 5. Upload datasets – training and validation. Preview as needed.
 6. Select hyperparameters, defaults are recommended for initial experimentation.
-7. Review the selections and create a fine tuning job.
+7. Review the selections and create a fine-tuning job.
 
 ::: moniker-end
 
@@ -79,7 +88,7 @@ Users can use preference fine tuning with base models as well as models that hav
 2. Select the model and then select the method of customization **Direct Preference Optimization**.
 3. Upload datasets – training and validation. Preview as needed.
 4. Select hyperparameters, defaults are recommended for initial experimentation.
-5. Review the selections and create a fine tuning job.
+5. Review the selections and create a fine-tuning job.
 
 ::: moniker-end
 
@@ -97,5 +106,5 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs'
 ## Next steps
 
 - Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md).
-- Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models)
+- Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 - Learn more about [Azure OpenAI quotas](../quotas-limits.md)
