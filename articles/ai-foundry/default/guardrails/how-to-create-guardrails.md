@@ -24,7 +24,7 @@ For background on guardrails concepts, risks, and intervention points, see [Guar
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - At least one model deployment in your project.
-- **Cognitive Services Contributor** role or higher on the Azure AI resource.
+- **Azure AI Account Owner** role or higher on the Azure AI resource.
 
 
 ## Create a guardrail in Foundry
@@ -172,11 +172,11 @@ When annotations are enabled, the following information is returned via the API 
 - **Severity level** (safe, low, medium, or high) within each content category
 - **Filtering status** (true or false)
 
-### Optional detection annotations
+### Optional model annotations
 
-Optional detection capabilities can be set to annotate mode (returns information when content is flagged, but not filtered) or filter mode (returns information when content is flagged and filtered).
+Optional model annotations can be set to annotate mode (returns information when content is flagged, but not filtered) or filter mode (returns information when content is flagged and filtered).
 
-| Detection capability | Output |
+| Model | Output |
 |----------------------|--------|
 | User prompt attack | - detected (true or false)<br>- filtered (true or false) |
 | Indirect attacks | - detected (true or false)<br>- filtered (true or false) |
@@ -477,10 +477,9 @@ If a configuration is specified that does not exist, the following error message
 Follow these practices when configuring guardrails:
 
 - **Test before production**: Use the playground to test guardrail behavior before applying changes to production deployments.
-- **Start restrictive, then relax**: Begin with lower severity thresholds and adjust upward only after confirming acceptable behavior.
+- **Start restrictive, then relax**: Begin with higher severity thresholds and adjust downward only after confirming acceptable behavior. 
 - **Red-team your configuration**: Run red-team testing, stress-testing, and analysis to identify potential harms specific to your model, application, and deployment scenario.
 - **Measure after changes**: After implementing or updating guardrails, repeat your measurement process to verify effectiveness.
-- **Use separate guardrails for agents and models**: Agents and models have different risk profiles. Configure separate guardrails to address each appropriately.
 
 For full Responsible AI guidance, see the [Responsible AI Overview](../../responsible-ai/openai/overview.md).
 
