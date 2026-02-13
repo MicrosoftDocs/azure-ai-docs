@@ -14,17 +14,17 @@ ms.date: 02/14/2026
 
 # Tutorial: Extract, chunk, and embed multimodal content
 
-In this tutorial, you will build a multimodal indexing pipeline that:
+In this tutorial, you will build a multimodal indexing pipeline that performs these tasks:
 
 > [!div class="checklist"]
 >
-> + Extracts and and chunks text and and image content
-> + Vectorizes text and image content for similarity search
-> + Stores reshaped and cropped images in a knowledge store for retrieval by your app
-
-Source data is a 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with original text.
+> + Extract and and chunk text and images
+> + Vectorize text and images for similarity search
+> + Send cropped images to a knowledge store for retrieval by your app
 
 Multimodal indexing is implemented through a combination of skills that bring Foundry models and APIs into an indexer pipeline.
+
+Sample data is a 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with original text.
 
 <!-- + An indexer and skillset to create an indexing pipeline that includes AI enrichment through skills.
 
@@ -51,15 +51,15 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) has limited regional availability. When you create a Foundry resource, [choose a region](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) that provides the multimodal embeddings 4.0 API.
 
-## Configure access
+### Configure access
 
 [!INCLUDE [resource authentication](includes/resource-authentication.md)]
 
-## Get endpoint
+### Get endpoint
 
 [!INCLUDE [resource endpoint](includes/resource-endpoint.md)]
 
-## Prepare data
+### Prepare data
 
 Azure Storage provides the sample data and hosts the knowledge store. A search service managed identity needs:
 
@@ -110,7 +110,7 @@ The index, data source, and indexer definitions are the same for all scenarios, 
 | Document Extraction and Text Split | Uses built-in skills to extract text and images, and chunk text based on fixed size. Usage is free of charge. |
 | Document Layout | Calls Content Understanding APIs to extract text and images, and chunk text based on document structure. Usage is based on pay-as-you-go pricing. |
 
-### Describe images
+#### Describe images
 
 | Skills | Explanation |
 |--|--|
@@ -179,9 +179,14 @@ To get the Azure AI Search endpoint and API key:
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
-## Create an indexer pipeline
+## Set up an indexer pipeline
 
-TBD
+There are four components of an indexer pipeline: data source, index, skillset, and indexer. You create all four objects in this section, except that skill definitions are covered in separate sections related to chunking, image descriptions, and vectorization. We approach skills this way to bring more focus on the behaviors that you want to effect.
+
++ [Create a data source](#create-a-data-source)
++ [Create an index](#create-an-index)
++ [Create a basic skillset definition](#stub-out-a-skillset-definition)
++ [Create (and run) an indexer](#create-and-run-an-indexer)
 
 ### Create a data source
 
