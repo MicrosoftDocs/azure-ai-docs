@@ -546,7 +546,7 @@ eval_run = client.evals.runs.create(
         type="jsonl",
         source=SourceFileID(
             type="file_id",
-            id=dataset.id if dataset.id else "",
+            id=dataset.id,
         ),
     ),
 )
@@ -765,7 +765,7 @@ Send queries to a Foundry agent at runtime and evaluate the responses using the 
 
 ### Define the message template and target
 
-The `input_messages` template controls how queries are sent to the agent. Use `{{item.query}}` to reference fields from your input data. Specify the agent to evaluate by name and version:
+The `input_messages` template controls how queries are sent to the agent. Use `{{item.query}}` to reference fields from your input data. Specify the agent to evaluate by name:
 
 ```python
 input_messages = {
@@ -793,7 +793,7 @@ input_messages = {
 target = {
     "type": "azure_ai_agent",
     "name": "my-agent",
-    "version": "1"
+    "version": "1"  # Optional. Uses latest version if omitted.
 }
 ```
 
@@ -806,6 +806,9 @@ When the agent generates responses at runtime, use `{{sample.*}}` variables in `
 | `{{sample.output_text}}` | The agent's plain text response. | Evaluators that expect a string response (for example, `coherence`, `violence`). |
 | `{{sample.output_items}}` | The agent's structured JSON output, including tool calls. | Evaluators that need full interaction context (for example, `task_adherence`). |
 | `{{item.field}}` | A field from your input data. | Input fields like `query` or `ground_truth`. |
+
+> [!TIP]
+> The `query` field can contain structured JSON, including system messages and conversation history. Some agent evaluators such as `task_adherence` use this context for more accurate scoring. For details on query formatting, see [agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
 
 ```python
 data_source_config = DataSourceConfigCustom(
