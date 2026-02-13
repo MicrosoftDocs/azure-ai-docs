@@ -605,40 +605,40 @@ Send queries to a deployed model at runtime and evaluate the responses using the
 > [!TIP]
 > Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
 
-### Define the data source and model target
+### Define the message template and target
 
-Specify the uploaded dataset, message template, target model, and sampling parameters. The `model` and `sampling_params` go inside the `target` block:
+The `input_messages` template controls how queries are sent to the model. Use `{{item.query}}` to reference fields from your input data. Specify the model to evaluate and optional sampling parameters:
 
 ```python
-data_source = {
-    "type": "azure_ai_target_completions",
-    "source": {
-        "type": "file_id",
-        "id": data_id,
-    },
-    "input_messages": {
-        "type": "template",
-        "template": [
-            {
-                "type": "message",
-                "role": "user",
-                "content": {
-                    "type": "input_text",
-                    "text": "{{item.query}}",
-                },
-            },
-        ],
-    },
-    "target": {
-        "type": "azure_ai_model",
-        "model": "gpt-4o-mini",
-        "sampling_params": {
-            "top_p": 1.0,
-            "max_completion_tokens": 2048,
-        },
-    },
+input_messages = {
+    "type": "template",
+    "template": [
+        {
+            "type": "message",
+            "role": "user",
+            "content": {
+                "type": "input_text",
+                "text": "{{item.query}}"
+            }
+        }
+    ]
 }
 
+target = {
+    "type": "azure_ai_model",
+    "model": "gpt-4o-mini",
+    "sampling_params": {
+        "top_p": 1.0,
+        "max_completion_tokens": 2048,
+    },
+}
+```
+
+### Set up evaluators and data mappings
+
+When the model generates responses at runtime, use `{{sample.output_text}}` in `data_mapping` to reference the model's output. Use `{{item.field}}` to reference fields from your input data.
+
+```python
 data_source_config = {
     "type": "custom",
     "item_schema": {
@@ -687,6 +687,16 @@ eval_object = client.evals.create(
 # [Python](#tab/python)
 
 ```python
+data_source = {
+    "type": "azure_ai_target_completions",
+    "source": {
+        "type": "file_id",
+        "id": data_id,
+    },
+    "input_messages": input_messages,
+    "target": target,
+}
+
 eval_run = client.evals.runs.create(
     eval_id=eval_object.id,
     name="model-target-evaluation",
