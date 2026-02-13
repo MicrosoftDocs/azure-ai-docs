@@ -29,9 +29,8 @@ In this article, you learn how to:
 ## Prerequisites
 
 - A [Foundry project](../../../how-to/create-projects.md) with an [agent](../../../agents/overview.md).
+- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
 - **Azure AI User** role on the Foundry project.
-- A model deployment to act as the judge for AI-assisted evaluators.
-- Python 3.9 or later.
 
 > [!NOTE]
 > Some evaluation features have regional restrictions. See [supported regions](../../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
