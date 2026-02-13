@@ -1,5 +1,5 @@
 ---
-title: Manage agents in Microsoft Foundry Control Plane
+title: Manage agents at scale in Microsoft Foundry Control Plane
 description: Learn how to view your agent inventory, monitor agent health, and perform lifecycle operations by using Microsoft Foundry Control Plane.
 author: santiagxf
 ms.author: scottpolly
@@ -246,7 +246,8 @@ If metrics like error rate, token usage, or cost don't appear for an agent:
 
 1. Verify that [Application Insights is configured](monitoring-across-fleet.md#configure-monitoring) for the resource that hosts the agent.
 1. Confirm you have the [required permissions](monitoring-across-fleet.md#prerequisites) to view Application Insights data and cost metrics.
-1. Wait up to 15 minutes for data to propagate after initial configuration.
+1. Run the agent after you configure Application Insights. Metrics and traces are collected only for runs that occur after configuration. Past runs aren't retroactively captured.
+1. Wait up to 15 minutes for data to propagate after the first post-configuration run.
 
 ### Agent doesn't appear in inventory
 
