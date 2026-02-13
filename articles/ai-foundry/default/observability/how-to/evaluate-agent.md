@@ -29,6 +29,7 @@ In this article, you learn how to:
 ## Prerequisites
 
 - A [Foundry project](../../../how-to/create-projects.md) with an [agent](../../../agents/overview.md).
+- **Azure AI User** role on the Foundry project.
 - A model deployment to act as the judge for AI-assisted evaluators.
 - Python 3.9 or later.
 
