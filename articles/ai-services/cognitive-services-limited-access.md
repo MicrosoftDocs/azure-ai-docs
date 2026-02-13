@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: concept-article
-ms.date: 10/02/2025
+ms.date: 02/13/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 # Limited Access features for Foundry Tools
@@ -29,9 +30,12 @@ The following services are Limited Access:
 - [Speaker Recognition](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition): All features 
 - [Face](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity): Identify and Verify features, face ID property
 - [Vision](/azure/ai-foundry/responsible-ai/computer-vision/limited-access): Celebrity Recognition feature
-- [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/limited-access): Azure OpenAI in Foundry Models, modified abuse monitoring, and modified content filters
+- [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/limited-access): Modification of Guardrails and Controls (content filters) and/or abuse monitoring. Standard Azure OpenAI usage does not require Limited Access registration.
 
-Features of these services that aren't listed are available without registration. 
+Features of these services that aren't listed are available without registration.
+
+> [!NOTE]
+> Each service may have additional prerequisites beyond Limited Access approval. See individual service documentation for detailed requirements. 
 
 ## FAQ about Limited Access
 
@@ -62,18 +66,24 @@ If you're not a managed customer, we invite you to submit an application using t
 
 Managed customers work with Microsoft account teams. We invite you to submit a registration form for the features you'd like to use, and we'll verify your eligibility for access. We aren't able to accept requests to become a managed customer at this time.
 
+### What happens after my application is approved?
+
+Once approved, you'll receive:
+1. Email confirmation with approval details
+2. Access to the approved Limited Access features in your Azure subscription
+3. Documentation links for getting started with your approved service
+
+You can immediately begin using the approved features through the Azure portal or SDKs.
+
 ### What happens if I'm an existing customer and I don't register?
 
-Existing customers have until June 30, 2023 to submit a registration form and be approved to continue using Limited Access services after June 30, 2023. Allow 10 business days for review. Without an approved application, you will be denied access after June 30, 2023.  
+As of the June 30, 2023 implementation date, all customers are required to have submitted and received approval for registration forms to continue using Limited Access services. Allow 10 business days for review. Without an approved application, access to Limited Access features is not available.  
 
-### I'm an existing customer who applied for access to Custom Neural Voice or Speaker Recognition. Do I have to register to keep using these services?
+### I'm an existing customer who previously had access to Custom Neural Voice or Speaker Recognition. Do I need to reregister?
 
-We're always looking for opportunities to improve our Responsible AI program, and Limited Access is an update to our service gating processes. If you previously applied for and were granted access to Custom Neural Voice or Speaker Recognition, we request that you submit a new registration form to continue using these services beyond June 30, 2023. 
+The Limited Access policy update was implemented on June 30, 2023. If you previously applied for and were granted access to Custom Neural Voice or Speaker Recognition, you were required to submit a new registration form by that date.
 
-If you're an existing customer using Custom Neural Voice or Speaker Recognition on June 21, 2022, you have until June 30, 2023 to submit a registration form with your selected use case and receive approval to continue using these services after June 30, 2023. We recommend allowing 10 days for application processing. Existing customers can continue using the service until June 30, 2023, after which they must be approved for access. The registration forms can be found here: 
-
-- [Custom Neural Voice](https://aka.ms/customneural): Pro features 
-- [Speaker Recognition](https://aka.ms/azure-speaker-recognition): All features 
+If you currently need access to these services, submit a registration form using the links in the "How do I register for access?" section above. We recommend allowing 10 business days for application processing. 
 
 ### What if my use case isn't on the registration form?
 
@@ -87,8 +97,32 @@ For more information about supported regions for Custom Neural Voice and Speaker
 
 ### What happens to my data if my application is denied?
 
-If you're an existing customer and your application for access is denied, you can no longer use Limited Access features after June 30, 2023. Your data is subject to Microsoft's [data retention policies](https://www.microsoft.com/trust-center/privacy/data-management#leave).
+If your application for access is denied, you cannot use Limited Access features. Your data is subject to Microsoft's [data retention policies](https://www.microsoft.com/trust-center/privacy/data-management#leave).
+## Troubleshooting registration
 
+### Form submission errors
+
+- Ensure you're using a corporate email address (personal emails are automatically rejected)
+- Verify all required fields are completed
+- Check that you've selected a use case from the provided list
+
+### Application denied
+
+- Review the [eligibility criteria](#who-is-eligible-to-use-limited-access-services)
+- Confirm you're a Microsoft-managed customer
+- Contact your Microsoft account team to discuss eligibility programs
+
+### Resubmitting an application
+
+- You may resubmit after addressing the reasons for initial denial
+- Include additional information about your use case and business context
 ## Help and support
 
 To report abuse of Limited Access services, see the [MSRC reporting portal](https://aka.ms/reportabuse).
+
+## Related content
+
+- [Responsible AI overview](/azure/ai-foundry/responsible-use-of-ai-overview)
+- [Azure OpenAI Limited Access details](/azure/ai-foundry/responsible-ai/openai/limited-access)
+- [Foundry Tools overview](/azure/ai-services/what-are-ai-services)
+- [Azure AI Principles](https://www.microsoft.com/ai/responsible-ai)
