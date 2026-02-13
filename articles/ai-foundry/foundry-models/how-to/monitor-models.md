@@ -202,7 +202,7 @@ To query metrics, follow these steps:
 
 1. Locate the Foundry resource you want to query.
 
-1. Under **Monitoring** in the sidebar menu, select **Logs**. If the query window populates, close the window. 
+1. Under **Monitoring** in the sidebar menu, select **Logs**. If the query window options populate, close the window. 
 
 1. A new query tab will populate. Select the **Sample mode** drop down and select **KQL mode**. 
 
