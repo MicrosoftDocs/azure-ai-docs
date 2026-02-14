@@ -83,12 +83,6 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-5-mini`).
 - **Azure AI User** role on the Foundry project.
 
-::: moniker range="foundry-classic"
-
-[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
-
-::: moniker-end
-
 > [!NOTE]
 > Some evaluation features have regional restrictions. See [supported regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
 
@@ -139,7 +133,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install azure-ai-projects azure-identity openai
+pip install "azure-ai-projects>=2.0.0b1" azure-identity openai
 ```
 
 ```python
@@ -1170,13 +1164,13 @@ For aggregate results over multiple data examples (a dataset), the average rate 
 
 ::: moniker range="foundry"
 
-### Job stuck in running state
+### Job running for a long time
 
-Your evaluation job might remain in the **Running** state for an extended period. This typically occurs when the Azure OpenAI model you select doesn't have enough capacity.
+Your evaluation job might remain in the **Running** state for an extended period. This typically occurs when the Azure OpenAI model deployment doesn't have enough capacity, causing the service to retry requests.
 
 **Resolution:**
 
-1. Cancel the current evaluation job using `client.evals.runs.cancel(eval_id=eval_id, run_id=run_id)`.
+1. Cancel the current evaluation job using `client.evals.runs.cancel(run_id, eval_id=eval_id)`.
 1. Increase the model capacity in the Azure portal.
 1. Run the evaluation again.
 
@@ -1198,11 +1192,25 @@ If the evaluation fails with a schema or data mapping error:
 
 ### Rate limit errors
 
-If you see `429 Too Many Requests`:
+Evaluation run creations are rate-limited at the tenant, subscription, and project levels. If you receive a `429 Too Many Requests` response:
+
+- Check the `retry-after` header in the response for the recommended wait time.
+- Review the response body for rate limit details.
+- Use exponential backoff when retrying failed requests.
+
+If an evaluation job fails with a `429` error during execution:
 
 - Reduce the size of your evaluation dataset or split it into smaller batches.
 - Increase the tokens-per-minute (TPM) quota for your model deployment in the Azure portal.
-- Add a retry with backoff in your polling loop.
+
+### Agent evaluator tool errors
+
+If an agent evaluator returns a *pass* with a message that evaluating the invoked tools isn't supported, the agent conversation includes calls to tools that the evaluator doesn't fully support. Agent evaluators support tools like File Search, Function Tool (user-defined tools), and MCP, but have limited support for tools like Azure AI Search, Bing Grounding, and SharePoint Grounding.
+
+**Resolution:**
+
+- Wrap unsupported tools as user-defined function tools so the evaluator can assess them.
+- For the full list of supported tools, see [agent evaluator tool support](../../concepts/evaluation-evaluators/agent-evaluators.md#supported-tools).
 
 For more information on monitoring evaluation jobs, see [View evaluation results](../../how-to/evaluate-results.md).
 

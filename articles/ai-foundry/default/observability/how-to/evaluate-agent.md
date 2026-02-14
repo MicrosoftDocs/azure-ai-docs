@@ -40,7 +40,7 @@ In this article, you learn how to:
 Install the Foundry SDK and set up authentication:
 
 ```bash
-pip install azure-ai-projects azure-identity
+pip install "azure-ai-projects>=2.0.0b1" azure-identity
 ```
 
 Create the project client. The following code samples assume you run them in this context:
