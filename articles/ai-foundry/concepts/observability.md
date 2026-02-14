@@ -130,7 +130,7 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | What data should you use? | Upload or generate relevant dataset | [Synthetic dataset generation](./concept-synthetic-data.md) <br></br> [Run AI red teaming in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md) |
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) <br></br> [Local run](../how-to/develop/evaluate-sdk.md) |
 | How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md)|
-| How can I improve? | Analyze evaluation results and optimize agents. | Optimize agents by re-running evaluations, see [Evaluate generative AI models and applications in the portal](../how-to/evaluate-generative-ai-app.md). <br></br> Analyze [evaluation results](../how-to/evaluate-results.md).  |
+| How can I improve? | Analyze evaluation results and optimize agents | Optimize agents by re-running evaluations, see [Evaluate generative AI models and applications in the portal](../how-to/evaluate-generative-ai-app.md). <br></br> Analyze [evaluation results](../how-to/evaluate-results.md).  |
 
 ::: moniker-end
 
@@ -143,7 +143,7 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | What data should you use? | Upload or generate relevant dataset | [Select or create a dataset](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) |
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../default/observability/how-to/evaluate-agent.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
 | How did my model/AI applicable perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../default/observability/how-to/cluster-analysis.md) |
-| How can I improve? | Analyze clustered evaluation failures and optimize agents. | [Cluster analysis](../default/observability/how-to/cluster-analysis.md) <br></br> [Monitoring dashboard analysis](ask-ai.md)  <br></br> Agent optimization playbook: update agent instructions, look into tool success rate, apply targeted mitigation, upgrade underlying model. <br></br>. Save as new version and re-evaluate, see [Evaluate generative AI models and applications in the portal](../how-to/evaluate-generative-ai-app.md), <br></br> Evaluation comparison, see [See evaluation results](../how-to/evaluate-results.md)  |
+| How can I improve? | Analyze clustered evaluation failures and optimize agents | [Cluster analysis](../default/observability/how-to/cluster-analysis.md) <br></br> [Monitoring dashboard analysis](ask-ai.md)  <br></br> Agent optimization playbook: update agent instructions, look into tool success rate, apply targeted mitigation, upgrade underlying model. <br></br>. Save as new version and re-evaluate, see [Evaluate generative AI models and applications in the portal](../how-to/evaluate-generative-ai-app.md), <br></br> Evaluation comparison, see [See evaluation results](../how-to/evaluate-results.md)  |
 
 ::: moniker-end
 

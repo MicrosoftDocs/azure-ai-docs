@@ -19,7 +19,7 @@ This article provides an overview of which regions support AI-assisted evaluator
 
 ## Region support
 
-### Risk and Safety evaluators and AI red teaming region support
+### Risk and safety evaluators and AI red teaming region support
 
 Certain AI-assisted evaluators and AI red teaming are available only in the following regions:
 
