@@ -427,7 +427,7 @@ data_source_config = DataSourceConfigCustom(
             "response": {"type": "string"},
             "ground_truth": {"type": "string"},
         },
-        "required": [],
+        "required": ["query", "response", "ground_truth"],
     },
 )
 
@@ -486,44 +486,10 @@ curl --request POST \
           "response": { "type": "string" },
           "ground_truth": { "type": "string" }
         },
-        "required": []
+        "required": ["query", "response", "ground_truth"]
       }
     },
     "testing_criteria": [
-      {
-        "type": "azure_ai_evaluator",
-        "name": "coherence",
-        "evaluator_name": "builtin.coherence",
-        "initialization_parameters": {
-          "deployment_name": "gpt-5-mini"
-        },
-        "data_mapping": {
-          "query": "{{item.query}}",
-          "response": "{{item.response}}"
-        }
-      },
-      {
-        "type": "azure_ai_evaluator",
-        "name": "violence",
-        "evaluator_name": "builtin.violence",
-        "initialization_parameters": {
-          "deployment_name": "gpt-5-mini"
-        },
-        "data_mapping": {
-          "query": "{{item.query}}",
-          "response": "{{item.response}}"
-        }
-      },
-      {
-        "type": "azure_ai_evaluator",
-        "name": "f1",
-        "evaluator_name": "builtin.f1_score",
-        "data_mapping": {
-          "response": "{{item.response}}",
-          "ground_truth": "{{item.ground_truth}}"
-        }
-      }
-    ]
   }'
 ```
 
@@ -576,7 +542,7 @@ EVAL_ID=$(curl --silent --request POST \
           "response": { "type": "string" },
           "ground_truth": { "type": "string" }
         },
-        "required": []
+        "required": ["query", "response", "ground_truth"]
       }
     },
     "testing_criteria": [
