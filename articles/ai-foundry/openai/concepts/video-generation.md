@@ -807,6 +807,9 @@ Sora might have difficulty with complex physics, causal relationships (for examp
 
 ### Technical Limitations
 
+Sora video generation is currently in preview. Keep the following limitations in mind:
+
+
 #### [Sora 1](#tab/sora-1) 
 
 - Please see Sora 2 API details above 

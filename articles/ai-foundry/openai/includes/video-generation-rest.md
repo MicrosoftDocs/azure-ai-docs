@@ -18,16 +18,6 @@ ai-usage: ai-assisted
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](/azure/ai-foundry/openai/concepts/models#video-generation-models).
 - Then, you need to deploy a `sora` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-## Limitations and quotas
-
-Sora video generation is currently in preview. Keep the following limitations in mind:
-
-- **Region availability**: Sora is available only in **East US 2** and **Sweden Central** (Global Standard deployments).
-- **Supported resolutions**: 480×480, 720×720, 1080×1080, 1280×720, 1920×1080 (width × height).
-- **Video duration**: 5 to 20 seconds (`n_seconds` parameter).
-- **Variants**: Generate 1 to 4 video variants per request (`n_variants` parameter).
-- **Rate limits**: Subject to your deployment's tokens-per-minute (TPM) quota. See [Quotas and limits](../quotas-limits.md) for details.
-- **Content filtering**: Prompts are subject to content moderation. Requests with harmful content are rejected.
 
 ## Microsoft Entra ID prerequisites
 
