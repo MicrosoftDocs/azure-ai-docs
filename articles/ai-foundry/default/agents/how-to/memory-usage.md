@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/06/2026
+ms.date: 02/12/2026
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
@@ -36,7 +36,7 @@ This article explains how to create, manage, and use memory stores. For conceptu
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions) configured.
-- [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
+- [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-5.2`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - For Python examples:
   - Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true)
@@ -106,7 +106,7 @@ options = MemoryStoreDefaultOptions(
 
 # Create memory store
 definition = MemoryStoreDefaultDefinition(
-    chat_model="gpt-4.1",  # Your chat model deployment name
+    chat_model="gpt-5.2",  # Your chat model deployment name
     embedding_model="text-embedding-3-small",  # Your embedding model deployment name
     options=options
 )
@@ -138,7 +138,7 @@ curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
     "description": "Memory store for customer support agent",
     "definition": {
       "kind": "default",
-      "chat_model": "gpt-4.1",
+      "chat_model": "gpt-5.2",
       "embedding_model": "text-embedding-3-small",
       "options": {
         "chat_summary_enabled": true,
@@ -252,7 +252,7 @@ tool = MemorySearchTool(
 agent = project_client.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-4.1",
+        model="gpt-5.2",
         instructions="You are a helpful assistant that answers general questions",
         tools=[tool],
     )
@@ -275,7 +275,7 @@ curl -X POST "${ENDPOINT}/agents/MyAgent/versions?api-version=${API_VERSION}" \
   -d '{
     "definition": {
         "kind": "prompt",
-        "model": "gpt-4.1",
+        "model": "gpt-5.2",
         "instructions": "You are a helpful assistant that answers general questions",
         "tools": [
             {

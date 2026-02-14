@@ -70,7 +70,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
-## Text in audio out
+## Send text, receive audio response
 
 #### [Microsoft Entra ID](#tab/keyless)
 

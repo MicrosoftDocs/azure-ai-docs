@@ -4,11 +4,12 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 02/05/2026
+ms.date: 02/12/2026
 ms.author: mopeakande
 author: msakande
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
+ms.custom: pilot-ai-workflow-jan-2026
 ---
 
 > [!NOTE]
@@ -37,7 +38,7 @@ You can run these models through the BFL service provider API and through the [i
 
 | Model  | Type & API endpoint| Capabilities | Deployment type (region availability) | 
 | ------ | ------------------ | ------------ | ------------------------------------- |
-| `FLUX.2-pro` | **Image generation** <br> - [BFL service provider API](https://docs.bfl.ai/flux_2/flux2_text_to_image): `<resource-name>/providers/blackforestlabs/v1/flux-2-pro` | - **Input:** text (32,000 tokens and up to 8 images<sup>i</sup>)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG)  <br /> - **Key features:** Multi-reference support for up to 8 images<sup>ii</sup>; more grounded in real-world knowledge; greater output flexibility; enhanced performance <br /> - **Additional parameters:** *(In provider-specific API only)* Supports all parameters.  | - Global standard (all regions) |
+| `FLUX.2-pro` | **Image generation** <br> - [BFL service provider API](https://docs.bfl.ai/flux_2/flux2_text_to_image): `<resource-name>/providers/blackforestlabs/v1/flux-2-pro` | - **Input:** text and image (32,000 tokens and up to 8 images<sup>i</sup>)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG)  <br /> - **Key features:** Multi-reference support for up to 8 images<sup>ii</sup>; more grounded in real-world knowledge; greater output flexibility; enhanced performance <br /> - **Additional parameters:** *(In provider-specific API only)* Supports all parameters.  | - Global standard (all regions) |
 | `FLUX.1-Kontext-pro` | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> and <br> `https://<resource-name>/openai/deployments/{deployment-id}/images/edits` <br> <br> - [BFL service provider API](https://docs.bfl.ai/kontext/kontext_text_to_image): ` <resource-name>/providers/blackforestlabs/v1/flux-kontext-pro?api-version=preview `  | - **Input:** text and image (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Character consistency, advanced editing <br /> - **Additional parameters:** *(In provider-specific API only)* `seed`, `aspect ratio`, `input_image`, `prompt_unsampling`, `safety_tolerance`, `output_format`  |- Global standard (all regions) |
 | `FLUX-1.1-pro` | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> <br> - [BFL service provider API](https://docs.bfl.ai/flux_models/flux_1_1_pro): ` <resource-name>/providers/blackforestlabs/v1/flux-pro-1.1?api-version=preview ` | - **Input:** text (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Fast inference speed, strong prompt adherence, competitive pricing, scalable generation <br /> - **Additional parameters:** *(In provider-specific API only)* `width`, `height`, `prompt_unsampling`, `seed`, `safety_tolerance`, `output_format` | - Global standard (all regions) |
 
@@ -53,17 +54,17 @@ You can run these models through the BFL service provider API and through the [i
 - Output: One image 
 
 ```sh
-curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \ 
+curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version=preview \ 
   -H "Content-Type: application/json" \ 
   -H "Authorization: Bearer {API_KEY}" \ 
   -d '{ 
-      "model": "FLUX.2-pro" 
+      "model": "FLUX.2-pro", 
       "prompt": "A photograph of a red fox in an autumn forest", 
       "width": 1024, 
       "height": 1024, 
       "seed": 42, 
       "safety_tolerance": 2, 
-      "output_format": "jpeg", 
+      "output_format": "jpeg" 
     }' 
 ```
 
@@ -73,7 +74,7 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
 - Output: One image 
 
 ```sh
-curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version… \
+curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-pro?api-version=preview \
   -H "Content-Type: application/json" \ 
   -H "Authorization: Bearer {API_KEY}" \ 
   -d '{ 
@@ -124,12 +125,12 @@ The DeepSeek family of models includes several reasoning models, which excel at 
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
-| [DeepSeek-V3.2-Speciale](https://ai.azure.com/resource/models/DeepSeek-V3.2-Speciale/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:**  (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) | Foundry, Hub-based |
-| [DeepSeek-V3.2](https://ai.azure.com/resource/models/DeepSeek-V3.2/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:**  (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) | Foundry, Hub-based |
-| [DeepSeek-V3.1](https://ai.azure.com/resource/models/DeepSeek-V3.1/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) | Foundry, Hub-based |
-| [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | - Global standard (all regions) <br> - Global provisioned (all regions)| Foundry, Hub-based |
-| [DeepSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) <br> - Global provisioned (all regions) | Foundry, Hub-based |
-| [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | - Global standard (all regions) <br> - Global provisioned (all regions) | Foundry, Hub-based |
+| [DeepSeek-V3.2-Speciale](https://ai.azure.com/resource/models/DeepSeek-V3.2-Speciale/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) | Foundry, Hub-based |
+| [DeepSeek-V3.2](https://ai.azure.com/resource/models/DeepSeek-V3.2/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) | Foundry, Hub-based |
+| [DeepSeek-V3.1](https://ai.azure.com/resource/models/DeepSeek-V3.1/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) | Foundry, Hub-based |
+| [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) <br> - Global provisioned (all regions)| Foundry, Hub-based |
+| [DeepSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) <br> - Global provisioned (all regions) | Foundry, Hub-based |
+| [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) <br> - Global provisioned (all regions) | Foundry, Hub-based |
 
 ::: moniker-end
 
@@ -137,12 +138,12 @@ The DeepSeek family of models includes several reasoning models, which excel at 
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
-| `DeepSeek-V3.2-Speciale` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:**  (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
-| `DeepSeek-V3.2` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:**  (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
-| `DeepSeek-V3.1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
-| `DeepSeek-R1-0528` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | - Global standard (all regions) <br> - Global provisioned (all regions)|
-| `DeepSeek-V3-0324` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) <br> - Global provisioned (all regions) |
-| `DeepSeek-R1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | - Global standard (all regions) <br> - Global provisioned (all regions) |
+| `DeepSeek-V3.2-Speciale` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
+| `DeepSeek-V3.2` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
+| `DeepSeek-V3.1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
+| `DeepSeek-R1-0528` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) <br> - Global provisioned (all regions)|
+| `DeepSeek-V3-0324` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) <br> - Global provisioned (all regions) |
+| `DeepSeek-R1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) <br> - Global provisioned (all regions) |
 
 ::: moniker-end
 
@@ -185,7 +186,7 @@ Microsoft models include various model groups such as Model Router, MAI models, 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
 | [model-router](https://ai.azure.com/resource/models/model-router/version/2025-11-18/registry/azureml-routers/?cid=learnDocs)<sup>1</sup> | chat-completion | More details in [Model router overview](/azure/ai-foundry/openai/how-to/model-router). <br> - **Input:** text, image <br /> - **Output:** text (max output tokens varies<sup>2</sup>) <br> **Context window:** 200,000<sup>3</sup> <br /> - **Languages:** `en`  |- Global standard (East US 2, Sweden Central) <br> - Data Zone standard<sup>4</sup> (East US 2, Sweden Central) | Foundry, Hub-based |
-| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml/?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |- Global standard (all regions) | Foundry, Hub-based |
+| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml/?cid=learnDocs) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |- Global standard (all regions) | Foundry, Hub-based |
 
 ::: moniker-end
 
@@ -194,7 +195,7 @@ Microsoft models include various model groups such as Model Router, MAI models, 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
 | [model-router](https://ai.azure.com/resource/models/model-router/version/2025-11-18/registry/azureml-routers/?cid=learnDocs)<sup>1</sup> | chat-completion | More details in [Model router overview](/azure/ai-foundry/openai/how-to/model-router). <br> - **Input:** text, image <br /> - **Output:** text (max output tokens varies<sup>2</sup>) <br> **Context window:** 200,000<sup>3</sup> <br /> - **Languages:** `en` |- Global standard (East US 2, Sweden Central) <br> - Data Zone standard<sup>4</sup> (East US 2, Sweden Central) |
-| `MAI-DS-R1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |- Global standard (all regions) |
+| `MAI-DS-R1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |- Global standard (all regions) |
 
 ::: moniker-end
 
@@ -255,20 +256,7 @@ See [this model collection in the Foundry portal](https://ai.azure.com/explore/m
 
 ## xAI models sold directly by Azure
 
-xAI's Grok models in Foundry Models include a diverse set of models designed to excel in various enterprise domains with different capabilities and price points, including: 
-
-- Grok 3, a non-reasoning model pretrained by the Colossus datacenter, is tailored for business use cases such as data extraction, coding, and text summarization, with exceptional instruction-following capabilities. It supports a 131,072 token context window, allowing it to handle extensive inputs while maintaining coherence and depth, and is adept at drawing connections across domains and languages.
- 
-- Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents, and excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets. 
-
-- Grok Code Fast 1, a fast and efficient reasoning model designed for use in agentic coding applications. It was pretrained on a coding-focused data mixture, then post-trained on demonstrations of various coding tasks and tool use as well as demonstrations of correct refusal behaviors based on xAI's safety policy. 
-[Registration is required for access to the grok-code-fast-1 model](https://aka.ms/xai/grok-code-fast-1).
-
-- Grok 4 Fast, an efficiency-optimized language model that delivers near-Grok 4 reasoning capabilities with significantly lower latency and cost, and can bypass reasoning entirely for ultra-fast applications. It is trained for safe and effective tool use, with built-in refusal behaviors, a fixed safety-enforcing system prompt, and input filters to prevent misuse.
-
-- Grok 4 is the latest reasoning model from xAI with advanced reasoning and tool-use capabilities,
-enabling it to achieve new state-of-the-art performance across challenging academic and industry
-benchmarks. [Registration is required for access to the grok-4 model](https://aka.ms/xai/grok-4). Unlike Grok 4 Fast (reasoning and non-reasoning) models, **Grok 4 doesn't support image input**.
+xAI's Grok models in Foundry Models include a diverse set of reasoning and non-reasoning models designed for enterprise use cases such as data extraction, coding, text summarization, and agentic applications. [Registration is required for access to grok-code-fast-1](https://aka.ms/xai/grok-code-fast-1) and [grok-4](https://aka.ms/xai/grok-4).
 
 ::: moniker range="foundry-classic"
 
@@ -336,6 +324,7 @@ All deployments perform the same inference operations, but the billing, scale, a
 ## Related content
 
 - [Foundry Models from partners and community](../concepts/models-from-partners.md)
+- [Model deprecation and retirement for Foundry Models](../../concepts/model-lifecycle-retirement.md)
 - [Deployment overview for Foundry Models](../../concepts/deployments-overview.md)
 - [Add and configure models to Foundry Models](../how-to/create-model-deployments.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)

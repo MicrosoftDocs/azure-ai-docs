@@ -226,16 +226,8 @@ When you run your agent locally by using the hosting adapter, it automatically s
 
 POST {{baseUrl}}/responses
 Content-Type: application/json
- 
 {
-    "input": {
-        "messages": [
-            {
-                "role": "user",
-                "content": "Where is Seattle?"
-            }
-        ]
-    }
+    "input": "Where is Seattle?"
 }
 ```
 
@@ -580,6 +572,17 @@ Here's an example:
 ```bash
 az cognitiveservices agent start --account-name myAccount --project-name myProject --name myAgent --agent-version 1
 ```
+
+> [!TIP]
+> - To minimize charges when idle, set `--min-replicas 0`. The service scales to zero and doesn't allocate compute when not serving requests.
+> - The first request after scaling to zero incurs a cold start. To avoid cold starts, keep at least one warm replica by setting `--min-replicas 1` (or higher), trading steady-state cost for lower latency.
+> - You can adjust replica settings later with a non-versioned update: `az cognitiveservices agent update --min-replicas <n> --max-replicas <m>`.
+>
+> Example (scale-to-zero when idle):
+>
+> ```bash
+> az cognitiveservices agent start --account-name myAccount --project-name myProject --name myAgent --agent-version 1 --min-replicas 0 --max-replicas 2
+> ```
 
 When you start an agent:
 

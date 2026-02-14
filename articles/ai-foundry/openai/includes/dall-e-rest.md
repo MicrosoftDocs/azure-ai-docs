@@ -197,6 +197,21 @@ The output from a successful image generation API call looks like the following 
 } 
 ```
 
+A successful response includes:
+- A `created` timestamp (Unix epoch time)
+- A `data` array with at least one image object
+- Either a `url` (temporary link valid for 24 hours) or `b64_json` (base64-encoded image data)
+
+### Common errors
+
+| Error | Cause | Resolution |
+|-------|-------|------------|
+| `DeploymentNotFound` | The deployment name doesn't exist or is misspelled | Verify the deployment name in the Azure portal or Foundry portal |
+| `401 Unauthorized` | Invalid or missing API key | Check that your `AZURE_OPENAI_API_KEY` environment variable is set correctly |
+| `429 Too Many Requests` | Rate limit exceeded | Implement retry logic with exponential backoff |
+| `content_policy_violation` | Prompt or generated output blocked by content filter | Modify the prompt to comply with the content policy |
+| `InvalidPayload` | Missing required parameters or invalid values | Check that `prompt`, `size`, and `n` are correctly specified |
+
 The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md). For examples of error responses, see the [Image generation how-to guide](../how-to/dall-e.md).
 
 The system returns an operation status of `Failed` and the `error.code` value in the message is set to `contentFilter`. Here's an example:

@@ -27,6 +27,11 @@ The vision-enabled models can answer general questions about what's present in t
 > [!TIP]
 > To use vision-enabled models, you call the Chat Completion API on a supported model that you have deployed. If you're not familiar with the Chat Completion API, see the [Vision-enabled chat how-to guide](/azure/ai-foundry/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
 
+## Prerequisites
+
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+- An Azure OpenAI resource with a vision-enabled model deployed (GPT-4o, GPT-4.5, GPT-5, or o-series). See [Create and deploy an Azure OpenAI Service resource](/azure/ai-services/openai/how-to/create-resource).
+- For Python: The `openai` Python package version 1.0 or later. Install with `pip install openai`.
 
 ## Call the Chat Completion APIs
 
@@ -46,10 +51,13 @@ Send a POST request to `https://{RESOURCE_NAME}.openai.azure.com/openai/v1/chat/
 The following is a sample request body. The format is the same as the chat completions API for GPT-4o, except that the message content can be an array containing text and images (either a valid publicly accessible HTTP or HTTPS URL to an image, or a base-64-encoded image).
 
 > [!IMPORTANT]
-> Remember to set a `"max_tokens"`, or `max_completion_tokens` value  or the return output will be cut off.
+> Remember to set a `"max_tokens"` or `max_completion_tokens` value, or the return output will be cut off. For o-series reasoning models, use `max_completion_tokens` instead of `max_tokens`.
 
 > [!IMPORTANT]
 > When uploading images, there is a limit of 10 images per chat request.
+
+> [!NOTE]
+> Supported image formats include JPEG, PNG, GIF (first frame only), and WEBP.
 
 ```json
 {
@@ -98,7 +106,7 @@ The following is a sample request body. The format is the same as the chat compl
 1. Then call the client's **create** method. The following code shows a sample request body. The format is the same as the chat completions API for GPT-4o, except that the message content can be an array containing text and images (either a valid HTTP or HTTPS URL to an image, or a base-64-encoded image). 
 
     > [!IMPORTANT]
-    > Remember to set a `"max_tokens"`, or `max_completion_tokens` value  or the return output will be cut off.
+    > Remember to set a `"max_tokens"` or `max_completion_tokens` value, or the return output will be cut off. For o-series reasoning models, use `max_completion_tokens` instead of `max_tokens`.
     
     ```python
     response = client.chat.completions.create(
@@ -165,7 +173,7 @@ The following is a sample request body. The format is the same as the chat compl
 > ...
 > ```
 
-### Detail parameter settings  
+## Configure image detail level
 
 You can optionally define a `"detail"` parameter in the `"image_url"` field. Choose one of three values, `low`, `high`, or `auto`, to adjust the way the model interprets and processes images. 
 - `auto` setting: The default setting. The model decides between low or high based on the size of the image input.
@@ -189,7 +197,7 @@ For details on how the image parameters impact tokens used and pricing please se
 
 ## Output
 
-The API response should look like the following.
+When you send an image to a vision-enabled model, the API returns a chat completion response with the model's analysis. The response includes content filter results specific to Azure OpenAI.
 
 ```json
 {
@@ -261,125 +269,13 @@ Every response includes a `"finish_reason"` field. It has the following possible
 - `length`: Incomplete model output due to the `max_tokens` input parameter or model's token limit.
 - `content_filter`: Omitted content due to a flag from our content filters.
 
+## Troubleshooting
 
-
-
-### Output
-
-The chat responses you receive from the model should now include enhanced information about the image, such as object labels and bounding boxes, and OCR results. The API response should look like the following.
-
-```json
-{
-    "id": "chatcmpl-8UyuhLfzwTj34zpevT3tWlVIgCpPg",
-    "object": "chat.completion",
-    "created": 1702394683,
-    "model": "gpt-4o",
-    "choices":
-    [
-        {
-            "finish_reason": {
-                "type": "stop",
-                "stop": "<|fim_suffix|>"
-            },
-            "index": 0,
-            "message":
-            {
-                "role": "assistant",
-                "content": "The image shows a close-up of an individual with dark hair and what appears to be a short haircut. The person has visible ears and a bit of their neckline. The background is a neutral light color, providing a contrast to the dark hair."
-            }
-        }
-    ],
-    "usage":
-    {
-        "prompt_tokens": 816,
-        "completion_tokens": 49,
-        "total_tokens": 865
-    }
-}
-```
-
-Every response includes a `"finish_reason"` field. It has the following possible values:
-- `stop`: API returned complete model output.
-- `length`: Incomplete model output due to the `max_tokens` input parameter or model's token limit.
-- `content_filter`: Omitted content due to a flag from our content filters.
-
-<!--
-
-### Create a video retrieval index
-
-1. Get an Azure Vision in Foundry Tools resource in the same region as the Azure OpenAI resource you're using.
-1. Create an index to store and organize the video files and their metadata. The example command below demonstrates how to create an index named `my-video-index` using the **[Create Index](/azure/ai-services/computer-vision/reference-video-search)** API. Save the index name to a temporary location; you'll need it in later steps. 
-
-    > [!TIP]
-    > For more detailed instructions on creating a video index, see [Do video retrieval using vectorization](/azure/ai-services/computer-vision/how-to/video-retrieval).
-
-    > [!IMPORTANT]
-    > A video index name can be up to 24 characters long, unless it's a GUID, which can be 36 characters.
-        
-    ```bash
-    curl.exe -v -X PUT "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexes/my-video-index?api-version=2023-05-01-preview" -H "Ocp-Apim-Subscription-Key: <YOUR_SUBSCRIPTION_KEY>" -H "Content-Type: application/json" --data-ascii "
-    {
-      'metadataSchema': {
-        'fields': [
-          {
-            'name': 'cameraId',
-            'searchable': false,
-            'filterable': true,
-            'type': 'string'
-          },
-          {
-            'name': 'timestamp',
-            'searchable': false,
-            'filterable': true,
-            'type': 'datetime'
-          }
-        ]
-      },
-      'features': [
-        {
-          'name': 'vision',
-          'domain': 'surveillance'
-        },
-        {
-          'name': 'speech'
-        }
-      ]
-    }"
-    ```
-
-1. Add video files to the index with their associated metadata. The example below demonstrates how to add two video files to the index using SAS URLs with the **[Create Ingestion](/azure/ai-services/computer-vision/reference-video-search)** API. Save the SAS URLs and `documentId` values to a temporary location; you'll need them in later steps.
-    
-    ```bash
-    curl.exe -v -X PUT "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexes/my-video-index/ingestions/my-ingestion?api-version=2023-05-01-preview" -H "Ocp-Apim-Subscription-Key: <YOUR_SUBSCRIPTION_KEY>" -H "Content-Type: application/json" --data-ascii "
-    {
-      'videos': [
-        {
-          'mode': 'add',
-          'documentId': '02a504c9cd28296a8b74394ed7488045',
-          'documentUrl': 'https://example.blob.core.windows.net/videos/02a504c9cd28296a8b74394ed7488045.mp4?sas_token_here',
-          'metadata': {
-            'cameraId': 'camera1',
-            'timestamp': '2023-06-30 17:40:33'
-          }
-        },
-        {
-          'mode': 'add',
-          'documentId': '043ad56daad86cdaa6e493aa11ebdab3',
-          'documentUrl': '[https://example.blob.core.windows.net/videos/043ad56daad86cdaa6e493aa11ebdab3.mp4?sas_token_here',
-          'metadata': {
-            'cameraId': 'camera2'
-          }
-        }
-      ]
-    }"
-    ```
-
-1. After you add video files to the index, the ingestion process starts. It might take some time depending on the size and number of files. To ensure the ingestion is complete before performing searches, you can use the **[Get Ingestion](/en-us/azure/ai-services/computer-vision/reference-video-search)** API to check the status. Wait for this call to return `"state" = "Completed"` before proceeding to the next step. 
-    
-    ```bash
-    curl.exe -v -X GET "https://<YOUR_ENDPOINT_URL>/computervision/retrieval/indexes/my-video-index/ingestions?api-version=2023-05-01-preview&$top=20" -H "ocp-apim-subscription-key: <YOUR_SUBSCRIPTION_KEY>"
-    ```
--->
+| Issue | Resolution |
+|-------|------------|
+| Output truncated | Increase `max_tokens` or `max_completion_tokens` value |
+| Image not processed | Verify URL is publicly accessible or base64 encoding is correct |
+| Rate limit exceeded | Implement retry logic with exponential backoff |
 
 ## Related content
 

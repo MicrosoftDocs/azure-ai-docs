@@ -1,6 +1,6 @@
 ---
-title: Manage Agents at Scale in Microsoft Foundry Control Plane
-description: Learn how to manage agents by using Microsoft Foundry Control Plane.
+title: Manage agents at scale in Microsoft Foundry Control Plane
+description: Learn how to view your agent inventory, monitor agent health, and perform lifecycle operations by using Microsoft Foundry Control Plane.
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
@@ -12,11 +12,17 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Manage agents at scale
+# Manage agents in Foundry Control Plane
 
-Microsoft Foundry Control Plane provides centralized management and observability for agents running across various platforms and infrastructures.
+Microsoft Foundry Control Plane provides centralized management and observability for agents running across various platforms and infrastructures. Use Control Plane to gain a unified view of agents across your subscription, monitor their health, control their lifecycle, and troubleshoot issues from a single pane of glass.
 
-This article explains how to manage agents across a subscription by using Foundry Control Plane.
+This article explains how to view your agent inventory, monitor agent health, and perform lifecycle operations by using the Foundry portal.
+
+## Prerequisites
+
+[!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
+
+- [Application Insights configured](monitoring-across-fleet.md#configure-monitoring) for observability metrics (optional but recommended).
 
 ## Agent inventory
 
@@ -45,7 +51,18 @@ The following information appears:
 
 ### Permissions model
 
-Foundry Control Plane automatically discovers agents that users have access to. Because Foundry Control Plane aggregates information across resources within the subscription, different users might see different agents listed on the **Assets** pane, depending on the access level on each of those resources.
+Foundry Control Plane automatically discovers agents that users have access to. Because Foundry Control Plane aggregates information across resources within the subscription, different users might see different agents listed on the **Assets** pane, depending on their access level on each resource.
+
+The following roles affect what you can see and do:
+
+| Role | Scope | Capabilities |
+|------|-------|--------------|
+| Reader | Resource / resource group / subscription | View agent inventory and traces |
+| Contributor | Resource / resource group / subscription | View and perform lifecycle operations (start, stop, block) |
+| Owner | Resource / resource group / subscription | Full management, including permissions |
+
+> [!NOTE]
+> These are minimum role requirements. Custom roles with equivalent permissions also work. The agents visible to you depend on your role assignments across the resources in the selected subscription.
 
 ## Supported agent platforms
 
@@ -170,6 +187,9 @@ To stop an agent:
 
 1. Confirm the operation.
 
+> [!NOTE]
+> The operation might take a few minutes to complete. Refresh the **Assets** pane to verify the updated status.
+
 After you stop the agent, the **Status** value of the agent in Foundry is **Stopped**.
 
 To start the agent:
@@ -198,6 +218,9 @@ To block incoming requests to your agent:
 
 After you block the agent, the **Status** value of the agent in Foundry is **Blocked**. Agents in the **Blocked** state run in their associated infrastructure but can't take incoming requests. Foundry blocks any attempt to communicate with the agent.
 
+> [!NOTE]
+> The operation might take a few minutes to complete. Refresh the **Assets** pane to verify the updated status.
+
 To unblock the agent:
 
 1. Select **Update status**, and then select **Unblock**.
@@ -206,9 +229,37 @@ To unblock the agent:
 
 ### Handle unknown states
 
-Under certain circumstances, agents can display the status **Unknown**. In those cases, Foundry Control Plane can't determine the status of the agent either because the source platform is unavailable or because the agent failed to report its state back.
+Under certain circumstances, agents can display the status **Unknown**. This status indicates that Foundry Control Plane can't determine the agent's state because the source platform is unavailable or the agent failed to report back.
+
+To troubleshoot an **Unknown** status:
+
+1. Verify that the source platform (for example, Azure Logic Apps or Azure SRE Agent) is operational.
+1. For custom agents, confirm the agent's infrastructure is running and accessible.
+1. Check the agent's Application Insights logs for error traces.
+1. If the status doesn't resolve, try stopping and restarting the agent.
+
+## Troubleshooting
+
+### Observability data isn't visible
+
+If metrics like error rate, token usage, or cost don't appear for an agent:
+
+1. Verify that [Application Insights is configured](monitoring-across-fleet.md#configure-monitoring) for the resource that hosts the agent.
+1. Confirm you have the [required permissions](monitoring-across-fleet.md#prerequisites) to view Application Insights data and cost metrics.
+1. Run the agent after you configure Application Insights. Metrics and traces are collected only for runs that occur after configuration. Past runs aren't retroactively captured.
+1. Wait up to 15 minutes for data to propagate after the first post-configuration run.
+
+### Agent doesn't appear in inventory
+
+If an expected agent doesn't appear in the **Assets** pane:
+
+1. Confirm the agent is in a [supported platform](#supported-agent-platforms).
+1. Verify you have RBAC permissions on the resource that hosts the agent.
+1. Check that the agent is within the currently selected subscription.
+1. For custom agents, verify the agent is [registered in a Foundry project](register-custom-agent.md).
 
 ## Related content
 
 * [What is Microsoft Foundry Control Plane?](overview.md)
 * [Monitor agent health and performance across your fleet](monitoring-across-fleet.md)
+* [Register a custom agent in Foundry Control Plane](register-custom-agent.md)
