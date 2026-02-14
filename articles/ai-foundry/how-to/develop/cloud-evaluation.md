@@ -419,10 +419,7 @@ Evaluate pre-computed responses in a JSONL file using the `jsonl` data source ty
 
 ### Define the data schema and evaluators
 
-Specify the schema that matches your JSONL fields, and select the evaluators (testing criteria) to run. Use the `data_mapping` parameter to connect fields from your input data to evaluator parameters with `{{item.field}}` syntax. Your field names must match those in your JSONL file — for example, if your data has `"question"` instead of `"query"`, use `"{{item.question}}"` in the mapping.
-
-> [!NOTE]
-> Always include `data_mapping` with the required input fields for each evaluator. For the required parameters per evaluator, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
+Specify the schema that matches your JSONL fields, and select the evaluators (testing criteria) to run. Use the `data_mapping` parameter to connect fields from your input data to evaluator parameters with `{{item.field}}` syntax. Always include `data_mapping` with the required input fields for each evaluator. Your field names must match those in your JSONL file — for example, if your data has `"question"` instead of `"query"`, use `"{{item.question}}"` in the mapping. For the required parameters per evaluator, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
 
 # [Python](#tab/python)
 
