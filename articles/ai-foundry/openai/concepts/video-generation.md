@@ -8,6 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 monikerRange: 'foundry-classic || foundry'
+zone_pivot_groups: openai-video-generation
 ms.date: 12/1/2025
 ---
 
@@ -31,6 +32,50 @@ Azure OpenAI supports two versions of Sora:
 
     Customers can learn more about these safeguards and how to customize them on the [Content filtering](/azure/ai-foundry/openai/concepts/content-filter) page.
 
+
+
+## Model comparison
+
+| Aspect | **Sora 1 (Azure OpenAI)** | **Sora 2 (OpenAI-based API)** |
+|--------|-----------------------------|-------------------------------|
+| **Model type** | Azure-specific API implementation | Adapts OpenAI’s latest Sora API using [v1 API](../api-version-lifecycle.md)|
+| **Availability** | Available exclusively on Azure OpenAI (Preview) | Rolling out on Azure; **Sora 2 Pro** coming later |
+| **Modalities supported** | text → video, image → video, video → video | text → video, image → video, **video (generated) → video** |
+| **Audio generation** | ❌ Not supported | ✅ Supported in outputs |
+| **Remix capability** | ❌ Not supported | ✅ Supported — make targeted edits to existing videos |
+| **API behavior** | Uses Azure-specific API schema | Aligns with OpenAI’s native Sora 2 schema |
+| **Performance & fidelity** | Early preview; limited realism and motion range | Enhanced realism, physics, and temporal consistency |
+| **Intended use** | Enterprise preview deployments | Broader developer availability with improved API parity |
+| **Billing** | Billed differently across duration and resolutions | [Per second billing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) 
+
+## How it works
+
+Video generation is an asynchronous process. You create a job request with your text prompt and video format specifications, and the model processes the request in the background. You can check the status of the video generation job and, once it finishes, retrieve the generated video through a download URL.
+
+## Quickstart
+
+Generate video clips using the Azure OpenAI service. The example uses the Sora model. This guide shows you how to create a video generation job, poll for its status, and retrieve the generated video.
+
+::: zone pivot="rest-api"
+
+
+[!INCLUDE [REST API quickstart](../includes/video-generation-rest.md)]
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Portal quickstart](../includes/video-generation-studio.md)]
+
+::: zone-end
+
+### Clean up resources
+
+If you want to clean up and remove an Azure OpenAI resource, you can delete the resource. Before deleting the resource, you must first delete any deployed models.
+
+- [Azure portal](../../ai-services/multi-service-resource.md?pivots=azportal)
+- [Azure CLI](../../ai-services/multi-service-resource.md?pivots=azcli)
+
 ## Responsible AI and video generation
 
 Azure OpenAI's image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
@@ -48,28 +93,14 @@ Make sure prompts, reference images, and transcripts respect these rules to avoi
 > [!NOTE] 
 > We are allowing face uploads on a case-by-case basis for Enterprise Agreement customers. See [Request Access to the Sora Human Uploads in the Azure OpenAI Models](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOUxNWjBVTjRRSDZVMjVEWUdNRzFEVVFOUCQlQCN0PWcu).
 
-## Sora 1 vs. Sora 2
+## Sora 2 API reference
 
-| Aspect | **Sora 1 (Azure OpenAI)** | **Sora 2 (OpenAI-based API)** |
-|--------|-----------------------------|-------------------------------|
-| **Model type** | Azure-specific API implementation | Adapts OpenAI’s latest Sora API using [v1 API](../api-version-lifecycle.md)|
-| **Availability** | Available exclusively on Azure OpenAI (Preview) | Rolling out on Azure; **Sora 2 Pro** coming later |
-| **Modalities supported** | text → video, image → video, video → video | text → video, image → video, **video (generated) → video** |
-| **Audio generation** | ❌ Not supported | ✅ Supported in outputs |
-| **Remix capability** | ❌ Not supported | ✅ Supported — make targeted edits to existing videos |
-| **API behavior** | Uses Azure-specific API schema | Aligns with OpenAI’s native Sora 2 schema |
-| **Performance & fidelity** | Early preview; limited realism and motion range | Enhanced realism, physics, and temporal consistency |
-| **Intended use** | Enterprise preview deployments | Broader developer availability with improved API parity |
-| **Billing** | Billed differently across duration and resolutions | [Per second billing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) 
-
-## Sora 2 API 
-Provides 5 endpoints, each with distinct capabilities. 
-- Create Video: Start a new render job from a prompt, with optional reference inputs or a remix ID.
-- Get Video Status: Retrieve the current state of a render job and monitor its progress
-- Download Video: Fetch the finished MP4 once the job is completed.
-- List Videos: Enumerate your videos with pagination for history, dashboards, or housekeeping. 
-- Delete Videos: Delete an individual video ID from Azure OpenAI’s storage
-
+The Sora 2 API provides 5 endpoints, each with distinct capabilities.
+- **Create Video**: Start a new render job from a prompt, with optional reference inputs or a remix ID.
+- **Get Video Status**: Retrieve the current state of a render job and monitor its progress
+- **Download Video**: Fetch the finished MP4 once the job is completed.
+- **List Videos**: Enumerate your videos with pagination for history, dashboards, or housekeeping. 
+- **Delete Videos**: Delete an individual video ID from Azure OpenAI’s storage
 ### API parameters
 
 | Parameter | Type | **Sora 2** | 
@@ -763,9 +794,7 @@ Video generation started: Video(id='video_68ff7cef76cc8190b7eab9395e936d9e', com
 
 ---
 
-## How it works
 
-Video generation is an asynchronous process. You create a job request with your text prompt and video format specifications, and the model processes the request in the background. You can check the status of the video generation job and, once it finishes, retrieve the generated video through a download URL.
 
 ## Best practices for prompts
 
@@ -778,13 +807,15 @@ Write text prompts in English or other Latin script languages for the best video
 
 Sora might have difficulty with complex physics, causal relationships (for example, bite marks on a cookie), spatial reasoning (for example, knowing left from right), and precise time-based event sequencing such as camera movement.
 
-### Sora 2 Technical Limitations 
+### Technical Limitations
+
+#### [Sora 1](#tab/sora-1) 
 
 - Please see Sora 2 API details above 
 - Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
 - You can create two video job requests per minute. The Sora 2 quota only counts video job requests: other types of requests are not rate-limited.
 
-### Sora 1 Technical limitations
+#### [Sora 2](#tab/sora-2) 
 
 - Sora supports the following output resolution dimensions: 
 480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080.
@@ -795,7 +826,9 @@ Sora might have difficulty with complex physics, causal relationships (for examp
 - You can use up to two images as input (the generated video interpolates content between them).
 - You can use one video up to five seconds as input.
 
+---
 
 ## Related content
-- [Video generation quickstart](../video-generation-quickstart.md)
 - [Image generation quickstart](../dall-e-quickstart.md)
+* Learn more about Azure OpenAI [deployment types](../foundry-models/concepts/deployment-types.md).
+* Learn more about Azure OpenAI [quotas and limits](quotas-limits.md).
