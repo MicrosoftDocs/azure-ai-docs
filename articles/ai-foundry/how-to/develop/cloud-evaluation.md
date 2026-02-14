@@ -7,7 +7,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 02/14/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -1075,6 +1075,8 @@ For a complete runnable example, see [sample_agent_response_evaluation.py](https
 
 ::: moniker range="foundry"
 
+After an evaluation run completes, retrieve the scored results and review them in the portal or programmatically.
+
 ### Poll for results
 
 Evaluation runs are asynchronous. Poll the run status until it completes, then retrieve the results:
@@ -1129,7 +1131,7 @@ For a single data example, all evaluators output the following schema:
 
 ### Example output (aggregate)
 
-For aggregate results over multiple data examples (a dataset), the average rate of the examples with a "pass" will form the passing rate for that dataset.
+For aggregate results over multiple data examples (a dataset), the average rate of the examples with a "pass" forms the passing rate for that dataset.
 
 ```json
 {
