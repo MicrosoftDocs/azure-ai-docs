@@ -73,8 +73,8 @@ Generate video clips using the Azure OpenAI service. The example uses the Sora m
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource. Before deleting the resource, you must first delete any deployed models.
 
-- [Azure portal](../../ai-services/multi-service-resource.md?pivots=azportal)
-- [Azure CLI](../../ai-services/multi-service-resource.md?pivots=azcli)
+- [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal)
+- [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli)
 
 ## Responsible AI and video generation
 
@@ -830,5 +830,5 @@ Sora might have difficulty with complex physics, causal relationships (for examp
 
 ## Related content
 - [Image generation quickstart](../dall-e-quickstart.md)
-* Learn more about Azure OpenAI [deployment types](../foundry-models/concepts/deployment-types.md).
-* Learn more about Azure OpenAI [quotas and limits](quotas-limits.md).
+* Learn more about Azure OpenAI [deployment types](../../foundry-models/concepts/deployment-types.md).
+* Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md).
