@@ -18,16 +18,13 @@ ms.date: 12/1/2025
 
 Sora is an AI model from OpenAI that creates realistic and imaginative video scenes from text instructions and/or input images or video. The model can generate a wide range of video content, including realistic scenes, animations, and special effects. It supports several video resolutions and durations.
 
-Azure OpenAI supports two versions of Sora:
-- Sora (or Sora 1): Azure OpenAI–specific implementation released as an API in early preview.
-- Sora 2: The latest OpenAI-based API, now available with the Azure OpenAI [v1 API](../api-version-lifecycle.md).
 
 ## Capabilities
 
-- Modalities: text → video, image → video, video (generated) → video
-- Audio: Sora 2 supports audio generation in output videos (similar to the Sora app).
-- Remix: Sora 2 introduces the ability to remix existing videos by making targeted adjustments instead of regenerating from scratch.
-- Responsible AI and video generation: Azure OpenAI's video generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use. Sora 2 blocks all IP and photorealistic content.
+- **Modalities**: text → video, image → video, video (generated) → video
+- **Audio**: Sora 2 supports audio generation in output videos (similar to the Sora app).
+- **Remix**: Sora 2 introduces the ability to remix existing videos by making targeted adjustments instead of regenerating from scratch.
+- **Responsible AI and video generation**: Azure OpenAI's video generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use. Sora 2 blocks all IP and photorealistic content.
     In addition, Azure provides input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
 
     Customers can learn more about these safeguards and how to customize them on the [Content filtering](/azure/ai-foundry/openai/concepts/content-filter) page.
@@ -35,6 +32,10 @@ Azure OpenAI supports two versions of Sora:
 
 
 ## Model comparison
+
+Azure OpenAI supports two versions of Sora:
+- Sora (or Sora 1): Azure OpenAI–specific implementation released as an API in early preview.
+- Sora 2: The latest OpenAI-based API, now available with the Azure OpenAI [v1 API](../api-version-lifecycle.md).
 
 | Aspect | **Sora 1 (Azure OpenAI)** | **Sora 2 (OpenAI-based API)** |
 |--------|-----------------------------|-------------------------------|
@@ -48,13 +49,10 @@ Azure OpenAI supports two versions of Sora:
 | **Intended use** | Enterprise preview deployments | Broader developer availability with improved API parity |
 | **Billing** | Billed differently across duration and resolutions | [Per second billing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) 
 
-## How it works
-
-Video generation is an asynchronous process. You create a job request with your text prompt and video format specifications, and the model processes the request in the background. You can check the status of the video generation job and, once it finishes, retrieve the generated video through a download URL.
 
 ## Quickstart
 
-Generate video clips using the Azure OpenAI service. The example uses the Sora model. This guide shows you how to create a video generation job, poll for its status, and retrieve the generated video.
+Generate video clips using the Azure OpenAI service. Video generation is an asynchronous process. You create a job request with your text prompt and video format specifications, and the model processes the request in the background. You check the status of the video generation job and, once it finishes, retrieve the generated video through a download URL. The example uses the Sora model.
 
 ::: zone pivot="rest-api"
 
