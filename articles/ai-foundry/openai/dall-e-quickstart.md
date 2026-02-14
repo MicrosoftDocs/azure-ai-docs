@@ -19,6 +19,17 @@ zone_pivot_groups: openai-quickstart-dall-e
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
+Azure OpenAI provides multiple image generation models. This quickstart covers both model families:
+
+| Model | Availability | Key capabilities |
+|-------|--------------|------------------|
+| **DALL-E 3** | Generally available | High-quality image generation with `quality` and `style` parameters. Best for production workloads. |
+| **GPT-image-1 series** | Limited access preview | Image generation plus editing and variations. Best for advanced image manipulation workflows. Requires [limited access registration](https://aka.ms/oai/access). |
+
+> [!TIP]
+> Image generation typically takes 10-30 seconds depending on the model, size, and quality settings.
+
+Use the tabs to select your preferred API approach and model.
 
 ::: zone pivot="rest-api"
 

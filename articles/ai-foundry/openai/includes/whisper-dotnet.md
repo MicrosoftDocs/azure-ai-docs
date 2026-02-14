@@ -114,6 +114,13 @@ To run the quickstart, follow these steps:
     dotnet run
     ```
 
+## Verify the output
+
+The transcription returns a response with a `Text` property containing the complete transcription of your audio file. You should see output similar to the example below. If you encounter errors:
+- Verify your deployment name matches exactly
+- Check that your audio file path is correct
+- Ensure your API key and endpoint are valid
+
 ## Output
 
 If you are using the sample audio file, you should see the following text printed out in the console:

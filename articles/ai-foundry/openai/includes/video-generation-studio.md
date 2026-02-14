@@ -25,7 +25,7 @@ On the model's page, select **Open in playground**.
 
 ## Try out video generation
 
-Start exploring Sora video generation with a no-code approach through the **Video playground**. Enter your prompt into the text box and select **Generate**. When the AI-generated video is ready, it appears on the page.
+Start exploring Sora video generation with a no-code approach through the **Video playground**. Enter your prompt into the text box and select **Generate**. Video generation typically takes **1 to 5 minutes** depending on your settings. When the AI-generated video is ready, it appears on the page.
 
 > [!NOTE]
 > The content generation APIs come with a content moderation filter. If Azure OpenAI recognizes your prompt as harmful content, it doesn't return a generated video. For more information, see [Content filtering](../concepts/content-filter.md).
