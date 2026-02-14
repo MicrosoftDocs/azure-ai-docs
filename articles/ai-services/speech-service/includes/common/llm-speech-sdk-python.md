@@ -153,10 +153,7 @@ LLM speech uses the `EnhancedModeProperties` class to enable large-language-mode
     
         # Create transcription options with enhanced mode
         options = TranscriptionOptions(enhanced_mode=enhanced_mode)
-    
-        # Add enabled: true to enhanced_mode in options
-        options.enhanced_mode.enabled = True
-    
+        
         # Create the request content
         request_content = TranscriptionContent(definition=options, audio=audio_file)
     
@@ -253,10 +250,7 @@ You can also use LLM speech to translate audio into a target language. Set the `
     
         # Create transcription options with enhanced mode
         options = TranscriptionOptions(locales=["en-US"], enhanced_mode=enhanced_mode)
-    
-        # Add enabled: true to enhanced_mode in options
-        options.enhanced_mode.enabled = True
-    
+        
         # Create the request content
         request_content = TranscriptionContent(definition=options, audio=audio_file)
     
@@ -325,9 +319,6 @@ with open(audio_file_path, "rb") as audio_file:
 
     # Create transcription options with enhanced mode
     options = TranscriptionOptions(enhanced_mode=enhanced_mode)
-
-    # Add enabled: true to enhanced_mode in options
-    options.enhanced_mode.enabled = True
 
     # Create the request content
     request_content = TranscriptionContent(definition=options, audio=audio_file)
