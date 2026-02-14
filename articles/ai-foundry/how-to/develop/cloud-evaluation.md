@@ -1207,14 +1207,10 @@ If an evaluation job fails with a `429` error during execution:
 
 ### Agent evaluator tool errors
 
-If an agent evaluator returns a *pass* with a message that evaluating the invoked tools isn't supported, the agent conversation includes calls to tools that the evaluator doesn't fully support. Agent evaluators support tools like File Search, Function Tool (user-defined tools), and MCP, but have limited support for tools like Azure AI Search, Bing Grounding, and SharePoint Grounding.
+If an agent evaluator returns an error for unsupported tools:
 
-**Resolution:**
-
-- Wrap unsupported tools as user-defined function tools so the evaluator can assess them.
-- For the full list of supported tools, see [agent evaluator tool support](../../concepts/evaluation-evaluators/agent-evaluators.md#supported-tools).
-
-For more information on monitoring evaluation jobs, see [View evaluation results](../../how-to/evaluate-results.md).
+- Check the [supported tools](../../concepts/evaluation-evaluators/agent-evaluators.md#supported-tools) for agent evaluators.
+- As a workaround, wrap unsupported tools as user-defined function tools so the evaluator can assess them.
 
 ::: moniker-end
 
