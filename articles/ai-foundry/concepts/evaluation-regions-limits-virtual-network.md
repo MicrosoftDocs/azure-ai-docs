@@ -19,6 +19,8 @@ This article provides an overview of which regions support AI-assisted evaluator
 
 ## Region support
 
+### Risk and Safety evaluators and AI red teaming region support
+
 Certain AI-assisted evaluators and AI red teaming are available only in the following regions:
 
 | Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes,  AI red teaming | Groundedness Pro | Protected material |
@@ -29,18 +31,17 @@ Certain AI-assisted evaluators and AI red teaming are available only in the foll
 | France Central | Supported | N/A | N/A |
 | Switzerland West | Supported | N/A | N/A |
 
-### Agent playground evaluation in the Foundry portal region support
+### Agent playground evaluation region support
 
-| Region | Status |
-|--|--|
-| East US | Supported |
-| East US 2 | Supported |
-| West US | Supported |
-| West US 2 | Supported |
-| West US 3 | Supported |
-| France Central | Supported |
-| Norway East | Supported |
-| Sweden Central | Supported |
+Supported regions for agent playground evaluation in the Foundry portal:
+
+- East US 2
+- West US
+- West US 2
+- West US 3
+- France Central
+- Norway East
+- Sweden Central
 
 ### Unsupported regions for batch evaluation
 
@@ -52,9 +53,9 @@ Batch evaluations aren't supported in the following regions:
 - Southeast Asia
 - Spain Central
 
-### Unsupported regions for OpenAI grader
+### Unsupported regions for Azure OpenAI graders
 
-The following regions don't support OpenAI grader or custom code evaluator:
+The following regions don't support Azure OpenAI graders or custom code evaluator:
 
 - Canada East
 - Central India

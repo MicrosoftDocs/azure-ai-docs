@@ -154,10 +154,31 @@ To learn which regions support AI-assisted evaluators, the rate limits that appl
 
 ## Pricing
 
-Observability features such as Risk and Safety Evaluations and Continuous Evaluations are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+::: moniker range="foundry-classic"
 
-> [!NOTE]
-> Playground evaluations are enabled by default for all Foundry projects and are included in consumption-based billing. To turn off playground evaluations, unselect metrics in the upper right of the agents playground.
+Observability features such as risk and safety evaluations and continuous evaluations are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+
+> [!IMPORTANT]
+> Evaluations in the playground are enabled by default for all Foundry projects and are included in consumption-based billing. To turn off playground evaluations, select the metrics box in the agents playground and unselect all evaluators.
+>
+> :::image type="content" source="../media/evaluations/agent-playground-evaluation-metrics.png" alt-text="Screenshot of the Foundry portal showing agent playground with the metrics box selected." lightbox="../media/evaluations/agent-playground-evaluation-metrics.png":::
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Observability features such as risk and safety evaluations and evaluations in the agent playground are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+
+> [!IMPORTANT]
+> Evaluations in the playground are enabled by default for all Foundry projects and are included in consumption-based billing. To turn off playground evaluations, select metrics in the upper right of the agents playground and unselect all evaluators.
+>
+> :::image type="content" source="../default/media/observability/agent-playground-evaluation-metrics.png" alt-text="Screenshot of the Foundry portal showing agent playground with the metrics selected." lightbox="../default/media/observability/agent-playground-evaluation-metrics.png":::
+
+
+::: moniker-end
+
+::: moniker-end
+
 
 ## Related content
 

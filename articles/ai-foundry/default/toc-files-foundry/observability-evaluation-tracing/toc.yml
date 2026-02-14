@@ -32,7 +32,7 @@ items:
   items:
    - name: Evaluate your AI agents
      href: ../../observability/how-to/evaluate-agent.md
-   - name: Run evaluations in the cloud 
+   - name: Run evaluations from the SDK
      href: ../../../how-to/develop/cloud-evaluation.md
      displayName: code,accuracy,metrics
    - name: Run evaluations from the portal
