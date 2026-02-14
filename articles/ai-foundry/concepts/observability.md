@@ -173,9 +173,6 @@ Observability features such as risk and safety evaluations and evaluations in th
 >
 > :::image type="content" source="../default/media/observability/agent-playground-evaluation-metrics.png" alt-text="Screenshot of the Foundry portal showing agent playground with the metrics selected." lightbox="../default/media/observability/agent-playground-evaluation-metrics.png":::
 
-
-::: moniker-end
-
 ::: moniker-end
 
 
