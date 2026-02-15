@@ -20,10 +20,6 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-Learn how to see evaluation results in the Microsoft Foundry portal. View and interpret AI model evaluation data, performance metrics, and quality assessments. Access results from flows, playground sessions, and SDK to make data-driven decisions.
-
-After visualizing your evaluation results, examine them thoroughly. View individual results, compare them across multiple evaluation runs, and identify trends, patterns, and discrepancies to gain insights into your AI system's performance under various conditions.
-
 In this article, you learn to:
 
 - Locate and open evaluation runs.
@@ -31,6 +27,27 @@ In this article, you learn to:
 - Compare results across runs.
 - Interpret metric categories and calculations.
 - Troubleshoot missing or partial metrics.
+
+## Prerequisites
+
+::: moniker range="foundry-classic"
+
+- An evaluation run.
+
+    - To learn how to run evaluations in the portal see, [Evaluate generative AI models and applications](evaluate-generative-ai-app.md).
+    - To learn how to run evaluations from the SDK see, [Run evaluations in the cloud](./develop/cloud-evaluation.md) or [Run evaluations locally](./develop/evaluate-sdk.md).
+
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- An evaluation run.
+
+    - To learn how to run evaluations in the portal see, [Evaluate generative AI models and applications](evaluate-generative-ai-app.md).
+    - To learn how to run evaluations from the SDK see, [Run evaluations from the SDK](./develop/cloud-evaluation.md) or [Evaluate your AI agents](../default/observability/how-to/evaluate-agent.md).
+
+::: moniker-end
 
 ## See your evaluation results
 
@@ -53,11 +70,15 @@ Select a run to open details (dataset, task type, prompt, parameters) plus per-s
 
 ::: moniker range="foundry"
 
-In Microsoft Foundry, the concept of group runs is introduced. You can create multiple runs within a group that share common characteristics, such as metrics and datasets, to make comparison easier. Once you run an evaluation, locate the group on the **Evaluation** page, which contains a list of group evaluations and associated meta data, such as the number of targets and the last modified date.  
+After submitting an evaluation, you can track its progress on the Evaluation details page. When the evaluation completes, the page displays key information such as:
 
-Select a group run to review group details, including each run and high-level metrics, such as run duration, tokens, and evaluator scores, for each run within that group.
+-The evaluation creator
+-Evaluation token usage
+-Scores for each evaluator, broken down by run
 
-By selecting a run within this group, you can also drill in to view the row detailed data for that particular run.  
+:::image type="content" source="../default/media/observability/evaluation-runs.png" alt-text="Screenshot of the evaluation details page showing evaluation runs." lightbox="../default/media/observability/evaluation-runs.png":::
+
+Select a specific run to drill into row‑level results.
 
 Select **Learn more about metrics** for definitions and formulas.
 
@@ -80,15 +101,6 @@ In the **Metric dashboard** section, aggregate views are broken down by metrics 
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-### Evaluation Runs Results and Pass Rate
-
-You can view each run within a group on the Evaluation Runs and Results Pass Rate page. This view shows the run, target, status,  run duration, tokens, and pass rate for each evaluator chosen.  
-
-If you would like to cancel runs, you can do so by selecting each run and clicking “cancel runs” at the top of the table.
-
-::: moniker-end
 
 ::: moniker range="foundry-classic"
 
@@ -146,10 +158,9 @@ If you're evaluating a prompt flow, you can select the **View in flow** button t
 
 ::: moniker range="foundry"
 
-### Evaluation Run Data
+### Evaluation run details
 
-To view the turn by turn data for individual runs, select the name of the run. This provides a view that allows you to see evaluation results by turn against each evaluator used.
-
+To view the row level data for individual runs, select the name of the run. This provides a view that allows you to see evaluation results at the individual query level against each evaluator used. Here, you can view details like query, response, ground truth, and the evaluator score and explanation.
 ::: moniker-end
 
 ## Compare the evaluation results

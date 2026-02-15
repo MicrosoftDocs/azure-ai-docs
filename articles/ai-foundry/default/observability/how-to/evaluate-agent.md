@@ -29,8 +29,8 @@ In this article, you learn how to:
 ## Prerequisites
 
 - A [Foundry project](../../../how-to/create-projects.md) with an [agent](../../../agents/overview.md).
-- A model deployment to act as the judge for AI-assisted evaluators.
-- Python 3.9 or later.
+- An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
+- **Azure AI User** role on the Foundry project.
 
 > [!NOTE]
 > Some evaluation features have regional restrictions. See [supported regions](../../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
@@ -40,7 +40,7 @@ In this article, you learn how to:
 Install the Foundry SDK and set up authentication:
 
 ```bash
-pip install azure-ai-projects azure-identity
+pip install "azure-ai-projects>=2.0.0b1" azure-identity
 ```
 
 Create the project client. The following code samples assume you run them in this context:
