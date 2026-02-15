@@ -21,7 +21,7 @@ This article shows you how to publish an agent, configure its authentication and
 - [Invoke your Agent Application using the Responses API protocol](./publish-responses.md)
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md) 
 
-If you specifically want to build and publish an agent as a digital worker in Agent 365. See this dedicated guide
+If you specifically want to build and publish an agent as a digital worker in Agent 365. See [Publish an agent as a digital worker in Agent 365](./agent-365.md)
 
 ## What is publishing?
 
@@ -112,7 +112,7 @@ For applications this is exposed at:
 
 You can configure inbound end-user authentication on the application. The following options are available:
 
-- **Default (RBAC)**: The caller must have the Azure RBAC permission `/applications/invoke/action` on the application resource.
+- **Default (RBAC)**: The caller must have the Azure RBAC permission `/applications/invoke/action` on the application resource. Choose this option if you want to invoke your agent application using the Responses API protocol.
 - **Channels (Azure Bot Service)**: When you publish to M365/Teams or to A365 as a digital worker, channels is the authentication that is used. This is selected automatically in the UI through the M365/Teams publish flow.
 <!--
 - Channels (Azure Bot Service): Requests from a linked Azure Bot Service instance are permitted. This is used for M365 and Agent365 integration, and for scenarios where an upstream service interacts with the application through Activity Protocol. 
@@ -178,6 +178,12 @@ Content-Type: application/json
 **Required**: Replace `agentName` and `agentVersion` with the agent version you want to publish.
 
 For prompt and workflow agents:
+
+**Required fields**
+- `agentName`: the name of the agent you want to publish
+- `agentVersion`: the version of the agent you want to Publish
+- `protocols`: for responses set `protocol` as "responses" and `version` as "1.0" and for activity protocol just set `protocol` as `Activity
+- 
 ```
 PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}?api-version={{api_version}}
 Authorization: Bearer {{token}}
@@ -239,7 +245,6 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 ```
-
 
 ## Verify publishing succeeded
 

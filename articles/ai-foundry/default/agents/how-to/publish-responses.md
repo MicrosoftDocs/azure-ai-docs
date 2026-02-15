@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 # Invoke your Agent Application using the Responses API protocol
 
-After publishing, you invoke your agent application using the Responses API protocol or the Activity Protocol. The Activity Protocol is used when your agent is published to Microsoft 365 and Teams.
+After publishing, you can invoke your agent application using the Responses API protocol or the Activity Protocol. The Activity Protocol is used when your agent is published to Microsoft 365 and Teams.
 
 This article focuses on how you chat with your Agent Application using the Responses API protocol. 
 

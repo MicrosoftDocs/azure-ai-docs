@@ -33,7 +33,7 @@ Use this article to publish a Microsoft Foundry agent so people can use it in Mi
 - **Publish your agent as an agent application**: A published agent application uses its own agent identity separate from your project identity. If your agent uses tools that access Azure resources, plan to reassign any required permissions after publishing. For details, see [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md) and [Publish and share agents in Microsoft Foundry](publish-agent.md).
 - Verify that required Azure resource providers are registered in your subscription. The publishing process creates an Azure Bot Service resource, which requires the `Microsoft.BotService` provider.
 
-## (Prerequsite) Publish your agent as an agent application in the Foundry UI
+## Prerequsite: Publish your agent as an agent application in the Foundry UI
 
 For more details on publishing an agent as an application, see [Publish and share agents](./publish-agent.md).
 
