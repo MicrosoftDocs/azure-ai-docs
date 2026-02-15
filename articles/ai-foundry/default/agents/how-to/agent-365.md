@@ -91,9 +91,9 @@ When the sample completes successfully (for example, the `azd` commands finish w
 
 1. Approve the agent blueprint request in the Microsoft 365 admin center. 
   You can review approval requests at: https://admin.cloud.microsoft/?#/agents/all/requested
-  :::image type="content" source="../media/approve-agent.png" alt-text="Screenshot of an agent awaiting or showing approval in the Microsoft 365 admin center agent registry." lightbox="../media/foundry-a365-dw.png":::
+  :::image type="content" source="../media/approve-agent.png" alt-text="Screenshot of an agent awaiting or showing approval in the Microsoft 365 admin center agent registry." lightbox="../media/approve-agent.png":::
 1. Once approved, verify your agent shows up in the Agent 365 agent registry.
-  :::image type="content" source="../media/agent-in-registry.png" alt-text="Screenshot of an approved agent in A365 registry." lightbox="../media/foundry-a365-dw.png":::
+  :::image type="content" source="../media/agent-in-registry.png" alt-text="Screenshot of an approved agent in A365 registry." lightbox="../media/agent-in-registry.png":::
 1. Configure Teams integration in the Teams Developer Portal:
     1. Go to the [Teams Developer Portal](https://dev.teams.microsoft.com/tools/agent-blueprint) and locate your approved agent blueprint.
     1. If you don't see your blueprint, copy the blueprint ID from `azd env get-values`. Then open any blueprint and replace the blueprint ID in the browser URL with your blueprint ID.
@@ -102,7 +102,7 @@ When the sample completes successfully (for example, the `azd` commands finish w
     1. Go to **Agents for your team**.
     1. Find your agent and create an instance.
     
-  :::image type="content" source="../media/create-instance.png" alt-text="Screenshot of creating an agent instance in Microsoft Teams." lightbox="../media/a365-create-instance.png":::
+  :::image type="content" source="../media/create-instance.png" alt-text="Screenshot of creating an agent instance in Microsoft Teams." lightbox="../media/create-instance.png":::
 
 
 ## Troubleshooting
