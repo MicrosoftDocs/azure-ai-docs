@@ -54,7 +54,6 @@ The rest of this article walks through that process.
 - [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
 - [Docker](https://www.docker.com/)
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download)
-- [Git](https://git-scm.com/downloads)
 
 ## What the sample creates
 
