@@ -318,8 +318,9 @@ To create a multi-agent setup, follow these steps:
     
     ```python
     # Print the Agent's response message with optional citation
-    response_message = project_client.agents.messages.list(thread_id=thread.id).get_last_message_by_role(
-        MessageRole.AGENT
+    response_message = project_client.agents.messages.get_last_message_by_role(
+        thread_id=thread.id, 
+        role=MessageRole.AGENT
     )
     if response_message:
         for text_message in response_message.text_messages:
