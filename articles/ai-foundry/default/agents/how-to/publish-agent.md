@@ -17,7 +17,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 Publishing promotes an agent from a development asset inside your Foundry project into a managed Azure resource that external consumers can call through a stable endpoint. Think of it as the step that moves your agent from "works in my project" to "ready for others to use."
 
-This article shows you how to publish an agent, configure its authentication and permissions, and update your Agent Application as you roll out new agent versions. After publishing, see the following articles to consume your Agent Application:
+This article shows you how to publish an agent, configure its authentication and permissions, and update your Agent Application as you roll out new agent versions. After publishing, see the following articles to use your Agent Application:
 - [Invoke your Agent Application using the Responses API protocol](./publish-responses.md)
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md) 
 
@@ -25,7 +25,7 @@ If you specifically want to build and publish an agent as a digital worker in Ag
 
 ## What is publishing?
 
-During development, you build and test your agent inside a Foundry project. The project gives you and your teammates a shared workspace, but it isn't designed for broad distribution, meaning everyone with project access can interact with all agents and shares the same conversation context and permissions. Publishing is the step that moves an agent out of that shared development space and into a production-ready Azure resource.
+During development, you build and test your agent inside a Foundry project. The project gives you and your teammates a shared workspace, but it isn't designed for broad distribution because everyone with project access can interact with all agents and shares the same conversation context and permissions. Publishing is the step that moves an agent out of that shared development space and into a production-ready Azure resource.
 
 When you publish an agent version, Foundry creates an **Agent Application** resource that wraps your agent version with its own invocation URL, authentication policy, unique Entra agent identity, unique Entra agent blueprint, and registers it in the [Entra Agent Registry](/entra/agent-id/identity-platform/what-is-agent-registry) for discoverability and governance. A **Deployment** is also created as a child resource of the application, referencing the specific agent version being published and supporting start/stop lifecycle management.
 
@@ -34,7 +34,7 @@ When you publish an agent version, Foundry creates an **Agent Application** reso
 Publishing gives you capabilities that project-level development doesn't provide:
 
 - **External sharing** — Grant access to teammates or customers without giving them access to your Foundry project.
-- **Stable endpoint** — The application URL stays the same even as you roll out new agent versions. Existing integrations continue to work without code changes, and you don't need to republish to Microsoft 365 or Teams, just update the Agent Application deployment and the changes take effect automatically.
+- **Stable endpoint** — The application URL stays the same even as you roll out new agent versions.
 - **Distinct agent identity** — The published agent gets its own Entra agent identity and Entra agent blueprint, separate from the project's shared identity and blueprint.
 - **Independent RBAC and authorization** — The Agent Application is a separate Azure resource with its own RBAC scope. You can assign roles like Azure AI User directly on the Agent Application resource to control who can invoke it.
 - **Azure Policy integration** — As an Azure Resource Manager (ARM) resource, the application can be governed by Azure Policy.
@@ -129,6 +129,8 @@ This section shows you how to publish an agent using the Foundry portal interfac
 1. In the Agent Builder, create or select an agent version you want to publish.
 
 2. Select **Publish Agent** to create an Agent Application and deployment.
+
+  **Expected result**: Publishing completes and the agent version shows a published status.
 
 3. Configure authentication for your Agent Application:
 
@@ -254,7 +256,7 @@ Content-Type: application/json
 
 ##### Hosted agents
 ```
-PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/default/agentdeployments/{{deployment_name2}}?api-version={{api_version}}
+PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}?api-version={{api_version}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
 {
@@ -281,7 +283,15 @@ Content-Type: application/json
 
 #### 3. Verify deployment is running
 
-Prompt and workflow agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version — if the version is stopped, the deployment is also stopped. Use the following call to start a stopped deployment:
+Prompt and workflow agent deployments typically start running automatically. Hosted agent deployments inherit the state of the published agent version — if the version is stopped, the deployment is also stopped. 
+
+To check the current state, get the deployment resource and inspect property `state`:
+```
+GET https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}?api-version={{api_version}}
+Authorization: Bearer {{token}}
+```
+
+Use the following call to start a stopped deployment:
 ```
 POST https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/applications/{{application_name}}/agentdeployments/{{deployment_name}}/start?api-version={{api_version}}
 Authorization: Bearer {{token}}
@@ -369,18 +379,18 @@ To roll out an agent with a different name, you must:
 > [!NOTE]
 > Currently, all traffic must be routed to a single deployment.
 
-## Consume your Agent Application
+## Invoke your Agent Application
 
 > [!NOTE]
 > Agent applications currently support one protocol at a time, but this can be changed. When you create an Agent Application in the Foundry UI, it defaults to the Responses API protocol. If you later publish to Microsoft 365 or Teams, the publishing flow configures the Activity Protocol.
 
-After publishing, you invoke your agent through its endpoint using either the Responses API protocol or the Activity Protocol. The activity protocol applies when your agent is published to Microsoft 365 and Teams.
+After publishing, you invoke your agent through its endpoint using either the Responses API protocol or the Activity Protocol. The activity protocol is used when your agent is published to Microsoft 365 and Teams.
 
-For step-by-step instructions for consuming your Agent Application using the Responses API protocol, see [Invoke your Agent Application using the Responses API protocol](./publish-responses.md)
+To use your Agent Application with the Responses API protocol, see [Invoke your Agent Application using the Responses API protocol](./publish-responses.md)
 
-For step-by-step instructions for distributing your agent to Microsoft 365 and Teams, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md).
+To use your Agent Application in Microsoft 365 Copilot and Teams, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md).
 
-For step-by-step instructions for publishing your agent as a digital worker, see [Publish an agent as a digital worker in Agent 365](./agent-365.md)
+To publish your agent as a digital worker, see [Publish an agent as a digital worker in Agent 365](./agent-365.md)
 
 ## Security and privacy considerations
 

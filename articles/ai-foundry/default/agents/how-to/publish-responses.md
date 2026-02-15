@@ -43,7 +43,7 @@ This article focuses on how you chat with your Agent Application using the Respo
 from openai import OpenAI 
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider 
 
-# edit base_url with your <foundry-resource-name>, <project-name>, and <app-name>
+# Replace placeholders in base_url with your <foundry-resource-name>, <project-name>, and <app-name>
 openai_client = OpenAI(
     api_key=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default"),
     base_url="https://<foundry-resource-name>.services.ai.azure.com/api/projects/<project-name>/applications/<app-name>/protocols/openai",
@@ -56,8 +56,6 @@ response = openai_client.responses.create(
 print(f"Response output: {response.output_text}")
 ```
 This approach authenticates using Azure credentials and requires the caller to have the Azure AI User role on the Agent Application resource.
-
-For long-running applications, refresh the token periodically (Microsoft Entra access tokens expire).
 
 ## Limitations
 

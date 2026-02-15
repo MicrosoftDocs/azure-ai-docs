@@ -86,19 +86,18 @@ azd env get-values
 > [!NOTE]
 > Depending on your tenant settings, you might need to sign in with more Azure CLI scopes before provisioning (for example, for Foundry, Microsoft Graph, and Azure Resource Manager). Follow the exact commands in the sample README.
 
-The sample creates the required resources and an agent version, publishes the agent as an agent application, and then publishes it as a digital worker in Agent 365.
-
 When the sample completes successfully (for example, the `azd` commands finish without errors), you have a published agent application and a digital worker request ready for approval in the Microsoft 365 admin center. Once approved by an admin, you should see the agent in the Agent 365 registry. You might not see anything to approve yet until you complete the approval steps in the README.
 
 ## Validate
 
 1. Approve the agent blueprint request in the Microsoft 365 admin center. 
+  You can review approval requests at: https://admin.cloud.microsoft/?#/agents/all/requested
   :::image type="content" source="../media/approve-agent.png" alt-text="Screenshot of an agent awaiting or showing approval in the Microsoft 365 admin center agent registry." lightbox="../media/foundry-a365-dw.png":::
 1. Once approved, verify your agent shows up in the Agent 365 agent registry.
   :::image type="content" source="../media/agent-in-registry.png" alt-text="Screenshot of an approved agent in A365 registry." lightbox="../media/foundry-a365-dw.png":::
 1. Configure Teams integration in the Teams Developer Portal:
     1. Go to the [Teams Developer Portal](https://dev.teams.microsoft.com/tools/agent-blueprint) and locate your approved agent blueprint.
-    1. If you don't see your blueprint, open any blueprint and replace the blueprint ID in the URL with your blueprint ID from `azd env get-values`.
+    1. If you don't see your blueprint, copy the blueprint ID from `azd env get-values`. Then open any blueprint and replace the blueprint ID in the browser URL with your blueprint ID.
 1. In Microsoft Teams, verify that you can find the agent and create an instance:
     1. Go to **Apps**.
     1. Go to **Agents for your team**.

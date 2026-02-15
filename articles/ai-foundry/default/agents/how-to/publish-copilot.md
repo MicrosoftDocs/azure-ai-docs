@@ -80,7 +80,7 @@ For more information on publishing an agent as an application, see [Publish and 
    | **Privacy statement URL** | URL to your privacy policy |
    | **Terms of use URL** | URL to your terms of use |
 
-   Provide HTTPS URLs for the **Website**, **Privacy statement URL**, and **Terms of use URL** fields. If you don't already have these pages, just use any URL.
+   Provide HTTPS URLs for the **Website**, **Privacy statement URL**, and **Terms of use URL** fields. Placeholder URLs are acceptable for individual developers and testing.
 
    > [!WARNING]
    > Don't include secrets, API keys, or sensitive information in any metadata fields. These fields are visible to users.
@@ -123,6 +123,7 @@ Choose the scope that matches how you want people to discover your agent.
 - Once approved, the agent appears in the **Built by your org** section for all users in your tenant.
 - App policies in your tenant control which users can access the agent.
 - To check approval status, go to the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested) and look for your agent under **Requests**.
+   If you don't see the request, see **Limitations** and **Troubleshooting** for current workarounds.
 
 ## Download and test the publishing package
 
