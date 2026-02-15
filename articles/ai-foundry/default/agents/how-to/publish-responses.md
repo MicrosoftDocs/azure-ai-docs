@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 After publishing, you can invoke your agent application using the Responses API protocol or the Activity Protocol. The Activity Protocol is used when your agent is published to Microsoft 365 and Teams.
 
-This article focuses on how you chat with your Agent Application using the Responses API protocol. 
+This article focuses on how you invoke your Agent Application using the Responses API protocol. 
 
 ## Prerequisites
 
@@ -79,10 +79,14 @@ This approach authenticates using Azure credentials and requires the caller to h
 
 ## FAQs
 
-1. **Why are conversations not persisted for published agents (aka why is only stateless responses supported)?**
+**1. Why are conversations not persisted for published agents (aka why is only stateless responses supported)?**
 
 Today there’s a temporary limitation where published agents only support stateless Responses API interactions (that is, no persistent conversations). Work to fix this is already underway.
 
-The reason for this limitation is that while Agent Service supports managed conversation history, it doesn't yet enforce end-user isolation between conversations within the same project. In other words, if someone knows another user’s conversation ID, they could access that conversation history even though it isn’t theirs. That’s acceptable in a development context within a single project, but it’s not acceptable for production, where customers need strict per-user conversation isolation. 
+The reason for this limitation is that while Foundry Agent Service supports managed conversation history, it doesn't yet enforce end-user isolation between conversations within the same project. In other words, if someone knows another user’s conversation ID, they could access that conversation history even though it isn’t theirs. That’s acceptable in a development context within a single project, but it’s not acceptable for production, where customers need strict per-user conversation isolation. 
 
-Agentic applications are intended to expose functionality to a different audience (for example, others in your org or your customers), separate from project builders, with stable versions, configuration, and controlled access. Given that goal, users of agent applications naturally expect their interactions with the application to be private and not visible to others. This isn’t currently possible because the single-user OpenAI APIs we’ve built on top of don't provide native data isolation, and we need to build that isolation layer ourselves. Until we support full end-user data isolation for applications, only stateless responses are available. This limitation is temporary.
+Agent Applications are intended to expose functionality to a different audience (for example, others in your org or your customers), separate from project developers, with stable versions, configuration, and controlled access. Given that goal, users of agent applications naturally expect their interactions with the application to be private and not visible to others. This isn’t currently possible because the single-user OpenAI APIs we’ve built on top of don't provide native data isolation, and we need to build that isolation layer ourselves. Until we support full end-user data isolation for applications, only stateless responses are available. This limitation is temporary.
+
+**2. What is the pricing model for a published agent? Is the cost based on a consumption model, or does the client incur charges simply because the application resource (endpoint) has underlying infrastructure deployed once the agent is published?**
+
+Published agents use a publisher-pays model: the publisher (the Foundry project owner) incurs costs based on the underlying infrastructure that is deployed when the agent is published as an application, not based on per-call consumption. End users of the published application do not incur any costs by default, though customers may choose to place their own metering or billing layer in front of the application if they want to implement a consumption-based model for their organization or external users.

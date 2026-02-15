@@ -14,9 +14,9 @@ ai-usage: ai-assisted
 
 # Publish agents to Microsoft 365 Copilot and Microsoft Teams
 
-Publishing creates an agent application with a stable endpoint. Once created, the published agent can then be distributed in Microsoft 365 Copilot and Teams or invoked using the Responses API protocol.
+Publishing creates an agent application with a stable endpoint. Once created, the agent application can then be published to Microsoft 365 Copilot and Teams or invoked using the Responses API protocol.
 
-Use this article to publish a Microsoft Foundry agent so people can use it in Microsoft 365 Copilot and Microsoft Teams.
+Use this article to publish an agent to Microsoft 365 Copilot and Teams so people can use it in those interfaces.
 
 ## Prerequisites 
 
@@ -189,11 +189,12 @@ Use these checks to unblock common publishing issues.
 | Users can't find the agent in the store | Wrong scope or approval pending | For Individual scope, share the direct link. For Organization scope, confirm admin approval is complete. |
 
 ## FAQs
-1. **If I select Organization (tenant) scope when publishing to Microsoft 365 Copilot and Teams, where should I go to approve the agent?** 
+**1. If I select Organization (tenant) scope when publishing to Microsoft 365 Copilot and Teams, where should I go to approve the agent?** 
 
 In the Microsoft Admin Center, you can approve Foundry agents published to M365/Teams. Once approved by an admin, the agent appears under Built by your org in the agent store for Microsoft 365 Copilot. 
 
-2. **If I publish my agent to Individual Scope (previously called Shared Scope), how do I share it with others in my organization?**
+**2. If I publish my agent to Individual Scope (previously called Shared Scope), how do I share it with others in my organization?**
+
 The agent appears under Your agents in the agent store for Microsoft 365 Copilot. You can share it by sending the agent link to selected users in your organization. 
 
 :::image type="content" source="../media/share-published-agent.png" alt-text="Screenshot of how to share an Individual scoped published agent with others in your org." lightbox="../media/agent-store.png":::

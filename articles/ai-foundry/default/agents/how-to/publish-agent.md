@@ -134,8 +134,8 @@ This section shows you how to publish an agent using the Foundry portal interfac
 
 3. Configure authentication for your Agent Application:
 
-  - By default, the authentication type is set to RBAC (Role-Based Access Control).
-  - Users calling the agent application using Responses protocol must be granted the **Azure AI User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource.
+      - By default, the authentication type is set to RBAC (Role-Based Access Control).
+      - Users calling the agent application using Responses protocol must be granted the **Azure AI User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource.
    <!--
    - For Azure Bot Service integration (to support Microsoft 365/Microsoft 365 Copilot), requests from a linked Azure Bot Service instance are automatically permitted
     -->
@@ -147,11 +147,9 @@ This section shows you how to publish an agent using the Foundry portal interfac
 
 5. After publishing, you can:
 
-  - Share the published endpoint with external consumers or integrate it into your existing application.
-  - Share and chat with your application in channels like Teams/M365 Copilot.
+      - Share the published endpoint with external consumers or integrate it into your existing application.
+      - Share and chat with your application in channels like Teams/M365 Copilot.
 
-> [!NOTE]
-> (Coming soon) Open the application in the Foundry portal to chat with it and easily share it with others in the UI.
 
 ### REST API
 To publish an agent version, you must create an application and deployment that reference your agent version.
@@ -160,8 +158,6 @@ To publish an agent version, you must create an application and deployment that 
 > Agent Applications are Azure resources. Use the latest API version available for your subscription and account when calling the management endpoint.
 
 #### Before you begin
-
-The REST API examples in this section use the Azure Resource Manager (ARM) endpoint (`https://management.azure.com`).
 
 1. Sign in and acquire an Azure Resource Manager access token:
 
@@ -179,24 +175,19 @@ The REST API examples in this section use the Azure Resource Manager (ARM) endpo
   ```
 
 2. Collect the values you need for the request URL.
-
-  The REST examples use placeholders such as `{{subscription_id}}`, `{{resource_group}}`, `{{account_name}}`, and `{{project_name}}`.
-
-  - `subscription_id`: Use the subscription that contains your Foundry resource. You can find it in the Azure portal (**Subscriptions**) or by running `az account show --query id -o tsv`.
-  - `resource_group`: The resource group that contains your Foundry resource. You can find it on the Foundry resource **Overview** page in the Azure portal.
-  - `account_name`: The name of your Foundry resource (the Azure resource name).
-  - `project_name`: The Foundry project name.
-  - `application_name` and `deployment_name`: Choose names for the Agent Application and deployment you want to create.
+      - `subscription_id`: Use the subscription that contains your Foundry resource. You can find it in the Azure portal (**Subscriptions**) or by running `az account show --query id -o tsv`.
+      - `resource_group`: The resource group that contains your Foundry resource. You can find it on the Foundry resource **Overview** page in the Azure portal.
+      - `account_name`: The name of your Foundry resource (the Azure resource name).
+      - `project_name`: The Foundry project name.
+      - `application_name` and `deployment_name`: Choose names for the Agent Application and deployment you want to create.
 
 3. Choose an `api-version`.
-
-  Use the latest API version available for your subscription. If you're unsure which API version is supported, open the resource in the Azure portal and use **JSON View** to select the newest available API version from the dropdown. Use that value for the requests in this section.
 
 #### 1. Create agent application. 
 
 For a full property reference and an infrastructure-as-code (Bicep) example for Agent Applications, see the Azure Resource Manager template reference for [Microsoft.CognitiveServices/accounts/projects/applications](https://learn.microsoft.com/azure/templates/microsoft.cognitiveservices/accounts/projects/applications?pivots=deployment-language-bicep).
 
-**Required**: Set the `agentName` field to the name of the agent you want to publish. 
+**Required field**: Set the `agentName` field to the name of the agent you want to publish. 
 
 The following example shows only the minimum required fields. By default `authorizationPolicy` is set to **Default (Azure RBAC)** and `trafficRoutingPolicy` routes all traffic to the first deployment.
 
@@ -207,7 +198,6 @@ Content-Type: application/json
 
 {
   "properties":{
-    "displayName": "niceapp",
     "agents": [{"agentName": "Publishing Agent"}]
   }
 }
@@ -217,16 +207,16 @@ Content-Type: application/json
 
 For a full property reference and an infrastructure-as-code (Bicep) example for Agent deployments, see the Azure Resource Manager template reference for [Microsoft.CognitiveServices/accounts/projects/applications/agentDeployments](https://learn.microsoft.com/azure/templates/microsoft.cognitiveservices/accounts/projects/applications/agentdeployments?pivots=deployment-language-bicep).
 
-The following fields are required:
+**Required fields**:
 
 - `deploymentType`: The deployment mode. Use `Managed` for prompt and workflow agents. Use `Hosted` for hosted agents.
 - `agents`: The agent name and version to deploy.
-- `protocols`: The protocol the deployment exposes. For current allowed values for `protocol` (for example, `Responses`) and any required `version`, see the template reference linked earlier in this section.
+- `protocols`: The protocol the deployment exposes. For responses, set `protocol` as `Responses` and `version` as `1.0`. 
 
-More required hosted-only fields:
+**More required fields for hosted-only**:
 
-- `minReplicas`
-- `maxReplicas`
+- `minReplicas`: Sets the minimum number of replicas
+- `maxReplicas`: Sets the maximum number of replicas
 
 ##### Prompt and workflow agents
 ```
@@ -375,9 +365,6 @@ To roll out an agent with a different name, you must:
 1. Update the Agent Application to allow the new agent name.
 1. Create or update a deployment to reference the new agent version.
 1. If you created a new deployment, update the Agent Application's traffic routing policy so 100% of traffic goes to the new deployment.
-
-> [!NOTE]
-> Currently, all traffic must be routed to a single deployment.
 
 ## Invoke your Agent Application
 
