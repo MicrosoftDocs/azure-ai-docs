@@ -3,7 +3,8 @@ title: Publish agents to Microsoft 365 Copilot and Microsoft Teams
 description: Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Microsoft Teams by creating an agent application and packaging it for distribution.
 author: aahill
 ms.author: aahi
-ms.date: 01/21/2026
+ms.reviewer: fosteramanda
+ms.date: 02/13/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -33,9 +34,15 @@ Use this article to publish a Microsoft Foundry agent so people can use it in Mi
 - **Publish your agent as an agent application**: A published agent application uses its own agent identity separate from your project identity. If your agent uses tools that access Azure resources, plan to reassign any required permissions after publishing. For details, see [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md) and [Publish and share agents in Microsoft Foundry](publish-agent.md).
 - Verify that required Azure resource providers are registered in your subscription. The publishing process creates an Azure Bot Service resource, which requires the `Microsoft.BotService` provider.
 
-## Prerequsite: Publish your agent as an agent application in the Foundry UI
+   If you use Azure CLI, you can register the provider with:
 
-For more details on publishing an agent as an application, see [Publish and share agents](./publish-agent.md).
+   ```azurecli
+   az provider register --namespace Microsoft.BotService
+   ```
+
+## Prerequisite: Publish your agent as an agent application in the Foundry UI
+
+For more information on publishing an agent as an application, see [Publish and share agents](./publish-agent.md).
 
 1. In the Microsoft Foundry portal, select your agent version.
 
@@ -67,11 +74,13 @@ For more details on publishing an agent as an application, see [Publish and shar
    |-------|-------------|
    | **Name** | Display name for your agent (appears in the agent store) |
    | **Short description** | Short one sentence description of what your agent does |
-    | **Full description** | Longer description of what your agent responsibilties and the actions it can take |    
+   | **Full description** | Longer description of your agent responsibilities and the actions it can take |
    | **Publisher information** | Your organization name or agent developer's name |
    | **Website** | URL to your website |
    | **Privacy statement URL** | URL to your privacy policy |
    | **Terms of use URL** | URL to your terms of use |
+
+   Provide HTTPS URLs for the **Website**, **Privacy statement URL**, and **Terms of use URL** fields. If you don't already have these pages, just use any URL.
 
    > [!WARNING]
    > Don't include secrets, API keys, or sensitive information in any metadata fields. These fields are visible to users.
@@ -105,7 +114,7 @@ Choose the scope that matches how you want people to discover your agent.
 
 - The agent is available immediately after publishing.
 - Only the publisher can see and use the agent initially.
-- You can share the agent with specific users by providing them the agent link.
+- You can share the agent with specific users by providing them with the agent link.
 - No admin approval or tenant configuration required.
 
 ### Organization scope details
@@ -152,12 +161,14 @@ To confirm your agent is published correctly:
 
 ## Limitations
 > [!NOTE]
-> All of these are temporary limiations with fixes in progress.
+> All of these limitations are temporary with fixes in progress.
 
 | Limitation | Description |
 | --- | --- |
 | File uploads and image generation in Microsoft 365 | File uploads and image generation don't work for agents published to Microsoft 365. These features work correctly in Microsoft Teams. |
-| Microsoft Admin Center approval | There is currently a bug where Published agents with Organization (tenant) scope don't appear in the Microsoft Admin Center (MAC) for approval. As a workaround if you want to publish to Organization scope download the .zip fil, in Microsoft Teams navigate to **Apps** > **Manage your apps** > **Upload an app** and select **Submit an app to your org** option|
+| Microsoft Admin Center approval | There's currently a bug where published agents with Organization (tenant) scope don't appear in the Microsoft Admin Center (MAC) for approval. Workaround: download the `.zip` package, then in Microsoft Teams go to **Apps** > **Manage your apps** > **Upload an app**, and select **Submit an app to your org**. |
+| MCP tools requiring approval | Model Context Protocol tools must have `required_approval` set to `false`. |
+| Private Link | Private Link isn't supported for Teams or Azure Bot Service integrations. |
 | Streaming and citations | Published agents don't support streaming responses or citations. |
 | OAuth authentication for tools | Published agents don't support OAuth authentication for tools. |
 | Project managed identity needs Azure AI User role on itself | When you publish to Microsoft 365, the project managed identity must have the **Azure AI User** role on itself. Without it, you get an authorization error when chatting with the agent in Teams/M365. In the Azure portal, go to your Foundry project resource and select **Access control (IAM)** > **Add role assignment**. Assign the **Azure AI User** role to the project managed identity, scoped to the project itself. |
@@ -172,9 +183,9 @@ Use these checks to unblock common publishing issues.
 | Azure Bot Service creation fails | Missing permissions or unregistered resource provider | Confirm you have permission to create resources in the selected Azure subscription. Register the `Microsoft.BotService` provider if needed. |
 | Organization scope agent doesn't appear | Admin approval pending or app policies block access | Confirm an admin approved the app in the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested). Check that app policies in your tenant allow users to access it. |
 | Agent works in Foundry but fails after publishing | Agent identity missing required role assignments | The published agent uses its own identity. Reassign RBAC permissions to the new agent identity for any Azure resources the agent accesses. See [Agent identity concepts](../concepts/agent-identity.md). |
-| Package upload fails in Teams | Invalid package format or missing metadata | Verify all required metadata fields are complete. Re-download the package and try again. |
+| Package upload fails in Teams | Invalid package format or missing metadata | Verify all required metadata fields are complete. Redownload the package and try again. |
 | Agent doesn't respond in Teams | Bot Service configuration issue | Verify the Azure Bot Service resource is running. Check the Bot Service logs in the Azure portal for errors. |
-| Users can't find the agent in the store | Wrong scope or approval pending | For shared scope, share the direct link. For organization scope, confirm admin approval is complete. |
+| Users can't find the agent in the store | Wrong scope or approval pending | For Individual scope, share the direct link. For Organization scope, confirm admin approval is complete. |
 
 ## FAQs
 1. **If I select Organization (tenant) scope when publishing to Microsoft 365 Copilot and Teams, where should I go to approve the agent?** 
