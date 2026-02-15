@@ -102,7 +102,7 @@ When the sample completes successfully (for example, the `azd` commands finish w
     1. Go to **Agents for your team**.
     1. Find your agent and create an instance.
     
-  :::image type="content" source="../media/create-instance.png" alt-text="Screenshot of creating an agent instance in Microsoft Teams." lightbox="../media/create-instance.png":::
+  :::image type="content" source="../media/create-instance.png" alt-text="Screenshot of creating an agent instance of a digital worker in Microsoft Teams." lightbox="../media/create-instance.png":::
 
 
 ## Troubleshooting
