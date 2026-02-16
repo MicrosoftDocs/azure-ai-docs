@@ -9,6 +9,7 @@ ms.date: 02/10/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 monikerRange: 'foundry-classic || foundry'
+ms.custom: references_regions
 ---
 
 # Rate limits, region, and virtual network support for evaluation
