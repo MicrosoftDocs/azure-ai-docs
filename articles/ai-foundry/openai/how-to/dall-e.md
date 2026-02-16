@@ -28,6 +28,7 @@ OpenAI's image generation models create images from user-provided text prompts a
 
 You can do image generation via [image generation API](/azure/ai-foundry/openai/dall-e-quickstart) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key). Or you can experiment with image generation in the [Foundry portal](https://ai.azure.com)
 
+Use the tabs at the start of this page to select your preferred API approach and model.
 
 ## Models and capabilities
 
@@ -46,8 +47,6 @@ Use this table to learn the differences between the different image generation m
 | **Performance & Cost** | High-fidelity, **realism-optimized** model; improved efficiency and latency over GPT-Image-1 | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation | Balanced performance; higher latency on complex prompts |
 
 ## Quickstart
-
-Use the tabs to select your preferred API approach and model.
 
 ::: zone pivot="rest-api"
 
