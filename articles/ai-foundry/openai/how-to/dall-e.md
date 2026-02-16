@@ -18,13 +18,14 @@ ai-usage: ai-assisted
 
 ---
 
-# How to use Azure OpenAI image generation models
+# Azure OpenAI image generation models
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 
 OpenAI's image generation models create images from user-provided text prompts and optional images. This article explains how to use these models, configure options, and benefit from advanced image generation capabilities in Azure.
 
+You can do image generation via [image generation API](/azure/ai-foundry/openai/dall-e-quickstart) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key). Or you can experiment with image generation in the [Foundry portal](https://ai.azure.com)
 
 ## Prerequisites
 
@@ -36,14 +37,13 @@ OpenAI's image generation models create images from user-provided text prompts a
 - Python 3.8 or later.
     - Install the required packages: `pip install openai azure-identity`
 
-## Overview
 
-- Use image generation via [image generation API](/azure/ai-foundry/openai/dall-e-quickstart) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key)
-- Experiment with image generation in the [Foundry portal](https://ai.azure.com)
-- Learn about [image generation tokens](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#image-generation-models)
+## Models and capabilities
 
 | Aspect | GPT-Image-1.5 | GPT-Image-1 | GPT-Image-1-Mini | DALL·E 3 |
 |--------|---------------|--------------|------------------|-----------|
+|**Availability** | Limited access preview ([Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Generally available|
+| **Strengths** | Best for realism, instruction following, multimodal context, and improved speed/cost | Best for realism, instruction following, and multimodal context | Best for fast prototyping, bulk generation, or cost-sensitive use cases | Strong prompt adherence, natural text rendering, and stylistic diversity |
 | **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text (primary)** input; limited image editing inputs (with mask). Outputs as **URL or base64**. |
 | **Image Sizes / Resolutions** | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1792, 1792×1024 |
 | **Quality Options** | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = medium) | `standard`, `hd`; style options: `natural`, `vivid` |
@@ -51,20 +51,67 @@ OpenAI's image generation models create images from user-provided text prompts a
 | **Editing (inpainting / variations)** | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations |
 | **Face Preservation** | ✅ Advanced **face preservation** for realistic, consistent results | ✅ Advanced **face preservation** for realistic, consistent results | ❌ No dedicated face preservation; better for **non-portrait/general creative** imagery | ❌ No dedicated face preservation |
 | **Performance & Cost** | High-fidelity, **realism-optimized** model; improved efficiency and latency over GPT-Image-1 | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation | Balanced performance; higher latency on complex prompts |
-| **Strengths** | Best for **realism**, **instruction following**, **multimodal context**, and **improved speed/cost** | Best for **realism**, **instruction following**, and **multimodal context** | Best for **fast prototyping**, **bulk generation**, or **cost-sensitive** use cases | Strong **prompt adherence**, **natural text rendering**, and **stylistic diversity** |
 
-## Responsible AI and Image Generation 
-Azure OpenAI's image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
+## Quickstart
 
-In addition, Azure provides input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+Use the tabs to select your preferred API approach and model.
 
-Customers can learn more about these safeguards and how to customize them here:
-- Learn more: Explore [content filtering](/azure/ai-foundry/openai/concepts/content-filter)
-- Request customization: Apply to [opt out of content filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
+::: zone pivot="rest-api"
 
-### Special considerations for generating images of minors
+[!INCLUDE [REST API quickstart](../includes/dall-e-rest.md)]
 
-Photorealistic images of minors are blocked by default. Customers can [request access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQVFQRDhQRjVPNllLMVZCSVNYVUs4MzhNMyQlQCN0PWcu) to this model capability. Enterprise-tier customers are automatically approved.
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+[!INCLUDE [Python SDK quickstart](../includes/dall-e-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+[!INCLUDE [C# SDK quickstart](../includes/dall-e-dotnet.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+[!INCLUDE [Java SDK quickstart](../includes/dall-e-java.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript SDK quickstart](../includes/dall-e-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript SDK quickstart](../includes/dall-e-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-go"
+
+[!INCLUDE [Go SDK quickstart](../includes/dall-e-go.md)]
+
+::: zone-end
+
+
+::: zone pivot="programming-language-powershell"
+
+[!INCLUDE [PowerShell quickstart](../includes/dall-e-powershell.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-studio"
+
+[!INCLUDE [Portal quickstart](../includes/dall-e-studio.md)]
+
+::: zone-end
+
+
 
 ## Quotas and limits
 
@@ -82,6 +129,8 @@ To view your current quota or request an increase, see [Manage Azure OpenAI quot
 
 The following command shows the most basic way to use an image model with code. If this is your first time using these models programmatically, start with the [quickstart](/azure/ai-foundry/openai/dall-e-quickstart).
 
+> [!TIP]
+> Image generation typically takes 10-30 seconds depending on the model, size, and quality settings.
 
 #### [GPT-image-1 series](#tab/gpt-image-1)
 
@@ -239,35 +288,6 @@ for event in stream:
 ```
 
 
-### API call rejection
-
-Prompts and images are filtered based on our content policy. The API returns an error when a prompt or image is flagged.
-
-If your prompt is flagged, the `error.code` value in the message is set to `contentFilter`. Here's an example:
-
-```json
-{
-    "created": 1698435368,
-    "error":
-    {
-        "code": "contentFilter",
-        "message": "Your task failed as a result of our safety system."
-    }
-}
-```
-
-It's also possible that the generated image itself is filtered. In this case, the error message is set to *Generated image was filtered as a result of our safety system*. Here's an example:
-
-```json
-{
-    "created": 1698435368,
-    "error":
-    {
-        "code": "contentFilter",
-        "message": "Generated image was filtered as a result of our safety system."
-    }
-}
-```
 
 ### Write effective text-to-image prompts
 
@@ -460,7 +480,52 @@ DALL-E models don't support the Image Edit API.
 
 ---
 
+## Responsible AI and Image Generation 
+Azure OpenAI's image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
+
+In addition, Azure provides input and output moderation across all image generation models, along with Azure-specific safeguards such as content filtering and abuse monitoring. These systems help detect and prevent the generation or misuse of harmful, unsafe, or policy-violating content.
+
+Customers can learn more about these safeguards and how to customize them here:
+- Learn more: Explore [content filtering](/azure/ai-foundry/openai/concepts/content-filter)
+- Request customization: Apply to [opt out of content filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
+
+### Special considerations for generating images of minors
+
+Photorealistic images of minors are blocked by default. Customers can [request access](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQVFQRDhQRjVPNllLMVZCSVNYVUs4MzhNMyQlQCN0PWcu) to this model capability. Enterprise-tier customers are automatically approved.
+
+
 ## Troubleshooting
+
+### API call rejection
+
+Prompts and images are filtered based on our content policy. The API returns an error when a prompt or image is flagged.
+
+If your prompt is flagged, the `error.code` value in the message is set to `contentFilter`. Here's an example:
+
+```json
+{
+    "created": 1698435368,
+    "error":
+    {
+        "code": "contentFilter",
+        "message": "Your task failed as a result of our safety system."
+    }
+}
+```
+
+It's also possible that the generated image itself is filtered. In this case, the error message is set to *Generated image was filtered as a result of our safety system*. Here's an example:
+
+```json
+{
+    "created": 1698435368,
+    "error":
+    {
+        "code": "contentFilter",
+        "message": "Generated image was filtered as a result of our safety system."
+    }
+}
+```
+
 
 ### Rate limit errors
 
@@ -485,7 +550,7 @@ Image generation can take up to 60 seconds for complex prompts. If you experienc
 * [Quickstart: Generate images with Azure OpenAI](../dall-e-quickstart.md)
 * [Image API reference](/azure/ai-foundry/openai/reference#image-generation)
 * [Image API (preview) reference](/azure/ai-foundry/openai/reference-preview)
-
+- Learn about [image generation tokens](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#image-generation-models)
 
 <!-- OAI HT guide https://platform.openai.com/docs/guides/images/usage
 dall-e 3 features here: https://cookbook.openai.com/articles/what_is_new_with_dalle_3 -->
