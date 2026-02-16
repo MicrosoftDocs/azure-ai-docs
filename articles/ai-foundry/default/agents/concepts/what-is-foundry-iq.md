@@ -1,13 +1,13 @@
 ---
 title: What is Foundry IQ?
 titleSuffix: Microsoft Foundry
-description: Learn about Foundry IQ, a context engineering platform for agentic RAG that turns enterprise data into reusable, permission-aware knowledge bases for AI agents.
+description: Learn about Foundry IQ, a managed knowledge layer that turns enterprise data into reusable, permission-aware knowledge bases for AI agents.
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 01/28/2026
+ms.date: 02/12/2026
 ai-usage: ai-assisted
 ---
 
@@ -41,11 +41,11 @@ A Foundry IQ knowledge base contains knowledge sources and uses agentic retrieva
 
 | Component | Description |
 |--|--|
-| [Knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) | Top-level resource that orchestrates agentic retrieval. Defines which knowledge sources to query and parameters that control retrieval behavior. |
+| [Knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) | Top-level resource that orchestrates agentic retrieval. Defines which knowledge sources to query and parameters that control retrieval behavior, including the retrieval reasoning effort (minimal, low, or medium) for LLM processing. |
 | [Knowledge sources](/azure/search/agentic-knowledge-source-overview) | Connections to indexed or remote content. A knowledge base references one or more knowledge sources. |
-| [Agentic retrieval](/azure/search/agentic-retrieval-overview) | Multi-query pipeline that decomposes complex questions into subqueries, executes them in parallel, semantically reranks results, and returns unified responses. Uses an optional LLM for query planning. |
+| [Agentic retrieval](/azure/search/agentic-retrieval-overview) | Multi-query pipeline that decomposes complex questions into subqueries, executes them in parallel, semantically reranks results, and returns unified responses. Uses an optional LLM from Azure OpenAI in Foundry Models for query planning. |
 
-You can call Foundry IQ knowledge bases from Foundry Agent Service, Microsoft Agent Framework, or any application that supports the knowledge base APIs from Azure AI Search.
+You can use Foundry IQ knowledge bases in Foundry Agent Service, Microsoft Agent Framework, or any custom application by calling the knowledge base APIs from Azure AI Search.
 
 ## Workflow
 
@@ -81,7 +81,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 
 1. [Create a knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) that references your knowledge sources.
 
-1. [Connect an agent](/azure/ai-foundry/agents/how-to/tools/knowledge-retrieval) to your knowledge base.
+1. [Connect an agent](/azure/ai-foundry/agents/how-to/foundry-iq-connect) to your knowledge base.
 
 1. Send messages and refine your agent.
 
@@ -107,5 +107,7 @@ Each IQ workload is standalone, but you can use them together to provide compreh
 + [Watch this session](https://www.youtube.com/watch?v=slDdNIQCJBQ) for an introduction to Foundry IQ, and then [watch this video](https://www.youtube.com/watch?v=uDVkcZwB0EU) for a deep dive.
 
 + For minimum costs and proof-of-concept testing, start with the Microsoft Foundry (new) portal. You can use the free tier for Azure AI Search and a free allocation of tokens for agentic retrieval. [Watch this video](https://www.youtube.com/watch?v=bHL1jbWjJUc) for a quick demonstration of the portal.
+
++ For step-by-step integration guidance, learn how to [connect a Foundry IQ knowledge base to Foundry Agent Service](../how-to/foundry-iq-connect.md).
 
 + Review application code in the [Azure OpenAI demo](/samples/azure-samples/azure-search-openai-demo/azure-search-openai-demo/), which uses agentic retrieval.

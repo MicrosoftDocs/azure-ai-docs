@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 10/23/2025
+ms.date: 02/12/2026
 ---
 
 # GenAI Prompt skill
@@ -183,19 +183,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
       "strict": true,
       "schema": {
         "type": "object",
-        "properties": {
-          "facts": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "number": { "type": "number" },
-                "fact": { "type": "string" }
-              },
-              "required": [ "number", "fact" ]
-            }
-          }
-        },
+        "properties": "{\"facts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"number\":{\"type\":\"number\"},\"fact\":{\"type\":\"string\"}},\"required\":[\"number\",\"fact\"]}}}",
         "required": [ "facts" ],
         "additionalProperties": false
       }

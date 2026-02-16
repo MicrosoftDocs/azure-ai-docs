@@ -8,7 +8,8 @@ ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: product-comparison
-ms.date: 09/15/2025
+ms.date: 02/12/2026
+ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
 ---
 
@@ -31,7 +32,7 @@ Microsoft Foundry offers multiple variants of generative AI models to meet diver
 
 This guide helps you understand the differences and choose the right model for your use case.
 
-## GPT-5 vs GPT-4.1 Comparison
+## GPT-5 vs GPT-4.1 comparison
 
 | **Feature**      | **GPT-5**                              | **GPT-4.1**                                 |
 |------------------|----------------------------------------|---------------------------------------------|

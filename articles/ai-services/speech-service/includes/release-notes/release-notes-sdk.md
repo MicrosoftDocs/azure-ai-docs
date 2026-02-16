@@ -92,7 +92,7 @@ Notes on target platform support:
 ### Speech SDK 1.45: 2025-July release
 
 #### New features:
-  * Added support for setting the phrase list grammar weight. (Currently only effects embedded scenarios)
+  * Added support for setting the phrase list grammar weight.
   * Added more specific file opening error codes.
   * Updated Unicode path support so that SDK Windows DLLs can be located under non-ASCII paths.
   * Updated descriptions of segmentation strategy properties to align with the service logic.

@@ -50,6 +50,7 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 ::: moniker range="foundry"
 
 - A [Foundry project](/azure/ai-foundry/how-to/create-projects).
+- **Azure AI User** role on the Foundry project.
 
 ::: moniker-end
 
