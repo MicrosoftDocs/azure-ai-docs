@@ -144,7 +144,7 @@ We support three types of metrics curated by Microsoft to facilitate a comprehen
 
 You can also create custom metrics and select them as evaluators during the testing criteria step.
 
-As you add your testing criteria, different metrics are going to be used as part of the evaluation. You can refer to the table for the complete list of metrics we offer support for in each scenario. For more in-depth information on metric definitions and how they're calculated, see [What are evaluators?](../concepts/observability.md#what-are-evaluators).
+As you add your testing criteria, different metrics are going to be used as part of the evaluation. You can refer to the table for the complete list of metrics we offer support for in each scenario. For more in-depth information on metric definitions and how they're calculated, see [Built in evaluators](../concepts/built-in-evaluators.md).
 
 | AI quality (AI assisted) | AI quality (NLP) | Risk and safety metrics |
 |--|--|--|
