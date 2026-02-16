@@ -31,6 +31,8 @@ You can do image generation via [image generation API](/azure/ai-foundry/openai/
 
 ## Models and capabilities
 
+Use this table to learn the differences between the different image generation models, and to help you choose the best model for your image generation needs.
+
 | Aspect | GPT-Image-1.5 | GPT-Image-1 | GPT-Image-1-Mini | DALL·E 3 |
 |--------|---------------|--------------|------------------|-----------|
 |**Availability** | Limited access preview ([Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Generally available|
@@ -39,7 +41,7 @@ You can do image generation via [image generation API](/azure/ai-foundry/openai/
 | **Image Sizes / Resolutions** | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1792, 1792×1024 |
 | **Quality Options** | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = medium) | `standard`, `hd`; style options: `natural`, `vivid` |
 | **Number of Images per Request** | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | Only **1 image** per request (`n` must be 1) |
-| **Editing (inpainting / variations)** | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations |
+| **Editing (inpainting / variations)** | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations |
 | **Face Preservation** | ✅ Advanced **face preservation** for realistic, consistent results | ✅ Advanced **face preservation** for realistic, consistent results | ❌ No dedicated face preservation; better for **non-portrait/general creative** imagery | ❌ No dedicated face preservation |
 | **Performance & Cost** | High-fidelity, **realism-optimized** model; improved efficiency and latency over GPT-Image-1 | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation | Balanced performance; higher latency on complex prompts |
 
