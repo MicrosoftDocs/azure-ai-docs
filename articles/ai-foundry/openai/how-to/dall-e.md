@@ -27,16 +27,6 @@ OpenAI's image generation models create images from user-provided text prompts a
 
 You can do image generation via [image generation API](/azure/ai-foundry/openai/dall-e-quickstart) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key). Or you can experiment with image generation in the [Foundry portal](https://ai.azure.com)
 
-## Prerequisites
-
-
-- An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
-- Deploy a `dall-e-3` or `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
-    - GPT-image-1 series models are newer and feature a number of improvements over DALL-E 3. They are available in limited access: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access).
-- Python 3.8 or later.
-    - Install the required packages: `pip install openai azure-identity`
-
 
 ## Models and capabilities
 
@@ -132,6 +122,17 @@ The following command shows the most basic way to use an image model with code. 
 > [!TIP]
 > Image generation typically takes 10-30 seconds depending on the model, size, and quality settings.
 
+### Prerequisites
+
+- An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
+- Deploy a `dall-e-3` or `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
+    - GPT-image-1 series models are newer and feature a number of improvements over DALL-E 3. They are available in limited access: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access).
+- Python 3.8 or later.
+    - Install the required packages: `pip install openai azure-identity`
+
+
+
 #### [GPT-image-1 series](#tab/gpt-image-1)
 
 Send a POST request to:
@@ -139,7 +140,6 @@ Send a POST request to:
 ```
 https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deployment_name>/images/generations?api-version=<api_version>
 ```
-
 
 **URL**:
 
@@ -286,17 +286,6 @@ for event in stream:
             f.write(image_bytes)
  
 ```
-
-
-
-### Write effective text-to-image prompts
-
-Your prompts should describe the content you want to see in the image and the visual style of the image.
-
-When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
-
-> [!TIP]
-> For a thorough look at how you can tweak your text prompts to generate different kinds of images, see the [Image prompt engineering guide](/azure/ai-foundry/openai/concepts/gpt-4-v-prompt-engineering).
 
 
 ### Specify API options
@@ -479,6 +468,15 @@ Set the *background* parameter to `transparent` and *output_format* to `PNG` on 
 DALL-E models don't support the Image Edit API.
 
 ---
+
+## Write effective text-to-image prompts
+
+Your prompts should describe the content you want to see in the image and the visual style of the image.
+
+When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
+
+> [!TIP]
+> For a thorough look at how you can tweak your text prompts to generate different kinds of images, see the [Image prompt engineering guide](/azure/ai-foundry/openai/concepts/gpt-4-v-prompt-engineering).
 
 ## Responsible AI and Image Generation 
 Azure OpenAI's image generation models include built-in Responsible AI (RAI) protections to help ensure safe and compliant use.
