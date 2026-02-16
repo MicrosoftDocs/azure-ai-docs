@@ -69,12 +69,16 @@ After you deploy a Claude model, interact with it to generate text responses:
 
 ### Send messages with authentication
 
-The following examples show how to send requests to Claude Sonnet 4.5 using Microsoft Entra ID or API key authentication. To work with your deployed model, you need:
+The following examples show how to send requests to Claude Sonnet 4.6 using Microsoft Entra ID or API key authentication. To work with your deployed model, you need:
 
 - Your base URL, which is of the form `https://<resource name>.services.ai.azure.com/anthropic`.
 - Your target URI from your deployment details, which is of the form `https://<resource name>.services.ai.azure.com/anthropic/v1/messages`.
 - Microsoft Entra ID for keyless authentication or your deployment's API key for API authentication.
 - Deployment name you chose during deployment creation. This name can be different from the model ID.
+
+> [!NOTE]
+> The `thinking` parameter supports types: `enabled` and `disabled`. For, Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
+> The `effort` parameter, which controls the quality/cost tradeoff for responses, supports effort levels: `low`, `medium`, and `high`. For Opus 4.6 and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
 
 # [Python](#tab/python)
 
@@ -112,7 +116,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     
     baseURL = "https://<resource-name>.services.ai.azure.com/anthropic" # Your base URL. Replace <resource-name> with your resource name
-    deploymentName = "claude-sonnet-4-5" # Replace with your deployment name
+    deploymentName = "claude-sonnet-4-6" # Replace with your deployment name
     
     # Create token provider for Entra ID authentication
     tokenProvider = get_bearer_token_provider(
@@ -129,15 +133,19 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     message = client.messages.create(
         model=deploymentName,
         messages=[
-            {"role": "user", "content": "What is the capital/major city of France?"}
+            {"role": "user", "content": "What are 3 things to visit in Seattle?"}
         ],
-        max_tokens=1024,
+        max_tokens=1048,
+        temperature=1,
+        thinking={"type":"adaptive"},
+        output_config={"effort": "max"},
+        stream=False
     )
     
     print(message.content)
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
@@ -160,7 +168,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     from anthropic import AnthropicFoundry
     
     baseURL = "https://<resource-name>.services.ai.azure.com/anthropic" # Your base URL. Replace <resource-name> with your resource name
-    deploymentName = "claude-sonnet-4-5" # Replace with your deployment name
+    deploymentName = "claude-sonnet-4-6" # Replace with your deployment name
     apiKey = "YOUR_API_KEY" # Replace YOUR_API_KEY with your API key
     
     # Create client with API key authentication
@@ -173,15 +181,19 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     message = client.messages.create(
         model=deploymentName,
         messages=[
-            {"role": "user", "content": "What is the capital/major city of France?"}
+            {"role": "user", "content": "What are 3 things to visit in Seattle?"}
         ],
-        max_tokens=1024,
+        max_tokens=1048,
+        temperature=1,
+        thinking={"type":"adaptive"},
+        output_config={"effort": "max"},
+        stream=False
     )
     
     print(message.content)
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks)
 
@@ -235,7 +247,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     import { getBearerTokenProvider, DefaultAzureCredential } from "@azure/identity";
     
     const baseURL = "https://<resource-name>.services.ai.azure.com/anthropic"; // Your base URL. Replace <resource-name> with your resource name
-    const deploymentName = "claude-sonnet-4-5" // Replace with your deployment name
+    const deploymentName = "claude-sonnet-4-6" // Replace with your deployment name
     
     // Create token provider for Entra ID authentication
     const tokenProvider = getBearerTokenProvider(
@@ -252,13 +264,17 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     // Send request
     const message = await client.messages.create({
         model: deploymentName,
-        messages: [{ role: "user", content: "What is the capital/major city of France?" }],
-        max_tokens: 1024,
+        messages: [{ role: "user", content: "What are 3 things to visit in Seattle?" }],
+        max_tokens: 1048,
+        temperature: 1,
+        thinking: {"type": "adaptive"},
+        output_config: {"effort": "max"},
+        stream: false
     });
     console.log(message);
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential)
 
@@ -294,7 +310,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     import AnthropicFoundry from '@anthropic-ai/foundry-sdk';
     
     const baseURL = "https://<resource-name>.services.ai.azure.com/anthropic"; // Your base URL. Replace <resource-name> with your resource name
-    const deploymentName = "claude-sonnet-4-5" // Replace with your deployment name
+    const deploymentName = "claude-sonnet-4-6" // Replace with your deployment name
     const apiKey = "<your-api-key>"; // Your API key
     
     // Create client with API key
@@ -307,13 +323,17 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     // Send request
     const message = await client.messages.create({
         model: deploymentName,
-        messages: [{ role: "user", content: "What is the capital/major city of France?" }],
-        max_tokens: 1024,
+        messages: [{ role: "user", content: "What are 3 things to visit in Seattle?" }],
+        max_tokens: 1048,
+        temperature: 1,
+        thinking: {"type": "adaptive"},
+        output_config: {"effort": "max"},
+        stream: false
     });
     console.log(message);
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
 
     **Reference:** [AnthropicFoundry SDK](https://docs.claude.com/en/api/client-sdks)
 
@@ -357,15 +377,18 @@ If you configure the resource with Microsoft Entra ID support, pass your token i
       -d '{
         "messages": [
           {
-            "role": "system", "content": "You are a helpful assistant."
+            "role": "user", "content": "You are a helpful assistant."
           },
           {
             "role": "user", "content": "What are 3 things to visit in Seattle?"
           }
         ],
-        "max_tokens": 1000,
-        "temperature": 0.7,
-        "model": "claude-sonnet-4-5"
+        "max_tokens": 1048,
+        "temperature": 1,
+        "model": "claude-sonnet-4-6",
+        "thinking": {"type":"adaptive"},
+        "output_config": {"effort": "max"},
+        "stream": false
         }'
     ```
 
@@ -407,15 +430,18 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
       -d '{
         "messages": [
           {
-            "role": "system", "content": "You are a helpful assistant."
+            "role": "user", "content": "You are a helpful assistant."
           },
           {
             "role": "user", "content": "What are 3 things to visit in Seattle?"
           }
         ],
-        "max_tokens": 1000,
-        "temperature": 0.7,
-        "model": "claude-sonnet-4-5"
+        "max_tokens": 1048,
+        "temperature": 1,
+        "model": "claude-sonnet-4-6",
+        "thinking": {"type":"adaptive"},
+        "output_config": {"effort": "max"},
+        "stream": false
         }'
     ```
 
@@ -475,7 +501,11 @@ Some of the **Core capabilities** that Foundry supports are:
 
     > [!TIP]
     > The `thinking` parameter supports types: `enabled` and `disabled`. For, Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
-    > The `effort` parameter, which controls the quality/cost tradeoff for responses, supports effort levels: `low`, `medium`, and `high`. For Opus 4.6 and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
+
+- **Effort:** Ability to control the quality/cost tradeoff for responses
+
+    > [!TIP]
+    > The `effort` parameter supports effort levels: `low`, `medium`, and `high`. For Opus 4.6 and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
 
 - **PDF support:** Process and analyze text and visual content from PDF documents.
 - **Prompt caching:** Provide Claude with more background knowledge and example outputs to reduce costs and latency.
