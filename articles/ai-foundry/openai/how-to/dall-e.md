@@ -13,6 +13,7 @@ ms.custom:
   - build-2025
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
 monikerRange: 'foundry-classic || foundry'
+zone_pivot_groups: openai-quickstart-dall-e
 ai-usage: ai-assisted
 
 
