@@ -391,7 +391,7 @@ Agents published as Agent Applications have the following limitations:
 
 | Limitation | Description |
 | --- | --- |
-| Microsoft Entra Agent Registry visibility | There's a bug where published agents don't appear in the Entra Agent Registry (EAR). Fix in progress and we'll backfill existing published agents as well. |
+| Microsoft Entra Agent Registry visibility | There's a bug where published agents don't appear in the Entra Agent Registry (EAR). |
 | No UI or CLI management | There isn’t a dedicated UI/CLI for advanced management operations. Use the REST API for management operations not available in the Foundry portal publishing flow. |
 
 
