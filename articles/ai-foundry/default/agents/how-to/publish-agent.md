@@ -202,7 +202,7 @@ Content-Type: application/json
 
 #### 2. Create an agent deployment. 
 
-For a full property reference and an infrastructure-as-code (Bicep) example for Agent deployments, see the Azure Resource Manager template reference for [Microsoft.CognitiveServices/accounts/projects/applications/agentDeployments](https://learn.microsoft.com/azure/templates/microsoft.cognitiveservices/accounts/projects/applications/agentdeployments?pivots=deployment-language-bicep).
+For a full property reference and an infrastructure-as-code (Bicep) example for Agent deployments, see the Azure Resource Manager template reference for [Microsoft.CognitiveServices/accounts/projects/applications/agentDeployments](/azure/templates/microsoft.cognitiveservices/accounts/projects/applications/agentdeployments?pivots=deployment-language-bicep).
 
 **Required fields**:
 
