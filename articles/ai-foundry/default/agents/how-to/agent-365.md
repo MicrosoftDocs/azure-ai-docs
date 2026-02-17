@@ -19,7 +19,7 @@ Use this article to publish a Microsoft Foundry hosted agent as a digital worker
 The sample uses the Azure Developer CLI to create the required Azure resources and publish an agent application. It also guides you through admin approval, configuration, and creating instances of your digital worker.
 
 ## What is Microsoft Agent 365?
-[Microsoft Agent 365 (A365)](https://learn.microsoft.com/microsoft-agent-365/overview) is Microsoft’s IT admin control plane for AI agents.
+[Microsoft Agent 365 (A365)](/microsoft-agent-365/overview) is Microsoft’s IT admin control plane for AI agents.
 
 It helps you:
 
