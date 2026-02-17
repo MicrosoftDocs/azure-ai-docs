@@ -24,10 +24,8 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-> [!IMPORTANT]
-> After June 30, 2026, SDK v1 may still be used but is unsupported and may stop working without notice.
->
-> The following retired SDK v1 packages relevant to this article (azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps) should be removed from dependencies in v1-based scripts.
+> [!NOTE]
+> **Retired packages**: The following SDK v1 pipeline packages are being retired: azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps.
 
 In this article, you learn how to version and track Azure Machine Learning datasets for reproducibility. Dataset versioning bookmarks specific states of your data, so that you can apply a specific version of the dataset for future experiments.
 

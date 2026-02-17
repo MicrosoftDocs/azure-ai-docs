@@ -25,10 +25,8 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-> [!IMPORTANT]
-> After June 30, 2026, SDK v1 will be unsupported and workflows may continue to operate but may stop working without notice. The following SDK v1 packages are also being retired: azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps.
->
-> We recommend that you transition to SDK v2 before June 30, 2026. For v2 pipelines, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
+> [!NOTE]
+> **Retired packages**: The following SDK v1 pipeline packages are being retired: azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps. For v2 pipelines, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
 
 This article describes how to share a machine learning pipeline with your colleagues or customers.
 

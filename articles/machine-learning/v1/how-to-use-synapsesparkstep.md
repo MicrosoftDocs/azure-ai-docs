@@ -22,13 +22,9 @@ ms.custom: UpdateFrequency5, synapse-azureml, sdkv1
 
 > [!WARNING]
 > The Azure Synapse Analytics integration with Azure Machine Learning, available in Python SDK v1, is deprecated. Users can still use Synapse workspace, registered with Azure Machine Learning, as a linked service. However, a new Synapse workspace can no longer be registered with Azure Machine Learning as a linked service. We recommend use of serverless Spark compute and attached Synapse Spark pools, available in CLI v2 and Python SDK v2. For more information, see [Configure Apache Spark jobs in Azure Machine Learning](../quickstart-spark-jobs.md).
->
-> After June 30, 2026, the SDK v1-based Synapse linking and Spark step submission paths are unsupported due to the retirement of pipeline packages.
 
-> [!IMPORTANT]
-> After June 30, 2026, these SDKs may continue to operate but are unsupported and may stop working without notice. The following SDK v1 packages used by this article are being retired: azureml-pipeline, azureml-pipeline-core, azureml-pipeline-steps (as well as azureml-train-core and azureml-pipeline-internal). Classes such as `SynapseSparkStep`, `PythonScriptStep`, `Pipeline`, and related imports are part of these retiring packages and will be unsupported after June 30, 2026.
->
-> We recommend that you transition to SDK v2 before June 30, 2026.
+> [!NOTE]
+> **Retired packages**: The following SDK v1 packages used by this article are being retired: azureml-pipeline, azureml-pipeline-core, azureml-pipeline-steps, azureml-train-core, and azureml-pipeline-internal. Classes such as `SynapseSparkStep`, `PythonScriptStep`, and `Pipeline` are part of these retiring packages.
 
 In this article you learn how to use Apache Spark pools, powered by Azure Synapse Analytics, as the compute target for a data preparation step in an Azure Machine Learning pipeline. You learn how a single pipeline can use compute resources suited for the specific step - for example, data preparation or training. You'll also learn how data is prepared for the Spark step and how it passes to the next step.
 

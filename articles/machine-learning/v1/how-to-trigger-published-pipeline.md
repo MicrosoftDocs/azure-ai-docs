@@ -24,10 +24,8 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-> [!IMPORTANT]
-> After June 30, 2026, SDK v1 and related packages are unsupported and may stop working without notice. SDK v1 is deprecated as of March 31, 2025, and support ends June 30, 2026.
->
-> The following packages are being retired and the pipeline scheduling APIs shown here rely on these packages: azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps. We recommend transitioning to SDK v2 before June 30, 2026.
+> [!NOTE]
+> **Retired packages**: The pipeline scheduling APIs shown in this article rely on these retiring packages: azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps. For v2 alternatives, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
 
 In this article, you'll learn how to programmatically schedule a pipeline to run on Azure. You can create a schedule based on elapsed time or on file-system changes. You can use time-based schedules to accomplish routine tasks, such as monitoring for data drift. You can use change-based schedules to react to irregular or unpredictable changes, such as new data being uploaded or old data being edited. 
 

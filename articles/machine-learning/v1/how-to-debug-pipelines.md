@@ -24,10 +24,8 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-> [!IMPORTANT]
-> After June 30, 2026, SDK v1 and related packages are unsupported and may stop working without notice.
->
-> **Retired packages**: The following SDK v1 packages are being retired on June 30, 2026 and should be removed from new or updated solutions: azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, azureml-pipeline-steps, and azureml-train-core.
+> [!NOTE]
+> **Retired packages**: The following SDK v1 packages are being retired: azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, azureml-pipeline-steps, and azureml-train-core.
 
 In this article, you learn how to troubleshoot when you get errors running a [machine learning pipeline](../concept-ml-pipelines.md) in the [Azure Machine Learning SDK](/python/api/overview/azure/ml/intro) and [Azure Machine Learning designer](concept-designer.md). 
 
