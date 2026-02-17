@@ -33,19 +33,19 @@ For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5
 
 ## Quota tiers
 
-To improve the Foundry Models experience and provide frictionless experience, we are launching Foundry Quota Tiers. Foundry Quota Tiers allows model quota to increase as consumption grows, helping you grow without hitting rate limits while creating a fairer environment for all users. Seven new levels will be available starting today: Free Tier and Tier 1 through Tier 6. Your quota tier will be determined by both your usage and your Microsoft relationship such as Enterprise status. 
+To improve the Foundry Models experience and provide frictionless experience, we're launching Foundry Quota Tiers. Foundry Quota Tiers allows model quota to increase as consumption grows, helping you grow without hitting rate limits while creating a fairer environment for all users. Seven new levels will be available starting today: Free Tier and Tier 1 through Tier 6. Your quota tier will be determined by both your usage and your Microsoft relationship such as Enterprise status. 
 
 ### What’s changing for me? 
 
-Before Quota Tiers, Foundry offered Default and Enterprise quota levels. However, the quota gap between these two levels were too high and requesting more quota was a long process. With Quota Tiers, all Foundry users will be assigned a tier with a quota that’s either equal or higher than their previous quotas. If additional quota was granted through the quota increase process, those quotas will be applicable and will not be lowered. As your consumption increases, Foundry will automatically grant you more quota by moving you to next tier. You can always ask for more quotas using the quota form.  
+Before Quota Tiers, Foundry offered Default and Enterprise quota levels. However, the quota gap between these two levels were too high and requesting more quota was a long process. With Quota Tiers, all Foundry users will be assigned a tier with a quota that’s either equal or higher than their previous quotas. If additional quota was granted through the quota increase process, those quotas will be applicable and won't be lowered. As your consumption increases, Foundry will automatically grant you more quota by moving you to next tier. You can always ask for more quotas using the quota form.  
 
 ### What are the tier change criteria? 
 
-Foundry looks at your consumption trends over time. If there is increase in your consumption and the current tier is preventing you from seamlessly using Foundry Models, it will automatically upgrade your tier to the next tier. Another factor is your relationship with Microsoft. For example, if you have Enterprise relationship (including MCA-E) you will be assigned higher tiers regardless of your consumption. Finally, customers who qualify for auto-upgrades also have consistent payment history.  
+Foundry looks at your consumption trends over time. If there's an increase in your consumption and the current tier is preventing you from seamlessly using Foundry Models, it will automatically upgrade your tier to the next tier. Another factor is your relationship with Microsoft. For example, if you have Enterprise relationship (including MCA-E) you'll be assigned higher tiers regardless of your consumption. Finally, customers who qualify for auto-upgrades also have consistent payment history.  
 
 ### Can I opt out of auto upgrades? 
 
-Yes, you can opt out of auto upgrades and you will remain in your current tier regardless of changes in your consumption. We recognize that some of our customers use quotas to manage their billing. This is not the Azure best practice, however, we understand that if your system is configured that way we don’t want to break it. You can learn more about billing management and best practices here: Cost Management. 
+Yes, you can opt out of auto upgrades and you'll remain in your current tier regardless of changes in your consumption. We recognize that some of our customers use quotas to manage their billing. This isn't the Azure best practice, however, we understand that if your system is configured that way we don’t want to break it. You can learn more about billing management and best practices here: Cost Management. 
 
 To opt out, you can set the following flag to `NoAutoUpgrade`: 
 
