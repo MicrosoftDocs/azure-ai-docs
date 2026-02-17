@@ -511,7 +511,7 @@ followup_response = client.responses.create(
     model="gpt-4.1",
     input=[
         *compacted_response.output,
-        {"role": "user", "content": "And what is the capital city"}
+        {"role": "user", "content": "And what is the capital/major city"}
     ]
 )
 print(f"Follow-up Response: {followup_response.output_text}")
