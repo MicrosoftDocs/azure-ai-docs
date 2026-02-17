@@ -3,10 +3,12 @@ title: Azure Marketplace requirements for Foundry Models from partners
 description: Learn about the requirements needed to configure Azure Marketplace access for Microsoft Foundry Models from partners and community and troubleshoot errors.
 author: msakande   
 ms.author: mopeakande
+ms.reviewer: ambadal
+reviewer: AmarBadal
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 02/17/2026
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.custom:  pilot-ai-workflow-jan-2026
