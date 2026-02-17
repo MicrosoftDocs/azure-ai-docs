@@ -23,4 +23,4 @@ This table shows which transcription features are supported by the fast transcri
 | Custom prompting               | ❌                 | ✅                 |
 | Phrase list          | ✅                 | ❌ (use prompting to implement)                |
 
-For fast transcription mode, specify locale codes to improve accuracy. For LLM speech (enhanced mode), use prompting to guide the output style instead of using explicit locale or phrase lists.
+For LLM speech (enhanced mode), use prompting to guide the output style instead of using explicit locale or phrase lists.
