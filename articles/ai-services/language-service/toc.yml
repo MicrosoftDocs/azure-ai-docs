@@ -626,12 +626,14 @@ items:
             href: ../cognitive-services-container-support.md
     - name: Recognized entities
       items:
-      - name: Entity types for text (extended format)  🆕
+      - name: Entity types for text (extended format)
         href: personally-identifiable-information/concepts/entity-categories.md
-      - name: Entities for text (list format) 🆕
+      - name: Entities for text (list format)
         href: personally-identifiable-information/concepts/entity-categories-list.md
-      - name: Entity categories for conversation
+      - name: Entity types for conversation (extended format) 🆕
         href: personally-identifiable-information/concepts/conversations-entity-categories.md
+      - name: Entities for conversation (list format) 🆕
+        href: personally-identifiable-information/concepts/conversations-entity-categories-list.md
 
   - name: Sentiment analysis and opinion mining
     items:
