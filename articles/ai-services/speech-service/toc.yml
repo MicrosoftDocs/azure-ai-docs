@@ -295,6 +295,8 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
+    - name: Speech Transcription SDK
+      href: transcription-sdk.md
     - name: LLM speech REST API reference
       href: /rest/api/speechtotext/transcriptions/transcribe
 - name: Voice Live
