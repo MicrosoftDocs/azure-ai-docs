@@ -7,7 +7,7 @@ ms.author: gimondra
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 02/17/2026
 ms.custom:
   - build-2024
   - ignite-2024
@@ -44,7 +44,9 @@ This article uses the REST APIs to illustrate each step.
 
 + An AI Search service, basic pricing tier or higher, configured for either a [system managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) or [user-assigned assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity). The AI Search service must reside within the same tenant as the Microsoft Fabric workspace.
   
-+ A Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
++ An Administrator or Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
+
++ Allow [access to OneLake data from applications that are outside of the Fabric environment](/fabric/onelake/security/get-started-security#allow-apps-running-outside-of-fabric-to-access-data-via-onelake).
 
 + A [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
