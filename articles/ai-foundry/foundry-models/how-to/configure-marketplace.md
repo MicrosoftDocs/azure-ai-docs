@@ -26,7 +26,7 @@ Certain Microsoft Foundry Models are offered directly by the model provider thro
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 
     > [!IMPORTANT]
-    > The following Azure subscriptions can't be used to purchase software as a service (SaaS) offers in Marketplace: Student, Visual Studio Enterprise, or Free credit. For more information on purchasing SaaS offers, see [The SaaS purchase experience](/marketplace/purchase-saas-offer-in-azure-portal.md#the-saas-purchase-experience).
+    > The following Azure subscriptions can't be used to purchase software as a service (SaaS) offers in Marketplace: Student, Visual Studio Enterprise, or Free credit. For more information on purchasing SaaS offers, see [The SaaS purchase experience](https://learn.microsoft.com/marketplace/purchase-saas-offer-in-azure-portal#the-saas-purchase-experience).
 
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 
