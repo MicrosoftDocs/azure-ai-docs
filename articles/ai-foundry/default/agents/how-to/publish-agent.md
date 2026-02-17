@@ -182,7 +182,7 @@ To publish an agent version, you must create an application and deployment that 
 
 #### 1. Create agent application. 
 
-For a full property reference and an infrastructure-as-code (Bicep) example for Agent Applications, see the Azure Resource Manager template reference for [Microsoft.CognitiveServices/accounts/projects/applications](https://learn.microsoft.com/azure/templates/microsoft.cognitiveservices/accounts/projects/applications?pivots=deployment-language-bicep).
+For a full property reference and an infrastructure-as-code (Bicep) example for Agent Applications, see the Azure Resource Manager template reference for [Microsoft.CognitiveServices/accounts/projects/applications](azure/templates/microsoft.cognitiveservices/accounts/projects/applications?pivots=deployment-language-bicep).
 
 **Required field**: Set the `agentName` field to the name of the agent you want to publish. 
 
