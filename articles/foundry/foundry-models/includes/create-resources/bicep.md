@@ -114,4 +114,4 @@ Follow these steps:
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Use the inference endpoint](../../how-to/inference.md)
+<!-- BROKEN: > [Use the inference endpoint](../../how-to/inference.md) -->

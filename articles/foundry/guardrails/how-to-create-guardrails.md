@@ -51,8 +51,8 @@ To delete a control:
 1. Select the control you want to remove.
 2. Select **Delete**.
 
-> [!NOTE]
-> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about [modified content filtering](../openai/concepts/content-filter-configurability.md).
+<!-- BROKEN:> [!NOTE]
+> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about  [modified content filtering](../openai/concepts/content-filter-configurability.md) -->.
 
 ## Edit controls in a guardrail
 
