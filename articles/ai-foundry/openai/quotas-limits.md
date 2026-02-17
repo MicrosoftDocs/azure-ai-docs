@@ -33,19 +33,19 @@ For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5
 
 ## Quota tiers
 
-To improve the Foundry Models experience and provide frictionless experience, we're launching Foundry Quota Tiers. Foundry Quota Tiers allows model quota to increase as consumption grows, helping you grow without hitting rate limits while creating a fairer environment for all users. Seven new levels will be available starting today: Free Tier and Tier 1 through Tier 6. Your quota tier will be determined by both your usage and your Microsoft relationship such as Enterprise status. 
+To improve the Foundry Models and provide a frictionless experience, we're launching Foundry Quota Tiers. Foundry Quota Tiers allows model quota to increase as consumption grows, helping you grow without hitting rate limits while creating a fairer environment for all users. Seven new levels will be available starting today: Free Tier and Tier 1 through Tier 6. Your quota tier will be determined by both your usage and your Microsoft relationship such as Enterprise status. 
 
 ### What’s changing for me? 
 
-Before Quota Tiers, Foundry offered Default and Enterprise quota levels. However, the quota gap between these two levels were too high and requesting more quota was a long process. With Quota Tiers, all Foundry users will be assigned a tier with a quota that’s either equal or higher than their previous quotas. If additional quota was granted through the quota increase process, those quotas will be applicable and won't be lowered. As your consumption increases, Foundry will automatically grant you more quota by moving you to next tier. You can always ask for more quotas using the quota form.  
+Before Quota Tiers, Foundry offered Default and Enterprise quota levels. However, the quota gap between these two levels was too high and requesting more quota was a long process. With Quota Tiers, all Foundry users will be assigned a tier with a quota that’s either equal or higher than their previous quota allocation. If additional quota was granted through the quota increase process, that quota will be applicable and won't be lowered. As your consumption increases, Foundry will automatically grant you more quota by moving you to next tier. You can always ask for more quota using the quota form.  
 
 ### What are the tier change criteria? 
 
-Foundry looks at your consumption trends over time. If there's an increase in your consumption and the current tier is preventing you from seamlessly using Foundry Models, it will automatically upgrade your tier to the next tier. Another factor is your relationship with Microsoft. For example, if you have Enterprise relationship (including MCA-E) you'll be assigned higher tiers regardless of your consumption. Finally, customers who qualify for auto-upgrades also have consistent payment history.  
+Foundry looks at your consumption trends over time. If there's an increase in your consumption and the current tier is preventing you from seamlessly using Foundry Models, it will automatically upgrade your tier to the next tier. Another factor is your relationship with Microsoft. For example, if you have Enterprise relationship (including MCA-E) you'll be assigned a higher tier regardless of your consumption. Finally, customers who qualify for auto-upgrades also have consistent payment history.  
 
 ### Can I opt out of auto upgrades? 
 
-Yes, you can opt out of auto upgrades and you'll remain in your current tier regardless of changes in your consumption. We recognize that some of our customers use quotas to manage their billing. This isn't the Azure best practice, however, we understand that if your system is configured that way we don’t want to break it. You can learn more about billing management and best practices here: Cost Management. 
+Yes, you can opt out of auto upgrades and you'll remain in your current tier regardless of changes in your consumption. We recognize that some of our customers use quota to manage their billing. This isn't the Azure best practice, however, we understand that if your system is configured that way we don’t want to break it. You can learn more about billing management and best practices here: [Cost Management](../concepts/manage-costs.md). 
 
 To opt out, you can set the following flag to `NoAutoUpgrade`: 
 
@@ -60,6 +60,11 @@ curl -X PATCH \
     }
   }'
 ```
+
+### Can I request more quota?
+
+Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota. However, note that your request, if approved, will be rounded up to the next tier and your current tier will remain the same.
+
 
 ## Quotas and limits reference
 
@@ -103,7 +108,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Message character limit | 1,048,576. |
 | Message size for audio files | 20 MB. |
 
-<sup>1</sup> The Sora 2 RPM quota only counts video job requests. Other types of requests are not rate-limited.
+<sup>1</sup> The Sora 2 RPM quota only counts video job requests. Other types of requests aren't rate-limited.
 
 <sup>2</sup> Our current APIs allow up to 10 custom headers, which are passed through the pipeline and returned. Some customers now exceed this header count, which results in HTTP 431 errors. There's no solution for this error, other than to reduce header volume. In future API versions, we won't pass through custom headers. We recommend that customers don't depend on custom headers in future system architectures.
 
@@ -345,7 +350,7 @@ If you encounter 429 errors or notice increased latency variability, here’s wh
 
 - Request a quota increase: visit the Azure portal to request a higher quota for your subscription.
 - Consider upgrading to a premium offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
-- Monitor your usage: regularly review your usage metrics in the Azure portal to ensure you are operating within your tier limits. Adjust your workload or deployment strategy as needed.
+- Monitor your usage: regularly review your usage metrics in the Azure portal to ensure you're operating within your tier limits. Adjust your workload or deployment strategy as needed.
 
 The usage limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model. It's the total number of tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
@@ -376,7 +381,7 @@ The usage limit determines the level of usage above which customers might see la
 If your Azure subscription is linked to certain [offer types](https://azure.microsoft.com/support/legal/offer-details/), your maximum quota values are lower than the values indicated in the previous tables.
 
 - GPT-5-pro quota is only available to MCA-E and default quota subscriptions. All other offer types have zero quota for this model by default.
-- GPT-5 reasoning model quota is 20K TPM and 200 RPM for all offer types that do not have access to MCA-E or default quota. GPT-5-chat is 50K and 50 RPM.
+- GPT-5 reasoning model quota is 20K TPM and 200 RPM for all offer types that don't have access to MCA-E or default quota. GPT-5-chat is 50K and 50 RPM.
 
 - Some offer types are restricted to only Global Standard deployments in the East US2 and Sweden Central regions.
 
