@@ -386,7 +386,6 @@ To publish your agent as a digital worker, see [Publish an agent as a digital wo
 
 ## Limitations
 
-**Note**: All of these limitations are temporary and fixes are already in progress.
 
 Agents published as Agent Applications have the following limitations:
 
