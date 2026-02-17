@@ -54,7 +54,7 @@ If you're using Language Understanding (LUIS), you can [import your Language Und
 
 ## How do I migrate to Azure Language if I'm using QnA Maker?
 
-If you're using QnA Maker, you can [import your QnA Maker knowledge base](../question-answering/how-to/migrate-knowledge-base.md#import-a-project) to the custom questiona answering (CQA) feature:
+If you're using QnA Maker, you can [import your QnA Maker knowledge base](../question-answering/how-to/migrate-knowledge-base.md#import-a-project) to the custom question answering (CQA) feature:
 
 1. Export the QnA Maker knowledge base
 
@@ -70,7 +70,7 @@ If you're using QnA Maker, you can [import your QnA Maker knowledge base](../que
 
    * Import the exported knowledge base file into your Custom Question Answering project.
    * [Import knowledge base](../question-answering/how-to/authoring.md#import-project) provides instructions on importing your knowledge base.
-   * For more information , see also, [Move projects and question answer pairs](../question-answering/how-to/migrate-knowledge-base.md).
+   * For more information, see also, [Move projects and question answer pairs](../question-answering/how-to/migrate-knowledge-base.md).
 
 1. Create and test a knowledge base
 
