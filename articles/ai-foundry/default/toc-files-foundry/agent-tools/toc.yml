@@ -12,6 +12,12 @@ items:
   - name: Tool governance
     href: ../../agents/how-to/tools/governance.md
 
+- name: Voice integration (preview)  
+  items:
+  - name: Quickstart - Talk to a voice agent
+    href: ../../ai-services/speech-service/voice-live-agents-quickstart.md
+  - name: How to build a voice agent
+    href: ../../ai-services/speech-service/how-to-voice-agent-integration.md
 - name: Code interpreter
   href: ../../agents/how-to/tools/code-interpreter.md
 - name: Custom code interpreter (preview)
