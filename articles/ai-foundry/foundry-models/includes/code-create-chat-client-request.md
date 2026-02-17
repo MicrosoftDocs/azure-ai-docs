@@ -172,7 +172,7 @@ import com.openai.models.chat.completions.ChatCompletionCreateParams;
 public class OpenAITest {
     public static void main(String[] args) {
         String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
-        String modelDeploymentName = "DeepSeek-R1"; //replace with you model deployment name
+        String modelDeploymentName = "DeepSeek-R1"; // Replace with your model deployment name.
 
         try {
             OpenAIClient client = OpenAIOkHttpClient.builder()

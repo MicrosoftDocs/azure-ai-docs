@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Get started with DeepSeek-R1 in Microsoft Foundry Models"
+title: "Tutorial: Get started with DeepSeek-R1 in Foundry Models"
 titleSuffix: Microsoft Foundry
 description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning."
 monikerRange: 'foundry-classic || foundry'
@@ -20,9 +20,9 @@ ai-usage: ai-assisted
 
 In this tutorial, you learn how to deploy and use a DeepSeek reasoning model in Microsoft Foundry. This tutorial uses [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek?cid=learnDocs) for illustration. However, the content also applies to the newer [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek?cid=learnDocs) reasoning model.
 
-**What you'll accomplish:**
+**What you accomplish:**
 
-In this tutorial, you'll deploy the DeepSeek-R1 reasoning model, send inference requests programmatically using code, and parse the reasoning output to understand how the model arrives at its answers.
+In this tutorial, you deploy the DeepSeek-R1 reasoning model, send inference requests programmatically using code, and parse the reasoning output to understand how the model arrives at its answers.
 
 The steps you perform in this tutorial are:
 
@@ -38,13 +38,15 @@ To complete this article, you need:
 
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources. Typically requires Contributor or Owner role on the resource group for creating resources and deploying models.
 
+- The **Cognitive Services User** role (or higher) assigned to your Azure account on the Foundry resource. This role is required to make inference calls with Microsoft Entra ID. Assign it in the Azure portal under **Access Control (IAM)** on the Foundry resource.
+
 - Install the Azure OpenAI SDK for your programming language:
   - **Python**: `pip install openai azure-identity`
-  - **.NET**: `dotnet add package Azure.Identity` and install the OpenAI package
+  - **.NET**: `dotnet add package OpenAI` and `dotnet add package Azure.Identity`
   - **JavaScript**: `npm install openai @azure/identity`
-  - **Java**: Add the Azure Identity package (see code examples for details)
+  - **Java**: Add the `com.openai:openai-java` and `com.azure:azure-identity` packages
 
-DeepSeek-R1 is a reasoning model that generates explanations alongside answers—see [About reasoning models](#about-reasoning-models) for details.
+DeepSeek-R1 is a reasoning model that generates explanations alongside answers. It supports text-based chat completions but doesn't support tool calling or structured output formats. See [About reasoning models](#about-reasoning-models) for details.
 
 ## Create the resources
 
@@ -144,12 +146,7 @@ Use the next generation v1 Azure OpenAI APIs to consume the model in your code. 
 
 
 The following code examples demonstrate how to:
-1. Authenticate with Microsoft Entra ID using `DefaultAzureCredential`, which automatically attempts multiple authentication methods in sequence:
-
-    1. **Environment variables** - Checks for service principal credentials in environment variables
-    1. **Managed identity** - Uses managed identity if running in Azure (App Service, Functions, VM, etc.)
-    1. **Azure CLI** - Falls back to Azure CLI credentials if you're authenticated locally
-    1. **Other methods** - Continues through additional authentication methods as needed
+1. Authenticate with Microsoft Entra ID using `DefaultAzureCredential`, which automatically attempts multiple authentication methods (environment variables, managed identity, Azure CLI, and others). The exact order depends on the Azure Identity SDK version you're using.
     
     > [!TIP]
     > For local development, ensure you're authenticated with Azure CLI by running `az login`. For production deployments in Azure, configure managed identity for your application.
@@ -161,6 +158,9 @@ The following code examples demonstrate how to:
 **Expected output:** A JSON response containing the model's answer, reasoning process (within `<think>` tags), token usage statistics (prompt tokens, completion tokens, total tokens), and model information.
 
 [!INCLUDE [code-create-chat-client-request](../../foundry-models/includes/code-create-chat-client-request.md)]
+
+> [!TIP]
+> After running the code, you should see a JSON response that includes `choices[0].message.content` with the model's answer. If the model generates reasoning, the response contains content wrapped in `<think>...</think>` tags followed by the final answer.
 
 **API Reference:**
 - [OpenAI Python client](https://github.com/openai/openai-python)
@@ -192,7 +192,7 @@ import re
 
 match = re.match(r"<think>(.*?)</think>(.*)", response.choices[0].message.content, re.DOTALL)
 
-print("Response:", )
+print("Response:")
 if match:
     print("\tThinking:", match.group(1))
     print("\tAnswer:", match.group(2))
@@ -286,7 +286,7 @@ If you encounter issues while following this tutorial, use the following guidanc
 ### Authentication errors (401/403)
 
 - **Ensure you're signed in to Azure CLI.** For local development, run `az login` before executing your code. `DefaultAzureCredential` uses your Azure CLI credentials as a fallback when no other credentials are available.
-- **Verify role assignments.** Your Azure account needs the **Cognitive Services User** role (or higher) on the Foundry resource to make inference calls with Microsoft Entra ID. You can assign this role in the Azure portal under **Access Control (IAM)** on the Foundry resource.
+- **Verify role assignments.** Your Azure account needs the **Cognitive Services User** role (or higher) on the Foundry resource to make inference calls with Microsoft Entra ID. If you haven't assigned this role yet, see the Prerequisites section.
 - **Check the endpoint format.** The endpoint URL must follow the format `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`. Verify the resource name matches your Foundry resource.
 
 ### Deployment issues
