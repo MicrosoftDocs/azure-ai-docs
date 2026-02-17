@@ -82,7 +82,7 @@ The following table summarizes the main API changes between the previous and cur
 | Assistants / agents | Agents (new) | Support for enterprise-ready prompt, workflow, and hosted agents with stateful context by default for any Foundry model. |
 
 > [!IMPORTANT]
-> In the new API, the conversations and responses APIs use the **OpenAI client**, which you obtain by calling `project_client.get_openai_client()`. Agent creation and versioning remains on the **project client** (`AIProjectClient`). The examples in each section reflect which client to use.
+> In the new API, the conversations and responses APIs use the **OpenAI client**, which you obtain by calling `project_client.get_openai_client()`. Agent creation and versioning remain on the **project client** (`AIProjectClient`). The examples in each section reflect which client to use.
 
 ## Migrate threads to conversations
 
