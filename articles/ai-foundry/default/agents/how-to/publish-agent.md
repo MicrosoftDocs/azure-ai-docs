@@ -296,7 +296,7 @@ Confirm that your agent published successfully before sharing the endpoint with 
 
 ### Quick verification by calling the endpoint
 
-To run the following commands, you need the [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli). 
+To run the following commands, you need the [Azure CLI](/cli/azure/install-azure-cli). 
 
 1. Get an access token for the calling user.
 
