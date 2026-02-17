@@ -10,7 +10,6 @@ ms.custom:
   - ignite-2025
 ms.topic: how-to
 ms.date: 11/19/2025
-zone_pivot_groups: agentic-retrieval-pivots
 ---
 
 # Manage access to Web Knowledge Source in your Azure subscription
