@@ -61,10 +61,18 @@ curl -X PATCH \
   }'
 ```
 
+> [!NOTE]
+> The opt out feature is preview and may be subject to change/removal in the future.
+
+
 ### Can I request more quota?
 
 Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota. However, note that your request, if approved, will be rounded up to the next tier and your current tier will remain the same.
 
+
+### Quota tier breakdown
+
+A breakdown of each model by quota tier in the documentation on this page is coming soon.
 
 ## Quotas and limits reference
 

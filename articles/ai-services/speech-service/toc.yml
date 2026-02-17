@@ -236,8 +236,8 @@ items:
       - name: Text to speech avatar overview
         href: text-to-speech-avatar/what-is-text-to-speech-avatar.md
         displayName: avatar
-      - name: Content credentials
-        href: text-to-speech-avatar/content-credentials.md
+      - name: Quickstart
+        href: quickstarts/get-started-text-to-speech-avatar.md
       - name: How to synthesize text to speech avatar
         items:
         - name: Real-time synthesis
@@ -266,6 +266,8 @@ items:
           displayName: avatar
         - name: Create a custom photo avatar
           href: text-to-speech-avatar/custom-photo-avatar-create.md
+      - name: Content credentials
+        href: text-to-speech-avatar/content-credentials.md
     - name: Audio content creation
       href: how-to-audio-content-creation.md
       displayName: acc
