@@ -1384,6 +1384,8 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 
 ## List - Assistants
 
+[!INCLUDE [agent-service](../agent-service.md)]
+
 ```HTTP
 GET https://{endpoint}/openai/assistants?api-version=2025-04-01-preview
 ```
@@ -1839,6 +1841,8 @@ Status Code: 200
 
 ## Create - Thread
 
+[!INCLUDE [agent-service](../agent-service.md)]
+
 ```HTTP
 POST https://{endpoint}/openai/threads?api-version=2025-04-01-preview
 ```
@@ -2118,6 +2122,8 @@ Status Code: 200
 ```
 
 ## List - Messages
+
+[!INCLUDE [agent-service](../agent-service.md)]
 
 ```HTTP
 GET https://{endpoint}/openai/threads/{thread_id}/messages?api-version=2025-04-01-preview
@@ -2481,6 +2487,8 @@ Status Code: 200
 ```
 
 ## Create - Thread And Run
+
+[!INCLUDE [agent-service](../agent-service.md)]
 
 ```HTTP
 POST https://{endpoint}/openai/threads/runs?api-version=2025-04-01-preview
