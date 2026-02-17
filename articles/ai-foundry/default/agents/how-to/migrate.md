@@ -1,58 +1,81 @@
 ---
-title: "How to migrate to the new agent service"
+title: Migrate to the new Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: Learn how to migrate to the latest agents API in the Microsoft Foundry.
+description: Learn how to migrate from the Assistants API and classic agents to the new Foundry Agent Service, including threads to conversations, runs to responses, and updated SDK patterns.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 12/09/2025
+ms.date: 02/17/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
+ms.custom: doc-kit-assisted
+ai-usage: ai-assisted
+#Customer Intent: As a developer, I want to migrate my existing agents or assistants to the new Foundry Agent Service so that I can use the latest API and features.
 ---
 
-
-# Upgrading to the new agents developer experience 
+# Migrate to the new agents developer experience
 
 > [!TIP]
 > You can use the [available migration tool](https://aka.ms/agent/migrate/tool) to migrate from the Assistants API to Agents.
 
-The new agents offer an upgraded experience which enables developers and enterprises to design intelligent agents that are easy to build, version, operate, and observe. It introduces a modernized API and SDK, new enterprise-grade capabilities, and preserves the identity, governance, and observability features customers rely on today. 
+Foundry Agent Service provides an upgraded developer experience for building intelligent agents that are easy to build, version, operate, and observe. The new agents API introduces a modernized SDK, new enterprise-grade capabilities, and preserves the identity, governance, and observability features you rely on today.
 
-Key benefits 
+## Prerequisites
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md).
+- The `azure-ai-projects` Python SDK (version 2.0.0b1 or later). Install with `pip install "azure-ai-projects>=2.0.0b1"`.
+- The `azure-identity` package for authentication. Install with `pip install azure-identity` and sign in with `az login` or use `DefaultAzureCredential`.
+- Existing agents or assistants code that you want to migrate.
+
+### Key benefits
 
 The new agents provide the following benefits:
 
-- **New Agent Types**: Create prompt-based, workflow-based, or container-based agents.
-- **More models**: Generate responses using any Azure Foundry model either in your agent or directly as a response generation call.
-- **Enterprise Readiness**: Use single tenant storage, with the added option to bring your own Cosmos DB to store state and keep your data secure.
-- **Single or Multi-Agent Workflows**: Easily chain agents for complex workflows.
-- **More features**: Web Search, File Search, Code Interpreter, MCP tool calling, image generation, and reasoning summaries.
-- **Stateful Context**: Automatically retains context across calls unless opted out using store: false.
-- **Deployable Agents**: agents can be exposed as individual endpoints.
-- **Enhanced Security**: Control who can run or modify agent definitions.
-- **Separation of Duties**: Define agents once; execute with various inputs.
-- **Superset of Responses API**: builds on Responses API and adds more capabilities.
-- **Improved State Management**: Uses conversations instead of threads/messages.
-- **Modern API Primitive**: built on Responses API instead of the older Assistants API.
-- **Future proof**: New features and model support will only be added to the new agents.
-- **Lower Costs**: Improved cache utilization reduces costs.
-- **Encrypted Reasoning**: Opt-out of statefulness while retaining advanced reasoning. 
+**Developer productivity**
+
+- **New agent types.** Create prompt-based or workflow-based agents.
+- **More models.** Generate responses by using any Foundry model either in your agent or directly as a response generation call.
+- **More features.** Web Search, File Search, Code Interpreter, MCP tool calling, image generation, and reasoning summaries.
+- **Modern API primitive.** Built on the Responses API instead of the older Assistants API.
+- **Future-proof.** New features and model support are only added to the new agents.
+
+**Enterprise readiness**
+
+- **Single-tenant storage.** Use single-tenant storage, with the option to bring your own Azure Cosmos DB to store state and keep your data secure.
+- **Enhanced security.** Control who can run or modify agent definitions.
+- **Separation of duties.** Define agents once and execute them with various inputs.
+- **Deployable agents.** Agents can be exposed as individual endpoints.
+
+**API modernization**
+
+- **Improved state management.** Uses conversations instead of threads and messages.
+- **Stateful context.** Automatically retains context across calls unless you opt out by using `store: false`.
+- **Superset of Responses API.** Builds on the Responses API and adds more capabilities.
+- **Single or multi-agent workflows.** Easily chain agents for complex workflows.
 
 
 ## Key changes
 
+The following table summarizes the main API changes between the previous and current agent experience.
+
 | Before | After | Details |
-|--------|-------|------|
-| Threads | Conversations | Supports streams of items and not just messages. |
+| -------- | ------- | ------ |
+| Threads | Conversations | Supports streams of items, not just messages. |
 | Runs | Responses | Responses send input items or use a conversation object and receive output items. Tool call loops are explicitly managed. |
-| Assistants / agents | agents (new) | Support for enterprise ready prompt workflow and hosted agents, stateful context by default to use with any Azure Foundry Model | 
+| Assistants / agents | Agents (new) | Support for enterprise-ready prompt, workflow, and hosted agents with stateful context by default for any Foundry model. |
 
-## Threads to conversations 
+> [!IMPORTANT]
+> In the new API, the conversations and responses APIs use the **OpenAI client**, which you obtain by calling `project_client.get_openai_client()`. Agent creation and versioning remains on the **project client** (`AIProjectClient`). The examples in each section reflect which client to use.
 
-Threads stored messages on the server-side. A conversation can store items – including messages, tool calls, tool outputs, and other data.
+## Migrate threads to conversations
+
+Threads stored messages on the server side. A conversation can store items, including messages, tool calls, tool outputs, and other data.
 
 ### Requests
+
+The following examples compare thread creation (previous) with conversation creation (current). The current approach uses the OpenAI client obtained from `project_client.get_openai_client()`.
 
 **Previous - threads**
 
@@ -66,13 +89,15 @@ thread = client.agents.threads.create(
 **Current - conversations**
 
 ```python
-conversation = client.conversations.create( 
-    items=[{"type": "message", "role": "user", "content": "Tell me a one line funny story about unicorns"}], 
-    metadata={"agent": "my-awesome-agent"} 
+conversation = openai_client.conversations.create( 
+    items=[{"type": "message", "role": "user", "content": "Tell me a one line funny story about unicorns"}], 
+    metadata={"agent": "my-awesome-agent"} 
 ) 
 ```
 
 ### Responses
+
+The JSON responses show the structural differences between thread objects and conversation objects.
 
 **Previous - threads**
 
@@ -98,13 +123,15 @@ conversation = client.conversations.create(
 } 
 ```
 
-## Runs to responses 
+## Migrate runs to responses
 
-Runs are asynchronous processes that executed against threads. See the example below. Responses are simpler: provide a set of input items to execute and get a list of output items back. Responses can be used alone, or also with conversation objects for storing context. 
+Runs were asynchronous processes that executed against threads. Responses are simpler: provide a set of input items to execute and get a list of output items back. Responses can be used alone, or with conversation objects for storing context. The responses API uses the OpenAI client.
 
 ### Requests
 
-**Previous - runs** 
+The following examples compare how you invoke agent logic. The previous approach used asynchronous runs with polling. The current approach calls `responses.create()` on the OpenAI client.
+
+**Previous - runs**
 
 ```python
 thread_id = "thread_abcd1234" 
@@ -127,7 +154,8 @@ conversation_id = "conv_11112222AAAABBBB"
 response = openai_client.responses.create(
     model="gpt-4.1",
     input=[{"role": "user", "content": "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9."}],
-    conversation=conversation_id
+    conversation=conversation_id,
+    extra_body={"agent": {"type": "agent_reference", "name": "my-agent", "version": "1"}}
 )
 ```
 
@@ -263,7 +291,9 @@ response = openai_client.responses.create(
 }
 ```
 
-## Classic agents to new agents 
+## Migrate classic agents to new agents
+
+If you use the `client.agents.create_agent()` method from earlier SDK versions, migrate to `client.agents.create_version()`. The new method introduces structured agent definitions with explicit `kind`, `model`, and `instructions` fields.
 
 ### Requests
 
@@ -284,15 +314,17 @@ agent = client.agents.create_agent(
 ```python
 agent = client.agents.create_version( 
     agent_name="my-agent", 
-    definition={ 
-        "kind": "prompt", 
-        "model": "gpt-4.1",  
-        "instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers." 
-    }
+    definition={ 
+        "kind": "prompt", 
+        "model": "gpt-4.1",  
+        "instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers." 
+    }
 ) 
 ```
 
-### Response
+### Responses
+
+The following JSON examples compare the response objects returned by the previous and current agent creation methods.
 
 **Previous**
 
@@ -343,16 +375,18 @@ agent = client.agents.create_version(
 } 
 ```
 
-## Assistants to new agents
+## Migrate assistants to new agents
+
+If your code uses the OpenAI Assistants API (`client.beta.assistants.create()`), migrate to the Foundry Agent Service by using `client.agents.create_version()`. The following examples show the structural differences.
 
 **Previous - assistants**
 
 ```python
 assistant = client.beta.assistants.create( 
-    model="gpt-4.1", 
-    name="my-assistant", 
-    instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.",  # Instructions for the agent 
-    tools=[{"type": "code_interpreter"}], 
+    model="gpt-4.1", 
+    name="my-assistant", 
+    instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.",  # Instructions for the agent 
+    tools=[{"type": "code_interpreter"}], 
 ) 
 ```
 
@@ -369,11 +403,11 @@ agent = client.agents.create_version(
 ) 
 ```
 
-## Migrating to new agents 
+## Run the migration tool
 
-You can use the provided tool [available on GitHub](https://aka.ms/agent/migrate/tool) to migrate your agents and assistants to the new agents. It will only migrate code such as: agent definitions, thread creation, message creation, and run creation. It will not migrate state data like past runs, threads, or messages. After migration, you can run the new code, and any new state data will be created in the updated format. 
+You can use the provided tool [available on GitHub](https://aka.ms/agent/migrate/tool) to automate the migration of your agents and assistants. The tool migrates code constructs such as agent definitions, thread creation, message creation, and run creation. It doesn't migrate state data like past runs, threads, or messages. After migration, you can run the new code, and any new state data is created in the updated format.
 
-The following is an example of the previous and current format. 
+The following example shows a complete before-and-after comparison. Notice that the current code uses both `project_client` for agent creation and `openai_client` for conversations and responses. 
 
 **Previous**
 
@@ -422,3 +456,26 @@ with project_client.get_openai_client() as openai_client:
         input="Please address the user as Jane Doe. The user has a premium account"
     ) 
 ```
+## Verify your migration
+
+After you migrate your code, confirm that everything works correctly:
+
+1. **Run the updated code** and verify that it executes without errors.
+1. **Check agent creation** by confirming that `create_version()` returns an object with an `id` and `version` field.
+1. **Test a conversation** by creating a conversation, sending a response, and verifying that output items are returned.
+1. **Confirm context retention** by sending multiple responses to the same conversation and checking that the agent remembers earlier messages.
+
+## Troubleshoot common issues
+
+| Symptom | Cause | Resolution |
+| --------- | ------- | ------------ |
+| `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project_client.get_openai_client()` to obtain the OpenAI client, then call `openai_client.conversations.create()`. |
+| `create_agent()` is deprecated | Earlier SDK versions used `create_agent()`. | Replace with `create_version()` and pass a structured `definition` dictionary. |
+| Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |
+| `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../../../how-to/deploy-models-serverless-availability.md). |
+
+## Related content
+
+- [Agent runtime components](../concepts/runtime-components.md)
+- [Quickstart: Create a hosted agent](../quickstarts/quickstart-hosted-agent.md)
+- [Deploy a hosted agent](deploy-hosted-agent.md)
