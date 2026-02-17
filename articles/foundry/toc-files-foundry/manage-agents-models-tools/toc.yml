@@ -1,0 +1,31 @@
+items:
+# Control Plane Overview
+- name: What is the Foundry control plane?
+  href: ../../control-plane/overview.md
+
+- name: Govern tools
+  items:
+  - name: Govern MCP tools by using an AI gateway
+    href: ../../agents/how-to/tools/governance.md
+
+- name: Govern agents
+  items:
+  - name: Monitor fleet health and performance
+    href: ../../control-plane/monitoring-across-fleet.md
+  - name: Manage agents at scale
+    href: ../../control-plane/how-to-manage-agents.md
+  - name: Register and manage custom agents
+    href: ../../control-plane/register-custom-agent.md
+
+- name: Govern models
+  items:
+  - name: Enforce token limits
+    href: ../../control-plane/how-to-enforce-limits-models.md
+  - name: Apply a guardrail policy for models
+    href: ../../control-plane/quickstart-create-guardrail-policy.md
+  - name: Optimize cost and performance
+    href: ../../control-plane/how-to-optimize-cost-performance.md
+- name: Manage compliance and security
+  href: ../../control-plane/how-to-manage-compliance-security.md
+- name: Configure an AI gateway
+  href: ../../configuration/enable-ai-api-management-gateway-portal.md
