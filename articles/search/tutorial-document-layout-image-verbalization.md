@@ -49,7 +49,7 @@ In this tutorial, you use:
 
 ## Limitations
 
-+ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. For a list of supported regions, see [Document Layout skill> Supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
++ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. For a list of supported regions, see [Document Layout skill > Supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
 ## Prepare data
 
@@ -101,7 +101,6 @@ You also need a role assignment for accessing the Azure Document Intelligence la
 
 1. Search for **Cognitive Services User** and then select it.
 
-1. Choose **Managed identity** and then assign your [search service managed identity](search-how-to-managed-identities.md).
 
 ### Assign roles in Azure OpenAI
 

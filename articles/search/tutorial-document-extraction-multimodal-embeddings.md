@@ -17,7 +17,7 @@ ms.date: 09/27/2025
 
 Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline in Azure AI Search that *chunks data using the built-in Text Split skill* and *uses multimodal embeddings* to vectorize text and images from the same document. Cropped images are stored in a knowledge store, and both text and visual content are vectorized and ingested in a searchable index.
 
-In this tutorial, you use:
+<!-- In this tutorial, you use:
 
 + A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
@@ -47,7 +47,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 ## Limitations
 
 + The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) has limited regional availability. When you create a Foundry resource, choose a region that provides multimodal embeddings. For an updated list of regions that provide multimodal embeddings, see the [Azure Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
-
+ -->
 ## Prepare data
 
 The following instructions apply to Azure Storage which provides the sample data and also hosts the knowledge store. A search service identity needs read access to Azure Storage to retrieve the sample data, and it needs write access to create the knowledge store. The search service creates the container for cropped images during skillset processing, using the name you provide in an environment variable.

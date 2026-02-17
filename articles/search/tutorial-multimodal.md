@@ -9,12 +9,12 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
 ms.topic: tutorial
-ms.date: 02/14/2026
+ms.date: 02/20/2026
 ---
 
 # Tutorial: Extract, chunk, and embed multimodal content
 
-In this tutorial, you will build a multimodal indexing pipeline that performs these tasks:
+In this tutorial, you will build a multimodal indexer pipeline that performs these tasks:
 
 > [!div class="checklist"]
 >
@@ -22,22 +22,7 @@ In this tutorial, you will build a multimodal indexing pipeline that performs th
 > + Vectorize text and images for similarity search
 > + Send cropped images to a knowledge store for retrieval by your app
 
-Multimodal indexing is implemented through a combination of skills that bring Foundry models and APIs into an indexer pipeline.
-
 Sample data is a 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with original text.
-
-<!-- + An indexer and skillset to create an indexing pipeline that includes AI enrichment through skills.
-
-+ The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting normalized images and text. The [Text Split skill](cognitive-search-skill-textsplit.md) chunks the data.
-
-+ The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize text and images.
-
-+ A search index configured to store extracted text and image content. Some content is vectorized for vector-based similarity search.
-
-This tutorial demonstrates a lower-cost approach for indexing multimodal content using the Document Extraction skill. It enables extraction and search over both text and images from documents pulled from Azure Blob Storage. However, it doesn't include locational metadata for text, such as page numbers or bounding regions. For a more comprehensive solution that includes structured text layout and spatial metadata, see [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md).
-
-> [!NOTE]
-> Image extraction by the Document Extraction skill isn't free. Setting `imageAction` to `generateNormalizedImages` in the skillset triggers image extraction, which is an extra charge. For billing information, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/). -->
 
 ## Prerequisites
 
@@ -49,7 +34,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python). If you haven't installed a suitable version of Python, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
 
-The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) has limited regional availability. When you create a Foundry resource, [choose a region](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) that provides the multimodal embeddings 4.0 API.
++ Foundry model deployments. Multimodal indexing is implemented through skills that call Foundry models and APIs in an indexer pipeline. This tutorial uses Foundry models only, but the skills themselves support other models. [Model requirements vary depending on the skill choice for each task](#choose-skills-for-multimodal-indexing).
 
 ### Configure access
 
@@ -99,30 +84,55 @@ Azure Storage provides the sample data and hosts the knowledge store. A search s
     }
     ```
 
-## Choose an approach
+## Choose skills for multimodal indexing
 
-The index, data source, and indexer definitions are the same for all scenarios, but you can pick different skills depending on the task.
+The index, data source, and indexer definitions are the same for all scenarios, but the skillset can include different skills depending on how you want to extract, chunk, and vectorize text and images.
 
-#### Extract and chunk content
+1. Choose a skill or skill combination that extracts and chunks text.
 
-| Skills | Explanation |
-|--|--|
-| Document Extraction and Text Split | Uses built-in skills to extract text and images, and chunk text based on fixed size. Usage is free of charge. |
-| Document Layout | Calls Content Understanding APIs to extract text and images, and chunk text based on document structure. Usage is based on pay-as-you-go pricing. |
+1. Choose a skill that vectorizes content:
 
-#### Describe images
+   + Use Azure AI Vision for text and image vectorization.
+   + Use GenAI Prompt to generate text descriptions of images, and Azure OpenAI embedding to vectorize raw and generated text.
 
-| Skills | Explanation |
-|--|--|
-| None | Image descriptions are optional. If you don't generate a description, you can vectorize images using Azure AI Vision and run vector queries for matches on vector content. |
-| GenAI Prompt (chat completion) | Calls a supported chat completion model in Microsoft Foundry to generate a text description for each extracted image. Generated text, rather then an image, is vectorized and used for content retrieval. Usage is based on pay-as-you-go pricing. |
+Most skills depend on access to deployed model. Here's a list of the models that back the various skills in this tutorial:
 
-#### Vectorize content
+| Model | Skill | Usage | Permissions |
+| -- | -- | -- | -- |
+| None (built-in) | [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Text Split skill](cognitive-search-skill-textsplit.md)  | Extract and chunk content based on a fixed size. Text extraction is free. [Image extraction is billable](https://azure.microsoft.com/pricing/details/search/). | see [Configure access](#configure-access) |
+| Document Intelligence 4.0 | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk content based on document layout. | Cognitive Services User |
+| Azure AI Vision multimodal 4.0 | [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. | Cognitive Services User |
+| GPT-5 or GPT-4 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content, which you can then vectorize. | Cognitive Services OpenAI User |
+| Text-embedding-3 (large or small) or text-embedding-ada-002 | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize raw text and generated text descriptions. | Cognitive Services User 
 
-| Skills | Explanation |
-|--|--|
-| Azure OpenAI Embedding skill | Uses a supported embedding model to vectorize text, either raw text or generated text for image descriptions. Usage is based on pay-as-you-go pricing. |
-| Azure AI Vision skill | Calls the Azure AI Vision multimodal 4.0 API to vectorize both text and images extracted from the source document. If you want image vectors, you must use this skill. Usage is based on pay-as-you-go pricing. |
+Model usage is billable, except for text extraction using a built-in model and text splitting.
+
+Model deployments can be in any region if the search service connects over the public endpoint or a private connection. However, two models are accessed over the internal network, which can introduce a regional dependency. To relax regional dependencies, [set up a keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to your Foundry resource. If you must use a key-based connection, [attach a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) and ensure your model meets the same-region requirements for Azure AI Search:
+
++ [Azure AI Vision multimodal 4.0 regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
+
++ [Document Layout 4.0 regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions)
+
+<!-- #### Extract and chunk content
+
+| Skills | Explanation | Model requirement |
+|--|--|--|
+| Document Extraction and Text Split | Uses built-in skills to extract text and images, and chunk text based on fixed size. This approach extracts text and images from documents pulled from Azure Blob Storage. However, it doesn't include locational metadata for text, such as page numbers or bounding regions. Choose Document Layout if you require locational metadata. <p>This skill combination is the least-cost approach. Text Split and text extraction are free. Image extraction is [billable](https://azure.microsoft.com/pricing/details/search/). Setting `imageAction` to `generateNormalizedImages` in the skillset triggers image extraction and billing. |
+| Document Layout | Calls Content Understanding APIs to extract text and images, and chunk text based on document structure. Model usage is based on pay-as-you-go pricing. | Document Intelligence 4.0, accessed through a Microsoft Foundry resource. Use a keyless connection or attach a Foundry resource. | -->
+
+<!-- #### Describe images
+
+| Skills | Explanation | Model requirement |
+|--|--|--|
+| GenAI Prompt (chat completion) | Calls a supported chat completion model to generate a text description for each extracted image. Generated text, rather then an image, is vectorized and used for queries. Model usage is based on pay-as-you-go pricing. |
+| None | Text-based image descriptions are optional. If you don't generate a description, you can vectorize images directly using Azure AI Vision and run vector queries for matches on all your vector content. |
+ -->
+<!-- #### Vectorize content
+
+| Skills | Explanation | Model requirement |
+|--|--|--|
+| Azure OpenAI Embedding skill | Uses a supported embedding model to vectorize text, either raw text or generated text for image descriptions. Model usage is based on pay-as-you-go pricing. |
+| Azure AI Vision skill | Calls the Azure AI Vision multimodal 4.0 API to vectorize both text and images extracted from the source document. If you want image vectors, you must use this skill. Model usage is based on pay-as-you-go pricing. | -->
 
 <!-- ## Deploy models
 
@@ -186,7 +196,7 @@ There are four components of an indexer pipeline: data source, index, skillset, 
 + [Create a data source](#create-a-data-source)
 + [Create an index](#create-an-index)
 + [Create a basic skillset definition](#stub-out-a-skillset-definition)
-+ [Create (and run) an indexer](#create-and-run-an-indexer)
++ [Create (and run) an indexer](#run-the-indexer)
 
 ### Create a data source
 
@@ -198,7 +208,7 @@ POST {{searchUrl}}/datasources?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 
 {
-   "name":"doc-extraction-multimodal-embedding-ds",
+   "name":"demo-multimodal-ds",
    "description":null,
    "type":"azureblob",
    "subtype":null,
@@ -222,7 +232,7 @@ Send the request. The response should look like:
 HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-11-01-preview -Preview
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('demo-multimodal-ds')?api-version=2025-11-01-preview -Preview
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -233,7 +243,7 @@ Date: Sat, 26 Apr 2025 21:25:24 GMT
 Connection: close
 
 {
-  "name": "doc-extraction-multimodal-embedding-ds",
+  "name": "demo-multimodal-ds",
   "description": null,
   "type": "azureblob",
   "subtype": null,
@@ -265,7 +275,7 @@ POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 
 {
-    "name": "doc-extraction-multimodal-embedding-index",
+    "name": "demo-multimodal-index",
     "fields": [
         {
             "name": "content_id",
@@ -417,7 +427,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 
 {
-  "name": "doc-extraction-multimodal-embedding-skillset",
+  "name": "demo-multimodal-skillset",
 	"description": "A test skillset",
   "skills": [
     {
@@ -563,7 +573,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
   "indexProjections": {
       "selectors": [
         {
-          "targetIndexName": "doc-extraction-multimodal-embedding-index",
+          "targetIndexName": "demo-multimodal-index",
           "parentKeyFieldName": "text_document_id",
           "sourceContext": "/document/pages/*",
           "mappings": [              
@@ -582,7 +592,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
           ]
         },
         {
-          "targetIndexName": "doc-extraction-multimodal-embedding-index",
+          "targetIndexName": "demo-multimodal-index",
           "parentKeyFieldName": "image_document_id",
           "sourceContext": "/document/normalized_images/*",
           "mappings": [                                   
@@ -645,7 +655,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 
 {
-  "name": "doc-extraction-multimodal-embedding-skillset",
+  "name": "demo-multimodal-skillset",
 	"description": "A test skillset",
   "skills": [
     {
@@ -791,7 +801,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
   "indexProjections": {
       "selectors": [
         {
-          "targetIndexName": "doc-extraction-multimodal-embedding-index",
+          "targetIndexName": "demo-multimodal-index",
           "parentKeyFieldName": "text_document_id",
           "sourceContext": "/document/pages/*",
           "mappings": [              
@@ -810,7 +820,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
           ]
         },
         {
-          "targetIndexName": "doc-extraction-multimodal-embedding-index",
+          "targetIndexName": "demo-multimodal-index",
           "parentKeyFieldName": "image_document_id",
           "sourceContext": "/document/normalized_images/*",
           "mappings": [                                   
@@ -864,7 +874,7 @@ Key points:
 
 + The Azure Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
-## Create and run an indexer
+## Run the indexer
 
 [Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads data, runs a skillset, and indexes the enriched data.
 
@@ -875,10 +885,10 @@ POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 
 {
-  "name": "doc-extraction-multimodal-embedding-indexer",
-  "dataSourceName": "doc-extraction-multimodal-embedding-ds",
-  "targetIndexName": "doc-extraction-multimodal-embedding-index",
-  "skillsetName": "doc-extraction-multimodal-embedding-skillset",
+  "name": "demo-multimodal-indexer",
+  "dataSourceName": "demo-multimodal-ds",
+  "targetIndexName": "demo-multimodal-index",
+  "skillsetName": "demo-multimodal-skillset",
   "parameters": {
     "maxFailedItems": -1,
     "maxFailedItemsPerBatch": 0,
@@ -903,7 +913,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -939,7 +949,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview "
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview "
 }
 ```
 100 documents are returned in the response.
@@ -951,7 +961,7 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ```http
 ### Query for only images
-POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -964,7 +974,7 @@ POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search
 
 ```http
 ### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
-POST {{searchUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -982,19 +992,19 @@ Indexers can be reset to clear the high-water mark, which allows a full rerun. T
 
 ```http
 ### Reset the indexer
-POST {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/reset?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/demo-multimodal-indexer/reset?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/run?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/demo-multimodal-indexer/run?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{searchUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/status?api-version=2025-11-01-preview   HTTP/1.1
+GET {{searchUrl}}/indexers/demo-multimodal-indexer/status?api-version=2025-11-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
