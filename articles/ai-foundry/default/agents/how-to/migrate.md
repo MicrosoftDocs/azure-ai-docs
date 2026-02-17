@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 # Migrate to the new agents developer experience
 
 > [!TIP]
-> You can use the [available migration tool](https://aka.ms/agent/migrate/tool) to migrate from the Assistants API to Agents.
+> A [migration tool](https://aka.ms/agent/migrate/tool) is available to help automate migration from the Assistants API to Agents.
 
 Foundry Agent Service provides an upgraded developer experience for building intelligent agents that are easy to build, version, operate, and observe. The new agents API introduces a modernized SDK, new enterprise-grade capabilities, and preserves the identity, governance, and observability features you rely on today.
 
@@ -25,9 +25,24 @@ Foundry Agent Service provides an upgraded developer experience for building int
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
 - A [Microsoft Foundry project](../../../how-to/create-projects.md).
-- The `azure-ai-projects` Python SDK (version 2.0.0b1 or later). Install with `pip install "azure-ai-projects>=2.0.0b1"`.
+- The `azure-ai-projects` Python SDK (version 2.0.0b1 or later). Install with `pip install "azure-ai-projects>=2.0.0b1" --pre`.
 - The `azure-identity` package for authentication. Install with `pip install azure-identity` and sign in with `az login` or use `DefaultAzureCredential`.
 - Existing agents or assistants code that you want to migrate.
+
+The following code initializes the clients used throughout this guide:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+project_client = AIProjectClient(
+    endpoint="<your-project-endpoint>",
+    credential=DefaultAzureCredential(),
+)
+openai_client = project_client.get_openai_client()
+```
+
+Use `project_client` for agent creation and versioning. Use `openai_client` for conversations and responses.
 
 ### Key benefits
 
@@ -51,7 +66,7 @@ The new agents provide the following benefits:
 **API modernization**
 
 - **Improved state management.** Uses conversations instead of threads and messages.
-- **Stateful context.** Automatically retains context across calls unless you opt out by using `store: false`.
+- **Stateful context.** Automatically retains context across calls.
 - **Superset of Responses API.** Builds on the Responses API and adds more capabilities.
 - **Single or multi-agent workflows.** Easily chain agents for complex workflows.
 
@@ -121,6 +136,29 @@ The JSON responses show the structural differences between thread objects and co
   "metadata":{"agent":"my-awesome-agent"}, 
   "object":"conversation" 
 } 
+```
+
+### Add items to an existing conversation
+
+After you create a conversation, use `conversations.items.create()` to add subsequent messages. This pattern replaces adding messages to threads with `client.agents.messages.create()`.
+
+**Previous - add a message to a thread**
+
+```python
+message = client.agents.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content="Follow-up question about the same topic",
+)
+```
+
+**Current - add items to a conversation**
+
+```python
+openai_client.conversations.items.create(
+    conversation_id=conversation.id,
+    items=[{"type": "message", "role": "user", "content": "Follow-up question about the same topic"}],
+)
 ```
 
 ## Migrate runs to responses
@@ -312,13 +350,14 @@ agent = client.agents.create_agent(
 **Current**
 
 ```python
-agent = client.agents.create_version( 
+from azure.ai.projects.models import PromptAgentDefinition
+
+agent = project_client.agents.create_version( 
     agent_name="my-agent", 
-    definition={ 
-        "kind": "prompt", 
-        "model": "gpt-4.1",  
-        "instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers." 
-    }
+    definition=PromptAgentDefinition(
+        model="gpt-4.1",  
+        instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers."
+    )
 ) 
 ```
 
@@ -393,19 +432,20 @@ assistant = client.beta.assistants.create(
 **Current - new agents**
 
 ```python
-agent = client.agents.create_version( 
+from azure.ai.projects.models import PromptAgentDefinition
+
+agent = project_client.agents.create_version( 
     agent_name="my-agent", 
-    definition={ 
-        "kind": "prompt", 
-        "model": "gpt-4.1",  
-        "instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers." 
-    } 
+    definition=PromptAgentDefinition(
+        model="gpt-4.1",  
+        instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers."
+    )
 ) 
 ```
 
 ## Run the migration tool
 
-You can use the provided tool [available on GitHub](https://aka.ms/agent/migrate/tool) to automate the migration of your agents and assistants. The tool migrates code constructs such as agent definitions, thread creation, message creation, and run creation. It doesn't migrate state data like past runs, threads, or messages. After migration, you can run the new code, and any new state data is created in the updated format.
+A [migration tool](https://aka.ms/agent/migrate/tool) is available on GitHub to help automate the migration of your agents and assistants. The tool migrates code constructs such as agent definitions, thread creation, message creation, and run creation. It doesn't migrate state data like past runs, threads, or messages. After migration, you can run the new code, and any new state data is created in the updated format.
 
 The following example shows a complete before-and-after comparison. Notice that the current code uses both `project_client` for agent creation and `openai_client` for conversations and responses. 
 
@@ -437,15 +477,16 @@ for message in messages:
 **Current**
 
 ```python
+from azure.ai.projects.models import CodeInterpreterTool, PromptAgentDefinition
+
 with project_client.get_openai_client() as openai_client:
     agent = project_client.agents.create_version( 
         agent_name="my-agent", 
-        definition={ 
-            "kind": "prompt", 
-            "model": "gpt-4.1",  
-            "instructions": "You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.", 
-            "tools": [{"type": "code_interpreter", "container": {"type": "auto"}}] 
-        } 
+        definition=PromptAgentDefinition(
+            model="gpt-4.1",
+            instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.",
+            tools=[CodeInterpreterTool()]
+        ) 
     )
     conversation = openai_client.conversations.create( 
         items=[{"type": "message", "role": "user", "content": "Hi, Agent! Draw a graph for a line with a rate of change of 4 and y-intercept of 9."}], 
@@ -470,7 +511,7 @@ After you migrate your code, confirm that everything works correctly:
 | Symptom | Cause | Resolution |
 | --------- | ------- | ------------ |
 | `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project_client.get_openai_client()` to obtain the OpenAI client, then call `openai_client.conversations.create()`. |
-| `create_agent()` is deprecated | Earlier SDK versions used `create_agent()`. | Replace with `create_version()` and pass a structured `definition` dictionary. |
+| `create_agent()` is deprecated | Earlier SDK versions used `create_agent()`. | Replace with `create_version()` and pass a `PromptAgentDefinition` object as the `definition` parameter. |
 | Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |
 | `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../../../how-to/deploy-models-serverless-availability.md). |
 
