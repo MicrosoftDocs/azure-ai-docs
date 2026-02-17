@@ -479,9 +479,9 @@ compacted_response = client.responses.compact(
 print(compacted_response)
 ```
 
-### Compact using previous reponse ID
+### Compact using previous response ID
 
-You can also compact using a previous reponse ID.
+You can also compact using a previous response ID.
 
 ```python
 import os
