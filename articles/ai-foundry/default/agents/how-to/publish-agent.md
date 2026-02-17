@@ -368,7 +368,7 @@ To roll out an agent with a different name, you must:
 > [!NOTE]
 > Agent applications currently support one protocol at a time, but this can be changed. When you create an Agent Application in the Foundry UI, it defaults to the Responses API protocol. If you later publish to Microsoft 365 or Teams, the publishing flow configures the Activity Protocol.
 
-After publishing, you invoke your agent through its endpoint using either the Responses API protocol or the Activity Protocol. The activity protocol is used when your agent is published to Microsoft 365 and Teams.
+After publishing, you invoke your agent through its endpoint using either the Responses API protocol or the activity protocol. The activity protocol is used when your agent is published to Microsoft 365 and Teams.
 
 To use your Agent Application with the Responses API protocol, see [Invoke your Agent Application using the Responses API protocol](./publish-responses.md)
 
