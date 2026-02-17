@@ -11,7 +11,7 @@ ms.date: 02/17/2026
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.custom: azure-ai-agents, references_regions, doc-kit-assisted, pilot-ai-workflow-jan-2026
+ms.custom: azure-ai-agents, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
 ---
