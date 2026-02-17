@@ -407,6 +407,118 @@ second_response = client.responses.create(
 print(second_response.model_dump_json(indent=2))  
 ```
 
+## Compact a Response
+Compacting allows you to shrink the context window sent to the model while preserving the essential information for the model's understanding.
+
+### Compact using items returned
+You can compact all items returned from previous requests like reasoning, message, function call, etc.
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+        "model": "gpt-4.1",
+        "input": [
+          {
+            "role"   : "user",
+            "content": "Create a simple landing page for a dog petting café."
+          },
+          {
+            "id": "msg_001",
+            "type": "message",
+            "status": "completed",
+            "content": [
+              {
+                "type": "output_text",
+                "annotations": [],
+                "logprobs": [],
+                "text": "Below is a single file, ready-to-use landing page for a dog petting café:..."
+              }
+            ],
+            "role": "assistant"
+          }
+        ]
+    }'
+```
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+)
+
+compacted_response = client.responses.compact(
+    model="gpt-4.1",
+    input=[
+    {
+        "role": "user",
+        "content": "Create a simple landing page for a dog petting cafe.",
+    },
+    # All items returned from previous requests are included here, like reasoning, message, function call, etc.
+    {
+        "id": "msg_001",
+        "type": "message",
+        "status": "completed",
+        "content": [
+        {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "Below is a single file, ready-to-use landing page for a dog petting café:...",
+        },
+        ],
+        "role": "assistant",
+    },
+    ]
+)
+# Pass the compacted_response.output as input to the next request
+print(compacted_response)
+```
+
+### Compact using previous reponse ID
+
+You can also compact using a previous reponse ID.
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+)
+
+# Get back a full response
+initial_response = client.responses.create(
+        model="gpt-4.1",
+        input="What is the size of France?"
+    )
+
+print(f"Initial Response: {initial_response.output_text}")
+
+# Now compact the response
+compacted_response = client.responses.compact(
+    model="gpt-4.1",
+    previous_response_id=initial_response.id
+)
+
+# use the compacted response in a follow up
+followup_response = client.responses.create(
+    model="gpt-4.1",
+    input=[
+        *compacted_response.output,
+        {"role": "user", "content": "And what is the capital city"}
+    ]
+)
+print(f"Follow-up Response: {followup_response.output_text}")
+```
+
+
+
 ## Streaming
 
 ```python
