@@ -1,12 +1,12 @@
 ---
-title: "Tutorial: Getting started with DeepSeek-R1 reasoning model in Microsoft Foundry Models"
+title: "Tutorial: Get started with DeepSeek-R1 in Microsoft Foundry Models"
 titleSuffix: Microsoft Foundry
 description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning."
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 01/15/2026
+ms.date: 02/17/2026
 ms.author: mopeakande
 author: msakande
 ms.custom: dev-focus
@@ -101,7 +101,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
 1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup lets you configure specific names for your models when you attach specific configurations.
 
-1. Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently available under the **Global Standard** deployment type, which provides higher throughput and performance.
+    1. Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is available under the **Global Standard** and **Global Provisioned** deployment types, which provide higher throughput and performance.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png" alt-text="Screenshot showing how to deploy the model." lightbox="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png":::
 
@@ -117,7 +117,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 1. Select **Deploy base model** to open the model catalog.
 1. Find and select the **DeepSeek-R1** model tile to open its model card and select **Deploy**. You can select **Quick deploy** to use the defaults, or select **Customize deployment** to see and change the deployment settings.
 
-When the deployment finishes, you land on its playground, where you can start to interact with the deployment.
+When the deployment finishes, you land on its playground, where you can start to interact with the deployment. Confirm your deployment is ready by verifying the deployment status shows **Succeeded**. Note the **deployment name** and **endpoint URI** from the deployment details—you need both for the code section.
 
 ::: moniker-end
 
@@ -170,7 +170,7 @@ The following code examples demonstrate how to:
 - [Chat completions API reference](../../openai/latest.md#create-chat-completion)
 - [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
 
-Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+Reasoning might generate longer responses and consume a larger number of tokens. DeepSeek-R1 supports up to 5,000 requests per minute and 5,000,000 tokens per minute. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ## About reasoning models
 
@@ -232,13 +232,12 @@ Reasoning models support a subset of the standard chat completion parameters to 
 - `stop` - Sequences where the API stops generating tokens
 - `stream` - Enable streaming responses
 - `n` - Number of completions to generate
-- `frequency_penalty` - Reduces repetition of token sequences
 
 **Unsupported parameters** (reasoning models don't support these):
 - `temperature` - Fixed to optimize reasoning quality
 - `top_p` - Not configurable for reasoning models
 - `presence_penalty` - Not available
-- `repetition_penalty` - Use `frequency_penalty` instead
+- `repetition_penalty` - Not available for reasoning models
 
 **Example using `max_tokens`:**
 
@@ -276,9 +275,36 @@ Use the model in the playground to get an idea of the model's capabilities.
 
 ::: moniker range="foundry"
 
-As stated previously, immediately a model deployment is complete, you land on the model's playground, where you can start to interact with the deployment. For example, you can enter your prompts, such as "How many languages are in the world?" in the playground.
+As soon as the deployment completes, you land on the model's playground, where you can start to interact with the deployment. For example, you can enter your prompts, such as "How many languages are in the world?" in the playground.
 
 ::: moniker-end
+
+## Troubleshooting
+
+If you encounter issues while following this tutorial, use the following guidance to resolve common problems.
+
+### Authentication errors (401/403)
+
+- **Ensure you're signed in to Azure CLI.** For local development, run `az login` before executing your code. `DefaultAzureCredential` uses your Azure CLI credentials as a fallback when no other credentials are available.
+- **Verify role assignments.** Your Azure account needs the **Cognitive Services User** role (or higher) on the Foundry resource to make inference calls with Microsoft Entra ID. You can assign this role in the Azure portal under **Access Control (IAM)** on the Foundry resource.
+- **Check the endpoint format.** The endpoint URL must follow the format `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`. Verify the resource name matches your Foundry resource.
+
+### Deployment issues
+
+- **Deployment name vs. model name.** The `model` parameter in API calls refers to your **deployment name**, not the model name. If you customized the deployment name during creation, use that name instead of `DeepSeek-R1`.
+- **Deployment not ready.** If you receive a 404 error, verify that the deployment status shows **Succeeded** in the Foundry portal before making API calls.
+
+### Rate limiting (429 errors)
+
+- **Implement retry logic.** Reasoning models generate longer responses that consume more tokens. Use exponential backoff to handle 429 (Too Many Requests) errors.
+- **Monitor token usage.** DeepSeek-R1 reasoning content (within `<think>` tags) counts toward your token limit. See [quotas and limits](../quotas-limits.md) for the current rate limits.
+- **Request quota increases.** If you consistently hit rate limits, [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+
+### Package installation issues
+
+- **Python.** Install both required packages: `pip install openai azure-identity`. The `azure-identity` package is required for `DefaultAzureCredential`.
+- **JavaScript.** Install both required packages: `npm install openai @azure/identity`.
+- **.NET.** Install the Azure Identity package: `dotnet add package Azure.Identity`.
 
 ## What you learned
 
@@ -293,7 +319,8 @@ In this tutorial, you accomplished the following:
 
 ## Related content
 
-- [How to generate chat completions with Foundry Models](../../openai/api-version-lifecycle.md)
+- [Azure OpenAI in Microsoft Foundry Models v1 API](../../openai/api-version-lifecycle.md)
 - [Use chat reasoning models](../how-to/use-chat-reasoning.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
+- [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 

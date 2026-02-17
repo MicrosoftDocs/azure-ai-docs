@@ -3,17 +3,17 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 10/29/2025
+ms.date: 02/17/2026
 ms.author: mopeakande
 author: msakande
 ---
 
 # [Python](#tab/python)
 
-Install the package `openai` using your package manager, like pip:
+Install the packages `openai` and `azure-identity` using your package manager, like pip:
 
 ```bash
-pip install --upgrade openai
+pip install --upgrade openai azure-identity
 ```
 
 The following example shows how to create a client to consume chat completions and then generate and print out the response:
@@ -48,10 +48,10 @@ print(response.model_dump_json(indent=2))
 
 First install the Azure Identity client library before you can use DefaultAzureCredential:
 
-Install the package `@azure/identity` using npm:
+Install the packages `openai` and `@azure/identity` using npm:
 
 ```bash
-npm install @azure/identity
+npm install openai @azure/identity
 ```
 
 To authenticate the `OpenAI` client, use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `OpenAI` uses internally to obtain tokens for each request. 
@@ -92,7 +92,7 @@ console.log('Response content:', result.choices[0].message.content);
 
 # [C#](#tab/csharp)
 
-First install the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ) before you can use DefaultAzureCredential:
+First install the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true) before you can use DefaultAzureCredential:
 
 
 ```dotnetcli
@@ -143,7 +143,7 @@ Add the Azure Identity package:
 
 After setup, you can choose which type of credential from `azure.identity` to use. As an example, `DefaultAzureCredential` can be used to authenticate the client.
 
-Authentication is easiest using `DefaultAzureCredential`. It finds the best credential to use in its running environment.
+Authentication is straightforward using `DefaultAzureCredential`. It finds the best credential to use in its running environment.
 
 ```java
 Credential tokenCredential = BearerTokenCredential.create(
