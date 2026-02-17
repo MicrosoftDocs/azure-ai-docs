@@ -59,7 +59,6 @@ This approach authenticates using Azure credentials and requires the caller to h
 
 ## Limitations
 
-**Note**: All of these limitations are temporary and fixes are already in progress.
 
 
 | Limitation | Description |
