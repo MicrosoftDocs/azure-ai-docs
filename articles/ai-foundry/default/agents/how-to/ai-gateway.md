@@ -32,7 +32,7 @@ This capability enables organizations to:
 - A [Microsoft Foundry project](../../../how-to/create-projects.md).
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.67 or later.
 - [Python 3.10 or later](https://www.python.org/downloads/).
-- The `azure-ai-projects` SDK package (version 2.0.0b3 or later). For installation steps, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+- The `azure-ai-projects` SDK package (version 2.0.0b3 or later). For installation steps, see the [quickstart](../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
 - Access credentials for your enterprise AI gateway (for example, an API Management subscription key or an API key for another non-Azure AI model gateway).
 
 ### Required permissions
