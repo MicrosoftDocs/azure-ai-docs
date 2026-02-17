@@ -150,7 +150,7 @@ To get the Azure AI Search endpoint and API key:
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
-## Set up an indexer pipeline
+## Set up a pipeline
 
 There are four components of an indexer pipeline: data source, index, skillset, and indexer. You create all four objects in this section, except that skill definitions are covered in separate sections related to chunking, image descriptions, and vectorization. We approach skills this way to bring more focus on the behaviors that you want to effect.
 
@@ -543,7 +543,7 @@ TBD
     },  
 ```
 
-This skillset extracts text and images, vectorizes both, and shapes the image metadata for projection into the index.
+---
 
 Key points:
 
@@ -654,12 +654,6 @@ This skillset extracts text and images, vectorizes both, and shapes the image me
       ]
     }
 ```
-
-Key points:
-
-+ The `content_text` field is populated with text extracted using the Document Extraction Skill and chunked using the Split Skill
-
-+ `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
 ### [Image Verbalization and Text Embedding](#tab/gpt-text-embedding)
 
@@ -781,6 +775,13 @@ This skillset vectorizes text, verbalizes images as text, and then vectorizes th
       ]
     }
 ```
+---
+
+Key points:
+
++ The `content_text` field is populated with text extracted using the Document Extraction Skill and chunked using the Split Skill
+
++ `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
 ## Run the indexer
 
