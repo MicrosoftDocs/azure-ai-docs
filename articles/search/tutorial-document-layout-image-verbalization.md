@@ -19,7 +19,7 @@ Azure AI Search can extract and index both text and images from PDF documents st
 
 To get image verbalizations, each extracted image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) that calls a chat completion model to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing searchable content from both modalities: text and verbalized images.
 
-In this tutorial, you use:
+<!-- In this tutorial, you use:
 
 + A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
@@ -50,8 +50,8 @@ In this tutorial, you use:
 ## Limitations
 
 + The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. For a list of supported regions, see [Document Layout skill > Supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
-
-## Prepare data
+ -->
+<!-- ## Prepare data
 
 The following instructions apply to Azure Storage which provides the sample data and also hosts the knowledge store. A search service identity needs read access to Azure Storage to retrieve the sample data, and it needs write access to create the knowledge store. The search service creates the container for cropped images during skillset processing, using the name you provide in an environment variable.
 
@@ -83,7 +83,7 @@ The following instructions apply to Azure Storage which provides the sample data
           "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
           "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
       }
-      ```
+      ``` -->
 
 ## Prepare models
 

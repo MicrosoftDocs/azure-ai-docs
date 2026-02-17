@@ -17,7 +17,7 @@ ms.date: 09/27/2025
 
 Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline that *chunks data based on document structure* and *uses multimodal embeddings* to vectorize text and images from the same document. Cropped images are stored in a knowledge store, and both text and visual content are vectorized and ingested in a searchable index. Chunking is based on the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/concept-layout) that recognizes document structure.
 
-In this tutorial, you use:
+<!-- In this tutorial, you use:
 
 + A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
@@ -44,8 +44,8 @@ In this tutorial, you use:
 + The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. When you create the Foundry resource, choose a region that provides multimodal embeddings. For a list of supported regions, see [Document Layout skill supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
 + The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) also has limited regional availability. For an updated list of regions that provide multimodal embeddings, see the [Azure Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
-
-## Prepare data
+ -->
+<!-- ## Prepare data
 
 The following instructions apply to Azure Storage which provides the sample data and also hosts the knowledge store. A search service identity needs read access to Azure Storage to retrieve the sample data, and it needs write access to create the knowledge store. The search service creates the container for cropped images during skillset processing, using the name you provide in an environment variable.
 
@@ -77,7 +77,7 @@ The following instructions apply to Azure Storage which provides the sample data
           "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
           "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
       }
-      ```
+      ``` -->
 
 ## Prepare models
 

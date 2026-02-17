@@ -48,7 +48,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 + The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) has limited regional availability. When you create a Foundry resource, choose a region that provides multimodal embeddings. For an updated list of regions that provide multimodal embeddings, see the [Azure Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
  -->
-## Prepare data
+<!-- ## Prepare data
 
 The following instructions apply to Azure Storage which provides the sample data and also hosts the knowledge store. A search service identity needs read access to Azure Storage to retrieve the sample data, and it needs write access to create the knowledge store. The search service creates the container for cropped images during skillset processing, using the name you provide in an environment variable.
 
@@ -80,7 +80,7 @@ The following instructions apply to Azure Storage which provides the sample data
           "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
           "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
       }
-      ```
+      ``` -->
 
 ## Prepare models
 
