@@ -193,7 +193,7 @@ response = openai_client.responses.create(
     model="gpt-4.1",
     input=[{"role": "user", "content": "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9."}],
     conversation=conversation_id,
-    extra_body={"agent": {"type": "agent_reference", "name": "my-agent", "version": "1"}}
+    extra_body={"agent_reference": {"type": "agent_reference", "name": "my-agent", "version": "1"}}
 )
 ```
 
