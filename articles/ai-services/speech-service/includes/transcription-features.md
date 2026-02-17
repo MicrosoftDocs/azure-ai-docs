@@ -4,7 +4,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 02/17/2026
+ms.date: 02/16/2026
 ai-usage: ai-assisted
 ---
 
