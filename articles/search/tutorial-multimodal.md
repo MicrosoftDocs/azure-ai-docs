@@ -34,8 +34,7 @@ Multimodal sample data is a 36-page PDF document that combines rich visual conte
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python). If you haven't installed a suitable version of Python, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
 
-> [!NOTE]
->  Multimodal indexing is implemented through skills that call Foundry models and APIs in an indexer pipeline. This tutorial uses Foundry models only, but the skills themselves support other models. Model prerequisites vary depending on the [skill choice for each task](#choose-skills-for-multimodal-indexing).
+Multimodal indexing is implemented through skills that call Foundry models and APIs in an indexer pipeline. This tutorial uses Foundry models only, but the skills themselves support other models. Model prerequisites vary depending on the [skill choice for each task](#choose-skills-for-multimodal-indexing).
 
 ### Configure access
 
@@ -107,7 +106,7 @@ Most skills depend on access to [deployed model](/azure/ai-foundry/foundry-model
 | Document Intelligence 4.0 | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. | Cognitive Services User |
 | Azure AI Vision multimodal 4.0 | [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. | Cognitive Services User |
 | GPT-5 or GPT-4 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. | Cognitive Services OpenAI User |
-| Text-embedding-3 (large or small) or text-embedding-ada-002 | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | Cognitive Services User |
+| Text-embedding-3 or text-embedding-ada-002 | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | Cognitive Services User |
 
 Model usage is billable, except for text extraction using a built-in model and text splitting.
 
@@ -472,12 +471,47 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
 
 Recall that your skill choices for extraction and chunking include:
 
-| Model | Skill | Usage | Permissions |
-| -- | -- | -- | -- |
-| None (built-in) | [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Text Split skill](cognitive-search-skill-textsplit.md) | Extract and chunk based on fixed size. Text extraction is free. [Image extraction is billable](https://azure.microsoft.com/pricing/details/search/). | See [Configure access](#configure-access) |
-| Document Intelligence 4.0 | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. | Cognitive Services User |
+| Skill | Usage | 
+| -- | -- |
+| [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. | 
+| [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Text Split skill](cognitive-search-skill-textsplit.md) | Extract and chunk based on fixed size. <br>Text extraction is free. <br>[Image extraction is billable](https://azure.microsoft.com/pricing/details/search/). |
 
 Choose either approach for the skills array of your skillset.
+
+### [**Document Layout**](#tab/doc-layout)
+
+```json
+    {
+      "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
+      "name": "document-cracking-skill",
+      "description": "Document Layout skill for document cracking",
+      "context": "/document",
+      "outputMode": "oneToMany",
+      "outputFormat": "text",
+      "extractionOptions": ["images", "locationMetadata"],
+      "chunkingProperties": {     
+          "unit": "characters",
+          "maximumLength": 2000, 
+          "overlapLength": 200
+      },
+      "inputs": [
+        {
+          "name": "file_data",
+          "source": "/document/file_data"
+        }
+      ],
+      "outputs": [
+        { 
+          "name": "text_sections", 
+          "targetName": "text_sections" 
+        }, 
+        { 
+          "name": "normalized_images", 
+          "targetName": "normalized_images" 
+        } 
+      ]
+    },
+```
 
 ### [**Document Extraction and Text Split**](#tab/doc-extraction)
 
@@ -537,41 +571,6 @@ Choose either approach for the skills array of your skillset.
     },  
 ```
 
-### [**Document Layout**](#tab/doc-layout)
-
-```json
-    {
-      "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
-      "name": "document-cracking-skill",
-      "description": "Document Layout skill for document cracking",
-      "context": "/document",
-      "outputMode": "oneToMany",
-      "outputFormat": "text",
-      "extractionOptions": ["images", "locationMetadata"],
-      "chunkingProperties": {     
-          "unit": "characters",
-          "maximumLength": 2000, 
-          "overlapLength": 200
-      },
-      "inputs": [
-        {
-          "name": "file_data",
-          "source": "/document/file_data"
-        }
-      ],
-      "outputs": [
-        { 
-          "name": "text_sections", 
-          "targetName": "text_sections" 
-        }, 
-        { 
-          "name": "normalized_images", 
-          "targetName": "normalized_images" 
-        } 
-      ]
-    },
-```
-
 ---
 
 Key points:
@@ -586,11 +585,11 @@ Key points:
 
 Recall that your skill choices for vectorization include:
 
-| Model | Skill | Usage | Permissions |
-| -- | -- | -- | -- |
-| Azure AI Vision multimodal 4.0 | [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. | Cognitive Services User |
+| Skill | Usage |
+| -- | -- |
+| [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. |
 | GPT-5 or GPT-4 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. | Cognitive Services OpenAI User |
-| Text-embedding-3 (large or small) or text-embedding-ada-002 | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | Cognitive Services User |
+| [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | 
 
 Choose either approach for the skills array of your skillset.
 
@@ -684,7 +683,7 @@ This skillset extracts text and images, vectorizes both, and shapes the image me
     },
 ```
 
-### [**Image Verbalization and Text Embedding**](#tab/gpt-text-embedding)
+### [**GenAI Prompt and Azure OpenAI Embedding**](#tab/gpt-text-embedding)
 
 This skillset vectorizes text, verbalizes images as text, and then vectorizes the text descriptions. It also shapes the image metadata for projection into the index.
 
