@@ -39,9 +39,6 @@ Publishing gives you capabilities that project-level development doesn't provide
 - **Independent RBAC and authorization** — The Agent Application is a separate Azure resource with its own RBAC scope. You can assign roles like Azure AI User directly on the Agent Application resource to control who can invoke it.
 - **Azure Policy integration** — As an Azure Resource Manager (ARM) resource, the application can be governed by Azure Policy.
 - **Integration with Microsoft 365 Copilot and Teams** — Distribute your Agent Application to channels like Microsoft 365 Copilot and Teams.
-- **(Coming soon) End-user data isolation** — Enable stateful, end-user-isolated experiences for published agents.
-- **(Coming soon) Governance in Agent 365** — Manage published agents in Agent 365 and the Entra Agent Registry.
-
 ### What changes when you publish?
 
 The most important change is identity. An unpublished agent uses the project's shared agent identity. Once published, the agent receives its own dedicated agent identity. Any tools that use agent identity authentication will switch from the project's shared identity to the agent application's unique agent identity.
