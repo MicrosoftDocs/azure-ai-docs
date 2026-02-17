@@ -80,7 +80,7 @@ Each Agent Application acts as a routing table to specific agent deployments. Cu
 An Agent Application resource exposes a stable endpoint with multiple protocol and authentication options. 
 
 > [!NOTE]
-> Currently, only one protocol — either Responses or Activity Protocol — can be enabled for an Agent Application at a time. This restriction is temporary.
+> Currently, only one protocol — either Responses or Activity Protocol — can be enabled for an Agent Application at a time.
 
 ### Protocols
 
