@@ -50,15 +50,15 @@ The new agents provide the following benefits:
 
 **Developer productivity**
 
-- **New agent types.** Create prompt-based or workflow-based agents.
-- **More models.** Generate responses by using any Foundry model either in your agent or directly as a response generation call.
+- ⭐ **More models.** Generate responses by using any Foundry model either in your agent or directly as a response generation call.
 - **More features.** Web Search, File Search, Code Interpreter, MCP tool calling, image generation, and reasoning summaries.
 - **Modern API primitive.** Built on the Responses API instead of the older Assistants API.
 - **Future-proof.** New features and model support are only added to the new agents.
+- **New agent types.** Create prompt-based or workflow-based agents.
 
 **Enterprise readiness**
 
-- **Single-tenant storage.** Use single-tenant storage, with the option to bring your own Azure Cosmos DB to store state and keep your data secure.
+- ⭐ **Single-tenant storage.** Use single-tenant storage, with the option to bring your own Azure Cosmos DB to store state and keep your data secure.
 - **Enhanced security.** Control who can run or modify agent definitions.
 - **Separation of duties.** Define agents once and execute them with various inputs.
 - **Deployable agents.** Agents can be exposed as individual endpoints.
