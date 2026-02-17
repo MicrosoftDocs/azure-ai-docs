@@ -103,10 +103,10 @@ Most skills depend on access to [deployed model](/azure/ai-foundry/foundry-model
 | Model | Skill | Usage | Permissions |
 | -- | -- | -- | -- |
 | None (built-in) | [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Text Split skill](cognitive-search-skill-textsplit.md) | Extract and chunk based on fixed size. <br>Text extraction is free. <br>[Image extraction is billable](https://azure.microsoft.com/pricing/details/search/). | See [Configure access](#configure-access) |
-| Document Intelligence 4.0 | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. | Cognitive Services User |
-| Azure AI Vision multimodal 4.0 | [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. | Cognitive Services User |
-| GPT-5 or GPT-4 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. | Cognitive Services OpenAI User |
-| Text-embedding-3 or text-embedding-ada-002 | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | Cognitive Services User |
+| [Document Intelligence 4.0](/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0&preserve-view=true) | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. | Cognitive Services User |
+| [Azure AI Vision multimodal 4.0](/azure/ai-services/computer-vision/concept-image-retrieval) | [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. | Cognitive Services User |
+| [GPT-5 or GPT-4](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure) | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. | Cognitive Services OpenAI User |
+| [Text-embedding-3 or text-embedding-ada-002](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#embeddings) | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | Cognitive Services User |
 
 Model usage is billable, except for text extraction using a built-in model and text splitting.
 
@@ -225,15 +225,26 @@ Connection: close
 
 [Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. 
 
+This index sets `"dimensions": 1024` and the `vectorizer` to `"kind": "aiServicesVision"`. These values apply to Azure AI Vision vectorization.  
+
+To use chat completion and text embedding for your vectorization strategy, set `"dimensions": 3072` for text-embedding-3-large or `"dimensions": 1,536` for text-embedding-3-small. For text embedding, set the `vectorizer` to:
+
+```json
+"vectorizers": [
+    {
+      "name": "demo-vectorizer",
+      "kind": "azureOpenAI",    
+      "azureOpenAIParameters": {
+        "resourceUri": "{{openAIResourceUri}}",
+        "deploymentId": "text-embedding-3-large",
+        "searchApiKey": "{{openAIKey}}",
+        "modelName": "text-embedding-3-large"
+      }
+    }
+]
+```
+
 For nested JSON, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON, so field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
-
-<!-- Dimensions and vectorizer params vary by skill.
-Image verbalization tutorials: 3072 (text-embedding-3-large)
-Multimodal embeddings tutorials: 1024 (Azure AI Vision multimodal 4.0)
-Vectorizer type:
-
-Image verbalization: azureOpenAI vectorizer
-Multimodal embeddings: aiServicesVision vectorizer -->
 
 ```http
 ### Create an index
@@ -588,7 +599,7 @@ Recall that your skill choices for vectorization include:
 | Skill | Usage |
 | -- | -- |
 | [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. |
-| GPT-5 or GPT-4 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. | Cognitive Services OpenAI User |
+| [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. |
 | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | 
 
 Choose either approach for the skills array of your skillset.
