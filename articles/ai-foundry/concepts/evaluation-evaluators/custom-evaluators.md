@@ -177,7 +177,7 @@ You can create two types of custom evaluators:
 | **How it works** | A Python `grade()` function scores each item with deterministic logic. | A judge prompt instructs an LLM to score each item. |
 | **Best for** | Rule-based checks, keyword matching, format validation, length limits. | Subjective quality judgments, semantic similarity, tone analysis. |
 | **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal (1–5), continuous (0.0–1.0), or binary (pass/fail). Higher is better for numeric scores. |
-| **Output contract** | A single float value. | A JSON object: `{"result": <int, float, or boolean>, "reason": "<explanation>"}` |
+| **Output contract** | A single float value. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. |
 
 After you create a custom evaluator, you can register it to the evaluator catalog in your Foundry project and use it in [cloud evaluation runs](../../how-to/develop/cloud-evaluation.md).
 
@@ -189,41 +189,45 @@ A code-based evaluator is a Python function named `grade` that receives two para
 - **`sample`**: Contains fields from response generation when you run evaluations against a model or agent target (such as `output_text`). For dataset-only evaluations, `sample` is empty.
 
 > [!NOTE]
-> Due to a known issue, `sample` fields aren't directly accessible in the `grade()` function. As a workaround, map sample fields into the `item` namespace by using `{{item.sample.output_text}}` in your `data_mapping` configuration, then access them as `item.get("sample", {}).get("output_text")` in your code.
+> Due to a known issue, `sample` fields aren't directly accessible in the `grade()` function. As a workaround, access them via `item` namespace `item.get("sample", {}).get("output_text")` in your code.
 
-The following example checks whether a response contains harmful keywords and scores based on relevance to the query and similarity to the ground truth:
+The following example scores responses based on length, preferring responses between 50 and 500 characters:
 
 ```python
 def grade(sample: dict, item: dict) -> float:
-    """Score response quality based on content safety and relevance."""
-    response = item.get("response", "").lower()
-    ground_truth = item.get("ground_truth", "").lower()
-    query = item.get("query", "").lower()
+    """Score based on response length (prefer 50-500 chars)."""
+    response = item.get("response", "")
 
     if not response:
         return 0.0
 
-    # Flag harmful content
-    harmful_keywords = ["harmful", "dangerous", "unsafe", "illegal"]
-    if any(keyword in response for keyword in harmful_keywords):
-        return 0.0
-
-    # Check query relevance
-    query_words = query.split()[:5]
-    relevance = 0.7 if any(w in response for w in query_words) else 0.3
-
-    # Check ground truth overlap
-    if ground_truth:
-        truth_words = set(ground_truth.split())
-        overlap = len(truth_words & set(response.split())) / len(truth_words)
-        similarity = min(1.0, overlap)
-    else:
-        similarity = 0.5
-
-    return round((relevance * 0.4) + (similarity * 0.6), 2)
+    length = len(response)
+    if length < 50:
+        return 0.2
+    elif length > 500:
+        return 0.5
+    return 1.0
 ```
 
-### Sandbox environment
+For model or agent target evaluations, access the generated response through `item.get("sample")`:
+
+```python
+def grade(sample: dict, item: dict) -> float:
+    """Score based on response length for model/agent target evaluation."""
+    response = item.get("sample", {}).get("output_text", "")
+
+    if not response:
+        return 0.0
+
+    length = len(response)
+    if length < 50:
+        return 0.2
+    elif length > 500:
+        return 0.5
+    return 1.0
+```
+
+### Supported packages and limits
 
 Code-based evaluators run in a sandboxed Python environment with the following constraints:
 
@@ -265,35 +269,26 @@ Prompt-based evaluators support three scoring methods:
 - **Continuous** (0.0–1.0): Float scores for fine-grained measurement. Higher is better.
 - **Binary** (pass/fail): Boolean result for threshold-based checks.
 
-The LLM must return a JSON object matching the output contract: `{"result": <int, float, or boolean>, "reason": "<explanation>"}`.
+The LLM must return a JSON object with `result` and `reason`. The type of `result` matches your scoring method: an integer for ordinal, a float for continuous, or a boolean for binary.
 
-The following example prompt uses ordinal scoring (1–5) to evaluate how well a response is grounded in the provided ground truth:
+The following example prompt uses ordinal scoring (1–5) to evaluate the friendliness of a response:
 
 ```text
-You are a Groundedness Evaluator.
+Friendliness assesses the warmth and approachability of the response.
+Rate the friendliness of the response between one and five using the following scale:
 
-Your task is to evaluate how well the given response is grounded in the provided ground truth.
-Groundedness means the response's statements are factually supported by the ground truth.
-Evaluate factual alignment only — ignore grammar, fluency, or completeness.
+1 - Unfriendly or hostile
+2 - Mostly unfriendly
+3 - Neutral
+4 - Mostly friendly
+5 - Very friendly
 
-### Input:
-Query:
-{{query}}
+Assign a rating based on the tone and demeanor of the response.
 
 Response:
 {{response}}
 
-Ground Truth:
-{{ground_truth}}
-
-### Scoring Scale (1-5):
-5 - Fully grounded. All claims supported by ground truth.
-4 - Mostly grounded. Minor unsupported details.
-3 - Partially grounded. About half the claims supported.
-2 - Mostly ungrounded. Only a few details supported.
-1 - Not grounded. Almost all information unsupported.
-
-### Output Format (JSON):
+Output Format (JSON):
 {
   "result": <integer from 1 to 5>,
   "reason": "<brief explanation for the score>"
@@ -351,34 +346,26 @@ Pass the `grade()` function as a string in the `code_text` field. Define the `da
 
 ```python
 code_evaluator = project_client.evaluators.create_version(
-    name="response_quality_scorer",
+    name="response_length_scorer",
     evaluator_version={
-        "name": "response_quality_scorer",
+        "name": "response_length_scorer",
         "categories": [EvaluatorCategory.QUALITY],
-        "display_name": "Response Quality Scorer",
-        "description": "Scores response quality based on content safety and ground truth relevance",
+        "display_name": "Response Length Scorer",
+        "description": "Scores responses based on length, preferring 50-500 characters",
         "definition": {
             "type": EvaluatorDefinitionType.CODE,
             "code_text": (
                 'def grade(sample: dict, item: dict) -> float:\n'
-                '    """Score response quality based on content safety and relevance."""\n'
-                '    response = item.get("response", "").lower()\n'
-                '    ground_truth = item.get("ground_truth", "").lower()\n'
-                '    query = item.get("query", "").lower()\n'
+                '    """Score based on response length (prefer 50-500 chars)."""\n'
+                '    response = item.get("response", "")\n'
                 '    if not response:\n'
                 '        return 0.0\n'
-                '    harmful_keywords = ["harmful", "dangerous", "unsafe", "illegal"]\n'
-                '    if any(kw in response for kw in harmful_keywords):\n'
-                '        return 0.0\n'
-                '    query_words = query.split()[:5]\n'
-                '    relevance = 0.7 if any(w in response for w in query_words) else 0.3\n'
-                '    if ground_truth:\n'
-                '        truth_words = set(ground_truth.split())\n'
-                '        overlap = len(truth_words & set(response.split())) / len(truth_words)\n'
-                '        similarity = min(1.0, overlap)\n'
-                '    else:\n'
-                '        similarity = 0.5\n'
-                '    return round((relevance * 0.4) + (similarity * 0.6), 2)\n'
+                '    length = len(response)\n'
+                '    if length < 50:\n'
+                '        return 0.2\n'
+                '    elif length > 500:\n'
+                '        return 0.5\n'
+                '    return 1.0\n'
             ),
             "init_parameters": {
                 "type": "object",
@@ -403,9 +390,7 @@ code_evaluator = project_client.evaluators.create_version(
                     "item": {
                         "type": "object",
                         "properties": {
-                            "query": {"type": "string"},
                             "response": {"type": "string"},
-                            "ground_truth": {"type": "string"},
                         },
                     },
                 },
@@ -421,31 +406,28 @@ Pass the judge prompt in the `prompt_text` field. The `init_parameters` declare 
 
 ```python
 prompt_evaluator = project_client.evaluators.create_version(
-    name="groundedness_judge",
+    name="friendliness_evaluator",
     evaluator_version={
-        "name": "groundedness_judge",
+        "name": "friendliness_evaluator",
         "categories": [EvaluatorCategory.QUALITY],
-        "display_name": "Groundedness Judge",
-        "description": "Evaluates how well a response is grounded in the provided ground truth",
+        "display_name": "Friendliness Evaluator",
+        "description": "Evaluates the warmth and approachability of a response",
         "definition": {
             "type": EvaluatorDefinitionType.PROMPT,
             "prompt_text": (
-                "You are a Groundedness Evaluator.\n\n"
-                "Your task is to evaluate how well the given response is grounded in the provided ground truth.\n"
-                "Groundedness means the response's statements are factually supported by the ground truth.\n"
-                "Evaluate factual alignment only — ignore grammar, fluency, or completeness.\n\n"
-                "### Input:\n"
-                "Query:\n{{query}}\n\n"
+                "Friendliness assesses the warmth and approachability of the response.\n"
+                "Rate the friendliness of the response between one and five "
+                "using the following scale:\n\n"
+                "1 - Unfriendly or hostile\n"
+                "2 - Mostly unfriendly\n"
+                "3 - Neutral\n"
+                "4 - Mostly friendly\n"
+                "5 - Very friendly\n\n"
+                "Assign a rating based on the tone and demeanor of the response.\n\n"
                 "Response:\n{{response}}\n\n"
-                "Ground Truth:\n{{ground_truth}}\n\n"
-                "### Scoring Scale (1-5):\n"
-                "5 - Fully grounded. All claims supported by ground truth.\n"
-                "4 - Mostly grounded. Minor unsupported details.\n"
-                "3 - Partially grounded. About half the claims supported.\n"
-                "2 - Mostly ungrounded. Only a few details supported.\n"
-                "1 - Not grounded. Almost all information unsupported.\n\n"
-                "### Output Format (JSON):\n"
-                '{\n  "result": <integer from 1 to 5>,\n  "reason": "<brief explanation for the score>"\n}\n'
+                "Output Format (JSON):\n"
+                '{\n  "result": <integer from 1 to 5>,\n'
+                '  "reason": "<brief explanation for the score>"\n}\n'
             ),
             "init_parameters": {
                 "type": "object",
@@ -458,11 +440,9 @@ prompt_evaluator = project_client.evaluators.create_version(
             "data_schema": {
                 "type": "object",
                 "properties": {
-                    "query": {"type": "string"},
                     "response": {"type": "string"},
-                    "ground_truth": {"type": "string"},
                 },
-                "required": ["query", "response", "ground_truth"],
+                "required": ["response"],
             },
             "metrics": {
                 "custom_prompt": {
@@ -479,7 +459,7 @@ prompt_evaluator = project_client.evaluators.create_version(
 
 ## Run an evaluation with a custom evaluator
 
-After you register a custom evaluator, use it in an evaluation run the same way you use a built-in evaluator. The following example uses the prompt-based `groundedness_judge` evaluator registered earlier, but the same pattern applies to code-based evaluators — just change the `evaluator_name` and `initialization_parameters`.
+After you register a custom evaluator, use it in an evaluation run the same way you use a built-in evaluator. The following example uses the prompt-based `friendliness_evaluator` registered earlier, but the same pattern applies to code-based evaluators — just change the `evaluator_name` and `initialization_parameters`.
 
 ### Define and run the evaluation
 
@@ -490,11 +470,9 @@ data_source_config = DataSourceConfigCustom(
     item_schema={
         "type": "object",
         "properties": {
-            "query": {"type": "string"},
             "response": {"type": "string"},
-            "ground_truth": {"type": "string"},
         },
-        "required": ["query", "response", "ground_truth"],
+        "required": ["response"],
     },
 )
 
@@ -502,12 +480,10 @@ data_source_config = DataSourceConfigCustom(
 testing_criteria = [
     {
         "type": "azure_ai_evaluator",
-        "name": "groundedness_judge",
-        "evaluator_name": "groundedness_judge",
+        "name": "friendliness_evaluator",
+        "evaluator_name": "friendliness_evaluator",
         "data_mapping": {
-            "query": "{{item.query}}",
             "response": "{{item.response}}",
-            "ground_truth": "{{item.ground_truth}}",
         },
         "initialization_parameters": {
             "deployment_name": model_deployment_name,
@@ -518,7 +494,7 @@ testing_criteria = [
 
 # Create the evaluation
 eval_object = client.evals.create(
-    name="custom-eval-groundedness-test",
+    name="custom-eval-friendliness-test",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
@@ -534,16 +510,12 @@ eval_run = client.evals.runs.create(
             content=[
                 SourceFileContentContent(
                     item={
-                        "query": "What is the largest city in France?",
-                        "ground_truth": "The largest city in France is Paris.",
-                        "response": "The largest city in France is Paris.",
+                        "response": "I'm sorry this watch isn't working for you. I'd be happy to help you with a replacement!",
                     }
                 ),
                 SourceFileContentContent(
                     item={
-                        "query": "Explain quantum computing",
-                        "ground_truth": "Quantum computing uses quantum mechanics principles like superposition and entanglement.",
-                        "response": "Quantum computing leverages quantum mechanical phenomena like superposition and entanglement to process information.",
+                        "response": "I will not apologize for my behavior!",
                     }
                 ),
             ],
