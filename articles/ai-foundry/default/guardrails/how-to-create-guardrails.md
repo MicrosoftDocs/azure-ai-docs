@@ -15,7 +15,7 @@ ms.custom: azure-ai-guardrails
 
 # How to configure guardrails and controls in Microsoft Foundry
 
-Create, configure, and manage guardrails and controls for your model deployments and agents in Microsoft Foundry. This article covers creating guardrails through the Foundry portal and the REST API.
+Learn to create, configure, and manage guardrails for your model deployments and agents in Microsoft Foundry using the Foundry portal or the REST API.
 
 For background on guardrails concepts, risks, and intervention points, see [Guardrails and controls overview](guardrails-overview.md).
 
@@ -26,6 +26,14 @@ For background on guardrails concepts, risks, and intervention points, see [Guar
 - At least one model deployment in your project.
 - **Azure AI Account Owner** role or higher on the Azure AI resource.
 
+## Availability
+
+Guardrails are available in all Azure regions where Microsoft Foundry is deployed. Some regions may have capacity constraints during preview periods.
+
+**Limits:**
+- Maximum 50 custom guardrails per project
+- Maximum 100 controls per guardrail
+- Default guardrails (such as Default.V2) don't count toward the custom guardrail limit
 
 ## Create a guardrail in Foundry
 
@@ -195,12 +203,15 @@ The following table shows annotation mode availability in each API version:
 
 | Filter category | 2024-10-01-preview | 2024-02-01 GA | 2024-04-01-preview | 2023-10-01-preview | 2023-06-01-preview | 2025-01-01-preview |
 |----------------|-------------------|---------------|-------------------|-------------------|-------------------|-------------------|
+| **Core content categories** | | | | | | |
 | Hate | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Violence | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Sexual | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Self-harm | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Prompt protection** | | | | | | |
 | Prompt Shield for user prompt attacks | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Prompt Shield for indirect attacks | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ |
+| **Protected material and advanced features** | | | | | | |
 | Protected material text | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Protected material code | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Personally identifiable information (PII) | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
@@ -208,12 +219,40 @@ The following table shows annotation mode availability in each API version:
 | Custom blocklist | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Groundedness¹ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ |
 
+¹ Not available in non-streaming scenarios; only available for streaming scenarios.
 
-¹ Not available in non-streaming scenarios; only available for streaming scenarios. 
+### Choosing an API version
+
+- **For production deployments**: Use the latest GA version (2024-02-01) for stability and support.
+- **For PII detection**: Use 2025-01-01-preview or later.
+- **For groundedness detection**: Use 2025-01-01-preview or later.
+- **For indirect attack detection**: Use 2024-04-01-preview or later.
+
+Preview API versions include the latest features but may have breaking changes. Always test preview features in non-production environments before deploying. 
 
 ## Code examples
 
 The following code snippets show how to view guardrail annotations in different programming languages.
+
+### Install dependencies
+
+Before running the code examples, install the required libraries:
+
+# [Python](#tab/python)
+
+```bash
+pip install openai>=1.0.0
+```
+
+# [JavaScript](#tab/javascript)
+
+```bash
+npm install openai@^4.0.0
+```
+
+---
+
+### View annotations
 
 # [Python](#tab/python)
 
@@ -480,6 +519,7 @@ Follow these practices when configuring guardrails:
 - **Start restrictive, then relax**: Begin with higher severity thresholds and adjust downward only after confirming acceptable behavior. 
 - **Red-team your configuration**: Run red-team testing, stress-testing, and analysis to identify potential harms specific to your model, application, and deployment scenario.
 - **Measure after changes**: After implementing or updating guardrails, repeat your measurement process to verify effectiveness.
+- **Monitor performance impact**: Guardrail processing adds approximately 50-100ms latency per intervention point. For high-throughput scenarios, start with essential controls only and monitor latency metrics.
 
 For full Responsible AI guidance, see the [Responsible AI Overview](../../responsible-ai/openai/overview.md).
 
