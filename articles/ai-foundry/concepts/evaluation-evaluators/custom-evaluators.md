@@ -20,9 +20,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
-
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
+Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
 
 ::: moniker range="foundry-classic"
 
@@ -177,7 +177,7 @@ You can create two types of custom evaluators:
 | **How it works** | A Python `grade()` function scores each item with deterministic logic. | A judge prompt instructs an LLM to score each item. |
 | **Best for** | Rule-based checks, keyword matching, format validation, length limits. | Subjective quality judgments, semantic similarity, tone analysis. |
 | **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal, continuous, or binary. You define the min/max range for ordinal and continuous scores. Higher is better for numeric scores. |
-| **Output contract** | A single float value. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. |
+| **Output contract** | A single float value between 0.0 and 1.0. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. |
 
 After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [cloud evaluation runs](../../how-to/develop/cloud-evaluation.md).
 
@@ -243,7 +243,7 @@ The NLTK corpora `punkt`, `stopwords`, `wordnet`, `omw-1.4`, and `names` are pre
 
 ### Runtime parameters
 
-`pass_threshold` is required as an initialization parameter when you create a code-based evaluator.
+`pass_threshold` and `deployment_name` are required as initialization parameters when you create a code-based evaluator.
 
 ## Prompt-based evaluators
 
@@ -356,9 +356,10 @@ code_evaluator = project_client.evaluators.create_version(
             "init_parameters": {
                 "type": "object",
                 "properties": {
+                    "deployment_name": {"type": "string"},
                     "pass_threshold": {"type": "number"},
                 },
-                "required": ["pass_threshold"],
+                "required": ["deployment_name", "pass_threshold"],
             },
             "metrics": {
                 "result": {
@@ -387,7 +388,7 @@ code_evaluator = project_client.evaluators.create_version(
 
 ### Create a prompt-based evaluator
 
-Pass the judge prompt in the `prompt_text` field. The `init_parameters` declare the model deployment and any thresholds the evaluator needs at runtime.
+Pass the judge prompt in the `prompt_text` field. Define the `data_schema` to declare the input fields your prompt expects, and the `metrics` to describe the scoring method and range. The `init_parameters` declare the model deployment and threshold the evaluator needs at runtime.
 
 ```python
 prompt_evaluator = project_client.evaluators.create_version(
@@ -470,6 +471,7 @@ testing_criteria = [
         "name": "response_length_scorer",
         "evaluator_name": "response_length_scorer",
         "initialization_parameters": {
+            "deployment_name": model_deployment_name,
             "pass_threshold": 0.5,
         },
     },
