@@ -443,13 +443,13 @@ prompt_evaluator = project_client.evaluators.create_version(
 )
 ```
 
-## Run an evaluation with a custom evaluator
+### Run an evaluation with a custom evaluator
 
 After you create custom evaluators, use them in an evaluation run the same way you use built-in evaluators. You can include multiple evaluators in a single run.
 
 The following example runs both the code-based `response_length_scorer` and the prompt-based `friendliness_evaluator` together.
 
-### Define and run the evaluation
+#### Define and run the evaluation
 
 ```python
 # Define the data schema
@@ -521,7 +521,7 @@ eval_run = client.evals.runs.create(
 )
 ```
 
-### Get results
+#### Get results
 
 Poll the evaluation run until it finishes, then retrieve the per-item results and report URL.
 
@@ -558,7 +558,7 @@ You can create custom evaluators directly in the Azure AI Foundry portal without
 | **Description** | A short summary of what the evaluator measures. |
 | **Type** | **Code-based** or **Prompt-based**. Determines whether you provide a Python `grade()` function or a judge prompt. |
 | **Scoring method** | Code-based evaluators use continuous (0.0–1.0). Prompt-based evaluators can use ordinal, continuous, or binary scoring with a custom range. |
-| **Code or Prompt** | For code-based, write a `grade()` function in the code editor. For prompt-based, write a judge prompt in the prompt editor. See [Code-based evaluators](#code-based-evaluators) and [Prompt-based evaluators](#prompt-based-evaluators) for examples and requirements. |
+| **Code or Prompt** | For code-based, write a `grade()` function in the code editor. For prompt-based, write a judge prompt in the prompt editor. See the code-based and prompt-based evaluator sections earlier in this article for examples and requirements. |
 
 ### Use a custom evaluator in a portal evaluation
 
