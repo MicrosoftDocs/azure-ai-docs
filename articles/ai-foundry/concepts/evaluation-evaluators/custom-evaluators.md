@@ -168,7 +168,7 @@ friendliness_score = friendliness_eval(response="I will not apologize for my beh
 
 ::: moniker range="foundry"
 
-Custom evaluators let you define domain-specific quality metrics that go beyond the [built-in evaluator catalog](built-in-evaluators.md). Use a custom evaluator when you need to measure criteria unique to your application, such as brand tone, domain-specific accuracy, or output format compliance.
+Custom evaluators let you define domain-specific quality metrics that go beyond the [built-in evaluator catalog](../built-in-evaluators.md). Use a custom evaluator when you need to measure criteria unique to your application, such as brand tone, domain-specific accuracy, or output format compliance.
 
 You can create two types of custom evaluators:
 
@@ -176,45 +176,31 @@ You can create two types of custom evaluators:
 |---|---|---|
 | **How it works** | A Python `grade()` function scores each item with deterministic logic. | A judge prompt instructs an LLM to score each item. |
 | **Best for** | Rule-based checks, keyword matching, format validation, length limits. | Subjective quality judgments, semantic similarity, tone analysis. |
-| **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal (1–5), continuous (0.0–1.0), or binary (pass/fail). Higher is better for numeric scores. |
+| **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal, continuous, or binary. You define the min/max range for ordinal and continuous scores. Higher is better for numeric scores. |
 | **Output contract** | A single float value. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. |
 
-After you create a custom evaluator, you can register it to the evaluator catalog in your Foundry project and use it in [cloud evaluation runs](../../how-to/develop/cloud-evaluation.md).
+After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [cloud evaluation runs](../../how-to/develop/cloud-evaluation.md).
 
 ## Code-based evaluators
 
-A code-based evaluator is a Python function named `grade` that receives two parameters and returns a float score between 0.0 and 1.0 (higher is better):
+A code-based evaluator is a Python function named `grade` that receives two dict parameters (`sample` and `item`) and returns a float score between 0.0 and 1.0 (higher is better). In practice, all data is accessed through `item`:
 
-- **`item`**: Contains your input data fields from the dataset (such as `query`, `response`, and `ground_truth`). Access fields with `item.get("field_name")`.
-- **`sample`**: Contains fields from response generation when you run evaluations against a model or agent target (such as `output_text`). For dataset-only evaluations, `sample` is empty.
+- **Dataset evaluation**: Input fields like `response` or `ground_truth` can be retrieved in the Python code like `item.get("response")` or `item.get("ground_truth")`.
+- **Model or agent target evaluation**: To fetch generated response text, use `item.get("sample", {}).get("output_text")`.
 
 > [!NOTE]
-> Due to a known issue, `sample` fields aren't directly accessible in the `grade()` function. As a workaround, access them via `item` namespace `item.get("sample", {}).get("output_text")` in your code.
+> In a future update, generated response fields will move to the `sample` parameter directly. For now, access them through `item.get("sample")`.
 
 The following example scores responses based on length, preferring responses between 50 and 500 characters:
 
 ```python
 def grade(sample: dict, item: dict) -> float:
     """Score based on response length (prefer 50-500 chars)."""
+    # For dataset evaluation, access fields directly from item:
     response = item.get("response", "")
 
-    if not response:
-        return 0.0
-
-    length = len(response)
-    if length < 50:
-        return 0.2
-    elif length > 500:
-        return 0.5
-    return 1.0
-```
-
-For model or agent target evaluations, access the generated response through `item.get("sample")`:
-
-```python
-def grade(sample: dict, item: dict) -> float:
-    """Score based on response length for model/agent target evaluation."""
-    response = item.get("sample", {}).get("output_text", "")
+    # For model/agent target evaluation, use item.get("sample") instead:
+    # response = item.get("sample", {}).get("output_text", "")
 
     if not response:
         return 0.0
@@ -257,7 +243,7 @@ The NLTK corpora `punkt`, `stopwords`, `wordnet`, `omw-1.4`, and `names` are pre
 
 ### Runtime parameters
 
-Both `deployment_name` and `pass_threshold` are required as initialization parameters when you register a code-based evaluator. Code-based evaluators don't use the model deployment, but the parameter is currently required.
+`pass_threshold` is required as an initialization parameter when you create a code-based evaluator.
 
 ## Prompt-based evaluators
 
@@ -265,9 +251,9 @@ A prompt-based evaluator uses a judge prompt template that an LLM evaluates for 
 
 Prompt-based evaluators support three scoring methods:
 
-- **Ordinal** (1–5): Integer scores on a discrete scale. Higher is better.
-- **Continuous** (0.0–1.0): Float scores for fine-grained measurement. Higher is better.
-- **Binary** (pass/fail): Boolean result for threshold-based checks.
+- **Ordinal**: Integer scores on a discrete scale you define (for example, 1–5). Higher is better.
+- **Continuous**: Float scores for fine-grained measurement on a range you define (for example, 0.0–1.0). Higher is better.
+- **Binary** (true/false): Boolean result for threshold-based checks.
 
 The LLM must return a JSON object with `result` and `reason`. The type of `result` matches your scoring method: an integer for ordinal, a float for continuous, or a boolean for binary.
 
@@ -297,9 +283,9 @@ Output Format (JSON):
 
 ### Runtime parameters
 
-Both `deployment_name` and `threshold` are required as initialization parameters when you register a prompt-based evaluator.
+Both `deployment_name` and `threshold` are required as initialization parameters when you create a prompt-based evaluator.
 
-## Register a custom evaluator with code
+## Create a custom evaluator with the SDK
 
 ### Prerequisites and setup
 
@@ -340,7 +326,7 @@ project_client = AIProjectClient(
 client = project_client.get_openai_client()
 ```
 
-### Register a code-based evaluator
+### Create a code-based evaluator
 
 Pass the `grade()` function as a string in the `code_text` field. Define the `data_schema` to declare the input fields your function expects, and the `metrics` to describe the score your function returns. Code-based evaluators use the `continuous` metric type with a range of 0.0 to 1.0.
 
@@ -370,10 +356,9 @@ code_evaluator = project_client.evaluators.create_version(
             "init_parameters": {
                 "type": "object",
                 "properties": {
-                    "deployment_name": {"type": "string"},
                     "pass_threshold": {"type": "number"},
                 },
-                "required": ["deployment_name", "pass_threshold"],
+                "required": ["pass_threshold"],
             },
             "metrics": {
                 "result": {
@@ -400,7 +385,7 @@ code_evaluator = project_client.evaluators.create_version(
 )
 ```
 
-### Register a prompt-based evaluator
+### Create a prompt-based evaluator
 
 Pass the judge prompt in the `prompt_text` field. The `init_parameters` declare the model deployment and any thresholds the evaluator needs at runtime.
 
@@ -459,7 +444,9 @@ prompt_evaluator = project_client.evaluators.create_version(
 
 ## Run an evaluation with a custom evaluator
 
-After you register a custom evaluator, use it in an evaluation run the same way you use a built-in evaluator. The following example uses the prompt-based `friendliness_evaluator` registered earlier, but the same pattern applies to code-based evaluators — just change the `evaluator_name` and `initialization_parameters`.
+After you create custom evaluators, use them in an evaluation run the same way you use built-in evaluators. You can include multiple evaluators in a single run.
+
+The following example runs both the code-based `response_length_scorer` and the prompt-based `friendliness_evaluator` together.
 
 ### Define and run the evaluation
 
@@ -476,8 +463,16 @@ data_source_config = DataSourceConfigCustom(
     },
 )
 
-# Reference the custom evaluator in testing criteria
+# Reference both custom evaluators in testing criteria
 testing_criteria = [
+    {
+        "type": "azure_ai_evaluator",
+        "name": "response_length_scorer",
+        "evaluator_name": "response_length_scorer",
+        "initialization_parameters": {
+            "pass_threshold": 0.5,
+        },
+    },
     {
         "type": "azure_ai_evaluator",
         "name": "friendliness_evaluator",
@@ -489,12 +484,12 @@ testing_criteria = [
             "deployment_name": model_deployment_name,
             "threshold": 3,
         },
-    }
+    },
 ]
 
 # Create the evaluation
 eval_object = client.evals.create(
-    name="custom-eval-friendliness-test",
+    name="custom-eval-test",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
@@ -502,7 +497,7 @@ eval_object = client.evals.create(
 # Run the evaluation with inline data
 eval_run = client.evals.runs.create(
     eval_id=eval_object.id,
-    name="groundedness-run-01",
+    name="custom-eval-run-01",
     data_source=CreateEvalJSONLRunDataSourceParam(
         type="jsonl",
         source=SourceFileContent(
@@ -548,35 +543,32 @@ For more information on data source options, evaluator mappings, and advanced sc
 
 ## Create a custom evaluator in the portal
 
-You can also create custom evaluators directly in the Azure AI Foundry portal without writing SDK code.
+You can create custom evaluators directly in the Azure AI Foundry portal without writing SDK code.
 
 1. In your Foundry project, go to **Evaluation** > **Evaluator catalog**.
 1. Select **Custom evaluator** > **Create**.
-1. Choose the evaluator type: **Code-based** or **Prompt-based**.
+1. Fill in the following fields:
 
-### Code-based evaluator example
+| Field | Description |
+|---|---|
+| **Name** | A unique identifier for the evaluator (for example, `response_length_scorer`). |
+| **Display name** | A human-readable name shown in the evaluator catalog. |
+| **Description** | A short summary of what the evaluator measures. |
+| **Type** | **Code-based** or **Prompt-based**. Determines whether you provide a Python `grade()` function or a judge prompt. |
+| **Scoring method** | Code-based evaluators use continuous (0.0–1.0). Prompt-based evaluators can use ordinal, continuous, or binary scoring with a custom range. |
+| **Code or Prompt** | For code-based, write a `grade()` function in the code editor. For prompt-based, write a judge prompt in the prompt editor. See [Code-based evaluators](#code-based-evaluators) and [Prompt-based evaluators](#prompt-based-evaluators) for examples and requirements. |
 
-In the code editor, write a Python `grade()` function. The following example checks whether a response matches expected persona keywords:
+### Use a custom evaluator in a portal evaluation
 
-```python
-def grade(sample: dict, item: dict) -> float:
-    """
-    Check if model response aligns with persona keywords.
-    Returns 1.0 if all keywords match, otherwise a proportional score.
-    """
-    response = item.get("response", "").lower()
-    expected_keywords = item.get("expected_keywords", "").lower().split(",")
-    if not expected_keywords or not expected_keywords[0]:
-        return 0.0
-    matches = sum(1 for kw in expected_keywords if kw.strip() in response)
-    return round(matches / len(expected_keywords), 2)
-```
+After you create a custom evaluator, use it in an evaluation run from the portal:
 
-### Prompt-based evaluator example
+1. In your Foundry project, go to **Evaluation** and select **Create**.
+1. Follow the evaluation creation wizard. On the **Criteria** step, select **Add evaluator**.
+1. Choose your custom evaluator from the evaluator catalog.
+1. Supply the required initialization parameters. For prompt-based evaluators, provide the **model deployment** and **threshold**. For code-based evaluators, provide the **pass threshold**.
+1. Complete the wizard and start the evaluation run.
 
-<!-- [TODO: Add portal-specific prompt evaluator details when available from user] -->
-
-In the prompt editor, write a judge prompt that instructs the model how to score each item. Use template variables like `{{query}}` and `{{response}}` to reference your input data fields.
+For detailed steps on running evaluations from the portal, see [Run evaluations from the portal](../../how-to/evaluate-generative-ai-app.md#create-an-evaluation-with-built-in-evaluation-metrics).
 
 ::: moniker-end
 
@@ -592,8 +584,9 @@ In the prompt editor, write a judge prompt that instructs the model how to score
 ::: moniker range="foundry"
 
 - [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md)
-- [Built-in evaluators](built-in-evaluators.md)
-- [Prompt-based evaluator sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog_prompt_based_evaluators.py)
+- [Built-in evaluators](../built-in-evaluators.md)
 - [Code-based evaluator sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog_code_based_evaluators.py)
+- [Prompt-based evaluator sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog_prompt_based_evaluators.py)
+- [Evaluator catalog CRUD sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog.py)
 
 ::: moniker-end
