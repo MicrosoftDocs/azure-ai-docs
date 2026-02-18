@@ -38,8 +38,7 @@ LLM speech is powered by a large-language-model-enhanced speech model that deliv
 
 ::: zone-end
 
-> [!NOTE]
-> Speech service is an elastic service. If you receive 429 error code (too many requests), please follow the [best practices to mitigate throttling during autoscaling](speech-services-quotas-and-limits.md#general-best-practices-to-mitigate-throttling-during-autoscaling).
+[!INCLUDE [error-handling](includes/quickstarts/speech-to-text-basics/error-handling.md)]
 
 ## Related content
 
