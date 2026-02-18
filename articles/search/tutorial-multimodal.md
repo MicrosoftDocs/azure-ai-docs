@@ -30,7 +30,7 @@ The sample data is a 36-page PDF document that combines rich visual content, suc
 
 + [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data and for creating a [knowledge store](knowledge-store-concept-intro.md).
 
-+ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) that provides Foundry models and APIs.
++ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) that provides Foundry models and APIs. If you're using Azure AI Vision multimodal, choose one of its [supported regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for your Microsoft Foundry resource.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python). If you haven't installed a suitable version of Python, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
 
@@ -56,17 +56,27 @@ Follow these steps to set up the sample data.
 
 1. Download the following sample PDF: [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
 
+1. Sign in to the [Azure portal](https://portal.azure.com).
+
 1. In Azure Storage, create a new container named **sustainable-ai-pdf**.
 
 1. [Upload the sample data file](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
-1. [Create role assignments and specify a managed identity in a connection string](search-howto-managed-identities-storage.md):
+1. [Assign roles to the search service managed identity](search-howto-managed-identities-storage.md):
 
-   1. Assign **Storage Blob Data Reader** for data retrieval by the indexer.
+   + **Storage Blob Data Reader** for data retrieval
   
-   1. Assign **Storage Blob Data Contributor** and **Storage Table Data Contributor** to create and load the knowledge store.
+   + **Storage Blob Data Contributor** and **Storage Table Data Contributor** for creating the knowledge store.
 
-   1. For connections made using a system-assigned managed identity, get a connection string that contains a ResourceId, with no account key or password. The connection string is similar to the following example:
+While you have the Azure Storage pages open in in the Azure portal, get a connection string for the environment variable.
+
+1. Under **Settings** > **Endpoints**, select the endpoint for Resource ID. It should look similar to the following example: `/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/rg-mydemo/providers/Microsoft.Storage/storageAccounts/mydemostorage/blobServices/default`.
+
+1. Prefix `ResourceId=` to this connection string. Use this version for your environment variable.
+
+   `ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/rg-mydemo/providers/Microsoft.Storage/storageAccounts/mydemostorage/blobServices/default`
+
+1. If your environment variables are in a JSON configuration file, the connection string for a system-assigned managed identity connection has the following syntax.
 
       ```json
       "credentials" : { 
@@ -74,7 +84,7 @@ Follow these steps to set up the sample data.
       }
       ```
 
-   1. For connections made using a user-assigned managed identity, get the same connection string but also provide an `identity` set to a predefined user-assigned managed identity. The connection string is similar to the following example:
+1. For connections made using a user-assigned managed identity, use the same connection string but also provide an `identity` set to a predefined user-assigned managed identity. 
 
       ```json
       "credentials" : { 
@@ -94,35 +104,34 @@ The index, data source, and indexer definitions are the same for all scenarios, 
 
 1. Choose a skill or skill combination that vectorizes content:
 
-   + Choose Azure AI Vision for text and image vectorization.
+   + Use Azure AI Vision for text and image vectorization.
 
-   + Choose GenAI Prompt to generate text descriptions of images, and Azure OpenAI embedding to vectorize raw and generated text.
+   + Or use GenAI Prompt to generate text descriptions of images, and then use Azure OpenAI Embedding to vectorize the raw and generated text.
 
-Most skills depend on access to [deployed model](/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models). Here's a list of the models backing the skills used in this tutorial:
+Skills depend on access to [deployed model](/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models) or a Microsoft Foundry resource. Here's a list of the models backing the skills used in this tutorial:
 
-| Model | Skill | Usage | Permissions |
-| -- | -- | -- | -- |
-| None (built-in) | [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Text Split skill](cognitive-search-skill-textsplit.md) | Extract and chunk based on fixed size. <br>Text extraction is free. <br>[Image extraction is billable](https://azure.microsoft.com/pricing/details/search/). | See [Configure access](#configure-access) |
-| [Document Intelligence 4.0](/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0&preserve-view=true) | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. | Cognitive Services User |
-| [Azure AI Vision multimodal 4.0](/azure/ai-services/computer-vision/concept-image-retrieval) | [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. | Cognitive Services User |
-| [GPT-5 or GPT-4](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure) | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. | Cognitive Services OpenAI User |
-| [Text-embedding-3 or text-embedding-ada-002](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#embeddings) | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | Cognitive Services User |
+| Model | Skill | Usage | Resource | Permissions |
+| -- | -- | -- | -- | -- |
+| None (built-in) | [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Text Split skill](cognitive-search-skill-textsplit.md) | Extract and chunk based on fixed size. <br>Text extraction is free. <br>[Image extraction is billable](https://azure.microsoft.com/pricing/details/search/). | Azure AI Search | See [Configure access](#configure-access) |
+| [Document Intelligence 4.0](/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0&preserve-view=true) | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services User |
+| [Azure AI Vision multimodal 4.0](/azure/ai-services/computer-vision/concept-image-retrieval) | [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services User |
+| [GPT-5 or GPT-4](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure) | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services OpenAI User |
+| [Text-embedding-3 or text-embedding-ada-002](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#embeddings) | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services User |
 
 Model usage is billable, except for text extraction using a built-in model and text splitting.
 
 Model deployments can be in any region if the search service connects over the public endpoint or a private connection. However, two models are accessed over the internal network, which can introduce a regional dependency. 
 
-If you use a key-based connection, [attach a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) and ensure your model meets the same-region requirements for Azure AI Search:
+Model connections can use keys or roles for authorization. If you use a key, [attach a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) and ensure your model meets the same-region requirements for Azure AI Search:
 
 + [Azure AI Vision multimodal 4.0 regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
 
 + [Document Layout 4.0 regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions)
 
-To relax regional dependencies, [set up a keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to your Foundry resource.
+To relax regional dependencies, [set up a keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) and use roles for authorized access to your Foundry resource.
 
 ## Set up your environment
 
-<!-- variables vary for each model, split into core and model-specific variables, use a step to add variables for each model type -->
 For this tutorial, your local REST client connection to Azure AI Search requires an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Connect to a search service](search-get-started-rbac.md).
 
 For authenticated connections that occur during indexer and skillset processing, the search service uses the role assignments you previously defined.
@@ -135,18 +144,18 @@ For authenticated connections that occur during indexer and skillset processing,
     @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
     @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
     @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-    @modelVersion = 2023-04-15
     @imageProjectionContainer=sustainable-ai-pdf-images
    ```
 
-   For `@storageConnection`, make sure your connection string doesn't have a trailing semicolon or quotation marks. 
+   For `@storageConnection`, make sure your connection string doesn't have a trailing semicolon or quotation marks. See [Prepare your data](#prepare-data) for connection string syntax.
 
    For `@imageProjectionContainer`, provide a container name that's unique in blob storage. Azure AI Search creates this container during skills processing.
 
-1. Add this variable if you're using the Document Layout skill or the Azure AI Vision skill:
+1. Add this variable if you're using the Document Layout skill or the Azure AI Vision skill (uses model version 2023-04-15):
 
    ```http
-   @cognitiveServicesUrl = PUT-YOUR-MULTISERVICE-AZURE-AI-FOUNDRY-ENDPOINT-HERE
+   @foundryUrl = PUT-YOUR-MULTISERVICE-AZURE-AI-FOUNDRY-ENDPOINT-HERE
+   @modelVersion = 2023-04-15
    ```
 
 1. Add these variables if you're using the GenAI Prompt skill and Azure OpenAI Embedding skill:
@@ -178,7 +187,7 @@ An indexer pipeline consists of four components: data source, index, skillset, a
 ```http
 POST {{searchUrl}}/datasources?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{searchApiKey}}
+  Authorization: Bearer {{token}}
 
 {
    "name":"demo-multimodal-ds",
@@ -264,7 +273,7 @@ For nested JSON, the index fields must be identical to the source fields. Curren
 ### Create an index
 POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{searchApiKey}}
+  Authorization: Bearer {{token}}
 
 {
     "name": "demo-multimodal-index",
@@ -369,7 +378,7 @@ POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
                 "name": "demo-vectorizer",
                 "kind": "aiServicesVision",
                 "aiServicesVisionParameters": {
-                    "resourceUri": "{{cognitiveServicesUrl}}",
+                    "resourceUri": "{{foundryUrl}}",
                     "authIdentity": null,
                     "modelVersion": "{{modelVersion}}"
                 }
@@ -415,15 +424,17 @@ Here's the basic definition. In the sections that follow, you'll add skills base
 ### Create a skillset
 POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{searchApiKey}}
+  Authorization: Bearer {{token}}
 
 {
   "name": "demo-multimodal-skillset",
   "description": "A test skillset",
-  "skills": [ SKILLS ADDED IN NEXT SECTIONS ],
+    "skills": [ 
+      ADD SKILLS HERE - AT LEAST ONE SKILL IS REQUIRED
+  ],
   "cognitiveServices": {
     "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
-    "subdomainUrl": "{{cognitiveServicesUrl}}",
+    "subdomainUrl": "{{foundryUrl}}",
     "identity": null
   },
   "indexProjections": {
@@ -705,7 +716,7 @@ This skillset extracts text and images, vectorizes both, and shapes the image me
           "targetName": "new_normalized_images"
         }
       ]
-    },
+    }
 ```
 
 ### [**GenAI Prompt and Azure OpenAI Embedding**](#tab/gpt-text-embedding)
@@ -826,7 +837,7 @@ This skillset vectorizes text, verbalizes images as text, and then vectorizes th
           "targetName": "new_normalized_images"
         }
       ]
-    },
+    }
 ```
 ---
 
@@ -844,7 +855,7 @@ Key points:
 ### Create and run an indexer
 POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{searchApiKey}}
+  Authorization: Bearer {{token}}
 
 {
   "name": "demo-multimodal-indexer",
@@ -877,7 +888,7 @@ You can start searching as soon as the first document is loaded.
 ### Query the index
 POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{searchApiKey}}
+  Authorization: Bearer {{token}}
   
   {
     "search": "*",
@@ -924,7 +935,7 @@ The `$filter` parameter only works on fields that were marked filterable during 
 ### Query for only images
 POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{searchApiKey}}
+  Authorization: Bearer {{token}}
   
   {
     "search": "*",
@@ -937,7 +948,7 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
 ### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
 POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{searchApiKey}}
+  Authorization: Bearer {{token}}
   
 
   {
@@ -954,20 +965,41 @@ Indexers can be reset to clear the high-water mark, which allows a full rerun. T
 ```http
 ### Reset the indexer
 POST {{searchUrl}}/indexers/demo-multimodal-indexer/reset?api-version=2025-11-01-preview   HTTP/1.1
-  api-key: {{searchApiKey}}
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
 ```
 
 ```http
 ### Run the indexer
 POST {{searchUrl}}/indexers/demo-multimodal-indexer/run?api-version=2025-11-01-preview   HTTP/1.1
-  api-key: {{searchApiKey}}
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
 ```
 
 ```http
 ### Check indexer status 
 GET {{searchUrl}}/indexers/demo-multimodal-indexer/status?api-version=2025-11-01-preview   HTTP/1.1
-  api-key: {{searchApiKey}}
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
 ```
+
+### View images in the knowledge store
+
+Recall that the skillset in this tutorial creates a [knowledge store](knowledge-store-concept-intro.md) for image content extracted from the PDF. After the indexer runs, the **sustainable-ai-pdf-images** container should have approximately 23 images. 
+
+You can't return these images in a search query. However, you can write application code that calls the Azure Storage APIs to retrieve the images if you need them for the user experience.
+
+To view the images in the Storage Browser:
+
+1. Sign in to the Azure portal and navigate to your Storage account.
+
+1. In Storage Browser, expand the sustainable-ai-pdf-images container.
+
+1. Select an image.
+
+1. In the far right menu (...), select **View/Edit**.
+
+:::image type="content" source="media/tutorial-multimodal/normalized-image-in-storage.png" alt-text="Screenshot of an image extracted from the PDF document." lightbox="media/tutorial-multimodal/normalized-image-in-storage.png" :::
 
 ## Clean up resources
 
