@@ -153,7 +153,7 @@ Check your resource role assignments in the Azure portal to make sure you have t
 
 ### Server connectivity issues
 
-Make sure your network allows outbound HTTPS connections to Azure services and no firewall rules block the MCP Server endpoint. For more information, see [Troubleshoot Azure connectivity issues](/azure/networking/troubleshoot-failed-connection).
+Make sure your network allows outbound HTTPS connections to Azure services and no firewall rules block the MCP Server endpoint. 
 
 ### Tool discovery problems
 
