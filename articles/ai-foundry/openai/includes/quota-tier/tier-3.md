@@ -43,7 +43,6 @@
 | gpt-image-1                    | GlobalStandard    | 30          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 54          | -           |
 | gpt-image-1.5                  | GlobalStandard    | 30          | -           |
-| gpt-realtime                   | DataZoneStandard  | 100         | 100,000     |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
 | model-router                   | DataZoneStandard  | 235         | 235,000     |
 | o1                             | DataZoneStandard  | 450         | 2,700,000   |
