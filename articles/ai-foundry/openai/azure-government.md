@@ -72,8 +72,8 @@ In some cases, models are retired in Azure Government earlier or later than in t
 #### Early Model Retirements
 | Model                     | Version			      | Azure Government Status	  | Public Retirement date  |
 | --------------------------|-------------------|---------------------------|-------------------------|
-| `gpt-35-turbo`            | 1106				      | Retired                   | November 14, 2025       |
-| `gpt-4`                   | turbo-2024-04-09	| Retired                   | November 14, 2025       |
+| `gpt-4o`                  | 0513              | March 31, 2026 (for all types)           | October 1, 2026 (for DataZone and PTU) |
+| `gpt-4o-mini`             | 0718              | March 31, 2026 (for all types)           | October 1, 2026 (for DataZone and PTU) |
 
 #### Late Model Retirements
 | Model                     | Version			      | Azure Government Status	  | Public Retirement date  | Replacement Model   | Upgrade date       | Azure Government Retirement date |
