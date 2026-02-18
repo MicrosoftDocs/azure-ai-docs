@@ -1,4 +1,4 @@
-﻿---
+---
 title: Entity categories recognized by Conversational Personally Identifiable Information (PII) detection in Azure Language in Foundry Tools
 titleSuffix: Foundry Tools
 description: Learn about the types of entities the conversational PII feature can detect and identify within conversation inputs.
@@ -71,19 +71,19 @@ Geolocation data identifies an individual's physical position or movement patter
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **GPE** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[GPE]|
+|To retrieve this entity type, specify **GPE** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**GPE**]|
 
 ### Type: Location (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **Location** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[Location]|
+|To retrieve this entity type, specify **Location** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**Location**]|
 
 ### Type: ZipCode (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **ZipCode** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[ZipCode]|
+|To retrieve this entity type, specify **ZipCode** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**ZipCode**]|
 
 ## Personal
 
@@ -93,61 +93,61 @@ Any data, collected or stored, that can be used to identify or contact a specifi
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **Address** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[Address]|
+|To retrieve this entity type, specify **Address** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**Address**]|
 
 ### Type: Age (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **Age** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[Age]|
+|To retrieve this entity type, specify **Age** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**Age**]|
 
 ### Type: Date Of Birth (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **DateOfBirth** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[DateOfBirth]|
+|To retrieve this entity type, specify **DateOfBirth** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**DateOfBirth**]|
 
 ### Type: Drivers License Number (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **DriversLicenseNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[DriversLicenseNumber]|
+|To retrieve this entity type, specify **DriversLicenseNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**DriversLicenseNumber**]|
 
 ### Type: Email
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **Email** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[Email]|
+|To retrieve this entity type, specify **Email** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**Email**]|
 
 ### Type: Passport Number (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **PassportNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[PassportNumber]|
+|To retrieve this entity type, specify **PassportNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**PassportNumber**]|
 
 ### Type: Person
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **Person** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[Person]|
+|To retrieve this entity type, specify **Person** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**Person**]|
 
 ### Type: Person Type (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **PersonType** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[PersonType]|
+|To retrieve this entity type, specify **PersonType** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**PersonType**]|
 
 ### Type: Phone Number
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **Phone** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[Phone]|
+|To retrieve this entity type, specify **Phone** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**Phone**]|
 
 ### Type: Vehicle Identification Number (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **VehicleIdentificationNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[VehicleIdentificationNumber]|
+|To retrieve this entity type, specify **VehicleIdentificationNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**VehicleIdentificationNumber**]|
 
 ## Financial
 
@@ -157,37 +157,37 @@ Any financial information is connected to a particular individual that can, thro
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **ABARoutingNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[ABARoutingNumber]|
+|To retrieve this entity type, specify **ABARoutingNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**ABARoutingNumber**]|
 
 ### Type: Bank Account Number (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **BankAccountNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[BankAccountNumber]|
+|To retrieve this entity type, specify **BankAccountNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**BankAccountNumber**]|
 
 ### Type: Card Verification Value CVV (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **CVV** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[CVV]|
+|To retrieve this entity type, specify **CVV** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**CVV**]|
 
 ### Type: Credit Card
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **CreditCard** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[CreditCard]|
+|To retrieve this entity type, specify **CreditCard** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**CreditCard**]|
 
 ### Type: International Banking Account Number (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **InternationalBankingAccountNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[InternationalBankingAccountNumber]|
+|To retrieve this entity type, specify **InternationalBankingAccountNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**InternationalBankingAccountNumber**]|
 
 ### Type: SWIFT Code (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **SWIFTCode** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[SWIFTCode]|
+|To retrieve this entity type, specify **SWIFTCode** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**SWIFTCode**]|
 
 ## Organizational
 
@@ -197,7 +197,7 @@ Any data that an organization collects, stores, or processes that can be used to
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **Organization** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[Organization]|
+|To retrieve this entity type, specify **Organization** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**Organization**]|
 
 ## DateTime
 
@@ -207,7 +207,7 @@ Data that can be used to identify, distinguish, or trace an individual. While a 
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **Date** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[Date]|
+|To retrieve this entity type, specify **Date** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**Date**]|
 
 ## Digital Identity
 
@@ -217,13 +217,13 @@ Any identifiable digital information that can be used to distinguish or trace an
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **GithubAccount** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[GithubAccount]|
+|To retrieve this entity type, specify **GithubAccount** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**GithubAccount**]|
 
 ### Type: Numeric Identifier
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **NumericIdentifier** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload. Covers numeric or alphanumeric identifiers such as case numbers, member numbers, ticket numbers, bank account numbers, IP addresses, product keys, serial numbers, and shipping tracking numbers.|[NumericIdentifier]|
+|To retrieve this entity type, specify **NumericIdentifier** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload. Covers numeric or alphanumeric identifiers such as case numbers, member numbers, ticket numbers, bank account numbers, IP addresses, product keys, serial numbers, and shipping tracking numbers.|[**NumericIdentifier**]|
 
 ## Government
 
@@ -233,31 +233,31 @@ Any government-issued identification that can be used alone or combined with oth
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **CASocialInsuranceNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[CASocialInsuranceNumber]|
+|To retrieve this entity type, specify **CASocialInsuranceNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**CASocialInsuranceNumber**]|
 
 ### Type: Government Issued ID (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **GovernmentIssuedId** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[GovernmentIssuedId]|
+|To retrieve this entity type, specify **GovernmentIssuedId** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**GovernmentIssuedId**]|
 
 ### Type: Health Card Number (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **HealthCardNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[HealthCardNumber]|
+|To retrieve this entity type, specify **HealthCardNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**HealthCardNumber**]|
 
 ### Type: United States Medicare Beneficiary ID (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **USMedicareBeneficiaryId** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[USMedicareBeneficiaryId]|
+|To retrieve this entity type, specify **USMedicareBeneficiaryId** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**USMedicareBeneficiaryId**]|
 
 ### Type: United States Social Security Number
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **USSocialSecurityNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[USSocialSecurityNumber]|
+|To retrieve this entity type, specify **USSocialSecurityNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[**USSocialSecurityNumber**]|
 
 ## Related content
 
