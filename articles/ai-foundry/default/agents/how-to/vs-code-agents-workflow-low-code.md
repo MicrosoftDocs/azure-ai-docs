@@ -61,12 +61,10 @@ Test your declarative agent workflow by using the local agent playground in the 
 1. In the **My Resources** section of the VS Code extension, locate and select your Foundry project.
 1. Select **Declarative Agents**.
 1. Select the version of the workflow you want to test.
-1. Right-click the workflow and select **Open in Local Agent Playground**. The **Local Agent Playground** pane opens and starts a conversation with your agent.
+1. Select the **Remote Agent Playground** link in the **Tools** subsection, and then select your agent from the dropdown list. 
+1. The **Remote Agent Playground** pane opens and starts a conversation with your agent.
 
-    > [!TIP]
-    > Alternatively, select the **Local Agent Playground** link in the **Tools** subsection, and then select your agent from the dropdown list.
-
-1. In the input box at the bottom of the **Local Agent Playground** pane, type a message and press **Enter**.
+1. In the input box at the bottom of the **Remote Agent Playground** pane, type a message and press **Enter**.
 1. Review the agent's response. Verify that the response matches the expected behavior for your workflow's defined actions.
 
 ## Convert a YAML workflow to Agent Framework code
@@ -75,8 +73,7 @@ To customize your YAML-based workflows, convert them to Agent Framework code wit
 
 1. Open the workflow YAML file in VS Code.
 1. Select the **Generate Code** button on the upper right of the YAML editor.
-1. Select **Generate with Copilot** from the dropdown menu.
-1. Select the programming language you want to generate the code in (Python, C#, or YAML). GitHub Copilot opens a pane with code generation prompts for the selected language and generates Agent Framework code based on the YAML definition.
+1. Select the programming language you want to generate the code in (Python, or C#). GitHub Copilot opens a pane with code generation prompts for the selected language and generates Agent Framework code based on the YAML definition.
 1. When GitHub Copilot asks if you'd like to run the generated code locally, select **Yes** to open the local visualizer. You can see each step as the agent executes.
 1. Review and modify the generated code as needed to fit your requirements.
 1. Right-click the generated code file and select **Deploy to Foundry** to deploy the code to your Foundry project.
