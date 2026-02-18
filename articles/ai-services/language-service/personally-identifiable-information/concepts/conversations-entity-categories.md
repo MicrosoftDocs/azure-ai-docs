@@ -209,7 +209,7 @@ Data that can be used to identify, distinguish, or trace an individual. While a 
 |---|---|
 |To retrieve this entity type, specify **Date** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[**Date**]|
 
-## Digital Identity
+## Digital
 
 Any identifiable digital information that can be used to distinguish or trace an individual's identity.
 
