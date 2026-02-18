@@ -12,7 +12,6 @@
 | gpt-4.1-nano                   | DataZoneStandard  | 31,000      | 31,000,000  |
 | gpt-4.1-nano                   | GlobalStandard    | 90,000      | 90,000,000  |
 | gpt-4o                         | DataZoneStandard  | 6000 / 10s  | 6,000,000   |
-| gpt-4o (realtime-preview)      | GlobalStandard    | 600         | 6,000       |
 | gpt-4o-audio-preview           | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-4o-mini                    | DataZoneStandard  | 130,000     | 13,000,000  |
 | gpt-4o-mini                    | GlobalStandard    | 780,000     | 78,000,000  |

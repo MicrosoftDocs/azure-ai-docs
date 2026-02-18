@@ -1,6 +1,6 @@
 ### Tier 2
 
-| Model Name                     | Deployment Type   | Model RPM   | Model TPM   |
+| Model Name                     | Deployment Type   | Requests Per Minute (RPM)   | Tokens Per Minute (TPM) |
 |:-------------------------------|:------------------|:------------|:------------|
 | codex-mini                     | GlobalStandard    | 2,000       | 2,000,000   |
 | computer-use-preview           | GlobalStandard    | 20,000      | 2,000,000   |
@@ -12,7 +12,6 @@
 | gpt-4.1-nano                   | DataZoneStandard  | 6,000       | 6,000,000   |
 | gpt-4.1-nano                   | GlobalStandard    | 16,000      | 16,000,000  |
 | gpt-4o                         | DataZoneStandard  | 1000 / 10s  | 1,000,000   |
-| gpt-4o (realtime-preview)      | GlobalStandard    | 600         | 6,000       |
 | gpt-4o-audio-preview           | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-4o-mini                    | DataZoneStandard  | 30,000      | 3,000,000   |
 | gpt-4o-mini                    | GlobalStandard    | 90,000      | 9,000,000   |
