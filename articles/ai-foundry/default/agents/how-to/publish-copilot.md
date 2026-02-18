@@ -146,7 +146,10 @@ If you download the package, test it before broad distribution.
    - [ ] The agent responds to messages.
    - [ ] Any configured tools work correctly.
    - [ ] The agent identity has access to required Azure resources (if applicable).
-   - [ ] Response times are acceptable.
+- The agent responds to messages.
+- Any configured tools work correctly.
+- The agent identity has access to required Azure resources (if applicable).
+- Response times are acceptable.
 
 1. If your agent uses tools that access Azure resources, verify the published agent identity has the required role assignments. See [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md) for details on reassigning permissions.
 
