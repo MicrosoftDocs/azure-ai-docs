@@ -130,7 +130,7 @@ from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AzureAISearchAgentTool,
+    AzureAISearchTool,
     PromptAgentDefinition,
     AzureAISearchToolResource,
     AISearchIndexResource,
@@ -139,14 +139,13 @@ from azure.ai.projects.models import (
 
 load_dotenv()
 
-project_client = AIProjectClient(
-  endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-openai_client = project_client.get_openai_client()
-
-with project_client:
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
 
     azs_connection = project_client.connections.get(os.environ["AZURE_AI_SEARCH_CONNECTION_NAME"])
     connection_id = azs_connection.id
@@ -155,11 +154,11 @@ with project_client:
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-          model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="""You are a helpful assistant. You must always provide citations for
             answers using the tool and render them as: `[message_idx:search_idx†source]`.""",
             tools=[
-                AzureAISearchAgentTool(
+                AzureAISearchTool(
                     azure_ai_search=AzureAISearchToolResource(
                         indexes=[
                             AISearchIndexResource(
@@ -185,7 +184,7 @@ with project_client:
         stream=True,
         tool_choice="required",
         input=user_input,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:

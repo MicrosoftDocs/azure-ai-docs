@@ -112,31 +112,29 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    BrowserAutomationAgentTool,
+    BrowserAutomationPreviewTool,
     BrowserAutomationToolParameters,
     BrowserAutomationToolConnectionParameters,
 )
 
 load_dotenv()
 
-project_client = AIProjectClient(
-    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-openai_client = project_client.get_openai_client()
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
 
-connection_id = os.environ["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"]
-
-tool = BrowserAutomationAgentTool(
-    browser_automation_preview=BrowserAutomationToolParameters(
-        connection=BrowserAutomationToolConnectionParameters(
-            project_connection_id=connection_id,
+    tool = BrowserAutomationPreviewTool(
+        browser_automation_preview=BrowserAutomationToolParameters(
+            connection=BrowserAutomationToolConnectionParameters(
+                project_connection_id=os.environ["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"],
+            )
         )
     )
-)
 
-with project_client:
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
@@ -159,7 +157,7 @@ with project_client:
             Enter the value 'MSFT', to get information about the Microsoft stock price.
             At the top of the resulting page you will see a default chart of Microsoft stock price.
             Click on 'YTD' at the top of that chart, and report the percent value that shows up just below it.""",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:
@@ -171,7 +169,7 @@ with project_client:
             print(f"\nFollow-up response done!")
         elif event.type == "response.output_item.done":
             item = event.item
-            if item.type == "browser_automation_preview_call":  # TODO: support browser_automation_preview_call schema
+            if item.type == "browser_automation_preview_call":
                 arguments_str = getattr(item, "arguments", "{}")
 
                 # Parse the arguments string into a dictionary
@@ -183,6 +181,10 @@ with project_client:
         elif event.type == "response.completed":
             print(f"\nFollow-up completed!")
             print(f"Full response: {event.response.output_text}")
+
+    print("\nCleaning up...")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 
 ### What this code does
@@ -191,7 +193,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Required inputs
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
 
 ### Expected output
 

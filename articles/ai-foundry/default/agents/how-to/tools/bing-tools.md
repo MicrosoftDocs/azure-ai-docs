@@ -132,7 +132,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
     print("Connected to project.")
     
@@ -167,7 +167,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    BingGroundingAgentTool,
+    BingGroundingTool,
     BingGroundingSearchToolParameters,
     BingGroundingSearchConfiguration,
 )
@@ -176,7 +176,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
     # Get connection ID from connection name
@@ -188,10 +188,10 @@ with (
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant.",
             tools=[
-                BingGroundingAgentTool(
+                BingGroundingTool(
                     bing_grounding=BingGroundingSearchToolParameters(
                         search_configurations=[
                             BingGroundingSearchConfiguration(
@@ -210,7 +210,7 @@ with (
         stream=True,
         tool_choice="required",
         input="What is today's date and weather in Seattle?",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:
@@ -271,7 +271,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    BingCustomSearchAgentTool,
+    BingCustomSearchPreviewTool,
     BingCustomSearchToolParameters,
     BingCustomSearchConfiguration,
 )
@@ -280,7 +280,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
     # Get connection ID from connection name
@@ -289,7 +289,7 @@ with (
     )
     print(f"Grounding with Bing Custom Search connection ID: {bing_custom_connection.id}")
 
-        bing_custom_search_tool = BingCustomSearchAgentTool(
+    bing_custom_search_tool = BingCustomSearchPreviewTool(
         bing_custom_search_preview=BingCustomSearchToolParameters(
             search_configurations=[
                 BingCustomSearchConfiguration(
@@ -303,7 +303,7 @@ with (
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="""You are a helpful agent that can use Bing Custom Search tools to assist users. 
             Use the available Bing Custom Search tools to answer questions and perform tasks.""",
             tools=[bing_custom_search_tool],
@@ -319,7 +319,7 @@ with (
     stream_response = openai_client.responses.create(
         stream=True,
         input=user_input,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:

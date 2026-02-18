@@ -65,39 +65,43 @@ from dotenv import load_dotenv
 
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, WebSearchPreviewTool, ApproximateLocation
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    WebSearchTool,
+    WebSearchApproximateLocation,
+)
 
 load_dotenv()
 
-project_client = AIProjectClient(
-  endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-openai_client = project_client.get_openai_client()
-
-with project_client:
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant that can search the web",
             tools=[
-          WebSearchPreviewTool(
-            user_location=ApproximateLocation(country="GB", city="London", region="London")
-          )
+                WebSearchTool(
+                    user_location=WebSearchApproximateLocation(
+                        type="approximate", country="GB", city="London", region="London"
+                    )
+                )
             ],
         ),
         description="Agent for web search.",
     )
-
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
     stream_response = openai_client.responses.create(
         stream=True,
         tool_choice="required",
         input="What is today's date and weather in Seattle?",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:
@@ -118,6 +122,10 @@ with project_client:
         elif event.type == "response.completed":
             print(f"\nFollow-up completed!")
             print(f"Full response: {event.response.output_text}")
+
+    print("\nCleaning up...")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 :::zone-end
 

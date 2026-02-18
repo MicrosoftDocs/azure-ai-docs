@@ -98,7 +98,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
 with DefaultAzureCredential() as credential, \
      AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
@@ -114,13 +114,19 @@ If this command runs without errors, you're ready to create an agent with OpenAP
 import os
 import jsonref
 from dotenv import load_dotenv
+from typing import Any, cast
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    OpenApiTool,
+    OpenApiFunctionDefinition,
+    OpenApiAnonymousAuthDetails,
+)
 
 load_dotenv()
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
 with (
     DefaultAzureCredential() as credential,
@@ -131,20 +137,17 @@ with (
     weather_asset_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../assets/weather_openapi.json"))
 
     with open(weather_asset_file_path, "r") as f:
-        openapi_weather = jsonref.loads(f.read())
+        openapi_weather = cast(dict[str, Any], jsonref.loads(f.read()))
 
-
-    # Initialize agent OpenApi tool using the read in OpenAPI spec
-    weather_tool = {
-        "type": "openapi",
-        "openapi":{
-            "name": "weather",
-            "spec": openapi_weather,
-            "auth": {
-                "type": "anonymous"
-            },
-        }
-    }
+    # Initialize agent OpenAPI tool using the read in OpenAPI spec
+    weather_tool = OpenApiTool(
+        openapi=OpenApiFunctionDefinition(
+            name="get_weather",
+            spec=openapi_weather,
+            description="Retrieve weather information for a location.",
+            auth=OpenApiAnonymousAuthDetails(),
+        )
+    )
 
     # If you want to use key-based authentication
     # IMPORTANT: Your OpenAPI spec must include securitySchemes and security sections
@@ -213,21 +216,20 @@ with (
   }
 
     agent = project_client.agents.create_version(
-        agent_name="MyAgent23",
+        agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant.",
             tools=[weather_tool],
         ),
-        description="You are a helpful assistant.",
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
     response = openai_client.responses.create(
         input="What's the weather in Seattle?",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
-    print(f"Response created: {response.output_text}")
+    print(f"Agent response: {response.output_text}")
 
     print("\nCleaning up...")
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)

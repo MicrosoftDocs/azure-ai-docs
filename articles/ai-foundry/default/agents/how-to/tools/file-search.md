@@ -96,7 +96,7 @@ with (
   agent = project_client.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-      model=os.environ["MODEL_DEPLOYMENT_NAME"],
+      model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
       instructions=(
         "You are a helpful agent that can search through product information. "
         "Use file search to answer questions from the uploaded files."
@@ -118,7 +118,7 @@ with (
   response = openai_client.responses.create(
     conversation=conversation.id,
     input="Tell me about Contoso products",
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
   )
   print(response.output_text)
 

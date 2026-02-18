@@ -115,7 +115,7 @@ import os
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import AgentReference, PromptAgentDefinition, ComputerUsePreviewTool
+from azure.ai.projects.models import PromptAgentDefinition, ComputerUsePreviewTool
 
 # Import shared helper functions
 from computer_use_util import (
@@ -191,7 +191,7 @@ with project_client:
                 ],
             }
         ],
-        extra_body={"agent": AgentReference(name=agent.name).as_dict()},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
         truncation="auto",
     )
 
@@ -247,7 +247,7 @@ while True:
                 },
             }
         ],
-        extra_body={"agent": AgentReference(name=agent.name).as_dict()},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
         truncation="auto",
     )
 

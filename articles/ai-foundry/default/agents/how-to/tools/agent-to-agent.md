@@ -127,7 +127,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    A2ATool,
+    A2APreviewTool,
 )
 
 load_dotenv()
@@ -143,7 +143,7 @@ with (
         os.environ["A2A_PROJECT_CONNECTION_NAME"],
     )
 
-    tool = A2ATool(
+    tool = A2APreviewTool(
         project_connection_id=a2a_connection.id,
     )
 
@@ -163,7 +163,7 @@ with (
         stream=True,
         tool_choice="required",
         input=user_input,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:

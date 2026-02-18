@@ -68,7 +68,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
     print("Connected to project.")
 ```
@@ -101,55 +101,53 @@ from openai.types.responses.response_input_param import FunctionCallOutput, Resp
 
 load_dotenv()
 
-# Define a function tool for the model to use
-func_tool = FunctionTool(
-    name="get_horoscope",
-    parameters={
-        "type": "object",
-        "properties": {
-            "sign": {
-                "type": "string",
-                "description": "An astrological sign like Taurus or Aquarius",
-            },
-        },
-        "required": ["sign"],
-        "additionalProperties": False,
-    },
-    description="Get today's horoscope for an astrological sign.",
-    strict=True,
-)
-
-tools: list[Tool] = [func_tool]
-
 
 def get_horoscope(sign: str) -> str:
     """Generate a horoscope for the given astrological sign."""
     return f"{sign}: Next Tuesday you will befriend a baby otter."
 
 
-project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
 
-with project_client:
+    # Define a function tool for the model to use
+    func_tool = FunctionTool(
+        name="get_horoscope",
+        parameters={
+            "type": "object",
+            "properties": {
+                "sign": {
+                    "type": "string",
+                    "description": "An astrological sign like Taurus or Aquarius",
+                },
+            },
+            "required": ["sign"],
+            "additionalProperties": False,
+        },
+        description="Get today's horoscope for an astrological sign.",
+        strict=True,
+    )
+
+    tools: list[Tool] = [func_tool]
 
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant that can use function tools.",
             tools=tools,
         ),
     )
 
-    openai_client = project_client.get_openai_client()
-
     # Prompt the model with tools defined
     response = openai_client.responses.create(
         input="What is my horoscope? I am an Aquarius.",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
     print(f"Response output: {response.output_text}")
 
@@ -176,8 +174,14 @@ with project_client:
     response = openai_client.responses.create(
         input=input_list,
         previous_response_id=response.id,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
+
+    print(f"Agent response: {response.output_text}")
+
+    print("\nCleaning up...")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 
 ### Expected output

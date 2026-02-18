@@ -107,7 +107,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
     print("Connected to project.")
     
@@ -138,7 +138,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    MicrosoftFabricAgentTool,
+    MicrosoftFabricPreviewTool,
     FabricDataAgentToolParameters,
     ToolProjectConnection,
 )
@@ -147,7 +147,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
     # Get connection ID from connection name
@@ -159,10 +159,10 @@ with (
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant.",
             tools=[
-                MicrosoftFabricAgentTool(
+                MicrosoftFabricPreviewTool(
                     fabric_dataagent_preview=FabricDataAgentToolParameters(
                         project_connections=[
                             ToolProjectConnection(project_connection_id=fabric_connection.id)
@@ -179,10 +179,13 @@ with (
     response = openai_client.responses.create(
         tool_choice="required",
         input=user_input,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     print(f"Response output: {response.output_text}")
+
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 
 ### What this code does

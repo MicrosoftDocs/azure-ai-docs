@@ -110,7 +110,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
     print("Connected to project.")
     
@@ -146,7 +146,7 @@ from openai.types.responses.response_input_param import McpApprovalResponse, Res
 
 load_dotenv()
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
 with (
     DefaultAzureCredential() as credential,
@@ -167,7 +167,7 @@ with (
     agent = project_client.agents.create_version(
         agent_name="MyAgent7",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="Use MCP tools as needed",
             tools=[tool],
         ),
@@ -182,7 +182,7 @@ with (
     response = openai_client.responses.create(
         conversation=conversation.id,
         input="What is my username in my GitHub profile?",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     # Process any MCP approval requests that were generated
@@ -217,7 +217,7 @@ with (
     response = openai_client.responses.create(
         input=input_list,
         previous_response_id=response.id,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     print(f"Response: {response.output_text}")

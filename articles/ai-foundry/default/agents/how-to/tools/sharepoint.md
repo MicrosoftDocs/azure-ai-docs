@@ -89,7 +89,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
     print("Connected to project.")
     
@@ -122,7 +122,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    SharepointAgentTool,
+    SharepointPreviewTool,
     SharepointGroundingToolParameters,
     ToolProjectConnection,
 )
@@ -131,7 +131,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
     # Get connection ID from connection name
@@ -140,7 +140,7 @@ with (
     )
     print(f"SharePoint connection ID: {sharepoint_connection.id}")
 
-    sharepoint_tool = SharepointAgentTool(
+    sharepoint_tool = SharepointPreviewTool(
         sharepoint_grounding_preview=SharepointGroundingToolParameters(
             project_connections=[
                 ToolProjectConnection(project_connection_id=sharepoint_connection.id)
@@ -151,7 +151,7 @@ with (
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="""You are a helpful agent that can use SharePoint tools to assist users. 
             Use the available SharePoint tools to answer questions and perform tasks.""",
             tools=[sharepoint_tool],
@@ -164,7 +164,7 @@ with (
         stream=True,
       tool_choice="required",
         input="Please summarize the last meeting notes stored in SharePoint.",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:

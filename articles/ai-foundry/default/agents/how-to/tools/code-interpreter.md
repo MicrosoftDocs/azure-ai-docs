@@ -59,15 +59,15 @@ The following Python sample shows how to create an agent with the code interpret
 
 Set these environment variables:
 
-- `FOUNDRY_PROJECT_ENDPOINT`
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME`
+- `AZURE_AI_PROJECT_ENDPOINT`
+- `AZURE_AI_MODEL_DEPLOYMENT_NAME`
 
 ```python
 import os
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, CodeInterpreterTool, CodeInterpreterToolAuto
+from azure.ai.projects.models import PromptAgentDefinition, CodeInterpreterTool, CodeInterpreterContainerAuto
 
 load_dotenv()
 
@@ -76,17 +76,16 @@ asset_file_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../assets/synthetic_500_quarterly_results.csv")
 )
 
-project_client = AIProjectClient(
-    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-with project_client:
-    openai_client = project_client.get_openai_client()
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
 
     # Upload the CSV file for the code interpreter to use
-    with open(asset_file_path, "rb") as f:
-        file = openai_client.files.create(purpose="assistants", file=f)
+    file = openai_client.files.create(purpose="assistants", file=open(asset_file_path, "rb"))
     print(f"File uploaded (id: {file.id})")
 
     # Create agent with code interpreter tool
@@ -95,7 +94,7 @@ with project_client:
         definition=PromptAgentDefinition(
             model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant.",
-            tools=[CodeInterpreterTool(container=CodeInterpreterToolAuto(file_ids=[file.id]))],
+            tools=[CodeInterpreterTool(container=CodeInterpreterContainerAuto(file_ids=[file.id]))],
         ),
         description="Code interpreter agent for data analysis and visualization.",
     )
@@ -109,7 +108,7 @@ with project_client:
     response = openai_client.responses.create(
         conversation=conversation.id,
         input="Could you please create bar chart in TRANSPORTATION sector for the operating profit from the uploaded csv file and provide file to me?",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
     print(f"Response completed (id: {response.id})")
 
@@ -120,33 +119,33 @@ with project_client:
 
     # Get the last message which should contain file citations
     last_message = response.output[-1]  # ResponseOutputMessage
-    if last_message.type == "message":
-        # Get the last content item (contains the file annotations)
-        text_content = last_message.content[-1]  # ResponseOutputText
-        if text_content.type == "output_text":
-            # Get the last annotation (most recent file)
-            if text_content.annotations:
-                file_citation = text_content.annotations[-1]  # AnnotationContainerFileCitation
-                if file_citation.type == "container_file_citation":
-                    file_id = file_citation.file_id
-                    filename = file_citation.filename
-                    container_id = file_citation.container_id
-                    print(f"Found generated file: {filename} (ID: {file_id})")
+    if (
+        last_message.type == "message"
+        and last_message.content
+        and last_message.content[-1].type == "output_text"
+        and last_message.content[-1].annotations
+    ):
+        file_citation = last_message.content[-1].annotations[-1]  # AnnotationContainerFileCitation
+        if file_citation.type == "container_file_citation":
+            file_id = file_citation.file_id
+            filename = file_citation.filename
+            container_id = file_citation.container_id
+            print(f"Found generated file: {filename} (ID: {file_id})")
+
+    print("\nCleaning up...")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 
     # Download the generated file if available
     if file_id and filename:
-        safe_filename = os.path.basename(filename)
         file_content = openai_client.containers.files.content.retrieve(file_id=file_id, container_id=container_id)
-        with open(safe_filename, "wb") as f:
+        print(f"File ready for download: {filename}")
+        file_path = os.path.join(os.path.dirname(__file__), filename)
+        with open(file_path, "wb") as f:
             f.write(file_content.read())
-            print(f"File {safe_filename} downloaded successfully.")
-        print(f"File ready for download: {safe_filename}")
+        print(f"File downloaded successfully: {file_path}")
     else:
         print("No file generated in response")
-    #uncomment these lines if you want to delete your agent
-    #print("\nCleaning up...")
-    #project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    #print("Agent deleted")
 ```
 
 ### Expected output
