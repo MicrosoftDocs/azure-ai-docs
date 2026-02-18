@@ -72,34 +72,35 @@ Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can 
 
 ### Quota tier reference
 
-# [Tier 6](#tab/tier6)
+# [Tier 1](#tab/tier1)
 
-[!INCLUDE [Quota](./includes/quota-tier/tier-6.md)]
-
-# [Tier 5](#tab/tier5)
-
-[!INCLUDE [Quota](./includes/quota-tier/tier-5.md)]
-
-# [Tier 4](#tab/tier4)
-
-[!INCLUDE [Quota](./includes/quota-tier/tier-4.md)]
-
-# [Tier 3](#tab/tier3)
-
-[!INCLUDE [Quota](./includes/quota-tier/tier-3.md)]
+[!INCLUDE [Quota](./includes/quota-tier/tier-1.md)]
 
 # [Tier 2](#tab/tier2)
 
 [!INCLUDE [Quota](./includes/quota-tier/tier-2.md)]
 
-# [Tier 1](#tab/tier1)
+# [Tier 3](#tab/tier3)
 
-[!INCLUDE [Quota](./includes/quota-tier/tier-1.md)]
+[!INCLUDE [Quota](./includes/quota-tier/tier-3.md)]
 
+# [Tier 4](#tab/tier4)
+
+[!INCLUDE [Quota](./includes/quota-tier/tier-4.md)]
+
+# [Tier 5](#tab/tier5)
+
+[!INCLUDE [Quota](./includes/quota-tier/tier-5.md)]
+
+# [Tier 6](#tab/tier6)
+
+[!INCLUDE [Quota](./includes/quota-tier/tier-6.md)]
+
+<!--
 # [Free](#tab/tierfree)
 
 [!INCLUDE [Quota](./includes/quota-tier/free.md)]
-
+-->
 ---
 
 
