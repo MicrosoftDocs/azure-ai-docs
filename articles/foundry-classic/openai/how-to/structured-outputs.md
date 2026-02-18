@@ -14,6 +14,7 @@ zone_pivot_groups: structured-outputs
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Structured outputs (classic)

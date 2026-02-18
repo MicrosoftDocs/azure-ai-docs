@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.date: 11/03/2023
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 # Limited access for Azure Direct Models (classic)
 

@@ -10,6 +10,7 @@ author: sdgilley
 ms.custom:
   - references_regions, build-2024, copilot-scenario-highlight, dev-focus
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry feature availability across cloud regions (classic)

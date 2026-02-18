@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.date: 11/17/2025
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Transparency Note for Azure Agent Service (classic)

@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
 manager: nitinme
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Abuse Monitoring (classic)

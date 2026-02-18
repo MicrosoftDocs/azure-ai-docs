@@ -12,6 +12,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 02/02/2026
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Connect your own storage for Speech and Language services (Preview) (classic)

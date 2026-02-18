@@ -19,6 +19,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: models-sold-directly-by-azure
 
 #CustomerIntent: As a developer, I want to browse the full list of Microsoft Foundry Models sold directly by Azure, including their capabilities and regional availability, so that I can select the right model for my application.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Foundry Models sold directly by Azure (classic)

@@ -10,6 +10,7 @@ ms.custom:
   - December-2025
   - classic-and-new
 ms.date: 12/12/2025
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # What's new in Microsoft Foundry documentation? (classic)

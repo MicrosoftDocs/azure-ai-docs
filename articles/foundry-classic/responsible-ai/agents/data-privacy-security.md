@@ -10,6 +10,7 @@ ms.date: 11/19/2025
 ms.topic: concept-article
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Data, privacy, and security for Azure AI Agent Service (classic)

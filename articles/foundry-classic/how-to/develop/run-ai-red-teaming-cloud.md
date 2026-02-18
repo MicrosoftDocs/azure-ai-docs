@@ -12,6 +12,7 @@ ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to run AI Red Teaming Agent scans in the cloud using the Microsoft Foundry SDK so I can perform comprehensive pre-deployment safety analysis at scale.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Run AI Red Teaming Agent in the cloud (preview) (classic)

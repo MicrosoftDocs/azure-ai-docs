@@ -12,6 +12,7 @@ ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to run AI Red Teaming Agent scans locally using the Azure AI Evaluation SDK so I can proactively find safety risks in my generative AI applications during development.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Run AI Red Teaming Agent locally (preview) (classic)

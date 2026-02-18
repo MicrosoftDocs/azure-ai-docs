@@ -14,6 +14,7 @@ ms.custom:
   - build-2025
 zone_pivot_groups: openai-fine-tuning-batch
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Getting started with Azure OpenAI batch deployments (classic)

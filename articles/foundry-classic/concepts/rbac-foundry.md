@@ -13,6 +13,7 @@ ms.reviewer: meerakurup
 ms.author: sgilley 
 author: sdgilley 
 ai.usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Role-based access control for Microsoft Foundry (classic)

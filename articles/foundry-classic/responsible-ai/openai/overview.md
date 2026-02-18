@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.date: 07/28/2025
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Overview of responsible AI practices for Azure OpenAI models (classic) 

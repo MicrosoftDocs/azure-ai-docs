@@ -13,6 +13,7 @@ author: ssalgadodev
 ms.author: ssalgado
 zone_pivot_groups: openai-fine-tuning
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Customize a model with fine-tuning (classic)

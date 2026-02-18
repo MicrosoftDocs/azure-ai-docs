@@ -10,6 +10,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Rate limits, region, and virtual network support for evaluation (classic)

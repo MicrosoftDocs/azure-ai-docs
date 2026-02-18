@@ -11,6 +11,7 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Monitor model deployments in Microsoft Foundry Models (classic)

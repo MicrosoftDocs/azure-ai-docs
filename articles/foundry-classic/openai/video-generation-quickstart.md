@@ -13,6 +13,7 @@ ms.custom:
   - classic-and-new
 zone_pivot_groups: openai-video-generation
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Quickstart: Generate a video with Sora (preview) (classic)

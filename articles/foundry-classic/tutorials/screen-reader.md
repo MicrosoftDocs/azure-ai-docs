@@ -13,6 +13,7 @@ ms.custom:
   - build-2024
   - build-aifnd
   - build-2025
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Use a screen reader with Microsoft Foundry (classic)

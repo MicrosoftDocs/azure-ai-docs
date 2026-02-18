@@ -13,6 +13,7 @@ ms.reviewer: fosteramanda
 ms.custom:
   - azure-ai-agents, references_regions
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Create a new network-secured environment with user-managed identity (classic)

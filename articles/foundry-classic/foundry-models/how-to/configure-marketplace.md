@@ -11,6 +11,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As an Azure administrator or developer, I want to know the requirements to configure Azure Marketplace access for Microsoft Foundry Models from partners and community to deploy and use these models effectively.
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Azure Marketplace requirements for Foundry Models from partners (classic)

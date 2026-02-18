@@ -11,6 +11,7 @@ ms.custom:
   - dev-focus
   - classic-and-new
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Upgrade from Azure OpenAI to Microsoft Foundry (classic)

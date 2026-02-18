@@ -13,6 +13,7 @@ ai-usage: ai-assisted
 ms.custom:
   - pilot-ai-workflow-jan-2026
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Foundry Agent Service disaster recovery (classic)

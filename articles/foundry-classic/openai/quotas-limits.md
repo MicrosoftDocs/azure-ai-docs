@@ -14,6 +14,7 @@ ms.custom:
   - references_regions
   - build-2025
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Azure OpenAI in Microsoft Foundry Models quotas and limits (classic)

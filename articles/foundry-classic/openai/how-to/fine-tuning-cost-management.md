@@ -12,6 +12,7 @@ show_latex: true
 ms.custom:
   - ignite2025
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Cost management for fine-tuning (classic)

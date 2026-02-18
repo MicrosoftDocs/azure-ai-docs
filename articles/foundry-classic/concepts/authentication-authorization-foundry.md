@@ -12,6 +12,7 @@ ms.custom:
   - dev-focus
   - classic-and-new
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Authentication and authorization in Microsoft Foundry (classic)

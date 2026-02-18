@@ -16,6 +16,7 @@ ms.custom:
   - classic-and-new
 recommendations: false
 #customerIntent: As a developer, I want to understand PTU costs and billing so I can plan and manage my Microsoft Foundry provisioned throughput deployments efficiently.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Provisioned throughput unit (PTU) costs and billing (classic)

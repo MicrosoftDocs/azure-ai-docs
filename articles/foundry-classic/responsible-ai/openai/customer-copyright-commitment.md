@@ -11,6 +11,7 @@ ms.topic: concept-article
 ms.date: 05/21/2024
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Customer Copyright Commitment Required Mitigations (classic)

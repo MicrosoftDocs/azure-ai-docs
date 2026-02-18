@@ -14,6 +14,7 @@ ms.custom:
   - pilot-ai-workflow-jan-2026
   - classic-and-new
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # System message design (classic)

@@ -13,6 +13,7 @@ ms.author: pafarley
 ms.date: 01/29/2026
 ai-usage: ai-assisted
 zone_pivot_groups: openai-quickstart-dall-e
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models (classic)

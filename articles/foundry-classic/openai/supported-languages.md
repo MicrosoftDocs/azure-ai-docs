@@ -12,6 +12,7 @@ ms.date: 11/26/2025
 ms.author: mbullwin
 ai-usage: ai-assisted
 zone_pivot_groups: openai-supported-languages
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Azure OpenAI supported programming languages (classic)

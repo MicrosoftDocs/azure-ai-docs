@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Plan and manage costs for Microsoft Foundry (classic)

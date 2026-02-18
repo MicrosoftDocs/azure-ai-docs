@@ -11,6 +11,7 @@ ms.author: mbullwin
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Codex with Azure OpenAI in Microsoft Foundry Models (classic)

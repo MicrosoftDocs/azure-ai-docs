@@ -19,6 +19,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: azure-ai-model-categories
 
 #CustomerIntent: As a developer or AI practitioner, I want to explore and understand the available Microsoft Foundry Models from partners and community, including their specific capabilities, supported input and output types, and language support, so that I can select the most appropriate model for my AI application requirements.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Foundry Models from partners and community (classic)

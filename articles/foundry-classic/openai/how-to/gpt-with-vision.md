@@ -13,6 +13,7 @@ ai-usage: ai-assisted
 
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Use vision-enabled chat models (classic)

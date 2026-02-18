@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Observability in generative AI (classic)

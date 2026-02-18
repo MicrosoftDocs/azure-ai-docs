@@ -14,6 +14,7 @@ ms.date: 01/29/2026
 zone_pivot_groups: openai-quickstart-gpt-v
 ai-usage: ai-assisted
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Quickstart: Use images in your AI chats (classic)

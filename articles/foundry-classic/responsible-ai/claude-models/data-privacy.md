@@ -14,6 +14,7 @@ ms.reviewer: keijik
 reviewer: gojira
 ai-usage: ai-assisted
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Data, privacy, and security for Claude models in Microsoft Foundry (preview) (classic)

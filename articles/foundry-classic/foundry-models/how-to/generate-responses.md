@@ -13,6 +13,7 @@ ms.custom:
   - generated, pilot-ai-workflow-jan-2026
   - classic-and-new
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # How to generate text responses with Microsoft Foundry Models (classic)

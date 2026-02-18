@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - build-2025
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Reinforcement fine-tuning (classic)

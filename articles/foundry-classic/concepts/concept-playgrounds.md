@@ -15,6 +15,7 @@ ms.custom:
   - build-2025, pilot-ai-workflow-jan-2026
   - classic-and-new
 #CustomerIntent: As a developer, I want to use Microsoft Foundry playgrounds for rapid prototyping and experimentation with AI models and agents so that I can validate ideas, test API behavior, and optimize prompts before writing production code.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry Playgrounds (classic)

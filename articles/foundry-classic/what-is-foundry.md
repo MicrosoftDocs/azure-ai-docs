@@ -19,6 +19,7 @@ keywords:
   - Foundry Tools
   - cognitive
 # customer intent: As a developer, I want to understand what Microsoft Foundry is so that I can use it to build AI applications.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # What is Microsoft Foundry? (classic)

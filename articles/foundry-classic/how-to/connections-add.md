@@ -15,6 +15,7 @@ author: sdgilley
 ai-usage: ai-assisted
 # Customer Intent: As an admin or developer, I want to understand how to add new connections in my project.
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Add a new connection to your project (classic)

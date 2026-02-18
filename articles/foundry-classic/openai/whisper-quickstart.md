@@ -14,6 +14,7 @@ author: PatrickFarley
 recommendations: false
 zone_pivot_groups: programming-languages-rest-ps-py-js-cs
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Quickstart: Speech to text with the Azure OpenAI Whisper model (classic)

@@ -17,6 +17,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to create a Microsoft Foundry project so I can work with generative AI.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Create a project for Microsoft Foundry (classic)

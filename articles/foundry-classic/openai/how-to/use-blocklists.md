@@ -11,6 +11,7 @@ ms.author: pafarley
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # How to use block lists in Microsoft Foundry models (classic)

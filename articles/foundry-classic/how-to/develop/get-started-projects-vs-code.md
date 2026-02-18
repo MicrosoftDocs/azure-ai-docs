@@ -15,6 +15,7 @@ author: ms-johnalex
 # customer intent: As an AI app developer, I want to learn how to use the Microsoft Foundry for Visual Studio Code extension so that I can create projects and deploy Large Language Models using Microsoft Foundry capabilities directly in VS Code.
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Work with the Microsoft Foundry for Visual Studio Code extension (Preview) (classic)

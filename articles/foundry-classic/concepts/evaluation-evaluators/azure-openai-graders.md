@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Azure OpenAI graders (classic)

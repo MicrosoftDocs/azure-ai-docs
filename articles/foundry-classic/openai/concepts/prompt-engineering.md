@@ -13,6 +13,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 
 recommendations: false
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Prompt engineering techniques (classic)

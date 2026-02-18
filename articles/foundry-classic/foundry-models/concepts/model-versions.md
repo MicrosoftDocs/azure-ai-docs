@@ -13,6 +13,7 @@ ms.author: mopeakande
 recommendations: false
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to understand how model versions work in Microsoft Foundry Models so I can manage deployments and updates effectively.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Model versions in Microsoft Foundry Models (classic)

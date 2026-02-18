@@ -17,6 +17,7 @@ reviewer: santiagxf
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer, I want to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models so that I can secure my AI model deployments without relying on API keys and leverage role-based access control for better security and compliance.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Configure keyless authentication with Microsoft Entra ID (classic)

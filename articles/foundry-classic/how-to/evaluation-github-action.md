@@ -10,6 +10,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # How to run an evaluation in GitHub Action (preview) (classic)

@@ -15,6 +15,7 @@ recommendations: false
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer or AI practitioner, I want to deploy Microsoft Foundry Models in the Foundry portal so that I can integrate these AI models into my applications and perform inference tasks for my business needs.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Deploy Microsoft Foundry Models in the Foundry portal (classic)

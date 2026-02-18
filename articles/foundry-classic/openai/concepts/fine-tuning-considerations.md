@@ -12,6 +12,7 @@ recommendations: false
 ms.custom:
   - ignite2025
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry fine-tuning considerations (classic)

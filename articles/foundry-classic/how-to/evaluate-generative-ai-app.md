@@ -12,6 +12,7 @@ ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
 # customer intent: As a developer, I want to evaluate my generative AI models and applications using Microsoft Foundry so I can assess their performance and safety with comprehensive metrics.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Evaluate generative AI models and applications by using Microsoft Foundry (classic)

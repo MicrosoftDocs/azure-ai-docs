@@ -11,6 +11,7 @@ ms.custom:
   - classic-and-new
   - dev-focus
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry rollout across my organization (classic)

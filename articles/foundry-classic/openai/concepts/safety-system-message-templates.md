@@ -14,6 +14,7 @@ ms.author: pafarley
 ai-usage: ai-assisted
 keywords: safety system message, system message, system prompt, metaprompt, prompt injection, groundedness, protected material
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Safety system message templates (classic)

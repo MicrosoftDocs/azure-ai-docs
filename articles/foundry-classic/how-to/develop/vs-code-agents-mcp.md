@@ -13,6 +13,7 @@ ms.author: johalexander
 author: ms-johnalex
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Work with Foundry Agent Service and MCP server tools in Visual Studio Code (preview) (classic)

@@ -11,6 +11,7 @@ ms.custom:
   - dev-focus
   - classic-and-new
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # High availability and resiliency for Microsoft Foundry projects and Agent Services (classic)

@@ -15,6 +15,7 @@ ms.custom:
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: As a developer, I want to install the Microsoft Foundry SDK in my development environment
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Prepare your development environment (classic)

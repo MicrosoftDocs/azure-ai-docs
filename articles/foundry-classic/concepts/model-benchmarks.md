@@ -12,6 +12,7 @@ ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
 # customer intent: As a developer or data scientist, I want to understand model leaderboards and benchmarking capabilities in Microsoft Foundry portal so I can compare and select the best models for my AI solutions.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Model leaderboards in Microsoft Foundry portal (preview) (classic)

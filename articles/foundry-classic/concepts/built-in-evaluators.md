@@ -9,6 +9,7 @@ ms.service: azure-ai-foundry
 ms.topic: article
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Built-in evaluators reference (classic)

@@ -9,6 +9,7 @@ ms.author: lagayhar
 author: lgayhardt
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # AI Red Teaming Agent (preview) (classic)

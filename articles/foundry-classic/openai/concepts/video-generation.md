@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.date: 12/1/2025
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Video generation with Sora (preview) (classic)

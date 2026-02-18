@@ -16,6 +16,7 @@ zone_pivot_groups: azure-ai-create-deployment
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer or AI practitioner, I want to deploy Microsoft Foundry Models using Azure CLI and Bicep, so that I can integrate these AI models into my applications and perform inference tasks for my business needs.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Deploy models using Azure CLI and Bicep (classic)

@@ -12,6 +12,7 @@ reviewer: changliu2
 ms.author: lagayhar  
 author: lgayhardt
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Compare models using the model leaderboard (preview) (classic)
