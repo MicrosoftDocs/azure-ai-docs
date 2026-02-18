@@ -40,27 +40,26 @@ In this article, you identify cost spikes, switch to a cost-efficient model, and
 
 ## Detect cost increases
 
-Use Ask AI or the cost trend charts on the **Overview** pane to identify cost spikes.
+Start by opening the Ask AI agent from the toolbar. Or, go to **Operate** > **Overview** to use one of the prebuilt prompts that are specific to agent optimization and performance.
 
-1. On the toolbar, select **Ask AI**. Alternatively, go to **Operate** > **Overview** to review the cost trend charts.
+Ask the assistant to provide a summary of your metrics and cost data from the Foundry Control Plane dashboard. You can select a predefined prompt on the **Overview** pane or type your own question, such as:
 
-1. Enter a prompt such as "Summarize my recent cost trend" or "Which agents contributed most to my cost increase?"
+- "Summarize my recent cost trend."
 
-1. Review the summary. Ask AI highlights key cost drivers such as high token usage, longer completion length, or frequent evaluation runs. You should see a summary listing specific agents, models, and token-usage metrics that contribute to cost increases. To inspect specific trends, go to **Operate** > **Overview** and review the cost trend charts.
+- "Which agents contributed most to my cost increase?"
 
-> [!TIP]
-> If Ask AI is unavailable, go to **Operate** > **Overview** to view cost trend charts directly.
+The Ask AI agent generates a summary that highlights key cost drivers, such as high token usage, longer completion length, or frequent evaluation runs. The summary includes annotated links to the dashboard charts for deeper inspection.
+
 
 ## Investigate high-cost agents
 
-After you review the cost summary, explore detailed insights for specific agents.
+After you review the summary, you can explore detailed insights for specific agents by asking:
 
-1. In Ask AI, enter a prompt such as "Show me cost and performance details for \[agent name\]" or "Break down cost by model or deployment for this agent."
+- "Show me cost and performance details for [agent name]."
 
-1. Review the response to identify which model or deployment drives the highest cost for that agent.
+- "Break down cost by model or deployment for this agent."
 
-> [!TIP]
-> If Ask AI is unavailable, go to **Operate** > **Assets**, select the **Agents** tab, and then select an agent to view its cost and token usage details.
+You can also select **Assets** on the left pane. Then, select **View Agent details** to view the **Assets** pane. There, you can compare your agents with cost and token usage, and see which agent costs the most.
 
 ## Switch to a cost-efficient model
 
@@ -70,7 +69,7 @@ When you identify a model as a cost driver, use Ask AI to find a more cost-effic
 
 1. Review the response. Ask AI recommends alternative models from the model catalog with performance and cost comparisons. Review the recommendations and select a model that meets your requirements.
 
-1. Deploy the new model. For detailed deployment steps, see [Deploy models as serverless API deployments](../../how-to/deploy-models-serverless.md) or [Deploy models with managed compute](../../how-to/deploy-models-managed.md).
+1. Deploy the new model. Ask AI can initiate the deployment for you directly in the chat or provide a link to the deployment page. You can also deploy manually. For detailed deployment steps, see [Deploy models as serverless API deployments](../../how-to/deploy-models-serverless.md) or [Deploy models with managed compute](../../how-to/deploy-models-managed.md).
 
 1. After deployment completes, verify that the new model appears in your agent's deployment list with a **Succeeded** status.
 
@@ -81,7 +80,7 @@ When you identify a model as a cost driver, use Ask AI to find a more cost-effic
 
 After you switch models, compare the old and new models by running an evaluation.
 
-1. In Ask AI, enter a prompt such as "How do I compare performance and cost between the old and new model?"
+1. In Ask AI, enter a prompt such as "I want to evaluate and compare the old and new model."
 
 1. Follow the guidance that Ask AI provides. To create evaluation runs, go to the evaluation section of your project.
 
@@ -125,7 +124,7 @@ To verify improvements after the model switch, check the latest cost data.
 
 1. Enter a prompt such as "Show me the summary on the latest data for cost."
 
-1. Review the summary. Ask AI retrieves the latest metrics from your [continuous evaluation](../../concepts/observability.md) and summarizes improvements in cost and performance trends. The summary reflects lower cost trends compared to the previous period.
+1. Review the summary. Ask AI surfaces the cost and performance data that's available on the **Operate** > **Overview** and **Monitor** pages, including any [continuous evaluation](../../concepts/observability.md) metrics shown there. The summary highlights cost trend changes compared to the previous period.
 
 Use this workflow regularly to monitor efficiency and return on investment.
 
