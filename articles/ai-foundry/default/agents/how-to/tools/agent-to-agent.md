@@ -437,12 +437,6 @@ curl --request PUT \
 ### Create an agent version with the A2A tool
 
 ```bash
-export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
-```
-
-### Create an agent with the A2A tool
-
-```bash
 curl --request POST \
   --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
@@ -462,27 +456,6 @@ curl --request POST \
     "instructions": "You are a helpful agent."
   }
 }'
-```
-
-### Generate a response with the A2A agent
-
-```bash
-curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -d '{
-    "agent": {"type": "agent_reference", "name": "<AGENT_NAME>-a2a"},
-    "input": [{"role": "user", "content": "What can the secondary agent do?"}]
-  }'
-```
-
-### Clean up resources
-
-Delete the agent:
-
-```bash
-curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-a2a?api-version=v1" \
-  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 To delete an agent version, send a `DELETE` request to the same endpoint with the agent name and version.
