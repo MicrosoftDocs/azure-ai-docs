@@ -122,8 +122,8 @@ Git is required to clone Foundry SDK samples. If you don't have Git installed, [
 | ----- | ---------- |
 | Command not found after install | Close and reopen your terminal, or restart VS Code, so PATH changes take effect. |
 | `az login` fails with a browser error | Run `az login --use-device-code` to authenticate using a device code flow instead. |
-| Python version mismatch | Use `python3` instead of `python` on macOS/Linux, or install a supported version (3.9 or later). |
-| Permission denied during install | On macOS/Linux, avoid `sudo pip install`. Use a virtual environment instead. |
+| Python not found | Use `python3` instead of `python` on macOS/Linux, or install a supported version (3.9 or later). |
+| Permission denied during install | On macOS/Linux, avoid `sudo pip install`. Use a [virtual environment](#create-a-virtual-environment) instead. |
 
 ## Related content
 
