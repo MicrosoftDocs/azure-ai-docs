@@ -1,6 +1,6 @@
 ### Tier 4
 
-| Model Name                     | Deployment Type   | Model RPM   | Model TPM   |
+| Model Name                     | Deployment Type   | Requests Per Minute (RPM)   | Tokens Per Minute (TPM) |
 |:-------------------------------|:------------------|:------------|:------------|
 | codex-mini                     | GlobalStandard    | 7,000       | 7,000,000   |
 | computer-use-preview           | GlobalStandard    | 160,000     | 16,000,000  |

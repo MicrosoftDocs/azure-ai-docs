@@ -1,6 +1,6 @@
 ### Free Tier
 
-| Model Name       | Deployment Type   |   Model RPM | Model TPM   |
+| Model Name       | Deployment Type   | Requests Per Minute (RPM)   | Tokens Per Minute (TPM) |
 |:-----------------|:------------------|------------:|:------------|
 | gpt-4.1-mini     | Standard          |         200 | 200,000     |
 | gpt-image-1      | GlobalStandard    |           9 | -           |
