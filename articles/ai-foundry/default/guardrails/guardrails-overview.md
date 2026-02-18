@@ -31,14 +31,6 @@ For more information about intervention points, see [Intervention points and con
 > [!NOTE]
 > Guardrails leverage classification models from [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety) to detect harmful content across supported risk categories.
 
-> [!NOTE]
-> **Performance considerations**  
-> Guardrail processing adds minimal latency to model and agent requests:
-> - User input scanning: ~50-100ms
-> - Output scanning: ~50-100ms
-> - Tool call/response scanning: ~50-100ms per intervention point
->
-> Latency varies based on content length and number of active controls. For high-throughput scenarios, consider severity level tuning to balance safety and performance.
 
 > [!IMPORTANT]
 > The guardrail system applies to all [Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio models such as Whisper. For more information, see [Audio models](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
@@ -169,7 +161,7 @@ Default guardrail assignment for agents follows these rules:
 **Symptom:** Legitimate content blocked by guardrail.
 
 **Causes:**
-- Severity level set too restrictively (Low threshold)
+- Severity level set too restrictively (High blocking)
 - Classification model detected edge-case pattern
 
 **Solution:**

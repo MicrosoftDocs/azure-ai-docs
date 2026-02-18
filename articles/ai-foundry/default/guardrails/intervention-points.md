@@ -42,7 +42,7 @@ When creating a guardrail, you select which controls to enable and at which inte
 3. Select "Tool response" as the intervention point
 4. Choose "Annotate and block" as the action
 
-For detailed steps, see [Create a guardrail](create-guardrail.md).
+For detailed steps, see [Create a guardrail](./how-to-create-guardrails.md).
 
 ## Supported tools
 
@@ -50,8 +50,6 @@ Tool call and tool response intervention points require moderation support from 
 
 ## Related content
 
-- [Create a guardrail](create-guardrail.md)
-- [Apply guardrails to agents](apply-guardrail-agent.md)
-- [Apply guardrails to models](apply-guardrail-model.md)
+- [Create a guardrail](./how-to-create-guardrails.md)
 - [Guardrails and controls overview](guardrails-overview.md)
 - [Foundry Agent Service overview](../../agents/overview.md) 

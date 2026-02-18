@@ -1,6 +1,6 @@
 ---
 title: Groundedness Detection Filter  
-description: Learn how to use groundedness detection in Azure OpenAI to validate LLM responses against source documents for RAG scenarios.  
+description: Learn how to use groundedness detection in Azure OpenAI in Microsoft Foundry Models to validate LLM responses against source documents for RAG scenarios.  
 author: ssalgadodev
 ms.author: ssalgado
 ms.date: 02/18/2026

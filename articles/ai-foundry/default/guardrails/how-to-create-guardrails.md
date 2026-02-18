@@ -28,12 +28,7 @@ For background on guardrails concepts, risks, and intervention points, see [Guar
 
 ## Availability
 
-Guardrails are available in all Azure regions where Microsoft Foundry is deployed. Some regions may have capacity constraints during preview periods.
-
-**Limits:**
-- Maximum 50 custom guardrails per project
-- Maximum 100 controls per guardrail
-- Default guardrails (such as Default.V2) don't count toward the custom guardrail limit
+See [region availability](/azure/ai-services/content-safety/overview#region-availability).
 
 ## Create a guardrail in Foundry
 
@@ -211,7 +206,7 @@ The following table shows annotation mode availability in each API version:
 | **Prompt protection** | | | | | | |
 | Prompt Shield for user prompt attacks | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Prompt Shield for indirect attacks | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ |
-| **Protected material and advanced features** | | | | | | |
+| **Protected material and other features** | | | | | | |
 | Protected material text | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Protected material code | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Personally identifiable information (PII) | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |

@@ -52,4 +52,3 @@ The filtering mode can be set for each PII category individually.
 - [Content filtering overview](content-filter.md)
 - [Configure content filters](../how-to/content-filters.md)
 - [PII entity categories](/azure/ai-services/language-service/personally-identifiable-information/concepts/entity-categories)
-- [Responsible AI practices](../../responsible-ai/overview.md)
