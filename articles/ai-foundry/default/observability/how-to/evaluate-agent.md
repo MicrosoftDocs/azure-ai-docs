@@ -17,12 +17,15 @@ ai-usage: ai-assisted
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.
 
-In this article, you learn how to:
+In this article, you learn how to evaluate [Azure AI Foundry agents](../../../agents/overview.md) with agent-specific evaluators for task adherence, tool call accuracy, and intent resolution. Specifically, you:
 
 - Set up the SDK client for evaluation.
 - Choose evaluators for quality, safety, and agent behavior.
 - Create a test dataset and run an evaluation.
 - Interpret results and integrate them into your workflow.
+
+> [!TIP]
+> For general-purpose evaluation of generative AI models and applications, including custom evaluators and broader SDK capabilities, see [Run evaluations in the cloud](../../../how-to/develop/cloud-evaluation.md).
 
 [!INCLUDE [evaluation-preview-foundry](../../includes/evaluation-preview-foundry.md)]
 
