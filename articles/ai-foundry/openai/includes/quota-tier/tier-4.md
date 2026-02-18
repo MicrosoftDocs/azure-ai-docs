@@ -1,6 +1,4 @@
-# Tier 4
-
-Rate limits for **Tier 4**.
+### Tier 4
 
 | Model Name                     | Deployment Type   | Model RPM   | Model TPM   |
 |:-------------------------------|:------------------|:------------|:------------|

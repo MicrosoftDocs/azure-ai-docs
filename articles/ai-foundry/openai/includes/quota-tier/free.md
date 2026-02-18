@@ -1,6 +1,4 @@
-# Free Tier
-
-Rate limits for **Free Tier**.
+### Free Tier
 
 | Model Name       | Deployment Type   |   Model RPM | Model TPM   |
 |:-----------------|:------------------|------------:|:------------|

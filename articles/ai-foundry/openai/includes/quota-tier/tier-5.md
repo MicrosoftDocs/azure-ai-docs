@@ -1,6 +1,4 @@
-# Tier 5
-
-Rate limits for **Tier 5**.
+### Tier 5
 
 | Model Name                     | Deployment Type   | Model RPM   | Model TPM   |
 |:-------------------------------|:------------------|:------------|:------------|

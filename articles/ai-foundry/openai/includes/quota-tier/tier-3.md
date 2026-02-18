@@ -1,6 +1,4 @@
-# Tier 3
-
-Rate limits for **Tier 3**.
+### Tier 3
 
 | Model Name                     | Deployment Type   | Model RPM   | Model TPM   |
 |:-------------------------------|:------------------|:------------|:------------|

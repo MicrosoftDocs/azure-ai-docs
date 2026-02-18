@@ -1,6 +1,4 @@
-# Tier 6
-
-Rate limits for **Tier 6**.
+### Tier 6
 
 | Model Name                     | Deployment Type   | Model RPM   | Model TPM   |
 |:-------------------------------|:------------------|:------------|:------------|

@@ -1,6 +1,4 @@
-# Tier 2
-
-Rate limits for **Tier 2**.
+### Tier 2
 
 | Model Name                     | Deployment Type   | Model RPM   | Model TPM   |
 |:-------------------------------|:------------------|:------------|:------------|
