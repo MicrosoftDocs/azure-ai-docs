@@ -281,7 +281,7 @@ Delete resources you created in this sample when you no longer need them to avoi
 - Delete the conversation.
 - Delete uploaded files.
 
-<!-- CLASSIC-ONLY: For examples of conversation and file cleanup patterns, see [Web search tool (preview)](web-search.md) and [File search tool for agents](file-search.md). -->
+For examples of conversation and file cleanup patterns, see [Web search tool (preview)](web-search.md) and [File search tool for agents](file-search.md).
 
 ## Related content
 

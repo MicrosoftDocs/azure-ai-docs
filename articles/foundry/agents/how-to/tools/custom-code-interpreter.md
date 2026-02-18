@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 A custom code interpreter gives you full control over the runtime environment for agent-generated Python code. You can configure custom Python packages, compute resources, and [Azure Container Apps environment](/azure/container-apps/environment) settings. The code interpreter container exposes a Model Context Protocol (MCP) server.
 
-<!-- CLASSIC-ONLY: Use a custom code interpreter when the built-in [Code Interpreter tool for agents](code-interpreter.md) doesn't meet your requirements—for example, when you need specific Python packages, custom container images, or dedicated compute resources. -->
+Use a custom code interpreter when the built-in [Code Interpreter tool for agents](code-interpreter.md) doesn't meet your requirements—for example, when you need specific Python packages, custom container images, or dedicated compute resources.
 
 For more information about MCP and how agents connect to MCP tools, see [Connect to Model Context Protocol servers (preview)](model-context-protocol.md).
 
@@ -225,4 +225,4 @@ To stop billing for provisioned resources, delete the resources created by the s
 - [Session pools with custom containers](/azure/container-apps/session-pool#custom-container-pool)
 - [Azure Container Apps environment](/azure/container-apps/environment)
 - [Install the Azure CLI](/cli/azure/install-azure-cli)
-<!-- CLASSIC-ONLY: - [Code Interpreter tool for agents](code-interpreter.md) -->
+- [Code Interpreter tool for agents](code-interpreter.md)

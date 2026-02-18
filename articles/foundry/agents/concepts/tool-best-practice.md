@@ -168,7 +168,7 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 ### Retrieval and search tools
 
 - [Azure AI Search](../how-to/tools/ai-search.md)
-<!-- CLASSIC-ONLY: - [File search](../how-to/tools/file-search.md) -->
+- [File search](../how-to/tools/file-search.md)
 - [Web search (preview)](../how-to/tools/web-search.md)
 - [Grounding with Bing tools](../how-to/tools/bing-tools.md)
 - [SharePoint (preview)](../how-to/tools/sharepoint.md)
@@ -182,8 +182,8 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 
 ### Automation and generation tools
 
-<!-- CLASSIC-ONLY: - [Code interpreter](../how-to/tools/code-interpreter.md) -->
+- [Code interpreter](../how-to/tools/code-interpreter.md)
 - [Browser automation (preview)](../how-to/tools/browser-automation.md)
-<!-- CLASSIC-ONLY: - [Computer Use (preview)](../how-to/tools/computer-use.md) -->
+- [Computer Use (preview)](../how-to/tools/computer-use.md)
 - [Image generation (preview)](../how-to/tools/image-generation.md)
 - [Agent2Agent (A2A) tool (preview)](../how-to/tools/agent-to-agent.md)
