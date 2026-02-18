@@ -628,13 +628,13 @@ items:
       items:
       - name: PII in text
         items:
-        - name: Hierarchical format
+        - name: Extended format
           href: personally-identifiable-information/concepts/entity-categories.md
         - name: List format
           href: personally-identifiable-information/concepts/entity-categories-list.md
       - name: PII in conversations
         items:
-        - name: Hierarchical format
+        - name: Extended format
           href: personally-identifiable-information/concepts/conversations-entity-categories.md
         - name: List format
           href: personally-identifiable-information/concepts/conversations-entities-list.md
