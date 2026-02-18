@@ -33,9 +33,11 @@ By using [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-worksp
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 ## How it works
 
@@ -300,7 +302,7 @@ The following cURL sample demonstrates how to create an agent with Browser Autom
 
 ```bash
 curl --request POST \
-  --url "${FOUNDRY_PROJECT_ENDPOINT}/openai/responses?api-version=${API_VERSION}" \
+  --url "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
   --header "Authorization: Bearer ${AGENT_TOKEN}" \
   --header "Content-Type: application/json" \
   --header "User-Agent: insomnia/11.6.1" \

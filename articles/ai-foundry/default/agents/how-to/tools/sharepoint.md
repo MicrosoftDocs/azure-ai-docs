@@ -35,9 +35,11 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -365,11 +367,11 @@ The following sample demonstrates how to create an Agent that uses the SharePoin
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-  "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+  "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
   "input": "Please summarize the last meeting notes stored in SharePoint.",
   "tool_choice": "required",
   "tools": [

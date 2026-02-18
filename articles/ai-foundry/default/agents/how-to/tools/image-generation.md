@@ -27,9 +27,11 @@ The **image generation tool** in Microsoft Foundry Agent Service generates image
 
 ## Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -214,56 +216,49 @@ Agent deleted
 The following example creates an agent that uses the image generation tool.
 
 ```bash
-curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
   -d '{
-  "description": "Test agent for image generation capabilities",
-  "definition": {
-  "kind": "prompt",
-  "model": "{{model}}",
-  "tools": [
-    {
-      "type": "image_generation"
+    "name": "image-gen-agent",
+    "description": "Test agent for image generation capabilities",
+    "definition": {
+      "kind": "prompt",
+      "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
+      "tools": [
+        {
+          "type": "image_generation"
+        }
+      ],
+      "instructions": "You are a creative assistant that generates images when requested. Please respond to image generation requests clearly and concisely."
     }
-  ],
-    "instructions": "You are a creative assistant that generates images when requested. Please respond to image generation requests clearly and concisely."
-  }
-}'
+  }'
 ```
 
 ## Create a response
 
 ```bash
-curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
   -H "x-ms-oai-image-generation-deployment: $IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME" \
   -d '{
-  "agent": {
-    "type": "agent_reference",
-    "name": "{{agentVersion.name}}",
-    "version": "{{agentVersion.version}}"
-  },
-  "metadata": {
-    "test_response": "image_generation_enabled",
-    "test_scenario": "basic_imagegen"
-  },
-  "input": [{
-    "type": "message",
-    "role": "user",
-    "content": [
-      {
-        "type": "input_text",
-        "text": "Please generate small image of a sunset over a mountain lake."
-      }
-    ]
-  }],
-  "background": true,
-  "stream": false
-}'
+    "agent": {
+      "type": "agent_reference",
+      "name": "image-gen-agent"
+    },
+    "input": [{
+      "type": "message",
+      "role": "user",
+      "content": [
+        {
+          "type": "input_text",
+          "text": "Please generate small image of a sunset over a mountain lake."
+        }
+      ]
+    }],
+    "stream": false
+  }'
 ```
 :::zone-end
 
