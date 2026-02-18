@@ -78,7 +78,7 @@ This approach authenticates using Azure credentials and requires the caller to h
 
 ## FAQs
 
-**1. Why are conversations not persisted for published agents (aka why is only stateless responses supported)?**
+**Why are conversations not persisted for published agents (aka why is only stateless responses supported)?**
 
 Today there’s a temporary limitation where published agents only support stateless Responses API interactions (that is, no persistent conversations). Work to fix this is already underway.
 
