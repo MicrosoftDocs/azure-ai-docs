@@ -22,7 +22,7 @@ In this tutorial, you will build a multimodal indexer pipeline that performs the
 > + Vectorize text and images for similarity search
 > + Send cropped images to a knowledge store for retrieval by your app
 
-Multimodal sample data is a 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with original text.
+The sample data is a 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with original text.
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ Multimodal sample data is a 36-page PDF document that combines rich visual conte
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python). If you haven't installed a suitable version of Python, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter).
 
-Multimodal indexing is implemented through skills that call Foundry models and APIs in an indexer pipeline. This tutorial uses Foundry models only, but the skills themselves support other models. Model prerequisites vary depending on the [skill choice for each task](#choose-skills-for-multimodal-indexing).
+Multimodal indexing is implemented through skills that call AI models and APIs in an indexer pipeline. This tutorial uses Foundry models only, but you can create custom skills to use other models. Model prerequisites vary depending on the [skill choice for each task](#choose-skills-for-multimodal-indexing).
 
 ### Configure access
 
@@ -135,7 +135,6 @@ For authenticated connections that occur during indexer and skillset processing,
     @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
     @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
     @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-    @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-FOUNDRY-ENDPOINT-HERE
     @modelVersion = 2023-04-15
     @imageProjectionContainer=sustainable-ai-pdf-images
    ```
@@ -144,11 +143,26 @@ For authenticated connections that occur during indexer and skillset processing,
 
    For `@imageProjectionContainer`, provide a container name that's unique in blob storage. Azure AI Search creates this container during skills processing.
 
+1. Add this variable if you're using the Document Layout skill or the Azure AI Vision skill:
+
+   ```http
+   @cognitiveServicesUrl = PUT-YOUR-MULTISERVICE-AZURE-AI-FOUNDRY-ENDPOINT-HERE
+   ```
+
+1. Add these variables if you're using the GenAI Prompt skill and Azure OpenAI Embedding skill:
+
+   ```http
+   @openAIResourceUri = PUT-YOUR-OPENAI-URI-HERE
+   @openAIKey = PUT-YOUR-OPENAI-KEY-HERE
+   @chatCompletionResourceUri = PUT-YOUR-CHAT-COMPLETION-URI-HERE
+   @chatCompletionKey = PUT-YOUR-CHAT-COMPLETION-KEY-HERE
+   ```
+
 1. Save the file using a `.rest` or `.http` file extension. For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 ## Set up a pipeline
 
-There are four components of an indexer pipeline: data source, index, skillset, and indexer. You create all four objects in this section, except that skill definitions are covered in separate sections related to chunking and vectorization. We approach skills this way to bring more focus on the behaviors that you want to effect.
+An indexer pipeline consists of four components: data source, index, skillset, and indexer. This section covers all four, but skill definitions are in separate sections for [extraction and chunking](#extract-and-chunk-text) and [vectorization](#vectorize-multimodal-content) so that you can focus on the specific behaviors each skill provides.
 
 + [Create a data source](#create-a-data-source)
 + [Create an index](#create-an-index)
@@ -225,9 +239,9 @@ Connection: close
 
 [Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. 
 
-This index sets `"dimensions": 1024` and the `vectorizer` to `"kind": "aiServicesVision"`. These values apply to Azure AI Vision vectorization.  
+This index sets `"dimensions": 1024` and the `vectorizers` to `"kind": "aiServicesVision"`. These values apply to Azure AI Vision vectorization.  
 
-To use chat completion and text embedding for your vectorization strategy, set `"dimensions": 3072` for text-embedding-3-large or `"dimensions": 1,536` for text-embedding-3-small. For text embedding, set the `vectorizer` to:
+To use chat completion and text embedding for your vectorization strategy, set `"dimensions": 3072` for text-embedding-3-large (or `"dimensions": 1,536` for text-embedding-3-small). For `vectorizers`:
 
 ```json
 "vectorizers": [

@@ -32,10 +32,7 @@ The Azure Content Understanding skill is bound to a [billable Microsoft Foundry 
 Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/pricing/details/content-understanding/).
 
 > [!TIP]
-> You can use the Azure Content Understanding skill in a skillset that also performs image verbalization and chunk vectorization. In the following tutorials, replace the Document Layout skill with the Azure Content Understanding skill.
->
-> + [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
-> + [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)
+> You can use the Azure Content Understanding skill in a skillset that also performs image verbalization and chunk vectorization. In the [multimodal tutorial](tutorial-multimodal.md), replace the Document Layout skill with the Azure Content Understanding skill.
 
 ## Limitations
 
