@@ -12,7 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Invoke your Agent Application using the Responses API protocol
+# Invoke your agent application using the responses API protocol
 
 After publishing, you can invoke your agent application using the Responses API protocol or the Activity Protocol. The Activity Protocol is used when your agent is published to Microsoft 365 and Teams.
 
