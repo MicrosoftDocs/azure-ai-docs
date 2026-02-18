@@ -1311,7 +1311,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_123456
 
 ## Encrypted Reasoning Items
 
-When using the Responses API in stateless mode — either by setting `store` to false or when your organization is enrolled in zero data retention — you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your API requests.
+When using the Responses API in stateless mode by setting `store` to false, you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your API requests.
 
 To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter in your request. This ensures that the response includes an encrypted version of the reasoning trace, which can be passed along in future requests.
 
