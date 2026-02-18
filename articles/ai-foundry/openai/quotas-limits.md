@@ -33,15 +33,15 @@ For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5
 
 ## Quota tiers
 
-To improve the Foundry Models and provide a frictionless experience, we're launching Foundry Quota Tiers. Foundry Quota Tiers allows model quota to increase as consumption grows, helping you grow without hitting rate limits while creating a fairer environment for all users. Seven new levels will be available starting today: Free Tier and Tier 1 through Tier 6. Your quota tier will be determined by both your usage and your Microsoft relationship such as Enterprise status. 
+We are introducing Quota Tiers to improve the Foundry Models experience and reduce friction as workloads scale. Quotas will now increase automatically with usage, helping avoid rate limit errors while also creating a fairer environment for all users. Seven tiers will be made available: Free Tier and Tiers 1 through 6 - with Tier 6 offering the highest quotas. A customer’s initial assigned tier is based on their current usage of that model and their current relationship with Microsoft, such as Enterprise Agreement (EA or MCA-E) status.  
 
 ### What’s changing for me? 
 
-Before Quota Tiers, Foundry offered Default and Enterprise quota levels. However, the quota gap between these two levels was too high and requesting more quota was a long process. With Quota Tiers, all Foundry users will be assigned a tier with a quota that’s either equal or higher than their previous quota allocation. If additional quota was granted through the quota increase process, that quota will be applicable and won't be lowered. As your consumption increases, Foundry will automatically grant you more quota by moving you to next tier. You can always ask for more quota using the quota form.  
+Previously, Foundry offered only Default and Enterprise quota levels for pay as you go offer type, with a large gap between each level and a longer process to request increases. With Quota Tiers, all users are assigned a tier with quotas equal to or higher than their previous levels. Any previously approved quota increases are retained and will not be reduced. As usage grows, Foundry automatically increases quotas by moving users to higher tiers, and additional quota can still be requested through the quota form.  
 
-### What are the tier change criteria? 
+### How will a customer automatically move from one tier to another, for example what are the tier change criteria?  
 
-Foundry looks at your consumption trends over time. If there's an increase in your consumption and the current tier is preventing you from seamlessly using Foundry Models, it will automatically upgrade your tier to the next tier. Another factor is your relationship with Microsoft. For example, if you have Enterprise relationship (including MCA-E) you'll be assigned a higher tier regardless of your consumption. Finally, customers who qualify for auto-upgrades also have consistent payment history.  
+Automatic tier upgrades are based primarily on customer consumption trends across Foundry Models over time. If a customer’s usage increases such that their current quota tier is limiting their ability to use Foundry Models the system will automatically upgrade the customer to the next higher tier. A customer’s relationship with Microsoft is also taken into account. Customers with Enterprise relationships (including EA and MCA-E) with Microsoft are assigned higher quota tiers. In addition, Microsoft will also consider a customer's payment history to determine eligibility for automatic upgrades.  
 
 ### Can I opt out of auto upgrades? 
 
@@ -67,7 +67,7 @@ curl -X PATCH \
 
 ### Can I request more quota?
 
-Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota. However, note that your request, if approved, will be rounded up to the next tier and your current tier will remain the same.
+Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota.If the request is approved, the current tier will remain the same, but with more quota assigned.  
 
 
 ### Quota tier reference
