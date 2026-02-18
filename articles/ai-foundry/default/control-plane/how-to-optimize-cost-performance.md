@@ -112,7 +112,7 @@ When you confirm that the new model meets your cost and performance requirements
 
 1. Test the agent to verify that it responds correctly with the new model.
 
-1. On the agent details page, select **Save** to create a new version. Verify that the version number incremented and the model name reflects the new deployment.
+1. On the agent details page, select **Save** to create a new version. Verify that the version number incremented and the model name reflect the new deployment.
 
 After you verify that the new model works correctly, consider deleting the old model deployment to avoid ongoing costs. For more information, see [Deploy models as serverless API deployments](../../how-to/deploy-models-serverless.md).
 
