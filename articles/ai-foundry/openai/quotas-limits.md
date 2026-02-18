@@ -70,9 +70,39 @@ curl -X PATCH \
 Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota. However, note that your request, if approved, will be rounded up to the next tier and your current tier will remain the same.
 
 
-### Quota tier breakdown
+### Quota tier reference
 
-A breakdown of each model by quota tier in the documentation on this page is coming soon.
+# [Tier 6](#tab/tier6)
+
+[!INCLUDE [Quota](./includes/quota-tier/tier-6.md)]
+
+# [Tier 5](#tab/tier5)
+
+[!INCLUDE [Quota](./includes/quota-tier/tier-5.md)]
+
+# [Tier 4](#tab/tier4)
+
+[!INCLUDE [Quota](./includes/quota-tier/tier-4.md)]
+
+# [Tier 3](#tab/tier3)
+
+[!INCLUDE [Quota](./includes/quota-tier/tier-3.md)]
+
+# [Tier 2](#tab/tier2)
+
+[!INCLUDE [Quota](./includes/quota-tier/tier-2.md)]
+
+# [Tier 1](#tab/tier1)
+
+[!INCLUDE [Quota](./includes/quota-tier/tier-1.md)]
+
+# [Free](#tab/tierfree)
+
+[!INCLUDE [Quota](./includes/quota-tier/free.md)]
+
+
+
+
 
 ## Quotas and limits reference
 
