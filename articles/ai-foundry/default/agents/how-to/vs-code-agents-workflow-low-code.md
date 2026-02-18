@@ -54,9 +54,9 @@ Then choose one of the following options to open the workflow in VS Code for the
 1. Edit the code as needed to modify the workflow. Changes are reflected in the visual editor.
 1. When you're done, select **Deploy** from the ellipsis menu (**...**) in the upper right corner to save your changes back to Foundry.
 
-## Test a workflow in the local playground
+## Test a workflow in the playground
 
-Test your declarative agent workflow by using the local agent playground in the VS Code extension.
+Test your declarative agent workflow by using the remote agent playground in the VS Code extension.
 
 1. In the **My Resources** section of the VS Code extension, locate and select your Foundry project.
 1. Select **Declarative Agents**.
