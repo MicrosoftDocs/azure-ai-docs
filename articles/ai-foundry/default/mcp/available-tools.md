@@ -20,6 +20,38 @@ Foundry MCP Server exposes a set of tools that let you manage datasets, run eval
 
 [!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
 
+### Agent management
+
+**agent_get (read)**
+
+Get a specific agent by name, or list all agents in a Foundry Project.
+
+Example prompts include:
+
+- "List all agents in my Foundry project."
+- "Show details for the `customer-support-agent`."
+- "Get the configuration for agent `triage-agent`."
+
+**agent_update (write)**
+
+Create, update, or clone an agent in a Foundry Project.
+
+Example prompts include:
+
+- "Create a new agent named `faq-agent` using model `gpt-4o-mini`."
+- "Update `triage-agent` instructions to prioritize billing issues."
+- "Clone `prod-agent` to `staging-agent` and switch it to a newer model."
+
+**agent_delete (write)**
+
+Delete an agent in a Foundry Project.
+
+Example prompts include:
+
+- "Delete the `old-test-agent` from my project."
+- "Remove `deprecated-agent` now that migration is complete."
+- "Clean up unused agents in this project."
+
 ## Dataset management
 
 **evaluation_dataset_create (write)**
@@ -56,7 +88,7 @@ Example prompts include:
 
 **evaluation_get (read)**
 
-List evaluation runs in the Azure AI Project.
+List evaluation runs in the Foundry Project.
 
 Example prompts include:
 
