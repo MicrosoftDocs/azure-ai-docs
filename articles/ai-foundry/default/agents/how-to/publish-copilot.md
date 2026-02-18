@@ -189,7 +189,7 @@ Use these checks to unblock common publishing issues.
 | Users can't find the agent in the store | Wrong scope or approval pending | For Individual scope, share the direct link. For Organization scope, confirm admin approval is complete. |
 
 ## FAQs
-**1. If I select Organization (tenant) scope when publishing to Microsoft 365 Copilot and Teams, where should I go to approve the agent?** 
+**If I select Organization (tenant) scope when publishing to Microsoft 365 Copilot and Teams, where should I go to approve the agent?** 
 
 In the Microsoft Admin Center, you can approve Foundry agents published to M365/Teams. Once approved by an admin, the agent appears under Built by your org in the agent store for Microsoft 365 Copilot. 
 
