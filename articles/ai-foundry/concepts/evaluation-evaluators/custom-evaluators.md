@@ -287,6 +287,8 @@ Both `deployment_name` and `threshold` are required as initialization parameters
 
 ## Create a custom evaluator with the SDK
 
+For additional examples including listing, updating, and deleting evaluators, see the [evaluator catalog management sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog.py).
+
 ### Prerequisites and setup
 
 Install the SDK and set up your client:
@@ -386,6 +388,8 @@ code_evaluator = project_client.evaluators.create_version(
 )
 ```
 
+For a complete example, see the [code-based evaluator sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog_code_based_evaluators.py).
+
 ### Create a prompt-based evaluator
 
 Pass the judge prompt in the `prompt_text` field. Define the `data_schema` to declare the input fields your prompt expects, and the `metrics` to describe the scoring method and range. The `init_parameters` declare the model deployment and threshold the evaluator needs at runtime.
@@ -442,6 +446,8 @@ prompt_evaluator = project_client.evaluators.create_version(
     },
 )
 ```
+
+For a complete example, see the [prompt-based evaluator sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog_prompt_based_evaluators.py).
 
 ### Run an evaluation with a custom evaluator
 
@@ -587,8 +593,5 @@ For detailed steps on running evaluations from the portal, see [Run evaluations 
 
 - [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md)
 - [Built-in evaluators](../built-in-evaluators.md)
-- [Code-based evaluator sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog_code_based_evaluators.py)
-- [Prompt-based evaluator sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog_prompt_based_evaluators.py)
-- [Evaluator catalog CRUD sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog.py)
 
 ::: moniker-end
