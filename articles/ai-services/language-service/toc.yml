@@ -629,7 +629,7 @@ items:
       - name: PII in text
         items:
         - name: Hierarchical format
-          href: personally-identifiable-information/concepts/text-pii-entity-categories.md
+          href: personally-identifiable-information/concepts/entity-categories.md
         - name: List format
           href: personally-identifiable-information/concepts/entity-categories-list.md
       - name: PII in conversations

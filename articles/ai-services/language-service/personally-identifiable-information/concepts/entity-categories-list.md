@@ -15,8 +15,8 @@ ms.custom:
 <!-- markdownlint-disable MD025 -->
 # Recognized text PII entities list
 
-| | Entity | |
-| -- | :--: | -- |
+| ~ | Entity | ~ |
+| :--: | :--: | :--: |
 | &#8226; [Address](entity-categories.md#type-address) | &#8226; [Age](entity-categories.md#type-age) | &#8226; [American Bankers Association Routing Number](entity-categories.md#type-american-bankers-association-routing-number) |
 | &#8226; [Airport (**preview**)](entity-categories.md#type-airport-preview) | &#8226; [Argentina National Identity Number](entity-categories.md#type-argentina-national-identity-number) | &#8226; [Australia Bank Account Number](entity-categories.md#type-australia-bank-account-number) |
 | &#8226; [Australia Business Number](entity-categories.md#type-australia-business-number) | &#8226; [Australia Company Number](entity-categories.md#type-australia-company-number) | &#8226; [Australia Drivers License Number](entity-categories.md#type-australia-drivers-license-number) |

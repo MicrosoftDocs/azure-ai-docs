@@ -52,7 +52,7 @@ The following entities are currently in preview:
 
 ### Supported conversational PII entity list
 
-To examine a comprehensive list of all the types of conversational PII entities that are currently supported, *see* the [Supported conversational PII entity list](conversations-entity-categories-list.md)
+To examine a comprehensive list of all the types of conversational PII entities that are currently supported, *see* the [Supported conversational PII entity list](conversations-enties-list.md) article.
 
 ### Supported conversational PII extraction entities
 
@@ -256,7 +256,6 @@ Any government-issued identification that can be used alone or combined with oth
 |---|---|
 |To retrieve this entity type, specify **USSocialSecurityNumber** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[USSocialSecurityNumber]|
 
-
 ## Related content
 
-[Conversational PII entity categories list](conversations-entity-categories-list.md)
+[Conversational PII entity categories list](conversations-enties-list.md) - A comprehensive list of all the types of conversational PII entities that are currently supported.

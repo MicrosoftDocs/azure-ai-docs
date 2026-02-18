@@ -12,8 +12,8 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD025 -->
 # Recognized conversational PII entities list
 
-| | Entity | |
-| -- | :--: | -- |
+| ~ | Entity | ~ |
+| :--: | :--: | :--: |
 | &#8226; [ABA Routing Number (**preview**)](conversations-entity-categories.md#type-aba-routing-number-preview) | &#8226; [Address](conversations-entity-categories.md#type-address) | &#8226; [Age (**preview**)](conversations-entity-categories.md#type-age-preview) |
 | &#8226; [Bank Account Number (**preview**)](conversations-entity-categories.md#type-bank-account-number-preview) | &#8226; [Canada Social Insurance Number (**preview**)](conversations-entity-categories.md#type-canada-social-insurance-number-preview) | &#8226; [Credit Card](conversations-entity-categories.md#type-credit-card) |
 | &#8226; [CVV (**preview**)](conversations-entity-categories.md#type-card-verification-value-cvv-preview) | &#8226; [Date (**preview**)](conversations-entity-categories.md#type-date-preview) | &#8226; [Date Of Birth (**preview**)](conversations-entity-categories.md#type-date-of-birth-preview) |
