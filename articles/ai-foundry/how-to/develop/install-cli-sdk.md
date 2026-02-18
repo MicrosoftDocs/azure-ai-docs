@@ -1,7 +1,8 @@
 ---
-title: Set up your development environment
+title: Prepare your development environment
 titleSuffix: Microsoft Foundry
-description: Instructions for installing the Microsoft Foundry SDK and the Azure CLI
+description: Set up your development environment with language runtimes, Azure CLI, and tools for Microsoft Foundry development.
+keywords: foundry sdk, azure cli, development environment, visual studio code
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
@@ -21,6 +22,8 @@ monikerRange: 'foundry-classic || foundry'
 # Prepare your development environment
 
 Set up your development environment to use the Microsoft Foundry SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
+
+In this article, you install language runtimes, Azure CLI, Azure Developer CLI, the Foundry VS Code extension, and Git.
 
 :::moniker range="foundry-classic"
 
@@ -80,7 +83,7 @@ The Extension Pack for Java is a collection of popular extensions that can help 
 
 ::: zone pivot="programming-language-javascript"
 
-Install [Node.js](https://nodejs.org/).
+Install [Node.js](https://nodejs.org/) (version 18 or later is recommended).
 
 ::: zone-end
 
@@ -105,15 +108,22 @@ The Azure Developer CLI (azd) is an open-source tool that helps you set up and d
 
 Many of the [AI solution templates](ai-template-get-started.md) include a deployment option using `azd`.
 
-## Install The Foundry VS Code Extension
+## Install the Foundry VS Code extension
 
-The Foundry extension for Visual Studio Code lets you deploy models, build AI apps, and work with Agents directly from the VS Code interface. [Install The Foundry VS Code Extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+The Foundry extension for Visual Studio Code lets you deploy models, build AI apps, and work with Agents directly from the VS Code interface. [Install the Foundry VS Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
 
 ## Install Git
 
 Git is required to clone Foundry SDK samples. If you don't have Git installed, [follow the instructions for your platform](https://git-scm.com/downloads) and select your operating system.
 
-References: [Git](https://git-scm.com/downloads)
+## Troubleshooting
+
+| Issue | Resolution |
+| ----- | ---------- |
+| Command not found after install | Close and reopen your terminal, or restart VS Code, so PATH changes take effect. |
+| `az login` fails with a browser error | Run `az login --use-device-code` to authenticate using a device code flow instead. |
+| Python version mismatch | Use `python3` instead of `python` on macOS/Linux, or install a supported version (3.9 or later). |
+| Permission denied during install | On macOS/Linux, avoid `sudo pip install`. Use a virtual environment instead. |
 
 ## Related content
 
