@@ -19,7 +19,7 @@ Microsoft Foundry provides safety and security guardrails that you can apply to 
 
 A **guardrail** is a named collection of **controls**. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
-Variations in API configurations and application design might affect completions and thus filtering behavior. Risks are flagged by classification models designed to detect harmful content. Four intervention points are supported:
+Risks are flagged by classification models designed to detect harmful content. Four intervention points are supported:
 
 - **User input** — The prompt sent to a model or agent.
 - **Tool call** (Preview) — The action and data the agent proposes to send to a tool. Agents only.
@@ -27,6 +27,18 @@ Variations in API configurations and application design might affect completions
 - **Output** — The final completion returned to the user.
 
 For more information about intervention points, see [Intervention points and controls](intervention-points.md).
+
+> [!NOTE]
+> Guardrails leverage classification models from [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety) to detect harmful content across supported risk categories.
+
+> [!NOTE]
+> **Performance considerations**  
+> Guardrail processing adds minimal latency to model and agent requests:
+> - User input scanning: ~50-100ms
+> - Output scanning: ~50-100ms
+> - Tool call/response scanning: ~50-100ms per intervention point
+>
+> Latency varies based on content length and number of active controls. For high-throughput scenarios, consider severity level tuning to balance safety and performance.
 
 > [!IMPORTANT]
 > The guardrail system applies to all [Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio models such as Whisper. For more information, see [Audio models](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
@@ -80,15 +92,25 @@ For a detailed breakdown of what each severity level detects, see [Content filte
 
 The following table summarizes which intervention points are applicable to models and agents:
 
+| Intervention Point | Applicable to Models | Applicable to Agents (Preview) |
+|-------------------|---------------------|---------------------|
+| User input | ✅ | ✅ |
+| Tool call | ❌ | ✅ (Preview) |
+| Tool response | ❌ | ✅ (Preview) |
+| Output | ✅ | ✅ |
+
 > [!IMPORTANT]
 > Risks are detected in an agent based on the guardrail it's assigned, not the guardrail of its underlying model. The agentic guardrail fully overrides the model's guardrail.
 
+#### Example: Guardrail override behavior
+
+Consider this scenario:
 - A model deployment has a control with Violence detection set to **High** for user input and output
 - An agent using that model has a control with Violence detection set to **Low** for user input and output. The agent has no controls for Violence detection at all for tool calls and responses
 
 ### Action applicability
 
-The following table summarizes which actions are applicable to models and agents:
+When a control detects a risk, it can take one of two actions. The following table summarizes which actions are applicable to models and agents:
 
 | Action | Applicable to Models | Applicable to Agents (Preview) |
 |--------|---------------------|---------------------|
@@ -107,6 +129,8 @@ The following table summarizes which actions are applicable to models and agents
 
 **Expected behavior for Violence detection in that agent:**
 
+Given the configuration above, here's how Violence detection works at each stage:
+
 - User queries to the agent are scanned for Violence at a **Low** level
 - Tool calls generated internally to the agent by its underlying model, including the content then sent to that tool during the tool call's execution, will **not** be scanned for Violence
 - The response back from the tool will **not** be scanned for Violence
@@ -124,6 +148,46 @@ Default guardrail assignment for agents follows these rules:
 
 > [!NOTE]
 > For example, if no custom guardrails are specified for an agent and that agent uses a GPT-4o mini deployment with a guardrail named "MyCustomGuardrails," the agent also uses "MyCustomGuardrails" until you assign a different guardrail.
+
+## Troubleshooting
+
+### Guardrail not applying to agent
+
+**Symptom:** Agent behavior doesn't match assigned guardrail configuration.
+
+**Causes:**
+- Guardrail contains controls with preview risks not yet supported for agents (Spotlighting, Groundedness)
+- Agent using model's guardrail instead of assigned guardrail
+
+**Solution:**
+- Verify assigned guardrail using Azure AI Foundry portal or SDK
+- Check that guardrail controls don't rely on agent-unsupported risks
+- Explicitly assign guardrail to agent to override model defaults
+
+### Content flagged unexpectedly
+
+**Symptom:** Legitimate content blocked by guardrail.
+
+**Causes:**
+- Severity level set too restrictively (Low threshold)
+- Classification model detected edge-case pattern
+
+**Solution:**
+- Review severity level settings for affected risk category
+- Test with different severity levels to find appropriate threshold
+- For persistent false positives, contact Azure Support to review classification
+
+### Tool calls not being scanned
+
+**Symptom:** Harmful content passes through tool calls/responses.
+
+**Causes:**
+- Tool call and tool response intervention points not configured in guardrail
+- Using preview features that may not be fully enabled
+
+**Solution:**
+- Verify guardrail includes controls for tool call and tool response intervention points
+- Ensure Foundry Agent Service preview features are enabled for your project
 
 ## Next steps
 
