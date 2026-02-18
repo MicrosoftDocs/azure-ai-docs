@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.
 
-In this article, you learn how to run an agent-targeted evaluation against an [Azure AI Foundry agent](../../../agents/overview.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
+In this article, you learn how to run an agent-targeted evaluation against a [Foundry agent](../../../agents/overview.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
 
 - Set up the SDK client for evaluation.
 - Choose evaluators for quality, safety, and agent behavior.
