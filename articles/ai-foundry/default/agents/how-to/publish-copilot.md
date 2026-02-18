@@ -175,6 +175,7 @@ To confirm your agent is published correctly:
 | Private Link | Private Link isn't supported for Teams or Azure Bot Service integrations. |
 | Streaming and citations | Published agents don't support streaming responses or citations. |
 | OAuth authentication for tools | Published agents don't support OAuth authentication for tools. |
+| SharePoint and Microsoft Fabric tools | Published agents don't support the SharePoint tool or the Microsoft Fabric tool. |
 | Project managed identity needs Azure AI User role on itself | When you publish to Microsoft 365, the project managed identity must have the **Azure AI User** role on itself. Without it, you get an authorization error when chatting with the agent in Teams/M365. In the Azure portal, go to your Foundry project resource and select **Access control (IAM)** > **Add role assignment**. Assign the **Azure AI User** role to the project managed identity, scoped to the project itself. |
 
 ## Troubleshooting
