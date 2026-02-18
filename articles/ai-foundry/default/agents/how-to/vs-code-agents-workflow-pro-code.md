@@ -197,8 +197,9 @@ You can run the hosted agent in interactive mode or container mode.
 Run the hosted agent directly for development and testing:
 
 ```bash
+dotnet restore
 dotnet build
-dotnet run --interactive
+dotnet run
 ```
 
 ### Run your hosted agent in container mode
@@ -211,6 +212,7 @@ To run the agent in container mode:
 1. Open the Visual Studio Code Command Palette and execute the `Microsoft Foundry: Open Container Agent Playground Locally` command.
 2. Use the following command to initialize the containerized hosted agent.
    ```bash
+   dotnet restore
    dotnet build
    dotnet run
    ```
