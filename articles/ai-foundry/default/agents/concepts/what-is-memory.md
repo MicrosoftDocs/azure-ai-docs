@@ -56,7 +56,7 @@ Here's an example of how memory can improve and personalize interactions between
 >
 > - Use memory for user-specific context that persists over time.
 > - Use a [Foundry IQ](../concepts/what-is-foundry-iq.md) knowledge base to ground your agent on curated organizational content.
-> - Use the [file search tool](../how-to/tools/file-search.md) to search user-provided documents during an interaction.
+> - Use the [file search tool](../how-to/tools/file-search.md?view=foundry) to search user-provided documents during an interaction.
 
 ## Memory types
 
@@ -110,7 +110,7 @@ To mitigate security risks, consider these actions:
 
 ## Limitations and quotas
 
-- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md).
+- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md?view=foundry).
 - You must set the `scope` value explicitly. Automatic population from the user identity specified in the request isn't currently supported.
 
 
@@ -121,7 +121,7 @@ To mitigate security risks, consider these actions:
 - Search memories: 1,000 requests per minute
 - Update memories: 1,000 requests per minute
 
-For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md).
+For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md?view=foundry).
 
 ## Pricing
 
@@ -131,6 +131,6 @@ You're billed for usage of the underlying chat and embedding models you configur
 
 ## Related content
 
-- Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
-- Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md).
-- Build a complete agent: [Microsoft Foundry Quickstart](../../../quickstarts/get-started-code.md).
+- Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)
+- Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md?view=foundry)
+- Build a complete agent: [Microsoft Foundry quickstart](../../../quickstarts/get-started-code.md?view=foundry)

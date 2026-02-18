@@ -617,5 +617,5 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 - [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
 - [Memory store REST API reference](../../../reference/foundry-project-rest-preview.md)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
-- [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md)
-- [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
+- [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md?view=foundry)
+- [Build an agent with Microsoft Foundry](../../../quickstarts/get-started-code.md?view=foundry)
