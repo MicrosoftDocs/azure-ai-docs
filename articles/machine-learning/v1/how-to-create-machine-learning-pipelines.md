@@ -124,14 +124,14 @@ You can create an Azure Machine Learning compute for running your steps. The cod
 from azureml.core.compute import ComputeTarget, AmlCompute
 
 compute_name = "aml-compute"
-vm_size = "STANDARD_NC6"
+vm_size = "STANDARD_NC4AS_T4_V3"
 if compute_name in ws.compute_targets:
     compute_target = ws.compute_targets[compute_name]
     if compute_target and type(compute_target) is AmlCompute:
         print('Found compute target: ' + compute_name)
 else:
     print('Creating a new compute target...')
-    provisioning_config = AmlCompute.provisioning_configuration(vm_size=vm_size,  # STANDARD_NC6 is GPU-enabled
+    provisioning_config = AmlCompute.provisioning_configuration(vm_size=vm_size,  # STANDARD_NC4AS_T4_V3 is GPU-enabled
                                                                 min_nodes=0,
                                                                 max_nodes=4)
     # create the compute target
