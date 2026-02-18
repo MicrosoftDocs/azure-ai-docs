@@ -1,3 +1,16 @@
+---
+title: Quota tier 3
+description: Quota tier limits for tier 3
+manager: nitinme
+author: mrbullwinkle
+ms.author: mbullwin
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
+ms.topic: include
+ms.date: 02/18/2026
+---
+
+
 ### Tier 3
 
 | Model Name                     | Deployment Type   | Requests Per Minute (RPM)   | Tokens Per Minute (TPM) |

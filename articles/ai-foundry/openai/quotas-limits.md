@@ -67,7 +67,7 @@ curl -X PATCH \
 
 ### Can I request more quota?
 
-Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota.If the request is approved, the current tier will remain the same, but with more quota assigned.  
+Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota. If the request is approved, the current tier will remain the same, but with more quota assigned.  
 
 
 ### Quota tier reference
