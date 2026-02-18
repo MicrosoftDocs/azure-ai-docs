@@ -471,7 +471,7 @@ curl --request POST \
   }'
 ```
 
-## Create an agent with file search
+## Create an agent with the file search tool
 
 ```bash
 curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
