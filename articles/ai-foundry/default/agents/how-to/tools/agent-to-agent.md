@@ -31,11 +31,11 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 
 ## Usage support
 
-The following table shows SDK and setup support. A checkmark (✔️) indicates support; a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support. ✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
