@@ -9,8 +9,8 @@ ms.topic: tutorial
 ms.date: 02/17/2026
 ms.author: mopeakande
 author: msakande
-ms.author: rasavage
-author: rsavage2
+ms.reviewer: rasavage
+reviewer: rsavage2
 ms.custom: dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use the DeepSeek-R1 reasoning model in Microsoft Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
