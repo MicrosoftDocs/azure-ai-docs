@@ -193,7 +193,7 @@ Use these checks to unblock common publishing issues.
 
 In the Microsoft Admin Center, you can approve Foundry agents published to M365/Teams. Once approved by an admin, the agent appears under Built by your org in the agent store for Microsoft 365 Copilot. 
 
-**2. If I publish my agent to Individual Scope (previously called Shared Scope), how do I share it with others in my organization?**
+**If I publish my agent to Individual Scope (previously called Shared Scope), how do I share it with others in my organization?**
 
 The agent appears under Your agents in the agent store for Microsoft 365 Copilot. You can share it by sending the agent link to selected users in your organization. 
 
