@@ -6,7 +6,7 @@ author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
 ms.date: 11/04/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
