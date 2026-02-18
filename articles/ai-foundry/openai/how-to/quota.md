@@ -47,7 +47,7 @@ When a deployment is created, the assigned TPM will directly map to the tokens-p
 > | **o1-mini:**           | 1 Unit     | 1 RPM                      | 10,000 TPM              |
 > | **o3-pro:**            | 1 Unit     | 1 RPM                      | 10,000 TPM              |
 >
-> This is particularly important for programmatic model deployment as changes in RPM/TPM ratio can result in accidental  misallocation of quota. For more information, see [quota, and limits](../quotas-limits.md).
+> This is particularly important for programmatic model deployment as changes in RPM/TPM ratio can result in accidental  misallocation of quota.
 
 The flexibility to distribute TPM globally within a subscription and region has allowed Azure OpenAI to loosen other restrictions:
 
