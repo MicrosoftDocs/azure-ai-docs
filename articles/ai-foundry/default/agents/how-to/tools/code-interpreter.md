@@ -29,11 +29,11 @@ When enabled, your agent can write and run Python code iteratively to solve data
 
 ### Usage support
 
-|Microsoft Foundry support|Python SDK|C# SDK|JavaScript SDK|Java SDK|REST API|Basic agent setup|Standard agent setup|
-|---|---|---|---|---|---|---|---|
-|✔️|✔️|✔️|-|-|-|✔️|✔️|
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
 
-✔️ indicates the feature is supported. `-` indicates the feature isn't currently available for that SDK or API.
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | - | - | - | ✔️ | ✔️ |
 
 ## Prerequisites
 

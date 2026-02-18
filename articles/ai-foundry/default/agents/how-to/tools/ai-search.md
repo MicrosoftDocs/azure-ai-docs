@@ -25,9 +25,11 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
 
 ## Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 Java SDK samples are coming soon.
 
@@ -438,14 +440,12 @@ The following example shows how to use the Azure AI Search tool with the REST AP
 Before running this sample, obtain a bearer token for authentication. Use the Azure CLI to get a token:
 
 ```bash
-az account get-access-token --resource https://cognitiveservices.azure.com
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
 ```
-
-Set `AGENT_TOKEN` to the token value and `API_VERSION` to the current API version (for example, `2025-01-01-preview`).
 
 ```bash
 curl --request POST \
-  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{

@@ -39,9 +39,11 @@ The grounding process involves several key steps:
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -66,7 +68,7 @@ Before you begin, make sure you have:
   - For REST samples:
     - `BING_PROJECT_CONNECTION_ID`: Your Grounding with Bing Search project connection ID.
     - `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`: Your Grounding with Bing Custom Search project connection ID.
-    - `API_VERSION`, `AGENT_TOKEN`.
+    - `AGENT_TOKEN`.
   - For Bing Custom Search: `BING_CUSTOM_SEARCH_INSTANCE_NAME`: Your custom search instance name.
 - A Bing Grounding or Bing Custom Search resource created and connected to your Foundry project. A paid subscription is required to create a Grounding with Bing Search or Grounding with Bing Custom Search resource.
 - The Grounding with Bing Search tool works in a network-secured Foundry project, but it behaves like a public endpoint. Consider this behavior when you use the tool in a network-secured environment.
@@ -623,20 +625,16 @@ Before running REST API calls, configure authentication:
 
 1. Set environment variables:
    - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-   - `API_VERSION`: API version (for example, `2025-11-15-preview`).
    - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
    - `BING_PROJECT_CONNECTION_ID`: Your Grounding with Bing Search project connection ID.
-  - `AGENT_TOKEN`: A bearer token for your user or service principal.
 1. Obtain a bearer token:
-   ```azurecli
-   az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv
+   ```bash
+   export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
    ```
-
-  Save the output as the `AGENT_TOKEN` environment variable.
 
    ```bash
    curl --request POST \
-     --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+     --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
      -H "Authorization: Bearer $AGENT_TOKEN" \
      -H "Content-Type: application/json" \
      -d '{
@@ -673,7 +671,7 @@ This REST API request creates a response using Grounding with Bing Search. The r
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_ID`.
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_ID`.
 - Valid bearer token with appropriate permissions.
 
 ### Expected output
@@ -687,7 +685,7 @@ JSON response with:
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -725,7 +723,7 @@ This REST API request creates a response using Grounding with Bing Custom Search
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
 - Valid bearer token with appropriate permissions.
 - Bing Custom Search instance already configured with target domains
 
@@ -1192,7 +1190,7 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 - `AZURE_AI_MODEL_DEPLOYMENT_NAME`
 - `BING_PROJECT_CONNECTION_ID` or `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`
 - For custom search: `BING_CUSTOM_SEARCH_INSTANCE_NAME`
-- For REST API: `API_VERSION`, `AGENT_TOKEN`
+- For REST API: `AGENT_TOKEN`
 
 Create a `.env` file or set system environment variables with these values.
 

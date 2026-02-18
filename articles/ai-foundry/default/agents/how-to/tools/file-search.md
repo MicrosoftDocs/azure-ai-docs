@@ -33,9 +33,11 @@ In this article, you learn how to:
 
 ## Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -440,11 +442,17 @@ main().catch((err) => {
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. Then poll the store's status until all files are out of the `in_progress` state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
+Set the following environment variable before running the examples:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
+
 ### Upload a file
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/files?api-version=$API_VERSION \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/files \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -F purpose="assistants" \
   -F file="@c:\\path_to_file\\sample_file_for_upload.txt"
@@ -454,7 +462,7 @@ curl --request POST \
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/vector_stores?api-version=$API_VERSION \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/vector_stores \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -463,42 +471,41 @@ curl --request POST \
   }'
 ```
 
-## Create an agent version and enable file search
+## Create an agent with file search
 
 ```bash
-curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
   -d '{
-  "description": "Test agent version description",
-  "definition": {
-    "kind": "prompt",
-    "model": "{{model}}",
-    "tools": [
-      {
-        "type": "file_search",
-        "vector_store_ids": ["{{vectorStore.id}}"],
-        "max_num_results": 20
-      }
-    ],
-    "instructions": "You are a customer support chatbot. Use file search results from the vector store to answer questions based on the uploaded files."
-  }
-}'
+    "name": "<AGENT_NAME>-file-search",
+    "description": "Agent with file search",
+    "definition": {
+      "kind": "prompt",
+      "model": "<MODEL_DEPLOYMENT>",
+      "tools": [
+        {
+          "type": "file_search",
+          "vector_store_ids": ["{{vectorStore.id}}"],
+          "max_num_results": 20
+        }
+      ],
+      "instructions": "You are a customer support chatbot. Use file search results from the vector store to answer questions based on the uploaded files."
+    }
+  }'
 ```
 
 ## Create response with file search
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
   "agent": {
     "type": "agent_reference",
-    "name": "{{agentVersion.name}}",
-    "version": "{{agentVersion.version}}"
+    "name": "<AGENT_NAME>-file-search"
   },
   "metadata": {
     "test_response": "file_search_enabled",
@@ -522,34 +529,28 @@ The response returns streaming output containing the agent's answer based on inf
 
 ### Clean up
 
-Delete the agent version.
+Delete the agent.
 
 ```bash
-curl --request DELETE \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions/$AGENTVERSION_VERSION?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{}'
+curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-file-search?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 Delete the vector store.
 
 ```bash
 curl --request DELETE \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/vector_stores/$VECTORSTORE_ID?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{}'
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/vector_stores/$VECTORSTORE_ID \
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 Delete the file.
 
 ```bash
 curl --request DELETE \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/files/$FILE_ID?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{}'
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/files/$FILE_ID \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
 ```
 
 ### References

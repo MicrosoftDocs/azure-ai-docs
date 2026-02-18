@@ -23,9 +23,11 @@ Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifi
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -464,7 +466,7 @@ The following examples show how to call an OpenAPI tool by using the REST API.
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
   --header "Authorization: Bearer $AGENT_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
@@ -531,7 +533,7 @@ curl --request POST \
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
   --header "Authorization: Bearer $AGENT_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
@@ -615,7 +617,7 @@ curl --request POST \
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
   --header "Authorization: Bearer $AGENT_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
@@ -694,7 +696,7 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
 - For API key auth: `WEATHER_APP_PROJECT_CONNECTION_ID`.
 - For managed identity auth: `MANAGED_IDENTITY_AUDIENCE`.
 - Inline OpenAPI specification in request body.
