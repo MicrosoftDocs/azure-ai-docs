@@ -125,11 +125,17 @@ You can run the hosted agent in interactive mode or container mode.
 
 ### Run your hosted agent in interactive mode
 
-Run the hosted agent directly for development and testing:
+Press **F5** in VS Code to start debugging. Alternatively, you can use the VS Code debug menu:
 
-```bash
-python interactive.py
-```
+1. Open the **Run and Debug** view (Ctrl+Shift+D / Cmd+Shift+D)
+2. Select **"Debug Local Workflow HTTP Server"** from the dropdown
+3. Select the green **Start Debugging** button (or press F5)
+
+This will:
+
+1. Start the HTTP server with debugging enabled
+2. Open the AI Toolkit Agent Inspector for interactive testing
+3. Allow you to set breakpoints and inspect the workflow execution in real time.
 
 ### Run your hosted agent in container mode
 
@@ -138,7 +144,7 @@ python interactive.py
 
 To run the hosted agent in container mode:
 1. Open the Visual Studio Code Command Palette and execute the `Microsoft Foundry: Open Container Agent Playground Locally` command.
-1. Execute `container.py` to initialize the containerized hosted agent.
+1. Execute `main.py` to initialize the containerized hosted agent.
 1. Submit a request to the agent through the playground interface. For example, enter a prompt such as: "Create a slogan for a new electric SUV that's affordable and fun to drive."
 1. Review the agent's response in the playground interface.
 
