@@ -24,7 +24,7 @@ Foundry MCP Server exposes a set of tools that let you manage datasets, run eval
 
 **agent_get (read)**
 
-Get a specific agent by name, or list all agents in an Azure AI Project.
+Get a specific agent by name, or list all agents in a Foundry Project.
 
 Example prompts include:
 
@@ -34,7 +34,7 @@ Example prompts include:
 
 **agent_update (write)**
 
-Create, update, or clone an agent in an Azure AI Project.
+Create, update, or clone an agent in a Foundry Project.
 
 Example prompts include:
 
@@ -44,7 +44,7 @@ Example prompts include:
 
 **agent_delete (write)**
 
-Delete an agent in an Azure AI Project.
+Delete an agent in a Foundry Project.
 
 Example prompts include:
 
@@ -88,7 +88,7 @@ Example prompts include:
 
 **evaluation_get (read)**
 
-List evaluation runs in the Azure AI Project.
+List evaluation runs in the Foundry Project.
 
 Example prompts include:
 
