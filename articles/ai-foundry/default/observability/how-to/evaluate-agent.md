@@ -25,7 +25,7 @@ In this article, you learn how to run an agent-targeted evaluation against an [A
 - Interpret results and integrate them into your workflow.
 
 > [!TIP]
-> For general-purpose evaluation of generative AI models and applications, including custom evaluators, different data sources, and additional SDK options, see [Run evaluations in the cloud](../../../how-to/develop/cloud-evaluation.md).
+> For general-purpose evaluation of generative AI models and applications, including custom evaluators, different data sources, and additional SDK options, see [Run evaluations from the SDK](../../../how-to/develop/cloud-evaluation.md).
 
 [!INCLUDE [evaluation-preview-foundry](../../includes/evaluation-preview-foundry.md)]
 
