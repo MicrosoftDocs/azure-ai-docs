@@ -127,18 +127,16 @@ Foundry Tools contains three sections:
     |---------|---------|
     |[Azure AI Search](../how-to/tools/ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data. |
     |[Browser Automation (preview)](../how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts. |
+    |[Code Interpreter](../how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment. |
     |[Custom Code Interpreter (preview)](../how-to/tools/custom-code-interpreter.md)     | Use a custom code interpreter MCP server to customize resources, available Python packages, and the Container Apps environment the agent uses. |
+    |[Computer Use (preview)](../how-to/tools/computer-use.md)     | Specialized tool that uses a model that can perform tasks by interacting with computer systems and applications through their user interfaces. |
+    |[File Search](../how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users. |
     | [Grounding with Bing tools](../how-to/tools/bing-tools.md) | Enable your agent to use Grounding with Bing Search to access and return information from the internet. |
     | [Image Generation (preview)](../how-to/tools/image-generation.md) | Enable image generation as part of conversations and multi-step workflows. |
     | [Microsoft Fabric (preview)](../how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
     | [SharePoint (preview)](../how-to/tools/sharepoint.md) | Integrate your agents with Microsoft SharePoint to chat with your private documents securely. |
     |[Web Search (preview)](../how-to/tools/web-search.md)     | Enable models to retrieve and ground responses with real-time information from the public web before generating output. |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-|[Code Interpreter](../how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment. |
-|[Computer Use (preview)](../how-to/tools/computer-use.md)     | Specialized tool that uses a model that can perform tasks by interacting with computer systems and applications through their user interfaces. |
-|[File Search](../how-to/tools/file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users. |
--->
 - **Catalog**: Available from the public or organizational Foundry Tool Catalog, including remote and local MCP servers and Azure Logic Apps connectors, which may require setup before use.
 
 - **Custom**: These allow you to bring your own APIs using remote MCP server endpoints, A2A endpoints, OpenAPI 3.0 specs, or functions.

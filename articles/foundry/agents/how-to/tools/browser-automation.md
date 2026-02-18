@@ -517,6 +517,6 @@ Review the [responsible AI considerations](../../../responsible-ai/agents/transp
 ## Related content
 
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
-<!-- CLASSIC-ONLY: - [Computer use tool for agents](computer-use.md) -->
+- [Computer use tool for agents](computer-use.md)
 - [Add a connection in Microsoft Foundry](../../../how-to/connections-add.md)
 - [Quickstart: Create your first agent](../../../quickstarts/get-started-code.md)

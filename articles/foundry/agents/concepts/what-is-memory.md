@@ -55,7 +55,7 @@ Here's an example of how memory can improve and personalize interactions between
 >
 > - Use memory for user-specific context that persists over time.
 > - Use a [Foundry IQ](../concepts/what-is-foundry-iq.md) knowledge base to ground your agent on curated organizational content.
-<!-- CLASSIC-ONLY: > - Use the [file search tool](../how-to/tools/file-search.md) to search user-provided documents during an interaction. -->
+> - Use the [file search tool](../how-to/tools/file-search.md) to search user-provided documents during an interaction.
 
 ## Memory types
 

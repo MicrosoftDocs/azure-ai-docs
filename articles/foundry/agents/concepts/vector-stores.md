@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Vector stores for file search (temp)
 
-<!-- CLASSIC-ONLY: Vector store objects give the [file search](../how-to/tools/file-search.md) tool the ability to search your files. When you add a file to a vector store, the service parses, chunks, embeds, and indexes it so the tool can run both keyword and semantic search. -->
+Vector store objects give the [file search](../how-to/tools/file-search.md) tool the ability to search your files. When you add a file to a vector store, the service parses, chunks, embeds, and indexes it so the tool can run both keyword and semantic search.
 
 Vector stores can be attached to both agents and conversations. Currently, you can attach at most one vector store to an agent and at most one vector store to a conversation. For a conceptual overview of conversations, see [Agent runtime components](runtime-components.md).
 
@@ -25,7 +25,7 @@ In the current agents developer experience, response generation uses **responses
 ## Prerequisites
 
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
-<!-- CLASSIC-ONLY: - An agent or conversation that uses the [file search](../how-to/tools/file-search.md) tool. -->
+- An agent or conversation that uses the [file search](../how-to/tools/file-search.md) tool.
 - If you use standard agent setup, connect Azure Blob Storage and Azure AI Search during setup so your files remain in your storage. See [Agent environment setup](../../agents/environment-setup.md).
 - Roles and permissions vary by task (for example, creating projects, assigning roles for standard setup, or creating and editing agents). See the required permissions table in [Agent environment setup](../../agents/environment-setup.md).
 - Feature availability can vary by region. For current coverage, see [Microsoft Foundry feature availability across cloud regions](../../reference/region-support.md).
@@ -62,7 +62,7 @@ File search applies retrieval best practices to help your agent find the right c
 - Run both keyword and semantic searches across agent and conversation vector stores.
 - Rerank results before adding them to the model context.
 
-<!-- CLASSIC-ONLY: For current default retrieval settings (chunk size and overlap, embedding model, and the maximum number of chunks added to context), see [How it works](../how-to/tools/file-search.md#how-file-search-works). -->
+For current default retrieval settings (chunk size and overlap, embedding model, and the maximum number of chunks added to context), see [How it works](../how-to/tools/file-search.md#how-file-search-works).
 
 ## Where your data lives (basic vs standard agent setup)
 
@@ -71,13 +71,13 @@ Where files and search resources live depends on your agent setup:
 - **Basic agent setup**: File search uses Microsoft-managed storage and search resources.
 - **Standard agent setup**: File search uses the Azure Blob Storage and Azure AI Search resources you connect during setup, so your files remain in your storage.
 
-<!-- CLASSIC-ONLY: To set up your environment, see [Agent environment setup](../../agents/environment-setup.md). For more detail, see [Dependency on agent setup](../how-to/tools/file-search.md#file-search-behavior-by-agent-setup-type). -->
+To set up your environment, see [Agent environment setup](../../agents/environment-setup.md). For more detail, see [Dependency on agent setup](../how-to/tools/file-search.md#file-search-behavior-by-agent-setup-type).
 
 ## Ensure vector store readiness before creating responses
 
 Ensure all files in a vector store are fully processed before you create a response. This step ensures that all the data in your vector store is searchable.
 
-<!-- CLASSIC-ONLY: To check readiness, use the SDK polling helpers (for example, *create-and-poll* and *upload-and-poll*) or poll the vector store object until its status is **completed**. For code examples, see [File search tool for agents](../how-to/tools/file-search.md). -->
+To check readiness, use the SDK polling helpers (for example, *create-and-poll* and *upload-and-poll*) or poll the vector store object until its status is **completed**. For code examples, see [File search tool for agents](../how-to/tools/file-search.md).
 
 During ingestion, a vector store can be in **in_progress** status. When ingestion completes, the status changes to **completed**.
 
@@ -88,11 +88,11 @@ As a fallback, response generation includes a 60-second maximum wait when the co
 Use this checklist to validate a working vector-store workflow from ingestion to lifecycle management.
 
 1. Decide whether you use basic agent setup or standard agent setup, based on where you want your files and search resources to live. See [Where your data lives (basic vs standard agent setup)](#where-your-data-lives-basic-vs-standard-agent-setup).
-<!-- CLASSIC-ONLY: 1. Upload your files and create a vector store. For a step-by-step example, see [Upload files and add them to a vector store](../how-to/tools/file-search.md#upload-files-and-add-them-to-a-vector-store). -->
-<!-- CLASSIC-ONLY: 1. Wait for ingestion to finish before you generate responses. Use SDK polling helpers or poll the vector store until its status is **completed** and no files remain in **in_progress**. See [Ensuring vector store readiness before creating responses](../how-to/tools/file-search.md#ensuring-vector-store-readiness-before-creating-runs). -->
-<!-- CLASSIC-ONLY: 1. Attach the vector store to the agent or conversation that you use for file search. Keep the attachment limits in mind. See [Vector stores](../how-to/tools/file-search.md#vector-stores). -->
-<!-- CLASSIC-ONLY: 1. Create a response that uses file search and verify that the tool is retrieving from the expected sources. See [Create response with file search](../how-to/tools/file-search.md#create-response-with-file-search) and [Verify results](../how-to/tools/file-search.md#verify-file-search-results). -->
-<!-- CLASSIC-ONLY: 1. Manage lifecycle: remove files you no longer need, and plan for expiration policies (especially for vector stores created by conversation helpers). See [Vector stores](../how-to/tools/file-search.md#vector-stores) and [Conversation vector stores have default expiration policies](../how-to/tools/file-search.md#conversation-vector-stores-have-default-expiration-policies). -->
+1. Upload your files and create a vector store. For a step-by-step example, see [Upload files and add them to a vector store](../how-to/tools/file-search.md#upload-files-and-add-them-to-a-vector-store).
+1. Wait for ingestion to finish before you generate responses. Use SDK polling helpers or poll the vector store until its status is **completed** and no files remain in **in_progress**. See [Ensuring vector store readiness before creating responses](../how-to/tools/file-search.md#ensuring-vector-store-readiness-before-creating-runs).
+1. Attach the vector store to the agent or conversation that you use for file search. Keep the attachment limits in mind. See [Vector stores](../how-to/tools/file-search.md#vector-stores).
+1. Create a response that uses file search and verify that the tool is retrieving from the expected sources. See [Create response with file search](../how-to/tools/file-search.md#create-response-with-file-search) and [Verify results](../how-to/tools/file-search.md#verify-file-search-results).
+1. Manage lifecycle: remove files you no longer need, and plan for expiration policies (especially for vector stores created by conversation helpers). See [Vector stores](../how-to/tools/file-search.md#vector-stores) and [Conversation vector stores have default expiration policies](../how-to/tools/file-search.md#conversation-vector-stores-have-default-expiration-policies).
 
 ## Add files and manage vector stores
 
@@ -122,11 +122,11 @@ Expiration policies help you manage vector store lifecycle. You can set these po
 
 Vector stores created using conversation helpers have a default expiration policy of seven days after they were last active (defined as the last time the vector store was used during response generation).
 
-<!-- CLASSIC-ONLY: When a vector store expires, response generation for that conversation fails. To fix the issue, recreate a new vector store with the same files and reattach it to the conversation. For more detail, see [Conversation vector stores have default expiration policies](../how-to/tools/file-search.md#conversation-vector-stores-have-default-expiration-policies). -->
+When a vector store expires, response generation for that conversation fails. To fix the issue, recreate a new vector store with the same files and reattach it to the conversation. For more detail, see [Conversation vector stores have default expiration policies](../how-to/tools/file-search.md#conversation-vector-stores-have-default-expiration-policies).
 
 ## Supported file types and key limits
 
-<!-- CLASSIC-ONLY: For the supported file types list and encoding requirements, see [Supported file types](../how-to/tools/file-search.md#supported-file-types). -->
+For the supported file types list and encoding requirements, see [Supported file types](../how-to/tools/file-search.md#supported-file-types).
 
 Key limits to keep in mind:
 
@@ -142,6 +142,6 @@ Key limits to keep in mind:
 
 ## Next steps
 
-<!-- CLASSIC-ONLY: - Learn more about the [file search tool](../how-to/tools/file-search.md) -->
+- Learn more about the [file search tool](../how-to/tools/file-search.md)
 - Review [tool best practices](tool-best-practice.md) for guidance on reliability and security
 - Learn about [agent runtime components](runtime-components.md)

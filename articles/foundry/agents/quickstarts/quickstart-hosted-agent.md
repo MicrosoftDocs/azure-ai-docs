@@ -341,8 +341,8 @@ Now that you've deployed your first hosted agent, learn how to:
 Customize your agent with additional capabilities:
 - [Connect MCP tools](../how-to/tools/model-context-protocol.md) to extend agent functionality
 - [Use function calling](../how-to/tools/function-calling.md) to integrate custom logic
-<!-- CLASSIC-ONLY: - [Add file search](../how-to/tools/file-search.md) to search your documents -->
-<!-- CLASSIC-ONLY: - [Enable code interpreter](../how-to/tools/code-interpreter.md) to run Python code -->
+- [Add file search](../how-to/tools/file-search.md) to search your documents
+- [Enable code interpreter](../how-to/tools/code-interpreter.md) to run Python code
 
 You can see a full list of available tools in the [tool catalog](../concepts/tool-catalog.md) article.
 
