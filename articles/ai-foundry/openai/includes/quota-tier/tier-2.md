@@ -11,18 +11,13 @@
 | gpt-4.1-mini                   | Standard          | 12,000      | 12,000,000  |
 | gpt-4.1-nano                   | DataZoneStandard  | 6,000       | 6,000,000   |
 | gpt-4.1-nano                   | GlobalStandard    | 16,000      | 16,000,000  |
-| gpt-4.5-preview                | GlobalStandard    | 165         | 165,000     |
 | gpt-4o                         | DataZoneStandard  | 1000 / 10s  | 1,000,000   |
-| gpt-4o (2024-05-13)            | GlobalStandard    | 2000 / 10s  | 2,000,000   |
-| gpt-4o (2024-08-06)            | GlobalStandard    | 20,000      | 2,000,000   |
 | gpt-4o (realtime-preview)      | GlobalStandard    | 600         | 6,000       |
 | gpt-4o-audio-preview           | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-4o-mini                    | DataZoneStandard  | 30,000      | 3,000,000   |
 | gpt-4o-mini                    | GlobalStandard    | 90,000      | 9,000,000   |
 | gpt-4o-mini-audio-preview      | GlobalStandard    | 30000 / 10s | 30,000,000  |
-| gpt-4o-mini-realtime-preview   | DataZoneStandard  | 30,000      | 3,000,000   |
 | gpt-4o-mini-realtime-preview   | GlobalStandard    | 36          | 6,000       |
-| gpt-4o-realtime-preview        | DataZoneStandard  | 30,000      | 3,000,000   |
 | gpt-4o-realtime-preview        | GlobalStandard    | 36          | 6,000       |
 | gpt-5                          | DataZoneStandard  | 10,000      | 1,000,000   |
 | gpt-5                          | GlobalStandard    | 30,000      | 3,000,000   |
@@ -45,24 +40,13 @@
 | gpt-5.2-chat                   | GlobalStandard    | 20,000      | 2,000,000   |
 | gpt-5.2-codex                  | GlobalStandard    | 20,000      | 2,000,000   |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
-| gpt-audio-mini (2025-10-06)    | GlobalStandard    | 200         | 100,000     |
-| gpt-audio-mini (2025-12-15)    | GlobalStandard    | 20 / 10s    | 20,000      |
 | gpt-image-1                    | GlobalStandard    | 18          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 27          | -           |
-| gpt-image-1.5                  | DataZoneStandard  | 6           | -           |
 | gpt-image-1.5                  | GlobalStandard    | 15          | -           |
-| gpt-realtime                   | DataZoneStandard  | 100         | 100,000     |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
-| gpt-realtime-mini (2025-10-06) | GlobalStandard    | 200         | 100,000     |
-| gpt-realtime-mini (2025-12-15) | GlobalStandard    | 60          | 200,000     |
 | model-router                   | DataZoneStandard  | 190         | 190,000     |
-| model-router (2025-05-19)      | GlobalStandard    | 300,000     | 300,000,000 |
-| model-router (2025-08-07)      | GlobalStandard    | 300,000     | 300,000     |
-| model-router (2025-11-18)      | GlobalStandard    | 300         | 300,000     |
 | o1                             | DataZoneStandard  | 225         | 1,350,000   |
 | o1                             | GlobalStandard    | 1,000       | 6,000,000   |
-| o1-pro                         | DataZoneStandard  | 225         | 1,350,000   |
-| o1-pro                         | GlobalStandard    | 1,000       | 6,000,000   |
 | o3                             | DataZoneStandard  | 670         | 670,000     |
 | o3                             | GlobalStandard    | 2,000       | 2,000,000   |
 | o3-deep-research               | GlobalStandard    | 7,000       | 7,000,000   |
