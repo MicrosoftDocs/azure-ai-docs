@@ -18,6 +18,17 @@ ai-usage: ai-assisted
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](/azure/ai-foundry/openai/concepts/models#video-generation-models).
 - Then, you need to deploy a `sora` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
+## Limitations and quotas
+
+Sora video generation is currently in preview. Keep the following limitations in mind:
+
+- **Region availability**: Sora is available only in **East US 2** and **Sweden Central** (Global Standard deployments).
+- **Supported resolutions**: 480×480, 720×720, 1080×1080, 1280×720, 1920×1080 (width × height).
+- **Video duration**: 5 to 20 seconds (`n_seconds` parameter).
+- **Variants**: Generate 1 to 4 video variants per request (`n_variants` parameter).
+- **Rate limits**: Subject to your deployment's tokens-per-minute (TPM) quota. See [Quotas and limits](../quotas-limits.md) for details.
+- **Content filtering**: Prompts are subject to content moderation. Requests with harmful content are rejected.
+
 ## Microsoft Entra ID prerequisites
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
@@ -68,12 +79,15 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     pip install requests azure-identity
     ```
 
+    The [azure-identity](/python/api/overview/azure/identity-readme) package provides `DefaultAzureCredential` for secure, keyless authentication.
 
     **API key**
 
     ```console
     pip install requests
     ```
+
+    The [requests](https://requests.readthedocs.io/) library handles HTTP calls to the REST API.
 
 ## Retrieve resource information
 
@@ -82,6 +96,18 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 ## Generate video with Sora
 
 You can generate a video with the Sora model by creating a video generation job, polling for its status, and retrieving the generated video. The following code shows how to do this via the REST API using Python.
+
+### Choose your input type
+
+Sora supports three input modes:
+
+| Input type | Best for | Example use case |
+|------------|----------|------------------|
+| **Text prompt only** | Creating entirely new scenes from descriptions | "A cat playing piano in a jazz bar" |
+| **Image + text prompt** | Animating a still image or using it as a starting frame | Bring a product photo to life |
+| **Video + text prompt** | Extending or modifying existing video footage | Add visual effects to existing clips |
+
+### Set up authentication
 
 1. Create the `sora-quickstart.py` file and add the following code to authenticate your resource:
 
@@ -104,6 +130,7 @@ You can generate a video with the Sora model by creating a video generation job,
     credential = DefaultAzureCredential()
     token = credential.get_token("https://cognitiveservices.azure.com/.default")
 
+    # Video generation uses 'preview' as the API version during the preview period
     api_version = 'preview'
     headers= { "Authorization": f"Bearer {token.token}", "Content-Type": "application/json" }
     ```
@@ -126,10 +153,13 @@ You can generate a video with the Sora model by creating a video generation job,
             "Set AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_DEPLOYMENT_NAME, and AZURE_OPENAI_API_KEY."
         )
 
+    # Video generation uses 'preview' as the API version during the preview period
     api_version = 'preview'
     headers= { "api-key": api_key, "Content-Type": "application/json" }
     ```
-1. Create the video generation job. You can create it from a text prompt only, or from an input image and text prompt.
+### Create the video generation job
+
+1. Add the code to create and monitor the video generation job. Choose the input type that matches your use case.
 
     **Text prompt**
 
@@ -185,6 +215,8 @@ You can generate a video with the Sora model by creating a video generation job,
     Use the `"crop_bounds"` data (image crop distances, from each direction, as a fraction of the total image dimensions) to specify which part of the image should be used in video generation.
 
     You can optionally set the `"frame_index"` to the frame in the generated video where your image should appear (the default is 0, the start of the video).
+
+    The `"n_variants"` parameter specifies how many different video variations to generate from the same prompt (1 to 4). Each variant provides a unique interpretation of your input.
 
 
     ```python
@@ -354,7 +386,7 @@ You can generate a video with the Sora model by creating a video generation job,
     python sora-quickstart.py
     ```
 
-    Wait a few moments to get the response.
+    Video generation typically takes **1 to 5 minutes** depending on the resolution and duration. You should see status updates in your terminal as the job progresses through `queued`, `preprocessing`, `running`, `processing`, and finally `succeeded`.
 
 ### Output
 
@@ -390,4 +422,27 @@ Job status: succeeded
 ✅ Video generation succeeded.
 Generated video saved as "output.mp4"
 ```
+
+## Troubleshooting
+
+If you encounter issues, check the following common problems and solutions:
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `401 Unauthorized` | Invalid or expired credentials | For Microsoft Entra ID, run `az login` to refresh your token. For API key, verify `AZURE_OPENAI_API_KEY` is correct. |
+| `403 Forbidden` | Missing role assignment | Assign the **Cognitive Services User** role to your account in the Azure portal. |
+| `404 Not Found` | Incorrect endpoint or deployment name | Verify `AZURE_OPENAI_ENDPOINT` includes your resource name and `AZURE_OPENAI_DEPLOYMENT_NAME` matches your Sora deployment. |
+| `429 Too Many Requests` | Rate limit exceeded | Wait and retry, or request a quota increase in the Azure portal. |
+| `400 Bad Request` with dimension error | Unsupported resolution | Use a supported resolution: 480×480, 720×720, 1080×1080, 1280×720, or 1920×1080. |
+| Job status `failed` | Content policy violation or internal error | Check `failure_reason` in the response. Modify your prompt if it triggered content filtering. |
+| Timeout during polling | Long generation time | Videos can take up to 5 minutes. Increase your polling timeout or check job status manually. |
+
+> [!TIP]
+> To debug authentication issues, test your credentials with a simple API call first:
+> ```python
+> # Test endpoint connectivity
+> test_url = f"{endpoint}/openai/deployments?api-version=2024-02-01"
+> response = requests.get(test_url, headers=headers)
+> print(response.status_code, response.text)
+> ```
 

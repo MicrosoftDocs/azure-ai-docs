@@ -7,6 +7,7 @@ ms.custom:
 ms.topic: include
 ms.date: 04/10/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 
@@ -14,7 +15,7 @@ ms.author: pafarley
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) 
 * Once you have your Azure subscription, <a href="https://aka.ms/acs-create"  title="Create a Content Safety resource"  target="_blank">create a Content Safety resource </a> in the Azure portal to get your key and endpoint. Enter a unique name for your resource, select your subscription, and select a resource group, supported region (see [Region availability](/azure/ai-services/content-safety/overview#region-availability)), and supported pricing tier. Then select **Create**.
-  * The resource takes a few minutes to deploy. After it finishes, Select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
+    * The resource takes a few minutes to deploy. After it finishes, select **Go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
 * [cURL](https://curl.haxx.se/) installed
 
 ## Analyze code for protected material detection
@@ -23,9 +24,9 @@ The following section walks through a sample request with cURL. Paste the comman
 
 1. Replace `<endpoint>` with the endpoint URL associated with your resource.
 1. Replace `<your_subscription_key>` with one of the keys that come with your resource.
-1. Optionally, replace the `"code"` field in the body with your own Code you'd like to analyze.
+1. Optionally, replace the `"code"` field in the body with your own code that you'd like to analyze.
     > [!TIP]
-    > See [Input requirements](../../overview.md#input-requirements) for maximum Code length limitations. Protected material detection is meant to be run on LLM completions, not user prompts.
+    > See [Input requirements](../../overview.md#input-requirements) for maximum code length limitations. Protected material detection is meant to be run on LLM completions, not user prompts.
 
 ```shell
 curl --location --request POST '<endpoint>/contentsafety/text:detectProtectedMaterialForCode?api-version=2024-09-15-preview' \
@@ -35,7 +36,7 @@ curl --location --request POST '<endpoint>/contentsafety/text:detectProtectedMat
   "code": "python import pygame pygame.init() win = pygame.display.set_mode((500, 500)) pygame.display.set_caption(My Game) x = 50 y = 50 width = 40 height = 60 vel = 5 run = True while run: pygame.time.delay(100) for event in pygame.event.get(): if event.type == pygame.QUIT: run = False keys = pygame.key.get_pressed() if keys[pygame.K_LEFT] and x > vel: x -= vel if keys[pygame.K_RIGHT] and x < 500 - width - vel: x += vel if keys[pygame.K_UP] and y > vel: y -= vel if keys[pygame.K_DOWN] and y < 500 - height - vel: y += vel win.fill((0, 0, 0)) pygame.draw.rect(win, (255, 0, 0), (x, y, width, height)) pygame.display.update() pygame.quit()"
 }'
 ```
-The below fields must be included in the url:
+The following fields must be included in the URL:
 
 | Name      |Required?  |  Description | Type   |
 | :------- |-------- |:--------------- | ------ |
@@ -89,6 +90,12 @@ The JSON fields in the output are defined here:
 | **codeCitations** | List of citations where the protected code was found. | Array |
 | **codeCitations.license** | The license type associated with the detected code. | String |
 | **codeCitations.sourceUrls** | A list of URLs from GitHub repositories where the protected code was detected.  | Array of Strings |
+
+## Troubleshooting
+
+- **401/403**: Confirm you’re using a valid key for the same resource as the endpoint.
+- **Feature not available**: Confirm the resource is in a supported region for Protected material (Code).
+- **Invalid input length**: Ensure the `code` string meets the minimum length and stays under the maximum (see [Input requirements](../../overview.md#input-requirements)).
 
 
 ## Clean up resources

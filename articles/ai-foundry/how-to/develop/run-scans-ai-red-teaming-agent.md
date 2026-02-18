@@ -45,9 +45,19 @@ This article explains how to:
 
 ## Prerequisites
 
+::: moniker range="foundry-classic"
+
 - A Foundry project or hubs based project. To learn more, see [Create a project](../create-projects.md).
 
 [!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- [A Foundry project](../create-projects.md)
+  
+::: moniker-end
 
 ## Getting started
 

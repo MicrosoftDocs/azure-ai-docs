@@ -8,6 +8,7 @@ ms.custom: build-2023
 ms.topic: include
 ms.date: 05/03/2023
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 ## Create environment variables 

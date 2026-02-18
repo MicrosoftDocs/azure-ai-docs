@@ -1140,6 +1140,15 @@ By using API key authentication, you can authenticate your OpenAPI spec by using
 
 You can use token-based authentication (for example, a Bearer token) with the same `project_connection` auth type used for API keys. The key difference is how you configure both the OpenAPI spec and the project connection.
 
+Your OpenAPI spec will look like this:
+```json
+  BearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+```
+
+You need to:
 1. Update your OpenAPI spec `securitySchemes` to use `Authorization` as the header name:
 
    ```json

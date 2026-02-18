@@ -30,6 +30,14 @@ Follow the instructions in this article to get started with the Realtime API via
 > [!TIP] 
 > In most cases, use the [Realtime API via WebRTC](./realtime-audio-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming and is the best choice for most scenarios.
 
+Use the following table to help you choose the right protocol for your scenario:
+
+| Protocol | Best for | Latency | Complexity |
+|----------|----------|---------|------------|
+| **WebRTC** | Client-side apps (web, mobile) | Lowest (~50-100ms) | Higher |
+| **WebSocket** | Server-to-server, batch processing | Moderate (~100-300ms) | Lower |
+| **SIP** | Telephony integration | Varies | Highest |
+
 ## Prerequisites
 
 Before you can use GPT real-time audio, you need:
@@ -40,6 +48,9 @@ Before you can use GPT real-time audio, you need:
 - A Microsoft Foundry resource. Create the resource in one of the [supported regions](#supported-models). For setup steps, see [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal).
 - A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article.
   - In the Foundry portal, load your project. Select **Build** in the upper-right menu, then select the **Models** tab on the left pane, and select **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
+- **Required libraries**:
+  - Python: `pip install websockets azure-identity`
+  - JavaScript/Node.js: `npm install ws @azure/identity`
 :::moniker-end
 
 :::moniker range="foundry-classic"
@@ -47,6 +58,9 @@ Before you can use GPT real-time audio, you need:
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
 - A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in the Foundry portal.
+- **Required libraries**:
+  - Python: `pip install websockets azure-identity`
+  - JavaScript/Node.js: `npm install ws @azure/identity`
 :::moniker-end
 
 ## Supported models
@@ -89,6 +103,9 @@ wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=20
 ```
 
 ---
+
+> [!NOTE]
+> The GA API uses `model=` as the query parameter name, while the preview API uses `deployment=`. Both refer to your deployed model name.
 
 To authenticate:
 - **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
