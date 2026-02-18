@@ -13,7 +13,9 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD025 -->
 # Recognized conversational **PII** entities
 
-The Conversational Personally Identifiable Information (PII) detection API is a cloud-based solution that uses artificial intelligence (AI) and machine learning to help you detect and redact sensitive information from conversation inputs. The conversational **PII** API effectively detects and removes sensitive information from input conversations by categorizing personal details into specific, predefined entity types. This comprehensive approach not only safeguards sensitive data to ensure full compliance with privacy regulations, but also enables applications to process and utilize information with enhanced security, reliability, and efficiency.
+The conversational Personally Identifiable Information (PII) detection API uses AI and machine learning to detect and redact sensitive information in conversation inputs.
+
+The API categorizes personal details into predefined entity types for precise identification and removal. Detecting and redacting PII helps ensure compliance with privacy regulations and enables your applications to handle data securely.
 
 > [!TIP]
 > Try PII detection in text or conversations using the [Microsoft Foundry](https://ai.azure.com/explore/language) language playground.
@@ -61,9 +63,9 @@ Personally identifiable information (PII) refers to any single piece of data or 
 
 The Azure Language in Foundry Tools conversational PII extraction API uses Natural Language Processing (NLP) technology to detect, recognize, and extract PII entities from conversations. The following entities represent specific types of information that can reveal an individual's identity:
 
-## Type: Geolocation
+## Geolocation
 
-Data that details an individual's physical location that can be used to pinpoint or monitor where a person is or has been. This data is considered PII when it is linked to a specific person.
+Geolocation data identifies an individual's physical position or movement patterns. This data qualifies as PII when it can be associated with a specific person.
 
 ### Type: Geopolitical Entity GPE (preview)
 
@@ -187,7 +189,7 @@ Any financial information is connected to a particular individual that can, thro
 |---|---|
 |To retrieve this entity type, specify **SWIFTCode** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payload.|[SWIFTCode]|
 
-## Organization
+## Organizational
 
 Any data that an organization collects, stores, or processes that can be used to identify a specific individual, either directly or indirectly.
 
@@ -207,9 +209,9 @@ Data that can be used to identify, distinguish, or trace an individual. While a 
 |---|---|
 |To retrieve this entity type, specify **Date** in the **piiCategories** request parameter. If detected, the entity appears in the **conversational PII** response payloads.|[Date]|
 
-## IT-related
+## Digital Identity
 
-Any identifiable IT-related information that can be used to distinguish or trace an individual's identity.
+Any identifiable digital information that can be used to distinguish or trace an individual's identity.
 
 ### Type: GitHub Account (preview)
 
