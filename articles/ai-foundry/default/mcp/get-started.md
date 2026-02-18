@@ -1,6 +1,6 @@
 ---
 title: Get started using Foundry MCP Server with Visual Studio Code
-description: Connect to Microsoft Foundry MCP Server from Visual Studio Code, authenticate with Entra ID, and run your first prompts against Foundry services.
+description: Connect to Foundry MCP Server from Visual Studio Code, authenticate with Entra ID, and run your first prompts against Foundry services.
 keywords: mcp, model context protocol, foundry mcp server, visual studio code
 author: sdgilley
 ms.author: sgilley
