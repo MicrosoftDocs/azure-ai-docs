@@ -1,19 +1,22 @@
 ---
 title:  Explore available tools and example prompts for Foundry MCP Server (preview) 
-description: Learn about the available tools and example prompts for Foundry MCP Server (preview) 
-keywords: azure developer cli, azd
+description: Reference guide for all Foundry MCP Server tools, including dataset management, evaluation, model deployment, and monitoring, with example prompts for each tool.
+keywords: mcp, model context protocol, foundry mcp server
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
 ms.date: 11/04/2025
-ms.topic: get-started
+ms.topic: reference
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
 # Available tools and example prompts for Foundry MCP Server (preview) 
 
-Use the following sections to find available tools and example prompts for Foundry MCP Server (preview). Foundry MCP Server lets you use conversational prompts instead of API calls to interact with Foundry services. 
+Foundry MCP Server exposes a set of tools that let you manage datasets, run evaluations, deploy and monitor models, and more — all through conversational prompts instead of API calls. Use this reference to explore each tool and try the example prompts in your own project.
+
+> [!TIP]
+> Before using these tools, complete the [Foundry MCP Server setup](get-started.md).
 
 [!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
 
@@ -100,11 +103,11 @@ Get full model details and code sample from Foundry.
 
 Example prompts include:
 
-- "Get detailed information and code samples for GPT-5-mini."
+- "Get detailed information and code samples for GPT-4o-mini."
 - "Show me the specifications and usage examples for the Llama-2-70b model."
 - "I need the documentation and sample code for the text-embedding-ada-002 model."
 
-## Model deployment Management 
+## Model deployment management 
 
 **model_deploy (write)**
 
@@ -112,9 +115,9 @@ Create or update a model deployment in the specified Foundry account.
 
 Example prompts include:
 
-- "Deploy GPT-5-mini as 'production-chatbot' with 20 capacity units"
+- "Deploy GPT-4o-mini as 'production-chatbot' with 20 capacity units"
 - "Create a new deployment called 'content-generator' using the GPT-4o model."
-- "Deploy the latest version of text-davinci-003 for my application."
+- "Deploy the latest version of GPT-4o for my application."
 
 **model_deployment_get (read)**
 
@@ -212,7 +215,7 @@ Example prompts include:
 - "How much capacity do I have left for new deployments in West Europe?"
 - "Show me quota usage across all regions for my subscription."
 
-## Example conversation examples 
+## Example workflows 
 
 **Complete Model Evaluation Workflow:**
 
@@ -239,4 +242,4 @@ Example prompts include:
 
 - Get started with [Foundry MCP Server](get-started.md)
 - Learn how to [build your own MCP server](build-your-own-mcp-server.md)
-- Try the example workflows above in your own Microsoft Foundry project
+- Review [security best practices for MCP servers](security-best-practices.md)
