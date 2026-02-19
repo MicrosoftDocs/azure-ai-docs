@@ -37,7 +37,7 @@ In this article, you learn how to:
 - **Contributor** or **Owner** role on your Foundry resource group. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 - Access to [Azure Marketplace](../../foundry-models/how-to/configure-marketplace.md) to deploy Foundry Models from partners.
 - `homebrew` (macOS) or Node.js 18 or later with `npm` for installing the Claude Code CLI. See [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-- For Windows, install and configure WSL2. See [Install WSL](https://learn.microsoft.com/windows/wsl/install).
+- For Windows, install and configure WSL2. See [Install WSL](/windows/wsl/install).
 - (Optional) [Azure CLI](/cli/azure/install-azure-cli) installed with `az login` completed for Microsoft Entra ID authentication.
 
 ### System requirements
@@ -60,7 +60,7 @@ Before configuring Claude Code, deploy the available [Claude models](../concepts
 
 Other Claude models available in Foundry include `claude-sonnet-4-6`, `claude-opus-4-5` and `claude-opus-4-1`.
 
-To deploy the models:
+To deploy a model:
 
 1. To deploy a Claude model, such as Opus 4.6, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
 
@@ -149,7 +149,6 @@ $env:ANTHROPIC_DEFAULT_HAIKU_MODEL = "claude-haiku-4-5"
 $env:ANTHROPIC_DEFAULT_OPUS_MODEL = "claude-opus-4-6"
 ```
 
-
 The following table describes each variable:
 
 | Variable | Description |
@@ -168,6 +167,7 @@ The following table describes each variable:
 > ```
 
 To persist these variables across terminal sessions, add them to your shell profile (such as `~/.bashrc` or `~/.zshrc`).
+
 ---
 
 ## Authenticate with Foundry
