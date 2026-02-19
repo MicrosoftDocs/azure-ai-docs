@@ -19,16 +19,14 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Microsoft Foundry content filtering ensures that AI-generated outputs align with ethical guidelines and safety standards. Content filtering capabilities classify harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
-
-Guardrails in Microsoft Foundry ensure that AI-generated outputs align with ethical guidelines and safety standards. Guardrails classify harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure Guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
+Microsoft Foundry guardrails ensure that AI-generated outputs align with ethical guidelines and safety standards. The content filtering system classifies harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
 
 For an overview of how guardrails work, see [Guardrails and controls overview](../../default/guardrails/guardrails-overview.md).
 
 The content safety system uses neural multiclass classification models to detect and filter harmful content for both text and image. Content detected at the "safe" severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 
 > [!NOTE]
-> The text content safety models for the hate, sexual, violence, and self-harm categories are trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
+> The text content safety models for the hate, sexual, violence, and self-harm categories are trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. The service can work in many other languages, but detection accuracy and false positive rates may vary. For production use in other languages, conduct thorough testing to validate performance meets your requirements.
 
 ## Harm category descriptions
 
@@ -77,7 +75,26 @@ The following tables provide detailed descriptions and examples for each severit
 
 [!INCLUDE [severity-levels-image](../../../ai-services/content-safety/includes/severity-levels-image.md)]
 
+## Troubleshooting
 
+### Understanding severity classifications
+
+If content is classified at an unexpected severity level:
+
+- Review the detailed severity definitions to understand the classification criteria
+- Check if context is missing that would change the interpretation (educational, historical, fictional)
+- Verify the content language is in the supported list for best accuracy
+- Use annotations to see all detected categories, not just filtered ones
+
+### Adjusting sensitivity
+
+If you're seeing too many false positives or negatives:
+
+- Review your threshold settings in the guardrail configuration
+- Consider whether the content type (educational, medical, creative) requires a custom content policy
+- For supported use cases, request a custom content filter configuration
+
+For more information, see [Configure guardrails and controls](../../default/guardrails/how-to-create-guardrails.md).
 
 ## Next steps
 
