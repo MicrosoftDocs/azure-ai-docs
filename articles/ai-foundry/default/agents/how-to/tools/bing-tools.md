@@ -43,7 +43,7 @@ The grounding process involves several key steps:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
-Java SDK samples are coming soon.
+Java SDK samples are not yet available.
 
 ## Prerequisites
 
