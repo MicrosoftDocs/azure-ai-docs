@@ -67,7 +67,7 @@ The currently supported models are:
 | ✓ `.txt` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters |
 
 > [!NOTE]
-> [Pro mode (preview)](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
+> [Pro mode (`2025-05-01-preview`)](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
 > Total input can't exceed 100 MB and 150 pages.
 
 ### Image
