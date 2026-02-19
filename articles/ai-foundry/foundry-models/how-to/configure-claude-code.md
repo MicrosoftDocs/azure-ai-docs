@@ -149,6 +149,8 @@ $env:ANTHROPIC_DEFAULT_HAIKU_MODEL = "claude-haiku-4-5"
 $env:ANTHROPIC_DEFAULT_OPUS_MODEL = "claude-opus-4-6"
 ```
 
+---
+
 The following table describes each variable:
 
 | Variable | Description |
@@ -168,7 +170,6 @@ The following table describes each variable:
 
 To persist these variables across terminal sessions, add them to your shell profile (such as `~/.bashrc` or `~/.zshrc`).
 
----
 
 ## Authenticate with Foundry
 
@@ -180,21 +181,21 @@ Microsoft Entra ID authentication uses your Azure CLI credentials automatically.
 
 1. Sign in with the Azure CLI:
 
-  ```bash
-  az login
-  ```
-
+    ```bash
+    az login
+    ```
+    
 1. Verify your sign-in targets the correct subscription:
 
-  ```bash
-  az account show
-  ```
+    ```bash
+    az account show
+    ```
 
 1. If your Foundry resource is in a different tenant than your default Azure CLI tenant, specify the tenant ID:
 
-  ```bash
-  az login --tenant <tenant-id>
-  ```
+    ```bash
+    az login --tenant <tenant-id>
+    ```
 
 When you use Microsoft Foundry, the `/login` and `/logout` commands inside Claude Code are disabled. Authentication is handled through your Azure credentials.
 
@@ -209,7 +210,6 @@ If you prefer API key authentication, set the key in your environment variables.
 1. On the **Home** page, find the **Project API key** field.
 1. Select **Copy Project API key** to copy the value.
 1. Set the environment variable in your terminal:
-
 
 # [Bash / WSL](#tab/bash)
 
@@ -261,27 +261,27 @@ Verify that Claude Code is correctly configured to use Microsoft Foundry.
 
 1. Open a terminal and navigate to a project directory:
 
-  ```bash
-  cd your-project
-  ```
+    ```bash
+    cd your-project
+    ```
 
 1. Launch Claude Code:
 
-  ```bash
-  claude
-  ```
+    ```bash
+    claude
+    ```
 
   Claude Code defaults to the Sonnet model for general coding. If you haven't deployed all three models yet, you can specify a deployed model directly:
 
-  ```bash
-  claude --model claude-opus-4-6
-  ```
+    ```bash
+    claude --model claude-opus-4-6
+    ```
 
 1. Run the `/status` command:
 
-  ```bash
-  > /status
-  ```
+    ```bash
+    > /status
+    ```
 
   The output should look similar to:
 
@@ -313,7 +313,7 @@ Verify that Claude Code is correctly configured to use Microsoft Foundry.
 
 1. Confirm that Claude Code responds with an analysis of your project. A successful connection shows Claude Code's interactive prompt without authentication errors.
 
-If Claude Code displays an error like "Failed to get token" or "model is not available," see the [Troubleshooting](#troubleshooting) section. If Claude Code starts and responds to prompts, your Foundry connection is working correctly.
+If Claude Code displays an error like "Failed to get token" or "model is not available", see the [Troubleshooting](#troubleshooting) section. If Claude Code starts and responds to prompts, your Foundry connection is working correctly.
 
 ## Create project context with CLAUDE.md
 
