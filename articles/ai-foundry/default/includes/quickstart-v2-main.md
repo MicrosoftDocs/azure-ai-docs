@@ -11,13 +11,13 @@ ms.custom: include
 ---
 
 
-In this quickstart, you use [!INCLUDE [foundry-link](../includes/foundry-link.md)] to send your first chat completion, create an agent, and have a multi-turn conversation with the Microsoft Foundry SDK.
+In this quickstart you'll get started using models and agents in Foundry.
 
 > [!div class="checklist"]
 > **You will:**
-> - Send a chat completion request to a deployed model.
-> - Create a reusable agent with a deployed model.
-> - Have a multi-turn conversation with the agent.
+> - Generate a response from a model
+> - Create an agent with a defined prompt
+> - Have a multi-turn conversation with the agent
 
 ## Prerequisites
 
