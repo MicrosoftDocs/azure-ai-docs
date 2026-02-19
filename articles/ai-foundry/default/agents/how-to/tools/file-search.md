@@ -37,7 +37,7 @@ In this article, you learn how to:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
-Java SDK samples are coming soon.
+Java SDK samples are not yet available.
 
 ## Prerequisites
 
