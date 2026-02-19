@@ -13,6 +13,7 @@ ms.custom: references_regions
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
+zone_pivot_groups: openai-portal-js-python-ts
 ---
 
 # Use the GPT Realtime API for speech and audio
