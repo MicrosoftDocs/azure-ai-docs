@@ -106,7 +106,7 @@ For the SDK examples, set these environment variables:
 
 ### Step 2: Connect the Browser Automation tool in Foundry
 
-1. Go to the [Foundry portal](https://ai.azure.com/) and select your project.
+1. Go to the [Foundry portal](https://ai.azure.com/nextgen) and select your project.
 1. Select **Build** > **Tools**.
 1. Select **Connect a tool**.
 1. In the **Configured** tab, select **Browser Automation**, then select **Add tool**.
@@ -519,11 +519,15 @@ This tool uses a Playwright workspace resource to run browser sessions. Review t
 - Confirm the project identity has access to the Playwright workspace resource.
 - If you recently rotated the Playwright access token, update the Foundry project connection key.
 
+:::zone pivot="python"
+
 ### Python SDK errors
 
 - **Workspace not found**: Verify your `FOUNDRY_PROJECT_ENDPOINT` uses the correct format: `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`. Don't use the legacy Azure ML endpoint format.
 - **Unexpected keyword argument errors**: Ensure you're using the latest version of `azure-ai-projects`. Run `pip install azure-ai-projects --pre --upgrade` to update.
 - **Import errors**: Install all required packages: `pip install azure-ai-projects azure-identity python-dotenv`.
+
+:::zone-end
 
 ### Requests time out
 
