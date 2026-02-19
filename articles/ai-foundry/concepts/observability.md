@@ -43,7 +43,7 @@ For a complete list of built-in evaluators, see [Built-in evaluators reference](
 
 Production monitoring ensures your deployed AI applications maintain quality and performance in real-world conditions. Integrated with Azure Monitor Application Insights, Microsoft Foundry delivers real-time dashboards tracking operational metrics, token consumption, latency, error rates, and quality scores. Teams can set up alerts when outputs fail quality thresholds or produce harmful content, enabling rapid issue resolution.
 
-For details on setting up production monitoring, see [Monitor agents dashboard](../default/agents/how-to/how-to-monitor-agents-dashboard.md).
+For details on setting up production monitoring, see [Monitor agents dashboard](../default/observability/how-to/how-to-monitor-agents-dashboard.md).
 
 ### Tracing
 
@@ -89,11 +89,9 @@ Alternatively, you can also use [the Foundry portal](../how-to/evaluate-generati
 
 ::: moniker range="foundry"
 
-- **Bring your own data**: Evaluate AI applications using your own data with quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). Use Foundry's evaluation wizard or [Foundry SDK](../how-to/develop/cloud-evaluation.md) and [view results in the Foundry portal](../how-to/evaluate-results.md).
+- **Bring your own data**: Evaluate AI applications using your own data with quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). Use the [Foundry portal](../how-to/evaluate-generative-ai-app.md) evaluation wizard or [Foundry SDK](../how-to/develop/cloud-evaluation.md) and [view results in the Foundry portal](../how-to/evaluate-results.md).
 
 - **AI red teaming agent**: The [AI red teaming agent](../how-to/develop/run-ai-red-teaming-cloud.md) simulates complex attacks using Microsoft's PyRIT framework to identify safety and security vulnerabilities before deployment. Best used with human-in-the-loop processes.
-
-You can also use [the Foundry portal](../how-to/evaluate-generative-ai-app.md) for testing generative AI applications.
 
 ::: moniker-end
 
@@ -107,7 +105,7 @@ After deployment, [continuous monitoring](../how-to/continuous-evaluation-agents
 
 ::: moniker range="foundry"
 
-After deployment, [continuous monitoring](../default/agents/how-to/how-to-monitor-agents-dashboard.md) ensures your AI application maintains quality in real-world conditions:
+After deployment, [continuous monitoring](../default/observability/how-to/how-to-monitor-agents-dashboard.md) ensures your AI application maintains quality in real-world conditions:
 
 ::: moniker-end
 
@@ -143,13 +141,13 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | What data should you use? | Upload or generate relevant dataset | [Select or create a dataset](../how-to/evaluate-generative-ai-app.md#select-or-create-a-dataset) |
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../default/observability/how-to/evaluate-agent.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) |
 | How did my model/AI applicable perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md) <br></br> [Cluster analysis](../default/observability/how-to/cluster-analysis.md) |
-| How can I improve? | Analyze clustered evaluation failures and optimize agents | [Cluster analysis](../default/observability/how-to/cluster-analysis.md) <br></br> [Monitoring dashboard analysis](ask-ai.md)  <br></br> Agent optimization playbook: update agent instructions, look into tool success rate, apply targeted mitigation, upgrade underlying model. <br></br>. Save as new version and re-evaluate, see [Evaluate generative AI models and applications in the portal](../how-to/evaluate-generative-ai-app.md), <br></br> Evaluation comparison, see [See evaluation results](../how-to/evaluate-results.md)  |
+| How can I improve? | Analyze results and optimize agents | Analyze evaluation failures with [cluster analysis](../default/observability/how-to/cluster-analysis.md). <br></br> Optimize agents and [re-evaluate](../default/observability/how-to/evaluate-agent.md). <br></br> Review [evaluation results](../how-to/evaluate-results.md). |
 
 ::: moniker-end
 
 ## Region support, rate limits, and virtual network support
 
-To learn which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, and how to configure virtual network support for network isolation see [region support, rate limits, and virtual network support for evaluation](evaluation-regions-limits-virtual-network.md).
+To learn which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, and how to configure virtual network support for network isolation, see [region support, rate limits, and virtual network support for evaluation](evaluation-regions-limits-virtual-network.md).
 
 ## Pricing
 
