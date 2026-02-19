@@ -36,7 +36,7 @@ Select your preferred method by using the following tabs:
 
 # [Azure CLI](#tab/azurecli)
 
-- Install the [Azure CLI](/cli/azure/install-azure-cli).
+- Install the [Azure CLI](/cli/azure/install-azure-cli) version 2.67.0 or later (check with `az version`).
 - Sign in to Azure:
 
   ```azurecli
@@ -67,6 +67,8 @@ Create a Foundry project to organize your work. The project contains models, age
    - **Resource group**: Create a new resource group or select an existing one. If you create a new resource group, you can more easily manage the project and all its resources together.
    - **Location**: Select the region closest to your team.
 1. Select **Create project**.
+
+   Wait for the project to be created. When the project overview page appears, your project is ready.
 
 ---
 
@@ -113,17 +115,16 @@ Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservice
 
 ## Get your project connection details
 
-You need the following information to connect to the project in other quickstarts and tutorials. 
+You need your project endpoint to connect from code. If you're administering this project for others, send them this endpoint along with the deployment name.
 
-If you're administering this project for others, send them this information.
-
-* Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) by using your Azure account. Select your project to start building.
-* [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
-* Get started with [Microsoft Foundry quickstart](../../quickstarts/get-started-code.md).
+1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) by using your Azure account.
+1. Select your project.
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. Copy the endpoint value. You use this value in other quickstarts and tutorials.
 
 ## For administrators - grant access
 
-If you're administering a team, assign the **Azure AI User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications.
+If you're administering a team, assign the **Azure AI User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)
 
 # [Azure CLI](#tab/azurecli)
 
