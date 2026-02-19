@@ -41,11 +41,11 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 ## Prerequisites 
 
-- Azure subscription and CLI authentication (`az login`)
-- Azure CLI 2.67.0 or later (check with `az version`)
+- An Azure subscription. If you don't have one, [create one for free](https://azure.microsoft.com/free).
+- Azure CLI 2.67.0 or later, authenticated with `az login` (check with `az version`)
 - A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you don't have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)). 
 - Python 3.10 or later
-- .NET SDK (for the C# sample)
+- .NET SDK 8.0 or later (for the C# sample)
 - SharePoint connection configured in your project ([SharePoint tool documentation](../agents/how-to/tools/sharepoint.md))
 
   > [!NOTE]
@@ -203,6 +203,8 @@ Start by running the agent so you see working functionality before diving into i
    ```
    ---
 
+   Verify the install succeeded. You should see `Successfully installed azure-ai-projects-...` (Python) or `Restore completed` (.NET) with no errors.
+
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
 1. Configure `.env`.
 
@@ -247,6 +249,8 @@ MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 ```
 
 ---
+
+   Confirm `.env` contains valid values by opening the file and verifying that `PROJECT_ENDPOINT` starts with `https://` and `MODEL_DEPLOYMENT_NAME` matches the name of a deployed model in your project.
 
 > [!TIP]
 > To get your **tenant ID**, run:
@@ -311,6 +315,8 @@ Now that you have a working agent, the next sections explain how it works. You d
    - `collaboration-standards.docx`
    - `data-governance-policy.docx`
 
+1. Verify that four documents appear in the library before proceeding.
+
 ### Sample structure
 
 ```text
@@ -321,9 +327,12 @@ Now that you have a working agent, the next sections explain how it works. You d
 └── data-governance-policy.docx  # Data classification, retention
 ```
 
-## Step 4: Understand the assistant implementation
+## Understand the assistant implementation
 
-This section explains the core code in `main.py` (Python) or `ModernWorkplaceAssistant/Program.cs` (C#). You already ran the agent. This section is conceptual and requires no changes. After reading it, you can:
+> [!NOTE]
+> This section is for reference only — no action needed. It explains the code you already ran.
+
+This section explains the core code in `main.py` (Python) or `ModernWorkplaceAssistant/Program.cs` (C#). You already ran the agent. After reading it, you can:
 - Add new internal and external data tools.
 - Extend dynamic instructions.
 - Introduce multi-agent orchestration.
@@ -510,7 +519,7 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 🔗 Next: Add evaluation metrics, monitoring, and production deployment
 ```
 
-## Step 5: Evaluate the assistant by using cloud evaluation
+## Step 4: Evaluate the assistant by using cloud evaluation
 
 The evaluation framework tests realistic business scenarios by using the **cloud evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
 
@@ -648,6 +657,25 @@ You can also view detailed results in the Foundry portal by selecting **Evaluati
 
 > [!TIP]
 > For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](../../how-to/continuous-evaluation-agents.md) for integration patterns.
+
+## Troubleshooting
+
+| Symptom | Cause | Resolution |
+|---------|-------|------------|
+| `DefaultAzureCredential` authentication error | Azure CLI session expired or not signed in | Run `az login` and retry |
+| `Model deployment not found` | Model name in `.env` doesn't match a deployment in your project | Open your project in the Foundry portal, check **Deployments**, and update `MODEL_DEPLOYMENT_NAME` in `.env` |
+| `SharePoint tool configured` but agent can't find documents | Documents not uploaded or connection name incorrect | Verify documents appear in the SharePoint library and that `SHAREPOINT_CONNECTION_NAME` matches the connection in your project |
+| MCP tool timeout or connection error | Microsoft Learn MCP server is unreachable | Verify `MCP_SERVER_URL` is set to `https://learn.microsoft.com/api/mcp` and that your network allows outbound HTTPS |
+| `403 Forbidden` on SharePoint | Insufficient permissions on the SharePoint site | Confirm your signed-in identity has at least **Read** access to the SharePoint document library |
+
+## Clean up resources
+
+To avoid unnecessary costs, delete the resources you created in this tutorial:
+
+1. **Delete the agent**: The agent is automatically deleted at the end of `main.py` (Python) or `Program.cs` (C#). If you interrupted the run, delete it manually from the **Agents** page in the Foundry portal.
+1. **Delete the evaluation run**: In the Foundry portal, go to **Evaluation**, select the evaluation run, and delete it.
+1. **Remove SharePoint sample documents**: If you uploaded the sample `.docx` files to a production SharePoint site, remove them from the document library.
+1. **(Optional) Delete the Foundry project**: If you created a project only for this tutorial, delete it from the Foundry portal to remove all associated resources.
 
 ## Summary
 
