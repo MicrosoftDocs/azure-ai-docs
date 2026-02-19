@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 02/19/2026
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -68,7 +68,12 @@ If you want to continue using your hub-based project and connection string, you 
     * `Microsoft.Search`
     * `Microsoft.App`
     * `Microsoft.ContainerService`
-    * To use the [Grounding with Bing Search tool](../../default/agents/how-to/tools/bing-tools.md): `Microsoft.Bing`
+
+:::moniker range="foundry"
+
+To use the [Grounding with Bing Search tool](../../default/agents/how-to/tools/bing-tools.md) the following provider must be registered: `Microsoft.Bing`
+
+:::moniker-end
 
     ```console
     az provider register --namespace 'Microsoft.KeyVault'
