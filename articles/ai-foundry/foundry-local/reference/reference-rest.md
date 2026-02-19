@@ -529,6 +529,9 @@ During download, the server streams progress updates in the format:
 
 Retrieves server status information.
 
+> [!NOTE]
+> The port shown in the `Endpoints` array is **dynamically assigned** when the service starts. Do not hardcode a specific port number. Use this endpoint or run `foundry service status` to discover the current URL.
+
 **Response body:**
 
 - `Endpoints` (array of strings)  

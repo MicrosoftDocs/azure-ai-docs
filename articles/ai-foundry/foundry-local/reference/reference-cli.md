@@ -68,7 +68,7 @@ The following table summarizes the commands related to managing and running the 
 | `foundry service start`         | Starts the Foundry Local service.                                |
 | `foundry service stop`          | Stops the Foundry Local service.                                 |
 | `foundry service restart`       | Restarts the Foundry Local service.                              |
-| `foundry service status`        | Displays the current status of the Foundry Local service.        |
+| `foundry service status`        | Displays the current status of the Foundry Local service, including its dynamically assigned endpoint URL. Use this command to discover the current port. |
 | `foundry service ps`            | Lists all models currently loaded in the Foundry Local service.  |
 | `foundry service diag`          | Displays the logs of the Foundry Local service.                  |
 | `foundry service set <options>` | Set configuration of the Foundry Local service.                  |
