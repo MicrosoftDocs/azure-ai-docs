@@ -1,13 +1,13 @@
 ---
-title: Deprecation for Foundry Models
+title: Model deprecation and retirement for Foundry Models
 titleSuffix: Microsoft Foundry
-description: Learn about the lifecycle stages, deprecation, and retirement for Microsoft Foundry Models.
+description: Learn about model lifecycle stages, deprecation timelines, notifications, and migration steps for Microsoft Foundry Models.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 02/03/2026
+ms.date: 02/17/2026
 ms.author: mopeakande
 manager: nitinme
 author: msakande
@@ -65,19 +65,30 @@ Customers that have Foundry Model deployments receive notifications for upcoming
 
 - Models are labeled _Deprecated_ and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
 
+> [!IMPORTANT]
+> In some cases, model providers might retire models on an accelerated schedule with shorter notice periods. Always check the specific dates in the [upcoming retirements](#upcoming-retirements-for-foundry-models) table for your model, as the actual timeline for a given model takes precedence over the general policy.
+
 For each subscription that has a model deployed as a serverless API deployment or deployed to a Foundry resource, members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
+
+### How to check for notifications
+
+To stay informed about model lifecycle changes:
+
+1. Monitor your email for notifications sent to subscription role members.
+1. Review the [upcoming retirements](#upcoming-retirements-for-foundry-models) tables in this article for the latest dates.
+1. Set up [Azure Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal) for your subscription to receive automated notifications about service changes.
 
 ## Notifications for Azure OpenAI in Foundry Models
 
 For Azure OpenAI models, customers with active Azure OpenAI deployments receive notice for models with upcoming retirement as follows:
 
 - At model launch, we programmatically designate a "not sooner than" retirement date (typically one year out).
-- At least 60 days notice before model retirement for Generally Available (GA) models.
-- At least 30 days notice before preview model version upgrades.  
+- At least 60 days notice before model retirement for GA models.
+- At least 30 days notice before preview model version upgrades.
 
 Members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive notification for each subscription with a deployment of a model that has an upcoming retirement.
 
-Retirements are done on a rolling basis, region by region. Notifications are sent from an unmonitored mailbox, `azure-noreply@microsoft.com`.
+Retirements are done on a rolling basis, region by region.
 
 To learn more about the Azure OpenAI models lifecycle, including information for current, deprecated, and retired models, see [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md). 
 
@@ -183,7 +194,20 @@ The following models were retired at 00:00:00 UTC on the specified dates and are
 | Mistral-large-2407 | May 13, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
 | Mistral-large | April 15, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
 
+## Migrate to a replacement model
+
+When a model you use enters the legacy or deprecated stage, follow these steps to migrate:
+
+1. **Identify the replacement.** Check the **Suggested replacement model** column in the [upcoming retirements](#upcoming-retirements-for-foundry-models) or [retired models](#retired-foundry-models) tables.
+1. **Test the replacement.** Deploy the suggested replacement model and validate that it meets your application requirements, including output quality, latency, and cost.
+1. **Update your deployments.** Create a new deployment with the replacement model and update your application code to point to the new deployment name.
+1. **Delete the old deployment.** After you confirm the replacement works correctly, delete the deprecated model deployment to avoid unexpected `404` errors after retirement.
+
+> [!TIP]
+> Start migration as soon as a model enters the _Legacy_ stage. This gives you the maximum time to test and transition before the model is deprecated and new deployments are blocked.
+
 ## Related content
 
 - [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md)
 - [Data, privacy, and security for use of models through the model catalog in Foundry portal](../how-to/concept-data-privacy.md)
+- [Set up Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal)

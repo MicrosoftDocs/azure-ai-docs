@@ -39,6 +39,8 @@ In this article, you learn how to:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ (GA) | ✔️ | ✔️ |
 
+Java SDK samples are not yet available.
+
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md)

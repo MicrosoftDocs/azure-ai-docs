@@ -34,6 +34,9 @@ This guide shows how to integrate the computer use tool into an application loop
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | - | ✔️ | ✔️ |
 
+> [!NOTE]
+> The Java SDK and REST API do not currently support the Computer Use tool. Use the Python, C#, or TypeScript/JavaScript SDKs.
+
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
@@ -676,7 +679,7 @@ The tool doesn't directly control a device. Your application executes each reque
 
 ## Differences between browser automation and computer use
 
-The following table lists some of the differences between the computer use tool and [browser automation](../../../../agents/how-to/tools/browser-automation.md) tool.
+The following table lists some of the differences between the computer use tool and [browser automation](browser-automation.md) tool.
 
 | Feature                        | Browser Automation          | Computer use tool          |
 |--------------------------------|-----------------------------|----------------------------|
