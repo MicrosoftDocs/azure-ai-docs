@@ -4,7 +4,7 @@ description: Deploy and manage containerized agents on Foundry Agent Service (pr
 titleSuffix: Microsoft Foundry
 author: aahill
 ms.author: aahi
-ms.date: 02/03/2026
+ms.date: 02/19/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -348,7 +348,7 @@ Before creating a hosted agent, complete these steps **in order**:
 
 1. **Ensure your access**: Ensure that you have access to assign roles in Azure Container Registry. You need at least User Access Administrator or Owner permissions on the container registry.
 2. **Install the Azure AI Projects SDK**:  run the following command:
-    `pip install --pre "azure-ai-projects>=2.0.0b3"`
+    `pip install --pre "azure-ai-projects>=2.0.0b4"`
 3. **Create an Azure Container Registry**: [Create a private container registry](/azure/container-registry/container-registry-get-started-portal) 
 4. **Build your Docker image with the correct platform**: [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry)
 5. **Push your image to YOUR registry**: [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry) Replace the sample URLs (`YOUR_ACR_NAME, YOUR_IMAGE_NAME`, `YOUR_TAG`) with your actual values for your docker image and Azure Container Registry.
@@ -439,17 +439,17 @@ az rest --method put `
 
 ### Create the hosted agent version
 
-Install version>=2.0.0b3 of the Azure AI Projects SDK. Python 3.10 or later is required.
+Install version>=2.0.0b4 of the Azure AI Projects SDK. Python 3.10 or later is required.
 
 ```bash
-pip install --pre "azure-ai-projects>=2.0.0b3"
+pip install --pre "azure-ai-projects>=2.0.0b4"
 ```
 
 Use the Azure AI Projects SDK to create and register your agent:
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import ImageBasedHostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
 from azure.identity import DefaultAzureCredential
 
 # Initialize the client
@@ -461,7 +461,7 @@ client = AIProjectClient(
 # Create the agent from a container image
 agent = client.agents.create_version(
     agent_name="my-agent",
-    definition=ImageBasedHostedAgentDefinition(
+    definition=HostedAgentDefinition(
         container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
         cpu="1",
         memory="2Gi",
@@ -790,12 +790,10 @@ Call a deployed Microsoft Foundry agent
 
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import AgentReference
 
 # Configuration
 PROJECT_ENDPOINT = "https://your-project.services.ai.azure.com/api/projects/your-project"
 AGENT_NAME = "your-agent-name"
-AGENT_VERSION = "1"  # Optional: specify version, or use latest
 
 # Initialize the client and retrieve the agent
 client = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
@@ -806,7 +804,7 @@ print(f"Agent retrieved: {agent.name} (version: {agent.versions.latest.version})
 openai_client = client.get_openai_client()
 response = openai_client.responses.create(
     input=[{"role": "user", "content": "Hello! What can you help me with?"}],
-    extra_body={"agent": AgentReference(name=agent.name, version=AGENT_VERSION).as_dict()}
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}}
 )
 
 print(f"Agent response: {response.output_text}")
@@ -844,7 +842,7 @@ Create a hosted agents version with tools definition by using the Foundry SDK.
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import ImageBasedHostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
 from azure.identity import DefaultAzureCredential
 
 # Initialize the client
@@ -857,7 +855,7 @@ client = AIProjectClient(
 agent = client.agents.create_version(
     agent_name="my-agent",
     description="Coding agent expert in assisting with github issues",
-    definition=ImageBasedHostedAgentDefinition(
+    definition=HostedAgentDefinition(
         container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
         cpu="1",
         memory="2Gi",
