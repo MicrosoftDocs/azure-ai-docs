@@ -48,7 +48,7 @@ After you create your agent, you can add tools to it, including MCP tools. For m
 You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique **Server Label** value within the same agent and a **Server URL** value that points to the remote MCP server.
 
 > [!WARNING]
-> The remote MCP servers that you use with the MCP tool in this article are not from Microsoft. Microsoft doesn't test or verify these servers. For details, see [Considerations for using non-Microsoft services and servers](../../agents/how-to/tools-classic/model-context-protocol#considerations-for-using-non-microsoft-services-and-servers).
+> The remote MCP servers that you use with the MCP tool in this article are not from Microsoft. Microsoft doesn't test or verify these servers. For details, see [Considerations for using non-Microsoft services and servers](../../agents/how-to/tools-classic/model-context-protocol.md#considerations-for-using-non-microsoft-services-and-servers).
 
 To add an MCP server tool to your agent, follow these steps:
 
