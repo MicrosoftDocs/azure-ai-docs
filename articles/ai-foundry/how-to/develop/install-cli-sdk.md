@@ -46,7 +46,7 @@ In this article, you install language runtimes, Azure CLI, Azure Developer CLI, 
 - Download, install, and configure Visual Studio Code, or the IDE of your choice. For more information, see [Download Visual Studio Code](https://code.visualstudio.com/Download).
 - To create and manage Foundry resources, one of the following Azure RBAC roles 
   - **Azure AI Project Manager** (for managing Foundry projects)
-  - **Owner** (for subscription-level permissions). Owner is required for additional role assignments required for other scenarios in Foundry. To ensure you are unblocked for all scenarios in Foundry, Owner is the role assignment required.
+  - **Owner** (for subscription-level permissions). Owner is necessary for additional role assignments required for other scenarios in Foundry. To ensure you are unblocked for all scenarios in Foundry, Owner is the role assignment required.
 - To use project but not create new resources, you need at least:
   - **Azure AI User** on the projects you use (least-privilege role for development)
 
