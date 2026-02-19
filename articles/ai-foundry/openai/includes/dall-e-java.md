@@ -8,7 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 3/21/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Java.
@@ -30,10 +31,10 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `vision-quickstart` and go to the quickstart folder with the following command:
+1. Create a new folder `image-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
-    mkdir vision-quickstart && cd vision-quickstart
+    mkdir image-quickstart && cd image-quickstart
     ```
 
 1. Install [Apache Maven](https://maven.apache.org/install.html). Then run `mvn -v` to confirm successful installation.
@@ -125,7 +126,7 @@ OpenAIAsyncClient client = new OpenAIClientBuilder()
 
 #### [Microsoft Entra ID](#tab/keyless)
 
-Follow these steps to create a console application for speech recognition.
+Follow these steps to create a console application for image generation.
 
 1. Create a new file named *Quickstart.java* in the same project root directory.
 1. Copy the following code into *Quickstart.java*:
@@ -189,7 +190,7 @@ Follow these steps to create a console application for speech recognition.
 
 #### [API key](#tab/api-key)
 
-Follow these steps to create a console application for speech recognition.
+Follow these steps to create a console application for image generation.
 
 1. Create a new file named *Quickstart.java* in the same project root directory.
 1. Copy the following code into *Quickstart.java*:

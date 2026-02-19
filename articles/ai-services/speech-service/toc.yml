@@ -23,6 +23,8 @@ items:
     displayName: get started
 - name: Speech tools
   items:
+  - name: Speech tools documentation
+    href: index-speech-tools.yml
   - name: Speech MCP server
     href: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
   - name: Speech Studio
@@ -234,8 +236,8 @@ items:
       - name: Text to speech avatar overview
         href: text-to-speech-avatar/what-is-text-to-speech-avatar.md
         displayName: avatar
-      - name: Content credentials
-        href: text-to-speech-avatar/content-credentials.md
+      - name: Quickstart
+        href: quickstarts/get-started-text-to-speech-avatar.md
       - name: How to synthesize text to speech avatar
         items:
         - name: Real-time synthesis
@@ -264,6 +266,8 @@ items:
           displayName: avatar
         - name: Create a custom photo avatar
           href: text-to-speech-avatar/custom-photo-avatar-create.md
+      - name: Content credentials
+        href: text-to-speech-avatar/content-credentials.md
     - name: Audio content creation
       href: how-to-audio-content-creation.md
       displayName: acc
@@ -319,6 +323,10 @@ items:
         href: voice-live-how-to.md
       - name: How to customize Voice Live input and output
         href: voice-live-how-to-customize.md
+      - name: How to add proactive messages (preview)
+        href: how-to-voice-live-proactive-messages.md
+      - name: Handle voice interruptions in chat history (preview)
+        href: how-to-voice-live-auto-truncation.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md
     - name: Voice Live FAQ
@@ -327,7 +335,11 @@ items:
     - name: Reference
       items:
       - name: Voice Live API reference
-        href: voice-live-api-reference.md
+        items:
+        - name: '2025-10-01'
+          href: voice-live-api-reference-2025-10-01.md
+        - name: '2026-01-01-preview'
+          href: voice-live-api-reference-2026-01-01-preview.md          
       - name: Voice Live SDK
         items:
           - name: 'C#'
@@ -336,10 +348,10 @@ items:
           - name: Python
             displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
             href: /python/api/overview/azure/ai-voicelive-readme
-          - name: Java (Preview)
+          - name: Java (preview)
             displayName: Java SDK,Java dev kit,reference,reference docs,ref documentation
             href: /java/api/overview/azure/ai-voicelive-readme
-          - name: JavaScript (Preview)
+          - name: JavaScript (preview)
             displayName: JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
             href: /javascript/api/overview/azure/ai-voicelive-readme
 - name: Keyword recognition

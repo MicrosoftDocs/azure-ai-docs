@@ -89,7 +89,7 @@ sections:
       - question: |
           Does Content Safety support batch processing? 
         answer: |
-          Content Safety APIs don't support batch processing. Currently, Content Safety APIs achieve high concurrency in processing with generous default rate limits of 1000 per minute, depending on the model. While this is sufficient for most users, we're happy to increase rate limits for users that process or are looking to process higher volumes. 
+          Content Safety APIs don't support batch processing. Currently, Content Safety APIs achieve high concurrency in processing with generous default rate limits of 1000 per 10 seconds, depending on the model. While this is sufficient for most users, we're happy to increase rate limits for users that process or are looking to process higher volumes. 
       - question: |
           Can I access multiple models with a single API call? 
         answer: | 

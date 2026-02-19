@@ -8,7 +8,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions, ignite-2024
-ms.date: 01/29/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this article to get started using [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to deploy and test a chat completion model with image understanding. 
@@ -28,6 +29,9 @@ You need an image to complete this quickstart. You can use this sample image or 
 :::image type="content" source="/azure/ai-foundry/media/quickstarts/multimodal-vision/car-accident.png" alt-text="Photo of a car accident that can be used to complete the quickstart." lightbox="/azure/ai-foundry/media/quickstarts/multimodal-vision/car-accident.png":::
 
 ## Go to Foundry
+
+> [!TIP]
+> If you already have a vision-capable model deployed, skip to [Start a chat session to analyze images](#start-a-chat-session-to-analyze-images).
 
 1. Browse to [Foundry](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 1. Select the project you'd like to work in.
@@ -93,7 +97,16 @@ At any point in the chat session, you can enable the **Show raw JSON** switch at
 ]
 ```
 
+<!--
+## Troubleshooting
 
+| Error | Cause | Solution |
+|-------|-------|----------|
+| Model not available in deployment dropdown | Vision-capable model not deployed | Deploy **gpt-4o** or **gpt-4o-mini** from **Models + endpoints**. |
+| Image upload fails | Image too large or unsupported format | Use JPEG, PNG, GIF, or WebP. Maximum 20 MB per image. |
+| Response seems incomplete | `max_tokens` not set or too low | Increase the token limit in **Parameters** panel. |
+| Content filtered response | Image triggered content filter | GPT-4 Turbo with Vision has mandatory content filtering that can't be disabled. |
+-->
 
 ## Clean up resources
 

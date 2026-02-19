@@ -1,6 +1,6 @@
 ---
-title: Monitor AI agents with the Agent Monitoring Dashboard
-description: Monitor operational metrics and evaluation results for AI agents in Microsoft Foundry by using the Agent Monitoring Dashboard and Application Insights.
+title: Monitor agents with the Agent Monitoring Dashboard
+description: Learn how to monitor operational metrics, token usage, latency, and evaluation results for AI agents in Microsoft Foundry by using the Agent Monitoring Dashboard and Application Insights.
 #customer intent: As an AI operations manager, I want to monitor the performance of my AI agents in real time so that I can ensure optimal functionality and compliance.
 author: lgayhardt
 ms.author: lagayhar
@@ -12,28 +12,19 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Monitor AI agents with the Agent Monitoring Dashboard (preview)
+# Monitor agents with the Agent Monitoring Dashboard (preview)
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 Use the Agent Monitoring Dashboard in Microsoft Foundry to track operational metrics and evaluation results for your agents. This dashboard helps you understand token usage, latency, success rates, and evaluation outcomes for production traffic.
 
+This article covers two approaches: viewing metrics in the Foundry portal and setting up continuous evaluation programmatically with the Python SDK.
+
 ## Prerequisites
 
-- A Foundry project. For more information, see [Create a Foundry project](../../../how-to/create-projects.md).
-- At least one deployed agent in your Foundry project.
-- An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
-- Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you might also need access to the associated Log Analytics workspace.
-
-### Confirm you can view telemetry
-
-To view data in the dashboard, make sure your account has access to the connected Application Insights resource.
-
-1. In the Azure portal, open the Application Insights resource that's connected to your Foundry project.
-1. Select **Access control (IAM)**.
-1. Assign an appropriate role to your user or group.
-
-    If you use log-based views, start by granting the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
+- A [Foundry project](../../../how-to/create-projects.md) with at least one [agent](../../../agents/overview.md).
+- An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
+- Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
 
 ## Connect Application Insights
 
@@ -63,15 +54,14 @@ The dashboard is designed for quick insights and deep analysis of your agent's p
 
 Use these definitions to interpret the dashboard:
 
-- **Token usage**: Token counts for agent traffic in the selected time range.
-- **Latency**: Response time for agent runs.
-- **Run success rate**: The percentage of runs that complete successfully.
-- **Evaluation metrics**: Scores produced by evaluators that run on sampled agent outputs.
-- **Red teaming results**: Outcomes from scheduled red team scans, if enabled.
+- **Token usage**: Token counts for agent traffic in the selected time range. High token usage might indicate verbose prompts or responses that could benefit from optimization.
+- **Latency**: Response time for agent runs. Latency above 10 seconds might indicate model throttling, complex tool calls, or network issues.
+- **Run success rate**: The percentage of runs that complete successfully. A rate below 95% warrants investigation into failed runs.
+- **Evaluation metrics**: Scores produced by evaluators that run on sampled agent outputs. Scores vary by evaluator; review individual evaluator documentation for interpretation guidance.
+- **Red teaming results**: Outcomes from scheduled red team scans, if enabled. Failed scans indicate potential security risks that require remediation.
 
-## Data retention and cost
-
-Monitoring data is stored in the connected Application Insights resource. Retention and billing follow your Application Insights configuration.
+> [!NOTE]
+> Monitoring data is stored in the connected Application Insights resource. Retention and billing follow your Application Insights configuration.
 
 ## Configure settings
 
@@ -79,7 +69,7 @@ Use the Monitor settings panel to configure telemetry, evaluations, and security
 
 :::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/monitor-settings-panel.png" alt-text="Screenshot showing the Monitor Settings panel in Foundry with options for operational metrics, continuous evaluation, scheduled evaluations, red team scans, and alerts configuration." lightbox="../../media/observability/how-to-monitor-agents-dashboard/monitor-settings-panel.png":::
 
-The following table describes the monitoring features available in the Monitor Settings panel:
+To access Monitor settings, select the gear icon on the **Monitor** tab. The following table describes each monitoring feature:
 
 | Setting | Purpose | Configuration Options |
 |---------|---------|----------------------|
@@ -90,7 +80,7 @@ The following table describes the monitoring features available in the Monitor S
 
 ## Set up continuous evaluation (Python SDK)
 
-Use the Python SDK to set up continuous evaluation rules for agent responses.
+Use the Python SDK to set up continuous evaluation rules for agent responses. This section requires Python 3.9 or later.
 
 ```bash
 pip install "azure-ai-projects>=2.0.0b1" python-dotenv
@@ -98,9 +88,9 @@ pip install "azure-ai-projects>=2.0.0b1" python-dotenv
 
 Set these environment variables with your own values:
 
-- `AZURE_AI_PROJECT_ENDPOINT`: The Azure AI Project endpoint, as found on the project overview page in the Microsoft Foundry portal.
-- `AZURE_AI_AGENT_NAME`: The name of the AI agent to use for evaluation.
-- `AZURE_AI_MODEL_DEPLOYMENT_NAME`: The deployment name of the AI model.
+- `AZURE_AI_PROJECT_ENDPOINT`: The Foundry project endpoint, as found on the project overview page in the Foundry portal.
+- `AZURE_AI_AGENT_NAME`: The name of the agent to use for evaluation.
+- `AZURE_AI_MODEL_DEPLOYMENT_NAME`: The deployment name of the model.
 
 ### Assign permissions for continuous evaluation
 
@@ -145,7 +135,7 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.ai
 
 ### Create a continuous evaluation rule
 
-Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [What are evaluators?](../../../concepts/observability.md#what-are-evaluators).
+Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [Built in evaluators](../../../concepts/built-in-evaluators.md).
 
 ```python
 from azure.ai.projects.models import (
@@ -190,6 +180,8 @@ References: [EvaluationRuleEventType](/python/api/azure-ai-projects/azure.ai.pro
 1. In the Foundry portal, open the agent and select **Monitor**.
 1. Review evaluation-related charts for the selected time range.
 
+If the setup is successful, the evaluation-related charts display scores for your selected time range, and the evaluation runs list shows entries with status **Completed**.
+
 You can also list recent evaluation runs and open the report URL:
 
 ```python
@@ -217,11 +209,11 @@ To view the full sample code, see:
 | Dashboard charts are empty | No recent traffic, time range excludes data, or ingestion delay | Generate new agent traffic, expand the time range, and refresh after a few minutes. |
 | You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
 | Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the **Azure AI User** role. |
+| Evaluation runs are skipped | Hourly run limit reached | Increase `max_hourly_runs` in the evaluation rule configuration or wait for the next hour. The default limit is 100 runs per hour. |
 
-## Next steps
+## Related content
 
-- [Agent tracing overview](../concepts/trace-agent-concept.md) 
+- [Agent tracing overview](../concepts/trace-agent-concept.md)
 - [Run AI Red Teaming Agent in the cloud](../../../how-to/develop/run-ai-red-teaming-cloud.md)
-- [How to set up tracing in Microsoft Foundry](trace-agent-setup.md)
+- [Set up tracing in Microsoft Foundry](trace-agent-setup.md)
 - [Tracing integrations](trace-agent-framework.md)
-

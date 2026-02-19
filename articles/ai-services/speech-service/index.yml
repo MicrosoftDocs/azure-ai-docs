@@ -1,11 +1,11 @@
 ### YamlMime:Hub
 
-title: Speech service documentation
+title: Azure Speech documentation
 summary: Recognize speech, synthesize speech, get real-time translations, transcribe conversations, or integrate speech into your bot experiences.
 brand: azure
 
 metadata:
-  title: Speech service documentation - Tutorials, API Reference - Foundry Tools | Microsoft Docs
+  title: Azure Speech Documentation - Tutorials, API Reference - Foundry Tools
   titleSuffix: Foundry Tools
   description: Recognize speech, synthesize speech, get real-time translations, transcribe conversations, or integrate speech into your bot experiences.
   author: PatrickFarley
@@ -18,7 +18,7 @@ metadata:
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
-    - title: What is the Speech service?
+    - title: What is Azure Speech?
       itemType: overview
       url: overview.md
     - title: About the Speech SDK
@@ -27,7 +27,7 @@ highlightedContent:
     - title: What's new
       itemType: whats-new
       url: releasenotes.md
-    - title: Language support in the Speech service
+    - title: Language support in Azure Speech
       itemType: reference
       url: language-support.md
 
@@ -48,7 +48,7 @@ conceptualContent:
           text: Batch transcription
           url: batch-transcription.md
         - itemType: overview
-          text: Custom speech to text models
+          text: Custom speech-to-text models
           url: /azure/ai-services/speech-service/custom-speech-overview
       footerLink:
         text: More
@@ -93,7 +93,7 @@ conceptualContent:
           text: About Speech Studio
           url: speech-studio-overview.md
         - itemType: overview
-          text: About Speech CLI
+          text: About the Speech CLI
           url: spx-overview.md    
     - title: Speech translation
       links:
@@ -103,7 +103,7 @@ conceptualContent:
       - itemType: quickstart
         text: Get started with speech translation
         url: get-started-speech-translation.md
-    - title: Scenario deep-dives
+    - title: Scenario deep dives
       links:
         - itemType: overview
           text: Captioning with speech to text
@@ -118,26 +118,26 @@ conceptualContent:
     - title: Hosting
       links:
         - itemType: how-to-guide
-          text: Speech service containers
+          text: Azure Speech containers
           url: speech-container-howto.md
         - itemType: how-to-guide
-          text: Speech service containers with Kubernetes
+          text: Azure Speech containers with Kubernetes
           url: speech-container-howto-on-premises.md
         - itemType: how-to-guide
-          text: Speech service containers on Azure Container Instances
+          text: Azure Speech containers on Azure Container Instances
           url: ../containers/azure-container-instance-recipe.md
     - title: Migration
       links:
         - itemType: how-to-guide
-          text: Migrate to speech to text REST API version 2025-10-15
+          text: Migrate to speech-to-text REST API version 2025-10-15
           url: migrate-2025-10-15.md
         - itemType: how-to-guide
-          text: Migrate to Batch synthesis REST API
+          text: Migrate to the batch synthesis REST API
           url: migrate-to-batch-synthesis.md
 
 tools:
-  title: Software development kits (SDKs)
-  summary: Get started with the Speech SDK in your favorite programming language.
+  title: Speech SDK
+  summary: Get started with the Speech SDK in your favorite programming language. See also <a href="speech-sdk.md">About the Speech SDK</a>.
   items:
   - title: C#
     imageSrc: /media/logos/logo_Csharp.svg
@@ -145,6 +145,9 @@ tools:
   - title: C++
     imageSrc: /media/logos/logo_Cplusplus.svg
     url: /cpp/cognitive-services/speech/
+  - title: Go
+    imageSrc: /media/logos/logo_gopher.svg
+    url: https://github.com/Microsoft/cognitive-services-speech-sdk-go
   - title: Java
     imageSrc: /media/logos/logo_java.svg
     url: /java/api/com.microsoft.cognitiveservices.speech
@@ -157,9 +160,36 @@ tools:
   - title: Python
     imageSrc: /media/logos/logo_python.svg
     url: /python/api/azure-cognitiveservices-speech/
+  - title: About the Speech SDK
+    imageSrc: /media/logos/code-sample.svg
+    url: speech-sdk.md
 
 additionalContent:
   sections:
+    - title: Additional SDKs
+      items:
+      - title: Voice Live SDK
+        summary: Build low-latency speech-to-speech voice agents.
+        links:
+        - text: C#
+          url: /dotnet/api/overview/azure/ai.voicelive-readme
+        - text: Python
+          url: /python/api/overview/azure/ai-voicelive-readme
+        - text: Java (Preview)
+          url: /java/api/overview/azure/ai-voicelive-readme
+        - text: JavaScript (Preview)
+          url: /javascript/api/overview/azure/ai-voicelive-readme
+        - text: About the Voice Live SDK
+          url: voice-live-sdk.md
+      - title: Speech Transcription SDK
+        summary: Develop high-quality transcription applications.
+        links:
+        - text: Java
+          url: /java/api/overview/azure/ai-speech-transcription-readme
+        - text: Python
+          url: /python/api/overview/azure/ai-transcription-readme
+        - text: About the Speech Transcription SDK
+          url: transcription-sdk.md
     - items:
       - title: REST APIs
         links:
@@ -169,8 +199,12 @@ additionalContent:
           url: batch-transcription.md
         - text: Text to speech
           url: rest-text-to-speech.md
-        - text: Conversation transcription
-          url: /azure/ai-services/speech-service/speech-to-text
+        - text: Custom voice
+          url: /rest/api/aiservices/speechapi/operation-groups
+        - text: Batch synthesis
+          url: /rest/api/batchtexttospeech/operation-groups
+        - text: Batch avatar
+          url: /rest/api/batchavatar/operation-groups
       - title: Resources
         links:
         - text: Pricing

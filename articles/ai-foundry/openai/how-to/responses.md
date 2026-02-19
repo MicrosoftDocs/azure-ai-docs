@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI Responses API
+title: Use the Azure OpenAI Responses API
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI's new stateful Responses API.
+description: Learn how to use the Azure OpenAI Responses API to create, retrieve, and delete stateful responses with Python or REST, including streaming and tools.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -13,15 +13,23 @@ ms.custom:
   - references_regions
   - build-2025
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
-# Azure OpenAI Responses API
+# Use the Azure OpenAI Responses API
 
-The Responses API is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer use](../how-to/computer-use.md) capability.
+Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../how-to/computer-use.md).
 
-## Getting started with the responses API
+## Prerequisites
 
-To access the responses API commands, you need to upgrade your version of the OpenAI library.
+- A deployed Azure OpenAI model
+- An authentication method:
+  - API key (for example, `AZURE_OPENAI_API_KEY`), or
+  - Microsoft Entra ID (recommended).
+
+## Install or upgrade the OpenAI package
+
+Install or upgrade the OpenAI Python package.
 
 ```cmd
 pip install --upgrade openai
@@ -76,6 +84,8 @@ print(response.model_dump_json(indent=2))
 # [REST API](#tab/rest-api)
 
 ### Microsoft Entra ID
+
+The REST examples use `AZURE_OPENAI_AUTH_TOKEN` for Microsoft Entra ID authentication. For details on required scopes and token acquisition options, see [Azure OpenAI REST API reference](../latest.md).
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
@@ -268,7 +278,7 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{res
 
 ## Delete response
 
-By default response data is retained for 30 days. To delete a response, you can use `response.delete ("{response_id}")`
+By default, response data is retained for 30 days. To delete a stored response, call `client.responses.delete("{response_id}")`.
 
 ```python
 import os
@@ -396,6 +406,118 @@ second_response = client.responses.create(
       
 print(second_response.model_dump_json(indent=2))  
 ```
+
+## Compact a Response
+Compacting allows you to shrink the context window sent to the model while preserving the essential information for the model's understanding.
+
+### Compact using items returned
+You can compact all items returned from previous requests like reasoning, message, function call, etc.
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/compact \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+        "model": "gpt-4.1",
+        "input": [
+          {
+            "role"   : "user",
+            "content": "Create a simple landing page for a dog petting café."
+          },
+          {
+            "id": "msg_001",
+            "type": "message",
+            "status": "completed",
+            "content": [
+              {
+                "type": "output_text",
+                "annotations": [],
+                "logprobs": [],
+                "text": "Below is a single file, ready-to-use landing page for a dog petting café:..."
+              }
+            ],
+            "role": "assistant"
+          }
+        ]
+    }'
+```
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+)
+
+compacted_response = client.responses.compact(
+    model="gpt-4.1",
+    input=[
+    {
+        "role": "user",
+        "content": "Create a simple landing page for a dog petting cafe.",
+    },
+    # All items returned from previous requests are included here, like reasoning, message, function call, etc.
+    {
+        "id": "msg_001",
+        "type": "message",
+        "status": "completed",
+        "content": [
+        {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "Below is a single file, ready-to-use landing page for a dog petting café:...",
+        },
+        ],
+        "role": "assistant",
+    },
+    ]
+)
+# Pass the compacted_response.output as input to the next request
+print(compacted_response)
+```
+
+### Compact using previous response ID
+
+You can also compact using a previous response ID.
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
+)
+
+# Get back a full response
+initial_response = client.responses.create(
+        model="gpt-4.1",
+        input="What is the size of France?"
+    )
+
+print(f"Initial Response: {initial_response.output_text}")
+
+# Now compact the response
+compacted_response = client.responses.compact(
+    model="gpt-4.1",
+    previous_response_id=initial_response.id
+)
+
+# use the compacted response in a follow up
+followup_response = client.responses.create(
+    model="gpt-4.1",
+    input=[
+        *compacted_response.output,
+        {"role": "user", "content": "And what is the capital/major city"}
+    ]
+)
+print(f"Follow-up Response: {followup_response.output_text}")
+```
+
+
 
 ## Streaming
 
@@ -998,7 +1120,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
         "model": "gpt-4.1",
-        "input": "What is this repo in 100 words?"
+        "input": "What is this repo in 100 words?",
         "tools": [
             {
                 "type": "mcp",
@@ -1006,6 +1128,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
                 "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
                 "headers": {
                     "Authorization": "Bearer $YOUR_API_KEY"
+                }
             }
         ]
     }'
@@ -1030,6 +1153,7 @@ response = client.responses.create(
             "server_url": "https://gitmcp.io/Azure/azure-rest-api-specs",
             "headers": {
                 "Authorization": "Bearer $YOUR_API_KEY"
+            }
         }
     ]
 )
@@ -1077,7 +1201,7 @@ print(response.status)
 Use the `GET` endpoint to check the status of a background response. Continue polling while the status is queued or in_progress. Once the response reaches a final (terminal) state, it will be available for retrieval.
 
 ```bash
-curl GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890 \
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890 \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
 ```
@@ -1187,7 +1311,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_123456
 
 ## Encrypted Reasoning Items
 
-When using the Responses API in stateless mode — either by setting `store` to false or when your organization is enrolled in zero data retention — you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your API requests.
+When using the Responses API in stateless mode by setting `store` to false, you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your API requests.
 
 To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter in your request. This ensures that the response includes an encrypted version of the reasoning trace, which can be passed along in future requests.
 
@@ -1328,7 +1452,7 @@ The responses API is currently available in the following regions:
 - `o3` (Version: `2025-04-16`)
 - `o4-mini` (Version: `2025-04-16`)
 
-Not every model is available in the regions supported by the responses API. Check the [models page](../concepts/models.md) for model region availability.
+Not every model is available in the regions supported by the responses API. Check the [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md) for model region availability.
 
 > [!NOTE]
 > Not currently supported:
@@ -1343,3 +1467,14 @@ Not every model is available in the regions supported by the responses API. Chec
 ### Reference documentation
 
 - [Responses API reference documentation](/azure/ai-foundry/openai/reference-preview-latest?#create-response)
+
+## Troubleshooting
+
+- **401/403**: If you use Microsoft Entra ID, verify your token is scoped for `https://cognitiveservices.azure.com/.default`. If you use an API key, confirm you're using the correct key for the resource.
+- **404**: Confirm `model` matches your deployment name.
+
+## Related content
+
+- [API version lifecycle](../api-version-lifecycle.md)
+- [Azure OpenAI REST API reference](../latest.md)
+- [Computer use](computer-use.md)

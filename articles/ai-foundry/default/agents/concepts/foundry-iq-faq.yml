@@ -1,0 +1,175 @@
+### YamlMime:FAQ
+metadata:
+  title: Foundry IQ FAQ
+  titleSuffix: Microsoft Foundry
+  description: "Frequently asked questions about Foundry IQ, knowledge bases, knowledge sources, and agentic retrieval."
+  author: haileytap
+  ms.author: haileytapia
+  manager: nitinme
+  ms.service: azure-ai-foundry
+  ms.topic: faq
+  ms.date: 02/12/2026
+  ai-usage: ai-assisted
+title: Foundry IQ frequently asked questions
+summary: |
+  Find answers to common questions about [Foundry IQ](what-is-foundry-iq.md).
+
+sections:
+  - name: "General"
+    questions:
+      - question: "What is Foundry IQ?"
+        answer: |
+          Foundry IQ enables agents to access, process, and act on knowledge from anywhere.
+          
+          With Foundry IQ, you create a *knowledge base* that connects to one or more *knowledge sources*. The *agentic retrieval* engine processes queries, and an optional large language model (LLM) from Azure OpenAI in Foundry Models adds query planning and reasoning. Agents built in Foundry Agent Service call the knowledge base to retrieve relevant content.
+      
+      - question: "What is the difference between Foundry IQ and agentic retrieval?"
+        answer: |
+          Foundry IQ consists of knowledge bases, knowledge sources, and native integrations with Azure OpenAI in Foundry Models and Foundry Agent Service. The Microsoft Foundry (new) portal offers a streamlined, end-to-end setup experience, but you can also create the Foundry IQ components programmatically.
+
+          Agentic retrieval is the multi-query retrieval engine that powers Foundry IQ knowledge bases. For custom solutions, you can use agentic retrieval directly via the Azure AI Search APIs.
+
+      - question: "How is Foundry IQ different from existing RAG patterns or Azure OpenAI On Your Data?"
+        answer: |
+          One Foundry IQ knowledge base provides access to multiple sources, removing the need to connect each agent to each source individually.
+          
+          The agentic retrieval engine plans which sources to query and performs iterative search if initial results don't meet relevance standards. Indexing and data synchronization are triggered automatically. Iterative search depends on specifying a medium retrieval reasoning effort in the knowledge base or on a per-request basis.
+
+  - name: "Components and requirements"
+    questions:
+      - question: "Is Azure AI Search required for Foundry IQ?"
+        answer: |
+          Yes. Foundry IQ is built on [Azure AI Search](/azure/search/)'s agentic retrieval capabilities. You must create a knowledge base in Azure AI Search to use Foundry IQ.
+
+      - question: "Is Foundry Agent Service required for Foundry IQ?"
+        answer: |
+          No. You can call knowledge bases from Foundry Agent Service, Microsoft Agent Framework, or any application that supports the knowledge base APIs from Azure AI Search. However, Foundry Agent Service provides a turnkey agent hosting platform with built-in support for Foundry IQ knowledge bases.
+      
+      - question: "Do Foundry IQ and agentic retrieval have a hard dependency on LLMs?"
+        answer: |
+          LLM usage for query planning is optional but recommended. Without an LLM, you can use the minimal retrieval reasoning effort in agentic retrieval to merge results from multiple queries across knowledge sources.
+          
+          To benefit from parallel processing of multiple subqueries, LLM query planning is required. The agentic retrieval engine uses LLM query planning in low and medium retrieval reasoning efforts for more thorough retrieval.
+
+      - question: "Which LLM models are supported for query planning?"
+        answer: |
+          Only gpt-4o, gpt-4.1, and gpt-5 series models from Azure OpenAI in Foundry Models are supported for query planning. For the full list, see [Supported models](/azure/search/agentic-retrieval-how-to-create-knowledge-base#supported-models). You specify the model deployment when you create the knowledge base.
+
+  - name: "Knowledge bases and knowledge sources"
+    questions:
+      - question: "What is a knowledge base?"
+        answer: |
+          A [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) is a top-level object that groups one or more knowledge sources under a single endpoint. Its configuration controls how sources are selected (via retrieval instructions and reasoning effort) and how results are returned (via output mode and answer instructions). An LLM connection enables query planning and answer synthesis.
+          
+          At query time, the agentic retrieval engine uses this configuration to process requests. User-level access controls are only enforced when the knowledge source supports document-level permissions and when those permissions have been explicitly configured for synchronization. Unless support for out-of-the-box user permissions is explicitly stated in the knowledge source documentation, document-level access controls aren't automatically honored.
+
+      - question: "What knowledge sources are supported?"
+        answer: |
+          There are two types of [knowledge sources](/azure/search/agentic-knowledge-source-overview):
+          
+          + **Indexed knowledge sources** ingest data into a search index and automatically handle chunking, vectorization, metadata extraction, and access control list (ACL) synchronization. Supported indexed sources include Azure Blob Storage, OneLake, SharePoint, and existing search indexes.
+
+          + **Remote knowledge sources** don't ingest or store data. Instead, they issue on-demand queries to the external system at retrieval time. Supported remote sources include SharePoint (via Copilot Retrieval API) and web (via Grounding with Bing).
+
+      - question: "How often is indexed data refreshed?"
+        answer: |
+          Indexed knowledge sources use Azure AI Search indexers for data ingestion. You can schedule recurring indexer runs for incremental data refresh. The frequency depends on your indexer schedule configuration.
+          
+          Remote knowledge sources query external systems on demand, so data is always current.
+
+  - name: "Agentic retrieval"
+    questions:
+      - question: "What is agentic retrieval?"
+        answer: |
+          [Agentic retrieval](/azure/search/agentic-retrieval-overview) is the retrieval engine that processes requests against a knowledge base.
+          
+          It selects which knowledge sources to query, routes requests appropriately, and can automatically iterate when initial results are incomplete. When the knowledge base includes an LLM, agentic retrieval also performs query planning and higher-level reasoning to refine the search process. You can control the cost and latency of the search process by setting the retrieval reasoning effort on the knowledge base.
+          
+          Benchmarks show that agentic retrieval achieves approximately [36% higher response quality](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-iq-boost-response-relevance-by-36-with-agentic-retrieval/4470720) than traditional single-shot RAG.
+
+      - question: "What is query planning in agentic retrieval?"
+        answer: |
+          Query planning is the process by which an LLM breaks down a complex query into smaller, more focused subqueries for broader coverage of your search corpus. It also includes the logic for selecting one knowledge source over another.
+          
+          You can influence knowledge source selection by adding descriptions to indexed knowledge sources and retrieval instructions to your knowledge base. For example, you might specify "use the employee-handbook-index for questions about time off" and "use the health-insurance-index for questions about medical coverage."
+
+      - question: "How is query planning invoked?"
+        answer: |
+          Query planning is invoked when you specify the low or medium retrieval reasoning effort in a knowledge base.
+
+      - question: "What is the retrieval reasoning effort?"
+        answer: |
+          The [retrieval reasoning effort](/azure/search/agentic-retrieval-how-to-set-retrieval-reasoning-effort) determines how much LLM-driven planning is used during agentic retrieval. Levels range from minimal to medium, influencing how deeply the system interprets the query, selects sources, and decides whether more retrieval steps are needed.
+
+      - question: "What are the limits for each retrieval reasoning effort level?"
+        answer: |
+          Limits vary by reasoning effort level:
+          
+          + **Minimal**: Up to 10 knowledge sources. No LLM processing, no query planning, and no answer synthesis.
+
+          + **Low**: Up to three knowledge sources and three subqueries. Supports answer synthesis with a 5,000-token budget.
+          
+          + **Medium**: Up to five knowledge sources and five subqueries. Supports iterative search and answer synthesis with a 10,000-token budget.
+          
+          For more information, see [Agentic retrieval limits](/azure/search/search-limits-quotas-capacity#agentic-retrieval-limits).
+
+      - question: "What is answer synthesis? Should I use it for a Foundry IQ knowledge base?"
+        answer: |
+          [Answer synthesis](/azure/search/agentic-retrieval-how-to-answer-synthesis) uses an LLM to generate a complete, natural-language answer based on retrieved content. Answer synthesis is required for web knowledge sources.
+          
+          For most Foundry IQ scenarios, use extractive data instead of answer synthesis. Extractive data returns raw content that agents can reason over and incorporate into their responses. Reserve answer synthesis for standalone applications where the retrieval output goes directly to users without agent processing.
+
+  - name: "Availability and pricing"
+    questions:
+      - question: "Where is Foundry IQ available? How is it billed?"
+        answer: |
+          Foundry IQ is subject to the [regional availability and billing](/azure/search/agentic-retrieval-overview#availability-and-pricing) of its underlying services: Azure AI Search and, if applicable, Azure OpenAI in Foundry Models.
+
+      - question: "Is Foundry IQ free to use?"
+        answer: |
+          Azure AI Search offers a free pricing tier and a free token allocation for agentic retrieval. Foundry Agent Service doesn't charge for agent instances.
+
+          After you exhaust the free allocation, agentic retrieval is billed based on token consumption in Azure AI Search. LLM usage for query planning and answer synthesis incurs separate charges from Azure OpenAI in Foundry Models.
+  
+  - name: "Security and governance"
+    questions:
+      - question: "How does Foundry IQ handle permissions?"
+        answer: |
+          Permission enforcement varies by knowledge source. Depending on the data source, indexed knowledge sources can support document-level security through ACLs, role-based access control, or both. At query time, results are filtered based on the user's identity.
+          
+          Remote SharePoint knowledge sources enforce permissions directly via the Copilot Retrieval API, with out-of-the-box support for ACLs and Microsoft Purview sensitivity labels.
+
+      - question: "What authentication methods are supported?"
+        answer: |
+          For connections between Azure AI Search and other Azure services (such as Azure OpenAI or Azure Blob Storage), use managed identities with Microsoft Entra ID (recommended) or API keys. 
+
+          Remote SharePoint knowledge sources require end users to have a valid Copilot license.
+
+  - name: "Troubleshooting"
+    questions:
+      - question: "Why isn't my agent returning results from my knowledge base?"
+        answer: |
+          Common causes include:
+          
+          + Missing tool invocation in agent instructions.
+          + Permission issues between the agent and knowledge base.
+          + Incorrect project connection configuration.
+          + Empty or misconfigured knowledge sources.
+          
+          For help isolating the issue, see [Troubleshooting](../how-to/foundry-iq-connect.md#troubleshooting).
+
+      - question: "How do I debug agentic retrieval queries?"
+        answer: |
+          [Use the chat playground](/azure/search/get-started-portal-agentic-retrieval#test-agentic-retrieval) in the Azure portal, which shows query plans, subqueries, and retrieval steps for your knowledge base. [Enable diagnostic logging](/azure/search/search-monitor-enable-logging) for detailed request/response data.
+
+  - name: "Related products"
+    questions:
+      - question: "How does Foundry IQ relate to Fabric IQ and Work IQ?"
+        answer: |
+          Microsoft provides three IQ workloads for agent-native systems: Fabric IQ for business analytics, Work IQ for Microsoft 365 collaboration, and Foundry IQ for enterprise knowledge.
+          
+          Each IQ workload is standalone, but they can work together to answer virtually any organization-specific question from an agent.
+
+      - question: "What is the difference between Copilot knowledge sources and Foundry IQ knowledge sources?"
+        answer: |
+          The concept is the same: connecting agents to enterprise data. However, the supported data sources differ by platform and aren't interoperable. In other words, you can't use Foundry IQ knowledge sources in Copilot, and you can't use Copilot knowledge sources in Foundry IQ.

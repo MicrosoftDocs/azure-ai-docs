@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/05/2025
+ms.date: 02/12/2026
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -19,7 +19,7 @@ monikerRange: 'foundry-classic || foundry'
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Use this article if you want to set up your Foundry project with your own resources.
+By default, Foundry Agent Service manages storage for files, conversations, and vector stores. If your organization requires full data ownership, customer-managed keys (CMK), or network isolation, you can connect your own Azure resources instead. This article shows you how to configure the deployment templates to use existing Azure OpenAI, Azure Storage, Azure Cosmos DB, and Azure AI Search resources with Agent Service.
 
 ## Limitations
 
@@ -35,7 +35,7 @@ You can reuse your existing model deployments and quota from Foundry Tools or Az
 
 Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-foundry.md#types-of-projects) instead of the connection string that was used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
 
-If you want to continue using your hub-based project and connection string, you will need to: 
+If you want to continue using your hub-based project and connection string, you need to: 
 * Use the connection string for your project located under **Connection string** in the overview of your project. 
 
     :::image type="content" source="../../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="A screenshot showing the legacy connection string for a hub-based project.":::
@@ -54,8 +54,9 @@ If you want to continue using your hub-based project and connection string, you 
 
 ## Prerequisites
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* [Azure CLI](/cli/azure/install-azure-cli) (version 2.64 or later).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
-* If configuring a [standard setup](#choose-basic-or-standard-agent-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage). For more information about RBAC in Foundry, see [RBAC in Foundry](../../../ai-foundry/concepts/rbac-foundry.md).
+* If configuring a [standard setup](#choose-basic-or-standard-agent-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage). For more information about RBAC in Foundry, see [RBAC in Foundry](../../concepts/rbac-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
@@ -71,15 +72,15 @@ If you want to continue using your hub-based project and connection string, you 
     * To use the [Grounding with Bing Search tool](../../default/agents/how-to/tools/bing-tools.md): `Microsoft.Bing`
 
     ```console
-       az provider register --namespace 'Microsoft.KeyVault'
-       az provider register --namespace 'Microsoft.CognitiveServices'
-       az provider register --namespace 'Microsoft.Storage'
-       az provider register --namespace 'Microsoft.MachineLearningServices'
-       az provider register --namespace 'Microsoft.Search'
-       az provider register --namespace 'Microsoft.App'
-       az provider register --namespace 'Microsoft.ContainerService'
-       # only to use Grounding with Bing Search tool
-       az provider register --namespace 'Microsoft.Bing'
+    az provider register --namespace 'Microsoft.KeyVault'
+    az provider register --namespace 'Microsoft.CognitiveServices'
+    az provider register --namespace 'Microsoft.Storage'
+    az provider register --namespace 'Microsoft.MachineLearningServices'
+    az provider register --namespace 'Microsoft.Search'
+    az provider register --namespace 'Microsoft.App'
+    az provider register --namespace 'Microsoft.ContainerService'
+    # only to use Grounding with Bing Search tool
+    az provider register --namespace 'Microsoft.Bing'
     ```
 
 ## Choose basic or standard agent setup
@@ -104,7 +105,7 @@ Replace the parameter value for `existingAoaiResourceId`in the [template](https:
     az login
     ``` 
 
-2. Replace `<your-resource-group>` with the resource group containing your resource and `your-azure-openai-resource-name` with the name of your AI Service resource, and run:
+2. Replace `<your-resource-group>` with the resource group containing your resource and `<your-ai-service-resource-name>` with the name of your Azure OpenAI or AI Services resource, and run:
     
     ```console
     az cognitiveservices account show --resource-group <your-resource-group> --name <your-ai-service-resource-name> --query "id" --output tsv
@@ -136,17 +137,22 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
 
 1. To get your storage account resource ID, sign in to the Azure CLI and select the subscription with your storage account: 
     
-    ```az login``` 
+    ```console
+    az login
+    ``` 
+
 2. Then run the command:
 
-    ```az storage account show --resource-group  <your-resource-group> --name <your-storage-account>  --query "id" --output tsv```
-   
-     The output is the `aiStorageAccountResourceID` you need to use in the template.
-   
-3. In the standard agent template file, replace the following placeholders:
-    
+    ```console
+    az storage account show --resource-group <your-resource-group> --name <your-storage-account> --query "id" --output tsv
     ```
-    aiStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}
+   
+     The output is the `azureStorageAccountResourceId` you need to use in the template.
+   
+3. In the standard agent template file, replace the following placeholder:
+    
+    ```console
+    azureStorageAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}
     ```
 
 ### Use an existing Azure Cosmos DB for NoSQL account for conversation storage
@@ -160,7 +166,7 @@ For example, if two projects are deployed under the same Foundry account, the Co
 Both provisioned throughput and serverless modes are supported.
 
 > [!NOTE]
-> Insufficient RU/s capacity in the Cosmos DB account will result in capability host provisioning failures during deployment.
+> Insufficient RU/s capacity in the Cosmos DB account causes capability host provisioning failures during deployment.
 
 1. To get your Azure Cosmos DB account resource ID, sign in to the Azure CLI and select the subscription with your account: 
     
@@ -171,33 +177,42 @@ Both provisioned throughput and serverless modes are supported.
 2. Then run the command:
 
     ```console
-    az cosmosdb show --resource-group  <your-resource-group> --name <your-comosdb-account>  --query "id" --output tsv
+    az cosmosdb show --resource-group <your-resource-group> --name <your-cosmosdb-account> --query "id" --output tsv
     ```
     
-     The output is the `cosmosDBResourceId` you need to use in the template.
-3. In the standard agent template file, replace the following placeholders:
+     The output is the `azureCosmosDBAccountResourceId` you need to use in the template.
+
+3. In the standard agent template file, replace the following placeholder:
     
-    `cosmosDBResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{cosmosDbAccountName}`
+    ```console
+    azureCosmosDBAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{cosmosDbAccountName}
+    ```
     
 ### Use an existing Azure AI Search resource
 
-1. To get your Azure AI Search resource ID, sign into Azure CLI and select the subscription with your search resource: 
+1. To get your Azure AI Search resource ID, sign in to the Azure CLI and select the subscription with your search resource: 
     
-    ```az login```
+    ```console
+    az login
+    ```
+
 2. Then run the command:
     
-    ```az search service show --resource-group  <your-resource-group> --name <your-search-service>  --query "id" --output tsv```
-3. In the standard agent template file, replace the following placeholders:
-
+    ```console
+    az search service show --resource-group <your-resource-group> --name <your-search-service> --query "id" --output tsv
     ```
-    aiSearchServiceResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}
+
+3. In the standard agent template file, replace the following placeholder:
+
+    ```console
+    aiSearchResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}
     ```
 
 ## See also
 
 :::moniker range="foundry-classic"
 
-* Learn about the different [tools](tools\overview.md) agents can use. 
+* Learn about the different [tools](tools-classic/overview.md) agents can use. 
 
 :::moniker-end
 

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 02/11/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
@@ -23,23 +23,36 @@ Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model f
 
 Most users of the Realtime API, including applications that use WebRTC or a telephony system, need to deliver and receive audio from an end-user in real time. The Realtime API isn't designed to connect directly to end user devices. It relies on client integrations to terminate end user audio streams. 
 
-You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. In most cases, we recommend using the WebRTC API for low-latency real-time audio streaming. For more information, see:
+You can use the Realtime API via WebRTC, session initiation protocol (SIP), or WebSocket to send audio input to the model and receive audio responses in real time. In most cases, we recommend using the WebRTC API for low-latency real-time audio streaming.
+
+| Connection method | Use case | Latency | Best for |
+|-------------------|----------|---------|----------|
+| **WebRTC** | Client-side applications | ~100ms | Web apps, mobile apps, browser-based experiences |
+| **WebSocket** | Server-to-server | ~200ms | Backend services, batch processing, custom middleware |
+| **SIP** | Telephony integration | Varies | Call centers, IVR systems, phone-based applications |
+
+For more information, see:
 - [Realtime API via WebRTC](./realtime-audio-webrtc.md)
 - [Realtime API via SIP](./realtime-audio-sip.md)
 - [Realtime API via WebSockets](./realtime-audio-websockets.md)
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (`2024-12-17`)
-- `gpt-4o-realtime-preview` (`2024-12-17`)
+- `gpt-4o-realtime-preview` (`2024-12-17` and `2025-06-03`)
 - `gpt-realtime` (`2025-08-28`)
 - `gpt-realtime-mini` (`2025-10-06`)
 - `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
 
-You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
+> [!NOTE]
+> Token limits vary by model:
+> - **Preview models** (gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview): Input 128,000 / Output 4,096 tokens
+> - **GA models** (gpt-realtime, gpt-realtime-mini): Input 28,672 / Output 4,096 tokens
 
-See the [models and versions documentation](../concepts/models.md#audio-models) for more information.
+For the Realtime API, use API version `2025-04-01-preview` in the URL for preview models. For GA models, use the GA API version (without the `-preview` suffix) when possible. 
+
+See the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) for more information.
 
 ## Get started
 
@@ -49,6 +62,7 @@ Before you can use GPT real-time audio, you need:
 :::moniker range="foundry"
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the [supported regions](#supported-models).
+- An API key or Microsoft Entra ID credentials for authentication. For production applications, we recommend using [Microsoft Entra ID](../how-to/managed-identity.md) for enhanced security.
 - A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article.
     - In the Microsoft Foundry portal, load your project. Select **Build** in the upper right menu, then select the **Models** tab on the left pane, and **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 :::moniker-end
@@ -117,7 +131,7 @@ In the same [`response.create`](../realtime-audio-reference.md#realtimeclienteve
       "topic": "world_capitals"
     },
     "modalities": ["text"],
-    "prompt": "What is the capital of France?"
+    "prompt": "What is the capital/major city of France?"
   }
 }
 ```
@@ -137,7 +151,7 @@ You can also construct a custom context that the model uses outside of the sessi
   "response": {
     "conversation": "none",
     "modalities": ["text"],
-    "prompt": "What is the capital of France?",
+    "prompt": "What is the capital/major city of France?",
     "input": [
       {
         "type": "item_reference",
@@ -149,7 +163,7 @@ You can also construct a custom context that the model uses outside of the sessi
         "content": [
           {
             "type": "input_text",
-            "text": "The capital of France is Paris."
+            "text": "The capital/major city of France is Paris."
           },
         ],
       },
@@ -169,9 +183,9 @@ One of the key [session-wide](#session-configuration) settings is `turn_detectio
 
 By default, server VAD (`server_vad`) is enabled, and the server automatically generates responses when it detects the end of speech in the input audio buffer. You can change the behavior by setting the `turn_detection` property in the session configuration.
 
-### Without server decision mode
+### Manual turn handling (push-to-talk)
 
-By default, the session is configured with the `turn_detection` type effectively set to `none`. Voice activity detection (VAD) is disabled, and the server doesn't automatically generate responses when it detects the end of speech in the input audio buffer.
+You can disable automatic voice activity detection by setting the `turn_detection` type to `none`. When VAD is disabled, the server doesn't automatically generate responses when it detects the end of speech in the input audio buffer.
 
 The session relies on caller-initiated [`input_audio_buffer.commit`](../realtime-audio-reference.md#realtimeclienteventinputaudiobuffercommit) and [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) events to progress conversations and produce output. This setting is useful for push-to-talk applications or situations that have external audio flow control (such as caller-side VAD component). These manual signals can still be used in `server_vad` mode to supplement VAD-initiated response generation.
 
@@ -513,6 +527,38 @@ Eventually, the server sends a [`response.done`](../realtime-audio-reference.md#
   }
 }
 ```
+
+## Troubleshooting
+
+This section provides guidance for common issues when using the Realtime API.
+
+### Connection errors
+
+| Error | Cause | Resolution |
+|-------|-------|------------|
+| WebSocket connection failed | Network or firewall blocking WebSocket connections | Ensure port 443 is open and check proxy settings. Verify your endpoint URL is correct. |
+| 401 Unauthorized | Invalid or expired API key, or incorrect Microsoft Entra ID configuration | Regenerate your API key in the Azure portal, or verify your managed identity configuration. |
+| 429 Too Many Requests | Rate limit exceeded | Implement exponential backoff retry logic. Check your [quota and limits](../quotas-limits.md). |
+| Connection timeout | Network latency or server unavailability | Retry the connection. If using WebSocket, consider switching to WebRTC for lower latency. |
+
+### Audio format issues
+
+The Realtime API expects audio in a specific format:
+- **Format**: PCM 16-bit (pcm16)
+- **Channels**: Mono (single channel)
+- **Sample rate**: 24kHz
+
+If you experience audio quality issues or errors:
+- Verify your audio is in the correct format before sending.
+- When using JSON transport, ensure audio chunks are base64-encoded.
+- Check that audio chunks aren't too large; send audio in small increments (recommended: 100ms chunks).
+
+### Session timeout
+
+Realtime sessions have a maximum duration of **30 minutes**. To handle long interactions:
+- Monitor the `session.created` event's `expires_at` field.
+- Implement session renewal logic before timeout.
+- Save conversation context to restore state in a new session.
 
 ## Related content
 

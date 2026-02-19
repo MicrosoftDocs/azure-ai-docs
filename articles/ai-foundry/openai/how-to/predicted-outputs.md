@@ -6,16 +6,33 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 12/6/2025
+ms.date: 02/11/2026
 author: mrbullwinkle
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
 recommendations: false
+ai-usage: ai-assisted
 ---
 
 # Predicted outputs (preview)
 
 Predicted outputs can improve model response latency for chat completions calls where minimal changes are needed to a larger body of text. If you're asking the model to provide a response where a large portion of the expected response is already known, predicted outputs can significantly reduce the latency of this request. This capability is particularly well-suited for coding scenarios, including autocomplete, error detection, and real-time editing, where speed and responsiveness are critical for developers and end-users. Rather than have the model regenerate all the text from scratch, you can indicate to the model that most of the response is already known by passing the known text to the `prediction` parameter.
+
+## Prerequisites
+
+- An Azure OpenAI model deployed
+- Upgrade the OpenAI Python library:
+
+  ```cmd
+  pip install --upgrade openai
+  ```
+
+- If you use Microsoft Entra ID, also install `azure-identity`:
+
+  ```cmd
+  pip install --upgrade azure-identity
+  ```
+
 
 ## Model support
 
@@ -51,14 +68,7 @@ To demonstrate the basics of predicted outputs, we'll start by asking a model to
 
 # [Microsoft Entra ID](#tab/python-secure)
 
-You might need to upgrade your OpenAI client library to access the `prediction` parameter.
-
-```cmd
-pip install openai --upgrade
-```
-
 ```python
-import os
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
@@ -90,7 +100,7 @@ with code, and with no markdown formatting.
 
 
 completion = client.chat.completions.create(
-    model="gpt-4o-mini", # replace with your unique model deployment name
+    model="YOUR-DEPLOYMENT-NAME",
     messages=[
         {
             "role": "user",
@@ -104,19 +114,13 @@ completion = client.chat.completions.create(
     prediction={
         "type": "content",
         "content": code
-    }
+    },
 )
 
 print(completion.model_dump_json(indent=2))
 ```
 
 # [API key](#tab/python)
-
-You might need to upgrade your OpenAI client library to access the `prediction` parameter.
-
-```cmd
-pip install openai --upgrade
-```
 
 ```python
 import os
@@ -146,21 +150,21 @@ with code, and with no markdown formatting.
 
 
 completion = client.chat.completions.create(
-    model="gpt-4o-mini", # replace with your unique model deployment name
-    messages=[
-        {
-            "role": "user",
-            "content": instructions
-        },
-        {
-            "role": "user",
-            "content": code
-        }
-    ],
+  model="YOUR-DEPLOYMENT-NAME",
+  messages=[
+    {
+      "role": "user",
+      "content": instructions
+    },
+    {
+      "role": "user",
+      "content": code
+    }
+  ],
     prediction={
         "type": "content",
         "content": code
-    }
+  },
 )
 
 print(completion.model_dump_json(indent=2))
@@ -292,14 +296,7 @@ Predicted outputs performance boost is often most obvious if you're returning yo
 
 # [Microsoft Entra ID](#tab/python-secure)
 
-You might need to upgrade your OpenAI client library to access the `prediction` parameter.
-
-```cmd
-pip install openai --upgrade
-```
-
 ```python
-import os
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
@@ -331,7 +328,7 @@ with code, and with no markdown formatting.
 
 
 completion = client.chat.completions.create(
-    model="gpt-4o-mini", # replace with your unique model deployment name
+    model="YOUR-DEPLOYMENT-NAME",
     messages=[
         {
             "role": "user",
@@ -355,13 +352,7 @@ for chunk in completion:
 
 ```
 
-# [API Key](#tab/python)
-
-You might need to upgrade your OpenAI client library to access the `prediction` parameter.
-
-```cmd
-pip install openai --upgrade
-```
+# [API key](#tab/python)
 
 ```python
 import os
@@ -369,7 +360,7 @@ from openai import OpenAI
 
 client = OpenAI(
   base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
+  api_key=os.getenv("AZURE_OPENAI_API_KEY"),
 )
 
 code = """
@@ -391,7 +382,7 @@ with code, and with no markdown formatting.
 
 
 completion = client.chat.completions.create(
-    model="gpt-4o-mini", # replace with your unique model deployment name
+    model="YOUR-DEPLOYMENT-NAME",
     messages=[
         {
             "role": "user",
@@ -415,3 +406,9 @@ for chunk in completion:
 ```
 
 ---
+
+## Troubleshooting
+
+- **401/403**: If you use Microsoft Entra ID, confirm your identity has access to the Azure OpenAI resource. If you use `get_bearer_token_provider`, request a token for `https://cognitiveservices.azure.com/.default`.
+- **404**: Confirm `base_url` uses your Azure OpenAI resource name, and `model` uses your deployment name.
+- **400**: Remove optional parameters and features listed in [Unsupported features](#unsupported-features), and try again.

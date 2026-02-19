@@ -5,7 +5,7 @@ description: Learn to deploy models as serverless API deployments, using Microso
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 1/26/2026
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
@@ -37,7 +37,7 @@ Although serverless API deployment is one option for deploying Foundry Models, w
 
     :::image type="content" source="../media/deploy-models-serverless/foundry-resources-deployment-disabled.png" alt-text="A screenshot of the Foundry portal showing where to disable deployment to Foundry resources." lightbox="../media/deploy-models-serverless/foundry-resources-deployment-disabled.png":::
 
-- Foundry [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure) don't have this requirement. Ensure you have the permissions required to subscribe to model offerings in Azure Marketplace.
+- Foundry [Models from Partners and Community](../foundry-models/concepts/models-sold-directly-by-azure.md) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) don't have this requirement. Ensure you have the permissions required to subscribe to model offerings in Azure Marketplace.
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
@@ -616,9 +616,9 @@ az resource delete --name <resource-name>
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. Additionally, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-- You can find pricing information for [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure), on the *Pricing and terms* tab of the _Serverless API deployment_ window.
+- You can find pricing information for [Models Sold Directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), on the *Pricing and terms* tab of the _Serverless API deployment_ window.
 
-- [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+- [Models from Partners and Community](../foundry-models/concepts/models-sold-directly-by-azure.md) are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 
 ## Permissions required to subscribe to model offerings

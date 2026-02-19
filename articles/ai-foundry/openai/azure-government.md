@@ -16,14 +16,12 @@ ms.custom:
 
 # Azure OpenAI and features in Azure Government
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
-
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI itself in [Azure OpenAI documentation](/azure/ai-foundry/openai/).
 <br><br>
 
 ## Azure OpenAI models
 
-Learn more about the different capabilities of each model in [Azure OpenAI models](./concepts/models.md). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](./how-to/business-continuity-disaster-recovery.md), take careful note of the deployment types, regions, and model availability as not all model/type combinations are available in both regions. 
+Learn more about the different capabilities of each model in [Azure OpenAI models](../foundry-models/concepts/models-sold-directly-by-azure.md). For customers with [Business Continuity and Disaster Recovery (BCDR) considerations](./how-to/business-continuity-disaster-recovery.md), take careful note of the deployment types, regions, and model availability as not all model/type combinations are available in both regions. 
 
 The following sections show model availability by region and deployment type. Models and versions not listed are not currently available in Azure Government. For general limits, quotas, and other details refer to [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits/). 
 
@@ -39,33 +37,43 @@ Data zone deployments are available in the same Azure OpenAI resource as all oth
 <br>
 
 ### Standard deployment model availability
-|   **Region**   | **gpt-4.1**, **2025-04-14** | **gpt-4.1-mini**, **2025-04-14** | **o3-mini** | **gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-35-turbo**, **0125** | **text-embedding-3-large**, **1** | **text-embedding-3-small**, **1** | **text-embedding-ada-002**, **2** |
-|:---------------|:---------------------------:|:--------------------------------:|:-----------:|:--------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|:---------------------------------:|:---------------------------------:|:---------------------------------:|
-| usgovarizona   | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| usgovvirginia  | ✅ | ✅ | - | ✅ | ✅ | -  | ✅ | - | - | ✅ |
-| USGov DataZone |✅|✅|✅| ✅ | - | ✅  | - | - | - | - |
+|   **Region**   | **gpt-4.1**, **2025-04-14** | **gpt-4.1-mini**, **2025-04-14** | **o3-mini** | **gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **text-embedding-3-large**, **1** | **text-embedding-3-small**, **1** | **text-embedding-ada-002**, **2** |
+|:---------------|:---------------------------:|:--------------------------------:|:-----------:|:--------------------------:|:--------------------------:|:-------------------------------:|:---------------------------------:|:---------------------------------:|:---------------------------------:|
+| usgovarizona   | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| usgovvirginia  | ✅ | ✅ | - | ✅ | ✅ | -  | - | - | ✅ |
+| USGov DataZone |✅|✅|✅| ✅ | - | ✅  | - | - | - |
 
 To request quota increases for these models, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota). 
 
 <br>
 
 ### Provisioned deployment model availability
-|   **Region**  |  **o3-mini** |**gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-35-turbo**, **0125** |
-|:--------------|:------------:|:-------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|
-| usgovarizona   | - | ✅ | ✅ | - | ✅ |
-| usgovvirginia  | - | ✅ | ✅ | - | ✅ |
-| USGov DataZone | ✅| ✅| -  | ✅  | -  |
+|   **Region**  |  **o3-mini** |**gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** |
+|:--------------|:------------:|:-------------------------:|:--------------------------:|:-------------------------------:|
+| usgovarizona   | - | ✅ | ✅ | - |
+| usgovvirginia  | - | ✅ | ✅ | - |
+| USGov DataZone | ✅| ✅| -  | ✅  |
+
+<br>
+
+### Model Capabilities
+Not all model capabilities are deployed to Azure Government. General information can be found at [Foundry Models sold directly by Azure](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure). The following shows any relevant differences in Azure Government.
+
+|  Model ID  | Context window | 
+|  --- |  :--- |
+| `gpt-4.1` (2025-04-14)   | - 1,047,576 (not offered) <br> - 300,000 (standard & provisioned managed deployments) |
+| `gpt-4.1-mini` (2025-04-14) | - 1,047,576 (not offered) <br> - 300,000 (standard & provisioned managed deployments) 
 
 <br>
 
 ### Model Retirements
-In some cases, models are retired in Azure Governmen earlier or later than in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Microsoft Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
+In some cases, models are retired in Azure Government earlier or later than in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Microsoft Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
 
 #### Early Model Retirements
 | Model                     | Version			      | Azure Government Status	  | Public Retirement date  |
 | --------------------------|-------------------|---------------------------|-------------------------|
-| `gpt-35-turbo`            | 1106				      | Retired                   | November 14, 2025       |
-| `gpt-4`                   | turbo-2024-04-09	| Retired                   | November 14, 2025       |
+| `gpt-4o`                  | 0513              | March 31, 2026 (for all types)           | October 1, 2026 (for DataZone and PTU) |
+| `gpt-4o-mini`             | 0718              | March 31, 2026 (for all types)           | October 1, 2026 (for DataZone and PTU) |
 
 #### Late Model Retirements
 | Model                     | Version			      | Azure Government Status	  | Public Retirement date  | Replacement Model   | Upgrade date       | Azure Government Retirement date |
@@ -75,7 +83,7 @@ In some cases, models are retired in Azure Governmen earlier or later than in th
 <br>
 
 ### Default Model Versions 
-In some cases, new model versions are designated as default in Azure Governmen ahead of dates in the commercial cloud. General information on model upgrades can be found at [Working with Azure OpenAI models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell&branch=main#model-deployment-upgrade-configuration)
+In some cases, new model versions are designated as default in Azure Government ahead of dates in the commercial cloud. General information on model upgrades can be found at [Working with Azure OpenAI models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell&branch=main#model-deployment-upgrade-configuration)
 
 The following shows default model differences in Azure Government. 
 

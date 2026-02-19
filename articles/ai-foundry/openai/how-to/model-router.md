@@ -4,7 +4,7 @@ description: Learn how to use the model router in Azure OpenAI to select the bes
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/02/2025
+ms.date: 01/29/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -41,7 +41,7 @@ In the **Create new deployment**, find `model-router` in the **Models** list and
 ::: moniker-end
 
 ::: moniker range="foundry"
-In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings"* for the **balanced** routing mode and route between all supported models. To enable more configuration options, choose the **Custom settings* option.
+In the model catalog, find `model-router` in the **Models** list and select it. Choose **Default settings** for the **Balanced** routing mode and route between all supported models. To enable more configuration options, choose **Custom settings**.
 
 :::image type="content" source="media/working-with-models/model-router-deploy.png" alt-text="Screenshot of model router deploy screen.":::
 
@@ -64,6 +64,11 @@ Use the **Routing mode** dropdown to select a routing profile. This sets the rou
 
 :::image type="content" source="media/working-with-models/model-router-routing-mode.png" alt-text="Screenshot of model router routing mode selection.":::
 
+**When to use each mode:**
+- **Balanced** (default): Most workloads. Optimizes cost while maintaining quality.
+- **Quality**: Critical tasks like legal review, medical summaries, or complex reasoning.
+- **Cost**: High-volume, budget-sensitive workloads like content classification or simple Q&A.
+
 ### Select your model subset
 
 > [!NOTE]
@@ -77,6 +82,9 @@ In the model router deployment pane, select **Route to a subset of models**. The
 
 > [!IMPORTANT]
 > To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?view=foundry&preserve-view=true).
+
+> [!NOTE]
+> You must select at least one model for routing. If no models are selected, the deployment uses the default model set for your routing mode.
 
 New models introduced later are excluded by default until explicitly added.
 
@@ -113,6 +121,8 @@ If you've created an AI agent in Foundry, you can connect your model router depl
 ### Output format 
 
 The JSON response you receive from a model router model is identical to the standard chat completions API response. Note that the `"model"` field reveals which underlying model was selected to respond to the prompt.
+
+The following example response was generated using API version `2025-11-18`:
 
 ```json
 {
@@ -221,4 +231,25 @@ You can monitor the costs of model router, which is the sum of the costs incurre
 1. Visit the **Resource Management** -> **Cost analysis** page in the Azure portal.
 1. If needed, filter by Azure resource.
 1. Then, filter by deployment name: Filter by "Tag", select **Deployment** as the type of the tag, and then select your model router deployment name as the value.
+
+## Troubleshoot model router
+
+### Common issues
+
+| Issue | Cause | Resolution |
+|-------|-------|------------|
+| Rate limit exceeded | Too many requests to model router deployment | Increase tokens-per-minute quota or implement retry with exponential backoff |
+| Unexpected model selection | Routing logic selected different model than expected | Review routing mode settings; consider using model subset to constrain options |
+| High latency | Router overhead plus underlying model processing | Use Cost mode for latency-sensitive workloads; smaller models respond faster |
+| Claude model not routing | Claude models require separate deployment | Deploy Claude models from model catalog before enabling in subset |
+
+### Error codes
+
+For API error codes and troubleshooting, see the [Azure OpenAI REST API reference](../reference.md).
+
+## Next steps
+
+- [Model router concepts](../concepts/model-router.md) - Learn how routing modes work
+- [Quotas and limits](../quotas-limits.md) - Rate limits for model router
+- [Create an agent](../../agents/quickstart.md) - Use model router with Foundry agents
 

@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom: references_regions, build-2024
 ms.topic: concept-article
-ms.date: 07/07/2025
+ms.date: 01/26/2026
 ms.reviewer: shubhirajMsft
 ms.author: ssalgado
 manager: nitinme
@@ -34,11 +34,11 @@ When you deploy models in Foundry, the following types of data are processed to 
 
 ## Generation of inferencing outputs with managed compute
 
-Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Foundry portal](model-catalog-overview.md).
+Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Foundry portal](../concepts/foundry-models-overview.md).
 
 You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
-Although containers for **Models Sold Directly by Azure** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, you can [help protect your deployment by using virtual networks](configure-managed-network.md). You can also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
+Although containers for **Models Sold Directly by Azure** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, [help protect your deployment by using virtual networks](configure-managed-network.md). Also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
 
 :::image type="content" source="../media/explore/subscription-service-cycle.png" alt-text="Diagram that shows the platform service life cycle." lightbox="../media/explore/subscription-service-cycle.png":::
 
@@ -61,7 +61,7 @@ Prompts and outputs are processed within the geography specified during deployme
 
 ## Fine-tuning a model for serverless API deployment 
 
-If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections.md#connections-to-datastores) to fine-tune the model. You can then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
+If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](./connections-add.md) to fine-tune the model. Then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
 
 * It's available exclusively for your use.
 * You can use double [encryption at rest](../openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.
@@ -75,4 +75,4 @@ If you download a model from the model catalog, you choose where to deploy the m
 
 ## Related content
 
-* [Model catalog and collections](model-catalog-overview.md)
+* [Model catalog and collections](../concepts/foundry-models-overview.md)

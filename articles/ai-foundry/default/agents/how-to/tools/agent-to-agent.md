@@ -1,13 +1,13 @@
 ---
 title: Add an A2A agent endpoint to Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: Learn how to add an A2A agent endpoint to Microsoft Foundry Agent Service for agent-to-agent communication using the Agent2Agent protocol.
+description: Add an Agent2Agent (A2A) endpoint to Foundry Agent Service for cross-agent communication. Configure connections, authentication, and SDK integration.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/05/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -20,9 +20,9 @@ zone_pivot_groups: selection-agent-to-agent
 [!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!NOTE]
-> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
+> For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
-You can extend the capabilities of your Microsoft Foundry agent by adding an Agent2Agent (A2A) agent endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A Tool enables agent-to-agent communication, making it easier to share context between Foundry agents and external agent endpoints through a standardized protocol. This guide shows you how to configure and use the A2A tool in your Foundry Agent Service.
+You can extend the capabilities of your Microsoft Foundry agent by adding an Agent2Agent (A2A) agent endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A tool enables agent-to-agent communication, making it easier to share context between Foundry agents and external agent endpoints through a standardized protocol. This guide shows you how to configure and use the A2A tool in your Foundry Agent Service.
 
 Connecting agents via the A2A tool versus a multi-agent workflow:
 
@@ -30,6 +30,8 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 - **Using a multi-agent workflow**: When Agent A calls Agent B through a workflow or other multi-agent orchestration, Agent B takes full responsibility for answering the user. Agent A is out of the loop. Agent B handles all subsequent user input. For more information, see [Build a workflow in Microsoft Foundry](../../concepts/workflow.md).
 
 ## Usage support
+
+The following table shows SDK and setup support. A checkmark (✔️) indicates support; a dash (-) indicates the feature isn't available.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -48,7 +50,6 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
   - `A2A_PROJECT_CONNECTION_NAME`: Your A2A connection name (created in the Foundry portal).
-  - `A2A_PROJECT_CONNECTION_ID`: Your A2A connection resource ID (required for some SDKs). The format is `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}`.
   - `A2A_BASE_URI` (optional): The base URI for the A2A endpoint.
 - An A2A connection configured in your Foundry project. For connection setup and REST examples, see [Create an A2A connection](#create-an-a2a-connection).
 
@@ -70,14 +71,14 @@ For details about supported authentication approaches, see [Agent2Agent (A2A) au
 
 ### Get the connection identifier for code
 
-Depending on the SDK sample you follow, use either:
+Store your connection name in the `A2A_PROJECT_CONNECTION_NAME` environment variable. Your code uses this name to retrieve the full connection ID at runtime:
 
-- The connection name (`A2A_PROJECT_CONNECTION_NAME`), and resolve it to a connection ID in code.
-- The connection resource ID (`A2A_PROJECT_CONNECTION_ID`). If you create the connection by using the REST API, you already know the resource ID because it's part of the request URL.
+- **Python/C#/TypeScript**: Call `project.connections.get(connection_name)` to get the connection object, then access `connection.id`.
+- **REST API**: Include the connection ID in the `project_connection_id` field of the A2A tool definition.
 
-## Quick verification
+## Verify your connection
 
-Before you troubleshoot A2A-specific issues, verify you can authenticate and connect to your Foundry project.
+Before running the full sample, confirm your environment setup is correct. This verification script checks that your credentials work and the A2A connection exists in your project.
 
 ```python
 import os
@@ -93,9 +94,23 @@ with (
     AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
     print("Connected to project.")
+    
+    # Verify A2A connection exists
+    connection_name = os.environ.get("A2A_PROJECT_CONNECTION_NAME")
+    if connection_name:
+        try:
+            conn = project_client.connections.get(connection_name)
+            print(f"A2A connection verified: {conn.name}")
+        except Exception as e:
+            print(f"A2A connection '{connection_name}' not found: {e}")
+    else:
+        # List available connections to help find the right one
+        print("A2A_PROJECT_CONNECTION_NAME not set. Available connections:")
+        for conn in project_client.connections.list():
+            print(f"  - {conn.name}")
 ```
 
-If this code runs without errors, your credentials and `FOUNDRY_PROJECT_ENDPOINT` are configured correctly.
+If this code runs without errors, your credentials and A2A connection are configured correctly.
 
 ## Code example
 
@@ -124,12 +139,12 @@ with (
     AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
-  a2a_connection = project_client.connections.get(
-    os.environ["A2A_PROJECT_CONNECTION_NAME"],
-  )
+    a2a_connection = project_client.connections.get(
+        os.environ["A2A_PROJECT_CONNECTION_NAME"],
+    )
 
     tool = A2ATool(
-    project_connection_id=a2a_connection.id,
+        project_connection_id=a2a_connection.id,
     )
 
     agent = project_client.agents.create_version(
@@ -160,7 +175,7 @@ with (
             print(f"\nFollow-up response done!")
         elif event.type == "response.output_item.done":
             item = event.item
-        if item.type == "remote_function_call":
+            if item.type == "remote_function_call":
                 print(f"Call ID: {getattr(item, 'call_id')}")
                 print(f"Label: {getattr(item, 'label')}")
         elif event.type == "response.completed":
@@ -194,7 +209,7 @@ AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenPro
 
 // Create the A2ATool and provide it with the A2A connection ID.
 AIProjectConnection a2aConnection = projectClient.Connections.GetConnection(connectionName: a2aConnectionName);
-A2ATool a2aTool = new()
+A2APreviewTool a2aTool = new()
 {
     ProjectConnectionId = a2aConnection.Id
 };
@@ -230,17 +245,21 @@ ResponseResult response = responseClient.CreateResponse(responseOptions);
 // Print the Agent output.
 if (response.Status != ResponseStatus.Completed)
 {
-  throw new InvalidOperationException($"Response did not complete. Status: {response.Status}");
+    throw new InvalidOperationException($"Response did not complete. Status: {response.Status}");
 }
 Console.WriteLine(response.GetOutputText());
 
 // Clean up the created Agent version.
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
+
+### Expected output
+
+The console displays the agent's response text from the A2A endpoint. After completion, the agent version is deleted to clean up resources.
 :::zone-end
 
 :::zone pivot="rest-api"
-## Create an A2A connection with the REST API
+## Create an A2A connection by using the REST API
 
 Use these examples to create a project connection that stores your authentication information.
 
@@ -438,6 +457,8 @@ curl --request POST \
   }
 }'
 ```
+
+To delete an agent version, send a `DELETE` request to the same endpoint with the agent name and version.
 :::zone-end
 
 :::zone pivot="typescript"
@@ -453,14 +474,16 @@ import "dotenv/config";
 // Load environment variables
 const projectEndpoint = process.env.FOUNDRY_PROJECT_ENDPOINT || "<project endpoint>";
 const deploymentName = process.env.FOUNDRY_MODEL_DEPLOYMENT_NAME || "<model deployment name>";
-const a2aProjectConnectionId =
-  process.env.A2A_PROJECT_CONNECTION_ID || "<a2a project connection id>";
+const a2aConnectionName = process.env.A2A_PROJECT_CONNECTION_NAME || "<a2a connection name>";
 
 export async function main(): Promise<void> {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
 
   console.log("Creating agent with A2A tool...");
+
+  // Get the A2A connection by name to retrieve its ID
+  const a2aConnection = await project.connections.get(a2aConnectionName);
 
   // Create the agent with A2A tool
   const agent = await project.agents.createVersion("MyA2AAgent", {
@@ -471,7 +494,7 @@ export async function main(): Promise<void> {
     tools: [
       {
         type: "a2a_preview",
-        project_connection_id: a2aProjectConnectionId,
+        project_connection_id: a2aConnection.id,
       },
     ],
   });
@@ -539,23 +562,27 @@ main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
 ```
+
+### Expected output
+
+The console displays streamed response text as the A2A agent processes the request. You see the follow-up response ID, text deltas printed to stdout, and completion messages. The agent version is deleted after the interaction completes.
 :::zone-end
 
 ## Troubleshooting
 
-- The agent doesn't invoke the A2A tool:
-  - Confirm your agent definition includes the A2A tool and you configured the connection.
-  - If you're using responses, confirm you're not forcing a different tool and that your prompt requires calling the remote agent.
-- Authentication failures (401 or 403):
-  - Confirm the connection's authentication type matches your endpoint requirements.
-  - For key-based auth, confirm the credential name matches what the endpoint expects, such as `x-api-key` or `Authorization`.
-- The SDK sample can't find the connection:
-  - Confirm `A2A_PROJECT_CONNECTION_NAME` matches the connection name you created in Foundry.
-  - If you're using `A2A_PROJECT_CONNECTION_ID`, confirm it's a full resource ID in the format shown in [Prerequisites](#prerequisites).
-- Network or TLS errors:
-  - Confirm the endpoint is publicly reachable from your environment and uses a valid TLS certificate.
+| Issue | Cause | Resolution |
+| --- | --- | --- |
+| Agent doesn't invoke the A2A tool | Agent definition doesn't include A2A tool configuration | Confirm your agent definition includes the A2A tool and that you configured the connection. If you're using responses, confirm you're not forcing a different tool. |
+| Agent doesn't invoke the A2A tool | Prompt doesn't require remote agent | Update your prompt to require calling the remote agent, or remove conflicting tool choice settings. |
+| Authentication failures (401 or 403) | Connection authentication type mismatch | Confirm the connection's authentication type matches your endpoint requirements. For key-based auth, confirm the credential name matches what the endpoint expects (`x-api-key` or `Authorization`). |
+| SDK sample can't find the connection | Environment variable mismatch | Confirm `A2A_PROJECT_CONNECTION_NAME` matches the connection name in Foundry. |
+| Network or TLS errors | Endpoint unreachable or invalid certificate | Confirm the endpoint is publicly reachable and uses a valid TLS certificate. Check firewall rules and proxy settings. |
+| Remote agent returns unexpected response | Response format incompatibility | Confirm the remote agent follows A2A protocol specifications. Check that response content types match expected formats. |
+| Connection timeout | Remote agent slow to respond | Increase timeout settings or verify the remote agent's performance. Consider implementing retry logic with exponential backoff. |
+| Missing A2A tool in response | Tool not enabled for the agent | Recreate the agent with the A2A tool explicitly enabled, and verify the connection is active and properly configured. |
 
-## Considerations for using non-Microsoft services and servers
+<!-- The verbiage in the following section is required. Do not remove or modify. -->
+## Considerations for using non-Microsoft services
 
 You're subject to the terms between you and the service provider when you use connected non-Microsoft services and servers ("non-Microsoft services"). Under your agreement governing use of Microsoft Online services, non-Microsoft services are non-Microsoft Products. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft services, or your application might receive data from the non-Microsoft services. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use. 
 

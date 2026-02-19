@@ -1,5 +1,5 @@
 ---
-title: Customer Copyright Commitment Required Mitigations | Azure OpenAI in Microsoft Foundry Models
+title: Customer Copyright Commitment Required Mitigations
 description: Customer Copyright Commitment Required Mitigations for Azure OpenAI in Foundry Models
 keywords: Code of Conduct for Azure OpenAI Service
 author: mrbullwinkle

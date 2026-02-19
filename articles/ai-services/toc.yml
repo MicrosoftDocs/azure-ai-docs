@@ -35,7 +35,7 @@ items:
     href: cognitive-services-custom-subdomains.md
   - name: Deploy containers
     items:
-    - name: Azure AI containers overview
+    - name: Foundry Tools containers overview
       href: cognitive-services-container-support.md
     - name: General container FAQ
       href: ./containers/container-faq.yml

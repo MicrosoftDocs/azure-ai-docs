@@ -1,6 +1,7 @@
 ---
 services: cognitive-services
 manager: nitinme
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
@@ -11,7 +12,7 @@ ms.author: mbullwin
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-* A Microsoft Foundry or Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../concepts/models.md#model-summary-table-and-region-availability).
+* A Microsoft Foundry or Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability).
 * <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>
 * The following Python libraries: `openai`, `num2words`, `matplotlib`, `plotly`, `scipy`, `scikit-learn`, `pandas`, `tiktoken`.
 * [Jupyter Notebooks](https://jupyter.org/)

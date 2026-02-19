@@ -5,7 +5,8 @@ description: Description of the supported Markdown elements returned as part of 
 author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: concept-article
 ms.custom:
@@ -47,7 +48,7 @@ Mathematical formulas are encoded by using LaTeX in Markdown:
 Detected images, including figures and charts, are represented using standard Markdown image syntax. The alt text contains the detected text inside the figure, and the syntax varies based on configuration options.
 
 ### Image representation patterns
- 
+
 | Configuration | Markdown pattern | Description |
 | --- | --- | --- |
 | Basic | `![detected text](figures/path)` | Standard image without description |
@@ -102,7 +103,7 @@ Detected images, including figures and charts, are represented using standard Ma
 { ...mermaid diagram... }
 ```
 
-## Figure Analysis
+## Figure analysis
 
 Charts and diagrams detected in documents are represented as structured figure content with specialized rendering formats.
 
@@ -150,7 +151,7 @@ Charts are represented in figure content using Chart.js syntax in JSON format. D
 
 Diagrams are represented in figure content using Mermaid syntax and rendered as Mermaid code blocks in Markdown.
 
-``` mermaid
+```mermaid
 graph TD
     A[Start] --> B{Decision}
     B -->|Yes| C[Action 1]
@@ -182,7 +183,7 @@ Tables are currently represented in Markdown by using HTML table markup (`<table
 :::row:::
 :::column:::
 
-``` md
+```markdown
 <table>
 <caption>Table 1. Example</caption>
 <tr><th>Header A</th><th>Header B</th></tr>
@@ -215,7 +216,7 @@ Markdown doesn't natively encode page metadata, such as page numbers, headers, f
 | --- | --- |
 | Page number | `<!-- PageNumber="1" -->` |
 | Page header | `<!-- PageHeader="Header" -->` |
-| Page footer | `<!-- PageNumber="Footer" -->` |
+| Page footer | `<!-- PageFooter="Footer" -->` |
 | Page break | `<!-- PageBreak -->` |
 
 ## Hyperlinks
@@ -228,7 +229,7 @@ Detected hyperlinks from digital content are represented using standard Markdown
 
 ### Examples
 
-``` md
+```markdown
 For more information, visit the [Microsoft Foundry](https://aka.ms/ai-foundry) portal.
 
 Contact our support team at [support@contoso.com](mailto:support@contoso.com "Email support").
@@ -254,7 +255,7 @@ Document annotations such as highlights, underlines, and comments can be represe
 
 When you set `annotationFormat=none`, the Markdown contains no annotation information. Set both `enableAnnotation` and `returnDetails` to `true` to extract annotations.
 
-``` md
+```markdown
 This is the document content without any annotation markers.
 Use the annotations JSON property to customize representation.
 ```
@@ -263,7 +264,7 @@ Use the annotations JSON property to customize representation.
 
 Encodes annotations in YAML front matter with HTML spans containing `id` attributes that reference annotation details.
 
-``` md
+```markdown
 ---
 fields:
   title: "Document Title"
@@ -295,7 +296,7 @@ This section contains <span id="highlight-2">highlighted content</span> for emph
 
 Uses native Markdown syntax for annotations when supported by the target Markdown processor.
 
-``` md
+```markdown
 This text has ==highlighted content== for emphasis.
 
 This text has ++underlined content++ for attention.

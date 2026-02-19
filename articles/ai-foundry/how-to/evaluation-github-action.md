@@ -347,7 +347,7 @@ Evaluation results are output to the summary section for each AI Evaluation GitH
 
 The following is a sample report for comparing two agents.
 
-:::image type="content" source="../default/media/observability/github-action-agent-output.png" alt-text="Screenshot of agent evaluation result in GitHub Action." lightbox="../default/media/observability/github-action-agent-output.png":::
+:::image type="content" source="media/observability/github-action-agent-output.png" alt-text="Screenshot of agent evaluation result in GitHub Action." lightbox="media/observability/github-action-agent-output.png":::
 
 ::: moniker-end
 
@@ -369,16 +369,16 @@ Evaluation configuration file:
     [ 
         { 
             "query": "Tell me about Tokyo?", 
-            "ground-truth": "Tokyo is the capital of Japan and the largest city in the country. It is located on the eastern coast of Honshu, the largest of Japan's four main islands. Tokyo is the political, economic, and cultural center of Japan and is one of the world's most populous cities. It is also one of the world's most important financial centers and is home to the Tokyo Stock Exchange." 
+            "ground-truth": "Tokyo is the capital/major city of Japan and the largest city in the country/region. It is located on the eastern coast of Honshu, the largest of Japan's four main islands. Tokyo is the political, economic, and cultural center of Japan and is one of the world's most populous cities. It is also one of the world's most important financial centers and is home to the Tokyo Stock Exchange." 
         }, 
         { 
             "query": "Where is Italy?", 
-            "ground-truth": "Italy is a country in southern Europe, located on the Italian Peninsula and the two largest islands in the Mediterranean Sea, Sicily and Sardinia. It is a unitary parliamentary republic with its capital in Rome, the largest city in Italy. Other major cities include Milan, Naples, Turin, and Palermo." 
+            "ground-truth": "Italy is a country/region in southern Europe, located on the Italian Peninsula and the two largest islands in the Mediterranean Sea, Sicily and Sardinia. It is a unitary parliamentary republic with its capital/major city in Rome, the largest city in Italy. Other major cities include Milan, Naples, Turin, and Palermo." 
         }, 
     
         { 
             "query": "Where is Papua New Guinea?", 
-            "ground-truth": "Papua New Guinea is an island country that lies in the south-western Pacific. It includes the eastern half of New Guinea and many small offshore islands. Its neighbours include Indonesia to the west, Australia to the south and Solomon Islands to the south-east." 
+            "ground-truth": "Papua New Guinea is an island country/region that lies in the south-western Pacific. It includes the eastern half of New Guinea and many small offshore islands. Its neighbours include Indonesia to the west, Australia to the south and Solomon Islands to the south-east." 
         } 
     ] 
     

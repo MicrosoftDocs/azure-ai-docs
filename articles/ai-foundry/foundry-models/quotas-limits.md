@@ -19,7 +19,7 @@ reviewer: haakar
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
+This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../openai/quotas-limits.md).
 
 ## Quotas and limits reference
 
@@ -106,4 +106,4 @@ You can modify the [reasoning effort](../openai/how-to/reasoning.md) parameter t
 
 ## Next steps
 
-* Learn more about the [models available in Foundry Models](../model-inference/concepts/models.md)
+* Learn more about the [models available in Foundry Models](./concepts/models-sold-directly-by-azure.md)

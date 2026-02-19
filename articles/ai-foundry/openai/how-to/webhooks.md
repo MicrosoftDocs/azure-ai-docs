@@ -2,10 +2,11 @@
 title: Azure OpenAI in Foundry Models Webhooks
 titleSuffix: Azure OpenAI
 description: Learn how to use webhooks with Azure OpenAI in Foundry Models.
+ai-usage: ai-assisted
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 10/24/2025
+ms.date: 01/31/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -18,10 +19,13 @@ Azure OpenAI webhooks enable your applications to receive real-time notification
 
 ## Prerequisites
 
+- Azure CLI installed and signed in. For example: `az --version` and `az login`. See <https://learn.microsoft.com/cli/azure/install-azure-cli>.
+- An Azure OpenAI resource endpoint (for example, `https://{resource}.openai.azure.com/`) and an API key available as `AZURE_OPENAI_API_KEY`.
+
 Install the required Python packages:
 
 ```bash
-pip install flask openai websockets requests
+pip install flask openai requests
 ```
 
 
@@ -90,7 +94,6 @@ Create a `requirements.txt` file in the same directory as your `app.py` file:
 ```text
 flask
 openai
-websockets
 requests
 ```
 
@@ -113,7 +116,7 @@ Your webhook URL will be: `https://unique-webhook-handler-name.azurewebsites.net
 
 ## Create webhook endpoint
 
-With Azure OpenAI webhook endpoints must be created using the REST API. Register your listener to receive webhook events for specific event types.  
+With Azure OpenAI webhook endpoints must be created using the REST API. Register your listener to receive webhook events for specific event types.
 
 # [Python](#tab/python-key)
 
@@ -202,7 +205,7 @@ First confirm that your web app finished restarting by checking the log stream:
 az webapp log tail --name unique-webhook-handler-name --resource-group myResourceGroup
 ```
 
-Once the restart is complete, You can test your webhook endpoint by sending sample REST API events.
+Once the restart is complete, you can test your webhook endpoint by sending sample REST API events.
 
 # [Python](#tab/python-key)
 
@@ -270,7 +273,7 @@ Status Code: 400
 Response: Invalid signature
 ```
 
-A response of `Invalid signature` indicates that your webhook listener successfully handled you test call. You'll also see the message in the log stream for your web app: 
+A response of `Invalid signature` indicates that your webhook listener successfully handled your test call. You'll also see the message in the log stream for your web app: 
 
 `2025-10-24T23:34:57.576593554Z ERROR:app:Invalid signature: The given webhook signature does not match the expected signature`
 

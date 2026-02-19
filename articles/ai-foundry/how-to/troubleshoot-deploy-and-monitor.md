@@ -36,13 +36,13 @@ For general deployment error code reference, see [Troubleshooting online endpoin
 
 The full error message states: "Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Foundry Models resources. This subscription or region doesn't have access to this model."
 
-This error means that you might not have access to the particular Azure OpenAI model. For example, your subscription might not have access to the latest GPT model yet or this model isn't offered in the region you want to deploy to. You can learn more about it on [Azure OpenAI in Foundry Models](../../ai-services/openai/concepts/models.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json).
+This error means that you might not have access to the particular Azure OpenAI model. For example, your subscription might not have access to the latest GPT model yet or this model isn't offered in the region you want to deploy to. You can learn more about it on [Azure OpenAI in Foundry Models](../../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json).
 
 ### Error: Out of quota
 
 For more information about managing quota, see:
 
-- [Quota for deploying and inferencing a model](../how-to/deploy-models-openai.md#quota-for-deploying-and-inferencing-a-model)
+- [Quota for deploying and inferencing a model](../foundry-models/how-to/deploy-foundry-models.md)
 - [Manage Azure OpenAI in Foundry Models quota documentation](/azure/ai-foundry/openai/how-to/quota?tabs=rest)
 - [Manage and increase quotas for resources with Foundry](quota.md)
 

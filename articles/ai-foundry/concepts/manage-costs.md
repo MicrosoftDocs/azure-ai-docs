@@ -182,7 +182,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. At the top of the page, select the subscription, one or more projects, and a date range. 
 1. The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates.  These estimates do not currently include prompt agent and non-Foundry agent costs.
 
-:::image type="content" source="../default/media/manage-costs/agent-costs.png" alt-text="Screenshot of the Agents tab under Assets, showing the Estimated costs column with monthly cost estimates for each agent based on configuration and usage." lightbox="../default/media/manage-costs/agent-costs.png":::
+:::image type="content" source="media/manage-costs/agent-costs.png" alt-text="Screenshot of the Agents tab under Assets, showing the Estimated costs column with monthly cost estimates for each agent based on configuration and usage." lightbox="media/manage-costs/agent-costs.png":::
 
 For individual agent estimates:
 
@@ -192,7 +192,7 @@ For individual agent estimates:
 
 **Reference:** [Agent concepts](../default/agents/concepts/development-lifecycle.md)
 
-:::image type="content" source="../default/media/manage-costs/agent-list.png" alt-text="Screenshot of the Agents tab showing a list of agents with columns for Name, Status, and Estimated costs. The Estimated costs column displays monthly values." lightbox="../default/media/manage-costs/agent-list.png":::
+:::image type="content" source="media/manage-costs/agent-list.png" alt-text="Screenshot of the Agents tab showing a list of agents with columns for Name, Status, and Estimated costs. The Estimated costs column displays monthly values." lightbox="media/manage-costs/agent-list.png":::
 
 To view detailed agent costs:
 
@@ -205,7 +205,7 @@ To view detailed agent costs:
 
 **Reference:** [Monitor agent metrics](../agents/how-to/metrics.md)
 
-:::image type="content" source="../default/media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Build page showing the Models pane with a selected model highlighted." lightbox="../default/media/manage-costs/agent-build-cost.png":::
+:::image type="content" source="media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Build page showing the Models pane with a selected model highlighted." lightbox="media/manage-costs/agent-build-cost.png":::
 
 ### Model deployment costs
 
@@ -218,7 +218,7 @@ You see total cost and an estimated cost chart for the selected range.
 
 **Reference:** [Monitor models](../foundry-models/how-to/monitor-models.md) 
 
-:::image type="content" source="../default/media/manage-costs/model-costs.png" alt-text="Screenshot of Azure portal showing the Monitor tab with total cost and estimated cost chart for a selected model and date range." lightbox="../default/media/manage-costs/model-costs.png":::
+:::image type="content" source="media/manage-costs/model-costs.png" alt-text="Screenshot of Azure portal showing the Monitor tab with total cost and estimated cost chart for a selected model and date range." lightbox="media/manage-costs/model-costs.png":::
 
 When you select **View More Details** or **Azure Cost Management**, you're directed to the Azure portal's **Cost Management** section. Note: Azure portal costs show aggregated charges for the entire Cognitive Services account, not individual models. Costs display in USD only.
 
@@ -321,10 +321,6 @@ If you try to add a filter by service, you can't find Azure OpenAI in the list. 
 Azure Marketplace offers serverless API deployments. Model publishers might apply different costs depending on the offering. Each project in the Foundry portal has its own subscription with the offering, which you can use to monitor the costs and consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/)
-
-1. Select the portal menu icon to open the left pane.
-
-   :::image type="content" source="../media/manage-costs/azure-portal-menu-icon.png" alt-text="Screenshot of the portal menu icon.":::
 
 1. On the left pane, select **Cost Management + Billing** and then select **Cost Management**.
 

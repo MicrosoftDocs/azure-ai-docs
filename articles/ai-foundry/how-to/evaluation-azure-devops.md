@@ -281,7 +281,7 @@ Evaluation results output to the summary section for each AI Evaluation task run
 
 The following screenshot is a sample report for comparing two agents.
 
-:::image type="content" source="../default/media/observability/github-action-agent-output.png" alt-text="Screenshot of agent evaluation result." lightbox="../default/media/observability/github-action-agent-output.png":::
+:::image type="content" source="media/observability/github-action-agent-output.png" alt-text="Screenshot of agent evaluation result." lightbox="media/observability/github-action-agent-output.png":::
 
 ::: moniker-end
 

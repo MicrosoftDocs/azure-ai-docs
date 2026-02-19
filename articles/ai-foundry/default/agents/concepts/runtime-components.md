@@ -1,13 +1,12 @@
 ---
-title: Agent runtime components
+title: Understand agent runtime components in Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: "Learn the core runtime objects for Foundry agents: agent, conversation, and response, plus how state and streaming fit together."
-services: cognitive-services
+description: Learn how agents, conversations, and responses work together in Microsoft Foundry Agent Service. Understand state persistence, streaming, and multi-turn interactions.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 01/21/2026
+ms.date: 02/02/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026
@@ -16,7 +15,7 @@ ai-usage: ai-assisted
 
 # Agent runtime components
 
-Microsoft Foundry Agent Service uses a small set of runtime objects to generate outputs and optionally persist state across turns.
+Agent runtime components are the core objects—agents, conversations, and responses—that power stateful, multi-turn interactions in Microsoft Foundry Agent Service. Together, these components let you generate outputs, persist state across turns, and build conversational applications.
 
 This article explains the roles of an **agent**, **conversation**, and **response**, and how they work together during response generation.
 
@@ -25,33 +24,31 @@ This article explains the roles of an **agent**, **conversation**, and **respons
 - A [Microsoft Foundry project](../../../how-to/create-projects.md).
 - Familiarity with the [agent development lifecycle](./development-lifecycle.md) (optional).
 
-## Agent components
+## How runtime components work together
 
-When you work with an agent, you follow these steps:
+When you work with an agent, you follow a consistent pattern:
 
-1. **Create an agent**: Define an agent to start sending messages and receiving responses.
+- **Create an agent**: Define an agent to start sending messages and receiving responses.
+- **Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.
+- **Generate a response**: The agent processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
+- **Check response status**: Monitor the response until it finishes (especially in streaming or background mode).
+- **Retrieve the response**: Display the generated response to the user.
 
-1. **Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.
-
-1. **Generate a response**: The agent processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
-
-1. **Check response status**: Monitor the response until it finishes (especially in streaming or background mode).
-
-1. **Retrieve the response**: Display the generated response to the user.
+The following diagram illustrates how these components interact in a typical agent loop.
 
 :::image type="content" source="../media/runtime-components.png" alt-text="Diagram that shows the agent runtime loop: an agent definition and optional conversation history feed response generation, which can call tools, append items back into the conversation, and produce output items you display to the user.":::
 
-The diagram illustrates a loop: you provide user input (and optionally conversation history), the service generates a response (including tool calls when configured), and the resulting items can be reused as context for the next turn.
+You provide user input (and optionally conversation history), the service generates a response (including tool calls when configured), and the resulting items can be reused as context for the next turn.
 
-## Agent
+## What is an agent?
 
 An agent is a persisted orchestration definition that combines AI models, instructions, code, tools, parameters, and optional safety or governance controls.
 
 Store agents as named, versioned assets in Microsoft Foundry. During response generation, the agent definition works with interaction history (conversation or previous response) to process and respond to user input.
 
-## Conversation
+## What is a conversation?
 
-A conversation manages states automatically, so you don't need to pass inputs manually for each turn.
+A conversation manages state automatically, so you don't need to pass inputs manually for each turn.
 
 Conversations are durable objects with unique identifiers. After creation, you can reuse them across sessions.
 
@@ -65,7 +62,7 @@ Use a conversation when you want:
 - **Cross-session continuity**: Reuse the same conversation for a user who returns later.
 - **Easier debugging**: Inspect what happened over time (for example, tool calls and outputs).
 
-If you don't create a conversation, you can still build multi-turn flows by using the output from a previous response as the starting point for the next request. For an overview of how this approach differs from older thread-based patterns, see [Migrate to the Agents SDK](../how-to/migrate.md).
+If you don't create a conversation, you can still build multi-turn flows by using the output from a previous response as the starting point for the next request. This approach gives you more flexibility than the older thread-based pattern, where state was tightly coupled to thread objects. For migration guidance, see [Migrate to the Agents SDK](../how-to/migrate.md).
 
 ## Conversation items
 
@@ -80,7 +77,7 @@ Common item types include:
 
 For examples that show how conversations and responses work together in code, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
 
-## Response
+## How responses work
 
 Response generation invokes the agent. The agent uses its configuration and any provided history (conversation or previous response) to perform tasks by calling models and tools. As part of response generation, the agent appends items to the conversation.
 

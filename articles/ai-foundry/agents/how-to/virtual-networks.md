@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/04/2025
+ms.date: 02/11/2026
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -43,7 +43,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 :::image type="content" source="../media/private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
-- **Subnet IP address limitation**: both subnets must have IP ranges under `10.0.0.0/8`, `172.16.0.0/12` or `192.168.0.0/16`, which are class A, B or C private address ranges reserved for private networking. Public Class A, B or C address ranges are not supported. For more information, see [our Private Network Secured Agent deployment template on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup/README.md).
+- **Subnet IP address limitation**: both subnets must have IP ranges within valid RFC1918 private IPv4 ranges: `10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16`. Public IP address ranges aren't supported. For more details, see the [Private Network Secured Agent deployment template on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 - **Agent subnet exclusivity**: The agent subnet cannot be shared by multiple Microsoft Foundry resources. Each Foundry resource must use a dedicated agent subnet.
 - **Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to `Microsoft.App/environment`. For more on the subnet sizing, see [Configuring virtual networks for Azure Container Apps](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
 - **Agent subnet egress firewall allowlisting**: If you are integrating an Azure Firewall with your private network secured standard agent, please allowlist the Fully Qualified Domain Names (FQDNs) listed under __Managed Identity__ in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article or add the Service Tag __AzureActiveDirectory__.
@@ -253,6 +253,14 @@ az provider register --namespace 'Microsoft.ContainerService'
 `"Subnet requires any of the following delegation(s) [Microsoft.App/environments] to reference service association link /subscriptions/11111-aaaaa-2222-bbbb-333333333/resourceGroups/agentRANGEChange/providers/Microsoft.Network/virtualNetworks/my-agent-vnet/subnets/agent-subnet/serviceAssociationLinks/legionservicelink."` 
 
 **Solution**: This error appears when you try to delete your secured standard template set-up in Azure and did not correctly delete all resources. One solution is to navigate to your Foundry resource page in the Azure portal and select **Manage deleted resources**. From there, purge the resource that the agent was associated with for this virtual network. The other option is to run the `deleteCaphost.sh` script in the secured standard template. 
+
+ 
+
+`"Timeout of 60000ms exceeded" error when loading the Agent pages in the AI Foundry project`
+
+**Solution**: The AI Foundry project has issues communicating with Cosmos DB to create Agents. Verify connectivity to Cosmos DB (Private Endpoint and DNS).
+When using a [firewall on the agents subnet](../how-to/virtual-networks.md#known-limitations), make sure it allows access to required Fully Qualified Domain Names (FQDNs).
+These FQDNs are listed under **Managed Identity** in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article. You can also add the Service Tag **AzureActiveDirectory**.
 
 ## Next steps
 

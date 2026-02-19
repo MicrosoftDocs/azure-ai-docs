@@ -20,7 +20,7 @@ recommendations: false
 
 Assistants, a feature of Azure OpenAI in Microsoft Foundry Models, is designed to make it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
 
-* Assistants can call Azure OpenAI’s [models](../concepts/models.md) with specific instructions to tune their personality and capabilities.
+* Assistants can call Azure OpenAI’s [models](../../foundry-models/concepts/models-sold-directly-by-azure.md) with specific instructions to tune their personality and capabilities.
 * Assistants can access **multiple tools in parallel**. These can be both Azure OpenAI-hosted tools like [code interpreter](../how-to/code-interpreter.md) and [file search](../how-to/file-search.md), or tools you build, host, and access through [function calling](../how-to/function-calling.md).
 * Assistants can access **persistent Threads**. Threads simplify AI application development by storing message history and truncating it when the conversation gets too long for the model's context length. You create a Thread once, and append Messages to it as your users reply.
 * Assistants can access files in several formats. Either as part of their creation or as part of Threads between Assistants and users. When using tools, Assistants can also create files (such as images or spreadsheets) and cite files they reference in the Messages they create.
@@ -54,13 +54,13 @@ For information on using assistants, see the following reference documentation.
 
 ## Available models
 
-To see a list of Azure OpenAI models that you can use with assistants, see the [Models](./models.md#assistants-preview) article.
+To see a list of Azure OpenAI models that you can use with assistants, see the [Models](../../foundry-models/concepts/models-sold-directly-by-azure.md#assistants-preview) article.
 
 ## Assistants playground
 
 Before using assistants, you need:
 
-- A [compatible model](../concepts/models.md#assistants-preview) deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- A [compatible model](../../foundry-models/concepts/models-sold-directly-by-azure.md#assistants-preview) deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 - A [Foundry project](../../../ai-foundry/how-to/create-projects.md) in Foundry portal.
 
 ## Assistants components

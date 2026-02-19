@@ -3,6 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models embeddings tutorial
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's embeddings API for document search with the BillSum dataset
 manager: nitinme
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
@@ -30,6 +31,12 @@ In this tutorial, you learn how to:
 
 Using this approach, you can use embeddings as a search mechanism across documents in a knowledge base. The user can then take the top search result and use it for their downstream task, which prompted their initial query.
 
+## Troubleshooting
+
+- **401/403**: Verify `AZURE_OPENAI_API_KEY` is set and matches your resource key.
+- **404**: Verify `AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT` matches your deployment name.
+- **Invalid URL**: Verify `AZURE_OPENAI_ENDPOINT` is your resource endpoint, for example `https://<resource-name>.openai.azure.com`.
+
 ## Clean up resources
 
 If you created an Azure OpenAI resource solely for completing this tutorial and want to clean up and remove an Azure OpenAI resource, you'll need to delete your deployed models, and then delete the resource or associated resource group if it's dedicated to your test resource. Deleting the resource group also deletes any other resources associated with it.
@@ -41,7 +48,7 @@ If you created an Azure OpenAI resource solely for completing this tutorial and 
 
 Learn more about Azure OpenAI's models:
 > [!div class="nextstepaction"]
-> [Azure OpenAI models](../concepts/models.md)
+> [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 * Store your embeddings and perform vector (similarity) search using your choice of Azure service:
   * [Azure AI Search](/azure/search/vector-search-overview)
   * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)

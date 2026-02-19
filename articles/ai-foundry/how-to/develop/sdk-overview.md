@@ -9,7 +9,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 01/15/2026
+ms.date: 02/06/2026
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -22,7 +22,7 @@ monikerRange: foundry-classic || foundry
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Creating a Foundry resource unlocks access to models, agents, and tools through a unified set of SDKs and endpoints. This article covers what each SDK is for and which endpoint to use.
+A Foundry resource provides unified access to models, agents, and tools. This article explains which SDK and endpoint to use for your scenario.
 
 | SDK | What it's for | Endpoint |
 | --- | --- | --- |
@@ -30,6 +30,12 @@ Creating a Foundry resource unlocks access to models, agents, and tools through 
 | **OpenAI SDK** | Latest OpenAI SDK models and features with the full OpenAI API surface. Foundry direct models available through Chat Completions API (not Responses). | `https://<resource-name>.openai.azure.com/openai/v1` |
 | **Foundry Tools SDKs** | Prebuilt solutions (Vision, Speech, Content Safety, and more). | Tool-specific endpoints (varies by service). |
 | **Agent Framework** | Multi-agent orchestration in code. Cloud-agnostic. | Uses the project endpoint via the Foundry SDK. |
+
+**Choose your SDK**:
+- Use **Foundry SDK** when building apps with agents, evaluations, or Foundry-specific features
+- Use **OpenAI SDK** when maximum OpenAI compatibility is required, or using Foundry direct models via Chat Completions
+- Use **Foundry Tools SDKs** when working with specific AI services (Vision, Speech, Language, etc.)
+- Use **Agent Framework** when building multi-agent systems in code (local orchestration)
 
 > [!NOTE]
 > **Resource types:** A Foundry resource provides all endpoints previously listed. An Azure OpenAI resource provides only the `/openai/v1` endpoint.
@@ -55,6 +61,18 @@ Creating a Foundry resource unlocks access to models, agents, and tools through 
 > This article focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
 >
 
+### Verify prerequisites
+
+Before proceeding, confirm:
+
+- [ ] Azure subscription is active: `az account show`
+- [ ] You have the required RBAC role: Check Azure portal → Foundry resource → Access control (IAM)
+- [ ] Language runtime installed:
+  - Python: `python --version` (≥3.8)
+  - Node.js: `node --version` (≥18)
+  - .NET: `dotnet --version` (≥6.0)
+  - Java: `java --version` (≥11)
+
 ## Foundry SDK
 
 The Foundry SDK connects to a single project endpoint that provides access to the most popular Foundry capabilities:
@@ -66,7 +84,7 @@ https://<resource-name>.services.ai.azure.com/api/projects/<project-name>
 > [!NOTE]
 > If your organization uses a custom subdomain, replace `<resource-name>` with `<your-custom-subdomain>` in the endpoint URL.
 
-This simplifies application configuration. Instead of managing multiple endpoints, you configure one.
+This approach simplifies application configuration. Instead of managing multiple endpoints, you configure one.
 
 ### Install the SDK
 
@@ -82,12 +100,17 @@ This simplifies application configuration. Instead of managing multiple endpoint
 
 ::: zone pivot="programming-language-python"
 
+| SDK Version   | Portal Version  | Status  | Python Package                |
+|---------------|-----------------|---------|-------------------------------|
+| 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1 --pre`  |
+| 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    |
+
 The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 ::: moniker range="foundry-classic"
 Run this command to install the stable packages for Foundry classic projects.
 ```bash
-pip install azure-ai-projects azure-identity openai
+pip install openai azure-identity azure-ai-projects==1.0.0
 ```
 ::: moniker-end
 ::: moniker range="foundry"
@@ -102,14 +125,64 @@ pip install azure-identity openai
 
 ::: zone pivot="programming-language-java"
 
+| SDK Version   | Portal Version  | Status  | Java Package                    |
+|---------------|-----------------|---------|---------------------------------|
+| 1.0.0-beta.3<br>1.0.0-beta.1 | Foundry (new)   | Preview | `azure-ai-projects`<br>`azure-ai-agents` |
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+| SDK Version   | Portal Version  | Status  | JavaScript Package                    |
+|---------------|-----------------|---------|---------------------------------|
+| 2.0.0-beta.4 (preview) | Foundry (new)   | Preview | `@azure/ai-projects 'prerelease'` |
+| 1.0.1 | Foundry classic | Stable | `@azure/ai-projects`             |
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+| SDK Version   | Portal Version  | Status  | .NET Package                    |
+|---------------|-----------------|---------|---------------------------------|
+| 1.2.0-beta.5 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.Openai` |
+| 1.x (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
 The [Azure AI Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Add these packages to your installation:
-* `com.azure.ai.projects`
-* `com.azure.core`
+::: moniker range="foundry-classic"
+Add these packages to your installation for Foundry classic projects.
 
+```java
+package com.azure.ai.foundry.samples;
+import com.azure.ai.projects;
+import com.azure.ai.inference.ChatCompletionsClient;
+import com.azure.ai.inference.ChatCompletionsClientBuilder;
+import com.azure.ai.inference.models.ChatCompletions;
+import com.azure.core.credential.AzureKeyCredential;
+import com.azure.core.credential.TokenCredential;
+import com.azure.core.exception.HttpResponseException;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+```
+::: moniker-end
+::: moniker range="foundry"
+Add these packages to your installation for Foundry projects.
+
+```java
+package com.azure.ai.agents;
+
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+```
+::: moniker-end
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
@@ -125,7 +198,7 @@ npm install @azure/ai-projects @azure/identity
 ::: moniker range="foundry"
 Run this command to install the preview JavaScript packages for Foundry projects.
 ```bash
-npm install @azure/ai-projects@beta @azure/identity
+npm install @azure/ai-projects@beta @azure/identity dotenv
 ```
 ::: moniker-end
 
@@ -135,10 +208,26 @@ npm install @azure/ai-projects@beta @azure/identity
 
 The [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run this command to add the Azure.AI.Projects package to your .NET project.
+::: moniker range="foundry-classic"
+Run these commands to add the Azure AI SDK packages for Foundry classic projects.
+
 ```bash
-dotnet add package Azure.AI.Projects --version 1.2
+# Add Azure AI SDK packages
+dotnet add package Azure.Identity
+dotnet add package Azure.AI.Projects 
+dotnet add package Azure.AI.Agents.Persistent
+dotnet add package Azure.AI.Inference
 ```
+::: moniker-end
+::: moniker range="foundry"
+Run this command to add the Azure.AI.Projects package to your .NET project.
+
+```bash
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Projects.OpenAI --prerelease
+dotnet add package Azure.Identity
+```
+::: moniker-end
 
 ::: zone-end
 
@@ -154,33 +243,86 @@ Most apps use both clients. Use the project client for setup and configuration, 
 ::: zone pivot="programming-language-python"
 
 **Create a project client:**
+::: moniker range="foundry-classic"
+```python
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
 
+project = AIProjectClient(
+    endpoint="https://<resource-name>.services.ai.azure.com/api/projects/<project-name>",
+    credential=DefaultAzureCredential(),
+)
+```
+::: moniker-end
+::: moniker range="foundry"
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-project = AIProjectClient(
+project_client = AIProjectClient(
   endpoint="https://<resource-name>.services.ai.azure.com/api/projects/<project-name>",
   credential=DefaultAzureCredential())
 ```
-
+::: moniker-end
 **Create an OpenAI-compatible client from your project:**
 
+::: moniker range="foundry-classic"
 ```python
-openai_client = project.inference.get_azure_openai_client(api_version="2024-10-21")
-response = openai_client.responses.create(
-    model="gpt-5.2",
-    input="What is the speed of light?",
+models = project_client.get_openai_client(api_version="2024-10-21")
+chat_responses = models.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant"},
+        {"role": "user", "content": "What is the size of France in square miles?"},
+    ],
 )
-print(response.output_text)
+
+print(chat_responses.choices[0].message.content)
+```
+::: moniker-end
+::: moniker range="foundry"
+```python
+with project_client.get_openai_client() as openai_client:
+    response = openai_client.responses.create(
+        model="gpt-5.2",
+        input="What is the size of France in square miles?",
+    )
+    print(f"Response output: {response.output_text}")
 ```
 
+**Expected output**:
+```
+Response output: France has an area of approximately 213,011 square miles (551,695 square kilometers).
+```
+::: moniker-end
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
 **Create a project client:**
+::: moniker range="foundry-classic"
+```java
+package com.azure.ai.foundry.samples;
 
+import com.azure.ai.inference.ChatCompletionsClient;
+import com.azure.ai.inference.ChatCompletionsClientBuilder;
+import com.azure.ai.inference.models.ChatCompletions;
+import com.azure.core.credential.AzureKeyCredential;
+import com.azure.core.credential.TokenCredential;
+import com.azure.core.exception.HttpResponseException;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+String  prompt = "What best practices should I follow when asking an AI model to review Java code?";
+String endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
+TokenCredential credential = new DefaultAzureCredentialBuilder().build();
+ChatCompletionsClient client = new ChatCompletionsClientBuilder()
+    .credential(credential)
+    .endpoint(endpoint)
+    .buildClient();
+```
+::: moniker-end
+::: moniker range="foundry"
 ```java
 import com.azure.ai.projects.ProjectsClient;
 import com.azure.ai.projects.ProjectsClientBuilder;
@@ -193,39 +335,89 @@ ProjectsClient projectClient = new ProjectsClientBuilder()
     .endpoint(endpoint)
     .buildClient();
 ```
+::: moniker-end
+**Create and use an OpenAI-compatible client from your project:**
+::: moniker range="foundry-classic"
 
-**Create an OpenAI-compatible client from your project:**
-
+```java
+ChatCompletions completions = client.complete(prompt);
+String content = completions.getChoice().getMessage().getContent();
+System.out.println("\nResponse from AI assistant:\n" + content);
+```
+::: moniker-end
+::: moniker range="foundry"
 ```java
 OpenAIClient openAIClient = projectClient.getOpenAIClient();
 ```
-
+::: moniker-end
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
 **Create a project client:**
 
+::: moniker range="foundry-classic"
 ```javascript
-import { AIProjectClient } from '@azure/ai-projects';
-import { DefaultAzureCredential } from '@azure/identity';
-
 const endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
+const deployment = "gpt-4o";
+
 const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
 ```
+::: moniker-end
+::: moniker range="foundry"
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+const projectEndpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
+const deploymentName = "gpt-5.2";
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+```
+::: moniker-end
 
 **Create an OpenAI-compatible client from your project:**
+::: moniker range="foundry-classic"
 
 ```javascript
-const openAIClient = await project.getOpenAIClient();
-```
+const client = await project.getAzureOpenAIClient({
+    // The API version should match the version of the Azure OpenAI resource
+    apiVersion: "2024-12-01-preview"
+});
+const chatCompletion = await client.chat.completions.create({
+    model: deployment,
+    messages: [
+        { role: "system", content: "You are a helpful assistant" },
+        { role: "user", content: "What is the speed of light?" },
+    ],
+});
 
+console.log(chatCompletion.choices[0].message.content);
+```
+::: moniker-end
+::: moniker range="foundry"
+```javascript
+const openAIClient = await project.getOpenAIClient();
+const response = await openAIClient.responses.create({
+    model: deploymentName,
+    input: "What is the size of France in square miles?",
+});
+console.log(`Response output: ${response.output_text}`);
+```
+::: moniker-end
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
 **Create a project client:**
 
+::: moniker range="foundry-classic"
+```csharp
+string endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
+AIProjectClient projectClient = new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential());
+```
+::: moniker-end
+::: moniker range="foundry"
 ```csharp
 using Azure.AI.Projects.OpenAI; 
 using Azure.Identity;
@@ -237,9 +429,28 @@ AIProjectClient projectClient = new(
     endpoint: new Uri(endpoint), 
     tokenProvider: new DefaultAzureCredential());
 ```
+::: moniker-end
 
 **Create an OpenAI-compatible client from your project:**
 
+::: moniker range="foundry-classic"
+```csharp
+ClientConnection connection = projectClient.GetConnection(typeof(AzureOpenAIClient).FullName!);
+if (!connection.TryGetLocatorAsUri(out Uri uri) || uri is null)
+{
+    throw new InvalidOperationException("Invalid URI.");
+}
+uri = new Uri($"https://{uri.Host}");
+const string modelDeploymentName = "gpt-4o";  
+AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(uri, new DefaultAzureCredential());
+ChatClient chatClient = azureOpenAIClient.GetChatClient(deploymentName: modelDeploymentName);
+
+Console.WriteLine("Complete a chat");
+ChatCompletion result = chatClient.CompleteChat("List all the rainbow colors");
+Console.WriteLine(result.Content[0].Text);
+```
+::: moniker-end
+::: moniker range="foundry"
 ```csharp
 #pragma warning disable OPENAI001
 OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5.2");
@@ -247,7 +458,7 @@ OpenAIResponse response = responseClient.CreateResponse("What is the speed of li
 Console.WriteLine(response.GetOutputText());
 #pragma warning restore OPENAI001
 ```
-
+::: moniker-end
 ::: zone-end
 
 ### What you can do with the Foundry SDK
@@ -255,32 +466,67 @@ Console.WriteLine(response.GetOutputText());
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
 - [Use the Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
 - [Run cloud evaluations](cloud-evaluation.md)
-- [Enable app tracing](../../concepts/trace.md)
+- [Enable app tracing](./trace-application.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?view=foundry&tabs=azure-openai&pivots=programming-language-python&preserve-view=true)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more
 
+## Troubleshooting
+
+### Authentication errors
+
+If you see `DefaultAzureCredential failed to retrieve a token`:
+
+1. **Verify Azure CLI is authenticated**:
+   ```bash
+   az account show
+   az login  # if not logged in
+   ```
+
+2. **Check RBAC role assignment**:
+   - Confirm you have at least the Azure AI User role on the Foundry project
+   - See [Assign Azure roles](/azure/role-based-access-control/role-assignments-portal)
+
+3. **For managed identity in production**:
+   - Ensure the managed identity has the appropriate role assigned
+   - See [Configure managed identities](../../concepts/authentication-authorization-foundry.md#identity-types)
+
+### Endpoint configuration errors
+
+If you see `Connection refused` or `404 Not Found`:
+
+- **Verify resource and project names** match your actual deployment
+- **Check endpoint URL format**: Should be `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>`
+- **For custom subdomains**: Replace `<resource-name>` with your custom subdomain
+
+### SDK version mismatches
+
+If code samples fail with `AttributeError` or `ModuleNotFoundError`:
+
+- **Check SDK version**:
+  ```bash
+  pip show azure-ai-projects  # Python
+  npm list @azure/ai-projects  # JavaScript
+  dotnet list package  # .NET
+  ```
+- **Verify moniker alignment**: 2.x SDK requires Foundry portal, 1.x SDK requires Foundry classic
+- **Reinstall with correct version flags**: See installation commands in each language section above
+
 ## OpenAI SDK
 
-Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Chat Completions API). It does not provide access to Foundry-specific features like agents and evaluations.
+::: moniker range="foundry-classic"
+Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Chat Completions API). It doesn't provide access to Foundry-specific features like agents and evaluations.
+::: moniker-end
 
-### Create an OpenAI client from your project
+::: moniker range="foundry"
+Use the OpenAI SDK when you want the full OpenAI API surface and maximum client compatibility. This endpoint provides access to Azure OpenAI models and Foundry direct models (via Responses API). It doesn't provide access to Foundry-specific features like agents and evaluations.
+
+::: moniker-end
+
+The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
 ::: zone pivot="programming-language-python"
 
 ::: moniker range="foundry-classic"
-This snippet uses the `AIProjectClient` to request an OpenAI client scoped to your project.
-```python
-# Use the AIProjectClient to create an OpenAI client for your project
-openai_client = project.get_openai_client(api_version="2024-10-21")
-response = openai_client.responses.create(
-    model="gpt-5.2",
-    input="What is the size of France in square miles?",
-)
-print(f"Response output: {response.output_text}")
-```
-
-The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
-
 ```python
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -301,25 +547,13 @@ response = client.responses.create(
 
 print(response.model_dump_json(indent=2)) 
 ```
+
+
 
 For more information, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true).
 ::: moniker-end
 ::: moniker range="foundry"
 
-This snippet uses the `AIProjectClient` to request an OpenAI client from your Foundry project.
-
-```python
-# Use the AIProjectClient to create an OpenAI client for your project
-openai_client = project.get_openai_client()
-response = openai_client.responses.create(
-    model="gpt-5.2",
-    input="What is the size of France in square miles?",
-)
-print(f"Response output: {response.output_text}")
-```
-
-The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
-
 ```python
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -341,41 +575,152 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-For more information, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true)
 ::: moniker-end
+
+**Expected output**:
+```json
+{
+  "id": "resp_abc123",
+  "object": "response",
+  "created": 1234567890,
+  "model": "gpt-5.2",
+  "output_text": "France has an area of approximately 213,011 square miles (551,695 square kilometers)."
+}
+```
+
+For more information, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-python&preserve-view=true)
+
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
-This snippet retrieves an `OpenAIClient` from the `ProjectsClient` so you can send OpenAI requests through Foundry.
+
+::: moniker range="foundry-classic"
 
 ```java
-OpenAIClient openAIClient = projectClient.getOpenAIClient();
+import com.azure.ai.openai.OpenAIClient;
+import com.azure.ai.openai.OpenAIClientBuilder;
+import com.azure.ai.openai.models.ChatChoice;
+import com.azure.ai.openai.models.ChatCompletions;
+import com.azure.ai.openai.models.ChatCompletionsOptions;
+import com.azure.ai.openai.models.ChatRequestAssistantMessage;
+import com.azure.ai.openai.models.ChatRequestMessage;
+import com.azure.ai.openai.models.ChatRequestSystemMessage;
+import com.azure.ai.openai.models.ChatRequestUserMessage;
+import com.azure.ai.openai.models.ChatResponseMessage;
+import com.azure.core.credential.AzureKeyCredential;
+import com.azure.core.util.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+String endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+String deploymentName = "gpt-5.2";
+TokenCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
+OpenAIClient client = new OpenAIClientBuilder()
+    .credential(defaultCredential)
+    .endpoint("{endpoint}")
+    .buildClient();
+
+List<ChatRequestMessage> chatMessages = new ArrayList<>();
+chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant."));
+chatMessages.add(new ChatRequestUserMessage("What is the speed of light?"));
+
+ChatCompletions chatCompletions = client.getChatCompletions(deploymentName, new ChatCompletionsOptions(chatMessages));
+
+System.out.printf("Model ID=%s is created at %s.%n", chatCompletions.getId(), chatCompletions.getCreatedAt());
+for (ChatChoice choice : chatCompletions.getChoices()) {
+    ChatResponseMessage message = choice.getMessage();
+    System.out.printf("Index: %d, Chat Role: %s.%n", choice.getIndex(), message.getRole());
+    System.out.println("Message:");
+    System.out.println(message.getContent());
 ```
-::: moniker range="foundry-classic"
+
+
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true).
 ::: moniker-end
 ::: moniker range="foundry"
+```java
+import com.azure.identity.AuthenticationUtil;
+import com.azure.identity.DefaultAzureCredential;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.credential.BearerTokenCredential;
+
+import java.util.function.Supplier;
+
+DefaultAzureCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
+String endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+String deploymentName = "gpt-5.2";
+Supplier<String> bearerTokenSupplier = AuthenticationUtil.getBearerTokenSupplier(
+        tokenCredential, "https://cognitiveservices.azure.com/.default");
+OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
+        .baseUrl(endpoint)
+        .credential(BearerTokenCredential.create(bearerTokenSupplier))
+        .build();
+
+ResponseCreateParams responseCreateParams = ResponseCreateParams.builder()
+        .input("What is the speed of light?")
+        .model(deploymentName) 
+        .build();
+
+Response response = openAIClient.responses().create(responseCreateParams);
+
+System.out.println("Response output: " + response.getOutputText());
+```
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-java&preserve-view=true)
 ::: moniker-end
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-This snippet uses the project client to create an OpenAI client you can reuse across requests.
+::: moniker range="foundry-classic"
 
 ```javascript
-// Use the AIProjectClient to create an OpenAI client for your project
-const openAIClient = await project.getOpenAIClient();
+import { AzureOpenAI } from "openai";
+import { DefaultAzureCredential } from "@azure/identity";
+
+const deployment = "gpt-4o"
+const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+const scope = "https://cognitiveservices.azure.com/.default";
+const apiVersion = "2024-04-01-preview";
+
+const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
+
+const options = { azureADTokenProvider, deployment, apiVersion }
+
+const client = new AzureOpenAI(options);
+
+const result = await client.chat.completions.create({
+    model: deployment,
+    messages: [
+        { role: "system", content: "You are a helpful assistant" },
+        { role: "user", content: "What is the speed of light?" },
+    ],
+});
+console.log(result.choices[0].message.content);
 ```
 
-::: moniker range="foundry-classic"
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-javascript&preserve-view=true).
 ::: moniker-end
 ::: moniker range="foundry"
+```javascript
+const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+const scope = "https://cognitiveservices.azure.com/.default";
+const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
+const client = new OpenAI({ baseURL: endpoint, apiKey: azureADTokenProvider });
+const response = await client.responses.create({
+        model: deploymentName,
+        input: "What is the size of France in square miles?",
+    });
+console.log(`Response output: ${response.output_text}`);
+```
+
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-javascript&preserve-view=true)
 ::: moniker-end
 
@@ -384,32 +729,75 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 ::: zone pivot="programming-language-csharp"
 
 1. Install the OpenAI package:
-
-    Run this command to add the OpenAI client library to your .NET project.
-    ```bash
-    dotnet add package OpenAI
-    ```
+::: moniker range="foundry-classic"
+   Run this command to add the OpenAI client library to your .NET project.
+   ```bash
+   dotnet add package OpenAI
+   ```
+::: moniker-end
+::: moniker range="foundry"
+   Run this command to add the OpenAI client library to your .NET project.
+   ```bash
+   dotnet add package OpenAI
+   ```
+::: moniker-end
 When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
-1. The following code snippet demonstrates how to create the OpenAI client directly using the Azure OpenAI v1 endpoint.
 
-    This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ResponseClient` for the Azure OpenAI v1 endpoint.
-    ```csharp
-    using Azure.Identity;
-    using Azure.Core;
-    using OpenAI;
-    using System;
-    using System.ClientModel.Primitives;
+
+::: moniker range="foundry-classic"
+   This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ChatClient` for the Azure OpenAI v1 endpoint.
+   ```csharp
+   using System.ClientModel.Primitives;
+   using Azure.Identity;
+   using OpenAI;
+   using OpenAI.Chat;
+    
+   #pragma warning disable OPENAI001
+
+   const string directModelEndpoint  = "https://<resource-name>.openai.azure.com/openai/v1/";
+   const string modelDeploymentName = "gpt-5.2";    
+    
+   BearerTokenPolicy tokenPolicy = new(
+        new DefaultAzureCredential(),
+        "https://ai.azure.com/.default");
+   OpenAIClient openAIClient = new(
+        authenticationPolicy: tokenPolicy,
+        options: new OpenAIClientOptions()
+        {
+            Endpoint = new($"{directModelEndpoint}"),
+        });
+   ChatClient chatClient = openAIClient.GetChatClient(modelDeploymentName);
+    
+   ChatCompletion completion = await chatClient.CompleteChatAsync(
+        [
+            new SystemChatMessage("You are a helpful assistant."),
+                        new UserChatMessage("How many feet are in a mile?")
+        ]);
+    
+   Console.WriteLine(completion.Content[0].Text);
+   #pragma warning restore OPENAI001
+   ```
+::: moniker-end
+
+::: moniker range="foundry"
+   This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ResponseClient` for the Azure OpenAI v1 endpoint.
+   ```csharp
+   using Azure.Identity;
+   using Azure.Core;
+   using OpenAI;
+   using System;
+   using System.ClientModel.Primitives;
    
-    #pragma warning disable OPENAI001
+   #pragma warning disable OPENAI001
  
-    const string directModelEndpoint  = "https://<resource-name>.openai.azure.com/openai/v1/";
-    const string deploymentName = "gpt-5.2";    
+   const string directModelEndpoint  = "https://<resource-name>.openai.azure.com/openai/v1/";
+   const string deploymentName = "gpt-5.2";    
 
-    BearerTokenPolicy tokenPolicy = new(
+   BearerTokenPolicy tokenPolicy = new(
         new DefaultAzureCredential(),
         "https://cognitiveservices.azure.com/.default");
     
-    OpenAIResponseClient client = new(
+   OpenAIResponseClient client = new(
         model: deploymentName,
         authenticationPolicy: tokenPolicy, // To use Entra 
      // credential: new ApiKeyCredential("<YOUR-AZURE-OPENAI-API-KEY>") // To use APIKEY 
@@ -417,21 +805,21 @@ When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
         {
             Endpoint = new($"{directModelEndpoint}"),
         });
-    ResponseCreationOptions options = new ResponseCreationOptions
+   ResponseCreationOptions options = new ResponseCreationOptions
     {
         Temperature = (float)0.7,
     };
     
-    OpenAIResponse modelDirectResponse = client.CreateResponse(
+   OpenAIResponse modelDirectResponse = client.CreateResponse(
          [
             ResponseItem.CreateUserMessageItem("What is the size of France in square miles?"),
          ], options);
     
-    Console.WriteLine($"[ASSISTANT]: {modelDirectResponse.GetOutputText()}");
-    #pragma warning restore OPENAI001
-    // The ResponseClient lets you interact with models and services in your project.
-    ```
-
+   Console.WriteLine($"[ASSISTANT]: {modelDirectResponse.GetOutputText()}");
+   #pragma warning restore OPENAI001
+   // The ResponseClient lets you interact with models and services in your project.
+   ```
+::: moniker-end
 
 ::: moniker range="foundry-classic"
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?view=foundry-classic&tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet&preserve-view=true).

@@ -34,7 +34,10 @@ Memory in Foundry Agent Service is designed for long-term memory. It extracts me
 
 ## How memory works
 
-Behind the scenes, memories are stored as items in a managed memory store. The system applies consolidation and conflict‑resolution logic where applicable. Currently, consolidation is performed for user profile memories to merge duplicate or overlapping profile information. Chat summary memories aren't consolidated.
+Behind the scenes, memories are stored as items in a managed memory store. The system may apply consolidation and conflict‑resolution logic where applicable (for example, to merge duplicate or overlapping user profile information).
+
+> [!NOTE]
+> Consolidation behavior can vary by memory type and may change during preview. For the latest behavior, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
 
 Memory operates in the following phases:
 
@@ -42,7 +45,7 @@ Memory operates in the following phases:
 
 1. **Consolidation:** Extracted memories are consolidated to keep the memory store efficient and relevant. The system uses LLMs to merge similar or duplicate topics so that the agent doesn't store redundant information. Conflicting facts, such as a new allergy, are resolved to maintain an accurate memory.
 
-1. **Retrieval:** When the agent needs to recall information, it uses hybrid search techniques to find the most relevant memories. This allows the agent to quickly surface the right context, making conversations feel natural and informed. Core memories, such as user profile and preferences, are retrieved at the beginning of a conversation so that the agent is immediately aware of the user's core needs.
+1. **Retrieval:** When the agent needs to recall information, it searches the memory store for the most relevant memories. This allows the agent to quickly surface the right context, making conversations feel natural and informed. For best results, retrieve stable user profile information early in the conversation so the agent can personalize responses.
 
 Here's an example of how memory can improve and personalize interactions between a recipe agent and a user who previously expressed a food allergy:
 
@@ -52,8 +55,8 @@ Here's an example of how memory can improve and personalize interactions between
 > Need help deciding when to use memory? Consider these guidelines:
 >
 > - Use memory for user-specific context that persists over time.
-> - Use a [Foundry IQ knowledge base](../how-to/tools/knowledge-retrieval.md) to ground your agent on curated organizational content.
-> - Use the [file search tool](../how-to/tools/file-search.md) to search user-provided documents during an interaction.
+> - Use a [Foundry IQ](../concepts/what-is-foundry-iq.md) knowledge base to ground your agent on curated organizational content.
+> - Use the [file search tool](../how-to/tools/file-search.md?view=foundry&preserve-view=true) to search user-provided documents during an interaction.
 
 ## Memory types
 
@@ -62,7 +65,7 @@ Memory in Foundry Agent Service extracts and stores two types of long-term memor
 | Type | Description | Configuration |
 |--|--|--|
 | User profile memory | Information and preferences about the user, such as preferred name, dietary restrictions, and language preference. These memories are considered "static" with respect to a conversation because they generally don't depend on the current chat context. Retrieve user profile memories once at the beginning of each conversation. | Specify `user_profile_details` in a [memory store](../how-to/memory-usage.md#customize-memory). |
-| Chat summary memory | A distilled summary of each topic or thread covered in a chat session. These memories allow users to continue conversations or reference prior sessions without repeating earlier context. Retrieve chat summary memories based on the current conversation to surface relevant threads. | Enable `chat_summaries` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
+| Chat summary memory | A distilled summary of each topic or thread covered in a chat session. These memories allow users to continue conversations or reference prior sessions without repeating earlier context. Retrieve chat summary memories based on the current conversation to surface relevant threads. | Set `chat_summary_enabled` to `true` in a [memory store](../how-to/memory-usage.md#create-a-memory-store). |
 
 ## Working with memory
 
@@ -71,6 +74,7 @@ There are two ways to use memory for agent interactions:
 - **Memory search tool:** Attach the memory search tool to a prompt agent to enable reading from and writing to the memory store during conversations. This approach is ideal for most scenarios because it simplifies memory management. For more information, see [Use memories via an agent tool](../how-to/memory-usage.md#use-memories-via-an-agent-tool).
 
 - **Memory store APIs:** Interact directly with the memory store using the low-level APIs. This approach provides more control and flexibility for advanced use cases. For more information, see [Use memories via APIs](../how-to/memory-usage.md#use-memories-via-apis).
+
 
 ## Use cases
 
@@ -106,21 +110,27 @@ To mitigate security risks, consider these actions:
 
 ## Limitations and quotas
 
-- You must use chat and embedding models from Azure OpenAI. Other model providers aren't currently supported.
+- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md?view=foundry&preserve-view=true).
 - You must set the `scope` value explicitly. Automatic population from the user identity specified in the request isn't currently supported.
+
+
+### Quotas
+
 - Maximum scopes per memory store: 100
 - Maximum memories per scope: 10,000
 - Search memories: 1,000 requests per minute
 - Update memories: 1,000 requests per minute
 
-For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md).
+For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md?view=foundry&preserve-view=true).
 
 ## Pricing
 
-During the public preview, memory features are free. You're only billed for usage of the chat and embedding models.
+Memory is currently in public preview. Pricing and billing for memory and the Memory Store API can change during preview.
+
+You're billed for usage of the underlying chat and embedding models you configure. For current pricing details, see [Foundry Agent Service pricing](https://azure.microsoft.com/pricing/details/foundry-agent-service/?msockid=053845effeba692426b55062faba6f36).
 
 ## Related content
 
-- [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)
-- [Supported models in Foundry Agent Service](../../../agents/concepts/model-region-support.md)
-- [Microsoft Foundry Quickstart](../../../quickstarts/get-started-code.md)
+- Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)
+- Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md?view=foundry&preserve-view=true)
+- Build a complete agent: [Microsoft Foundry quickstart](../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)

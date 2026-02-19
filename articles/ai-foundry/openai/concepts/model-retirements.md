@@ -5,7 +5,7 @@ description: Learn about model deprecations and retirements in Azure OpenAI.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 11/13/2025
+ms.date: 01/30/2026
 ms.custom: 
 manager: nitinme
 author: mrbullwinkle

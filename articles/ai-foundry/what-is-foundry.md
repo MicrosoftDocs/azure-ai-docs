@@ -67,8 +67,8 @@ With Microsoft Foundry, you can explore a wide variety of models, services and c
 * **[Expanded Integration Options](default/agents/how-to/publish-copilot.md?view=foundry&preserve-view=true)** – Publish agents to Microsoft 365, Teams, and BizChat, plus leverage containerized deployments for greater portability.
 * **[Expanded Tool Access](default/agents/concepts/tool-catalog.md?view=foundry&preserve-view=true)** – Access the Foundry tool catalog (preview) with a public tool catalog and your own private catalogs, connecting over 1,400 tools in Microsoft Foundry.
 * **[Enhanced Memory Capabilities](default/agents/concepts/what-is-memory.md?view=foundry&preserve-view=true)** – Use memory to help your agent retain and recall contextual information across interactions. Memory maintains continuity, adapts to user needs, and delivers tailored experiences without requiring repeated input.
-* **[Knowledge Integration](default/agents/how-to/tools/knowledge-retrieval.md?view=foundry&preserve-view=true)** – Connect your agent to a Foundry IQ (powered by Azure AI Search) knowledge base to ground responses in enterprise or web content. This integration provides reliable, citation-backed answers for multi-turn conversations.
-* **[Real-Time Observability](how-to/continuous-evaluation-agents.md?view=foundry&preserve-view=true)** – Monitor performance and governance using built-in metrics and model tracking tools.
+* **[Knowledge Integration](default/agents/concepts/what-is-foundry-iq.md?view=foundry&preserve-view=true)** – Connect your agent to a Foundry IQ knowledge base to ground responses in enterprise or web content. This integration provides reliable, citation-backed answers for multi-turn conversations.
+* **[Real-Time Observability](default/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk)** – Monitor performance and governance using built-in metrics and model tracking tools.
 * **Enhanced Enterprise Support** – Use open protocols in Foundry Agent Service with full authentication support in MCP and A2A tool, AI gateway integration, and Azure Policy integration.
 * **Centralized AI asset management** - Observe, optimize, and manage 100% of your AI assets (agents, models, tools) in one place, the **Operate** section. Register agents from other clouds, get alerts when an agent or model requires your attention, and effectively manage your AI fleet health as that fleet scales.
 * **Optimized Developer Experience** – Experience faster load times and dynamic prefetching for smooth development and deployment.
@@ -227,7 +227,7 @@ Foundry is available in most regions where Foundry Tools are available. For more
 
 :::moniker range="foundry-classic"
 
-You can [explore Foundry portal (classic) (including the model catalog)](./how-to/model-catalog-overview.md) without signing in. 
+You can [explore Foundry portal (classic) (including the model catalog)](./concepts/foundry-models-overview.md) without signing in. 
 
 But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). 
 

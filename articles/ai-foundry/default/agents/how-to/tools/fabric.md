@@ -5,7 +5,7 @@ description: Learn how to connect a Microsoft Fabric data agent to Foundry Agent
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 01/20/2026
+ms.date: 02/18/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -26,7 +26,7 @@ ai-usage: ai-assisted
 
 Use the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) with Foundry Agent Service to analyze enterprise data in chat. The Fabric data agent turns enterprise data into a conversational question and answer experience.
 
-First, build and publish a Fabric data agent. Then, connect your Fabric data agent with the published endpoint. When a user sends a query, the agent determines if it should use the Fabric data agent. If so, it uses the end user's identity to generate queries over data they have access to. Lastly, the agent generates responses based on queries returned from Fabric data agents. By using Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection.
+First, build and publish a Fabric data agent. Then, connect your Fabric data agent with the published endpoint. When a user sends a query, the agent determines if it should use the Fabric data agent. If so, it uses the end user's identity to generate queries over data they have access to. Lastly, the agent generates responses based on queries returned from the Fabric data agent. By using identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection.
 
 ### Usage support
 
@@ -81,7 +81,7 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
   - Give each end user access to the Fabric data agent and its underlying data sources, or the tool call fails.
   - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
   - For more information about how agent identity works, see [Agent identity](../../concepts/agent-identity.md).
-    
+
 ## Code example
 
 > [!NOTE]
@@ -89,6 +89,46 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 > - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
+
+### Quick verification
+
+Before running the full sample, verify your Fabric connection exists:
+
+```python
+import os
+
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+
+load_dotenv()
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+):
+    print("Connected to project.")
+    
+    # Verify Fabric connection exists
+    connection_name = os.environ.get("FABRIC_PROJECT_CONNECTION_NAME")
+    if connection_name:
+        try:
+            conn = project_client.connections.get(connection_name)
+            print(f"Fabric connection verified: {conn.name}")
+            print(f"Connection ID: {conn.id}")
+        except Exception as e:
+            print(f"Fabric connection '{connection_name}' not found: {e}")
+    else:
+        # List available connections to help find the right one
+        print("FABRIC_PROJECT_CONNECTION_NAME not set. Available connections:")
+        for conn in project_client.connections.list():
+            print(f"  - {conn.name}")
+```
+
+If this code runs without errors, your credentials and Fabric connection are configured correctly.
+
+### Full sample
+
 ```python
 import os
 from dotenv import load_dotenv
@@ -103,16 +143,16 @@ from azure.ai.projects.models import (
 
 load_dotenv()
 
-project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
-
-openai_client = project_client.get_openai_client()
-
-with project_client:
-  connection_id = os.environ["FABRIC_PROJECT_CONNECTION_ID"]
-  print(f"Fabric connection ID: {connection_id}")
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    # Get connection ID from connection name
+    fabric_connection = project_client.connections.get(
+        os.environ["FABRIC_PROJECT_CONNECTION_NAME"],
+    )
+    print(f"Fabric connection ID: {fabric_connection.id}")
 
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
@@ -123,7 +163,7 @@ with project_client:
                 MicrosoftFabricAgentTool(
                     fabric_dataagent_preview=FabricDataAgentToolParameters(
                         project_connections=[
-                            ToolProjectConnection(project_connection_id=connection_id)
+                            ToolProjectConnection(project_connection_id=fabric_connection.id)
                         ]
                     )
                 )
@@ -165,7 +205,42 @@ For more details, see the [full Python sample for Fabric data agent](https://git
 :::zone-end
 
 :::zone pivot="csharp"
-## Create an agent with the Fabric data agent tool
+
+### Quick verification
+
+Before running the full sample, verify your Fabric connection exists:
+
+```csharp
+using Azure.AI.Projects;
+using Azure.Identity;
+
+var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
+var fabricConnectionName = System.Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_NAME");
+
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Verify Fabric connection exists
+try
+{
+    AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: fabricConnectionName);
+    Console.WriteLine($"Fabric connection verified: {conn.Name}");
+    Console.WriteLine($"Connection ID: {conn.Id}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Fabric connection '{fabricConnectionName}' not found: {ex.Message}");
+    // List available connections
+    Console.WriteLine("Available connections:");
+    foreach (var conn in projectClient.Connections.GetConnections())
+    {
+        Console.WriteLine($"  - {conn.Name}");
+    }
+}
+```
+
+If this code runs without errors, your credentials and Fabric connection are configured correctly.
+
+### Full sample
 
 To enable your agent to access the Fabric data agent, use `MicrosoftFabricAgentTool`.
 
@@ -173,17 +248,20 @@ To enable your agent to access the Fabric data agent, use `MicrosoftFabricAgentT
 // Create an Agent client and read the environment variables, which will be used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
-var fabricProjectConnectionId = System.Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_ID");
+var fabricConnectionName = System.Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_NAME");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+
+// Get connection ID from connection name
+AIProjectConnection fabricConnection = projectClient.Connections.GetConnection(connectionName: fabricConnectionName);
 
 FabricDataAgentToolOptions fabricToolOption = new()
 {
-  ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricProjectConnectionId) }
+    ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
 };
 PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful assistant.",
-    Tools = { new MicrosoftFabricAgentTool(fabricToolOption), }
+    Tools = { new MicrosoftFabricPreviewTool(fabricToolOption), }
 };
 AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
     agentName: "myAgent",
@@ -191,11 +269,12 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 
 // Create the response and make sure we are always using tool.
 ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-ResponseCreationOptions responseOptions = new()
+CreateResponseOptions responseOptions = new()
 {
-    ToolChoice = ResponseToolChoice.CreateRequiredChoice()
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("What was the number of public holidays in Norway in 2024?") },
 };
-OpenAIResponse response = responseClient.CreateResponse("What was the number of public holidays in Norway in 2024?", options: responseOptions);
+ResponseResult response = responseClient.CreateResponse(options: responseOptions);
 
 // Print the Agent output.
 Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
@@ -224,6 +303,44 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 :::zone-end
 
 :::zone pivot="typescript"
+
+### Quick verification
+
+Before running the full sample, verify your Fabric connection exists:
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const fabricConnectionName = process.env["FABRIC_PROJECT_CONNECTION_NAME"] || "<fabric connection name>";
+
+async function verifyConnection(): Promise<void> {
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  console.log("Connected to project.");
+
+  try {
+    const conn = await project.connections.get(fabricConnectionName);
+    console.log(`Fabric connection verified: ${conn.name}`);
+    console.log(`Connection ID: ${conn.id}`);
+  } catch (error) {
+    console.log(`Fabric connection '${fabricConnectionName}' not found: ${error}`);
+    // List available connections
+    console.log("Available connections:");
+    for await (const conn of project.connections.list()) {
+      console.log(`  - ${conn.name}`);
+    }
+  }
+}
+
+verifyConnection().catch(console.error);
+```
+
+If this code runs without errors, your credentials and Fabric connection are configured correctly.
+
+### Full sample
+
 The following TypeScript example demonstrates how to create an AI agent with Microsoft Fabric capabilities by using the `MicrosoftFabricAgentTool` and synchronous Azure AI Projects client. The agent can query Fabric data sources and provide responses based on data analysis. For a JavaScript version of this sample, see the [JavaScript sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFabric.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
@@ -235,12 +352,16 @@ import "dotenv/config";
 const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName =
   process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const fabricProjectConnectionId =
-  process.env["FABRIC_PROJECT_CONNECTION_ID"] || "<fabric project connection id>";
+const fabricConnectionName =
+  process.env["FABRIC_PROJECT_CONNECTION_NAME"] || "<fabric connection name>";
 
 export async function main(): Promise<void> {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
+
+  // Get connection ID from connection name
+  const fabricConnection = await project.connections.get(fabricConnectionName);
+  console.log(`Fabric connection ID: ${fabricConnection.id}`);
 
   console.log("Creating agent with Microsoft Fabric tool...");
 
@@ -255,7 +376,7 @@ export async function main(): Promise<void> {
         fabric_dataagent_preview: {
           project_connections: [
             {
-              project_connection_id: fabricProjectConnectionId,
+              project_connection_id: fabricConnection.id,
             },
           ],
         },
@@ -375,14 +496,22 @@ curl --request POST \
 - A `200` response with a JSON body that contains the model output.
 :::zone-end
 
+## Limitations
+
+- The Fabric data agent tool doesn't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, but the Fabric data agent tool requires user identity passthrough (On-Behalf-Of).
+
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
-| Create assistant failed: `Artifact Id should not be empty and needs to be a valid GUID.` | The Fabric connection was created with an invalid `workspace_id` or `artifact_id`. | Recreate the Fabric connection. Copy `workspace_id` and `artifact_id` from the data agent URL path `.../groups/<workspace_id>/aiskills/<artifact_id>...`. |
-| Add message failed: `Can't add messages to thread_... while a run ... is active.` | A run is still active for the thread. | Start a new conversation or wait for the active run to finish, and then try again. |
-| `unauthorized` | The end user doesn't have access to the Fabric data agent or its underlying data sources. | Grant the end user access in Fabric, and confirm you're using user identity authentication. |
-| `Cannot find the requested item` or `configuration not found` | The Fabric data agent isn't published, or its configuration changed. | Publish the Fabric data agent and confirm it's active and its data sources are valid. |
+| `Artifact Id should not be empty and needs to be a valid GUID.` | Fabric connection created with invalid `workspace_id` or `artifact_id` | Recreate the Fabric connection. Copy `workspace_id` and `artifact_id` from the data agent URL path `.../groups/<workspace_id>/aiskills/<artifact_id>...`. |
+| `Can't add messages to thread_... while a run ... is active.` | A run is still active for the thread | Start a new conversation or wait for the active run to finish, then try again. |
+| `unauthorized` | End user lacks access to the Fabric data agent or its underlying data sources | Grant the end user access in Fabric, and confirm you're using user identity authentication. |
+| `Cannot find the requested item` or `configuration not found` | Fabric data agent isn't published or its configuration changed | Publish the Fabric data agent and confirm it's active and its data sources are valid. |
+| Connection timeout errors | Network latency or Fabric service delays | Increase timeout settings in your client configuration. Consider implementing retry logic with exponential backoff. |
+| Data query returns empty results | Query doesn't match available data | Verify the data sources in the Fabric data agent contain the expected data. Test queries directly in Fabric first. |
+| `Invalid workspace ID format` | Workspace ID isn't a valid GUID | Copy the exact workspace GUID from the Fabric URL or portal. Don't modify the ID format. |
+| Agent doesn't use the Fabric tool | Tool not properly configured or prompt doesn't trigger it | Verify the Fabric tool is enabled in the agent definition. Update the prompt to reference data that requires Fabric access. |
 
 ## Next steps
 

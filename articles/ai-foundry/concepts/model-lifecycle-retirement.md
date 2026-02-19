@@ -1,13 +1,13 @@
 ---
-title: Deprecation for Foundry Models
+title: Model deprecation and retirement for Foundry Models
 titleSuffix: Microsoft Foundry
-description: Learn about the lifecycle stages, deprecation, and retirement for Microsoft Foundry Models.
+description: Learn about model lifecycle stages, deprecation timelines, notifications, and migration steps for Microsoft Foundry Models.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 01/23/2026
+ms.date: 02/17/2026
 ms.author: mopeakande
 manager: nitinme
 author: msakande
@@ -54,7 +54,7 @@ Models labeled _Deprecated_ are no longer available for new deployments. You can
 
 ### Retired
 
-Models labeled _Retired_ are no longer available for use. You can't create new deployments, and attempts to use existing deployments return `<return code>` errors.
+Models labeled _Retired_ are no longer available for use. You can't create new deployments, and attempts to use existing deployments return `404` errors.
 
 
 ## Notifications for Foundry Models
@@ -65,109 +65,149 @@ Customers that have Foundry Model deployments receive notifications for upcoming
 
 - Models are labeled _Deprecated_ and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
 
+> [!IMPORTANT]
+> In some cases, model providers might retire models on an accelerated schedule with shorter notice periods. Always check the specific dates in the [upcoming retirements](#upcoming-retirements-for-foundry-models) table for your model, as the actual timeline for a given model takes precedence over the general policy.
+
 For each subscription that has a model deployed as a serverless API deployment or deployed to a Foundry resource, members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
+
+### How to check for notifications
+
+To stay informed about model lifecycle changes:
+
+1. Monitor your email for notifications sent to subscription role members.
+1. Review the [upcoming retirements](#upcoming-retirements-for-foundry-models) tables in this article for the latest dates.
+1. Set up [Azure Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal) for your subscription to receive automated notifications about service changes.
 
 ## Notifications for Azure OpenAI in Foundry Models
 
 For Azure OpenAI models, customers with active Azure OpenAI deployments receive notice for models with upcoming retirement as follows:
 
 - At model launch, we programmatically designate a "not sooner than" retirement date (typically one year out).
-- At least 60 days notice before model retirement for Generally Available (GA) models.
-- At least 30 days notice before preview model version upgrades.  
+- At least 60 days notice before model retirement for GA models.
+- At least 30 days notice before preview model version upgrades.
 
 Members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive notification for each subscription with a deployment of a model that has an upcoming retirement.
 
-Retirements are done on a rolling basis, region by region. Notifications are sent from an unmonitored mailbox, `azure-noreply@microsoft.com`.
+Retirements are done on a rolling basis, region by region.
 
 To learn more about the Azure OpenAI models lifecycle, including information for current, deprecated, and retired models, see [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md). 
 
-## Timelines for Foundry Models
+## Upcoming retirements for Foundry Models
 
-The following tables list the timelines for models that are on track for retirement. The specified dates are in UTC time.
-
-#### AI21 Labs
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| Jamba Instruct | February 1, 2025 | February 1, 2025 | March 1, 2025 | N/A |
-| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21/?cid=learnDocs) | May 1, 2025 | July 1, 2025 | August 1, 2025 | N/A |
-| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21/?cid=learnDocs) | May 1, 2025 | July 1, 2025 | August 1, 2025 | N/A |
-
-#### Bria
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [Bria-2.3-Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria/?cid=learnDocs) | N/A | August 31, 2025 |October 31, 2025 | N/A |
+The following tables list the timelines for models that are on track for retirement. The lifecycle stages go into effect at 00:00:00 UTC on the specified dates.
 
 #### Cohere
 
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [Command R](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere?cid=learnDocs) | February 24, 2025 | March 25, 2025 | June 30, 2025 | [Cohere Command R 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024?cid=learnDocs) |
-| [Command R+](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere?cid=learnDocs) | February 24, 2025 | March 25, 2025 | June 30, 2025 | [Cohere Command R+ 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024?cid=learnDocs) |
-| [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs), [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) |
-| [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs), [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) |
-| [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere/?cid=learnDocs) |January 14, 2026 | February 14, 2026 | May 14, 2026 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs), [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) |
-
-#### Core42
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/3/registry/azureml-core42/?cid=learnDocs) | September 30, 2025 | October 31, 2025 | January 30, 2026 | N/A |
-
-#### DeepSeek
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [DeepSeek-V3](https://aka.ms/azureai/landing/DeepSeek-V3?cid=learnDocs) | April 10, 2025 | May 31, 2025 | August 31, 2025 | [DeepSeek-V3-0324](https://aka.ms/azureai/landing/DeepSeek-V3-0324?cid=learnDocs) |
-
-#### Gretel
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [Gretel-Navigator-Tabular](https://ai.azure.com/explore/models/Gretel-Navigator-Tabular/version/1/registry/azureml-gretel/?cid=learnDocs) | N/A | June 16, 2025 | September 16, 2025 | N/A |
-
-#### Meta
-
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [Llama-2-13b](https://ai.azure.com/explore/models/Llama-2-13b/version/24/registry/azureml-meta/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
-| [Llama-2-13b-chat](https://ai.azure.com/explore/models/Llama-2-13b-chat/version/22/registry/azureml-meta/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
-| [Llama-2-70b](https://ai.azure.com/explore/models/Llama-2-70b/version/25/registry/azureml-meta/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
-| [Llama-2-70b-chat](https://ai.azure.com/explore/models/Llama-2-70b-chat/version/22/registry/azureml-meta/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
-| [Llama-2-7b](https://ai.azure.com/explore/models/Llama-2-7b/version/23/registry/azureml-meta/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
-| [Llama-2-7b-chat](https://ai.azure.com/explore/models/Llama-2-7b-chat/version/27/registry/azureml-meta/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
-| [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/9/registry/azureml-meta/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
-| [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/9/registry/azureml-meta/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
-| [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+| [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere/?cid=learnDocs) | January 14, 2026 | February 14, 2026 | May 14, 2026 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs), [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) |
+| [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | February 12, 2026 | March 12, 2026 | May 12, 2026 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere/?cid=learnDocs) |
+| [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | February 12, 2026 | March 12, 2026 | May 12, 2026 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere/?cid=learnDocs) |
 
 #### Microsoft
 
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
 | [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml/?cid=learnDocs) | January 16, 2026 | January 27, 2026 | February 27, 2026 | Any DeepSeek model available in the Model catalog |
-| [Phi-3-medium-4k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-4k-instruct/version/6/registry/azureml/?cid=learnDocs)     | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs)                             |
-| [Phi-3-medium-128k-instruct](https://ai.azure.com/explore/models/Phi-3-medium-128k-instruct/version/7/registry/azureml/?cid=learnDocs) | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs)                             |
-| [Phi-3-mini-4k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-4k-instruct/version/15/registry/azureml/?cid=learnDocs)        | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
-| [Phi-3-mini-128k-instruct](https://ai.azure.com/explore/models/Phi-3-mini-128k-instruct/version/13/registry/azureml/?cid=learnDocs)    | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
-| [Phi-3-small-8k-instruct](https://ai.azure.com/explore/models/Phi-3-small-8k-instruct/version/6/registry/azureml/?cid=learnDocs)       | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
-| [Phi-3-small-128k-instruct](https://ai.azure.com/explore/models/Phi-3-small-128k-instruct/version/5/registry/azureml/?cid=learnDocs)    | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
-| [Phi-3.5-mini-instruct](https://ai.azure.com/explore/models/Phi-3.5-mini-instruct/version/6/registry/azureml/?cid=learnDocs)           | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
-| [Phi-3.5-MoE-instruct](https://ai.azure.com/explore/models/Phi-3.5-MoE-instruct/version/5/registry/azureml/?cid=learnDocs)             | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
-| [Phi-3.5-vision-instruct](https://ai.azure.com/explore/models/Phi-3.5-vision-instruct/version/2/registry/azureml/?cid=learnDocs)       | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
+
+## Retired Foundry Models
+
+The following models were retired at 00:00:00 UTC on the specified dates and aren't available for new deployments or inference.
+
+#### AI21 Labs
+
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| Jamba Instruct | March 1, 2025 | N/A |
+| AI21-Jamba-1.5-Large | August 1, 2025 | N/A |
+| AI21-Jamba-1.5-Mini | August 1, 2025 | N/A |
+
+#### Bria
+
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| Bria-2.3-Fast | October 31, 2025 | N/A |
+
+#### Cohere
+
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| Command R | June 30, 2025 | [Cohere Command R 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024?cid=learnDocs) |
+| Command R+ | June 30, 2025 | [Cohere Command R+ 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024?cid=learnDocs) |
+| Cohere-rerank-v3-english | June 30, 2025 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs), [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) |
+| Cohere-rerank-v3-multilingual | June 30, 2025 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs), [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) |
+
+#### Core42
+
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| jais-30b-chat | January 30, 2026 | N/A |
+
+#### DeepSeek
+
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| DeepSeek-V3 | August 31, 2025 | [DeepSeek-V3-0324](https://aka.ms/azureai/landing/DeepSeek-V3-0324?cid=learnDocs) |
+
+#### Gretel
+
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| Gretel-Navigator-Tabular | September 16, 2025 | N/A |
+
+#### Meta
+
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| Llama-2-13b | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+| Llama-2-13b-chat | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+| Llama-2-70b | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+| Llama-2-70b-chat | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+| Llama-2-7b | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+| Llama-2-7b-chat | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+| Meta-Llama-3-70B-Instruct | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+| Meta-Llama-3-8B-Instruct | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+| Meta-Llama-3.1-70B-Instruct | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) |
+
+#### Microsoft
+
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| Phi-3-medium-4k-instruct | August 30, 2025 | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs) |
+| Phi-3-medium-128k-instruct | August 30, 2025 | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs) |
+| Phi-3-mini-4k-instruct | August 30, 2025 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
+| Phi-3-mini-128k-instruct | August 30, 2025 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
+| Phi-3-small-8k-instruct | August 30, 2025 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
+| Phi-3-small-128k-instruct | August 30, 2025 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
+| Phi-3.5-mini-instruct | August 30, 2025 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
+| Phi-3.5-MoE-instruct | August 30, 2025 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
+| Phi-3.5-vision-instruct | August 30, 2025 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |
 
 #### Mistral AI
 
-| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral/?cid=learnDocs) | September 30, 2025 | October 31, 2025 | January 30, 2026 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
-| [Mistral-large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411) | September 30, 2025 | October 31, 2025 | January 30, 2026 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
-| [Mistral-ocr-2503](https://ai.azure.com/explore/models/mistral-ocr-2503/version/1/registry/azureml-mistral/?cid=learnDocs) | September 30, 2025 | October 31, 2025 | January 30, 2026 | [Mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
-| [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral/?cid=learnDocs) | March 31, 2025 | April 30, 2025 | July 31, 2025 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
-| [Mistral-large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407?cid=learnDocs) | January 13, 2025 | February 13, 2025 | May 13, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
-| [Mistral-large](https://aka.ms/azureai/landing/Mistral-Large?cid=learnDocs) | December 15, 2024 | January 15, 2025 | April 15, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| Mistral-Nemo | January 30, 2026 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
+| Mistral-large-2411 | January 30, 2026 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
+| Mistral-ocr-2503 | January 30, 2026 | [Mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
+| Mistral-small | July 31, 2025 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
+| Mistral-large-2407 | May 13, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
+| Mistral-large | April 15, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
+
+## Migrate to a replacement model
+
+When a model you use enters the legacy or deprecated stage, follow these steps to migrate:
+
+1. **Identify the replacement.** Check the **Suggested replacement model** column in the [upcoming retirements](#upcoming-retirements-for-foundry-models) or [retired models](#retired-foundry-models) tables.
+1. **Test the replacement.** Deploy the suggested replacement model and validate that it meets your application requirements, including output quality, latency, and cost.
+1. **Update your deployments.** Create a new deployment with the replacement model and update your application code to point to the new deployment name.
+1. **Delete the old deployment.** After you confirm the replacement works correctly, delete the deprecated model deployment to avoid unexpected `404` errors after retirement.
+
+> [!TIP]
+> Start migration as soon as a model enters the _Legacy_ stage. This gives you the maximum time to test and transition before the model is deprecated and new deployments are blocked.
 
 ## Related content
 
 - [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md)
 - [Data, privacy, and security for use of models through the model catalog in Foundry portal](../how-to/concept-data-privacy.md)
+- [Set up Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal)

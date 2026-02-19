@@ -49,4 +49,4 @@ Pricing details are viewable at [Azure AI Content Safety pricing](https://azure.
 
 - [How to configure content filters for models in Foundry Tools](../../ai-foundry/model-inference/how-to/configure-content-filters.md)
 - [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md)
-- [Model catalog and collections in Foundry portal](../how-to/model-catalog-overview.md)
+- [Model catalog and collections in Foundry portal](foundry-models-overview.md)

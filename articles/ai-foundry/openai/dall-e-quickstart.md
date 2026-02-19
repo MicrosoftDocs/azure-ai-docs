@@ -5,11 +5,11 @@ description: Learn how to get started generating images with Azure OpenAI by usi
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
-ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-ts
+ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-ts, dev-focus
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/16/2025
+ms.date: 01/29/2026
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 zone_pivot_groups: openai-quickstart-dall-e
@@ -19,6 +19,17 @@ zone_pivot_groups: openai-quickstart-dall-e
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
+Azure OpenAI provides multiple image generation models. This quickstart covers both model families:
+
+| Model | Availability | Key capabilities |
+|-------|--------------|------------------|
+| **DALL-E 3** | Generally available | High-quality image generation with `quality` and `style` parameters. Best for production workloads. |
+| **GPT-image-1 series** | Limited access preview | Image generation plus editing and variations. Best for advanced image manipulation workflows. Requires [limited access registration](https://aka.ms/oai/access). |
+
+> [!TIP]
+> Image generation typically takes 10-30 seconds depending on the model, size, and quality settings.
+
+Use the tabs to select your preferred API approach and model.
 
 ::: zone pivot="rest-api"
 

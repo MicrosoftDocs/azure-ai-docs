@@ -42,10 +42,12 @@ productDirectory:
     - title: Create apps with code
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.png
       links:
-        - url: ./default/tutorials/quickstart-create-foundry-resources.md
-          text: Quickstart for Microsoft Foundry (new)
+        - url: ./default/tutorials/quickstart-create-foundry-resources.md?view=foundry
+          text: Quickstart - Create Foundry resources (new)
+        - url: ./quickstarts/get-started-code.md?view=foundry
+          text: Quickstart - Chat with an agent (new)
         - url: ./quickstarts/get-started-code.md?view=foundry-classic
-          text: Quickstart for Microsoft Foundry (classic)
+          text: Quickstart for Foundry (classic)
         - url: /azure/developer/ai/intelligent-app-templates
           text: Start with an AI template
     # Card
@@ -54,7 +56,7 @@ productDirectory:
       links:
         - url: foundry-models/concepts/models.md
           text: Foundry Models sold directly by Azure
-        - url: ../ai-services/openai/concepts/models.md
+        - url: ../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md
           text: Azure OpenAI in Foundry Models
         - url: foundry-models/concepts/deployment-types.md
           text: Deployment types
@@ -92,14 +94,13 @@ productDirectory:
     - title: Foundry IQ
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/foundry-iq.png
       links:
-        - url: /azure/search/agentic-retrieval-overview
-          text: Agentic retrieval
-        - url: /azure/search/agentic-retrieval-how-to-create-knowledge-base
-          text: Create a knowledge base for agentic retrieval
-        - url: /azure/ai-foundry/agents/how-to/tools/knowledge-retrieval
-          text: Connect an agent to a knowledge base
-        - url: /azure/search/agentic-retrieval-how-to-create-pipeline
-          text: "Tutorial: Create an end-to-end retrieval solution"
+        - url: /azure/ai-foundry/agents/concepts/what-is-foundry-iq
+          text: What is Foundry IQ?
+        - url: /azure/ai-foundry/agents/concepts/foundry-iq-faq
+          text: Frequently asked questions
+        - url: /azure/ai-foundry/agents/how-to/foundry-iq-connect
+          text: Connect knowledge base to agents
+    
     # Card
     - title: Foundry Tools
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry-tools.png

@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/22/2026
+ms.date: 02/12/2026
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
@@ -36,9 +36,11 @@ This article explains how to create, manage, and use memory stores. For conceptu
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions) configured.
-- [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4.1`) in your project.
+- [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-5.2`) in your project.
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
-- For Python examples, Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true).
+- For Python examples:
+  - Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true)
+  - Required packages: `pip install azure-ai-projects azure-identity`
 - For REST API examples, Azure CLI authenticated to your subscription.
 
 ### Authorization and permissions
@@ -72,7 +74,9 @@ $env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.
 
 The `scope` parameter controls how memory is partitioned. Each scope in the memory store keeps an isolated collection of memory items. For example, if you create a customer support agent with memory, each customer should have their own individual memory.
 
-As a developer, you choose the key used to store and retrieve memory items, such as a UUID or a unique user ID in your system.
+As a developer, you choose the key used to store and retrieve memory items. You can pass a static value, such as a universally unique identifier (UUID) or another stable identifier from your system.
+
+Alternatively, when you specify `{{$userId}}` as the scope, the system automatically extracts the tenant ID (TID) and object ID (OID) from the request authentication header. This approach gives each authenticated user their own isolated memory partition, eliminating the need to manage identifiers manually.
 
 ## Create a memory store
 
@@ -102,7 +106,7 @@ options = MemoryStoreDefaultOptions(
 
 # Create memory store
 definition = MemoryStoreDefaultDefinition(
-    chat_model="gpt-4.1",  # Your chat model deployment name
+    chat_model="gpt-5.2",  # Your chat model deployment name
     embedding_model="text-embedding-3-small",  # Your embedding model deployment name
     options=options
 )
@@ -134,7 +138,7 @@ curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
     "description": "Memory store for customer support agent",
     "definition": {
       "kind": "default",
-      "chat_model": "gpt-4.1",
+      "chat_model": "gpt-5.2",
       "embedding_model": "text-embedding-3-small",
       "options": {
         "chat_summary_enabled": true,
@@ -231,7 +235,7 @@ After you create a memory store, you can attach the memory search tool to a prom
 from azure.ai.projects.models import MemorySearchTool, PromptAgentDefinition
 
 # Set scope to associate the memories with
-# You can also use "{{$userId}}" to take the oid of the request authentication header
+# You can also use "{{$userId}}" to take the TID and OID of the request authentication header
 scope = "user_123"
 
 openai_client = project_client.get_openai_client()
@@ -248,7 +252,7 @@ tool = MemorySearchTool(
 agent = project_client.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-4.1",
+        model="gpt-5.2",
         instructions="You are a helpful assistant that answers general questions",
         tools=[tool],
     )
@@ -271,7 +275,7 @@ curl -X POST "${ENDPOINT}/agents/MyAgent/versions?api-version=${API_VERSION}" \
   -d '{
     "definition": {
         "kind": "prompt",
-        "model": "gpt-4.1",
+        "model": "gpt-5.2",
         "instructions": "You are a helpful assistant that answers general questions",
         "tools": [
             {
@@ -613,4 +617,5 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 - [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
 - [Memory store REST API reference](../../../reference/foundry-project-rest-preview.md)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
-- [Build an agent with Microsoft Foundry](../../../agents/quickstart.md)
+- [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md?view=foundry&preserve-view=true)
+- [Build an agent with Microsoft Foundry](../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)

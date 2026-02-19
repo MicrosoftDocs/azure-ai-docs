@@ -1,14 +1,16 @@
 ---
-title: "Tutorial: Getting started with DeepSeek-R1 reasoning model in Microsoft Foundry Models"
+title: "Tutorial: Get started with DeepSeek-R1 in Foundry Models"
 titleSuffix: Microsoft Foundry
 description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning."
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 01/15/2026
+ms.date: 02/17/2026
 ms.author: mopeakande
 author: msakande
+ms.reviewer: rasavage
+reviewer: rsavage2
 ms.custom: dev-focus
 ai-usage: ai-assisted
 #CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use the DeepSeek-R1 reasoning model in Microsoft Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
@@ -20,9 +22,9 @@ ai-usage: ai-assisted
 
 In this tutorial, you learn how to deploy and use a DeepSeek reasoning model in Microsoft Foundry. This tutorial uses [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek?cid=learnDocs) for illustration. However, the content also applies to the newer [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek?cid=learnDocs) reasoning model.
 
-**What you'll accomplish:**
+**What you accomplish:**
 
-In this tutorial, you'll deploy the DeepSeek-R1 reasoning model, send inference requests programmatically using code, and parse the reasoning output to understand how the model arrives at its answers.
+In this tutorial, you deploy the DeepSeek-R1 reasoning model, send inference requests programmatically using code, and parse the reasoning output to understand how the model arrives at its answers.
 
 The steps you perform in this tutorial are:
 
@@ -38,13 +40,15 @@ To complete this article, you need:
 
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources. Typically requires Contributor or Owner role on the resource group for creating resources and deploying models.
 
+- The **Cognitive Services User** role (or higher) assigned to your Azure account on the Foundry resource. This role is required to make inference calls with Microsoft Entra ID. Assign it in the Azure portal under **Access Control (IAM)** on the Foundry resource.
+
 - Install the Azure OpenAI SDK for your programming language:
   - **Python**: `pip install openai azure-identity`
-  - **.NET**: `dotnet add package Azure.Identity` and install the OpenAI package
+  - **.NET**: `dotnet add package OpenAI` and `dotnet add package Azure.Identity`
   - **JavaScript**: `npm install openai @azure/identity`
-  - **Java**: Add the Azure Identity package (see code examples for details)
+  - **Java**: Add the `com.openai:openai-java` and `com.azure:azure-identity` packages
 
-DeepSeek-R1 is a reasoning model that generates explanations alongside answers—see [About reasoning models](#about-reasoning-models) for details.
+DeepSeek-R1 is a reasoning model that generates explanations alongside answers. It supports text-based chat completions but doesn't support tool calling or structured output formats. See [About reasoning models](#about-reasoning-models) for details.
 
 ## Create the resources
 
@@ -78,7 +82,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
     | -------------- | ----------- |
     | Resource group | The main container for all the resources in Azure. This container helps you organize resources that work together. It also helps you have a scope for the costs associated with the entire project. |
     | Region     | The region of the resources that you're creating. |
-    | Foundry resource    | The resource enabling access to the flagship models in the Foundry model catalog. In this tutorial, a new account is created, but Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Foundry resources to consume models, see [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
+    | Foundry resource    | The resource enabling access to the flagship models in the Foundry model catalog. In this tutorial, a new account is created, but Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Foundry resources to consume models, see [Connect your AI project](../how-to/configure-project-connection.md). |
 
 1. Select **Create** to create the Foundry project alongside the other defaults. Wait until the project creation is complete. This process takes a few minutes.
 
@@ -101,7 +105,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 
 1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup lets you configure specific names for your models when you attach specific configurations.
 
-1. Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently available under the **Global Standard** deployment type, which provides higher throughput and performance.
+    1. Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is available under the **Global Standard** and **Global Provisioned** deployment types, which provide higher throughput and performance.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png" alt-text="Screenshot showing how to deploy the model." lightbox="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png":::
 
@@ -117,7 +121,7 @@ To create a Foundry project that supports deployment for DeepSeek-R1, follow the
 1. Select **Deploy base model** to open the model catalog.
 1. Find and select the **DeepSeek-R1** model tile to open its model card and select **Deploy**. You can select **Quick deploy** to use the defaults, or select **Customize deployment** to see and change the deployment settings.
 
-When the deployment finishes, you land on its playground, where you can start to interact with the deployment.
+When the deployment finishes, you land on its playground, where you can start to interact with the deployment. Confirm your deployment is ready by verifying the deployment status shows **Succeeded**. Note the **deployment name** and **endpoint URI** from the deployment details—you need both for the code section.
 
 ::: moniker-end
 
@@ -144,12 +148,7 @@ Use the next generation v1 Azure OpenAI APIs to consume the model in your code. 
 
 
 The following code examples demonstrate how to:
-1. Authenticate with Microsoft Entra ID using `DefaultAzureCredential`, which automatically attempts multiple authentication methods in sequence:
-
-    1. **Environment variables** - Checks for service principal credentials in environment variables
-    1. **Managed identity** - Uses managed identity if running in Azure (App Service, Functions, VM, etc.)
-    1. **Azure CLI** - Falls back to Azure CLI credentials if you're authenticated locally
-    1. **Other methods** - Continues through additional authentication methods as needed
+1. Authenticate with Microsoft Entra ID using `DefaultAzureCredential`, which automatically attempts multiple authentication methods (environment variables, managed identity, Azure CLI, and others). The exact order depends on the Azure Identity SDK version you're using.
     
     > [!TIP]
     > For local development, ensure you're authenticated with Azure CLI by running `az login`. For production deployments in Azure, configure managed identity for your application.
@@ -162,6 +161,9 @@ The following code examples demonstrate how to:
 
 [!INCLUDE [code-create-chat-client-request](../../foundry-models/includes/code-create-chat-client-request.md)]
 
+> [!TIP]
+> After running the code, you should see a JSON response that includes `choices[0].message.content` with the model's answer. If the model generates reasoning, the response contains content wrapped in `<think>...</think>` tags followed by the final answer.
+
 **API Reference:**
 - [OpenAI Python client](https://github.com/openai/openai-python)
 - [OpenAI JavaScript client](https://github.com/openai/openai-node)
@@ -170,7 +172,7 @@ The following code examples demonstrate how to:
 - [Chat completions API reference](../../openai/latest.md#create-chat-completion)
 - [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
 
-Reasoning might generate longer responses and consume a larger number of tokens. See the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+Reasoning might generate longer responses and consume a larger number of tokens. DeepSeek-R1 supports up to 5,000 requests per minute and 5,000,000 tokens per minute. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ## About reasoning models
 
@@ -192,7 +194,7 @@ import re
 
 match = re.match(r"<think>(.*?)</think>(.*)", response.choices[0].message.content, re.DOTALL)
 
-print("Response:", )
+print("Response:")
 if match:
     print("\tThinking:", match.group(1))
     print("\tAnswer:", match.group(2))
@@ -206,7 +208,7 @@ print("\tCompletion tokens:", response.usage.completion_tokens)
 ```
 
 ```console
-Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
+Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer. Let's start by recalling the general consensus from linguistic sources. I remember that the number often cited is around 7,000, but maybe I should check some reputable organizations.\n\nEthnologue is a well-known resource for language data, and I think they list about 7,000 languages. But wait, do they update their numbers? It might be around 7,100 or so. Also, the exact count can vary because some sources might categorize dialects differently or have more recent data. \n\nAnother thing to consider is language endangerment. Many languages are endangered, with some having only a few speakers left. Organizations like UNESCO track endangered languages, so mentioning that adds context. Also, the distribution isn't even. Some countries or regions have hundreds of languages, like Papua New Guinea with over 800, while others have just a few. \n\nA user might also wonder why the exact number is hard to pin down. It's because the distinction between a language and a dialect can be political or cultural. For example, Mandarin and Cantonese are considered dialects of Chinese by some, but they're mutually unintelligible, so others classify them as separate languages. Also, some regions are under-researched, making it hard to document all languages. \n\nI should also touch on language families. The 7,000 languages are grouped into families like Indo-European, Sino-Tibetan, Niger-Congo, etc. Maybe mention a few of the largest families. But wait, the question is just about the count, not the families. Still, it's good to provide a bit more context. \n\nI need to make sure the information is up-to-date. Let me think – recent estimates still hover around 7,000. However, languages are dying out rapidly, so the number decreases over time. Including that note about endangerment and language extinction rates could be helpful. For instance, it's often stated that a language dies every few weeks. \n\nAnother point is sign languages. Does the count include them? Ethnologue includes some, but not all sources might. If the user is including sign languages, that adds more to the count, but I think the 7,000 figure typically refers to spoken languages. For thoroughness, maybe mention that there are also over 300 sign languages. \n\nSummarizing, the answer should state around 7,000, mention Ethnologue's figure, explain why the exact number varies, touch on endangerment, and possibly note sign languages as a separate category. Also, a brief mention of Papua New Guinea as the most linguistically diverse country/region. \n\nWait, let me verify Ethnologue's current number. As of their latest edition (25th, 2022), they list 7,168 living languages. But I should check if that's the case. Some sources might round to 7,000. Also, SIL International publishes Ethnologue, so citing them as reference makes sense. \n\nOther sources, like Glottolog, might have a different count because they use different criteria. Glottolog might list around 7,000 as well, but exact numbers vary. It's important to highlight that the count isn't exact because of differing definitions and ongoing research. \n\nIn conclusion, the approximate number is 7,000, with Ethnologue being a key source, considerations of endangerment, and the challenges in counting due to dialect vs. language distinctions. I should make sure the answer is clear, acknowledges the variability, and provides key points succinctly.
 
 Answer: The exact number of languages in the world is challenging to determine due to differences in definitions (e.g., distinguishing languages from dialects) and ongoing documentation efforts. However, widely cited estimates suggest there are approximately **7,000 languages** globally.
 Model: DeepSeek-R1
@@ -232,13 +234,12 @@ Reasoning models support a subset of the standard chat completion parameters to 
 - `stop` - Sequences where the API stops generating tokens
 - `stream` - Enable streaming responses
 - `n` - Number of completions to generate
-- `frequency_penalty` - Reduces repetition of token sequences
 
 **Unsupported parameters** (reasoning models don't support these):
 - `temperature` - Fixed to optimize reasoning quality
 - `top_p` - Not configurable for reasoning models
 - `presence_penalty` - Not available
-- `repetition_penalty` - Use `frequency_penalty` instead
+- `repetition_penalty` - Not available for reasoning models
 
 **Example using `max_tokens`:**
 
@@ -276,9 +277,36 @@ Use the model in the playground to get an idea of the model's capabilities.
 
 ::: moniker range="foundry"
 
-As stated previously, immediately a model deployment is complete, you land on the model's playground, where you can start to interact with the deployment. For example, you can enter your prompts, such as "How many languages are in the world?" in the playground.
+As soon as the deployment completes, you land on the model's playground, where you can start to interact with the deployment. For example, you can enter your prompts, such as "How many languages are in the world?" in the playground.
 
 ::: moniker-end
+
+## Troubleshooting
+
+If you encounter issues while following this tutorial, use the following guidance to resolve common problems.
+
+### Authentication errors (401/403)
+
+- **Ensure you're signed in to Azure CLI.** For local development, run `az login` before executing your code. `DefaultAzureCredential` uses your Azure CLI credentials as a fallback when no other credentials are available.
+- **Verify role assignments.** Your Azure account needs the **Cognitive Services User** role (or higher) on the Foundry resource to make inference calls with Microsoft Entra ID. If you haven't assigned this role yet, see the Prerequisites section.
+- **Check the endpoint format.** The endpoint URL must follow the format `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`. Verify the resource name matches your Foundry resource.
+
+### Deployment issues
+
+- **Deployment name vs. model name.** The `model` parameter in API calls refers to your **deployment name**, not the model name. If you customized the deployment name during creation, use that name instead of `DeepSeek-R1`.
+- **Deployment not ready.** If you receive a 404 error, verify that the deployment status shows **Succeeded** in the Foundry portal before making API calls.
+
+### Rate limiting (429 errors)
+
+- **Implement retry logic.** Reasoning models generate longer responses that consume more tokens. Use exponential backoff to handle 429 (Too Many Requests) errors.
+- **Monitor token usage.** DeepSeek-R1 reasoning content (within `<think>` tags) counts toward your token limit. See [quotas and limits](../quotas-limits.md) for the current rate limits.
+- **Request quota increases.** If you consistently hit rate limits, [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+
+### Package installation issues
+
+- **Python.** Install both required packages: `pip install openai azure-identity`. The `azure-identity` package is required for `DefaultAzureCredential`.
+- **JavaScript.** Install both required packages: `npm install openai @azure/identity`.
+- **.NET.** Install the Azure Identity package: `dotnet add package Azure.Identity`.
 
 ## What you learned
 
@@ -293,7 +321,8 @@ In this tutorial, you accomplished the following:
 
 ## Related content
 
-- [How to generate chat completions with Foundry Models](../how-to/use-chat-completions.md)
-- [Use chat reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
+- [Azure OpenAI in Microsoft Foundry Models v1 API](../../openai/api-version-lifecycle.md)
+- [Use chat reasoning models](../how-to/use-chat-reasoning.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
+- [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 

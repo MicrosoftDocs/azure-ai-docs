@@ -44,7 +44,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Brazil South​​ <sup>1</sup> ​| ✅ |  | ✅ | ✅ | ✅ | ✅ |
 | Canada Central​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Canada East​​ ​<sup>1</sup> |  |  | ✅ |  | ✅ |  |
-| ​Central US​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| ​Central US​​ <sup> 2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | East US​ <sup>1, 2</sup> | ✅ | ✅ | ✅ |  | ✅ |  |
 | East US 2 <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |  |
@@ -57,7 +57,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
-<sup>2</sup> This region is experiencing capacity constraints that prevent the creation of new search services for Basic and S1 tiers. Please choose a different region.
+<sup>2</sup> This region is experiencing capacity constraints that prevent the creation of new search services. Please choose a different region.
 
 <sup>3</sup> This region doesn't have indexer support for [Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 

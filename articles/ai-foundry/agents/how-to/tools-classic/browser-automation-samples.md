@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/22/2025
+ms.date: 02/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents
@@ -21,35 +21,36 @@ ai-usage: ai-assisted
 >
 > 🔍 [View the new Browser Automation documentation](../../../default/agents/how-to/tools/browser-automation.md?view=foundry&preserve-view=true).
 
-Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service.
+Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service. Note that Browser Automation is currently a preview feature.
 
 ## Prerequisites
 
 * The requirements in the [Browser Automation overview](./browser-automation.md#setup).
 * Your Microsoft Foundry Project endpoint.
     
-    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+  [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
 
-    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
+  Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 
-* The following packages:
+* The following packages. The `BrowserAutomationTool` class requires `azure-ai-agents` version 1.2.0b2 or later. Earlier versions don't include this tool, which causes the error "The tool 'browser_automation' is not supported."
 
-    ```console
-    pip install --pre azure-ai-agents>=1.2.0b2
-    pip install azure-ai-projects
-    pip install azure-identity
-    ```
+  ```console
+  pip install --pre azure-ai-agents>=1.2.0b2
+  pip install azure-ai-projects
+  pip install azure-identity
+  ```
+
 * The **Contributor** role assigned to your Foundry project from within your Playwright workplace. 
 * Your Playwright connection ID. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URI starts with `wss://` instead of `https://` if presented. 
     
-    <!--
-    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Playwright connection. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
-    -->
-    Save this name to an environment variable named `AZURE_PLAYWRIGHT_CONNECTION_NAME`.
+  <!--
+  :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Playwright connection. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+  -->
+  Save this name to an environment variable named `AZURE_PLAYWRIGHT_CONNECTION_NAME`.
 
 * [!INCLUDE [model-name-portal](../../includes/model-name-portal.md)]
 
-    Save this name to an environment variable named `MODEL_DEPLOYMENT_NAME`.
+  Save this name to an environment variable named `MODEL_DEPLOYMENT_NAME`.
 
 ## Example code
 

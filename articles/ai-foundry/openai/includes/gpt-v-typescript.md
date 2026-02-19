@@ -8,7 +8,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions
-ms.date: 10/23/2024
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ---
 
 Use this article to get started using the OpenAI JavaScript SDK to deploy and use a vision-enabled chat model. 

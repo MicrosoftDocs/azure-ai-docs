@@ -37,6 +37,15 @@ To deploy an endpoint, follow these steps:
 
 After your endpoint is deployed, the endpoint name appears as a link. Select the link to display information specific to your endpoint, such as the endpoint key, endpoint URL, and sample code. When the status of the deployment is **Succeeded**, the endpoint is ready for use.
 
+## Test your custom voice
+
+Once your custom voice endpoint has been deployed, you can try out your custom voice directly in the portal.
+
+1. Select **Deploy model** > **Deploy model**. 
+1. Select **Test endpoint**. 
+
+:::image type="content" source="../../../../media/custom-voice/professional-voice/cnv-endpoint-test.png" alt-text="Screenshot of a page to test an endpoint." lightbox="../../../../media/custom-voice/professional-voice/cnv-endpoint-test.png":::
+
 ## Use your custom voice
 
 The custom endpoint is functionally identical to the standard endpoint that's used for text to speech requests. 

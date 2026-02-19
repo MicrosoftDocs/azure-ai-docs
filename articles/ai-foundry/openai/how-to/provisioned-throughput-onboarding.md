@@ -1,26 +1,27 @@
 ---
-title:  Understanding costs associated with provisioned throughput units (PTU)
-description: Learn about provisioned throughput costs and billing in Microsoft Foundry. 
+title: Provisioned throughput unit (PTU) costs and billing
+description: Learn about provisioned throughput unit (PTU) costs, hourly billing, Azure reservations, and capacity planning in Microsoft Foundry.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 01/12/2026
+ms.date: 02/10/2026
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 
 ms.reviewer: seramasu
 reviewer: rsethur
+ms.custom: pilot-ai-workflow-jan-2026 
 recommendations: false
 #customerIntent: As a developer, I want to understand PTU costs and billing so I can plan and manage my Microsoft Foundry provisioned throughput deployments efficiently.
 ---
 
-# Understanding costs associated with provisioned throughput units (PTU)
+# Provisioned throughput unit (PTU) costs and billing
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Use this article to learn about calculating and understanding costs associated with PTU. For an overview of the provisioned throughput offering, see [What is provisioned throughput?](../concepts/provisioned-throughput.md). When you're ready to sign up for the provisioned throughput offering, see the [getting started guide](./provisioned-get-started.md).
+Use this article to learn about costs associated with provisioned throughput units (PTUs). For an overview of the provisioned throughput offering, see [What is provisioned throughput?](../concepts/provisioned-throughput.md). When you're ready to sign up for the provisioned throughput offering, see the [getting started guide](./provisioned-get-started.md).
 
 > [!NOTE]
 > In function calling and agent use cases, token usage can be variable. You should understand your expected Tokens Per Minute (TPM) usage in detail before migrating workloads to PTU.
@@ -29,7 +30,7 @@ Use this article to learn about calculating and understanding costs associated w
 
 Provisioned throughput units (PTUs) are generic units of model processing capacity that you can use to size provisioned deployments to achieve the required throughput for processing prompts and generating completions.  Provisioned throughput units are granted to a subscription as quota. Each quota is specific to a region and defines  the maximum number of PTUs that can be assigned to deployments in that subscription and region.
 
-## Understanding provisioned throughput billing
+## Provisioned throughput billing
 
 Microsoft Foundry [Regional Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#regional-provisioned), [Data Zone Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned), and [Global Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#global-provisioned) are billed hourly based on the number of deployed PTUs, with substantial term discount available via the purchase of Azure reservations.  
 
@@ -98,7 +99,7 @@ Customers that require long-term usage of regional provisioned, data zone provis
 > * Having unused provisioned quota (PTUs) doesn't guarantee that capacity will be available to support an increase in the size of the deployment when required. Quota limits the maximum number of PTUs that can be deployed, but it isn't a capacity guarantee. Provisioned capacity for each region and model dynamically changes throughout the day and might not be available when required. As a result, it's recommended to maintain a permanent deployment to cover your traffic needs (paid for via a reservation).
 > 
 
-## Deleting PTU deployments
+## Delete PTU deployments
 
 > [!IMPORTANT]
 > Charges for deployments on a deleted resource will continue until the resource is purged. To prevent unwanted charges, delete a resource's deployment before deleting the resource. However, if you already deleted the resource first, you can recover or purge it. For more information, see [recover or purge deleted Azure OpenAI resources](../../../ai-services/recover-purge-resources.md). 
@@ -138,7 +139,7 @@ For a deeper understanding on how different ratios of input and output tokens im
 
 ::: moniker-end
 
-#### Exceptions to input and output throughput ratio
+### Exceptions to input and output throughput ratio
 
 The system allows exceptions to the standard input-to-output token ratio for certain models. For example, with Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. To see the input and output pricing for the model, see [pricing for Llama models](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/).
 
@@ -147,14 +148,14 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 > [!NOTE]
 > gpt-4.1, gpt-4.1-mini and gpt-4.1-nano don't support long context (requests estimated at larger than 128k prompt tokens).
 
-| Topic | **gpt-5.2** | **gpt-5.1** | **gpt-5.1-codex** | **gpt-5** | **gpt-5-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
-| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
-| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
-| Input TPM per PTU | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
-| Latency Target Value | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* | 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
+| Topic | **gpt-5.2** | **gpt-5.2-codex** | **gpt-5.1** | **gpt-5.1-codex** | **gpt-5** | **gpt-5-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Global & data zone provisioned minimum deployment | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |
+| Global & data zone provisioned scale increment | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
+| Input TPM per PTU | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
+| Latency Target Value | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 50 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* | 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
 
 \* Calculated as p50 request latency on a per 5 minute basis.
 
@@ -192,11 +193,11 @@ For a full list, see the [Foundry calculator](https://ai.azure.com/resource/calc
 
 ::: moniker-end
 
-## Determining the number of PTUs needed for a workload
+## Determine PTU requirements for a workload
 
-Determining the right amount of provisioned throughput units (PTUs) you require for your workload is an essential step to optimizing performance and cost. 
+Determining the right number of provisioned throughput units (PTUs) for your workload is an essential step in optimizing performance and cost. 
 
-PTUs represent an amount of model processing capacity. Similar to your computer or databases, different workloads or requests to the model will consume different amounts of underlying processing capacity. The conversion from throughput needs to PTUs can be approximated using historical token usage data or call shape estimations (input tokens, output tokens, and requests per minute) as outlined in our [performance and latency](../how-to/latency.md) documentation. 
+PTUs represent an amount of model processing capacity. Similar to your computer or databases, different workloads or requests to the model will consume different amounts of underlying processing capacity. The conversion from throughput needs to PTUs can be approximated using historical token usage data or call shape estimations (input tokens, output tokens, and requests per minute) as outlined in the [performance and latency](./latency.md) documentation. 
 
 ::: moniker range="foundry-classic"
 
@@ -208,7 +209,7 @@ A few high-level considerations:
 - Generations require more capacity than prompts
 - For GPT-4o and later models, the TPM per PTU is set for input and output tokens separately. For older models, larger calls are progressively more expensive to compute. For example, 100 calls of with a 1000 token prompt size requires less capacity than one call with 100,000 tokens in the prompt. This tiering means that the distribution of these call shapes is important in overall throughput. Traffic patterns with a wide distribution that includes some large calls might experience lower throughput per PTU than a narrower distribution with the same average prompt & completion token sizes.
 
-### Obtaining PTU quota
+### Obtain PTU quota
 
 Customers need to request quota via the [Request Quota Link](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu).
 
@@ -298,7 +299,7 @@ Discounts on top of the hourly usage price can be obtained by purchasing an Azur
 >
 > * The Azure role and tenant policy requirements to purchase a reservation are different than those required to create a deployment or Foundry resource. Verify authorization to purchase reservations in advance of needing to do so. See [Foundry Provisioned Throughput Reservation](https://aka.ms/oai/docs/ptum-reservations) for more details.
 
-## Important: sizing Foundry Provisioned Throughput Reservation
+## Size your Foundry provisioned throughput reservation
 
 The PTU amounts in reservation purchases are independent of PTUs allocated in quota or used in deployments. It's possible to purchase a reservation for more PTUs than you have in quota, or can deploy for the desired region, model, or version. Credits for over-purchasing a reservation are limited, and customers must take steps to ensure they maintain their reservation sizes in line with their deployed PTUs. 
  
@@ -310,14 +311,14 @@ Reservations for Global, Data Zone, and Regional deployments aren't interchangea
 
 To assist customers with purchasing the correct reservation amounts. The total number of PTUs in a subscription and region that can be covered by a reservation are listed on the Quotas page of the Foundry portal. See the message "PTUs Available for reservation." 
 
-:::image type="content" source="../media/provisioned/ptu-quota-page.png" alt-text="A screenshot showing available PTU quota." lightbox="../media/provisioned/available-quota.png":::
+:::image type="content" source="../media/provisioned/ptu-quota-page.png" alt-text="A screenshot showing available PTU quota." lightbox="../media/provisioned/ptu-quota-page.png":::
 
 ::: moniker-end
 
 
-### Managing Azure Reservations 
+### Manage Azure reservations
 
-After a reservation is created, monitor it via the Azure Reservation Portal or Azure Monitor to ensure that the reservation is receiving the usage you expect. To learn more about managing and monitoring Azure reservations, see these articles:
+After a reservation is created, monitor it via the Azure Reservation portal or Azure Monitor to ensure that the reservation is receiving the usage you expect. To learn more about managing and monitoring Azure reservations, see these articles:
 
 * [View Azure reservation utilization](/azure/cost-management-billing/reservations/reservation-utilization) 
 * [View Azure Reservation purchase and refund transactions](/azure/cost-management-billing/reservations/view-purchase-refunds) 
@@ -329,4 +330,7 @@ After a reservation is created, monitor it via the Azure Reservation Portal or A
 
 - [Provisioned Throughput Units (PTU) getting started guide](./provisioned-get-started.md)
 - [Provisioned Throughput Units (PTU) concepts](../concepts/provisioned-throughput.md)
-- [Provisioned Throughput reservation documentation](https://aka.ms/oai/docs/ptum-reservations) 
+- [Provisioned Throughput reservation documentation](https://aka.ms/oai/docs/ptum-reservations)
+- [Performance and latency](./latency.md)
+- [Deployment types](../../foundry-models/concepts/deployment-types.md)
+- [Azure OpenAI provisioned Managed offering updates](../concepts/provisioned-migration.md)

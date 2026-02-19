@@ -1,13 +1,13 @@
 ---
 title: Use function calling with Microsoft Foundry agents
 titleSuffix: Microsoft Foundry
-description: Learn how to use function calling with Microsoft Foundry agents. Includes Python, C#, and REST examples to define functions and return tool outputs.
+description: Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, or REST and return outputs to the agent.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/05/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -15,15 +15,16 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-function-calling-new
 ---
 
-# Function calling for agents
+# Use function calling with Microsoft Foundry agents
 
-Microsoft Foundry agents support function calling. You describe a function (name, parameters, and a description) so the agent can request that your app call it. Your app runs the function, then returns the function output to the agent so it can continue the conversation.
+Microsoft Foundry agents support function calling, which lets you extend agents with custom capabilities. Define a function with its name, parameters, and description, and the agent can request your app to call it. Your app executes the function and returns the output. The agent then uses the result to continue the conversation with accurate, real-time data from your systems.
 
-> [!NOTE]
-> - Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
-> - Although the Microsoft Foundry portal doesn't support function calling, agents appear in the portal after creation. Agents that run in the portal don't perform function calling.
+> [!IMPORTANT]
+> Runs expire 10 minutes after creation. Submit your tool outputs before they expire.
 
-### Usage support
+You can run agents with function tools in the Microsoft Foundry portal. However, the portal doesn't support adding, removing, or updating function definitions on an agent. Use the SDK or REST API to configure function tools.
+
+## Usage support
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -35,11 +36,11 @@ Before you start, make sure you have:
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - A Foundry project and a deployed model.
-- The latest prerelease SDK package for your language. For installation and authentication steps, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code).
+- The latest prerelease SDK package for your language (`azure-ai-projects>=2.0.0b1` for Python, `Azure.AI.Projects.OpenAI` prerelease for .NET). For installation and authentication steps, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
 
 ### Environment variables
 
-The examples in this article use different environment variable names for each language. Pick one set of names and use it consistently.
+Each language uses different environment variable names. Use one set consistently.
 
 | Language | Project endpoint | Model deployment name |
 | --- | --- | --- |
@@ -70,7 +71,15 @@ with (
     print("Connected to project.")
 ```
 
-## Code examples
+## Create an agent with function tools
+
+Function calling follows this pattern:
+
+1. **Define function tools** — Describe each function's name, parameters, and purpose.
+1. **Create an agent** — Register the agent with your function definitions.
+1. **Send a prompt** — The agent analyzes the prompt and requests function calls if needed.
+1. **Execute and return** — Your app runs the function and submits the output back to the agent.
+1. **Get the final response** — The agent uses your function output to complete its response.
 
 > [!NOTE]
 > You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code).
@@ -187,184 +196,182 @@ Final input:
 In this example, you use local functions with agents. Use the functions to give the Agent specific information in response to a user question. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
-// Create project client and read the environment variables that will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-// Define three functions:
-//   1. GetUserFavoriteCity always returns "Seattle, WA".
-//   2. GetCityNickname handles only "Seattle, WA"
-//      and throws an exception for other city names.
-//   3. GetWeatherAtLocation returns the weather in Seattle, WA.
-
-/// Example of a function that defines no parameters but
-/// returns the user's favorite city.
-private static string GetUserFavoriteCity() => "Seattle, WA";
-
-/// <summary>
-/// Example of a function with a single required parameter
-/// </summary>
-/// <param name="location">The location to get nickname for.</param>
-/// <returns>The city nickname.</returns>
-/// <exception cref="NotImplementedException"></exception>
-private static string GetCityNickname(string location) => location switch
+class FunctionCallingDemo
 {
-    "Seattle, WA" => "The Emerald City",
-    _ => throw new NotImplementedException(),
-};
+    // Define three functions:
+    //   1. GetUserFavoriteCity always returns "Seattle, WA".
+    //   2. GetCityNickname handles only "Seattle, WA"
+    //      and throws an exception for other city names.
+    //   3. GetWeatherAtLocation returns the weather in Seattle, WA.
 
-/// <summary>
-/// Example of a function with one required and one optional, enum parameter
-/// </summary>
-/// <param name="location">Get weather for location.</param>
-/// <param name="temperatureUnit">"c" or "f"</param>
-/// <returns>The weather in selected location.</returns>
-/// <exception cref="NotImplementedException"></exception>
-public static string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
-{
-    "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
-    _ => throw new NotImplementedException()
-};
+    /// Example of a function that defines no parameters but
+    /// returns the user's favorite city.
+    private static string GetUserFavoriteCity() => "Seattle, WA";
 
-// For each function, create FunctionTool, which defines the function name, description, and parameters.
-public static readonly FunctionTool getUserFavoriteCityTool = ResponseTool.CreateFunctionTool(
-    functionName: "getUserFavoriteCity",
-    functionDescription: "Gets the user's favorite city.",
-    functionParameters: BinaryData.FromString("{}"),
-    strictModeEnabled: false
-);
+    /// <summary>
+    /// Example of a function with a single required parameter
+    /// </summary>
+    /// <param name="location">The location to get nickname for.</param>
+    /// <returns>The city nickname.</returns>
+    /// <exception cref="NotImplementedException"></exception>
+    private static string GetCityNickname(string location) => location switch
+    {
+        "Seattle, WA" => "The Emerald City",
+        _ => throw new NotImplementedException(),
+    };
 
-public static readonly FunctionTool getCityNicknameTool = ResponseTool.CreateFunctionTool(
-    functionName: "getCityNickname",
-    functionDescription: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
-    functionParameters: BinaryData.FromObjectAsJson(
-        new
-        {
-            Type = "object",
-            Properties = new
+    /// <summary>
+    /// Example of a function with one required and one optional, enum parameter
+    /// </summary>
+    /// <param name="location">Get weather for location.</param>
+    /// <param name="temperatureUnit">"c" or "f"</param>
+    /// <returns>The weather in selected location.</returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public static string GetWeatherAtLocation(string location, string temperatureUnit = "f") => location switch
+    {
+        "Seattle, WA" => temperatureUnit == "f" ? "70f" : "21c",
+        _ => throw new NotImplementedException()
+    };
+
+    // For each function, create FunctionTool, which defines the function name, description, and parameters.
+    public static readonly FunctionTool getUserFavoriteCityTool = ResponseTool.CreateFunctionTool(
+        functionName: "getUserFavoriteCity",
+        functionDescription: "Gets the user's favorite city.",
+        functionParameters: BinaryData.FromString("{}"),
+        strictModeEnabled: false
+    );
+
+    public static readonly FunctionTool getCityNicknameTool = ResponseTool.CreateFunctionTool(
+        functionName: "getCityNickname",
+        functionDescription: "Gets the nickname of a city, e.g. 'LA' for 'Los Angeles, CA'.",
+        functionParameters: BinaryData.FromObjectAsJson(
+            new
             {
-                Location = new
+                Type = "object",
+                Properties = new
                 {
-                    Type = "string",
-                    Description = "The city and state, e.g. San Francisco, CA",
+                    Location = new
+                    {
+                        Type = "string",
+                        Description = "The city and state, e.g. San Francisco, CA",
+                    },
                 },
+                Required = new[] { "location" },
             },
-            Required = new[] { "location" },
-        },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
-    ),
-    strictModeEnabled: false
-);
+            new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
+        ),
+        strictModeEnabled: false
+    );
 
-private static readonly FunctionTool getCurrentWeatherAtLocationTool = ResponseTool.CreateFunctionTool(
-    functionName: "getCurrentWeatherAtLocation",
-    functionDescription: "Gets the current weather at a provided location.",
-    functionParameters: BinaryData.FromObjectAsJson(
-         new
-         {
-             Type = "object",
-             Properties = new
+    private static readonly FunctionTool getCurrentWeatherAtLocationTool = ResponseTool.CreateFunctionTool(
+        functionName: "getCurrentWeatherAtLocation",
+        functionDescription: "Gets the current weather at a provided location.",
+        functionParameters: BinaryData.FromObjectAsJson(
+             new
              {
-                 Location = new
+                 Type = "object",
+                 Properties = new
                  {
-                     Type = "string",
-                     Description = "The city and state, e.g. San Francisco, CA",
+                     Location = new
+                     {
+                         Type = "string",
+                         Description = "The city and state, e.g. San Francisco, CA",
+                     },
+                     Unit = new
+                     {
+                         Type = "string",
+                         Enum = new[] { "c", "f" },
+                     },
                  },
-                 Unit = new
-                 {
-                     Type = "string",
-                     Enum = new[] { "c", "f" },
-                 },
+                 Required = new[] { "location" },
              },
-             Required = new[] { "location" },
-         },
-        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
-    ),
-    strictModeEnabled: false
-);
+            new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
+        ),
+        strictModeEnabled: false
+    );
 
-// Create the method GetResolvedToolOutput.
-// It runs the preceding functions and wraps the output in a ResponseItem object.
-private static FunctionCallOutputResponseItem GetResolvedToolOutput(FunctionCallResponseItem item)
-{
-    if (item.FunctionName == getUserFavoriteCityTool.FunctionName)
+    // Create the method GetResolvedToolOutput.
+    // It runs the preceding functions and wraps the output in a ResponseItem object.
+    private static FunctionCallOutputResponseItem GetResolvedToolOutput(FunctionCallResponseItem item)
     {
-        return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetUserFavoriteCity());
-    }
-    using JsonDocument argumentsJson = JsonDocument.Parse(item.FunctionArguments);
-    if (item.FunctionName == getCityNicknameTool.FunctionName)
-    {
-        string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
-        return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetCityNickname(locationArgument));
-    }
-    if (item.FunctionName == getCurrentWeatherAtLocationTool.FunctionName)
-    {
-        string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
-        if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+        if (item.FunctionName == getUserFavoriteCityTool.FunctionName)
         {
-            string unitArgument = unitElement.GetString();
-            return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetWeatherAtLocation(locationArgument, unitArgument));
+            return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetUserFavoriteCity());
         }
-        return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetWeatherAtLocation(locationArgument));
-    }
-    return null;
-}
-
-// Create an agent version with the defined functions as tools.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
-{
-    Instructions = "You are a weather bot. Use the provided functions to help answer questions. "
-            + "Customize your responses to the user's preferences as much as possible and use friendly "
-            + "nicknames for cities whenever possible.",
-    Tools = { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
-};
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
-    agentName: "myAgent",
-    options: new(agentDefinition));
-
-// Responses must be obtained multiple times to supply function outputs.
-// Method CreateAndCheckResponse is defined for brevity.
-public static ResponseResult CreateAndCheckResponse(ResponsesClient responseClient, IEnumerable<ResponseItem> items)
-{
-    ResponseResult response = responseClient.CreateResponse(
-        inputItems: items);
-    Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
-    return response;
-}
-
-// If the local function call is required, the response item is of type FunctionCallResponseItem.
-// It contains the function name needed by the Agent. In this case, use the helper method
-// GetResolvedToolOutput to get the FunctionCallOutputResponseItem with the function call result.
-// To provide the right answer, supply all the response items to the CreateResponse call.
-// At the end, output the function's response.
-ResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
-
-ResponseItem request = ResponseItem.CreateUserMessageItem("What's the weather like in my favorite city?");
-var inputItems = new List<ResponseItem> { request };
-bool functionCalled = false;
-ResponseResult response;
-do
-{
-    response = CreateAndCheckResponse(
-        responseClient,
-        inputItems);
-    functionCalled = false;
-    foreach (ResponseItem responseItem in response.OutputItems)
-    {
-        inputItems.Add(responseItem);
-        if (responseItem is FunctionCallResponseItem functionToolCall)
+        using JsonDocument argumentsJson = JsonDocument.Parse(item.FunctionArguments);
+        if (item.FunctionName == getCityNicknameTool.FunctionName)
         {
-            Console.WriteLine($"Calling {functionToolCall.FunctionName}...");
-            inputItems.Add(GetResolvedToolOutput(functionToolCall));
-            functionCalled = true;
+            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+            return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetCityNickname(locationArgument));
         }
+        if (item.FunctionName == getCurrentWeatherAtLocationTool.FunctionName)
+        {
+            string locationArgument = argumentsJson.RootElement.GetProperty("location").GetString();
+            if (argumentsJson.RootElement.TryGetProperty("unit", out JsonElement unitElement))
+            {
+                string unitArgument = unitElement.GetString();
+                return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetWeatherAtLocation(locationArgument, unitArgument));
+            }
+            return ResponseItem.CreateFunctionCallOutputItem(item.CallId, GetWeatherAtLocation(locationArgument));
+        }
+        return null;
     }
-} while (functionCalled);
-Console.WriteLine(response.GetOutputText());
 
-// Remove all the resources created in this sample.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+    public static void Main() 
+    {
+        // Create project client and read the environment variables that will be used in the next steps.
+        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+        AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+        // Create an agent version with the defined functions as tools.
+        PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+        {
+            Instructions = "You are a weather bot. Use the provided functions to help answer questions. "
+                    + "Customize your responses to the user's preferences as much as possible and use friendly "
+                    + "nicknames for cities whenever possible.",
+            Tools = { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
+        };
+        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+            agentName: "myAgent",
+            options: new(agentDefinition));
+
+        // If the local function call is required, the response item is of type FunctionCallResponseItem.
+        // It contains the function name needed by the Agent. In this case, use the helper method
+        // GetResolvedToolOutput to get the FunctionCallOutputResponseItem with the function call result.
+        // To provide the right answer, supply all the response items to the CreateResponse call.
+        // At the end, output the function's response.
+        ResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+
+        ResponseItem request = ResponseItem.CreateUserMessageItem("What's the weather like in my favorite city?");
+        var inputItems = new List<ResponseItem> { request };
+        string previousResponseId = null;
+        bool functionCalled = false;
+        ResponseResult response;
+        do
+        {
+            response = responseClient.CreateResponse(
+                previousResponseId: previousResponseId,
+                inputItems: inputItems);
+            previousResponseId = response.Id;
+            inputItems.Clear();
+            functionCalled = false;
+            foreach (ResponseItem responseItem in response.OutputItems)
+            {
+                inputItems.Add(responseItem);
+                if (responseItem is FunctionCallResponseItem functionToolCall)
+                {
+                    Console.WriteLine($"Calling {functionToolCall.FunctionName}...");
+                    inputItems.Add(GetResolvedToolOutput(functionToolCall));
+                    functionCalled = true;
+                }
+            }
+        } while (functionCalled);
+        Console.WriteLine(response.GetOutputText());
+
+        // Remove all the resources created in this sample.
+        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+    }
+}
 ```
 
 ### Expected output
@@ -384,6 +391,13 @@ There are two ways to use function calling in Foundry Agent Service.
 
 1. Create a `response`. When you need the agent to call functions again, create another `response`.
 1. Create a `conversation`, then create multiple conversation items. Each conversation item corresponds to one `response`.
+
+Set the following environment variables before running the examples:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv)
+export API_VERSION="2025-11-15-preview"
+```
 
 ## Define a function for your agent to call
 
@@ -493,9 +507,9 @@ After you process the function call and provide the output back to the agent, th
 
 ::: zone-end
 
-## Verify results
+## Verify function calling works
 
-Use the following checks to confirm function calling is working:
+Use these checks to confirm function calling is working:
 
 1. Your first response contains an output item with `type` set to `function_call`.
 1. Your app executes the requested function by using the returned arguments.
@@ -509,35 +523,24 @@ If you use tracing in Microsoft Foundry, confirm the tool invocation occurred. F
 - Don't pass secrets (API keys, tokens, connection strings) in tool output. Return only the data the model needs.
 - Apply least privilege to the identity used by `DefaultAzureCredential`.
 - Avoid side effects unless you explicitly intend them. For example, restrict function tools to safe operations, or require explicit user confirmation for actions that change data.
+- For long-running operations, return a status immediately and implement polling. The 10-minute run expiration applies to total elapsed time, not individual function execution.
 
 ## Troubleshooting
 
-### The agent returns a function call but no final answer
+| Issue | Likely cause | Resolution |
+| --- | --- | --- |
+| Agent returns function call but no final answer. | Tool output not returned to model. | Execute the function, then call `responses.create` with the tool output and `previous_response_id` to continue. |
+| No function call occurs. | Function not in agent definition or poor naming. | Confirm the function tool is added to the agent. Use clear, descriptive names and parameter descriptions. |
+| Arguments aren't valid JSON. | Schema mismatch or model hallucination. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
+| Required fields are missing. | Schema doesn't enforce required properties. | Add `"required": [...]` array to your parameter schema. Set `strict: true` for stricter validation. |
+| Tool outputs fail due to expiration. | Run expired (10-minute limit). | Return tool outputs promptly. For slow operations, return a status and poll separately. |
+| Function called with wrong parameters. | Ambiguous function description. | Improve the function `description` field. Add detailed parameter descriptions with examples. |
+| Multiple function calls in one response. | Model determined multiple functions needed. | Handle each function call in the output array. Return all results in a single `responses.create` call. |
+| Function not visible in Foundry portal. | Portal doesn't execute function calls. | Test function calling via SDK or REST API. The portal shows agents but doesn't invoke functions. |
 
-When the model returns a `function_call` item, it pauses and waits for your app to return a corresponding `function_call_output` item. Make sure you:
+## Clean up resources
 
-1. Execute the function.
-1. Create a second `responses.create` request that includes the tool output.
-1. Provide `previous_response_id` so the model continues from the earlier response.
-
-### No function call occurs
-
-- Confirm the function tool is added to the agent definition.
-- Review your tool name, description, and JSON schema. Clear names and parameter descriptions improve tool selection.
-- If you test the agent in the Foundry portal, note that the portal UI doesn't perform function calling.
-
-### Arguments aren't valid JSON or required fields are missing
-
-- Confirm your schema uses the correct JSON types and required properties.
-- In your app, handle JSON parsing errors and return a user-safe message if arguments are invalid.
-
-### Tool outputs fail due to expiration
-
-Runs expire 10 minutes after creation. If the workflow requires multiple function calls or slower back-end work, return tool outputs promptly and re-run the conversation when needed.
-
-## Clean up
-
-To avoid clutter and ongoing costs, delete any resources you created when you're done:
+When you finish testing, delete the resources you created to avoid ongoing costs:
 
 - Delete the agent version.
 - Delete conversations created for testing.
