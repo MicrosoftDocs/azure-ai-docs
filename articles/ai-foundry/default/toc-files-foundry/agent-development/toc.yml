@@ -53,6 +53,8 @@ items:
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365
     href: ../../agents/how-to/agent-365.md
+  - name: Invoke your Agent Application using the Responses API protocol
+    href: ../../agents/how-to/publish-responses.md
 
 
 # Observability and Monitoring
