@@ -706,7 +706,7 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 
 ## Clean up resources
 
-To avoid unnecessary costs, delete the resources you created in this tutorial:
+When you no longer need them, delete the resources you created in this tutorial:
 
 1. **Delete the agent**: The agent is automatically deleted at the end of `main.py` (Python) or `Program.cs` (C#). If you interrupted the run, delete it manually from the **Agents** page in the Foundry portal.
 1. **Delete the evaluation run**: In the Foundry portal, go to **Evaluation**, select the evaluation run, and delete it.
