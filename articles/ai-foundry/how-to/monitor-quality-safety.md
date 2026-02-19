@@ -101,8 +101,6 @@ The parameters that you configure in your data asset dictate what metrics you ca
 | Groundedness | Required | Required | Required|
 | Relevance    | Required | Required | Required|
 
-For information on the specific data mapping requirements for each metric, see [Query and response metric requirements](evaluate-generative-ai-app.md#query-and-response-metric-requirements).
-
 ## Set up monitoring for a prompt flow
 
 To set up monitoring for your prompt flow application, deploy your prompt flow application with inferencing data collection. Then, configure monitoring for the deployed application.

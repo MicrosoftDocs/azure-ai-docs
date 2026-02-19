@@ -4,7 +4,7 @@ author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.date: 09/29/2025
+ms.date: 02/11/2026
 ms.topic: include
 ---
 
@@ -24,3 +24,10 @@ When deploying third-party models, ensure you have the following permissions in 
 > * On the resource group—to create and use the SaaS resource:
 >   * `Microsoft.SaaS/resources/read`
 >   * `Microsoft.SaaS/resources/write`
+
+The **Owner** and **Contributor** built-in roles on the Azure subscription include these permissions. If you don't have the required permissions, ask your subscription administrator to assign you the **Contributor** role, or [create a custom role](/azure/role-based-access-control/custom-roles) that includes the listed actions.
+
+To verify your permissions, go to the [Azure portal](https://portal.azure.com), open your subscription, select **Access control (IAM)** > **Check access**, and review your assigned roles.
+
+> [!TIP]
+> `Microsoft.SaaS/register/action` is a one-time registration of the SaaS resource provider on the subscription. After registration, it doesn't need to be repeated for each deployment.
