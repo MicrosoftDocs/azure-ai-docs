@@ -43,6 +43,8 @@ The grounding process involves several key steps:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
+Java SDK samples are not yet available.
+
 ## Prerequisites
 
 Before you begin, make sure you have:
@@ -1143,7 +1145,7 @@ Use this section to resolve common issues when using Grounding with Bing Search 
 **Problem**: Error message stating invalid connection ID format.
 
 **Solution**: Verify your connection ID matches the required format:
-```
+```text
 /subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}
 ```
 

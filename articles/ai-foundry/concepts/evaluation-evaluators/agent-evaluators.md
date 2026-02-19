@@ -278,7 +278,7 @@ In various task-oriented AI systems, such as agentic systems, it's important to 
 ```python
 from azure.ai.evaluation import TaskAdherenceEvaluator
 
-task_adherence = TaskAdherenceEvaluator(model_config=model_config, threshold=3)
+task_adherence = TaskAdherenceEvaluator(model_config=model_config)
 task_adherence(
         query="What are the best practices for maintaining a healthy rose garden during the summer?",
         response="Make sure to water your roses regularly and trim them occasionally."                         

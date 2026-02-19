@@ -110,7 +110,7 @@ To mitigate security risks, consider these actions:
 
 ## Limitations and quotas
 
-- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md?view=foundry&preserve-view=true).
+- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Azure OpenAI models and regions for Foundry Agent Service](../../agents/concepts/limits-quotas-regions.md).
 - You must set the `scope` value explicitly. Automatic population from the user identity specified in the request isn't currently supported.
 
 
@@ -121,7 +121,7 @@ To mitigate security risks, consider these actions:
 - Search memories: 1,000 requests per minute
 - Update memories: 1,000 requests per minute
 
-For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md?view=foundry&preserve-view=true).
+For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md).
 
 ## Pricing
 
@@ -132,5 +132,5 @@ You're billed for usage of the underlying chat and embedding models you configur
 ## Related content
 
 - Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)
-- Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../../agents/concepts/model-region-support.md?view=foundry&preserve-view=true)
+- Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../agents/concepts/limits-quotas-regions.md)
 - Build a complete agent: [Microsoft Foundry quickstart](../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)
