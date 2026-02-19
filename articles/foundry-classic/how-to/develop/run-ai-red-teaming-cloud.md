@@ -27,7 +27,7 @@ Though the AI Red Teaming Agent (preview) can be run [locally](run-scans-ai-red-
 
 [!INCLUDE [uses-fdp-only](../../includes/uses-fdp-only.md)]
 
-[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
+Optionally you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
 
 ## Getting started
 

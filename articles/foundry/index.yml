@@ -68,8 +68,8 @@ productDirectory:
       links:
         - url: ./agents/overview.md
           text: Orchestrate and host AI agents to automate and execute business processes
-        - url: ./agents/quickstart.md
-          text: Create a custom AI agent using Agent Service
+#        - url: ./agents/quickstart.md
+#          text: Create a custom AI agent using Agent Service
         - url: /azure/developer/ai/get-started-multi-agents
           text: Azure AI app template for agents
         - url: ./concepts/ai-red-teaming-agent.md
@@ -198,3 +198,4 @@ additionalContent:
               url: /training/browse/?resource_type=learning%20path&expanded=data-ai&subjects=artificial-intelligence
             - text: AI Engineer career path
               url: /training/career-paths/ai-engineer
+              

@@ -43,7 +43,7 @@ For a complete list of built-in evaluators, see [Built-in evaluators reference](
 
 Production monitoring ensures your deployed AI applications maintain quality and performance in real-world conditions. Integrated with Azure Monitor Application Insights, Microsoft Foundry delivers real-time dashboards tracking operational metrics, token consumption, latency, error rates, and quality scores. Teams can set up alerts when outputs fail quality thresholds or produce harmful content, enabling rapid issue resolution.
 
-<!-- NEW-ONLY: For details on setting up production monitoring, see [Monitor agents dashboard](../observability/how-to/how-to-monitor-agents-dashboard.md). -->
+<!-- NEW-ONLY: For details on setting up production monitoring, see [Monitor agents dashboard](../default/observability/how-to/how-to-monitor-agents-dashboard.md). -->
 
 ### Tracing
 
@@ -108,16 +108,13 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 
 ## Region support, rate limits, and virtual network support
 
-To learn which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, and how to configure virtual network support for network isolation see [region support, rate limits, and virtual network support for evaluation](evaluation-regions-limits-virtual-network.md).
+To learn which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, and how to configure virtual network support for network isolation, see [region support, rate limits, and virtual network support for evaluation](evaluation-regions-limits-virtual-network.md).
 
 ## Pricing
 
 Observability features such as risk and safety evaluations and continuous evaluations are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
 
-> [!IMPORTANT]
-> Evaluations in the agent playground are enabled by default for all Foundry projects and are included in consumption-based billing. To turn off playground evaluations, select the metrics box in the agents playground and unselect all evaluators.
->
-> :::image type="content" source="../media/evaluations/agent-playground-evaluation-metrics.png" alt-text="Screenshot of the Foundry portal showing agent playground with the metrics box selected." lightbox="../media/evaluations/agent-playground-evaluation-metrics.png":::
+[!INCLUDE [evaluations-agent-playground-classic](../includes/evaluations-agent-playground-classic.md)]
 
 ## Related content
 

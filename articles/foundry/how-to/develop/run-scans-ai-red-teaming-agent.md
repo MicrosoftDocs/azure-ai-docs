@@ -31,6 +31,7 @@ This article explains how to:
 ## Prerequisites
 
 - [A Foundry project](../create-projects.md)
+- Optionally, you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
   
 ## Getting started
 

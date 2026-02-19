@@ -31,8 +31,7 @@ This article explains how to:
 ## Prerequisites
 
 - A Foundry project or hubs based project. To learn more, see [Create a project](../create-projects.md).
-
-[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
+- Optionally you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
 
 ## Getting started
 
