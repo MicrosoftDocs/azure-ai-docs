@@ -1,10 +1,11 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 1/21/2024
-ms.author: eur
+ms.date: 1/29/2026
+ms.author: pafarley
 ms.custom: devx-track-csharp
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
@@ -13,7 +14,7 @@ ms.custom: devx-track-csharp
 
 ## Sensitive data and environment variables
 
-The example source code in this article depends on environment variables for storing sensitive data, such as the Speech resource's key and region. The `Program` class contains two `static readonly string` values that are assigned from the host machine's environment variables: `SPEECH__SUBSCRIPTION__KEY` and `SPEECH__SERVICE__REGION`. Both of these fields are at the class scope, so they're accessible within method bodies of the class: 
+The example source code in this article depends on environment variables for storing sensitive data, such as the Speech resource's key and region. The C# code file contains two `static readonly string` values that are assigned from the host machine's environment variables: `SPEECH__SUBSCRIPTION__KEY` and `SPEECH__SERVICE__REGION`. Both of these fields are at the class scope, so they're accessible within method bodies of the class: 
 
 ```csharp
 public class Program
@@ -24,7 +25,7 @@ public class Program
     static readonly string SPEECH__SERVICE__REGION =
         Environment.GetEnvironmentVariable(nameof(SPEECH__SERVICE__REGION));
 
-    static Task Main() => Task.CompletedTask;
+    public static void Main(string[] args) { }
 }
 ```
 
@@ -39,7 +40,7 @@ To call the Speech service by using the Speech SDK, you need to create a [`Speec
 > [!TIP]
 > Regardless of whether you're performing speech recognition, speech synthesis, translation, or intent recognition, you'll always create a configuration.
 
-You can initialize `SpeechTranslationConfig` in a few ways:
+You can initialize a `SpeechTranslationConfig` instance in a few ways:
 
 * With a subscription: pass in a key and the associated region.
 * With an endpoint: pass in a Speech service endpoint. A key or authorization token is optional.
@@ -57,7 +58,17 @@ public class Program
     static readonly string SPEECH__SERVICE__REGION =
         Environment.GetEnvironmentVariable(nameof(SPEECH__SERVICE__REGION));
 
-    static Task Main() => TranslateSpeechAsync();
+    public static void Main(string[] args)
+    {
+        try
+        {
+            TranslateSpeechAsync().Wait();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+    }
 
     static async Task TranslateSpeechAsync()
     {
@@ -204,55 +215,107 @@ For more information about speech to text, see [the basics of speech recognition
 The `TranslationRecognizer` object exposes a `Recognizing` event. The event fires several times and provides a mechanism to retrieve the intermediate translation results. 
 
 > [!NOTE]
-> Intermediate translation results aren't available when you use [multi-lingual speech translation](#multi-lingual-speech-translation-without-source-language-candidates).
+> Intermediate translation results aren't available when you use [multi-lingual speech translation without source language candidates](#multi-lingual-speech-translation-without-source-language-candidates).
 
 The following example prints the intermediate translation results to the console:
 
 ```csharp
-using (var audioInput = AudioConfig.FromWavFileInput(@"whatstheweatherlike.wav"))
+using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
+using Microsoft.CognitiveServices.Speech.Translation;
+
+public class Program
 {
-    using (var translationRecognizer = new TranslationRecognizer(config, audioInput))
+    private static readonly string SPEECH__SUBSCRIPTION__KEY = Environment.GetEnvironmentVariable(nameof(SPEECH__SUBSCRIPTION__KEY));
+    private static readonly string SPEECH__SERVICE__REGION = Environment.GetEnvironmentVariable(nameof(SPEECH__SERVICE__REGION));
+
+    public static void Main(string[] args)
     {
-        // Subscribes to events.
-        translationRecognizer.Recognizing += (s, e) =>
+        try
         {
-            Console.WriteLine($"RECOGNIZING in '{fromLanguage}': Text={e.Result.Text}");
-            foreach (var element in e.Result.Translations)
-            {
-                Console.WriteLine($"    TRANSLATING into '{element.Key}': {element.Value}");
-            }
-        };
+            EventTranslationAsync().Wait();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+    }
 
-        translationRecognizer.Recognized += (s, e) => {
-            if (e.Result.Reason == ResultReason.TranslatedSpeech)
+    static async Task EventTranslationAsync()
+    {
+        var speechTranslationConfig =
+            SpeechTranslationConfig.FromSubscription(SPEECH__SUBSCRIPTION__KEY, SPEECH__SERVICE__REGION);
+
+        var fromLanguage = "en-US";
+        speechTranslationConfig.SpeechRecognitionLanguage = fromLanguage;
+        speechTranslationConfig.AddTargetLanguage("de");
+        speechTranslationConfig.AddTargetLanguage("fr");
+
+        var stopTranslation = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        using (var audioInput = AudioConfig.FromWavFileInput(@"whatstheweatherlike.wav"))
+        {
+            using (var translationRecognizer = new TranslationRecognizer(speechTranslationConfig, audioInput))
             {
-                Console.WriteLine($"RECOGNIZED in '{fromLanguage}': Text={e.Result.Text}");
-                foreach (var element in e.Result.Translations)
+                // Subscribes to events.
+                translationRecognizer.Recognizing += (s, e) =>
                 {
-                    Console.WriteLine($"    TRANSLATED into '{element.Key}': {element.Value}");
-                }
-            }
-            else if (e.Result.Reason == ResultReason.RecognizedSpeech)
-            {
-                Console.WriteLine($"RECOGNIZED: Text={e.Result.Text}");
-                Console.WriteLine($"    Speech not translated.");
-            }
-            else if (e.Result.Reason == ResultReason.NoMatch)
-            {
-                Console.WriteLine($"NOMATCH: Speech could not be recognized.");
-            }
-        };
+                    Console.WriteLine($"RECOGNIZING in '{fromLanguage}': Text={e.Result.Text}");
+                    foreach (var element in e.Result.Translations)
+                    {
+                        Console.WriteLine($"    TRANSLATING into '{element.Key}': {element.Value}");
+                    }
+                };
 
-        // Starts continuous recognition. Uses StopContinuousRecognitionAsync() to stop recognition.
-        Console.WriteLine("Start translation...");
-        await translationRecognizer.StartContinuousRecognitionAsync().ConfigureAwait(false);
+                translationRecognizer.Recognized += (s, e) => {
+                    if (e.Result.Reason == ResultReason.TranslatedSpeech)
+                    {
+                        Console.WriteLine($"RECOGNIZED in '{fromLanguage}': Text={e.Result.Text}");
+                        foreach (var element in e.Result.Translations)
+                        {
+                            Console.WriteLine($"    TRANSLATED into '{element.Key}': {element.Value}");
+                        }
+                    }
+                    else if (e.Result.Reason == ResultReason.RecognizedSpeech)
+                    {
+                        Console.WriteLine($"RECOGNIZED: Text={e.Result.Text}");
+                        Console.WriteLine($"    Speech not translated.");
+                    }
+                    else if (e.Result.Reason == ResultReason.NoMatch)
+                    {
+                        Console.WriteLine($"NOMATCH: Speech could not be recognized.");
+                    }
+                };
 
-        // Waits for completion.
-        // Use Task.WaitAny to keep the task rooted.
-        Task.WaitAny(new[] { stopTranslation.Task });
+                translationRecognizer.Canceled += (s, e) =>
+                {
+                    Console.WriteLine($"CANCELED: Reason={e.Reason}");
+                    if (e.Reason == CancellationReason.Error)
+                    {
+                        Console.WriteLine($"CANCELED: ErrorDetails={e.ErrorDetails}");
+                        Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                    }
+                    stopTranslation.TrySetResult(0);
+                };
 
-        // Stops translation.
-        await translationRecognizer.StopContinuousRecognitionAsync().ConfigureAwait(false);
+                translationRecognizer.SessionStopped += (s, e) =>
+                {
+                    Console.WriteLine("Session stopped.");
+                    stopTranslation.TrySetResult(0);
+                };
+
+                // Starts continuous recognition. Uses StopContinuousRecognitionAsync() to stop recognition.
+                Console.WriteLine("Start translation...");
+                await translationRecognizer.StartContinuousRecognitionAsync();
+
+                // Waits for completion.
+                // Use Task.WaitAny to keep the task rooted.
+                Task.WaitAny(new[] { stopTranslation.Task });
+
+                // Stops translation.
+                await translationRecognizer.StopContinuousRecognitionAsync();
+            }
+        }
     }
 }
 ```
@@ -318,7 +381,7 @@ The following example translates to five languages. Each translation is then syn
 static async Task TranslateSpeechAsync()
 {
     var speechTranslationConfig =
-        SpeechTranslationConfig.FromSubscription(SPEECH__SERVICE__KEY, SPEECH__SERVICE__REGION);
+        SpeechTranslationConfig.FromSubscription(SPEECH__SUBSCRIPTION__KEY, SPEECH__SERVICE__REGION);
 
     var fromLanguage = "en-US";
     var toLanguages = new List<string> { "de", "en", "it", "pt", "zh-Hans" };
@@ -350,7 +413,7 @@ static async Task TranslateSpeechAsync()
 
             var speechConfig =
                 SpeechConfig.FromSubscription(
-                    SPEECH__SERVICE__KEY, SPEECH__SERVICE__REGION);
+                    SPEECH__SUBSCRIPTION__KEY, SPEECH__SERVICE__REGION);
             speechConfig.SpeechSynthesisVoiceName = languageToVoiceMap[language];
 
             using var audioConfig = AudioConfig.FromWavFileOutput($"{language}-translation.wav");
@@ -379,54 +442,235 @@ var translationRecognizer = new TranslationRecognizer(speechTranslationConfig, a
 
 For a complete code sample, see [language identification](../../../language-identification.md?pivots=programming-language-csharp#run-speech-translation).
 
-
 ## Multi-lingual speech translation without source language candidates 
 
 Multi-lingual speech translation implements a new level of speech translation technology that unlocks various capabilities, including having no specified input language, and handling language switches within the same session. These features enable a new level of speech translation powers that can be implemented into your products.
 
-Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace the string "YourServiceRegion" with your Speech resource region (such as "westus"). Replace "YourSpeechResoureKey" with your Speech resource key.
+Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace the string "YourServiceRegion" with your Speech resource region (such as "westus"). Replace "YourSpeechResourceKey" with your Speech resource key.
 
 ```csharp
 var v2EndpointInString = String.Format("wss://{0}.stt.speech.microsoft.com/speech/universal/v2", "YourServiceRegion");
 var v2EndpointUrl = new Uri(v2EndpointInString);
-var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechResoureKey");
+var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechResourceKey");
 ```
 
 Specify the translation target languages. Replace with languages of your choice. You can add more lines.
 ```csharp
-config.AddTargetLanguage("de");
-config.AddTargetLanguage("fr");
+speechTranslationConfig.AddTargetLanguage("de");
+speechTranslationConfig.AddTargetLanguage("fr");
 ```
 
-A key differentiator with multi-lingual speech translation is that you do not need to specify the source language. This is because the service will automatically detect the source language. Create the `AutoDetectSourceLanguageConfig` object with the `fromOpenRange` method to let the service know that you want to use multi-lingual speech translation with no specified source language. 
+A key differentiator with multi-lingual speech translation is that you do not need to specify the source language. This is because the service will automatically detect the source language. Create the `AutoDetectSourceLanguageConfig` object with the `FromOpenRange` method to let the service know that you want to use multi-lingual speech translation with no specified source language. 
 
 ```csharp
-AutoDetectSourceLanguageConfig autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.fromOpenRange(); 
+AutoDetectSourceLanguageConfig autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.FromOpenRange(); 
 var translationRecognizer = new TranslationRecognizer(speechTranslationConfig, autoDetectSourceLanguageConfig, audioConfig);
 ```
 
 For a complete code sample with the Speech SDK, see [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L714).
 
+## Using live interpreter for real-time speech-to-speech translation with personal voice
+
+Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker's style and tone. 
+
+To use the Live Interpreter API, first [apply for personal voice access](https://aka.ms/customneural) and select "Personal Voice" for Question 20. For resource ID, please make sure that it is in one of the regions that support Live Interpreter. See the [Speech service regions table](../../../regions.md?tabs=speech-translation) for current regional availability.
+
+After personal voice access permission is granted, you can enable Live Interpreter with the following code:
+
+```csharp
+// Please replace the service region with your region
+var v2EndpointInString = String.Format("wss://{0}.stt.speech.microsoft.com/speech/universal/v2", "YourRegion");
+var v2EndpointUrl = new Uri(v2EndpointInString);
+
+// Creates an instance of a speech translation config with specified subscription key and service region.
+// Please replace the service subscription key with your subscription key
+var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSubscriptionKey");
+
+// Translation target language and enable personal voice
+speechTranslationConfig.AddTargetLanguage("fr");
+speechTranslationConfig.VoiceName = "personal-voice";
+
+// You don't need to define any candidate languages to detect.
+var autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.FromOpenRange();
+```
+
+Below is a more detailed example:
+
+```csharp
+using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
+using Microsoft.CognitiveServices.Speech.Translation;
+using NAudio.Wave;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace LiveInterpreterDemo
+{
+    class Program
+    {
+        public static async Task LiveInterpreterDemoAsync()
+        {
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // NOTICE!!!, set your test file here
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            string audioFile = "<TEST_FILE>";
+
+            string locale = "zh-CN";
+            Console.WriteLine("Start testing for " + audioFile);
+            Console.WriteLine("Test file " + audioFile);
+            Console.WriteLine("Target locale " + locale);
+
+            // Make sure the output in terminal can be displayed normally, not necessary if you do not want to print result in terminal
+            Console.OutputEncoding = Encoding.UTF8;
+
+            // When you use Multilingual Translation with language identification, 
+            // you don't need to define any candidate languages to detect, but you must set a v2 endpoint and use
+            // SpeechTranslationConfig.FromEndpoint() to create the SpeechTranslationConfig object.
+            // This will be fixed in a future version of Speech SDK.
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // NOTICE!!!, set your region and key here
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(new Uri("https://<REGION>.stt.speech.microsoft.com/speech/universal/v2"), "<KEY>");
+            speechTranslationConfig.AddTargetLanguage(locale);
+            speechTranslationConfig.VoiceName = "personal-voice";
+
+            // You don't need to define any candidate languages to detect.
+            var autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.FromOpenRange();
+
+            var stopTranslation = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+            // index of output auido files
+            int i = 0;
+            Console.WriteLine($"Start time: {DateTime.UtcNow}");
+
+            using (var audioInput = AudioConfig.FromWavFileInput(audioFile))
+            {
+                using (var recognizer = new TranslationRecognizer(speechTranslationConfig, autoDetectSourceLanguageConfig, audioInput))
+                {
+                    // Subscribes to events.
+                    recognizer.Recognizing += (s, e) =>
+                    {
+                        var lidResult = e.Result.Properties.GetProperty(PropertyId.SpeechServiceConnection_AutoDetectSourceLanguageResult);
+
+                        Console.WriteLine($"RECOGNIZING in '{lidResult}': Text={e.Result.Text}, Offset={e.Offset}, Duration={e.Result.Duration}");
+                        if (e.Result.Reason == ResultReason.TranslatingSpeech)
+                        {
+                            foreach (var element in e.Result.Translations)
+                            {
+                                Console.WriteLine($"    TRANSLATING into '{element.Key}': {element.Value}");
+                            }
+
+                        }
+                    };
+
+                    recognizer.Recognized += (s, e) => {
+                        if (e.Result.Reason == ResultReason.TranslatedSpeech)
+                        {
+                            var lidResult = e.Result.Properties.GetProperty(PropertyId.SpeechServiceConnection_AutoDetectSourceLanguageResult);
+
+                            Console.WriteLine($"RECOGNIZED in '{lidResult}': Text={e.Result.Text}, Offset={e.Offset}, Duration={e.Result.Duration}");
+                            foreach (var element in e.Result.Translations)
+                            {
+                                Console.WriteLine($"    TRANSLATED into '{element.Key}': {element.Value}");
+                            }
+                        }
+                        else if (e.Result.Reason == ResultReason.RecognizedSpeech)
+                        {
+                            Console.WriteLine($"RECOGNIZED: Text={e.Result.Text}");
+                            Console.WriteLine($"    Speech not translated.");
+                        }
+                        else if (e.Result.Reason == ResultReason.NoMatch)
+                        {
+                            Console.WriteLine($"NOMATCH: Speech could not be recognized.");
+                        }
+                    };
+
+                    recognizer.Canceled += (s, e) =>
+                    {
+                        Console.WriteLine($"CANCELED: Reason={e.Reason}");
+
+                        if (e.Reason == CancellationReason.Error)
+                        {
+                            Console.WriteLine($"CANCELED: ErrorCode={e.ErrorCode}");
+                            Console.WriteLine($"CANCELED: ErrorDetails={e.ErrorDetails}");
+                            Console.WriteLine($"CANCELED: Did you update the subscription info?");
+                        }
+
+                        stopTranslation.TrySetResult(0);
+                    };
+
+                    recognizer.Synthesizing += (_, e) =>
+                    {
+                        var audio = e.Result.GetAudio();
+
+                        Console.WriteLine($"{e.SessionId} Audio synthesized: {audio.Length:#,0} byte(s) Current time: {DateTime.UtcNow} {(audio.Length == 0 ? "(Complete)" : "")}");
+
+                        if (audio.Length > 0)
+                        {
+                            File.WriteAllBytes(string.Format("YourAudioFile-{0}.wav", ++i), audio);
+                        }
+
+                        if (audio.Length == 0)
+                        {
+                            stopTranslation.TrySetResult(0);
+                        }
+                    };
+
+                    Console.WriteLine("Start translation...");
+                    await recognizer.StartContinuousRecognitionAsync();
+
+                    // Waits for completion.
+                    // Use Task.WaitAny to keep the task rooted.
+                    Task.WaitAny(new[] { stopTranslation.Task });
+
+                    // Stops translation.
+                    await recognizer.StopContinuousRecognitionAsync();
+                }
+            }
+            Console.WriteLine($"End time: {DateTime.UtcNow}");
+        }
+
+        static async Task Main()
+        {
+            await LiveInterpreterDemoAsync();
+        }
+    }
+}
+```
+
 ## Using custom translation in speech translation
-The custom translation feature in speech translation seamlessly integrates with the Azure Custom Translation service, allowing you to achieve more accurate and tailored translations. As the integration directly harnesses the capabilities of the Azure custom translation service, you need to use a multi-service resource to ensure the correct functioning of the complete set of features. For detailed instructions, please consult the guide on [Create a multi-service resource for Azure AI services](/azure/ai-services/multi-service-resource?tabs=windows&pivots=azportal).
+
+The custom translation feature in speech translation seamlessly integrates with the Azure Custom Translation service, allowing you to achieve more accurate and tailored translations. As the integration directly harnesses the capabilities of the Azure custom translation service, you need to use a multi-service resource to ensure the correct functioning of the complete set of features. For detailed instructions, please consult the guide on [Create a multi-service resource for Foundry Tools](/azure/ai-services/create-account-resource-manager-template).
 
 Additionally, for offline training of a custom translator and obtaining a "Category ID," please refer to the step-by-step script provided in the [Quickstart: Build, deploy, and use a custom model - Custom Translator](/azure/ai-services/translator/custom-translator/quickstart).
 
 ```csharp
 // Creates an instance of a translation recognizer using speech translation configuration
 // You should use the same subscription key, which you used to generate the custom model before.
-// V2 endpoint is required for the “Custom Translation” feature. Example: "wss://westcentralus.stt.speech.microsoft.com/speech/universal/v2"
+// V2 endpoint is required for the "Custom Translation" feature. Example: "wss://westcentralus.stt.speech.microsoft.com/speech/universal/v2"
 
-try (SpeechTranslationConfig config = SpeechTranslationConfig.fromEndpoint(URI.create(endpointUrl), speechSubscriptionKey)) {
+var v2EndpointInString = "wss://westcentralus.stt.speech.microsoft.com/speech/universal/v2";
+var v2EndpointUrl = new Uri(v2EndpointInString);
+var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechSubscriptionKey");
 
-            // Sets source and target language(s).
-           ….
+// Sets source and target language(s).
+speechTranslationConfig.SpeechRecognitionLanguage = "en-US";
+speechTranslationConfig.AddTargetLanguage("de");
 
-            // Set the category id
-            config.setCustomModelCategoryId("yourCategoryId");
-
-       ….
-}
+// Set the category id
+speechTranslationConfig.SetProperty(PropertyId.SpeechServiceConnection_TranslationCategory, "yourCategoryId");
 ```
 
 [speechtranslationconfig]: /dotnet/api/microsoft.cognitiveservices.speech.speechtranslationconfig

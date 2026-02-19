@@ -2,15 +2,15 @@
 title: Return a semantic answer
 titleSuffix: Azure AI Search
 description: Describes the composition of a semantic answer and how to obtain answers from a result set.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 02/18/2025
+ms.topic: concept-article
+ms.date: 11/06/2025
+ms.update-cycle: 365-days
 ---
 
 # Return a semantic answer in Azure AI Search
@@ -30,9 +30,6 @@ All prerequisites that apply to [semantic queries](semantic-how-to-query-request
 + Query strings entered by the user must be recognizable as a question (what, where, when, how).
 
 + Search documents in the index must contain text having the characteristics of an answer, and that text must exist in one of the fields listed in the [semantic configuration](semantic-how-to-configure.md). For example, given a query "what is a hash table", if none of the fields in the semantic configuration contain passages that include "A hash table is ...", then it's unlikely an answer is returned.
-
-> [!NOTE]
-> Starting in 2021-04-30-Preview, [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) requests began enfording a `"semanticConfiguration"` requirement for specifying input fields used in semantic ranking.
 
 ## What is a semantic answer?
 

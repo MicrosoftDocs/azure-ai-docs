@@ -1,12 +1,12 @@
 ---
 title: General key-value extraction - Document Intelligence 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Extract key-value pairs, tables, selection marks, and text from your documents with Document Intelligence.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 02/27/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -90,7 +90,7 @@ Try extracting data from forms and documents using the Document Intelligence Stu
 
 You need the following resources:
 
-* An Azure subscription—you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription—you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 

@@ -5,22 +5,21 @@ ms.service: azure-ai-language
 ms.custom:
   - build-2024
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
-## Create a new Azure AI Language resource and Azure storage account
+## Create a new Azure Language in Foundry Tools resource and Azure storage account
 
-Before you can use custom Summarization, you'll need to create an Azure AI Language resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset that will be used to build your model.
+Before you can use custom Summarization, you'll need to create an Azure Language in Foundry Tools resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset used to build your model.
 
 > [!IMPORTANT]
-> To get started quickly, we recommend creating a new Azure AI Language resource using the steps provided in this article. Using the steps in this article will let you create the Language resource and storage account at the same time, which is easier than doing it later.
+> To get started quickly, we recommend creating a new Language resource using the steps provided in this article. Using the steps in this article lets you create Azure Language resource and storage account at the same time, which is easier than doing it later.
 >
-<!--- > If you have a pre-existing resource that you'd like to use, you will need to connect it to storage account. See [guidance to using a pre-existing resource](../../../includes/custom/use-pre-existing-resource.md) for information. --->
+<!--- > If you have a pre-existing resource that you'd like to use, you need to connect it to storage account. See [guidance to using a pre-existing resource](../../../includes/custom/use-pre-existing-resource.md) for information. --->
 
 [!INCLUDE [create a new resource from the Azure portal](../../../includes/custom/resource-creation-azure-portal.md)]
 

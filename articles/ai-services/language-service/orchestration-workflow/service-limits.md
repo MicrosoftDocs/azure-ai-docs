@@ -1,16 +1,15 @@
 ---
 title: Orchestration workflow limits
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the data, region, and throughput limits for Orchestration workflow
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: limits-and-quotas
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu, mentions_regions
 ---
-
 # Orchestration workflow limits
 
 Use this article to learn about the data and service limits when using orchestration workflow.
@@ -23,7 +22,7 @@ Use this article to learn about the data and service limits when using orchestra
 
   |Tier|Description|Limit|
   |--|--|--|
-  |F0 |Free tier|You are only allowed one Language resource with the F0 tier per subscription.|
+  |F0 |Free tier|You're only allowed one Language resource with the F0 tier per subscription.|
   |S |Paid tier|You can have up to 100 Language resources in the S tier per region.| 
 
 
@@ -35,7 +34,7 @@ See [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/lan
 
 ## Regional availability
 
-See [Language service regional availability](../concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).
+See [Language regional availability](../concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).
 
 ## API limits
 

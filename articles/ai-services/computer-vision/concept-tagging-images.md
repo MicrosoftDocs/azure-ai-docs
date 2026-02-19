@@ -1,15 +1,13 @@
 ---
-title: Content tags - Azure AI Vision
-titleSuffix: Azure AI services
-description: Learn concepts related to the images tagging feature of the Azure AI Vision API.
+title: Content tags - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn concepts related to the images tagging feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
@@ -26,7 +24,7 @@ Try out the image tagging features quickly and easily in your browser using Visi
 
 ## Image tagging example
 
-The following JSON response illustrates what Azure AI Vision returns when tagging visual features detected in the example image.
+The following JSON response illustrates what Azure Vision in Foundry Tools returns when tagging visual features detected in the example image.
 
 ![A blue house and the front yard](./Images/house_yard.png).
 
@@ -138,7 +136,7 @@ The following JSON response illustrates what Azure AI Vision returns when taggin
 
 ## Use the API
 
-The tagging feature is part of the [Analyze Image](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP) API. You can call this API through a native SDK or through REST calls. Include `Tags` in the **visualFeatures** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"tags"` section.
+The tagging feature is part of the [Analyze Image](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP&preserve-view=true) API. You can call this API through a native SDK or through REST calls. Include `Tags` in the **visualFeatures** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"tags"` section.
 
 
 * [Quickstart: Image Analysis REST API or client libraries](./quickstarts-sdk/image-analysis-client-library.md?pivots=programming-language-csharp)

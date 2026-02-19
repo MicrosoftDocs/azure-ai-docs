@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
 author: ynpandey
-ms.author: franksolomon
-ms.reviewer: franksolomon
+ms.author: scottpolly
+ms.reviewer: soumyapatro
 ms.date: 03/06/2025
 ms.custom: UpdateFrequency5, data4ml, synapse-azureml, sdkv1
 #Customer intent: As a data scientist, I want to prepare my data at scale, and to train my machine learning models from a single notebook using Azure Machine Learning.

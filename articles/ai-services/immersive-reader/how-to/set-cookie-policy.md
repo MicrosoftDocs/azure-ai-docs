@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-immersive-reader
 ms.topic: how-to
 ms.date: 02/26/2024
-ms.author: sharmas
+ms.author: michtho
 ms.custom:
 ---
 

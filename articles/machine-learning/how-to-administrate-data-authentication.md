@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.author: franksolomon
-author: fbsolo-ms1
-ms.reviewer: xunwan
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
 ms.date: 09/06/2024
 ms.custom: engagement-fy23
 

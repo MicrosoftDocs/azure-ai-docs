@@ -1,21 +1,20 @@
 ---
 title: Entity components in conversational language understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how conversational language understanding extracts entities from text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 06/04/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Entity components
 
-In conversational language understanding, entities are relevant pieces of information that are extracted from your utterances. An entity can be extracted by different methods. They can be learned through context, matched from a list, or detected by a prebuilt recognized entity. Every entity in your project is composed of one or more of these methods, which are defined as your entity's components. 
+In conversational language understanding, entities are relevant pieces of information that are extracted from your utterances. You can extract an entity using several different methods. Entities can be detected through context, matched from a list, or detected by a prebuilt recognized entity. Every entity in your project is composed of one or more of these methods, which are defined as your entity's components.
 
-When an entity is defined by more than one component, their predictions can overlap. You can determine the behavior of an entity prediction when its components overlap by using a fixed set of options in the *entity options*.
+When more than one component defines an entity, predictions can overlap. You can determine the behavior of an entity prediction when its components overlap by using a fixed set of options in the *entity options*.
 
 ## Component types
 
@@ -23,7 +22,7 @@ An entity component determines a way that you can extract the entity. An entity 
 
 ### Learned component
 
-The learned component uses the entity tags you label your utterances with to train a machine-learned model. The model learns to predict where the entity is based on the context within the utterance. Your labels provide examples of where the entity is expected to be present in an utterance, based on the meaning of the words around it and as the words that were labeled. 
+The learned component uses the entity tags you label your utterances with to train a machine-learned model. The model learns to predict where the entity is based on the context within the utterance. Your labels provide examples of where the entity is expected to be present in an utterance. This determination is based on the meaning of the words around it and as the words that were labeled.
 
 This component is only defined if you add labels by tagging utterances for the entity. If you don't tag any utterances with the entity, it doesn't have a learned component.
 
@@ -53,13 +52,13 @@ In multilingual projects, you can specify a different expression for each langua
 
 ## Entity options
 
-When multiple components are defined for an entity, their predictions might overlap. When an overlap occurs, each entity's final prediction is determined by one of the following options.
+If multiple components define an entity, their predictions may overlap. When overlap happens, one of the following options determines each entity's final prediction:
 
 ### Combine components
 
 Combine components as one entity when they overlap by taking the union of all the components.
 
-Use this option to combine all components when they overlap. When components are combined, you get all the extra information that's tied to a list or prebuilt component when they're present.
+Use this option to combine all components when they overlap. When components are combined, you get all the extra information associated with a list or prebuilt component if present.
 
 #### Example
 
@@ -71,7 +70,7 @@ By using combined components, the entity returns with the full context as "Prose
 
 :::image type="content" source="../media/union-overlap-example-1-part-2.svg" alt-text="Screenshot that shows the result of a combined component." lightbox="../media/union-overlap-example-1-part-2.svg":::
 
-Suppose you had the same utterance, but only "OS 9" was predicted by the learned component:
+Suppose you had the same utterance, but only "OS 9" predicts the learned component:
 
 :::image type="content" source="../media/union-overlap-example-2.svg" alt-text="Screenshot that shows an utterance with O S 9 predicted by the learned component." lightbox="../media/union-overlap-example-2.svg":::
 
@@ -95,11 +94,11 @@ When you don't combine components, the entity returns twice:
 
 ### Required components
 
-Sometimes an entity can be defined by multiple components but requires one or more of them to be present. Every component can be set as *required*, which means the entity *won't* be returned if that component wasn't present. For example, if you have an entity with a list component and a required learned component, it's guaranteed that any returned entity includes a learned component. If it doesn't, the entity isn't returned.
+Sometimes, you can define an entity using multiple components, but the entity requires at least one or more of them to be present. You can mark any component as *required*, which means the system *doesn't* return the entity unless that component is present. For example, if an entity has a list component and a *required* learned component, the system guarantees that any returned entity includes a learned component. If an entity doesn't have the required component, the system doesn't return it.
 
 Required components are most frequently used with learned components because they can restrict the other component types to a specific context, which is commonly associated to *roles*. You can also require all components to make sure that every component is present for an entity.
 
-In Language Studio, every component in an entity has a toggle next to it that allows you to set it as required.
+In Microsoft Foundry, every component in an entity has a toggle next to it that allows you to set it as required.
 
 #### Example
 
@@ -120,8 +119,9 @@ Other times, you might be interested in extracting an entity through context, su
 When you don't combine components, you allow every component to act as an independent entity extractor. One way of using this option is to separate the entities extracted from a list to the ones extracted through the learned or prebuilt components to handle and treat them differently.
 
 > [!NOTE]
-> Previously during the public preview of the service, there were four available options: **Longest overlap**, **Exact overlap**, **Union overlap**, and **Return all separately**. **Longest overlap** and **Exact overlap** are deprecated and are only supported for projects that previously had those options selected. **Union overlap** has been renamed to **Combine components**, while **Return all separately** has been renamed to **Do not combine components**.
+> Previously during the public preview of the service, there were four available options: **Longest overlap**, **Exact overlap**, **Union overlap**, and **Return all separately**. **Longest overlap** and **Exact overlap** are deprecated and are only supported for projects that previously had those options selected. **Union overlap** is renamed to **Combine components**, while **Return all separately** is renamed to **Do not combine components**.
 
 ## Related content
 
-- [Supported prebuilt components](../prebuilt-component-reference.md)
+[Supported prebuilt components](../prebuilt-component-reference.md)
+

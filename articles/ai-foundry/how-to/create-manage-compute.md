@@ -1,39 +1,31 @@
 ---
-title: How to create and manage compute instances in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to create and manage compute instances in Azure AI Foundry portal.
-manager: scottpolly
+title: Create and manage compute instances
+titleSuffix: Microsoft Foundry
+description: Learn how to create and manage compute instances in Foundry portal to use prompt flow, create indexes, and access Visual Studio Code.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
+  - dev-focus
 ms.topic: how-to
-ms.date: 06/06/2025
+ms.date: 12/23/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
+ai-usage: ai-assisted
 ---
 
-# How to create and manage compute instances in Azure AI Foundry portal
+# Create and manage compute instances
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-In this article, you learn how to create a compute instance in Azure AI Foundry portal. You can create a compute instance in the Azure AI Foundry portal.
-
-You need a compute instance to:
-
-- Use prompt flow in Azure AI Foundry portal. 
-- Create an index
-- Open Visual Studio Code (Web or Desktop) in Azure AI Foundry portal.
-
-You can use the same compute instance for multiple scenarios and workflows. A compute instance can't be shared. It can only be used by a single assigned user. By default, it is assigned to the creator. You can change the assignment to a different user in the security step during creation.
-
-Compute instances can run jobs securely in a virtual network environment, without requiring enterprises to open up SSH ports. The job executes in a containerized environment and packages your model dependencies in a Docker container.
+In this article, you learn how to create and manage a compute instance in Foundry portal. A compute instance is required to use prompt flow, create indexes, or access Visual Studio Code in Foundry portal for hub-based projects.
 
 > [!IMPORTANT]
-> Compute instances get the latest VM images at the time of provisioning. Microsoft releases new VM images on a monthly basis. Once a compute instance is deployed, it does not get actively updated. You could query an instance's operating system version. 
-> To keep current with the latest software updates and security patches, you could: Recreate a compute instance to get the latest OS image (recommended) or regularly update OS and Python packages on the compute instance to get the latest security patches.
+> Compute instances get the latest VM images when you provision them. Microsoft releases new VM images monthly. Once you deploy a compute instance, it doesn't get updates. You can query an instance's operating system version. 
+> To keep current with the latest software updates and security patches, you can: Recreate a compute instance to get the latest OS image (recommended) or regularly update OS and Python packages on the compute instance to get the latest security patches.
 
 ## Prerequisites
 
@@ -42,12 +34,11 @@ Compute instances can run jobs securely in a virtual network environment, withou
 
 ## Create a compute instance
 
-[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+To create a compute instance in Foundry portal:
 
-To create a compute instance in Azure AI Foundry portal:
-
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your project. If you don't have a project already, first create one.
-1. Select **Management center**
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. Select your project. If you don't have a project already, first create one.
+1. Select **Management center** in the left pane. You might have to scroll to find it.
 1. Under the **Hub** heading, select **Computes**. 
 1. Select **New** to create a new compute instance.
 
@@ -62,12 +53,14 @@ To create a compute instance in Azure AI Foundry portal:
     
     For more information on configuration details such as CPU and RAM, see [Azure Machine Learning pricing](https://azure.microsoft.com/pricing/details/machine-learning/) and [virtual machine sizes](/azure/virtual-machines/sizes).
 
-1. On the **Scheduling** page under **Auto shut down** make sure idle shutdown is enabled by default. You can opt to automatically shut down compute after the instance has been idle for a set amount of time. If you disable auto shutdown costs continue to accrue even during periods of inactivity. For more information, see [Configure idle shutdown](#configure-idle-shutdown).
-
-    :::image type="content" source="../media/compute/compute-scheduling.png" alt-text="Screenshot of the option to enable idle shutdown and create a schedule." lightbox="../media/compute/compute-scheduling.png":::
+1. On the **Scheduling** page under **Auto shut down**, note that idle shutdown is enabled by default.
 
     > [!IMPORTANT]
-    > The compute can't be idle if you have [prompt flow compute sessions](./create-manage-compute-session.md) in **Running** status on the compute. Delete any active compute sessions so the compute instance can be eligible for idle shutdown. You also can't have any active [VS Code (Web)](./develop/vscode.md) sessions hosted on the compute instance.
+    > The compute can't be idle if you have [prompt flow compute sessions](./create-manage-compute-session.md) in **Running** status on the compute. Delete any active compute sessions before configuring idle shutdown.
+
+    You can automatically shut down compute after the instance has been idle for a set amount of time. If you disable auto shutdown, costs continue to accrue during periods of inactivity. For more information, see [Configure idle shutdown](#configure-idle-shutdown).
+
+    :::image type="content" source="../media/compute/compute-scheduling.png" alt-text="Screenshot of the option to enable idle shutdown and create a schedule." lightbox="../media/compute/compute-scheduling.png"::: 
 
 1. You can update the schedule days and times to meet your needs. You can add additional schedules. For example, create a schedule to start at 9 AM and stop at 6 PM from Monday-Thursday, and a second schedule to start at 9 AM and stop at 4 PM for Friday. You can create a total of four schedules per compute instance.
 
@@ -102,18 +95,18 @@ To configure idle shutdown for an existing compute instance follow these steps:
     :::image type="content" source="../media/compute/compute-schedule-update.png" alt-text="Screenshot of the option to change the idle shutdown schedule for a compute instance." lightbox="../media/compute/compute-schedule-update.png":::
 
     > [!IMPORTANT]
-    > The compute won't be idle if you have a [prompt flow compute session](./create-manage-compute-session.md) in **Running** status on the compute. You need to delete any active compute sessions to make the compute instance eligible for idle shutdown. You also can't have any active [VS Code (Web)](./develop/vscode.md) sessions hosted on the compute instance.
+    > The compute won't be idle if you have a [prompt flow compute session](./create-manage-compute-session.md) in **Running** status on the compute. You need to delete any active compute sessions to make the compute instance eligible for idle shutdown. 
 
 1. Update or add to the schedule. You can have a total of four schedules per compute instance. Then select **Update** to save your changes.
 
 ## Start or stop a compute instance
 
-You can start or stop a compute instance from the Azure AI Foundry portal.
+You can start or stop a compute instance from the Foundry portal.
 
 1. From the left menu, select **Management center**.
 1. Under the **Hub** heading, select **Computes**.
 1. In the list, select the compute instance you want to start or stop.
-1. 1. Select **Stop** to stop the compute instance. Select **Start** to start the compute instance. Only stopped compute instances can be started and only started compute instances can be stopped.
+1. Select **Stop** to stop the compute instance. Select **Start** to start the compute instance. Only stopped compute instances can be started and only started compute instances can be stopped.
 
     :::image type="content" source="../media/compute/compute-start-stop.png" alt-text="Screenshot of the option to start or stop a compute instance." lightbox="../media/compute/compute-start-stop.png":::
 

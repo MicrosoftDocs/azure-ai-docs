@@ -8,7 +8,7 @@ ms.subservice: core
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: keli19
-ms.date: 09/30/2024
+ms.date: 10/30/2025
 ms.topic: concept-article
 ---
 # What is an Azure Machine Learning component?

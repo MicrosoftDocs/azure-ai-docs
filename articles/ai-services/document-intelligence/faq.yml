@@ -1,30 +1,30 @@
 ### YamlMime:FAQ
 metadata:
-  title: Azure AI Document Intelligence (formerly Azure AI Form Recognizer) FAQ
-  description: Get answers to frequently asked questions about the Document Intelligence service.
+  title: Azure Document Intelligence in Foundry Tools (formerly Azure AI Form Recognizer) FAQ
+  description: Get answers to frequently asked questions about Document Intelligence.
   author: laujan
   manager: nitinme
   ms.service: azure-ai-document-intelligence
   ms.custom: references_regions
   ms.topic: faq
-  ms.date: 04/23/2025
+  ms.date: 11/18/2025
   ms.author: lajanuar
 title: Frequently asked questions
 summary: |
    [!INCLUDE [applies to v4.0, v3.1, v3.0, and v2.1](includes/applies-to-v40-v31-v30-v21.md)]
 
-   Azure AI Document Intelligence is a cloud-based service that uses machine-learning models to extract key/value pairs, text, and tables from your documents. The returned result is a structured JSON output. Document Intelligence use cases include automated data processing, enhanced data-driven strategies, and enriched document search capabilities.
+   Azure Document Intelligence in Foundry Tools is a cloud-based service that uses machine-learning models to extract key/value pairs, text, and tables from your documents. The returned result is a structured JSON output. Document Intelligence use cases include automated data processing, enhanced data-driven strategies, and enriched document search capabilities.
 
 
 sections:
   - name: Overview
     questions:
       - question: |
-         Are Azure AI Document Intelligence and Azure AI Form Recognizer the same service?
+         Are Azure Document Intelligence and Azure Document Intelligence in Foundry Tools the same service?
         answer: |
           **Yes.**
 
-          Azure AI Document Intelligence and Azure AI Form Recognizer are the same service. The service was renamed from Azure AI Form Recognizer to Azure AI Document Intelligence in July 2023. The service provides the same capabilities and features as before the renaming.
+          Azure Document Intelligence and Azure Document Intelligence in Foundry Tools are the same service. The service was renamed from Azure Document Intelligence in Foundry Tools to Azure Document Intelligence in July 2023. The service provides the same capabilities and features as before the renaming.
 
           -  **Pricing changes**: There are no changes to pricing. The names Cognitive Services and Applied AI Services continue to be used in Azure billing, cost analysis, price lists, and price APIs.
 
@@ -39,7 +39,7 @@ sections:
 
           - [AI Builder workflows](/ai-builder/create-form-processing-model?toc=~/articles/ai-services/document-intelligence/toc.json&bc=~/articles/ai-services/document-intelligence/breadcrumb/toc.json)
 
-          - [Azure AI Search](/azure/search/cognitive-search-custom-skill-form)
+          - [Azure Search](/azure/search/cognitive-search-custom-skill-form)
 
           - [Azure Functions](tutorial-azure-function.md)
 
@@ -54,7 +54,7 @@ sections:
 
            You can also use a document generative AI solution to chat with your documents (RAG), generate captivating content from those documents, and access Azure OpenAI models on your data.
 
-          - With Azure AI Document Intelligence and Azure OpenAI combined, you can build an enterprise application to seamlessly interact with your documents using natural language. You can easily find answers, gain valuable insights, and generate new and engaging content from existing documents.
+          - With Azure Document Intelligence and Azure OpenAI combined, you can build an enterprise application to seamlessly interact with your documents using natural language. You can easily find answers, gain valuable insights, and generate new and engaging content from existing documents.
 
           - You can find more details on the [retrieval-augmented generation pattern here](concept/retrieval-augmented-generation.md).
 
@@ -71,14 +71,14 @@ sections:
 
           For more information, see [overview of RAG in Document Intelligence](concept/retrieval-augmented-generation.md)
 
-  - name: Document Intelligence Studio
+  - name: Document Intelligence/Content Understanding Studio
     questions:
       - question: |
           Do I need specific permissions to access Document Intelligence Studio?
         answer: |
           **Yes.**
 
-          You need an active [Azure account](https://azure.microsoft.com/free/cognitive-services/) and subscription with at least a Reader role to access Document Intelligence Studio.
+          You need an active [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) and subscription with at least a Reader role to access Document Intelligence Studio.
 
           For document analysis and prebuilt models, here are the role requirements for user scenarios:
 
@@ -165,7 +165,7 @@ sections:
   - name: App development
     questions:
       - question: |
-          Can I develop applications using Azure AI Document Intelligence using the latest development options?
+          Can I develop applications using Azure Document Intelligence using the latest development options?
         answer: |
           **Yes.**
 
@@ -329,7 +329,7 @@ sections:
 
           Document Intelligence can't access your storage account if it's protected by a virtual network or firewall.
 
-          However, private Azure storage account access and authentication support [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). When you use a managed identity, the Document Intelligence service can access your storage account by using an assigned credential.
+          However, private Azure storage account access and authentication support [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). When you use a managed identity, Document Intelligence can access your storage account by using an assigned credential.
 
           If you intend to analyze your private storage account data by using FOTT, you must deploy the tool behind the virtual network or firewall.
 
@@ -345,7 +345,7 @@ sections:
 
           Although the model capabilities are the same for connected and disconnected containers, the billing and connectivity methods differ:
 
-          - Connected containers send billing information to Azure by using a Document Intelligence resource on your Azure account. With connected containers, internet connectivity is required to send [billing information](containers/install-run.md?tabs=layout#billing) to Azure. Document Intelligence connected containers send billing information to Azure by using a Document Intelligence resource on your Azure account. Connected containers don't send customer data, such as the image or text that's being analyzed, to Microsoft. For an example of the information that connected containers send to Microsoft for billing, see the [Azure AI container FAQ](../../ai-services/containers/disconnected-container-faq.yml#how-does-billing-work).
+          - Connected containers send billing information to Azure by using a Document Intelligence resource on your Azure account. With connected containers, internet connectivity is required to send [billing information](containers/install-run.md?tabs=layout#billing) to Azure. Document Intelligence connected containers send billing information to Azure by using a Document Intelligence resource on your Azure account. Connected containers don't send customer data, such as the image or text that's being analyzed, to Microsoft. For an example of the information that connected containers send to Microsoft for billing, see the [Azure container FAQ](../../ai-services/containers/disconnected-container-faq.yml#how-does-billing-work).
 
           - [Disconnected containers](../../ai-services/containers/disconnected-containers.md) enable you to use APIs that are disconnected from the internet. [Billing information](../../ai-services/containers/disconnected-container-faq.yml#how-does-billing-work) isn't sent via the internet. Instead, Charges are based on a purchased commitment tier. Currently, disconnected container usage is available for Document Intelligence custom and invoice models.
 
@@ -393,7 +393,7 @@ sections:
   - name: More help and support
     questions:
       - question: |
-            Are there other resources available to provide solutions to Azure AI Document Intelligence questions?
+            Are there other resources available to provide solutions to Azure Document Intelligence questions?
         answer: |
             **Yes.**
 

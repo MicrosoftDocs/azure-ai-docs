@@ -3,21 +3,21 @@ title: Query & compare experiments and runs with MLflow
 titleSuffix: Azure Machine Learning
 description: Learn how to use MLflow for managing experiments and runs in Azure Machine Learning.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 03/20/2024
+ms.date: 11/13/2025
 ms.topic: concept-article
 ms.custom: how-to
 ---
 
-# Query & compare experiments and runs with MLflow
+# Query and compare experiments and runs with MLflow
 
-Experiments and jobs (or runs) in Azure Machine Learning can be queried using MLflow. You don't need to install any specific SDK to manage what happens inside of a training job, creating a more seamless transition between local runs and the cloud by removing cloud-specific dependencies. In this article, you'll learn how to query and compare experiments and runs in your workspace using Azure Machine Learning and MLflow SDK in Python.
+You can use MLflow to query experiments and jobs (or runs) in Azure Machine Learning. You don't need to install any specific SDK to manage what happens inside of a training job. By removing cloud-specific dependencies, you get a more seamless transition between local runs and the cloud. In this article, you learn how to query and compare experiments and runs in your workspace by using Azure Machine Learning and the MLflow SDK in Python.
 
-MLflow allows you to:
+With MLflow, you can:
 
 * Create, query, delete, and search for experiments in a workspace.
 * Query, delete, and search for runs in a workspace.
@@ -26,9 +26,9 @@ MLflow allows you to:
 For a detailed comparison between open-source MLflow and MLflow when connected to Azure Machine Learning, see [Support matrix for querying runs and experiments in Azure Machine Learning](#support-matrix-for-querying-runs-and-experiments).
 
 > [!NOTE]
-> The Azure Machine Learning Python SDK v2 does not provide native logging or tracking capabilities. This applies not just for logging but also for querying the metrics logged. Instead, use MLflow to manage experiments and runs. This article explains how to use MLflow to manage experiments and runs in Azure Machine Learning.
+> The Azure Machine Learning Python SDK v2 doesn't provide native logging or tracking capabilities. This limitation applies not just to logging but also to querying the logged metrics. Instead, use MLflow to manage experiments and runs. This article explains how to use MLflow to manage experiments and runs in Azure Machine Learning.
 
-You can also query and search experiments and runs by using the MLflow REST API. See [Using MLflow REST with Azure Machine Learning](https://github.com/Azure/azureml-examples/blob/main/sdk/python/using-mlflow/using-rest-api/using_mlflow_rest_api.ipynb) for an example about how to consume it.
+You can also query and search experiments and runs by using the MLflow REST API. For an example about how to consume it, see [Using MLflow REST with Azure Machine Learning](https://github.com/Azure/azureml-examples/blob/main/sdk/python/using-mlflow/using-rest-api/using_mlflow_rest_api.ipynb).
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ You can also query and search experiments and runs by using the MLflow REST API.
 
 ## Query and search experiments
 
-Use MLflow to search for experiments inside of your workspace. See the following examples:
+Use MLflow to search for experiments inside your workspace. See the following examples:
 
 * Get all active experiments:
 
@@ -47,7 +47,7 @@ Use MLflow to search for experiments inside of your workspace. See the following
     > [!NOTE]
     > In legacy versions of MLflow (<2.0), use method `mlflow.list_experiments()` instead.
 
-* Get all the experiments, including archived:
+* Get all experiments, including archived experiments:
 
     ```python
     from mlflow.entities import ViewType
@@ -69,7 +69,7 @@ Use MLflow to search for experiments inside of your workspace. See the following
 
 ### Search experiments
 
-The `search_experiments()` method, available since Mlflow 2.0, lets you search for experiments that match criteria using `filter_string`.
+The `search_experiments()` method, available since Mlflow 2.0, lets you search for experiments that match criteria by using `filter_string`.
 
 * Retrieve multiple experiments based on their IDs:
 
@@ -96,7 +96,7 @@ The `search_experiments()` method, available since Mlflow 2.0, lets you search f
 
 ## Query and search runs
 
-MLflow lets you search for runs inside any experiment, including multiple experiments at the same time. The method `mlflow.search_runs()` accepts the argument `experiment_ids` and `experiment_name` to indicate which experiments you want to search. You can also indicate `search_all_experiments=True` if you want to search across all the experiments in the workspace:
+MLflow lets you search for runs inside any experiment, including multiple experiments at the same time. The method `mlflow.search_runs()` accepts the arguments `experiment_ids` and `experiment_name` to indicate which experiments you want to search. You can also set `search_all_experiments=True` if you want to search across all the experiments in the workspace:
 
 * By experiment name:
 
@@ -116,22 +116,22 @@ MLflow lets you search for runs inside any experiment, including multiple experi
     mlflow.search_runs(filter_string="params.num_boost_round='100'", search_all_experiments=True)
     ``` 
 
-Notice that `experiment_ids` supports providing an array of experiments, so you can search runs across multiple experiments, if necessary. This might be useful in case you want to compare runs of the same model when it's being logged in different experiments (for example, by different people or different project iterations).
+The `experiment_ids` argument supports providing an array of experiments, so you can search runs across multiple experiments. This feature is useful if you want to compare runs of the same model when it's being logged in different experiments (for example, by different people or different project iterations).
 
 > [!IMPORTANT]
-> If `experiment_ids`, `experiment_names`, or `search_all_experiments` aren't specified, then MLflow searches by default in the current active experiment. You can set the active experiment using `mlflow.set_experiment()`.
+> If you don't specify `experiment_ids`, `experiment_names`, or `search_all_experiments`, then MLflow searches by default in the current active experiment. You can set the active experiment by using `mlflow.set_experiment()`.
 
-By default, MLflow returns the data in Pandas `Dataframe` format, which makes it handy when doing further processing our analysis of the runs. Returned data includes columns with:
+By default, MLflow returns the data in Pandas `Dataframe` format, which makes it handy when doing further processing or analysis of the runs. Returned data includes columns with:
 
 - Basic information about the run.
-- Parameters with column's name `params.<parameter-name>`.
-- Metrics (last logged value of each) with column's name `metrics.<metric-name>`.
+- Parameters with column names `params.<parameter-name>`.
+- Metrics (last logged value of each) with column names `metrics.<metric-name>`.
 
-All metrics and parameters are also returned when querying runs. However, for metrics that contain multiple values (for instance, a loss curve, or a PR curve), only the last value of the metric is returned. If you want to retrieve all the values of a given metric, uses `mlflow.get_metric_history` method. See [Getting params and metrics from a run](#get-params-and-metrics-from-a-run) for an example.
+All metrics and parameters are also returned when querying runs. However, for metrics that contain multiple values (for instance, a loss curve, or a PR curve), only the last value of the metric is returned. If you want to retrieve all the values of a given metric, use the `mlflow.get_metric_history` method. See [Getting params and metrics from a run](#get-params-and-metrics-from-a-run) for an example.
 
 ### Order runs
 
-By default, experiments are in descending order by `start_time`, which is the time the experiment was queued in Azure Machine Learning. However, you can change this default by using the parameter `order_by`.
+By default, the portal shows experiments in descending order by `start_time`, which is the time you queued the experiment in Azure Machine Learning. However, you can change this default order by using the `order_by` parameter.
 
 * Order runs by attributes, like `start_time`:
 
@@ -155,20 +155,20 @@ By default, experiments are in descending order by `start_time`, which is the ti
     ```
 
     > [!TIP]
-    > `attributes.duration` isn't present in MLflow OSS, but provided in Azure Machine Learning for convenience.
+    > `attributes.duration` isn't present in MLflow OSS, but Azure Machine Learning provides it for convenience.
 
-* Order runs by metric's values:
+* Order runs by metric values:
 
     ```python
     mlflow.search_runs(experiment_ids=[ "1234-5678-90AB-CDEFG" ]).sort_values("metrics.accuracy", ascending=False)
     ```
 
     > [!WARNING]
-    > Using `order_by` with expressions containing `metrics.*`, `params.*`, or `tags.*` in the parameter `order_by` isn't currently supported. Instead, use the `sort_values` method from Pandas as shown in the example.
+    > The `order_by` parameter doesn't currently support expressions containing `metrics.*`, `params.*`, or `tags.*`. Instead, use the `sort_values` method from Pandas as shown in the example.
 
 ### Filter runs
 
-You can also look for a run with a specific combination in the hyperparameters using the parameter `filter_string`. Use `params` to access run's parameters, `metrics` to access metrics logged in the run, and `attributes` to access run information details. MLflow supports expressions joined by the AND keyword (the syntax doesn't support OR):
+You can use the `filter_string` parameter to find runs with a specific combination of hyperparameters. Use `params` to access a run's parameters, `metrics` to access metrics logged in the run, and `attributes` to access run information details. MLflow supports expressions joined by the AND keyword (the syntax doesn't support OR):
 
 * Search runs based on a parameter's value:
 
@@ -230,7 +230,7 @@ You can also look for a run with a specific combination in the hyperparameters u
     ```
 
     > [!TIP]
-    > `attributes.duration` isn't present in MLflow OSS, but provided in Azure Machine Learning for convenience.
+    > `attributes.duration` isn't present in MLflow OSS, but Azure Machine Learning provides it for convenience.
     
 * Search runs that have the ID in a given set:
 
@@ -241,17 +241,17 @@ You can also look for a run with a specific combination in the hyperparameters u
 
 ### Filter runs by status
 
-When you filter runs by status, MLflow uses a different convention to name the different possible status of a run compared to Azure Machine Learning. The following table shows the possible values:
+When you filter runs by status, MLflow uses a different convention to name the different possible statuses of a run compared to Azure Machine Learning. The following table shows the possible values:
 
-| Azure Machine Learning job status | MLFlow's `attributes.status` | Meaning |
+| Azure Machine Learning job status | MLflow's `attributes.status` | Meaning |
 | :-: | :-: | :-: |
-| Not started | `Scheduled` | The job/run was received by Azure Machine Learning. |
-| Queue | `Scheduled` | The job/run is scheduled for running, but it hasn't started yet. |
-| Preparing | `Scheduled` | The job/run hasn't started yet, but a compute was allocated for its execution and it's preparing the environment and its inputs. |
-| Running | `Running` | The job/run is currently under active execution. |
-| Completed | `Finished` | The job/run was completed without errors. |
-| Failed | `Failed` | The job/run was completed with errors. |
-| Canceled | `Killed` | The job/run was canceled by the user or terminated by the system. |
+| Not started | `Scheduled` | Azure Machine Learning receives the job or run. |
+| Queue | `Scheduled` | The job or run is scheduled for running, but it doesn't start yet. |
+| Preparing | `Scheduled` | The job or run doesn't start yet, but a compute is allocated for its execution and it's preparing the environment and its inputs. |
+| Running | `Running` | The job or run is currently under active execution. |
+| Completed | `Finished` | The job or run completes without errors. |
+| Failed | `Failed` | The job or run completes with errors. |
+| Canceled | `Killed` | The user cancels the job or run or the system terminates it. |
 
 Example:
 
@@ -272,7 +272,7 @@ runs = mlflow.search_runs(
 )
 ```
 
-Details can then be accessed from the `info` member. The following sample shows how to get the `run_id`:
+You can access details from the `info` member. The following sample shows how to get the `run_id`:
 
 ```python
 last_run = runs[-1]
@@ -281,7 +281,7 @@ print("Last run ID:", last_run.info.run_id)
   
 ### Get params and metrics from a run
 
-When runs are returned using `output_format="list"`, you can easily access parameters using the key `data`:
+When you return runs by using `output_format="list"`, you can easily access parameters by using the key `data`:
 
 ```python
 last_run.data.params
@@ -293,7 +293,7 @@ In the same way, you can query metrics:
 last_run.data.metrics
 ```
 
-For metrics that contain multiple values (for instance, a loss curve, or a PR curve), only the last logged value of the metric is returned. If you want to retrieve all the values of a given metric, uses `mlflow.get_metric_history` method. This method requires you to use the `MlflowClient`:
+For metrics that contain multiple values (for instance, a loss curve, or a PR curve), only the last logged value of the metric is returned. If you want to retrieve all the values of a given metric, use the `mlflow.get_metric_history` method. This method requires you to use the `MlflowClient`:
 
 ```python
 client = mlflow.tracking.MlflowClient()
@@ -302,7 +302,7 @@ client.get_metric_history("1234-5678-90AB-CDEFG", "log_loss")
 
 ### Get artifacts from a run
 
-MLflow can query any artifact logged by a run. Artifacts can't be accessed using the run object itself, and the MLflow client should be used instead:
+MLflow can query any artifact logged by a run. You can't access artifacts by using the run object itself. Instead, use the MLflow client:
 
 ```python
 client = mlflow.tracking.MlflowClient()
@@ -322,7 +322,7 @@ file_path = mlflow.artifacts.download_artifacts(
 
 ### Get models from a run
 
-Models can also be logged in the run and then retrieved directly from it. To retrieve a model, you need to know the path to the artifact where it's stored. The method `list_artifacts` can be used to find artifacts that represent a model since MLflow models are always folders. You can download a model by specifying the path where the model is stored, using the `download_artifact` method:
+You can log models in the run and then retrieve them directly. To retrieve a model, you need to know the path to the artifact where it's stored. Use the `list_artifacts` method to find artifacts that represent a model since MLflow models are always folders. You can download a model by specifying the path where the model is stored, using the `download_artifact` method:
 
 ```python
 artifact_path="classifier"
@@ -331,7 +331,7 @@ model_local_path = mlflow.artifacts.download_artifacts(
 )
 ```
   
-You can then load the model back from the downloaded artifacts using the typical function `load_model` in the flavor-specific namespace. The following example uses `xgboost`:
+You can then load the model back from the downloaded artifacts by using the typical function `load_model` in the flavor-specific namespace. The following example uses `xgboost`:
 
 ```python
 model = mlflow.xgboost.load_model(model_local_path)
@@ -348,7 +348,7 @@ model = mlflow.xgboost.load_model(f"runs:/{last_run.info.run_id}/{artifact_path}
 
 ## Get child (nested) runs
 
-MLflow supports the concept of child (nested) runs. These runs are useful when you need to spin off training routines that must be tracked independently from the main training process. Hyper-parameter tuning optimization processes or Azure Machine Learning pipelines are typical examples of jobs that generate multiple child runs. You can query all the child runs of a specific run using the property tag `mlflow.parentRunId`, which contains the run ID of the parent run.
+MLflow supports the concept of child (nested) runs. These runs are useful when you need to spin off training routines that must be tracked independently from the main training process. Hyper-parameter tuning optimization processes or Azure Machine Learning pipelines are typical examples of jobs that generate multiple child runs. You can query all the child runs of a specific run by using the property tag `mlflow.parentRunId`, which contains the run ID of the parent run.
 
 ```python
 hyperopt_run = mlflow.last_active_run()
@@ -359,7 +359,7 @@ child_runs = mlflow.search_runs(
 
 ## Compare jobs and models in Azure Machine Learning studio (preview)
 
-To compare and evaluate the quality of your jobs and models in Azure Machine Learning studio, use the [preview panel](./how-to-enable-preview-features.md) to enable the feature. Once enabled, you can compare the parameters, metrics, and tags between the jobs and/or models you selected.
+To compare and evaluate the quality of your jobs and models in Azure Machine Learning studio, use the [preview panel](./how-to-enable-preview-features.md) to enable the feature. Once enabled, you can compare the parameters, metrics, and tags between the jobs and models you selected.
 
 > [!IMPORTANT]
 > Items marked (preview) in this article are currently in public preview.

@@ -6,15 +6,15 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 01/22/2025
-ms.custom: FY25Q1-Linter, ignite-2024
+ms.date: 11/18/2025
+ms.custom: FY25Q1-Linter
 ---
 
 # What is Microsoft Translator Pro?
 
-Microsoft Translator Pro is an advanced mobile application that enables seamless speech-to-speech translation in real time. Translator Pro is designed specifically for enterprises seeking to eliminate language barriers within the workplace by delivering a standalone, native experience within the enterprise ecosystem.
+Microsoft Translator Pro is an advanced mobile application that enables real-time, seamless speech-to-speech translation. The app is designed specifically for enterprises seeking to eliminate language barriers within the workplace. Translator Pro delivers a dedicated and native experience that fully integrates into the enterprise ecosystem.
 
-Microsoft Translator Pro is a paid mobile application available on the Azure public and US government cloud platform. To utilize the application, enterprise users must authenticate their identities and set up translator resources within the Azure public or US Government cloud environment.
+Microsoft Translator Pro is a paid mobile application available on both the Azure public and US government cloud platforms. To utilize the application, enterprise users must authenticate their identities and configure translator resources within the Azure public or US Government cloud environment.
 
   > [!IMPORTANT]
   >
@@ -96,7 +96,7 @@ Microsoft Translator Pro is available for download in the following countries/re
 
 ## Region availability
 
-The app is currently available for Azure AI Translator resources created in the following regions within the respective clouds. Ensure you onboard the app to your resource located in these specified regions.
+The app is currently available for Azure Translator resources created in the following regions within the respective clouds. Ensure you onboard the app to your resource located in these specified regions.
 
 **Azure Cloud (public)**
 

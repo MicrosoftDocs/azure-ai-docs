@@ -2,29 +2,28 @@
 title: Document Extraction cognitive skill
 titleSuffix: Azure AI Search
 description: Extracts content from a file within the enrichment pipeline.
-
 author: gmndrg
 ms.author: gimondra
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 05/27/2025
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 # Document Extraction cognitive skill
 
-The **Document Extraction** skill extracts content from a file within the enrichment pipeline. By default, content extraction or retrieval is built into the indexer pipeline. However, by using the Document Extraction skill, you can control how parameters are set, and how extracted content is named in the enrichment tree.
+The **Document Extraction** skill extracts content from a file in the [enrichment pipeline](cognitive-search-concept-intro.md). By default, content extraction or retrieval is built into the enrichment pipeline. However, by using the Document Extraction skill, you can control how parameters are set, and how extracted content is named in the enrichment tree.
 
 For [vector](vector-search-overview.md) and [multimodal search](multimodal-search-overview.md), Document Extraction combined with the [Text Split skill](cognitive-search-skill-textsplit.md) is more affordable than other [data chunking approaches](vector-search-how-to-chunk-documents.md). The following tutorials demonstrate skill usage for different scenarios:
 
-+ [Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill](tutorial-document-extraction-multimodal-embeddings.md)
++ [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md)
 
-+ [Tutorial: Index mixed content using image verbalizations and the Document Extraction skill](tutorial-document-extraction-image-verbalization.md)
++ [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
 
 > [!NOTE]
-> This skill isn't bound to Azure AI services and has no Azure AI services key requirement.
+> This skill isn't bound to Foundry Tools and has no Foundry Tools key requirement.
 >
 > This skill extracts text and images. Text extraction is free. Image extraction is [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/). On a free search service, the cost of 20 transactions per indexer per day is absorbed so that you can complete quickstarts, tutorials, and small projects at no charge. For basic and higher tiers, image extraction is billable.
 >
@@ -41,7 +40,7 @@ The DocumentExtractionSkill can extract text from the following document formats
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Inputs | Allowed Values | Description |
 |-----------------|----------------|-------------|

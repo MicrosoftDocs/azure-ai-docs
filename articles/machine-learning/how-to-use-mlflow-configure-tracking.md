@@ -3,12 +3,12 @@ title: Configure MLflow for Azure Machine Learning
 titleSuffix: Azure Machine Learning
 description: Find out how to connect MLflow to an Azure Machine Learning workspace to log metrics, track artifacts, and deploy models.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
-ms.reviewer: fasantia
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 11/20/2024
+ms.date: 12/29/2025
 ms.topic: how-to
 ms.custom: mlflow, cliv2, devplatv2
 ms.devlang: azurecli
@@ -24,7 +24,7 @@ Azure Machine Learning workspaces are MLflow-compatible, which means they can ac
 However, if you work outside Azure Machine Learning, you need to configure MLflow to point to the workspace. Affected environments include your local machine, Azure Synapse Analytics, and Azure Databricks.
 
 > [!IMPORTANT]
-> When you use Azure compute infrastructure, you don't have to configure the tracking URI. **It's automatically configured for you**. Environments with automatic configuration include Azure Machine Learning notebooks, Jupyter notebooks that are hosted on Azure Machine Learning compute instances, and jobs that run on Azure Machine Learning compute clusters.
+> When you use Azure compute infrastructure, you don't have to configure the tracking URI. It's automatically configured for you. Environments that have automatic configuration include Azure Machine Learning notebooks, Jupyter notebooks that are hosted on Azure Machine Learning compute instances, and jobs that run on Azure Machine Learning compute clusters.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ However, if you work outside Azure Machine Learning, you need to configure MLflo
   ```
 
   > [!TIP]
-  > Instead of `mlflow`, consider using [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md). This package is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. It's recommended for users who primarily need MLflow tracking and logging capabilities but don't want to import the full suite of features, including deployments.
+  > Instead of `mlflow`, consider using [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/libs/skinny/README_SKINNY.md). This package is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. It's recommended for users who primarily need MLflow tracking and logging capabilities but don't want to import the full suite of features, including deployments.
 
 - An Azure Machine Learning workspace. To create a workspace, see [Create resources you need to get started](quickstart-create-resources.md).
 
@@ -45,7 +45,7 @@ However, if you work outside Azure Machine Learning, you need to configure MLflo
 
 To do remote tracking, or track experiments running outside Azure Machine Learning, configure MLflow to point to the tracking URI of your Azure Machine Learning workspace.
 
-To connect MLflow to an Azure Machine Learning workspace, you need the tracking URI of the workspace. Each workspace has its own tracking URI, which starts with the protocol `azureml://`.
+To connect MLflow to an Azure Machine Learning workspace, you need the tracking URI of the workspace. Each workspace has its own tracking URI that starts with the protocol `azureml://`.
 
 [!INCLUDE [mlflow-configure-tracking](includes/machine-learning-mlflow-configure-tracking.md)]
 
@@ -67,7 +67,7 @@ The authentication process tries the following methods, one after another, until
 
 If you'd rather use a certificate than a secret, you can configure the following environment variables:
 
-- Set `AZURE_CLIENT_CERTIFICATE_PATH` to the path of a file that contains the certificate and private key pair in Privacy Enhanced Mail (PEM) or Public-Key Cryptography Standards 12 (PKCS #12) format.
+- Set `AZURE_CLIENT_CERTIFICATE_PATH` to the path of a file that contains the certificate and private key pair in Privacy-Enhanced Mail (PEM) or Public-Key Cryptography Standards 12 (PKCS #12) format.
 - Set `AZURE_CLIENT_CERTIFICATE_PASSWORD` to the password of the certificate file, if it uses a password.
 
 ### Configure authorization and permission levels
@@ -95,7 +95,7 @@ logging.getLogger("azure").setLevel(logging.DEBUG)
 
 ## Set experiment name (optional)
 
-All MLflow runs are logged to the active experiment. By default, runs are logged to an experiment named `Default` that's automatically created for you. You can configure the experiment that's used for tracking.
+All MLflow runs are logged to the active experiment. By default, runs are logged to an experiment named `Default` that's automatically created. You can configure the experiment that's used for tracking.
 
 > [!TIP]
 >

@@ -1,13 +1,13 @@
 ---
 title: "Training and testing datasets - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about types of training and testing data for a custom speech project, along with how to use and manage that data.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
-ms.author: eur
+ms.date: 12/19/2025
+ms.author: pafarley
 #Customer intent: As a developer, I need to understand the types of training and testing data that I can use for a custom speech project, along with how to use and manage that data.
 ---
 
@@ -150,7 +150,7 @@ Expected utterances often follow a certain pattern. One common pattern is that u
 
 For a list of supported base models and locales for training with structured text, see [Language support](language-support.md?tabs=stt). You must use the latest base model for these locales. For locales that don't support training with structured text, the service will take any training sentences that don't reference any classes as part of training with plain-text data. 
 
-The structured-text file should have an .md extension. The maximum file size is 200 MB, and the text encoding must be UTF-8 BOM. The syntax of the Markdown is the same as that from the Language Understanding models, in particular list entities and example utterances. For more information about the complete Markdown syntax, see the <a href="/azure/bot-service/file-format/bot-builder-lu-file-format" target="_blank"> Language Understanding Markdown</a>. 
+The structured-text file should have an .md extension. The maximum file size is 200 MB, and the text encoding must be UTF-8 BOM. The syntax of the Markdown is the same as that from Azure Language Understanding models, in particular list entities and example utterances. For more information about the complete Markdown syntax, see the <a href="/azure/bot-service/file-format/bot-builder-lu-file-format" target="_blank"> Language Understanding Markdown</a>. 
 
 Here are key details about the supported Markdown format:
 
@@ -315,7 +315,7 @@ fakeprofanity
 Mask the fakeprofanity word	Mask the ************* word
 ```
 
-## Next steps
+## Related content
 
 - [Upload your data](how-to-custom-speech-upload-data.md)
 - [Test model quantitatively](how-to-custom-speech-evaluate-data.md)

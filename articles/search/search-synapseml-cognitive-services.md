@@ -2,7 +2,6 @@
 title: 'Tutorial: Index at Scale (Spark)'
 titleSuffix: Azure AI Search
 description: Search big data from Apache Spark that's been transformed by SynapseML. Load invoices into data frames, apply machine learning, and then send output to a generated search index.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: tutorial
 ms.date: 03/28/2025
+ms.update-cycle: 365-days
 ---
 
 # Tutorial: Index large data from Apache Spark using SynapseML and Azure AI Search
@@ -37,14 +37,14 @@ You need the `synapseml` library and several Azure resources. If possible, use t
 
 + [SynapseML package](https://microsoft.github.io/SynapseML/docs/Get%20Started/Install%20SynapseML/#python) <sup>1</sup>
 + [Azure AI Search](search-create-service-portal.md) (any tier) <sup>2</sup> 
-+ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) (any tier) with an **API Kind** of `AIServices` <sup>3</sup>
++ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) (any tier) with an **API Kind** of `AIServices` <sup>3</sup>
 + [Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) (any tier) with Apache Spark 3.3.0 runtime <sup>4</sup>
 
 <sup>1</sup> This link resolves to a tutorial for loading the package.
 
 <sup>2</sup> You can use the Free tier to index the sample data, but [choose a higher tier](search-sku-tier.md) if your data volumes are large. For billable tiers, provide the [search API key](search-security-api-keys.md#find-existing-keys) in the [Set up dependencies](#set-up-dependencies) step further on.
 
-<sup>3</sup> This tutorial uses Azure AI Document Intelligence and Azure AI Translator. In the instructions that follow, provide a [multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) key and the region. The same key works for both services. **For this tutorial, it's important that you use an Azure AI services multi-service account with an API kind of `AIServices`**. You can check the API kind in the Azure portal on the Overview section of your Azure AI services multi-service account page. For more information about API kind, see [Attach an Azure AI services multi-service resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
+<sup>3</sup> This tutorial uses Document Intelligence and Translator from Foundry Tools. In the instructions that follow, provide a [Foundry resource](/azure/ai-services/multi-service-resource) key and the region. The same key works for both services. **For this tutorial, it's important that you use a Foundry resource with an API kind of `AIServices`**. You can check the API kind in the Azure portal on the **Overview** page of your Foundry resource. For more information about API kind, see [Attach a Foundry resource in Azure AI Search](cognitive-search-attach-cognitive-services.md).
 
 <sup>4</sup> In this tutorial, Azure Databricks provides the Spark computing platform. We used the [portal instructions](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal) to set up the cluster and workspace.
 
@@ -107,8 +107,8 @@ from pyspark.sql.functions import udf, trim, split, explode, col, monotonically_
 from pyspark.sql.types import StringType
 from synapse.ml.core.spark import FluentAPI
 
-cognitive_services_key = "placeholder-azure-ai-services-multi-service-key"
-cognitive_services_region = "placeholder-azure-ai-services-region"
+cognitive_services_key = "placeholder-azure-ai-foundry-key"
+cognitive_services_region = "placeholder-azure-ai-foundry-region"
 
 search_service = "placeholder-search-service-name"
 search_key = "placeholder-search-service-admin-api-key"
@@ -145,7 +145,7 @@ display(df2)
 
 Paste the following code into the third cell. No modifications are required, so run the code when you're ready.
 
-This code loads the [AnalyzeInvoices transformer](https://mmlspark.blob.core.windows.net/docs/1.0.9/pyspark/synapse.ml.services.form.html#module-synapse.ml.services.form.AnalyzeInvoices) and passes a reference to the data frame containing the invoices. It calls the prebuilt [invoice model](/azure/ai-services/document-intelligence/concept-invoice) of Azure AI Document Intelligence to extract information from the invoices.
+This code loads the [AnalyzeInvoices transformer](https://mmlspark.blob.core.windows.net/docs/1.0.9/pyspark/synapse.ml.services.form.html#module-synapse.ml.services.form.AnalyzeInvoices) and passes a reference to the data frame containing the invoices. It calls the prebuilt [invoice model](/azure/ai-services/document-intelligence/concept-invoice) of Azure Document Intelligence in Foundry Tools to extract information from the invoices.
 
 ```python
 from synapse.ml.services import AnalyzeInvoices
@@ -171,7 +171,7 @@ The output should look similar to the following screenshot. Notice how the forms
 
 Paste the following code into the fourth cell and run it. No modifications are required.
 
-This code loads [FormOntologyLearner](https://mmlspark.blob.core.windows.net/docs/0.10.0/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.FormOntologyTransformer), a transformer that analyzes the output of Document Intelligence transformers and infers a tabular data structure. The output of AnalyzeInvoices is dynamic and varies based on the features detected in your content. Furthermore, the transformer consolidates the output into a single column. Because the output is dynamic and consolidated, it's difficult to use in downstream transformations that require more structure.
+This code loads [FormOntologyLearner](https://mmlspark.blob.core.windows.net/docs/0.10.0/pyspark/synapse.ml.cognitive.html#module-synapse.ml.cognitive.FormOntologyTransformer), a transformer that analyzes the output of Azure Document Intelligence transformers and infers a tabular data structure. The output of AnalyzeInvoices is dynamic and varies based on the features detected in your content. Furthermore, the transformer consolidates the output into a single column. Because the output is dynamic and consolidated, it's difficult to use in downstream transformations that require more structure.
 
 FormOntologyLearner extends the utility of the AnalyzeInvoices transformer by looking for patterns that can be used to create a tabular data structure. Organizing the output into multiple columns and rows makes the content consumable in other transformers, like AzureSearchWriter.
 
@@ -197,7 +197,7 @@ Notice how this transformation recasts the nested fields into a table, which ena
 
 Paste the following code into the fifth cell. No modifications are required, so run the code when you're ready.
 
-This code loads [Translate](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#translator-sample), a transformer that calls the Azure AI Translator service in Azure AI services. The original text, which is in English in the "Description" column, is machine-translated into various languages. All of the output is consolidated into the "output.translations" array.
+This code loads [Translate](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#translator-sample), a transformer that calls Azure Translator in Foundry Tools. The original text, which is in English in the "Description" column, is machine-translated into various languages. All of the output is consolidated into the "output.translations" array.
 
 ```python
 from synapse.ml.cognitive import Translate
@@ -262,7 +262,7 @@ This particular example is searching for the word "door" (`"search": "door"`). I
 ```python
 import requests
 
-url = "https://{}.search.windows.net/indexes/{}/docs/search?api-version=2024-07-01".format(search_service, search_index)
+url = "https://{}.search.windows.net/indexes/{}/docs/search?api-version=2025-09-01".format(search_service, search_index)
 requests.post(url, json={"search": "door", "count": "true", "select": "Description, Translations"}, headers={"api-key": search_key}).json()
 ```
 
@@ -278,9 +278,9 @@ You can find and manage resources in the Azure portal, using the **All resources
 
 ## Next steps
 
-In this tutorial, you learned about the [AzureSearchWriter](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#azure-cognitive-search-sample) transformer in SynapseML, which is a new way of creating and loading search indexes in Azure AI Search. The transformer takes structured JSON as an input. FormOntologyLearner can provide the necessary structure for output produced by the Document Intelligence transformers in SynapseML.
+In this tutorial, you learned about the [AzureSearchWriter](https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#azure-cognitive-search-sample) transformer in SynapseML, which is a new way of creating and loading search indexes in Azure AI Search. The transformer takes structured JSON as an input. FormOntologyLearner can provide the necessary structure for output produced by the Azure Document Intelligence transformers in SynapseML.
 
 As a next step, review the other SynapseML tutorials that produce transformed content you might want to explore through Azure AI Search:
 
 > [!div class="nextstepaction"]
-> [Tutorial: Text Analytics with Azure AI services](/azure/synapse-analytics/machine-learning/tutorial-text-analytics-use-mmlspark)
+> [Tutorial: Text Analytics with Foundry Tools](/azure/synapse-analytics/machine-learning/tutorial-text-analytics-use-mmlspark)

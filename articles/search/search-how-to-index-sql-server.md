@@ -5,12 +5,12 @@ description: Enable encrypted connections and configure the firewall to allow co
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Configure an indexer connection to a SQL Server instance on an Azure virtual machine
@@ -90,11 +90,9 @@ You can find out the IP address range of `AzureCognitiveSearch` [service tag](/a
 
 ### Include the Azure portal IP addresses
 
-If you're using the Azure portal to create an indexer, you must grant the Azure portal inbound access to your SQL Azure virtual machine. An inbound rule in the firewall requires that you provide the IP address of the Azure portal.
+If you're using the [legacy Import data wizard](search-import-data-portal.md) in the Azure portal to create an indexer that pulls from Azure Cosmos DB or Azure SQL, you must grant the Azure portal IP address inbound access to your SQL Azure virtual machine. For more information, see [Allow access from the Azure portal IP address](service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address).
 
-To get the Azure portal IP address, ping `stamp2.ext.search.windows.net`, which is the domain of the traffic manager. The request times out, but the IP address is visible in the status message. For example, in the message "Pinging azsyrie.northcentralus.cloudapp.azure.com [52.252.175.48]", the IP address is "52.252.175.48".
-
-Clusters in different regions connect to different traffic managers. Regardless of the domain name, the IP address returned from the ping is the correct one to use when defining an inbound firewall rule for the Azure portal in your region.
+We recommend using the [Import data (new) wizard](search-get-started-portal.md), which doesn't have this limitation. 
 
 ## Supplement network security with token authentication
 

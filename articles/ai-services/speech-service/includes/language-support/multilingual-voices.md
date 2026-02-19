@@ -1,9 +1,11 @@
 ---
-author: eric-urban
+author: PatrickFarley
+reviewer: patrickfarley
 ms.service: azure-ai-speech
-ms.date: 07/06/2023
+ms.date: 10/21/2025
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
+ms.reviewer: pafarley
 ---
 
 | Voice                                                        | Auto-detected language number | Auto-detected language (locale)                              | All locales number | All languages (locale) supported from SSML                   |
@@ -13,12 +15,12 @@ ms.author: eur
 | `en-US-JennyMultilingualNeural`<sup>2</sup> (Female)<br/>`en-US-RyanMultilingualNeural`<sup>2</sup> (Male) | 26                            | Arabic (`ar-EG`), Catalan (`ca-ES`), Chinese Cantonese (`zh-HK`), Chinese Mandarin (`zh-CN`), Chinese Taiwanese (`zh-TW`), Czech (`cs-CZ`), Danish (`da-DK`), Dutch (`nl-NL`), English (`en-US`), Finnish (`fi-FI`), French (`fr-FR`), German (`de-DE`), Hindi (`hi-IN`), Hungarian (`hu-HU`), Indonesian (`id-ID`), Italian (`it-IT`), Japanese (`ja-JP`), Korean (`ko-KR`), Norwegian Bokmål (`nb-NO`), Polish (`pl-PL`), Portuguese (`pt-BR`), Russian (`ru-RU`), Spanish (`es-ES`), Swedish (`sv-SE`), Thai (`th-TH`), Turkish (`tr-TR`) | 41                 | Arabic (Egypt) (`ar-EG`), Arabic (Saudi Arabia) (`ar-SA`), Catalan (`ca-ES`), Chinese (Cantonese, Traditional) (`zh-HK`), Chinese (Mandarin, Simplified) (`zh-CN`), Chinese (Taiwanese Mandarin) (`zh-TW`), Czech (Czech) (`cs-CZ`), Danish (Denmark) (`da-DK`), Dutch (Belgium) (`nl-BE`), Dutch (Netherlands) (`nl-NL`), English (Australia) (`en-AU`), English (Canada) (`en-CA`), English (Hong Kong SAR) (`en-HK`), English (India) (`en-IN`), English (Ireland) (`en-IE`), English (United Kingdom) (`en-GB`), English (United States) (`en-US`), Finnish (Finland) (`fi-FI`), French (Belgium) (`fr-BE`), French (Canada) (`fr-CA`), French (France) (`fr-FR`), French (Switzerland) (`fr-CH`), German (Austria) (`de-AT`), German (Germany) (`de-DE`), German (Switzerland) (`de-CH`), Hindi (India) (`hi-IN`), Hungarian (Hungary) (`hu-HU`), Indonesian (Indonesia) (`id-ID`), Italian (Italy) (`it-IT`), Japanese (Japan) (`ja-JP`), Korean (Korea) (`ko-KR`), Norwegian (Bokmål, Norway) (`nb-NO`), Polish (Poland) (`pl-PL`), Portuguese (Brazil) (`pt-BR`), Portuguese (Portugal) (`pt-PT`), Russian (Russia) (`ru-RU`), Spanish (Mexico) (`es-MX`), Spanish (Spain) (`es-ES`), Swedish (Sweden) (`sv-SE`), Thai (Thailand) (`th-TH`), Turkish (Türkiye) (`tr-TR`) |
 | `zh-CN-Xiaochen:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Female)<br/>`zh-CN-Xiaoxiao:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Female)<br/>`zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Female)<br/>`zh-CN-Yunxiao:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Male)<br/>`zh-CN-Yunyi:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Male)<br/> | 1                            | Chinese (Mandarin, Simplified) (`zh-CN`) | 1                | Chinese (Mandarin, Simplified) (`zh-CN`) |
 
-<sup>1</sup> The neural voice is available in public preview. Voices and styles in public preview are only available in these service [regions](../../regions.md): East US, West Europe, and Southeast Asia. 
+<sup>1</sup> The neural voice is available in preview. For the current list of regions that support voices and styles in preview, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
-<sup>2</sup> The neural voice is a multilingual voice in Azure AI Speech. Turbo version of Azure OpenAI voices has the similar voice persona as Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features like word boundary, just like other Azure AI Speech voices. All multilingual voices can speak in the auto-detected language of the input text in the default locale without [using SSML](../../speech-synthesis-markup-voice.md#adjust-speaking-languages). However, you can still use the `<lang xml:lang>` element to adjust the speaking accent of each language to set preferred accent such as British accent (`en-GB`) for English. 
+<sup>2</sup> The neural voice is a multilingual voice in Azure Speech. The turbo version of Azure OpenAI voices has a similar voice persona to Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features (like word boundary), just like other Azure Speech voices. All multilingual voices can speak in the auto-detected language of the input text in the default locale without [using SSML](../../speech-synthesis-markup-voice.md#adjust-speaking-languages). However, you can still use the `<lang xml:lang>` element to set the preferred speaking accent of each language, such as a British accent (`en-GB`) for English.
 
-<sup>3</sup> The OpenAI text to speech voices in Azure AI Speech are in public preview and only available in North Central US (`northcentralus`) and Sweden Central (`swedencentral`). Locales not listed for OpenAI voices aren't supported. For information about additional differences between OpenAI text to speech voices and Azure AI Speech text to speech voices, see [OpenAI text to speech voices](../../openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-ai-speech).
+<sup>3</sup> The OpenAI text-to-speech voices in Azure Speech are in preview and are available only in North Central US (`northcentralus`) and Sweden Central (`swedencentral`). Locales not listed for OpenAI voices aren't supported. For information about additional differences between OpenAI text-to-speech voices and Azure Speech text-to-speech voices, see [OpenAI text-to-speech voices](../../openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-speech).
 
-<sup>4</sup> The voice is generally available in these service [regions](../../regions.md): East US, West Europe, and Southeast Asia.
+<sup>4</sup> For the current list of regions where this voice is generally available, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
-<sup>5</sup> The voice is available in the `ChinaNorth3` service region.
+<sup>5</sup> The voice is available in the `ChinaNorth3` region.

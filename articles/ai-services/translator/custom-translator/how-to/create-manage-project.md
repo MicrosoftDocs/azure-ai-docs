@@ -1,16 +1,16 @@
 ---
-title: Create and manage an Azure AI Custom Translator project
-titleSuffix: Azure AI services
-description: How to create and manage a project in the Azure AI Custom Translator.
+title: Create and manage a Custom Translator project
+titleSuffix: Foundry Tools
+description: How to create and manage a project in the Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Create and manage an Azure AI Custom Translator project
+# Create and manage a Custom Translator project
 
 A project contains translation models for one language pair. Each project includes all documents that were uploaded into that workspace with the correct language pair.
 
@@ -78,7 +78,7 @@ To modify the project name, project description, or domain description:
    :::image type="content" source="../media/how-to/delete-project-1.png" alt-text="Screenshot illustrating delete project fields.":::
 
    > [!NOTE]
-   > If your project has a published model or a model that is currently in training, you can only delete your project once your model is no longer published or training.
+   > If your project has a published model or a model that's currently in training, you can only delete your project once your model is no longer published or training.
    >
    > :::image type="content" source="../media/how-to/delete-project-2.png" alt-text="Screenshot illustrating the unable to delete message.":::
 

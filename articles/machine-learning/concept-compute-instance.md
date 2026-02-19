@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: concept-article
-ms.author: sgilley
-author: sdgilley
-ms.reviewer: vijetaj
-ms.date: 10/01/2024
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: jturuk
+ms.date: 10/06/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 #Customer intent: As a data scientist, I want to know what a compute instance is and how to use it for Azure Machine Learning.
 ---

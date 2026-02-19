@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Create a Knowledge Store in the Azure Portal"
+title: "Quickstart: Create a Knowledge Store in the Azure portal"
 titleSuffix: Azure AI Search
 description: Learn how to use the Import Data wizard to create a knowledge store for persisting enriched content. Connect to a knowledge store for analysis from other apps or send enriched content to downstream processes.
 author: haileytap
@@ -7,13 +7,18 @@ ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/04/2025
+ms.date: 10/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - mode-ui
   - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Quickstart: Create a knowledge store in the Azure portal
+
+> [!NOTE]
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 In this quickstart, you create a [knowledge store](knowledge-store-concept-intro.md) that serves as a repository for output generated from an [AI enrichment pipeline](cognitive-search-concept-intro.md) in Azure AI Search. A knowledge store makes generated content available in Azure Storage for workloads other than search.
 
@@ -21,7 +26,7 @@ First, you set up sample data in Azure Storage. Next, you run the **Import data*
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
@@ -34,7 +39,7 @@ First, you set up sample data in Azure Storage. Next, you run the **Import data*
   + [Upload the file to a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) in Azure Storage.
 
 > [!NOTE]
-> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create an extra Azure AI services multi-service resource.
+> This quickstart uses [Foundry Tools](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is so small, Foundry Tools is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create an extra Microsoft Foundry resource.
 
 ## Start the wizard
 
@@ -42,7 +47,7 @@ First, you set up sample data in Azure Storage. Next, you run the **Import data*
 
 1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and on the Overview page, select **Import data** on the command bar to create a knowledge store in four steps.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command" border="true":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the Import data command" border="true":::
 
 ### Step 1: Create a data source
 
@@ -60,7 +65,7 @@ Because the data is multiple rows in one CSV file, set the *parsing mode* to get
 
    A connection string can be full access, having the following format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-ACCOUNT-NAME>;AccountKey=<YOUR-ACCOUNT-KEY>;EndpointSuffix=core.windows.net`
 
-   Or, a connection string can reference a managed identity, assuming it's [configured and assigned a role](search-howto-managed-identities-data-sources.md) in Azure Storage: `ResourceId=/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP-NAME>/providers/Microsoft.Storage/storageAccounts/<YOUR-ACCOUNT-NAME>;`
+   Or, a connection string can reference a managed identity, assuming it's [configured and assigned a role](search-how-to-managed-identities.md) in Azure Storage: `ResourceId=/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP-NAME>/providers/Microsoft.Storage/storageAccounts/<YOUR-ACCOUNT-NAME>;`
 
 1. In **Containers**, enter the name of the blob container holding the data ("hotel-reviews").
 
@@ -74,7 +79,7 @@ Because the data is multiple rows in one CSV file, set the *parsing mode* to get
 
 In this wizard step, add skills for AI enrichment. The source data consists of customer reviews in English and French. Skills that are relevant for this data set include key phrase extraction, sentiment detection, and text translation. In a later step, these enrichments are "projected" into a knowledge store as Azure tables.
 
-1. Expand **Attach Azure AI services**. **Free (Limited enrichments)** is selected by default. You can use this resource because the number of records in HotelReviews-Free.csv is 19 and this free resource allows up to 20 transactions a day.
+1. Expand **Attach Foundry Tools**. **Free (Limited enrichments)** is selected by default. You can use this resource because the number of records in HotelReviews-Free.csv is 19 and this free resource allows up to 20 transactions a day.
 
 1. Expand **Add enrichments**.
 

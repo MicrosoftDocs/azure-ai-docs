@@ -7,11 +7,12 @@ ms.custom:
 ms.topic: include
 ms.date: 02/22/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/) 
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) 
 * Once you have your Azure subscription, <a href="https://aka.ms/acs-create"  title="Create a Content Safety resource"  target="_blank">create a Content Safety resource </a> in the Azure portal to get your key and endpoint. Enter a unique name for your resource, select your subscription, and select a resource group, supported region (see [Region availability](/azure/ai-services/content-safety/overview#region-availability)), and supported pricing tier. Then select **Create**.
   * The resource takes a few minutes to deploy. After it finishes, Select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
 * [cURL](https://curl.haxx.se/) installed
@@ -121,6 +122,9 @@ You should see the results displayed as JSON data in the console output. For exa
 
 
 ## Analyze text against a blocklist
+
+> [!NOTE]
+> After you edit a blocklist, it can take a few minutes before text analysis reflects the changes. If you don't see matches right away, retry the analyze call after a short delay.
 
 The following section walks through a sample request with cURL. Paste the command below into a text editor, and make the following changes.
 

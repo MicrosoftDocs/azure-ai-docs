@@ -1,22 +1,23 @@
 ---
 title: Start translation
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Start a document translation request with the Document translation service.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ---
 
 # Start batch translation
 
 <!-- markdownlint-disable MD036 -->
 
-Reference</br>
-Feature: **Azure AI Translator → Document translation**</br>
-API Version: **2024-05-01**</br>
+**Reference**</br>
+Feature: **Azure Translator → Document translation**</br>
+API Version (GA): **2024-05-01** </br>
+API Version (preview): **2025-12-01-preview**—adds support for [image file translation](#translate-image-files).</br>
 HTTP method: **POST**
 
 * Use the `Start Translation` method to execute an asynchronous batch translation request.
@@ -26,7 +27,7 @@ HTTP method: **POST**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ```bash
   curl -i -X POST "{document-translation-endpoint}/translator/document/batches?api-version={date}"
@@ -39,7 +40,7 @@ Request headers are:
 
 |Headers|Description|Condition|
 |--- |--- |---|
-|**Ocp-Apim-Subscription-Key**|Your Translator service API key from the Azure portal.|***Required***|
+|**Ocp-Apim-Subscription-Key**|Your Translator API key from the Azure portal.|***Required***|
 |**Ocp-Apim-Subscription-Region**|The region where your resource was created. |***Required*** when using a regional (geographic) resource like **West US**.</br>&bullet.|
 |**Content-Type**|The content type of the payload. The accepted value is **application/json** or **charset=UTF-8**.|***Required***|
 
@@ -155,7 +156,7 @@ The following are examples of batch requests.
 > [!NOTE]
 > In the following examples, limited access is granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
 
-**Translating all documents in a container**
+### Translate all documents in a container
 
 ```json
 {
@@ -175,60 +176,7 @@ The following are examples of batch requests.
 }
 ```
 
-**Translating all documents in a container applying glossaries**
-
-```json
-{
-    "inputs": [
-        {
-            "source": {
-                "sourceUrl": "https://my.blob.core.windows.net/source-en?{SAS-token-query-string}"
-            },
-            "targets": [
-                {
-                    "targetUrl": "https://my.blob.core.windows.net/target-fr?{SAS-token-query-string}",
-                    "language": "fr",
-                    "glossaries": [
-                        {
-                            "glossaryUrl": "https://my.blob.core.windows.net/glossaries/en-fr.xlf?{SAS-token-query-string}",
-                            "format": "xliff",
-                            "version": "1.2"
-                        }
-                    ]
-
-                }
-            ]
-        }
-    ]
-}
-```
-
-**Translating specific folder in a container**
-
-Make sure you specify the folder name (case sensitive) as prefix in filter.
-
-```json
-{
-    "inputs": [
-        {
-            "source": {
-                "sourceUrl": "https://my.blob.core.windows.net/source-en?{SAS-token-query-string}",
-                "filter": {
-                    "prefix": "MyFolder/"
-                }
-            },
-            "targets": [
-                {
-                    "targetUrl": "https://my.blob.core.windows.net/target-fr?{SAS-token-query-string}",
-                    "language": "fr"
-                }
-            ]
-        }
-    ]
-}
-```
-
-**Translating specific document in a container**
+### Translate a specific document in a container
 
 * Specify "storageType": `File`.
 * Create source URL & SAS token for the specific blob/document.
@@ -270,6 +218,79 @@ This sample request shows a single document translated into two target languages
 
 * You can also use a [get-translations-status](../reference/get-translations-status.md) request to retrieve a list of translation jobs and their `id`s.
 
+### Translate all documents in a container applying glossaries
+
+```json
+{
+    "inputs": [
+        {
+            "source": {
+                "sourceUrl": "https://my.blob.core.windows.net/source-en?{SAS-token-query-string}"
+            },
+            "targets": [
+                {
+                    "targetUrl": "https://my.blob.core.windows.net/target-fr?{SAS-token-query-string}",
+                    "language": "fr",
+                    "glossaries": [
+                        {
+                            "glossaryUrl": "https://my.blob.core.windows.net/glossaries/en-fr.xlf?{SAS-token-query-string}",
+                            "format": "xliff",
+                            "version": "1.2"
+                        }
+                    ]
+
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Translate a specific folder in a container
+
+Make sure you specify the folder name (case sensitive) as prefix in filter.
+
+```json
+{
+    "inputs": [
+        {
+            "source": {
+                "sourceUrl": "https://my.blob.core.windows.net/source-en?{SAS-token-query-string}",
+                "filter": {
+                    "prefix": "MyFolder/"
+                }
+            },
+            "targets": [
+                {
+                    "targetUrl": "https://my.blob.core.windows.net/target-fr?{SAS-token-query-string}",
+                    "language": "fr"
+                }
+            ]
+        }
+    ]
+}
+```
+## Translate image files
+
+ > [!IMPORTANT]
+ > The Document Translation image translation feature is a "preview" licensed to you as part of your Azure subscription. This release is subject to terms applicable to "Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+
+### Request configuration (image files)
+
+For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-a-container), specifying API version **2025-12-01-preview**. No further configuration is required.
+
+### Supported formats (image files)
+|File Extension|Description|
+|--|--|
+|`.bmp `|A bitmap image file format used to store digital images in an uncompressed form, preserving high-quality visual details.|
+|`.jpeg` |A Joint Photographic Experts Group image file that uses a lossy compression method to reduce file size. This format doesn't support transparent backgrounds.|
+|`.png`| A Portable Network Graphics file that uses lossless compression, supports transparency, and can display up to 16 million color.|
+|`.webp`|A Web Picture image format that uses both lossy and lossless image compression methods to minimize file size while preserving high image quality.|
+
+### Supported languages (image files)
+
+For details on supported languages, *see* [Document Translation language support](../../language-support.md#document-translation-scanned-pdf-and-image-support).
+
 ## Response status codes
 
 The following are the possible HTTP status codes that a request returns.
@@ -290,7 +311,7 @@ The following are the possible HTTP status codes that a request returns.
 |--- |--- |--- |
 |code|`string`|Enums containing high-level error codes. Accepted values:</br/>&bullet; InternalServerError</br>&bullet; InvalidArgument</br>&bullet; InvalidRequest</br>&bullet; RequestRateTooHigh</br>&bullet; ResourceNotFound</br>&bullet; ServiceUnavailable</br>&bullet; Unauthorized|
 |message|`string`|Gets high-level error message.|
-|innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties: ErrorCode, message, and optional properties target, details(key value pair), and inner error(it can be nested).|
+|innerError|InnerTranslationError|New Inner Error format that conforms to Foundry Tools API Guidelines. This error message contains required properties: ErrorCode, message, and optional properties target, details(key value pair), and inner error(it can be nested).|
 |inner.Errorcode|`string`|Gets code error string.|
 |innerError.message|`string`|Gets high-level error message.|
 |innerError.target|`string`|Gets the source of the error. For example, it would be `documents` or `document id` if the document is invalid.|

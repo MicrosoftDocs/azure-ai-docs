@@ -1,13 +1,13 @@
 ---
 title: How to use structured outputs for chat models
-titleSuffix: Azure AI Foundry
-description: Learn how to use structured outputs with chat completions with Azure AI Foundry Models
-manager: scottpolly
+titleSuffix: Microsoft Foundry
+description: Learn how to use structured outputs with chat completions with Microsoft Foundry Models
 author: msakande
 reviewer: santiagxf
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 05/29/2025
+ms.date: 08/28/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 zone_pivot_groups: azure-ai-inference-samples
@@ -27,7 +27,7 @@ zone_pivot_groups: azure-ai-inference-samples
     from azure.core.credentials import AzureKeyCredential
     
     client = ChatCompletionsClient(
-        endpoint="https://aiservices-demo-wus2.services.ai.azure.com/models",
+        endpoint="https://<resource>.services.ai.azure.com/models",
         credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
         model="gpt-4o"
     )
@@ -72,7 +72,7 @@ IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE M
 > None
 
 ### Expected/desired behavior
-> groups field to be filled the the groups id's that have permissions to "view the file"
+> groups field to be filled with the groups id's that have permissions to "view the file"
 
 ### OS and Version?
 > win 10

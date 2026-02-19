@@ -1,0 +1,11 @@
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: Microsoft Foundry
+    tocHref: /azure/ai-foundry/default
+    topicHref: /azure/ai-foundry/index
+    items:
+    - name: Control Plane
+      tocHref: /azure/ai-foundry/default/control-plane/
+      topicHref: /azure/ai-foundry/default/control-plane/overview

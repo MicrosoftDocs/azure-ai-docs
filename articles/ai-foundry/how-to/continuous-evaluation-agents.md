@@ -1,25 +1,27 @@
 ---
 title: Continuously Evaluate your AI agents
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to continuously evaluate AI agents.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 05/19/2025
-ms.reviewer: amibp
+ms.date: 01/08/2026
+ms.reviewer: sonalimalik
 ms.author: lagayhar  
 author: lgayhardt
+ai-usage: ai-assisted
 ---
 
 # Continuously evaluate your AI agents (preview)
 
+> [!NOTE]
+> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Setup continuous evaluation](../default/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to [traces](./develop/trace-application.md) to enable detailed debugging and root cause analysis.
+Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to traces. to enable detailed debugging and root cause analysis.
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
 [!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)] 
 
 - An agent created within the project
@@ -27,11 +29,14 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 ### Steps to connect Application Insights
 
-1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-2. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
-3. Connect your Application Insights resource to the project.
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 
-## Set up continuous evaluations with Azure AI projects client library
+1. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
+
+1. Connect your Application Insights resource to the project.
+
+
+## Set up continuous evaluations with Azure AI Projects client library
 
 ```python
 pip install azure-ai-projects azure-identity
@@ -44,36 +49,36 @@ import os, json
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(), conn_str=os.environ["PROJECT_CONNECTION_STRING"]
+project_client = AIProjectClient(
+    credential=DefaultAzureCredential(), endpoint=os.environ["PROJECT_ENDPOINT"]
 )
 
 agent = project_client.agents.create_agent(
     model=os.environ["MODEL_DEPLOYMENT_NAME"],
     name="my-assistant",
-    instructions="You are helpful assistant",
+    instructions="You are a helpful assistant",
     tools=file_search_tool.definitions,
     tool_resources=file_search_tool.resources,
 )
 
 # Create thread and process user message
-thread = project.agents.create_thread()
-project.agents.create_message(thread_id=thread.id, role="user", content="Hello, what Contoso products do you know?")
-run = project.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+thread = project_client.agents.threads.create()
+project_client.agents.messages.create(thread_id=thread.id, role="user", content="Hello, what Contoso products do you know?")
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 
 # Handle run status
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
 # Print thread messages
-for message in project.agents.list_messages(thread_id=thread.id).text_messages:
+for message in project_client.agents.messages.list(thread_id=thread.id).text_messages:
     print(message)
 
 ```
 
 ### Select evaluators
 
-Next, you want to define the set of evaluators you'd like to run continuously. To learn more about supported evaluators, see [What are evaluators?](../concepts/observability.md#what-are-evaluators)
+Next, you want to define the set of evaluators you'd like to run continuously. To learn more about supported evaluators, see [Built in evaluators](../concepts/built-in-evaluators.md).
 
 ```python
 from azure.ai.projects.models import EvaluatorIds
@@ -89,19 +94,16 @@ evaluators={
 
 ```python
                       
-project.evaluation.create_agent_evaluation(
+project_client.evaluation.create_agent_evaluation(
     AgentEvaluationRequest(  
         thread=thread.id,  
         run=run.id,   
         evaluators=evaluators,
-        appInsightsConnectionString = project.telemetry.get_connection_string(),
+        appInsightsConnectionString = project_client.telemetry.get_application_insights_connection_string(),
     )
 )
 
 ```
-
-> [!NOTE]
-> Application Insights must be connected to your project otherwise the service won't run. To connect an Application Insights resource, see to [Steps to connect Application Insights](#steps-to-connect-application-insights).
 
 ### Get the evaluation result using Application Insights
 
@@ -144,7 +146,7 @@ except HttpResponseError as err:
 
 ### Capture reasoning explanations for your evaluation result
 
-AI-assisted evaluators employ chain-of-thought reasoning to generate an explanation for the score in your evaluation result. To enable this on, set redact_score_properties to True in the AgentEvaluationRedactionConfiguration object and pass that as part of your request.
+AI-assisted evaluators employ chain-of-thought reasoning to generate an explanation for the score in your evaluation result. To enable this, set redact_score_properties to False in the AgentEvaluationRedactionConfiguration object and pass that as part of your request.
 
 This helps you understand the reasoning behind the scores for each metric.
 
@@ -155,7 +157,7 @@ This helps you understand the reasoning behind the scores for each metric.
 
 from azure.ai.projects.models import AgentEvaluationRedactionConfiguration
               
-project.evaluation.create_agent_evaluation(
+project_client.evaluation.create_agent_evaluation(
     AgentEvaluationRequest(  
         thread=thread.id,  
         run=run.id,   
@@ -171,24 +173,24 @@ project.evaluation.create_agent_evaluation(
 
 ### Customize your sampling configuration
 
-You can customize the sampling configuration by defining an `AgentEvaluationSamplingConfiguration` and specify your preferred sampling percent and maximum requests hour within the system limit of 1000/hour.
+You can customize the sampling configuration by defining an `AgentEvaluationSamplingConfiguration` and specify your preferred sampling percent and maximum requests per hour within the system limit of 1000/hour.
 
 ```python
 
-from azure.ai.projects.models
+from azure.ai.projects.models 
 
 sampling_config = AgentEvaluationSamplingConfiguration (  
     name = agent.id,  
-    samplingPercent = 15,       # Percentage of sampling per hour (0-100)
+    samplingPercent = 100,       # Percentage of sampling per hour (0-100)
     maxRequestRate = 250,       # Maximum request rate per hour (0-1000)
 )                                
-project.evaluation.create_agent_evaluation(
+project_client.evaluation.create_agent_evaluation(
     AgentEvaluationRequest(  
         thread=thread.id,  
         run=run.id,   
         evaluators=evaluators,  
         samplingConfiguration = sampling_config,  
-        appInsightsConnectionString = project.telemetry.get_connection_string(),
+        appInsightsConnectionString = project_client.telemetry.get_application_insights_connection_string(),
     )
 )
 ```
@@ -198,7 +200,7 @@ project.evaluation.create_agent_evaluation(
 
 ## Viewing continuous evaluation results
 
-After you deployed your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Azure AI Foundry and Azure Monitor](./monitor-applications.md).
+After you deploy your application to production with continuous evaluation setup, you can [monitor the quality and safety of your agent with Foundry and Azure Monitor](./monitor-applications.md).
 
 ## Related content
 

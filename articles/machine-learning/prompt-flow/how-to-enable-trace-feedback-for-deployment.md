@@ -5,12 +5,15 @@ description: Learn how to enable trace and collect feedback during inference tim
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
+ms.reviewer: sooryar
 ms.date: 05/09/2024
+ms.custom:
+  - sfi-image-nochange
+  - sfi-ropc-nochange
+ms.update-cycle: 365-days
 ---
 
 # Enable trace and collect feedback for a flow deployment (preview)

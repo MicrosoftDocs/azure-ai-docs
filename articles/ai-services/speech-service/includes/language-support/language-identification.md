@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
-ms.date: 2/13/2025
+ms.date: 8/1/2025
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 | Language | Locales (BCP-47) |
@@ -70,7 +70,7 @@ ms.author: eur
 | Punjabi | `pa-IN` |
 | Romanian | `ro-RO` |
 | Russian | `ru-RU` |
-| Serbian | `sr-RS` |
+| Serbian | `sr-ME`<br/>`sr-RS`<br/>`sr-XK` |
 | Sinhala | `si-LK` |
 | Slovak | `sk-SK` |
 | Slovenian | `sl-SI` |

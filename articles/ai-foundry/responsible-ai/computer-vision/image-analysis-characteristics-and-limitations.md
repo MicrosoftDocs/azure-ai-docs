@@ -1,21 +1,21 @@
 ---
 title: Characteristics and limitations for Image Analysis
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics, accuracy, and limitations when using Image Analysis service.
 
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
-ms.date: 10/04/2022
+ms.topic: concept-article
+ms.date: 10/15/2025
 ---
 
 # Characteristics and limitations for using Image Analysis
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-Image Analysis service is part of Azure AI services and provides pre-built AI features that are fundamental building blocks of image processing applications. In this section, you will learn about what accuracy means for Image Analysis, and how to assess accuracy for your specific use case and application.
+Image Analysis service is part of Foundry Tools and provides pre-built AI features that are fundamental building blocks of image processing applications. In this section, you will learn about what accuracy means for Image Analysis, and how to assess accuracy for your specific use case and application.
 
 ## Accuracy for Image Analysis
 
@@ -37,13 +37,13 @@ The above categories are then used to calculate precision and recall.
 
 The precision and recall definitions imply that in certain cases, it can be hard to optimize for both at the same time. Depending on your specific scenario, you might need to prioritize one over the other. For example, if you're developing a solution to detect only the most accurate tags/labels in the content such as for displaying image search results, you'd need to optimize for higher precision. But if you're trying tag all possible visual content from the images for indexing or internal cataloging, you'd need to optimize for higher recall.
 
-As an image processing system owner, it is recommended that you collect ground-truth evaluation data, which is data collected and tagged by human judges to evaluate a system. The pre-built AI models provided in Azure AI Vision service might not satisfy the requirements of your use-case. With the use-case specific evaluation dataset, you can make an informed decision on whether the pre-built Image Analysis models are right for your use-case. You can also use the data to determine how the confidence threshold affects the achievement of your goals.
+As an image processing system owner, it is recommended that you collect ground-truth evaluation data, which is data collected and tagged by human judges to evaluate a system. The pre-built AI models provided in Azure Vision in Foundry Tools might not satisfy the requirements of your use-case. With the use-case specific evaluation dataset, you can make an informed decision on whether the pre-built Image Analysis models are right for your use-case. You can also use the data to determine how the confidence threshold affects the achievement of your goals.
 
 You can compare ground-truth labels to the output of the system to establish the overall accuracy and error rates, and the distribution of errors helps you set the right threshold for your scenario. Ground-truth evaluation data should include adequate sampling of representative images, so that you can understand performance differences and take corrective action. Based on the results of this evaluation, you can iteratively adjust the threshold until the trade-off between precision and recall meets your objectives.
 
 ## System performance implications based on scenarios
 
-System performance implications can vary according to how you use the service. For example, you can use the confidence value to calibrate custom thresholds for your content and scenarios to route the content for straight-through processing, or forwarding to a human-in-the-loop process. The resulting measurements determine the scenario-specific accuracy in terms of the precision and recall metrics, as illustrated in the following examples.
+System performance implications can vary according to how you use it. For example, you can use the confidence value to calibrate custom thresholds for your content and scenarios to route the content for straight-through processing, or forwarding to a human-in-the-loop process. The resulting measurements determine the scenario-specific accuracy in terms of the precision and recall metrics, as illustrated in the following examples.
 
 - **Photo-sharing app:** You can use Image Analysis to automatically generate tags for images shared and stored by application users. App users make use of this to search for specific photos shared by other users. In this use case the developer might prefer high-precision results, because the cost of incorrectly extracting tags would result in incorrect query results for app users.
 
@@ -60,18 +60,18 @@ The following guidelines can help you understand and improve the performance of 
    * The dimensions of the image must be greater than 50 x 50 pixels
 For information see [Image requirements](/azure/ai-services/computer-vision/overview-image-analysis#image-requirements).
 
-* Although Image Analysis is resilient, factors such as resolution, light exposure, contrast, and image quality may affect the accuracy of your results. Refer to the product specifications and test the service on your images to validate the fit for your situation.
+* Although Image Analysis is resilient, factors such as resolution, light exposure, contrast, and image quality may affect the accuracy of your results. Refer to the product specifications and test Azure Vision on your images to validate the fit for your situation.
 
 * Before a large-scale deployment or rollout of any Image Analysis system, system owners should conduct an evaluation phase in the context where the system will be used, and with the people who will interact with the system. This will ensure system accuracy and will help you to take actions to improve system accuracy if applicable.
 
 * Build a feedback channel for people making decisions based on the system output, including satisfaction data from the people who will be relying on your Image Analysis features, and feedback from existing customer voice channels. This will help you to fine-tune the system and improve accuracy.
 
-* The service provides a confidence score for each predicted output. A confidence score represents the accuracy of a prediction as a percentage. For example, you might set a minimum confidence threshold for a system to automatically caption a photo. If a generated caption’s confidence score is below the threshold, it would be forwarded for further review.
+* The AI provides a confidence score for each predicted output. A confidence score represents the accuracy of a prediction as a percentage. For example, you might set a minimum confidence threshold for a system to automatically caption a photo. If a generated caption's confidence score is below the threshold, it would be forwarded for further review.
 
 ## Next steps
 
-* [Transparency Note](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note)
-* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-guidance-for-integration)
+* [Transparency Note](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note)
+* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-guidance-for-integration)
 * [Image Analysis Overview](/azure/ai-services/computer-vision/overview-image-analysis)
 * [QuickStart your Image Analysis use case development](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library)
-* [Data, privacy, and security for Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-data-privacy-security)
+* [Data, privacy, and security for Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security)

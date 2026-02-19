@@ -1,13 +1,13 @@
 ---
 title: Enable Tracing and Collect Feedback for a Flow Deployment
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in the Azure AI Foundry portal.
-manager: scottpolly
+titleSuffix: Microsoft Foundry
+description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in the Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 06/19/2025
+ms.date: 01/30/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -17,23 +17,25 @@ ms.update-cycle: 180-days
 
 # Enable tracing and collect feedback for a flow deployment
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-After you deploy a generative AI application in production, you might want to enhance your understanding and optimize performance. Trace data for each request, aggregated metrics, and user feedback play critical roles.
+After you deploy a generative AI application in production, you might want to enhance your understanding and optimize performance. Trace data for each request, aggregated metrics, and user feedback all play critical roles.
 
 In this article, you learn to enable tracing, collect aggregated metrics, and collect user feedback during the inference time of your flow deployment.
 
 > [!NOTE]
-> For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](../online-evaluation.md).
+> For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](../monitor-applications.md).
 
 ## Prerequisites
 
 [!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI.
-- An Azure AI Foundry project. If you don't already have a project, you can [create one](../../how-to/create-projects.md).
+- A Microsoft Foundry project. If you don't already have a project, you can [create one](../../how-to/create-projects.md).
 - An Application Insights resource. If you don't already have an Application Insights resource, you can [create one](/azure/azure-monitor/app/create-workspace-resource).
-- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have Owner or Contributor permissions on the selected resource group. For more information, see [Role-based access control in the Azure AI Foundry portal](../../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, you must have Owner or Contributor permissions on the selected resource group. For more information, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 
 ## Deploy a flow for real-time inference
 
@@ -45,9 +47,9 @@ Use the latest prompt flow base image to deploy the flow so that it supports the
 
 ## Enable trace and collect system metrics for your deployment
 
-If you're using the Azure AI Foundry portal to deploy, select **Deployment** > **Application Insights diagnostics** > **Advanced settings** in the deployment wizard. In this way, the tracing data and system metrics are collected to the project linked to Application Insights.
+If you're using the Foundry portal to deploy, select **Deployment** > **Application Insights diagnostics** > **Advanced settings** in the deployment wizard. By using this method, you collect tracing data and system metrics to the project linked to Application Insights.
 
-If you're using the SDK or the CLI, add the `app_insights_enabled: true` property in the deployment .yaml file that collects data to the project linked to Application Insights.
+If you're using the SDK or the CLI, add the `app_insights_enabled: true` property in the deployment .yaml file to collect data to the project linked to Application Insights.
 
 ```yaml
 app_insights_enabled: true
@@ -61,7 +63,7 @@ environment_variables:
 ```
 
 > [!NOTE]
-> If you set only `app_insights_enabled: true` but your project doesn't have a linked Application Insights resource, your deployment won't fail but no data is collected.
+> If you set only `app_insights_enabled: true` but your project doesn't have a linked Application Insights resource, your deployment doesn't fail but no data is collected.
 >
 > If you specify both `app_insights_enabled: true` and the previous environment variable at the same time, the tracing data and metrics are sent to the project linked to Application Insights. If you want to specify different application insights, keep the environment variable only.
 > 
@@ -69,7 +71,7 @@ environment_variables:
 
 ## View tracing data in Application Insights
 
-Traces record specific events or the state of an application during execution. It can include data about function calls, variable values, and system events. Traces help to break down an application's components into discrete inputs and outputs. This process is crucial for debugging and understanding an application. To learn more about traces, see [this website](https://opentelemetry.io/docs/concepts/signals/traces/). The trace data follows the [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
+Traces record specific events or the state of an application during execution. They can include data about function calls, variable values, and system events. Traces help to break down an application's components into discrete inputs and outputs. This process is crucial for debugging and understanding an application. To learn more about traces, see [this website](https://opentelemetry.io/docs/concepts/signals/traces/). The trace data follows the [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
 
 You can view the detailed trace in the application insights that you specified. The following screenshot shows an example of an event of a deployed flow that contains multiple nodes. Select **Application Insights** > **Investigate** > **Transaction search**, and then select each node to view its detailed trace.
 
@@ -77,7 +79,7 @@ The **Dependency** type event records calls from your deployments. The name of t
 
 ## View system metrics in Application Insights
 
-| Metrics name                         | Type      | Dimensions                                | Description                                                                     |
+| Metric name                         | Type      | Dimensions                                | Description                                                                     |
 |--------------------------------------|-----------|-------------------------------------------|---------------------------------------------------------------------------------|
 | `token_consumption`                    | counter   | - `flow` <br> - `node`<br> - `llm_engine`<br> - `token_type`:  `prompt_tokens`: LLM API input tokens;  `completion_tokens`: LLM API response tokens; `total_tokens` = `prompt_tokens + completion tokens`          | OpenAI token consumption metrics.                                                |
 | `flow_latency`                         | histogram | `flow`, `response_code`, `streaming`, `response_type` | The request execution cost, `response_type`, means whether it's full or first byte or last byte.|
@@ -90,8 +92,8 @@ The **Dependency** type event records calls from your deployments. The name of t
 
 You can find the workspace default Application Insights metrics on your workspace overview page in the Azure portal.
 
-1. Open Application Insights and select **Usage and estimated costs** on the left pane. Select **Custom metrics (Preview)** > **With dimensions**, and save the change.
-1. Select the **Metrics** tab on the left pane. From **Metric Namespace**, select **promptflow standard metrics**. You can explore the metrics from the **Metric** dropdown list with different aggregation methods.
+1. Open Application Insights and select **Usage and estimated costs** in the left pane. Select **Custom metrics (Preview)** > **With dimensions**, and save the change.
+1. Select the **Metrics** tab in the left pane. From **Metric Namespace**, select **promptflow standard metrics**. You can explore the metrics from the **Metric** dropdown list with different aggregation methods.
 
 ## Collect feedback and send to Application Insights
 
@@ -174,4 +176,4 @@ In some cases, you might want to export the trace data to your deployed OpenTele
 ## Related content
 
 - [Get started building a chat app by using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Work with projects in Visual Studio Code](vscode.md)
+- [Work with the Foundry for Visual Studio Code extension (Preview)](get-started-projects-vs-code.md)

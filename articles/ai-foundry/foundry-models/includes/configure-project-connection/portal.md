@@ -2,7 +2,8 @@
 manager: nitinme
 author: santiagxf
 ms.author: fasantia 
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.date: 1/21/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
@@ -14,21 +15,21 @@ zone_pivot_groups: azure-ai-models-deployment
 
 * The **Deploy models to Azure AI model inference service** feature is turned on.
 
-   :::image type="content" source="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Azure AI Foundry portal." lightbox="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
+   :::image type="content" source="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Microsoft Foundry portal." lightbox="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
 
 ## Add a connection
 
-You can create a connection to an Azure AI services resource using the following steps:
+You can create a connection to a Foundry Tools resource using the following steps:
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
+1. Go to [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. In the lower left corner of the screen, select **Management center**.
 
-3. In the section **Connections** select **New connection**.
+3. In the section **Connected resources** select **New connection**.
 
-4. Select **Azure AI services**.
+4. Select **Foundry Tools**.
 
-5. In the browser, look for an existing Azure AI Services resource in your subscription.
+5. In the browser, look for an existing Foundry Tools resource in your subscription.
 
 6. Select **Add connection**.
 
@@ -42,11 +43,11 @@ You can create a connection to an Azure AI services resource using the following
 
 You can see the model deployments available in the connected resource by following these steps:
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
+1. Go to [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. On the left pane, select **Models + endpoints**.
 
-3. The page displays the model deployments available to your, grouped by connection name. Locate the connection you have just created, which should be of type **Azure AI Services**.
+3. The page displays the model deployments available to your, grouped by connection name. Locate the connection you have just created, which should be of type **Foundry Tools**.
 
    :::image type="content" source="../../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
 
@@ -54,4 +55,4 @@ You can see the model deployments available in the connected resource by followi
 
 5. The details page shows information about the specific deployment. If you want to test the model, you can use the option **Open in playground**.
 
-6. The Azure AI Foundry playground is displayed, where you can interact with the given model.
+6. The Foundry playground is displayed, where you can interact with the given model.

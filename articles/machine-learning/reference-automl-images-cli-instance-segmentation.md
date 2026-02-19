@@ -8,8 +8,8 @@ ms.subservice: core
 ms.topic: reference
 ms.custom: cliv2
 
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.date: 10/11/2022
 ms.reviewer: rasavage
 ---
@@ -18,7 +18,7 @@ ms.reviewer: rasavage
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
-The source JSON schema can be found at https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLImageInstanceSegmentationJob.schema.json.
+The source JSON schema can be found at https://azuremlschemasprod.azureedge.net/latest/autoMLImageInstanceSegmentationJob.schema.json.
 
 
 [!INCLUDE [schema note](includes/machine-learning-preview-old-json-schema-note.md)]

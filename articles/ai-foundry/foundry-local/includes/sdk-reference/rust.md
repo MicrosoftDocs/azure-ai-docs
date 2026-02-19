@@ -1,21 +1,27 @@
 ---
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 06/09/2025
+ms.date: 01/05/2026
 ms.author: samkemp
 author: samuel100
+ai-usage: ai-assisted
 ---
 
 ## Rust SDK reference
 
 The Rust SDK for Foundry Local provides a way to manage models, control the cache, and interact with the Foundry Local service.
 
+### Prerequisites
+
+- Install Foundry Local and ensure the `foundry` command is available on your `PATH`.
+- Use Rust 1.70.0 or later.
+
 ### Installation
 To use the Foundry Local Rust SDK, add the following to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-foundry-local-sdk = "0.1"
+foundry-local = "0.1.0"
 ```
 
 Alternatively, you can add the Foundry Local crate using `cargo`:
@@ -23,6 +29,32 @@ Alternatively, you can add the Foundry Local crate using `cargo`:
 ```bash
 cargo add foundry-local
 ```
+
+### Quickstart
+
+Use this snippet to verify that the SDK can start the service and read the local catalog.
+
+```rust
+use anyhow::Result;
+use foundry_local::FoundryLocalManager;
+
+#[tokio::main]
+async fn main() -> Result<()> {
+  let mut manager = FoundryLocalManager::builder().bootstrap(true).build().await?;
+
+  let models = manager.list_catalog_models().await?;
+  println!("Catalog models available: {}", models.len());
+
+  Ok(())
+}
+```
+
+This example prints a non-zero number when the service is running and the catalog is available.
+
+References:
+
+- [Foundry Local documentation](/azure/ai-foundry/foundry-local/)
+- [foundry-local crate docs](https://docs.rs/foundry-local/0.1.0)
 
 ### `FoundryLocalManager`
 

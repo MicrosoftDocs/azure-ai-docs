@@ -3,83 +3,130 @@ items:
   tocHref: /azure/
   topicHref: /azure/index/
   items:
-  - name: AI Foundry
+  - name: Microsoft Foundry
     tocHref: /azure/ai-studio/
     topicHref: /azure/ai-studio/
-  - name: AI Foundry
+  - name: Microsoft Foundry
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-studio/
-  - name: AI Foundry
+  - name: Microsoft Foundry
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-services/
-  - name: AI Foundry
+  - name: Microsoft Foundry
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-foundry/
     items:
-    - name: Foundry Models
-      tocHref: /azure/ai-foundry/foundry-models/
-      topicHref: /azure/ai-foundry/foundry-models/
-  - name: AI Foundry
-    tocHref: /azure/ai-foundry/
-    topicHref: /azure/ai-foundry/
-    items:
-    - name: AI Services
+    - name: Foundry Tools
       tocHref: /azure/ai-services/
       topicHref: /azure/ai-services/
     - name: Anomaly Detector
       tocHref: /azure/ai-services/anomaly-detector/
       topicHref: /azure/ai-services/anomaly-detector/
+    - name: Anomaly Detector
+      tocHref: /azure/ai-foundry/responsible-ai/anomaly-detector/
+      topicHref: /azure/ai-services/anomaly-detector/
     - name: Vision
       tocHref: /azure/ai-services/computer-vision/
+      topicHref: /azure/ai-services/computer-vision/
+    - name: Vision
+      tocHref: /azure/ai-foundry/responsible-ai/computer-vision/
       topicHref: /azure/ai-services/computer-vision/
     - name: Content Moderator
       tocHref: /azure/ai-services/content-moderator/
       topicHref: /azure/ai-services/content-moderator/
+    - name: Content Moderator
+      tocHref: /azure/ai-foundry/responsible-ai/content-moderator/
+      topicHref: /azure/ai-services/content-moderator/
     - name: Content Safety
       tocHref: /azure/ai-services/content-safety/
+      topicHref: /azure/ai-services/content-safety/
+    - name: Content Safety
+      tocHref: /azure/ai-foundry/responsible-ai/content-safety/
       topicHref: /azure/ai-services/content-safety/
     - name: Custom Vision Service
       tocHref: /azure/ai-services/custom-vision-service/
       topicHref: /azure/ai-services/custom-vision-service/
+    - name: Custom Vision Service
+      tocHref: /azure/ai-foundry/responsible-ai/custom-vision/
+      topicHref: /azure/ai-services/custom-vision-service/
     - name: Language Understanding (LUIS)
       tocHref: /azure/ai-services/luis/
       topicHref: /azure/ai-services/luis/
+    - name: Language Understanding (LUIS)
+      tocHref: /azure/ai-foundry/responsible-ai/luis/
+      topicHref: /azure/ai-services/luis/
     - name: Azure OpenAI
-      tocHref: /azure/ai-services/openai/
-      topicHref: /azure/ai-services/openai/
+      tocHref: /azure/ai-foundry/openai/
+      topicHref: /azure/ai-foundry/openai/overview
+    - name: Azure OpenAI
+      tocHref: /azure/ai-foundry/responsible-ai/openai/
+      topicHref: /azure/ai-foundry/openai/overview
     - name: QnA Maker
       tocHref: /azure/ai-services/qnamaker/
+      topicHref: /azure/ai-services/qnamaker/
+    - name: QnA Maker
+      tocHref: /azure/ai-foundry/responsible-ai/qnamaker/
       topicHref: /azure/ai-services/qnamaker/
     - name: Speech Service
       tocHref: /azure/ai-services/speech-service/
       topicHref: /azure/ai-services/speech-service/
+    - name: Speech Service
+      tocHref: /azure/ai-foundry/responsible-ai/speech-service/
+      topicHref: /azure/ai-services/speech-service/
     - name: Language Service
       tocHref: /azure/ai-services/language-service/
+      topicHref: /azure/ai-services/language-service/
+    - name: Language Service
+      tocHref: /azure/ai-foundry/responsible-ai/language-service/
       topicHref: /azure/ai-services/language-service/
     - name: Translator
       tocHref: /azure/ai-services/translator/
       topicHref: /azure/ai-services/translator/
+    - name: Translator
+      tocHref: /azure/ai-foundry/responsible-ai/translator/
+      topicHref: /azure/ai-services/translator/
     - name: Personalizer
       tocHref: /azure/ai-services/personalizer/
+      topicHref: /azure/ai-services/personalizer/
+    - name: Personalizer
+      tocHref: /azure/ai-foundry/responsible-ai/personalizer/
       topicHref: /azure/ai-services/personalizer/
     - name: Immersive Reader
       tocHref: /azure/ai-services/immersive-reader/
       topicHref: /azure/ai-services/immersive-reader/
+    - name: Immersive Reader
+      tocHref: /azure/ai-foundry/responsible-ai/immersive-reader/
+      topicHref: /azure/ai-services/immersive-reader/
     - name: Metrics Advisor
       tocHref: /azure/ai-services/metrics-advisor/
+      topicHref: /azure/ai-services/metrics-advisor/
+    - name: Metrics Advisor
+      tocHref: /azure/ai-foundry/responsible-ai/metrics-advisor/
       topicHref: /azure/ai-services/metrics-advisor/
     - name: Document Intelligence
       tocHref: /azure/ai-services/document-intelligence/
       topicHref: /azure/ai-services/document-intelligence/
+    - name: Document Intelligence
+      tocHref: /azure/ai-foundry/responsible-ai/document-intelligence/
+      topicHref: /azure/ai-services/document-intelligence/
     - name: Azure AI Search
       tocHref: /azure/search/
+      topicHref: /azure/search/
+    - name: Azure AI Search
+      tocHref: /azure/ai-foundry/responsible-ai/search/
       topicHref: /azure/search/
     - name: Content Understanding
       tocHref: /azure/ai-services/content-understanding/
       topicHref: /azure/ai-services/content-understanding/
+    - name: Content Understanding
+      tocHref: /azure/ai-foundry/responsible-ai/content-understanding/
+      topicHref: /azure/ai-services/content-understanding/
     - name: Agent Service
       tocHref: /azure/ai-services/agents/
       topicHref: /azure/ai-services/agents/
+    - name: Agent Service
+      tocHref: /azure/ai-foundry/responsible-ai/agents/
+      topicHref: /azure/ai-foundry/agents/
   - name: Genomics
     tocHref: /azure/genomics/
     topicHref: /azure/genomics/

@@ -34,10 +34,10 @@ ms.author: pafarley
    |Project details| Description   |
    |--|--|
    | **Subscription** | Select one of your available Azure subscriptions. |
-   | **Resource group** | The Azure resource group that will contain your Azure AI services resource. You can create a new group or add it to a pre-existing group. |
-   | **Region** | The location of your Azure AI service resource. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
-   | **Name** | A descriptive name for your Azure AI services resource. For example, *MyCognitiveServicesResource*. |
-   | **Pricing tier** | The cost of your Azure AI services account depends on the options you choose and your usage. For more information, see the API [pricing details](../../custom-vision-service/limits-and-quotas.md).|
+   | **Resource group** | The Azure resource group that will contain your Foundry Tools resource. You can create a new group or add it to a pre-existing group. |
+   | **Region** | The location of your Foundry Tool resource. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
+   | **Name** | A descriptive name for your Foundry Tools resource. For example, *MyCognitiveServicesResource*. |
+   | **Pricing tier** | The cost of your Foundry Tools account depends on the options you choose and your usage. For more information, see the API [pricing details](../../custom-vision-service/limits-and-quotas.md).|
    | **Storage** | You can optionally use your own Azure database resource to store the data that Metrics Advisor will use.
 1. Mark your acknowledgment of the Service Agreement and Terms and then select **Review + create**.
 

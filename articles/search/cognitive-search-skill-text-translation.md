@@ -2,7 +2,6 @@
 title: Text Translation cognitive skill
 titleSuffix: Azure AI Search
 description: Evaluates text and, for each record, returns text translated to the specified target language in an  AI enrichment pipeline in Azure AI Search.
-
 manager: nitinme
 author: gmndrg
 ms.author: gimondra
@@ -10,19 +9,20 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 09/19/2022
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 #	Text Translation cognitive skill
 
-The **Text Translation** skill evaluates text and, for each record, returns the text translated to the specified target language. This skill uses the [Translator Text API v3.0](/azure/ai-services/translator/reference/v3-0-translate) available in Azure AI services.
+The **Text Translation** skill evaluates text and, for each record, returns the text translated to the specified target language. This skill uses the [Translator Text API v3.0](/azure/ai-services/translator/reference/v3-0-translate) available in Foundry Tools.
 
 This capability is useful if you expect that your documents may not all be in one language, in which case you can normalize the text to a single language before indexing for search by translating it.  It's also useful for localization use cases, where you might want to have copies of the same text available in multiple languages.
 
-The [Translator Text API v3.0](/azure/ai-services/translator/reference/v3-0-reference) is a non-regional Azure AI service, meaning that your data isn't guaranteed to stay in the same region as your Azure AI Search or attached Azure AI services resource.
+The [Translator Text API v3.0](/azure/ai-services/translator/reference/v3-0-reference) is a non-regional Foundry Tool, meaning that your data isn't guaranteed to stay in the same region as your Azure AI Search or attached Microsoft Foundry resource.
 
 > [!NOTE]
-> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 > When using this skill, all documents in the source are processed and billed for translation, even if the source and target languages are the same. This behavior is useful for multi-language support within the same document, but it can result in unnecessary processing. To avoid unexpected billing charges from documents that don't need processing, move them out of the data source container prior to running the skill.
 >
@@ -37,7 +37,7 @@ The maximum size of a record should be 50,000 characters as measured by [`String
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Inputs | Description |
 |---------------------|-------------|

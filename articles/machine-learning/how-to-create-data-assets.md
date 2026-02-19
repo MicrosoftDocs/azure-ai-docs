@@ -6,10 +6,10 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
 ms.custom: data4ml, devx-track-azurecli
-ms.author: franksolomon
-author: fbsolo-ms1
-ms.reviewer: xunwan
-ms.date: 07/26/2024
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: soumyapatro
+ms.date: 08/29/2025
 ---
 
 # Create and manage data assets
@@ -27,13 +27,13 @@ Data assets can help when you need:
 > - **Ease-of-use:** An Azure machine learning data asset resembles web browser bookmarks (favorites). Instead of remembering long storage paths (URIs) that *reference* your frequently-used data on Azure Storage, you can create a data asset *version* and then access that version of the asset with a friendly name (for example: `azureml:<my_data_asset_name>:<version>`).
 
 > [!TIP]
-> To access your data in an interactive session (for example, a notebook) or a job, you are **not** required to first create a data asset. You can use Datastore URIs to access the data. Datastore URIs offer a simple way to access data to get started with Azure machine learning.
+> To access your data in an interactive session (for example, a notebook) or a job, you are **not** required to first create a data asset. You can use Datastore URIs to access the data. Datastore URIs offer a simple way to access data to get started with Azure Machine Learning.
 
 ## Prerequisites
 
 To create and work with data assets, you need:
 
-* An Azure subscription. If you don't have one, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have one, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An Azure Machine Learning workspace. [Create workspace resources](quickstart-create-resources.md).
 
@@ -52,7 +52,7 @@ When you create your data asset, you need to set the data asset type. Azure Mach
 > [!NOTE]
 > Only use embedded newlines in csv files if you register the data as an MLTable. Embedded newlines in csv files might cause misaligned field values when you read the data. MLTable has the [`support_multi_line` parameter](../machine-learning/reference-yaml-mltable.md?view=azureml-api-2&preserve-view=true#read-transformations) available in the `read_delimited` transformation, to interpret quoted line breaks as one record.
 
-When you consume the data asset in an Azure Machine Learning job, you can either *mount* or *download* the asset to the compute node(s). For more information, please visit [Modes](how-to-read-write-data-v2.md#modes).
+When you consume the data asset in an Azure Machine Learning job, you can either *mount* or *download* the asset to the compute nodes. For more information, please visit [Modes](how-to-read-write-data-v2.md#modes).
 
 Also, you must specify a `path` parameter that points to the data asset location. Supported paths include:
 
@@ -60,7 +60,7 @@ Also, you must specify a `path` parameter that points to the data asset location
 |---------|---------|
 |A path on your local computer    | `./home/username/data/my_data`         |
 |A path on a Datastore  |   `azureml://datastores/<data_store_name>/paths/<path>`      |
-|A path on a public http(s) server   |  `https://raw.githubusercontent.com/pandas-dev/pandas/main/doc/data/titanic.csv`    |
+|A path on a public https server   |  `https://raw.githubusercontent.com/pandas-dev/pandas/main/doc/data/titanic.csv`    |
 |A path on Azure Storage    |(Blob) `wasbs://<containername>@<accountname>.blob.core.windows.net/<path_to_data>/`<br>(ADLS gen2) `abfss://<file_system>@<account_name>.dfs.core.windows.net/<path>` <br>(ADLS gen1) `adl://<accountname>.azuredatalakestore.net/<path_to_data>/` |
 
 > [!NOTE]
@@ -114,7 +114,7 @@ from azure.identity import DefaultAzureCredential
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -151,7 +151,7 @@ To create a File type data asset in the Azure Machine Learning studio:
 1. Under **Assets** in the left navigation, select **Data**. On the Data assets tab, select **Create**
 :::image type="content" source="./media/how-to-create-data-assets/data-assets-create.png" alt-text="Screenshot highlights Create in the Data assets tab.":::
 
-1. Give your data asset a name and an optional description. Then, select the **File (uri_file)** option under Type.
+1. Give your data asset a name and an optional description. Then, select the **File (uri_file)** option under Type. Select **Next**.
 :::image type="content" source="./media/how-to-create-data-assets/create-data-asset-file-type.png" alt-text="In this screenshot, choose File (uri folder) in the Type dropdown.":::
 
 1. You have multiple options for your data source. If you already have the path to the file you want to upload, choose **From a URI**. For a file already stored in Azure, choose **From Azure storage**. To upload your file from your local drive, choose **From local files**.
@@ -208,7 +208,7 @@ from azure.identity import DefaultAzureCredential
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -246,7 +246,7 @@ To create a Folder typed data asset in the Azure Machine Learning studio:
 1. Under **Assets** in the left navigation, select **Data**. On the Data assets tab, select **Create**
 :::image type="content" source="./media/how-to-create-data-assets/data-assets-create.png" alt-text="Screenshot highlights Create in the Data assets tab.":::
 
-1. Give your data asset a name and optional description. Next, select the **Folder (uri_folder)** option under Type, if it isn't already selected.
+1. Give your data asset a name and optional description. Next, select the **Folder (uri_folder)** option under Type, if it isn't already selected. Select **Next**.
 :::image type="content" source="./media/how-to-create-data-assets/create-data-asset-folder-type.png" alt-text="In this screenshot, choose Folder (uri folder) in the Type dropdown.":::
 
 1. You have multiple options for your data source. If you already have the path to the folder you want to upload, choose **From a URI**. For a folder already stored in Azure, choose **From Azure storage**. To upload a folder from your local drive, choose **From local files**.
@@ -271,7 +271,7 @@ touch MLTable
 Next, copy-and-paste the following YAML into the **MLTable** file you created in the previous step:
 
 > [!CAUTION]
-> Do **not** rename the `MLTable` file to `MLTable.yaml` or `MLTable.yml`. Azure machine learning expects an `MLTable` file.
+> Do **not** rename the `MLTable` file to `MLTable.yaml` or `MLTable.yml`. Azure Machine Learning expects an `MLTable` file.
 
 ```yml
 paths:
@@ -364,7 +364,7 @@ tbl.save(mltable_folder)
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -454,7 +454,7 @@ from azure.identity import DefaultAzureCredential
 # Set your subscription, resource group and workspace name:
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 # connect to the AzureML workspace
 ml_client = MLClient(
@@ -539,12 +539,12 @@ Not available.
 > [!IMPORTANT]
 > ***By design*, data asset deletion is not supported.**
 >
-> If Azure machine learning allowed data asset deletion, it would have the following adverse and negative effects:
+> If Azure Machine Learning allowed data asset deletion, it would have the following adverse and negative effects:
 >
 > - **Production jobs** that consume data assets that were later deleted would fail.
 > - It would become more difficult to **reproduce** an ML experiment.
 > - Job **lineage** would break, because it would become impossible to view the deleted data asset version.
-> - You would not be able to **track and audit** correctly, since versions could be missing.
+> - You wouldn't be able to **track and audit** correctly, since versions could be missing.
 >
 > Therefore, the *immutability* of data assets provides a level of protection when working in a team creating production workloads.
 
@@ -564,7 +564,7 @@ Archiving a data asset hides it by default from both list queries (for example, 
 
 - *All versions* of the data asset under a given name
 
-or
+Or
 
 - A specific data asset version
 
@@ -589,7 +589,7 @@ from azure.identity import DefaultAzureCredential
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -630,7 +630,7 @@ from azure.identity import DefaultAzureCredential
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -643,7 +643,7 @@ ml_client.data.archive(name="<DATA ASSET NAME>", version="<VERSION TO ARCHIVE>")
 # [Studio](#tab/azure-studio)
 
 > [!IMPORTANT]
-> At this time, archiving a specific data asset version is not supported in the Studio UI.
+> At this time, archiving a specific data asset version isn't supported in the Studio UI.
 
 ---
 
@@ -671,7 +671,7 @@ from azure.identity import DefaultAzureCredential
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -695,7 +695,7 @@ ml_client.data.restore(name="<DATA ASSET NAME>")
 #### Restore a specific data asset version
 
 > [!IMPORTANT]
-> If all data asset versions were archived, you cannot restore individual versions of the data asset - you must restore all versions.
+> If all data asset versions were archived, you can't restore individual versions of the data asset - you must restore all versions.
 
 To restore a specific data asset version, use:
 
@@ -716,7 +716,7 @@ from azure.identity import DefaultAzureCredential
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -729,7 +729,7 @@ ml_client.data.restore(name="<DATA ASSET NAME>", version="<VERSION TO ARCHIVE>")
 # [Studio](#tab/azure-studio)
 
 > [!IMPORTANT]
-> At this time, restoring a specific data asset version is not supported in the Studio UI.
+> At this time, restoring a specific data asset version isn't supported in the Studio UI.
 
 ---
 
@@ -741,7 +741,7 @@ Data lineage is broadly understood as the lifecycle that spans the origin of the
 - Tracing root causes in ML pipelines
 - Debugging
 
-Data quality analysis, compliance and “what if” scenarios also use lineage. Lineage is represented visually to show data moving from source to destination, and additionally covers data transformations. Given the complexity of most enterprise data environments, these views can become hard to understand without consolidation or masking of peripheral data points.
+Data quality analysis, compliance and "what if" scenarios also use lineage. Lineage is represented visually to show data moving from source to destination, and additionally covers data transformations. Given the complexity of most enterprise data environments, these views can become hard to understand without consolidation or masking of peripheral data points.
 
 In an Azure Machine Learning Pipeline, data assets show the origin of the data and how the data was processed, for example:
 
@@ -757,7 +757,7 @@ The jobs view in Data assets makes it easier to find job failures and do root-ca
 
 Data assets support tagging, which is extra metadata applied to the data asset as a key-value pair. Data tagging provides many benefits:
 
-- Data quality description. For example, if your organization uses a *medallion lakehouse architecture*, you can tag assets with `medallion:bronze` (raw), `medallion:silver` (validated) and `medallion:gold` (enriched).
+- Data quality description. For example, if your organization uses a *medallion lakehouse architecture*, you can tag assets with `medallion:bronze` (raw), `medallion:silver` (validated), and `medallion:gold` (enriched).
 - Efficient searching and filtering of data, to help data discovery.
 - Identification of sensitive personal data, to properly manage and govern data access. For example, `sensitivity:PII`/`sensitivity:nonPII`.
 - Determination of whether or not data is approved by a responsible AI (RAI) audit. For example, `RAI_audit:approved`/`RAI_audit:todo`.
@@ -817,7 +817,7 @@ from azure.identity import DefaultAzureCredential
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -859,7 +859,7 @@ ml_client.data.create_or_update(my_data)
 # [Studio](#tab/azure-studio)
 
 > [!IMPORTANT]
-> At this time, the Studio UI does not support adding tags as part of the data asset creation flow. You can add tags in the Studio UI after creation of the data asset.
+> At this time, the Studio UI doesn't support adding tags as part of the data asset creation flow. You can add tags in the Studio UI after creation of the data asset.
 
 ---
 
@@ -886,7 +886,7 @@ from azure.identity import DefaultAzureCredential
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -991,7 +991,7 @@ tbl.save("./myimages")
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -1071,7 +1071,7 @@ tbl.save("./myimages")
 # Connect to the AzureML workspace
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
-workspace = "<AML_WORKSPACE_NAME>"
+workspace = "<AZUREML_WORKSPACE_NAME>"
 
 ml_client = MLClient(
     DefaultAzureCredential(), subscription_id, resource_group, workspace
@@ -1135,7 +1135,7 @@ ml_client.jobs.create_or_update(job)
 ```
 
 > [!NOTE]
-> The `eval_mount` and `eval_download` modes are unique to MLTable. In this case, the AzureML data runtime capability evaluates the `MLTable` file and mounts the paths on the compute target.
+> The `eval_mount` and `eval_download` modes are unique to MLTable. In this case, the Azure Machine Learning data runtime capability evaluates the `MLTable` file and mounts the paths on the compute target.
 
 ## Next steps
 

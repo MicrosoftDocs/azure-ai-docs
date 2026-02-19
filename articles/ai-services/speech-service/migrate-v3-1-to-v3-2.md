@@ -1,13 +1,13 @@
 ---
 title: Migrate from v3.1 to v3.2 REST API - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document helps developers migrate code from v3.1 to v3.2 of the Speech to text REST API.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 10/28/2025
+ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 #Customer intent: As a developer, I want to migrate code from v3.1 to v3.2 of the Speech to text REST API.
@@ -18,11 +18,11 @@ ms.custom: devx-track-csharp
 The Speech to text REST API is used for [fast transcription](./fast-transcription-create.md), [batch transcription](batch-transcription.md), and [custom speech](custom-speech-overview.md). This article describes changes from version 3.1 to 3.2.
 
 > [!IMPORTANT]
-> Speech to text REST API version `2024-11-15` is the latest version that's generally available. 
+> Speech to text REST API version `2025-10-15` is the latest version that's generally available. 
 > - [Speech to text REST API](rest-speech-to-text.md) version `2024-05-15-preview` will be retired on a date to be announced. 
 > - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` will be retired on March 31st, 2026. 
 > 
-> For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), and [v3.2 to 2024-11-15](migrate-2024-11-15.md) migration guides.
+> For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), [v3.2 to 2024-11-15](migrate-2024-11-15.md) and [2024-11-15 to 2025-10-15](migrate-2025-10-15.md) migration guides.
 
 ## Base path
 
@@ -45,15 +45,15 @@ The `LanguageIdentificationMode` is added to `LanguageIdentificationProperties` 
 
 ### Whisper models
 
-Azure AI Speech now supports OpenAI's Whisper model via Speech to text REST API v3.2. To learn more, check out the [Create a batch transcription](./batch-transcription-create.md#use-a-whisper-model) guide. 
+Azure Speech in Foundry Tools now supports OpenAI's Whisper model via Speech to text REST API v3.2. To learn more, check out the [Create a batch transcription](./batch-transcription-create.md#use-a-whisper-model) guide. 
 
 > [!NOTE]
-> Azure OpenAI in Azure AI Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../openai/whisper-quickstart.md). Check out [What is the Whisper model?](./whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models. 
+> Azure OpenAI in Microsoft Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../ai-foundry/openai/whisper-quickstart.md). Check out [What is the Whisper model?](./whisper-overview.md) to learn more about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models. 
 
 ## Custom speech
 
 > [!IMPORTANT]
-> You'll be charged for custom speech model training if the base model was created on October 1, 2023 and later. You're not charged for training if the base model was created prior to October 2023. For more information, see [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+> You'll be charged for custom speech model training if the base model was created on October 1, 2023 and later. You're not charged for training if the base model was created prior to October 2023. For more information, see [Azure Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 > 
 > To programmatically determine whether a model was created before or after October 1, 2023, use the `chargedForAdaptation` property that's [new in version 3.2](#charge-for-adaptation).
 
@@ -128,7 +128,7 @@ The `supportedOutputFormat` property is added to `BaseModelFeatures`. This prope
 The `chargeForAdaptation` property is added to `BaseModelProperties`. This property is within the `BaseModel` definition.
 
 > [!IMPORTANT]
-> You'll be charged for custom speech model training if the base model was created on October 1, 2023 and later. You're not charged for training if the base model was created prior to October 2023. For more information, see [Azure AI Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+> You'll be charged for custom speech model training if the base model was created on October 1, 2023 and later. You're not charged for training if the base model was created prior to October 2023. For more information, see [Azure Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 If the value of `chargeForAdaptation` is `true`, you're charged for training the model. If the value is `false`, you're charged for training the model. Use the `chargeForAdaptation` property instead of the created date to programmatically determine whether you're charged for training a model. 
 

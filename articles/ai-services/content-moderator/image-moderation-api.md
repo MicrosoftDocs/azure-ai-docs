@@ -5,7 +5,7 @@ description: Use Content Moderator's machine-assisted image moderation to modera
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 06/12/2025
 ms.author: pafarley
 

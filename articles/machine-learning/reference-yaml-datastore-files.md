@@ -8,10 +8,10 @@ ms.subservice: mlops
 ms.topic: reference
 ms.custom: cliv2
 
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.date: 12/18/2023
-ms.reviewer: yogipandey
+ms.reviewer: jturuk
 ---
 
 # CLI (v2) Azure Files datastore YAML schema

@@ -5,12 +5,16 @@ description: Learn how to version machine learning datasets and how versioning w
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.author: samkemp
-ms.reviewer: franksolomon
-author: samuel100
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: soumyapatro 
 ms.date: 03/07/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, data4ml, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - data4ml
+  - sdkv1
+  - sfi-image-nochange
 #Customer intent: As a data scientist, I want to version and track datasets so I can use and share them across multiple machine learning experiments.
 ---
 

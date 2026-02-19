@@ -1,9 +1,9 @@
 ---
-author: msakande
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 09/13/2023
-ms.author: mopeakande
+ms.author: scottpolly
 ---
 
 > [!WARNING]

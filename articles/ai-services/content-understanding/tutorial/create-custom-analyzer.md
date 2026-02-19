@@ -1,34 +1,47 @@
 ---
-title: Create a custom analyzer with Azure AI Content Understanding using REST APIs
-titleSuffix: Azure AI services
-description: Learn to create a custom analyzer with Azure AI Content Understanding
-author: laujan
+title: Create a custom analyzer with Azure Content Understanding in Foundry Tools using REST APIs
+titleSuffix: Foundry Tools
+description: Learn to create a custom analyzer with Azure Content Understanding in Foundry Tools
+author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 01/30/2026
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
+ai-usage: ai-assisted
 ---
 
-# Create a custom analyzer via REST APIs
+# Create a custom analyzer using REST APIs
 
-Content Understanding analyzers define how to process and extract insights from your content. They ensure uniform processing and output structure across all your content to deliver reliable and predictable results. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. This guide shows how these analyzers can be customized to better fit your needs.
+Content Understanding analyzers define how to process and extract insights from your content. They ensure uniform processing and output structure across all your content, so you get reliable and predictable results. For common use cases, you can use the [prebuilt analyzers](../concepts/prebuilt-analyzers.md). This guide shows how you can customize these analyzers to better fit your needs.
 
-In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
+In this guide, you use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your developer environment.
+
+## Prerequisites
+To get started, make sure you have the following resources and permissions:
+* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* After you get your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Be sure to create it in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+   * The portal lists this resource under **Foundry** > **Foundry**.
+* [!INCLUDE [foundry-model-deployment-setup](../includes/foundry-model-deployment-setup.md)]
 
 ## Define an analyzer schema
 
 # [Document](#tab/document)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt document analyzer](../concepts/prebuilt-analyzers.md) for processing a receipt.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, you create an analyzer based on the [prebuilt document analyzer](../concepts/prebuilt-analyzers.md) for processing a receipt.
 
-Create a JSON file named `request_body.json` with the following content:
+Create a JSON file named `receipt.json` with the following content:
 ```json
 {
   "description": "Sample receipt analyzer",
-  "baseAnalyzerId": "prebuilt-documentAnalyzer",
+  "baseAnalyzerId": "prebuilt-document",
+  "models": {
+      "completion": "gpt-4.1",
+      "embedding": "text-embedding-ada-002"
+
+    },
   "config": {
     "returnDetails": true,
     "enableFormula": false,
@@ -67,15 +80,67 @@ Create a JSON file named `request_body.json` with the following content:
 }
 ```
 
+If you have various types of documents you need to process, but you want to categorize and analyze only the receipts, create an analyzer that categorizes the document first. Then, route it to the analyzer you created earlier with the following schema.
+
+Create a JSON file named `categorize.json` with the following content:
+```json
+{
+  "baseAnalyzerId": "prebuilt-document",
+  // Use the base analyzer to invoke the document specific capabilities.
+
+  //Specify the model the analyzer should use. This is one of the supported completion models and one of the supported embeddings model. The specific deployment used during analyze is set on the resource or provided in the analyze request.
+  "models": {
+      "completion": "gpt-4.1",
+      "embedding": "text-embedding-ada-002"
+
+    },
+  "config": {
+    // Enable splitting of the input into segments. Set this property to false if you only expect a single document within the input file. When specified and enableSegment=false, the whole content will be classified into one of the categories.
+    "enableSegment": false,
+
+    "contentCategories": {
+      // Category name.
+      "receipt": {
+        // Description to help with classification and splitting.
+        "description": "Any images or documents of receipts",
+
+        // Define the analyzer that any content classified as a receipt should be routed to
+        "analyzerId": "receipt"
+      },
+
+      "invoice": {
+        "description": "Any images or documents of invoice",
+        "analyzerId": "prebuilt-invoice"
+      },
+      "policeReport": {
+        "description": "A police or law enforcement report detailing the events that lead to the loss."
+        // Don't perform analysis for this category.
+      }
+
+    },
+
+    // Omit original content object and only return content objects from additional analysis.
+    "omitContent": true
+  }
+
+  //You can use fieldSchema here to define fields that are needed from the entire input content.
+
+}
+```
+
+
 # [Image](#tab/image)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt image analyzer](../concepts/prebuilt-analyzers.md) for processing images of charts and graphs.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, you create an analyzer based on a [prebuilt image analyzer](../concepts/prebuilt-analyzers.md) for processing images of charts and graphs.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
 {
   "description": "Sample image analyzer for charts and graphs",
-  "baseAnalyzerId": "prebuilt-imageAnalyzer",
+  "baseAnalyzerId": "prebuilt-image",
+  "models": {
+      "completion": "gpt-4.1"
+    },
   "config": {
     "disableContentFiltering": false
  },
@@ -96,13 +161,13 @@ Create a JSON file named `request_body.json` with the following content:
 
 # [Audio](#tab/audio)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt call center analyzer](../concepts/prebuilt-analyzers.md) for processing customer support call recordings.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, you create an analyzer based on a [prebuilt call center analyzer](../concepts/prebuilt-analyzers.md) for processing customer support call recordings.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
 {
   "description": "Sample customer support call analyzer",
-  "baseAnalyzerId": "prebuilt-callCenter",
+  "baseAnalyzerId": "prebuilt-audio",
   "config": {
     "locales": ["en-US", "fr-FR"],
     "returnDetails": true,
@@ -137,13 +202,16 @@ Create a JSON file named `request_body.json` with the following content:
 
 # [Video](#tab/video)
 
-To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, we create an analyzer based on [prebuilt video  analyzer](../concepts/prebuilt-analyzers.md) for processing product demos and reviews.
+To create a custom analyzer, define a field schema that describes the structured data you want to extract. In the following example, you create an analyzer based on a [prebuilt video  analyzer](../concepts/prebuilt-analyzers.md) for processing product demos and reviews.
 
 Create a JSON file named `request_body.json` with the following content:
 ```json
 {
   "description": "Sample product demo video analyzer",
-  "baseAnalyzerId": "prebuilt-videoAnalyzer",
+  "baseAnalyzerId": "prebuilt-video",
+  "models": {
+      "completion": "gpt-4.1"
+    },
   "config": {
     "locales": ["en-US", "fr-FR"],
     "returnDetails": true,
@@ -184,36 +252,69 @@ Create a JSON file named `request_body.json` with the following content:
 
 ---
 
-## Build analyzer
+## Create an analyzer
 
 ### PUT request
 
+# [Document](#tab/document)
+
+Create a receipt analyzer first, and then create the categorize analyzer.
+
 ```bash
-curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-05-01-preview" \
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @receipt.json
+```
+
+# [Image](#tab/image)
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d @request_body.json
 ```
 
+# [Audio](#tab/audio)
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @request_body.json
+```
+
+# [Video](#tab/video)
+
+```bash
+curl -i -X PUT "{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d @request_body.json
+```
+
+---
+
 ### PUT response
 
-The 201 `Created` response includes an `Operation-Location` header containing a URL that you can use to track the status of this asynchronous analyzer creation operation.
+The `201 Created` response includes an `Operation-Location` header with a URL that you can use to track the status of this asynchronous analyzer creation operation.
 
 ```
 201 Created
 Operation-Location: {endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2025-05-01-preview
 ```
 
-Upon completion, performing an HTTP GET on the operation location URL returns `"status": "succeeded"`.
+When the operation finishes, an HTTP GET on the operation location URL returns `"status": "succeeded"`.
 
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2025-05-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/analyzers/{analyzerId}/operations/{operationId}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
-## Analyze file
+## Analyze a file
 
-### Send file
+### Submit the file
 
 You can now use the custom analyzer you created to process files and extract the fields you defined in the schema.
 
@@ -221,37 +322,102 @@ Before running the cURL command, make the following changes to the HTTP request:
 
 # [Document](#tab/document)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Foundry instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer you created with the `categorize.json` file.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png`.
 
 # [Image](#tab/image)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Foundry instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer you created.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg`.
 
 # [Audio](#tab/audio)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Foundry instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer you created.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav`.
 
 # [Video](#tab/video)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Foundry instance.
+1. Replace `{analyzerId}` with the name of the custom analyzer you created.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 
 ---
 
 #### POST Request
+
+# [Document](#tab/document)
+
+This example uses the custom analyzer you created with the `categorize.json` file to analyze a receipt.
+
 ```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
-  -d "{\"url\":\"{fileUrl}\"}"
+  -d '{
+        "inputs":[
+          {
+            "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png"
+          }          
+        ]
+      }'  
 ```
+
+# [Image](#tab/image)
+
+This example uses the custom analyzer you created to analyze a chart or graph image.
+
+```bash
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "inputs":[
+          {
+            "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg"
+          }          
+        ]
+      }'  
+```
+
+# [Audio](#tab/audio)
+
+This example uses the custom analyzer you created to analyze a customer support call recording.
+
+```bash
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "inputs":[
+          {
+            "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav"
+          }          
+        ]
+      }'  
+```
+
+# [Video](#tab/video)
+
+This example uses the custom analyzer you created to analyze a product demo video.
+
+```bash
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: {key}" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "inputs":[
+          {
+            "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4"
+          }          
+        ]
+      }'  
+```
+
+---
 
 #### POST Response
 
@@ -263,7 +429,7 @@ The `202 Accepted` response includes the `{resultId}` which you can use to track
   "status": "Running",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": []
@@ -271,24 +437,23 @@ The `202 Accepted` response includes the `{resultId}` which you can use to track
 }
 ```
 
-### Get Analyze Result
+### Get analyze result
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-2. Replace `{resultId}` with the `resultId` in `POST` response.
+Use the `Operation-Location` from the `POST` response to get the result of the analysis.
 
-#### GET Request
+#### GET request
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2025-05-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
-#### GET Response
+#### GET response
 
 A `200 OK` response includes a `status` field that shows the operation's progress.  
-- `status` is `Succeeded` if the operation is completed successfully.  
-- If it's `running` or `notStarted`, call the API again manually or with a script: wait at least one second between requests.
+- The `status` is `Succeeded` if the operation completes successfully.  
+- If the status is `running` or `notStarted`, call the API again manually or use a script. Wait at least one second between requests.
 
-##### Sample Response
+##### Sample response
 
 # [Document](#tab/document)
 
@@ -298,11 +463,13 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   "status": "Succeeded",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
       {
+        "path": "input1/segment1",
+        "category": "receipt",
         "markdown": "Contoso\n\n123 Main Street\nRedmond, WA 98052\n\n987-654-3210\n\n6/10/2019 13:59\nSales Associate: Paul\n\n\n<table>\n<tr>\n<td>2 Surface Pro 6</td>\n<td>$1,998.00</td>\n</tr>\n<tr>\n<td>3 Surface Pen</td>\n<td>$299.97</td>\n</tr>\n</table> ...",
         "fields": {
           "VendorName": {
@@ -345,72 +512,23 @@ A `200 OK` response includes a `status` field that shows the operation's progres
         "pages": [
           {
             "pageNumber": 1,
-            "angle": -0.0848,
+            "angle": -0.0944,
             "width": 1743,
-            "height": 878,
-            "spans": [
-              {
-                "offset": 0,
-                "length": 375
-              }
-            ],
-            "words": [
-              {
-                "content": "Contoso",
-                "span": {"offset": 0,"length": 7 },
-                "confidence": 0.995,
-                "source": "D(1,774,72,974,70,974,111,774,113)"
-              }, ...
-
-            ],
-            "lines": [
-              {
-                "content": "Contoso",
-                "source": "D(1,774,71,973,70,974,111,774,113)",
-                "span": {"offset": 0,"length": 7}
-              }, ...
-            ]
+            "height": 878
           }
         ],
-        "paragraphs": [
-          {
-            "content": "Contoso",
-            "source": "D(1,774,71,973,70,974,111,774,113)",
-            "span": {"offset": 0,"length": 7}
-          }, ...
-        ],
-        "sectios": [
-          {
-            "span": {"offset": 0,"length": 374 },
-            "elements": ["/paragraphs/0","/paragraphs/1", ...]
-          }
-        ],
-        "tables": [
-          {
-            "rowCount": 2,
-            "columnCount": 2,
-            "cells": [
-              {
-                "kind": "content",
-                "rowIndex": 0,
-                "columnIndex": 0,
-                "rowSpan": 1,
-                "columnSpan": 1,
-                "content": "2 Surface Pro 6",
-                "source": "D(1,691,471,911,470,911,514,691,515)",
-                "span": {"offset": 115,"length": 15},
-                "elements": ["/paragraphs/4"]
-              }, ...
-            ],
-            "source": "D(1,759,593,1056,592,1057,741,760,742)",
-            "span": {"offset": 223,"length": 151}
-          }
-        ]
+        "analyzerId": "{analyzerId}",
+        "mimeType": "image/png"
       }
     ]
+  },
+  "usage": {
+    "documentPages": 1,
+    "tokens": {
+      "contextualization": 1000
+    }
   }
 }
-
 ```
 
 # [Image](#tab/image)
@@ -421,7 +539,7 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   "status": "Succeeded",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
@@ -437,18 +555,24 @@ A `200 OK` response includes a `status` field that shows the operation's progres
             "valueString": "pie"
           }
         },
-        "kind": "document",
+       "kind": "document",
         "startPageNumber": 1,
         "endPageNumber": 1,
         "unit": "pixel",
         "pages": [
           {
-            "pageNumber": 1,
-            "spans": []
+            "pageNumber": 1
           }
-        ]
+        ],
+        "analyzerId": "{analyzerId}",
+        "mimeType": "image/jpeg"
       }
     ]
+  },
+  "usage": {
+    "tokens": {
+      "contextualization": 1000
+    }
   }
 }
 ```
@@ -461,9 +585,8 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   "status": "Succeeded",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
-    "stringEncoding": "utf8",
     "warnings": [],
     "contents": [
       {
@@ -512,6 +635,12 @@ A `200 OK` response includes a `status` field that shows the operation's progres
         ]
       }
     ]
+  },
+  "usage": {
+    "audioHours": 0.032,
+    "tokens": {
+      "contextualization": 3194.445
+    }
   }
 }
 
@@ -526,7 +655,7 @@ A `200 OK` response includes a `status` field that shows the operation's progres
   "status": "Succeeded",
   "result": {
     "analyzerId": {analyzerId},
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SS",
     "warnings": [],
     "contents": [
@@ -540,17 +669,18 @@ A `200 OK` response includes a `status` field that shows the operation's progres
               {
                 "type": "object",
                 "valueObject": {
-                  "Sentiment": {
-                    "type": "string",
-                    "valueString": "Positive"
-                  },
+                  
                   "SegmentId": {
                     "type": "string",
-                    "valueString": "1"
+                    "valueString": "00:00:00.000-00:00:01.467"
                   },
                   "Description": {
                     "type": "string",
-                    "valueString": "The video begins with a scenic aerial view of an island, showcasing the collaboration between Flight Simulator and Microsoft Azure AI."
+                    "valueString": "The video opens with a dramatic aerial shot of a small airplane flying over a tropical island surrounded by turquoise waters. The logos for 'Flight Simulator' and 'Microsoft Azure AI' are prominently displayed, indicating a collaboration or feature integration between the two."
+                  },
+                  "Sentiment": {
+                    "type": "string",
+                    "valueString": "Positive"
                   }
                 }
               }, ...
@@ -562,12 +692,12 @@ A `200 OK` response includes a `status` field that shows the operation's progres
         "endTimeMs": 43866,
         "width": 1080,
         "height": 608,
-        "KeyFrameTimesMs": [726, ... , 43230],
+        "KeyFrameTimesMs": [733, ... , 43233],
         "transcriptPhrases": [
           {
             "speaker": "Speaker 1",
-            "startTimeMs": 1400,
-            "endTimeMs": 6560,
+            "startTimeMs": 1360,
+            "endTimeMs": 6640,
             "text": "When it comes to the neural TTS, in order to get a good voice, it's better to have good data.",
             "words": []
           }, ...
@@ -583,12 +713,20 @@ A `200 OK` response includes a `status` field that shows the operation's progres
         ]
       }
     ]
+  },
+  "usage": {
+    "videoHours": 0.013,
+    "tokens": {
+      "contextualization": 12222.223
+    }
   }
 }
 ```
 
-## Next steps
+---
+
+## Related content
 
 * Review code samples: [**visual document search**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
-* Try processing your document content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
+* Try processing your document content using Content Understanding in [Foundry](https://aka.ms/cu-landing).

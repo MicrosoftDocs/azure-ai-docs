@@ -1,6 +1,6 @@
 ---
 title: "Use limited access tokens - Face"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how ISVs can manage the Face API usage of their clients by issuing access tokens that grant access to Face features which are normally gated.
 author: PatrickFarley
 manager: nitinme
@@ -8,8 +8,9 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/29/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -20,7 +21,7 @@ Independent software vendors (ISVs) can manage the Face API usage of their clien
 
 This guide shows you how to generate the access tokens, if you're an approved ISV, and how to use the tokens if you're a client. 
 
-The limited access token feature is a part of the existing Azure AI Services token service. We have added a new operation for the purpose of bypassing the Limited Access gate for approved scenarios. 
+The limited access token feature is a part of the existing Foundry Tools token service. We have added a new operation for the purpose of bypassing the Limited Access gate for approved scenarios. 
 
 > [!IMPORTANT]
 > Only ISVs that pass the gating requirements will be given access to this feature. To request approval, contact [azureface@microsoft.com](mailto:azureface@microsoft.com).
@@ -28,7 +29,7 @@ The limited access token feature is a part of the existing Azure AI Services tok
 ## Prerequisites
 
 * [cURL](https://curl.se/) installed (or another tool that can make HTTP requests).
-* The ISV needs to have either an [Azure AI Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource or an [Azure AI services multi-service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllInOne) resource.
+* The ISV needs to have either an [Azure AI Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource or a [Foundry Tools multi-service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllInOne) resource.
 * The client needs to have an [Azure AI Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource.
 
 ## Example use case

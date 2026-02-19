@@ -2,37 +2,37 @@
 title: Set up AutoML with Python (v2)
 titleSuffix: Azure Machine Learning
 description: Learn how to set up an AutoML training run for tabular data with the Azure Machine Learning CLI and Python SDK v2.
-ms.author: ssalgado
-author: ssalgadodev
-ms.reviewer: rasavage
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: sooryar
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.date: 10/03/2024
+ms.date: 08/29/2025
 ms.topic: how-to
 ms.custom: devx-track-python, automl, sdkv2
 show_latex: true
-#customer intent: As a data scientist, I want to use the Azure Machine Learning SDK to set up automated machine learning.
+#customer intent: As a data scientist, I want to use the Azure Machine Learning SDK to set up AutoML.
 ---
 
 # Set up AutoML training for tabular data with the Azure Machine Learning CLI and Python SDK
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-In this article, learn how to set up an automated machine learning (AutoML) training job with the [Azure Machine Learning Python SDK v2](/python/api/overview/azure/ml/intro). Automated ML picks an algorithm and hyperparameters for you and generates a model ready for deployment. This article provides details of the various options that you can use to configure automated machine learning experiments.
+In this article, learn how to set up an AutoML training job with the [Azure Machine Learning Python SDK v2](/python/api/overview/azure/ml/intro). AutoML picks an algorithm and hyperparameters for you and generates a model ready for deployment. This article provides details of the various options that you can use to configure AutoML experiments.
 
-If you prefer a no-code experience, you can also [Set up no-code Automated ML training for tabular data with the studio UI](how-to-use-automated-ml-for-ml-models.md).
+If you prefer a no-code experience, you can also [set up no-code AutoML training for tabular data with the studio UI](how-to-use-automated-ml-for-ml-models.md).
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure Machine Learning workspace. If you don't have one, see [Create resources to get started](quickstart-create-resources.md).
 
 # [Python SDK](#tab/python)
 
 To use the **SDK** information, install the Azure Machine Learning [SDK v2 for Python](https://aka.ms/sdk-v2-install).
 
-To install the SDK, you can either:
+You can install the SDK in two ways:
 
 - Create a compute instance, which already has the latest Azure Machine Learning Python SDK and is configured for ML workflows. For more information, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
 - Install the SDK on your local machine.
@@ -49,9 +49,9 @@ To connect to a workspace, you need to provide a subscription, resource group, a
 
 # [Python SDK](#tab/python)
 
-The Workspace details are used in the `MLClient` from `azure.ai.ml` to get a handle to the required Azure Machine Learning workspace.
+The workspace details go into the `MLClient` from `azure.ai.ml` to connect to your Azure Machine Learning workspace.
 
-The following example uses the default Azure authentication with the default workspace configuration or configuration from a `config.json` file in the folders structure. If it finds no `config.json`, you need to manually introduce the subscription ID, resource group, and workspace when you create the `MLClient`.
+The following example uses the default Azure authentication with the default workspace configuration or configuration from a `config.json` file in the folder structure. If it finds no `config.json`, you need to manually provide the subscription ID, resource group, and workspace when you create the `MLClient`.
 
 ```Python
 from azure.identity import DefaultAzureCredential
@@ -73,7 +73,7 @@ except Exception as ex:
 
 # [Azure CLI](#tab/azurecli)
 
-In the CLI, begin by signing into your Azure account. If you account is associated with multiple subscriptions, you need to [set the subscription](/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription).
+In the CLI, start by signing into your Azure account. If your account is associated with multiple subscriptions, you need to [set the subscription](/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription).
 
 ```azurecli
 az login
@@ -93,14 +93,14 @@ For more information, see [CLI setup](how-to-configure-cli.md#set-up).
 
 ## Specify data source and format
 
-In order to provide training data in SDK v2, you need to upload it into the cloud through an *MLTable*.
+To provide training data in SDK v2, you need to upload it to the cloud through an *MLTable*.
 
 Requirements for loading data into an MLTable:
 
 - Data must be in tabular form.
 - The value to predict, *target column*, must be in the data.
 
-Training data must be accessible from the remote compute. Automated ML v2 (Python SDK and CLI/YAML) accepts MLTable data assets (v2). For backwards compatibility, it also supports v1 Tabular Datasets from v1, a registered Tabular Dataset, through the same input dataset properties. We recommend that you use MLTable, available in v2. In this example, the data is stored at the local path, *./train_data/bank_marketing_train_data.csv*.
+Training data must be accessible from the remote compute. AutoML v2 (Python SDK and CLI/YAML) accepts MLTable data assets (v2). For backwards compatibility, it also supports v1 Tabular Datasets from v1, a registered Tabular Dataset, through the same input dataset properties. We recommend that you use MLTable, available in v2. In this example, the data is stored at the local path, *./train_data/bank_marketing_train_data.csv*.
 
 # [Python SDK](#tab/python)
 
@@ -121,7 +121,7 @@ This code creates a new file, *./train_data/MLTable*, which contains the file fo
 
 # [Azure CLI](#tab/azurecli)
 
-The following YAML code is the definition of a MLTable that is placed in a local folder or a remote folder in the cloud, along with the data file. The data file is a *.csv* or Parquet file. In this case, write the YAML text to the local file, *./train_data/MLTable*.
+The following YAML code defines an MLTable that is placed in a local folder or a remote folder in the cloud, along with the data file. The data file is a *.csv* or Parquet file. In this case, write the YAML text to the local file, *./train_data/MLTable*.
 
 ```yml
 $schema: https://azuremlschemas.azureedge.net/latest/MLTable.schema.json
@@ -142,22 +142,22 @@ For more information on MLTable, see [Working with tables in Azure Machine Learn
 
 ### Training, validation, and test data
 
-You can specify separate *training data and validation data sets*. Training data must be provided to the `training_data` parameter in the factory function of your automated machine learning job.
+You can specify separate *training data and validation data sets*. You must provide training data to the `training_data` parameter in the factory function of your AutoML job.
 
-If you don't explicitly specify a `validation_data` or `n_cross_validation` parameter, Automated ML applies default techniques to determine how validation is performed. This determination depends on the number of rows in the dataset assigned to your `training_data` parameter.
+If you don't explicitly specify a `validation_data` or `n_cross_validation` parameter, AutoML applies default techniques to determine how to do validation. This determination depends on the number of rows in the dataset assigned to your `training_data` parameter.
 
 | Training&nbsp;data&nbsp;size | Validation technique |
 |:---|:-----|
-| **Larger&nbsp;than&nbsp;20,000&nbsp;rows** | Training and validation data split is applied. The default is to take 10% of the initial training data set as the validation set. In turn, that validation set is used for metrics calculation. |
-| **Smaller&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;20,000&nbsp;rows** | Cross-validation approach is applied. The default number of folds depends on the number of rows. <br> **If the dataset is fewer than 1,000 rows**, ten folds are used. <br> **If the rows are equal to or between 1,000 and 20,000**, three folds are used. |
+| **Larger&nbsp;than&nbsp;20,000&nbsp;rows** | AutoML applies training and validation data split. The default takes 10% of the initial training data set as the validation set. AutoML then uses that validation set for metrics calculation. |
+| **Smaller&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;20,000&nbsp;rows** | AutoML applies cross-validation approach. The default number of folds depends on the number of rows. <br> **If the dataset is fewer than 1,000 rows**, AutoML uses ten folds. <br> **If the rows are equal to or between 1,000 and 20,000**, AutoML uses three folds. |
 
 ## Compute to run experiment
 
-Automated machine learning jobs with the Python SDK v2 (or CLI v2) are currently only supported on Azure Machine Learning remote compute cluster or compute instance. For more information about creating compute with the Python SDKv2 or CLIv2, see [Train models with Azure Machine Learning CLI, SDK, and REST API](./how-to-train-model.md).
+AutoML jobs with the Python SDK v2 (or CLI v2) are currently only supported on Azure Machine Learning remote compute cluster or compute instance. For more information about creating compute with the Python SDKv2 or CLIv2, see [train models with Azure Machine Learning CLI, SDK, and REST API](./how-to-train-model.md).
 
 ## Configure your experiment settings
 
-There are several options that you can use to configure your automated machine learning experiment. These configuration parameters are set in your task method. You can also set job training settings and [exit criteria](#exit-criteria) with the `training` and `limits` settings.
+You can use several options to configure your AutoML experiment. These configuration parameters are set in your task method. You can also set job training settings and [exit criteria](#exit-criteria) with the `training` and `limits` settings.
 
 The following example shows the required parameters for a classification task that specifies accuracy as the [primary metric](#primary-metric) and five cross-validation folds.
 
@@ -239,9 +239,9 @@ training:
 
 ### Select your machine learning task type
 
-Before you can submit your Automated ML job, determine the kind of machine learning problem that you want to solve. This problem determines which function your job uses and what model algorithms it applies.
+Before you can submit your AutoML job, determine the kind of machine learning problem that you want to solve. This problem determines which function your job uses and what model algorithms it applies.
 
-Automated ML supports different task types:
+AutoML supports different task types:
 
 - Tabular data based tasks
 
@@ -259,11 +259,11 @@ Automated ML supports different task types:
   - Text classification
   - Entity Recognition
 
- For more information, see [task types](concept-automated-ml.md#when-to-use-automl-classification-regression-forecasting-computer-vision--nlp). For more information on setting up forecasting jobs, see [Set up AutoML to train a time-series forecasting model](how-to-auto-train-forecast.md).
+ For more information, see [task types](concept-automated-ml.md#when-to-use-automl-classification-regression-forecasting-computer-vision-and-nlp). For more information on setting up forecasting jobs, see [set up AutoML to train a time-series forecasting model](how-to-auto-train-forecast.md).
 
 ### Supported algorithms
 
-Automated machine learning tries different models and algorithms during the automation and tuning process. As a user, you don't need to specify the algorithm.
+AutoML tries different models and algorithms during the automation and tuning process. As a user, you don't need to specify the algorithm.
 
 The task method determines the list of algorithms or models to apply. To further modify iterations with the available models to include or exclude, use the `allowed_training_algorithms` or `blocked_training_algorithms` parameters in the `training` configuration of the job.
 
@@ -301,17 +301,17 @@ For example notebooks of each task type, see [automl-standalone-jobs](https://gi
 
 ### Primary metric
 
-The `primary_metric` parameter determines the metric to be used during model training for optimization. The task type that you choose determines the metrics that you can select.
+The `primary_metric` parameter determines the metric to use during model training for optimization. The task type that you choose determines the metrics that you can select.
 
-Choosing a primary metric for automated machine learning to optimize depends on many factors. We recommend your primary consideration be to choose a metric that best represents your business needs. Then consider if the metric is suitable for your dataset profile, including data size, range, and class distribution. The following sections summarize the recommended primary metrics based on task type and business scenario.
+Choosing a primary metric for AutoML to optimize depends on many factors. We recommend your primary consideration be to choose a metric that best represents your business needs. Then consider if the metric is suitable for your dataset profile, including data size, range, and class distribution. The following sections summarize the recommended primary metrics based on task type and business scenario.
 
-To learn about the specific definitions of these metrics, see [Evaluate automated machine learning experiment results](how-to-understand-automated-ml.md).
+To learn about the specific definitions of these metrics, see [evaluate AutoML experiment results](how-to-understand-automated-ml.md).
 
 #### Metrics for classification multi-class scenarios
 
 These metrics apply for all classification scenarios, including tabular data, images or computer-vision, and natural language processing text (NLP-Text).
 
-Threshold-dependent metrics, like `accuracy`, `recall_score_weighted`, `norm_macro_recall`, and `precision_score_weighted` might not optimize as well for datasets that are small, have large class skew (class imbalance), or when the expected metric value is very close to 0.0 or 1.0. In those cases, `AUC_weighted` can be a better choice for the primary metric. After automated machine learning completes, you can choose the winning model based on the metric best suited to your business needs.
+Threshold-dependent metrics, like `accuracy`, `recall_score_weighted`, `norm_macro_recall`, and `precision_score_weighted` might not optimize as well for datasets that are small, have large class skew (class imbalance), or when the expected metric value is very close to 0.0 or 1.0. In those cases, `AUC_weighted` can be a better choice for the primary metric. After AutoML completes, you can choose the winning model based on the metric best suited to your business needs.
 
 | Metric | Example use cases |
 | ------ | ------- |
@@ -323,26 +323,26 @@ Threshold-dependent metrics, like `accuracy`, `recall_score_weighted`, `norm_mac
 
 #### Metrics for classification multi-label scenarios
 
-For Text classification multi-label, currently 'Accuracy' is the only primary metric supported.
+For text classification multi-label, currently 'Accuracy' is the only primary metric supported.
 
-For Image classification multi-label, the primary metrics supported are defined in the `ClassificationMultilabelPrimaryMetrics` enum.
+For image classification multi-label, the primary metrics supported are defined in the `ClassificationMultilabelPrimaryMetrics` enum.
 
 #### Metrics for NLP Text Named Entity Recognition scenarios
 
-For NLP Text Named Entity Recognition (NER), currently 'Accuracy' is the only primary metric supported.
+For NLP text Named Entity Recognition (NER), currently 'Accuracy' is the only primary metric supported.
 
 #### Metrics for regression scenarios
 
-`r2_score`, `normalized_mean_absolute_error`, and `normalized_root_mean_squared_error` are all trying to minimize prediction errors. `r2_score` and `normalized_root_mean_squared_error` are both minimizing average squared errors while `normalized_mean_absolute_error` is minimizing the average absolute value of errors. Absolute value treats errors at all magnitudes alike and squared errors have a much larger penalty for errors with larger absolute values. Depending on whether larger errors should be punished more or not, you can choose to optimize squared error or absolute error.
+`r2_score`, `normalized_mean_absolute_error`, and `normalized_root_mean_squared_error` all try to minimize prediction errors. `r2_score` and `normalized_root_mean_squared_error` both minimize average squared errors while `normalized_mean_absolute_error` minimizes the average absolute value of errors. Absolute value treats errors at all magnitudes alike and squared errors have a much larger penalty for errors with larger absolute values. Depending on whether larger errors should be punished more or not, you can choose to optimize squared error or absolute error.
 
-The main difference between `r2_score` and `normalized_root_mean_squared_error` is the way they're normalized and their meanings. `normalized_root_mean_squared_error` is root mean squared error normalized by range and can be interpreted as the average error magnitude for prediction. `r2_score` is mean squared error normalized by an estimate of variance of data. It's the proportion of variation that the model can capture.
+The main difference between `r2_score` and `normalized_root_mean_squared_error` is how they're normalized and their meanings. `normalized_root_mean_squared_error` is root mean squared error normalized by range and can be interpreted as the average error magnitude for prediction. `r2_score` is mean squared error normalized by an estimate of variance of data. It's the proportion of variation that the model can capture.
 
 > [!NOTE]
 > `r2_score` and `normalized_root_mean_squared_error` also behave similarly as primary metrics. If a fixed validation set is applied, these two metrics are optimizing the same target, mean squared error, and are optimized by the same model. When only a training set is available and cross-validation is applied, they would be slightly different as the normalizer for `normalized_root_mean_squared_error` is fixed as the range of training set, but the normalizer for `r2_score` would vary for every fold as it's the variance for each fold.
 
 If the rank, instead of the exact value, is of interest, `spearman_correlation` can be a better choice. It measures the rank correlation between real values and predictions.
 
-Automated ML doesn't currently support any primary metrics that measure *relative* difference between predictions and observations. The metrics `r2_score`, `normalized_mean_absolute_error`, and `normalized_root_mean_squared_error` are all measures of absolute difference. For example, if a prediction differs from an observation by 10 units, these metrics compute the same value if the observation is 20 units or 20,000 units. In contrast, a percentage difference, which is a relative measure, gives errors of 50% and 0.05%, respectively. To optimize for relative difference, you can run Automated ML with a supported primary metric and then select the model with the best `mean_absolute_percentage_error` or `root_mean_squared_log_error`. These metrics are undefined when any observation values are zero, so they might not always be good choices.
+AutoML doesn't currently support any primary metrics that measure *relative* difference between predictions and observations. The metrics `r2_score`, `normalized_mean_absolute_error`, and `normalized_root_mean_squared_error` are all measures of absolute difference. For example, if a prediction differs from an observation by 10 units, these metrics compute the same value if the observation is 20 units or 20,000 units. In contrast, a percentage difference, which is a relative measure, gives errors of 50% and 0.05%, respectively. To optimize for relative difference, you can run AutoML with a supported primary metric and then select the model with the best `mean_absolute_percentage_error` or `root_mean_squared_log_error`. These metrics are undefined when any observation values are zero, so they might not always be good choices.
 
 | Metric | Example use cases |
 |:------ |:------- |
@@ -363,30 +363,30 @@ The recommendations are similar to the recommendations for regression scenarios.
 
 #### Metrics for Image Object Detection scenarios
 
-For Image Object Detection, the primary metrics supported are defined in the `ObjectDetectionPrimaryMetrics` enum.
+For image Object Detection, the primary metrics supported are defined in the `ObjectDetectionPrimaryMetrics` enum.
 
 #### Metrics for Image Instance Segmentation scenarios
 
-For Image Instance Segmentation scenarios, the primary metrics supported are defined in the `InstanceSegmentationPrimaryMetrics` enum.
+For image Instance Segmentation scenarios, the primary metrics supported are defined in the `InstanceSegmentationPrimaryMetrics` enum.
 
 ### Data featurization
 
-In every automated machine learning experiment, your data is automatically transformed to numbers and vectors of numbers. The data is also scaled and normalized to help algorithms that are sensitive to features that are on different scales. These data transformations are called *featurization*.
+In every AutoML experiment, your data is automatically transformed to numbers and vectors of numbers. The data is also scaled and normalized to help algorithms that are sensitive to features that are on different scales. These data transformations are called *featurization*.
 
 > [!NOTE]
-> Automated machine learning featurization steps, such as feature normalization, handling missing data, and converting text to numeric, become part of the underlying model. When you use the model for predictions, the same featurization steps applied during training are applied to your input data automatically.
+> AutoML featurization steps, such as feature normalization, handling missing data, and converting text to numeric, become part of the underlying model. When you use the model for predictions, the same featurization steps applied during training are applied to your input data automatically.
 
-When you configure automated machine learning jobs, you can enable or disable the `featurization` settings.
+When you configure AutoML jobs, you can enable or disable the `featurization` settings.
 
 The following table shows the accepted settings for featurization.
 
 | Featurization Configuration | Description |
 |:------------- |:------------- |
-| `"mode": 'auto'` | Indicates that, as part of preprocessing, [data guardrails and featurization steps](./v1/how-to-configure-auto-features.md#featurization) are performed automatically. This value is the default setting. |
+| `"mode": 'auto'` | Indicates that, as part of preprocessing, [data guardrails and featurization steps](./v1/how-to-configure-auto-features.md#featurization) are done automatically. This value is the default setting. |
 | `"mode": 'off'` | Indicates featurization step shouldn't be done automatically. |
-| `"mode":`&nbsp;`'custom'` | Indicates customized featurization step should be used. |
+| `"mode":`&nbsp;`'custom'` | Indicates you should use customized featurization step. |
 
-The following code shows how custom featurization can be provided in this case for a regression job.
+The following code shows how to provide custom featurization in this case for a regression job.
 
 # [Python SDK](#tab/python)
 
@@ -449,26 +449,26 @@ training:
 
 ### Exit criteria
 
-There are a few options you can define in the `set_limits()` function to end your experiment before the job completes.
+You can define a few options in the `set_limits()` function to end your experiment before the job completes.
 
 | Criteria | description |
 |:----|:----|
 | No&nbsp;criteria | If you don't define any exit parameters, the experiment continues until no further progress is made on your primary metric. |
 | `timeout` | Defines how long, in minutes, your experiment should continue to run. If not specified, the default job's total timeout is six days (8,640 minutes). To specify a timeout less than or equal to 1 hour (60 minutes), make sure your dataset's size isn't greater than 10,000,000 (rows times column) or an error results. <br><br> This timeout includes setup, featurization, and training runs but doesn't include the ensembling and model explainability runs at the end of the process since those actions need to happen after all the trials (children jobs) are done. |
-| `trial_timeout_minutes` | Maximum time in minutes that each trial (child job) can run for before it terminates. If not specified, a value of 1 month or 43200 minutes is used. |
+| `trial_timeout_minutes` | Maximum time in minutes that each trial (child job) can run for before it terminates. If not specified, AutoML uses a value of 1 month or 43200 minutes. |
 | `enable_early_termination`| Whether to end the job if the score isn't improving in the short term. |
-| `max_trials` | The maximum number of trials/runs each with a different combination of algorithm and hyper-parameters to try during a job. If not specified, the default is 1,000 trials. If you use `enable_early_termination`, the number of trials used can be smaller. |
-| `max_concurrent_trials` | Represents the maximum number of trials (children jobs) that would be executed in parallel. It's a good practice to match this number with the number of nodes your cluster. |
+| `max_trials` | The maximum number of trials/runs each with a different combination of algorithm and hyper-parameters to try during a job. If not specified, the default is 1,000 trials. If you use `enable_early_termination`, AutoML might use fewer trials. |
+| `max_concurrent_trials` | The maximum number of trials (children jobs) that would run in parallel. It's a good practice to match this number with the number of nodes your cluster. |
 
 ## Run experiment
 
 Submit the experiment to run and generate a model.
 
 > [!NOTE]
-> If you run an experiment with the same configuration settings and primary metric multiple times, you might see variation in each experiments final metrics score and generated models. The algorithms that automated machine learning employs have inherent randomness that can cause slight variation in the models output by the experiment and the recommended model's final metrics score, like accuracy. You also might see results with the same model name, but different hyper-parameters used.
+> If you run an experiment with the same configuration settings and primary metric multiple times, you might see variation in each experiment's final metrics score and generated models. The algorithms that AutoML employs have inherent randomness that can cause slight variation in the models output by the experiment and the recommended model's final metrics score, like accuracy. You also might see results with the same model name, but different hyper-parameters used.
 
 > [!WARNING]
-> If you have set rules in firewall or Network Security Group over your workspace, verify that required permissions are given to inbound and outbound network traffic as defined in [Configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md).
+> If you have set rules in firewall or Network Security Group over your workspace, verify that required permissions are given to inbound and outbound network traffic as defined in [configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md).
 
 With the `MLClient` created in the prerequisites, you can run the following command in the workspace.
 
@@ -506,21 +506,21 @@ az ml job show -n $run_id --web
 
 ### Multiple child runs on clusters
 
-Automated ML experiment child runs can be performed on a cluster that is already running another experiment. However, the timing depends on how many nodes the cluster has, and if those nodes are available to run a different experiment.
+You can run AutoML experiment child runs on a cluster that is already running another experiment. The timing depends on how many nodes the cluster has and if those nodes are available to run a different experiment.
 
-Each node in the cluster acts as an individual virtual machine (VM) that can accomplish a single training run. For Automated ML, this fact means a child run. If all the nodes are busy, a new experiment is queued. If there are free nodes, the new experiment runs child runs in parallel in the available nodes or virtual machines.
+Each node in the cluster acts as an individual virtual machine (VM) that can accomplish a single training run. For AutoML, this means a child run. If all the nodes are busy, AutoML queues a new experiment. If free nodes are available, the new experiment runs child runs in parallel in the available nodes or virtual machines.
 
-To help manage child runs and when they can be performed, we recommend that you create a dedicated cluster per experiment, and match the number of `max_concurrent_iterations` of your experiment to the number of nodes in the cluster. This way, you use all the nodes of the cluster at the same time with the number of concurrent child runs and iterations that you want.
+To help manage child runs and when they can run, we recommend that you create a dedicated cluster per experiment, and match the number of `max_concurrent_iterations` of your experiment to the number of nodes in the cluster. This way, you use all the nodes of the cluster at the same time with the number of concurrent child runs and iterations that you want.
 
-Configure `max_concurrent_iterations` in the `limits` configuration. If it isn't configured, then by default only one concurrent child run/iteration is allowed per experiment. For a compute instance, `max_concurrent_trials` can be set to be the same as number of cores on the compute instance virtual machine.
+Configure `max_concurrent_iterations` in the `limits` configuration. If it isn't configured, then by default only one concurrent child run/iteration is allowed per experiment. For a compute instance, you can set `max_concurrent_trials` to be the same as number of cores on the compute instance virtual machine.
 
 ## Explore models and metrics
 
-Automated ML offers options for you to monitor and evaluate your training results.
+AutoML offers options for you to monitor and evaluate your training results.
 
-- For definitions and examples of the performance charts and metrics provided for each run, see [Evaluate automated machine learning experiment results](how-to-understand-automated-ml.md).
+- For definitions and examples of the performance charts and metrics provided for each run, see [evaluate AutoML experiment results](how-to-understand-automated-ml.md).
 
-- To get a featurization summary and understand what features were added to a particular model, see [Featurization transparency](./v1/how-to-configure-auto-features.md#featurization-transparency).
+- To get a featurization summary and understand what features were added to a particular model, see [featurization transparency](./v1/how-to-configure-auto-features.md#featurization-transparency).
 
 From the Azure Machine Learning UI at the model's page, you can also view the hyper-parameters used when you train a particular model and also view and customize the internal model's training code used.
 
@@ -529,13 +529,13 @@ From the Azure Machine Learning UI at the model's page, you can also view the hy
 After you test a model and confirm you want to use it in production, you can register it for later use.
 
 > [!TIP]
-> For registered models, you can use one-click deployment by using the [Azure Machine Learning studio](https://ml.azure.com). See [Deploy your model](how-to-use-automated-ml-for-ml-models.md#deploy-your-model).
+> For registered models, you can use one-click deployment by using the [Azure Machine Learning studio](https://ml.azure.com). See [deploy your model](how-to-use-automated-ml-for-ml-models.md#deploy-your-model).
 
 ## Use AutoML in pipelines
 
-To use Automated ML in your machine learning operations workflows, you can add AutoML Job steps to your [Azure Machine Learning Pipelines](./how-to-create-component-pipeline-python.md). This approach allows you to automate your entire workflow by hooking up your data preparation scripts to Automated ML. Then register and validate the resulting best model.
+To use AutoML in your machine learning operations workflows, you can add AutoML Job steps to your [Azure Machine Learning Pipelines](./how-to-create-component-pipeline-python.md). This approach allows you to automate your entire workflow by hooking up your data preparation scripts to AutoML. Then register and validate the resulting best model.
 
-This code is a [sample pipeline](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1h_automl_in_pipeline/automl-classification-bankmarketing-in-pipeline) with an Automated ML classification component and a command component that shows the resulting output. The code references the inputs (training and validation data) and the outputs (best model) in different steps.
+This code is a [sample pipeline](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1h_automl_in_pipeline/automl-classification-bankmarketing-in-pipeline) with an AutoML classification component and a command component that shows the resulting output. The code references the inputs (training and validation data) and the outputs (best model) in different steps.
 
 # [Python SDK](#tab/python)
 
@@ -594,7 +594,7 @@ returned_pipeline_job
 
 ```
 
-For more examples on how to include Automated ML in your pipelines, see the [examples repository](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1h_automl_in_pipeline/).
+For more examples on how to include AutoML in your pipelines, see the [examples repository](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1h_automl_in_pipeline/).
 
 # [Azure CLI](#tab/azurecli)
 
@@ -659,7 +659,7 @@ Now, you launch the pipeline run using the following command. The pipeline confi
 
 ## Use AutoML at scale: distributed training
 
-For large data scenarios, Automated ML supports distributed training for a limited set of models:
+For large data scenarios, AutoML supports distributed training for a limited set of models:
 
 | Distributed algorithm | Supported tasks | Data size limit (approximate) |
 |:--|:--|:--  |
@@ -669,7 +669,7 @@ For large data scenarios, Automated ML supports distributed training for a limit
 Distributed training algorithms automatically partition and distribute your data across multiple compute nodes for model training.
 
 > [!NOTE]
-> Cross-validation, ensemble models, ONNX support, and code generation are not currently supported in the distributed training mode. Also, Automatic ML can make choices such as restricting available featurizers and sub-sampling data used for validation, explainability, and model evaluation.
+> Cross-validation, ensemble models, ONNX support, and code generation are not currently supported in the distributed training mode. Also, AutoML can make choices such as restricting available featurizers and sub-sampling data used for validation, explainability, and model evaluation.
 
 ### Distributed training for classification and regression
 
@@ -716,7 +716,7 @@ limits:
 ---
 
 > [!NOTE]
-> Distributed training for classification and regression tasks does not currently support multiple concurrent trials. Model trials execute sequentially with each trial using `max_nodes` nodes. The `max_concurrent_trials` limit setting is currently ignored.
+> Distributed training for classification and regression tasks doesn't currently support multiple concurrent trials. Model trials run sequentially with each trial using `max_nodes` nodes. The `max_concurrent_trials` limit setting is currently ignored.
 
 ### Distributed training for forecasting
 

@@ -2,16 +2,17 @@
 title: Move a search service across regions
 titleSuffix: Azure AI Search
 description: Learn how to move your Azure AI Search resources from one region to another in the Azure cloud.
-
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
+ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ms.custom:
   - subject-moving-resources
   - ignite-2023
-ms.date: 05/29/2025
+  - sfi-image-nochange
 ---
 
 # Move your Azure AI Search service to another Azure region
@@ -31,13 +32,13 @@ Occasionally, customers ask about moving a search service to another region. Cur
 
 1. Identify dependencies and related services to understand the full impact of relocating a service, in case you need to move more than just Azure AI Search.
 
-   Azure Storage is used for logging, creating a knowledge store, and is a commonly used external data source for AI enrichment and indexing. Azure AI services are used to power built-in skills during AI enrichment. Both Azure AI services and your search service are required to be in the same region if you're using AI enrichment.
+   Azure Storage is used for logging, creating a knowledge store, and is a commonly used external data source for AI enrichment and indexing. Foundry Tools are used to power built-in skills during AI enrichment. Both Foundry Tools and your search service are required to be in the same region if you're using AI enrichment.
 
 1. Create an inventory of all objects on the service so that you know what to move: indexes, synonym maps, indexers, data sources, skillsets. If you enabled logging, create and archive any reports you might need for a historical record.
 
 1. Check pricing and availability in the new region to ensure availability of Azure AI Search plus any related services in the new region. Most features are available in all regions, but some preview features have restricted availability.
 
-1. Create a service in the new region and republish from source code any existing indexes, synonym maps, indexers, data sources, and skillsets. Remember that service names must be unique so you can't reuse the existing name. Check each skillset to see if connections to Azure AI services are still valid in terms of the same-region requirement. Also, if knowledge stores are created, check the connection strings for Azure Storage if you're using a different service.
+1. Create a service in the new region and republish from source code any existing indexes, synonym maps, indexers, data sources, and skillsets. Remember that service names must be unique so you can't reuse the existing name. Check each skillset to see if connections to Foundry Tools are still valid in terms of the same-region requirement. Also, if knowledge stores are created, check the connection strings for Azure Storage if you're using a different service.
 
 1. Reload indexes and knowledge stores, if applicable. You'll either use application code to push JSON data into an index, or rerun indexers to pull documents in from external sources. 
 

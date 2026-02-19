@@ -1,25 +1,21 @@
 ---
-title: Azure AI Content Understanding audio overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding audio solutions
-author: laujan
-ms.author: jagoerge
+title: Azure Content Understanding in Foundry Tools audio overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools audio solutions
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding audio solutions (preview)
+# Azure Content Understanding in Foundry Tools audio solutions
 
-> [!IMPORTANT]
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
-
-Audio analyzers enable transcription and diarization of conversational audio, extracting structured fields such as summaries, sentiments, and key topics. Customize an audio analyzer template to your business needs using [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to start generating results.
+Audio analyzers enable transcription and diarization for conversational audio and extract structured fields such as summaries, sentiment, and key topics. Customize an audio analyzer template for your needs in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to start generating results.
 
 Here are common scenarios for conversational audio data processing:
 
@@ -35,22 +31,22 @@ Content Understanding serves as a cornerstone for Speech Analytics solutions, en
 
 ### Content extraction
 
-Audio content extraction is the process of transcribing audio files. This process includes separating transcriptions by speaker and can involve optional features like role detection to update speaker results to meaningful speaker roles. It can also involve detailed results including word-level timestamps.
+Audio content extraction transcribes audio files. It can separate the transcript by speaker and use optional features such as role detection to map speakers to meaningful roles. You can also request detailed results such as word-level timestamps.
 
 #### Language handling
-We support different options to handle language processing during transcription.
+Content Understanding supports different options for language processing during transcription.
 
-The following table provides an overview of the options controlled via the 'locales' configuration:
+The following table provides an overview of the options that the `locales` configuration controls:
 
 |Locale setting|File size|Supported processing|Supported locales|Result latency|
 |--|--|--|--|--|
-|**auto or empty**|≤ 300 MB and/or ≤ 2 hours|Multilingual transcription|`de-DE`, `en-AU`,` en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `es-MX`, `fr-CA`, `fr-FR`, `hi-IN`, `it-IT`, `ja-JP`, `ko-KR`, and `zh-CN`|Near-real-time|
-|**auto or empty**|> 300 MB and >2 HR ≤ 4 hours|Multilingual transcription|`en-US`, `es-ES`, `es-MX`, `fr-FR`, `hi-IN`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, `zh-CN`|Regular|
-|**single locale**|≤ 1 GB and/or ≤ 4 hours|Single language transcription|All supported locales[^1]|&bullet; ≤ 300 MB and/or ≤ 2 hours: Near-real-time<br>&bullet; > 300 MB and >2 HR ≤ 4 hours: Regular|
-|**multiple locales**|≤ 1 GB and/or ≤ 4 hours|Single language transcription (based on language detection)|All supported locales[^1]|&bullet; ≤ 300 MB and/or ≤ 2 hours: Near-real-time<br>&bullet; > 300 MB and >2 HR ≤ 4 hours: Regular|
+|**auto or empty**|≤ 300 MB and/or ≤ 2 hours|Multilingual transcription|`de-DE`, `en-AU`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `es-MX`, `fr-CA`, `fr-FR`, `hi-IN`, `it-IT`, `ja-JP`, `ko-KR`, `zh-CN`|Near-real-time|
+|**auto or empty**|> 300 MB and > 2 hours, ≤ 4 hours|Multilingual transcription|`en-US`, `es-ES`, `es-MX`, `fr-FR`, `hi-IN`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, `zh-CN`|Regular|
+|**single locale**|≤ 1 GB and/or ≤ 4 hours|Single-language transcription|All supported locales[^1]|&bullet; ≤ 300 MB and/or ≤ 2 hours: Near-real-time<br>&bullet; > 300 MB and > 2 hours, ≤ 4 hours: Regular|
+|**multiple locales**|≤ 1 GB and/or ≤ 4 hours|Single-language transcription (based on language detection)|All supported locales[^1]|&bullet; ≤ 300 MB and/or ≤ 2 hours: Near-real-time<br>&bullet; > 300 MB and > 2 hours, ≤ 4 hours: Regular|
 
-[^1]: Content Understanding supports the full set of [Azure AI Speech Speech to text languages](../../speech-service/language-support.md).
-For languages with Fast transcriptions support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
+[^1]: Content Understanding supports the full set of [Azure Speech in Foundry Tools Speech to text languages](../../speech-service/language-support.md).
+For languages with fast transcription support and for files ≤ 300 MB and/or ≤ 2 hours, transcription time is reduced substantially.
 
 * **Transcription**. Converts conversational audio into searchable and analyzable text-based transcripts in WebVTT format. Customizable fields can be generated from transcription data. Sentence-level and word-level timestamps are available upon request.
 
@@ -58,13 +54,14 @@ For languages with Fast transcriptions support and for files ≤ 300 MB and/or �
 
 * **Speaker role detection**. Identifies agent and customer roles within contact center call data.
 
-* **Multilingual transcription**. Generates multilingual transcripts, applying language/locale per phrase. Deviating from language detection this feature is enabled when no language/locale is specified or language is set to `auto`.
+* **Multilingual transcription**. Generates multilingual transcripts and applies language and locale per phrase. This feature is enabled when you don't specify a language or locale, or when `locales` is set to `auto`.
 
 > [!NOTE]
-> When Multilingual transcription is used, any files with unsupported locales produce a result based on the closest supported locale, which is likely incorrect. This result is a known
-> behavior. Avoid transcription quality issues by ensuring that you configure locales when not using a multilingual transcription supported locale!
+> When multilingual transcription is used, files with unsupported locales might produce a result based on the closest supported locale, which might be incorrect. This behavior is expected.
+> 
+> To avoid transcription quality issues, configure `locales` when you don't use multilingual transcription.
 
-* **Language detection**. Automatically detects the dominant language/locale which is used to transcribe the file. Set multiple languages/locales to enable language detection.
+* **Language detection**. Automatically detects the dominant language or locale and uses it to transcribe the file. Specify multiple locales to enable language detection.
 
 ### Field extraction
 
@@ -76,11 +73,11 @@ Advanced audio capabilities, including:
 
 * **Customizable data extraction**. Tailor the output to your specific needs by modifying the field schema, allowing for precise data generation and extraction.
 
-* **Generative models**. Utilize generative AI models to specify in natural language the content you want to extract, and the service generates the desired output.
+* **Generative models**. Use generative AI models to describe the content you want to extract in natural language, and the service generates the output.
 
-* **Integrated pre-processing**. Benefit from built-in preprocessing steps like transcription, diarization, and role detection, providing rich context for generative models.
+* **Integrated preprocessing**. Benefit from built-in preprocessing steps such as transcription, diarization, and role detection, which provide rich context for generative models.
 
-* **Scenario adaptability**. Adapt the service to your requirements by generating custom fields and extract relevant data.
+* **Scenario adaptability**. Adapt the service to your requirements by generating custom fields and extracting relevant data.
 
 ## Prebuilt audio analyzers
 
@@ -96,13 +93,13 @@ The following prebuilt analyzers are available:
 
 **Post-call analysis (prebuilt-callCenter)**. Analyze call recordings to generate:
 
-* conversation transcripts with speaker role detection result
-* call summary
-* call sentiment
-* top five articles mentioned
-* list of companies mentioned
-* list of people (name and title/role) mentioned
-* list of relevant call categories
+* Conversation transcripts with speaker role detection results.
+* A call summary.
+* Call sentiment.
+* The top five articles that are mentioned.
+* A list of companies that are mentioned.
+* A list of people (name and title or role) that are mentioned.
+* A list of relevant call categories.
 
 **Example result:**
 ```json
@@ -219,7 +216,7 @@ The following prebuilt analyzers are available:
 }
 ```
 
-**Conversation analysis (prebuilt-audioAnalyzer)**. Analyze recordings to generate:
+**Conversation analysis (prebuilt-audioSearch)**. Analyze recordings to generate:
 - conversation transcripts
 - conversation summary
 
@@ -229,7 +226,7 @@ The following prebuilt analyzers are available:
   "id": "9624cc49-b6b3-4ce5-be6c-e895d8c2484d",
   "status": "Succeeded",
   "result": {
-    "analyzerId": "prebuilt-audioAnalyzer",
+    "analyzerId": "prebuilt-audioSearch",
     "apiVersion": "2025-05-01-preview",
     "createdAt": "2025-05-06T23:00:12Z",
     "stringEncoding": "utf8",
@@ -277,7 +274,7 @@ You can also customize prebuilt analyzers for more fine-grained control of the o
 ## Conversational Knowledge Mining Solution Accelerator
 For an end-2-end quickstart for Speech Analytics solutions, refer to the [Conversation knowledge mining solution accelerator](https://aka.ms/Conversational-Knowledge-Mining).
 
-Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Azure AI Foundry, Azure AI Content Understanding, Azure OpenAI in Azure AI Foundry Models, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
+Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Microsoft Foundry, Azure Content Understanding in Foundry Tools, Azure OpenAI in Microsoft Foundry Models, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
 
 Capabilities such as topic modeling, key phrase extraction, speech-to-text transcription, and interactive chat enable users to explore data naturally and make faster, more informed decisions.
 
@@ -297,8 +294,8 @@ Developers using this service should review Microsoft's policies on customer dat
 
 ## Next steps
 
-* Try processing your audio content in the [**Azure AI Foundry portal**](https://aka.ms/cu-landing).
-* Learn how to analyze audio content with [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Try processing your audio content in the [**Microsoft Foundry portal**](https://aka.ms/cu-landing).
+* Learn how to analyze audio content with [**analyzer templates**](../how-to/content-understanding-foundry-classic.md).
 * Review code samples: 
   * [**audio content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).
   * [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).

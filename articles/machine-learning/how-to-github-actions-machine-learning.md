@@ -5,9 +5,9 @@ description: Learn about how to create a GitHub Actions workflow to train a mode
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-author: Blackmist
-ms.author: larryfr
-ms.reviewer: jukullam
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 02/07/2025
 ms.topic: how-to
 ms.custom: github-actions-azure

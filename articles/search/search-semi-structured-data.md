@@ -2,7 +2,6 @@
 title: 'Tutorial: Index Semi-Structured Data in JSON Blobs'
 titleSuffix: Azure AI Search
 description: Learn how to index and search semi-structured Azure JSON blobs using Azure AI Search REST APIs.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: tutorial
 ms.date: 03/28/2025
+ms.update-cycle: 365-days
 
 ---
 
@@ -28,7 +28,7 @@ This tutorial shows you how to index nested JSON arrays, using a REST client and
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + [Azure Storage](/azure/storage/common/storage-account-create).
 
@@ -106,11 +106,13 @@ Here's the first nested JSON in the file. The remainder of the file includes 1,5
 
 ### Copy a search service URL and API key
 
-For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-howto-managed-identities-data-sources.md).
+For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-how-to-managed-identities.md).
 
-1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
 
-1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
+1. From the left pane, select **Overview** and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`
+
+1. From the left pane, select **Settings** > **Keys** and copy an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests to add, modify, or delete objects.
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
@@ -129,7 +131,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Save the file using a `.rest` or `.http` file extension.
 
-For help with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
+For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 ## Create a data source
 
@@ -137,7 +139,7 @@ For help with the REST client, see [Quickstart: Keyword search using REST](searc
 
 ```http
 ### Create a data source
-POST {{baseUrl}}/datasources?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -165,7 +167,7 @@ HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
 ETag: "0x8DC43A5FDB8448F"
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('ny-philharmonic-ds')?api-version=2024-07-01
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('ny-philharmonic-ds')?api-version=2025-09-01
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -203,7 +205,7 @@ For nested JSON, the index fields must be identical to the source fields. Curren
 
 ```http
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -251,7 +253,7 @@ The indexer configuration includes the `jsonArray` parsing mode and a `documentR
 
 ```http
 ### Create and run an indexer
-POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -280,7 +282,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -317,7 +319,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/ny-philharmonic-index/docs/search?api-version=2024-07-01"
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/ny-philharmonic-index/docs/search?api-version=2025-09-01"
 }
 ```
 
@@ -325,7 +327,7 @@ Add a `search` parameter to search on a string, a `select` parameter to limit th
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/ny-philharmonic-index/docs/search?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -350,19 +352,19 @@ Indexers can be reset to clear execution history, which allows a full rerun. The
 
 ```http
 ### Reset the indexer
-POST {{baseUrl}}/indexers/ny-philharmonic-indexer/reset?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexers/ny-philharmonic-indexer/reset?api-version=2025-09-01  HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{baseUrl}}/indexers/ny-philharmonic-indexer/run?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexers/ny-philharmonic-indexer/run?api-version=2025-09-01  HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{baseUrl}}/indexers/ny-philharmonic-indexer/status?api-version=2024-07-01  HTTP/1.1
+GET {{baseUrl}}/indexers/ny-philharmonic-indexer/status?api-version=2025-09-01  HTTP/1.1
   api-key: {{apiKey}}
 ```
 
@@ -377,4 +379,4 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 Now that you're familiar with the basics of Azure Blob indexing, take a closer look at indexer configuration for JSON blobs in Azure Storage:
 
 > [!div class="nextstepaction"]
-> [Configure JSON blob indexing](search-howto-index-json-blobs.md)
+> [Configure JSON blob indexing](search-how-to-index-azure-blob-json.md)

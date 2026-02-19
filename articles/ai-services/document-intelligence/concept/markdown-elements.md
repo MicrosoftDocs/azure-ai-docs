@@ -1,19 +1,19 @@
 ---
 title: Document Intelligence supported Markdown elements
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Description of the supported Markdown elements returned as part of the Layout API response and how to use the response in your applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 05/05/2025
-ms.author: tonyeiyalla
+ms.topic: concept-article
+ms.date: 11/18/2025
+ms.author: lajanuar
 
 ---
 
 # Understanding Document Intelligence Layout API Markdown Output Format
 
-Azure AI Document Intelligence Layout API can transform your documents into rich Markdown, preserving their original structure and formatting. Just specify `outputContentFormat=markdown` in your request to receive semantically structured content that maintains paragraphs, headings, tables, and other document elements in their proper hierarchy.
+Azure Document Intelligence in Foundry Tools Layout API can transform your documents into rich Markdown, preserving their original structure and formatting. Just specify `outputContentFormat=markdown` in your request to receive semantically structured content that maintains paragraphs, headings, tables, and other document elements in their proper hierarchy.
 
 This Markdown output elegantly captures the document's original organization while providing standardized, easily consumable content for downstream applications. The preserved semantic structure enables more sophisticated document processing workflows without losing the context and relationships between document elements.
 
@@ -107,6 +107,9 @@ The Layout API preserves figure elements:
 * Encapsulates figure content in `<figure>` tags to maintain semantic distinction from surrounding text
 * Preserves figure captions with the `<figcaption>` tag to provide important context
 * Preserves figure footnotes as separate paragraphs following the figure container
+
+> [!IMPORTANT]
+> In cases where we detect certain document components like section heading as part of the figures, markdown output will not present figures in the output and use the information for document structure analysis. For these cases, enumerate the figures field in JSON to retrieve all the figures.
 
 Here's an example:
 

@@ -9,8 +9,8 @@ ms.custom:
   - build-2024
 ms.topic: reference
 
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.date: 08/29/2024
 ms.reviewer: ambadal
 ---
@@ -36,7 +36,7 @@ ms.reviewer: ambadal
 
 ## Remarks
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Azure AI Search connection is specific to Azure AI Foundry.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Microsoft Foundry connections, the Azure AI Search connection is specific to Foundry.
 
 ## Examples
 

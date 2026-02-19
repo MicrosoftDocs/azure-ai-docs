@@ -6,11 +6,13 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 10/10/2023
-ms.reviewer: cacrest
-ms.custom: devplatv2
+ms.reviewer: jturuk
+ms.custom:
+  - devplatv2
+  - sfi-image-blocked
 ---
 
 # Authorization on batch endpoints
@@ -362,8 +364,6 @@ To configure the compute cluster for data access, follow these steps:
    1. Select the slider next to __Assign a managed identity__ to enable and configure it as needed. You can use a System-Assigned Managed Identity or a User-Assigned Managed Identity. If using a System-Assigned Managed Identity, it is named as "[workspace name]/computes/[compute cluster name]".
 
    1. Save the changes. 
-
-    :::image type="content" source="media/how-to-authenticate-batch-endpoint/guide-manage-identity-cluster.gif" alt-text="Animation showing the steps to assign a managed identity to a cluster.":::
 
 1. Go to the [Azure portal](https://portal.azure.com) and navigate to the associated storage account where the data is located. If your data input is a Data Asset or a Data Store, look for the storage account where those assets are placed.
 

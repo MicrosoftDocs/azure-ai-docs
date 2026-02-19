@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!TIP]
-> Because you can [customize the left pane](../what-is-azure-ai-foundry.md#left-pane) in the Azure AI Foundry portal, you might see different items than shown in these steps. If you don't see what you're looking for, select **... More** at the bottom of the left pane.
+> Because you can [customize the left pane](../what-is-foundry.md#customize-the-left-pane) in the Microsoft Foundry portal, you might see different items than shown in these steps. If you don't see what you're looking for, select **... More** at the bottom of the left pane.

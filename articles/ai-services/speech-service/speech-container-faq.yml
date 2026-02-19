@@ -1,14 +1,14 @@
 ### YamlMime:FAQ
 metadata:
   title: Speech service containers frequently asked questions (FAQ)
-  titleSuffix: Azure AI services
+  titleSuffix: Foundry Tools
   description: Install and run containers for speech to text and text to speech.
-  author: eric-urban
+  author: PatrickFarley
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: faq
-  ms.date: 3/10/2025
-  ms.author: eur
+  ms.date: 01/30/2026
+  ms.author: pafarley
   ms.custom: devx-track-csharp
 title: Speech service containers frequently asked questions (FAQ)
 summary: When using the Speech service with containers, you can refer to these frequently asked questions before contacting support. This article captures questions of varying degree, from general to technical. 
@@ -118,7 +118,7 @@ sections:
           }
           ```
           
-          You reed to create an AI Foundry resource for Speech, not an AI Foundry resource.
+          You reed to create a Foundry resource for Speech, not a Foundry resource.
           
           
       - question: |

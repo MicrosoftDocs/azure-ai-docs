@@ -1,21 +1,21 @@
 ---
-title: Migrate to V3 - Azure AI Translator
-titleSuffix: Azure AI services
-description: This article provides the steps to help you migrate from V2 to V3 of the Azure AI Translator.
+title: Migrate to V3 - Azure Translator in Foundry Tools
+titleSuffix: Foundry Tools
+description: This article provides the steps to help you migrate from V2 to V3 of the Azure Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
-ms.date: 05/19/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator V3 Migration
+# Azure Translator in Foundry Tools V3 Migration
 
 > [!NOTE]
 > Microsoft Translator V2 was deprecated on April 30, 2018. Migrate your applications to V3 and experience new functionality available exclusively in V3. V2 was retired on May 24, 2021.
 
-Azure AI Translator Version 3 (V3) is generally available. The release includes new features, deprecated methods and a new format for sending to, and receiving data from the Microsoft Translator Service. This document provides information for changing applications to use V3.
+Azure Translator Version 3 (V3) is generally available. The release includes new features, deprecated methods and a new format for sending to, and receiving data from the Microsoft Translator. This document provides information for changing applications to use V3.
 
 The end of this document contains helpful links for you to learn more.
 
@@ -99,19 +99,18 @@ Global
 >
 > The Microsoft Translator Hub will be retired on May 17, 2019. [View important migration information and dates](https://www.microsoft.com/translator/business/hub/).
 
-Azure AI Translator V3 uses neural machine translation by default. As such, it can't be used with the Microsoft Translator Hub. The Translator Hub only supports legacy statistical machine translation. Customization for neural translation is now available using the Azure AI Custom Translator. [Learn more about customizing neural machine translation](../../custom-translator/overview.md)
+Azure Translator V3 uses neural machine translation by default. As such, it can't be used with the Microsoft Translator Hub. The Translator Hub only supports legacy statistical machine translation. Customization for neural translation is now available using the Custom Translator. [Learn more about customizing neural machine translation](../../custom-translator/overview.md)
 
 Neural translation with the V3 text API doesn't support the use of standard categories (`SMT`, `speech`, `tech`, `generalnn`).
 
-| Version | Endpoint | GDPR Processor Compliance | Use Translator Hub | Use Custom Translator (Preview) |
-| :------ | :------- | :------------------------ | :----------------- | :------------------------------ |
-|Translator Version 2|    api.microsofttranslator.com|    No    |Yes    |No|
-|Translator Version 3|    api.cognitive.microsofttranslator.com|    Yes|    No|    Yes|
+| Version | Endpoint | Translator Hub support? | Custom Translator support? |
+| :------ | :------- |:----------------- | :------------------------------ |
+|Translator Version 2|  api.microsofttranslator.com|Yes  |No|
+|Translator Version 3|  api.cognitive.microsofttranslator.com| No| Yes|
 
 **Translator Version 3**
 
 * It's generally available and fully supported.
-* It's GDPR-compliant as a processor and satisfies all ISO 20001 and 20018 as well as SOC 3 certification requirements.
 * It allows you to invoke the neural network translation systems you customized with Custom Translator (Preview), the new Translator neural machine translation (NMT) customization feature.
 * It doesn't provide access to custom translation systems created using the Microsoft Translator Hub.
 
@@ -124,7 +123,7 @@ You're using Version 3 of the Translator if you're using the api.cognitive.micro
 * Does provide access to custom translation systems created using the Microsoft Translator Hub.
 * Uses the api.microsofttranslator.com endpoint.
 
-No version of the Azure AI Translator creates a record of your translations. Your translations are never shared with anyone. More information on the [Translator No-Trace](https://www.aka.ms/NoTrace) webpage.
+No version of the Azure Translator creates a record of your translations. Your translations are never shared with anyone. More information on the [Translator No-Trace](https://www.aka.ms/NoTrace) webpage.
 
 ## Links
 
@@ -135,4 +134,4 @@ No version of the Azure AI Translator creates a record of your translations. You
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View Azure AI Translator V3.0 Documentation](../reference/v3/reference.md)
+> [View Azure Translator V3.0 Documentation](../reference/v3/reference.md)

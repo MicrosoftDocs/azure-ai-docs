@@ -1,24 +1,24 @@
 ---
 title: Control AI model deployment with built-in policies
 titleSuffix: Azure Machine Learning
-description: "Learn how to use built-in Azure policies to control what managed AI Services (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed."
-author: Blackmist
-ms.author: larryfr
+description: "Learn how to use built-in Azure policies to control what managed Foundry Tools (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed."
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to #Don't change
 ms.date: 02/19/2025
 
-#customer intent: As an admin, I want control what Managed AI Services (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
+#customer intent: As an admin, I want control what Managed Foundry Tools (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
 
 ---
 
 # Control AI model deployment with built-in policies in Azure Machine Learning
 
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (standard deployment) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy.
+Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed Foundry Tools (standard deployment) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy.
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - Permissions to create and assign policies. To create and assign policies, you must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level.
 - Familiarity with Azure Policy. To learn more, see [What is Azure Policy?](/azure/governance/policy/overview).
 

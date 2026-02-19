@@ -2,9 +2,9 @@
 title: Manage labeling projects
 titleSuffix: Azure Machine Learning
 description: Tasks for the project manager to administer a labeling project in Azure Machine Learning, including how to export the labels.
-author: sdgilley
-ms.author: sgilley
-ms.reviewer: vkann
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
@@ -145,7 +145,7 @@ View and change details of your project on the **Details** tab. On this tab, you
 * Edit instructions you give to your labels.
 * Change settings for ML-assisted labeling and kick off a labeling task.
 
-## Projects created in Azure AI services
+## Projects created in Foundry Tools
 
 If your labeling project was created from [Language Studio](/azure/ai-services/language-service/custom/azure-machine-learning-labeling), you see a **Language Studio** tab on the **Details** page. The tab allows you to switch between labeling in Azure Machine Learning and labeling in Language Studio.
 

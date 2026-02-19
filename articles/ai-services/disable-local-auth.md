@@ -1,24 +1,24 @@
 ---
-title: Disable local authentication in Azure AI Services
-titleSuffix: Azure AI services
-description: "This article describes how to disable local authentication in Azure AI Services for improved security."
+title: Disable local authentication in Foundry Tools
+titleSuffix: Foundry Tools
+description: "This article describes how to disable local authentication in Foundry Tools for improved security."
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 03/26/2025
+ms.date: 10/02/2025
 ms.author: pafarley
 ms.custom: FY25Q1-Linter
-#customer intent: As a developer, I want to disable local authentication in Azure AI Services so that I can enforce Microsoft Entra authentication.
+#customer intent: As a developer, I want to disable local authentication in Foundry Tools so that I can enforce Microsoft Entra authentication.
 ---
 
-# Disable local authentication in Azure AI Services
+# Disable local authentication in Foundry Tools
 
-Azure AI Services provides Microsoft Entra authentication support for all resources. This feature provides you with seamless integration when you require centralized control and management of identities and resource credentials. Organizations can disable local authentication methods and enforce Microsoft Entra authentication instead.
+Foundry Tools provides Microsoft Entra authentication support for all resources. This feature provides you with seamless integration when you require centralized control and management of identities and resource credentials. Organizations can disable local authentication methods and enforce Microsoft Entra authentication instead.
 
 ## How to disable local authentication
 
-You can disable local authentication using the Azure policy **Azure AI Services resources should have key access disabled (disable local authentication)**. Set it at the subscription level or resource group level to enforce the policy for a group of services.
+You can disable local authentication using the Azure policy **Foundry Tools resources should have key access disabled (disable local authentication)**. Set it at the subscription level or resource group level to enforce the policy for a group of services.
 
 If you're creating an account using Bicep / ARM template, you can set the property `disableLocalAuth` to `true` to disable local authentication. For more information, see 
 [Microsoft.CognitiveServices accounts - Bicep, ARM template, & Terraform](/azure/templates/microsoft.cognitiveservices/accounts)
@@ -41,4 +41,4 @@ To enable local authentication, execute the PowerShell cmdlet **[Set-AzCognitive
 
 ## Next step
 
-- [Authenticate requests to Azure AI services](./authentication.md)
+- [Authenticate requests to Foundry Tools](./authentication.md)

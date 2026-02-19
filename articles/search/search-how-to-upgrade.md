@@ -1,5 +1,5 @@
 ---
-title: Service Upgrade in the Azure Portal
+title: Service Upgrade in the Azure portal
 titleSuffix: Azure AI Search
 description: Learn how to upgrade your existing Azure AI Search service to high-capacity storage and processors in your region.
 manager: nitinme
@@ -8,39 +8,38 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 04/29/2025
+ms.date: 08/08/2025
+ms.update-cycle: 180-days
 ---
 
 # Upgrade your Azure AI Search service in the Azure portal
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
 An upgrade brings older search services to the capabilities of new services created in the same region. Specifically, it upgrades the computing power of the underlying service. This one-time operation doesn't introduce breaking changes to your application, and you shouldn't need to change any code.
 
-For [eligible services](#upgrade-eligibility), an upgrade increases the [partition storage](#higher-storage-limits) and [vector index size](#higher-vector-limits) on the same tier at no extra cost.
-
-> [!TIP]
-> Looking to [change your pricing tier](search-capacity-planning.md#change-your-pricing-tier)? You can now move up between Basic and Standard (S1, S2, and S3) tiers.
+For [eligible services](#upgrade-eligibility), an upgrade increases the [partition storage](#higher-storage-limits) and [vector index size](#higher-vector-limits) on the same pricing tier at no extra cost.
 
 This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the [Search Management REST APIs](/rest/api/searchmanagement/) to upgrade your service programmatically. For more information, see [Manage your search service using REST](search-manage-rest.md#upgrade-a-service).
+
+> [!TIP]
+> Looking to [change your pricing tier](search-capacity-planning.md#change-your-pricing-tier)? You can switch between Basic and Standard (S1, S2, and S3) tiers.
 
 ## About service upgrades
 
 In April 2024, Azure AI Search increased the [storage capacity](search-limits-quotas-capacity.md#service-limits) of newly created search services. Services created before April 2024 saw no capacity changes, so if you wanted larger and faster partitions, you had to create a new service. However, some older services can now be upgraded to benefit from the higher-capacity partitions.
 
-In this preview, an upgrade only increases the [storage limit](#higher-storage-limits) and [vector index size](#higher-vector-limits) of [eligible services](#upgrade-eligibility).
+Currently, an upgrade only increases the [storage limit](#higher-storage-limits) and [vector index size](#higher-vector-limits) of [eligible services](#upgrade-eligibility).
 
 ### Upgrade eligibility
 
-To qualify for an upgrade, your service:
+To qualify for an upgrade, your service must:
 
 > [!div class="checklist"]
-> + Must have been [created before April 3, 2024](#check-your-service-creation-or-upgrade-date). Services created after this date should already have higher capacity.
-> + Must be in a [region where higher capacity is enabled](search-region-support.md). Most regions provide higher-capacity partitions. Exceptions are noted in the footnotes of each table.
+> + Have been [created before April 3, 2024](#check-your-service-creation-or-upgrade-date). Services created after this date should already have higher capacity.
+> + Be in a [region where higher capacity is enabled](search-limits-quotas-capacity.md#partition-storage-gb). Most regions provide higher-capacity partitions, as noted in the table's footnotes.
+> + Be in a [region that doesn't have capacity constraints on your pricing tier](search-region-support.md). Constrained regions and tiers are noted in the footnotes of each table.
 
 > [!IMPORTANT]
-> + Some search services created before January 1, 2019 don't support upgrades. In this situation, you must create a new service in a high-capacity region to get increased storage and vector limits.
-> + Upgrades are subject to [capacity constraints](search-region-support.md). If regional capacity is constrained for your pricing tier, your service can't be upgraded.
+> Some search services created before January 1, 2019 don't support upgrades. In this situation, you must create a new service in a [high-capacity region](search-limits-quotas-capacity.md#partition-storage-gb) to get increased storage and vector limits.
 
 ### Higher storage limits
 
@@ -76,7 +75,9 @@ The date you created your service partially determines its [upgrade eligibility]
 
 ## Upgrade your service
 
-You can’t undo a service upgrade. Before you proceed, make sure that you want to permanently increase the [storage limit](#higher-storage-limits) and [vector index size](#higher-vector-limits) of your search service. We recommend that you test this operation in a nonproduction environment.
+You can't undo a service upgrade. Before you proceed, make sure that you want to permanently increase the [storage limit](#higher-storage-limits) and [vector index size](#higher-vector-limits) of your search service. We recommend that you test this operation in a nonproduction environment.
+
+The availability of your search service during an upgrade depends on how many replicas you've provisioned. With two or more replicas, your service remains available while one replica is updated. For more information, see [Reliability in Azure AI Search](/azure/reliability/reliability-ai-search).
 
 To upgrade your service:
 
@@ -100,9 +101,7 @@ To upgrade your service:
 
 1. Check your notifications to confirm that the operation started.
 
-   The upgrade is an asynchronous operation, so you can continue using your service. Depending on the size of your service, the upgrade can take several hours to complete.
-
-   If the upgrade fails, your service returns to its original state.
+   Depending on the size of your service, this operation can take several hours to complete. If the upgrade fails, your service returns to its original state.
 
 ## Next step
 

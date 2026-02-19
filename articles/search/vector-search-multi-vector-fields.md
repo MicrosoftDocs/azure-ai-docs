@@ -5,8 +5,9 @@ description: Learn how Azure AI Search enables multi-vector field support for be
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 05/07/2025
+ms.update-cycle: 180-days
+ms.topic: concept-article
+ms.date: 08/27/2025
 ---
 
 # Multi-vector field support in Azure AI Search
@@ -15,7 +16,11 @@ ms.date: 05/07/2025
 
 The multi-vector field support feature in Azure AI Search enables you to index multiple child vectors within a single document field. This feature is valuable for use cases like multimodal data or long-form documents, where representing the content with a single vector would lead to loss of important detail.
 
-## Understanding multi-vector field support
+## Limitations
+
+- Semantic ranker isn't supported for nested chunks within a complex field. Therefore, the semantic ranker doesn't support nested vectors in multi-vector fields.
+
+## Understand multi-vector field support
 
 Traditionally, vector types, for example `Collection(Edm.Single)` could only be used in top-level fields. With the introduction of multi-vector field support, you can now use vector types in nested fields of complex collections, effectively allowing multiple vectors to be associated with a single document.
 
@@ -97,7 +102,7 @@ Here's a sample document that illustrates how you might use multi-vector fields 
   "title": "Non-Existent Movie",
   "description": "A fictional movie for demonstration purposes.",
   "descriptionEmbedding": [1, 2, 3],
-  "releaseDate": "2025-05-01",
+  "releaseDate": "2025-08-01",
   "scenes": [
     {
       "embedding": [4, 5, 6],
@@ -117,7 +122,7 @@ Here's a sample document that illustrates how you might use multi-vector fields 
 
 In this example, the scenes field is a complex collection containing multiple vectors (the embedding fields), along with other associated data. Each vector represents a scene from the movie and could be used to find similar scenes in other movies, among other potential use cases.
 
-## Querying with multi-vector field support
+## Query with multi-vector field support
 
 The multi-vector field support feature introduces some changes to the query mechanism in Azure AI Search. However, the main querying process remains largely the same.
 Previously, `vectorQueries` could only target vector fields defined as top-level index fields. With this feature, we're relaxing this restriction and allowing vectorQueries to target fields that are nested within a collection of complex types (up to one level deep).
@@ -141,29 +146,25 @@ Additionally, a new query time parameter is available: `perDocumentVectorLimit`.
 }
 ```
 
-## Ranking across multiple vectors in a single field
+## Rank across multiple vectors in a single field
 
 When multiple vectors are associated with a single document, Azure AI Search uses the maximum score among them for ranking. The system uses the most relevant vector to score each document, which prevents dilution by less relevant ones.
 
-## Retrieving the relevant elements in a collection
+## Retrieve relevant elements in a collection
 
 When a collection of complex types is included in the `$select` parameter, only the elements that matched the vector query are returned. This is useful for retrieving associated metadata such as timestamps, text descriptions, or image paths.
 
 > [!NOTE]
 > To reduce payload size, avoid including the vector values themselves in the `$select` parameter. Consider omitting vector storage entirely if unnecessary.
 
-## Limitations
-
-- Semantic ranker isn't supported for nested chunks within a complex field. Therefore, the semantic ranker doesn't support nested vectors in multi-vector fields.
-
-## Debugging multi-vector queries (Preview)
+## Debug multi-vector queries (preview)
 
 When a document includes multiple embedded vectors, such as text and image embeddings in different subfields, the system uses the highest vector score across all elements to rank the document.
 
-To debug how each vector contributed, use the `innerHits` debug mode (available in API version 2025-05-01-preview).
+To debug how each vector contributed, use the `innerHits` debug mode (available in the latest preview REST API).
 
 ```json
-POST /indexes/my-index/docs/search?api-version=2025-05-01-preview
+POST /indexes/my-index/docs/search?api-version=2025-11-01-preview
 {
   "vectorQueries": [
     {

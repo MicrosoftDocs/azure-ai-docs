@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 Create a **GET** request using the following URL, headers, and JSON body to get the trained model evaluation summary.
 
 
@@ -21,7 +20,7 @@ Create a **GET** request using the following URL, headers, and JSON body to get 
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `myProject` |
 |`{trainedModelLabel}`     | The name for your trained model. This value is case-sensitive.   | `Model1` |
-|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you are calling. | `2023-04-01` |
+|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
 
 
 ### Headers
@@ -34,7 +33,7 @@ Use the following header to authenticate your request.
 
 ### Response Body
 
-Once you send the request, you will get the following response.
+Once you send the request, you get the following response.
 
 ```json
 {

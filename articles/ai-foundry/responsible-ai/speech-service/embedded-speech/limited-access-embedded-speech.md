@@ -1,12 +1,12 @@
 ---
 title: Limited Access to Embedded Speech
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains why embedded Speech is available as Limited Access feature and how to request access.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 10/27/2022
 ---
 
@@ -35,4 +35,4 @@ Report abuse of embedded Speech [here](https://aka.ms/reportabuse).
 ## Next steps
 
 * [How to use embedded speech](/azure/ai-services/speech-service/embedded-speech)
-* [Limited Access with Azure AI services](/azure/ai-services/cognitive-services-limited-access)
+* [Limited Access with Foundry Tools](/azure/ai-services/cognitive-services-limited-access)

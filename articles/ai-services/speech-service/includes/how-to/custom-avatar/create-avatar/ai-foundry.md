@@ -1,23 +1,27 @@
 ---
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 5/19/2025
+ms.date: 08/07/2025
 ---
 
 Getting started with a custom text to speech avatar is a straightforward process. All it takes are a few video clips of your actor. If you'd like to train a [custom voice](../../../../custom-neural-voice.md) for the same actor, you can do so separately.
 
-> [!NOTE]
+> [!Note]
 > Custom avatar access is limited based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
+
 
 ## Prerequisites
 
-You need an Azure AI Foundry resource in one of the [regions that supports custom avatar training](../../../../text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) AI Foundry or Speech resources.
+You need a Microsoft Foundry resource in one of the [regions that supports custom avatar training](../../../../text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) Foundry or Speech resources.
 
 You need a video recording of the talent reading a consent statement acknowledging the use of their image and voice. You upload this video when you set up the avatar talent. For more information, see [Add avatar talent consent](#step-2-add-avatar-talent-consent).
 
 You need video recordings of your avatar talent as training data. You upload these videos when you prepare training data. For more information, see [Add training data](#step-3-add-training-data).
+
+> [!NOTE]
+> If you upload data from Azure Blob storage, the storage account must allow public network access. The URL must be retrievable using a simple anonymous GET request. For example, use a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization or expect user interaction aren't supported.
 
 ## Step 1: Start fine-tuning
 
@@ -26,11 +30,11 @@ You need video recordings of your avatar talent as training data. You upload the
 
 To fine-tune a custom avatar, follow these steps:
 
-1. Go to your Azure AI Foundry project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+1. Go to your Microsoft Foundry project in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create a Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 
-    :::image type="content" source="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png":::
+    :::image type="content" source="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Foundry Tools models." lightbox="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png":::
  
 1. In the wizard, select **Custom avatar (text to speech avatar fine-tuning)**. 
 1. Select **Next**.
@@ -49,13 +53,13 @@ For more information about recording the consent video, see [How to record video
 
 To add an avatar talent profile and upload their consent statement in your project, follow these steps:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Set up avatar talent** > **Upload consent video**. 
 
 1. On the **Upload consent video** page, follow the instructions to upload the avatar talent consent video you recorded beforehand.  
-    - Select the avatar type to build. Build a voice sync for avatar which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar. The option to build a voice sync for avatar is only available in the Southeast Asia, West Europe, and West US 2 regions.
+    - Select the avatar type to build. Build a voice sync for avatar, which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar. The option to build a voice sync for avatar is only available in the Southeast Asia, West Europe, and West US 2 regions.
     - Select the speaking language of the verbal consent statement recorded by the avatar talent. 
     - Enter the avatar talent name and your company name in the same language as the recorded statement. 
         - The avatar talent name must be the name of the person who recorded the consent statement. 
@@ -79,7 +83,7 @@ All data you upload must meet the requirements for the data type that you choose
 When you're ready to upload your data, go to the **Prepare training data** tab to add your data. 
 
 To upload training data, follow these steps:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Prepare training data** > **Upload data**. 
@@ -90,19 +94,19 @@ To upload training data, follow these steps:
 
 Data files are automatically validated when you select **Upload**. Data validation includes series of checks on the video files to verify their file format, size, and total volume. If there are any errors, fix them and submit again.
 
-After you upload the data, you can check the data overview which indicates whether you provided enough data to start training. 
+After you upload the data, you can check the data overview, which indicates whether you provided enough data to start training. 
 
 ## Step 4: Train your avatar model
 
 > [!IMPORTANT]
 > All the training data in the project is included in the training. The model quality is highly dependent on the data you provided, and you're responsible for the video quality. Make sure you record the training videos according to the [how to record video samples guide](../../../../text-to-speech-avatar/custom-avatar-record-video-samples.md). 
 
-To create a custom avatar in the Azure AI Foundry portal, follow these steps for one of the following methods:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+To create a custom avatar in the Microsoft Foundry portal, follow these steps for one of the following methods:
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Train model** > **+ Train model**. 
-1. Enter a Name to help you identify the model. Choose a name carefully. The model name is used as the avatar name in your synthesis request by the SDK and SSML input. Only letters, numbers, hyphens, and underscores are allowed. Use a unique name for each model.
+1. Enter a Name to help you identify the model. Choose a name carefully. The model name is used as the avatar name in your synthesis request by the SDK and speech synthesis markup language (SSML) input. Only letters, numbers, hyphens, and underscores are allowed. Use a unique name for each model.
 
     > [!IMPORTANT]
     > The avatar model name must be unique within the same Speech or AI Services resource. 
@@ -123,7 +127,7 @@ To copy your custom avatar model to another project:
 1. Select the subscription, region, AI Services resource for Speech, and project where you want to copy the model to. You must have an AI Services resource for Speech and project in the target region, otherwise you need to create them first.
 1. Select **Submit** to copy the model. 
 
-Once the model is copied, you see a notification in the Azure AI Foundry portal.
+Once the model is copied, you see a notification in the Microsoft Foundry portal.
 
 Navigate to the project where you copied the model to deploy the model copy.
 
@@ -132,7 +136,7 @@ Navigate to the project where you copied the model to deploy the model copy.
 After you successfully created and trained your avatar model, you deploy it to your endpoint.
 
 To deploy your avatar:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Deploy model** > **Deploy model**. 
@@ -142,15 +146,15 @@ To deploy your avatar:
     > [!IMPORTANT]
     > When a model is deployed, you pay for continuous up time of the endpoint regardless of your interaction with that endpoint. Check the pricing note on how model deployment is charged. You can delete a deployment when the model isn't in use to reduce spending and conserve resources.
 
-After you deploy your custom avatar, it's available to use in the Azure AI Foundry portal or via API:
-- The avatar appears in the avatar list of [text to speech avatar on Azure AI Foundry portal](https://speech.microsoft.com/portal/talkingavatar).
-- The avatar appears in the avatar list of [live chat avatars via Azure AI Foundry portal](https://speech.microsoft.com/portal/livechat).
+After you deploy your custom avatar, it's available to use in the Microsoft Foundry portal or via API:
+- The avatar appears in the avatar list of [text to speech avatar on Microsoft Foundry portal](https://speech.microsoft.com/portal/talkingavatar).
+- The avatar appears in the avatar list of [live chat avatars via Microsoft Foundry portal](https://speech.microsoft.com/portal/livechat).
 - You can call the avatar from the SDK and SSML input by specifying the avatar model name. For more information, see the [avatar properties](../../../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#avatar-properties).
  
 ### Remove a deployment 
 
 To remove your deployment, follow these steps:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select the deployment on the **Deploy model** page. The model is actively hosted if the status is "Succeeded".

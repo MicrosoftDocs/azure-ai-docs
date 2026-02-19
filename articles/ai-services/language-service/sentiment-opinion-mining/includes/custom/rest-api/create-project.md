@@ -3,10 +3,10 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-To start creating a Custom sentiment analysis model, you need to create a project. Creating a project will let you label data, train, evaluate, improve, and deploy your models.
+To start creating a Custom sentiment analysis model, you need to create a project. Creating a project lets you label data, train, evaluate, improve, and deploy your models.
 
 > [!NOTE]
 > The project name is case-sensitive for all operations.
@@ -14,7 +14,7 @@ Create a **PATCH** request using the following URL, headers, and JSON body to cr
 
 ### Request URL
 
-Use the following URL to create a project. Replace the placeholder values below with your own values. 
+Use the following URL to create a project. Replace the placeholder values with your own values. 
 
 ```rest
 {Endpoint}/language/authoring/analyze-text/projects/{projectName}?api-version={API-VERSION}
@@ -24,7 +24,7 @@ Use the following URL to create a project. Replace the placeholder values below 
 |---------|---------|---------|
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `myProject` |
-|`{API-VERSION}`     | The version of the API you are calling. The value referenced here is for the latest version released. See [Model lifecycle](../../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.  | `2023-04-15-preview` |
+|`{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest version released. See [Model lifecycle](../../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.  | `2023-04-15-preview` |
 
 
 ### Headers
@@ -37,7 +37,7 @@ Use the following header to authenticate your request.
 
 ### Body
 
-Use the following JSON in your request. Replace the placeholder values below with your own values.
+Use the following JSON in your request. Replace the placeholder values with your own values.
 
 ```json
 {
@@ -53,16 +53,16 @@ Use the following JSON in your request. Replace the placeholder values below wit
 |Key  |Placeholder|Value  | Example |
 |---------|---------|---------|--|
 | projectName | `{PROJECT-NAME}` | The name of your project. This value is case-sensitive. | `myProject` |
-| language | `{LANGUAGE-CODE}` |  A string specifying the language code for the documents used in your project. If your project is a multilingual project, choose the language code of the majority of the documents. <!--See [language support](../../language-support.md) to learn more about supported language codes.--> |`en-us`|
+| language | `{LANGUAGE-CODE}` |  A string specifying the language code for the documents used in your project. If your project is a multilingual project, choose the language code for most of the documents. <!--See [language support](../../language-support.md) to learn more about supported language codes.--> |`en-us`|
 | projectKind | `CustomTextSentiment` | Your project kind. | `CustomTextSentiment` |
 | multilingual | `true`| A boolean value that enables you to have documents in multiple languages in your dataset and when your model is deployed you can query the model in any supported language (not necessarily ones included in your training documents). <!--See [language support](../../language-support.md) to learn more about multilingual support.-->  | `true`|
-| storageInputContainerName | `{CONTAINER-NAME` | The name of your Azure storage container where you have uploaded your documents.   | `myContainer` |
+| storageInputContainerName | `{CONTAINER-NAME` | The name of your Azure storage container for your uploaded documents.   | `myContainer` |
 
 
 
 
-This request will return a 201 response, which means that the project is created.
+This request returns a 201 response, which means that the project is created.
 
 
-This request will return an error if:
+This request returns an error if:
 * The selected resource doesn't have proper permission for the storage account.

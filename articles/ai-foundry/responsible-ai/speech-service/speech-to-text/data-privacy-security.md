@@ -1,12 +1,12 @@
 ---
 title: Data, privacy, and security for Speech to text
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document details issues for data, privacy, and security for a Speech to text.
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
-ms.author: eur
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 06/30/2021
 ---
 
@@ -65,7 +65,7 @@ With speech containers, customers deploy Speech services APIs to their own envir
 
 ### Security for customers' data in speech container
 
-The security of customer data is a shared responsibility. Details on the security model of Azure AI containers, like the speech container can be found in [Azure AI Services container security](/azure/cognitive-services/cognitive-services-container-support?tabs=luis#azure-cognitive-services-container-security).
+The security of customer data is a shared responsibility. Details on the security model of Azure AI containers, like the speech container can be found in [Foundry Tools container security](/azure/cognitive-services/cognitive-services-container-support?tabs=luis#azure-cognitive-services-container-security).
 
 You are responsible for securing and maintaining the equipment and infrastructure required to operate speech containers located on your premises, such as your edge device and network.
 
@@ -75,6 +75,6 @@ To learn more about Microsoft's privacy and security commitments visit [the Micr
 
 ### No data trace
 
-When doing real-time speech to text, pronunciation assessment and speech translation, Microsoft does not retain or store the data provided by customers. In batch transcription, customers specify their own storage locations to send the audio input. Generated transcription text may be stored either in customer's own storage or Microsoft storage if no storage is specified. If output transcriptions are stored in Microsoft storage, customers may delete the data either by calling a deletion API or setting the timeToLive parameter to automatically delete the data in a specified time. See more details in [How to use batch transcription - Speech service - Azure AI services](/azure/cognitive-services/speech-service/batch-transcription).
+When doing real-time speech to text, fast transcription, pronunciation assessment, and speech translation, Microsoft does not retain or store the data provided by customers. In batch transcription, customers specify their own storage locations to send the audio input. Generated transcription text may be stored either in customer's own storage or Microsoft storage if no storage is specified. If output transcriptions are stored in Microsoft storage, customers may delete the data either by calling a deletion API or setting the timeToLive parameter to automatically delete the data in a specified time. See more details in [How to use batch transcription - Speech service - Foundry Tools](/azure/cognitive-services/speech-service/batch-transcription).
 
 To learn more about Microsoft's privacy and security commitments visit the Microsoft [Trust Center](https://www.microsoft.com/TrustCenter/CloudServices/Azure/default.aspx).

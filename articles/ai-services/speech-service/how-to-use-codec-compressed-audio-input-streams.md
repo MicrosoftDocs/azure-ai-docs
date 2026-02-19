@@ -1,13 +1,13 @@
 ---
 title: How to use compressed input audio - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use compressed input audio the Speech SDK and CLI. 
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python, linux-related-content
 zone_pivot_groups: programming-languages-speech-services
 #Customer intent: As a developer, I want to learn how to use compressed input audio in the Speech SDK so that I can convert audio files into text.

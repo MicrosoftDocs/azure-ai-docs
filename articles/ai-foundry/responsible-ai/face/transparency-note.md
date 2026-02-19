@@ -1,12 +1,12 @@
 ---
 title: Use cases for Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Face Responsible AI Basics, use cases, terms
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
+ms.topic: concept-article
 ms.date: 06/21/2022
 ---
 
@@ -24,16 +24,16 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 This Transparency Note is part of our effort at Microsoft to implement our [Facial Recognition Principles](https://blogs.microsoft.com/on-the-issues/2018/12/17/six-principles-to-guide-microsofts-facial-recognition-work/), which set out how we approach the development and deployment of facial recognition technology. We encourage you to use the principles to guide your development efforts as you use this technology. 
 
-## The basics of Azure AI Vision Face API
+## The basics of Azure Vision in Foundry Tools Face API
 
-Depending on the specific capability, Azure AI Vision Face API (“Face API”) detects, recognizes, and/or analyzes human faces in images and videos using pre-trained machine learning models that have been developed by Microsoft. Developers can integrate Face API functions into their systems without creating their own models. 
+Depending on the specific capability, Vision Face API (“Face API”) detects, recognizes, and/or analyzes human faces in images and videos using pre-trained machine learning models that have been developed by Microsoft. Developers can integrate Face API functions into their systems without creating their own models. 
 
 When used responsibly, Face API is an important and useful building block technology that can improve efficiency, security, and customer experiences when used to create systems that analyze the face. 
 
-Certain Face API features, such as facial recognition, generate unique identifying numerical (or other) representations of the face known as facial templates. Learn more about the process, including data retention periods, at the [Data and privacy for Azure AI Vision Face API](/azure/ai-foundry/responsible-ai/face/data-privacy-security) documentation page. 
+Certain Face API features, such as facial recognition, generate unique identifying numerical (or other) representations of the face known as facial templates. Learn more about the process, including data retention periods, at the [Data and privacy for Vision Face API](/azure/ai-foundry/responsible-ai/face/data-privacy-security) documentation page. 
 
 > [!WARNING]
-> On June 11, 2020, Microsoft announced that it will not sell facial recognition technology to police departments in the United States until strong regulation, grounded in human rights, has been enacted. As such, customers may not use facial recognition features or functionality included in Azure Services, such as Face or Video Indexer, if a customer is, or is allowing use of such services by or for, a police department in the United States. When you create a new Face resource, you must acknowledge and agree in the Azure Portal that you will not use the service by or for a police department in the United States and that you have reviewed the Responsible AI documentation and will use this service in accordance with it.
+> On June 11, 2020, Microsoft announced that it will not sell facial recognition technology to police departments in the United States until strong regulation, grounded in human rights, has been enacted. As such, customers may not use facial recognition features or functionality included in Azure Services, such as Face or Video Indexer, if a customer is, or is allowing use of such services by or for, a police department in the United States. When you create a new Face resource, you must acknowledge and agree in the Azure portal that you will not use the service by or for a police department in the United States and that you have reviewed the Responsible AI documentation and will use this service in accordance with it.
 
 > [!CAUTION]
 > Face service access is limited based on eligibility and usage criteria in order to support our Responsible AI principles. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see the [Face limited access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
@@ -78,13 +78,13 @@ Certain Face API features, such as facial recognition, generate unique identifyi
 
 **Face group** also builds on the facial detection feature and creates small groups of faces that look similar to each other from all enrollment templates. For more information, see the [Face - Group ](/rest/api/face/face-recognition-operations/group) API reference documentation. 
 
-**Facial liveness detection** answers the question, “Is the detected human face in this scene real and present?” Facial liveness detection determines the authenticity of a human face in a scene and returns a classification of live or spoof. Facial liveness detection models are incapable of verifying or identifying individuals however they may find, extract, or create facial templates to ensure the same person is present for the duration of the liveness test. For more information, see the Face - Detect Liveness API reference documentation ([iOS](https://aka.ms/liveness-sdk-ios), [Java](https://aka.ms/liveness-sdk-java)). 
+**Facial liveness detection** answers the question, “Is the detected human face in this scene real and present?” Facial liveness detection determines the authenticity of a human face in a scene and returns a classification of live or spoof. Facial liveness detection models are incapable of verifying or identifying individuals however they may find, extract, or create facial templates to ensure the same person is present for the duration of the liveness test. For more information, see the Face - Detect Liveness API reference documentation ([iOS](https://aka.ms/liveness-sdk-ios), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/vision/azure-ai-vision-imageanalysis/src/samples/README.md)). 
 
 For more information on functions of Azure AI Face service, see the [Face documentation](/azure/ai-services/computer-vision/overview-identity). 
 
-### Limited Access to Azure AI Vision Face API 
+### Limited Access to Vision Face API 
 
-Azure AI Vision Face API (“Face API”) is a Limited Access service and registration is required for access to some features. For more information, see the [Microsoft’s Limited Access Policy](https://aka.ms/limitedaccesscogservices). Certain features are only available to Microsoft managed customers and approved partners, and only for certain use cases selected at the time of registration. Note that facial detection, facial attributes, and facial redaction use cases do not require registration. 
+Vision Face API (“Face API”) is a Limited Access service and registration is required for access to some features. For more information, see the [Microsoft’s Limited Access Policy](https://aka.ms/limitedaccesscogservices). Certain features are only available to Microsoft managed customers and approved partners, and only for certain use cases selected at the time of registration. Note that facial detection, facial attributes, and facial redaction use cases do not require registration. 
 
 ### Commercial use cases
 

@@ -1,21 +1,20 @@
 ---
 title: Configure containers - Language service
-titleSuffix: Azure AI services
-description: Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging and telemetry, and security settings for your containers.
+titleSuffix: Foundry Tools
+description: Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging, and security settings for your containers.
 author: laujan
 manager: nitinme
 ms.custom:
   - ignite-2023
   - ignite-2024
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 04/29/2025
+ms.topic: concept-article
+ms.date: 12/05/2025
 ms.author: lajanuar
 ---
+# Configure Language docker containers
 
-# Configure Language service docker containers
-
-Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging and telemetry, and security settings for your containers. This article applies to the following containers:
+Language provides each container with a common configuration framework, so that you can easily configure and manage storage, logging, and security settings for your containers. This article applies to the following containers:
 
 * Sentiment Analysis
 * Language Detection
@@ -31,7 +30,7 @@ Language service provides each container with a common configuration framework, 
 [!INCLUDE [Container shared configuration settings table](../../includes/cognitive-services-containers-configuration-shared-settings-table.md)]
 
 > [!IMPORTANT]
-> The [`ApiKey`](#apikey-configuration-setting), [`Billing`](#billing-configuration-setting), and [`Eula`](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container won't start.
+> The [`ApiKey`](#apikey-configuration-setting), [`Billing`](#billing-configuration-setting), and [`Eula`](#end-user-license-agreement-eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container doesn't start.
 
 ## ApiKey configuration setting
 
@@ -50,7 +49,7 @@ The `Billing` setting specifies the endpoint URI of the _Language_ resource on A
 |Yes| `Billing` | String | Billing endpoint URI. |
 
 
-## EULA setting
+## End-user license agreement (EULA) setting
 
 [!INCLUDE [Container shared configuration eula settings](../../includes/cognitive-services-containers-configuration-shared-settings-eula.md)]
 
@@ -70,14 +69,14 @@ The `Billing` setting specifies the endpoint URI of the _Language_ resource on A
 
 Use bind mounts to read and write data to and from the container. You can specify an input mount or output mount by specifying the `--mount` option in the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command.
 
-The Language service containers don't use input or output mounts to store training or service data. 
+The Language containers don't use input or output mounts to store training or service data. 
 
 The exact syntax of the host mount location varies depending on the host operating system. The host computer's mount location may not be accessible due to a conflict between the docker service account permissions and the host mount location permissions. 
 
 |Optional| Name | Data type | Description |
 |-------|------|-----------|-------------|
-|Not allowed| `Input` | String | Language service containers don't use this.|
-|Optional| `Output` | String | The target of the output mount. The default value is `/output`. This is the location of the logs. This includes container logs. <br><br>Example:<br>`--mount type=bind,src=c:\output,target=/output`|
+|Not allowed| `Input` | String | Language containers don't use this data type.|
+|Optional| `Output` | String | The target of the output mount. The default value is `/output`. It's the location of the logs. This output includes container logs. <br><br>Example:<br>`--mount type=bind,src=c:\output,target=/output`|
 
 ## Next steps
 

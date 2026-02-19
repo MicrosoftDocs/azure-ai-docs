@@ -2,26 +2,33 @@
 title: Encrypt data using customer-managed keys
 titleSuffix: Azure AI Search
 description: Supplement server-side encryption in Azure AI Search using customer managed keys (CMK) or bring your own keys (BYOK) that you create and manage in Azure Key Vault.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/07/2025
+ms.date: 09/18/2025
+ms.update-cycle: 365-days
 ms.custom:
   - references_regions
   - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Configure customer-managed keys for data encryption in Azure AI Search
 
 Azure AI Search automatically encrypts data at rest with [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). If you need another layer of encryption or the ability to revoke keys and shut down access to content, you can use keys that you create and manage in Azure Key Vault. This article explains how to set up customer-managed key (CMK) encryption.
 
-You can store keys using either Azure Key Vault or Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
+You can store keys using either:
+
++ Azure Key Vault
+
++ Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate from Azure Key Vault to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
 
 > [!IMPORTANT]
-> CMK encryption is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-CMK encryption, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
+> + CMK provides encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-overview.md#data-in-use).
+>
+> + CMK encryption is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-CMK encryption, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
 
 ## CMK encrypted objects
 
@@ -33,15 +40,17 @@ Encryption is performed over the following content:
 
 + All content within indexes and synonym lists.
 
-+ Sensitive content in indexers, data sources, skillsets, and vectorizers. Sensitive content refers to connection strings, descriptions, identities, keys, and user inputs. For example, skillsets have Azure AI services keys, and some skills accept user inputs, such as custom entities. In both cases, keys and user inputs are encrypted. Any references to external resources (such as Azure data sources or Azure OpenAI models) are also encrypted.
++ Sensitive content in indexers, data sources, skillsets, and vectorizers. Sensitive content refers to connection strings, descriptions, identities, keys, and user inputs. For example, skillsets have Foundry Tools keys, and some skills accept user inputs, such as custom entities. In both cases, keys and user inputs are encrypted. Any references to external resources (such as Azure data sources or Azure OpenAI models) are also encrypted.
 
 If you require CMK across your search service, [set an enforcement policy](#set-up-a-policy-to-enforce-cmk-compliance).
+
+Although you can't add encryption to an existing object, once an object is configured for encryption, you can change all parts of its encryption definition, including switching to a different key vault or HMS storage as long as the resource is in the same tenant.
 
 ## Prerequisites
 
 + [Azure AI Search](search-create-service-portal.md) on a [billable tier](search-sku-tier.md#tier-descriptions) (Basic or higher, in any region).
 
-+ [Azure Key Vault](/azure/key-vault/general/overview) and a key vault with **soft-delete** and **purge protection** enabled. Or, [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview). This resource can be in any subscription, but it must be in the same tenant as Azure AI Search.
++ [Azure Key Vault](/azure/key-vault/general/overview) and a key vault with **soft-delete** and **purge protection** enabled. Or, [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview). This resource can be in any subscription and in a different tenant. These instructions assume a single tenant. For cross-tenant configuration, see [Configure customer-managed keys across different tenants](search-security-managed-encryption-cross-tenant.md).
 
 + Ability to set up permissions for key access and to assign roles. To create keys, you must be **Key Vault Crypto Officer** in Azure Key Vault or **Managed HSM Crypto Officer** in Azure Key Vault Managed HSM.
 
@@ -91,58 +100,13 @@ We recommend using a managed identity and roles. You can use either a system-man
 
 ### [**System-managed identity**](#tab/managed-id-sys)
 
-Enable the system assigned managed identity for your search service. It's a two-click operation, enable and save.
+Enable the system-assigned managed identity for your search service. It's a two-click operation: enable and save.
 
 ![Screenshot of turn on system assigned managed identity.](media/search-managed-identities/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
 
-### [**User-managed identity (preview)**](#tab/managed-id-user)
+### [**User-managed identity**](#tab/managed-id-user)
 
-> [!IMPORTANT] 
-> User-managed identity support for CMK is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-> 
-> 2021-04-01-Preview of the [Management REST API](/rest/api/searchmanagement/) introduced this feature.
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Select **Create a new resource**.
-
-1. In the "Search services and marketplace" search bar, search for "User Assigned Managed Identity" and then select **Create**.
-
-1. Give the identity a descriptive name.
-
-1. Next, assign the user-managed identity to the search service. This can be done using the latest preview [2025-05-01-preview](/rest/api/searchmanagement/management-api-versions) management API or the previous preview.
-
-    The identity property takes a type and one or more fully qualified user-assigned identities:
-  
-    * **type** is the type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an identity created by the system and a set of user assigned identities. The type 'None' removes all identities from the service.
-    * **userAssignedIdentities** includes the details of the user-managed identity.
-        * User-managed identity format: 
-            * /subscriptions/**subscription ID**/resourcegroups/**resource group name**/providers/Microsoft.ManagedIdentity/userAssignedIdentities/**managed identity name**
-  
-    Example of how to assign a user-managed identity to a search service:
-  
-    ```http
-    PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/[search service name]?api-version=2025-05-01-preview
-    Content-Type: application/json
-
-    {
-      "location": "<your-region>",
-      "sku": {
-        "name": "<your-sku>"
-      },
-      "properties": {
-        "replicaCount": <your-replica-count>,
-        "partitionCount": <your-partition count>,
-        "hostingMode": "default"
-      },
-      "identity": {
-        "type": "UserAssigned",
-        "userAssignedIdentities": {
-          "/subscriptions/<your-subscription-ID>/resourcegroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>": {}
-        }
-      }
-    } 
-    ```
+You can use the Azure portal or Search Management REST APIs to create a user-assigned managed identity and assign the identity to your search service. For more information, see [Create a user-assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity).
 
 ### [**Register an app**](#tab/register-app)
 
@@ -193,7 +157,7 @@ Wait a few minutes for the role assignment to become operational.
 
 ## Step 4: Encrypt content
 
-Encryption occurs when you create or update an object. You can use the Azure portal for selected objects. For any object, use the [Search REST API](/rest/api/searchservice/) or an Azure SDK. Review the [Python example](#python-example-of-an-encryption-key-configuration) in this article to see how content is encrypted programmatically.
+Encryption occurs when you create or update an object. You can use the Azure portal for select objects. For all objects, use the [Search Service REST APIs](/rest/api/searchservice/) or an Azure SDK.
 
 ### [**Azure portal**](#tab/portal)
 
@@ -283,14 +247,147 @@ In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in t
 
 1. Verify the object is operational by performing a task, such as query an index that's encrypted.
 
-Once you create the encrypted object on the search service, you can use it as you would any other object of its type. Encryption is transparent to the user and developer.
+After you create the encrypted object on the search service, you can use it as you would any other object of its type. Encryption is transparent to the user and developer.
 
 None of these key vault details are considered secret and could be easily retrieved by browsing to the relevant Azure Key Vault page in Azure portal.
 
-> [!Important]
-> Encrypted content in Azure AI Search is configured to use a specific key with a specific *version*. If you change the key or version, the object must be updated to use it **before** you delete the previous one. Failing to do so renders the object unusable. You won't be able to decrypt the content if the key is lost.
+### [**Python**](#tab/python)
+
+This example shows the Python representation of an `encryptionKey` in an object definition. The same definition applies to indexes, data sources, skillets, indexers, and synonym maps. To try this example on your search service and key vault, download the notebook from [azure-search-python-samples](https://github.com/Azure-Samples/azure-search-python-samples).
+
+1. Install some packages.
+
+    ```python
+    ! pip install python-dotenv
+    ! pip install azure-core
+    ! pip install azure-search-documents==11.5.1
+    ! pip install azure-identity
+    ```
+
+1. Create an index that has an encryption key.
+
+    ```python
+    from azure.search.documents.indexes import SearchIndexClient
+    from azure.search.documents.indexes.models import (
+    SimpleField,
+    SearchFieldDataType,
+    SearchableField,
+    SearchIndex,
+    SearchResourceEncryptionKey
+    )
+    from azure.identity import DefaultAzureCredential
+
+    endpoint="<PUT YOUR AZURE SEARCH SERVICE ENDPOINT HERE>"
+    credential = DefaultAzureCredential()
+
+    index_name = "test-cmk-index"
+    index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
+    fields = [
+    SimpleField(name="Id", type=SearchFieldDataType.String, key=True),
+    SearchableField(name="Description", type=SearchFieldDataType.String)
+    ]
+
+    scoring_profiles = []
+    suggester = []
+    encryption_key = SearchResourceEncryptionKey(
+    key_name="<PUT YOUR KEY VAULT NAME HERE>",
+    key_version="<PUT YOUR ALPHANUMERIC KEY VERSION HERE>",
+    vault_uri
+    )
+    
+    index = SearchIndex(name=index_name, fields=fields, encryption_key=encryption_key)
+    result = index_client.create_or_update_index(index)
+    print(f' {result.name} created')
+    ```
+
+1. Get the index definition to verify encryption key configuration exists.
+
+    ```python
+    index_name = "test-cmk-index-qs"
+    index_client = SearchIndexClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)  
+        
+    result = index_client.get_index(index_name)  
+    print(f"{result}")  
+    ```
+
+1. Load the index with a few documents. All field content is considered sensitive and is encrypted on disk using your customer managed key.
+
+    ```python
+    from azure.search.documents import SearchClient
+    
+    # Create a documents payload
+    documents = [
+        {
+        "@search.action": "upload",
+        "Id": "1",
+        "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities."
+        },
+        {
+        "@search.action": "upload",
+        "Id": "2",
+        "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts."
+        },
+        {
+        "@search.action": "upload",
+        "Id": "3",
+        "Description": "The hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services."
+        },
+        {
+        "@search.action": "upload",
+        "Id": "4",
+        "Description": "The hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
+        }
+    ]
+    
+    search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, index_name=index_name, credential=credential)
+    try:
+        result = search_client.upload_documents(documents=documents)
+        print("Upload of new document succeeded: {}".format(result[0].succeeded))
+    except Exception as ex:
+        print (ex.message)
+    
+        index_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)
+    ```
+
+1. Run a query to confirm the index is operational.
+
+    ```python
+    from azure.search.documents import SearchClient
+    
+    query = "historic"  
+    
+    search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential, index_name=index_name)
+      
+    results = search_client.search(  
+        query_type='simple',
+        search_text=query, 
+        select=["Id", "Description"],
+        include_total_count=True
+        )
+      
+    for result in results:  
+        print(f"Score: {result['@search.score']}")
+        print(f"Id: {result['Id']}")
+        print(f"Description: {result['Description']}")
+    ```
+
+    Output from the query should produce results similar to the following example.
+
+    ```
+    Score: 0.6130029
+    Id: 4
+    Description: The hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.
+    Score: 0.26286605
+    Id: 1
+    Description: The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
+    ```
+
+    Since encrypted content is decrypted prior to data refresh or queries, you won't see visual evidence of encryption. To verify encryption is working, check the resource logs.
 
 ---
+
+> [!Important]
+> Encrypted content in Azure AI Search is configured to use a specific key with a specific *version*. If you change the key or version, the object must be updated to use it **before** you delete the previous one. Failing to do so renders the object unusable. You won't be able to decrypt the content if the key is lost.
 
 ## Step 5: Test encryption
 
@@ -321,7 +418,7 @@ Azure policies help to enforce organizational standards and to assess compliance
 | Effect | Effect if enabled|
 |--------|------------------|
 | [**AuditIfNotExists**](/azure/governance/policy/concepts/effect-audit-if-not-exists) | Checks for policy compliance: do objects have a customer-managed key defined, and is the content encrypted. This effect applies to existing services with content. It's evaluated each time an object is created or updated, or [per the evaluation schedule](/azure/governance/policy/overview#understand-evaluation-outcomes). [Learn more...](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F356da939-f20a-4bb9-86f8-5db445b0e354) |
-| [**Deny**](/azure/governance/policy/concepts/effect-deny) | Checks for policy enforcement: does the search service have [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk&preserve-view=true) set to `Enabled`. This effect applies to new services only, which must be created with encryption enabled. Existing services remain operational but you can't update them unless you patch the service. None of the tools used for provisioning services expose this property, so be aware that setting the policy limits you to [programmatic set up](#enable-cmk-policy-enforcement).|
+| [**Deny**](/azure/governance/policy/concepts/effect-deny) | Checks for policy enforcement: does the search service have [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2025-05-01&tabs=HTTP&preserve-view=true#searchencryptionwithcmk) set to `Enabled`. This effect applies to new services only, which must be created with encryption enabled. Existing services remain operational but you can't update them unless you patch the service. None of the tools used for provisioning services expose this property, so be aware that setting the policy limits you to [programmatic set up](#enable-cmk-policy-enforcement).|
 
 ### Assign a policy
 
@@ -345,19 +442,19 @@ A policy that's assigned to a resource group in your subscription is effective i
 
 #### Create a compliant search service
 
-For new search services, create them with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk&preserve-view=true) set to `Enabled`. 
+For new search services, create them with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2025-05-01&tabs=HTTP&preserve-view=true#searchencryptionwithcmk) set to `Enabled`.
 
 Neither the Azure portal nor the command line tools (the Azure CLI and Azure PowerShell) provide this property natively, but you can use [Management REST API](/rest/api/searchmanagement/services/create-or-update) to provision a search service with a CMK policy definition.
 
 ### [**Management REST API**](#tab/mgmt-rest-create)
 
-This example is from [Manage your Azure AI Search service with REST APIs](search-manage-rest.md), modified to include the [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk&preserve-view=true) property.
+This example is from [Manage your Azure AI Search service with REST APIs](search-manage-rest.md), modified to include the [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2025-05-01&tabs=HTTP&preserve-view=true#searchencryptionwithcmk) property.
 
 ```rest
 ### Create a search service (provide an existing resource group)
 @resource-group = my-rg
 @search-service-name = my-search
-PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
+PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-05-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 
@@ -396,7 +493,7 @@ For existing search services that are now non-compliant, patch them using [Servi
 ### [**Management REST API**](#tab/mgmt-rest-update)
 
 ```http
-PATCH https://management.azure.com/subscriptions/<your-subscription-Id>/resourceGroups/<your-resource-group-name>/providers/Microsoft.Search/searchServices/<your-search-service-name>?api-version=2023-11-01
+PATCH https://management.azure.com/subscriptions/<your-subscription-Id>/resourceGroups/<your-resource-group-name>/providers/Microsoft.Search/searchServices/<your-search-service-name>?api-version=2025-05-01
 
 {
   "properties": {
@@ -465,148 +562,15 @@ For performance reasons, the search service caches the key for up to several hou
 
 ## Work with encrypted content
 
-With CMK encryption, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging. 
+With CMK encryption, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging.
 
 We recommend that you [enable logging](/azure/key-vault/general/logging) as part of key vault configuration.
 
 1. [Create a log analytics workspace](/azure/azure-monitor/logs/quick-create-workspace).
 
-1. [Add a diagnostic setting in key vault](/azure/key-vault/general/howto-logging) that uses the workspace for data retention. 
+1. [Add a diagnostic setting in key vault](/azure/key-vault/general/howto-logging) that uses the workspace for data retention.
 
 1. Select **audit** or **allLogs** for the category, give the diagnostic setting a name, and then save it.
-
-## Python example of an encryption key configuration
-
-This section shows the Python representation of an `encryptionKey` in an object definition. The same definition applies to indexes, data sources, skillets, indexers, and synonym maps. To try this example on your search service and key vault, download the notebook from [azure-search-python-samples](https://github.com/Azure-Samples/azure-search-python-samples).
-
-Install some packages.
-
-```python
-! pip install python-dotenv
-! pip install azure-core
-! pip install azure-search-documents==11.5.1
-! pip install azure-identity
-```
-
-Create an index that has an encryption key.
-
-```python
-from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import (
-    SimpleField,
-    SearchFieldDataType,
-    SearchableField,
-    SearchIndex,
-    SearchResourceEncryptionKey
-)
-from azure.identity import DefaultAzureCredential
-
-endpoint="<PUT YOUR AZURE SEARCH SERVICE ENDPOINT HERE>"
-credential = DefaultAzureCredential()
-
-index_name = "test-cmk-index"
-index_client = SearchIndexClient(endpoint=endpoint, credential=credential)  
-fields = [
-        SimpleField(name="Id", type=SearchFieldDataType.String, key=True),
-        SearchableField(name="Description", type=SearchFieldDataType.String)
-    ]
-
-scoring_profiles = []
-suggester = []
-encryption_key = SearchResourceEncryptionKey(
-    key_name="<PUT YOUR KEY VAULT NAME HERE>",
-    key_version="<PUT YOUR ALPHANUMERIC KEY VERSION HERE>",
-    vault_uri="<PUT YOUR KEY VAULT ENDPOINT HERE>"
-)
-
-index = SearchIndex(name=index_name, fields=fields, encryption_key=encryption_key)
-result = index_client.create_or_update_index(index)
-print(f' {result.name} created')
-```
-
-Get the index definition to verify encryption key configuration exists.
-
-```python
-index_name = "test-cmk-index-qs"
-index_client = SearchIndexClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)  
-
-result = index_client.get_index(index_name)  
-print(f"{result}")  
-```
-
-Load the index with a few documents. All field content is considered sensitive and is encrypted on disk using your customer managed key.
-
-```python
-from azure.search.documents import SearchClient
-
-# Create a documents payload
-documents = [
-    {
-    "@search.action": "upload",
-    "Id": "1",
-    "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities."
-    },
-    {
-    "@search.action": "upload",
-    "Id": "2",
-    "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts."
-    },
-    {
-    "@search.action": "upload",
-    "Id": "3",
-    "Description": "The hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services."
-    },
-    {
-    "@search.action": "upload",
-    "Id": "4",
-    "Description": "The hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
-    }
-]
-
-search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, index_name=index_name, credential=credential)
-try:
-    result = search_client.upload_documents(documents=documents)
-    print("Upload of new document succeeded: {}".format(result[0].succeeded))
-except Exception as ex:
-    print (ex.message)
-
-    index_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)
-```
-
-Run a query to confirm the index is operational.
-
-```python
-from azure.search.documents import SearchClient
-
-query = "historic"  
-
-search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential, index_name=index_name)
-  
-results = search_client.search(  
-    query_type='simple',
-    search_text=query, 
-    select=["Id", "Description"],
-    include_total_count=True
-    )
-  
-for result in results:  
-    print(f"Score: {result['@search.score']}")
-    print(f"Id: {result['Id']}")
-    print(f"Description: {result['Description']}")
-```
-
-Output from the query should produce results similar to the following example.
-
-```
-Score: 0.6130029
-Id: 4
-Description: The hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.
-Score: 0.26286605
-Id: 1
-Description: The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
-```
-
-Since encrypted content is decrypted prior to data refresh or queries, you won't see visual evidence of encryption. To verify encryption is working, check the resource logs.
 
 ## Next steps
 

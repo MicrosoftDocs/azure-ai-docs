@@ -6,11 +6,13 @@ manager: vinodva
 author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 01/23/2026
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.topic: how-to
-ms.date: 05/08/2025
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Files
@@ -24,8 +26,8 @@ To configure and run the indexer, you can use:
 
 + [Search Service preview REST APIs](/rest/api/searchservice), any preview version.
 + An Azure SDK package, any version.
-+ [Import data wizard](search-get-started-portal.md) in the Azure portal.
-+ [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
++ [**Import data** wizard](search-get-started-portal.md) in the Azure portal.
++ [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 ## Prerequisites
 
@@ -37,17 +39,17 @@ To configure and run the indexer, you can use:
 
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content.
 
-+ Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
++ Use a [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
 ## Supported tasks
 
 You can use this indexer for the following tasks:
 
 + **Data indexing and incremental indexing:** The indexer can index files and associated metadata from tables. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand.
-+ **Deletion detection:** The indexer can [detect deletions through custom metadata](search-howto-index-changed-deleted-blobs.md).
++ **Deletion detection:** The indexer can [detect deletions through custom metadata](search-how-to-index-azure-blob-changed-deleted.md).
 + **Applied AI through skillsets:** [Skillsets](cognitive-search-concept-intro.md) are fully supported by the indexer. This includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
-+ **Parsing modes:** The indexer supports [JSON parsing modes](search-howto-index-json-blobs.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-markdown-blobs.md).
-+ **Compatibility with other features:** The indexer is designed to work seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](search-howto-incremental-index.md), and [knowledge store](knowledge-store-concept-intro.md).
++ **Parsing modes:** The indexer supports [JSON parsing modes](search-how-to-index-azure-blob-json.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md).
++ **Compatibility with other features:** The indexer is designed to work seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 ## Supported document formats
 
@@ -87,7 +89,7 @@ You can use 2020-06-30-preview or later for "type": `"azurefile"`. We recommend 
 
 1. Set "container" to the root file share, and use "query" to specify any subfolders.
 
-A data source definition can also include [soft deletion policies](search-howto-index-changed-deleted-blobs.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
+A data source definition can also include [soft deletion policies](search-how-to-index-azure-blob-changed-deleted.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
 
 <a name="Credentials"></a>
 
@@ -107,7 +109,7 @@ In the [search index](search-what-is-an-index.md), add fields to accept the cont
 1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that will store file content and metadata.
 
     ```http
-    POST /indexes?api-version=2024-07-01
+    POST /indexes?api-version=2025-09-01
     {
       "name" : "my-search-index",
       "fields": [
@@ -148,7 +150,7 @@ Once the index and data source have been created, you're ready to create the ind
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST /indexers?api-version=2024-07-01
+    POST /indexers?api-version=2025-09-01
     {
       "name" : "my-file-indexer",
       "dataSourceName" : "my-file-datasource",
@@ -184,7 +186,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-09-01
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -227,7 +229,7 @@ Execution history contains up to 50 of the most recently completed executions, w
 
 ## Next steps
 
-You can now [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-howto-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Storage:
+You can now [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Storage:
 
-+ [Change detection and deletion detection](search-howto-index-changed-deleted-blobs.md)
++ [Change detection and deletion detection](search-how-to-index-azure-blob-changed-deleted.md)
 + [Index large data sets](search-howto-large-index.md)

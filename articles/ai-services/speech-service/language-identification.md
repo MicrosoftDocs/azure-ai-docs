@@ -1,21 +1,21 @@
 ---
 title: Implement language identification - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how language identification can determine the language being spoken in audio when compared against a list of provided languages.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 5/25/2025
-ms.author: eur
+ms.date: 12/19/2025
+ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #customer intent: As an application developer, I want to use language recognition or translations in order to make my apps work seamlessly for more customers.
 ---
 
 # Implement language identification
 
-Language identification is used to identify languages spoken in audio when compared against a list of supported languages.
+Language identification is used to automatically identify languages spoken in audio by comparing it against a list of supported languages.
 
 Language identification (LID) use cases include:
 
@@ -242,7 +242,7 @@ using Microsoft.CognitiveServices.Speech.Audio;
 
 var config = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 
-// Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+// Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
 config.SetProperty(PropertyId.SpeechServiceConnection_LanguageIdMode, "Continuous");
 
 var autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.FromLanguages(new string[] { "en-US", "de-DE", "zh-CN" });
@@ -421,7 +421,7 @@ weatherfilename="en-us_zh-cn.wav"
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, endpoint=endpoint_string)
 audio_config = speechsdk.audio.AudioConfig(filename=weatherfilename)
 
-# Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+# Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
 speech_config.set_property(property_id=speechsdk.PropertyId.SpeechServiceConnection_LanguageIdMode, value='Continuous')
 
 auto_detect_source_language_config = speechsdk.languageconfig.AutoDetectSourceLanguageConfig(
@@ -661,7 +661,7 @@ public static async Task MultiLingualTranslation()
     config.AddTargetLanguage("de");
     config.AddTargetLanguage("fr");
 
-    // Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+    // Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
     config.SetProperty(PropertyId.SpeechServiceConnection_LanguageIdMode, "Continuous");
     var autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.FromLanguages(new string[] { "en-US", "de-DE", "zh-CN" });
 
@@ -827,7 +827,7 @@ void MultiLingualTranslation()
 {
     auto config = SpeechTranslationConfig::FromEndpoint("YourSpeechResoureEndpoint", "YourSpeechResoureKey");
 
-    // Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+    // Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
     speechConfig->SetProperty(PropertyId::SpeechServiceConnection_LanguageIdMode, "Continuous");
     auto autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig::FromLanguages({ "en-US", "de-DE", "zh-CN" });
 
@@ -986,7 +986,7 @@ translation_config = speechsdk.translation.SpeechTranslationConfig(
     target_languages=('de', 'fr'))
 audio_config = speechsdk.audio.AudioConfig(filename=weatherfilename)
 
-# Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
+# Set Azure LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
 translation_config.set_property(property_id=speechsdk.PropertyId.SpeechServiceConnection_LanguageIdMode, value='Continuous')
 
 # Specify the AutoDetectSourceLanguageConfig, which defines the number of possible languages

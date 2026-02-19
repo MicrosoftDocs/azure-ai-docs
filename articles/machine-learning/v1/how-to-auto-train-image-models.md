@@ -3,8 +3,9 @@ title: Set up AutoML for computer vision (v1)
 titleSuffix: Azure Machine Learning
 description: Set up Azure Machine Learning automated ML to train computer vision models  with the Azure Machine Learning Python SDK (v1).
 services: machine-learning
-author: swatig007
-ms.author: swatig
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to

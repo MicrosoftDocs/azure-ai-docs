@@ -16,7 +16,7 @@ Reference documentation [(training)](https://pkg.go.dev/github.com/Azure/azure-s
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Go 1.8+](https://go.dev/doc/install)
 * Once you have your Azure subscription, <a href="https://portal.azure.com/?microsoft_azure_marketplace_ItemHideKey=microsoft_azure_cognitiveservices_customvision#create/Microsoft.CognitiveServicesCustomVision"  title="Create a Custom Vision resource"  target="_blank">create a Custom Vision resource <span class="docon docon-navigate-external x-hidden-focus"></span></a> in the Azure portal to create a training and prediction resource.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
@@ -165,7 +165,7 @@ scissorsImageRegions := map[string][4]float64{
 Then, use this map of associations to upload each sample image with its region coordinates (you can upload up to 64 images in a single batch). Add the following code.
 
 > [!NOTE]
-> You'll need to change the path to the images based on where you downloaded the Azure AI services Go SDK Samples project earlier.
+> You'll need to change the path to the images based on where you downloaded the Foundry Tools Go SDK Samples project earlier.
 
 ```Go
 // Go through the data table above and create the images

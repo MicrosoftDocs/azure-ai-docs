@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: franksolomon
-author: fbsolo-ms1
-ms.reviewer: ambadal
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: soumyapatro
 ms.date: 04/18/2024
 ms.custom: data4ml
 ---
@@ -32,7 +32,7 @@ You can import data from Amazon S3, Azure SQL, and Snowflake.
 
 To create and work with data assets, you need:
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An Azure Machine Learning workspace. [Create workspace resources](quickstart-create-resources.md).
 

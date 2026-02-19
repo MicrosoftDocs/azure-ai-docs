@@ -2,9 +2,9 @@
 title: Submit Spark jobs in Azure Machine Learning
 titleSuffix: Azure Machine Learning
 description: Learn how to submit standalone and pipeline Spark jobs in Azure Machine Learning 
-author: fbsolo-ms1
-ms.author: franksolomon
-ms.reviewer: yogipandey
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to 
@@ -27,7 +27,7 @@ For more information about **Apache Spark in Azure Machine Learning** concepts, 
 
 # [CLI](#tab/cli)
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
+- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An Azure Machine Learning workspace. Visit [Create workspace resources](./quickstart-create-resources.md) for more information.
 - Create an [Azure Machine Learning compute instance](./concept-compute-instance.md#create).
 - Install the [Azure Machine Learning CLI](./how-to-configure-cli.md?tabs=public).
@@ -35,7 +35,7 @@ For more information about **Apache Spark in Azure Machine Learning** concepts, 
 
 # [Python SDK](#tab/sdk)
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
-- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
+- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An Azure Machine Learning workspace. Visit [Create workspace resources](./quickstart-create-resources.md) for more information.
 - [Configure your development environment](./how-to-configure-environment.md), or [create an Azure Machine Learning compute instance](./concept-compute-instance.md#create).
 - Install the [Azure Machine Learning SDK for Python](/python/api/overview/azure/ai-ml-readme).
@@ -43,7 +43,7 @@ For more information about **Apache Spark in Azure Machine Learning** concepts, 
 
 # [Studio UI](#tab/ui)
 These prerequisites cover the submission of a Spark job from Azure Machine Learning studio UI:
-- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
+- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An Azure Machine Learning workspace. Visit [Create workspace resources](./quickstart-create-resources.md) for more information.
 - (Optional): [An attached Synapse Spark pool in the Azure Machine Learning workspace](./how-to-manage-synapse-spark-pool.md).
 

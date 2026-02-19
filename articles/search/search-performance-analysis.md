@@ -5,13 +5,16 @@ description: Learn about the tools, behaviors, and approaches for analyzing quer
 author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 01/16/2025
+ms.topic: concept-article
+ms.date: 01/22/2026
+ms.update-cycle: 365-days
 ---
 
 # Analyze performance in Azure AI Search
 
 This article describes the tools, behaviors, and approaches for analyzing query and indexing performance in Azure AI Search.
+
+This article applies to [classic search](search-what-is-azure-search.md#what-is-classic-search), full-text search scenarios only.
 
 ## Develop baseline numbers
 
@@ -75,7 +78,7 @@ AzureDiagnostics
 
 In some cases, it can be useful to test individual queries to see how they're performing. To do this, it's important to be able to see how long the search service takes to complete the work, as well as how long it takes to make the round-trip request from the client and back to the client. The diagnostics logs could be used to look up individual operations, but it might be easier to do this all from a REST client.
 
-In the example below, a REST-based search query was executed. Azure AI Search includes in every response the number of milliseconds it takes to complete the query, visible in the Headers tab, in "elapsed-time". Next to Status at the top of the response, you'll find the round-trip duration, in this case, 418 milliseconds (ms). In the results section, the “Headers” tab was chosen. Using these two values, highlighted with a red box in the image below, we see the search service took 21 ms to complete the search query and the entire client round-trip request took 125 ms. By subtracting these two numbers we can determine that it took 104-ms additional time to transmit the search query to the search service and to transfer the search results back to the client.
+In the example below, a REST-based search query was executed. Azure AI Search includes in every response the number of milliseconds it takes to complete the query, visible in the Headers tab, in "elapsed-time". Next to Status at the top of the response, you'll find the round-trip duration, in this case, 125 milliseconds (ms). In the results section, the “Headers” tab was chosen. Using these two values, highlighted with a red box in the image below, we see the search service took 21 ms to complete the search query and the entire client round-trip request took 125 ms. By subtracting these two numbers we can determine that it took 104-ms additional time to transmit the search query to the search service and to transfer the search results back to the client.
 
 This technique helps you isolate network latencies from other factors impacting query performance.
 

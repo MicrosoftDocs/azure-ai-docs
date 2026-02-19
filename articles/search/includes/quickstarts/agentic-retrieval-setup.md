@@ -4,20 +4,26 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 6/15/2025
+ms.date: 12/22/2025
 ---
 
-## Configure role-based access
+## Configure access
 
-You can use search service API keys or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure. This quickstart assumes roles.
+Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](../../search-security-api-keys.md) instead.
 
-To configure the recommended role-based access:
+To configure access for this quickstart, select both of the following tabs.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
+### [Azure AI Search](#tab/search)
 
-1. [Enable role-based access](../../search-security-enable-roles.md) on your Azure AI Search service.
+Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself and your search service to read and write data, interact with Foundry, and run the pipeline.
 
-1. On your Azure AI Search service, [assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
+On your Azure AI Search service:
+
+1. [Enable role-based access](../../search-security-enable-roles.md).
+
+1. [Create a system-assigned managed identity](../../search-how-to-managed-identities.md#create-a-system-managed-identity).
+
+1. [Assign the following roles](../../search-security-rbac.md) to yourself.
 
     + **Search Service Contributor**
 
@@ -25,66 +31,56 @@ To configure the recommended role-based access:
 
     + **Search Index Data Reader**
 
-For agentic retrieval, Azure AI Search also needs access to your Azure OpenAI Foundry resource. 
+### [Microsoft Foundry](#tab/foundry)
 
-1. [Create a system-assigned managed identity](../../search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) on your Azure AI Search service. Here's how to do it using the Azure CLI:
+Microsoft Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
 
-   ```azurecli
-   az search service update --name YOUR-SEARCH-SERVICE-NAME --resource-group YOUR-RESOURCE-GROUP-NAME --identity-type SystemAssigned
-   ```
-   
-    If you already have a managed identity, you can skip this step.
+On your Microsoft Foundry resource:
 
-1. On your Azure AI Foundry resource, assign **Cognitive Services User** to the managed identity that you created for your search service. 
++ Assign **Cognitive Services User** to the managed identity of your search service.
 
-## Deploy models
-
-To use agentic retrieval, you must deploy [one of the supported Azure OpenAI models](../../search-agentic-retrieval-how-to-create.md#supported-models) to your Azure AI Foundry resource:
-
-+ A chat model for query planning and answer generation. We use `gpt-4.1-mini` in this quickstart. Optionally, you can use a different model for query planning and another for answer generation, but this quickstart uses the same model for simplicity.
-
-+ An embedding model for vector queries. We use `text-embedding-3-large` in this quickstart, but you can use any embedding model that supports the `text-embedding` task.
-
-To deploy the Azure OpenAI models:
-
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure AI Foundry resource.
-
-1. From the left pane, select **Model catalog**.
-
-1. Select **gpt-4.1-mini**, and then select **Use this model**.
-
-1. Specify a deployment name. To simplify your code, we recommend **gpt-4.1-mini**.
-
-1. Leave the default settings.
-
-1. Select **Deploy**.
-
-1. Repeat the previous steps, but this time deploy the **text-embedding-3-large** embedding model.
-
-## Get endpoints
-
-In your code, you specify the following endpoints to establish connections with your Azure AI Search service and Azure AI Foundry resource. These steps assume that you [configured role-based access as described previously](#configure-role-based-access). 
-
-To obtain your service endpoints:
-
-1. Sign in to the [Azure portal](https://portal.azure.com/).
-
-1. On your Azure AI Search service:
-
-    1. From the left pane, select **Overview**.
-
-    1. Copy the URL, which should be similar to `https://my-service.search.windows.net`. 
-
-1. On your Azure AI Foundry resource:
-
-    1. From the left pane, select **Resource Management** > **Keys and Endpoint**. 
-
-    1. Select the **OpenAI** tab and copy the URL that looks similar to `https://my-resource.openai.azure.com`.
+---
 
 > [!IMPORTANT]
 > Agentic retrieval has two token-based billing models:
 >
-> + Billing from Azure OpenAI for query planning.
-> + Billing from Azure AI Search for query execution (semantic ranking).
+> + Billing from Azure AI Search for agentic retrieval.
+> + Billing from Azure OpenAI for query planning and answer synthesis.
 >
-> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
+> For more information, see [Availability and pricing of agentic retrieval](../../agentic-retrieval-overview.md#availability-and-pricing).
+
+## Get endpoints
+
+Each Azure AI Search service and Microsoft Foundry resource has an *endpoint*, which is a unique URL that identifies and provides network access to the resource. In a later section, you specify these endpoints to connect to your resources programmatically.
+
+To get the endpoints for this quickstart, select both of the following tabs.
+
+### [Azure AI Search](#tab/search)
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+
+1. From the left pane, select **Overview**.
+
+1. Make a note of the endpoint, which should look like `https://my-service.search.windows.net`.
+
+### [Microsoft Foundry](#tab/foundry)
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Microsoft Foundry resource.
+
+1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
+
+1. Select the **OpenAI** tab.
+
+1. Make a note of the endpoint, which should look like `https://my-resource.openai.azure.com`.
+
+---
+
+## Deploy models
+
+For this quickstart, you must deploy two Azure OpenAI models to your Microsoft Foundry project:
+
++ An embedding model for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
+
++ An LLM for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM for agentic retrieval](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
+
+For deployment instructions, see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).

@@ -1,21 +1,20 @@
 ---
 title: Orchestration workflow model evaluation metrics
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about evaluation metrics in orchestration workflow
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
-
 # Evaluation metrics for orchestration workflow models
 
 Your dataset is split into two parts: a set for training, and a set for testing. The training set is used to train the model, while the testing set is used as a test for model after training to calculate the model performance and evaluation. The testing set isn't introduced to the model through the training process, to make sure that the model is tested on new data. <!--See [data splitting](../how-to/train-model.md#data-splitting) for more information-->
 
-Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to predict user defined intents for utterances in the test set, and compares them with the provided tags (which establishes a baseline of truth). The results are returned so you can review the model’s performance. For evaluation, orchestration workflow uses the following metrics:
+Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to predict user defined intents for utterances in the test set, and compares them with the provided tags (which establishes a baseline of truth). The results are returned so you can review the model's performance. For evaluation, orchestration workflow uses the following metrics:
 
 * **Precision**: Measures how precise/accurate your model is. It's the ratio between the correctly identified positives (true positives) and all identified positives. The precision metric reveals how many of the predicted classes are correctly labeled. 
 
@@ -114,4 +113,4 @@ You can calculate the model-level evaluation metrics from the confusion matrix:
 
 ## Next steps
 
-[Train a model in Language Studio](../how-to/train-model.md)
+[Train a model](../how-to/train-model.md)

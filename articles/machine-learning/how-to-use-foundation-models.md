@@ -6,11 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: how-to
-ms.reviewer: None
-author: ssalgadodev
-ms.author: ssalgado
-ms.date: 01/07/2025
+ms.reviewer: sooryar
+author: s-polly
+ms.author: scottpolly
+ms.date: 01/28/2026
 ms.collection: ce-skilling-ai-copilot
+ms.custom: sfi-image-nochange
 ---
 
 # How to use Open Source foundation models curated by Azure Machine Learning 
@@ -99,21 +100,24 @@ You can deploy foundation models (both pre-trained models from the model catalog
 
 ### Deploying using the studio
 
-You can invoke the Deploy UI form by selecting the **Deploy** button on the model card for any foundation model, and selecting either **standard deployment with Azure AI Content Safety** or **Managed Compute without Azure AI Content Safety**
+You can deploy a model by selecting the **Use this model** button on the model card for any foundation model, and selecting either **Serverless API** or **Managed Compute**. Not all models support serverless API deployment. If the model does not support serverless API, you will only see the **Managed Compute** option.
 
 :::image type="content" source="./media/how-to-use-foundation-models/deploy-button.png" lightbox="./media/how-to-use-foundation-models/deploy-button.png" alt-text="Screenshot showing the deploy button on the foundation model card.":::
 
 #### Deployment settings
 
-Since the scoring script and environment are automatically included with the foundation model, you only need to specify the Virtual machine SKU to use, number of instances and the endpoint name to use for the deployment.
+When you select **Serverless API**, you are taken to the deployment form. The deployment form allows you to specify the deployment name, and whether to enable content filtering and the model version to use for the deployment. You can also provide sample input data to test the model.
+
+
+When you select **Managed Compute**, you are taken to the deployment settings form. The deployment settings form allows you to specify the Virtual machine SKU to use, number of instances, and the endpoint name to use for the deployment.
 
 :::image type="content" source="./media/how-to-use-foundation-models/deploy-options.png" alt-text="Screenshot showing the deploy options on the foundation model card after user selects the deploy button.":::
 
 ##### Shared quota
 
-If you're deploying a Llama-2, Phi, Nemotron, Mistral, Dolly or Deci-DeciLM model from the model catalog but don't have enough quota available for the deployment, Azure Machine Learning allows you to use quota from a shared quota pool for a limited time. For more information on shared quota, see [Azure Machine Learning shared quota](how-to-manage-quotas.md#azure-machine-learning-shared-quota).
+If you're deploying a model from the model catalog but don't have enough quota available for the deployment, Azure Machine Learning allows you to use quota from a shared quota pool for a limited time. For more information on shared quota, see [Azure Machine Learning shared quota](how-to-manage-quotas.md#azure-machine-learning-shared-quota).
 
-:::image type="content" source="media/how-to-use-foundation-models/deploy-llama-model-with-shared-quota.png" alt-text="Screenshot showing the option to deploy a Llama model temporarily, using shared quota." lightbox="media/how-to-use-foundation-models/deploy-llama-model-with-shared-quota.png":::
+:::image type="content" source="media/how-to-use-foundation-models/deploy-phi-model-with-shared-quota.png" alt-text="Screenshot showing the option to deploy a Llama model temporarily, using shared quota." lightbox="media/how-to-use-foundation-models/deploy-llama-model-with-shared-quota.png":::
 
 ### Deploying using code based samples
 

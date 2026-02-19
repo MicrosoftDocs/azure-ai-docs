@@ -3,11 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
 To unassign or remove deployment resources in other regions using [Language Studio](https://aka.ms/LanguageStudio):
 1. Go to the **Regions** tab in the **Deploy a model** page.
 2. Select the resource you'd like to unassign.

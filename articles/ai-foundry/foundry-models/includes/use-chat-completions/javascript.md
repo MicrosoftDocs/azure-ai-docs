@@ -1,22 +1,22 @@
 ---
-title: How to use chat completions with Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to generate chat completions with Azure AI Foundry Models
-manager: scottpolly
-author: mopeakande
-reviewer: santiagxf
-ms.service: azure-ai-model-inference
+title: How to use chat completions with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to generate chat completions with Microsoft Foundry Models
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 05/29/2025
+ms.date: 08/27/2025
 ms.author: mopeakande
-ms.reviewer: fasantia
+author: msakande
+ms.reviewer: balapv
+reviewer: balapv
 ms.custom: references_regions, tool_generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with models deployed in Azure AI Foundry Models.
+This article explains how to use the chat completions API with models deployed in Microsoft Foundry Models.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, see [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
       
 ## Use chat completions
 
@@ -39,7 +39,7 @@ const client = ModelClient(
 );
 ```
 
-If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+If you configured the resource with **Microsoft Entra ID** support, use the following code snippet to create a client.
 
 ```javascript
 const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
@@ -201,7 +201,7 @@ var response = await client.path("/chat/completions").post({
 
 ### Pass extra parameters to the model
 
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
+The Azure AI Model Inference API lets you pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
 
 
 ```javascript
@@ -222,13 +222,13 @@ var response = await client.path("/chat/completions").post({
 });
 ```
 
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
+Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When you make the request to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can handle them. Read the model's documentation to understand which extra parameters are supported.
 
 ### Use tools
 
-Some models support the use of tools, which can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
+Some models support the use of tools. Tools can be an extraordinary resource when you need to offload specific tasks from the language model and instead rely on a more deterministic system or even a different language model. The Azure AI Model Inference API allows you to define tools in the following way.
 
-The following code example creates a tool definition that is able to look from flight information from two different cities.
+The following code example creates a tool definition that can look for flight information from two different cities.
 
 
 ```javascript
@@ -271,7 +271,7 @@ function get_flight_info(loc_origin, loc_destination) {
 ```
 
 > [!NOTE]
-> Cohere models require a tool's responses to be a valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
+> Cohere models require a tool's responses to be valid JSON content formatted as a string. When constructing messages of type *Tool*, ensure the response is a valid JSON string.
 
 Prompt the model to book flights with the help of this function:
 
@@ -351,7 +351,7 @@ var result = await client.path("/chat/completions").post({
 
 ### Apply Guardrails and controls
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models that detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
 

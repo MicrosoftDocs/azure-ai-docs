@@ -1,14 +1,14 @@
 ---
 title: "Quickstart: Speech SDK for Java (Windows, Linux, macOS) platform setup - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use this guide to set up your platform for using Java (Windows, Linux, macOS) with the Speech SDK.
-author: markamos
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 02/02/2024
 ms.custom: devx-track-java, linux-related-content
-ms.author: eur
+ms.author: pafarley
 ---
 
 This guide shows how to install the [Speech SDK](~/articles/ai-services/speech-service/speech-sdk.md) for Java on the Java Runtime.

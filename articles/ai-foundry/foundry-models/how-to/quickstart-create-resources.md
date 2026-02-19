@@ -1,12 +1,12 @@
 ---
-title: Create and configure resources for Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to get your environment ready with the Azure AI Foundry Models
-ms.service: azure-ai-model-inference
+title: Create and configure resources for Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to get your environment ready with the Microsoft Foundry Models
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/30/2025
 ms.custom: ignite-2024, github-universe-2024
-manager: scottpolly
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
@@ -15,7 +15,9 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ---
 
-# Create and configure all the resources for Azure AI Foundry Models
+# Create and configure all the resources for Microsoft Foundry Models
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/create-resources/portal.md)]

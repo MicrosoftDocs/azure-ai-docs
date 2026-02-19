@@ -1,12 +1,12 @@
 ---
 title: Guidance for integration and responsible use with summarization
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Guidance for integration and responsible use with summarization 
-author: YLXiong1125
-ms.author: ylxiong
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: best-practice
 ms.date: 04/09/2022
 ---
 
@@ -24,7 +24,7 @@ When you're getting ready to integrate and responsibly use AI-powered products o
 
 * **Test with real, diverse data.** Understand how your system will perform in your scenario. Test it thoroughly with real-life conditions, and data that reflects the diversity in your users, geography, and deployment contexts. Small datasets, synthetic data, and tests that don't reflect your end-to-end scenario are unlikely to sufficiently represent your production performance.
 
-* **Evaluate the system.** Consider using adversarial testing, where trusted testers attempt to find system failures, poor performance, or undesirable behaviors. This information helps you to understand risks and how to mitigate them. Communicate the capabilities and limitations to stakeholders. To help you evaluate your system, you might find some of these resources useful: [Checklist on GitHub](https://github.com/marcotcr/checklist), [Stereotyping Norwegian Salmon: An Inventory of Pitfalls in Fairness Benchmark Datasets](https://www.microsoft.com/research/uploads/prod/2021/06/The_Salmon_paper.pdf) (Blodgett et al., 2021), and [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?](https://dl.acm.org/doi/10.1145/3442188.3445922) (Bender et al., 2021).
+* **Evaluate the system.** Consider using adversarial testing, where trusted testers attempt to find system failures, poor performance, or undesirable behaviors. This information helps you to understand risks and how to mitigate them. Communicate the capabilities and limitations to stakeholders. To help you evaluate your system, you might find some of these resources useful: [Checklist on GitHub](https://github.com/marcotcr/checklist), [Stereotyping Norwegian Salmon: An Inventory of Pitfalls in Fairness Benchmark Datasets](https://www.microsoft.com/research/uploads/prod/2021/06/The_Salmon_paper.pdf) (Blodgett et al., 2021), and [On the Dangers of Stochastic Parrots: Ca Language Models Be Too Big?](https://dl.acm.org/doi/10.1145/3442188.3445922) (Bender et al., 2021).
 
 * **Learn about fairness.** AI systems can behave unfairly for a variety of reasons. Some are social, some are technical, and some are a combination of the two. There are seldom clear-cut solutions. Mitigation methods are usually context dependent. Learning about fairness can help you learn what to expect and how you might mitigate potential harms. To learn more about the approach that Microsoft uses, see [Responsible AI resources](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4), the [AI fairness checklist](https://www.microsoft.com/research/publication/co-designing-checklists-to-understand-organizational-challenges-and-opportunities-around-fairness-in-ai/), and resources from [Microsoft Research](https://www.microsoft.com/research/theme/fate/#!publications).
 

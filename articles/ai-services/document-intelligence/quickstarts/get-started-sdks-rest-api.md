@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Document Intelligence client libraries | REST API "
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use a Document Intelligence SDK or the REST API to create a forms processing app that extracts key data and structure elements from your documents.
 author: laujan
 manager: nitinme
@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - devx-track-python
 ms.topic: quickstart
-ms.date: 04/11/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---
@@ -21,7 +21,7 @@ zone_pivot_groups: programming-languages-set-formre
 
 > [!IMPORTANT]
 >
-> * Azure Cognitive Services Form Recognizer is now Azure AI Document Intelligence.
+> * Azure Cognitive Services Form Recognizer is now Azure Document Intelligence in Foundry Tools.
 > * Some platforms are still awaiting the renaming update.
 > * All mention of Form Recognizer or Document Intelligence in our documentation refers to the same Azure service.
 
@@ -29,7 +29,7 @@ zone_pivot_groups: programming-languages-set-formre
 
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v4.0 (GA)** **Earlier versions:** ![blue-checkmark](../media/blue-yes-icon.png) [v3.1 (GA)](?view=doc-intel-3.1.0&preserve-view=true) ![blue-checkmark](../media/blue-yes-icon.png) [v3.0 (GA)](?view=doc-intel-3.0.0&preserve-view=true)
 
-* Get started with Azure AI Document Intelligence latest stable version v4.0 `2024-11-30` (GA).
+* Get started with Azure Document Intelligence latest stable version v4.0 `2024-11-30` (GA).
 
 :::moniker-end
 
@@ -49,7 +49,7 @@ zone_pivot_groups: programming-languages-set-formre
 
 ::: moniker-end
 
-* Azure AI Document Intelligence / Form Recognizer is a cloud-based Azure AI service that uses machine learning to extract key-value pairs, text, tables, and key data from your documents.
+* Azure Document Intelligence / Form Recognizer is a cloud-based Foundry Tools service that uses machine learning to extract key-value pairs, text, tables, and key data from your documents.
 
 * You can easily integrate document processing models into your workflows and applications by using a programming language SDK or calling the REST API.
 
@@ -125,7 +125,7 @@ In this quickstart, you used a document Intelligence model to analyze various fo
 
 ::: moniker range="doc-intel-2.1.0"
 
-Get started with Azure AI Document Intelligence using the programming language of your choice or the REST API. Document Intelligence is a cloud-based Azure AI service that uses machine learning to extract key-value pairs, text, and tables from your documents. We recommend that you use the free service when you're learning the technology. Remember that the number of free pages is limited to 500 per month.
+Get started with Azure Document Intelligence using the programming language of your choice or the REST API. Document Intelligence is a cloud-based Foundry Tools service that uses machine learning to extract key-value pairs, text, and tables from your documents. We recommend that you use the free service when you're learning the technology. Remember that the number of free pages is limited to 500 per month.
 
 To learn more about Document Intelligence features and development options, visit our [Overview](../overview.md) page.
 

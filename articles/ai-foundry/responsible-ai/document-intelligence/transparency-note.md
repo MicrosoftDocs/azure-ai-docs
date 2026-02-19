@@ -1,13 +1,13 @@
 ---
 title: Transparency note for Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document details some example use cases and tips for using Document Intelligence.
-author: sanjeev3
-ms.author: sajagtap
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: article
-ms.date: 05/04/2021
+ms.topic: concept-article
+ms.date: 10/15/2025
 ---
 
 # Transparency note and use cases for Document Intelligence
@@ -50,7 +50,7 @@ Document Intelligence supports one or more languages and locales for each of the
 
 ### System behavior
 
-Azure AI Document Intelligence is a cloud-based Azure AI service that's built by using optical character recognition (OCR), Text Analytics, and Custom Text from Azure AI services. Custom models currently use Azure OpenAI service's GPT-3.5 model. OCR is used to extract typeface and handwritten text documents. Document Intelligence uses OCR to detect and extract information from forms and documents supported by AI to provide more structure and information to the text extraction. 
+Azure Document Intelligence in Foundry Tools is a cloud-based Foundry tool that's built by using optical character recognition (OCR), Text Analytics, and Custom Text from Foundry Tools. Custom models currently use Azure OpenAI service's GPT-3.5 model. OCR is used to extract typeface and handwritten text documents. Document Intelligence uses OCR to detect and extract information from forms and documents supported by AI to provide more structure and information to the text extraction. 
 
 ## Use cases
 
@@ -90,9 +90,9 @@ Document Intelligence prebuilt models are used for processing specific document 
 
 **Custom model limitations**
 
-Document Intelligence custom models are trained using your own training data so that the model can train to your specific forms and documents. This capability is heavily dependent on the way you label the data, as well as the type of training data set you provide. For custom models, it’s important to note the limits of training data set size, document page limits, and minimum number of samples needed for each type of document. Custom models currently use Azure OpenAI Service's GPT-3.5 model. Further information on the Azure OpenAI models can be found in the [Azure OpenAI Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note). 
+Document Intelligence custom models are trained using your own training data so that the model can train to your specific forms and documents. This capability is heavily dependent on the way you label the data, as well as the type of training data set you provide. For custom models, it's important to note the limits of training data set size, document page limits, and minimum number of samples needed for each type of document. Custom models currently use Azure OpenAI Service's GPT-3.5 model. Further information on the Azure OpenAI models can be found in the [Azure OpenAI Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note). 
 
-The [Service limits](/azure/ai-services/document-intelligence/service-limits) page contains more information on Azure AI Document Intelligence service quotas and limits for all pricing tiers. It also contains model limitations and best practices for model usage and avoiding request throttling. 
+The [Service limits](/azure/ai-services/document-intelligence/service-limits) page contains more information on Document Intelligence service quotas and limits for all pricing tiers. It also contains model limitations and best practices for model usage and avoiding request throttling. 
 
 ## Feature support
 

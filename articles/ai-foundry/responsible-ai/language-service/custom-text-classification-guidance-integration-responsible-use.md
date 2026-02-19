@@ -1,12 +1,12 @@
 ---
 title: Guidance for integration and responsible use with custom text classification
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Guidance for integration and responsible use with custom text classification.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: best-practice
 ms.date: 04/26/2023
 ---
 

@@ -4,10 +4,11 @@ titleSuffix: Azure AI Search
 description: Technical overview and setup for adding search to a website and deploying to Azure Static Web App with .NET.
 manager: nitinme
 author: diberry
-ms.author: diberry
+ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 01/17/2025
+ms.date: 09/23/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -17,11 +18,11 @@ ms.devlang: csharp
 
 # Step 1 - Overview of adding search to a static web app with .NET
 
-This tutorial builds a website to search through a catalog of books and then deploys the website to an Azure static web app. 
+This tutorial builds a website that searches through a catalog of books and then deploys the website to an Azure Static Web App. 
 
 ## What does the sample do?
 
-This sample website provides access to a catalog of 10,000 books. You can search the catalog by entering text in the search bar. While you enter text, the website uses the search index's suggestion feature to autocomplete the text. Once the query finishes, the list of books is displayed with a portion of the details. You can select a book to see all the details, stored in the search index, of the book. 
+This sample website provides access to a catalog of 10,000 books. You can search the catalog by entering text in the search bar. While you enter text, the website uses the search index's suggestion feature to autocomplete the text. When the query finishes, the website displays the list of books with a portion of the details. You can select a book to see all the details, stored in the search index, of the book. 
 
 :::image type="content" source="media/tutorial-csharp-overview/cognitive-search-enabled-book-website-2.png" alt-text="Screenshot of the sample app in a browser window.":::
 
@@ -54,11 +55,11 @@ Create services and install the following software for your local development en
 - [C# Dev Tools extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
 - [Azure Static Web App extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestaticwebapps) 
 
-This tutorial doesn't run the Azure Function API locally but if you intend to run it locally, install [azure-functions-core-tools](/azure/azure-functions/functions-run-local?tabs=linux%2ccsharp%2cbash#install-the-azure-functions-core-tools).
+This tutorial doesn't run the Azure Function API locally. If you want to run it locally, install [azure-functions-core-tools](/azure/azure-functions/functions-run-local?tabs=linux%2ccsharp%2cbash#install-the-azure-functions-core-tools).
 
 ## Fork and clone the search sample with git
 
-Forking the sample repository is critical to be able to deploy the Static Web App. The web apps determine the build actions and deployment content based on your own GitHub fork location. Code execution in the Static Web App is remote, with Azure Static Web Apps reading from the code in your forked sample.
+To deploy the Static Web App, you need to fork the sample repository. The web apps use your GitHub fork location to decide the build actions and deployment content. Code execution in the Static Web App happens remotely, with Azure Static Web Apps reading the code from your forked sample.
 
 1. On GitHub, fork the [azure-search-static-web-app repository](https://github.com/Azure-Samples/azure-search-static-web-app). 
 
@@ -78,7 +79,7 @@ Forking the sample repository is critical to be able to deploy the Static Web Ap
     cd azure-search-static-web-app
     ```
 
-1. Use the Visual Studio Code command, `code .` to open your forked repository. The remaining tasks are accomplished from Visual Studio Code, unless specified.
+1. Use the Visual Studio Code command, `code .` to open your forked repository. You accomplish the remaining tasks from Visual Studio Code, unless specified.
 
     ```bash
     code .

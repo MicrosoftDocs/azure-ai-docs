@@ -1,0 +1,120 @@
+items:
+- name: Use Foundry Tools in Microsoft Foundry portal
+  href: ../../../ai-services/connect-services-foundry-portal.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
+- name: What are Foundry Tools?
+  href: ../../../ai-services/what-are-ai-services.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name:  Content Understanding
+  items:
+  - name: What is Azure Content Understanding?
+    href: ../../../ai-services/content-understanding/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal
+    href: ../../../ai-services/content-understanding/how-to/content-understanding-foundry-classic.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name:  Document Intelligence
+  items:
+  - name: What is Document Intelligence in Foundry Tools?
+    href: ../../../ai-services/document-intelligence/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name:  Language
+  items:
+  - name: What is Language in Foundry Tools?
+    href: ../../../ai-services/language-service/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Azure Language tools and agents
+    href: ../../../ai-services/language-service/concepts/foundry-tools-agents.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Conversation Language Understanding
+    items:
+    - name: "Quickstart: Get started"
+      href: ../../../ai-services/language-service/conversational-language-understanding/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true&pivots=rest-api
+    - name: "Quickstart: Multi-turn conversations"
+      href: ../../../ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations.md?context
+  - name: Key Phrase Extraction
+    href: ../../../ai-services/language-service/key-phrase-extraction/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Language Detection
+    href: ../../../ai-services/language-service/language-detection/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Named Entity Recognition
+    href: ../../../ai-services/language-service/named-entity-recognition/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Custom Named Entity Recognition
+    href: ../../../ai-services/language-service/custom-named-entity-recognition/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true&pivots=rest-api
+  - name: Native Document Support
+    href: ../../../ai-services/language-service/native-document-support/use-native-documents.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Orchestration Workflow
+    href: ../../../ai-services/language-service/orchestration-workflow/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Personally Identifiable Information detection
+    items:
+    - name: Quickstart
+      href: ../../../ai-services/language-service/personally-identifiable-information/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: How to redact PII from text
+      href: ../../../ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Sentiment Analysis
+    href: ../../../ai-services/language-service/sentiment-opinion-mining/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Summarization
+    href: ../../../ai-services/language-service/summarization/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Text Analytics for Health
+    href: ../../../ai-services/language-service/text-analytics-for-health/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Text Classification
+    href: ../../../ai-services/language-service/custom-text-classification/quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name:  Speech
+  items:
+  - name: What is the Speech service?
+    href: ../../../ai-services/speech-service/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Voice live with Foundry models quickstart
+    href: ../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Voice live with Foundry agents quickstart
+    href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Real-time speech to text
+    href: ../../../ai-services/speech-service/get-started-speech-to-text.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Fast transcription
+    href: ../../../ai-services/speech-service/fast-transcription-create.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Fine-tune your speech model
+    items:
+    - name: Custom speech fine-tuning
+      href: ../../../ai-services/speech-service/how-to-custom-speech-create-project.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Custom voice fine-tuning
+      href: ../../../ai-services/speech-service/professional-voice-create-project.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Custom avatar fine-tuning
+      href: ../../../ai-services/speech-service/text-to-speech-avatar/custom-avatar-create.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Pronunciation assessment
+    href: ../../../ai-services/speech-service/pronunciation-assessment-tool.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Speech translation
+    href: ../../../ai-services/speech-service/get-started-speech-translation.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Video translation
+    href: ../../../ai-services/speech-service/video-translation-get-started.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Audio content creation
+    href: ../../../ai-services/speech-service/how-to-audio-content-creation.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name:  Translator
+  items:
+  - name: What is Translator in Foundry Tools?
+    href: ../../../ai-services/translator/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Translator in Foundry Tools language support
+    href: ../../../ai-services/translator/language-support.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Text translation
+    href: ../../../ai-services/translator/text-translation/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Document translation
+    href: ../../../ai-services/translator/document-translation/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Custom Translator
+    href: ../../../ai-services/translator/custom-translator/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Prebuilt solutions
+    href: ../../../ai-services/translator/solutions/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name:  Vision
+  items:
+  - name: Azure Image Analysis
+    items:
+    - name: What is Image Analysis?
+      href: /azure/ai-services/computer-vision/overview-image-analysis?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Quickstart
+      href: /azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Optical Character Recognition concepts
+      href: /azure/ai-services/computer-vision/concept-ocr?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Image captioning concepts
+      href: /azure/ai-services/computer-vision/concept-describe-images-40?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+  - name: Azure AI Face
+    items:
+    - name: What is Azure AI Face service?
+      href: /azure/ai-services/computer-vision/overview-identity?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Quickstart 
+      href: /azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Face detection concepts
+      href: /azure/ai-services/computer-vision/concept-face-detection?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Face recognition concepts
+      href: /azure/ai-services/computer-vision/concept-face-recognition?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    - name: Liveness detection tutorial
+      href: /azure/ai-services/computer-vision/tutorials/liveness?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true

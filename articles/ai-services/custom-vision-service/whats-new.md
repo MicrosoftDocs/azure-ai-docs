@@ -1,6 +1,6 @@
 ---
 title: What's new in Custom Vision?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article contains news about Custom Vision.
 author: PatrickFarley
 manager: nitinme
@@ -11,6 +11,8 @@ ms.author: pafarley
 ---
 
 # What's new in Custom Vision
+
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
 
 Learn what's new in the service. These items may be release notes, videos, blog posts, and other types of information. Bookmark this page to keep up to date with the service.
 
@@ -145,6 +147,6 @@ Bug fixes, including for ONNX export with special characters.
 - Updated [C# SDK and sample](https://github.com/Microsoft/Cognitive-CustomVision-Windows).
 
 
-## Azure AI services updates
+## Foundry Tools updates
 
-[Azure update announcements for Azure AI services](https://azure.microsoft.com/updates/?product=cognitive-services)
+[Azure update announcements for Foundry Tools](https://azure.microsoft.com/updates/?product=cognitive-services)

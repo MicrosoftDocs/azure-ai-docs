@@ -1,35 +1,47 @@
 ---
 title: GenAI Prompt skill (Preview)
 titleSuffix: Azure AI Search
-description: Invokes Chat Completion models from Azure OpenAI or other Azure AI Foundry-hosted models at indexing time.
+description: Invokes chat completion models from Azure OpenAI or other Microsoft Foundry-hosted models to create content at indexing time.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 05/27/2025
+ms.date: 02/12/2026
 ---
 
 # GenAI Prompt skill
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models.  
+The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in [Azure OpenAI in Foundry Models](/azure/ai-services/openai/overview) or [Microsoft Foundry](../ai-foundry/what-is-foundry.md). Use this skill to create new information that can be indexed and stored as searchable content.
 
-Use this capability to create new information that can be indexed and stored as searchable content. Examples include verbalize images, summarize larger passages, simplify complex content, or any other task that an LLM can perform. The skill supports text, image, and multimodal content such as a PDF that contains text and images. It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate the image verbalization scenarios with two different data chunking techniques: 
+Here are some examples of how the GenAI prompt skill can help you create content:
 
-- [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-document-layout-image-verbalization.md)
+- Verbalize images
+- Summarize large passages of text
+- Simplify complex content
+- Perform any other task that you can articulate in a prompt
 
-- [Tutorial: Index mixed content using image verbalizations and the Document Extraction skill](tutorial-document-extraction-image-verbalization.md)
+The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true). This skill supports text, image, and multimodal content, such as a PDF that contains text and images.
 
-The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) only. 
+> [!TIP]
+> It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate image verbalization with two different data chunking techniques:
+>
+> - [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
+> - [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
+>
 
 ## Supported models
 
-You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, Cohere-command-r, and so forth.
+- You can use any [chat completion inference model](../ai-foundry/foundry-models/concepts/models.md) deployed in Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, and Cohere-command-r. For GPT models specifically, only the chat completions API endpoints are supported. Endpoints using the Azure OpenAI Responses API (containing `/openai/responses` in the URI) aren't currently compatible.
 
-Billing is based on the pricing of the model you use.
+- For image verbalization, the model you use to analyze the image determines what image formats are supported.
+
+- For GPT-5 models, the `temperature` parameter is not supported in the same way as previous models. If defined, it must be set to `1.0`, as other values will result in errors.
+
+- Billing is based on the pricing of the model you use.
 
 > [!NOTE]
 > The search service connects to your model over a public endpoint, so there are no region location requirements, but if you're using an all-up Azure solution, you should check the [Azure AI Search regions](search-region-support.md) and the [Azure OpenAI model regions](/azure/ai-services/openai/concepts/models) to find suitable pairs, especially if you have data residency requirements.
@@ -37,17 +49,19 @@ Billing is based on the pricing of the model you use.
 
 ## Prerequisites
 
-- A deployed chat completion model (for example *gpt-4o* or any compatible Open Source Software (OSS) model) in Azure AI Foundry or Azure OpenAI.
+- An [Azure OpenAI in Foundry Models resource](../ai-foundry/openai/how-to/create-resource.md) or [Foundry project](../ai-foundry/how-to/create-projects.md).
 
-  - Copy the endpoint from **Models + Endpoints** in the Foundry portal or from the Azure OpenAI resource subdomain (`*.openai.azure.com`).
+- A [supported model](#supported-models) deployed to your resource or project.
 
-  - Provide this endpoint in the `Uri` parameter of your skill definition.
+  - For Azure OpenAI, copy the endpoint with the `openai.azure.com` domain from the **Keys and Endpoint** page in the Azure portal. Use this endpoint for the `Uri` parameter in this skill.
 
-- Authentication can be key-based with an API key from your Azure AI Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-howto-managed-identities-data-sources.md) assigned to a role.
+  - For Foundry, copy the target URI for the deployment from the **Models** page in the Foundry portal. Use this endpoint for the `Uri` parameter in this skill.
+
+- Authentication can be key-based with an API key from your Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-how-to-managed-identities.md) assigned to a role.
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 
-  - For AI Foundry models, assign [**Azure AI User**](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user).
+  - On Foundry, assign [**Azure AI User**](../ai-foundry/concepts/rbac-foundry.md#built-in-roles) to the managed identity.
 
 ## @odata.type  
 
@@ -65,7 +79,7 @@ Billing is based on the pricing of the model you use.
 
 | Property | Type | Required | Notes |
 |----------|------|----------|-------|
-| `uri` | string | Yes | Public endpoint of the deployed model. |
+| `uri` | string | Yes | Public endpoint of the deployed model. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul> |
 | `apiKey` | string | Cond.* | Secret key for the model. Leave blank when using managed identity. |
 | `authIdentity` | string | Cond.* | **User-assigned** managed identity client ID (*Azure OpenAI only*). Leave blank to use the **system-assigned** identity. |
 | `commonModelParameters` | object | No | Standard generation controls such as `temperature`, `maxTokens`, etc. |
@@ -169,19 +183,7 @@ Billing is based on the pricing of the model you use.
       "strict": true,
       "schema": {
         "type": "object",
-        "properties": {
-          "facts": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "number": { "type": "number" },
-                "fact": { "type": "string" }
-              },
-              "required": [ "number", "fact" ]
-            }
-          }
-        },
+        "properties": "{\"facts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"number\":{\"type\":\"number\"},\"fact\":{\"type\":\"string\"}},\"required\":[\"number\",\"fact\"]}}}",
         "required": [ "facts" ],
         "additionalProperties": false
       }
@@ -235,5 +237,5 @@ Billing is based on the pricing of the model you use.
 - [Azure AI Search built-in indexers](search-indexer-overview.md)
 - [Integrated vectorization](vector-search-integrated-vectorization.md)
 - [How to define a skillset](cognitive-search-defining-skillset.md)  
-- [How to generate chat completions with Azure AI model inference (Azure AI Foundry)](/azure/ai-foundry/model-inference/how-to/use-chat-completions)  
+- [How to generate chat completions with Azure AI model inference (Foundry)](../ai-foundry/foundry-models/how-to/use-chat-completions.md)  
 - [Structured outputs in Azure OpenAI](/azure/ai-services/openai/how-to/structured-outputs)  

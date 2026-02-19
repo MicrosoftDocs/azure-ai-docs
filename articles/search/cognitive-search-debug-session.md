@@ -2,15 +2,15 @@
 title: Debug Sessions concepts
 titleSuffix: Azure AI Search
 description: Debug Sessions, accessed through the Azure portal, provides an IDE-like environment where you can identify and fix errors, validate changes, and push changes to skillsets in an Azure AI Search enrichment pipeline.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 04/10/2025
+ms.topic: concept-article
+ms.date: 10/21/2025
+ms.update-cycle: 365-days
 ---
 
 # Debug Sessions in Azure AI Search
@@ -43,7 +43,7 @@ The second image shows a typical pattern for integrated vectorization. Skills fo
 
 Debug Sessions work with all generally available [indexer data sources](search-data-sources-gallery.md) and most preview data sources, with the following exceptions:
 
-+ SharePoint Online indexer.
++ SharePoint indexer.
 
 + Azure Cosmos DB for MongoDB indexer.
 
@@ -51,11 +51,11 @@ Debug Sessions work with all generally available [indexer data sources](search-d
 
 + For the SQL API of Azure Cosmos DB, if a partitioned collection was previously non-partitioned, the debug session won't find the document.
 
-+ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-howto-managed-identities-data-sources.md).
++ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-how-to-managed-identities.md).
 
 + Data sources with encryption enabled via [customer managed keys (CMK)](search-security-manage-encryption-keys.md).
   
-+ Currently, the ability to select which document to debug is unavailable. This limitation isn't permanent and will be lifted soon. At this time, Debug Sessions selects the first document in the source data container or folder.
++ Currently, the ability to select which document to debug is unavailable. This limitation isn't permanent and should be lifted soon. At this time, Debug Sessions selects the first document in the source data container or folder.
 
 ## How a debug session works
 
@@ -64,6 +64,20 @@ When you start a session, the search service creates a copy of the skillset, ind
 A cached copy of the enriched document and skillset is loaded into the visual editor so that you can inspect the content and metadata of the enriched document, with the ability to check each document node and edit any aspect of the skillset definition. Any changes made within the session are cached. Those changes won't affect the published skillset unless you commit them. Committing changes will overwrite the production skillset.
 
 If the enrichment pipeline doesn't have any errors, a debug session can be used to incrementally enrich a document, test and validate each change before committing the changes.
+
+Debug sessions help identify the root cause of errors or warnings by analyzing the data, skill inputs and outputs, and field mappings. If the indexer encounters configuration issues, such as incorrect network setup, permission-related access errors, or similar, please review the specific error message along with the linked documentation provided. For troubleshooting guidance, refer to the [common indexer errors and warnings](cognitive-search-common-errors-warnings.md).
+
+## Debug Sessions with private connectivity
+
+If your AI enrichment pipeline uses shared private links to access Azure resources, additional configuration is required to ensure indexer and debug sessions work correctly. This includes permissions, trusted access, and network setup.
+
+- If you're using [managed identity](search-how-to-managed-identities.md), assign the necessary roles to your search service identity, including `Storage Blob Data Contributor`, so debug sessions can write session data to your storage account.
+- Ensure the search service has access to all resources referenced in the [skillset definition](cognitive-search-working-with-skillsets.md), including any used in the debug session.
+- In your storage account, [enable trusted services](search-indexer-howto-access-trusted-service-exception.md) to allow access from Azure AI Search.
+- Set `"executionEnvironment" = "private"` property in the indexer definition to ensure the [indexer runs in a private context](search-indexer-howto-access-private.md?#4---configure-the-indexer-to-run-in-the-private-environment).
+- Create a [shared private link](search-indexer-howto-access-private.md) for each resource accessed by the search service, including: your data source, if configured to indexer AI enrichment cache and knowledge store, and any other resources configured in your skillset.
+- For other troubleshooting guidance, refer to the [common indexer errors and warnings](cognitive-search-common-errors-warnings.md).
+
 
 ## Debug session layout
 

@@ -5,13 +5,18 @@ description: Define the data structures in a knowledge store by creating data sh
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: concept-article
+ms.date: 10/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 06/17/2025
+  - sfi-ropc-nochange
 ---
 
 # Shaping data for projection into a knowledge store
+
+> [!NOTE]
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 In Azure AI Search, "shaping data" describes a step in the [knowledge store workflow](knowledge-store-concept-intro.md) that creates a data representation of the content that you want to project into tables, objects, and files in Azure Storage.
 

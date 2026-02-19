@@ -10,22 +10,23 @@ ms.custom:
 ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: chenlujiao
-ms.date: 09/30/2024
+ms.reviewer: sooryar
+ms.date: 10/30/2025
+ms.update-cycle: 365-days
 ---
 
 # Prompt flow ecosystem
 
-The prompt flow ecosystem aims to provide a comprehensive set of tutorials, tools and resources for developers who want to leverage the power of prompt flow to experimentally tune their prompts and develop their LLM-based application in pure local environment, without any dependencies on Azure resources binding. This article provides an overview of the key components within the ecosystem, which include:
+The prompt flow ecosystem provides a comprehensive set of tutorials, tools, and resources for developers who want to leverage the power of prompt flow to experimentally tune their prompts and develop their LLM-based application in a pure local environment, without any dependencies on Azure resources binding. This article provides an overview of the key components within the ecosystem, which include:
  - **Prompt flow open source project** in GitHub.
  - **Prompt flow SDK and CLI** for seamless flow execution and integration with CI/CD pipeline.
  - **VS Code extension** for convenient flow authoring and development within a local environment.
 
 ## Prompt flow SDK/CLI
 
-The prompt flow SDK/CLI empowers developers to use code manage credentials, initialize flows, develop flows, and execute batch testing and evaluation of prompt flows locally.
+The prompt flow SDK/CLI empowers developers to use code to manage credentials, initialize flows, develop flows, and execute batch testing and evaluation of prompt flows locally.
 
-It's designed for efficiency, allowing simultaneous trigger of large dataset-based flow tests and metric evaluations. Additionally, the SDK/CLI can be easily integrated into your CI/CD pipeline, automating the testing process.
+It's designed for efficiency, allowing simultaneous triggering of large dataset-based flow tests and metric evaluations. Additionally, you can easily integrate the SDK/CLI into your CI/CD pipeline, automating the testing process.
 
 To get started with the prompt flow SDK, explore and follow the [SDK quick start notebook](https://github.com/microsoft/promptflow/blob/main/examples/tutorials/get-started/quickstart.ipynb) in steps.
 
@@ -35,15 +36,15 @@ The ecosystem also provides a powerful VS Code extension designed for enabling y
 
 :::image type="content" source="./media/community-ecosystem/prompt-flow-vs-code-extension-flatten.png" alt-text="Screenshot of the prompt flow extension in the VS Code showing the UI. "lightbox = "./media/community-ecosystem/prompt-flow-vs-code-extension-flatten.png":::
 
-To get started with the prompt flow VS Code extension, navigate to the extension marketplace to install and read the details tab.
+To get started with the prompt flow VS Code extension, go to the extension marketplace to install and read the details tab.
 
 :::image type="content" source="./media/community-ecosystem/prompt-flow-vs-code-extension.png" alt-text="Screenshot of the prompt flow extension in the VS Code marketplace. "lightbox = "./media/community-ecosystem/prompt-flow-vs-code-extension.png":::
 
 ## Transition to production in cloud
 
-After successful development and testing of your prompt flow within our community ecosystem, the subsequent step you're considering might involve transitioning to a production-grade LLM application. We recommend Azure Machine Learning for this phase to ensure security, efficiency, and scalability.
+After you develop and test your prompt flow within the community ecosystem, you might want to transition to a production-grade LLM application. Use Azure Machine Learning for this phase to ensure security, efficiency, and scalability.
 
-You can seamlessly shift your local flow to your Azure resource to leverage large-scale execution and management in the cloud. To achieve this, see [Integration with GenAIOps](how-to-integrate-with-llm-app-devops.md#go-back-to-studio-ui-for-continuous-development).
+You can shift your local flow to your Azure resource to leverage large-scale execution and management in the cloud. For more information, see [Integration with GenAIOps](how-to-integrate-with-llm-app-devops.md#go-back-to-studio-ui-for-continuous-development).
 
 ## Community support
 

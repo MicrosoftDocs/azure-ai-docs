@@ -1,6 +1,6 @@
 ---
 title: Document Intelligence SDK target REST API v4.0
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Document Intelligence software development kits (SDKs) expose Document Intelligence models, features, and capabilities that are in active development for C#, Java, JavaScript, or Python programming language.
 author: laujan
 manager: nitinme
@@ -10,8 +10,8 @@ ms.custom:
   - devx-track-extended-java
   - devx-track-js
   - devx-track-python
-ms.topic: conceptual
-ms.date: 02/10/2025
+ms.topic: how-to
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-4.0.0'
 --- 
@@ -26,7 +26,7 @@ monikerRange: 'doc-intel-4.0.0'
 
 ![Document Intelligence checkmark](../media/yes-icon.png) **REST API version 2024-11-30 GA**
 
-Azure AI Document Intelligence is a cloud service that uses machine learning to analyze text and structured data from documents. The Document Intelligence software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document Intelligence models and capabilities into your applications. Document Intelligence SDK is available across platforms in C#/.NET, Java, JavaScript, and Python programming languages.
+Azure Document Intelligence in Foundry Tools is a cloud service that uses machine learning to analyze text and structured data from documents. The Document Intelligence software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Document Intelligence models and capabilities into your applications. Document Intelligence SDK is available across platforms in C#/.NET, Java, JavaScript, and Python programming languages.
 
 ## Supported programming languages
 
@@ -365,9 +365,9 @@ Create a client object to interact with the Document Intelligence SDK, and then 
 
 ## Help options
 
-The [`Microsoft Q&A`](/answers/tags/440/document-intelligence) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-ai-document-intelligence) forums are available for the developer community to ask and answer questions about Azure AI Document Intelligence and other services. Microsoft monitors the forums and replies to questions that the community has yet to answer. To make sure, use the following tags so that we see your question.
+The [`Microsoft Q&A`](/answers/tags/440/document-intelligence) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-ai-document-intelligence) forums are available for the developer community to ask and answer questions about Azure Document Intelligence in Foundry Tools and other services. Microsoft monitors the forums and replies to questions that the community has yet to answer. To make sure, use the following tags so that we see your question.
 
-* `Microsoft Q&A`: **`Azure AI Document Intelligence`**.
+* `Microsoft Q&A`: **`Azure Document Intelligence`**.
 
 * Stack Overflow: **`azure-ai-document-intelligence`**.
 

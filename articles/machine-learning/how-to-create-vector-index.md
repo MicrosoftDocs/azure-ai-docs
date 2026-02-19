@@ -3,12 +3,12 @@ title: Create a vector index in an Azure Machine Learning prompt flow (preview)
 titleSuffix: Azure Machine Learning
 description: Learn how to create a vector index in Azure Machine Learning and use it in a prompt flow.
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 01/22/2025
+ms.date: 01/28/2026
 ms.topic: how-to
 ms.collection: ce-skilling-ai-copilot 
 ms.custom:
@@ -18,7 +18,7 @@ ms.custom:
 
 # Create a vector index in an Azure Machine Learning prompt flow (preview)
 
-You can use Azure Machine Learning to create a vector index from files or folders on your machine, a location in cloud storage, an Azure Machine Learning data asset, a Git repository, or a SQL database. Azure Machine Learning can currently process .txt, .md, .pdf, .xls, and .docx files. You can also reuse an existing Azure AI Search (formerly Cognitive Search) index instead of creating a new index.
+You can use Azure Machine Learning to create a vector index from files or folders on your machine, a location in cloud storage, an Azure Machine Learning data asset, a Git repository, or a SQL database. Azure Machine Learning can process various document, code, and presentation file types. For a complete list, see [Supported file types](#supported-file-types). You can also reuse an existing Azure AI Search (formerly Cognitive Search) index instead of creating a new index.
 
 When you create a vector index, Azure Machine Learning chunks the data, creates embeddings, and stores the embeddings in a Faiss index or Azure AI Search index. In addition, Azure Machine Learning creates:
 
@@ -36,9 +36,9 @@ When you create a vector index, Azure Machine Learning chunks the data, creates 
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* Access to Azure OpenAI in Azure AI Foundry Models.
+* Access to Azure OpenAI in Microsoft Foundry Models.
 
 * Prompt flows enabled in your Azure Machine Learning workspace. You can enable prompt flows by turning on **Build AI solutions with Prompt flow** on the **Manage preview features** panel.
 
@@ -95,6 +95,5 @@ Supported file types for creating a vector index job: `.txt`, `.md`, `.html`, `.
 
 ## Next steps
 
-[Get started with RAG by using a prompt flow sample (preview)](how-to-use-pipelines-prompt-flow.md)
-
-[Use vector stores with Azure Machine Learning (preview)](concept-vector-stores.md)
+- [Get started with RAG by using a prompt flow sample (preview)](how-to-use-pipelines-prompt-flow.md) - Build RAG pipelines using no-code components.
+- [Use vector stores with Azure Machine Learning (preview)](concept-vector-stores.md) - Learn about Azure AI Search and Faiss as vector store options.

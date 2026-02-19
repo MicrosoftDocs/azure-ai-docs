@@ -2,10 +2,10 @@
 title: Plan to manage costs
 titleSuffix: Azure Machine Learning
 description: Plan to manage costs for Azure Machine Learning with cost analysis in the Azure portal. Learn further cost-saving tips for building ML models.
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.custom: subject-cost-optimization, build-2023
-ms.reviewer: nigup
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: concept-article

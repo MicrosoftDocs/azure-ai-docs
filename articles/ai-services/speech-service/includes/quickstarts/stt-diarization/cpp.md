@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 7/16/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/cpp.md)]
@@ -54,12 +54,12 @@ Follow these steps to create a console application and install the Speech SDK.
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
         auto endpoint = GetEnvironmentVariable("ENDPOINT");
 
-        if ((size(speechKey) == 0) || (size(endpoint) == 0)) {
+        if (std::string(speechKey).empty() || std::string(endpoint).empty()) {
             std::cout << "Please set both SPEECH_KEY and ENDPOINT environment variables." << std::endl;
             return -1;
         }
 
-        auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endpoint);
+        auto speechConfig = SpeechConfig::FromEndpoint(endpoint, speechKey);
         speechConfig->SetProperty(PropertyId::SpeechServiceResponse_DiarizeIntermediateResults, "true"); 
 
         speechConfig->SetSpeechRecognitionLanguage("en-US");

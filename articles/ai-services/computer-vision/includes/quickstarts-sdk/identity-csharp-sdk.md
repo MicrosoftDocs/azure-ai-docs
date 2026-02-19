@@ -5,8 +5,6 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
 ms.topic: include
 ms.date: 05/03/2022
 ms.author: pafarley
@@ -18,11 +16,9 @@ Get started with facial recognition using the Face client library for .NET. The 
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/) or current version of [.NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-* Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource </a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
-    * You'll need the key and endpoint from the resource you create to connect your application to the Face API.
-    * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+* Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource </a> in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 
 ## Create environment variables
@@ -31,15 +27,15 @@ Get started with facial recognition using the Face client library for .NET. The 
 
 ## Identify and verify faces
 
-1. Create a new C# application
+1. Create a new C# application.
 
     #### [Visual Studio IDE](#tab/visual-studio)
 
-    Using Visual Studio, create a new .NET Core application. 
+    Using Visual Studio, create a new .NET Console App. 
 
     ### Install the client library 
 
-    Once you've created a new project, install the client library by right-clicking on the project solution in the **Solution Explorer** and selecting **Manage NuGet Packages**. In the package manager that opens select **Browse**, check **Include prerelease**, and search for `Azure.AI.Vision.Face`. Select the latest version, and then **Install**. 
+    Once you've created a new project, install the client library by right-clicking the project in  **Solution Explorer** and selecting **Manage NuGet Packages**. In the package manager that opens, select **Browse**, select **Include prerelease**, and search for `Azure.AI.Vision.Face`. Select the latest version, and then select **Install**. 
 
     #### [CLI](#tab/cli)
 
@@ -74,10 +70,10 @@ Get started with facial recognition using the Face client library for .NET. The 
     ```
 
     ---
-1. Add the following code into the *Program.cs* file.
+1. Add the following code into the *Program.cs* file, replacing the existing code.
 
     > [!NOTE]
-    > If you haven't received access to the Face service using the [intake form](https://aka.ms/facerecognition), some of these functions won't work.
+    > If you haven't received access to the Face service by using the [intake form](https://aka.ms/facerecognition), some of these functions won't work.
     
     [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/Quickstart.cs?name=snippet_single)]
 
@@ -86,7 +82,7 @@ Get started with facial recognition using the Face client library for .NET. The 
 
     #### [Visual Studio IDE](#tab/visual-studio)
 
-    Run the application by clicking the **Debug** button at the top of the IDE window.
+    Run the application by selecting the **Debug** button at the top of the IDE window.
 
     #### [CLI](#tab/cli)
 
@@ -149,7 +145,7 @@ End of quickstart.
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+If you want to clean up and remove a Foundry Tools subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 * [Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)

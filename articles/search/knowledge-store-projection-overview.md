@@ -2,18 +2,22 @@
 title: Projection concepts
 titleSuffix: Azure AI Search
 description: Introduces projection concepts and best practices. If you're creating a knowledge store in Azure AI Search, projections determine the type, quantity, and composition of objects in Azure Storage.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: concept-article
+ms.date: 10/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 06/17/2025
+  - sfi-ropc-nochange
 ---
 
 # Knowledge store "projections" in Azure AI Search
+
+> [!NOTE]
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 Projections define the physical tables, objects, and files in a [**knowledge store**](knowledge-store-concept-intro.md) that accept content from an Azure AI Search enrichment pipeline. If you're creating a knowledge store, defining and shaping projections is most of the work.
 
@@ -156,7 +160,7 @@ Recall that projections are exclusive to knowledge stores, and aren't used to st
 
 1. While in Azure Storage, familiarize yourself with existing content in containers and tables so that you choose nonconflicting names for the projections. A knowledge store is a loose collection of tables and containers. Consider adopting a naming convention to keep track of related objects.
 
-1. In Azure AI Search, [enable enrichment caching (preview)](search-howto-incremental-index.md) in the indexer and then [run the indexer](search-howto-run-reset-indexers.md) to execute the skillset and populate the cache. This is a preview feature, so be sure to use the preview REST API  on the indexer request. Once the cache is populated, you can modify projection definitions in a knowledge store free of charge (as long as the skills themselves aren't modified).
+1. In Azure AI Search, [enable enrichment caching (preview)](enrichment-cache-how-to-configure.md) in the indexer and then [run the indexer](search-howto-run-reset-indexers.md) to execute the skillset and populate the cache. This is a preview feature, so be sure to use the preview REST API  on the indexer request. Once the cache is populated, you can modify projection definitions in a knowledge store free of charge (as long as the skills themselves aren't modified).
 
 1. In your code, all projections are defined solely in a skillset. There are no indexer properties (such as field mappings or output field mappings) that apply to projections. Within a skillset definition, you'll focus on two areas: knowledgeStore property and skills array.
 

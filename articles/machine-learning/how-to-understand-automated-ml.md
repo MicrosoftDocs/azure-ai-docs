@@ -3,19 +3,21 @@ title: Evaluate AutoML experiment results
 titleSuffix: Azure Machine Learning
 description: Learn how to view and evaluate charts and metrics for each of your automated machine learning experiment jobs.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
-ms.reviewer: manashg
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.date: 08/05/2024
-ms.topic: how-to
+ms.date: 09/16/2025
+ms.topic: concept-article
 ms.custom: automl
 ---
 
 # Evaluate automated machine learning experiment results
 
-In this article, learn how to evaluate and compare models trained by your automated machine learning (automated ML) experiment. Over the course of an automated ML experiment, many jobs are created and each job creates a model. For each model, automated ML generates evaluation metrics and charts that help you measure the model's performance. You can further generate a Responsible AI dashboard to do a holistic assessment and debugging of the recommended best model by default. This includes insights such as model explanations, fairness and performance explorer, data explorer, model error analysis. Learn more about how you can generate a [Responsible AI dashboard.](how-to-responsible-ai-insights-ui.md)
+In this article, learn how to evaluate and compare models trained by your automated machine learning (automated ML) experiment. Over the course of an automated ML experiment, many jobs are created and each job creates a model. For each model, automated ML generates evaluation metrics and charts that help you measure the model's performance. 
+
+You can also generate a responsible AI dashboard to perform a holistic assessment and debugging of the recommended best model by default. This dashboard includes insights such as model explanations, fairness and performance explorer, data explorer, and model error analysis. Learn more about how you can generate a [Responsible AI dashboard.](how-to-responsible-ai-insights-ui.md)
 
 For example, automated ML generates the following charts based on experiment type.
 
@@ -35,7 +37,7 @@ For example, automated ML generates the following charts based on experiment typ
 
 ## Prerequisites
 
-- An Azure subscription. (If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/) before you begin)
+- An Azure subscription. (If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin)
 - An Azure Machine Learning experiment created with either:
   - The [Azure Machine Learning studio](how-to-use-automated-ml-for-ml-models.md) (no code required)
   - The [Azure Machine Learning Python SDK](how-to-configure-auto-train.md)
@@ -46,7 +48,7 @@ After your automated ML experiment completes, a history of the jobs can be found
   - A browser with [Azure Machine Learning studio](https://ml.azure.com)
   - A Jupyter notebook using the [JobDetails Jupyter widget](/python/api/azureml-widgets/azureml.widgets.rundetails)
 
-The following steps and video, show you how to view the run history and model evaluation metrics and charts in the studio:
+The following steps and video show you how to view the run history and model evaluation metrics and charts in the studio:
 
 1. [Sign into the studio](https://ml.azure.com/) and navigate to your workspace.
 1. In the left menu, select **Jobs**.
@@ -70,7 +72,7 @@ While each averaging method has its benefits, one common consideration when sele
 The following table summarizes the model performance metrics that automated ML calculates for each classification model generated for your experiment. For more detail, see the scikit-learn documentation linked in the **Calculation** field of each metric. 
 
 > [!NOTE]
-> Refer to [image metrics](#metrics-for-image-models-preview) section for additional details on metrics for image classification models.
+> Refer to [image metrics](#metrics-for-image-models-preview) section for more details on metrics for image classification models.
 
 |Metric|Description|Calculation|
 |--|--|---|
@@ -90,15 +92,15 @@ weighted_accuracy| Weighted accuracy is accuracy where each sample is weighted b
 
 Automated ML automatically detects if the data is binary and also allows users to activate binary classification metrics even if the data is multiclass by specifying a `true` class. Multiclass classification metrics are reported if a dataset has two or more classes. Binary classification metrics are reported only when the data is binary.
 
-Note, multiclass classification metrics are intended for multiclass classification. When applied to a binary dataset, these metrics don't treat any class as the `true` class, as you might expect. Metrics that are clearly meant for multiclass are suffixed with `micro`, `macro`, or `weighted`. Examples include `average_precision_score`, `f1_score`, `precision_score`, `recall_score`, and `AUC`. For example, instead of calculating recall as `tp / (tp + fn)`, the multiclass averaged recall (`micro`, `macro`, or `weighted`) averages over both classes of a binary classification dataset. This is equivalent to calculating the recall for the `true` class and the `false` class separately, and then taking the average of the two.
+Note that multiclass classification metrics are intended for multiclass classification. When applied to a binary dataset, these metrics don't treat any class as the `true` class, as you might expect. Metrics that are clearly meant for multiclass are suffixed with `micro`, `macro`, or `weighted`. Examples include `average_precision_score`, `f1_score`, `precision_score`, `recall_score`, and `AUC`. For example, instead of calculating recall as `tp / (tp + fn)`, the multiclass averaged recall (`micro`, `macro`, or `weighted`) averages over both classes of a binary classification dataset. This is equivalent to calculating the recall for the `true` class and the `false` class separately, and then taking the average of the two.
 
-Besides, although automatic detection of binary classification is supported, it's still recommended to always specify the `true` class manually to make sure the binary classification metrics are calculated for the correct class.
+In addition, although automatic detection of binary classification is supported, it's still recommended to always specify the `true` class manually to make sure the binary classification metrics are calculated for the correct class.
 
-To activate metrics for binary classification datasets when the dataset itself is multiclass, users only need to specify the class to be treated as `true` class and these metrics are calculated.
+To activate metrics for binary classification datasets when the dataset itself is multiclass, users only need to specify the class to be treated as the `true` class and these metrics will be calculated.
 
 ## Confusion matrix
 
-Confusion matrices provide a visual for how a machine learning model is making systematic errors in its predictions for classification models. The word "confusion" in the name comes from a model "confusing" or mislabeling samples. A cell at row `i` and column `j` in a confusion matrix contains the number of samples in the evaluation dataset that belong to class `C_i` and are classified by the model as class `C_j`.
+Confusion matrices provide a visual representation of how a machine learning model is making systematic errors in its predictions for classification models. The word "confusion" in the name comes from a model "confusing" or mislabeling samples. A cell at row `i` and column `j` in a confusion matrix contains the number of samples in the evaluation dataset that belong to class `C_i` and were classified by the model as class `C_j`.
 
 In the studio, a darker cell indicates a higher number of samples. Selecting **Normalized** view in the dropdown normalizes over each matrix row to show the percent of class `C_i` predicted to be class `C_j`. The benefit of the default **Raw** view is that you can see whether imbalance in the distribution of actual classes caused the model to misclassify samples from the minority class, a common issue in imbalanced datasets.
 
@@ -114,7 +116,7 @@ The confusion matrix of a good model has most samples along the diagonal.
 
 The receiver operating characteristic (ROC) curve plots the relationship between true positive rate (TPR) and false positive rate (FPR) as the decision threshold changes. The ROC curve can be less informative when training models on datasets with high class imbalance, as the majority class can drown out contributions from minority classes.
 
-The area under the curve (AUC) can be interpreted as the proportion of correctly classified samples. More precisely, the AUC is the probability that the classifier ranks a randomly chosen positive sample higher than a randomly chosen negative sample. The shape of the curve gives an intuition for relationship between TPR and FPR as a function of the classification threshold or decision boundary.
+The area under the curve (AUC) can be interpreted as the proportion of correctly classified samples. More precisely, the AUC is the probability that the classifier ranks a randomly chosen positive sample higher than a randomly chosen negative sample. The shape of the curve gives an intuition for the relationship between TPR and FPR as a function of the classification threshold or decision boundary.
 
 A curve that approaches the top-left corner of the chart is approaching a 100% TPR and 0% FPR, the best possible model. A random model would produce an ROC curve along the `y = x` line from the bottom-left corner to the top-right. A worse than random model would have an ROC curve that dips below the `y = x` line.
 > [!TIP]
@@ -128,7 +130,7 @@ A curve that approaches the top-left corner of the chart is approaching a 100% T
 
 ## Precision-recall curve
 
-The precision-recall curve plots the relationship between precision and recall as the decision threshold changes. Recall is the ability of a model to detect all positive samples and precision is the ability of a model to avoid labeling negative samples as positive. Some business problems might require higher recall and some higher precision depending on the relative importance of avoiding false negatives vs false positives.
+The precision-recall curve plots the relationship between precision and recall as the decision threshold changes. Recall is the ability of a model to detect all positive samples and precision is the ability of a model to avoid labeling negative samples as positive. Some business problems might require higher recall and some higher precision depending on the relative importance of avoiding false negatives versus false positives.
 > [!TIP]
 > For classification experiments, each of the line charts produced for automated ML models can be used to evaluate the model per-class or averaged over all classes. You can switch between these different views by clicking on class labels in the legend to the right of the chart.
 ### Precision-recall curve for a good model
@@ -139,11 +141,11 @@ The precision-recall curve plots the relationship between precision and recall a
 
 ## Cumulative gains curve
 
-The cumulative gains curve plots the percent of positive samples correctly classified as a function of the percent of samples considered where we consider samples in the order of predicted probability.
+The cumulative gains curve plots the percent of positive samples correctly classified as a function of the percent of samples considered, where we consider samples in the order of predicted probability.
 
 To calculate gain, first sort all samples from highest to lowest probability predicted by the model. Then take `x%` of the highest confidence predictions. Divide the number of positive samples detected in that `x%` by the total number of positive samples to get the gain. Cumulative gain is the percent of positive samples we detect when considering some percent of the data that is most likely to belong to the positive class.
 
-A perfect model ranks all positive samples above all negative samples giving a cumulative gains curve made up of two straight segments. The first is a line with slope `1 / x` from `(0, 0)` to `(x, 1)` where `x` is the fraction of samples that belong to the positive class (`1 / num_classes` if classes are balanced). The second is a horizontal line from `(x, 1)` to `(1, 1)`. In the first segment, all positive samples are classified correctly and cumulative gain goes to `100%` within the first `x%` of samples considered.
+A perfect model ranks all positive samples above all negative samples, giving a cumulative gains curve made up of two straight segments. The first is a line with slope `1 / x` from `(0, 0)` to `(x, 1)` where `x` is the fraction of samples that belong to the positive class (`1 / num_classes` if classes are balanced). The second is a horizontal line from `(x, 1)` to `(1, 1)`. In the first segment, all positive samples are classified correctly and cumulative gain goes to `100%` within the first `x%` of samples considered.
 
 The baseline random model has a cumulative gains curve following `y = x` where for `x%` of samples considered only about `x%` of the total positive samples were detected. A perfect model for a balanced dataset has a micro average curve and a macro average line that has slope `num_classes` until cumulative gain is 100% and then horizontal until the data percent is 100.
 > [!TIP]
@@ -172,9 +174,9 @@ The baseline lift curve is the `y = 1` line where the model performance is consi
 
 ## Calibration curve
 
-The calibration curve plots a model's confidence in its predictions against the proportion of positive samples at each confidence level. A well-calibrated model will correctly classify 100% of the predictions to which it assigns 100% confidence, 50% of the predictions it assigns 50% confidence, 20% of the predictions it assigns a 20% confidence, and so on. A perfectly calibrated model has a calibration curve following the `y = x` line where the model perfectly predicts the probability that samples belong to each class.
+The calibration curve plots a model's confidence in its predictions against the proportion of positive samples at each confidence level. A well-calibrated model will correctly classify 100% of the predictions to which it assigns 100% confidence, 50% of the predictions it assigns 50% confidence, 20% of the predictions it assigns 20% confidence, and so on. A perfectly calibrated model has a calibration curve following the `y = x` line where the model perfectly predicts the probability that samples belong to each class.
 
-An over-confident model over-predicts probabilities close to zero and one, rarely being uncertain about the class of each sample and the calibration curve will look similar to backward "S." An under-confident model assigns a lower probability on average to the class it predicts and the associated calibration curve looks similar to an "S". The calibration curve doesn't depict a model's ability to classify correctly, but instead its ability to correctly assign confidence to its predictions. A bad model can still have a good calibration curve if the model correctly assigns low confidence and high uncertainty.
+An over-confident model over-predicts probabilities close to zero and one, rarely being uncertain about the class of each sample. The calibration curve for such a model will look similar to a backward "S." An under-confident model assigns a lower probability on average to the class it predicts. The associated calibration curve looks similar to an "S". The calibration curve doesn't depict a model's ability to classify correctly, but instead its ability to correctly assign confidence to its predictions. A bad model can still have a good calibration curve if the model correctly assigns low confidence and high uncertainty.
 
 > [!NOTE]
 > The calibration curve is sensitive to the number of samples, so a small validation set can produce noisy results that can be hard to interpret. This does not necessarily mean that the model is not well-calibrated.
@@ -187,7 +189,7 @@ An over-confident model over-predicts probabilities close to zero and one, rarel
 
 ## Regression/forecasting metrics
 
-Automated ML calculates the same performance metrics for each  model generated, regardless if it's a regression or forecasting experiment. These metrics also undergo normalization to enable comparison between models trained on data with different ranges. To learn more, see [metric normalization](#metric-normalization).  
+Automated ML calculates the same performance metrics for each model generated, regardless of whether it's a regression or forecasting experiment. These metrics also undergo normalization to enable comparison between models trained on data with different ranges. To learn more, see [metric normalization](#metric-normalization).  
 
 The following table summarizes the model performance metrics generated for regression and forecasting experiments. Like classification metrics, these metrics are also based on the scikit learn implementations. The appropriate scikit learn documentation is linked accordingly, in the **Calculation** field.
 
@@ -204,7 +206,7 @@ spearman_correlation| Spearman correlation is a nonparametric measure of the mon
 
 ### Metric normalization
 
-Automated ML normalizes regression and forecasting metrics, which enable comparison between models trained on data with different ranges. A model trained on a data with a larger range has higher error than the same model trained on data with a smaller range, unless that error is normalized.
+Automated ML normalizes regression and forecasting metrics, which enables comparison between models trained on data with different ranges. A model trained on data with a larger range has higher error than the same model trained on data with a smaller range, unless that error is normalized.
 
 While there's no standard method of normalizing error metrics, automated ML takes the common approach of dividing the error by the range of the data: `normalized_error = error / (y_max - y_min)`
 
@@ -222,7 +224,7 @@ These cases have direct analogies to macro and micro averaging in [multi-class c
 
 The distinction between macro and micro averaging can be important when selecting a primary metric for model selection. For example, consider a retail scenario where you want to forecast demand for a selection of consumer products. Some products sell at higher volumes than others. If you choose a micro-averaged RMSE as the primary metric, it's possible that the high-volume items contribute most of the modeling error and, so, dominate the metric. The model selection algorithm might favor models with higher accuracy on the high-volume items than on the low-volume ones. In contrast, a macro-averaged, normalized RMSE gives low-volume items approximately equal weight to the high-volume items.
 
-The following table lists which of AutoML's forecasting metrics use macro vs. micro averaging:  
+The following table lists AutoML's forecasting metrics, and which use macro vs. micro averaging:  
 
 Macro averaged | Micro averaged
 -- | --
@@ -244,11 +246,11 @@ In this example, both models are slightly biased to predict lower than the actua
 
 ## Predicted vs. true
 
-For regression and forecasting experiment the predicted vs. true chart plots the relationship between the target feature (true/actual values) and the model's predictions. The true values are binned along the x-axis and for each bin the mean predicted value is plotted with error bars. This allows you to see if a model is biased toward predicting certain values. The line displays the average prediction and the shaded area indicates the variance of predictions around that mean.
+For regression and forecasting experiments, the predicted vs. true chart plots the relationship between the target feature (true/actual values) and the model's predictions. The true values are binned along the x-axis and for each bin the mean predicted value is plotted with error bars. This allows you to see if a model is biased toward predicting certain values. The line displays the average prediction and the shaded area indicates the variance of predictions around that mean.
 
 Often, the most common true value has the most accurate predictions with the lowest variance. The distance of the trend line from the ideal `y = x` line where there are few true values is a good measure of model performance on outliers. You can use the histogram at the bottom of the chart to reason about the actual data distribution. Including more data samples where the distribution is sparse can improve model performance on unseen data.
 
-In this example, note that the better model has a predicted vs. true line that is closer to the ideal `y = x` line.
+In this example, note that the better model has a predicted vs. true line that's closer to the ideal `y = x` line.
 
 ### Predicted vs. true chart for a good model
 ![Predicted vs. true chart for a good model](./media/how-to-understand-automated-ml/chart-predicted-true-good.png)
@@ -258,15 +260,14 @@ In this example, note that the better model has a predicted vs. true line that i
 
 ## Forecast horizon
 
-For forecasting experiments, the forecast horizon chart plots the relationship between the models predicted value and the actual values mapped over time per cross validation fold, up to five folds. The x axis maps time based on the frequency you provided during training setup. The vertical line in the chart marks the forecast horizon point also referred to as the horizon line, which is the time period at which you would want to start generating predictions. To the left of the forecast horizon line, you can view historic training data to better visualize past trends. To the right of the forecast horizon, you can visualize the predictions (the purple line) against the actuals (the blue line) for the different cross validation folds and time series identifiers. The shaded purple area indicates the confidence intervals or variance of predictions around that mean. 
+For forecasting experiments, the forecast horizon chart plots the relationship between the model's predicted values and the actual values mapped over time per cross validation fold, up to five folds. The x-axis maps time based on the frequency you provided during training setup. The vertical line in the chart marks the forecast horizon point, also referred to as the horizon line, which is the time period at which you would want to start generating predictions. To the left of the forecast horizon line, you can view historic training data to better visualize past trends. To the right of the forecast horizon, you can visualize the predictions (the purple line) against the actuals (the blue line) for the different cross validation folds and time series identifiers. The shaded purple area indicates the confidence intervals or variance of predictions around that mean. 
 
-You can choose which cross validation fold and time series identifier combinations to display by clicking the edited pencil icon on the top right corner of the chart. Select from the first five cross validation folds and up to 20 different time series identifiers to visualize the chart for your various time series.  
+You can choose which cross validation fold and time series identifier combinations to display by clicking the pencil icon on the top right corner of the chart. Select from the first five cross validation folds and up to 20 different time series identifiers to visualize the chart for your various time series.  
 
 >[!IMPORTANT]
 > This chart is available in the training run for models generated from training and validation data as well as in the test run based on training data and test data. We allow up to 20 data points before and up to 80 data points after the forecast origin.
-> For DNN models, this chart in the training run shows data from the last epoch i.e. after the model has been trained completely.
-> This chart in the test run can have gap before the horizon line if validation data was explicitly provided during the training run. 
->This is becasue training data and test data is used in the test run leaving out the validation data which results in gap.
+> For DNN models, this chart in the training run shows data from the last epoch (that is, after the model has been trained completely).
+> This chart in the test run can have a gap before the horizon line if validation data was explicitly provided during the training run. This is because training data and test data are used in the test run, leaving out the validation data, which results in the gap.
 
 ![Forecast horizon chart](./media/how-to-understand-automated-ml/forecast-horizon.png)
 
@@ -279,7 +280,7 @@ Automated ML uses the images from the validation dataset for evaluating the perf
 The primary metric for evaluation is **accuracy** for binary and multi-class classification models and **IoU** ([Intersection over Union](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.jaccard_score.html#sklearn.metrics.jaccard_score)) for multilabel classification models.
 The classification metrics for image classification models are same as those defined in the [classification metrics](#classification-metrics) section. The loss values associated with an epoch are also logged which can help monitor how the training progresses and determine if the model is over-fitting or under-fitting.
 
-Every prediction from a classification model is associated with a confidence score, which indicates the level of confidence with which the prediction was made. Multilabel image classification models are by default evaluated with a score threshold of 0.5, which means only predictions with at least this level of confidence is considered as a positive prediction for the associated class. Multiclass classification doesn't use a score threshold but instead, the class with the maximum confidence score is considered as the prediction. 
+Every prediction from a classification model is associated with a confidence score, which indicates the level of confidence with which the prediction was made. Multilabel image classification models are evaluated by default with a score threshold of 0.5, which means only predictions with at least this level of confidence are considered as a positive prediction for the associated class. Multiclass classification doesn't use a score threshold but instead, the class with the maximum confidence score is considered as the prediction. 
 
 #### Epoch-level metrics for image classification
 Unlike the classification metrics for tabular datasets, image classification models log all the classification metrics at an epoch-level as shown below.
@@ -288,21 +289,21 @@ Unlike the classification metrics for tabular datasets, image classification mod
 
 #### Summary metrics for image classification
 
-Apart from the scalar metrics that are logged at the epoch level, image classification model also log summary metrics like [confusion matrix](#confusion-matrix), [classification charts](#roc-curve) including ROC curve, precision-recall curve and classification report for the model from the best epoch at which we get the highest primary metric (accuracy) score.
+Apart from the scalar metrics that are logged at the epoch level, image classification models also log summary metrics like [confusion matrix](#confusion-matrix), [classification charts](#roc-curve) including ROC curve, precision-recall curve, and classification report for the model from the best epoch at which we get the highest primary metric (accuracy) score.
 
-Classification report provides the class-level values for metrics like precision, recall, f1-score, support, auc, and average_precision with  various level of averaging - micro, macro, and weighted as shown below.
+Classification report provides the class-level values for metrics like precision, recall, f1-score, support, AUC, and average_precision with various levels of averaging - micro, macro, and weighted as shown below.
 Refer to the metrics definitions from the [classification metrics](#classification-metrics) section.
 
 ![Classification report for image classification](./media/how-to-understand-automated-ml/image-classification-report.png)
 
 ### Object detection and instance segmentation metrics
 
-Every prediction from an image object detection or instance segmentation  model is associated with a confidence score.
-The predictions with confidence score greater than score threshold are output as predictions and used in the metric calculation, the default value of which is model specific and can be referred from the [hyperparameter tuning](reference-automl-images-hyperparameters.md#model-specific-hyperparameters) page(`box_score_threshold` hyperparameter).
+Every prediction from an image object detection or instance segmentation model is associated with a confidence score.
+The predictions with confidence scores greater than the score threshold are output as predictions and used in the metric calculation. The default value is model specific and can be found on the [hyperparameter tuning](reference-automl-images-hyperparameters.md#model-specific-hyperparameters) page (`box_score_threshold` hyperparameter).
 
 The metric computation of an image object detection and instance segmentation model is based on an overlap measurement defined by a metric called **IoU** ([Intersection over Union](https://en.wikipedia.org/wiki/Jaccard_index)) which is computed by dividing the area of overlap between the ground-truth and the predictions by the area of union of the ground-truth and the predictions. The IoU computed from every prediction is compared with an **overlap threshold** called an IoU threshold, which determines how much a prediction should overlap with a user-annotated ground-truth in order to be considered as a positive prediction. If the IoU computed from the prediction is less than the overlap threshold the prediction wouldn't be considered as a positive prediction for the associated class.
 
-The primary metric for the evaluation of image object detection and instance segmentation models is the **mean average precision (mAP)**. The mAP is the average value of the average precision(AP) across all the classes. Automated ML object detection models support the computation of mAP using the below two popular methods.
+The primary metric for the evaluation of image object detection and instance segmentation models is the **mean average precision (mAP)**. The mAP is the average value of the average precision (AP) across all the classes. Automated ML object detection models support the computation of mAP using the below two popular methods.
 
 **Pascal VOC metrics**: 
 
@@ -311,7 +312,7 @@ The primary metric for the evaluation of image object detection and instance seg
 
 **COCO metrics**: 
 
-[COCO evaluation method](https://cocodataset.org/#detection-eval) uses a 101-point interpolated method for AP calculation along with averaging over ten IoU thresholds. AP@[.5:.95] corresponds to the average AP for IoU from 0.5 to 0.95 with a step size of 0.05. Automated ML logs all the 12 metrics defined by the COCO method including the AP and AR(average recall) at various scales in the application logs while the metrics user interface shows only the mAP  at an IoU threshold of 0.5. 
+[COCO evaluation method](https://cocodataset.org/#detection-eval) uses a 101-point interpolated method for AP calculation along with averaging over 10 IoU thresholds. AP@[.5:.95] corresponds to the average AP for IoU from 0.5 to 0.95 with a step size of 0.05. Automated ML logs all the 12 metrics defined by the COCO method including the AP and AR(average recall) at various scales in the application logs while the metrics user interface shows only the mAP  at an IoU threshold of 0.5. 
 
 > [!TIP]
 > The image object detection model evaluation can use coco metrics if the `validation_metric_type` hyperparameter is set to be 'coco' as explained in the [hyperparameter tuning](reference-automl-images-hyperparameters.md#object-detection-and-instance-segmentation-task-specific-hyperparameters) section.
@@ -320,7 +321,7 @@ The primary metric for the evaluation of image object detection and instance seg
 The mAP, precision, and recall values are logged at an epoch-level for image object detection/instance segmentation models. The mAP, precision, and recall metrics are also logged at a class level with the name 'per_label_metrics'. The 'per_label_metrics' should be viewed as a table. 
 
 > [!NOTE]
-> Epoch-level metrics for precision, recall and per_label_metrics are not available when using the 'coco' method.
+> Epoch-level metrics for precision, recall and per_label_metrics aren't available when using the 'coco' method.
 
 ![Epoch-level charts for object detection](./media/how-to-understand-automated-ml/image-object-detection-map.png)
 
@@ -333,7 +334,7 @@ The Azure Machine Learning Responsible AI dashboard provides a single interface 
 * Machine learning interpretability 
 * Error analysis 
 
-While model evaluation metrics and charts are good for measuring the general quality of a model, operations such as inspecting the model’s fairness, viewing its explanations (also known as which dataset features a model used to make its predictions), inspecting its errors and potential blind spots are essential when practicing responsible AI. That's why automated ML provides a Responsible AI dashboard to help you observe various insights for your model. See how to view the Responsible AI dashboard in the [Azure Machine Learning studio.](how-to-use-automated-ml-for-ml-models.md#responsible-ai-dashboard-preview)
+While model evaluation metrics and charts are good for measuring the general quality of a model, operations such as inspecting the model's fairness, viewing its explanations (also known as which dataset features a model used to make its predictions), inspecting its errors and potential uncertainties are essential when practicing responsible AI. That's why automated ML provides a Responsible AI dashboard to help you observe various insights for your model. See how to view the Responsible AI dashboard in the [Azure Machine Learning studio.](how-to-use-automated-ml-for-ml-models.md#responsible-ai-dashboard-preview)
 
 See how you can generate this [dashboard via the UI or the SDK.](how-to-responsible-ai-insights-sdk-cli.md)
 
@@ -342,7 +343,7 @@ See how you can generate this [dashboard via the UI or the SDK.](how-to-responsi
 While model evaluation metrics and charts are good for measuring the general quality of a model, inspecting which dataset features a model uses to make predictions is essential when practicing responsible AI. That's why automated ML provides a model explanations dashboard to measure and report the relative contributions of dataset features. See how to [view the explanations dashboard in the Azure Machine Learning studio](how-to-use-automated-ml-for-ml-models.md#responsible-ai-dashboard-preview).
 
 > [!NOTE]
-> Interpretability, best model explanation, is not available for automated ML forecasting experiments that recommend the following algorithms as the best model or ensemble: 
+> Interpretability, best model explanation, isn't available for automated ML forecasting experiments that recommend the following algorithms as the best model or ensemble: 
 > * TCNForecaster
 > * AutoArima
 > * ExponentialSmoothing

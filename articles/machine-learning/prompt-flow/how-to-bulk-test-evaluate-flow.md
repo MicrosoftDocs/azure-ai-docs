@@ -5,14 +5,16 @@ description: Submit a batch run in Azure Machine Learning studio and use evaluat
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
-  - ignite-2023
-  - build-2024
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: ziqiwang
+ms.reviewer: sooryar
 ms.date: 10/28/2024
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Submit a batch run to evaluate a flow

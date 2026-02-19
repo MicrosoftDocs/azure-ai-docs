@@ -1,0 +1,178 @@
+### YamlMime:FAQ
+metadata:
+  title: Voice Live frequently asked questions (FAQ)
+  titleSuffix: Foundry Tools
+  description: Get answers to frequently asked questions about the Voice Live API in Azure Speech in Foundry Tools.
+  author: PatrickFarley
+  reviewers: pafarley
+  manager: nitinme
+  ms.service: azure-ai-speech
+  ms.topic: faq
+  ms.date: 09/30/2025
+  ms.author: pafarley
+  ms.reviewer: pafarley
+title: Voice Live FAQ
+summary: |
+  This article answers commonly asked questions about the Voice Live API. If you can't find answers to your questions here, check out [other support options](../cognitive-services-support-options.md?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext%253fcontext%253d%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext).
+
+sections:
+  - name: General
+    questions:
+      - question: |
+          What scenarios does Voice Live support?
+        answer: |
+          Voice Live API supports a wide range of real-time, natural voice interaction scenarios: contact centers, automotive assistants, accessibility applications, virtual tutors and learning companions, multilingual public service agents, HR support, and training. Used by customers like eClinicalWorks and the Government of Malta.
+      - question: |
+          How does Voice Live compare to AOAI Realtime API? When should I choose which?
+        answer: |
+          Voice Live API enhances AOAI Realtime API by offering: expanded model selection (including GPT-Realtime, GPT-5, GPT-4.1, PHI), more natural voice options, more supported speech languages, avatar integration, advanced semantic voice activity detection (VAD), seamless Microsoft Foundry Agent Service integration, telephony integration via Azure Communication Services.
+      - question: |
+          What regions does Voice Live support?
+        answer: |
+          Voice Live is available in 10+ Azure regions. For more information, see [Region support](./regions.md?tabs=voice-live).
+      - question: |
+          What is the tokens-per-minute threshold?
+        answer: |
+          The current limit is 100,000 tokens per minute per resource. Customers can request an increase. For more information, see [Speech service quotas and limits](./speech-services-quotas-and-limits.md).
+  - name: Generative AI Models
+    questions:
+      - question: |
+          What generative AI models are supported?
+        answer: |
+          Supports OpenAI models in Microsoft Foundry, Phi-based LLMs, and SLMs. For more information, see [Voice Live overview](./voice-live.md). Voice Live also provides an option to bring-your-own model (PREVIEW).
+      - question: |
+          How do I choose the LLM model for my use case?
+        answer: |
+          Consider: accuracy (Azure Speech-based models are more robust for noisy audio), existing LLM solutions (reuse prompts and grounding data), latency (text-based LLMs can have slightly higher latency), inference cost (smaller models can be more cost-effective).
+      - question: |
+          What is response instruction?
+        answer: |
+          Guides model behavior and context. Define agent personality, specify questions, control response formatting. Responses should be concise and normalized for optimal audio synthesis.
+      - question: |
+          What is response temperature?
+        answer: |
+          Controls randomness of output. Lower values = deterministic, higher = creative. Adjust temperature or Top-P, not both.
+  - name: Speech Input
+    questions:
+      - question: |
+          What languages does Voice Live support?
+        answer: |
+          Supports 146 languages/locales for input, 151 for output, 600+ neural voices. See [Voice Live language support](./voice-live-language-support.md?tabs=speechinput).
+      - question: |
+          How do I get the live transcripts from the call?
+        answer: |
+          Use text output events. Details at [Voice live API reference](./voice-live-api-reference-2025-10-01.md).
+      - question: |
+          What is a phrase list?
+        answer: |
+          Domain-specific terms to improve recognition. Limit to <500 words/phrases. See [How to customize Voice Live](./voice-live-how-to-customize.md).
+      - question: |
+          Are there other ways to improve speech input recognition accuracy?
+        answer: |
+          Use Azure AI Custom Speech models. Configure multiple custom models per language. See [How to customize Voice Live](./voice-live-how-to-customize.md).
+  - name: Speech Output
+    questions:
+      - question: |
+          What voices does Voice Live support?
+        answer: |
+          Native audio output with preferred model, Azure Speech in Foundry Tools TTS voices (600+ voices, 150+ locales, 30+ Neural HD voices). Custom voice models via Professional Voice Fine-tuning. For more information, see [Voice Live API supported languages](./voice-live-language-support.md?tabs=speechoutput).
+      - question: |
+          How do I pick a voice?
+        answer: |
+          Use [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) in Microsoft Foundry Speech Playground. Consider gender, age, capability, style, personality.
+      - question: |
+          What is voice temperature?
+        answer: |
+          Controls expressiveness. Higher = dynamic/emotive, lower = neutral. Applies to Neural HD voices.
+      - question: |
+          What is speaking rate?
+        answer: |
+          Controls agent's speech speed.
+      - question: |
+          What is a custom lexicon?
+        answer: |
+          Define pronunciation rules for specific words. See [How to customize Voice Live](./voice-live-how-to-customize.md#speech-output-customization).
+      - question: |
+          What is Custom Voice?
+        answer: |
+          Create brand-specific synthetic voices using your own audio data. See [How to customize Voice Live](./voice-live-how-to-customize.md#azure-custom-voices).
+      - question: |
+          What is Avatar support?
+        answer: |
+          Pair speech output with visual avatars for multimodal experiences.
+      - question: |
+          What is Custom Avatar?
+        answer: |
+          Photorealistic digital human using Azure AI TTS. Built from video recordings, tailored to specific actor’s appearance and voice.
+  - name: Conversational Enhancements
+    questions:
+      - question: |
+          What is the difference between Azure Semantic VAD and Basic Server VAD?
+        answer: |
+          Azure Semantic VAD is more noise robust and accurate for detecting utterance boundaries.
+      - question: |
+          What is EOU (End of Utterance) detection?
+        answer: |
+          Uses context to determine if a user finished speaking or just paused.
+      - question: |
+          How does noise suppression work?
+        answer: |
+          Filters background noise based on advanced technology.
+      - question: |
+          How does echo cancellation work?
+        answer: |
+          Removes echo of agent’s own voice picked up by microphone.
+  - name: Function Calling
+    questions:
+      - question: |
+          Does Voice Live support function calling?
+        answer: |
+          Yes, including asynchronous function calling.
+      - question: |
+          Is there model context protocol (MCP) support?
+        answer: |
+          Currently MCP isn't supported.
+  - name: Pricing
+    questions:
+      - question: |
+          Where is the pricing listed?
+        answer: |
+          [Voice Live overview](./voice-live.md#pricing)
+      - question: |
+          How do I estimate the cost based on my use case?
+        answer: |
+          Estimate by audio minutes; tokens are billing unit. See [pricing](./voice-live.md#pricing) and [token usage and cost estimation](./voice-live.md#token-usage-and-cost-estimation).
+      - question: |
+          Are there separate quota and throttling limits for voice-live?
+        answer: |
+          Yes, quota applies specifically to Voice Live API (default: 100k tokens/min).
+  - name: Additional
+    questions:
+      - question: |
+          Does this service provide an SDK?
+        answer: |
+          Yes, SDKs for Python and C#. See [Voice Live - Reference - Voice Live SDK](./voice-live.md).
+      - question: |
+          Does this service include content filtering?
+        answer: |
+          Yes, content filtering is included.
+      - question: |
+          Can you modify or disable the content filtering in Voice Live API?
+        answer: |
+          No. If you need custom content filtering, you can use the bring-your-own-model (PREVIEW) feature.
+      - question: |
+          Does Voice Live API support WebRTC?
+        answer: |
+          WebRTC is currently not supported.
+      - question: |
+          Is SIP supported?
+        answer: |
+          SIP is currently not supported.
+
+additionalContent: |
+
+  ## Next steps
+  
+  - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
+  - See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+  - [What's new](releasenotes.md)

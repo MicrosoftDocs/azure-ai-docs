@@ -5,9 +5,9 @@ description: Upgrade model management from v1 to v2 of Azure Machine Learning SD
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
-author: sdgilley
-ms.author: sgilley
+ms.topic: how-to
+author: s-polly
+ms.author: scottpolly
 ms.date: 12/01/2022
 ms.reviewer: kritifaujdar
 ms.custom: migration

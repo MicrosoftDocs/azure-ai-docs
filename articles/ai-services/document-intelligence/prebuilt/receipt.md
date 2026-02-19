@@ -1,12 +1,12 @@
 ---
 title: Receipt data extraction - Document Intelligence 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use machine learning powered receipt data extraction model to digitize receipts.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 11/19/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -30,20 +30,7 @@ ms.author: lajanuar
 [!INCLUDE [applies to v2.1](../includes/applies-to-v21.md)]
 ::: moniker-end
 
-The Document Intelligence receipt model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data. Receipt model v4.0 (GA) supports other fields including `ReceiptType`, `TaxDetails.NetAmount`, `TaxDetails.Description`, `TaxDetails.Rate` and `CountryRegion` along with VAT table extraction on general hotel receipts. VAT table extraction support for Nordic Receipts will be added in March 2025. 
-
-**Supported receipt types in the latest version (4.0):**
-
-* Meal
-* Supplies
-* Hotel
-* Fuel&Energy
-* Transportation
-* Communication
-* Subscriptions
-* Entertainment
-* Training
-* Healthcare 
+The Document Intelligence receipt model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data. Receipt model v4.0 (GA) supports other fields including `ReceiptType`, `TaxDetails.NetAmount`, `TaxDetails.Description`, `TaxDetails.Rate` and `CountryRegion` along with VAT table extraction on general hotel receipts. 
 
 ## Receipt data extraction
 
@@ -123,7 +110,7 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 See how Document Intelligence extracts data, including time and date of transactions, merchant information, and amount totals from receipts. You need the following resources:
 
-* An Azure subscription—you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription—you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 

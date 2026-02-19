@@ -1,12 +1,12 @@
 ---
 title: Document Intelligence US tax documents data extraction
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Automate US tax document data extraction with Document Intelligence US tax document models.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 11/19/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: ">=doc-intel-3.0.0"
 ---
@@ -87,7 +87,7 @@ Document Intelligence v3.0 supports the following tools, applications, and libra
 
 See how data, including customer information, vendor details, and line items, is extracted from invoices. You need the following resources:
 
-* An Azure subscription—you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription—you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 

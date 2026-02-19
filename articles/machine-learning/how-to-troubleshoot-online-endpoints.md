@@ -5,12 +5,17 @@ description: Learn how to troubleshoot online endpoint deployment and scoring is
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-author: msakande
-ms.author: mopeakande
-ms.reviewer: sehan
-ms.date: 09/25/2024
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
+ms.date: 10/06/2025
 ms.topic: troubleshooting
-ms.custom: devplatv2, devx-track-azurecli, cliv2, sdkv2
+ms.custom:
+  - devplatv2
+  - devx-track-azurecli
+  - cliv2
+  - sdkv2
+  - sfi-image-nochange
 #Customer intent: As a data scientist, I want to figure out why my online endpoint deployment failed so that I can fix it.
 ---
 
@@ -30,7 +35,7 @@ The [HTTP status codes](#http-status-codes) section explains how invocation and 
 
 ## Prerequisites
 
-- An active Azure subscription with the free or paid version of Azure Machine Learning. [Get a free trial Azure subscription](https://azure.microsoft.com/free/).
+- An active Azure subscription with the free or paid version of Azure Machine Learning. [Get a free trial Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 # [Azure CLI](#tab/cli)
 
@@ -122,21 +127,27 @@ kubectl -n <compute-namespace> logs <container-name>
 To see log output from a container, use the following command:
 
 ```azurecli
-az ml online-deployment get-logs -e <endpoint-name> -n <deployment-name> -l 100
+az ml online-deployment get-logs -g <resource-group> -w <workspace-name> -e <endpoint-name> -n <deployment-name> -l 100
 ```
 
 Or
 
 ```azurecli
-az ml online-deployment get-logs --endpoint-name <endpoint-name> --name <deployment-name> --lines 100
+az ml online-deployment get-logs --resource-group <resource-group> --workspace-name <workspace-name> --endpoint-name <endpoint-name> --name <deployment-name> --lines 100
 ```
 
 By default, logs are pulled from the inference server. You can get logs from the storage initializer container by passing `–-container storage-initializer`.
 
-Add `--resource-group` and `--workspace-name` to the commands if you didn't already set these parameters via `az configure`. To see information about how to set these parameters, or if you currently have set values, run the following command:
+The commands above include `--resource-group` and `--workspace-name`. You can also set these parameters globally via `az configure` to avoid repeating them in each command. For example:
 
 ```azurecli
-az ml online-deployment get-logs -h
+az configure --defaults group=<resource-group> workspace=<workspace-name>
+```
+
+To check your current configuration settings, run:
+
+```azurecli
+az configure --list-defaults
 ```
 
 To see more information, add `--help`  or `--debug` to commands.

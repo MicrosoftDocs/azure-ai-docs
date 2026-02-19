@@ -1,13 +1,13 @@
 ---
 title: Azure Text translation SDKs 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Azure Text translation software development kits (SDKs) expose Text translation features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-python
-ms.topic: conceptual
-ms.date: 05/19/2025
+ms.topic: how-to
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -17,9 +17,9 @@ recommendations: false
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD051 -->
 
-# Azure Text translation SDK
+# Azure Translator in Foundry Tools SDK
 
-Azure Text translation is a cloud-based REST API feature of the Azure AI Translator service. The Text translation API enables quick and accurate source-to-target text translations in real time. The Text translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Text translation REST API capabilities into your applications. Text translation SDK is available across programming platforms in C#/.NET, Java, JavaScript, and Python.
+Azure Translator is a cloud-based REST API feature of the Azure Translator. The Text translation API enables quick and accurate source-to-target text translations in real time. The Text translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Text translation REST API capabilities into your applications. Text translation SDK is available across programming platforms in C#/.NET, Java, JavaScript, and Python.
 
 ## Supported languages
 
@@ -32,13 +32,13 @@ Text translation SDK supports the programming languages and platforms:
 |[JavaScript → 1.0.0](https://github.com/Azure/azure-sdk-for-js/tree/@azure-rest/ai-translation-text_1.0.1/sdk/translation/ai-translation-text-rest/)|[npm](https://www.npmjs.com/package/@azure-rest/ai-translation-text/v/1.0.0)|[Azure SDK for JavaScript](/javascript/api/overview/azure/text-translation?view=azure-node-preview&preserve-view=true) |Translator v3.0 |
 |[Python → 1.0.1](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-translation-text_1.0.1/sdk/translation/azure-ai-translation-text/)|[PyPi](https://pypi.org/project/azure-ai-translation-text/1.0.1/)|[Azure SDK for Python](/python/api/overview/azure/ai-translation-text-readme?view=azure-python&preserve-view=true) |Translator v3.0|
 
-&#x2731; The Azure Text translation SDK for Java is tested and supported on Windows, Linux, and macOS platforms. It isn't tested on other platforms and doesn't support Android deployments.
+&#x2731; The Azure Translator SDK for Java is tested and supported on Windows, Linux, and macOS platforms. It isn't tested on other platforms and doesn't support Android deployments.
 
 ## Changelog and release history
 
 This section provides a version-based description of Text translation feature and capability releases, changes, updates, and enhancements.
 
-#### Translator Text SDK May 2024 (GA) release
+#### Azure Translator in Foundry Tools Text SDK May 2024 (GA) release
 
 This release includes the following updates:
 
@@ -100,7 +100,7 @@ This release includes the following updates:
 
 ---
 
-#### Translator Text SDK April 2023 preview release
+#### Azure Translator in Foundry Tools Text SDK April 2023 preview release
 
 This release includes the following updates:
 
@@ -244,7 +244,7 @@ from azure.ai.translation.text import TextTranslationClient
 
 ### 3. Authenticate the client
 
-Interaction with the Translator service using the client library begins with creating an instance of the `TextTranslationClient`class. You need your API key and region to instantiate a client object.
+Interaction with the Translator using the client library begins with creating an instance of the `TextTranslationClient`class. You need your API key and region to instantiate a client object.
 The Text translation API key is found in the Azure portal:
 
 :::image type="content" source="../media/keys-and-endpoint-text-sdk.png" alt-text="Screenshot of the keys and endpoint location in the Azure portal.":::
@@ -356,7 +356,7 @@ Create a client object to interact with the Text translation SDK, and then call 
 
 ## Help options
 
-The [Microsoft Q & A](/answers/tags/132/azure-translator) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-text-translation) forums are available for the developer community to ask and answer questions about Azure Text translation and other services. Microsoft monitors the forums and replies to questions that the community has yet to answer. To make sure that we see your question, tag it with **`azure-text-translation`**.
+The [Microsoft Q & A](/answers/tags/132/azure-translator) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-text-translation) forums are available for the developer community to ask and answer questions about Azure Translator and other services. Microsoft monitors the forums and replies to questions that the community has yet to answer. To make sure that we see your question, tag it with **`azure-text-translation`**.
 
 ## Next steps
 

@@ -1,12 +1,12 @@
 ---
-title: Transparency note - Named Entity Recognition feature of Azure AI Language
-titleSuffix: Azure AI services
-description: Azure AI Language supports named entity recognition to identify and categorize information in your text. The Personally Identifiable Information (PII) feature is part of NER and it can identify and redact sensitive entities in text that are associated with an individual person such as phone number, email address, mailing address, passport number.
-author: aahill
-ms.author: aahi
+title: Transparency note - Named Entity Recognition feature of Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
+description: Azure Language in Foundry Tools supports named entity recognition to identify and categorize information in your text. The Personally Identifiable Information (PII) feature is part of NER and it can identify and redact sensitive entities in text that are associated with an individual person such as phone number, email address, mailing address, passport number.
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 11/10/2021
 ---
 
@@ -17,7 +17,7 @@ ms.date: 11/10/2021
 ## What is a transparency note?
 
 > [!IMPORTANT]
-> This article assumes that you're familiar with guidelines and best practices for Azure AI Language. For more information, see [Transparency note for Azure AI Language](transparency-note.md).
+> This article assumes that you're familiar with guidelines and best practices for Azure Language in Foundry Tools. For more information, see [Transparency note for Language](transparency-note.md).
 
 An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance. Microsoft's Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
 
@@ -25,7 +25,7 @@ Microsoft's Transparency notes are part of a broader effort at Microsoft to put 
 
 ## Introduction to Named Entity Recognition and Personally Identifiable Information (PII)
 
-Azure AI Language supports [named entity recognition](/azure/ai-services/language-service/named-entity-recognition/overview) to identify and categorize information in your text. These include general entities such as Product and Event and Personally Identifiable Information (PII) entities. A [wide variety of personal entities](/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=personal) such as names, organizations, addresses, phone numbers, [financial account numbers](/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=personal#identification) or codes and [government and country or region specific identification numbers](/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=personal#government-and-countryregion-specific-identification) can be recognized. A subset of these personal entities is protected health information (PHI). If you specify domain=phi in your request, you will only get the PHI entities returned. The full list of PII and PHI entity categories can be found in the table [here](/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=personal). In addition, the PII recognition supports the ability to specify specific entity categories you want in the response and redact PII entities in the response.  The PII entities will be replaced by asterisks in the `redactedText` property of the response.
+Language supports [named entity recognition](/azure/ai-services/language-service/named-entity-recognition/overview) to identify and categorize information in your text. These include general entities such as Product and Event and Personally Identifiable Information (PII) entities. A [wide variety of personal entities](/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=personal) such as names, organizations, addresses, phone numbers, [financial account numbers](/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=personal#identification) or codes and [government and country or region specific identification numbers](/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=personal#government-and-countryregion-specific-identification) can be recognized. A subset of these personal entities is protected health information (PHI). If you specify domain=phi in your request, you will only get the PHI entities returned. The full list of PII and PHI entity categories can be found in the table [here](/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=personal). In addition, the PII recognition supports the ability to specify specific entity categories you want in the response and redact PII entities in the response.  The PII entities will be replaced by asterisks in the `redactedText` property of the response.
 
 [Read example NER request and example response](/azure/ai-services/language-service/named-entity-recognition/quickstart) to see how to send text to the service and what to expect back.
 
@@ -55,7 +55,7 @@ Customers may want to recognize various categories of PII entities specifically 
 [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 ## Characteristics and limitations
 
-Depending on your scenario, input data and the entities you wish to extract, you could experience different levels of performance. The following sections are designed to help you understand key concepts about performance as they apply to using the Azure AI Language NER and PII services.
+Depending on your scenario, input data and the entities you wish to extract, you could experience different levels of performance. The following sections are designed to help you understand key concepts about performance as they apply to using the Language NER and PII services.
 
 ### Understand and measure performance of NER
 
@@ -101,12 +101,12 @@ You can adjust the threshold for confidence score your system uses to tune your 
 
 ## See also
 
-* [Transparency note for Azure AI Language](transparency-note.md)
+* [Transparency note for Language](transparency-note.md)
 * [Transparency note for the health feature](transparency-note-health.md)
 * [Transparency note for Key Phrase Extraction](transparency-note-key-phrase-extraction.md)
 * [Transparency note for Language Detection](transparency-note-language-detection.md)
 * [Transparency note for Question answering](transparency-note-question-answering.md)
 * [Transparency note for Summarization](transparency-note-extractive-summarization.md)
 * [Transparency note for Sentiment Analysis](transparency-note-sentiment-analysis.md)
-* [Data Privacy and Security for  Azure AI Language](data-privacy.md)
-* [Guidance for integration and responsible use with Azure AI Language](guidance-integration-responsible-use.md)
+* [Data Privacy and Security for  Language](data-privacy.md)
+* [Guidance for integration and responsible use with Language](guidance-integration-responsible-use.md)

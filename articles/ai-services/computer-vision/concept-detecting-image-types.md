@@ -1,25 +1,23 @@
 ---
-title: Image type detection - Azure AI Vision
-titleSuffix: Azure AI services
-description: Concepts related to the image type detection feature of the Azure AI Vision API.
+title: Image type detection - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Concepts related to the image type detection feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
 # Image type detection
 
-With the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP), Azure AI Vision can analyze the content type of images and indicate whether an image is clip art or a line drawing.
+With the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP&preserve-view=true), Azure Vision in Foundry Tools can analyze the content type of images and indicate whether an image is clip art or a line drawing.
 
 ## Clip art detection
 
-Azure AI Vision analyzes an image and rates the likelihood of the image being clip art on a scale of 0 to 3, as described in the following table.
+Azure Vision analyzes an image and rates the likelihood of the image being clip art on a scale of 0 to 3, as described in the following table.
 
 | Value | Meaning |
 |-------|---------|
@@ -30,7 +28,7 @@ Azure AI Vision analyzes an image and rates the likelihood of the image being cl
 
 ### Clip art detection examples
 
-The following JSON responses illustrates what Azure AI Vision returns when rating the likelihood of the example images being clip art.
+The following JSON responses illustrates what Azure Vision returns when rating the likelihood of the example images being clip art.
 
 ![A clip art image of a slice of cheese](./Images/cheese_clipart.png)
 
@@ -68,11 +66,11 @@ The following JSON responses illustrates what Azure AI Vision returns when ratin
 
 ## Line drawing detection
 
-Azure AI Vision analyzes an image and returns a boolean value indicating whether the image is a line drawing.
+Azure Vision analyzes an image and returns a boolean value indicating whether the image is a line drawing.
 
 ### Line drawing detection examples
 
-The following JSON responses illustrates what Azure AI Vision returns when indicating whether the example images are line drawings.
+The following JSON responses illustrates what Azure Vision returns when indicating whether the example images are line drawings.
 
 ![A line drawing image of a lion](./Images/lion_drawing.png)
 
@@ -110,7 +108,7 @@ The following JSON responses illustrates what Azure AI Vision returns when indic
 
 ## Use the API
 
-The image type detection feature is part of the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP). You can call this API through a native SDK or through REST calls. Include `ImageType` in the **visualFeatures** query parameter. Then, when you get the full JSON response, simply parse the string for the contents of the `"imageType"` section.
+The image type detection feature is part of the [Analyze Image 3.2 API](/rest/api/computervision/analyze-image/analyze-image). You can call this API through a native SDK or through REST calls. Include `ImageType` in the **visualFeatures** query parameter. Then, when you get the full JSON response, simply parse the string for the contents of the `"imageType"` section.
 
 ## Next step
 

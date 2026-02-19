@@ -2,16 +2,15 @@
 title: Map fields in indexers
 titleSuffix: Azure AI Search
 description: Configure field mappings in an indexer to account for differences in field names and data representations.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 02/24/2025
+ms.date: 09/23/2025
+ms.update-cycle: 180-days
 ---
 
 # Field mappings and transformations using Azure AI Search indexers
@@ -47,7 +46,7 @@ Make sure you're using a [supported data source](search-indexer-overview.md#supp
 | Split strings or recast arrays into collections | You can apply [mapping functions](#mappingFunctions) to split a string that includes a delimiter, or to send a JSON array to a search field of type `Collection(Edm.String)`.
 
 > [!NOTE]
-> If no field mappings are present, indexers assume data source fields should be mapped to index fields with the same name. Adding a field mapping overrides the default field mappings for the source and target field. Some indexers, such as the [blob storage indexer](search-howto-indexing-azure-blob-storage.md), add default field mappings for the index key field automatically.
+> If no field mappings are present, indexers assume data source fields should be mapped to index fields with the same name. Adding a field mapping overrides the default field mappings for the source and target field. Some indexers, such as the [blob storage indexer](search-how-to-index-azure-blob-storage.md), add default field mappings for the index key field automatically.
 
 Complex fields aren't supported in a field mapping. Your source structure (nested or hierarchical structures) must exactly match the complex type in the index so that the default mappings work. For more information, see [Tutorial: Index nested JSON blobs](search-semi-structured-data.md) for an example. If you get an error similar to `"Field mapping specifies target field 'Address/city' that doesn't exist in the index"`, it's because target field mappings can't be a complex type. 
 
@@ -178,7 +177,7 @@ Only URL-safe characters can appear in an Azure AI Search document key (so that 
 The following example specifies the base64Encode function on `metadata_storage_name` to handle unsupported characters.
 
 ```http
-PUT /indexers?api-version=2024-07-01
+PUT /indexers?api-version=2025-09-01
 {
   "dataSourceName" : "my-blob-datasource ",
   "targetIndexName" : "my-search-index",
@@ -202,7 +201,7 @@ A document key (both before and after conversion) can't be longer than 1,024 cha
 There are times when you need to use an encoded version of a field like `metadata_storage_path` as the key, but also need an unencoded version for full text search. To support both scenarios, you can map `metadata_storage_path` to two fields: one for the key (encoded), and a second for a path field that we can assume is attributed as `searchable` in the index schema.
 
 ```http
-PUT /indexers/blob-indexer?api-version=2024-07-01
+PUT /indexers/blob-indexer?api-version=2025-09-01
 {
     "dataSourceName" : " blob-datasource ",
     "targetIndexName" : "my-target-index",
@@ -216,7 +215,7 @@ PUT /indexers/blob-indexer?api-version=2024-07-01
 
 #### Example - preserve original values
 
-The [blob storage indexer](search-howto-indexing-azure-blob-storage.md) automatically adds a field mapping from `metadata_storage_path`, the URI of the blob, to the index key field if no field mapping is specified. This value is Base64 encoded so it's safe to use as an Azure AI Search document key. The following example shows how to simultaneously map a *URL-safe* Base64 encoded version of `metadata_storage_path` to a `index_key` field and preserve the original value in a `metadata_storage_path` field:
+The [blob storage indexer](search-how-to-index-azure-blob-storage.md) automatically adds a field mapping from `metadata_storage_path`, the URI of the blob, to the index key field if no field mapping is specified. This value is Base64 encoded so it's safe to use as an Azure AI Search document key. The following example shows how to simultaneously map a *URL-safe* Base64 encoded version of `metadata_storage_path` to a `index_key` field and preserve the original value in a `metadata_storage_path` field:
 
 ```JSON
 "fieldMappings": [

@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 5/19/2025
@@ -55,8 +55,8 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the [Endpoints_Create](/rest/api/aiservices/speechapi/endpoints/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/284b7e37-f42d-4054-8fa9-08523c3de345?api-version=2024-02-01-preview
-Operation-Id: 284b7e37-f42d-4054-8fa9-08523c3de345
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 You use the endpoint `Operation-Location` in subsequent API requests to [suspend and resume an endpoint](#suspend-and-resume-an-endpoint) and [delete an endpoint](#delete-an-endpoint).
@@ -167,5 +167,3 @@ Once you've updated your voice model to the latest engine version, or if you wan
 
 - Learn more about custom voice in the [overview](../../../../custom-neural-voice.md).
 - Learn more about Speech Studio in the [overview](../../../../speech-studio-overview.md).
-
-

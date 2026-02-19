@@ -8,11 +8,12 @@ ms.author: jlembicz
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/07/2025
+ms.update-cycle: 365-days
 ---
 
-# Full text search in Azure AI Search
+# Full-text search in Azure AI Search
 
 Full text search is an approach in information retrieval that matches on plain text stored in an index. For example, given a query string "hotels in San Diego on the beach", the search engine looks for tokenized strings based on those terms. To make scans more efficient, query strings undergo lexical analysis: lower-casing all terms, removing stop words like "the", and reducing terms to primitive root forms. When matching terms are found, the search engine retrieves documents, ranks them in order of relevance, and returns the top results.
 
@@ -50,7 +51,7 @@ A search request is a complete specification of what should be returned in a res
 The following example is a search request you might send to Azure AI Search using the [REST API](/rest/api/searchservice/documents/search-post):
 
 ```
-POST /indexes/hotels/docs/search?api-version=2024-07-01
+POST /indexes/hotels/docs/search?api-version=2025-09-01
 {
     "search": "Spacious, air-condition* +\"Ocean view\"",
     "searchFields": "description, title",
@@ -266,7 +267,7 @@ Returning to our example, for the **title** field, the inverted index looks like
 | hotel | 1, 3 |
 | ocean | 4  |
 | playa | 3 |
-| resort | 3 |
+| resort | 2 |
 | retreat | 4 |
 
 In the title field, only *hotel* shows up in two documents: 1 and 3.

@@ -5,12 +5,16 @@ description: Learn how to collect data from an Azure Machine Learning model depl
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.reviewer: None
-ms.author: sgilley
-author: sdgilley
+ms.reviewer: jturuk
+ms.author: scottpolly
+author: s-polly
 ms.date: 08/16/2022
 ms.topic: how-to
-ms.custom: UpdateFrequency5, data4ml, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - data4ml
+  - sdkv1
+  - sfi-image-nochange
 ---
 # Collect data from models in production
 
@@ -73,7 +77,7 @@ The path to the output data in the blob follows this syntax:
 ## Prerequisites
 
 - If you don't have an Azure subscription, create a
- [free account](https://azure.microsoft.com/free/) before you begin.
+ [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 - An Azure Machine Learning workspace, a local directory containing your scripts, and the Azure Machine Learning SDK for Python must be installed. To learn how to install them, see [How to configure a development environment](how-to-configure-environment.md).
 

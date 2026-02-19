@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 06/10/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
@@ -13,20 +13,20 @@ ms.devlang: csharp
 ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 ---
 
-# Use REST APIs programmatically
+# Use Document Translation APIs programmatically
 
- Document translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
+ Document translation is a cloud-based feature of the [Azure Translator](../../overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#supported-document-and-glossary-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
 
 ## Prerequisites
 
 > [!NOTE]
 >
-> Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 To get started, you need:
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/)
+* An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You also need to [create containers](#create-azure-blob-storage-containers) in your Azure Blob Storage account for your source and target files:
 
@@ -58,7 +58,7 @@ To get started, you need:
 
 ### Retrieve your key and custom domain endpoint
 
-* Requests to the Translator service require a read-only key and custom endpoint to authenticate access. The custom domain endpoint is a URL formatted with your resource name, hostname, and Translator subdirectories and is available in the Azure portal.
+* Requests to the Translator require a read-only key and custom endpoint to authenticate access. The custom domain endpoint is a URL formatted with your resource name, hostname, and Translator subdirectories and is available in the Azure portal.
 
 1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing Document translation resource, navigate directly to your resource page.
 
@@ -72,7 +72,7 @@ To get started, you need:
 
 ### Get your key
 
-Requests to the Translator service require a read-only key for authenticating access.
+Requests to the Translator require a read-only key for authenticating access.
 
 1. If you created a new resource, after it deploys, select **Go to resource**. If you have an existing Document translation resource, navigate directly to your resource page.
 1. In the left rail, under *Resource Management*, select **Keys and Endpoint**.
@@ -107,9 +107,9 @@ The `sourceUrl` , `targetUrl` , and optional `glossaryUrl`  must include a Share
 
 ## HTTP requests
 
-An asynchronous batch translation request is submitted to your Translator service endpoint via a POST request. If successful, the POST method returns a `202 Accepted`  response code and the service creates a batch request. The translated documents are listed in your target container.
+An asynchronous batch translation request is submitted to your Translator endpoint via a POST request. If successful, the POST method returns a `202 Accepted`  response code and the service creates a batch request. The translated documents are listed in your target container.
 
-For detailed information regarding Azure AI Translator Service request limits, _see_ [**Document translation request limits**](../../service-limits.md#document-translation).
+For detailed information regarding Azure Translator request limits, _see_ [**Document translation request limits**](../../service-limits.md#document-translation).
 
 ### HTTP headers
 
@@ -117,7 +117,7 @@ The following headers are included with each Document translation API request:
 
 |HTTP header|Description|
 |---|--|
-|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Azure AI Foundry resource.|
+|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Microsoft Foundry resource.|
 |Content-Type|**Required**: Specifies the content type of the payload. Accepted values are application/json or charset=UTF-8.|
 
 ### POST request body properties
@@ -133,7 +133,7 @@ The following headers are included with each Document translation API request:
 > If a file with the same name already exists in the destination, the job fails.
 
 <!-- markdownlint-disable MD024 -->
-### Translate all documents in a container
+## Translate all documents in a container
 
 ```json
 {
@@ -153,7 +153,7 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-### Translate a specific document in a container
+## Translate a specific document in a container
 
 * Specify `"storageType": "File"`.
 * If you aren't using a [**system-assigned managed identity**](create-use-managed-identities.md) for authentication, make sure you created source URL & SAS tokens for the specific blob/document (not for the container).
@@ -183,15 +183,16 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-### Translate text embedded within images in documents 🆕
+## Translate images in Word document files (.docx)
 
 > [!Note]
 >
+> * This feature requires API version 2024-11-01-preview
 > * This feature is optional and must be enabled for each translation request.
-> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
+> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure Vision in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
 > * This feature is currently available only with the Batch Document translation API.
 > * The Supported file format is `.docx` only.
-> * An Azure AI Foundry resource (not the standalone Translator resource) is required to use this feature.
+> * An Azure AI services multi-service resource (not the standalone Translator resource) is required to use this feature.
 
 ### Request configuration
 
@@ -246,14 +247,14 @@ The following headers are included with each Document translation API request:
             "inProgress": 1,
             "notYetStarted": 0,
             "cancelled": 0,
-            "totalCharacterCharged": 0,
+            "totalCharacterCharged": 1355,
             "totalImageScansSucceeded": 2,
             "totalImageScansFailed": 0
         }
     }
   ```
 
-### Translate documents using a custom glossary
+## Translate documents using a custom glossary
 
 ```json
 {
@@ -1345,7 +1346,7 @@ func main() {
 | HTTP status code | Description | Possible reason |
 |------------------|-------------|-----------------|
 | 200 | OK | The request was successful. |
-| 400 | Bad Request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that is too long. |
+| 400 | Bad Request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that's too long. |
 | 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region.
 | 429 | Too Many Requests | You exceeded the quota or rate of requests allowed for your subscription. |
 | 502 | Bad Gateway    | Network or server-side issue. Can also indicate invalid headers. |

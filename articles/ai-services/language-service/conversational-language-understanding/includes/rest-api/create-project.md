@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 Submit a `PATCH` request by using the following URL, headers, and JSON body to create a new project.
 
 ### Request URL

@@ -3,19 +3,19 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 03/29/2024
+ms.date: 11/18/2025
 ms.custom: devx-track-java
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
-
-[Reference documentation](/java/api/overview/azure/ai-textanalytics-readme?preserve-view=true&view=azure-java-stable) | [More samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics) 
+[Reference documentation](/java/api/overview/azure/ai-textanalytics-readme?view=azure-java-stable&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics)
 
 
 Use this quickstart to create a language detection application with the client library for Java. In the following example, you create a Java application that can identify the language a text sample was written in.
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Java Development Kit (JDK)](https://www.oracle.com/technetwork/java/javase/downloads/index.html) with version 8 or above
 
 
@@ -64,6 +64,9 @@ public class Example {
     private static String languageEndpoint = System.getenv("LANGUAGE_ENDPOINT");
 
     public static void main(String[] args) {
+        if (languageKey == null || languageKey.isBlank() || languageEndpoint == null || languageEndpoint.isBlank()) {
+            throw new IllegalArgumentException("Missing LANGUAGE_KEY or LANGUAGE_ENDPOINT environment variables");
+        }
         TextAnalyticsClient client = authenticateClient(languageKey, languageEndpoint);
         detectLanguageExample(client);
     }

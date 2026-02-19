@@ -1,24 +1,39 @@
 ---
-title: 'How to use Voice Live API for real-time voice agents with Azure AI Speech'
-titleSuffix: Azure AI services
-description: Learn how to use Voice Live API for real-time voice agents with Azure AI Speech.
+title: Get started with Voice Live for real-time voice agents
+titleSuffix: Foundry Tools
+description: Learn how to use Voice Live API for real-time voice agents with Azure Speech in Foundry Tools.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 6/27/2025
-author: eric-urban
-ms.author: eur
+ms.date: 9/26/2025
+author: PatrickFarley
+ms.author: pafarley
+zone_pivot_groups: voice-live-quickstart
 ms.custom: build-2025
 recommendations: false
+ms.subservice: azure-ai-foundry-openai
 ---
 
-# Quickstart: Voice Live API for real-time voice agents (Preview)
+# Quickstart: Create a Voice Live real-time voice agent
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+::: zone pivot="ai-foundry-portal"
+[!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-api/ai-foundry.md)]
+::: zone-end
 
-[!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-api/realtime-python.md)]
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-api/python.md)]
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-api/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java quickstart](./includes/quickstarts/voice-live-api/java.md)]
+::: zone-end
 
 ## Related content
 
+- Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Azure OpenAI Realtime API reference](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)

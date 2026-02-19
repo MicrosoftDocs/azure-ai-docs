@@ -1,0 +1,41 @@
+items:
+- name: Trustworthy AI overview
+  href: ../../responsible-use-of-ai-overview.md
+- name: Content filtering
+  items:
+    - name: Azure AI Content Safety in Foundry portal
+      href: ../../ai-services/content-safety-overview.md
+    - name: Content filtering for Foundry Models
+      href: ../../foundry-models/concepts/content-filter.md
+    - name: Guardrails + Controls for models deployed with serverless APIs
+      href: ../../concepts/model-catalog-content-safety.md
+    - name: Configure content filtering
+      href: ../../foundry-models/how-to/configure-content-filters.md
+    - name: Default safety policies for Foundry Models
+      href: ../../foundry-models/concepts/default-safety-policies.md
+    - name: Content filters
+      items:
+      - name: Harm categories and severity levels
+        href: ../../openai/concepts/content-filter-severity-levels.md
+      - name: Prompt shields
+        href: ../../openai/concepts/content-filter-prompt-shields.md
+      - name: Groundedness detection
+        href: ../../openai/concepts/content-filter-groundedness.md
+      - name: Protected material detection
+        href: ../../openai/concepts/content-filter-protected-material.md
+      - name: Personally identifiable information (PII) detection
+        href: ../../openai/concepts/content-filter-personal-information.md
+      - name: Use blocklists
+        href: ../../foundry-models/how-to/use-blocklists.md
+      - name: Content filter annotations
+        href: ../../openai/concepts/content-filter-annotations.md
+      - name: Document embedding in prompts
+        href: ../../openai/concepts/content-filter-document-embedding.md
+      - name: Content streaming
+        href: ../../openai/concepts/content-streaming.md
+- name: Transparency notes for Foundry Tools
+  href: ../../../ai-services/responsible-use-of-ai-overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: Limited Access features
+  href: ../../../ai-services/cognitive-services-limited-access.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: System message templates
+  href: ../../openai/concepts/system-message.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true

@@ -5,19 +5,20 @@ description: Learn how to build a custom analyzer to improve the quality of sear
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 03/28/2025
+ms.date: 11/21/2025
 ---
 
 # Tutorial: Create a custom analyzer for phone numbers
 
 In search solutions, strings that have complex patterns or special characters can be challenging to work with because the [default analyzer](search-analyzers.md) strips out or misinterprets meaningful parts of a pattern. This results in a poor search experience where users can't find the information they expect. Phone numbers are a classic example of strings that are difficult to analyze. They come in various formats and include special characters that the default analyzer ignores.
 
-With phone numbers as its subject, this tutorial shows you how to solve patterned data problems using a [custom analyzer](index-add-custom-analyzers.md). This approach can be used as is for phone numbers or adapted for fields with the same characteristics (patterned with special characters), such as URLs, emails, postal codes, and dates.
+With phone numbers as its subject, this tutorial uses the [Search Service REST APIs](/rest/api/searchservice/) to solve patterned data problems using a [custom analyzer](index-add-custom-analyzers.md). This approach can be used as is for phone numbers or adapted for fields with the same characteristics (patterned with special characters), such as URLs, emails, postal codes, and dates.
 
-In this tutorial, you use a REST client and the [Azure AI Search REST APIs](/rest/api/searchservice/) to:
+In this tutorial, you:
 
 > [!div class="checklist"]
 > + Understand the problem
@@ -27,11 +28,11 @@ In this tutorial, you use a REST client and the [Azure AI Search REST APIs](/res
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this tutorial, you can use a free service.
++ An [Azure AI Search service](search-create-service-portal.md).
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ### Download files
 
@@ -41,13 +42,13 @@ Source code for this tutorial is in the [custom-analyzer.rest](https://github.co
 
 The REST calls in this tutorial require a search service endpoint and an admin API key. You can get these values from the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com), go to the **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
 
-1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
+1. From the left pane, select **Overview** and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`
+
+1. From the left pane, select **Settings** > **Keys** and copy an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests to add, modify, or delete objects.
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
-
-A valid API key establishes trust, on a per-request basis, between the application sending the request and the search service handling it.
 
 ## Create an initial index
 
@@ -62,101 +63,107 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 
 1. Save the file with a `.rest` file extension.
 
-1. Paste the following example to create a small index called `phone-numbers-index` with two fields: `id` and `phone_number`. You haven't defined an analyzer yet, so the `standard.lucene` analyzer is used by default.
+1. Paste the following example to create a small index called `phone-numbers-index` with two fields: `id` and `phone_number`.
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
-      Content-Type: application/json
-      api-key: {{apiKey}}
+    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+    Content-Type: application/json
+    api-key: {{apiKey}}
 
-      {
-        "name": "phone-numbers-index",  
-        "fields": [
-          {
-            "name": "id",
-            "type": "Edm.String",
-            "key": true,
-            "searchable": true,
-            "filterable": false,
-            "facetable": false,
-            "sortable": true
-          },
-          {
-            "name": "phone_number",
-            "type": "Edm.String",
-            "sortable": false,
-            "searchable": true,
-            "filterable": false,
-            "facetable": false
-          }
-        ]
-      }
+    {
+      "name": "phone-numbers-index",  
+      "fields": [
+        {
+          "name": "id",
+          "type": "Edm.String",
+          "key": true,
+          "searchable": true,
+          "filterable": false,
+          "facetable": false,
+          "sortable": true
+        },
+        {
+          "name": "phone_number",
+          "type": "Edm.String",
+          "sortable": false,
+          "searchable": true,
+          "filterable": false,
+          "facetable": false
+        }
+      ]
+    }
     ```
+
+    You haven't defined an analyzer yet, so the `standard.lucene` analyzer is used by default.
 
 1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response, and the response body should include the JSON representation of the index schema.
 
-1. Load data into the index, using documents that contain various phone number formats. This is your test data.
+1. Load data into the index using documents that contain various phone number formats. This is your test data.
 
     ```http
     ### Load documents
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2024-07-01  HTTP/1.1
-      Content-Type: application/json
-      api-key: {{apiKey}}
-    
-      {
-        "value": [
-          {
-            "@search.action": "upload",  
-            "id": "1",
-            "phone_number": "425-555-0100"
-          },
-          {
-            "@search.action": "upload",  
-            "id": "2",
-            "phone_number": "(321) 555-0199"
-          },
-          {  
-            "@search.action": "upload",  
-            "id": "3",
-            "phone_number": "+1 425-555-0100"
-          },
-          {  
-            "@search.action": "upload",  
-            "id": "4",  
-            "phone_number": "+1 (321) 555-0199"
-          },
-          {
-            "@search.action": "upload",  
-            "id": "5",
-            "phone_number": "4255550100"
-          },
-          {
-            "@search.action": "upload",  
-            "id": "6",
-            "phone_number": "13215550199"
-          },
-          {
-            "@search.action": "upload",  
-            "id": "7",
-            "phone_number": "425 555 0100"
-          },
-          {
-            "@search.action": "upload",  
-            "id": "8",
-            "phone_number": "321.555.0199"
-          }
-        ]  
-      }
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2025-09-01  HTTP/1.1
+    Content-Type: application/json
+    api-key: {{apiKey}}
+
+    {
+      "value": [
+        {
+          "@search.action": "upload",
+          "id": "1",
+          "phone_number": "425-555-0100"
+        },
+        {
+          "@search.action": "upload",
+          "id": "2",
+          "phone_number": "(321) 555-0199"
+        },
+        {
+          "@search.action": "upload",
+          "id": "3",
+          "phone_number": "+1 425-555-0100"
+        },
+        {
+          "@search.action": "upload",
+          "id": "4",
+          "phone_number": "+1 (321) 555-0199"
+        },
+        {
+          "@search.action": "upload",
+          "id": "5",
+          "phone_number": "4255550100"
+        },
+        {
+          "@search.action": "upload",
+          "id": "6",
+          "phone_number": "13215550199"
+        },
+        {
+          "@search.action": "upload",
+          "id": "7",
+          "phone_number": "425 555 0100"
+        },
+        {
+          "@search.action": "upload",
+          "id": "8",
+          "phone_number": "321.555.0199"
+        }
+      ]
+    }
     ```
 
 1. Try queries similar to what a user might type. For example, a user might search for `(425) 555-0100` in any number of formats and still expect results to be returned. Start by searching `(425) 555-0100`.
 
     ```http  
     ### Search for a phone number
-    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2024-07-01&search=(425) 555-0100  HTTP/1.1
-      Content-Type: application/json
-      api-key: {{apiKey}}
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+    Content-Type: application/json
+    api-key: {{apiKey}}
+
+    {
+      "search": "(425) 555-0100"
+    }
     ```
 
     The query returns three out of four expected results but also returns two unexpected results.
@@ -191,11 +198,15 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 1. Try again without any formatting: `4255550100`.
 
    ```http  
-    ### Search for a phone number
-    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2024-07-01&search=4255550100  HTTP/1.1
-      Content-Type: application/json
-      api-key: {{apiKey}}
-    ```
+   ### Search for a phone number
+   POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+   Content-Type: application/json
+   api-key: {{apiKey}}
+
+   {
+     "search": "4255550100"
+   }
+   ```
 
    This query does even worse, returning only one of four correct matches.
 
@@ -254,14 +265,15 @@ Azure AI Search provides an [Analyze API](/rest/api/searchservice/indexes/analyz
 Call the Analyze API using the following request:
 
 ```http
-POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2024-07-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+### Test analyzer
+POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
-  {
-    "text": "(425) 555-0100",
-    "analyzer": "standard.lucene"
-  }
+{
+  "text": "(425) 555-0100",
+  "analyzer": "standard.lucene"
+}
 ```
 
 The API returns the tokens extracted from the text, using the analyzer you specified. The standard Lucene analyzer splits the phone number into three separate tokens.
@@ -438,18 +450,18 @@ All of the tokens in the output column exist in the index. If your query include
 1. Delete the current index.
 
    ```http
-    ### Delete the index
-    DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2024-07-01 HTTP/1.1
-        api-key: {{apiKey}}
+   ### Delete the index
+   DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2025-09-01 HTTP/1.1
+   api-key: {{apiKey}}
     ```
 
 1. Recreate the index using the new analyzer. This index schema adds a custom analyzer definition and a custom analyzer assignment on the phone number field.
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
-      Content-Type: application/json
-      api-key: {{apiKey}}
+    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+    Content-Type: application/json
+    api-key: {{apiKey}}
     
     {
         "name": "phone-numbers-index-2",  
@@ -485,8 +497,8 @@ All of the tokens in the output column exist in the index. If your query include
               "phone_char_mapping"
               ]
             }
-          ],
-          "charFilters": [
+        ],
+        "charFilters": [
             {
               "@odata.type": "#Microsoft.Azure.Search.MappingCharFilter",
               "name": "phone_char_mapping",
@@ -506,9 +518,9 @@ All of the tokens in the output column exist in the index. If your query include
               "name": "custom_ngram_filter",
               "minGram": 3,
               "maxGram": 20
-            }
-          ]
-        }
+          }
+        ]
+    }
     ```
 
 ### Test the custom analyzer
@@ -516,14 +528,15 @@ All of the tokens in the output column exist in the index. If your query include
 After you recreate the index, test the analyzer using the following request:
 
 ```http
-POST {{baseUrl}}/indexes/tutorial-first-analyzer/analyze?api-version=2024-07-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}} 
+### Test custom analyzer
+POST {{baseUrl}}/indexes/phone-numbers-index-2/analyze?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}} 
 
-  {
-    "text": "+1 (321) 555-0199",
-    "analyzer": "phone_analyzer"
-  }
+{
+  "text": "+1 (321) 555-0199",
+  "analyzer": "phone_analyzer"
+}
 ```
 
 You should now see the collection of tokens resulting from the phone number.

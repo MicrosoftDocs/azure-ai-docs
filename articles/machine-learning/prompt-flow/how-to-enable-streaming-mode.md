@@ -11,8 +11,9 @@ ms.custom:
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
+ms.reviewer: sooryar
 ms.date: 11/02/2023
+ms.update-cycle: 365-days
 ---
 
 # How to use streaming endpoints deployed from prompt Flow
@@ -27,7 +28,7 @@ This article will describe the scope of streaming, how streaming works, and how 
 
 ## Create a streaming enabled flow
 
-If you want to use the streaming mode, you need to create a flow that has a node that produces a string generator as the flow’s output. A string generator is an object that can return one string at a time when requested. You can use the following types of nodes to create a string generator:
+If you want to use the streaming mode, you need to create a flow that has a node that produces a string generator as the flow's output. A string generator is an object that can return one string at a time when requested. You can use the following types of nodes to create a string generator:
 
 - LLM node: This node uses a large language model to generate natural language responses based on the input.
 
@@ -60,7 +61,7 @@ If you want to use the streaming mode, you need to create a flow that has a node
 >
 > "Last node" means the node output is not consumed by other nodes.
 
-In this guide, we will use the "Chat with Wikipedia" sample flow as an example. This flow processes the user’s question, searches Wikipedia for relevant articles, and answers the question with information from the articles. It uses streaming mode to show the progress of the answer generation.
+In this guide, we will use the "Chat with Wikipedia" sample flow as an example. This flow processes the user's question, searches Wikipedia for relevant articles, and answers the question with information from the articles. It uses streaming mode to show the progress of the answer generation.
 
 To learn how to create a chat flow, see  [how to develop a chat flow in prompt flow](how-to-develop-a-chat-flow.md) to create a chat flow.
 
@@ -104,7 +105,7 @@ To understand the streaming process, consider the following steps:
      To learn more, see [handle errors](#handle-errors).
 - Finally, the client checks the `Content-Type` response header. If it's set to `text/event-stream`, it indicates that the data is being streamed.
 
-Let’s take a closer look at how the streaming process works. The response data in streaming mode follows the format of [server-sent events (SSE)](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events).
+Let's take a closer look at how the streaming process works. The response data in streaming mode follows the format of [server-sent events (SSE)](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events).
 
 The overall process works as follows:
 
@@ -238,7 +239,7 @@ The chat then continues in a similar way.
 
 The client should check the HTTP response code first. See [HTTP status code table](../how-to-troubleshoot-online-endpoints.md#http-status-codes) for common error codes returned by online endpoints.
 
-If the response code is "424 Model Error", it means that the error is caused by the model’s code. The error response from a prompt flow model always follows this format:
+If the response code is "424 Model Error", it means that the error is caused by the model's code. The error response from a prompt flow model always follows this format:
 
 ```json
 {
@@ -299,7 +300,7 @@ There are several libraries to consume server-sent events in JavaScript. Here is
 
 ## Advanced usage - hybrid stream and non-stream flow output
 
-Sometimes, you might want to get both stream and non-stream results from a flow output. For example, in the “Chat with Wikipedia” flow, you might want to get not only LLM’s answer, but also the list of URLs that the flow searched. To do this, you need to modify the flow to output a combination of stream LLM’s answer and non-stream URL list.
+Sometimes, you might want to get both stream and non-stream results from a flow output. For example, in the "Chat with Wikipedia" flow, you might want to get not only LLM's answer, but also the list of URLs that the flow searched. To do this, you need to modify the flow to output a combination of stream LLM's answer and non-stream URL list.
 
 In the sample "Chat With Wikipedia" flow, the output is connected to the LLM node `augmented_chat`. To add the URL list to the output, you need to add an output field with the name `url` and the value `${get_wiki_url.output}`.
 

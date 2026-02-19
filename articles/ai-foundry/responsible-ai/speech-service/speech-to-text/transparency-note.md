@@ -1,12 +1,12 @@
 ---
 title: Use cases for Speech to text
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This Transparency Note discusses Speech to text and the key considerations for making use of this technology responsibly.
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
-ms.author: eur
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 06/30/2021
 ---
 
@@ -22,7 +22,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ## The basics of speech to text
 
-Speech to text, also known as automatic speech recognition (ASR), is a feature under the Azure AI Speech service, which is a part of Azure AI services. [Speech to text](/azure/cognitive-services/speech-service/Speech-to-Text) converts spoken audio into text. Speech to text in Azure supports more than 140 locales for input. For the latest list of supported locales, see [Language and voice support for the Speech service](/azure/ai-services/speech-service/language-support).
+Speech to text, also known as automatic speech recognition (ASR), is a feature under the Azure Speech in Foundry Tools service, which is a part of Foundry Tools. [Speech to text](/azure/cognitive-services/speech-service/Speech-to-Text) converts spoken audio into text. Speech to text in Azure supports more than 140 locales for input. For the latest list of supported locales, see [Language and voice support for the Speech service](/azure/ai-services/speech-service/language-support).
 
 ### Key terms
 
@@ -56,11 +56,11 @@ This is a common API call via the Speech SDK or REST API to send an audio input 
 
 Batch transcription is another type of API call. It’s typically used to send prerecorded audio inputs and to receive transcribed text asynchronously (that is, at a later time). To use this API, you can specify locations for multiple audio files. The speech to text technology reads the audio input from the file and generates transcription text files that are returned to the storage location that you specify. This feature is used to support larger transcription jobs in which it is not necessary to provide end users with the transcription content in real time. An example is transcribing call center recordings to gain insights into customers and call center agent performance.
 
-When you use batch transcription, you can choose to use the Whisper model instead of the default Azure AI speech to text model. To determine whether the Whisper model is appropriate for your use case, you can compare how the output between these models differs in the batch. Try it out in [Speech Studio](https://speech.microsoft.com/), and then perform deeper evaluations by using the test capabilities through custom speech. Note that the Whisper model is also available thorough Azure OpenAI. 
+When you use batch transcription, you can choose to use the Whisper model instead of the default Azure Speech to text model. To determine whether the Whisper model is appropriate for your use case, you can compare how the output between these models differs in the batch. Try it out in [Speech Studio](https://speech.microsoft.com/), and then perform deeper evaluations by using the test capabilities through custom speech. Note that the Whisper model is also available thorough Azure OpenAI. 
 
 #### Speech translation API
 
-This API converts audio input to text, and then translates it into another language. The translated transcription output can be returned in text format, or you can choose to have the text synthesized into audible speech by using [text to speech](/azure/cognitive-services/speech-service/text-to-speech). For more information, see [What is Azure AI Translator?](/azure/ai-services/translator/translator-overview)
+This API converts audio input to text, and then translates it into another language. The translated transcription output can be returned in text format, or you can choose to have the text synthesized into audible speech by using [text to speech](/azure/cognitive-services/speech-service/text-to-speech). For more information, see [What is Azure Translator in Foundry Tools?](/azure/ai-services/translator/translator-overview)
 
 
 
@@ -68,7 +68,7 @@ This API converts audio input to text, and then translates it into another langu
 
 The APIs above can optionally use the following sub-features:
 
-- **[Model customization](/azure/ai-services/speech-service/custom-speech-overview)**: Azure AI Speech enables developers to customize the speech to text models in order to improve the recognition accuracy for a specific scenario. There are two ways to customize speech to text:
+- **[Model customization](/azure/ai-services/speech-service/custom-speech-overview)**: Azure Speech enables developers to customize the speech to text models in order to improve the recognition accuracy for a specific scenario. There are two ways to customize speech to text:
    - At runtime through the use of the [phrase list](/azure/ai-services/speech-service/improve-accuracy-phrase-list?tabs=terminal&pivots=programming-language-csharp) feature
    - Ahead of time through the use of [custom speech](/azure/ai-services/speech-service/custom-speech-overview)
 - **[Language detection](/azure/cognitive-services/speech-service/how-to-automatic-language-detection?pivots=programming-language-csharp)**:  Unlike in a default API call, in which a language or locale for an audio input must be specified in advance, with language detection, you can specify multiple locales and let the service detect which language should be used to recognize a specific part of the audio.
@@ -95,7 +95,7 @@ Many applications are designed and intended to be used by a specific individual 
 
 - **Microphone considerations**:  Often, you cannot control who might speak near the input device that sends audio input to the speech to text cloud service. You should encourage your users to take extra care when they use voice-enabled features and applications in a public or open environment where other people's voices might be easily captured.
 - **Use speech to text only in experiences and features that are within the reasonable expectations of your users**:  Audio data that contains a person speaking is personal information. Speech to text is not intended to be used for covert audio surveillance purposes, in a manner that violates legal requirements, or in applications and devices in public spaces or locations where users might have a reasonable expectation of privacy. Use the Speech service only to collect and process audio in ways that are within the reasonable expectations of your users. This includes ensuring that you have all necessary and appropriate consents from users to collect, process, and store their audio data.
-- **Azure AI Speech service and integration of the Whisper model**: The Whisper model enhances the Azure AI Speech service with advanced features like multilingual recognition and readability. The Speech service also enriches the performance of the Whisper model by enabling larger-scale batch transcriptions and speaker diarization. Whether to use the default Speech service speech to text model or Whisper model depends on the specific use case. We recommend that you take advantage of the batch try out and custom speech experiences in Speech Studio to evaluate both options to find the best fit for your business needs.
+- **Azure Speech service and integration of the Whisper model**: The Whisper model enhances the Azure Speech service with advanced features like multilingual recognition and readability. The Speech service also enriches the performance of the Whisper model by enabling larger-scale batch transcriptions and speaker diarization. Whether to use the default Speech service speech to text model or Whisper model depends on the specific use case. We recommend that you take advantage of the batch try out and custom speech experiences in Speech Studio to evaluate both options to find the best fit for your business needs.
 - **Conversation transcription on prerecorded events**: The system will perform better if all speakers are in the same acoustic environment (for example, the conversation takes place in a room in which people speak into a common microphone).
 - **Conversation transcription**: Although there is no limitation on the numbers of speakers in the conversation, the system performs better when the number of speakers is under 30.
 - [!INCLUDE [regulatory-considerations](../../includes/regulatory-considerations.md)]

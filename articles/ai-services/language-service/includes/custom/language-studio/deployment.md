@@ -3,11 +3,10 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-To deploy your model from within the Language Studio:
+To deploy your model from within Azure Language Studio:
 
 1. Select **Deploying a model** from the left side menu.
 

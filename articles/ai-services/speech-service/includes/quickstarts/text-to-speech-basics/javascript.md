@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/1/2024
-ms.author: eur
+ms.date: 7/17/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/javascript.md)]
@@ -14,98 +14,96 @@ ms.author: eur
 
 [!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
 
-## Set up the environment
+## Set up
 
-To set up your environment, install the Speech SDK for JavaScript. If you just want the package name to install, run `npm install microsoft-cognitiveservices-speech-sdk`. For detailed installation instructions, see [Install the Speech SDK](../../../quickstarts/setup-platform.md?pivots=programming-language-javascript).
+1. Create a new folder `synthesis-quickstart` and go to the quickstart folder with the following command:
 
-### Set environment variables
+    ```shell
+    mkdir synthesis-quickstart && cd synthesis-quickstart
+    ```
+    
+1. Create the `package.json` with the following command:
+
+    ```shell
+    npm init -y
+    ```
+
+1. Install the Speech SDK for JavaScript with:
+
+    ```console
+    npm install microsoft-cognitiveservices-speech-sdk
+    ```
+
+### Retrieve resource information
 
 [!INCLUDE [Environment variables](../../common/environment-variables.md)]
 
-## Create the application
+## Synthesize speech to a file
 
-Follow these steps to create a Node.js console application for speech synthesis.
+To translate speech from a file:
 
-1. Open a console window where you want the new project, and create a file named *SpeechSynthesis.js*.
-1. Install the Speech SDK for JavaScript:
+1. Create a new file named *synthesis.js* with the following content:
 
-   ```console
-   npm install microsoft-cognitiveservices-speech-sdk
-   ```
+    ```javascript
+    import { createInterface } from "readline";
+    import { SpeechConfig, AudioConfig, SpeechSynthesizer, ResultReason } from "microsoft-cognitiveservices-speech-sdk";
+    function synthesizeSpeech() {
+        const audioFile = "YourAudioFile.wav";
+        // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+        const speechConfig = SpeechConfig.fromEndpoint(new URL(ENDPOINT), process.env.SPEECH_KEY);
+        const audioConfig = AudioConfig.fromAudioFileOutput(audioFile);
+        // The language of the voice that speaks.
+        speechConfig.speechSynthesisVoiceName = "en-US-Ava:DragonHDLatestNeural";
+        // Create the speech synthesizer.
+        const synthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
+        const rl = createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
+        rl.question("Enter some text that you want to speak >\n> ", function (text) {
+            rl.close();
+            // Start the synthesizer and wait for a result.
+            synthesizer.speakTextAsync(text, function (result) {
+                if (result.reason === ResultReason.SynthesizingAudioCompleted) {
+                    console.log("synthesis finished.");
+                }
+                else {
+                    console.error("Speech synthesis canceled, " + result.errorDetails +
+                        "\nDid you set the speech resource key and region values?");
+                }
+                synthesizer.close();
+            }, function (err) {
+                console.trace("err - " + err);
+                synthesizer.close();
+            });
+            console.log("Now synthesizing to: " + audioFile);
+        });
+    }
+    synthesizeSpeech();
+    ```
 
-1. Copy the following code into *SpeechSynthesis.js*:
+    In *synthesis.js*, optionally you can rename *YourAudioFile.wav* to another output file name.
 
-   ```javascript
-   (function() {
+    To change the speech synthesis language, replace `en-US-Ava:DragonHDLatestNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
 
-       "use strict";
-       
-       var sdk = require("microsoft-cognitiveservices-speech-sdk");
-       var readline = require("readline");
-        
-       var audioFile = "YourAudioFile.wav";
-       // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-       const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
-       const audioConfig = sdk.AudioConfig.fromAudioFileOutput(audioFile);
-        
-       // The language of the voice that speaks.
-       speechConfig.speechSynthesisVoiceName = "en-US-AvaMultilingualNeural"; 
-        
-       // Create the speech synthesizer.
-       var synthesizer = new sdk.SpeechSynthesizer(speechConfig, audioConfig);
-      
-       var rl = readline.createInterface({
-         input: process.stdin,
-         output: process.stdout
-       });
-      
-       rl.question("Enter some text that you want to speak >\n> ", function (text) {
-         rl.close();
-         // Start the synthesizer and wait for a result.
-         synthesizer.speakTextAsync(text,
-             function (result) {
-           if (result.reason === sdk.ResultReason.SynthesizingAudioCompleted) {
-             console.log("synthesis finished.");
-           } else {
-             console.error("Speech synthesis canceled, " + result.errorDetails +
-                 "\nDid you set the speech resource key and region values?");
-           }
-           synthesizer.close();
-           synthesizer = null;
-         },
-             function (err) {
-           console.trace("err - " + err);
-           synthesizer.close();
-           synthesizer = null;
-         });
-         console.log("Now synthesizing to: " + audioFile);
-       });
-   }());
-   ```
-
-1. In *SpeechSynthesis.js*, optionally you can rename *YourAudioFile.wav* to another output file name.
-
-1. To change the speech synthesis language, replace `en-US-AvaMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
-
-   All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-ElviraNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
+    All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-Ximena:DragonHDLatestNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
 
 1. Run your console application to start speech synthesis to a file:
 
    ```console
-   node SpeechSynthesis.js
+   node synthesis.js
    ```
 
-   > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+## Output
 
-1. The provided text should be in an audio file:
+You should see the following output in the console. Follow the prompt to enter text that you want to synthesize:
 
-   ```output
-   Enter some text that you want to speak >
-   > I'm excited to try text to speech
-   Now synthesizing to: YourAudioFile.wav
-   synthesis finished.
-   ```
+```console
+Enter some text that you want to speak >
+> I'm excited to try text to speech
+Now synthesizing to: YourAudioFile.wav
+synthesis finished.
+```
 
 ## Remarks
 
@@ -116,9 +114,9 @@ This quickstart uses the `SpeakTextAsync` operation to synthesize a short block 
 - See [how to synthesize speech](~/articles/ai-services/speech-service/how-to-speech-synthesis.md) and [Speech Synthesis Markup Language (SSML) overview](~/articles/ai-services/speech-service/speech-synthesis-markup.md) for information about speech synthesis from a file and finer control over voice styles, prosody, and other settings.
 - See [batch synthesis API for text to speech](~/articles/ai-services/speech-service/batch-synthesis.md) for information about synthesizing long-form text to speech.
 
-### OpenAI text to speech voices in Azure AI Speech
+### OpenAI text to speech voices in Azure Speech in Foundry Tools
 
-OpenAI text to speech voices are also supported. See [OpenAI text to speech voices in Azure AI Speech](../../../openai-voices.md) and [multilingual voices](../../../language-support.md?tabs=tts#multilingual-voices). You can replace `en-US-AvaMultilingualNeural` with a supported OpenAI voice name such as `en-US-FableMultilingualNeural`.
+OpenAI text to speech voices are also supported. See [OpenAI text to speech voices in Azure Speech](../../../openai-voices.md) and [multilingual voices](../../../language-support.md?tabs=tts#multilingual-voices). You can replace `en-US-Ava:DragonHDLatestNeural` with a supported OpenAI voice name such as `en-US-FableMultilingualNeural`.
 
 ## Clean up resources
 

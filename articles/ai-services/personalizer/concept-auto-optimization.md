@@ -5,7 +5,7 @@ author: jcodella
 ms.author: jacodel
 ms.manager: nitinme
 ms.service: azure-ai-personalizer
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/19/2024
 ---
 
@@ -68,7 +68,7 @@ The exact times and days when Auto-Optimize runs is determined by the Personaliz
 Personalizer uses these reward estimations to decide whether to change the current Learning Settings for others. Each estimation is a distribution curve, with upper and lower 95% confidence bounds. Personalizer will only apply new Learning Settings if:
   * They showed higher average rewards in the evaluation period, AND
   * They have a lower bound of the 95% confidence interval, that is *higher* than the lower bound of the 95% confidence interval of the online Learning Settings.
-This criteria to maximize the reward improvement, while trying to eliminate the probability of future rewards lost is managed by Personalizer and draws from research in [Seldonian algorithms](https://aisafety.cs.umass.edu/overview.html) and AI safety.
+This criteria to maximize the reward improvement, while trying to eliminate the probability of future rewards lost is managed by Personalizer and draws from research in [Seldonian algorithms](https://aisafety.cs.umass.edu/index.html) and AI safety.
 
 #### Limitations of Auto-Optimize
 
@@ -81,4 +81,4 @@ Automatic Optimization Preview is unavailable for Personalizer loops that have e
 * [Offline evaluations](concepts-offline-evaluation.md)
 * [Learning Policy and Settings](concept-active-learning.md)
 * [How To Analyze Personalizer with an Offline Evaluation](how-to-offline-evaluation.md) 
-* [Research in AI Safety](https://aisafety.cs.umass.edu/overview.html) 
+* [Research in AI Safety](https://aisafety.cs.umass.edu/index.html) 

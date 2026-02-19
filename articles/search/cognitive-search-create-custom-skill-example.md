@@ -5,8 +5,9 @@ description: Demonstrates using the Bing Entity Search service in a custom skill
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/18/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -14,7 +15,7 @@ ms.custom:
 
 # Example: Create a custom skill using the Bing Entity Search API
 
-In this example, learn how to create a web API custom skill. This skill will accept locations, public figures, and organizations, and return descriptions for them. The example uses an [Azure Function](https://azure.microsoft.com/services/functions/) to wrap the [Bing Entity Search API](https://azure.microsoft.com/services/cognitive-services/bing-entity-search-api/) so that it implements the custom skill interface.
+In this example, learn how to create a web API custom skill. This skill will accept locations, public figures, and organizations, and return descriptions for them. The example uses an [Azure Function](https://azure.microsoft.com/services/functions/) to wrap the [Bing Entity Search API](/previous-versions/bing/search-apis/bing-entity-search/overview) so that it implements the custom skill interface.
 
 ## Prerequisites
 

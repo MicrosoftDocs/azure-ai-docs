@@ -1,21 +1,21 @@
 ---
-title: Configure containers - Azure AI Translator
-titleSuffix: Azure AI services
-description: The Azure AI Translator container runtime environment is configured using the `docker run` command arguments. There are both required and optional settings.
+title: Configure containers - Azure Translator
+titleSuffix: Foundry Tools
+description: The Azure Translator container runtime environment is configured using the `docker run` command arguments. There are both required and optional settings.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
 
-# Configure Azure AI Translator Docker containers
+# Configure Azure Translator Docker containers
 
-Azure AI services provide each container with a common configuration framework. You can easily configure your Translator containers to build Translator application architecture optimized for robust cloud capabilities and edge locality.
+Foundry Tools offer a unified configuration framework for all containers. You can easily configure your Translator containers to create a Translator application architecture that's optimized for both robust cloud features and edge locality deployment.
 
-The **Azure AI Translator** container runtime environment is configured using the `docker run` command arguments. This container has both required and optional settings. The required container-specific settings are the billing settings.
+The **Azure Translator** container runtime environment is configured using the `docker run` command arguments. This container includes both required and optional settings. The required settings specific to the container are the billing settings.
 
 ## Configuration settings
 
@@ -33,7 +33,7 @@ The container has the following configuration settings:
 |Yes|[Mounts](#mount-settings)|Reads and writes data from the host computer to the container and from the container back to the host computer.|
 
  > [!IMPORTANT]
- > The [**ApiKey**](#apikey-configuration-setting), [**Billing**](#billing-configuration-setting), and [**EULA**](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container can't start. For more information about using these configuration settings to instantiate a container, *see* [Install and run Azure AI Translator container](install-run.md).
+ > The [**ApiKey**](#apikey-configuration-setting), [**Billing**](#billing-configuration-setting), and [**EULA**](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container can't start. For more information about using these configuration settings to instantiate a container, *see* [Install and run Azure Translator container](install-run.md).
 
 ## ApiKey configuration setting
 
@@ -57,7 +57,7 @@ This setting can be found in the following place:
 
 | Required | Name | Data type | Description |
 | -------- | ---- | --------- | ----------- |
-| Yes | `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [gathering required parameters](translator-how-to-install-container.md#required-input). For more information and a complete list of regional endpoints, see [Custom subdomain names for Azure AI services](../../cognitive-services-custom-subdomains.md). |
+| Yes | `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [gathering required parameters](translator-how-to-install-container.md#required-input). For more information and a complete list of regional endpoints, see [Custom subdomain names for Foundry Tools](../../cognitive-services-custom-subdomains.md). |
 
 ## EULA setting
 
@@ -157,4 +157,4 @@ Use bind mounts to read and write data to and from the container. You can specif
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about Azure AI containers](../../cognitive-services-container-support.md)
+> [Learn more about Azure containers](../../cognitive-services-container-support.md)

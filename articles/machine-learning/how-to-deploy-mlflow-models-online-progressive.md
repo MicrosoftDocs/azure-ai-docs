@@ -5,8 +5,8 @@ description: Learn to deploy your MLflow model progressively using MLflow SDK.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.date: 03/31/2022
 ms.topic: how-to
@@ -34,7 +34,7 @@ You can follow along this sample in the following notebooks. In the cloned repos
 
 Before following the steps in this article, make sure you have the following prerequisites:
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the owner or contributor role for the Azure Machine Learning workspace, or a custom role allowing Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
 
 Additionally, you will need to:
@@ -317,19 +317,6 @@ So far, the endpoint is empty. There are no deployments on it. Let's create the 
         model=model,
         instance_type="Standard_DS2_v2",
         instance_count=1,
-    )
-    ```
-
-    If your endpoint doesn't have egress connectivity, use [model packaging (preview)](how-to-package-models.md) by including the argument `with_package=True`:
-
-    ```python
-    blue_deployment = ManagedOnlineDeployment(
-        name=blue_deployment_name,
-        endpoint_name=endpoint_name,
-        model=model,
-        instance_type="Standard_DS2_v2",
-        instance_count=1,
-        with_package=True,
     )
     ```
     

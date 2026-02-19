@@ -1,0 +1,71 @@
+items:
+- name: Observability overview
+  href: ../../concepts/observability.md
+- name: Rate limits, region and virtual network support 
+  href: ../../concepts/evaluation-regions-limits-virtual-network.md
+- name: Supported evaluators
+  items:
+   - name: Built-in evaluators reference
+     href: ../../concepts/built-in-evaluators.md
+   - name: General purpose evaluators 
+     href: ../../concepts/evaluation-evaluators/general-purpose-evaluators.md
+   - name: Textual similarity evaluators 
+     href: ../../concepts/evaluation-evaluators/textual-similarity-evaluators.md
+   - name: Retrieval Augmented Generation (RAG) evaluators 
+     href: ../../concepts/evaluation-evaluators/rag-evaluators.md
+   - name: Risk and safety evaluators
+     href: ../../concepts/evaluation-evaluators/risk-safety-evaluators.md
+   - name: Agent evaluators
+     href: ../../concepts/evaluation-evaluators/agent-evaluators.md 
+   - name: Azure OpenAI evaluators 
+     href: ../../concepts/evaluation-evaluators/azure-openai-graders.md
+   - name: Custom evaluators
+     href: ../../concepts/evaluation-evaluators/custom-evaluators.md
+- name: Batch evaluations
+  items:
+   - name: Generate synthetic and simulated data for evaluation
+     href: ../../how-to/develop/simulator-interaction-data.md
+   - name: Run evaluations locally 
+     href: ../../how-to/develop/evaluate-sdk.md
+     displayName: code,accuracy,metrics
+   - name: Run evaluations in the cloud
+     href: ../../how-to/develop/cloud-evaluation.md
+   - name: Evaluate your AI agents
+     href: ../../how-to/develop/agent-evaluate-sdk.md
+   - name: Run evaluations from the portal
+     href: ../../how-to/evaluate-generative-ai-app.md
+   - name: View evaluation results in the portal
+     href: ../../how-to/evaluate-results.md
+     displayName: accuracy,metrics
+   - name: Create and configure storage account for evaluation
+     href: ../../how-to/evaluations-storage-account.md
+- name: AI red teaming
+  items:
+   - name: AI red teaming agent overview
+     href: ../../concepts/ai-red-teaming-agent.md
+   - name: Run red teaming scans locally 
+     href: ../../how-to/develop/run-scans-ai-red-teaming-agent.md
+   - name: Run red teaming scans in the cloud
+     href: ../../how-to/develop/run-ai-red-teaming-cloud.md
+- name: CI/CD evaluations 
+  items:
+   - name: Evaluation in GitHub Actions 
+     href: ../../how-to/evaluation-github-action.md
+   - name: Evaluation in Azure DevOps
+     href: ../../how-to/evaluation-azure-devops.md
+- name: Continuous monitoring and evaluation 
+  items:
+   - name: Continuously monitor your applications
+     href: ../../how-to/monitor-applications.md
+   - name: Continuously evaluate your AI agents
+     href: ../../how-to/continuous-evaluation-agents.md
+   - name: Monitor model deployments
+     href: ../../foundry-models/how-to/monitor-models.md
+- name: Tracing
+  items:
+   - name: Trace your application
+     href: ../../how-to/develop/trace-application.md
+   - name: Trace and observe agents
+     href: ../../how-to/develop/trace-agents-sdk.md
+- name: Transparency Note for safety evaluations
+  href: ../../concepts/safety-evaluations-transparency-note.md

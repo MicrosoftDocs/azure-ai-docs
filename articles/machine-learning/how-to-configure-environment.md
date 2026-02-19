@@ -3,14 +3,20 @@ title: Set up Python development environment
 titleSuffix: Azure Machine Learning
 description: Set up Azure Machine Learning Python development environments in Jupyter Notebooks, Visual Studio Code, Azure Databricks, and Data Science Virtual Machines.
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.reviewer: roastala
-ms.date: 04/03/2025
+ms.date: 02/10/2026
 ms.topic: how-to
-ms.custom: devx-track-python, devx-track-azurecli, py-fresh-zinc
+ms.custom:
+  - devx-track-python
+  - devx-track-azurecli
+  - py-fresh-zinc
+  - sfi-image-nochange
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Set up a Python development environment for Azure Machine Learning
@@ -25,7 +31,7 @@ The following table shows each development environment covered in this article, 
 | --- | --- | --- |
 | [Local environment](#local-computer-or-remote-vm-environment) | Full control of your development environment and dependencies. Run with any build tool, environment, or IDE of your choice. | Takes longer to get started. Necessary SDK packages must be installed, and an environment must also be installed if you don't already have one. |
 | [Azure Machine Learning compute instance](#azure-machine-learning-compute-instance) | Easiest way to get started. The SDK is already installed in your workspace VM, and notebook tutorials are pre-cloned and ready to run. | Lack of control over your development environment and dependencies. Cost is incurred for Linux VM (VM can be stopped when not in use to avoid charges). See [pricing details](https://azure.microsoft.com/pricing/details/virtual-machines/linux/). |
-| [The Data Science Virtual Machine (DSVM)](#data-science-virtual-machine) | Similar to the cloud-based compute instance (Python is pre-installed), but with other popular data science and machine learning tools preinstalled. Easy to scale and combine with other custom tools and workflows. | A slower getting started experience compared to the cloud-based compute instance. |
+| [The Data Science Virtual Machine (DSVM)](#data-science-virtual-machine) | Similar to the cloud-based compute instance (Python is preinstalled), but with other popular data science and machine learning tools preinstalled. Easy to scale and combine with other custom tools and workflows. | A slower getting started experience compared to the cloud-based compute instance. |
 
 This article also provides other usage tips for the following tools:
 
@@ -49,11 +55,11 @@ The workspace configuration file is a JSON file that tells the SDK how to commun
 }
 ```
 
-This JSON file must be in the directory structure that contains your Python scripts or Jupyter Notebooks. It can be in the same directory, a subdirectory named.azureml*, or in a parent directory.
+You must place this JSON file in the directory structure that contains your Python scripts or Jupyter Notebooks. You can put it in the same directory, a subdirectory named *azureml*, or a parent directory.
 
 To use this file from your code, use the [`MLClient.from_config`](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-from-config) method. This code loads the information from the file and connects to your workspace.
 
-Create a workspace configuration file in one of the following methods:
+Create a workspace configuration file by using one of the following methods:
 
 * Azure Machine Learning studio
 
@@ -93,20 +99,20 @@ To configure a local development environment or remote VM:
 1. Create a Python virtual environment (virtualenv, conda).
 
     > [!NOTE]
-    > Although not required, we recommend that you use [Anaconda](https://www.anaconda.com/download/) or [Miniconda](https://www.anaconda.com/download/) to manage Python virtual environments and install packages.
+    > Although not required, use [Anaconda](https://www.anaconda.com/download/) or [Miniconda](https://www.anaconda.com/download/) to manage Python virtual environments and install packages.
 
     > [!IMPORTANT]
-    > If you're on Linux or macOS and use a shell other than bash (for example, zsh) you might receive errors when you run some commands. To work around this problem, use the `bash` command to start a new bash shell and run the commands there.
+    > If you're on Linux or macOS and use a shell other than bash (for example, zsh), you might receive errors when you run some commands. To work around this problem, use the `bash` command to start a new bash shell and run the commands.
 
 1. Activate your newly created Python virtual environment.
 1. Install the [Azure Machine Learning Python SDK](/python/api/overview/azure/ai-ml-readme).
 1. To configure your local environment to use your Azure Machine Learning workspace, [create a workspace configuration file](#local-and-dsvm-only-create-a-workspace-configuration-file) or use an existing one.
 
-Now that you have your local environment set up, you're ready to start working with Azure Machine Learning. See the [Tutorial: Azure Machine Learning in a day](tutorial-azure-ml-in-a-day.md) to get started.
+After you set up your local environment, you're ready to start working with Azure Machine Learning. See the [Tutorial: Azure Machine Learning in a day](tutorial-azure-ml-in-a-day.md) to get started.
 
 ### Jupyter Notebooks
 
-When running a local Jupyter Notebook server, we recommend that you create an IPython kernel for your Python virtual environment. This helps ensure the expected kernel and package import behavior.
+When you run a local Jupyter Notebook server, create an IPython kernel for your Python virtual environment. This approach helps ensure the expected kernel and package import behavior.
 
 1. Enable environment-specific IPython kernels
 
@@ -114,7 +120,7 @@ When running a local Jupyter Notebook server, we recommend that you create an IP
     conda install notebook ipykernel
     ```
 
-1. Create a kernel for your Python virtual environment. Make sure to replace `<myenv>` with the name of your Python virtual environment.
+1. Create a kernel for your Python virtual environment. Replace `<myenv>` with the name of your Python virtual environment.
 
     ```bash
     ipython kernel install --user --name <myenv> --display-name "Python (myenv)"
@@ -132,7 +138,7 @@ To use Visual Studio Code for development:
 1. Install [Visual Studio Code](https://code.visualstudio.com/Download).
 1. Install the [Azure Machine Learning Visual Studio Code extension](how-to-setup-vs-code.md) (preview).
 
-Once you have the Visual Studio Code extension installed, use it to:
+After you install the Visual Studio Code extension, use it to:
 
 * [Manage your Azure Machine Learning resources](how-to-manage-resources-vscode.md)
 * [Connect to an Azure Machine Learning compute instance](how-to-set-up-vs-code-remote.md)
@@ -150,7 +156,7 @@ Create one anytime from within your Azure Machine Learning workspace. Provide ju
 To learn more about compute instances, including how to install packages, see [Create an Azure Machine Learning compute instance](how-to-create-compute-instance.md).
 
 > [!TIP]
-> To prevent incurring charges for an unused compute instance, [enable idle shutdown](how-to-create-compute-instance.md#configure-idle-shutdown).
+> To prevent charges for an unused compute instance, [enable idle shutdown](how-to-create-compute-instance.md#configure-idle-shutdown).
 
 In addition to a Jupyter Notebook server and JupyterLab, you can use compute instances in the [integrated notebook feature inside of Azure Machine Learning studio](how-to-run-jupyter-notebooks.md).
 
@@ -158,7 +164,7 @@ You can also use the Azure Machine Learning Visual Studio Code extension to [con
 
 ## Data Science Virtual Machine
 
-The Data Science VM is a customized virtual machine (VM) image you can use as a development environment. It's designed for data science work that's pre-configured tools and software like:
+The Data Science VM is a customized virtual machine (VM) image you can use as a development environment. It's designed for data science work and comes pre-configured with tools and software like:
 
   - Packages such as TensorFlow, PyTorch, Scikit-learn, XGBoost, and the Azure Machine Learning SDK
   - Popular data science tools such as Spark Standalone and Drill
@@ -185,24 +191,24 @@ To use the Data Science VM as a development environment:
         # create a Ubuntu Data Science VM in your resource group
         # note you need to be at least a contributor to the resource group in order to execute this command successfully
         # If you need to create a new resource group use: "az group create --name YOUR-RESOURCE-GROUP-NAME --location YOUR-REGION (For example: westus2)"
-        az vm create --resource-group YOUR-RESOURCE-GROUP-NAME --name YOUR-VM-NAME --image microsoft-dsvm:linux-data-science-vm-ubuntu:linuxdsvmubuntu:latest --admin-username YOUR-USERNAME --admin-password YOUR-PASSWORD --generate-ssh-keys --authentication-type password
+        az vm create --resource-group YOUR-RESOURCE-GROUP-NAME --name YOUR-VM-NAME --image microsoft-dsvm:ubuntu-2004:2004-gen2:latest --admin-username YOUR-USERNAME --admin-password YOUR-PASSWORD --generate-ssh-keys --authentication-type password
         ```
 
         To create a Windows DSVM, use the following command:
 
         ```azurecli-interactive
-        # create a Windows Server 2016 DSVM in your resource group
+        # create a Windows Server 2022 DSVM in your resource group
         # note you need to be at least a contributor to the resource group in order to execute this command successfully
-        az vm create --resource-group YOUR-RESOURCE-GROUP-NAME --name YOUR-VM-NAME --image microsoft-dsvm:dsvm-windows:server-2016:latest --admin-username YOUR-USERNAME --admin-password YOUR-PASSWORD --authentication-type password
+        az vm create --resource-group YOUR-RESOURCE-GROUP-NAME --name YOUR-VM-NAME --image microsoft-dsvm:dsvm-windows:server-2022:latest --admin-username YOUR-USERNAME --admin-password YOUR-PASSWORD --authentication-type password
         ```
 
 1. Create a conda environment for the Azure Machine Learning SDK:
 
     ```bash
-    conda create -n py310 python=310
+    conda create -n py310 python=3.10
     ```
 
-1. Once the environment has been created, activate it and install the SDK
+1. Once the environment is created, activate it and install the SDK
 
     ```bash
     conda activate py310
@@ -219,5 +225,5 @@ To use the Data Science VM as a development environment:
 
 ## Next steps
 
-- [Train and deploy a model](tutorial-train-deploy-notebook.md) on Azure Machine Learning with the MNIST dataset.
+- [Get started with Azure Machine Learning](tutorial-azure-ml-in-a-day.md).
 - See the [Azure Machine Learning SDK for Python reference](https://aka.ms/sdk-v2-install). 

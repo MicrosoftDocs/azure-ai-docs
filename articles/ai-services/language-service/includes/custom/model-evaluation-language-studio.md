@@ -3,18 +3,17 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. Go to your project page in [Language Studio](https://aka.ms/languageStudio).
 
 2. Select **Model performance** from the menu on the left side of the screen.
 
-3. In this page you can only view the successfully trained models, F1 score for each model and [model expiration date](../../concepts/model-lifecycle.md). You can select on the model name for more details about its performance.
+3. On this page, you can only view the successfully trained models, F1 score for each model and [model expiration date](../../concepts/model-lifecycle.md). You can select on the model name for more details about its performance.
 
 > [!NOTE]
-> * Entities that are neither labeled nor predicted in the test set will not be part of the displayed results.
+> * Entities that aren't labeled or predicted in the test set will not be part of the displayed results.
 
 ### [Overview](#tab/overview)
 
@@ -22,7 +21,7 @@ ms.author: lajanuar
 
     :::image type="content" source="../../media/custom/overview.png" alt-text="A screenshot that shows the overview page for model evaluation." lightbox="../../media/custom/overview.png":::
 
-* You'll also see guidance on how to improve the model. When clicking on *view details* a side panel will open to give more guidance on how to improve the model. In this example, *BorrowerAddress* and *BorrowerName* entities are confused with *$none* entity. Selecting the confused entities opens the data labeling page to label more data with the correct entity.
+* You'll also see guidance on how to improve the model. When you select *view details*,  a side panel will open to give more guidance on how to improve the model. In this example, *BorrowerAddress* and *BorrowerName* entities are confused with *$none* entity. Selecting the confused entities opens the data labeling page to label more data with the correct entity.
 
     :::image type="content" source="../../media/custom/overview-guidance.png" alt-text="A screenshot that shows the guidance page for model evaluation." lightbox="../../media/custom/overview-guidance.png":::
     
@@ -37,9 +36,9 @@ ms.author: lajanuar
 
 ### [Test set details](#tab/test-set)
 
-* Here you will see the documents included in the **test set** and the result entity type for each document. You can use the *Show mismatches only* toggle to show only documents with mismatches, or unselect the toggle to view all document in the test set.
+* Here you can see the documents included in the **test set** and the result entity type for each document. You can use the *Show mismatches only* toggle to show only documents with mismatches, or unselect the toggle to view all document in the test set.
 
-* For each document, you can view: labeled text, its respective labeled entity type and what entity it was predicted with. Also, you will see whether it's a true positive, false positive or false negative. 
+* For each document, you can view: labeled text, its respective labeled entity type and what entity it was predicted with. Also, you can see whether it's a true positive, false positive or false negative. 
 
     :::image type="content" source="../../media/custom/test-set.png" alt-text="A screenshot of test set details." lightbox="../../media/custom/test-set.png":::
     
@@ -66,7 +65,7 @@ For each *entity*, you can view: tags per entity in training set, tagged documen
 
 ### [Confusion matrix](#tab/confusion-matrix) 
 
-A confusion matrix is an N x N matrix used for evaluating the performance of a classification model, where N is the number of target entities. The matrix compares the actual target values with those predicted by the machine learning model to show how well the extraction model is performing and what kinds of errors it's making.
+A confusion matrix is an N x N matrix used for evaluating the performance of a classification model, where N is the number of target entities. The matrix compares the actual target values with those values predicted by the machine learning model to show how well the extraction model is performing and what kinds of errors it's making.
 
 You can view the confusion matrix in *normalized* or *raw count* view.
 

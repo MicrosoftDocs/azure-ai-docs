@@ -1,99 +1,126 @@
 ---
-title: Create, test, and deploy your custom question answering project
-description: You can create a custom question answering project from your own content, such as FAQs or product manuals. This article includes an example of creating a custom question answering project from a simple FAQ webpage, to answer questions.
+title: Create, test, and deploy your custom question answering (CQA) knowledge base
+description: You can create a custom question answering knowledge from your own content, such as FAQs or product manuals. This article includes an example of creating a custom question answering knowledge base.
 ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 06/04/2025
+ms.date: 12/15/2025
 ms.custom: language-service-question-answering, mode-other
 ---
+# Create, test, and deploy: CQA knowledge base
 
-# Create, test, and deploy a custom question answering project
+This guide walks you through the essential steps needed to create, test, and deploy a custom question answering (CQA) knowledge base in the Microsoft Foundry. Whether you're transitioning from Language Studio or starting from scratch, this guide is for you. It provides clear and actionable instructions to achieve a fast and successful CQA deployment in the Foundry.
 
-You can create a custom question answering project from your own content, such as FAQs or product manuals. This article includes an example of creating a custom question answering project from a product manual, to answer questions.
+> [!NOTE]
+>
+> * If you already have an Azure Language in Foundry Tools or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Foundry portal. For more information, see [How to use Foundry Tools in the Foundry portal](/azure/ai-services/connect-services-foundry-portal).
+> * In Foundry, a fine-tuning task serves as your workspace for your CQA solutions. Previously, a **fine-tuning task** was referred to as a **CQA project**. You might encounter both terms used interchangeably in older CQA documentation.
+> * We highly recommend that you use a Foundry resource in the Foundry; however, you can also follow these instructions using a Language resource.
+>
 
 ## Prerequisites
 
-> [!div class="checklist"]
-> * If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
-> * A [language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled.
+Before you get started, you need the following resources and permissions:
 
-## Create your first custom question answering project
+* **An active Azure subscription**. If you don't have one, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+*   A [Foundry resource](../../../multi-service-resource.md) or a [Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+*   An [Azure AI Search resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.Search) (required for accessing CQA). For more information on how to connect your Azure AI Search resource, *see* [Configure connections in Foundry](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry)
+* A Foundry project created in the Foundry. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-1. Sign in to the [Language Studio](https://language.azure.com/) with your Azure credentials.
+## Get started
 
-2. Scroll down to **Understand questions and conversational language** and select **Open custom question answering**.
+1. Navigate to the [Foundry](https://ai.azure.com/).
 
-    > [!div class="mx-imgBorder"]
-    > ![Open custom question answering](../media/create-test-deploy/open-custom-question-answering.png)
+1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
 
-3. If your resource isn't yet connected to Azure Search select **Connect to Azure Search**. This opens a new browser tab to **Features** pane of your resource in the Azure portal.
+1. Once signed in, you can create or access your existing projects within Foundry.
 
-    > [!div class="mx-imgBorder"]
-    > ![Connect to Azure Search](../media/create-test-deploy/connect-to-azure-search.png)
+1. If you're not already at your project for this task, select it.
 
-4. Select **Enable custom question answering**, choose the Azure Search resource to link to, and then select **Apply**.
+## Create your CQA fine tuning task
 
-    > [!div class="mx-imgBorder"]
-    > ![Enable custom question answering](../media/create-test-deploy/enable-custom-question-answering.png)
+In the Foundry, a fine-tuning task serves as your workspace for your CQA solutions. Previously, a **fine-tuning task** was referred to as a **CQA project**. You might encounter both terms used interchangeably in older CQA documentation.
 
-5. Return to the Language Studio tab. You might need to refresh this page for it to register the change to your resource. Select **Create new project**.
+1. After you select the Foundry project to use for this project, select **fine-tuning** from the left navigation menu.
 
-6. Choose the option **I want to set the language for all projects created in this resource** > select **English** > Select **Next**.
+     :::image type="content" source="../media/agents/fine-tuning-selection.png" alt-text="Screenshot of the fine-tuning menu selection in the Foundry.":::
 
-7. Enter a project name of **Sample-project**, a description of **My first question answering project**, and leave the default answer with a setting of **No answer found**.
+1. From the main window, select the **AI Service fine-tuning** tab and then the **+ Fine-tune button**.
 
-8. Review your choices and select **Create project**
+     :::image type="content" source="../media/agents/fine-tune-button.png" alt-text="Screenshot of fine-tune button in the Foundry.":::
 
-9. From the **Manage sources** page select **Add source** > **URLS**.
+1. From the **Create service fine-tuning** window, choose the **Custom question answering** tab and then select **Next**.
 
-10. Select **Add url** enter the following values and then select **Add all**:
+     :::image type="content" source="../media/agents/custom-question-answering-tab.png" alt-text="Screenshot of custom question answering tab in the Foundry.":::
 
-    |URL Name|URL Value|
-    |--------|---------|
-    |Surface Book User Guide |`https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf` |
+1. Select your **Connected Azure AI Search resource** from the **Create CQA fine tuning task** window. For more information, *see* [Configure Azure resource connections](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry).
 
-    The extraction process takes a few moments to read the document and identify questions and answers. The service determines if the underlying content is structured or unstructured.
+1. Next, complete the **Name** and **Language** fields. For this project, you can leave the **Default answer when no answer is returned** field as is (**No answer found**).
 
-    After successfully adding the source, you can then edit the source contents to add more custom question answer sets.
+1. Select the **Create** button.
 
-## Test your project
 
-1. Select the link to your source, this will open the edit project page.
+## Add a CQA knowledge base source
 
-2. Select **Test** from the menu bar > Enter the question **How do I setup my surface book?**. An answer will be generated based on the question answer pairs that were automatically identified and extracted from your source URL:
+A CQA knowledge base is a structured set of question-and-answer pairs optimized for conversational AI. The knowledge base uses natural language processing to interpret user queries and return context-aware, accurate answers from a specific dataset.
 
-    > [!div class="mx-imgBorder"]
-    > ![Test question chat interface](../media/create-test-deploy/test-question.png)
+1. From the **Getting Started** menu, select **Manage sources**.
 
-    If you check the box for **include short answer response** you will also see a precise answer, if available, along with the answer passage in the test pane when you ask a question.
+     :::image type="content" source="../media/agents/manage-sources.png" alt-text="Screenshot of manage sources selection in the Foundry.":::
 
-3. Select **Inspect** to examine the response in more detail. The test window is used to test your changes to your project before deploying your project.
+1. From the main window, select the **+ Add source** drop-down menu.
 
-    > [!div class="mx-imgBorder"]
-    > ![See the confidence interval](../media/create-test-deploy/inspect-test.png)
+1. From the drop-down menu you can select **Add chit chat**, **Add URLs**, or **Add Files**.
 
-    From the **Inspect** interface, you can see the level of confidence that this response will answer the question and directly edit a given question and answer response pair.
+     :::image type="content" source="../media/agents/add-source-menu.png" alt-text="Screenshot of add source drop-down menu in the Foundry.":::
 
-## Deploy your project
+1. For this project, choose **Add URLS**.
 
-1. Select the **Deploy** project icon to enter the deploy project menu.
+1. In the **Add URLs** window, add the following values:
 
-    > [!div class="mx-imgBorder"]
-    > ![Deploy project](../media/create-test-deploy/deploy-knowledge-base.png)
+   * **URL name**: **Surface Book User Guide**
+   * **URL**: **https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf** 
+   * **Classify file structure**: Leave the default setting (**Auto-detect**)
 
-    When you deploy a project, the contents of your project move from the `test` index to a `prod` index in Azure Search.
+     :::image type="content" source="../media/agents/add-urls.png" alt-text="Screenshot of the select url source selection and add button in the Foundry.":::
 
-2. Select **Deploy** > and then when prompted select **Deploy** again.
+1. Finally, select the **Add URLs** button. 
 
-    > [!div class="mx-imgBorder"]
-    > ![Successful deployment](../media/create-test-deploy/successful-deployment.png)
+    The extraction process requires a short amount of time to analyze the document and detect questions and answers. During this step, the service evaluates whether the content is structured or unstructured.<br>
 
-    Your project is now successfully deployed. You can use the endpoint to answer questions in your own custom application to answer or in a bot.
+    Once the source is successfully added, you can edit its contents and include added custom question-and-answer pairs.
+
+
+1. Once the source is successfully added, it appears in the **Manage sources** window. There you have the option to edit its contents and include additional custom question-and-answer pairs.
+
+     :::image type="content" source="../media/agents/manage-url-sources.png" alt-text="Screenshot of manage sources listing in the Foundry.":::
+
+## Test your knowledge base
+
+1. Select **Test knowledge base** from the **Getting Started** menu.
+
+1. In the main window,  Enter the question **How do I set up my Surface Book?** and then select the **Run** button. Answers are returned using the question-and-answer pairs that were automatically detected and taken from the source URL:
+
+
+    :::image type="content" source="../media/agents/test-knowledge-base.png" alt-text="Screenshot of the inspection interface response in the Foundry." lightbox="../media/agents/test-knowledge-base.png":::
+
+
+## Deploy your knowledge base
+
+Deploying a CQA knowledge base means publishing your curated question-and-answer content as a live, searchable endpoint. This process moves your project from a testing phase to a production environment enabling client applications to use it for various projects and solutions, including chatbots.
+
+1. Once your inspection is complete, choose the **Deploy knowledge base** section from the **Getting Started** menu.
+
+1. Select the **Deploy** button first from the **Deploy knowledge base** main window and then from the **Deploy this project** pop-up window. It takes a few minutes to deploy.
+
+1. After deployment is complete, your deployed project is listed in the **Deploy knowledge base** window.
+
+That's it! Your Custom Question Answering (CQA) knowledge base provides a natural language interface to your data, allowing users to interact with information in a conversational manner. By deploying this solution, you can create advanced chatbots and interactive agents that comprehend user questions, supply precise answers, and adjust to changing informational requirements.
 
 ## Clean up resources
 
-If you will not continue to test custom question answering, you can delete the associated resource.
+To clean up and remove an Azure AI subscription, you can delete either the individual resource or the entire resource group. If you delete the resource group, all resources contained within it will also be deleted.
 
 ## Next steps

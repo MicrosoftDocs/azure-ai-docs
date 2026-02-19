@@ -1,18 +1,18 @@
 ---
-title: "Document formats and naming conventions - Azure AI Custom Translator"
-titleSuffix: Azure AI services
-description: This article is a guide to document formats, naming conventions, and how to avoid naming conflicts for Azure AI Custom Translator.
+title: "Document formats and naming conventions - Custom Translator"
+titleSuffix: Foundry Tools
+description: This article is a guide to document formats, naming conventions, and how to avoid naming conflicts for Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator user, I want to understand how to format and name my documents.
 ---
 
-# Azure AI Custom Translator formats and naming convention guidance
+# Custom Translator formats and naming convention guidance
 
 Any file used for custom translation must be at least **four** characters in length.
 
@@ -52,4 +52,4 @@ Translation Memory files (`TMX`, `XLF`, `XLIFF`, `LCL`, `XLSX`) aren't required 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn about managing  Azure AI Custom Translator projects](workspace-and-project.md#what-is-a-custom-translator-project)
+> [Learn about managing  Custom Translator projects](workspace-and-project.md#what-is-a-custom-translator-project)

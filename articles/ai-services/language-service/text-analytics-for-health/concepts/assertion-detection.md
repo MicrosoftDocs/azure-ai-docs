@@ -1,17 +1,16 @@
 ---
 title: Assertion detection in Text Analytics for health
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about assertion detection.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-health
 ---
-
 # Assertion detection
 
 The meaning of medical content is highly affected by modifiers, such as negative or conditional assertions, which can have critical implications if misrepresented. Text Analytics for health supports four categories of assertion detection for entities in the text: 

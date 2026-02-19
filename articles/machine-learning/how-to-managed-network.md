@@ -5,9 +5,9 @@ description: Use managed virtual network isolation for network security with Azu
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.reviewer: shshubhe
+ms.author: scottpolly
+author: s-polly
 ms.date: 05/23/2025
 ms.topic: how-to
 zone_pivot_groups: azureml-portal-cli-python
@@ -17,6 +17,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - sfi-image-nochange
 ---
 
 # Workspace Managed Virtual Network Isolation
@@ -91,7 +92,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ::: zone pivot="cli"
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The __Microsoft.Network__ resource provider must be registered for your Azure subscription. This resource provider is used by the workspace when creating private endpoints for the managed virtual network.
 
@@ -118,7 +119,7 @@ Before following the steps in this article, make sure you have the following pre
 ::: zone-end
 ::: zone pivot="python-sdk"
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The __Microsoft.Network__ resource provider must be registered for your Azure subscription. This resource provider is used by the workspace when creating private endpoints for the managed virtual network.
 
@@ -164,7 +165,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ::: zone pivot="azure-portal"
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The __Microsoft.Network__ resource provider must be registered for your Azure subscription. This resource provider is used by the workspace when creating private endpoints for the managed virtual network.
 
@@ -189,13 +190,13 @@ Microsoft recommends assigning the _Azure AI Enterprise Network Connection Appro
 * Azure Storage
 * Azure Machine Learning workspace
 * Azure Machine Learning registry
-* Azure AI Foundry
+* Microsoft Foundry
 * Azure Key Vault
 * Azure Cosmos DB
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
-* Azure AI Services
-* Azure Cache for Redis
+* Foundry Tools
+* Azure Managed Redis
 * Container Registry
 * API Management
 
@@ -1115,7 +1116,7 @@ If you plan to use __Azure Machine Learning batch endpoints__ for deployment or 
 
 ### Scenario: Use prompt flow with Azure OpenAI, content safety, and Azure AI Search
 
-* Private endpoint to Azure AI Services
+* Private endpoint to Foundry Tools
 * Private endpoint to Azure AI Search
 
 ### Scenario: Use HuggingFace models
@@ -1158,13 +1159,13 @@ Private endpoints are currently supported for the following Azure services:
 * Azure Storage (all sub resource types)
 * Azure Container Registry
 * Azure Key Vault
-* Azure AI services
+* Foundry Tools
 * Azure AI Search (formerly Cognitive Search)
 * Azure SQL Server
 * Azure Data Factory
 * Azure Cosmos DB (all sub resource types)
 * Azure Event Hubs
-* Azure Redis Cache
+* Azure Managed Redis  
 * Azure Databricks
 * Azure Database for MariaDB
 * Azure Database for PostgreSQL Single Server
@@ -1195,13 +1196,13 @@ Here's the list of private endpoint target resource types covered by the Azure A
 * Azure Storage
 * Azure Machine Learning workspace
 * Azure Machine Learning registry
-* Azure AI Foundry
+* Foundry
 * Azure Key Vault
 * Azure Cosmos DB
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
-* Azure AI Services
-* Azure Cache for Redis
+* Foundry Tools
+* Azure Managed Redis
 * Container Registry
 * API Management
   

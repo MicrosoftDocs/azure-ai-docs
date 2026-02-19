@@ -6,9 +6,9 @@ keywords: data science tools, data science virtual machine, tools for data scien
 services: machine-learning
 ms.service: azure-data-science-virtual-machines
 
-author: fbsolo-ms1 
-ms.author: franksolomon 
-ms.topic: conceptual
+author: s-polly 
+ms.author: scottpolly 
+ms.topic: concept-article
 ms.reviewer: jcioffi
 ms.date: 04/16/2024
 

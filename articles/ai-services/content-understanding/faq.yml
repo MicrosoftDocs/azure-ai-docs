@@ -1,11 +1,11 @@
 ### YamlMime:FAQ
 metadata:
-  title: Azure AI Content Understanding FAQ
+  title: Azure Content Understanding in Foundry Tools FAQ
   description: Get answers to frequently asked questions about the Document Intelligence service.
-  author: laujan
-  ms.author: lajanuar
+  author: PatrickFarley 
+  ms.author: pafarley
   manager: nitinme
-  ms.date: 05/19/2025
+  ms.date: 12/19/2025
   ms.service: azure-ai-content-understanding
   ms.topic: faq
   ms.custom:
@@ -13,14 +13,14 @@ metadata:
 title: Frequently asked questions
 summary: |
 
- Find answers to commonly asked questions about Azure AI Content Understanding
+ Find answers to commonly asked questions about Azure Content Understanding
 sections:
   - name: Overview
     questions:
       - question: |
-         What is Content Understanding
+         What is Content Understanding?
         answer: |
-          Content Understanding is a new Azure AI Service designed to generate structured insights from unstructured content using artificial intelligence. It provides consistent experience to extract content or a structured schema from audio, video, images, documents, or text inputs.
+          Content Understanding is a new Foundry Tool designed to generate structured insights from unstructured content using artificial intelligence. It provides consistent experience to extract content or a structured schema from audio, video, images, documents, or text inputs.
       - question: |
          How does Content Understanding work?
         answer: |
@@ -40,6 +40,8 @@ sections:
           The key benefits of using Content Understanding include:
           * Confidence scores: Ensure the accuracy of extracted values while minimizing the cost of human review.
           * Defined schema: Define a schema to ensure the extracted values align with intended use.
+          * Grounding: Trace every extracted or generated field to its source location in the document.
+          * In-context learning: Improve extraction quality on new templates by providing a few labeled examples without retraining.
           * Quality improvements over time: The service provides capabilities to improve the quality of the schema extracted.
           * Improved decision-making: Structured insights help organizations make informed decisions quickly and effectively.
           * Increased efficiency: Automating the analysis of unstructured content saves time and reduces the manual effort required.
@@ -56,22 +58,36 @@ sections:
       - question: |
          Is Content Understanding easy to integrate with existing systems?
         answer: |
-          Yes, Content Understanding easily integrates with existing systems and workflows. The service offers a set of easy-to-use APIs that can be integrated into any application.
+          Yes, Content Understanding easily integrates with existing systems and workflows. For example: 
+          * Azure AI Search
+          * Microsoft Fabric
+          * Foundry Agent Service
+          * Azure Logic Apps
+          
+          The service offers a set of easy-to-use APIs that can be integrated into any application. See [code samples on GitHub](https://github.com/Azure-Samples/azure-ai-content-understanding-python).
       - question: |
          What security measures are in place to protect data processed by Content Understanding?
         answer: |
-         Azure AI Services, including Content Understanding, adheres to strict security and compliance standards to ensure data protection. These measures include data encryption, secure access controls, and compliance with industry regulations such as GDPR and HIPAA. The service also adheres to Microsoft’s responsible use of AI.
+         Foundry Tools, including Content Understanding, adheres to strict security and compliance standards to ensure data protection. These measures include data encryption, secure access controls, and compliance with industry regulations such as HIPAA. The service also adheres to Microsoft’s responsible use of AI.
       - question: |
-         What base models does Azure AI Content Understanding use?
+         What base models does Azure Content Understanding use?
         answer: |
-          Content Understanding uses various models and capabilities from Azure OpenAI, Azure AI Speech, Vision, and Language to support single- modality and multi-modal scenarios. The service determines the selection of base models appropriate for each scenario.
+          Content Understanding uses a combination of models to process your content:
+          * **Foundry models**: You bring your own deployments of large language models (LLMs) and embeddings from Foundry. Content Understanding supports the GPT-4o and GPT-4.1 model family, and OpenAI embedding models. See the [Model deployments article](concepts/models-deployments.md#supported-models) for the complete list of supported models.
+          * **Other base models**: Content Understanding also uses various capabilities including Speech, Vision, and Language services to support content extraction and processing across different modalities.
       - question: |
-         What are the pricing tier options for Content Understanding
+         What are the pricing tier options for Content Understanding?
         answer: |
-          Content Understanding only supports Standard S0 pricing tier. See more details on the [**Content Understanding pricing page**](https://azure.microsoft.com/pricing/details/content-understanding/).
+          Content Understanding uses a transparent, usage-based pricing model with two main charge categories:
+          * **Content extraction**: Charges per unit of input processed (per 1,000 pages for documents, per minute for audio/video). 
+          * **Generative features**: When using AI-powered features, you incur contextualization charges (fixed rate per content unit) plus token-based charges from your Microsoft Foundry model deployments (input/output tokens and embeddings).
+          
+          For detailed pricing information, examples, and cost optimization tips, see the [Pricing explainer](pricing-explainer.md) and [Content Understanding pricing page](https://azure.microsoft.com/pricing/details/content-understanding/).
       - question: |
           How do the face capabilities in Content Understanding differ from the Azure AI Face service?
         answer: |
-          The face capabilities in Content Understanding build upon and enhance the Azure AI Face service. They provide a more integrated experience for analyzing faces in documents, images, and videos. Key improvements include:
-          * A new person directory that supports storing both persons and their associated faces. It allows for recognition by searching through individual faces or matching with known persons, offering greater flexibility in managing and querying face data.
-          * Streamlined recognition operations that enable you to submit an image directly for verification or identification. The system automatically detects and processes the relevant face from the image, eliminating the need for a separate face detection step.
+          In the GA API version (2025-11-01), Content Understanding provides face-related capabilities focused on privacy and description rather than identification:
+          * **Face blurring**: By default automatically blurs faces in video and image content to protect privacy.
+          * **Face description**: Use generative models to generate textual descriptions of faces in your content, capturing attributes, characteristics and celebrity identification.
+          
+          Content Understanding doesn't include the full Azure AI Face service features such as face recognition, verification, identification, or person directory capabilities in this API version.

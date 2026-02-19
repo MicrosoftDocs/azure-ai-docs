@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 Create a **POST** request using the following URL, headers, and JSON body to start a swap deployments job.
 
 
@@ -20,7 +19,7 @@ Create a **POST** request using the following URL, headers, and JSON body to sta
 |---------|---------|---------|
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `myProject` |
-|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you are calling. | `2023-04-01` |
+|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
 
 
 ### Headers
@@ -46,4 +45,4 @@ Use the following header to authenticate your request.
 |firstDeploymentName |`{FIRST-DEPLOYMENT-NAME}`| The name for your first deployment. This value is case-sensitive.   | `production` |
 |secondDeploymentName | `{SECOND-DEPLOYMENT-NAME}`|The name for your second deployment. This value is case-sensitive.   | `staging` |
 
-Once you send your API request, you will receive a `202` response indicating success.
+Once you send your API request, you receive a `202` response indicating success.

@@ -1,19 +1,18 @@
 ---
 title: How to create custom text classification projects
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the steps for using Azure resources with custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 |Requirement  |Description  |
 |---------|---------|
-|Regions     | Make sure your existing resource is provisioned in one of the [supported regions](../service-limits.md#regional-availability). If you don't have a resource, you will need to create a new one in a supported region.        |
+|Regions     | Make sure your existing resource is provisioned in one of the [supported regions](../service-limits.md#regional-availability). If you don't have a resource, you need to create a new one in a supported region.        |
 |Pricing tier     | The [pricing tier](../service-limits.md#language-resource-limits) for your resource.       |
 |Managed identity     | Make sure that the resource's managed identity setting is enabled. Otherwise, read the next section. |
 
@@ -21,23 +20,11 @@ To use custom text classification, you'll need to [create an Azure storage accou
 
 ## Enable identity management for your resource
 
-# [Azure portal](#tab/azure-portal)
-
 Your Language resource must have identity management, to enable it using [Azure portal](https://portal.azure.com/):
 
 1. Go to your Language resource
-2. From left hand menu, under **Resource Management** section, select **Identity**
-3. From **System assigned** tab, make sure to set **Status** to **On**
-
-# [Language Studio](#tab/language-studio)
-
-Your Language resource must have identity management, to enable it using [Language Studio](https://aka.ms/languageStudio):
-
-1. Select the settings icon in the top right corner of the screen
-2. Select **Resources**
-3. Select the check box **Managed Identity** for your Azure AI Language resource.
-
----
+1. From left hand menu, under **Resource Management** section, select **Identity**
+1. From **System assigned** tab, make sure to set **Status** to **On**
 
 ### Enable custom text classification feature
 
@@ -50,9 +37,9 @@ Make sure to enable **Custom text classification / Custom Named Entity Recogniti
 5. Select **Apply**
 
 >[!Important]
-> * Make sure that your **Language resource** has **storage blob data contributor** role assigned on the storage account you are connecting.
+> * Make sure that your **Language resource** has **storage blob data contributor** role assigned on the storage account you're connecting.
 
-### Set roles for your Azure AI Language resource and storage account
+### Set roles for your Azure Language resource and storage account
 
 [!INCLUDE [roles-for-resource-and-storage](roles-for-resource-and-storage.md)]
 

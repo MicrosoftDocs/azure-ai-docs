@@ -1,13 +1,13 @@
 ---
-title: Data, privacy, and security for optical character recognition (OCR) - Azure AI Vision
-titleSuffix: Azure AI services
-description: This document details issues for data, privacy, and security for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure AI Vision API.
-author: sanjeev3
-ms.author: sajagtap
+title: Data, privacy, and security for optical character recognition (OCR) - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: This document details issues for data, privacy, and security for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure Vision in Foundry Tools API.
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
-ms.date: 02/23/2021
+ms.topic: concept-article
+ms.date: 10/15/2025
 ---
 
 # Data, privacy, and security for OCR
@@ -28,13 +28,13 @@ The [OCR service](/azure/ai-services/computer-vision/overview-ocr) processes the
 
 The following diagram illustrates how your data is processed.
 
-:::image border type="content" source="./media/ocr/ocr-read-api-working.png" alt-text="Diagram that shows how the Azure AI Vision Read OCR API works.":::
+:::image border type="content" source="./media/ocr/ocr-read-api-working.png" alt-text="Diagram that shows how the Azure Vision in Foundry Tools Read OCR API works.":::
 
-**Authenticate (with subscription or API keys)**: The most common way to authenticate access to the Azure AI Vision API and its Read OCR is by using the customer's Azure AI Vision API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable) that's used to validate your subscription for a service or group of services. [Learn more](/azure/ai-services/authentication?tabs=powershell).
+**Authenticate (with subscription or API keys)**: The most common way to authenticate access to the Vision API and its Read OCR is by using the customer's Vision API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable) that's used to validate your subscription for a service or group of services. [Learn more](/azure/ai-services/authentication?tabs=powershell).
 
-**Secure data in transit (for scanning)**: All Azure AI services endpoints, including the Azure AI Vision Read API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the endpoints. [Learn more](/azure/ai-services/security-features).
+**Secure data in transit (for scanning)**: All Foundry Tools endpoints, including the Vision Read API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the endpoints. [Learn more](/azure/ai-services/security-features).
 
-**Encrypt input data for processing**: The incoming data is processed in the same region where the Azure AI Vision resource was created. When you submit your documents to the Read operation, it starts the process of analyzing the document to extract all text. During this time, your data and results are temporarily encrypted and stored in a Microsoft internal Azure Storage resource.
+**Encrypt input data for processing**: The incoming data is processed in the same region where the Vision resource was created. When you submit your documents to the Read operation, it starts the process of analyzing the document to extract all text. During this time, your data and results are temporarily encrypted and stored in a Microsoft internal Azure Storage resource.
  
 **Retrieve the extracted text results**: You call the [Get Read Results](/azure/ai-services/computer-vision/how-to/call-read-api#get-results-from-the-service) operation to get the job completion status and optionally, the extracted text results if the job has succeeded. The other values of status tell you whether the operation has not started, is running, or has failed.
 

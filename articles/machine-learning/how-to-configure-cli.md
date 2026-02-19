@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-author: Blackmist
-ms.author: larryfr
-ms.date: 10/03/2024
-ms.reviewer: balapv
+author: s-polly
+ms.author: scottpolly
+ms.date: 10/06/2025
+ms.reviewer: shshubhe
 ms.custom: devx-track-azurecli, devplatv2
 # Customer intent: As an admin, I want to understand how to install the Azure CLI extension for Azure Machine Learning.
 ---
@@ -24,7 +24,7 @@ The `ml` extension to the [Azure CLI](/cli/azure/) is the enhanced interface for
 
 ## Prerequisites
 
-- To use the CLI, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+- To use the CLI, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 - To use the CLI commands in this document from your **local environment**, you need the [Azure CLI](/cli/azure/install-azure-cli).
 
 ## Installation
@@ -109,7 +109,7 @@ The `ml` CLI extension (sometimes called 'CLI v2') for Azure Machine Learning se
 Data in a data store that is secured in a virtual network isn't_ sent over the public internet. For example, if your training data is located in the default storage account for the workspace, and the storage account is in a virtual network.
 
 > [!NOTE]
-> With the previous extension (`azure-cli-ml`, sometimes called 'CLI v1'), only some of the commands communicate with the Azure Resource Manager. Specifically, commands that create, update, delete, list, or show Azure resources. Operations such as submitting a training job communicate directly with the Azure Machine Learning workspace. If your workspace is [secured with a private endpoint](how-to-configure-private-link.md), that is enough to secure commands provided by the `azure-cli-ml` extension.
+> With the previous extension `azure-cli-ml`, sometimes called 'CLI v1', only some of the commands communicate with Azure Resource Manager. Specifically, commands that create, update, delete, list, or show Azure resources. Operations such as submitting a training job communicate directly with the Azure Machine Learning workspace. If your workspace is [secured with a private endpoint](how-to-configure-private-link.md), that's enough to secure commands provided by the `azure-cli-ml` extension.
 
 # [Public workspace](#tab/public)
 

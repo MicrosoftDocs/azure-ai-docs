@@ -1,36 +1,37 @@
 ### YamlMime:FAQ
 metadata:
-  title: Azure AI Foundry Models frequently asked questions
-  titleSuffix: Azure AI Foundry
+  title: Microsoft Foundry Models frequently asked questions
+  titleSuffix: Microsoft Foundry
   description: Get answers to the most popular questions about Foundry Models
-  #services: cognitive-services
   manager: nitinme
-  ms.service: azure-ai-model-inference
+  ms.service: azure-ai-foundry
+  ms.subservice: azure-ai-foundry-model-inference
   ms.topic: faq
   ms.date: 1/21/2025
-  ms.author: fasantia
-  author: santiagxf
+  ms.areviewer: fasantia
+  ms.author: mopeakande
+  author: msakande
 title: Foundry Models frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Azure AI Foundry services (formerly known Azure AI Services) support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
+  If you can't find answers to your questions in this document, and still need help check the [Foundry Tools support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context).
 sections:
   - name: General
     questions:
       - question: |
-          What's the difference between Azure OpenAI and Azure AI Foundry Models?
+          What's the difference between Azure OpenAI and Microsoft Foundry Models?
         answer: |
-          Azure OpenAI gives customers access to advanced language models from OpenAI. Azure AI Foundry Models extends such capability giving customers access to all the flagship models in Azure AI Foundry under the same service, endpoint, and credentials. It includes Azure OpenAI, Cohere, Mistral AI, Meta Llama, AI21 labs, etc. Customers can seamlessly switch between models without changing their code.
+          Azure OpenAI gives customers access to advanced language models from OpenAI. Microsoft Foundry Models extends such capability giving customers access to all the flagship models in Microsoft Foundry under the same service, endpoint, and credentials. It includes Azure OpenAI, Cohere, Mistral AI, Meta Llama, AI21 labs, etc. Customers can seamlessly switch between models without changing their code.
 
           Azure OpenAI is included in the Models Sold Directly by Azure family in Foundry Models.
       - question: |
-          What's the difference between Azure AI services and Azure AI Foundry?
+          What's the difference between Foundry Tools and Microsoft Foundry?
         answer: |
-          Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. Azure AI Services is part of the Azure AI Foundry platform. Azure AI services can be used in Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.
+          Foundry Tools are a suite of AI services that provide prebuilt APIs for common AI scenarios. Foundry Tools is part of the Microsoft Foundry platform. Foundry Tools can be used in Microsoft Foundry portal to enhance your models with prebuilt AI capabilities.
       - question: |
           What's the difference between serverless API deployments and Foundry Models?
         answer: |
-          Both features allow you to deploy Models-as-a-Service models in Azure AI Foundry. However, there are some differences between them:
-          - *Resource involved*: serverless API deployments are deployed within an AI project resource, while Foundry Models is part of the Azure AI Foundry resource.
+          Both features allow you to deploy Models-as-a-Service models in Microsoft Foundry. However, there are some differences between them:
+          - *Resource involved*: serverless API deployments are deployed within an AI project resource, while Foundry Models is part of the Microsoft Foundry resource.
           - *Deployment options*: serverless API deployments allow regional deployments, while Foundry Models allows deployments under a global capacity.
           - *Models*: Foundry Models also supports deploying Azure OpenAI models.
           - *Endpoint*: serverless API deployments create one endpoint and credential per deployment, while Foundry Models creates one endpoint and credential per resource.
@@ -38,29 +39,29 @@ sections:
   - name: Models
     questions:
       - question: |
-          Why aren't all the models in the Azure AI model catalog supported in Azure AI Foundry services?
+          Why aren't all the models in the Microsoft model catalog supported in Microsoft Foundry services?
         answer: |
-          Foundry Models support all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](concepts/models.md).
+          Foundry Models support all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](./concepts/models-sold-directly-by-azure.md).
 
-          The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Azure AI Foundry](../../ai-studio/concepts/deployments-overview.md).
+          The Microsoft model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Microsoft Foundry](../../ai-studio/concepts/deployments-overview.md).
       - question: |
           My company hasn't approved specific models for use. How can I prevent users from deploying them?
         answer: |
-          You can restrict the models available for deployment in Azure AI services by using the Azure policies. Models are listed in the catalog but any attempt to deploy them is blocked. Read [Control AI model deployment with custom policies](../model-inference/how-to/configure-deployment-policies.md).
+          You can restrict the models available for deployment in Foundry Tools by using the Azure policies. Models are listed in the catalog but any attempt to deploy them is blocked. Read [Control AI model deployment with custom policies](./how-to/configure-deployment-policies.md).
   - name: SDKs and programming languages
     questions:
       - question: |
           Which are the supported SDKs and programming languages for Foundry Models?
         answer: |
-          You can use Azure Inference SDK with any model supported by Foundry Models in Azure AI Foundry services, the `AzureOpenAI` class in OpenAI SDK, or the Azure OpenAI SDK.
+          You can use Azure Inference SDK with any model supported by Foundry Models in Microsoft Foundry services, the `AzureOpenAI` class in OpenAI SDK, or the Azure OpenAI SDK.
 
-          Cohere SDK, Mistral SDK, and model provider-specific SDKs aren't supported when connected to Azure AI services.
+          Cohere SDK, Mistral SDK, and model provider-specific SDKs aren't supported when connected to Foundry Tools.
 
-          For more information, see [supported SDKs and programming languages](../model-inference/supported-languages.md).
+          For more information, see [supported SDKs and programming languages](./supported-languages.md).
       - question: |
           Do Foundry Models work with the latest Python library released by OpenAI (version>=1.0)?
         answer: |
-          Azure AI services support the latest release of the [OpenAI Python library (version>=1.0)](https://pypi.org/project/openai/). 
+          Foundry Tools support the latest release of the [OpenAI Python library (version>=1.0)](https://pypi.org/project/openai/). 
       - question: |
           I'm making a request for a model that supports Foundry Models, but I'm getting a 404 error. What should I do?
         answer: |
@@ -68,7 +69,7 @@ sections:
       - question: |
           I'm using the `azure-ai-inference` package for Python and I get a 401 error when I try to authenticate using keys. What should I do?
         answer: |
-          Azure AI Services resource requires the version `azure-ai-inference>=1.0.0b5` for Python. Ensure you're using that version.
+          Foundry Tools resource requires the version `azure-ai-inference>=1.0.0b5` for Python. Ensure you're using that version.
       - question: |
           I'm using OpenAI SDK and indicated the Azure OpenAI inference endpoint as base URL (https://<resource-name>.openai.azure.com). However, I get a 404 error. What should I do?
         answer: |
@@ -84,13 +85,13 @@ sections:
         answer: |
           You're billed for inputs and outputs to the APIs, typically in tokens. There are no cost associated with the resource itself or the deployments.
 
-          The token price varies per each model and you're billed per 1,000 tokens. You can see the pricing details before deploying a given model. For more information about billing, see [Manage cost](../model-inference/how-to/manage-costs.md).
+          The token price varies per each model and you're billed per 1,000 tokens. You can see the pricing details before deploying a given model. For more information about billing, see [Manage cost](../concepts/manage-costs.md).
       - question: |
           Where can I see the bill details?
         answer: |
           Billing and costs are displayed in [Microsoft Cost Management + Billing](/azure/cost-management-billing/understand/download-azure-daily-usage). You can see the usage details in the [Azure portal](https://portal.azure.com).
 
-          Billing isn't shown in Azure AI Foundry portal.
+          Billing isn't shown in Microsoft Foundry portal.
       - question: |
           How can I place a spending limit to my bill?
         answer: |
@@ -100,11 +101,11 @@ sections:
       - question: |
           How are Models from Partners and Community available? 
         answer: |
-          Models from Partners and Community available for deployment in Azure AI Services with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
+          Models from Partners and Community available for deployment in Foundry Tools with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Foundry Tools service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
       - question: |
           How is data processed by the Global-Standard deployment type?
         answer: |
-          For model deployments under Azure AI Services resources, prompts and outputs are processed using Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global standard provides the highest default quota and eliminates the need to load balance across multiple resources. Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure location. Learn more about [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+          For model deployments under Foundry Tools resources, prompts and outputs are processed using Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global standard provides the highest default quota and eliminates the need to load balance across multiple resources. Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure location. Learn more about [data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
       - question: |
           Do you use my company data to train any of the models? 
         answer: |
@@ -112,7 +113,7 @@ sections:
       - question: |
           Is data shared with model providers?
         answer: |
-          Microsoft acts as the data processor for prompts and outputs sent to, and generated by, a model deployment under Azure AI services resources. Microsoft doesn't share these prompts and outputs with the model provider. Also, Microsoft doesn't use these prompts and outputs to train or improve Microsoft models, the model provider's models, or any third party's models.
+          Microsoft acts as the data processor for prompts and outputs sent to, and generated by, a model deployment under Foundry Tools resources. Microsoft doesn't share these prompts and outputs with the model provider. Also, Microsoft doesn't use these prompts and outputs to train or improve Microsoft models, the model provider's models, or any third party's models.
           As explained during the deployment process for Models-as-a-Service models, Microsoft might share customer contact information and transaction details (including the usage volume associated with the offering) with the model publisher so that the publisher can contact customers regarding the model. Learn more about information available to model publishers in [Access insights for the Microsoft commercial marketplace in Partner Center](/partner-center/analytics).
   - name: Customer Copyright Commitment
     questions:

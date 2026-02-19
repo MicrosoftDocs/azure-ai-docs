@@ -1,9 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 06/08/2022
-ms.author: eur
+ms.date: 1/29/2026
+ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/java.md)]
@@ -72,6 +73,8 @@ Follow these steps to create a new console application for speech recognition.
     import java.util.concurrent.ExecutionException;
     import java.util.concurrent.Future;
     import java.util.Map;
+    import java.net.URI; 
+    import java.net.URISyntaxException; 
     
     public class SpeechTranslation {
         // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
@@ -79,7 +82,16 @@ Follow these steps to create a new console application for speech recognition.
         private static String endpoint = System.getenv("ENDPOINT");
     
         public static void main(String[] args) throws InterruptedException, ExecutionException {
-            SpeechTranslationConfig speechTranslationConfig = SpeechTranslationConfig.fromEndpoint(speechKey, endpoint);
+            SpeechTranslationConfig speechTranslationConfig;
+
+            try { 
+                speechTranslationConfig = SpeechTranslationConfig.fromEndpoint(new URI(endpoint), speechKey); 
+
+            } catch (URISyntaxException e) { 
+                throw new IllegalArgumentException("ENDPOINT is not a valid URI: " + endpoint, e); 
+            } 
+    
+            
             speechTranslationConfig.setSpeechRecognitionLanguage("en-US");
     
             String[] toLanguages = { "it" };

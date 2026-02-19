@@ -1,14 +1,13 @@
 ---
 title: Disclosure design guidelines for avatars
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Introduction to disclosure design guidelines and assessing disclosure level for avatars.
-services: ai-services
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 11/16/2023
-ms.author: eur
 ---
 
 # Disclosure design guidelines for avatars

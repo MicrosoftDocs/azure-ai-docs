@@ -1,32 +1,32 @@
 ---
 title: Image Analysis SDK Overview
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This page gives you an overview of the Azure AI Image Analysis SDK.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: overview
-ms.date: 06/01/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 09/26/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
 
 # Image Analysis SDK overview
 
+[!INCLUDE [image-analysis-deprecation](../includes/image-analysis-deprecation.md)]
+
 The Image Analysis SDK provides a convenient way to access the Image Analysis service using [version 4.0 of the REST API](https://aka.ms/vision-4-0-ref).
 
 > [!IMPORTANT]
 > **Breaking Changes in SDK version 1.0.0-beta.1**
 >
-> The Image Analysis SDK was rewritten in version 1.0.0-beta.1 to better align with other Azure SDKs. All APIs have changed. See the updated [quickstart](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40), [samples](#github-samples) and [how-to-guides](/azure/ai-services/computer-vision/how-to/call-analyze-image-40) for information on how to use the new SDK.
+> The Image Analysis SDK was rewritten in version 1.0.0-beta.1 to better align with other Azure SDKs. All APIs are changed. See the updated [quickstart](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40), [samples](#github-samples), and [how-to-guides](/azure/ai-services/computer-vision/how-to/call-analyze-image-40) for information on how to use the new SDK.
 >
 > Major changes:
-> - The SDK now calls the generally available [Computer Vision REST API (2023-10-01)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-10-01), instead of the preview [Computer Vision REST API (2023-04-01-preview)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview).
+> - The SDK now calls the generally available [Computer Vision REST API (2023-10-01)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-10-01&preserve-view=true), instead of the preview [Computer Vision REST API (2023-04-01-preview)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview&preserve-view=true).
 > - Support for JavaScript was added.
 > - C++ is no longer supported.
-> - Image Analysis with a custom model, and Image Segmentation (background removal) are no longer supported in the SDK, because the [Computer Vision REST API (2023-10-01)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-10-01) does not yet support them. To use either feature, call the [Computer Vision REST API (2023-04-01-preview)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview) directly (using the `Analyze` and `Segment` operations respectively).
+> - Image Analysis with a custom model, and Image Segmentation (background removal) are no longer supported in the SDK, because the [Computer Vision REST API (2023-10-01)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-10-01&preserve-view=true) doesn't yet support them. To use either feature, call the [Computer Vision REST API (2023-04-01-preview)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview&preserve-view=true) directly (using the `Analyze` and `Segment` operations respectively).
 
 ## Supported languages
 

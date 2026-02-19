@@ -7,10 +7,10 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.custom: devx-track-python, update-code
 ms.topic: how-to
-ms.reviewer: None
-author: ssalgadodev
-ms.author: ssalgado
-ms.date: 12/11/2024
+ms.reviewer: sooryar
+author: s-polly
+ms.author: scottpolly
+ms.date: 07/17/2025
 ms.collection: ce-skilling-ai-copilot
 ---
 
@@ -24,7 +24,7 @@ Microsoft has partnered with Hugging Face to bring open-source models from Huggi
 
 ## Benefits of using online endpoints for real-time inference
 
-Managed online endpoints in Azure Machine Learning help you deploy models to powerful CPU and GPU machines in Azure in a turnkey manner. Managed online endpoints take care of serving, scaling, securing, and monitoring your models, freeing you from the overhead of setting up and managing the underlying infrastructure. The virtual machines are provisioned on your behalf when you deploy models. You can have multiple deployments behind and [split traffic or mirror traffic](./how-to-safely-rollout-online-endpoints.md) to those deployments. Mirror traffic helps you to test new versions of models on production traffic without releasing them production environments. Splitting traffic lets you gradually increase production traffic to new model versions while observing performance. [Auto scale](./how-to-autoscale-endpoints.md) lets you dynamically ramp up or ramp down resources based on workloads. You can configure scaling based on utilization metrics, a specific schedule or a combination of both. An example of scaling based on utilization metrics is to add nodes if CPU utilization goes higher than 70%. An example of schedule-based scaling is to add nodes based on peak business hours. 
+Managed online endpoints in Azure Machine Learning help you deploy models to powerful CPU and GPU machines in Azure in a turnkey manner. Managed online endpoints take care of serving, scaling, securing, and monitoring your models, freeing you from the overhead of setting up and managing the underlying infrastructure. The virtual machines are provisioned on your behalf when you deploy models. You can have multiple deployments  and [split traffic or mirror traffic](./how-to-safely-rollout-online-endpoints.md) to those deployments. Mirror traffic helps you to test new versions of models on production traffic without releasing them production environments. Splitting traffic lets you gradually increase production traffic to new model versions while observing performance. [Auto scale](./how-to-autoscale-endpoints.md) lets you dynamically ramp up or ramp down resources based on workloads. You can configure scaling based on utilization metrics, a specific schedule, or a combination of both. An example of scaling based on utilization metrics is to add nodes if CPU utilization goes higher than 70%. An example of schedule-based scaling is to add nodes based on peak business hours. 
 
 ## Deploy HuggingFace hub models using Studio 
 
@@ -37,13 +37,22 @@ Choose the real-time deployment option to open the quick deploy dialog. Specify 
 * Select the instance type. This list of instances is filtered down to the ones that the model is expected to deploy without running out of memory. 
 * Select the number of instances. One instance is sufficient for testing but we recommend considering two or more instances for production. 
 * Optionally specify an endpoint and deployment name.
-* Select deploy. You're then navigated to the endpoint page which, might take a few seconds. The deployment takes several minutes to complete based on the model size and instance type. 
+* Select deploy. You're then navigated to the endpoint page, which might take a few seconds. The deployment takes several minutes to complete based on the model size and instance type. 
 
 Note: If you want to deploy to en existing endpoint, select `More options` from the quick deploy dialog and use the full deployment wizard.
 
+#### Gated models
+
+Gated models are models you will need to request approval from the model's author before use. To use:
+1. Have a Hugging Face read or fine-grained [token](https://huggingface.co/docs/hub/en/security-tokens)
+2. Request access through the model's page on Hugging Face
+3. Create a custom key connection named `HuggingFaceTokenConnection` with the key `HF_TOKEN` and the value being your Hugging Face token marked as a secret.
+3. Create an [endpoint](./how-to-deploy-online-endpoint-with-secret-injection.md#create-an-endpoint) with `enforce_access_to_default_secret_stores` set to `enabled` 
+4. Deploy the model using the newly created endpoint
+
 ### Test the deployed model
 
-Once the deployment completes, you can find the REST endpoint for the model in the endpoints page, which can be used to score the model. You find options to add more deployments, manage traffic and scaling the Endpoints hub. You also use the Test tab on the endpoint page to test the model with sample inputs. Sample inputs are available on the model page. You can find input format, parameters and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
+Once the deployment completes, you can find the REST endpoint for the model in the endpoints page, which can be used to score the model. You find options to add more deployments, manage traffic, and scaling the Endpoints hub. You also use the Test tab on the endpoint page to test the model with sample inputs. Sample inputs are available on the model page. You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
 
 ## Deploy HuggingFace hub models using Python SDK
 
@@ -62,9 +71,19 @@ from azure.ai.ml.entities import (
     Environment,
     CodeConfiguration,
 )
+
+ml_client = MLClient(
+    credential=DefaultAzureCredential(),
+    subscription_id="<your-subscription-id>",
+    resource_group_name="<your-resource-group>",
+    workspace_name="<your-workspace-name>"
+)
+
+
 registry_name = "HuggingFace"
 model_name = "bert_base_uncased"
-model_id = f"azureml://registries/{registry_name}/models/{model_name}/labels/latest"
+model_version = "25"
+model_id = f"azureml://registries/{registry_name}/models/{model_name}/versions/{model_version}"
 ```
 ### Deploy the model
 
@@ -88,7 +107,7 @@ ml_client.begin_create_or_update(endpoint).result()
 
 ### Test the deployed model
 
-Create a file with inputs that can be submitted to the online endpoint for scoring. The code sample in this section allows an input for the `fill-mask` type since we deployed the `bert-base-uncased` model. You can find input format, parameters and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
+Create a file with inputs that can be submitted to the online endpoint for scoring. The code sample in this section allows an input for the `fill-mask` type since we deployed the `bert-base-uncased` model. You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
 
 ```python
 import json
@@ -115,7 +134,7 @@ Browse the model catalog in Azure Machine Learning studio and find the model you
 
 You need the `model` and `instance_type` to deploy the model. You can find the optimal CPU or GPU `instance_type` for a model by opening the quick deployment dialog from the model page in the model catalog. Make sure you use an `instance_type` for which you have quota. 
 
-The models shown in the catalog are listed from the `HuggingFace` registry. You deploy the `bert_base_uncased` model with the latest version in this example. The fully qualified `model` asset id based on the model name and registry is `azureml://registries/HuggingFace/models/bert-base-uncased/labels/latest`. We create the `deploy.yml` file used for the `az ml online-deployment create` command inline. 
+The models shown in the catalog are listed from the `HuggingFace` registry. You deploy the `bert_base_uncased` model with the latest version in this example. The fully qualified `model` asset ID based on the model name and registry is `azureml://registries/HuggingFace/models/bert-base-uncased/labels/latest`. We create the `deploy.yml` file used for the `az ml online-deployment create` command inline. 
 
 Create an online endpoint. Next, create the deployment.
 
@@ -123,12 +142,13 @@ Create an online endpoint. Next, create the deployment.
 # create endpoint
 endpoint_name="hf-ep-"$(date +%s)
 model_name="bert-base-uncased"
+model_version="25"
 az ml online-endpoint create --name $endpoint_name 
 
 # create deployment file. 
 cat <<EOF > ./deploy.yml
 name: demo
-model: azureml://registries/HuggingFace/models/$model_name/labels/latest
+model: azureml://registries/HuggingFace/models/$model_name/versions/$model_version
 endpoint_name: $endpoint_name
 instance_type: Standard_DS3_v2
 instance_count: 1
@@ -139,7 +159,7 @@ az ml online-deployment create --file ./deploy.yml --workspace-name $workspace_n
 
 ### Test the deployed model
 
-Create a file with inputs that can be submitted to the online endpoint for scoring. Hugging Face as a code sample input for the `fill-mask` type for our deployed model the `bert-base-uncased` model. You can find input format, parameters and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
+Create a file with inputs that can be submitted to the online endpoint for scoring. Hugging Face as a code sample input for the `fill-mask` type for our deployed model the `bert-base-uncased` model. You can find input format, parameters, and sample inputs on the [Hugging Face hub inference API documentation](https://huggingface.co/docs/api-inference/detailed_parameters).
 
 ```shell
 scoring_file="./sample_score.json"
@@ -163,16 +183,16 @@ Follow this link to find [hugging face model example code](https://github.com/Az
 HuggingFace hub has thousands of models with hundreds being updated each day. Only the most popular models in the collection are tested and others may fail with one of the below errors.
 
 ### Gated models
-[Gated models](https://huggingface.co/docs/hub/models-gated) require users to agree to share their contact information and accept the model owners' terms and conditions in order to access the model. Attempting to deploy such models will fail with a `KeyError`.
+[Gated models](https://huggingface.co/docs/hub/models-gated) require users to agree to share their contact information and accept the model owners' terms and conditions in order to access the model. Attempting to deploy such models without properly following the [above steps](#gated-models) will fail with a `KeyError`.
 
 ### Models that need to run remote code
-Models typically use code from the transformers SDK but some models run code from the model repo. Such models need to set the parameter `trust_remote_code` to `True`. Follow this link to learn more about using [remote code](https://huggingface.co/docs/transformers/custom_models#using-a-model-with-custom-code). Such models are not supported from keeping security in mind. Attempting to deploy such models will fail with the following error: `ValueError: Loading <model> requires you to execute the configuration file in that repo on your local machine. Make sure you have read the code there to avoid malicious use, then set the option trust_remote_code=True to remove this error.`
+Models typically use code from the transformers SDK but some models run code from the model repo. Such models need to set the parameter `trust_remote_code` to `True`. Follow this link to learn more about using [remote code](https://huggingface.co/docs/transformers/custom_models#using-a-model-with-custom-code). Such models aren't supported from keeping security in mind. Attempting to deploy such models fails with the following error: `ValueError: Loading <model> requires you to execute the configuration file in that repo on your local machine. Make sure you have read the code there to avoid malicious use, then set the option trust_remote_code=True to remove this error.`
 
 ### Models with incorrect tokenizers
 Incorrectly specified or missing tokenizer in the model package can result in `OSError: Can't load tokenizer for <model>` error.
 
 ### Missing libraries
-Some models need additional python libraries. You can install missing libraries when running models locally. Models that need special libraries beyond the standard transformers libraries will fail with `ModuleNotFoundError` or `ImportError` error.
+Some models need additional python libraries. You can install missing libraries when running models locally. Models that need special libraries beyond the standard transformers libraries fails with `ModuleNotFoundError` or `ImportError` error.
 
 ### Insufficient memory
 If you see the `OutOfQuota: Container terminated due to insufficient memory`, try using a `instance_type` with more memory. 
@@ -181,22 +201,30 @@ If you see the `OutOfQuota: Container terminated due to insufficient memory`, tr
 
 **Where are the model weights stored?**
 
-Hugging Face models are featured in the Azure Machine Learning model catalog through the `HuggingFace` registry. Hugging Face creates and manages this registry and is made available to Azure Machine Learning as a Community Registry. The model weights aren't hosted on Azure. The weights are downloaded directly from Hugging Face hub to the online endpoints in your workspace when these models deploy. `HuggingFace` registry in AzureML works as a catalog to help discover and deploy HuggingFace hub models in Azure Machine Learning.
+Hugging Face models are featured in the Azure Machine Learning model catalog through the `HuggingFace` registry. Hugging Face creates and manages this registry and is made available to Azure Machine Learning as a Community Registry. The model weights aren't hosted on Azure. The weights are downloaded directly from Hugging Face hub to the online endpoints in your workspace when these models deploy. `HuggingFace` registry in Azure Machine Learning works as a catalog to help discover and deploy HuggingFace hub models in Azure Machine Learning.
+
+**What models are supported?**
+
+Hugging Face models that meet the following criteria are supported on Azure:
+
+- Must have either the `Transformers`, `Diffusers`, or `Sentence-Transformers` tags on Hugging Face Hub
+- Has a [supported task](https://huggingface.co/docs/microsoft-azure/azure-ai/tasks) such as `chat-completion`, `image-to-task`, or `embeddings`
+- Model weights are in the Safetensors format and the model does not require `trust_remote_code`
 
 **How to deploy the models for batch inference?**
 Deploying these models to batch endpoints for batch inference is currently not supported. 
 
-**Can I use models from the `HuggingFace` registry as input to jobs so that I can finetune these models using transformers SDK?**
-Since the model weights aren't stored in the `HuggingFace` registry, you cannot access model weights by using these models as inputs to jobs.
+**Can I use models from the `HuggingFace` registry as input to jobs so that I can fine-tune these models using transformers SDK?**
+Since the model weights aren't stored in the `HuggingFace` registry, you can't access model weights by using these models as inputs to jobs.
 
 **How do I get support if my deployments fail or inference doesn't work as expected?**
-`HuggingFace` is a community registry and that is not covered by Microsoft support. Review the deployment logs and find out if the issue is related to Azure Machine Learning platform or specific to HuggingFace transformers. Contact Microsoft support for any platform issues. Example, not being able to create online endpoint or authentication to endpoint REST API doesn't work. For transformers specific issues, use the  [HuggingFace forum](https://discuss.huggingface.co/) or [HuggingFace support](https://huggingface.co/support). 
+`HuggingFace` is a community registry and that isn't covered by Microsoft support. Review the deployment logs and find out if the issue is related to Azure Machine Learning platform or specific to HuggingFace transformers. Contact Microsoft support for any platform issues such as not being able to create online endpoint or authentication to endpoint REST API doesn't work. For transformers specific issues, create an issue on [GitHub](https://github.com/huggingface/transformers/issues), use the  [HuggingFace forum](https://discuss.huggingface.co/), or use [HuggingFace support](https://huggingface.co/support). 
 
 **What is a community registry?**
 Community registries are Azure Machine Learning registries created by trusted Azure Machine Learning partners and available to all Azure Machine Learning users.
 
 **Where can users submit questions and concerns regarding Hugging Face within Azure Machine Learning?**
-Submit your questions in the [Azure Machine Learning discussion forum.](https://discuss.huggingface.co/t/about-the-azure-machine-learning-category/40677) 
+Submit your questions in the [Azure Machine Learning discussion forum](https://discuss.huggingface.co/t/about-the-azure-machine-learning-category/40677) or open a [GitHub Issue.](https://github.com/huggingface/Microsoft-Azure/issues)
 
 ### Regional availability
 

@@ -1,39 +1,47 @@
 ---
-title: Chunk documents in vector search
+title: Chunk documents
 titleSuffix: Azure AI Search
-description: Learn strategies for chunking PDFs, HTML files, and other large documents for vectors and search indexing and query workloads.
-
-author: arv100kri
-ms.author: arjagann
+description: Learn strategies for chunking PDFs, HTML files, and other large documents for agentic retrieval and vector search.
+author: gmndrg
+ms.author: gimondra
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 03/31/2025
+ms.topic: concept-article
+ms.date: 10/30/2025
 ---
 
-# Chunk large documents for vector search solutions in Azure AI Search
+# Chunk large documents for RAG and vector search in Azure AI Search
 
-Partitioning large documents into smaller chunks can help you stay under the maximum token input limits of embedding models. For example, the maximum length of input text for the [Azure OpenAI](/azure/ai-services/openai/how-to/embeddings) text-embedding-ada-002 model is 8,191 tokens. Given that each token is around four characters of text for common OpenAI models, this maximum limit is equivalent to around 6,000 words of text. If you're using these models to generate embeddings, it's critical that the input text stays under the limit. Partitioning your content into chunks helps you meet embedding model requirements and prevents data loss due to truncation.
+Partitioning large documents into smaller chunks can help you stay under the maximum token input limits of chat completion and  embedding models. For example, the maximum length of input text for the [Azure OpenAI](/azure/ai-services/openai/how-to/embeddings) text-embedding-3-small model is 8,191 tokens. Given that each token is around four characters of text for common OpenAI models, this maximum limit is equivalent to around 6,000 words of text. If you're using these models to generate embeddings, it's critical that the input text stays under the limit. 
 
-We recommend [integrated vectorization](vector-search-integrated-vectorization.md) for built-in data chunking and embedding. Integrated vectorization takes a dependency on indexers and skillsets that split text and generate embeddings. If you can't use integrated vectorization, this article describes some alternative approaches for chunking your content.
+Chat completion models have the same input token restrictions, so chunking is helpful for [retrieval augmented generation (RAG)](retrieval-augmented-generation-overview.md) or [agentic retrieval](agentic-retrieval-overview.md) as well. Partitioning your content into chunks helps you meet input token requirements and prevents data loss due to truncation.
+
+Azure AI Search has built-in solutions for chunking content, and also for vectorizing chunked content if you're using vector search. The built-in approach takes a dependency on [built-in indexers](search-indexer-overview.md) and [skillsets](vector-search-integrated-vectorization.md) that enable text splitting and embeddings generation. If you can't use integrated vectorization, this article describes some alternative approaches for chunking your content.
+
+> [!TIP]
+> If you're chunking content for agentic retrieval, several knowledge sources can generate a full indexer pipeline that chunks and optionally vectorizes your content. The indexer, data source definition, skillset, and are created for you based on information in your knowledge source definition. Knowledge sources with this capability include [Azure blob](agentic-knowledge-source-how-to-blob.md) and [OneLake](agentic-knowledge-source-how-to-onelake.md).
 
 ## Common chunking techniques
 
-Chunking is only required if the source documents are too large for the maximum input size imposed by models, but it's also beneficial if content is poorly represented as a single vector. Consider a wiki page that covers a lot of varied sub-topics. The entire page might be small enough to meet model input requirements, but you might get better results if you chunk at a finer grain.
+Chunking is only required if the source documents are too large for the maximum input size imposed by models, but it's also beneficial if content is poorly represented as a single vector. Consider a wiki page that covers numerous varied sub-topics. The entire page might be small enough to meet model input requirements, but you might get better results if you chunk at a finer grain.
 
 Here are some common chunking techniques, associated with built-in features if you use [indexers](search-indexer-overview.md) and [skills](cognitive-search-working-with-skillsets.md).
 
 | Approach | Usage | Built-in functionality |
 |----------|-------|-----------------|
 | Fixed-size chunks | Define a fixed size that's sufficient for semantically meaningful paragraphs (for example, 200 words or 600 characters) and allows for some overlap (for example, 10-15% of the content) can produce good chunks as input for embedding vector generators. | [Text Split skill](cognitive-search-skill-textsplit.md), splitting by pages (defined by character length) |
-| Variable-sized chunks based on content characteristics | Partition your data based end-of-sentence punctuation marks, end-of-line markers, or using features in the Natural Language Processing (NLP) libraries that detect document structure. Embedded markup, like HTML or Markdown, have heading syntax that can be used to chunk data by sections. | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) or [Text Split skill](cognitive-search-skill-textsplit.md), splitting by sentences. |
+| Variable-sized chunks based on content characteristics | Partition your data based end-of-sentence punctuation marks, end-of-line markers, or using features in the Natural Language Processing (NLP) libraries that detect document structure. Embedded markup, like HTML or Markdown, have heading syntax that can be used to chunk data by sections. | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) or [Text Split skill](cognitive-search-skill-textsplit.md) (splitting by sentences). |
+| Semantic chunks | Break content into meaningful units that preserve context and semantic relationships across sentences and paragraphs. This approach produces chunks that better maintain semantic coherence and can span page boundaries. | [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) (semantic chunking with markdown output) |
 | Custom combinations | Use a combination of fixed and variable sized chunking, or extend an approach. For example, when dealing with large documents, you might use variable-sized chunks, but also append the document title to chunks from the middle of the document to prevent context loss. | None |
-| Document parsing | Indexers can parse larger source documents into smaller search documents for indexing. Strictly speaking, this approach isn't *chunking* but it can sometimes achieve the same objective. | [Index Markdown blobs and files](search-how-to-index-markdown-blobs.md) or [one-to-many indexing](search-howto-index-one-to-many-blobs.md) or [Index JSON blobs and files ](search-howto-index-json-blobs.md) |
+| Document parsing | Indexers can parse larger source documents into smaller search documents for indexing. Strictly speaking, this approach isn't *chunking* but it can sometimes achieve the same objective. | [Index Markdown blobs and files](search-how-to-index-azure-blob-markdown.md), [one-to-many indexing](search-how-to-index-azure-blob-one-to-many.md), or [Index JSON blobs and files](search-how-to-index-azure-blob-json.md) |
 
 ### Content overlap considerations
 
-When you chunk data based on fixed size, overlapping a small amount of text between chunks can help preserve context. We recommend starting with an overlap of approximately 10%. For example, given a fixed chunk size of 256 tokens, you would begin testing with an overlap of 25 tokens. The actual amount of overlap varies depending on the type of data and the specific use case, but we find that 10-15% works for many scenarios.
+When you chunk data based on fixed size, overlapping a small amount of text between chunks can help maintaining continuity and context. We recommend starting with a chunk size of 512 tokens (approximately 2,000 characters) and an initial overlap of 25%, which equals 128 tokens. This overlap ensures smoother transitions between chunks without excessive duplication.
+
+The optimal overlap may vary depending on your content type and use case. For example, highly structured data may require less overlap, while conversational or narrative text may benefit from more.
 
 ### Factors for chunking data
 
@@ -47,7 +55,7 @@ When it comes to chunking data, think about these factors:
 
 ### How chunking fits into the workflow
 
-If you have large documents, insert a chunking step into indexing and query workflows that breaks up large text. When using [integrated vectorization](vector-search-integrated-vectorization.md), a default chunking strategy using the [Text Split skill](./cognitive-search-skill-textsplit.md) is common. You can also apply a custom chunking strategy using a [custom skill](cognitive-search-custom-skill-web-api.md). Some external libraries that provide chunking include:
+If you have large documents, insert a chunking step into indexing and query workflows that breaks up large text. When using [integrated vectorization](vector-search-integrated-vectorization.md), a default chunking strategy using the [Text Split skill](./cognitive-search-skill-textsplit.md) is common. You can also apply a custom chunking strategy using a [custom skill](cognitive-search-custom-skill-web-api.md). See [this code reference](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/indexers/document-intelligence-custom-skill/document-intelligence-custom-skill.ipynb) for a semantic chunking example using a custom skill. Some external libraries that provide chunking include:
 
 + [LangChain Text Splitters](https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/)
 + [Semantic Kernel TextChunker](/dotnet/api/microsoft.semantickernel.text.textchunker)
@@ -80,9 +88,9 @@ The `pages` parameter adds extra parameters:
 + `pageOverlapLength` defines how many characters from the end of the previous page are included at the start of the next page. If set, this must be less than half the maximum page length.
 + `maximumPagesToTake` defines how many pages / chunks to take from a document. The default value is 0, which means to take all pages or chunks from the document.
 
-<sup>1</sup> Characters don't align to the definition of a [token](/azure/ai-services/openai/concepts/prompt-engineering#space-efficiency). The number of tokens measured by the LLM might be different than the character size measured by the Text Split skill.
+<sup>1</sup> Characters don't align to the definition of a [token](/azure/ai-services/openai/concepts/prompt-engineering#space-efficiency). The number of tokens measured by the LLM might be different than the character size measured by the Text Split skill with the character fixed-size.
 
-<sup>2</sup> Token chunking is available in the [2024-09-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) and includes extra parameters for specifying a tokenizer and any tokens that shouldn't be split up during chunking.
+<sup>2</sup> Token chunking is available in the [2025-11-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and includes extra parameters for specifying a tokenizer and any tokens that shouldn't be split up during chunking.
 
 The following table shows how the choice of parameters affects the total chunk count from the Earth at Night e-book:
 
@@ -98,21 +106,7 @@ The following table shows how the choice of parameters affects the total chunk c
 
 Using a `textSplitMode` of `pages` results in most chunks having total character counts close to `maximumPageLength`. Chunk character count varies due to differences on where sentence boundaries fall inside the chunk. Chunk token length varies due to differences in the contents of the chunk.
 
-The following histograms show how the distribution of chunk character length compares to chunk token length for [gpt-35-turbo](/azure/ai-services/openai/how-to/chatgpt) when using a `textSplitMode` of `pages`, a `maximumPageLength` of 2000, and a `pageOverlapLength` of 500 on the Earth at Night e-book:
-
-   :::image type="content" source="./media/vector-search-how-to-chunk-documents/maximumpagelength-2000-pageoverlap-500-characters.png" alt-text="Histogram of chunk character count for maximumPageLength 2000 and pageOverlapLength 500.":::
-
-   :::image type="content" source="./media/vector-search-how-to-chunk-documents/maximumpagelength-2000-pageoverlap-500-tokens.png" alt-text="Histogram of chunk token count for maximumPageLength 2000 and pageOverlapLength 500.":::
-
-Using a `textSplitMode` of `sentences` results in a large number of chunks consisting of individual sentences. These chunks are smaller than those produced by `pages`, and the token count of the chunks more closely matches the character counts.
-
-The following histograms show how the distribution of chunk character length compares to chunk token length for [gpt-35-turbo](/azure/ai-services/openai/how-to/chatgpt) when using a `textSplitMode` of `sentences` on the Earth at Night e-book:
-
-   :::image type="content" source="./media/vector-search-how-to-chunk-documents/sentences-characters.png" alt-text="Histogram of chunk character count for sentences.":::
-
-   :::image type="content" source="./media/vector-search-how-to-chunk-documents/sentences-tokens.png" alt-text="Histogram of chunk token count for sentences.":::
-
-The optimal choice of parameters depends on how the chunks are used. For most applications, it's recommended to start with the following default parameters:
+The optimal choice of parameters depends on how the chunks are used. For most applications, it's recommended to start with the following default parameters, when using number of characters:
 
 | `textSplitMode` | `maximumPageLength` | `pageOverlapLength` |
 |-----------------|-----------------|-----------------|
@@ -147,7 +141,7 @@ def tiktoken_len(text):
     disallowed_special=()
 )
     return len(tokens)
-tiktoken.encoding_for_model('gpt-3.5-turbo')
+tiktoken.encoding_for_model('gpt-4.1-mini')
 
 # create the length function
 token_counts = []
@@ -196,6 +190,6 @@ A [fixed-sized chunking and embedding generation sample](https://github.com/Azur
 
 ## See also
 
-+ [Understand embeddings in Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/concepts/understand-embeddings)
++ [Understand embeddings in Azure OpenAI in Foundry Models](/azure/ai-services/openai/concepts/understand-embeddings)
 + [Learn how to generate embeddings](/azure/ai-services/openai/how-to/embeddings)
 + [Tutorial: Explore Azure OpenAI embeddings and document search](/azure/ai-services/openai/tutorials/embeddings)

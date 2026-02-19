@@ -8,7 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 08/12/2021
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 # Conditional cognitive skill
@@ -25,7 +26,7 @@ else
 ```
 
 > [!NOTE]
-> This skill isn't bound to Azure AI services. It is non-billable and has no Azure AI services key requirement.
+> This skill isn't bound to Foundry Tools. It's nonbillable and has no Foundry Tools key requirement.
 
 ## @odata.type  
 Microsoft.Skills.Util.ConditionalSkill
@@ -88,7 +89,8 @@ Inputs are case-sensitive.
 | whenFalse   | This input is an [evaluated field](#evaluated-fields) that represents the value to return if the condition is evaluated to *false*. <br/>Sample values: <br/> "= 'contract'"<br/>"= $(/document/contractType)" <br/> "= $(/document/entities/\*)" <br/>
 
 ## Skill outputs
-There's a single output that's simply called "output." It returns the value *whenFalse* if the condition is false or *whenTrue* if the condition is true.
+
+There's a single output called "output." It returns the value *whenFalse* if the condition is false or *whenTrue* if the condition is true.
 
 ## Examples
 
@@ -113,7 +115,7 @@ If "/document/frenchSentences" is used as the *context* of another skill, that s
 
 ###	Sample skill definition 2: Set a default value for a value that doesn't exist
 
-The following output creates an annotation ("/document/languageWithDefault") that's set to the language of the document or to "es" if the language isn't set.
+The following output creates an annotation ("/document/languageWithDefault") that set to the language of the document or to "es" if the language isn't set.
 
 ```json
 {
@@ -130,7 +132,7 @@ The following output creates an annotation ("/document/languageWithDefault") tha
 
 ###	Sample skill definition 3: Merge values from two fields into one
 
-In this example, some sentences have a *frenchSentiment* property. Whenever the *frenchSentiment* property is null, we want to use the *englishSentiment* value. We assign the output to a member that's called *sentiment* ("/document/sentences/*/sentiment").
+In this example, some sentences have a *frenchSentiment* property. Whenever the *frenchSentiment* property is null, we want to use the *englishSentiment* value. We assign the output to a member called *sentiment* ("/document/sentences/*/sentiment").
 
 ```json
 {

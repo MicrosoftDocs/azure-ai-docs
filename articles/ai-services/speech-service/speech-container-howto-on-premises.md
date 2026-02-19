@@ -1,13 +1,13 @@
 ---
 title: Use Speech service containers with Kubernetes and Helm
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Using Kubernetes and Helm to define the speech to text and text to speech container images, we create a Kubernetes package. This package is deployed to a Kubernetes cluster on-premises.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 01/30/2026
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to use Speech service containers with Kubernetes and Helm.
 ---
 
@@ -42,13 +42,13 @@ The host computer is expected to have an available Kubernetes cluster. See this 
 
 ## Configure Helm chart values for deployment
 
-Visit the [Microsoft Helm Hub][ms-helm-hub] for all the publicly available helm charts offered by Microsoft. From the Microsoft Helm Hub, you find the **Azure AI Speech On-Premises Chart**. The **Azure AI Speech On-Premises** is the chart we install, but we must first create a `config-values.yaml` file with explicit configurations. Let's start by adding the Microsoft repository to our Helm instance.
+Visit the [Microsoft Helm Hub][ms-helm-hub] for all the publicly available helm charts offered by Microsoft. From the Microsoft Helm Hub, you find the **Azure Speech in Foundry Tools On-Premises Chart**. The **Azure Speech in Foundry Tools On-Premises** is the chart we install, but we must first create a `config-values.yaml` file with explicit configurations. Let's start by adding the Microsoft repository to our Helm instance.
 
 ```console
 helm repo add microsoft https://microsoft.github.io/charts/repo
 ```
 
-Next, we configure our Helm chart values. Copy and paste the following YAML into a file named `config-values.yaml`. For more information on customizing the **Azure AI Speech On-Premises Helm Chart**, see [customize helm charts](#customize-helm-charts). Replace the `# {ENDPOINT_URI}` and `# {API_KEY}` comments with your own values.
+Next, we configure our Helm chart values. Copy and paste the following YAML into a file named `config-values.yaml`. For more information on customizing the **Azure Speech On-Premises Helm Chart**, see [customize helm charts](#customize-helm-charts). Replace the `# {ENDPOINT_URI}` and `# {API_KEY}` comments with your own values.
 
 ```yaml
 # These settings are deployment specific and users can provide customizations
@@ -221,7 +221,7 @@ For more details on installing applications with Helm in Azure Kubernetes Servic
 > [Azure AI containers][cog-svcs-containers]
 
 <!-- LINKS - external -->
-[free-azure-account]: https://azure.microsoft.com/free
+[free-azure-account]: https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn
 [git-download]: https://git-scm.com/downloads
 [azure-cli]: /cli/azure/install-azure-cli
 [docker-engine]: https://www.docker.com/products/docker-engine

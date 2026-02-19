@@ -2,7 +2,7 @@
 title: "Prompt Shield Attack Info"
 description: "Details about the types of input attacks detected by Prompt Shields and their classifications."
 author: PatrickFarley
-ms.date: 05/08/2025
+ms.date: 11/21/2025
 ms.topic: include
 ms.author: pafarley
 ---
@@ -15,11 +15,11 @@ The types of input attacks that Prompt Shields detects are described in this tab
 
 | Type | Attacker | Entry point    | Method    | Objective/impact   | Resulting behavior  |
 |-------|----------|---------|---------|---------|---------|
-| User Prompt attacks | User     | User prompts      | Ignoring system prompts/RLHF training  | Altering intended LLM behavior         | Performing restricted actions against training |
-| Document attacks   | Third party | Third-party content (documents, emails) | Misinterpreting third-party content   | Gaining unauthorized access or control | Executing unintended commands or actions      |
+| [User Prompt attacks](#prompt-shields-for-user-prompts) | User     | User prompts      | Ignoring system prompts/RLHF training  | Altering intended LLM behavior         | Performing restricted actions against training |
+| [Document attacks](#prompt-shields-for-documents)   | Third party | Third-party content (documents, emails) | Misinterpreting third-party content   | Gaining unauthorized access or control | Executing unintended commands or actions      |
 
 
-## Prompt Shields for User Prompts
+## Prompt Shields for user prompts
 
 Previously called **Jailbreak risk detection**, this shield targets User Prompt injection attacks, where users deliberately exploit system vulnerabilities to elicit unauthorized behavior from the LLM. This could lead to inappropriate content generation or violations of system-imposed restrictions.
 
@@ -43,7 +43,7 @@ Previously called **Jailbreak risk detection**, this shield targets User Prompt 
 
 
 
-## Prompt Shields for Documents
+## Prompt Shields for documents
 
 This shield aims to safeguard against attacks that use information not directly supplied by the user or developer, such as external documents. Attackers might embed hidden instructions in these materials in order to gain unauthorized control over the LLM session.
 

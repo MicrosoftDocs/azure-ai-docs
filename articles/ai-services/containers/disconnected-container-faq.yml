@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
   title: Running Azure AI containers in disconnected environments FAQ
-  titleSuffix: Azure AI services
+  titleSuffix: Foundry Tools
   description: Get answers to frequently asked questions about running containers disconnected from the internet.
   #services: cognitive-services
   author: aahill
@@ -12,7 +12,7 @@ metadata:
   ms.topic: faq
   ms.date: 04/08/2025
   ms.author: aahi
-title: FAQ for Azure AI services disconnected containers
+title: FAQ for Foundry Tools disconnected containers
 summary: |
 sections:
   - name: General questions
@@ -20,12 +20,12 @@ sections:
       - question: Which services are available as disconnected containers?
         answer: |
           Azure AI containers allow developers to use the same intelligent APIs that are available in Azure, but with the [benefits](../cognitive-services-container-support.md#features-and-benefits) of containerization. 
-          [Disconnected containers](./disconnected-containers.md) are offered through commitment tier pricing, each offering a discounted rate compared to the Standard pricing model. With commitment tier pricing, you can commit to using the following Azure AI services features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload.
+          [Disconnected containers](./disconnected-containers.md) are offered through commitment tier pricing, each offering a discounted rate compared to the Standard pricing model. With commitment tier pricing, you can commit to using the following Foundry Tools features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload.
 
           For more information about commitment tier pricing, reach out to your Microsoft account team or contact at Microsoft. You can also email azureaicontainergating@service.microsoft.com. For information on the available disconnected containers, see [Use Docker containers in disconnected environments](./disconnected-containers.md).
-      - question: Will containers be available for other Azure AI services offerings, and what's the next set of containers I should expect?
+      - question: Will containers be available for other Foundry Tools offerings, and what's the next set of containers I should expect?
         answer: |
-          We'd like to make more Azure AI services offerings available as containers. Contact your local Microsoft account manager to get updates on new container releases and other Azure AI services announcements.
+          We'd like to make more Foundry Tools offerings available as containers. Contact your local Microsoft account manager to get updates on new container releases and other Foundry Tools announcements.
       - question: How do I get access to disconnected container?
         answer: |
           Fill out and submit the [request form](https://aka.ms/csdisconnectedcontainers) to request access to the container. Access is limited to customers that meet the following requirements:
@@ -49,9 +49,9 @@ sections:
           *	Other missing or inaccurate data
       - question: How long does it take to approve my application to access disconnected containers?
         answer: |
-          After you submit the form, the Azure AI services team will review it and email you a decision within 10 business days.
+          After you submit the form, the Foundry Tools team will review it and email you a decision within 10 business days.
 
-          Once your application is approved, the Azure AI services gating team will communicate details for purchasing the commitment tier pricing, and instructions to download and run the containers. 
+          Once your application is approved, the Foundry Tools gating team will communicate details for purchasing the commitment tier pricing, and instructions to download and run the containers. 
 
           If you have any questions on the application, gating process or other information needed, email azureaicontainergating@service.microsoft.com
       - question: How do I download the disconnected containers?
@@ -59,7 +59,7 @@ sections:
           These containers are hosted on the Microsoft Container Registry and available for download on [Microsoft Artifact Registry](https://mcr.microsoft.com/catalog) and [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/catalog?search=azure%20AI). You won't be able to run the container if your Azure subscription has not been approved after completion of the request form. Once you're approved, you can follow the steps in [Use Docker containers in disconnected environments](disconnected-containers.md)
       - question: What is the service-level agreement (SLA) for Azure AI containers?
         answer: |
-          Azure AI services disconnected containers don't have an SLA, because customers control configuration of the resources used. Customers are free to deploy containers on-premises and define the host environments.
+          Foundry Tools disconnected containers don't have an SLA, because customers control configuration of the resources used. Customers are free to deploy containers on-premises and define the host environments.
       - question: Are these containers available in sovereign clouds?
         answer: | 
           Not everyone is familiar with the term sovereign cloud, so let's begin with definition:
@@ -75,7 +75,7 @@ sections:
           The current and last major version of the container will be supported. However, we encourage customers to stay current to get the latest technology to be compliant.
       - question: How are updates versioned?
         answer: |
-          Major version changes indicate that there's a breaking change to the API signature. We anticipate that this will generally coincide with major version changes to the corresponding Azure AI services cloud offering. Minor version changes indicate bug fixes, model updates, or new features that don't make a breaking change to the API signature.
+          Major version changes indicate that there's a breaking change to the API signature. We anticipate that this will generally coincide with major version changes to the corresponding Foundry Tools cloud offering. Minor version changes indicate bug fixes, model updates, or new features that don't make a breaking change to the API signature.
   - name: Technical questions
     questions:
       - question: How can I diagnose potential errors in my deployment environment?
@@ -94,18 +94,18 @@ sections:
           |Status  | Description  |
           |---------|---------|
           | `Valid` |	Your API key is valid. No action is needed. |
-          | `Invalid` |	Your API key is invalid. You must provide a valid API key to configure the container for use in disconnected environments. Find your API key and service region in the Azure portal, in the **Keys and Endpoint** section for your Azure AI services resource. |
-          | `Mismatch` | You've provided an API key or endpoint for a different kind of Azure AI services resource. Find your API key and service region in the Azure portal, in the **Keys and Endpoint** section for your Azure AI services resource. |
+          | `Invalid` |	Your API key is invalid. You must provide a valid API key to configure the container for use in disconnected environments. Find your API key and service region in the Azure portal, in the **Keys and Endpoint** section for your Foundry Tools resource. |
+          | `Mismatch` | You've provided an API key or endpoint for a different kind of Foundry Tools resource. Find your API key and service region in the Azure portal, in the **Keys and Endpoint** section for your Foundry Tools resource. |
           | `CouldNotConnect` | The container couldn't connect to the endpoint. |
-          | `OutOfQuota` | The API key has exceeded the quota. You can either upgrade your pricing tier or wait for additional quota to become available. Find your tier in the Azure portal, in the **Pricing Tier** section of your Azure AI service resource. |
+          | `OutOfQuota` | The API key has exceeded the quota. You can either upgrade your pricing tier or wait for additional quota to become available. Find your tier in the Azure portal, in the **Pricing Tier** section of your Foundry Tool resource. |
           | `ContainerUseUnauthorized` | The provided API key isn't authorized for use with this container. You're likely using a gated container, so make sure your Azure subscription ID is approved by submitting an [online request](https://aka.ms/csgate). |
           | `Unknown` | The server is currently unable to process requests. |
       - question: How do I get support?
         answer: |
-          Customer support channels are the same as for the Azure AI services cloud-based APIs. All Azure AI containers include logging features that will help us and the community support customers. Here are options for more support:
+          Customer support channels are the same as for the Foundry Tools cloud-based APIs. All Azure AI containers include logging features that will help us and the community support customers. Here are options for more support:
           *	Find contact information in your [Azure support plan](https://azure.microsoft.com/support/plans/).
           *	Try these areas of Stack Overflow, a question-and-answer site for professional and enthusiast programmers:
-            *	[Azure AI services](https://stackoverflow.com/questions/tagged/azure-cognitive-services)
+            *	[Foundry Tools](https://stackoverflow.com/questions/tagged/azure-cognitive-services)
             * [Microsoft Cognitive](https://stackoverflow.com/questions/tagged/microsoft-cognitive)
       - question: How does billing work?
         answer: |
@@ -120,11 +120,11 @@ sections:
             *	Custom Speech to text
             * Neural Text to speech
           * [Text Translation (Standard)](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)
-          *	[Azure AI Language pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/) for
+          *	[Azure Language in Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/) for
             * Sentiment Analysis
             * Key Phrase Extraction
             * Language Detection
-          *	[Azure AI Vision - Read](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
+          *	[Azure Vision in Foundry Tools - Read](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
           *	[Document Intelligence - Custom/Invoice](https://azure.microsoft.com/pricing/details/form-recognizer/)
       - question: How do I monitor the container's usage?
         answer: | 
@@ -141,12 +141,12 @@ sections:
             *	[Custom Speech to text](../speech-service/speech-container-cstt.md) 
             * [Neural Text to speech](../speech-service/speech-container-ntts.md) 
           * [Text Translation (Standard)](../translator/containers/translator-how-to-install-container.md#host-computer)
-          *	Azure AI Language documentation for
+          *	Azure Language in Foundry Tools documentation for
             * [Sentiment Analysis](../language-service/sentiment-opinion-mining/how-to/use-containers.md#host-computer-requirements-and-recommendations)
             * [Key Phrase Extraction](../language-service/key-phrase-extraction/how-to/use-containers.md#host-computer-requirements-and-recommendations)
             * [Language Detection](../language-service/language-detection/how-to/use-containers.md#host-computer-requirements-and-recommendations)
             * [Named Entity Recognition](../language-service/named-entity-recognition/how-to/use-containers.md#host-computer-requirements-and-recommendations)
-          *	[Azure AI Vision - Read](../computer-vision/computer-vision-how-to-install-containers.md#host-computer-requirements)
+          *	[Azure Vision in Foundry Tools - Read](../computer-vision/computer-vision-how-to-install-containers.md#host-computer-requirements)
           *	[Document Intelligence - Custom/Invoice](../../ai-services/document-intelligence/containers/install-run.md#host-computer-requirements)
       - question: Are these containers currently supported on Windows?
         answer: |

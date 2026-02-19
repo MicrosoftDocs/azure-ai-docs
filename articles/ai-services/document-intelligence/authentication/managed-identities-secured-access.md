@@ -1,14 +1,15 @@
 ---
 title: "Configure secure access with managed identities and virtual networks"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to configure secure communications between Document Intelligence and other Azure Services.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: vikurpad
 monikerRange: '<=doc-intel-4.0.0'
+ms.custom: sfi-image-nochange
 ---
 
 
@@ -32,9 +33,9 @@ This how-to guide walks you through the process of enabling secure connections f
 
 To get started, you need:
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
+* An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* A [**Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [AI Foundry](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource in the Azure portal. For detailed steps, _see_ [Create an Azure AI Foundry resource](../../../ai-services/multi-service-resource.md?pivots=azportal).
+* A [**Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [A foundry ](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource in the Azure portal. For detailed steps, _see_ [Create a Microsoft Foundry resource](../../../ai-services/multi-service-resource.md?pivots=azportal).
 
 * An [**Azure blob storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM) in the same region as your Document Intelligence resource. Create containers to store and organize your blob data within your storage account.
 

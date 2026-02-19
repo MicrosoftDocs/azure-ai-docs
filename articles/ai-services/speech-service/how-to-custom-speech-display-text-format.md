@@ -1,19 +1,19 @@
 ---
 title: "Display text format training data - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to prepare display text format training data for custom speech.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
-ms.author: eur
+ms.date: 01/30/2026
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to prepare display text format training data for custom speech so that I can customize the display text formatting pipeline for my specific scenarios.
 ---
 
 # How to prepare display text format training data for custom speech
 
-Azure AI Speech service can be viewed as two components: speech recognition and display text formatting. Speech recognition transcribes audio to lexical text, and then the lexical text is transformed to display text.
+Azure Speech in Foundry Tools service can be viewed as two components: speech recognition and display text formatting. Speech recognition transcribes audio to lexical text, and then the lexical text is transformed to display text.
 
 :::image type="content" source="./media/custom-speech/speech-recognition-to-display-text.jpg" alt-text="Diagram of the flow of speech recognition to lexical to display text." lightbox="./media/custom-speech/speech-recognition-to-display-text.jpg":::
 

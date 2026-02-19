@@ -1,13 +1,14 @@
 ---
-title: Azure OpenAI GPT-4 Turbo with Vision tool in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the Azure OpenAI GPT-4 Turbo with Vision tool for flows in Azure AI Foundry portal.
-manager: scottpolly
+title: Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Azure OpenAI GPT-4 Turbo with Vision tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024
-ms.topic: reference
-ms.date: 01/29/2025
+  - hub-only
+ms.topic: article
+ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -15,27 +16,29 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Azure OpenAI GPT-4 Turbo with Vision tool in Azure AI Foundry portal
+# Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The prompt flow Azure OpenAI GPT-4 Turbo with Vision tool enables you to use your Azure OpenAI GPT-4 Turbo with Vision model deployment to analyze images and provide textual responses to questions about them.
+By using the prompt flow Azure OpenAI GPT-4 Turbo with Vision tool, you can use your Azure OpenAI GPT-4 Turbo with Vision model deployment to analyze images and provide textual responses to questions about them.
 
 ## Prerequisites
 
 [!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
-- An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">You can create one for free</a>.
-- An [Azure AI Foundry hub](../../how-to/create-azure-ai-resource.md) with a GPT-4 Turbo with Vision model deployed in [one of the regions that support GPT-4 Turbo with Vision](../../../ai-services/openai/concepts/models.md#model-summary-table-and-region-availability). When you deploy from your project's **Deployments** page, select `gpt-4` as the model name and `vision-preview` as the model version.
+- An Azure subscription. [You can create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A [Microsoft Foundry hub](../../how-to/create-azure-ai-resource.md) with a GPT-4 Turbo with Vision model deployed in [one of the regions that support GPT-4 Turbo with Vision](../../../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability). When you deploy from your project's **Deployments** page, select `gpt-4` as the model name and `vision-preview` as the model version.
 
 ## Build with the Azure OpenAI GPT-4 Turbo with Vision tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Azure OpenAI GPT-4 Turbo with Vision** to add the Azure OpenAI GPT-4 Turbo with Vision tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png" alt-text="Screenshot that shows the Azure OpenAI GPT-4 Turbo with Vision tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png" alt-text="Screenshot that shows the Azure OpenAI GPT-4 Turbo with Vision tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png":::
 
-1. Select the connection to your Azure OpenAI in Azure AI Foundry Models. For example, you can select the **Default_AzureOpenAI** connection. For more information, see [Prerequisites](#prerequisites).
+1. Select the connection to your Azure OpenAI in Foundry Models. For example, you can select the **Default_AzureOpenAI** connection. For more information, see [Prerequisites](#prerequisites).
 1. Enter values for the Azure OpenAI GPT-4 Turbo with Vision tool input parameters described in the [Inputs table](#inputs). For example, you can use this example prompt:
 
     ```jinja
@@ -74,9 +77,9 @@ The following input parameters are available.
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| connection             | AzureOpenAI | The Azure OpenAI connection to be used in the tool.                                              | Yes      |
+| connection             | AzureOpenAI | The Azure OpenAI connection to use in the tool.                                              | Yes      |
 | deployment\_name       | string      | The language model to use.                                                                      | Yes      |
-| prompt                 | string      | The text prompt that the language model uses to generate its response. The Jinja template for composing prompts in this tool follows a similar structure to the chat API in the large language model (LLM) tool. To represent an image input within your prompt, you can use the syntax `![image]({{INPUT NAME}})`. Image input can be passed in the `user`, `system`, and `assistant` messages.                 | Yes      |
+| prompt                 | string      | The text prompt that the language model uses to generate its response. The Jinja template for composing prompts in this tool follows a similar structure to the chat API in the large language model (LLM) tool. To represent an image input within your prompt, use the syntax `![image]({{INPUT NAME}})`. You can pass image input in the `user`, `system`, and `assistant` messages.                 | Yes      |
 | max\_tokens            | integer     | The maximum number of tokens to generate in the response. Default is 512.                      | No       |
 | temperature            | float       | The randomness of the generated text. Default is 1.                                            | No       |
 | stop                   | list        | The stopping sequence for the generated text. Default is null.                                 | No       |

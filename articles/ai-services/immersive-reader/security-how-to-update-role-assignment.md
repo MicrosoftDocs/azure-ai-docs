@@ -9,7 +9,7 @@ ms.service: azure-ai-immersive-reader
 ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 02/28/2024
-ms.author: sharmas
+ms.author: michtho
 ---
 
 # Security advisory: Update role assignment for Microsoft Entra authentication

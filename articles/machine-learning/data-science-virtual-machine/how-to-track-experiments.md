@@ -7,7 +7,7 @@ ms.service: azure-data-science-virtual-machines
 ms.custom: sdkv1
 author: samkemp
 ms.author: samkemp
-ms.topic: conceptual
+ms.topic: how-to
 ms.reviewer: franksolomon
 ms.date: 04/23/2024
 ---

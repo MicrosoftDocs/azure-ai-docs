@@ -1,12 +1,12 @@
 ---
 title: Object detection using Image Analysis 4.0
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn concepts related to the object detection feature of the Image Analysis 4.0 API - usage and limits.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/31/2025
 ms.author: pafarley
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
@@ -18,7 +18,7 @@ Object detection is similar to [tagging](concept-tag-images-40.md), but the API 
 
 The object detection function applies tags based on the objects or living things identified in the image. There's no formal relationship between the tagging taxonomy and the object detection taxonomy. At a conceptual level, the object detection function only finds objects and living things, while the tag function can also include contextual terms like *indoor*, which can't be localized with bounding boxes.
 
-Try out the capabilities of object detection quickly and easily in your browser by using Azure AI Vision Studio.
+Try out the capabilities of object detection quickly and easily in your browser by using Azure Vision Studio.
 
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)

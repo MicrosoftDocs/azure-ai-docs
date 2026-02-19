@@ -1,29 +1,32 @@
 ---
-title: Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
+title: Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
 description: Get details about how data that customers provide is processed, used, and stored when a user deploys a model from the model catalog.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom: references_regions, build-2024
 ms.topic: concept-article
-ms.date: 12/19/2024
+ms.date: 01/26/2026
 ms.reviewer: shubhirajMsft
-ms.author: scottpolly
-author: s-polly
+ms.author: ssalgado
+manager: nitinme
+author: ssalgadodev
 #Customer intent: As a data scientist, I want to learn about data privacy and security for use of models in the model catalog.
 ---
-# Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal
+# Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 This article describes how the data that you provide is processed, used, and stored when you deploy models from the model catalog. Also see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by Azure services.
 
 > [!IMPORTANT]
-> For information about responsible AI in Azure OpenAI and AI services, see [Responsible use of AI](../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-studio/context/context).
+> For information about responsible AI in Azure OpenAI and Foundry Tools, see [Responsible use of AI](../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-studio/context/context).
 
-## What data is processed for models deployed in Azure AI Foundry portal?
+## What data is processed for models deployed in Microsoft Foundry portal?
 
-When you deploy models in Azure AI Foundry portal, the following types of data are processed to provide the service:
+When you deploy models in Foundry, the following types of data are processed to provide the service:
 
 * **Prompts and generated content**. A user submits a prompt, and the model generates content (output) via the operations that the model supports. Prompts might include content added via retrieval-augmented generation (RAG), metaprompts, or other functionality included in an application.
 
@@ -31,11 +34,11 @@ When you deploy models in Azure AI Foundry portal, the following types of data a
 
 ## Generation of inferencing outputs with managed compute
 
-Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Azure AI Foundry portal](model-catalog-overview.md).
+Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Foundry portal](../concepts/foundry-models-overview.md).
 
-You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Azure AI Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
+You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
-Although containers for **Models Sold Directly by Azure** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, you can [help protect your deployment by using virtual networks](configure-managed-network.md). You can also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
+Although containers for **Models Sold Directly by Azure** are scanned for vulnerabilities that could exfiltrate data, not all models available through the model catalog are scanned. To reduce the risk of data exfiltration, [help protect your deployment by using virtual networks](configure-managed-network.md). Also use [Azure Policy](../../ai-services/policy-reference.md) to regulate the models that your users can deploy.
 
 :::image type="content" source="../media/explore/subscription-service-cycle.png" alt-text="Diagram that shows the platform service life cycle." lightbox="../media/explore/subscription-service-cycle.png":::
 
@@ -43,7 +46,7 @@ Although containers for **Models Sold Directly by Azure** are scanned for vulner
 
 When you deploy a model from the model catalog (base or fine-tuned) by using serverless API deployments with serverless pay per token offer for inferencing, an API is provisioned. The API gives you access to the model that the Azure Machine Learning service hosts and manages. Learn more about serverless API deployments in [Model catalog and collections](./model-catalog-overview.md).
 
-The model processes your input prompts and generates outputs based on its functionality, as described in the model details. Your use of the model (along with the provider's accountability for the model and its outputs) is subject to the license terms for the model. Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in this *serverless API deployment* scenario are subject to Azure data, privacy, and security commitments. [Learn more about Azure compliance offerings applicable to Azure AI Foundry](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
+The model processes your input prompts and generates outputs based on its functionality, as described in the model details. Your use of the model (along with the provider's accountability for the model and its outputs) is subject to the license terms for the model. Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in this *serverless API deployment* scenario are subject to Azure data, privacy, and security commitments. [Learn more about Azure compliance offerings applicable to Foundry](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
 Microsoft acts as the data processor for prompts and outputs sent to, and generated by, a model deployed for serverless API deployment. Microsoft doesn't share these prompts and outputs with the model provider. Also, Microsoft doesn't use these prompts and outputs to train or improve Microsoft models, the model provider's models, or any third party's models.
 
@@ -58,10 +61,10 @@ Prompts and outputs are processed within the geography specified during deployme
 
 ## Fine-tuning a model for serverless API deployment 
 
-If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections.md#connections-to-datastores) to fine-tune the model. You can then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
+If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](./connections-add.md) to fine-tune the model. Then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
 
 * It's available exclusively for your use.
-* You can use double [encryption at rest](../../ai-services/openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.
+* You can use double [encryption at rest](../openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.
 * You can delete it at any time.
 
 Training data uploaded for fine-tuning isn't used to train, retrain, or improve any Microsoft or non-Microsoft model, except as you direct those activities within the service.
@@ -72,4 +75,4 @@ If you download a model from the model catalog, you choose where to deploy the m
 
 ## Related content
 
-* [Model catalog and collections](model-catalog-overview.md)
+* [Model catalog and collections](../concepts/foundry-models-overview.md)

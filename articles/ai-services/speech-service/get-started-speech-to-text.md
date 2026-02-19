@@ -1,23 +1,22 @@
 ---
 title: "Speech to text quickstart"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, learn how to use the Speech service for real-time speech to text conversion.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 3/10/2025
-ms.author: eur
-ms.reviewer: eur
+ms.date: 8/5/2025
+ms.author: pafarley
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go, build-2024, ignite-2024
-zone_pivot_groups: programming-languages-speech-services-studio
-#customer intent: As a developer, I want to use Speech services to covert speech to text, from either a microphone or a file using my choice of technology.
+zone_pivot_groups: programming-languages-get-started-transcription
+#customer intent: As a developer, I want to use the Speech service to covert speech to text, from either a microphone or a file using my choice of technology.
 ---
 
 # Quickstart: Recognize and convert speech to text
 
-::: zone pivot="ai-studio"
-[!INCLUDE [Azure AI Foundry include](includes/quickstarts/speech-to-text-basics/ai-foundry.md)]
+::: zone pivot="ai-foundry"
+[!INCLUDE [Microsoft Foundry include](includes/quickstarts/speech-to-text-basics/ai-foundry.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
@@ -48,12 +47,12 @@ zone_pivot_groups: programming-languages-speech-services-studio
 [!INCLUDE [Swift include](includes/quickstarts/speech-to-text-basics/swift.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/quickstarts/speech-to-text-basics/rest.md)]
+::: zone pivot="programming-language-typescript"
+[!INCLUDE [TypeScript include](includes/quickstarts/speech-to-text-basics/typescript.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-cli"
-[!INCLUDE [CLI include](includes/quickstarts/speech-to-text-basics/cli.md)]
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/quickstarts/speech-to-text-basics/rest.md)]
 ::: zone-end
 
 ## Next step

@@ -8,20 +8,21 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 08/17/2022
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 # Entity Recognition cognitive skill (v2)
 
-The **Entity Recognition** skill (v2) extracts entities of different types from text. This skill uses the machine learning models provided by [Text Analytics](/azure/ai-services/language-service/overview) in Azure AI services.
+The **Entity Recognition** skill (v2) extracts entities of different types from text. This skill uses the machine learning models provided by [Text Analytics](/azure/ai-services/language-service/overview) in Foundry Tools.
 
 > [!IMPORTANT]
-> The Entity Recognition skill (v2) (**Microsoft.Skills.Text.EntityRecognitionSkill**) is now discontinued replaced by [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md). Follow the recommendations in [Deprecated skills](cognitive-search-skill-deprecated.md) to migrate to a supported skill.
+> The Entity Recognition skill (v2) (**Microsoft.Skills.Text.EntityRecognitionSkill**) is now discontinued and replaced by [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md). Follow the recommendations in [Deprecated skills](cognitive-search-skill-deprecated.md) to migrate to a supported skill.
 
 > [!NOTE]
-> As you expand scope by increasing the frequency of processing, adding more documents, or adding more AI algorithms, you will need to [attach a billable Azure AI services resource](cognitive-search-attach-cognitive-services.md). Charges accrue when calling APIs in Azure AI services, and for image extraction as part of the document-cracking stage in Azure AI Search. There are no charges for text extraction from documents.
+> As you expand scope by increasing the frequency of processing, adding more documents, or adding more AI algorithms, you will need to [attach a billable Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md). Charges accrue when calling APIs in Foundry Tools, and for image extraction as part of the document-cracking stage in Azure AI Search. There are no charges for text extraction from documents.
 >
-> Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/). Image extraction pricing is described on the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
+> Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/). Image extraction pricing is described on the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
 
 
 ## @odata.type  
@@ -32,7 +33,7 @@ The maximum size of a record should be 50,000 characters as measured by [`String
 
 ## Skill parameters
 
-Parameters are case-sensitive and are all optional.
+Parameters are case sensitive and are all optional.
 
 | Parameter name     | Description |
 |--------------------|-------------|

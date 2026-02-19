@@ -1,34 +1,34 @@
 ---
 title: How to configure Microsoft Entra authentication
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to authenticate using Microsoft Entra authentication
-author: eric-urban
+author: goergenj
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/7/2025
-ms.author: eur
+ms.date: 11/13/2025
+ms.author: jagoerge
 zone_pivot_groups: programming-languages-set-two
 ms.custom: devx-track-azurepowershell, devx-track-extended-java, devx-track-python, devx-track-azurecli
 ---
 
 # Microsoft Entra authentication with the Speech SDK
 
-When using the Speech SDK to access the Speech service, there are three authentication methods available: service keys, a key-based token, and Microsoft Entra ID. This article describes how to configure an AI Foundry resource for Speech and create a Speech SDK configuration object to use Microsoft Entra ID for authentication.
+When using the Speech SDK to access the Speech service, there are three authentication methods available: service keys, a key-based token, and Microsoft Entra ID. This article describes how to configure a Foundry resource and create a Speech SDK configuration object to use Microsoft Entra ID for authentication.
 
 This article shows how to use Microsoft Entra authentication with the Speech SDK. You learn how to:
 
 > [!div class="checklist"]
 >
-> - Create an AI Foundry resource for Speech
+> - Create a Foundry resource
 > - Configure the Speech resource for Microsoft Entra authentication
 > - Get a Microsoft Entra access token
 > - Create the appropriate SDK configuration object.
 
 To learn more about Microsoft Entra access tokens, including token lifetime, visit [Access tokens in the Microsoft identity platform](/azure/active-directory/develop/access-tokens).
 
-## Create an AI Foundry resource for Speech
-To create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com), see [this quickstart](~/articles/ai-services/multi-service-resource.md?pivots=azportal).
+## Create a Foundry resource
+To create a Foundry resource in the [Azure portal](https://portal.azure.com), see [this quickstart](~/articles/ai-services/multi-service-resource.md?pivots=azportal).
 
 <a name='configure-the-speech-resource-for-azure-ad-authentication'></a>
 
@@ -128,7 +128,7 @@ You need your Speech resource ID to make SDK calls using Microsoft Entra authent
 To get the resource ID in the Azure portal:
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
-1. Select an AI Foundry resource for Speech.
+1. Select a Foundry resource.
 1. In the **Resource Management** group on the left pane, select **Properties**.
 1. Copy the **Resource ID**
 
@@ -204,9 +204,9 @@ var endpoint = "https://{your custom name}.cognitiveservices.azure.com/";
 var speechConfig = SpeechTranslationConfig.FromEndpoint(new Uri(endpoint), browserCredential);
 ```
 
-### SpeechSynthesizer, IntentRecognizer
+### SpeechSynthesizer
 
-For ```SpeechSynthesizer```, ```IntentRecognizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechSynthesizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
 
 ```C#
 string resourceId = "Your Resource ID";
@@ -220,9 +220,9 @@ var speechConfig = SpeechConfig.FromAuthorizationToken(authorizationToken, regio
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
-### SpeechRecognizer, SpeechSynthesizer, IntentRecognizer, ConversationTranscriber
+### SpeechRecognizer, SpeechSynthesizer, ConversationTranscriber
 
-For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```IntentRecognizer```, ```ConversationTranscriber``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechRecognizer```, ```SpeechSynthesizer```, ```ConversationTranscriber``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
 
 ```C++
 std::string resourceId = "Your Resource ID";
@@ -279,9 +279,9 @@ String endpoint = "https://{your custom name}.cognitiveservices.azure.com/";
 SpeechConfig speechConfig = SpeechTranslationConfig.fromEndpoint(new java.net.URI(endpoint), browserCredential);
 ```
 
-### SpeechSynthesizer, IntentRecognizer
+### SpeechSynthesizer
 
-For ```SpeechSynthesizer```, ```IntentRecognizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechSynthesizer```, objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
 
 ```Java
 String resourceId = "Your Resource ID";
@@ -322,9 +322,9 @@ custom_endpoint = "https://{your custom name}.cognitiveservices.azure.com/"
 speechTranslationConfig = SpeechTranslationConfig(token_credential=credential, endpoint=custom_endpoint)
 ```
 
-### SpeechSynthesizer, IntentRecognizer
+### SpeechSynthesizer
 
-For ```SpeechSynthesizer```, ```IntentRecognizer``` objects, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
+For ```SpeechSynthesizer``` object, build the authorization token from the resource ID and the Microsoft Entra access token and then use it to create a ```SpeechConfig``` object.
 
 ```Python
 resourceId = "Your Resource ID"

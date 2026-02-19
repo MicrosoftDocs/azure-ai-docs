@@ -1,13 +1,13 @@
 ---
 title: Create a batch transcription - Speech service
-titleSuffix: Azure AI services
-description: Learn how to use Azure AI Speech for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
+titleSuffix: Foundry Tools
+description: Learn how to use Azure Speech in Foundry Tools for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 6/5/2025
+ms.date: 10/31/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 # Customer intent: As a user who implements audio transcription, I want create transcriptions in bulk so that I don't have to submit audio content repeatedly.
@@ -24,7 +24,7 @@ Batch transcription completion can take several minutes to hours, depending on t
 
 ## Prerequisites
 
-You need an [Azure AI Foundry resource for Speech](../multi-service-resource.md). 
+You need a [Microsoft Foundry resource for Speech](../multi-service-resource.md). 
 
 ## Create a transcription job
 
@@ -44,8 +44,8 @@ For more information, see [Request configuration options](#request-configuration
 
 Make an HTTP POST request that uses the URI as shown in the following [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) example.
 
-- Replace `YourSpeechResoureKey` with your Azure AI Foundry resource key.
-- Replace `YourServiceRegion` with your Azure AI Foundry resource region.
+- Replace `YourSpeechResoureKey` with your Microsoft Foundry resource key.
+- Replace `YourServiceRegion` with your Microsoft Foundry resource region.
 - Set the request body properties as previously described.
 
 ```azurecli-interactive
@@ -137,9 +137,9 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/7f4232d5-9873-47a7-a6f7-4a3f00d00dc0",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/bbbbcccc-1111-dddd-2222-eeee3333ffff",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/5988d691-0893-472c-851e-8e36a0fe7aaf"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/7f4232d5-9873-47a7-a6f7-4a3f00d00dc0/files"
@@ -228,7 +228,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
   "locale": "en-US",
   "displayName": "My Transcription",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/5988d691-0893-472c-851e-8e36a0fe7aaf"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "wordLevelTimestampsEnabled": true,
@@ -241,7 +241,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
 ::: zone pivot="speech-cli"
 
 ```azurecli
-spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/5988d691-0893-472c-851e-8e36a0fe7aaf"
+spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
 ```
 
 ::: zone-end
@@ -255,20 +255,20 @@ Batch transcription requests for expired models fail with a 4xx error. Set the `
 
 ## Use a Whisper model
 
-Azure AI Speech supports OpenAI's Whisper model by using the batch transcription API. You can use the Whisper model for batch transcription.
+Azure Speech in Foundry Tools supports OpenAI's Whisper model by using the batch transcription API. You can use the Whisper model for batch transcription.
 
 > [!NOTE]
-> Azure OpenAI in Azure AI Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see [Speech to text with the Azure OpenAI Whisper model](../openai/whisper-quickstart.md). For more information about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models, see [What is the Whisper model?](./whisper-overview.md)
+> Azure OpenAI in Microsoft Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see [Speech to text with the Azure OpenAI Whisper model](../../ai-foundry/openai/whisper-quickstart.md). For more information about when to use Azure Speech vs. Azure OpenAI in Microsoft Foundry Models, see [What is the Whisper model?](./whisper-overview.md)
 
 To use a Whisper model for batch transcription, you need to set the `model` property. Whisper is a display-only model, so the lexical field isn't populated in the response.
 
 > [!IMPORTANT]
-> Batch transcription using Whisper models is available in the following regions: Australia East, East US, Japan East, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
+> Batch transcription using Whisper models is available in a subset of regions that support batch transcription. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=stt). Note that Whisper model support may be limited to specific regions within those that support batch transcription.
 
 ::: zone pivot="rest-api"
 You can make a [Models - List Base Models](/rest/api/speechtotext/models/list-base-models) request to get available base models for all locales.
 
-Make an HTTP GET request as shown in the following example for the `eastus` region. Replace `YourSpeechResoureKey` with your Azure AI Foundry resource key. Replace `eastus` if you're using a different region.
+Make an HTTP GET request as shown in the following example for the `eastus` region. Replace `YourSpeechResoureKey` with your Microsoft Foundry resource key. Replace `eastus` if you're using a different region.
 
 ```azurecli-interactive
 curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
@@ -283,7 +283,7 @@ curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/b
 ::: zone-end
 
 ::: zone pivot="speech-cli"
-Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for an AI Foundry resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
+Make sure that you set the [configuration variables](spx-basics.md#create-a-resource-configuration) for a Foundry resource for Speech in one of the supported regions. You can run the `spx csr list --base` command to get available base models for all locales.
 
 Set the required `api-version` parameter to `v3.2`. The Speech CLI doesn't support version `2024-11-15` or later yet, so you must use `v3.2` for now.
 
@@ -321,7 +321,7 @@ The `displayName` property of a Whisper model contains "Whisper" as shown in thi
   },
   "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00?api-version=2024-11-15",
   "displayName": "20240228 Whisper Large V2",
-  "description": "OpenAI Whisper Model in Azure AI Speech (Whisper v2-large)",
+  "description": "OpenAI Whisper Model in Azure Speech (Whisper v2-large)",
   "locale": "en-US",
   "createdDateTime": "2024-02-29T15:46:31Z",
   "lastActionDateTime": "2024-02-29T15:51:53Z",
@@ -331,7 +331,7 @@ The `displayName` property of a Whisper model contains "Whisper" as shown in thi
 
 ::: zone pivot="rest-api"
 
-You set the full model URI as shown in this example for the `eastus` region. Replace `YourSpeechResoureKey` with your Azure AI Foundry resource key. Replace `eastus` if you're using a different region.
+You set the full model URI as shown in this example for the `eastus` region. Replace `YourSpeechResoureKey` with your Microsoft Foundry resource key. Replace `eastus` if you're using a different region.
 
 ```azurecli-interactive
 curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
@@ -359,7 +359,7 @@ You set the full model URI as shown in this example for the `eastus` region. Rep
 Set the required `api-version` parameter to `v3.2`. The Speech CLI doesn't support version `2024-11-15` or later yet, so you must use `v3.2` for now.
 
 ```azurecli
-spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/69adf293-9664-4040-932b-02ed16332e00" --api-version v3.2
+spx batch transcription create --name "My Transcription" --language "en-US" --content https://crbn.us/hello.wav,https://crbn.us/whatstheweatherlike.wav --model "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base/ddddeeee-3333-ffff-4444-aaaa5555bbbb" --api-version v3.2
 ```
 
 ::: zone-end
@@ -370,7 +370,7 @@ The transcription result can be stored in an Azure container. If you don't speci
 
 You can store the results of a batch transcription to a writable Azure Blob storage container using option `destinationContainerUrl` in the [batch transcription creation request](#create-a-transcription-job). This option uses only an [ad hoc SAS](batch-transcription-audio-data.md#sas-url-for-batch-transcription) URI and doesn't support [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism). This option also doesn't support Access policy based SAS. **The Storage account resource of the destination container must allow all external traffic.**
 
-If you want to store the transcription results in an Azure Blob storage container by using the [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism), consider using [Bring-your-own-storage (BYOS)](bring-your-own-storage-speech-resource.md). For more information, see [Use the Bring your own storage (BYOS) Azure AI Foundry resource for speech to text](bring-your-own-storage-speech-resource-speech-to-text.md).
+If you want to store the transcription results in an Azure Blob storage container by using the [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism), consider using [Bring-your-own-storage (BYOS)](bring-your-own-storage-speech-resource.md). For more information, see [Use the Bring your own storage (BYOS) Microsoft Foundry resource for speech to text](bring-your-own-storage-speech-resource-speech-to-text.md).
 
 ## Related content
 

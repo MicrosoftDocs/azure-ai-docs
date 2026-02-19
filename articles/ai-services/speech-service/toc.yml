@@ -20,9 +20,62 @@ items:
     displayName: cost
   - name: Quotas and limits
     href: speech-services-quotas-and-limits.md
+    displayName: get started
+- name: Speech tools
+  items:
+  - name: Speech tools documentation
+    href: index-speech-tools.yml
+  - name: Speech MCP server
+    href: /azure/ai-foundry/agents/how-to/tools-classic/azure-ai-speech?view=foundry&context=/azure/ai-services/speech-service/context/context
   - name: Speech Studio
     href: speech-studio-overview.md
-    displayName: get started
+  - name: Speech in Microsoft Foundry
+    href: speech-features-foundry.md
+  - name: Speech CLI
+    items:
+      - name: Speech CLI overview
+        displayName: spx
+        href: spx-overview.md
+      - name: Speech CLI quickstart
+        displayName: cli basics, spx basics, spx help, spx quickstart, spx get started, get started, install
+        href: spx-basics.md
+      - name: Configure the datastore
+        displayName: SPX configuration options, speech cli config, speech cli data store, data store, datastore, speech cli datastore, reference
+        href: spx-data-store-configuration.md
+      - name: Configure output options
+        displayName: reference
+        href: spx-output-options.md
+      - name: Run batch operations
+        displayName: spx batch, spx batch operations, speech batch, speech cli speech to text batch, speech cli tex to speech batch
+        href: spx-batch-operations.md
+  - name: Speech SDK
+    items:
+    - name: Speech SDK overview
+      href: speech-sdk.md
+      displayName: get started, install, download
+    - name: Install the Speech SDK
+      href: quickstarts/setup-platform.md
+      displayName: get started, install, download, get sdk, get the sdk
+    - name: Logs and diagnostics
+      items:
+        - name: Enable logs in SDK
+          href: how-to-use-logging.md
+        - name: Log audio and transcriptions
+          href: logging-audio-transcription.md
+        - name: Troubleshoot the Speech SDK
+          href: troubleshooting.md
+          displayName: help, faq, tsg, error
+        - name: Get Speech to text Session ID
+          href: how-to-get-speech-session-id.md
+        - name: Track memory usage
+          href: how-to-track-speech-sdk-memory-usage.md
+    - name: Generate a REST API client library
+      href: swagger-documentation.md
+      displayName: rest, swagger
+  - name: Voice Live SDK
+    href: voice-live-sdk.md
+  - name: Speech Transcription SDK
+    href: transcription-sdk.md
 - name: Speech to text
   items:
     - name: Speech to text documentation
@@ -80,15 +133,15 @@ items:
             href: how-to-custom-speech-human-labeled-transcriptions.md
           - name: Structured text phonetic pronunciation
             href: customize-pronunciation.md
-          - name: Online transcription editor
-            href: how-to-custom-speech-transcription-editor.md
           - name: Display text format training data
             href: how-to-custom-speech-display-text-format.md
         - name: Custom speech model lifecycle
           href: how-to-custom-speech-model-and-endpoint-lifecycle.md
-    - name: How to use Pronunciation Assessment
+    - name: Pronunciation Assessment
       href: how-to-pronunciation-assessment.md
       displayName: pronounce, language learn, assess pron, scripted, unscripted
+    - name: Language identification
+      href: language-identification.md
     - name: Improve recognition with phrase list
       href: improve-accuracy-phrase-list.md
     - name: Display text formatting
@@ -133,9 +186,12 @@ items:
     - name: Get facial position with viseme
       href: how-to-speech-synthesis-viseme.md
       displayName: viseme, phoneme, phonetic
-    - name: Use high definition (HD) voices
+    - name: High definition (HD) voices
       href: high-definition-voices.md
       displayName: hd voice
+    - name: Voice conversion (preview)
+      href: voice-conversion.md
+      displayName: voice conversion
     - name: Custom voice
       items:
         - name: Custom voice overview
@@ -180,8 +236,8 @@ items:
       - name: Text to speech avatar overview
         href: text-to-speech-avatar/what-is-text-to-speech-avatar.md
         displayName: avatar
-      - name: Content credentials
-        href: text-to-speech-avatar/content-credentials.md
+      - name: Quickstart
+        href: quickstarts/get-started-text-to-speech-avatar.md
       - name: How to synthesize text to speech avatar
         items:
         - name: Real-time synthesis
@@ -196,6 +252,8 @@ items:
             displayName: avatar
         - name: Customize avatar gestures with SSML
           href: text-to-speech-avatar/avatar-gestures-with-ssml.md
+      - name: Standard avatars
+        href: text-to-speech-avatar/standard-avatars.md
       - name: Custom text to speech avatar
         items:
         - name: Custom text to speech avatar overview
@@ -203,9 +261,13 @@ items:
         - name: How to record video samples
           href: text-to-speech-avatar/custom-avatar-record-video-samples.md
           displayName: custom-tts-avatar
-        - name: Create a custom text to speech avatar
+        - name: Create a custom video avatar
           href: text-to-speech-avatar/custom-avatar-create.md
           displayName: avatar
+        - name: Create a custom photo avatar
+          href: text-to-speech-avatar/custom-photo-avatar-create.md
+      - name: Content credentials
+        href: text-to-speech-avatar/content-credentials.md
     - name: Audio content creation
       href: how-to-audio-content-creation.md
       displayName: acc
@@ -231,30 +293,67 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
-- name: Voice Live API (preview)
+- name: LLM speech
   items:
-    - name: Voice Live API overview
+    - name: Use LLM speech
+      href: llm-speech.md
+    - name: LLM speech REST API reference
+      href: /rest/api/speechtotext/transcriptions/transcribe
+- name: Voice Live
+  items:
+    - name: Voice Live overview
       href: voice-live.md
-    - name: Voice Live API quickstart
-      href: voice-live-quickstart.md
-    - name: How to use Voice Live API
-      href: voice-live-how-to.md
-    - name: Audio events reference
-      href: /azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
-- name: Intent recognition
-  items:
-    - name: Intent recognition overview
-      href: intent-recognition.md
-    - name: Pattern matching concepts
-      href: pattern-matching-overview.md
-    - name: Intent recognition with simple pattern matching quickstart
-      href: how-to-use-simple-language-pattern-matching.md
-    - name: Intent recognition with custom entity pattern matching
-      href: how-to-use-custom-entity-pattern-matching.md
-    - name: Intent recognition with CLU quickstart
-      href: get-started-intent-recognition-clu.md
-    - name: Recognize speech intents with LUIS (deprecated)
-      href: get-started-intent-recognition.md
+    - name: Voice Live language support
+      href: voice-live-language-support.md
+    - name: Quickstarts
+      expanded: true
+      items:
+      - name: Voice Live with Foundry models
+        href: voice-live-quickstart.md
+      - name: Voice Live with Foundry agents
+        href: voice-live-agents-quickstart.md
+      - name: Function calling in Voice Live
+        href: how-to-voice-live-function-calling.md
+      - name: Bring your own model with Voice Live
+        href: how-to-bring-your-own-model.md
+    - name: How-to guides
+      expanded: true
+      items:
+      - name: How to use Voice Live
+        href: voice-live-how-to.md
+      - name: How to customize Voice Live input and output
+        href: voice-live-how-to-customize.md
+      - name: How to add proactive messages (preview)
+        href: how-to-voice-live-proactive-messages.md
+      - name: Handle voice interruptions in chat history (preview)
+        href: how-to-voice-live-auto-truncation.md
+      - name: Voice Live telephony integration
+        href: voice-live-telephony.md
+    - name: Voice Live FAQ
+      href: voice-live-faq.yml
+      displayName: FAQ,frequently asked questions
+    - name: Reference
+      items:
+      - name: Voice Live API reference
+        items:
+        - name: '2025-10-01'
+          href: voice-live-api-reference-2025-10-01.md
+        - name: '2026-01-01-preview'
+          href: voice-live-api-reference-2026-01-01-preview.md          
+      - name: Voice Live SDK
+        items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.voicelive-readme      
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/overview/azure/ai-voicelive-readme
+          - name: Java (preview)
+            displayName: Java SDK,Java dev kit,reference,reference docs,ref documentation
+            href: /java/api/overview/azure/ai-voicelive-readme
+          - name: JavaScript (preview)
+            displayName: JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
+            href: /javascript/api/overview/azure/ai-voicelive-readme
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
@@ -282,19 +381,17 @@ items:
         href: ingestion-client.md
       - name: Telephony Integration
         href: call-center-telephony-integration.md
-      - name: Connect Azure Communication Services with Azure AI services
+      - name: Connect Azure Communication Services with Foundry Tools
         href: /azure/communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration?context=/azure/ai-services/speech-service/context/context
     - name: Gaming integration
       href: gaming-concepts.md
-    - name: Language identification
-      href: language-identification.md
     - name: Language learning
       items:
       - name: Overview
         href: language-learning-overview.md
       - name: Pronunciation Assessment with speech to text
         items:
-        - name: Pronunciation assessment in Azure AI Foundry
+        - name: Pronunciation assessment in Microsoft Foundry
           href: pronunciation-assessment-tool.md
           displayName: pronounce, learn language, assess pron
         - name: Interactive language learning with pronunciation assessment
@@ -308,14 +405,6 @@ items:
           href: multi-device-conversation.md
         - name: Multi-device conversation quickstart
           href: quickstarts/multi-device-conversation.md
-    - name: Voice assistants
-      items:
-        - name: Voice assistants overview
-          href: voice-assistants.md
-        - name: Custom commands
-          href: custom-commands.md
-    - name: Speaker recognition
-      href: speaker-recognition-overview.md
 - name: Infrastructure & security
   items:
     - name: Access control and authentication
@@ -413,89 +502,41 @@ items:
         displayName: encrypt, byos
       - name: How to back up and recover speech customization resources
         href: resiliency-and-recovery-plan.md
-    - name: Migration
-      items:
-        - name: Speech to text REST API migration
-          items:
-          - name: From Speech to text v3.2 to 2024-11-15
-            href: migrate-2024-11-15.md
-            displayName: migrate,migration,deprecate,retire,sunset
-          - name: From Speech to text v3.1 to v3.2
-            href: migrate-v3-1-to-v3-2.md
-            displayName: migrate,migration,deprecate,retire,sunset
-          - name: From Speech to text v3.0 to v3.1
-            href: migrate-v3-0-to-v3-1.md
-            displayName: migrate,migration,deprecate,retire,sunset
-        - name: From Long Audio API to Batch synthesis API
-          href: migrate-to-batch-synthesis.md
-        - name: Migrate to custom voice API
-          href: migrate-to-custom-voice-api.md
-- name: Speech CLI
-  items:
-    - name: Speech CLI overview
-      displayName: spx
-      href: spx-overview.md
-    - name: Speech CLI quickstart
-      displayName: cli basics, spx basics, spx help, spx quickstart, spx get started, get started, install
-      href: spx-basics.md
-    - name: Configure the datastore
-      displayName: SPX configuration options, speech cli config, speech cli data store, data store, datastore, speech cli datastore, reference
-      href: spx-data-store-configuration.md
-    - name: Configure output options
-      displayName: reference
-      href: spx-output-options.md
-    - name: Run batch operations
-      displayName: spx batch, spx batch operations, speech batch, speech cli speech to text batch, speech cli tex to speech batch
-      href: spx-batch-operations.md
-- name: Speech SDK
-  items:
-  - name: Speech SDK overview
-    href: speech-sdk.md
-    displayName: get started, install, download
-  - name: Install the Speech SDK
-    href: quickstarts/setup-platform.md
-    displayName: get started, install, download, get sdk, get the sdk
-  - name: Logs and diagnostics
-    items:
-      - name: Enable logs in SDK
-        href: how-to-use-logging.md
-      - name: Log audio and transcriptions
-        href: logging-audio-transcription.md
-      - name: Troubleshoot the Speech SDK
-        href: troubleshooting.md
-        displayName: help, faq, tsg, error
-      - name: Get Speech to text Session ID
-        href: how-to-get-speech-session-id.md
-      - name: Track memory usage
-        href: how-to-track-speech-sdk-memory-usage.md
-  - name: Generate a REST API client library
-    href: swagger-documentation.md
-    displayName: rest, swagger
 - name: Reference
   items:
     - name: SDK reference
       items:
-        - name: C++
-          displayName: 'C++ SDK,C++ dev kit,reference,reference docs,ref documentation'
-          href: /cpp/cognitive-services/speech/
-        - name: 'C#'
-          displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
-          href: /dotnet/api/microsoft.cognitiveservices.speech
-        - name: 'Go'
-          displayName: Go SDK, Go dev kit,reference,reference docs,ref documentation
-          href: https://pkg.go.dev/github.com/Microsoft/cognitive-services-speech-sdk-go
-        - name: Java
-          displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
-          href: /java/api/com.microsoft.cognitiveservices.speech
-        - name: JavaScript
-          displayName: Node, Node.js, NodeJS, JS SDK,JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
-          href: /javascript/api/microsoft-cognitiveservices-speech-sdk/
-        - name: Objective-C
-          displayName: Objective-C SDK,Objective-C dev kit,reference,reference docs,ref documentation
-          href: /objectivec/cognitive-services/speech/
-        - name: Python
-          displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
-          href: /python/api/azure-cognitiveservices-speech/
+      - name: Speech SDK
+        items:
+          - name: C++
+            displayName: 'C++ SDK,C++ dev kit,reference,reference docs,ref documentation'
+            href: /cpp/cognitive-services/speech/
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/microsoft.cognitiveservices.speech
+          - name: 'Go'
+            displayName: Go SDK, Go dev kit,reference,reference docs,ref documentation
+            href: https://pkg.go.dev/github.com/Microsoft/cognitive-services-speech-sdk-go
+          - name: Java
+            displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
+            href: /java/api/com.microsoft.cognitiveservices.speech
+          - name: JavaScript
+            displayName: Node, Node.js, NodeJS, JS SDK,JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
+            href: /javascript/api/microsoft-cognitiveservices-speech-sdk/
+          - name: Objective-C
+            displayName: Objective-C SDK,Objective-C dev kit,reference,reference docs,ref documentation
+            href: /objectivec/cognitive-services/speech/
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/azure-cognitiveservices-speech/
+      - name: Speech Transcription SDK
+        items:
+          - name: Java
+            displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
+            href: /java/api/overview/azure/ai-speech-transcription-readme
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/overview/azure/ai-transcription-readme
     - name: REST API reference
       items:
         - name: Speech to text REST API
@@ -513,6 +554,28 @@ items:
           href: /rest/api/batchtexttospeech/operation-groups
         - name: Batch avatar REST API
           href: /rest/api/batchavatar/operation-groups
+- name: Retiring features and migration
+  items:
+  - name: Speech to text REST API migration
+    items:
+    - name: From Speech to text 2024-11-15 to 2025-10-15
+      href: migrate-2025-10-15.md
+      displayName: migrate,migration,deprecate,retire,sunset
+    - name: From Speech to text v3.2 to 2024-11-15
+      href: migrate-2024-11-15.md
+      displayName: migrate,migration,deprecate,retire,sunset
+    - name: From Speech to text v3.1 to v3.2
+      href: migrate-v3-1-to-v3-2.md
+      displayName: migrate,migration,deprecate,retire,sunset
+    - name: From Speech to text v3.0 to v3.1
+      href: migrate-v3-0-to-v3-1.md
+      displayName: migrate,migration,deprecate,retire,sunset
+  - name: From Long Audio API to Batch synthesis API
+    href: migrate-to-batch-synthesis.md
+  - name: Migrate to custom voice API
+    href: migrate-to-custom-voice-api.md
+  - name: Migrate from retired intent recognition
+    href: migrate-intent-recognition.md    
 - name: Responsible AI
   items:
     - name: Speech to text
@@ -545,6 +608,12 @@ items:
           href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns-avatar.md
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security.md
+    - name: Voice Live
+      items:
+      - name: Transparency note
+        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/transparency-note.md
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/data-privacy-security.md
     - name: Pronunciation Assessment
       items:
       - name: Transparency Note
@@ -555,22 +624,6 @@ items:
           href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment.md
     - name: Embedded speech
       href: ../../ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech.md
-    - name: Speaker Recognition
-      items:
-      - name: Transparency note
-        items:
-        - name: Use cases for Speaker Recognition
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition.md
-        - name: Characteristics and limitations
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition.md
-      - name: Integration and responsible use
-        items:
-        - name: Limited access
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition.md
-        - name: General guidelines
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition.md
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition.md
 - name: Resources
   items:
     - name: Known issues

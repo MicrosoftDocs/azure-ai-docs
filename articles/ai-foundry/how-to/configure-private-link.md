@@ -1,557 +1,193 @@
 ---
 
-title: How to configure a private link for an Azure AI Foundry hub
-titleSuffix: Azure AI Foundry
-description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
-manager: scottpolly
+title: How to configure a private link for Microsoft Foundry projects
+titleSuffix: Microsoft Foundry
+description: Learn how to configure a private link for Microsoft Foundry projects. A private link is used to secure communication with the Microsoft Foundry.
+manager: mcleans
 ms.service: azure-ai-foundry
-ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
+ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024, dev-focus
 ms.topic: how-to
-ms.date: 05/06/2025
+ms.date: 01/06/2026
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
-zone_pivot_groups: project-type
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
-
 ---
 
-# How to configure a private link for Azure AI Foundry
+# How to configure a private link for Microsoft Foundry (Foundry projects)
 
-:::zone pivot="fdp-project"
+> [!TIP]
+> An alternate hub-focused version of this article is available: [How to configure a private link for a Microsoft Foundry hub](hub-configure-private-link.md).
 
-When using a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link.
+When you use a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 
 
-:::zone-end
+> [!NOTE]
+> End-to-end network isolation isn't supported in the new Foundry portal experience. Use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation is enabled. For more on limitations with private networking in Foundry, see [limitations](#limitations).
 
-:::zone pivot="hub-project"
-
-When using a [!INCLUDE [hub-projects](../includes/hub-project-name.md)], there are two network isolation aspects to consider:
-
-- **Network isolation to access an Azure AI Foundry hub**: This is the focus of this article. It describes how to establish a private connection to your hub and its default resources using a private link.
-- **Network isolation of computing resources in your hub and projects**: This includes compute instances, serverless, and managed online endpoints. For more information, see the [Configure managed networks for Azure AI Foundry hubs](configure-managed-network.md) article.
-
-:::image type="content" source="../media/how-to/network/azure-ai-network-inbound.svg" alt-text="Diagram of Azure AI Foundry hub network isolation." lightbox="../media/how-to/network/azure-ai-network-inbound.png":::
-
-You get several hub default resources in your resource group. You need to configure following network isolation configurations:
-
-- Disable public network access of hub default resources such as Azure Storage, Azure Key Vault, and Azure Container Registry.
-- Establish private endpoint connection to hub default resources. You need to have both a blob and file private endpoint for the default storage account.
-- If your storage account is private, [assign roles](#private-storage-configuration) to allow access.
-
-:::zone-end
 
 ## Prerequisites
 
-* You must have an existing Azure Virtual Network to create the private endpoint in. 
+- An existing Azure virtual network and subnet to create the private endpoint in.
+- Azure permissions to create and approve private endpoint connections:
+    - On the virtual network: **Network Contributor** (or equivalent) to create the private endpoint.
+    - On the Foundry project resource: **Contributor** (or **Owner**) to create private endpoint connections. If you don't have approval permissions, the private endpoint connection stays in a **Pending** state until the resource owner approves it.
+    - If you manage private DNS zones: **Private DNS Zone Contributor** (or equivalent) for the private DNS zone that you link to the virtual network.
 
     > [!IMPORTANT]
-    > We don't recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
+    > Don't use the 172.17.0.0/16 IP address range for your virtual network. This range is the default subnet range used by the Docker bridge network on-premises.
 
-* Disable network policies for private endpoints before adding the private endpoint.
+## Securely connect to Foundry
 
-:::zone pivot="fdp-project"
+To connect to Foundry secured by a virtual network, use one of these methods:
 
-## Create a Foundry project that uses a private endpoint
+* [Azure VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) - Connect on-premises networks to the virtual network over a private connection on the public internet. Choose from two VPN gateway types:
+
+    * [Point-to-site](/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal): Each client computer uses a VPN client to connect to the virtual network.
+    * [Site-to-site](/azure/vpn-gateway/tutorial-site-to-site-portal): A VPN device connects the virtual network to your on-premises network.
+
+* [ExpressRoute](/azure/expressroute/) - Connect on-premises networks to Azure over a private connection through a connectivity provider.
+* [Azure Bastion](/azure/bastion/bastion-overview) - Create an Azure virtual machine (a jump box) in the virtual network, then connect to it through Azure Bastion using RDP or SSH from your browser. Use the VM as your development environment. Because it's in the virtual network, it can access the workspace directly.
+
+## Create a Foundry project 
 
 When creating a new project, use the following steps to create the project.
 
-1. From the [Azure portal](https://portal.azure.com), search for __Azure AI Foundry__ and select __Create a resource__.
-1. After configuring the __Basics__ tab, select the __Networking__ tab and then the __Disabled__ option.
-1. From the __Private endpoint__ section, select __+ Add private endpoint__.
-1. When going through the forms to create a private endpoint, be sure to:
+1. From the [Azure portal](https://portal.azure.com), search for **Foundry** and select **Create a resource**.
+1. After configuring the **Basics** tab, select the **Networking** tab and then the **Disabled** option.
+1. From the **Private endpoint** section, select **+ Add private endpoint**.
+1. When you go through the forms to create a private endpoint, be sure to:
 
-    - From __Basics__, select the same __Region__ as your virtual network.
-    - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
+    - From **Basics**, select the same **Region** as your virtual network.
+    - From the **Virtual Network** form, select the virtual network and subnet that you want to connect to.
 
-1. Continue through the forms to create the project. When you reach the __Review + create__ tab, review your settings and select __Create__ to create the project.
+    > [!NOTE]
+    > In the portal UI, the target to which you create the private endpoint might be labeled as an "account" or "resource". Select your Foundry project resource when prompted.
 
-:::zone-end
+1. Continue through the forms to create the project. When you reach the **Review + create** tab, review your settings and select **Create** to create the project.
 
-:::zone pivot="hub-project"
-
-## Create a hub that uses a private endpoint
-
-If you're creating a new hub, use the following methods to create the hub (Azure portal or Azure CLI). Each of these methods __requires an existing virtual network__:
-
-# [Azure portal](#tab/azure-portal)
-
-> [!NOTE]
-> The information in this document is only about configuring a private link. For a walkthrough of creating a secure hub in the portal, see [Create a secure hub in the Azure portal](create-secure-ai-hub.md).
-
-1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
-
-    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
-
-1. After configuring the __Basics__ and __Storage__ tabs, select the __Inbound access__ tab and then select __+ Add__. When prompted, enter the data for the Azure Virtual Network and subnet for the private endpoint. When selecting the __Region__, select the same region as your virtual network.
-
-    :::image type="content" source="../media/how-to/network/inbound-access.png" alt-text="Screenshot of the inbound access tab with public network access disabled." lightbox="../media/how-to/network/inbound-access.png":::
-
-1. Select the __Outbound access__ tab and pick the __Network isolation__ option that best suits your needs.
-
-    :::image type="content" source="../media/how-to/network/outbound-access.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="../media/how-to/network/outbound-access.png":::
-
-
-# [Azure CLI](#tab/cli)
-
-> [!NOTE]
-> The information in this section doesn't cover basic hub configuration. For more information, see [Create a hub using the Azure CLI](./develop/create-hub-project-sdk.md?tabs=azurecli).
-
-After creating the hub, use the [Azure networking CLI commands](/cli/azure/network/private-endpoint#az-network-private-endpoint-create) to create a private link endpoint for the hub.
-
-```azurecli-interactive
-az network private-endpoint create \
-    --name <private-endpoint-name> \
-    --vnet-name <vnet-name> \
-    --subnet <subnet-name> \
-    --private-connection-resource-id "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>" \
-    --group-id amlworkspace \
-    --connection-name workspace \
-    --location <location> \
-    --resource-group <resource-group-name>
-```
-
-To create the private DNS zone entries for the workspace, use the following commands:
-
-```azurecli-interactive
-# Add privatelink.api.azureml.ms
-az network private-dns zone create \
-    -g <resource-group-name> \
-    --name privatelink.api.azureml.ms
-
-az network private-dns link vnet create \
-    -g <resource-group-name> \
-    --zone-name privatelink.api.azureml.ms \
-    --name <link-name> \
-    --virtual-network <vnet-name> \
-    --registration-enabled false
-
-az network private-endpoint dns-zone-group create \
-    -g <resource-group-name> \
-    --endpoint-name <private-endpoint-name> \
-    --name myzonegroup \
-    --private-dns-zone privatelink.api.azureml.ms \
-    --zone-name privatelink.api.azureml.ms
-```
-
----
-
-:::zone-end
-
-:::zone pivot="fdp-project"
-
-## Add a private endpoint to a project
+## Add a private endpoint to a resource
 
 1. From the [Azure portal](https://portal.azure.com), select your project.
-1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Private endpoint connections__ tab. Select __+ Private endpoint__.
-1. When going through the forms to create a private endpoint, be sure to:
+1. From the left side of the page, select **Resource Management**, **Networking**, and then select the **Private endpoint connections** tab. Select **+ Private endpoint**.
+1. When you go through the forms to create a private endpoint, be sure to:
 
-    - From __Basics__, select the same __Region__ as your virtual network.
-    - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
+    - From **Basics**, select the same **Region** as your virtual network.
+    - From the **Virtual Network** form, select the virtual network and subnet that you want to connect to.
 
-1. After populating the forms with any other network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
+    > [!NOTE]
+    > The portal refers to the private endpoint target as an "account" or "resource". Choose your Foundry resource as the target.
 
-:::zone-end
-
-:::zone pivot="hub-project"
-
-## Add a private endpoint to a hub
-
-Use one of the following methods to add a private endpoint to an existing hub:
-
-# [Azure portal](#tab/azure-portal)
-
-1. From the [Azure portal](https://portal.azure.com), select your hub.
-1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab. Select __+ Private endpoint__.
-
-    :::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab":::
-
-1. When going through the forms to create a private endpoint, be sure to:
-
-    - From __Basics__, select the same __Region__ as your virtual network.
-    - From __Resource__, select `amlworkspace` as the __target sub-resource__.
-    - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
- 
-1. After populating the forms with any other network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
-
-# [Azure CLI](#tab/cli)
-
-Use the [Azure networking CLI commands](/cli/azure/network/private-endpoint#az-network-private-endpoint-create) to create a private link endpoint for the hub.
-
-```azurecli-interactive
-az network private-endpoint create \
-    --name <private-endpoint-name> \
-    --vnet-name <vnet-name> \
-    --subnet <subnet-name> \
-    --private-connection-resource-id "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>" \
-    --group-id amlworkspace \
-    --connection-name workspace \
-    --location <location> \
-    --resource-group <resource-group-name>
-```
-
-To create the private DNS zone entries for the workspace, use the following commands:
-
-```azurecli-interactive
-# Add privatelink.api.azureml.ms
-az network private-dns zone create \
-    -g <resource-group-name> \
-    --name privatelink.api.azureml.ms
-
-az network private-dns link vnet create \
-    -g <resource-group-name> \
-    --zone-name privatelink.api.azureml.ms \
-    --name <link-name> \
-    --virtual-network <vnet-name> \
-    --registration-enabled false
-
-az network private-endpoint dns-zone-group create \
-    -g <resource-group-name> \
-    --endpoint-name <private-endpoint-name> \
-    --name myzonegroup \
-    --private-dns-zone privatelink.api.azureml.ms \
-    --zone-name privatelink.api.azureml.ms
-
-# Add privatelink.notebooks.azure.net
-az network private-dns zone create \
-    -g <resource-group-name> \
-    --name privatelink.notebooks.azure.net
-
-az network private-dns link vnet create \
-    -g <resource-group-name> \
-    --zone-name privatelink.notebooks.azure.net \
-    --name <link-name> \
-    --virtual-network <vnet-name> \
-    --registration-enabled false
-
-az network private-endpoint dns-zone-group add \
-    -g <resource-group-name> \
-    --endpoint-name <private-endpoint-name> \
-    --name myzonegroup \
-    --private-dns-zone privatelink.notebooks.azure.net \
-    --zone-name privatelink.notebooks.azure.net
-```
-
----
-
-:::zone-end
-
-:::zone pivot="fdp-project"
+1. After you populate the forms with any other network configurations you require, use the **Review + create** tab to review your settings and select **Create** to create the private endpoint.
 
 ## Remove a private endpoint from a project
 
 You can remove one or all private endpoints for a project. Removing a private endpoint removes the project from the Azure Virtual Network that the endpoint was associated with. Removing the private endpoint might prevent the project from accessing resources in that virtual network, or resources in the virtual network from accessing the workspace. For example, if the virtual network doesn't allow access to or from the public internet.
 
 > [!WARNING]
-> Removing the private endpoints for a project __doesn't make it publicly accessible__. To make the project publicly accessible, use the steps in the [Enable public access](#enable-public-access) section.
+> Removing the private endpoints for a project **doesn't make it publicly accessible**. To make the project publicly accessible, use the steps in the [Enable public access](#enable-public-access) section.
 
 To remove a private endpoint, use the following information:
 
 1. From the [Azure portal](https://portal.azure.com), select your project.
-1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Private endpoint connections__ tab.
-1. Select the endpoint to remove and then select __Remove__.
-
-:::zone-end
-
-:::zone pivot="hub-project"
-
-## Remove a private endpoint
-
-You can remove one or all private endpoints for a hub. Removing a private endpoint removes the hub from the Azure Virtual Network that the endpoint was associated with. Removing the private endpoint might prevent the hub from accessing resources in that virtual network, or resources in the virtual network from accessing the workspace. For example, if the virtual network doesn't allow access to or from the public internet.
-
-> [!WARNING]
-> Removing the private endpoints for a hub __doesn't make it publicly accessible__. To make the hub publicly accessible, use the steps in the [Enable public access](#enable-public-access) section.
-
-To remove a private endpoint, use the following information:
-
-# [Azure portal](#tab/azure-portal)
-
-1. From the [Azure portal](https://portal.azure.com), select your hub.
-1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab.
-1. Select the endpoint to remove and then select __Remove__.
-
-    :::image type="content" source="../media/how-to/network/remove-private-endpoint.png" alt-text="Screenshot of a selected private endpoint with the remove option highlighted.":::
-
-# [Azure CLI](#tab/cli)
-
-When using the Azure CLI, use the following command to remove the private endpoint:
-
-```azurecli
-az network private-endpoint delete \
-    --name <private-endpoint-name> \
-    --resource-group <resource-group-name>
-```
-
----
-
-:::zone-end
-
-:::zone pivot="fdp-project"
+1. From the left side of the page, select **Resource Management**, **Networking**, and then select the **Private endpoint connections** tab.
+1. Select the endpoint to remove and then select **Remove**.
 
 ## Enable public access
 
 In some situations, you might want to allow someone to connect to your secured project over a public endpoint, instead of through the virtual network. Or you might want to remove the project from the virtual network and re-enable public access.
 
 > [!IMPORTANT]
-> Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the virtual network that the private endpoint(s) connect to are still secured. It enables public access only to the project, in addition to the private access through any private endpoints.
+> Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the virtual network that the private endpoints connect to are still secured. It enables public access only to the project, in addition to the private access through any private endpoints.
 
 1. From the [Azure portal](https://portal.azure.com), select your project.
-1. From the left side of the page, select __Resource Management__, __Networking__, and then select the __Firewalls and virtual networks__ tab.
-1. Select __All networks__, and then select __Save__.
+1. From the left side of the page, select **Resource Management**, **Networking**, and then select the **Firewalls and virtual networks** tab.
+1. Select **All networks**, and then select **Save**.
 
     :::image type="content" source="../media/how-to/network/foundry-portal-firewall.png" alt-text="Screenshot of the firewalls and virtual networks tab with the all networks option selected.":::
 
-:::zone-end
-
-:::zone pivot="hub-project"
-
-## Enable public access
-
-In some situations, you might want to allow someone to connect to your secured hub over a public endpoint, instead of through the virtual network. Or you might want to remove the workspace from the virtual network and re-enable public access.
-
-> [!IMPORTANT]
-> Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the virtual network that the private endpoint(s) connect to are still secured. It enables public access only to the hub, in addition to the private access through any private endpoints.
-
-To enable public access, use the following steps:
-
-# [Azure portal](#tab/azure-portal)
-
-1. From the [Azure portal](https://portal.azure.com), select your hub.
-1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
-1. Select __Enabled from all networks__, and then select __Save__.
-
-# [Azure CLI](#tab/cli)
-
-Use the following Azure CLI command to enable public access:
-
-```azurecli
-az ml workspace update --set public_network_access=Enabled -n <workspace-name> -g <resource-group-name>
-```
-
-If you receive an error that the `ml` command isn't found, use the following commands to install the Azure Machine Learning CLI extension:
-
-```azurecli
-az extension add --name ml
-```
-
----
-
-## Enable Public Access only from internet IP ranges (preview)
-
-You can use IP network rules to allow access to your secured hub from specific public internet IP address ranges by creating IP network rules. Each Azure AI Foundry hub supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic. This feature is currently in preview.
-
-> [!WARNING]
-> * Enable your endpoint's public network access flag if you want to allow access to your endpoint from specific public internet IP address ranges.
-> * You can only use IPv4 addresses.
-> * If the workspace goes from __Enable from selected IPs__ to __Disabled__ or __Enabled__, the IP ranges are reset.
-
-# [Portal](#tab/azure-portal)
-
-1. From the [Azure portal](https://portal.azure.com), select your Azure Machine AI Foundry hub.
-1. From the left side of the page, select __Networking__ and then select the __Public access__ tab.
-1. Select __Enabled from selected IP addresses__, input address ranges and then select __Save__.
-
-
-# [Azure CLI](#tab/cli)
-
-Use the `az ml workspace update` Azure CLI command to manage public access from an IP address or address range:
-
-> [!TIP]
-> The configurations for the selected IP addresses are stored in the hub's properties, under `network_acls`:
-> ```yml
-> name: sample_hub
-> location: centraluseuap
-> display_name: sample hub
-> description: desc
-> public_network_access: enabled
-> network_acls:
->     ip_rules:
->         value: "X.X.X.X/X"
->         value: "X.X.X.X"
->     default_action: Deny
-> ```
- 
-1. Disabled:
-`az ml workspace update -n test-ws -g test-rg --public-network-access Disabled`
-1. Enabled from selected IP addresses: 
-`az ml workspace update -n test-ws -g test-rg --public-network-access Enabled --network-acls "167.220.238.199/32,167.220.238.194/32" `
-1. Enabled from all networks: 
-`az ml workspace update -n test-ws -g test-rg --public-network-access Enabled --network-acls none`
-
----
-
-You can also use the [Workspace](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) class from the Azure Machine Learning [Python SDK](/python/api/azure-ai-ml/azure.ai.ml.entities.networkacls) to define which IP addresses are allowed inbound access:
-
-```python
-class Workspace(Resource):
-    """Azure ML workspace.
-    :param public_network_access: Whether to allow public endpoint connectivity
-        when a workspace is private link enabled.
-    :type public_network_access: str
-    :param network_acls: The network access control list (ACL) settings of the workspace.
-    :type network_acls: ~azure.ai.ml.entities.NetworkAcls
- 
-    def __init__(
-        self,
-        *,
-        public_network_access: Optional[str] = None,
-        network_acls: Optional[NetworkAcls] = None,
-```
-
-### Restrictions for IP network rules
-
-The following restrictions apply to IP address ranges:
-
-- IP network rules are allowed only for _public internet_ IP addresses.
-
-  [Reserved IP address ranges](https://en.wikipedia.org/wiki/Reserved_IP_addresses) aren't allowed in IP rules such as private addresses that start with 10, 172.16 to 172.31, and 192.168.
-
-- You must provide allowed internet address ranges by using [CIDR notation](https://tools.ietf.org/html/rfc4632) in the form 16.17.18.0/24 or as individual IP addresses like 16.17.18.19.
-
-- Only IPv4 addresses are supported for configuration of storage firewall rules.
-
-- When this feature is enabled, you can test public endpoints using any client tool such as Curl, but the Endpoint Test tool in the portal isn't supported.
-
-- You can only set the IP addresses for the AI Foundry hub after the hub is created.
-
-## Private storage configuration
-
-If your storage account is private (uses a private endpoint to communicate with your project), you perform the following steps:
-
-1. Our services need to read/write data in your private storage account using [Allow Azure services on the trusted services list to access this storage account](/azure/storage/common/storage-network-security#grant-access-to-trusted-azure-services) with following managed identity configurations. Enable the system assigned managed identity of Azure AI Service and Azure AI Search, then configure role-based access control for each managed identity.
-
-    | Role | Managed Identity | Resource | Purpose | Reference |
-    |--|--|--|--|--|
-    | `Reader` | Azure AI Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
-    | `Storage File Data Privileged Contributor` | Azure AI Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
-    | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../../ai-services/openai/how-to/managed-identity.md) |
-    | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
-
-    > [!TIP]
-    > Your storage account might have multiple private endpoints. You need to assign the `Reader` role to each private endpoint for your Azure AI Foundry project managed identity.
-
-1. Assign the `Storage Blob Data reader` role to your developers. This role allows them to read data from the storage account.
-
-1. Verify that the project's connection to the storage account uses Microsoft Entra ID for authentication. To view the connection information, go to the __Management center__, select __Connected resources__, and then select the storage account connections. If the credential type isn't Entra ID, select the pencil icon to update the connection and set the __Authentication method__ to __Microsoft Entra ID__.
-
-For information on securing playground chat, see [Securely use playground chat](secure-data-playground.md).
-
-:::zone-end
-
-::: zone pivot="fdp-project"
-
-## End-to-end secured networking for Agent Service
-
-When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)] to build Agents, we recommend the following network architecture for the most secure end-to-end configuration:
-
-:::image type="content" source="../media/how-to/network/network-diagram-agents.png" alt-text="Diagram of the recommended network isolation for AI Foundry projects and agents." lightbox="../media/how-to/network/network-diagram-agents.png":::
-
-1. Set the public network access (PNA) flag of each of your resources to `Disabled`. Disabling public network access locks down inbound access from the public internet to the resources.
-1. Create a private endpoint for each of your Azure resources that are required for a Standard Agent:
-
-    - Azure Storage Account
-    - Azure AI Search resource
-    - Cosmos DB resource
-    - Azure AI Foundry resource
-
-1. To access your resources, we recommend using a Bastion VM, ExpressRoute, or VPN connection to your Azure Virtual Network. These options allow you to connect to the isolated network environment.
-
-## Network injection for Agent Service
-
-Network-secured Standard Agents support full network isolation and data exfiltration protection through network injection of the Agent client. To do this, the Agent client is network injected into your Azure virtual network, allowing for strict control over data movement and preventing data exfiltration by keeping traffic within your defined network boundaries. Network injection is supported only for Standard Agent deployment, not Light Agent deployment.
-
-Additionally, a network-secured Standard Agent is only supported through BICEP template deployment, and not through UX, CLI, or SDK. After the Foundry resource and Agent are deployed through the template, you can't update the delegated subnet for the Agent Service. This is visible in the Foundry resource Networking tab, where you can view and copy the subnet, but can't update or remove the subnet delegation. To update the delegated subnet, you must redeploy the network-secured Standard Agent template. 
-
-:::image type="content" source="../media/how-to/network/network-injection.png" alt-text="Diagram of the network injection for Azure AI Foundry projects and agents." lightbox="../media/how-to/network/network-injection.png":::
-
-For more information on secured networking for the Agent Service, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks) article.
-
-::: zone-end
-
 ## DNS configuration
 
-::: zone pivot="fdp-project"
-
-Clients on a virtual network that use the private endpoint use the same connection string for the Azure AI Foundry resource and projects as clients connecting to the public endpoint. DNS resolution automatically routes the connections from the virtual network to the Azure AI Foundry resource and projects over a private link.
+Clients on a virtual network that use the private endpoint use the same connection string for the Foundry resource and projects as clients connecting to the public endpoint. DNS resolution automatically routes the connections from the virtual network to the Foundry resource and projects over a private link.
 
 ### Apply DNS changes for private endpoints
 
-When you create a private endpoint, the DNS CNAME resource record for the Azure AI Foundry resource is updated to an alias in a subdomain with the prefix `privatelink`. By default, Azure also creates a private DNS zone that corresponds to the `privatelink` subdomain, with the DNS A resource records for the private endpoints. For more information, see [what is Azure Private DNS](/azure/dns/private-dns-overview).
+When you create a private endpoint, Azure updates the DNS CNAME resource record for the Foundry resource to an alias in a subdomain with the prefix `privatelink`. By default, Azure also creates a private DNS zone that corresponds to the `privatelink` subdomain, with the DNS A resource records for the private endpoints. For more information, see [what is Azure Private DNS](/azure/dns/private-dns-overview).
 
-When you resolve the endpoint URL from outside the virtual network with the private endpoint, it resolves to the public endpoint of the Azure AI Foundry resource. When it's resolved from the virtual network hosting the private endpoint, it resolves to the private IP address of the private endpoint.
+When you resolve the endpoint URL from outside the virtual network with the private endpoint, it resolves to the public endpoint of the Foundry resource. When you resolve it from the virtual network hosting the private endpoint, it resolves to the private IP address of the private endpoint.
 
-This approach enables access to the Azure AI Foundry resource using the same connection string for clients in the virtual network that hosts the private endpoints, and clients outside the virtual network.
+This approach enables access to the Foundry resource using the same connection string for clients in the virtual network that hosts the private endpoints, and clients outside the virtual network.
 
-If you use a custom DNS server on your network, clients must be able to resolve the fully qualified domain name (FQDN) for the Azure AI services resource endpoint to the private endpoint IP address. Configure your DNS server to delegate your private link subdomain to the private DNS zone for the virtual network.
+If you use a custom DNS server on your network, clients must be able to resolve the fully qualified domain name (FQDN) for the Foundry resource endpoint to the private endpoint IP address. Configure your DNS server to delegate your private link subdomain to the private DNS zone for the virtual network.
 
 > [!TIP]
-> When you use a custom or on-premises DNS server, you should configure your DNS server to resolve the Azure AI services resource name in the `privatelink` subdomain to the private endpoint IP address. Delegate the `privatelink` subdomain to the private DNS zone of the virtual network. Alternatively, configure the DNS zone of your DNS server and add the DNS A records.
+> When you use a custom or on-premises DNS server, configure your DNS server to resolve the Foundry resource name in the `privatelink` subdomain to the private endpoint IP address. Delegate the `privatelink` subdomain to the private DNS zone of the virtual network. Alternatively, configure the DNS zone of your DNS server and add the DNS A records.
 >
 > For more information on configuring your own DNS server to support private endpoints, use the following articles:
 > - [Name resolution that uses your own DNS server](/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server)
 > - [DNS configuration](/azure/private-link/private-endpoint-overview#dns-configuration)
 
+## Validate the configuration
+
+Use the following steps to validate that your private endpoint is approved and that DNS resolves to the private IP address from inside your virtual network.
+
+1. In the Azure portal, go to your project resource. Under **Networking** > **Private endpoint connections**, confirm the connection status is **Approved**.
+1. From a VM connected to the virtual network (or from an on-premises machine connected through VPN/ExpressRoute), resolve your Foundry endpoint and confirm it resolves to the private IP address of the private endpoint.
+
+    ```cmd
+    nslookup <your-foundry-endpoint-hostname>
+    ```
+
+1. Test connectivity to the private endpoint IP address on port 443.
+
+    ```powershell
+    Test-NetConnection <private-endpoint-ip-address> -Port 443
+    ```
+
+### References
+
+* [Test-NetConnection](/powershell/module/nettcpip/test-netconnection)
+
 ## Grant access to trusted Azure services
 
-You can grant a subset of trusted Azure services access to Azure OpenAI, while maintaining network rules for other apps. These trusted services then use managed identity to authenticate your Azure OpenAI resources. The following table lists the services that can access Azure OpenAI if the managed identity of those services has the appropriate role assignment:
+If your Foundry project uses Azure OpenAI and you restrict network access, grant a subset of trusted Azure services access to Azure OpenAI while maintaining network rules for other apps. These trusted services then use managed identity to authenticate to Azure OpenAI. The following table lists the services that can access Azure OpenAI if the managed identity of those services has the appropriate role assignment:
 
 | Service | Resource provider name |
 | ----- | ----- |
+| Foundry Tools | `Microsoft.CognitiveServices` |
 | Azure AI Search | `Microsoft.Search` |
+| Azure Machine Learning | `Microsoft.MachineLearningServices` |
 
-You can grant networking access to trusted Azure services by creating a network rule exception using the REST API or Azure portal.
-
-::: zone-end
-
-::: zone pivot="hub-project"
-
-See [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#example-custom-dns-server-hosted-in-vnet) article for the DNS forwarding configurations.
-
-If you need to configure custom DNS server without DNS forwarding, use the following patterns for the required A records.
-
-* `<AI-HUB-GUID>.workspace.<region>.cert.api.azureml.ms`
-* `<AI-HUB-GUID>.workspace.<region>.api.azureml.ms`
-* `ml-<workspace-name, truncated>-<region>-<AI-HUB-GUID>.<region>.notebooks.azure.net`
-
-    > [!NOTE]
-    > The workspace name for this FQDN might be truncated. Truncation is done to keep `ml-<workspace-name, truncated>-<region>-<workspace-guid>` at 63 characters or less.
-* `<instance-name>.<region>.instances.azureml.ms`
-
-    > [!NOTE]
-    > * Compute instances can be accessed only from within the virtual network.
-    > * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
-
-* `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you aren't using a managed network or SSH connections.
-
-* `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
-* `models.ai.azure.com` - Used for serverless API deployment
-
-To find the private IP addresses for your A records, see the [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#find-the-ip-addresses) article.
-
-> [!NOTE]
-> Project workspaces reuse the FQDNs of the associated hub workspaces. There's no reason to configure separate entries for the project workspace GUIDs.
-
-::: zone-end
+Grant networking access to trusted Azure services by creating a network rule exception using the REST API or Azure portal.
 
 ## Limitations
 
-:::zone pivot="hub-project"
+- You must deploy the private endpoint in the same region and subscription as the virtual network.
+- Only private endpoints in an **Approved** state can send traffic to a private-link resource.
+- End-to-end network isolation in Foundry is not support in the new Foundry portal experience. End-to-end network isolation in Foundry is not supported for the new version of the Agent service. Use the classic Foundry portal experience with the current version of Agent service to securely access your Foundry projects when network isolation is enabled.
+- When you use a network isolated Foundry, you cannot use private MCP servers deployed in the same virtual network. You can only use publicly accessible MCP servers.
+- Hosted Agents in Microsoft Foundry are not supported with end-to-end network isolation. 
 
-* You might encounter problems trying to access the private endpoint for your hub if you're using Mozilla Firefox. This problem might be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
+For Agent Service network isolation scenarios (including network injection, end-to-end isolation, and limitations), see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). 
 
-:::zone-end
+## End-to-end secured networking for Foundry Agent Service and evaluations
 
-:::zone pivot="fdp-project"
+If you're building agents or running evaluations and you want end-to-end network isolation, use the guidance in [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). That article includes required DNS zones, a reference architecture, and known limitations.
 
-- A network-secured Agent (bring your own virtual network) is only supported through Bicep template deployment. For more information on network-secured Agent deployment, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). 
-- A network-secured Agent to be deployed is only a Standard Agent, not a Light Agent. 
-- There's no managed virtual network support for the Agent Service or [!INCLUDE [FDP](../includes/fdp-project-name.md)].
+:::image type="content" source="../media/how-to/network/agent-eval-networking.png" alt-text="Diagram of the recommended network isolation for Foundry." lightbox="../media/how-to/network/agent-eval-networking.png":::
 
-:::zone-end
+## Network injection for Agent Service and evaluations
+
+Network-secured Standard Agents and evaluations support full network isolation and protect against data exfiltration through network injection. Network injection supports only Standard Agent deployment and evaluations, not Light Agent deployment.
+
+## Firewall configuration for agent and evaluations egress
+
+To secure egress (outbound) traffic through network injection, configure an Azure Firewall or another firewall. This configuration helps inspect and control outbound traffic before it leaves your virtual network.
+
+:::image type="content" source="../media/how-to/network/hub-spoke-network.png" alt-text="Diagram of the hub and spoke network isolation for Foundry projects and agents." lightbox="../media/how-to/network/hub-spoke-network.png":::
 
 ## Next steps
 
-- [Create an Azure AI Foundry project](create-projects.md)
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
-- [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)
-- [Troubleshoot secure connectivity to a project](troubleshoot-secure-connection-project.md)
+- [Create a Foundry project](create-projects.md)
+- [Learn more about Foundry](../what-is-foundry.md)

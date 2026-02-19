@@ -1,31 +1,36 @@
 ---
-title: Default Guardrails & controls policies for Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn about the default Guardrails & controls policies that Azure AI Foundry Models uses to flag content.
-author: msakande
-ms.author: mopeakande
-ms.service: azure-ai-model-inference
+title: Default Guardrails & controls policies for Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how Microsoft Foundry Models applies default safety policies and content filtering to help ensure responsible AI usage.
+author: ssalgadodev
+ms.author: ssalgado
+ms.reviewer: yinchang
+reviewer: ychang-msft
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 05/19/2025
-manager: scottpolly
-ms.reviewer: fasantia
-reviewer: santiagxf
+ms.date: 12/03/2025
+ai-usage: ai-assisted
+
+#CustomerIntent: As a developer or AI practitioner, I want to understand the default safety policies and content filtering configurations applied to Microsoft Foundry Models so that I can ensure my AI applications comply with responsible AI practices and understand what safety measures are in place by default.
 ---
 
-# Default Guardrails & controls policies for Azure AI Foundry Models
+# Default Guardrails and controls policies for Microsoft Foundry Models
 
-Azure AI Foundry Models includes default safety applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default.
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read [our documentation describing categories and severity levels](../../model-inference/concepts/content-filter.md).
+Microsoft Foundry Models applies default safety to all models, excluding audio models such as Whisper in Azure OpenAI in Foundry Models. These configurations provide you with a responsible experience by default.
 
-This document describes the default configuration.
+Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read about [risk categories and severity levels](content-filter.md).
+
+This article describes the default safety configuration.
 
 > [!TIP]
-> By default, all model deployments use the default configuration. However, you can configure content filtering per model deployment as explained at [Configuring content filtering](../../model-inference/how-to/configure-content-filters.md).
+> The default configuration applies to all models. However, you can configure content filtering per model deployment as explained in [How to configure content filters](../how-to/configure-content-filters.md).
 
 ## Text models
 
-Text models in Azure AI Foundry Models can take in and generate both text and code. These models apply Azure's text content filtering models to detect and prevent harmful content. This system works on both prompt and completion. 
+Text models in Foundry Models can take in and generate both text and code. These models apply Azure's text content filtering models to detect and prevent harmful content. This system works on both prompt and completion. 
 
 | Risk Category                             | Prompt/Completion      | Severity Threshold  |
 |-------------------------------------------|------------------------|---------------------|
@@ -68,16 +73,12 @@ Vision models can take both text and images at the same time as part of the inpu
 | Profanity                                         | Prompts                | N/A                 |
 
 
-In addition to the previous safety configurations, Azure OpenAI DALL-E also comes with [prompt transformation](../../../ai-services/openai/concepts/prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
+In addition to the previous safety configurations, Azure OpenAI DALL-E also comes with [prompt transformation](../../openai/concepts/prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
 
 ### Meta: Llama-3.2-11B-Vision-Instruct and Llama-3.2-90B-Vision-Instruct
 
-Content filters apply only to text prompts and completions. Images aren't subject to content moderation.
+Content filters apply only to text prompts and completions. Content moderation doesn't apply to images.
 
-### Microsoft: Phi-3.5-vision-instruct
+## Next step
 
-Content filters apply only to text prompts and completions. Images aren't subject to content moderation.
-
-## Next steps
-
-* [Configure content filters in Azure AI Foundry Models](../../model-inference/how-to/configure-content-filters.md)
+* [Configure content filters in Foundry Models](../how-to/configure-content-filters.md)

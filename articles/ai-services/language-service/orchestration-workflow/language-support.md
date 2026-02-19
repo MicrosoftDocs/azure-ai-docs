@@ -1,16 +1,15 @@
 ---
 title: Language support for orchestration workflow
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the languages supported by orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.custom: references_regions, language-service-custom-ner
 ms.author: lajanuar
 ---
-
 # Language support for orchestration workflow projects
 
 Use this article to learn about the languages currently supported by orchestration workflow projects.

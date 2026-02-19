@@ -3,14 +3,16 @@ title: MLflow tracking for Azure Databricks machine learning experiments
 titleSuffix: Azure Machine Learning
 description: Set up MLflow with Azure Machine Learning to log metrics and artifacts from Azure Databricks machine learning experiments.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.reviewer: fasantia
 ms.date: 08/16/2024
 ms.topic: how-to
-ms.custom: sdkv2
+ms.custom:
+  - sdkv2
+  - sfi-image-nochange
 #customer intent: As a data scientist, I want to integrate Azure Databricks with Azure Machine Learning to connect the products.
 ---
 
@@ -179,7 +181,7 @@ Configure the MLflow tracking URI to point exclusively to Azure Machine Learning
 
    1. Open the [Azure Machine Learning studio portal](https://ml.azure.com) and sign in using your credentials.
    1. Select the name of your workspace to show the **Directory + Subscription + Workspace** page.
-   1. Select **View all properties in Azure Portal**.
+   1. Select **View all properties in Azure portal**.
    1. On the **Essentials** section, find the property **MLflow tracking URI**.
 
    # [Manually](#tab/manual)

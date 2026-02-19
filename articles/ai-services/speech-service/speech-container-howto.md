@@ -1,13 +1,13 @@
 ---
 title: Install and run Speech containers with Docker - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use the Speech containers with Docker to perform speech recognition, transcription, generation, and more on-premises.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 01/30/2026
+ms.author: pafarley
 keywords: on-premises, Docker, container
 #Customer intent: As a developer, I want to learn how to install and run Speech containers with Docker.
 ---
@@ -21,7 +21,7 @@ By using containers, you can use a subset of the Speech service features in your
 
 ## Prerequisites
 
-You must meet the following prerequisites before you use Speech service containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin. You need:
+You must meet the following prerequisites before you use Speech service containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin. You need:
     
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure.
     * On Windows, Docker must also be configured to support Linux containers.
@@ -45,9 +45,9 @@ The <a href="https://docs.docker.com/engine/reference/commandline/run/" target="
 | `Eula` | Indicates that you accepted the license for the container.<br/>The value of this option must be set to **accept**. |
 
 > [!IMPORTANT]
-> These subscription keys are used to access your Azure AI services API. Don't share your keys. Store them securely. For example, use Azure Key Vault. We also recommend that you regenerate these keys regularly. Only one key is necessary to make an API call. When you regenerate the first key, you can use the second key for continued access to the service.
+> These subscription keys are used to access your Foundry Tools API. Don't share your keys. Store them securely. For example, use Azure Key Vault. We also recommend that you regenerate these keys regularly. Only one key is necessary to make an API call. When you regenerate the first key, you can use the second key for continued access to the service.
 
-The container needs the billing argument values to run. These values allow the container to connect to the billing endpoint. The container reports usage about every 10 to 15 minutes. If the container doesn't connect to Azure within the allowed time window, the container continues to run but doesn't serve queries until the billing endpoint is restored. The connection is attempted 10 times at the same time interval of 10 to 15 minutes. If it can't connect to the billing endpoint within the 10 tries, the container stops serving requests. For an example of the information sent to Microsoft for billing, see the [Azure AI container FAQ](../containers/container-faq.yml#how-does-billing-work) in the Azure AI services documentation.
+The container needs the billing argument values to run. These values allow the container to connect to the billing endpoint. The container reports usage about every 10 to 15 minutes. If the container doesn't connect to Azure within the allowed time window, the container continues to run but doesn't serve queries until the billing endpoint is restored. The connection is attempted 10 times at the same time interval of 10 to 15 minutes. If it can't connect to the billing endpoint within the 10 tries, the container stops serving requests. For an example of the information sent to Microsoft for billing, see the [Azure AI container FAQ](../containers/container-faq.yml#how-does-billing-work) in the Foundry Tools documentation.
 
 For more information about these options, see [Configure containers](speech-container-configuration.md).
 
@@ -148,14 +148,14 @@ You can have this container and a different Azure AI container running on the HO
 | WS | `ws://localhost:5000` | [Speech to text](speech-container-stt.md#use-the-container)<br/><br/>[Custom speech to text](speech-container-cstt.md#use-the-container)  |
 | HTTP | `http://localhost:5000` | [Neural text to speech](speech-container-ntts.md#use-the-container)<br/><br/>[Speech language identification](speech-container-lid.md#use-the-container) |
 
-For more information on using WSS and HTTPS protocols, see [Container security](../cognitive-services-container-support.md#azure-ai-services-container-security) in the Azure AI services documentation.
+For more information on using WSS and HTTPS protocols, see [Container security](../cognitive-services-container-support.md#foundry-tools-container-security) in the Foundry Tools documentation.
 
 ## Troubleshooting
 
 When you start or run the container, you might experience issues. Use an output [mount](speech-container-configuration.md#mount-settings) and enable logging. Doing so allows the container to generate log files that are helpful when you troubleshoot issues.
 
 > [!TIP]
-> For more troubleshooting information and guidance, see [Azure AI containers frequently asked questions (FAQ)](../containers/container-faq.yml) in the Azure AI services documentation.
+> For more troubleshooting information and guidance, see [Azure AI containers frequently asked questions (FAQ)](../containers/container-faq.yml) in the Foundry Tools documentation.
 
 
 ### Logging settings
@@ -171,7 +171,7 @@ ApiKey={API_KEY} \
 Logging:Console:LogLevel:Default=Information
 ```
 
-For more information about logging, see [Configure Speech containers](speech-container-configuration.md#logging-settings) and [usage records](../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation.
+For more information about logging, see [Configure Speech containers](speech-container-configuration.md#logging-settings) and [usage records](../containers/disconnected-containers.md#usage-records) in the Foundry Tools documentation.
 
 ## Microsoft diagnostics container
 
@@ -196,7 +196,7 @@ The container tests for network connectivity to the billing endpoint.
 
 ## Run disconnected containers
 
-To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Azure AI services documentation.
+To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Foundry Tools documentation.
 
 ## Next steps
 

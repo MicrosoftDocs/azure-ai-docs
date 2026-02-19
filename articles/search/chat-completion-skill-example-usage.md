@@ -2,11 +2,12 @@
 title: Utilize the content generation capabilities of language models as part of content ingestion pipeline
 titleSuffix: Azure AI Search
 description: Use language models to caption your images and facilitate an image search through your data.
-author: amitkalay
-ms.author: amitkalay
+author: gmndrg
+ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/05/2025
+ms.date: 07/28/2025
+ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp
   - build-2025
@@ -22,12 +23,12 @@ The GenAI Prompt skill (preview) generates a description of each image in your d
 
 To work with image content in a skillset, you need:
 
-+ A supported data source
-+ Files or blobs containing images
-+ Read access on the supported data source. This article uses key-based authentication, but indexers can also connect using the search service identity and Microsoft Entra ID authentication. For role-based access control, assign roles on the data source to allow read access by the service identity. If you're testing on a local development machine, make sure you also have read access on the supported data source.
-+ A search indexer, configured for image actions
-+ A skillset with the new custom genAI prompt skill
-+ A search index with fields to receive the verbalized text output, plus output field mappings in the indexer that establish association
++ A [supported data source](search-indexer-overview.md#supported-data-sources). We recommend Azure Storage.
++ Files or blobs containing images.
++ Read access to the supported data source. This article uses key-based authentication, but indexers can also connect using the search service identity and Microsoft Entra ID authentication. For role-based access control, assign roles on the data source to allow read access by the service identity. If you're testing on a local development machine, make sure you also have read access on the supported data source.
++ A [search indexer](search-how-to-create-indexers.md), configured for image actions.
++ A skillset with the new custom genAI prompt skill.
++ A search index with fields to receive the verbalized text output, plus output field mappings in the indexer that establish association.
 
 Optionally, you can define projections to accept image-analyzed output into a [knowledge store](knowledge-store-concept-intro.md) for data mining scenarios.
 
@@ -35,7 +36,7 @@ Optionally, you can define projections to accept image-analyzed output into a [k
 
 ## Configure indexers for image processing
 
-After the source files are set up, enable image normalization by setting the `imageAction` parameter in indexer configuration. Image normalization helps make images more uniform for downstream processing. Image normalization includes the following operations:
+After the source files are set up, enable image normalization by setting the `imageAction` parameter in the indexer configuration. Image normalization helps make images more uniform for downstream processing. Image normalization includes the following operations:
 
 + Large images are resized to a maximum height and width to make them uniform.
 + For images that have metadata that specifies orientation, image rotation is adjusted for vertical loading.
@@ -114,10 +115,10 @@ This section supplements the [skill reference](cognitive-search-defining-skillse
 
 + Create or update a skillset to add skills.
 
-Once the basic framework of your skillset is created and Azure AI services is configured, you can focus on each individual image skill, defining inputs and source context, and mapping outputs to fields in either an index or knowledge store.
+Once the basic framework of your skillset is created and Foundry Tools is configured, you can focus on each individual image skill, defining inputs and source context, and mapping outputs to fields in either an index or knowledge store.
 
 > [!NOTE]
-> For an example skillset that combines image processing with downstream natural language processing, see [REST Tutorial: Use REST and AI to generate searchable content from Azure blobs](cognitive-search-tutorial-blob.md). It shows how to feed skill imaging output into entity recognition and key phrase extraction.
+> For an example skillset that combines image processing with downstream natural language processing, see [REST Tutorial: Use REST and AI to generate searchable content from Azure blobs](tutorial-skillset.md). It shows how to feed skill imaging output into entity recognition and key phrase extraction.
 
 ### Example inputs for image processing
 

@@ -1,9 +1,9 @@
 ---
 title: Content Understanding region and language support
-titleSuffix: Azure AI services
-description: Azure AI Content Understanding region and language support
-author: laujan
-ms.author: lajanuar
+titleSuffix: Foundry Tools
+description: Azure Content Understanding in Foundry Tools region and language support
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
@@ -14,31 +14,39 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding region and language support
+# Azure Content Understanding in Foundry Tools region and language support
 
-Azure AI Content Understanding provides multilingual support in multiple geographic regions to enable users to communicate with Content Understanding applications in natural ways and empower global outreach. The following sections describe the available regions and supported languages/locales.
+Azure Content Understanding in Foundry Tools provides multilingual support in multiple geographic regions to enable users to communicate with Content Understanding applications in natural ways and empower global outreach. The following sections describe the available regions and supported languages/locales.
 
 ## Region support
 
-To use Azure AI Content Understanding, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+To use Azure Content Understanding, create your Foundry Tool resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
 
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|
-| `westus`        | West US        | United States   | United States    |
-| `swedencentral` | Sweden Central | Sweden          | European Union   |
-| `australiaeast` | Australia East | Australia       | N/A †            |
+| `australiaeast` | Australia East | Australia | Australia |
+| `eastus` | East US | United States | US |
+| `eastus2` | East US 2 | United States | US |
+| `japaneast` | Japan East | Japan | Asia |
+| `northeurope` | North Europe | Europe | Europe |
+| `southcentralus` | South Central US | United States | US |
+| `southeastasia` | Southeast Asia | Asia Pacific | Asia |
+| `swedencentral` | Sweden Central | Sweden | Europe |
+| `uksouth` | UK South | United Kingdom | UK |
+| `westeurope` | West Europe | Europe | Europe |
+| `westus` | West US | United States | US |
+| `westus3` | West US 3 | United States | US |
 
-† Australia East doesn't support data zone as a processing location.
 
 > [!NOTE]
 >
-> [Pro mode](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
+> [Pro mode (preview)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
 
 ## Language support
 
-Azure AI Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
+Azure Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
 
-Content Understanding applies [Azure OpenAI models](../openai/overview.md) which support a wide array of languages. While there's no definitive list of supported languages, users can expect robust language capabilities across most common languages. For specific language support related to `OCR` and speech transcription, refer to the respective sections detailing the supported languages for these modalities.
+Content Understanding applies [Azure OpenAI models](../../ai-foundry/openai/overview.md) which support a wide array of languages. While there's no definitive list of supported languages, users can expect robust language capabilities across most common languages. For specific language support related to `OCR` and speech transcription, refer to the respective sections detailing the supported languages for these modalities.
 
 ### Text optical character recognition (OCR)
 
@@ -145,101 +153,9 @@ The following table lists the supported languages/locales for **handwritten** te
 
 ### Speech transcription
 
-Content Understanding applies [Azure AI speech to text](../speech-service/speech-to-text.md) to transcribe spoken words in the input. For a subset of supported languages, it uses [fast transcription](../speech-service/speech-to-text.md#fast-transcription) to reduce processing latency.
+Content Understanding applies Azure Speech in Foundry Tools [fast transcription](../speech-service/speech-to-text.md#fast-transcription) to transcribe spoken words in the input synchronously and faster than real-time audio. 
 
-The following table lists the supported languages/locales for fast transcription.
-
-|**Language**| **Language code**|**Language**| **Language code**|
-|:-----|:----:|:-----|:----:|
-| Chinese (Mandarin, Simplified) | `zh-CN` | Indonesian (Indonesia) | `id-ID` |
-| Danish (Denmark) | `da-DK` | Italian (Italy) | `it-IT` |
-| English (India) | `en-IN` | Japanese (Japan) | `ja-JP` |
-| English (United Kingdom) | `en-GB` | Korean (Korea) | `ko-KR` |
-| English (United States) | `en-US` | Polish (Poland) | `pl-PL` |
-| Finnish (Finland) | `fi-FI` | Portuguese (Brazil) | `pt-BR` |
-| French (France) | `fr-FR` | Portuguese (Portugal) | `pt-PT` |
-| German (Germany) | `de-DE` | Spanish (Mexico) | `es-MX` |
-| Hebrew (Israel) | `he-IL` | Spanish (Spain) | `es-ES` |
-| Hindi (India) | `hi-IN` | Swedish (Sweden) | `sv-SE` |
-
-The following table lists all supported languages/locales.
-
-|**Language**| **Language code**|**Language**| **Language code**|
-|:-----|:----:|:-----|:----:|
-| Afrikaans (South Africa) | `af-ZA` | Hungarian (Hungary) | `hu-HU` |
-| Albanian (Albania) | `sq-AL` | Icelandic (Iceland) | `is-IS` |
-| Amharic (Ethiopia) | `am-ET` | Indonesian (Indonesia) | `id-ID` |
-| Arabic (Algeria) | `ar-DZ` | Irish (Ireland) | `ga-IE` |
-| Arabic (Bahrain) | `ar-BH` | isiZulu (South Africa) | `zu-ZA` |
-| Arabic (Egypt) | `ar-EG` | Italian (Italy) | `it-IT` |
-| Arabic (Iraq) | `ar-IQ` | Italian (Switzerland) | `it-CH` |
-| Arabic (Israel) | `ar-IL` | Japanese (Japan) | `ja-JP` |
-| Arabic (Jordan) | `ar-JO` | Javanese (Latin, Indonesia) | `jv-ID` |
-| Arabic (Kuwait) | `ar-KW` | Kannada (India) | `kn-IN` |
-| Arabic (Lebanon) | `ar-LB` | Kazakh (Kazakhstan) | `kk-KZ` |
-| Arabic (Libya) | `ar-LY` | Khmer (Cambodia) | `km-KH` |
-| Arabic (Morocco) | `ar-MA` | Kiswahili (Kenya) | `sw-KE` |
-| Arabic (Oman) | `ar-OM` | Kiswahili (Tanzania) | `sw-TZ` |
-| Arabic (Palestinian Authority) | `ar-PS` | Korean (Korea) | `ko-KR` |
-| Arabic (Qatar) | `ar-QA` | Lao (Laos) | `lo-LA` |
-| Arabic (Saudi Arabia) | `ar-SA` | Latvian (Latvia) | `lv-LV` |
-| Arabic (Syria) | `ar-SY` | Lithuanian (Lithuania) | `lt-LT` |
-| Arabic (Tunisia) | `ar-TN` | Macedonian (North Macedonia) | `mk-MK` |
-| Arabic (United Arab Emirates) | `ar-AE` | Malay (Malaysia) | `ms-MY` |
-| Arabic (Yemen) | `ar-YE` | Malayalam (India) | `ml-IN` |
-| Armenian (Armenia) | `hy-AM` | Maltese (Malta) | `mt-MT` |
-| Assamese (India) | `as-IN` | Marathi (India) | `mr-IN` |
-| Azerbaijani (Latin, Azerbaijan) | `az-AZ` | Mongolian (Mongolia) | `mn-MN` |
-| Basque | `eu-ES` | Nepali (Nepal) | `ne-NP` |
-| Bengali (India) | `bn-IN` | Norwegian Bokmål (Norway) | `nb-NO` |
-| Bosnian (Bosnia and Herzegovina) | `bs-BA` | Odia (India) | `or-IN` |
-| Bulgarian (Bulgaria) | `bg-BG` | Pashto (Afghanistan) | `ps-AF` |
-| Burmese (Myanmar) | `my-MM` | Persian (Iran) | `fa-IR` |
-| Catalan | `ca-ES` | Polish (Poland) | `pl-PL` |
-| Chinese (Cantonese, Simplified) | `yue-CN` | Portuguese (Brazil) | `pt-BR` |
-| Chinese (Cantonese, Traditional) | `zh-HK` | Portuguese (Portugal) | `pt-PT` |
-| Chinese (Jilu Mandarin, Simplified) | `zh-CN-shandong` | Punjabi (India) | `pa-IN` |
-| Chinese (Mandarin, Simplified) | `zh-CN` | Romanian (Romania) | `ro-RO` |
-| Chinese (Southwestern Mandarin, Simplified) | `zh-CN-sichuan` | Russian (Russia) | `ru-RU` |
-| Chinese (Taiwanese Mandarin, Traditional) | `zh-TW` | Serbian (Cyrillic, Serbia) | `sr-RS` |
-| Chinese (Wu, Simplified) | `wuu-CN` | Sinhala (Sri Lanka) | `si-LK` |
-| Croatian (Croatia) | `hr-HR` | Slovak (Slovakia) | `sk-SK` |
-| Czech (Czechia) | `cs-CZ` | Slovenian (Slovenia) | `sl-SI` |
-| Danish (Denmark) | `da-DK` | Somali (Somalia) | `so-SO` |
-| Dutch (Belgium) | `nl-BE` | Spanish (Argentina) | `es-AR` |
-| Dutch (Netherlands) | `nl-NL` | Spanish (Bolivia) | `es-BO` |
-| English (Australia) | `en-AU` | Spanish (Chile) | `es-CL` |
-| English (Canada) | `en-CA` | Spanish (Colombia) | `es-CO` |
-| English (Ghana) | `en-GH` | Spanish (Costa Rica) | `es-CR` |
-| English (Hong Kong SAR) | `en-HK` | Spanish (Cuba) | `es-CU` |
-| English (India) | `en-IN` | Spanish (Dominican Republic) | `es-DO` |
-| English (Ireland) | `en-IE` | Spanish (Ecuador) | `es-EC` |
-| English (Kenya) | `en-KE` | Spanish (El Salvador) | `es-SV` |
-| English (New Zealand) | `en-NZ` | Spanish (Equatorial Guinea) | `es-GQ` |
-| English (Nigeria) | `en-NG` | Spanish (Guatemala) | `es-GT` |
-| English (Philippines) | `en-PH` | Spanish (Honduras) | `es-HN` |
-| English (Singapore) | `en-SG` | Spanish (Mexico) | `es-MX` |
-| English (South Africa) | `en-ZA` | Spanish (Nicaragua) | `es-NI` |
-| English (Tanzania) | `en-TZ` | Spanish (Panama) | `es-PA` |
-| English (United Kingdom) | `en-GB` | Spanish (Paraguay) | `es-PY` |
-| English (United States) | `en-US` | Spanish (Peru) | `es-PE` |
-| Estonian (Estonia) | `et-EE` | Spanish (Puerto Rico) | `es-PR` |
-| Filipino (Philippines) | `fil-PH` | Spanish (Spain) | `es-ES` |
-| Finnish (Finland) | `fi-FI` | Spanish (United States)<sup>1</sup> | `es-US` |
-| French (Belgium) | `fr-BE` | Spanish (Uruguay) | `es-UY` |
-| French (Canada)<sup>1</sup> | `fr-CA` | Spanish (Venezuela) | `es-VE` |
-| French (France) | `fr-FR` | Swedish (Sweden) | `sv-SE` |
-| French (Switzerland) | `fr-CH` | Tamil (India) | `ta-IN` |
-| Galician | `gl-ES` | Telugu (India) | `te-IN` |
-| Georgian (Georgia) | `ka-GE` | Thai (Thailand) | `th-TH` |
-| German (Austria) | `de-AT` | Turkish (Türkiye) | `tr-TR` |
-| German (Germany) | `de-DE` | Ukrainian (Ukraine) | `uk-UA` |
-| German (Switzerland) | `de-CH` | Urdu (India) | `ur-IN` |
-| Greek (Greece) | `el-GR` | Uzbek (Latin, Uzbekistan) | `uz-UZ` |
-| Gujarati (India) | `gu-IN` | Vietnamese (Vietnam) | `vi-VN` |
-| Hebrew (Israel) | `he-IL` | Welsh (United Kingdom) | `cy-GB` |
-| Hindi (India) | `hi-IN` |||
-
+Content Understanding supports the full set of languages/locales supported by fast transcription. See the Fast transcription column here - [Azure Speech Regions](../speech-service/regions.md?tabs=stt).
 
 ### Field value normalization
 
@@ -271,3 +187,22 @@ Different locales have different ways to represent numbers, date, and time. Cont
 |Indonesian|`id-ID`|Vietnamese|`vi-VN`|
 |Italian|`it-IT`|||
 
+## Preview API (2025-05-01-preview)
+
+The preview API version `2025-05-01-preview` includes managed capacity for generative capabilities and has limited regional availability compared to the GA version.
+
+### Region support
+
+To use Azure Content Understanding in Foundry Tools with the preview API, create your Foundry Tool resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding preview API is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+
+| Identifier      | Region         | Geography       | Data Zone        |
+|-----------------|----------------|-----------------|------------------|
+| `westus` | West US | United States | United States |
+| `swedencentral` | Sweden Central | Sweden | European Union |
+| `australiaeast` | Australia East | Australia | N/A<sup>†</sup> |
+
+<sup>†</sup> Australia East doesn't support data zone as a processing location.
+
+> [!NOTE]
+>
+> [Pro mode (preview)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.

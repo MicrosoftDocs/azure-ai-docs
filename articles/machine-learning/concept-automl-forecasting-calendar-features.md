@@ -3,9 +3,9 @@ title: Calendar features for time series forecasting in AutoML
 titleSuffix: Azure Machine Learning
 description: Learn how Azure Machine Learning's AutoML creates calendar and holiday features
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
-ms.reviewer: nivmishra
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
@@ -79,7 +79,7 @@ from azure.ai.ml import automl
 
 # create a forcasting job
 forecasting_job = automl.forecasting(
-    compute='test_cluster',   # Name of single or multinode AML compute infrastructure created by user
+    compute='test_cluster',   # Name of single or multinode Azure Machine Learning compute infrastructure created by user
     experiment_name=exp_name, # name of experiment 
     training_data=sample_data,  
     target_column_name='demand',

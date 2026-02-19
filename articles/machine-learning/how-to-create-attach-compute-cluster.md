@@ -7,10 +7,10 @@ ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
 ms.custom: devx-track-azurecli, cliv2, sdkv2, build-2023
-ms.author: sgilley
-author: sdgilley
-ms.reviewer: vijetaj
-ms.date: 05/03/2024
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: jturuk
+ms.date: 09/11/2025
 ---
 
 # Create an Azure Machine Learning compute cluster
@@ -255,7 +255,7 @@ For information on how to configure a managed identity with your compute cluster
 
 ## Troubleshooting
 
-There's a chance that some users who created their Azure Machine Learning workspace from the Azure portal before the GA release might not be able to create AmlCompute in that workspace. You can either raise a support request against the service or create a new workspace through the portal or the SDK to unblock yourself immediately.
+There's a chance that some users who created their Azure Machine Learning workspace from the Azure portal before the GA release might not be able to create compute in that workspace. You can either raise a support request against the service or create a new workspace through the portal or the SDK to unblock yourself immediately.
 
 [!INCLUDE [retiring vms](./includes/retiring-vms.md)]
 

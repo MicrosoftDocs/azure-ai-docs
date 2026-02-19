@@ -1,24 +1,23 @@
 ---
 title: Entity resolutions provided by Named Entity Recognition
-titleSuffix: Azure AI services
-description: Learn about entity resolutions in the NER feature.
+titleSuffix: Foundry Tools
+description: Learn about entity resolutions in the Named Entity Recognition feature.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---
-
 # Resolve entities to standard formats
 
 A resolution is a standard format for an entity. Entities can be expressed in various forms and resolutions provide standard predictable formats for common quantifiable types. For example, "eighty" and "80" should both resolve to the integer `80`.
 
-You can use NER resolutions to implement actions or retrieve further information. For example, your service can extract datetime entities to extract dates and times that will be provided to a meeting scheduling system.
+You can use `NER` resolutions to implement actions or retrieve further information. For example, your service can extract datetime entities to extract dates and times that are provided to a meeting scheduling system.
 
 > [!IMPORTANT]
-> Starting from version 2023-04-15-preview, the entity resolution feature is replaced by [entity metadata](entity-metadata.md)
+> With version 2023-04-15-preview and going forward, the [entity metadata](entity-metadata.md) replaces the entity resolution feature.
 
 > [!NOTE]
 > Entity resolution responses are only supported starting from **_api-version=2022-10-01-preview_** and **_"modelVersion": "2022-10-01-preview"_**.
@@ -28,7 +27,7 @@ This article documents the resolution objects returned for each entity category 
 
 ## Age
 
-Examples: "10 years old", "23 months old", "sixty Y.O."
+Examples: "Ten-years-old," "23 months old," "60 Y.O."
 
 ```json
 "resolutions": [
@@ -38,7 +37,7 @@ Examples: "10 years old", "23 months old", "sixty Y.O."
                         "value": 10
                     }
                 ]
-```              
+```
 
 Possible values for "unit":
 - Year
@@ -73,7 +72,7 @@ Datetime includes several different subtypes that return different response obje
 
 Specific days.
 
-Examples: "January 1 1995", "12 april", "7th of October 2022", "tomorrow"
+Examples: "January 1, 1995", "12 april", "7th October 2022", "tomorrow"
 
 ```json
 "resolutions": [
@@ -105,7 +104,7 @@ Whenever an ambiguous date is provided, you're offered different options for you
                 ]
 ```
 
-Ambiguity can occur even for a given day of the week. For example, saying "Monday" could refer to last Monday or this Monday. Once again the `timex` value indicates no year or month was specified, and uses a day of the week identifier (W) to indicate the first day of the week. 
+Ambiguity can occur even for a given day of the week. For example, saying "Monday" could refer to last Monday or this Monday. Once again the `timex` value indicates no year or month was specified, and uses a day of the week identifier (W) to indicate the first day of the week.
 
 ```json
 "resolutions": [
@@ -129,7 +128,7 @@ Ambiguity can occur even for a given day of the week. For example, saying "Monda
 
 Specific times.
 
-Examples: "9:39:33 AM", "seven AM", "20:03"
+Examples: "9:39:33 AM," "seven AM," "20:03"
 
 ```json
 "resolutions": [
@@ -146,7 +145,7 @@ Examples: "9:39:33 AM", "seven AM", "20:03"
 
 Specific date and time combinations.
 
-Examples: "6 PM tomorrow", "8 PM on January 3rd", "Nov 1 19:30"
+Examples: "6 PM tomorrow," "8 PM on January 3rd," "Nov 1 19:30"
 
 ```json
 "resolutions": [
@@ -159,7 +158,7 @@ Examples: "6 PM tomorrow", "8 PM on January 3rd", "Nov 1 19:30"
                 ]
 ```
 
-Similar to dates, you can have ambiguous datetime entities. For example, "May 3rd noon" could refer to any year. Resolution provides this year and the next as options. The `timex` value **XXXX** indicates no year was specified. 
+Similar to dates, you can have ambiguous datetime entities. For example, "May 3rd noon" could refer to any year. Resolution provides this year and the next as options. The `timex` value **XXXX** indicates no year was specified.
 
 ```json
 "resolutions": [
@@ -182,7 +181,7 @@ Similar to dates, you can have ambiguous datetime entities. For example, "May 3r
 
 A datetime range is a period with a beginning and end date, time, or datetime.
 
-Examples: "from january 3rd 6 AM to april 25th 8 PM 2022", "between Monday to Thursday", "June", "the weekend"
+Examples: "from january 3rd 6 AM to april 25th 8 PM 2022," "between Monday to Thursday," "June," "the weekend"
 
 The "duration" parameter indicates the time passed in seconds (S), minutes (M), hours (H), or days (D). This parameter is only returned when an explicit start and end datetime are in the query. "Next week" would only return with "begin" and "end" parameters for the week.
 
@@ -199,11 +198,11 @@ The "duration" parameter indicates the time passed in seconds (S), minutes (M), 
 
 ### Set
 
-A set is a recurring datetime period. Sets don't resolve to exact values, as they don't indicate an exact datetime. 
+A set is a recurring datetime period. Sets don't resolve to exact values, as they don't indicate an exact datetime.
 
-Examples: "every Monday at 6 PM", "every Thursday", "every weekend"
+Examples: "every Monday at 6 PM," "every Thursday," "every weekend"
 
-For "every Monday at 6 PM", the `timex` value indicates no specified year with the starting **XXXX**, then every Monday through **WXX-1** to determine first day of every week, and finally **T18** to indicate 6 PM. 
+For "every Monday at 6 PM", the `timex` value indicates no specified year with the starting **XXXX**, then every Monday through **WXX-1** to determine first day of every week, and finally **T18** to indicate 6 PM.
 
 ```json
 "resolutions": [
@@ -218,7 +217,7 @@ For "every Monday at 6 PM", the `timex` value indicates no specified year with t
 
 ## Dimensions
 
-Examples: "24 km/hr", "44 square meters", "sixty six kilobytes"
+Examples: "24 km/hr," "44 square meters," "sixty six kilobytes"
 
 ```json
 "resolutions": [
@@ -259,7 +258,7 @@ Possible values for "resolutionKind" and their "unit" values:
   - Gigabyte
   - Terabyte
   - Petabyte
-  
+
 - **LengthResolution**:
   - Kilometer
   - Hectometer
@@ -334,7 +333,7 @@ Possible values for "resolutionKind" and their "unit" values:
   - Pound
   - Ounce
   - Grain
-  - Pennyweight
+  - Penny weight
   - LongTonBritish
   - ShortTonUS
   - ShortHundredweightUS
@@ -366,7 +365,7 @@ Possible values for "numberKind":
 
 ## Ordinal
 
-Examples: "3rd", "first", "last"
+Examples: "3rd," "first," "last"
 
 ```json
 "resolutions": [
@@ -385,7 +384,7 @@ Possible values for "relativeTo":
 
 ## Temperature
 
-Examples: "88 deg fahrenheit", "twenty three degrees celsius"
+Examples: "88 deg fahrenheit," "twenty three degrees celsius"
 
 ```json
 "resolutions": [

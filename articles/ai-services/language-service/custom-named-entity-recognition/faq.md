@@ -1,34 +1,32 @@
 ---
 title: Custom Named Entity Recognition (NER) FAQ
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Frequently asked questions when using custom Named Entity Recognition.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
-
-
 # Frequently asked questions for Custom Named Entity Recognition
 
-Find answers to commonly asked questions about concepts, and scenarios related to custom NER in Azure AI Language.
+Find answers to commonly asked questions about concepts, and scenarios related to custom NER in Azure Language in Foundry Tools.
 
 ## How do I get started with the service?
 
-See the [quickstart](./quickstart.md) to quickly create your first project, or view [how to create projects](how-to/create-project.md) for more detailed information.
+For more information, *see* our [quickstart](./quickstart.md) or [how to create projects](how-to/create-project.md).
 
 ## What are the service limits?
 
-See the [service limits article](service-limits.md) for more information.
+For more information, *see* [service limits](service-limits.md).
 
 ## How many tagged files are needed?
 
-Generally, diverse and representative [tagged data](how-to/tag-data.md) leads to better results, given that the tagging is done precisely, consistently and completely. There is no set number of tagged instances that will make every model perform well. Performance highly dependent on your schema, and the ambiguity of your schema. Ambiguous entity types need more tags. Performance also depends on the quality of your tagging. The recommended number of tagged instances per entity is 50.
+Generally, diverse and representative [tagged data](how-to/tag-data.md) leads to better results, given that the tagging is done precisely, consistently and completely. There's no set number of tagged instances for a model to perform well. Performance highly dependent on your schema, and the ambiguity of your schema. Ambiguous entity types need more tags. Performance also depends on the quality of your tagging. The recommended number of tagged instances per entity is 50.
 
-## Training is taking a long time, is this expected?
+## How long should it take to train a model?
 
 The training process can take a long time. As a rough estimate, the expected training time for files with a combined length of 12,800,000 chars is 6 hours.
 
@@ -42,32 +40,46 @@ When you're ready to start [using your model to make predictions](#how-do-i-use-
 
 ## What is the recommended CI/CD process?
 
-You can train multiple models on the same dataset within the same project. After you have trained your model successfully, you can [view its performance](how-to/view-model-evaluation.md). You can [deploy and test](quickstart.md#deploy-your-model) your model within [Language studio](https://aka.ms/languageStudio). You can add or remove labels from your data and train a **new** model and test it as well. View [service limits](service-limits.md) to learn about maximum number of trained models with the same project. When you [train a model](how-to/train-model.md), you can determine how your dataset is split into training and testing sets. You can also have your data split randomly into training and testing set where there is no guarantee that the reflected model evaluation is about the same test set, and the results are not comparable. It's recommended that you develop your own test set and use it to evaluate both models so you can measure improvement.
+Here's a list of actions you take within [Microsoft Foundry](https://ai.azure.com/):
+
+* Train multiple models on the same dataset within a single project.
+* View your model's performance.
+* Deploy and test your model and add or remove labels from your data.
+* Choose how your dataset is split into training and testing sets.<br><br> 
+
+Your data can be split randomly into training and testing sets, but this means model evaluation may not be based on the same test set, making results noncomparable. We recommended that you develop your own test set and use it to evaluate both models to accurately measure improvements.<br><br> 
+
+Make sure to review service limits to understand the maximum number of trained models allowed per project.
 
 ## Does a low or high model score guarantee bad or good performance in production?
 
-Model evaluation may not always be comprehensive. This depends on:
-* If the **test set** is too small so the good/bad scores are not representative of model's actual performance. Also if a specific entity type is missing or under-represented in your test set it will affect model performance.
-* **Data diversity** if your data only covers few scenarios/examples of the text you expect in production, your model will not be exposed to all possible scenarios and might perform poorly on the scenarios it hasn't been trained on.
-* **Data representation** if the dataset used to train the model is not representative of the data that would be introduced to the model in production, model performance will be affected greatly.
+Model evaluation may not always be comprehensive. The scope depends on the following factors:
 
-See the [data selection and schema design](how-to/design-schema.md) article for more information.
+* The size of the **test set**. If the test set is too small, the good/bad scores aren't as representative of model's actual performance. Also if a specific entity type is missing or under-represented in your test set it affects model performance.
+* The **diversity of your data**. If your data only includes a limited number of scenarios or examples of the text you anticipate in production, your model may not encounter every possible situation. As a result, the model could perform poorly when faced with unfamiliar scenarios.
+* The **representation within your data**. If the dataset used to train the model isn't representative of the data that would be introduced to the model in production, model performance is affected greatly.
+
+For more information, *see* [data selection and schema design](how-to/design-schema.md).
 
 ## How do I improve model performance?
 
-* View the model [confusion matrix](how-to/view-model-evaluation.md). If you notice that a certain entity type is frequently not predicted correctly, consider adding more tagged instances for this class. If you notice that two entity types are frequently predicted as each other, this means the schema is ambiguous, and you should consider merging them both into one entity type for better performance.
+* View the model [confusion matrix](how-to/view-model-evaluation.md). If you notice that a certain entity type is frequently not predicted correctly, consider adding more tagged instances for this class. 
+
+When two different entity types are often being predicted as one another, it indicates that the schema lacks clarity. To improve performance, you should think about combining these two entity types into a single, unified type. If two entity types are consistently mistaken for each other during prediction, this result suggests ambiguity in your schema. Merging them into one entity type can help enhance overall model accuracy.
 
 * [Review test set predictions](how-to/view-model-evaluation.md). If one of the entity types has a lot more tagged instances than the others, your model may be biased towards this type. Add more data to the other entity types or remove examples from the dominating type.
 
 * Learn more about [data selection and schema design](how-to/design-schema.md).
 
-* [Review your test set](how-to/view-model-evaluation.md) to see predicted and tagged entities side-by-side so you can get a better idea of your model performance, and decide if any changes in the schema or the tags are necessary.
+* [Review your test set](how-to/view-model-evaluation.md). Review the predicted entities alongside the tagged entities and gain a clearer understanding of your model's accuracy. This comparison can help you determine whether adjustments to the schema or tag set are needed.
 
 ## Why do I get different results when I retrain my model?
 
-* When you [train your model](how-to/train-model.md), you can determine if you want your data to be split randomly into train and test sets. If you do, so there is no guarantee that the reflected model evaluation is on the same test set, so results are not comparable.
+* When you [train your model](how-to/train-model.md), you can determine if you want your data to be split randomly into train and test sets. If you choose to proceed, there's no assurance that the model evaluation is performed on the same test set, which means the results may not be directly comparable. By doing so, you risk evaluating the model on a different test set, making it impossible to reliably compare the outcomes.
 
-* If you're retraining the same model, your test set will be the same, but you might notice a slight change in predictions made by the model. This is because the trained model is not robust enough and this is a factor of how representative and distinct your data is and the quality of your tagged data.
+
+* If you're retraining the same model, your test set is the same, but you might notice a slight change in predictions made by the model. The issue arises because the trained model lacks sufficient robustness. This outcome is dependent on how well your data represents different scenarios, how distinct the data points are, and the overall quality of your data tagging. Several factors influence the model's performance. The model's robustness, the distinctiveness and diversity of the dataset, and the precision and uniformity of the tags assigned to the data all play important roles. To achieve optimal results, you must ensure your dataset not only accurately represents the target domain but also offers unique examples, and that all tags are applied with both consistency and accuracy throughout the data.
+
 
 ## How do I get predictions in different languages?
 
@@ -83,13 +95,12 @@ After deploying your model, you [call the prediction API](how-to/call-api.md), u
 
 ## Data privacy and security
 
-Custom NER is a data processor for General Data Protection Regulation (GDPR) purposes. In compliance with GDPR policies, Custom NER users have full control to view, export, or delete any user content either through the [Language Studio](https://aka.ms/languageStudio) or programmatically by using [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob).
+Your data is only stored in your Azure Storage account. Custom NER only has access to read from it during training. Custom NER users have full control to view, export, or delete any user content either through the [Foundry](https://ai.azure.com/) or programmatically by using [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob). For more information, *see* [Data, privacy, and security for Language](/azure/ai-foundry/responsible-ai/language-service/data-privacy)
 
-Your data is only stored in your Azure Storage account. Custom NER only has access to read from it during training.
 
 ## How to clone my project?
 
-To clone your project you need to use the export API  to export the project assets, and then import them into a new project. See the [REST API](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob) reference for both operations.
+To clone your project, you need to use the export API  to export the project assets, and then import them into a new project. See the [REST API](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob) reference for both operations.
 
 ## Next steps
 

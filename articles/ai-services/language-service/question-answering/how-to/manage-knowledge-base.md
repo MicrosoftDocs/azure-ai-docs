@@ -5,17 +5,16 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Create and manage project settings
 
 Custom question answering allows you to manage your projects by providing access to the project settings and data sources. If you haven't created a custom question answering project before we recommend starting with the [getting started article](create-test-deploy.md).
 
 ## Prerequisites
 
-> * If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+> * If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 > * A [Language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled in the Azure portal. Remember your Microsoft Entra ID, Subscription, and language resource name you selected when you created the resource.
 
 ## Create a project
@@ -26,7 +25,7 @@ Custom question answering allows you to manage your projects by providing access
 
 3. Select **create new project**.
 
-4. If you are creating the first project associated with your language resource, you have the option of creating future projects with multiple languages for the same resource. If you choose to explicitly set the language to a single language in your first project, you will not be able to modify this setting later and all subsequent projects for that resource will use the language selected during the creation of your first project.
+4. If you're creating the first project associated with your language resource, you have the option of creating future projects with multiple languages for the same resource. If you choose to explicitly set the language to a single language in your first project, you will not be able to modify this setting later and all subsequent projects for that resource will use the language selected during the creation of your first project.
 
     > [!div class="mx-imgBorder"]
     > ![Screenshot of language selection UI.](../media/manage-knowledge-base/choose-language-option.png)

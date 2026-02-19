@@ -3,13 +3,13 @@ title: Train with MLflow Projects (Preview)
 titleSuffix: Azure Machine Learning
 description:  Set up MLflow with Azure Machine Learning to log metrics and artifacts from ML models
 services: machine-learning
-author: msakande
-ms.author: mopeakande
-ms.reviewer: fasantia
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 11/04/2022
-ms.topic: concept-article
+ms.date: 11/14/2025
+ms.topic: how-to
 ms.custom: how-to, sdkv2
 ---
 
@@ -19,7 +19,7 @@ In this article, learn how to submit training jobs with [MLflow Projects](https:
 
 [!INCLUDE [machine-learning-mlflow-projects-deprecation](includes/machine-learning-mlflow-projects-deprecation.md)]
 
-[MLflow Projects](https://mlflow.org/docs/latest/projects.html) allow for you to organize and describe your code to let other data scientists (or automated tools) run it. MLflow Projects with Azure Machine Learning enable you to track and manage your training runs in your workspace.
+[MLflow Projects](https://mlflow.org/docs/latest/projects.html) allow you to organize and describe your code so other data scientists (or automated tools) can run it. MLflow Projects with Azure Machine Learning enable you to track and manage your training runs in your workspace.
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
@@ -29,7 +29,7 @@ In this article, learn how to submit training jobs with [MLflow Projects](https:
 
 [!INCLUDE [mlflow-prereqs](includes/machine-learning-mlflow-prereqs.md)]
 
-* Using Azure Machine Learning as backend for MLflow projects requires the package `azureml-core`:
+* To use Azure Machine Learning as backend for MLflow projects, you need the package `azureml-core`.
 
   ```bash
   pip install azureml-core
@@ -37,14 +37,14 @@ In this article, learn how to submit training jobs with [MLflow Projects](https:
 
 ### Connect to your workspace
 
-If you're working outside Azure Machine Learning, you need to configure MLflow to point to your Azure Machine Learning workspace's tracking URI. You can find the instructions at [Configure MLflow for Azure Machine Learning](how-to-use-mlflow-configure-tracking.md).
+If you're working outside Azure Machine Learning, you need to configure MLflow to point to your Azure Machine Learning workspace's tracking URI. For more information, see [Configure MLflow for Azure Machine Learning](how-to-use-mlflow-configure-tracking.md).
 
 
-## Track MLflow Projects in Azure Machine Learning workspaces
+## Track MLflow projects in Azure Machine Learning workspaces
 
-This example shows how to submit MLflow projects and track them Azure Machine Learning.
+This example shows how to submit MLflow projects and track them in Azure Machine Learning.
 
-1. Add the `azureml-mlflow` package as a pip dependency to your environment configuration file in order to track metrics and key artifacts in your workspace. 
+1. Add the `azureml-mlflow` package as a pip dependency to your environment configuration file to track metrics and key artifacts in your workspace. 
 
     __conda.yaml__
 
@@ -61,7 +61,7 @@ This example shows how to submit MLflow projects and track them Azure Machine Le
         - azureml-mlflow
     ```
 
-1. Submit the local run and ensure you set the parameter `backend = "azureml"`, which adds support of automatic tracking, model's capture, log files, snapshots, and printed errors in your workspace. In this example we assume the MLflow project you are trying to run is in the same folder you currently are, `uri="."`.
+1. Submit the local run and set the parameter `backend = "azureml"`. This parameter adds support for automatic tracking, model capture, log files, snapshots, and printed errors in your workspace. In this example, the MLflow project you want to run is in the current folder, `uri="."`.
   
     # [MLflow CLI](#tab/cli)
     
@@ -89,7 +89,7 @@ This example shows how to submit MLflow projects and track them Azure Machine Le
 
 This example shows how to submit MLflow projects as a job running on Azure Machine Learning compute.
 
-1. Create the backend configuration object, in this case we are going to indicate `COMPUTE`. This parameter references the name of your remote compute cluster you want to use for running your project. If `COMPUTE` is present, the project will be automatically submitted as an Azure Machine Learning job to the indicated compute. 
+1. Create the backend configuration object. In this example, set the backend configuration to `COMPUTE`. This parameter references the name of your remote compute cluster that you want to use for running your project. If you include `COMPUTE`, the project is automatically submitted as an Azure Machine Learning job to the indicated compute. 
 
     # [MLflow CLI](#tab/cli)
   
@@ -108,7 +108,7 @@ This example shows how to submit MLflow projects as a job running on Azure Machi
     backend_config = {"COMPUTE": "cpu-cluster"}
     ```
 
-1. Add the `azureml-mlflow` package as a pip dependency to your environment configuration file in order to track metrics and key artifacts in your workspace. 
+1. Add the `azureml-mlflow` package as a pip dependency to your environment configuration file to track metrics and key artifacts in your workspace. 
 
     __conda.yaml__
 
@@ -125,7 +125,7 @@ This example shows how to submit MLflow projects as a job running on Azure Machi
         - azureml-mlflow
     ```
 
-1. Submit the local run and ensure you set the parameter `backend = "azureml"`, which adds support of automatic tracking, model's capture, log files, snapshots, and printed errors in your workspace. In this example we assume the MLflow project you are trying to run is in the same folder you currently are, `uri="."`.
+1. Submit the local run and set the parameter `backend = "azureml"`. This parameter adds support for automatic tracking, model capture, log files, snapshots, and printed errors in your workspace. In this example, the MLflow project you want to run is in the current folder, `uri="."`.
 
     # [MLflow CLI](#tab/cli)
  
@@ -154,7 +154,7 @@ This example shows how to submit MLflow projects as a job running on Azure Machi
 
 ## Clean up resources
 
-If you don't plan to use the logged metrics and artifacts in your workspace, the ability to delete them individually is currently unavailable. Instead, delete the resource group that contains the storage account and workspace, so you don't incur any charges:
+If you don't plan to use the logged metrics and artifacts in your workspace, you can't delete them individually. Instead, delete the resource group that contains the storage account and workspace, so you don't incur any charges:
 
 1. In the Azure portal, select **Resource groups** on the far left.
 

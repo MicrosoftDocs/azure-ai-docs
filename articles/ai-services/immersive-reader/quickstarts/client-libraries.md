@@ -8,7 +8,7 @@ zone_pivot_groups: programming-languages-set-twenty
 ms.service: azure-ai-immersive-reader
 ms.topic: quickstart
 ms.date: 02/14/2024
-ms.author: sharmas
+ms.author: michtho
 ms.custom: mode-api, devx-track-extended-java, devx-track-js
 keywords: display pictures, parts of speech, read selected text, translate words, reading comprehension
 ---

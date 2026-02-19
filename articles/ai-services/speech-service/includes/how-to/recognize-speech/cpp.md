@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/17/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/cpp.md)]
@@ -14,7 +14,7 @@ ms.author: eur
 
 To call the Speech service using the Speech SDK, you need to create a [`SpeechConfig`](/cpp/cognitive-services/speech/speechconfig) instance. This class includes information about your Speech resource, like your key and associated region, endpoint, host, or authorization token.
 
-1. Create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and endpoint.
+1. Create a Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and endpoint.
 1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechKey` and `YourSpeechEndpoint` with your Speech resource key and endpoint.
 
 ```cpp
@@ -31,7 +31,7 @@ You can initialize `SpeechConfig` in a few other ways:
 * Use an authorization token with the associated region/location.
 
 > [!NOTE]
-> Regardless of whether you're performing speech recognition, speech synthesis, translation, or intent recognition, you always create a configuration.
+> Regardless of whether you're performing speech recognition, speech synthesis, or translation, you always create a configuration.
 
 ## Recognize speech from a microphone
 

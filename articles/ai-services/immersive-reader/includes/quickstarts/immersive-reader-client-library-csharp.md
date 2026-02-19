@@ -8,14 +8,17 @@ ms.service: azure-ai-immersive-reader
 ms.topic: include
 ms.date: 02/14/2024
 ms.author: sharmas
-ms.custom: "devx-track-js, devx-track-csharp"
+ms.custom:
+  - devx-track-js
+  - devx-track-csharp
+  - sfi-image-nochange
 ---
 
 In this quickstart guide, you build a web app from scratch using C#, and integrate Immersive Reader using the client library. A full working sample of this quickstart is [available on GitHub](https://github.com/microsoft/immersive-reader-sdk/tree/master/js/samples/quickstart-csharp).
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/ai-services).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An Immersive Reader resource configured for Microsoft Entra authentication. Follow [these instructions](../../how-to-create-immersive-reader.md) to get set up. Save the output of your session into a text file so you can configure the environment properties.
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads).
 

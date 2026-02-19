@@ -1,9 +1,9 @@
 ---
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 5/19/2025
+ms.date: 08/07/2025
 ---
 
 Getting started with a custom text to speech avatar is a straightforward process. All it takes are a few video clips of your actor. If you'd like to train a [custom voice](../../../../custom-neural-voice.md) for the same actor, you can do so separately.
@@ -13,11 +13,14 @@ Getting started with a custom text to speech avatar is a straightforward process
 
 ## Prerequisites
 
-You need an Azure AI Foundry resource in one of the [regions that supports custom avatar training](../../../../text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) AI Foundry or Speech resources.
+You need a Microsoft Foundry resource in one of the [regions that supports custom avatar training](../../../../text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md#available-locations). Custom avatar only supports standard (S0) Foundry or Speech resources.
 
 You need a video recording of the talent reading a consent statement acknowledging the use of their image and voice. You upload this video when you set up the avatar talent. For more information, see [Add avatar talent consent](#step-2-add-avatar-talent-consent).
 
 You need video recordings of your avatar talent as training data. You upload these videos when you prepare training data. For more information, see [Add training data](#step-3-add-training-data).
+
+> [!NOTE]
+> If you upload data from Azure Blob storage, the storage account must allow public network access. The URL must be retrievable using a simple anonymous GET request. For example, use a [SAS URL](/azure/storage/common/storage-sas-overview) or a publicly accessible URL. URLs that require extra authorization or expect user interaction aren't supported.
 
 ## Step 1: Create a custom avatar project 
 
@@ -54,7 +57,7 @@ To add an avatar talent profile and upload their consent statement in your proje
 1. Sign in to the [Speech Studio](https://speech.microsoft.com).
 1. Select **Custom avatar** > Your project name > **Set up avatar talent** > **Upload consent video**.
 1. On the **Upload consent video** page, follow the instructions to upload the avatar talent consent video you recorded beforehand.  
-    - Select the avatar type to build. Build a voice sync for avatar which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar. The option to build a voice sync for avatar is only available in the Southeast Asia, West Europe, and West US 2 regions.
+    - Select the avatar type to build. Build a voice sync for avatar, which sounds like your avatar talent together with the avatar model, or build avatar without the voice sync for avatar. The option to build a voice sync for avatar is only available in the Southeast Asia, West Europe, and West US 2 regions.
     - Select the speaking language of the verbal consent statement recorded by the avatar talent. 
     - Enter the avatar talent name and your company name in the same language as the recorded statement. 
         - The avatar talent name must be the name of the person who recorded the consent statement. 
@@ -90,7 +93,7 @@ To upload training data, follow these steps:
 
 Data files are automatically validated when you select **Submit**. Data validation includes series of checks on the video files to verify their file format, size, and total volume. If there are any errors, fix them and submit again.
 
-After you upload the data, you can check the data overview which indicates whether you provided enough data to start training. This screenshot shows an example of enough data added for training an avatar without other gestures.
+After you upload the data, you can check the data overview, which indicates whether you provided enough data to start training. This screenshot shows an example of enough data added for training an avatar without other gestures.
 
 :::image type="content" source="../../../../media/custom-avatar/speech-studio/review-training-data.png" alt-text="Screenshot of enough data added for training an avatar without other gestures." lightbox="../../../../media/custom-avatar/speech-studio/review-training-data.png":::
 
@@ -102,7 +105,7 @@ After you upload the data, you can check the data overview which indicates wheth
 To create a custom avatar in Speech Studio, follow these steps for one of the following methods:
 1. Sign in to the [Speech Studio](https://speech.microsoft.com).
 1. Select **Custom avatar** > Your project name > **Train model** > **Train model**.
-1. Enter a Name to help you identify the model. Choose a name carefully. The model name is used as the avatar name in your synthesis request by the SDK and SSML input. Only letters, numbers, hyphens, and underscores are allowed. Use a unique name for each model.
+1. Enter a Name to help you identify the model. Choose a name carefully. The model name is used as the avatar name in your synthesis request by the SDK and speech synthesis markup language (SSML) input. Only letters, numbers, hyphens, and underscores are allowed. Use a unique name for each model.
 
     > [!IMPORTANT]
     > The avatar model name must be unique within the same Speech or AI Services resource. 

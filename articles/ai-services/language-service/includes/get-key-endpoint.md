@@ -3,15 +3,15 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
+ms.custom: sfi-image-nochange
 ---
-
 ### Get your key and endpoint
 
 Next you will need the key and endpoint from the resource to connect your application to the API. You'll paste your key and endpoint into the code later in the quickstart.
 
-1. After the Language resource deploys successfully, click the **Go to Resource** button under **Next Steps**.
+1. After Azure Language resource deploys successfully, click the **Go to Resource** button under **Next Steps**.
 
     :::image type="content" source="../media/portal-resource-next-steps.png" alt-text="A screenshot showing the next steps after a resource has deployed." lightbox="../media/portal-resource-next-steps.png":::
 

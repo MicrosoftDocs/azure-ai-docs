@@ -1,16 +1,15 @@
 ---
-title: Entity categories recognized by Conversational Personally Identifiable Information (detection) in Azure AI Language
-titleSuffix: Azure AI services
+title: Entity categories recognized by Conversational Personally Identifiable Information (detection) in Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn about the entities the Conversational PII feature can recognize from conversation inputs.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii, build-2024
 ---
-
 # Supported customer content (PII) entity categories in conversations
 
 Use this article to find the entity categories that can be returned by the [conversational PII detection feature](../how-to-call-for-conversations.md). This feature runs a predictive model to identify, categorize, and redact sensitive information from an input conversation.

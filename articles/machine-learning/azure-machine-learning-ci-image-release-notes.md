@@ -9,7 +9,7 @@ ms.subservice: core
 ms.author: deeikele
 ms.reviewer: fsolomon
 ms.date: 07/03/2024
-ms.topic: reference
+ms.topic: release-notes
 ---
 
 # Azure Machine Learning compute instance image release notes
@@ -17,6 +17,16 @@ ms.topic: reference
 In this article, learn about Azure Machine Learning compute instance image releases. Azure Machine Learning maintains host operating system images for [Azure Machine Learning compute instance](./concept-compute-instance.md) and [Data Science Virtual Machines](./data-science-virtual-machine/release-notes.md). Due to the rapidly evolving needs and package updates, we target to release new images every month.
 
 Azure Machine Learning checks and validates any machine learning packages that might require an upgrade. Updates incorporate the latest OS-related patches from Canonical as the original Linux OS publisher. In addition to patches applied by the original publisher, Azure Machine Learning updates system packages when updates are available. For details on the patching process, see [Vulnerability Management](./concept-vulnerability-management.md).
+
+> [!NOTE]
+> Although some environment names (such as azureml_py38) might suggest Python 3.8, all default environments available in the compute instance are configured with Python version 3.10. 
+> The available environments include:
+> - azureml_py310_sdkv2 – /anaconda/envs/azureml_py310_sdkv2
+> - azureml_py38 – /anaconda/envs/azureml_py38
+> - azureml_py38_PT_TF – /anaconda/envs/azureml_py38_PT_TF
+> 
+> Despite the environment names, users should expect Python 3.10 across all Conda environments in the compute instance.
+
 
 Main updates provided with each image version are described in the below sections.
 

@@ -5,9 +5,9 @@ description: Use an isolated Azure Virtual Network to secure your Azure Machine 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.reviewer: shshubhe
+ms.author: scottpolly
+author: s-polly
 ms.date: 06/12/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, tracking-python, security, cliv1, sdkv1, build-2023
@@ -328,7 +328,7 @@ validate=False)
 
 To enable network isolation for Azure Monitor and the Application Insights instance for the workspace, use the following steps:
 
-1. Open your Application Insights resource in the Azure Portal. The __Overview__ tab may or may not have a Workspace property. If it _doesn't_ have the property, perform step 2. If it _does_, then you can proceed directly to step 3.
+1. Open your Application Insights resource in the Azure portal. The __Overview__ tab may or may not have a Workspace property. If it _doesn't_ have the property, perform step 2. If it _does_, then you can proceed directly to step 3.
 
     > [!TIP]
     > New workspaces create a workspace-based Application Insights resource by default. If your workspace was recently created, then you would not need to perform step 2.

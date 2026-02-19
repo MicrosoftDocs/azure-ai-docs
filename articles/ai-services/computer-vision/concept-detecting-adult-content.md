@@ -1,21 +1,19 @@
 ---
-title: Detect Adult, racy, or gory content - Azure AI Vision
-titleSuffix: Azure AI services
-description: Concepts related to detecting adult content in images using the Azure AI Vision API.
+title: Detect Adult, racy, or gory content - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Concepts related to detecting adult content in images using Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 01/22/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
 # Adult content detection
 
-Azure AI Vision can detect adult material in images so that developers can restrict the display of these images in their software. Content flags are applied with a score between zero and one so developers can interpret the results according to their own preferences.
+Azure Vision in Foundry Tools can detect adult material in images so that developers can restrict the display of these images in their software. Content flags are applied with a score between zero and one so developers can interpret the results according to their own preferences.
 
 Try out the adult content detection features quickly and easily in your browser using Vision Studio.
 
@@ -35,7 +33,7 @@ The "adult" classification contains several different categories:
 
 ## Use the API
 
-You can detect adult content with the [Analyze Image 3.2](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API. When you add the value of `Adult` to the **visualFeatures** query parameter, the API returns three boolean properties&mdash;`isAdultContent`, `isRacyContent`, and `isGoryContent`&mdash;in its JSON response. The method also returns corresponding properties&mdash;`adultScore`, `racyScore`, and `goreScore`&mdash;which represent confidence scores between zero and one for each respective category.
+You can detect adult content with the [Analyze Image 3.2](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2&preserve-view=true) API. When you add the value of `Adult` to the **visualFeatures** query parameter, the API returns three boolean properties&mdash;`isAdultContent`, `isRacyContent`, and `isGoryContent`&mdash;in its JSON response. The method also returns corresponding properties&mdash;`adultScore`, `racyScore`, and `goreScore`&mdash;which represent confidence scores between zero and one for each respective category.
 
 ## Next step
 

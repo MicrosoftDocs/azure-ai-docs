@@ -1,9 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 01/30/2024
-ms.author: eur
+ms.date: 1/29/2026
+ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/java.md)]
@@ -71,6 +72,8 @@ Follow these steps to create a console application for speech recognition.
    import com.microsoft.cognitiveservices.speech.*;
    import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
 
+   import java.net.URI;
+   import java.net.URISyntaxException;
    import java.util.concurrent.ExecutionException;
    import java.util.concurrent.Future;
 
@@ -79,8 +82,8 @@ Follow these steps to create a console application for speech recognition.
        private static String speechKey = System.getenv("SPEECH_KEY");
        private static String endpoint = System.getenv("ENDPOINT");
 
-       public static void main(String[] args) throws InterruptedException, ExecutionException {
-           SpeechConfig speechConfig = SpeechConfig.fromEndpoint(speechKey, endpoint);
+       public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
+           SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI(endpoint), speechKey);
            speechConfig.setSpeechRecognitionLanguage("en-US");
            recognizeFromMicrophone(speechConfig);
        }

@@ -2,13 +2,14 @@
 title: Apache Spark - environment configuration
 titleSuffix: Azure Machine Learning
 description: Learn how to configure your Apache Spark environment for interactive data wrangling.
-author: fbsolo-ms1 
-ms.author: franksolomon
-ms.reviewer:  yogipandey
+author: s-polly 
+ms.author: scottpolly
+ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
 ms.date: 04/19/2024
+ms.custom: sfi-image-nochange
 #Customer intent: As a Full Stack ML Pro, I want to perform interactive data wrangling in Azure Machine Learning with Apache Spark.
 ---
 
@@ -19,7 +20,7 @@ To handle interactive Azure Machine Learning notebook data wrangling, Azure Mach
 In this quickstart guide, you learn how to perform interactive data wrangling with Azure Machine Learning serverless Spark compute, Azure Data Lake Storage (ADLS) Gen 2 storage account, and user identity passthrough.
 
 ## Prerequisites
-- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you start.
+- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you start.
 - An Azure Machine Learning workspace. Visit [Create workspace resources](./quickstart-create-resources.md).
 - An Azure Data Lake Storage (ADLS) Gen 2 storage account. Visit [Create an Azure Data Lake Storage (ADLS) Gen 2 storage account](/azure/storage/blobs/create-data-lake-storage-account).
 

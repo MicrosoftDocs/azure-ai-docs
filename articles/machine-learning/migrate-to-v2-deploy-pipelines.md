@@ -5,10 +5,10 @@ description: Upgrade pipeline endpoints from v1 to v2 of Azure Machine Learning 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
-author: sdgilley
-ms.author: sgilley
-ms.date: 05/01/2023
+ms.topic: how-to
+author: s-polly
+ms.author: scottpolly
+ms.date: 11/26/2025
 ms.reviewer: fasantia
 ms.custom:
   - migration
@@ -37,6 +37,16 @@ The following table shows a comparison of each of the concepts:
 
 To learn how to create your first pipeline component deployment see [How to deploy pipelines in Batch Endpoints](how-to-use-batch-pipeline-deployments.md).
 
+## View pipeline endpoints in Azure Machine Learning studio
+
+After you create a batch endpoint with a pipeline component deployment, you can view and manage it in Azure Machine Learning studio:
+
+1. Sign in to [Azure Machine Learning studio](https://ml.azure.com).
+1. In the left navigation menu, select **Endpoints**.
+1. Select the **Batch endpoints** tab to see all batch endpoints, including those with pipeline component deployments.
+1. Select a specific endpoint to view its details, deployments, and job history.
+
+This is the equivalent of the **Pipeline endpoints** tab from SDK v1, which has been consolidated into the **Batch endpoints** tab in SDK v2.
 
 ## Moving to batch endpoints
 
@@ -119,6 +129,9 @@ Compare how publishing a pipeline has changed from v1 to v2:
     
     ml_client.batch_deployments.begin_create_or_update(deployment)
     ```
+
+    After creating the deployment, you can view it in Azure Machine Learning studio under **Endpoints** > **Batch endpoints**.
+
 ---
 
 ### Submit a job to a pipeline endpoint
@@ -200,6 +213,9 @@ for endpoint in all_endpoints:
 
 all_pipeline_deployments = filter(all_endpoints, lamdba x: x is BatchPipelineComponentDeployment)
 ```
+
+You can also view all batch endpoints (including pipeline deployments) in Azure Machine Learning studio under **Endpoints** > **Batch endpoints**.
+
 ---
 
 ## Using the REST API

@@ -7,7 +7,8 @@ ms.date: 05/02/2025
 ms.author: jburchel
 ms.reviewer: maanavd
 reviewer: maanavdalal
-ms.author: jonburchel
+author: jonburchel
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -24,6 +25,20 @@ You need to install the following Node.js packages:
 ```bash
 npm install @langchain/openai @langchain/core
 npm install foundry-local-sdk
+```
+
+This example uses ES modules (`import`) and top-level `await`. If you haven't already, initialize a Node.js project and enable ES modules:
+
+```bash
+npm init -y
+```
+
+In your `package.json`, set:
+
+```json
+{
+    "type": "module"
+}
 ```
 
 ## Create a translation application
@@ -92,6 +107,11 @@ chain.invoke({
 });
 ```
 
+#### References
+
+- Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+- Reference: [Get started with Foundry Local](../../get-started.md)
+
 > [!NOTE]
 > One of the key benefits of Foundry Local is that it **automatically** selects the most suitable model **variant** for the user's hardware. For example, if the user has a GPU, it downloads the GPU version of the model. If the user has an NPU (Neural Processing Unit), it downloads the NPU version. If the user doesn't have either a GPU or NPU, it downloads the CPU version of the model.
 
@@ -101,4 +121,14 @@ To run the application, open a terminal and navigate to the directory where you 
 
 ```bash
 node translation_app.js
+```
+
+You're done when you see a `Response:` line with the translated text.
+
+You should see output similar to:
+
+```text
+Model Info: { ... }
+Translating 'I love to code.' to French...
+Response: <translated text>
 ```

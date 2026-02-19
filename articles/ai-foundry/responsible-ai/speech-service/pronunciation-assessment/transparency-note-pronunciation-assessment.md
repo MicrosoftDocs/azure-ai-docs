@@ -1,12 +1,12 @@
 ---
 title: Transparency note and use cases for Pronunciation Assessment
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This Transparency Note discusses Pronunciation Assessment and the key considerations for making use of this technology responsibly.
-author: eric-urban
-ms.author: eur 
+author: PatrickFarley
+ms.author: pafarley 
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 05/17/2021
 ---
 
@@ -59,7 +59,7 @@ Pronunciation Assessment can be used for [remote learning](https://techcommuni
 
 ## Considerations when choosing other use cases
 
-Online learning has grown rapidly as schools and organizations adapt to new ways of connecting and methods of education. Speech technology can play a significant role in making distance learning more engaging and accessible to students of all backgrounds. With Azure AI services, developers can quickly add speech capabilities to applications, bringing online learning to life.
+Online learning has grown rapidly as schools and organizations adapt to new ways of connecting and methods of education. Speech technology can play a significant role in making distance learning more engaging and accessible to students of all backgrounds. With Foundry Tools, developers can quickly add speech capabilities to applications, bringing online learning to life.
 
 One key element in language learning is improving pronunciation skills. For new language learners, practicing pronunciation and getting timely feedback are essential to becoming a more fluent speaker. For the solution provider that seeks to support learners or students in language learning, the ability to practice anytime, anywhere by using Pronunciation Assessment would be a good fit for this scenario. It can also be integrated as a virtual assistant for teachers and help to improve their efficiency.
 

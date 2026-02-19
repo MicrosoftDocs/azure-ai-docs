@@ -6,7 +6,8 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/01/2025
+ms.date: 01/08/2025
+ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -14,15 +15,16 @@ ms.custom:
 
 # Extract text and information from images by using AI enrichment
 
-Images often contain useful information that's relevant in search scenarios. You can [vectorize images](search-get-started-portal-image-search.md) to represent visual content in your search index. Or, you can use [AI enrichment and skillsets](cognitive-search-concept-intro.md) to create and extract searchable *text* from images, including:
+Images often contain useful information that's relevant in search scenarios. Azure AI Search doesn't query image content in real time, but you can extract information about an image during indexing and make that content searchable. To represent images in a search index, you can use these approaches:
 
-+ [OCR](cognitive-search-skill-ocr.md) for optical character recognition of text and digits
-+ [Image Analysis](cognitive-search-skill-image-analysis.md) that describes images through visual features
-+ [Custom skills](#passing-images-to-custom-skills) to invoke any external image processing that you want to provide
++ [Vectorize images](search-get-started-portal-image-search.md) to represent visual content as a searchable vector.
++ [Verbalize images](cognitive-search-skill-genai-prompt.md) using the GenAI Prompt skill that sends a verbalization request to a chat completion model to describe the image.
++ [Analyze images](cognitive-search-skill-image-analysis.md) using an image analysis skill to generate a text representation of an image, such as *dandelion* for a photo of a dandelion, or the color *yellow*. You can also extract metadata about the image, such as its size.
++ [Use OCR](cognitive-search-skill-ocr.md) to extract text and from photos or pictures, such as the word *STOP* in a stop sign.
 
-By using OCR, you can extract text and from photos or pictures, such as the word *STOP* in a stop sign. Through image analysis, you can generate a text representation of an image, such as *dandelion* for a photo of a dandelion, or the color *yellow*. You can also extract metadata about the image, such as its size.
+You can also create a [custom skill](#passing-images-to-custom-skills) to invoke any external image processing that you want to provide.
 
-This article covers the fundamentals of working with images in skillsets, and also describes several common scenarios, such as working with embedded images, custom skills, and overlaying visualizations on original images.
+This article focuses on image analysis and OCR, custom skills that provide external processing, working with embedded images, and overlaying visualizations on original images. If verbalization or vectorization is your preferred approach, see [Multimodal search](multimodal-search-overview.md) instead.
 
 To work with image content in a skillset, you need:
 
@@ -45,9 +47,9 @@ Images are either standalone binary files or embedded in documents, such as PDF,
 
 Azure Blob Storage is the most frequently used storage for image processing in Azure AI Search. There are three main tasks related to retrieving images from a blob container:
 
-+ Enable access to content in the container. If you're using a full access connection string that includes a key, the key gives you permission to the content. Alternatively, you can [authenticate using Microsoft Entra ID](search-howto-managed-identities-data-sources.md) or [connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md).
++ Enable access to content in the container. If you're using a full access connection string that includes a key, the key gives you permission to the content. Alternatively, you can [authenticate using a managed identity](search-how-to-managed-identities.md) or [connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md).
 
-+ [Create a data source](search-howto-indexing-azure-blob-storage.md) of type *azureblob* that connects to the blob container storing your files.
++ [Create a data source](search-how-to-index-azure-blob-storage.md) of type *azureblob* that connects to the blob container storing your files.
 
 + Review [service tier limits](search-limits-quotas-capacity.md) to make sure that your source data is under maximum size and quantity limits for indexers and enrichment.
 
@@ -100,7 +102,7 @@ Metadata adjustments are captured in a complex type created for each image. You 
 
    The default of 2,000 pixels for the normalized images maximum width and height is based on the maximum sizes supported by the [OCR skill](cognitive-search-skill-ocr.md) and the [image analysis skill](cognitive-search-skill-image-analysis.md). The [OCR skill](cognitive-search-skill-ocr.md) supports a maximum width and height of 4,200 for non-English languages, and 10,000 for English. If you increase the maximum limits, processing could fail on larger images depending on your skillset definition and the language of the documents. 
 
-1.  Optionally, [set file type criteria](search-blob-storage-integration.md#PartsOfBlobToIndex) if the workload targets a specific file type. Blob indexer configuration includes file inclusion and exclusion settings. You can filter out files you don't want.
+1. Optionally, [set file type criteria](search-blob-storage-integration.md#PartsOfBlobToIndex) if the workload targets a specific file type. Blob indexer configuration includes file inclusion and exclusion settings. You can filter out files you don't want.
 
   ```json
   {
@@ -157,16 +159,16 @@ This section supplements the [skill reference](cognitive-search-predefined-skill
 
 1. [Create or update a skillset](/rest/api/searchservice/skillsets/create) to add skills.
 
-1. Add templates for OCR and Image Analysis from the Azure portal, or copy the definitions from the [skill reference](cognitive-search-predefined-skills.md) documentation. Insert them into the skills array of your skillset definition.
+1. Add templates for OCR and image analysis from the Azure portal, or copy the definitions from the [skill reference](cognitive-search-predefined-skills.md) documentation. Insert them into the skills array of your skillset definition.
 
-1. If necessary, [include a multi-service key](cognitive-search-attach-cognitive-services.md) in the Azure AI services property of the skillset. Azure AI Search makes calls to a billable Azure AI services resource for OCR and image analysis for transactions that exceed the free limit (20 per indexer per day). Azure AI services must be in the same region as your search service.
+1. If necessary, [include a Microsoft Foundry resource key](cognitive-search-attach-cognitive-services.md) in the skillset. Azure AI Search makes calls to a billable Microsoft Foundry resource for OCR and image analysis for transactions that exceed the free limit (20 per indexer per day). Unless you use a keyless connection (preview), the Microsoft Foundry resource must be in the same region as your search service.
 
 1. If original images are embedded in PDF or application files like PPTX or DOCX, you need to add a Text Merge skill if you want image output and text output together. Working with embedded images is discussed further on in this article.
 
-Once the basic framework of your skillset is created and Azure AI services is configured, you can focus on each individual image skill, defining inputs and source context, and mapping outputs to fields in either an index or knowledge store.
+Once the basic framework of your skillset is created and Foundry Tools is configured, you can focus on each individual image skill, defining inputs and source context, and mapping outputs to fields in either an index or knowledge store.
 
 > [!NOTE]
-> For an example skillset that combines image processing with downstream natural language processing, see [REST Tutorial: Use REST and AI to generate searchable content from Azure blobs](cognitive-search-tutorial-blob.md). It shows how to feed skill imaging output into entity recognition and key phrase extraction.
+> For an example skillset that combines image processing with downstream natural language processing, see [REST Tutorial: Use REST and AI to generate searchable content from Azure blobs](tutorial-skillset.md). It shows how to feed skill imaging output into entity recognition and key phrase extraction.
 
 ### Inputs for image processing
 
@@ -345,14 +347,14 @@ Skill outputs include `text` (OCR), `layoutText` (OCR), `merged_content`, `capti
         },
         {
             "@search.score": 1,
-            "metadata_storage_name": "Azure AI services and Content Intelligence.pptx",
+            "metadata_storage_name": "Foundry Tools and Content Intelligence.pptx",
             "text": [
                 "",
                 "Microsoft",
                 "",
                 "",
                 "",
-                "Azure AI Search and Augmentation Combining Microsoft Azure AI services and Azure Search"
+                "Azure AI Search and Augmentation Combining Foundry Tools and Azure Search"
             ]
         }
     ]

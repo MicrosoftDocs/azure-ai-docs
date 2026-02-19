@@ -1,12 +1,12 @@
 ---
 title: "Train your custom template model with the sample-labeling tool and table tags"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to effectively use supervised table tag labeling.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 10/01/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
 

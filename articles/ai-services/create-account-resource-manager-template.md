@@ -1,13 +1,13 @@
 ---
-title: "Quickstart: Create an AI Foundry resource by using an ARM template"
-description: Learn how to use an Azure Resource Manager template to create an AI Foundry resource.
-keywords: Azure AI services, cognitive solutions, cognitive intelligence, cognitive artificial intelligence
-author: eric-urban
+title: "Quickstart: Create a Foundry resource by using an ARM template"
+description: Learn how to use an Azure Resource Manager template to create a Foundry resource.
+keywords: Foundry Tools, cognitive solutions, cognitive intelligence, cognitive artificial intelligence
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: quickstart
-ms.date: 5/19/2025
-ms.author: eur
+ms.date: 10/02/2025
+ms.author: pafarley
 ms.custom:
   - subject-armqs
   - mode-arm
@@ -15,17 +15,17 @@ ms.custom:
   - ignite-2023
 ---
 
-# Quickstart: Create an AI Foundry resource by using an ARM template
+# Quickstart: Create a Foundry resource by using an ARM template
 
-This quickstart shows you how to use an Azure Resource Manager template (ARM template) to create a resource in Azure AI services.
+This quickstart shows you how to use an Azure Resource Manager template (ARM template) to create a resource in Foundry Tools.
 
-[!INCLUDE [About AI services](./includes/ai-services-intro.md)]
+[!INCLUDE [About Foundry Tools](./includes/ai-services-intro.md)]
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/cognitive-services).
+* If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Review the template
 
@@ -35,7 +35,7 @@ The template that you use in this quickstart is from [Azure Quickstart Templates
 
 One Azure resource is defined in the Bicep file. The `kind` field in the Bicep file defines the type of resource.
 
-As needed, change the `sku` parameter value to the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) instance you want. The `sku` depends on the resource `kind` that you use. For example, use `AIServices` for the Azure AI Language service. 
+As needed, change the `sku` parameter value to the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) instance you want. The `sku` depends on the resource `kind` that you use. For example, use `AIServices` for the Azure Language. 
 
 ## Deploy the template
 
@@ -52,7 +52,7 @@ As needed, change the `sku` parameter value to the [pricing](https://azure.micro
     | **Subscription** | Select an Azure subscription. |
     | **Resource group** | Select **Create new**, enter a unique name for the resource group, and then select **OK**. |
     | **Region** | Select a region (for example, **East US**). |
-    | **AI service Name** | Replace the value with a unique name for your Azure AI Foundry resource. You'll need the name in the next section when you validate the deployment. |
+    | **Foundry Tool Name** | Replace the value with a unique name for your Microsoft Foundry resource. You'll need the name in the next section when you validate the deployment. |
     | **Location** | Replace with the region that you selected. |
     | **Sku** | Select the [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/) for your resource. |
 
@@ -62,7 +62,7 @@ As needed, change the `sku` parameter value to the [pricing](https://azure.micro
 
 # [Azure CLI](#tab/CLI)
 
-Run the following script from [your local machine](/cli/azure/install-azure-cli), or run it from a browser by using the **Try it** button. Include a name and location (for example, `centralus`) for a new resource group, and the ARM template will be used to deploy an AI Foundry resource within it. Remember the name that you use. You'll use it later to validate the deployment.
+Run the following script from [your local machine](/cli/azure/install-azure-cli), or run it from a browser by using the **Try it** button. Include a name and location (for example, `centralus`) for a new resource group, and the ARM template will be used to deploy a Foundry resource within it. Remember the name that you use. You'll use it later to validate the deployment.
 
 > [!NOTE]
 > The `az deployment group create` command in the script requires Azure CLI version 2.6 or later. To display the version, enter `az --version`. For more information, see the [documentation](/cli/azure/deployment/group).
@@ -80,7 +80,7 @@ read
 ---
 
 > [!TIP]
-> If your subscription doesn't allow you to create an AI Foundry resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) by using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), a [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you're not the subscription owner, ask the subscription owner or someone with an admin role to complete the registration for you. Or ask for the */register/action* privileges to be granted to your account.
+> If your subscription doesn't allow you to create a Foundry resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) by using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), a [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you're not the subscription owner, ask the subscription owner or someone with an admin role to complete the registration for you. Or ask for the */register/action* privileges to be granted to your account.
 
 ## Review deployed resources
 
@@ -96,7 +96,7 @@ When your deployment finishes, you can select the **Go to resource** button to s
 Run the following script. Include the name of the resource group that you created earlier.
 
 ```azurecli-interactive
-echo "Enter the resource group where the Azure AI Foundry resource exists:" &&
+echo "Enter the resource group where the Foundry resource exists:" &&
 read resourceGroupName &&
 az cognitiveservices account list -g $resourceGroupName
 ```
@@ -105,7 +105,7 @@ az cognitiveservices account list -g $resourceGroupName
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or the resource group. Deleting the resource group also deletes any other resources that the group contains.
+If you want to clean up and remove a Foundry Tools subscription, you can delete the resource or the resource group. Deleting the resource group also deletes any other resources that the group contains.
 
 # [Azure portal](#tab/portal)
 
@@ -127,8 +127,8 @@ az group delete --name $resourceGroupName
 
 ## Related content
 
-* For more information on how to securely work with Azure AI services, see [Authenticate requests to Azure AI services](authentication.md).
-* For a list of Azure AI services, see [What are Azure AI services?](./what-are-ai-services.md).
-* For a list of natural languages that Azure AI services support, see [Natural language support in Azure AI services](language-support.md).
-* To understand how to use Azure AI services on-premises, see [What are Azure AI containers?](cognitive-services-container-support.md).
-* To estimate the cost of using Azure AI services, see [Plan and manage costs for Azure AI Foundry](../ai-foundry/how-to/costs-plan-manage.md).
+* For more information on how to securely work with Foundry Tools, see [Authenticate requests to Foundry Tools](authentication.md).
+* For a list of Foundry Tools, see [What are Foundry Tools?](./what-are-ai-services.md).
+* For a list of natural languages that Foundry Tools support, see [Natural language support in Foundry Tools](language-support.md).
+* To understand how to use Foundry Tools on-premises, see [What are Azure containers?](cognitive-services-container-support.md).
+* To estimate the cost of using Foundry Tools, see [Plan and manage costs for Foundry](../ai-foundry/how-to/costs-plan-manage.md).

@@ -1,20 +1,22 @@
 ---
-title: How to generate image embeddings with Azure AI Foundry Models service
-titleSuffix: Azure AI Foundry
-description: Learn how to generate image embeddings with Azure AI Foundry Models
-manager: scottpolly
-author: msakande
-reviewer: santiagxf
-ms.service: azure-ai-model-inference
+title: How to generate image embeddings with Microsoft Foundry Models service
+titleSuffix: Microsoft Foundry
+description: Learn how to generate image embeddings with Microsoft Foundry Models
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 11/21/2025
 ms.author: mopeakande
-ms.reviewer: fasantia
+author: msakande
+ms.reviewer: malpande
+reviewer: mpande98
 ms.custom: generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-# How to generate image embeddings with Azure AI Foundry Models
+# How to generate image embeddings with Microsoft Foundry Models
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 
 ::: zone pivot="programming-language-python"
@@ -48,5 +50,5 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ## Related content
 
-* [Use embeddings models](../../model-inference/how-to/use-embeddings.md)
-* [Azure AI Model Inference API](../../model-inference/reference/reference-model-inference-api.md)
+* [Use embeddings models](./use-embeddings.md)
+* [Azure AI Model Inference API](/rest/api/aifoundry/modelinference)

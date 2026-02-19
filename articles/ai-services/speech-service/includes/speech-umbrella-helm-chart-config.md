@@ -1,13 +1,13 @@
 ---
 title: Install Speech containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Details the speech umbrella helm chart configuration options.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 04/01/2020
-ms.author: eur
+ms.author: pafarley
 ---
 
 ### Speech (umbrella chart)

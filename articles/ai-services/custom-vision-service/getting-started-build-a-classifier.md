@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Build an image classification model with the Custom Vision portal"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the Custom Vision web portal to create, train, and test an image classification model.
 author: PatrickFarley
 manager: nitinme
@@ -14,11 +14,13 @@ keywords: image recognition, image recognition app, custom vision
 
 # Quickstart: Build an image classification model with the Custom Vision portal
 
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
+
 This quickstart explains how to use the Custom Vision web portal to create an image classification model. Once you build a model, you can test it with new images and eventually integrate it into your own image recognition app.
 
 ## Prerequisites
 
-- An Azure subscription. You can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+- An Azure subscription. You can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A set of images to train your classification model. You can use the set of [sample images](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/CustomVision/ImageClassification/Images) on GitHub. Or, you can choose your own images using the [following tips](#upload-and-tag-images).
 - A [supported web browser](overview.md#supported-browsers).
 

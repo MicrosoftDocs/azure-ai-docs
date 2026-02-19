@@ -1,23 +1,23 @@
 ---
-title: Guidance for integration and responsible use with Azure AI Language
-titleSuffix: Azure AI services
-description: Guidance for how to deploy Azure AI Language features responsibly, based on the knowledge and understanding from the team that created this product.
-author: aahill
-ms.author: aahi
+title: Guidance for integration and responsible use with Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
+description: Guidance for how to deploy Azure Language in Foundry Tools features responsibly, based on the knowledge and understanding from the team that created this product.
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: best-practice
 ms.date: 08/15/2022
 ---
 
-# Guidance for integration and responsible use with Azure AI Language
+# Guidance for integration and responsible use with Azure Language in Foundry Tools
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
  
-Microsoft wants to help you responsibly develop and deploy solutions that use Azure AI Language. We are taking a principled approach to upholding personal agency and dignity by considering the fairness, reliability & safety, privacy & security, inclusiveness, transparency, and human accountability of our AI systems. These considerations are in line with our commitment to developing Responsible AI.
+Microsoft wants to help you responsibly develop and deploy solutions that use Azure Language in Foundry Tools. We are taking a principled approach to upholding personal agency and dignity by considering the fairness, reliability & safety, privacy & security, inclusiveness, transparency, and human accountability of our AI systems. These considerations are in line with our commitment to developing Responsible AI.
 
-This article discusses  Azure AI Language features and the key considerations for making use of this technology responsibly. Consider the following factors when you decide how to use and implement AI-powered products and features.
+This article discusses  Language features and the key considerations for making use of this technology responsibly. Consider the following factors when you decide how to use and implement AI-powered products and features.
 
 ## General guidelines
 
@@ -48,7 +48,7 @@ When you're getting ready to deploy AI-powered products or features, the followi
 
 ## See also
 
-* [Transparency note for Azure AI Language](transparency-note.md)
+* [Transparency note for Language](transparency-note.md)
 * [Transparency note for Named Entity Recognition and Personally Identifying Information](transparency-note-named-entity-recognition.md)
 * [Transparency note for the health feature](transparency-note-health.md)
 * [Transparency note for Key Phrase Extraction](transparency-note-key-phrase-extraction.md)
@@ -56,4 +56,4 @@ When you're getting ready to deploy AI-powered products or features, the followi
 * [Transparency note for Question answering](transparency-note-question-answering.md)
 * [Transparency note for Summarization](transparency-note-extractive-summarization.md)
 * [Transparency note for Sentiment Analysis](transparency-note-sentiment-analysis.md)
-* [Data Privacy and Security for  Azure AI Language](data-privacy.md)
+* [Data Privacy and Security for  Language](data-privacy.md)

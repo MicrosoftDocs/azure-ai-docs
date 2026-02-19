@@ -1,12 +1,12 @@
 ---
 title: Document Intelligence container image tags and release notes
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: A listing of all Document Intelligence container image tags.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: reference
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -16,7 +16,7 @@ ms.author: lajanuar
 
 :::moniker range="doc-intel-2.1.0"
 
-Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models, `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models, and `2024-11-30 (GA)` for Layout model:
+Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models, `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models, and `2024-11-30 (GA)` for Read and Layout model:
 
 * [REST API `2022-08-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 * [REST API `2023-07-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.1%20(2023-07-31)&tabs=HTTP&preserve-view=true)
@@ -81,11 +81,12 @@ The following containers support DocumentIntelligence v3.1 models and features:
 
 Document Intelligence container images can be found within the [**Microsoft Artifact Registry** (also know as Microsoft Container Registry(MCR))](https://mcr.microsoft.com/catalog?search=document%20intelligence), the primary registry for all Microsoft published container images.
 
-The following containers support DocumentIntelligence v3.1 models and features:
+The following containers support Document Intelligence v4.0 models and features:
 
 | Container name |image |
 |---|---|
 | [**Layout 4.0**](https://mcr.microsoft.com/en-us/product/azure-cognitive-services/form-recognizer/layout-4.0/tags) |`mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0:latest`|
+| [**Read 4.0**](https://mcr.microsoft.com/product/azure-cognitive-services/form-recognizer/read-4.0/tags) |`mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-4.0:latest`|
 ::: moniker-end
 
 

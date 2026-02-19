@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: concept-article
-author: fbsolo-ms1 
-ms.author: franksolomon 
-ms.reviewer: yogipandey
-ms.date: 09/06/2024
+author: s-polly
+ms.author: scottpolly 
+ms.reviewer: soumyapatro
+ms.date: 11/13/2025
 ms.custom: cliv2, sdkv2, build-2023
 #Customer intent: As a full-stack machine learning pro, I want to use Apache Spark in Azure Machine Learning.
 ---
@@ -23,9 +23,9 @@ Azure Machine Learning integration with Azure Synapse Analytics provides easy ac
 
 ## Serverless Spark compute
 
-With the Apache Spark framework, Azure Machine Learning serverless Spark compute is the easiest way to accomplish distributed computing tasks in the Azure Machine Learning environment. Azure Machine Learning offers a fully managed, serverless, on-demand Apache Spark compute cluster. Its users can avoid the need to create both an Azure Synapse workspace and a Synapse Spark pool.
+With the Apache Spark framework, Azure Machine Learning serverless Spark compute is the easiest way to accomplish distributed computing tasks in the Azure Machine Learning environment. Azure Machine Learning offers a fully managed, serverless, on-demand Apache Spark compute cluster. You don't need to create both an Azure Synapse workspace and a Synapse Spark pool.
 
-Users can define resources, including instance type and the Apache Spark runtime version. They can then use those resources to access serverless Spark compute, in Azure Machine Learning notebooks, for:
+You can define resources, including instance type and the Apache Spark runtime version. Use those resources to access serverless Spark compute in Azure Machine Learning notebooks for:
 
 - [Interactive Spark code development](./interactive-data-wrangling-with-apache-spark-azure-ml.md)
 - [Running machine learning pipelines with a Spark component](./how-to-submit-spark-jobs.md#spark-component-in-a-pipeline-job)
@@ -33,7 +33,7 @@ Users can define resources, including instance type and the Apache Spark runtime
 
 ### Points to consider
 
-Serverless Spark compute works well for most user scenarios that require quick access to distributed computing resources through Apache Spark. However, to make an informed decision, users should consider the advantages and disadvantages of this approach.
+Serverless Spark compute works well for most user scenarios that require quick access to distributed computing resources through Apache Spark. However, to make an informed decision, consider the advantages and disadvantages of this approach.
 
 Advantages:
   
@@ -43,9 +43,9 @@ Advantages:
 
 Disadvantages:
 
-- A persistent Hive metastore is missing. Serverless Spark compute supports only in-memory Spark SQL.
+- No persistent Hive metastore. Serverless Spark compute supports only in-memory Spark SQL.
 - No available tables or databases.
-- Missing Azure Purview integration.
+- No Azure Purview integration.
 - No available linked services.
 - Fewer data sources and connectors.
 - No pool-level configuration.
@@ -58,63 +58,58 @@ To use network isolation with Azure Machine Learning and serverless Spark comput
 
 ### Inactivity periods and tear-down mechanism
 
-At first launch, a serverless Spark compute (*cold start*) resource might need three to five minutes to start the Spark session itself. Provisioning of the automated serverless Spark compute resource, backed by Azure Synapse, causes this delay. After the serverless Spark compute is provisioned, and an Apache Spark session starts, subsequent code executions (*warm start*) won't experience this delay.
+At first launch, a serverless Spark compute (*cold start*) resource might need three to five minutes to start the Spark session itself. This delay happens because the automated serverless Spark compute resource, backed by Azure Synapse, needs time to provision. After the serverless Spark compute is provisioned and an Apache Spark session starts, subsequent code executions (*warm start*) don't experience this delay.
 
-The Spark session configuration offers an option that defines a session timeout (in minutes). The Spark session will end after an inactivity period that exceeds the user-defined timeout. If another Spark session doesn't start in the following 10 minutes, resources provisioned for the serverless Spark compute are torn down.
+The Spark session configuration offers an option that defines a session timeout (in minutes). The Spark session ends after an inactivity period that exceeds the user-defined timeout. If another Spark session doesn't start in the following 10 minutes, the system tears down the resources provisioned for the serverless Spark compute.
 
-After the serverless Spark compute resource tear-down happens, submission of the next job will require a *cold start*. The next visualization shows some session inactivity period and cluster teardown scenarios.
+After the system tears down the serverless Spark compute resource, submission of the next job requires a *cold start*. The following visualization shows some session inactivity period and cluster teardown scenarios.
 
 :::image type="content" source="./media/apache-spark-azure-ml-concepts/spark-session-timeout-teardown.png" lightbox="./media/apache-spark-azure-ml-concepts/spark-session-timeout-teardown.png" alt-text="Expandable diagram that shows scenarios for Apache Spark session inactivity period and cluster teardown.":::
 
 ### Session-level Conda packages
-A Conda dependency YAML file can define many session-level Conda packages in a session configuration. A session times out if it needs more than 15 minutes to install the Conda packages defined in the YAML file. It becomes important to first check whether a required package is already available in the Azure Synapse base image. To do this, users should visit these resources to determine *packages available in the base image for* the Apache Spark version in use:
+A Conda dependency YAML file can define many session-level Conda packages in a session configuration. A session times out if it needs more than 15 minutes to install the Conda packages defined in the YAML file. Check whether a required package is already available in the Azure Synapse base image. To do this, visit these resources to determine *packages available in the base image for* the Apache Spark version in use:
+- [Azure Synapse Runtime for Apache Spark 3.5](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.5)
+- [Azure Synapse Runtime for Apache Spark 3.4](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.4)
 - [Azure Synapse Runtime for Apache Spark 3.3](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.3)
-- [Azure Synapse Runtime for Apache Spark 3.2](https://github.com/microsoft/synapse-spark-runtime/tree/main/Synapse/spark3.2)
 
-> [!IMPORTANT]
-> Azure Synapse Runtime for Apache Spark: Announcements
-> * Azure Synapse Runtime for Apache Spark 3.2:
->   * EOLA Announcement Date: July 8, 2023
->   * End of Support Date: July 8, 2024. After this date, the runtime will be disabled.
-> * For continued support and optimal performance, we advise that you migrate to Apache Spark 3.4
 
 > [!NOTE]
 > For a session-level Conda package:
-> - the *Cold start* will need about ten to fifteen minutes.
-> - the *Warm start*, using same Conda package, will need about one minute.
-> - the *Warm start*, with a different Conda package, will also need about ten to fifteen minutes.
+> - The *Cold start* needs about 10 to 15 minutes.
+> - The *Warm start*, using same Conda package, needs about one minute.
+> - The *Warm start*, with a different Conda package, needs about 10 to 15 minutes.
 > - If you install a large package, or a package that needs a long installation time, it might impact the Spark instance startup time.
-> - Alteration of the PySpark, Python, Scala/Java, .NET, or Spark version is not supported.
-> - Docker images are not supported.
+> - Alteration of the PySpark, Python, Scala/Java, .NET, or Spark version isn't supported.
+> - Docker images aren't supported.
 
 ### Improving session cold start time while using session-level Conda packages
-You can set the `spark.hadoop.aml.enable_cache` configuration variable to `true`, to improve the Spark session *cold start* time. With session level Conda packages, the session *cold start* typically takes 10 to 15 minutes when the session starts for the first time. However, subsequent session *cold starts* take three to five minutes. Define the configuration variable in the **Configure session** user interface, under **Configuration settings**.
+Set the `spark.hadoop.aml.enable_cache` configuration variable to `true` to improve the Spark session *cold start* time. With session-level Conda packages, the session *cold start* typically takes 10 to 15 minutes when the session starts for the first time. However, subsequent session *cold starts* take three to five minutes. Define the configuration variable in the **Configure session** user interface, under **Configuration settings**.
 
 :::image type="content" source="./media/apache-spark-azure-ml-concepts/spark-session-enable-cache.png" lightbox="./media/apache-spark-azure-ml-concepts/spark-session-enable-cache.png" alt-text="Expandable diagram that shows the Spark session configuration tag that enables cache.":::
 
 ## Attached Synapse Spark pool
 
-A Spark pool created in an Azure Synapse workspace becomes available in the Azure Machine Learning workspace with the attached Synapse Spark pool. This option might be suitable for users who want to reuse an existing Synapse Spark pool.
+When you create a Spark pool in an Azure Synapse workspace, you can access it in the Azure Machine Learning workspace with the attached Synapse Spark pool. This option is good for users who want to reuse an existing Synapse Spark pool.
 
-Attachment of a Synapse Spark pool to an Azure Machine Learning workspace requires [more steps](./how-to-manage-synapse-spark-pool.md) before you can use the pool in Azure Machine Learning for:
+To attach a Synapse Spark pool to an Azure Machine Learning workspace, you need to complete [more steps](./how-to-manage-synapse-spark-pool.md) before you can use the pool in Azure Machine Learning for:
 
 - [Interactive Spark code development](./interactive-data-wrangling-with-apache-spark-azure-ml.md)
 - [Spark batch job submission](./how-to-submit-spark-jobs.md)
 - [Running machine learning pipelines with a Spark component](./how-to-submit-spark-jobs.md#spark-component-in-a-pipeline-job)
 
-An attached Synapse Spark pool provides access to native Azure Synapse features. The user is responsible for the provisioning, attaching, configuration, and management of the Synapse Spark pool.
+An attached Synapse Spark pool provides access to native Azure Synapse features. You're responsible for provisioning, attaching, configuring, and managing the Synapse Spark pool.
 
 The Spark session configuration for an attached Synapse Spark pool also offers an option to define a session timeout (in minutes). The session timeout behavior resembles the description in [the previous section](#inactivity-periods-and-tear-down-mechanism), except that the associated resources are never torn down after the session timeout.
 
 ## Defining Spark cluster size
 
-In Azure Machine Learning Spark jobs, you can define the Spark cluster size, with three parameter values:
+In Azure Machine Learning Spark jobs, you can define the Spark cluster size with three parameter values:
 
 - Number of executors
 - Executor cores
 - Executor memory
 
-You should consider an Azure Machine Learning Apache Spark executor as equivalent to Azure Spark worker nodes. An example can explain these parameters. Let's say that you defined the number of executors as 6 (equivalent to six worker nodes), the number of executor cores as 4, and executor memory as 28 GB. Your Spark job then has access to a cluster with 24 cores in total, and 168 GB of memory.
+Consider an Azure Machine Learning Apache Spark executor as equivalent to Azure Spark worker nodes. An example can explain these parameters. If you define the number of executors as 6 (equivalent to six worker nodes), the number of executor cores as 4, and executor memory as 28 GB, your Spark job has access to a cluster with 24 cores in total and 168 GB of memory.
 
 ## Ensuring resource access for Spark jobs
 
@@ -128,8 +123,8 @@ To access data and other resources, a Spark job can use either a managed identit
 [This article](./apache-spark-environment-configuration.md#ensuring-resource-access-for-spark-jobs) describes resource access for Spark jobs. In a notebook session, both the serverless Spark compute and the attached Synapse Spark pool rely on user identity passthrough for data access during [interactive data wrangling](./interactive-data-wrangling-with-apache-spark-azure-ml.md).
 
 > [!NOTE]
-> - To ensure successful Spark job execution, assign **Contributor** and **Storage Blob Data Contributor** roles (on the Azure storage account used for data input and output) to the identity that you will use for the Spark job submission.
-> - If an [attached Synapse Spark pool](./how-to-manage-synapse-spark-pool.md) points to a Synapse Spark pool in an Azure Synapse workspace, and that workspace has an associated managed virtual network, [configure a managed private endpoint to a storage account](/azure/synapse-analytics/security/connect-to-a-secure-storage-account). This configuration will help ensure data access.
+> - To ensure successful Spark job execution, assign **Contributor** and **Storage Blob Data Contributor** roles (on the Azure storage account used for data input and output) to the identity that you use for the Spark job submission.
+> - If an [attached Synapse Spark pool](./how-to-manage-synapse-spark-pool.md) points to a Synapse Spark pool in an Azure Synapse workspace, and that workspace has an associated managed virtual network, [configure a managed private endpoint to a storage account](/azure/synapse-analytics/security/connect-to-a-secure-storage-account). This configuration helps ensure data access.
 
 ## Next steps
 

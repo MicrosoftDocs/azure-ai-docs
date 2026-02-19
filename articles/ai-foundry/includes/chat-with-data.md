@@ -14,7 +14,7 @@ To complete this section, you need a local copy of product data. The [Azure-Samp
 
 Follow these steps to add your data in the chat playground to help the assistant answer questions about your products. You're not changing the deployed model itself. Your data is stored separately and securely in your Azure subscription.
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). 
+1. Go to your project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). 
 1. Select **Playgrounds** from the left pane.
 1. Select **Try the chat playground**.
 1. Select your deployed chat model from the **Deployment** dropdown. 

@@ -1,6 +1,6 @@
 ---
 title: Analytics on projects - custom question answering
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Custom question answering uses Azure diagnostic logging to store the telemetry data and chat logs
 #services: cognitive-services
 manager: nitinme
@@ -9,10 +9,9 @@ ms.author: lajanuar
 displayName: chat history, history, chat logs, logs
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Get analytics for your project
 
 Custom question answering uses Azure diagnostic logging to store the telemetry data and chat logs. Follow the below steps to run sample queries to get analytics on the usage of your custom question answering project.

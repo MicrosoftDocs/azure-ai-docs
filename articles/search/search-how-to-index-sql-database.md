@@ -2,15 +2,16 @@
 title: Azure SQL indexer
 titleSuffix: Azure AI Search
 description: Set up a search indexer to index tables in Azure SQL Database for vector and full text search in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 11/21/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 03/18/2025
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure SQL Database
@@ -42,7 +43,7 @@ This article also provides:
 
 + Read permissions. Azure AI Search supports SQL Server authentication, where the user name and password are provided on the connection string. Alternatively, you can [set up a managed identity and use Azure roles](search-howto-managed-identities-sql.md) with membership in **SQL Server Contributor** or **SQL DB Contributor** roles.
 
-To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-rest.md). If you're using Azure portal, make sure that access to all public networks is enabled in the Azure SQL firewall and that the client has access via an inbound rule. For a REST client that runs locally, configure the SQL Server firewall to allow inbound access from your device IP address. Other approaches for creating an Azure SQL indexer include Azure SDKs.
+To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-text.md). If you're using Azure portal, make sure that access to all public networks is enabled in the Azure SQL firewall and that the client has access via an inbound rule. For a REST client that runs locally, configure the SQL Server firewall to allow inbound access from your device IP address. Other approaches for creating an Azure SQL indexer include Azure SDKs.
 
 ## Try with sample data
 
@@ -130,18 +131,22 @@ In this step, specify the data source, index, and indexer.
    1. Provide a name for the data source object on Azure AI Search.
    1. Use the dropdowns to select the subscription, account type, server, database, table or view, schema, and table name.
    1. For change tracking we recommend **SQL Integrated Change Tracking Policy**.
-   1. For authentication, we recommend connecting with a [managed identity](search-howto-managed-identities-data-sources.md). Your search service must have **SQL Server Contributor** or **SQL DB Contributor** role membership on the database.
+   1. For authentication, we recommend connecting with a [managed identity](search-how-to-managed-identities.md). Your search service must have **SQL Server Contributor** or **SQL DB Contributor** role membership on the database.
    1. Select **Create** to create the data source.
 
    :::image type="content" source="media/search-how-to-index-sql-database/search-data-source.png" alt-text="Screenshot of the data source creation page in the Azure portal.":::
 
-1. Start the **Import data** wizard to create the index and indexer.
+1. Use an [import wizard](search-import-data-portal.md) to create the index and indexer.
 
-   1. On the Overview page, select **Import data**.
-   1. Select the data source you just created, and select **Next**.
-   1. Skip the **Add cognitive skills (Optional)** page.
-   1. On **Customize target index**, name the index, set the key to your primary key in the table, and then group select *Retrievable* and *Searchable* for all fields, and optionally add *Filterable* and *Sortable* for short strings or numeric values.
-   1. On **Create an indexer**, name the indexer and select **Submit**.
+   1. On the **Overview** page, select **Import data** or **Import data (new)**.
+
+   1. Select the data source you just created.
+
+   1. Skip the step for adding AI enrichments.
+
+   1. Name the index, set the key to your primary key in the table, attribute all fields as **Retrievable** and **Searchable**, and optionally add **Filterable** and **Sortable** for short strings or numeric values.
+
+   1. Name the indexer and finish the wizard to create the necessary objects.
 
 ### [**REST**](#tab/test-sql)
 
@@ -154,7 +159,7 @@ The data source definition specifies the data to index, credentials, and policie
 1. [Create Data Source](/rest/api/searchservice/data-sources/create) or [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update) to set its definition: 
 
    ```http
-    POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
+    POST https://myservice.search.windows.net/datasources?api-version=2025-09-01
     Content-Type: application/json
     api-key: admin-key
 
@@ -196,7 +201,7 @@ In a [search index](search-what-is-an-index.md), add fields that correspond to t
 1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store data:
 
     ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2024-07-01
+    POST https://[service name].search.windows.net/indexes?api-version=2025-09-01
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -249,7 +254,7 @@ Once the index and data source have been created, you're ready to create the ind
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
+    POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
     Content-Type: application/json
     api-key: [search service admin key]
     {
@@ -305,7 +310,7 @@ To monitor the indexer status and execution history, check the indexer execution
 ### [**REST**](#tab/rest-check-indexer)
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-09-01
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -362,7 +367,7 @@ For Azure SQL indexers, there are two change detection policies:
 
 + "HighWaterMarkChangeDetectionPolicy" (works for views)
 
-### SQL Integrated Change Tracking Policy
+### SQL integrated change tracking policy
 
 We recommend using "SqlIntegratedChangeTrackingPolicy" for its efficiency and its ability to identify deleted rows.
 
@@ -372,14 +377,14 @@ Database requirements:
 + Database must have [change tracking enabled](/sql/relational-databases/track-changes/enable-and-disable-change-tracking-sql-server)
 + Tables only (no views).
 + Tables can't be clustered. To meet this requirement, drop the clustered index and recreate it as non-clustered index. This workaround often degrades performance. Duplicating content in a second table that's dedicated to indexer processing can be a helpful mitigation. 
-+ Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-howto-reindex.md#delete-orphan-documents).
++ Tables can't be empty. If you use TRUNCATE TABLE to clear rows, a reset and rerun of the indexer won't remove the corresponding search documents. To remove orphaned search documents, you must [index them with a delete action](search-how-to-delete-documents.md#delete-a-single-document).
 + Primary key can't be a compound key (containing more than one column).
 + Primary key must be non-clustered if you want deletion detection.
 
 Change detection policies are added to data source definitions. To use this policy, edit the data source definition in the Azure portal, or use REST to update your data source like this:
 
 ```http
-POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
+POST https://myservice.search.windows.net/datasources?api-version=2025-09-01
 Content-Type: application/json
 api-key: admin-key
     {
@@ -395,12 +400,9 @@ api-key: admin-key
 
 When using SQL integrated change tracking policy, don't specify a separate data deletion detection policy. The SQL integrated change tracking policy has built-in support for identifying deleted rows. However, for the deleted rows to be detected automatically, the document key in your search index must be the same as the primary key in the SQL table, and the primary key must be non-clustered.
 
-<!-- > [!NOTE]  
-> When using [TRUNCATE TABLE](/sql/t-sql/statements/truncate-table-transact-sql) to remove a large number of rows from a SQL table, the indexer needs to be [reset](/rest/api/searchservice/indexers/reset) to reset the change tracking state to pick up row deletions. -->
-
 <a name="HighWaterMarkPolicy"></a>
 
-### High Water Mark Change Detection policy
+### High water mark change detection policy
 
 This change detection policy relies on a "high water mark" column in your table or view that captures the version or time when a row was last updated. If you're using a view, you must use a high water mark policy. 
 
@@ -417,7 +419,7 @@ The high water mark column must meet the following requirements:
 Change detection policies are added to data source definitions. To use this policy, create or update your data source like this:
 
 ```http
-POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
+POST https://myservice.search.windows.net/datasources?api-version=2025-09-01
 Content-Type: application/json
 api-key: admin-key
     {
@@ -483,7 +485,7 @@ You can also disable the `ORDER BY [High Water Mark Column]` clause. However, th
     }
 ```
 
-### Soft Delete Column Deletion Detection policy
+### Soft delete column deletion detection policy
 
 When rows are deleted from the source table, you probably want to delete those rows from the search index as well. If you use the SQL integrated change tracking policy, this is taken care of for you. However, the high water mark change tracking policy doesn’t help you with deleted rows. What to do?
 

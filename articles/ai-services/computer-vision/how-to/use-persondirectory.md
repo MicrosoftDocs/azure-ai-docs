@@ -1,17 +1,18 @@
 ---
 title: "Example: Use the PersonDirectory data structure - Face"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the PersonDirectory data structure to store face and person data at greater capacity and with other new features.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/29/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: csharp
-ms.custom: [devx-track-csharp, cogserv-non-critical-vision]
+ms.custom: devx-track-csharp
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
@@ -29,7 +30,7 @@ Another difference between **PersonDirectory** and previous data structures is t
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Once you have your Azure subscription, [create a Face resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFace) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
   * You'll need the key and endpoint from the resource you create to connect your application to the Face API. You'll paste your key and endpoint into the code below.
   * You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.

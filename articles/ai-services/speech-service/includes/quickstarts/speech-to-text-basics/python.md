@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 01/30/2024
-ms.author: eur
+ms.date: 7/16/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/python.md)]
@@ -30,7 +30,7 @@ Install a version of [Python from 3.7 or later](https://www.python.org/downloads
 ## Recognize speech from a microphone
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech in Foundry Tools Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 Follow these steps to create a console application.
 

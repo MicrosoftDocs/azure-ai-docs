@@ -1,46 +1,204 @@
 ---
-title: Generate embeddings
+title: Generate Embeddings
 titleSuffix: Azure AI Search
 description: Learn how to generate embeddings for downstream indexing into an Azure AI Search index.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/11/2025
+ms.date: 08/06/2025
 ---
 
 # Generate embeddings for search queries and documents
 
-Azure AI Search doesn't host embedding models, so one of your challenges is creating vectors for query inputs and outputs. You can use any supported embedding model, but this article assumes Azure OpenAI embedding models for illustration.
+Azure AI Search doesn't host embedding models, so you're responsible for creating vectors for query inputs and outputs. Choose one of the following approaches:
 
-We recommend [integrated vectorization](vector-search-integrated-vectorization.md), which provides built-in data chunking and vectorization. Integrated vectorization takes a dependency on indexers, skillsets, and built-in or custom skills that point to a model that executes externally from Azure AI Search. Several built-in skills point to embedding models in Azure AI Foundry, which makes integrated vectorization your easiest solution for solving the embedding challenge.
+| Approach | Description |
+| --- | --- |
+| [Integrated vectorization](vector-search-integrated-vectorization.md) | Use built-in data chunking and vectorization in Azure AI Search. This approach takes a dependency on indexers, skillsets, and built-in or custom skills that point to external embedding models, such as those in Microsoft Foundry. |
+| Manual vectorization | Manage data chunking and vectorization yourself. For indexing, you [push prevectorized documents](vector-search-how-to-create-index.md#load-vector-data-for-indexing) into vector fields in a search index. For querying, you [provide precomputed vectors](#generate-an-embedding-for-an-improvised-query) to the search engine. For demos of this approach, see the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples/tree/main) GitHub repository. |
 
-If you want to handle data chunking and vectorization yourself, we provide demos in the [sample repository](https://github.com/Azure/azure-search-vector-samples/tree/main) that show you how to integrate with other community solutions.
+We recommend integrated vectorization for most scenarios. Although you can use any supported embedding model, this article uses Azure OpenAI models for illustration.
 
 ## How embedding models are used in vector queries
 
-+ Query inputs are either vectors, or text or images that are converted to vectors during query processing. The built-in solution in Azure AI Search is to use a vectorizer. 
+Embedding models generate vectors for both query inputs and query outputs. Query inputs include:
 
-  Alternatively, you can also handle the conversion yourself by passing the query input to an embedding model of your choice. To avoid [rate limiting](/azure/ai-services/openai/quotas-limits), you can implement retry logic in your workload. For the Python demo, we used [tenacity](https://pypi.org/project/tenacity/).
++ **Text or images that are converted to vectors during query processing**. As part of integrated vectorization, a [vectorizer](vector-search-how-to-configure-vectorizer.md) performs this task.
 
-+ Query outputs are any matching documents found in a search index. Your search index must have been previously loaded with documents having one or more vector fields with embeddings. Whatever embedding model you used for indexing, use that same model for queries.
++ **Precomputed vectors**. You can generate these vectors by passing the query input to an embedding model of your choice. To avoid [rate limiting](/azure/ai-services/openai/quotas-limits), implement retry logic in your workload. Our [Python demo](https://github.com/Azure/azure-search-vector-samples/tree/93c839591bf92c2f10001d287871497b0f204a7c/demo-python) uses [tenacity](https://pypi.org/project/tenacity/).
+
+Based on the query input, the search engine retrieves matching documents from your search index. These documents are the query outputs.
+
+Your search index must already contain documents with one or more vector fields populated by embeddings. You can create these embeddings through integrated or manual vectorization. To ensure accurate results, use the same embedding model for indexing and querying.
+
+## Tips for embedding model integration
+
++ **Identify use cases**. Evaluate specific use cases where embedding model integration for vector search features adds value to your search solution. Examples include [multimodal search](multimodal-search-overview.md) or matching image content with text content, multilingual search, and similarity search.
+
++ **Design a chunking strategy**. Embedding models have limits on the number of tokens they accept, so [data chunking](vector-search-how-to-chunk-documents.md) is necessary for large files.
+
++ **Optimize cost and performance**. Vector search is resource intensive and subject to maximum limits, so vectorize only the fields that contain semantic meaning. [Reduce vector size](vector-search-how-to-configure-compression-storage.md) to store more vectors for the same price.
+
++ **Choose the right embedding model**. Select a model for your use case, such as word embeddings for text-based searches or image embeddings for visual searches. Consider pretrained models, such as text-embedding-ada-002 from OpenAI or the Image Retrieval REST API from [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/how-to/image-retrieval).
+
++ **Normalize vector lengths**. To improve the accuracy and performance of similarity search, normalize vector lengths before you store them in a search index. Most pretrained models are already normalized.
+
++ **Fine-tune the model**. If needed, fine-tune the model on your domain-specific data to improve its performance and relevance to your search application.
+
++ **Test and iterate**. Continuously test and refine the embedding model integration to achieve your desired search performance and user satisfaction.
 
 ## Create resources in the same region
 
 Although integrated vectorization with Azure OpenAI embedding models doesn't require resources to be in the same region, using the same region can improve performance and reduce latency.
 
-1. [Check regions for a text embedding model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
+To use the same region for your resources:
 
-1. [Find the same region for Azure AI Search](search-region-support.md). 
+1. Check the [regional availability of text embedding models](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
 
-1. To support hybrid queries that include [semantic ranking](semantic-how-to-query-request.md), or if you want to try machine learning model integration using a [custom skill](cognitive-search-custom-skill-interface.md) in an [AI enrichment pipeline](cognitive-search-concept-intro.md), select an Azure AI Search region that provides those features.
+1. Check the [regional availability of Azure AI Search](search-region-support.md).
+
+1. Create an Azure OpenAI resource and Azure AI Search service in the same region.
+
+> [!TIP]
+> Want to use [semantic ranking](semantic-how-to-query-request.md) for [hybrid queries](hybrid-search-overview.md) or a machine learning model in a [custom skill](cognitive-search-custom-skill-interface.md) for [AI enrichment](cognitive-search-concept-intro.md)? Choose an Azure AI Search region that provides those features.
+
+## Choose an embedding model in Foundry
+
+When you add knowledge to an agent workflow in the [Foundry portal](https://ai.azure.com/?cid=learnDocs), you have the option of creating a search index. A wizard guides you through the steps.
+
+One step involves selecting an embedding model to vectorize your plain text content. The following models are supported:
+
++ text-embedding-3-small
++ text-embedding-3-large
++ text-embedding-ada-002
++ Cohere-embed-v3-english
++ Cohere-embed-v3-multilingual
+
+Your model must already be deployed, and you must have permission to access it. For more information, see [Deployment overview for Foundry Models](/azure/ai-foundry/concepts/deployments-overview).
 
 ## Generate an embedding for an improvised query
 
-The following Python code generates an embedding that you can paste into the "values" property of a vector query.
+If you don't want to use integrated vectorization, you can manually generate an embedding and paste it into the `vectorQueries.vector` property of a vector query. For more information, see [Create a vector query in Azure AI Search](vector-search-how-to-query.md).
+
+The following examples assume the text-embedding-ada-002 model. Replace `YOUR-API-KEY` and `YOUR-OPENAI-RESOURCE` with your Azure OpenAI resource details.
+
+### [.NET](#tab/dotnet)
+
+```csharp
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        var apiKey = "YOUR-API-KEY";
+        var apiBase = "https://YOUR-OPENAI-RESOURCE.openai.azure.com";
+        var apiVersion = "2024-02-01";
+        var engine = "text-embedding-ada-002";
+
+        var client = new HttpClient();
+        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+
+        var requestBody = new
+        {
+            input = "How do I use C# in VS Code?"
+        };
+
+        var response = await client.PostAsync(
+            $"{apiBase}/openai/deployments/{engine}/embeddings?api-version={apiVersion}",
+            new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json")
+        );
+
+        var responseBody = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseBody);
+    }
+}
+```
+
+### [Java](#tab/java)
+
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.OutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) {
+        String apiKey = "YOUR-API-KEY";
+        String apiBase = "https://YOUR-OPENAI-RESOURCE.openai.azure.com";
+        String engine = "text-embedding-ada-002";
+        String apiVersion = "2024-02-01";
+
+        try {
+            URL url = new URL(String.format("%s/openai/deployments/%s/embeddings?api-version=%s", apiBase, engine, apiVersion));
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Authorization", "Bearer " + apiKey);
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            String requestBody = "{\"input\": \"How do I use Java in VS Code?\"}";
+
+            try (OutputStream os = connection.getOutputStream()) {
+                os.write(requestBody.getBytes());
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    response.append(line);
+                }
+                System.out.println(response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### [JavaScript](#tab/javascript)
+
+```javascript
+const apiKey = "YOUR-API-KEY";
+const apiBase = "https://YOUR-OPENAI-RESOURCE.openai.azure.com";
+const engine = "text-embedding-ada-002";
+const apiVersion = "2024-02-01";
+
+async function generateEmbedding() {
+  const response = await fetch(
+    `${apiBase}/openai/deployments/${engine}/embeddings?api-version=${apiVersion}`,
+    {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        input: "How do I use JavaScript in VS Code?",
+      }),
+    }
+  );
+
+  const data = await response.json();
+  console.log(data.data[0].embedding);
+}
+
+generateEmbedding();
+```
+
+### [Python](#tab/python)
 
 ```python
 !pip install openai
@@ -60,39 +218,24 @@ embeddings = response['data'][0]['embedding']
 print(embeddings)
 ```
 
-Output is a vector array of 1,536 dimensions.
+### [REST API](#tab/rest-api)
 
-## Choose an embedding model in Azure AI Foundry
+```http
+POST https://YOUR-OPENAI-RESOURCE.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings?api-version=2024-02-01
+  Authorization: Bearer YOUR-API-KEY
+  Content-Type: application/json
+    
+  {
+    "input": "How do I use REST APIs in VS Code?"
+  }
+```
 
-In the Azure AI Foundry portal, you have the option of creating a search index when you add knowledge to your agent workflow. A wizard guides you through the steps. When asked to provide an embedding model that vectorizes your plain text content, you can use one of the following supported models:
+---
 
-+ text-embedding-3-large
-+ text-embedding-3-small
-+ text-embedding-ada-002
-+ Cohere-embed-v3-english
-+ Cohere-embed-v3-multilingual
+The output is a vector array of 1,536 dimensions.
 
-Your model must already be deployed and you must have permission to access it. For more information, see [Deploy AI models in Azure AI Foundry portal](/azure/ai-foundry/concepts/deployments-overview).
+## Related content
 
-## Tips and recommendations for embedding model integration
-
-+ **Identify use cases**: Evaluate the specific use cases where embedding model integration for vector search features can add value to your search solution. This can include multimodal or matching image content with text content, multilingual search, or similarity search.
-
-+ **Design a chunking strategy**: Embedding models have limits on the number of tokens they can accept, which introduces a data chunking requirement for large files. For more information, see [Chunk large documents for vector search solutions](vector-search-how-to-chunk-documents.md).
-
-+ **Optimize cost and performance**: Vector search can be resource-intensive and is subject to maximum limits, so consider only vectorizing the fields that contain semantic meaning. [Reduce vector size](vector-search-how-to-configure-compression-storage.md) so that you can store more vectors for the same price.
-
-+ **Choose the right embedding model:** Select an appropriate model for your specific use case, such as word embeddings for text-based searches or image embeddings for visual searches. Consider using pretrained models like **text-embedding-ada-002** from OpenAI or **Image Retrieval** REST API from [Azure AI Computer Vision](/azure/ai-services/computer-vision/how-to/image-retrieval).
-
-+ **Normalize Vector lengths**: Ensure that the vector lengths are normalized before storing them in the search index to improve the accuracy and performance of similarity search. Most pretrained models already are normalized but not all. 
-
-+ **Fine-tune the model**: If needed, fine-tune the selected model on your domain-specific data to improve its performance and relevance to your search application.
-
-+ **Test and iterate**: Continuously test and refine your embedding model integration to achieve the desired search performance and user satisfaction.
-
-## Next steps
-
-+ [Understanding embeddings in Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/concepts/understand-embeddings)
-+ [Learn how to generate embeddings](/azure/ai-services/openai/how-to/embeddings?tabs=console)
++ [Understand embeddings in Azure OpenAI in Foundry Models](/azure/ai-services/openai/concepts/understand-embeddings)
++ [Generate embeddings with Azure OpenAI](/azure/ai-services/openai/how-to/embeddings?tabs=console)
 + [Tutorial: Explore Azure OpenAI embeddings and document search](/azure/ai-services/openai/tutorials/embeddings?tabs=command-line)
-+ [Tutorial: Choose a model (RAG solutions in Azure AI Search)](tutorial-rag-build-solution-models.md)

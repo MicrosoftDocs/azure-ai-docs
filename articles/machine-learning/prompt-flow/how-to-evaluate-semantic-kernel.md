@@ -11,15 +11,16 @@ ms.custom:
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: chenlujiao
+ms.reviewer: sooryar
 ms.date: 10/14/2024
+ms.update-cycle: 365-days
 ---
 
 # Evaluate Semantic Kernel with prompt flow
 
 This article describes the seamless integration between prompt flow and [Semantic Kernel](/semantic-kernel/overview/), and demonstrates how to evaluate Semantic Kernel plugins and planners by using prompt flow. In the rapidly evolving landscape of AI orchestration, a comprehensive evaluation of your plugins and planners is important for optimal performance.
 
-Semantic Kernel is an open-source SDK that lets you easily combine AI services with programming languages like C# and Python to create AI apps that combine the best of both worlds. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and [planners](/semantic-kernel/ai-orchestration/planners), which are powerful tools that use AI capabilities to optimize operations, thus driving efficiency and accuracy in planning.
+Semantic Kernel is an open-source SDK that lets you easily combine Foundry Tools with programming languages like C# and Python to create AI apps that combine the best of both worlds. Semantic Kernel provides [plugins](/semantic-kernel/ai-orchestration/plugins) and [planners](/semantic-kernel/ai-orchestration/planners), which are powerful tools that use AI capabilities to optimize operations, thus driving efficiency and accuracy in planning.
 
 As you build and add more plugins to planners, the error potential increases, so it's important to make sure they work as intended. Testing plugins and planners used to be a manual, time-consuming process. Now you can use prompt flow to automate this process.
 
@@ -127,7 +128,7 @@ You can check the aggregated metric in the **Metrics** tab.
 If you find that your plugins and planners aren't performing as well as they should, you can take steps to make them better. The following high-level recommendations can improve the effectiveness of your plugins and planners.
 
 - Use a more advanced model like GPT-4 instead of GPT-3.5-turbo.
-- Improve your plugin descriptions so they’re easier for the planner to use.
+- Improve your plugin descriptions so they're easier for the planner to use.
 - Inject more help to the planner when you send the user request.
 
 A combination of these three actions can turn a failing planner into a winning one. By the end of the enhancement and evaluation process, you should have a planner that can correctly answer all of the benchmark data.

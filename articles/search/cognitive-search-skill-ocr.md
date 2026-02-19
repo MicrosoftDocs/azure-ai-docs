@@ -2,23 +2,22 @@
 title: OCR skill
 titleSuffix: Azure AI Search
 description: Extract text from image files using optical character recognition (OCR) in an enrichment pipeline in Azure AI Search.
-
 author: gmndrg
 ms.author: gimondra
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 06/24/2022
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 # OCR cognitive skill
 
-The **Optical character recognition (OCR)** skill recognizes printed and handwritten text in image files. This article is the reference documentation for the OCR skill. See [Extract text from images](cognitive-search-concept-image-scenarios.md) for usage instructions.
+The **optical character recognition (OCR)** skill recognizes printed and handwritten text in image files. This article is the reference documentation for the OCR skill. See [Extract text from images](cognitive-search-concept-image-scenarios.md) for usage instructions.
 
-An OCR skill uses the machine learning models provided by [Azure AI Vision](/azure/ai-services/computer-vision/overview) API [v3.2](https://westus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-2/operations/5d986960601faab4bf452005) in Azure AI services. The **OCR** skill maps to the following functionality:
+The **OCR** skill uses the machine learning models provided by [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) API [v3.2](https://westus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-2/operations/5d986960601faab4bf452005). The **OCR** skill maps to the following functionality:
 
-+ For the languages listed under [Azure AI Vision language support](/azure/ai-services/computer-vision/language-support#optical-character-recognition-ocr), the [Read API](/azure/ai-services/computer-vision/overview-ocr) is used.
++ For the languages listed under [Azure Vision language support](/azure/ai-services/computer-vision/language-support#optical-character-recognition-ocr), the [Read API](/azure/ai-services/computer-vision/overview-ocr) is used.
 
 + For Greek and Serbian Cyrillic, the legacy [OCR in version 3.2](https://github.com/Azure/azure-rest-api-specs/tree/master/specification/cognitiveservices/data-plane/ComputerVision/stable/v3.2) API is used.
 
@@ -30,22 +29,21 @@ The **OCR** skill extracts text from image files and embedded images. Supported 
 + .BMP
 + .TIFF
 
-Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
+Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in Microsoft OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
 > [!NOTE]
-> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 > In addition, image extraction is [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
->
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name     | Description |
 |--------------------|-------------|
 | `detectOrientation`    | Detects image orientation. Valid values are `true` or `false`. </p>This parameter only applies if the [legacy OCR version 3.2](https://github.com/Azure/azure-rest-api-specs/tree/master/specification/cognitiveservices/data-plane/ComputerVision/stable/v3.2) API is used.  |
-| `defaultLanguageCode` | Language code of the input text. Supported languages include all of the [generally available languages](/azure/ai-services/computer-vision/language-support#analyze-image) of Azure AI Vision. You can also specify `unk` (Unknown). </p>If the language code is unspecified or null, the language is set to English. If the language is explicitly set to `unk`, all languages found are auto-detected and returned.|
+| `defaultLanguageCode` | Language code of the input text. Supported languages include all of the [generally available languages](/azure/ai-services/computer-vision/language-support#analyze-image) of Azure Vision. You can also specify `unk` (Unknown). </p>If the language code is unspecified or null, the language is set to English. If the language is explicitly set to `unk`, all languages found are auto-detected and returned.|
 | `lineEnding` | The value to use as a line separator. Possible values: "Space", "CarriageReturn", "LineFeed".  The default is "Space". |
 
 In previous versions, there was a parameter called "textExtractionAlgorithm" to specify extraction of "printed" or "handwritten" text. This parameter is deprecated because the current Read API algorithm extracts both types of text at once. If your skill includes this parameter, you don't need to remove it, but it won't be used during skill execution.

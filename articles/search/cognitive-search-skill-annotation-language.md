@@ -2,15 +2,15 @@
 title: Skill context and input annotation reference language
 titleSuffix: Azure AI Search
 description: Annotation syntax reference for annotation in the context, inputs, and outputs of a skillset in an AI enrichment pipeline in Azure AI Search.
-
 author: BertrandLeRoy
-ms.author: beleroy
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: reference
-ms.date: 04/15/2025
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 # Skill context and input annotation language
 
@@ -21,14 +21,14 @@ The data working set that represents the current state of the indexer work for t
 progressively enriched with each skill iteration's output data.
 That data is internally organized in a tree-like structure that can be queried to be used as skill inputs or to be added to the index.
 The nodes in the tree can be simple values such as strings and numbers, arrays, or complex objects and even binary files.
-Even simple values can be enriched with additional structured information.
+Even simple values can be enriched with more structured information.
 For example, a string can be annotated with additional information that is stored beneath it in the enrichment tree.
 The expressions used to query that internal structure use a rich syntax that is detailed in this article.
 The enriched data structure can be [inspected from debug sessions](cognitive-search-debug-session.md).
 Expressions querying the structure can also be tested from debug sessions.
 
-Throughout the article, we'll use the following enriched data as an example.
-This data is typical of the kind of structure you would get when enriching a document using a skillset with [OCR](cognitive-search-skill-ocr.md), [key phrase extraction](cognitive-search-skill-keyphrases.md), [text translation](cognitive-search-skill-text-translation.md), [language detection](cognitive-search-skill-language-detection.md), and [entity recognition](cognitive-search-skill-entity-recognition-v3.md) skills, as well as a custom tokenizer skill.
+Throughout the article, we use the following enriched data as an example.
+This data is typical of the kind of structure you would get when enriching a document using a skillset with [OCR](cognitive-search-skill-ocr.md), [key phrase extraction](cognitive-search-skill-keyphrases.md), [text translation](cognitive-search-skill-text-translation.md), [language detection](cognitive-search-skill-language-detection.md), and [entity recognition](cognitive-search-skill-entity-recognition-v3.md) skills, plus a custom tokenizer skill.
 
 |Path|Value|
 |---|---|
@@ -77,7 +77,7 @@ This data is typical of the kind of structure you would get when enriching a doc
 
 ## Document root
 
-All the data is under one root element, for which the path is `"/document"`. The root element is the default context for skills.
+Data is under one root element and the path is `"/document"`. The root element is the default context for skills.
 
 ## Simple paths
 
@@ -106,8 +106,14 @@ Specific elements of an array can be referenced by using their numeric index lik
 
 ### Escape sequences
 
-There are two characters that have special meaning and need to be escaped if they appear in an expression and must be interpreted as is instead of as their special meaning: `'/'` and `'~'`.
-Those characters must be escaped respectively as `'~0'` and `'~1'`. 
+There are several characters that have a special meaning and need to be escaped if they're to be interpreted as-is instead of a syntax element. These characters include `#`, `/`, and `~` among others.
+
+| Escape sequence | Special meaning (usage in path syntax)  | Example |
+|---|---|
+| `~0` | Used for escaping `~` | "~0" for `~`, where "~/documents" becomes "~0~1documents"|
+| `~1` | Used for escaping `/` | "~1" for `/`, where "~/documents" becomes "~0~1documents" |
+| `~2` | Used for generically to escape arbitrary sequences (including but not limited to `#` and `*`) | "~2#~2" where "readme#requirements" becomes "readme~2#~2requirements" |
+
 
 ## Array enumeration
 
@@ -136,7 +142,7 @@ The `'#'` token expresses that the array should be treated as a single value ins
 ### Enumerating arrays in context
 
 It's often useful to process each element of an array in isolation and have a different set of skill inputs and outputs for each.
-This can be done by setting the context of the skill to an enumeration instead of the default `"/document"`.
+This best practice can be done by setting the context of the skill to an enumeration instead of the default `"/document"`.
 
 In the following example, we use one of the input expressions we used before, but with a different context that changes the resulting value.
 
@@ -146,12 +152,12 @@ In the following example, we use one of the input expressions we used before, bu
 
 For this combination of context and input, the skill gets executed once for each normalized image: once for `"/document/normalized_images/0"` and once for `"/document/normalized_images/1"`. The two input values corresponding to each skill execution are detailed in the values column.
 
-When enumerating an array in context, any outputs the skill produces will also be added to the document as enrichments of the context.
-In the above example, an output named `"out"` has its values for each execution added to the document respectively under `"/document/normalized_images/0/out"` and `"/document/normalized_images/1/out"`.
+When you enumerate an array in context, any outputs the skill produces are added to the document as enrichments of the context.
+In the previous example, an output named `"out"` has its values for each execution added to the document respectively under `"/document/normalized_images/0/out"` and `"/document/normalized_images/1/out"`.
 
 ## Literal values
 
-Skill inputs can take literal values as their inputs instead of dynamic values queried from the existing document. This can be achieved by prefixing the value with an equal sign. Values can be numbers, strings or Boolean.
+Skill inputs can take literal values as their inputs instead of dynamic values queried from the existing document. This best practice can be achieved by prefixing the value with an equal sign. Values can be numbers, strings or Boolean.
 String values can be enclosed in single `'` or double `"` quotes.
 
 |Expression|Value|

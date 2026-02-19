@@ -1,18 +1,23 @@
 ---
 title: Shared responsibility for Face liveness detection 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Azure and customers share responsibility for liveness detection solutions, covering connections, client apps, devices, and abuse monitoring.
-author: JinyuID
-ms.author: lijiny
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.date: 01/15/2025
-ms.topic: conceptual
+ms.date: 01/30/2026
+ms.topic: concept-article
 ---
 
 # Shared responsibility for Face liveness detection
 
-It's the shared responsibility between Azure and its customers to build a secure and compliant face liveness solution. You can learn more about Azure's shared responsibility at [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility). Understanding the shared responsibility model is especially important for liveness detection solutions. This document covers three aspects of how to secure and monitor your solution.
+It's the shared responsibility between Azure and its customers to build a secure and compliant face liveness solution. You can learn more about Azure's shared responsibility at [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility). Understanding the shared responsibility model is especially important for liveness detection solutions. This document covers various aspects of how to secure and monitor your solution.
+
+> [!IMPORTANT]
+> It is important for developers to be aware of the security implications when choosing the right solution — either Web or Mobile. While both the Web and Mobile solutions conform to iBeta Level 1 and Level 2 ISO/IEC 30107-3 PAD standards, the Mobile solution includes additional Runtime Application Self-Protections (RASP) provided by [GuardSquare](https://www.guardsquare.com/blog/why-guardsquare), which are not available in the Web solution.<br><br>
+> Notably, the Web solution has limitations inherent to running in browser environments and may be more vulnerable to certain types of attacks. So we recommend using the Mobile solution whenever possible.<br><br>
+> If you do choose the Web solution, it is critical that you closely follow the guidance in this document, ensure that the camera in use is a trusted physical device, and consider implementing additional safeguards and monitoring to mitigate potential runtime attacks.<br>
 
 ## Secure the connections
 
@@ -83,10 +88,10 @@ Facial recognition technology, when used for access authorization, can be a targ
 
 ### Azure Support for abuse monitoring
 
-Azure provides the following mechanisms for monitoring liveness detection sessions:
-- Monitoring traffic across multiple sessions on same correlation ID; respond when suspicious activity is monitored.
-- API support for auditing to download liveness images during the liveness session lifespan.
-- Azure keeps sufficient logs to further prevent [repudiation attacks](/azure/security/develop/threat-modeling-tool-threats).
+Azure provides several mechanisms to monitor liveness detection sessions and mitigate abuse:
+- Traffic Monitoring: Observes activity across multiple sessions when labeled by the developer with different correlation IDs, and triggers alerts when suspicious patterns are detected.
+- Auditing via API: Offers API capabilities to audit and download liveness images when the session is active.
+- Comprehensive Logging: Maintains detailed logs to help prevent [repudiation attacks](/azure/security/develop/threat-modeling-tool-threats).
 
 ## Report abuse
 

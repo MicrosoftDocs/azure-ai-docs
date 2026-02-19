@@ -4,7 +4,7 @@ ms.service: azure-machine-learning
 ms.custom: devx-track-azurecli
 ms.topic: include
 ms.date: 12/02/2024
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 ### Online endpoint creation fails with a message about v1 legacy mode

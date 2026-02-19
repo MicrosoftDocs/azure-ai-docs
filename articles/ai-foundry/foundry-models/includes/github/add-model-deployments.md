@@ -1,17 +1,18 @@
 ---
 manager: nitinme
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 1/21/2025
 ms.author: fasantia
 author: santiagxf
 ---
 
-As opposite to GitHub Models where all the models are already configured, the Azure AI Services resource allows you to control which models are available in your endpoint and under which configuration.
+As opposite to GitHub Models where all the models are already configured, the Foundry Tools resource allows you to control which models are available in your endpoint and under which configuration.
 
-You can add all the models you need in the endpoint by using [Azure AI Foundry for GitHub](https://ai.azure.com/github). In the following example, we add a `Mistral-Large` model in the service:
+You can add all the models you need in the endpoint by using [Microsoft Foundry for GitHub](https://ai.azure.com/github). In the following example, we add a `Mistral-Large` model in the service:
 
-1. Go to **Model catalog** section in [Azure AI Foundry for GitHub](https://ai.azure.com/github).
+1. Go to **Model catalog** section in [Foundry for GitHub](https://ai.azure.com/github).
 
 2. Scroll to the model you're interested in and select it.
    

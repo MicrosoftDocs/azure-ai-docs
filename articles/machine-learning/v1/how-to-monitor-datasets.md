@@ -5,12 +5,16 @@ description: Learn how to set up data drift detection in Azure Learning. Create 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.reviewer: franksolomon
-ms.author: xunwan
-author: SturgeonMi
-ms.date: 02/04/2025
+ms.reviewer: soumyapatro 
+ms.author: scottpolly
+author: s-polly
+ms.date: 01/28/2026
 ms.topic: how-to
-ms.custom: UpdateFrequency5, data4ml, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - data4ml
+  - sdkv1
+  - sfi-image-nochange
 #Customer intent: As a data scientist, I want to detect data drift in my datasets and set alerts for when drift is large.
 ---
 
@@ -20,9 +24,8 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks.
-Please check the content below to understand the replacement, feature gaps and manual change steps.
-
+> [!IMPORTANT]
+> Data drift (preview) was retired on September 1, 2025. Migrate to [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks. The content below explains the replacement, feature gaps, and migration steps.
 
 Learn how to monitor data drift and set alerts when drift is high.
 
@@ -50,7 +53,7 @@ You can view data drift metrics with the Python SDK or in Azure Machine Learning
 ## Prerequisites
 
 To create and work with dataset monitors, you need:
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 * An [Azure Machine Learning workspace](../quickstart-create-resources.md).
 * The [Azure Machine Learning SDK for Python installed](/python/api/overview/azure/ml/install), which includes the azureml-datasets package.
 * Structured (tabular) data with a timestamp specified in the file path, file name, or column in the data.
@@ -114,8 +117,8 @@ The monitor compares the baseline and target datasets.
 
 ### Migrate to Model Monitor
 In Model Monitor, you can find corresponding concepts as following, and you can find more details in this article [Set up model monitoring by bringing in your production data to Azure Machine Learning](../how-to-monitor-model-performance.md#set-up-out-of-box-model-monitoring):
-*	Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
-*	Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
+*    Reference dataset: similar to your baseline dataset for data drift detection, it is set as the recent past production inference dataset.
+*    Production inference data: similar to your target dataset in data drift detection, the production inference data can be collected automatically from models deployed in production. It can also be inference data you store.
 
 ## Create target dataset
 

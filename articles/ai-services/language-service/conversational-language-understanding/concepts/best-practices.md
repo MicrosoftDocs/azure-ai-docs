@@ -1,16 +1,15 @@
 ---
 title: Conversational language understanding best practices
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to apply best practices when you use conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: best-practice
-ms.date: 06/04/2025
+ms.date: 12/17/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # Best practices for conversational language understanding
 
 Use the following guidelines to create the best possible projects in conversational language understanding.
@@ -76,7 +75,7 @@ If you require the learned component, make sure that **Ticket Quantity** is only
 
 ## Address model inconsistencies
 
-If your model is overly sensitive to small grammatical changes, like casing or diacritics, you can systematically manipulate your dataset directly in Language Studio. To use these features, select the **Settings** tab on the left pane and locate the **Advanced project settings** section.
+If your model is overly sensitive to small grammatical changes, like casing or diacritics, you can systematically manipulate your dataset directly in Microsoft Foundry. To use these features, select the **Settings** tab on the left pane and locate the **Advanced project settings** section.
 
 :::image type="content" source="../media/advanced-project-settings.png" alt-text="A screenshot that shows an example of Advanced project settings." lightbox="../media/advanced-project-settings.png":::
 
@@ -94,7 +93,7 @@ First, you can enable the setting for **Enable data transformation for casing**,
 ...
 ```
 
-Second, you can also enable the setting for **Enable data augmentation for diacritics** to generate variations of your training data for possible diacritic variations used in natural language. This feature is available for all languages. It's especially useful for Germanic and Slavic languages, where users often write words by using classic English characters instead of the correct characters. For example, the phrase "Navigate to the sports channel" in French is "Accédez à la chaîne sportive." When this feature is enabled, the phrase "Accedez a la chaine sportive" (without diacritic characters) is also included in the training dataset.
+Second, you can also enable the setting for **Enable data augmentation for diacritics** to generate variations of your training data for possible diacritic variations used in natural language. This feature is available for all languages. It's especially useful for Germanic and Slavic languages, where users often write words by using classic English characters instead of the correct characters. For example, the phrase "Navigate to the sports channel" in French is `Accédez à la chaîne sportive.` When this feature is enabled, the phrase `Accedez a la chaine sportive` (without diacritic characters) is also included in the training dataset.
 
 If you enable this feature, the utterance count of your training set increases. For this reason, you might need to adjust your training data size accordingly. The current maximum utterance count after augmentation is 25,000. To access this feature via the API, set the `augmentDiacritics` parameter to `true`. See the following example:
 
@@ -114,10 +113,10 @@ If you enable this feature, the utterance count of your training set increases. 
 
 Customers can use the LoraNorm training configuration version if the model is being incorrectly overconfident. An example of this behavior can be like the following scenario where the model predicts the incorrect intent with 100% confidence. This score makes the confidence threshold project setting unusable.
 
-| Text |	Predicted intent |	Confidence score |
+| Text |    Predicted intent |    Confidence score |
 |----|----|----|
-| "Who built the Eiffel Tower?" |	 `Sports` | 1.00 |
-| "Do I look good to you today?" | `QueryWeather` |	1.00 |
+| "Who built the Eiffel Tower?" |     `Sports` | 1.00 |
+| "Do I look good to you today?" | `QueryWeather` |    1.00 |
 | "I hope you have a good evening." | `Alarm` | 1.00 |
 
 To address this scenario, use the `2023-04-15` configuration version that normalizes confidence scores. The confidence threshold project setting can then be adjusted to achieve the desired result.
@@ -138,7 +137,7 @@ curl --location 'https://<your-resource>.cognitiveservices.azure.com/language/au
 }
 ```
 
-After the request is sent, you can track the progress of the training job in Language Studio as usual.
+After the request is sent, you can track the progress of the training job in Microsoft Foundry.
 
 > [!NOTE]
 > You have to retrain your model after you update the `confidenceThreshold` project setting. Afterward, you need to republish the app for the new threshold to take effect.
@@ -204,7 +203,7 @@ curl --request POST \
 
 ## Copy projects across language resources
 
-Often you can copy conversational language understanding projects from one resource to another by using the **Copy** button in Language Studio. In some cases, it might be easier to copy projects by using the API.
+Often you can copy conversational language understanding projects from one resource to another by using the **Copy** button in Microsoft Foundry. In some cases, it might be easier to copy projects by using the API.
 
 First, identify the:
  
@@ -244,10 +243,10 @@ curl --request POST \
 
 Customers can use the newly updated training configuration version `2024-08-01-preview` (previously `2024-06-01-preview`) if the model has poor quality on out-of-domain utterances. An example of this scenario with the default training configuration can be like the following example where the model has three intents: `Sports`, `QueryWeather`, and `Alarm`. The test utterances are out-of-domain utterances and the model classifies them as `InDomain` with a relatively high confidence score.
 
-| Text |	Predicted intent |	Confidence score |
+| Text |    Predicted intent |    Confidence score |
 |----|----|----|
-| "Who built the Eiffel Tower?" |	 `Sports` | 0.90 |
-| "Do I look good to you today?" | `QueryWeather` |	1.00 |
+| "Who built the Eiffel Tower?" |     `Sports` | 0.90 |
+| "Do I look good to you today?" | `QueryWeather` |    1.00 |
 | "I hope you have a good evening." | `Alarm` | 0.80 |
 
 To address this scenario, use the `2024-08-01-preview` configuration version that's built specifically to address this issue while also maintaining reasonably good quality on `InDomain` utterances.
@@ -268,8 +267,7 @@ curl --location 'https://<your-resource>.cognitiveservices.azure.com/language/au
 }
 ```
 
-After the request is sent, you can track the progress of the training job in Language Studio as usual.
-
+After the request is sent, you can track the progress of the training job in Microsoft Foundry.
 Caveats:
 
 - The None score threshold for the app (confidence threshold below which `topIntent` is marked as `None`) when you use this training configuration should be set to 0. This setting is used because this new training configuration attributes a certain portion of the in-domain probabilities to out of domain so that the model isn't incorrectly overconfident about in-domain utterances. As a result, users might see slightly reduced confidence scores for in-domain utterances as compared to the production training configuration.

@@ -1,43 +1,60 @@
 ---
-title: What is Azure AI Language
-titleSuffix: Azure AI services
+title: What is Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn how to integrate AI into your applications that can extract information and understand written language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 05/28/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
+# What is Azure Language in Foundry Tools?
 
-# What is Azure AI Language?
+Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Microsoft Foundry, REST APIs, and client libraries. For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server-), which is available both as a remote server in the **Microsoft Foundry Tool Catalog** and as a local server for self-hosted environments.
 
-Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Language Studio, REST APIs, and client libraries.
+## Available tools
+
+Azure Language provides specialized tools that enable seamless integration between AI agents and language processing services through standardized protocols.
+
+### Azure Language MCP server 🆕
+
+The MCP (Model Context Protocol) server creates a standardized bridge that connects AI agents directly to Azure Language services through industry-standard protocols. This integration enables developers to build sophisticated conversational applications with reliable natural language processing capabilities while ensuring enterprise-grade compliance, data protection, and processing accuracy throughout their AI workflows. 
+
+Azure Language provides both remote and local MCP server options:
+* **Remote server**: Available through Foundry Tool Catalog for cloud-hosted deployments.
+* **Local server**: Available for developers who prefer to host the server in their own environment.
+
+For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-preview).
+
+## Available agents
+
+Azure Language offers prebuilt agents that handle specific conversational AI scenarios with built-in governance, routing logic, and quality control mechanisms.
+
+### Azure Language Intent Routing agent 🆕
+
+The Intent Routing agent intelligently manages conversation flows by understanding user intentions and delivering accurate responses in conversational AI applications. This agent uses predictable decision-making processes combined with controlled response generation to ensure consistent, reliable interactions that organizations can trust and monitor. 
+
+For more information, *see* [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-preview).
+
+### Azure Language Exact Question Answering agent 🆕
+
+The Exact Question Answering agent provides reliable, word-for-word responses to your most important business questions. This agent automates frequently asked questions while maintaining human oversight and quality control to ensure accuracy and compliance.
+
+For more information, *see* [Azure Language Exact Question Answering agent](concepts/foundry-tools-agents.md#azure-language-exact-question-answering-agent-preview).
 
 ## Available features
 
-This Language service unifies the following previously available Azure AI services: Text Analytics, QnA Maker, and LUIS. If you need to migrate from these services, see [the migration section](#migrate-from-text-analytics-qna-maker-or-language-understanding-luis).
-
-The Language service also provides several new features as well, which can either be:
-
-* Preconfigured, which means the AI models that the feature uses aren't customizable. You just send your data, and use the feature's output in your applications.
-* Customizable, which means you train an AI model using our tools to fit your data specifically.
-
-Language features are also utilized in [agent templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/agent-catalog):
-
-* [Intent routing agent](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/agent-catalog/msft-agent-samples/foundry-agent-service-sdk/intent-routing-agent) detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human controls.
-* [Exact question answering agent](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/agent-catalog/msft-agent-samples/foundry-agent-service-sdk/exact-qna-agent) answers high-value predefined questions deterministically to ensure consistent and accurate responses.
-
 > [!TIP]
-> Unsure which feature to use? See [Which Language service feature should I use](#which-language-service-feature-should-i-use) to help you decide.
+> Unsure which feature to use? See [Which Language feature should I use](#which-language-feature-should-i-use) to help you decide.
 
-[**Azure AI Foundry**](https://ai.azure.com/?cid=learnDocs) enables you to use most of the following service features without needing to write code.
+[**Microsoft Foundry**](https://ai.azure.com/) enables you to use most of the following service features without the need to write code.
 
 ### Named Entity Recognition (NER)
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Azure AI Foundry."lightbox="media/overview/named-entity-recognition.png":::
+      :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Foundry." lightbox="media/overview/named-entity-recognition.png":::
    :::column-end:::
    :::column span="":::
       [Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into predefined types.
@@ -47,13 +64,17 @@ Language features are also utilized in [agent templates](https://github.com/azur
 
 ### Personal and health data information detection
 
+> [!IMPORTANT]
+> The Azure Language in Foundry Tools Text Personally Identifiable Information (PII) detection anonymization feature (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Azure AI Foundry." lightbox="media/overview/conversation-pii.png":::
-      :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Azure AI Foundry." lightbox="media/overview/text-pii.png":::
+      :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Foundry." lightbox="media/overview/conversation-pii.png":::
+      :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Foundry." lightbox="media/overview/text-pii.png":::
    :::column-end:::
    :::column span="":::
-      [PII detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
+
+      [Personally Identifiable Information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
 
    :::column-end:::
 :::row-end:::
@@ -62,7 +83,7 @@ Language features are also utilized in [agent templates](https://github.com/azur
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of language detection in Azure AI Foundry." lightbox="media/overview/language-detection.png":::
+      :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of language detection in Foundry." lightbox="media/overview/language-detection.png":::
    :::column-end:::
    :::column span="":::
       [Language detection](./language-detection/overview.md) evaluates text and detects a wide range of languages and variant dialects.
@@ -74,7 +95,7 @@ Language features are also utilized in [agent templates](https://github.com/azur
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/sentiment-analysis.png" alt-text="A screenshot of sentiment analysis in Azure AI Foundry." lightbox="media/overview/sentiment-analysis.png":::
+      :::image type="content" source="media/overview/sentiment-analysis.png" alt-text="A screenshot of sentiment analysis in Foundry." lightbox="media/overview/sentiment-analysis.png":::
    :::column-end:::
    :::column span="":::
       [Sentiment analysis and opinion mining](./sentiment-opinion-mining/overview.md) preconfigured features that help you understand public perception of your brand or topic. These features analyze text to identify positive or negative sentiments and can link them to specific elements within the text.
@@ -86,9 +107,9 @@ Language features are also utilized in [agent templates](https://github.com/azur
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/conversation-summarization.png" alt-text="A screenshot of conversation summarization  in Azure AI Foundry." lightbox="media/overview/conversation-summarization.png":::
-      :::image type="content" source="media/overview/call-center-summarization.png" alt-text="A screenshot of call center summarization in Azure AI Foundry." lightbox="media/overview/call-center-summarization.png":::
-      :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Azure AI Foundry." lightbox="media/overview/text-summarization.png":::
+      :::image type="content" source="media/overview/conversation-summarization.png" alt-text="A screenshot of conversation summarization  in Foundry." lightbox="media/overview/conversation-summarization.png":::
+      :::image type="content" source="media/overview/call-center-summarization.png" alt-text="A screenshot of call center summarization in Foundry." lightbox="media/overview/call-center-summarization.png":::
+      :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Foundry." lightbox="media/overview/text-summarization.png":::
    :::column-end:::
    :::column span="":::
       [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts).
@@ -101,7 +122,7 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/key-phrase-extraction.png" alt-text="A screenshot of key phrase extraction in Azure AI Foundry." lightbox="media/overview/key-phrase-extraction.png":::
+      :::image type="content" source="media/overview/key-phrase-extraction.png" alt-text="A screenshot of key phrase extraction in Foundry." lightbox="media/overview/key-phrase-extraction.png":::
    :::column-end:::
    :::column span="":::
       [Key phrase extraction](./key-phrase-extraction/overview.md) is a preconfigured feature that evaluates and returns the main concepts in unstructured text, and returns them as a list.
@@ -109,6 +130,10 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 :::row-end:::
 
 ### Entity linking
+
+> [!IMPORTANT]
+> Entity Linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or consider other alternative solutions.
+
 
 :::row:::
    :::column span="":::
@@ -123,7 +148,7 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 
 :::row:::
    :::column span="":::
-      :::image type="content" source="media/overview/text-analytics-for-health.png" alt-text="A screenshot of text analytics for health in Azure AI Foundry." lightbox="media/overview/text-analytics-for-health.png":::
+      :::image type="content" source="media/overview/text-analytics-for-health.png" alt-text="A screenshot of text analytics for health in Foundry." lightbox="media/overview/text-analytics-for-health.png":::
    :::column-end:::
    :::column span="":::
       [Text analytics for health](./text-analytics-for-health/overview.md) Extracts and labels relevant health information from unstructured text.
@@ -189,9 +214,9 @@ Conversation summarization recaps and segments long meetings into timestamped ch
    :::column-end:::
 :::row-end:::
 
-## Which Language service feature should I use?
+## Which Language feature should I use?
 
-This section helps you decide which Language service feature you should use for your application:
+This section helps you decide which Language feature you should use for your application:
 
 |What do you want to do?  |Document format  |Your best solution  | Is this solution customizable?* |
 |---------|---------|---------|---------|
@@ -211,18 +236,14 @@ This section helps you decide which Language service feature you should use for 
 
 \* If a feature is customizable, you can train an AI model using our tools to fit your data specifically. Otherwise a feature is preconfigured, meaning the AI models it uses can't be changed. You just send your data, and use the feature's output in your applications.
 
-## Migrate from Text Analytics, QnA Maker, or Language Understanding (LUIS)
-
-Azure AI Language unifies three individual language services in Azure AI services - Text Analytics, QnA Maker, and Language Understanding (LUIS). If you have been using these three services, you can easily migrate to the new Azure AI Language. For instructions see [Migrating to Azure AI Language](concepts/migrate.md).
-
 ## Tutorials
 
-After you get started with the Language service quickstarts, try our tutorials that show you how to solve various scenarios.
+After you get started with Azure Language quickstarts, try our tutorials that show you how to solve various scenarios.
 
 * [Extract key phrases from text stored in Power BI](key-phrase-extraction/tutorials/integrate-power-bi.md)
 * [Use Power Automate to sort information in Microsoft Excel](named-entity-recognition/tutorials/extract-excel-information.md)
 * [Use Flask to translate text, analyze sentiment, and synthesize speech](/training/modules/python-flask-build-ai-web-app/)
-* [Use Azure AI services in canvas apps](/powerapps/maker/canvas-apps/cognitive-services-api?context=/azure/ai-services/language-service/context/context)
+* [Use Foundry Tools in canvas apps](/powerapps/maker/canvas-apps/cognitive-services-api?context=/azure/ai-services/language-service/context/context)
 * [Create an FAQ Bot](question-answering/tutorials/bot-service.md)
 
 ## Code samples
@@ -235,7 +256,7 @@ You can find more code samples on GitHub for the following languages:
 * [Python](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics/samples)
 
 ## Deploy on premises using Docker containers
-Use Language service containers to deploy API features on-premises. These Docker containers enable you to bring the service closer to your data for compliance, security, or other operational reasons. The Language service offers the following containers:
+Use Language containers to deploy API features on-premises. These Docker containers enable you to bring the service closer to your data for compliance, security, or other operational reasons. The Language offers the following containers:
 
 * [Sentiment analysis](sentiment-opinion-mining/how-to/use-containers.md)
 * [Language detection](language-detection/how-to/use-containers.md)
@@ -248,6 +269,6 @@ Use Language service containers to deploy API features on-premises. These Docker
 
 An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the following articles to learn about responsible AI use and deployment in your systems:
 
-* [Transparency note for the Language service](/azure/ai-foundry/responsible-ai/text-analytics/transparency-note)
-* [Integration and responsible use](/azure/ai-foundry/responsible-ai/text-analytics/guidance-integration-responsible-use)
-* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/text-analytics/data-privacy)
+* [Transparency note for Azure Language](../../ai-foundry/responsible-ai/language-service/transparency-note.md)
+* [Integration and responsible use](../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md)
+* [Data, privacy, and security](../../ai-foundry/responsible-ai/language-service/data-privacy.md)

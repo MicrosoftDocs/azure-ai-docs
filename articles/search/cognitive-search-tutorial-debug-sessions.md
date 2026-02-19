@@ -2,15 +2,16 @@
 title: 'Tutorial: Debug Skillsets'
 titleSuffix: Azure AI Search
 description: Practice creating and completing a debug session on an Azure AI Search skillset. This tutorial provides a buggy sample skillset that you resolve in a debug session.
-
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: tutorial
 ms.date: 03/31/2025
+ms.update-cycle: 365-days
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Tutorial: Fix a skillset using Debug Sessions
@@ -23,7 +24,7 @@ In this tutorial, you use **Debug Sessions** to find and fix missing inputs and 
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + Azure AI Search. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this tutorial. The Free tier doesn't provide managed identity support for an Azure AI Search service. You must use keys for connections to Azure Storage.
 
@@ -33,10 +34,10 @@ In this tutorial, you use **Debug Sessions** to find and fix missing inputs and 
 
 + [Sample PDFs (clinical trials)](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/_ARCHIVE/clinical-trials/clinical-trials-pdf-19).
 
-+ [Sample debug-sessions.rest file](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Debug-sessions/debug-sessions.rest) used to create the enrichment pipeline.
++ [Sample debug-sessions.rest file](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/debug-sessions/debug-sessions.rest) used to create the enrichment pipeline.
 
 > [!NOTE]
-> This tutorial also uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for language detection, entity recognition, and key phrase extraction. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create a billable Azure AI services resource.
+> This tutorial also uses [Foundry Tools](https://azure.microsoft.com/services/cognitive-services/) for language detection, entity recognition, and key phrase extraction. Because the workload is so small, Foundry Tools is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create a billable Microsoft Foundry resource.
 
 ## Set up the sample data
 
@@ -269,4 +270,4 @@ This tutorial touched on various aspects of skillset definition and processing. 
 
 + [Skillsets in Azure AI Search](cognitive-search-working-with-skillsets.md)
 
-+ [How to configure caching for incremental enrichment](cognitive-search-incremental-indexing-conceptual.md)
++ [How to configure caching for incremental enrichment](enrichment-cache-how-to-configure.md)

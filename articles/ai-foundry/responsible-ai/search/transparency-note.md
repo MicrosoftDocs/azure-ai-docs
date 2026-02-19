@@ -2,11 +2,11 @@
 title: Azure AI Search transparency note
 titleSuffix: Azure AI Search
 description: Azure AI Search basics, use cases, and terms
-author: PatrickFarley
-ms.author: pafarley
+author: haileytap
+ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
-ms.topic: article
+ms.topic: concept-article
 ms.date: 05/16/2025
 ---
 
@@ -27,15 +27,15 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 Azure AI Search gives developers tools, APIs, and SDKs for building a rich search experience over private, heterogeneous content in web, mobile, and enterprise applications. Search is foundational to any application that surfaces data to users. Common scenarios include catalog or document search, online retail stores, or data exploration over proprietary content. 
 
-Searchable data can be in the form of text or vectors and ingested as-is from a data source or enriched by using AI to improve the overall search experience. Developers can convert data int into numerical representations  (called vectors), by choosing to call an external machine learning models (known as embedding models). Indexers can optionally include skill sets that support a powerful suite of data enrichment via several [Azure AI Language](/azure/ai-services/language-service/overview) capabilities, such as [Named Entity Recognition (NER)](/azure/ai-services/language-service/named-entity-recognition/overview) and [personally identifiable information (PII) detection](/azure/ai-services/language-service/personally-identifiable-information/overview), and [Azure AI Vision](/azure/ai-services/computer-vision/overview) capabilities, including [optical character recognition (OCR)](/azure/ai-services/computer-vision/overview-ocr) and [image analysis](/azure/ai-services/computer-vision/overview-image-analysis).
+Searchable data can be in the form of text or vectors and ingested as-is from a data source or enriched by using AI to improve the overall search experience. Developers can convert data int into numerical representations  (called vectors), by choosing to call an external machine learning models (known as embedding models). Indexers can optionally include skill sets that support a powerful suite of data enrichment via several [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview) capabilities, such as [Named Entity Recognition (NER)](/azure/ai-services/language-service/named-entity-recognition/overview) and [personally identifiable information (PII) detection](/azure/ai-services/language-service/personally-identifiable-information/overview), and [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) capabilities, including [optical character recognition (OCR)](/azure/ai-services/computer-vision/overview-ocr) and [image analysis](/azure/ai-services/computer-vision/overview-image-analysis).
 
-See the following tabs for more information about how Azure AI Search improves the search experience by using Azure AI services or other AI systems to better understand the intent, semantics, and implied structure of a customer's content. 
+See the following tabs for more information about how Azure AI Search improves the search experience by using Foundry Tools or other AI systems to better understand the intent, semantics, and implied structure of a customer's content. 
 
 #### [AI enrichment](#tab/enrichment)
 
-[AI enrichment](/azure/search/cognitive-search-concept-intro) is the application of machine learning models from Azure AI services over content that is not easily searchable in its raw form. Through enrichment, analysis and inference are used to create searchable content and structure where none previously existed.
+[AI enrichment](/azure/search/cognitive-search-concept-intro) is the application of machine learning models from Foundry Tools over content that is not easily searchable in its raw form. Through enrichment, analysis and inference are used to create searchable content and structure where none previously existed.
 
-AI enrichment is an optional extension of the Azure AI Search indexer pipeline that connects to Azure AI services in the same region as a customer's search service. An enrichment pipeline has the same core components as a typical indexer (indexer, data source, index), plus a skill set that specifies the atomic enrichment steps. A skill set can be assembled by using built-in skills based on the Azure AI services APIs, such as [Azure AI Vision](/azure/ai-services/computer-vision/overview-image-analysis) and [Azure AI Language](/azure/ai-services/language-service/overview), or [custom skills](/azure/search/cognitive-search-create-custom-skill-example) that run external code that you provide.
+AI enrichment is an optional extension of the Azure AI Search indexer pipeline that connects to Foundry Tools in the same region as a customer's search service. An enrichment pipeline has the same core components as a typical indexer (indexer, data source, index), plus a skill set that specifies the atomic enrichment steps. A skill set can be assembled by using built-in skills based on the Foundry Tools APIs, such as [Vision](/azure/ai-services/computer-vision/overview-image-analysis) and [Language](/azure/ai-services/language-service/overview), or [custom skills](/azure/search/cognitive-search-create-custom-skill-example) that run external code that you provide.
 
 #### [Vector search](#tab/vector)
 
@@ -109,16 +109,17 @@ Agentic retrieval |This refers to an AI agent planning and executing a sequence 
 
 ### System behavior
 
-Several [built-in skills](/azure/search/cognitive-search-predefined-skills) for AI enrichment in Azure AI Search take advantage of Azure AI services. See the Transparency Notes for each built-in skill linked below for considerations when choosing to use a skill:
+Several [built-in skills](/azure/search/cognitive-search-predefined-skills) for AI enrichment in Azure AI Search take advantage of Foundry Tools. See the Transparency Notes for each built-in skill linked below for considerations when choosing to use a skill:
 
-- Key Phrase Extraction Skill: [Azure AI Language - Key Phrase Extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction)
-- Language Detection Skill: [Azure AI Language - Language Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-language-detection)
-- Entity Linking Skill: [Azure AI Language - Entity Linking](/azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use)
-- Entity Recognition Skill: [Azure AI Language - Named Entity Recognition (NER)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition)
-- PII Detection Skill: [Azure AI Language - PII Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information)
-- Sentiment Skill: [Azure AI Language - Sentiment Analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis)
-- Image Analysis Skill: [Azure AI Vision - Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note)
-- OCR Skill: [Azure AI Vision - OCR](/azure/ai-foundry/responsible-ai/computer-vision/ocr-transparency-note)
+- Key Phrase Extraction Skill: [Language - Key Phrase Extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction)
+- Language Detection Skill: [Language - Language Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-language-detection)
+- Entity Linking Skill: [Language - Entity Linking](/azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use)
+- Entity Recognition Skill: [Language - Named Entity Recognition (NER)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition)
+- PII Detection Skill: [Language - PII Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information)
+- Sentiment Skill: [Language - Sentiment Analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis)
+- Image Analysis Skill: [Vision - Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note)
+- OCR Skill: [Vision - OCR](/azure/ai-foundry/responsible-ai/computer-vision/ocr-transparency-note)
+- Document Layout Skill: [Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note)
 
 See the documentation for each skill to learn more about their respective capabilities, limitations, performance, evaluations, and methods for integration and responsible use. Note that using these skills in combination may lead to compounding effects (for example, errors introduced when using OCR will carry through when using key phrase extraction).
 
@@ -154,7 +155,7 @@ Azure AI Search also supports multiple similarity metrics to determine nearest n
 
 There are many scenarios where vector search is useful, and they're limited only by the capabilities of the model used to generate vector embeddings. Here are some general use cases where vector search can be used:
 
-- **Semantic search**: Extract semantic understanding from text by using a model, like using models such as the [Azure OpenAI Service embeddings models](/azure/ai-services/openai/concepts/models#embeddings-models-1).
+- **Semantic search**: Extract semantic understanding from text by using a model, like using models such as the [Azure OpenAI Service embeddings models](/azure/ai-foundry/openai/concepts/models#embeddings-models-1).
 - **Search across different data types (multimodal)**: Encode content coming from images, text, audio, and video, or a mix, and do a single search across all of them.
 - **Multilingual search**: Use a multilingual embeddings model to represent your document in multiple languages to find results in supported languages.
 - **Hybrid search**: Vector search is implemented at the field level, which means you can build queries that include vector fields and searchable text fields. The queries run in parallel, and the results are merged into a single response. Hybrid search results with semantic ranking have been shown to provide the best qualitative results.
@@ -199,7 +200,7 @@ We encourage customers to use semantic ranker in their innovative solutions or a
 
 ### System behavior
 
-The original query is sent to a [fine-tuned Small Language Model (SLM)]( /azure/ai-services/openai/concepts/fine-tuning-considerations) hosted by Azure AI Search. This model was trained by using public content. The SLM transforms the original query into a set of synthetic queries. These synthetic queries are semantically close to the intent of the original query but include a different set of terms to improve recall from the search engine. 
+The original query is sent to a [fine-tuned Small Language Model (SLM)]( /azure/ai-foundry/openai/concepts/fine-tuning-considerations) hosted by Azure AI Search. This model was trained by using public content. The SLM transforms the original query into a set of synthetic queries. These synthetic queries are semantically close to the intent of the original query but include a different set of terms to improve recall from the search engine. 
 
 The synthetic queries are then combined with the original query and sent to the search engine. When it performs [BM25 ranking]( /azure/search/index-similarity-and-scoring), key terms from the synthetic queries are combined with the original query. When it performs [vector search]( /azure/search/vector-search-ranking#vector-similarity), the original query is concatenated with the synthetic queries before the [vector embedding]( /azure/search/vector-search-overview#embeddings-and-vectorization) step. 
 
@@ -220,7 +221,7 @@ We encourage customers to use query rewriting in their innovative solutions or a
 
 #### [GenAI Prompt skill](#tab/genai)
 
-The GenAI Prompt skill allows customers to pass their document content, existing in their data sources, and custom prompts to a language model they own, hosted on Azure AI Foundry. The language model processes the input and returns enriched content, which is then ingested into the search index alongside the original document content. This process enables the augmentation of search indexes with AI-generated summaries, image captions, and entity extraction, among others, based on customer-defined criteria. 
+The GenAI Prompt skill allows customers to pass their document content, existing in their data sources, and custom prompts to a language model they own, hosted on Microsoft Foundry. The language model processes the input and returns enriched content, which is then ingested into the search index alongside the original document content. This process enables the augmentation of search indexes with AI-generated summaries, image captions, and entity extraction, among others, based on customer-defined criteria. 
 
 The following examples show how the GenAI Prompt skill works.
 
@@ -284,7 +285,7 @@ While these are common applications, the skill is flexible, allowing customers t
 
 #### Considerations when choosing a use case
 
-It's important to note that the content, prompts, and language model deployments are entirely customer-managed resources. Azure AI Foundry supports content safety filters for model deployments, and customers are responsible for configuring these filters as needed. Beyond the configurations available in Azure AI Foundry, Azure AI Search does not apply additional content safety filters within the GenAI Prompt skill. 
+It's important to note that the content, prompts, and language model deployments are entirely customer-managed resources. Foundry supports content safety filters for model deployments, and customers are responsible for configuring these filters as needed. Beyond the configurations available in Foundry, Azure AI Search does not apply additional content safety filters within the GenAI Prompt skill. 
 
 When implementing the GenAI Prompt skill, consider the following: 
 - **Implement processes for human review of AI-generated content**, especially when applying prompt transformations that could impact information reliability. Utilize Azure AI Search's [debug sessions tool](/azure/search/cognitive-search-how-to-debug-skillset) to test prompts on sample documents before full-scale deployment.
@@ -314,7 +315,7 @@ The original conversation or search query is sent to a customer’s owned Azure 
 - **Sensitive inputs**: The entire conversation history is forwarded to the planner model, meaning any personally identifiable or business‑sensitive data leaves your immediate trust boundary. Strip, mask, or redact such data before invoking the LLM, and document that mitigation in your data‑protection posture. 
 - **Region and preview limits**: Agentic retrieval is only available in regions where semantic ranker is available. An individual agent can point to just one Search index. Confirm that the region hosting your data and model supports agentic retrieval, and plan separate agents if you need to span multiple indexes or geographies. 
 - **Compliance**: Confirm that using an LLM‑driven query planner complies with sector‑specific or regional requirements (for example, data‑residency, privacy, or automated‑decision rules in healthcare or finance). Ensure adequate human oversight and control. Consider including controls to help developers verify, review and/or approve actions in a timely manner, which may include reviewing planned tasks or calls to external data sources. 
-- **Legal and regulatory considerations**: Users need to evaluate potential specific legal and regulatory obligations when using any AI services and solutions, which may not be appropriate for use in every industry or scenario. Additionally, AI services or solutions are not designed for and may not be used in ways prohibited in applicable terms of service and relevant codes of conduct. 
+- **Legal and regulatory considerations**: Users need to evaluate potential specific legal and regulatory obligations when using any Foundry Tools and solutions, which may not be appropriate for use in every industry or scenario. Additionally, Foundry Tools or solutions are not designed for and may not be used in ways prohibited in applicable terms of service and relevant codes of conduct. 
 
 ---
 
@@ -322,7 +323,7 @@ The original conversation or search query is sent to a customer’s owned Azure 
 
 #### [AI enrichment](#tab/enrichment)
 
-AI enrichment in Azure AI Search uses the indexer and data source features of the service to call Azure AI services to perform the content enrichment. Limitations of the indexers and data sources used in this process will apply. Review the [indexer and data source documentation](/azure/search/search-limits-quotas-capacity#indexer-limits) for more information about these related limitations. The limitations of each Azure AI Service used by the AI enrichment pipeline in Azure AI Search will also apply. See the [transparency notes for each service](/azure/ai-services/responsible-use-of-ai-overview) for more information about these limitations.
+AI enrichment in Azure AI Search uses the indexer and data source features of the service to call Foundry Tools to perform the content enrichment. Limitations of the indexers and data sources used in this process will apply. Review the [indexer and data source documentation](/azure/search/search-limits-quotas-capacity#indexer-limits) for more information about these related limitations. The limitations of each Foundry Tool used by the AI enrichment pipeline in Azure AI Search will also apply. See the [transparency notes for each service](/azure/ai-services/responsible-use-of-ai-overview) for more information about these limitations.
 
 #### [Vector search](#tab/vector)
 
@@ -478,7 +479,7 @@ As Query rewriting was trained on public content, the synthetic queries will var
 ### Technical limitations, operational factors, and ranges 
 
 While GenAI Prompt skill offers powerful capabilities, it's essential to recognize certain limitations: 
-- The skill relies on customer-configured content filters within Azure AI Foundry. Azure AI Search does not provide additional content safety mechanisms for this skill. 
+- The skill relies on customer-configured content filters within Foundry. Azure AI Search does not provide additional content safety mechanisms for this skill. 
 - The quality of AI-generated content depends on the effectiveness of the prompts and the underlying language model. Thorough testing is necessary to ensure output meets the desired standards. 
 - Processing large volumes of data with complex prompts may require significant computational resources and may cause latency. Plan and allocate resources wisely to not only maintain performance and cost-effectiveness, but also to prevent possible delays in data processing. 
 

@@ -5,11 +5,10 @@
  author: laujan
  ms.service: azure-ai-language
  ms.topic: include
- ms.date: 12/19/2023
+ ms.date: 11/05/2025
  ms.author: lajanuar
  ms.custom: include
 ---
-
 This table shows the relationship between SDK versions and supported API versions of the service:
 
 |SDK version  |Supported API version of service  |

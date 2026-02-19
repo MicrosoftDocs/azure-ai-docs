@@ -8,16 +8,17 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 12/09/2021
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 #	Key Phrase Extraction cognitive skill
 
-The **Key Phrase Extraction** skill evaluates unstructured text, and for each record, returns a list of key phrases. This skill uses the [Key Phrase](/azure/ai-services/language-service/key-phrase-extraction/overview) machine learning models provided by [Azure AI Language](/azure/ai-services/language-service/overview).
+The **Key Phrase Extraction** skill evaluates unstructured text, and for each record, returns a list of key phrases. This skill uses the [Key Phrase](/azure/ai-services/language-service/key-phrase-extraction/overview) machine learning models provided by [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview).
 
 This capability is useful if you need to quickly identify the main talking points in the record. For example, given input text "The food was delicious and there were wonderful staff", the service returns "food" and "wonderful staff".
 
 > [!NOTE]
-> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 
 ## @odata.type  
@@ -28,7 +29,7 @@ The maximum size of a record should be 50,000 characters as measured by [`String
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Inputs | Description |
 |---------------------|-------------|

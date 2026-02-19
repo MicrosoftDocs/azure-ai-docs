@@ -6,13 +6,18 @@ author: HeidiSteen
 ms.author: heidist
 manager: nitinme
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 10/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 05/27/2025
+  - sfi-image-nochange
 ---
 
 # Connect a knowledge store with Power BI
+
+> [!NOTE]
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 In this article, learn how to connect to and query a knowledge store using Power Query in the Power BI Desktop app. You can get started faster with templates, or build a custom dashboard from scratch.
 

@@ -1,13 +1,15 @@
 ---
 title: Transparency Note for Azure Agent Service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Transparency Note for Azure Agents Service
-author: PatrickFarley
-ms.author: pafarley
+author: aahill
+ms.author: aahi
 manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: article
-ms.date: 05/16/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.topic: concept-article
+ms.date: 11/17/2025
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Transparency Note for Azure Agent Service
@@ -32,24 +34,27 @@ Agentic AI systems are designed to use agentic capabilities to achieve a high-le
 
 ### Disclaimer about Agents in sensitive domains 
 
-Users should exercise caution when designing and deploying agentic AI systems in sensitive domains where Agent actions are irreversible or highly consequential. Such domains include, but are not limited to, finance and insurance, healthcare, legal, and housing. Additional precautions should also be taken when creating autonomous agentic AI as described further in our [Code of Conduct](https://aka.ms/AI-CoC). You are responsible for complying with all applicable laws and safety standards relevant to the Agents you create using any AI services and solutions, including Agents Catalog, underlying Code Samples, and similar resources and information (see below [Considerations when choosing a use case](#considerations-when-choosing-a-use-case)).  
+Users should exercise caution when designing and deploying agentic AI systems in sensitive domains where Agent actions are irreversible or highly consequential. Such domains include, but are not limited to, finance and insurance, healthcare, legal, and housing. Additional precautions should also be taken when creating autonomous agentic AI as described further in our [Code of Conduct](https://aka.ms/AI-CoC). You are responsible for complying with all applicable laws and safety standards relevant to the Agents you create using any Foundry Tools and solutions, including Agents Catalog, underlying Code Samples, and similar resources and information (see below [Considerations when choosing a use case](#considerations-when-choosing-a-use-case)).  
 
 ### Key terms
 
-The following are key components of the Azure AI Agent Service SDK (and the [Azure AI Foundry portal](https://ai.azure.com?cid=learnDocs) experience powered by it):
+The following are key components of the Azure AI Agent Service SDK (and the [Microsoft Foundry portal](https://ai.azure.com?cid=learnDocs) experience powered by it):
 
 | **Term** | **Definition**|
 |--|--|
 | Developer | A customer of Azure AI Agent Service who builds an Agent.|
 |User | A person who uses and/or operates an Agent that is created by a developer.|
 |Agent |  An application or a system that uses generative AI models with tools to access and interact with real-world data sources, APIs, and systems to achieve user-specified goals such as answer questions, perform actions, or completely automate workflows, with or without human supervision.|
-|Tool | A built-in or custom-defined functionality that enables an Agent to perform simple or complex tasks or interact with information sources, applications, and/or services via the Agent Service SDK or [Azure AI Foundry portal](https://ai.azure.com?cid=learnDocs).|
+|Tool | A built-in or custom-defined functionality that enables an Agent to perform simple or complex tasks or interact with information sources, applications, and/or services via the Agent Service SDK or [Foundry portal](https://ai.azure.com?cid=learnDocs).|
 |Knowledge Tool | A tool that enables an Agent to access and process data from internal and external sources, including information beyond its model training cut-off date, to improve the accuracy and relevance of responses to user queries.|
 |Action Tool | A tool that enables an Agent to perform tasks and take actions on behalf of users by integrating with external systems, APIs, and services.|
 |Thread|A conversation session between an Agent and a user. Threads store Messages and automatically handle truncation to fit content into a model’s context.|
 |Message | A message created by an Agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.|
 |Run| The activation of an Agent to begin running based on the contents of the Thread. The Agent uses its configuration and the Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the Agent appends Messages to the Thread.|
 |Run Steps | A detailed list of steps the Agent took as part of a Run. An Agent can call tools or create Messages during its Run. Examining Run Steps allows you to understand how the Agent is getting to its final results.|
+| Workflow | A declarative sequence of actions that orchestrates agents to automate complex processes. Workflows in Foundry can be designed, executed and published using a graphical UI. | 
+| Sample | A template, manifest, code sample, workflow sample, or other example that demonstrates how you can build Agents, applications, or solutions and leverage the benefits of Microsoft Foundry Agent Service.|
+
 
 ### Relevant capability concepts
 
@@ -76,12 +81,6 @@ Key features of Azure AI Agent Service include:
 1. **Integrate with extensive memory and knowledge connectors:** Agents need to manage conversation state and connect with internal and external knowledge sources to have the right context to complete a process.
 1. **Flexible model choice:** Agents built with the appropriate model for their tasks can enable better integration of information from multiple data types, yield better results for task-specific scenarios, and improve cost efficiencies in scaled deployments.
 1. **Built-in enterprise readiness:** Agents need to be able to support an organization's unique data privacy and compliance needs, scale with an organization's needs, and complete tasks reliably and with high quality.
-1. **Build easier with Agent Catalog:** Agent code samples in Agent Catalog provide “starter kit functionality” to quickly configure and deploy agents for various use case interests.  
-
-
-### Agent Catalog 
-
-Azure AI Foundry Agent Service offers a range of different Agent code samples that can get you started toward building Agents for your specific use case needs. Each Agent code sample should be deployed with [risk management considerations](#considerations-when-choosing-a-use-case) in mind. See the [list of Agent code samples](/azure/ai-services/agents/how-to/agent-catalog#view-all-available-code-samples) currently available.  
 
 ### Extensibility capabilities 
 
@@ -107,15 +106,24 @@ Developers can connect an Agent to external systems, APIs, and services through 
 * **Azure Logic Apps** (a cloud-based PaaS tool that enables automated workflows using 1,400+ built-in connectors)
 * **Azure Functions** (a tool that enables an Agent to execute serverless code for synchronous, asynchronous, long-running, and event-driven actions)
 * **OpenAPI 3.0 specified tools** (a custom function defined with OpenAPI 3.0 specification to connect an Agent to external OpenAPI-based APIs securely)
-* **Model Context Protocol tools** (a custom service connected via Model Context Protocol through an existing remote MCP server to an Agent). 
+* **Model Context Protocol tools** (a custom service connected via Model Context Protocol through an existing remote MCP server to an Agent).
+* **Deep Research tool**: (a tool that enables multi-step web-based research with the o3-deep-research model and Grounding with Bing Search.).
+* **Computer Use**: (a tool to perform tasks by interacting with computer systems and applications through their UIs)   
+* **Browser Automation Tool** (a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention in the middle)
+* **Image Generation** (a tool to generate and edit images)
+* **Agent2Agent** (a custom service connected using the agent-to-agent protocol through an existing agent endpoint to a Foundry agent). 
 
 #### Orchestrating multi-agent systems
 
-Multi-agent systems using Azure AI Agent Service can be designed to achieve performant autonomous workflows for specific scenarios. In multi-agent systems, multiple context-aware autonomous agents, whether humans or AI systems, interact or work together to achieve individual or collective goals specified by the user. Azure AI Agent Service works out-of-the-box with multi-agent orchestration frameworks that are wireline compatible<sup>1</sup> with the Assistants API, such as [**AutoGen**](https://www.microsoft.com/research/blog/autogen-enabling-next-generation-large-language-model-applications/), a state-of-the-art research SDK for Python created by Microsoft Research, and [**Semantic Kernel**](/semantic-kernel/frameworks/agent/agent-architecture?pivots=programming-language-csharp), an enterprise AI SDK for Python, .NET, and Java.
+Multi-agent systems using Azure AI Agent Service can be designed to achieve performant autonomous workflows for specific scenarios. In multi-agent systems, multiple context-aware autonomous agents, whether humans or AI systems, interact or work together to achieve individual or collective goals specified by the user. Azure AI Agent Service works out-of-the-box with multi-agent orchestration frameworks that are wireline compatible<sup>1</sup> with the Responses API, such as  [Microsoft Agent Framework](https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/), an open-source SDK and runtime designed to let developers build, deploy, and manage sophisticated multi-agent systems with ease.
 
-When building a new multi-agent solution, start with building singleton agents with Azure AI Agent Service to get the most reliable, scalable, and secure agents. You can then orchestrate these agents together, using supported orchestration frameworks. AutoGen is constantly evolving to find the best collaboration patterns for agents (and humans) to work together. Features that show production value with AutoGen can then be moved into Semantic Kernel if you're looking for production support and non-breaking changes.
+When building a new multi-agent solution, start with building singleton agents with Azure AI Agent Service to get the most reliable, scalable, and secure agents. You can then orchestrate these agents together, using supported orchestration frameworks. Microsoft Agent Framework is constantly evolving to find the best collaboration patterns for agents (and humans) to work together. Features that show production value with Microsoft Agent Framework can then be moved into Microsoft Foundry Agent Service if you're looking for production support and non-breaking changes.
 
-<sup>1</sup>*Wireline compatible* means that an API can communicate and exchange data in a way that is fully compatible with an existing protocol, existing data formats and communication standards, in this case the Assistants API protocol. It means that two systems can work together seamlessly without needing changes to their core implementation.
+See the [Agent Framework transparency FAQ](https://github.com/microsoft/agent-framework/blob/main/TRANSPARENCY_FAQ.md) to learn about additional considerations and risks when creating multi-agent orchestrations using Microsoft Agent Framework. 
+
+Foundry workflows extend multi-agent orchestration by providing a visual designer and YAML-based configuration for building, testing, and deploying agentic processes. Each workflow can coordinate multiple agents, enabling modular automation andtracability. he workflow designer supports versioning, change logs, and visual monitoring, making it easier to manage complex logic and ensure transparency. 
+
+<sup>1</sup>*Wireline compatible* means that an API can communicate and exchange data in a way that is fully compatible with an existing protocol, existing data formats and communication standards, in this case the Responses API protocol. It means that two systems can work together seamlessly without needing changes to their core implementation.
 
 ### Use cases
 
@@ -128,8 +136,11 @@ Azure AI Agent Service is **flexible and use-case agnostic.** This presents mult
 * **Government: Citizen Request Triage and Community Event Coordination:** A city clerk uses an agent to categorize incoming service requests (for example, pothole repairs), assign them to the right departments, and compile simple status updates; officials review and finalize communications to maintain transparency and accuracy.
 * **Education: Assisting with Research and Reference Gathering:** A teacher relies on an agent to gather age-appropriate articles and resources from reputable sources for a planetary science lesson; the teacher verifies the materials for factual accuracy and adjusts them to fit the curriculum, ensuring students receive trustworthy content.
 * **Manufacturing: Inventory Oversight and Task Scheduling:** A factory supervisor deploys an agent to monitor inventory levels, schedule restocking when supplies run low, and optimize shift rosters; management confirms the agent’s suggestions and retains final decision-making authority.
+* **Deep Research Tool**: Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model with deep research technology in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=text).
+* **Computer Use**:  The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../openai/transparency-note.md?tabs=image). 
+* **Image Generation Tool**: The Image Generation tool is empowered by the gpt-image-1 model. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?branch=main&tabs=image).
 
-Agent code samples have specific intended uses that are configurable by developers to carefully build upon, implement, and deploy agents. See [list of Agent code samples](/azure/ai-services/agents/how-to/agent-catalog#view-all-available-code-samples).
+Agent samples have specific intended uses that are configurable by developers to carefully build upon, implement, and deploy agents. See [list of Agent samples](/azure/ai-foundry/agents/overview#agent-catalog).
 
 
 #### Considerations when choosing a use case
@@ -140,8 +151,9 @@ We encourage customers to use Azure AI Agent Service in their innovative solutio
 - **Avoid scenarios where use or misuse of the system could have a consequential impact on life opportunities or legal status**. Examples include scenarios where the AI system or agent could affect an individual's legal status, legal rights, or their access to credit, education, employment, healthcare, housing, insurance, social welfare benefits, services, opportunities, or the terms on which they're provided. 
 - **Avoid high-stakes scenarios that could lead to harm**. The model used in an agent may reflect certain societal views, biases, and other undesirable content present in the training data or the examples provided in the prompt. As a result, we caution against using agents in high-stakes scenarios where unfair, unreliable, or offensive behavior might be extremely costly or lead to harm. 
 - **Carefully consider use cases in high stakes domains or industry where Agent actions are irreversible or highly consequential**. Such industries include but are not limited to healthcare, medicine, finance, or legal domains. For example: the ability to make financial transactions or give financial advice, the ability to directly interact with outside services, the ability to administer medicine or give health-related advice, the ability to share sensitive information publicly, or the ability to grant access to critical systems.  
-- **Legal and regulatory considerations**. Microsoft takes safety and compliance with legal and regulatory obligations seriously. We always strive to abide by applicable laws, regulations, and standards in developing and deploying AI technologies, including the Microsoft Responsible AI Standard. It is your organization’s responsibility to evaluate safety implications and potential specific legal and regulatory obligations when using any AI services and solutions, including agents, Agents Catalog, and underlying Agent code samples. Certain uses and offerings may be subject to legal and regulatory requirements, may require licenses, or may not be suitable for all industries, scenarios, or use cases. Additionally, agents, Agents Catalog, and underlying Agent code samples may not be used in ways prohibited by applicable laws, regulations, terms of service, or relevant codes of conduct. 
-- Microsoft did not create, test, or verify any third-party systems, APIs, servers and services you may decide to connect to. When you connect to a third-party (non-Microsoft) system, API, server, or service, some data will be shared with that service, and your application may receive data in return. Microsoft has no responsibility to you or others in relation to your use of any remote systems, APIs, servers and services. Your use of these services is governed by your agreement with the provider. You are responsible for any usage and associated costs.
+- **Legal and regulatory considerations**. Microsoft takes safety and compliance with legal and regulatory obligations seriously. We always strive to abide by applicable laws, regulations, and standards in developing and deploying AI technologies, including the Microsoft Responsible AI Standard. It is your organization’s responsibility to evaluate safety implications and potential specific legal and regulatory obligations when using any Foundry Tools and solutions, including agents, and underlying Agent samples. AI responses may be inaccurate, and AI actions should be monitored appropriately with human oversight. Certain uses and offerings may be subject to legal and regulatory requirements, may require licenses, or may not be suitable for all industries, scenarios, or use cases. Additionally, agents, and underlying Agent samples may not be used in ways prohibited by applicable laws, regulations, terms of service, or relevant codes of conduct. 
+- Microsoft did not create, test, or verify any third-party systems, APIs, servers, agents and services you may decide to connect to. When you connect to a third-party (non-Microsoft) system, API, server, agent, or service, some data will be shared with that service, and your application or agent may receive data in return. We recommend reviewing what data will be shared and being cognizant of third-party practices for retention and location of data. Consider and manage carefully whether your data will flow outside of your organization’s compliance and geographic boundaries and any related implications. Microsoft has no responsibility to you or others in relation to your use of any remote systems, APIs, servers, tools, agents or services. Your use of these services is governed by your agreement with the provider. You are responsible for any usage and associated costs.
+- **Browser Automation Tool carries substantial security risks and user responsibility**. Browser Automation Tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users’ browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation Tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation Tool functionality available, including through resulting agents.  
 
 ## Limitations
 
@@ -151,7 +163,6 @@ We encourage customers to use Azure AI Agent Service in their innovative solutio
 * **Tool orchestration complexities:** AI Agents depend on multiple integrated tools and data connectors (such as Bing Search, SharePoint, and Azure Logic Apps). If any of these tools are misconfigured, unavailable, or return inconsistent results, or a high number of tools are configured on a single agent, the agent’s guidance may become fragmented, outdated, or misleading.
 * **Unequal representation and support:** When serving diverse user groups, AI Agents can show uneven performance if language varieties, regional data, or specialized knowledge domains are underrepresented. A retail agent, for example, might offer less reliable product recommendations to customers who speak under-represented languages.
 * **Opaque decision-making processes:** As agents combine large language models with external systems, tracing the “why” behind their decisions can become challenging. A user using such an agent may find it difficult to understand why certain tools or combination of tools were chosen to answer a query, complicating trust and verification of the agent’s outputs or actions.
-- **Agent Catalog limitations**: The Agent Catalog in Azure AI Foundry Agent Service is designed to help customers quickly get started with deploying agents for a wide variety of potential use cases. The underlying Agent code samples may not fully address the unique use requirements and related risks of every scenario. As the developer, you are responsible for carefully reviewing Agent Code samples before implementation, testing agent behavior in the context of your specific use cases, and making all appropriate customizations. This includes evaluating all safety implications and potential specific legal and regulatory obligations as described above in [Considerations when choosing a use case](#considerations-when-choosing-a-use-case).
 * **Evolving best practices and standards:** Agents are an emerging technology, and guidance on safe integration, transparent tool usage, and responsible deployment continues to evolve. Keeping up with the latest best practices and auditing procedures is crucial, as even well-intentioned uses can become risky without ongoing review and refinement.
 
 ## System performance

@@ -2,14 +2,17 @@
 title: Attach and manage a Synapse Spark pool in Azure Machine Learning
 titleSuffix: Azure Machine Learning
 description: Learn how to attach and manage Spark pools with Azure Synapse.
-author: fbsolo-ms1
-ms.author: franksolomon
-ms.reviewer: yogipandey
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to 
 ms.date: 04/12/2024
-ms.custom: template-how-to, devx-track-azurecli
+ms.custom:
+  - template-how-to
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Attach and manage a Synapse Spark pool in Azure Machine Learning
@@ -24,14 +27,14 @@ In this article, you'll learn how to attach a [Synapse Spark Pool](/azure/synaps
 
 ## Prerequisites
 # [Studio UI](#tab/studio-ui)
-- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
+- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An Azure Machine Learning workspace. See [Create workspace resources](./quickstart-create-resources.md).
 - [Create an Azure Synapse Analytics workspace in Azure portal](/azure/synapse-analytics/quickstart-create-workspace).
 - [Create an Apache Spark pool using the Azure portal](/azure/synapse-analytics/quickstart-create-apache-spark-pool-portal).
 
 # [CLI](#tab/cli)
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
-- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
+- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An Azure Machine Learning workspace. See [Create workspace resources](./quickstart-create-resources.md).
 - [Create an Azure Synapse Analytics workspace in Azure portal](/azure/synapse-analytics/quickstart-create-workspace).
 - [Create an Apache Spark pool using the Azure portal](/azure/synapse-analytics/quickstart-create-apache-spark-pool-portal).
@@ -40,7 +43,7 @@ In this article, you'll learn how to attach a [Synapse Spark Pool](/azure/synaps
 
 # [Python SDK](#tab/sdk)
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
-- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free) before you begin.
+- An Azure subscription; if you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An Azure Machine Learning workspace. See [Create workspace resources](./quickstart-create-resources.md).
 - [Create an Azure Synapse Analytics workspace in Azure portal](/azure/synapse-analytics/quickstart-create-workspace).
 - [Create an Apache Spark pool using the Azure portal](/azure/synapse-analytics/quickstart-create-apache-spark-pool-portal).

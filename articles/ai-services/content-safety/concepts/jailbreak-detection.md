@@ -5,18 +5,18 @@ description: Learn about User Prompt injection attacks and document attacks and 
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
-ms.custom: build-2023
-ms.topic: conceptual
-ms.date: 04/29/2025
+ms.custom: build-2023, dev-focus
+ms.topic: concept-article
+ai-usage: ai-assisted
+ms.date: 11/21/2025
 ms.author: pafarley
 ---
 
 # Prompt Shields
 
-Generative AI models can pose risks of exploitation by malicious actors. To mitigate these risks, we integrate safety mechanisms to restrict the behavior of large language models (LLMs) within a safe operational scope. However, despite these safeguards, LLMs can still be vulnerable to adversarial inputs that bypass the integrated safety protocols.
+Prompt Shields is a unified API in Azure AI Content Safety that detects and blocks adversarial user input attacks on large language models (LLMs). It helps prevent harmful, unsafe, or policy-violating AI outputs by analyzing prompts and documents before content is generated.
 
-Prompt Shields is a unified API that analyzes inputs to LLMs and detects adversarial user input attacks.
-
+Generative AI models can pose risks of exploitation by malicious actors. To mitigate these risks, we integrate safety mechanisms to restrict the behavior of large language models (LLMs) within a safe operational scope. However, despite these safeguards, LLMs can still be vulnerable to adversarial inputs that bypass the integrated safety protocols. In these cases, specialized filters like Prompt Shields are effective.
 
 ## User scenarios
 
@@ -55,27 +55,31 @@ Prompt Shields is a unified API that analyzes inputs to LLMs and detects adversa
 
 ## Limitations
 
-### Language availability
+- **Language availability**: Models are trained and tested on Chinese, English, French, German, Spanish, Italian, Japanese, Portuguese. Other languages might work but with varying quality.
+- **Text length**: See [Input requirements](../overview.md#input-requirements) for maximum text length limitations.
+- **Region availability**: You must create your Azure AI Content Safety resource in one of the [supported regions](../overview.md#region-availability).
+- **Rate limits**: See [Query rates](../overview.md#query-rates). [Contact us](mailto:contentsafetysupport@microsoft.com) for higher rate requests.
 
-Prompt Shields have been trained and tested on the following languages: Chinese, English, French, German, Spanish, Italian, Japanese, Portuguese. However, the feature can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
+## Troubleshooting
 
-### Text length limitations
+Common issues and solutions:
 
-See [Input requirements](/azure/ai-services/content-safety/overview#input-requirements) for maximum text length limitations.
+- **401 Unauthorized**: Verify your API key is correct and the resource is active. Check that your key environment variable is properly set.
+- **429 Too Many Requests**: You've exceeded rate limits. Implement exponential backoff or request higher limits.
+- **400 Bad Request**: Check that your text input doesn't exceed length limits and required parameters are included.
+- **403 Forbidden**: Verify your RBAC role assignment. You need at least Cognitive Services User permissions.
+- **False positives/negatives**: Prompt Shields may not catch all attack vectors or may flag legitimate prompts. Always implement additional validation layers.
 
-### Region availability
+## Next steps
 
-To use this API, you must create your Azure AI Content Safety resource in the supported regions. See [Region availability](/azure/ai-services/content-safety/overview#region-availability).
-
-### Rate limitations
-
-See [Query rates](/azure/ai-services/content-safety/overview#query-rates).
-
-If you need a higher rate, [contact us](mailto:contentsafetysupport@microsoft.com) to request it.
-
-## Next step
-
-Follow the quickstart to get started using Azure AI Content Safety to detect user input risks.
+Explore these resources to implement Prompt Shields in your application:
 
 > [!div class="nextstepaction"]
 > [Prompt Shields quickstart](../quickstart-jailbreak.md)
+
+**Additional resources**:
+- [Content Safety REST API reference](/rest/api/contentsafety/text-operations)
+- [Python SDK documentation](/python/api/azure-ai-contentsafety/)
+- [.NET SDK documentation](/dotnet/api/azure.ai.contentsafety)
+- [GitHub samples repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentsafety/azure-ai-contentsafety/samples)
+- [Content Safety overview](../overview.md)

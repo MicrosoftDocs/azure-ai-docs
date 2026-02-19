@@ -9,13 +9,13 @@ ms.custom:
   - build-2024
 ms.topic: reference
 
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.date: 04/15/2024
 ms.reviewer: ambadal
 ---
 
-# CLI (v2) Azure AI Speech Services connection YAML schema
+# CLI (v2) Azure Speech in Foundry Tools Services connection YAML schema
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
@@ -31,14 +31,14 @@ ms.reviewer: ambadal
 | `tags` | object | The connection tag dictionary. | | |
 | `type` | string | **Required.** The connection type. | `azure_speech_services` | `azure_speech_services` |
 | `is_shared` | boolean | `true` if the connection is shared across other projects in the hub; otherwise, `false`. | | `true` |
-| `endpoint` | string | **Required.** The Azure AI Services endpoint for this connection. | | |
+| `endpoint` | string | **Required.** The Foundry Tools endpoint for this connection. | | |
 | `api_key` | string | **Required.** The API key used to authenticate the connection. If not provided, a Microsoft Entra ID (credential-less authentication) is created. | | |
 
 ## Remarks
 
-The schema described in this article is used to create a connection to Azure AI Speech Services only. If you would rather create a single connection for Azure AI Services, see the [Azure AI Services connection schema](reference-yaml-connection-ai-services.md).
+The schema described in this article is used to create a connection to Azure Speech in Foundry Tools Services only. If you would rather create a single connection for Foundry Tools, see the [Foundry Tools connection schema](reference-yaml-connection-ai-services.md).
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Azure AI Speech Services connection is specific to Azure AI Foundry.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Microsoft Foundry connections, the Speech Services connection is specific to Foundry.
 
 ## Examples
 

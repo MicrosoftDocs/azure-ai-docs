@@ -9,13 +9,11 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 10/01/2025
+ms.update-cycle: 365-days
 ---
 
 # Text normalization for case-insensitive filtering, faceting and sorting
-
-> [!IMPORTANT] 
-> This feature is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). We recommend the latest [preview REST API version](/rest/api/searchservice/search-service-api-versions) for this feature.
 
 In Azure AI Search, a *normalizer* is a component that pre-processes text for keyword matching over fields marked as "filterable", "facetable", or "sortable". In contrast with full text "searchable" fields that are paired with [text analyzers](search-analyzers.md), content that's created for filter-facet-sort operations doesn't undergo analysis or tokenization. Omission of text analysis can produce unexpected results when casing and character differences show up, which is why you need a normalizer to homogenize variations in your content.
 
@@ -91,6 +89,40 @@ Azure AI Search provides built-in normalizers for common use-cases along with th
 |[Custom normalizers](#add-custom-normalizers) <sup>1</sup> | For advanced scenarios. Requires user-defined configuration of a combination of existing elements, consisting of char and token filters.|
 
 <sup>(1)</sup> Custom normalizers don't specify tokenizers since normalizers always produce a single token.
+
+## Test a normalizer
+
+You can use the [Test Analyzer (REST)](/rest/api/searchservice/indexes/analyze) to see how a normalizer processes an input.
+
+**Request**
+
+```http
+  POST https://[search service name].search.windows.net/indexes/[index name]/analyze?api-version=[api-version]
+    Content-Type: application/json
+    api-key: [admin key]
+
+  {
+     "normalizer":"asciifolding",
+     "text": "Vis-à-vis means Opposite"
+  }
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+
+{
+  "tokens": [
+    {
+      "token": "Vis-a-vis means Opposite",
+      "startOffset": 0,
+      "endOffset": 24,
+      "position": 0
+    }
+  ]
+}
+```
 
 ## Normalizers reference
 

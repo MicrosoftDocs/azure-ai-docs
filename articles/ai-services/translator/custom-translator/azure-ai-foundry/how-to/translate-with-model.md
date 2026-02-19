@@ -1,18 +1,18 @@
 ---
-title: Translate text with Azure AI Foundry custom translation model
-titleSuffix: Azure AI services
-description: How to make translation requests using deployed Azure AI Foundry custom translation model
+title: Translate text with Foundry Tools custom translation model
+titleSuffix: Foundry Tools
+description: How to make translation requests using deployed Microsoft Foundry custom translation model
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Translate text with your Azure AI Foundry custom translation model
+# Translate text with a Foundry Tools custom translation model
 
-After you deploy your custom translation model, you can access it with the Azure AI Translator API by using the **Category ID** parameter.
+After you deploy your custom translation model, you can access it with the Azure Translator API by using the **Category ID** parameter.
 
 ## How to translate
 
@@ -35,7 +35,7 @@ After you deploy your custom translation model, you can access it with the Azure
 
    More information about the Translator Text API can be found on the [Translator API Reference](../../../text-translation/reference/v3/translate.md) page.
 
-1. You can also use **Azure AI Foundry** > **AI Services** > **Language + Translator** > **Translation** > **Text translation**
+1. You can also use **Microsoft Foundry** > **AI Services** > **Language + Translator** > **Translation** > **Text translation**
 
    :::image type="content" source="../media/fine-tune-translate-foundry.png" alt-text="Screenshot illustrating the translate-model function.":::
 

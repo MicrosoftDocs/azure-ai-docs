@@ -2,15 +2,15 @@
 title: Indexer access to protected resources
 titleSuffix: Azure AI Search
 description: Learn import concepts and requirements related to network-level security options for outbound requests made by indexers in Azure AI Search.
-
 manager: nitinme
 author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/12/2025
+ms.update-cycle: 365-days
 ---
 
 # Indexer access to content protected by Azure network security
@@ -35,13 +35,13 @@ A list of all possible Azure resource types that an indexer might access in a ty
 | Azure Storage (blobs, tables) | Skillsets (caching enrichments, debug sessions, knowledge store projections) |
 | Azure Cosmos DB (various APIs) | Data source |
 | Azure SQL Database | Data source |
-| OneLake (Microsoft Fabric) | Data source |
+| Microsoft OneLake | Data source |
 | SQL Server on Azure virtual machines | Data source |
 | SQL Managed Instance | Data source |
 | Azure Functions | Attached to a skillset and used to host for custom web API skills |
 
 > [!NOTE]
-> An indexer also connects to Azure AI services for built-in skills. However, that connection is made over the internal network and isn't subject to any network provisions under your control.
+> An indexer also connects to Foundry Tools for built-in skills. However, that connection is made over the internal network and isn't subject to any network provisions under your control.
 
 Indexers connect to resources using the following approaches:
 
@@ -76,9 +76,11 @@ For any given indexer run, Azure AI Search determines the best environment in wh
 
 | Execution environment | Description |
 |-----------------------|-------------|
-| Private | Internal to a search service. Indexers running in the private environment share computing resources with other indexing and query workloads on the same search service. If you set up a private connection between an indexer and your data, such as a shared private link, this is the only execution environment you can use and it's used automatically. |
+| Private <sup>1</sup> | Internal to a search service. Indexers running in the private environment share computing resources with other indexing and query workloads on the same search service. If you set up a private connection between an indexer and your data, such as a shared private link, this is the only execution environment you can use and it's used automatically. |
 |  multitenant | Managed and secured by Microsoft at no extra cost. It isn't subject to any network provisions under your control. This environment is used to offload computationally intensive processing, leaving service-specific resources available for routine operations. Examples of resource-intensive indexer jobs include skillsets, processing large documents, or processing a high volume of documents. |
 
+
+<sup>1</sup> To prevent heavy load on the private execution environment, indexers with more than 2 Azure OpenAI Embedding or Azure Vision multimodal embeddings skills will be restricted from running in this environment.
 
 ### Setting up IP ranges for indexer execution
 
@@ -177,7 +179,7 @@ There are two options for supporting data access using the system identity:
 
 - Configure a [resource instance rule](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances) in Azure Storage that admits inbound requests from an Azure resource.
 
-The above options depend on Microsoft Entra ID for authentication, which means that the connection must be made with a Microsoft Entra login. Currently, only an Azure AI Search [system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) is supported for same-region connections through a firewall.
+The above options depend on Microsoft Entra ID for authentication, which means that the connection must be made with a Microsoft Entra login. Currently, only an Azure AI Search [system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) is supported for same-region connections through a firewall.
 
 ### Services in different regions
 

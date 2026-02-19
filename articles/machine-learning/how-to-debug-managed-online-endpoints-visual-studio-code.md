@@ -5,9 +5,9 @@ description: Learn how to use Visual Studio Code to test and debug online endpoi
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-author: msakande
-ms.author: mopeakande
-ms.reviewer: sehan
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 03/20/2024
 ms.topic: troubleshooting
 ms.custom: devplatv2, devx-track-azurecli, cliv2

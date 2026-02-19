@@ -3,14 +3,19 @@ title: Set up authentication
 titleSuffix: Azure Machine Learning
 description: Learn how to set up and configure authentication for various resources and workflows in Azure Machine Learning.
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
-ms.reviewer: meyetman
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.date: 01/21/2025
+ms.date: 01/28/2026
 ms.topic: how-to
-ms.custom: has-adal-ref, subject-rbac-steps, cliv2, sdkv2
+ms.custom:
+  - has-adal-ref
+  - subject-rbac-steps
+  - cliv2
+  - sdkv2
+  - sfi-image-nochange
 # Customer intent: As a data scientist, I want to learn how to set up authentication for Azure Machine Learning resources and workflows so that I can access the resources I need.
 ---
 
@@ -35,6 +40,7 @@ Microsoft Entra Conditional Access can be used to further control or restrict ac
 
 ## Prerequisites
 
+* Python 3.10 or later.
 * Create an [Azure Machine Learning workspace](how-to-manage-workspace.md).
 * [Configure your development environment](how-to-configure-environment.md) or use an [Azure Machine Learning compute instance](how-to-create-compute-instance.md) and install the [Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
 
@@ -113,7 +119,7 @@ To use a service principal (SP), you must first create the SP. Then grant it acc
 > [!IMPORTANT]
 > When using a service principal, grant it the __minimum access required for the task__ it is used for. For example, you would not grant a service principal owner or contributor access if all it is used for is reading the access token for a web deployment.
 >
-> The reason for granting the least access is that a service principal uses a password to authenticate, and the password may be stored as part of an automation script. If the password is leaked, having the minimum access required for a specific tasks minimizes the malicious use of the SP.
+> The reason for granting the least access is that a service principal uses a password to authenticate, and the password may be stored as part of an automation script. If the password is leaked, having the minimum access required for a specific task minimizes the malicious use of the SP.
 
 The easiest way to create an SP and grant access to your workspace is by using the [Azure CLI](/cli/azure/install-azure-cli). To create a service principal and grant it access to your workspace, use the following steps:
 
@@ -275,7 +281,7 @@ You can use a service principal for Azure CLI commands. For more information, se
 The service principal can also be used to authenticate to the Azure Machine Learning [REST API](/rest/api/azureml/). You use the Microsoft Entra ID [client credentials grant flow](/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow), which allow service-to-service calls for headless authentication in automated workflows. 
 
 > [!IMPORTANT]
-> If you are currently using Azure Active Directory Authentication Library (ADAL) to get credentials, we recommend that you [Migrate to the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-migration). ADAL support ended June 30, 2022.
+> If you are currently using Azure Active Directory Authentication Library (ADAL) to get credentials, we recommend that you [Migrate to the Microsoft Authentication Library (MSAL)](/entra/identity-platform/msal-migration). ADAL support ended June 30, 2023.
 
 For information and samples on authenticating with MSAL, see the following articles:
 
@@ -329,7 +335,7 @@ can require two-factor authentication, or allow sign in only from managed device
 | Application ID | Name | Note |
 | ----- | ----- | ----- |
 | d7304df8-741f-47d3-9bc2-df0e24e2071f | Azure Machine Learning Workbench Web App | Azure Machine Learning studio |
-| cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Azure AI Foundry App | Azure AI Foundry |
+| cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Microsoft Foundry App | Foundry |
 
 ### Check for service principal
 

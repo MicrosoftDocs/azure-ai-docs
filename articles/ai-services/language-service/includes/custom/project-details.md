@@ -1,18 +1,17 @@
 ---
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. Go to your **project settings** page in [Language Studio](https://aka.ms/languageStudio).
 
 2. You can see project details.
 
-3. In this page you can update project description and enable/disable Multi-lingual dataset in project settings.
+3. On this page, you can update project description and enable/disable Multi-lingual dataset in project settings.
 
 4. You can also view the connected storage account and container to your Language resource.
 

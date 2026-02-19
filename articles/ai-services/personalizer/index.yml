@@ -10,7 +10,7 @@ metadata:
   author: jcodella
   ms.service: azure-ai-personalizer
   title: Personalizer documentation
-  titleSuffix: Azure AI services
+  titleSuffix: Foundry Tools
   description:  Azure AI Personalizer is a cloud-based API service that allows you to choose the best experience to show to your users, learning from their real-time behavior.
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new

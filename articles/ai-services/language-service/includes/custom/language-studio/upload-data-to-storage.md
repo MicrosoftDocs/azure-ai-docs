@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. Locate the files to upload to your storage account
 
 1. In the [Azure portal](https://portal.azure.com), navigate to the storage account you created, and select it.
@@ -15,6 +14,6 @@ ms.author: lajanuar
 
     :::image type="content" source="../../../media/custom/language-studio/storage-screen.png" alt-text="A screenshot showing the main page for a storage account." lightbox="../../../media/custom/language-studio/storage-screen.png":::
 
-1. After your container has been created, select it. Then select **Upload** button to select the `.txt` and `.json` files you downloaded earlier. 
+1. After your container is created, select it. Then select **Upload** button to select the `.txt` and `.json` files you downloaded earlier. 
 
     :::image type="content" source="../../../media/custom/language-studio/file-upload-screen.png" alt-text="A screenshot showing the button for uploading files to the storage account." lightbox="../../../media/custom/language-studio/file-upload-screen.png":::

@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 Submit a `POST` request by using the following URL, headers, and JSON body to import your project.
 
 ### Request URL
@@ -96,7 +95,7 @@ The JSON body you send is similar to the following example. For more information
 | `projectName` | `{PROJECT-NAME}` | The name of your project. This value is case sensitive. | `EmailAppDemo` |
 | `language` | `{LANGUAGE-CODE}` |  A string that specifies the language code for the utterances used in your project. If your project is a multilingual project, choose the [language code](../../language-support.md) of most of the utterances. |`en-us`|
 | `multilingual` | `true`| A Boolean value that enables you to have documents in multiple languages in your dataset. When your model is deployed, you can query the model in any [supported language](../../language-support.md#multi-lingual-option), including languages that aren't included in your training documents. | `true`|
-| `dataset` | `{DATASET}` |  For information on how to split your data between a testing and training set, see [Label your utterances in AI Foundry](../../how-to/tag-utterances.md). Possible values for this field are `Train` and `Test`. |`Train`|
+| `dataset` | `{DATASET}` |  For information on how to split your data between a testing and training set, see [Label your utterances in Foundry](../../how-to/tag-utterances.md). Possible values for this field are `Train` and `Test`. |`Train`|
 
 After a successful request, the API response contains an `operation-location` header with a URL that you can use to check the status of the import job. The header is formatted like this example:
 

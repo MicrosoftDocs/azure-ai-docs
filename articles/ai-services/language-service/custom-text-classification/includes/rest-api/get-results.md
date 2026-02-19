@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 Use the following **GET** request to query the status/results of the text classification task. 
 
 ```rest
@@ -15,7 +14,7 @@ Use the following **GET** request to query the status/results of the text classi
 |Placeholder  |Value  | Example |
 |---------|---------|---------|
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
-|`{API-VERSION}`     | The version of the API you're calling. The value referenced here is for the latest released [model version](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) version.  | `2022-05-01` |
+|`{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest released [model version](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) version.  | `2022-05-01` |
 
 #### Headers
 

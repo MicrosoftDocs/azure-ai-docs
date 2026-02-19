@@ -1,16 +1,16 @@
 ### YamlMime:Landing
 
-title: Text to speech documentation
-summary: Text to speech from the Speech service enables your applications, tools, or devices to convert text into human-like synthesized speech.
+title: Text-to-speech documentation
+summary: Text to speech from Azure Speech enables your applications, tools, or devices to convert text into humanlike synthesized speech.
 metadata:
-  title: Text to speech documentation - Tutorials, API Reference - Azure AI services | Microsoft Docs
-  titleSuffix: Azure AI services
-  author: eric-urban
+  title: Text-to-Speech Documentation - Tutorials, API Reference - Foundry Tools
+  titleSuffix: Foundry Tools
+  author: PatrickFarley
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: landing-page
-  ms.date: 3/10/2025
-  ms.author: eur
+  ms.date: 08/07/2025
+  ms.author: pafarley
 
 landingContent:
 - title: About text to speech
@@ -51,7 +51,7 @@ landingContent:
           url: language-support.md
         - text: SSML phonetic sets
           url: speech-ssml-phonetic-sets.md
-        - text: Text to speech pricing
+        - text: Text-to-speech pricing
           url: https://azure.microsoft.com/pricing/details/cognitive-services/speech-services
 - title: Help and feedback
   linkLists:

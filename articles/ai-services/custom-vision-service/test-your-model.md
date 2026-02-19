@@ -1,6 +1,6 @@
 ---
 title: Test and retrain a model - Custom Vision Service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to test an image and then use it to retrain your model in the Custom Vision service, ensuring your model improves over time with new data.
 #customer intent: As a developer, I want to test and retrain my Custom Vision model so that it improves its accuracy.
 author: PatrickFarley
@@ -10,9 +10,12 @@ ms.service: azure-ai-custom-vision
 ms.topic: how-to
 ms.date: 01/22/2025
 ms.author: pafarley
+ms.custom: sfi-image-nochange
 ---
 
 # Test and retrain a Custom Vision model
+
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
 
 After you train your Custom Vision model, you can quickly test it using a locally stored image or a URL pointing to a remote image. Test the most recently trained iteration of your model, and then decide whether further training is needed.
 

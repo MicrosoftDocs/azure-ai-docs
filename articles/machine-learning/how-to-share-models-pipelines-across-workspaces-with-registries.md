@@ -5,12 +5,13 @@ description: Learn how practice cross-workspace MLOps and collaborate across tea
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: soumyapatro
-ms.date: 04/07/2025
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: jturuk
+ms.date: 02/11/2026
 ms.topic: how-to
-ms.custom: devx-track-azurecli, build-2023
+ms.custom: devx-track-azurecli, build-2023, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Share models, components, and environments across workspaces with registries
@@ -33,7 +34,7 @@ In this article, you learn how to:
 
 Before following the steps in this article, make sure you have the following prerequisites:
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An Azure Machine Learning registry to share models, components, and environments. To create a registry, see [Learn how to create a registry](how-to-manage-registries.md).
 
@@ -68,7 +69,7 @@ Before following the steps in this article, make sure you have the following pre
     To install the Python SDK v2, use the following command:
 
     ```bash
-    pip install --pre --upgrade azure-ai-ml azure-identity
+    pip install --upgrade azure-ai-ml azure-identity
     ```
 
     ---
@@ -128,12 +129,13 @@ Environments define the docker container and Python dependencies required to run
 > [!TIP]
 > The same CLI command `az ml environment create` can be used to create environments in a workspace or registry. Running the command with `--workspace-name` command creates the environment in a workspace whereas running the command with `--registry-name` creates the environment in the registry.
 
-We create an environment that uses the `python:3.8` docker image and installs Python packages required to run a training job using the SciKit Learn framework. If you cloned the examples repo and are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`, you should be able to see environment definition file `env_train.yml` that references the docker file `env_train/Dockerfile`. The contents of `env_train.yml` is as follows:
+We create an environment that uses the `python:3.10` docker image and installs Python packages required to run a training job using the SciKit Learn framework. If you cloned the examples repo and are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`, you should be able to see environment definition file `env_train.yml` that references the docker file `env_train/Dockerfile`. The contents of `env_train.yml` is as follows:
 
 ```YAML
 $schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
 name: SKLearnEnv
-version: 1
+version: 1-<VERSION>
+description: Scikit Learn environment
 build:
   path: ./env_train
 ```
@@ -172,7 +174,7 @@ az ml environment show --name SKLearnEnv --version 1 --registry-name <registry-n
 > The same `MLClient.environments.create_or_update()` can be used to create environments in either a workspace or a registry depending on the target it was initialized with. Since you work with both workspace and registry in this document, you initialize `ml_client_workspace` and `ml_client_registry` to work with workspace and registry respectively. 
 
 
-We create an environment that uses the `python:3.8` docker image and installs Python packages required to run a training job using the SciKit Learn framework. The `Dockerfile` with base image and list of Python packages to install is available in `cli/jobs/pipelines-with-components/nyc_taxi_data_regression/env_train`. Initialize the environment object and create the environment.
+We create an environment that uses the `python:3.10` docker image and installs Python packages required to run a training job using the SciKit Learn framework. The `Dockerfile` with base image and list of Python packages to install is available in `cli/jobs/pipelines-with-components/nyc_taxi_data_regression/env_train`. Initialize the environment object and create the environment.
 
 ```python
 env_docker_context = Environment(
@@ -214,7 +216,7 @@ For more information on components, see the following articles:
 
 # [Azure CLI](#tab/cli)
 
-Make sure you are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`. You find the component definition file `train.yml` that packages a Scikit Learn training script `train_src/train.py` and the [curated environment](resource-curated-environments.md) `AzureML-sklearn-0.24-ubuntu18.04-py37-cpu`. We use the Scikit Learn environment created in pervious step instead of the curated environment. You can edit `environment` field in the `train.yml` to refer to your Scikit Learn environment. The resulting component definition file `train.yml` is similar to the following example: 
+Make sure you are in the folder `cli/jobs/pipelines-with-components/nyc_taxi_data_regression`. You find the component definition file `train.yml` that packages a Scikit Learn training script `train_src/train.py`. The `train.yml` uses the [curated environment](resource-curated-environments.md) `sklearn-1.5` from the `azureml` registry. You can edit the `environment` field in `train.yml` to use the Scikit Learn environment you created in the previous step, or keep the curated environment. The component definition file `train.yml` is similar to the following example:
 
 ```YAML
 # <component>
@@ -237,17 +239,17 @@ outputs:
   test_data:
     type: uri_folder
 code: ./train_src
-environment: azureml://registries/<registry-name>/environments/SKLearnEnv/versions/1`
+environment: azureml://registries/azureml/environments/sklearn-1.5/labels/latest
 command: >-
   python train.py 
   --training_data ${{inputs.training_data}} 
   --test_data ${{outputs.test_data}} 
   --model_output ${{outputs.model_output}}
   --test_split_ratio ${{inputs.test_split_ratio}}
-
+# </component>
 ```
 
-If you used different name or version, the more generic representation looks like this: `environment: azureml://registries/<registry-name>/environments/<sklearn-environment-name>/versions/<sklearn-environment-version>`, so make sure you replace the `<registry-name>`,  `<sklearn-environment-name>` and `<sklearn-environment-version>` accordingly. You then run the `az ml component create` command to create the component as follows.
+If you want to use your own environment from the previous step instead of the curated environment, update the `environment` field to `azureml://registries/<registry-name>/environments/SKLearnEnv/versions/1`. Run the `az ml component create` command to create the component as follows.
 
 ```azurecli
 az ml component create --file train.yml --registry-name <registry-name>
@@ -259,9 +261,7 @@ az ml component create --file train.yml --registry-name <registry-name>
 If you prefer to not edit the `train.yml`, you can override the environment name on the CLI as follows:
 
 ```azurecli
-az ml component create --file train.yml --registry-name <registry-name>` --set environment=azureml://registries/<registry-name>/environments/SKLearnEnv/versions/1
-# or if you used a different name or version, replace `<sklearn-environment-name>` and `<sklearn-environment-version>` accordingly
-az ml component create --file train.yml --registry-name <registry-name>` --set environment=azureml://registries/<registry-name>/environments/<sklearn-environment-name>/versions/<sklearn-environment-version>
+az ml component create --file train.yml --registry-name <registry-name> --set environment=azureml://registries/<registry-name>/environments/SKLearnEnv/versions/1
 ```
 
 > [!TIP]
@@ -499,7 +499,7 @@ az ml model create --name nyc-taxi-model --version 1 --type mlflow_model --path 
 ```
 
 > [!TIP]
-> * Use a random number for the `version` parameter if you get an error that the model name and version  already exists.
+> * Use a random number for the `version` parameter if you get an error that the model name and version already exist.
 > * If you haven't configured the default workspace and resource group as explained in the prerequisites section, you need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml model create` to work.
 
 Note down the model name and version. You can validate if the model is registered in the workspace by browsing it in the Studio UI or using `az ml model show --name nyc-taxi-model --version $model_version` command.  
@@ -514,7 +514,8 @@ az ml model share --name nyc-taxi-model --version 1 --registry-name <registry-na
 
 > [!TIP]
 > * Make sure to use the right model name and version if you changed it in the `az ml model create` command.
-> * The above command has two optional parameters "--share-with-name" and "--share-with-version". If these are not provided the new model will have the same name and version as the model that is being shared.
+> * The `--share-with-name` and `--share-with-version` parameters are required. They specify the name and version the model will have in the registry.
+
 Note down the `name` and `version` of the model from the output of the `az ml model create` command and use them with `az ml model show` commands as follows. You'll need the `name` and `version` in the next section when you deploy the model to an online endpoint for inference. 
 
 ```azurecli 
@@ -557,13 +558,22 @@ Note down the model name and version. You can validate if the model is registere
 
 Next, you'll now share the model from the workspace to the registry.
 
+> [!NOTE]
+> The `models.share()` method is currently experimental and may change at any time.
+
 ```python
-# share the model from registry to workspace
-ml_client.models.share(name="nyc-taxi-model", version=1, registry_name=<registry_name>, share_with_name=<new-name>, share_with_version=<new-version>)
+# share the model from workspace to registry
+ml_client.models.share(
+    name="nyc-taxi-model",
+    version="1",
+    registry_name="<registry-name>",
+    share_with_name="<new-name>",
+    share_with_version="<new-version>"
+)
 ```
 
 > [!TIP]
-> The above code has two optional parameters "share-with-name" and "share-with-version". If these are not provided the new model will have the same name and version as the model that is being shared.
+> The `share_with_name` and `share_with_version` parameters are required. They specify the name and version the model will have in the registry.
 
 Note down the `name` and `version` of the model from the output and use them with `ml_client_workspace.model.get()` commands as follows. You'll need the `name` and `version` in the next section when you deploy the model to an online endpoint for inference. 
 
@@ -593,14 +603,14 @@ Create an online endpoint.
 az ml online-endpoint create --name reg-ep-1234
 ```
 
-Update the `model:` line `deploy.yml` available in the `cli/jobs/pipelines-with-components/nyc_taxi_data_regression` folder to refer the model name and version from the pervious step. Create an online deployment to the online endpoint. The `deploy.yml` is shown below for reference.
+Update the `model:` line `deploy.yml` available in the `cli/jobs/pipelines-with-components/nyc_taxi_data_regression` folder to refer the model name and version from the previous step. Create an online deployment to the online endpoint. The `deploy.yml` is shown below for reference.
 
 ```YAML
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
 name: demo
 endpoint_name: reg-ep-1234
 model: azureml://registries/<registry-name>/models/nyc-taxi-model/versions/1
-instance_type: Standard_DS2_v2
+instance_type: Standard_DS3_v2
 instance_count: 1
 ```
 Create the online deployment. The deployment takes several minutes to complete. 
@@ -616,6 +626,9 @@ ENDPOINT_KEY=$(az ml online-endpoint get-credentials -n reg-ep-1234 -o tsv --que
 SCORING_URI=$(az ml online-endpoint show -n reg-ep-1234 -o tsv --query scoring_uri)
 curl --request POST "$SCORING_URI" --header "Authorization: Bearer $ENDPOINT_KEY" --header 'Content-Type: application/json' --data @./scoring-data.json
 ```
+
+> [!Important]
+> * For endpoints created with a User Assigned Identity, manual role assignment is required. The identity needs to have `ACRPull` and `Storage Blob Data Reader` roles on the subscription level. 
 
 > [!TIP]
 > * `curl` command works only on Linux.

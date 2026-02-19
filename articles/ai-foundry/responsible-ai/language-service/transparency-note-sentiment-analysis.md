@@ -1,12 +1,12 @@
 ---
-title: Transparency note - Sentiment Analysis feature of Azure AI Language
-titleSuffix: Azure AI services
-description: The Sentiment Analysis feature of Azure AI Language evaluates text and returns sentiment scores and labels for each sentence. This is useful for detecting positive, neutral and negative sentiment in social media, customer reviews, discussion forums and other product and service scenarios.
-author: aahill
-ms.author: aahi
+title: Transparency note - Sentiment Analysis feature of Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
+description: The Sentiment Analysis feature of Azure Language in Foundry Tools evaluates text and returns sentiment scores and labels for each sentence. This is useful for detecting positive, neutral and negative sentiment in social media, customer reviews, discussion forums and other product and service scenarios.
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/12/2022
 ---
 
@@ -17,7 +17,7 @@ ms.date: 08/12/2022
 ## What is a transparency note?
 
 > [!IMPORTANT]
-> This article assumes that you're familiar with guidelines and best practices for Azure AI Language. For more information, see [Transparency note for Azure AI Language](transparency-note.md).
+> This article assumes that you're familiar with guidelines and best practices for Azure Language in Foundry Tools. For more information, see [Transparency note for Language](transparency-note.md).
 
 An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance. Microsoft's Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
 
@@ -27,7 +27,7 @@ Microsoft's Transparency notes are part of a broader effort at Microsoft to put 
 
 ### Introduction
 
-The Sentiment Analysis feature of Azure AI Language evaluates text and returns sentiment scores and labels for each sentence. This is useful for detecting positive, neutral and negative sentiment in social media, customer reviews, discussion forums and other product and service scenarios. 
+The Sentiment Analysis feature of Language evaluates text and returns sentiment scores and labels for each sentence. This is useful for detecting positive, neutral and negative sentiment in social media, customer reviews, discussion forums and other product and service scenarios. 
 
 ## Capabilities
 
@@ -70,7 +70,7 @@ Key limitations to consider:
 
 * The confidence score magnitude does not reflect the intensity of the sentiment. It is based on the confidence of the model for a particular sentiment (positive, neutral, negative). Therefore, if your system depends on the intensity of the sentiment, consider using a human reviewer or post processing logic on the individual opinion scores or the original text to help rank the intensity of the sentiment. 
 
-* While we’ve made efforts to reduce the bias exhibited by our models, the limitations that come with language models, including the potential for it to produce inaccurate, unreliable, and biased output, apply to the Azure AI Language Sentiment Analysis model. We expect the model to have some false negatives and positives for now, but we are eager to collect user feedback to aid our ongoing work to improve this service.
+* While we’ve made efforts to reduce the bias exhibited by our models, the limitations that come with language models, including the potential for it to produce inaccurate, unreliable, and biased output, apply to the Language Sentiment Analysis model. We expect the model to have some false negatives and positives for now, but we are eager to collect user feedback to aid our ongoing work to improve this service.
 
 ### Best practices for improving system performance
 
@@ -80,12 +80,12 @@ You may find confidence scores for positive, negative, and neutral sentiments di
 
 ## See also
 
-* [Transparency note for Azure AI Language](transparency-note.md)
+* [Transparency note for Language](transparency-note.md)
 * [Transparency note for Named Entity Recognition and Personally Identifying Information](transparency-note-named-entity-recognition.md)
 * [Transparency note for Health](transparency-note-health.md)
 * [Transparency note for Key Phrase Extraction](transparency-note-key-phrase-extraction.md)
 * [Transparency note for Language Detection](transparency-note-language-detection.md)
 * [Transparency note for Question answering](transparency-note-question-answering.md)
 * [Transparency note for Summarization](transparency-note-extractive-summarization.md)
-* [Data Privacy and Security for  Azure AI Language](data-privacy.md)
-* [Guidance for integration and responsible use with Azure AI Language](guidance-integration-responsible-use.md)
+* [Data Privacy and Security for  Language](data-privacy.md)
+* [Guidance for integration and responsible use with Language](guidance-integration-responsible-use.md)

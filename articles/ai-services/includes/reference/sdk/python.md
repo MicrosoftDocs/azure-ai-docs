@@ -1,13 +1,11 @@
 ---
 title: Azure AI SDK for Python
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Provides an overview with links to available Azure AI client libraries and packages for Python.
-author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
 ms.date: 03/06/2024
-ms.author: eur
 ---
 
 ## Supported services
@@ -15,7 +13,7 @@ ms.author: eur
 | Service | Description | Reference documentation |
 | --- | --- | --- |
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. |&bullet;&NonBreakingSpace;[Azure AI Search SDK for Python](/python/api/overview/azure/search-documents-readme?view=azure-python&preserve-view=true) <br><br>&bullet;&NonBreakingSpace;[Azure AI Search PyPi package](https://pypi.org/project/azure-search-documents/11.6.0b1/) |
-| ![Azure OpenAI in Azure AI Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../../../openai/index.yml) | Perform a wide variety of natural language tasks. | &bullet;&NonBreakingSpace;[Azure OpenAI SDK for Python](https://github.com/openai/openai-python?tab=readme-ov-file#openai-python-api-library) <br><br>&bullet;&NonBreakingSpace;[Azure OpenAI PyPi package](https://pypi.org/project/openai/) |
+| ![Azure OpenAI in Microsoft Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../../../../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. | &bullet;&NonBreakingSpace;[Azure OpenAI SDK for Python](https://github.com/openai/openai-python?tab=readme-ov-file#openai-python-api-library) <br><br>&bullet;&NonBreakingSpace;[Azure OpenAI PyPi package](https://pypi.org/project/openai/) |
 | ![Bot service icon](~/reusable-content/ce-skilling/azure/media/ai-services/bot-services.svg) [Bot Service](/composer/) | Create bots and connect them across channels. | &bullet;&NonBreakingSpace;[BotBuilder PyPi package](https://github.com/microsoft/botbuilder-python/#packages)  |
 | ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](../../../content-safety/index.yml) | Detect harmful content in applications and services.|  &bullet;&NonBreakingSpace;[Content Safety SDK for Python](/python/api/overview/azure/ai-contentsafety-readme?view=azure-python&preserve-view=true) <br><br>&bullet;&NonBreakingSpace;[Content Safety PyPi package](https://pypi.org/project/azure-ai-contentsafety/1.0.0/) |
 | ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](../../../custom-vision-service/index.yml) | Customize image recognition for your applications and models. |&bullet;&NonBreakingSpace; SDK for Python (prediction) <br><br>&bullet;&NonBreakingSpace;[Custom Vision SDK for Python](/python/api/overview/azure/cognitiveservices-vision-customvision-readme?view=azure-python&preserve-view=true) <br><br>&bullet;&NonBreakingSpace;[Custom Vision PyPi package](https://pypi.org/project/custom_vision_client/)|

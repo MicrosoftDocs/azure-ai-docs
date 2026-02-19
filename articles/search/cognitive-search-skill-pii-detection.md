@@ -2,7 +2,6 @@
 title: PII Detection cognitive skill
 titleSuffix: Azure AI Search
 description: Extract and mask personal information from text in an enrichment pipeline in Azure AI Search.
-
 manager: nitinme
 author: gmndrg
 ms.author: gimondra
@@ -10,15 +9,16 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 02/22/2024
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 # Personally Identifiable Information (PII) Detection cognitive skill
 
-The **PII Detection** skill extracts personal information from an input text and gives you the option of masking it. This skill uses the [detection models](/azure/ai-services/language-service/personally-identifiable-information/overview) provided in [Azure AI Language](/azure/ai-services/language-service/overview).
+The **PII Detection** skill extracts personal information from an input text and gives you the option of masking it. This skill uses the [detection models](/azure/ai-services/language-service/personally-identifiable-information/overview) provided in [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview).
 
 > [!NOTE]
-> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 
 ## @odata.type
@@ -31,7 +31,7 @@ The maximum size of a record should be 50,000 characters as measured by [`String
 
 ## Skill parameters
 
-Parameters are case-sensitive and all are optional.
+Parameters are case sensitive and all are optional.
 
 | Parameter name     | Description |
 |--------------------|-------------|

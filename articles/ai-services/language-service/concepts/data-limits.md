@@ -1,26 +1,25 @@
 ---
 title: Data limits for Language service features
-titleSuffix: Azure AI services
-description: Data and service limitations for Azure AI Language features.
+titleSuffix: Foundry Tools
+description: Data and service limitations for Azure Language in Foundry Tools features.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 05/23/2025
+ms.topic: limits-and-quotas
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-# Service limits for Azure AI Language
+# Service limits for Azure Language in Foundry Tools
 
 > [!NOTE]
-> This article only describes the limits for preconfigured features in Azure AI Language:
+> This article only describes the limits for preconfigured features in Azure Language in Foundry Tools:
 > To see the service limits for customizable features, see the following articles: 
 > * [Custom classification](../custom-text-classification/service-limits.md)
 > * [Custom NER](../custom-named-entity-recognition/service-limits.md)
 > * [Conversational language understanding](../conversational-language-understanding/service-limits.md)
 > * [Question answering](../question-answering/concepts/limits.md)
 
-Use this article to find the limits for the size, and rates that you can send data to the following features of the language service. 
+Use this article to find the limits for the size, and rates that you can send data to the following features of Azure Language. 
 * [Named Entity Recognition (NER)](../named-entity-recognition/overview.md) 
 * [Personally Identifiable Information (PII) detection](../personally-identifiable-information/overview.md)
 * [Key phrase extraction](../key-phrase-extraction/overview.md) 
@@ -29,7 +28,7 @@ Use this article to find the limits for the size, and rates that you can send da
 * [Sentiment analysis and opinion mining](../sentiment-opinion-mining/overview.md)
 * [Language detection](../language-detection/overview.md)
 
-When using features of the Language service, keep the following information in mind:
+When using features of Azure Language, keep the following information in mind:
 
 * Pricing is independent of data or rate limits. Pricing is based on the number of text records you send to the API, and is subject to your Language resource's [pricing details](https://aka.ms/unifiedLanguagePricing).
     * A text record is measured as 1000 characters. 
@@ -95,5 +94,5 @@ Requests rates are measured for each feature separately. You can send the maximu
 
 ## See also
 
-* [What is Azure AI Language](../overview.md)
+* [What is Azure Language in Foundry Tools](../overview.md)
 * [Pricing details](https://aka.ms/unifiedLanguagePricing)

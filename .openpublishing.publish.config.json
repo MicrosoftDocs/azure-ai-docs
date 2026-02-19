@@ -51,6 +51,12 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "azure-sdk-for-js-docs",
+      "url": "https://github.com/Azure-samples/azure-sdk-for-js-docs",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "samples-luis",
       "url": "https://github.com/Azure-Samples/cognitive-services-language-understanding",
       "branch": "master",
@@ -118,8 +124,14 @@
     },
     {
       "path_to_root": "foundry-samples-main",
-      "url": "https://github.com/azure-ai-foundry/foundry-samples",
-      "branch": "main",
+      "url": "https://github.com/microsoft-foundry/foundry-samples",
+      "branch": "temp-fix",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "foundry-samples-temp-fix",
+      "url": "https://github.com/microsoft-foundry/foundry-samples",
+      "branch": "temp-fix",
       "branch_mapping": {}
     },
     {
@@ -189,6 +201,18 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "azure-search-java-samples",
+      "url": "https://github.com/Azure-Samples/azure-search-java-samples",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "azure-search-dotnet-samples",
+      "url": "https://github.com/Azure-Samples/azure-search-dotnet-samples",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "azureai-model-inference-bicep",
       "url": "https://github.com/Azure-Samples/azureai-model-inference-bicep",
       "branch": "main",
@@ -199,6 +223,12 @@
       "url": "https://github.com/MicrosoftDocs/azure-docs-pr",
       "branch": "main",
       "branch_mapping": {}
+    },
+    {
+        "path_to_root": "azure-policy-autogen-docs",
+        "url": "https://github.com/MicrosoftDocs/azure-policy-autogen-docs",
+        "branch": "main",
+        "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {},

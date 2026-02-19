@@ -1,15 +1,13 @@
 ---
 title: Image retrieval using multimodal embeddings
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the image retrieval API to vectorize images and search terms, enabling text-based image searches without metadata.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 02/22/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 09/26/2025
 ms.author: pafarley
 
 #customer intent: As a developer, I want to use the image retrieval API to vectorize images and text so that I can perform text-based image searches.
@@ -26,7 +24,7 @@ The `2024-02-01` API includes a multi-lingual model (model version `2023-04-15`)
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="Create a Computer Vision resource"  target="_blank">create a Computer Vision resource </a> in the Azure portal to get your key and endpoint. Be sure to create it in one of the supported geographic regions: see [Region availability](../overview-image-analysis.md#region-availability).
    * After it deploys, select **Go to resource**. Copy the key and endpoint to a temporary location to use later on.
 
@@ -44,8 +42,8 @@ You can try out the Multimodal embeddings feature quickly and easily in your bro
 
 The `retrieval:vectorizeImage` API lets you convert an image's data to a vector. To call it, make the following changes to the cURL command below:
 
-1. Replace `<endpoint>` with your Azure AI Vision endpoint.
-1. Replace `<subscription-key>` with your Azure AI Vision key.
+1. Replace `<endpoint>` with your Azure Vision endpoint.
+1. Replace `<subscription-key>` with your Azure Vision key.
 1. In the request body, set `"url"` to the URL of a remote image you want to use.
 1. Optionally, change the `model-version` parameter to an older version. `2022-04-11` is the legacy model that supports only English text. Images and text that are vectorized with a certain model aren't compatible with other models, so be sure to use the same model for both. 
 
@@ -71,8 +69,8 @@ The API call returns a **vector** JSON object, which defines the image's coordin
 
 The `retrieval:vectorizeText` API lets you convert a text string to a vector. To call it, make the following changes to the cURL command below:
 
-1. Replace `<endpoint>` with your Azure AI Vision endpoint.
-1. Replace `<subscription-key>` with your Azure AI Vision key.
+1. Replace `<endpoint>` with your Azure Vision endpoint.
+1. Replace `<subscription-key>` with your Azure Vision key.
 1. In the request body, set `"text"` to the example search term you want to use.
 1. Optionally, change the `model-version` parameter to an older version. `2022-04-11` is the legacy model that supports only English text. Images and text that are vectorized with a certain model aren't compatible with other models, so be sure to use the same model for both. 
 

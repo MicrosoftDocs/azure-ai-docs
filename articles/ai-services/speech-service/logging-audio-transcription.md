@@ -1,22 +1,21 @@
 ---
 title: How to log audio and transcriptions for speech recognition
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use audio and transcription logging for speech to text and speech translation.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.reviewer: alexeyo 
+ms.date: 10/31/2025
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #Customer intent: As a developer using speech to text, I want to learn how to log audio and transcriptions for speech recognition.
 ---
 
 # How to log audio and transcriptions for speech recognition
 
-You can enable logging for both audio input and recognized speech when using [speech to text](get-started-speech-to-text.md) or [speech translation](get-started-speech-to-text.md). For speech translation, only the audio and transcription of the original audio are logged. The translations aren't logged. This article describes how to enable, access and delete the audio and transcription logs.
+You can enable logging for both audio input and recognized speech when using [speech to text](get-started-speech-to-text.md) or [speech translation](get-started-speech-to-text.md). For speech translation, only the audio and transcription of the original audio are logged. The translations aren't logged. This article describes how to enable, access, and delete the audio and transcription logs.
 
 Audio and transcription logs can be used as input for [custom speech](custom-speech-overview.md) model training. You might have other use cases.
 
@@ -25,7 +24,7 @@ Audio and transcription logs can be used as input for [custom speech](custom-spe
 
 Logging is done asynchronously for both base and custom model endpoints. The Speech service stores audio and transcription logs in its internal storage and not written locally. The logs are retained for 30 days. After this period, the logs are automatically deleted. However you can [delete](#delete-audio-and-transcription-logs) specific logs or a range of available logs at any time.
 
-You can also store audio and transcription logs within an Azure Storage account you own and control instead of Speech service premises using [Bring-your-own-storage (BYOS)](bring-your-own-storage-speech-resource.md) technology. See details on how to use BYOS-enabled Speech resource in [this article](bring-your-own-storage-speech-resource-speech-to-text.md).
+You can also store audio and transcription logs within an Azure Storage account you own and control instead of Speech service premises using [Bring your own storage (BYOS)](bring-your-own-storage-speech-resource.md) technology. See details on how to use BYOS-enabled Speech resource in [this article](bring-your-own-storage-speech-resource-speech-to-text.md).
 
 ## Enable audio and transcription logging
 

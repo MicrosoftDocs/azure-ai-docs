@@ -5,10 +5,9 @@ ms.service: azure-ai-language
 ms.topic: tutorial
 author: laujan
 ms.author: lajanuar
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Improve quality of response with synonyms
 
 In this tutorial, you learn how to:
@@ -17,11 +16,11 @@ In this tutorial, you learn how to:
 > * Add synonyms to improve the quality of your responses
 > * Evaluate the response quality via the inspect option of the Test pane
 
-This tutorial will show you how you can improve the quality of your responses by using synonyms. Let's assume that users are not getting an accurate response to their queries, when they use alternate forms, synonyms or acronyms of a word. So, they decide to improve the quality of the response by using [Authoring API](../how-to/authoring.md) to add synonyms for keywords.
+This tutorial shows you how you can improve the quality of your responses by using synonyms. Let's assume that users aren't getting an accurate response to their queries, when they use alternate forms, synonyms or acronyms of a word. So, they decide to improve the quality of the response by using [Authoring API](../how-to/authoring.md) to add synonyms for keywords.
 
 ## Add synonyms using Authoring API
 
-Let’s us add the following words and their alterations to improve the results:
+Let improve the results by adding the following words and their alterations:
 
 |Word | Alterations|
 |--------------|--------------------------------|
@@ -58,7 +57,7 @@ Let’s us add the following words and their alterations to improve the results:
 
 ```
 
-For the question and answer pair “Fix problems with Surface Pen”, we compare the response for a query made using its synonym “troubleshoot”.
+For the question and answer pair “Fix problems with Surface Pen,” we compare the response for a query made using its synonym “troubleshoot.”
 
 ## Response before addition of synonym
 
@@ -70,7 +69,7 @@ For the question and answer pair “Fix problems with Surface Pen”, we compare
 > [!div class="mx-imgBorder"]
 > [ ![Screenshot with a confidence score of .97 highlighted in red]( ../media/adding-synonyms/score-improvement.png) ]( ../media/adding-synonyms/score-improvement.png#lightbox)
 
-As you can see, when `troubleshoot` was not added as a synonym, we got a low confidence response to the query “How to troubleshoot your surface pen”. However, after we add `troubleshoot` as a synonym to “fix problems”, we received the correct response to the query with a higher confidence score. Once, these synonyms were added, the relevance of results improved thereby improving user experience.
+As you can see, when `troubleshoot` was not added as a synonym, we got a low confidence response to the query “How to troubleshoot your surface pen.” However, after we add `troubleshoot` as a synonym to “fix problems”, we received the correct response to the query with a higher confidence score. Once these synonyms were added, the relevance of results is improved.
 
 > [!IMPORTANT]
 > Synonyms are case insensitive. Synonyms also might not work as expected if you add stop words as synonyms. The list of stop words can be found here: [List of stop words](https://github.com/Azure-Samples/azure-search-sample-data/blob/master/STOPWORDS.md).
@@ -80,8 +79,8 @@ As you can see, when `troubleshoot` was not added as a synonym, we got a low con
 * Synonyms can be added in any order. The ordering is not considered in any computational logic.
 * Synonyms can only be added to a project that has at least one question and answer pair.
 * Synonyms can be added only when there is at least one question and answer pair present in a project.
-* In case of overlapping synonym words between 2 sets of alterations, it may have unexpected results and it is not recommended to use overlapping sets.
-* Special characters are not allowed for synonyms. For hyphenated words like "COVID-19", they are treated the same as "COVID 19", and "space" can be used as a term separator. Following is the list of special characters **not allowed**:
+* In case of overlapping synonym words between two sets of alterations, it can have unexpected results and it isn't recommended to use overlapping sets.
+* Special characters are not allowed for synonyms. For hyphenated words like "COVID-19," they are treated the same as "COVID 19," and "space" can be used as a term separator. Following is the list of special characters **not allowed**:
 
 |Special character | Symbol|
 |--------------|--------------------------------|

@@ -3,10 +3,10 @@ author: laujan
 ms.author: lajanuar
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 02/14/2024
+ms.date: 11/18/2025
 ---
 <!-- markdownlint-disable MD041 -->
-* The form requests information about you, your company, and the user scenario for which you use the container. After you submit the form, the Azure AI services team reviews it and emails you with a decision within 10 business days.
+* The form requests information about you, your company, and the user scenario for which you use the container. After you submit the form, the Foundry Tools team reviews it and emails you with a decision within 10 business days.
 
   > [!IMPORTANT]
   > ✔️ On the form, you must use an email address associated with an Azure subscription ID.

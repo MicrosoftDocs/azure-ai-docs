@@ -1,12 +1,12 @@
 ---
 title: Transparency Note for CLU
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Transparency Note for conversational language understanding
-author: skandil
-ms.author: sarakandil
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 09/15/2021
 ---
 
@@ -28,9 +28,9 @@ Client applications use the output returned by CLU to make a decision or perform
 
 ### The basics of conversational language understanding
 
-Conversational language understanding (CLU) is offered as part of the custom features within [Azure AI Language](/azure/ai-services/language-service/overview). This feature is a natural language understanding component in an end-to-end conversational application that predicts the overall intention of an incoming text and extracts important information from it. By creating a CLU project, developers can iteratively tag data, train, evaluate, and improve model performance before they make it available for consumption.
+Conversational language understanding (CLU) is offered as part of the custom features within [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview). This feature is a natural language understanding component in an end-to-end conversational application that predicts the overall intention of an incoming text and extracts important information from it. By creating a CLU project, developers can iteratively tag data, train, evaluate, and improve model performance before they make it available for consumption.
 
-Users of the service need to provide and label training data relevant to the domain of the client application being built. The quality of the provided training data is important and needs to be similar to the expected user input. Users may also connect different custom capabilities together including other CLU projects, [Custom question answering knowledge bases](/azure/ai-services/language-service/question-answering/overview), and [LUIS applications](/azure/ai-services/luis/what-is-luis) using the [Orchestration workflow feature](/azure/ai-services/language-service/orchestration-workflow/overview) within CLU. The Azure AI Language provides a web portal, [Language Studio](https://language.cognitive.azure.com), to simplify the customization experience for domain experts and nontechnical users. Get started with the feature by following the steps in this [quickstart](/azure/ai-services/language-service/conversational-language-understanding/quickstart?pivots=language-studio).
+Users of the service need to provide and label training data relevant to the domain of the client application being built. The quality of the provided training data is important and needs to be similar to the expected user input. Users may also connect different custom capabilities together including other CLU projects, [Custom question answering knowledge bases](/azure/ai-services/language-service/question-answering/overview), and [LUIS applications](/azure/ai-services/luis/what-is-luis) using the [Orchestration workflow feature](/azure/ai-services/language-service/orchestration-workflow/overview) within CLU. The Language provides a web portal, [Language Studio](https://language.cognitive.azure.com), to simplify the customization experience for domain experts and nontechnical users. Get started with the feature by following the steps in this [quickstart](/azure/ai-services/language-service/conversational-language-understanding/quickstart?pivots=language-studio).
 
 For more information, see:
 
@@ -63,7 +63,7 @@ CLU can be used in multiple scenarios across a variety of industries. Some examp
 ## Consideration when you choose a use case
 
 * **Avoid using CLU for decisions that might have serious adverse impacts.** For example, suggesting medications or diagnoses, as replacing a doctor's advice may have serious adverse impacts.
-* **Avoid creating custom entities that extract unnecessary or sensitive information.** It's your responsibility to ensure that the entities being created only extract the necessary information for your end-to-end scenario. Avoid extracting sensitive user information if it isn't required for your scenario. For example, if your scenario requires extracting your user's city and country, create entities that extract only the city and country from a user's address. Don't create one that extracts their full address. To ensure that your model is inclusive, make sure you represent a variety of cities, countries, and address formats within your training data (example utterances).
+* **Avoid creating custom entities that extract unnecessary or sensitive information.** It's your responsibility to ensure that the entities being created only extract the necessary information for your end-to-end scenario. Avoid extracting sensitive user information if it isn't required for your scenario. For example, if your scenario requires extracting your user's city and country/region, create entities that extract only the city and country/region from a user's address. Don't create one that extracts their full address. To ensure that your model is inclusive, make sure you represent a variety of cities, countries/regions, and address formats within your training data (example utterances).
 * [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 ## Next steps

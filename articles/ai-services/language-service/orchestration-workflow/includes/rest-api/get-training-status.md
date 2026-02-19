@@ -3,11 +3,10 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-Use the following **GET** request to get the status of your model's training progress. Replace the placeholder values below with your own values. 
+Use the following **GET** request to get the status of your model's training progress. Replace the placeholder values with your own values. 
 
 ### Request URL
 
@@ -19,8 +18,8 @@ Use the following **GET** request to get the status of your model's training pro
 |---------|---------|---------|
 |`{YOUR-ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `EmailApp` |
-|`{JOB-ID}`     | The ID for locating your model's training status. This is in the `location` header value you received when submitted your training job.  | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx` |
-|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you are calling. | `2023-04-01` |
+|`{JOB-ID}`     | The ID for locating your model's training status. It's in the `location` header value you received when submitted your training job.  | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx` |
+|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
 
 ### Headers
 
@@ -33,7 +32,7 @@ Use the following header to authenticate your request.
 
 ### Response Body
 
-Once you send the request, you will get the following response. Keep polling this endpoint until the **status** parameter changes to "succeeded". 
+Once you send the request, you get the following response. Keep polling this endpoint until the **status** parameter changes to "succeeded". 
 
 ```json
 {

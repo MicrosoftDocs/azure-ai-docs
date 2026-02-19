@@ -3,15 +3,19 @@ title: Interact with your jobs (debug and monitor)
 titleSuffix: Azure Machine Learning
 description: Debug or monitor your Machine Learning job as it runs on Azure Machine Learning compute with your training application of choice.
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
-ms.reviewer: joburges
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
-ms.custom: devplatv2, sdkv2, cliv2
 
 ms.date: 08/15/2024
+ms.custom:
+  - devplatv2
+  - sdkv2
+  - cliv2
+  - sfi-image-nochange
 #Customer intent: I'm a data scientist with ML knowledge in the machine learning space, looking to build ML models using data in Azure Machine Learning with full control of the model training including debugging and monitoring of live jobs.
 ---
 

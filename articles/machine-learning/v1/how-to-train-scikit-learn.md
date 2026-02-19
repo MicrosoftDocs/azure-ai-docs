@@ -5,9 +5,9 @@ description: Learn how Azure Machine Learning SDK (v1) enables you to scale out 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.author: sgilley
-author: sdgilley
-ms.reviewer: balapv
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: sooryar
 ms.date: 11/04/2022
 ms.topic: how-to
 ms.custom: UpdateFrequency5, sdkv1

@@ -5,10 +5,10 @@ description: Learn how to schedule pipeline jobs that allow you to automate rout
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: lagayhar
+ms.author: scottpolly
 author: lgayhardt
-ms.reviewer: keli19
-ms.date: 09/09/2024
+ms.reviewer: jturuk
+ms.date: 09/11/2025
 ms.topic: how-to
 ---
 
@@ -25,7 +25,7 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/free/) before you begin. 
+- An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin. 
 - An Azure Machine Learning workspace. To create a workspace, see [Create workspace resources](quickstart-create-resources.md).
 - An understanding of Azure Machine Learning pipelines. For information, see [What are machine learning pipelines](concept-ml-pipelines.md).
 
@@ -56,7 +56,7 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 
 ## Create a schedule
 
-When you have a pipeline job with satisfying performance and outputs, you can set up a schedule to automatically trigger the job on a regular basis. To do so, you must create a schedule that associates the job with a trigger. The trigger can be either a `recurrence` pattern or a `cron` expression that specifies the interval and frequency to run the job.
+When you have a pipeline job with satisfying performance and outputs, you can set up a schedule to automatically trigger the job regularly. To do so, you must create a schedule that associates the job with a trigger. The trigger can be either a `recurrence` pattern or a `cron` expression that specifies the interval and frequency to run the job.
 
 In both cases, you need to define a pipeline job first, either inline or by specifying an existing pipeline job. You can define pipelines in YAML and run them from the CLI, author pipelines inline in Python, or compose pipelines in Azure Machine Learning studio. You can create pipeline jobs locally or from existing jobs in the workspace.
 
@@ -455,7 +455,7 @@ You can also apply [Azure CLI JMESPath query](/cli/azure/query-azure-cli) to que
 
 ---
 
-## Role-based access control (RBAC) support
+## Role-based access controls (RBAC) support
 
 Because schedules are used for production, it's important to reduce the possibility and impact of misoperation. Workspace admins can restrict access to schedule creation and management in a workspace.
 
@@ -470,7 +470,7 @@ Admins can configure the following action rules related to schedules in the Azur
 ## Cost considerations
 
 Schedules are billed based on the number of schedules. Each schedule creates a logic app that Azure Machine Learning hosts on behalf of (HOBO) the user.
-Therefore the logic app cannot be shown as a resource under the user's subscription in Azure portal. 
+Therefore the logic app can't be shown as a resource under the user's subscription in Azure portal. 
 
 On the other hand, the logic app charges back to the user's Azure subscription. HOBO resource costs are billed using the same meter emitted by the original resource provider. Charges appear under the host resource, which is the Azure Machine Learning workspace.
 

@@ -1,13 +1,13 @@
 ---
 title: Speech devices overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get started with the Speech devices. The Speech service works with a wide variety of devices and audio sources. 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the devices that work with the Speech service.
 ---
 
@@ -27,8 +27,8 @@ The Speech SDK works best with a microphone array designed according to our reco
 
 The Speech SDK is designed to work with purpose-built development kits, and varying microphone array configurations. For example, you can use one of these Azure development kits. 
 
-- [Azure Percept DK](/azure/azure-percept/overview-azure-percept-dk) contains a preconfigured audio processor and a four-microphone linear array. You can use voice commands, keyword spotting, and far field speech with the help of Azure AI services. 
-- [Azure Kinect DK](/azure/kinect-dk/about-azure-kinect-dk) is a spatial computing developer kit with advanced AI sensors that provide sophisticated Azure AI Vision and speech models. As an all-in-one small device with multiple modes, it contains a depth sensor, spatial microphone array with a video camera, and orientation sensor. 
+- [Azure Percept DK](/azure/azure-percept/overview-azure-percept-dk) contains a preconfigured audio processor and a four-microphone linear array. You can use voice commands, keyword spotting, and far field speech with the help of Foundry Tools. 
+- [Azure Kinect DK](/azure/kinect-dk/about-azure-kinect-dk) is a spatial computing developer kit with advanced AI sensors that provide sophisticated Azure Vision in Foundry Tools and speech models. As an all-in-one small device with multiple modes, it contains a depth sensor, spatial microphone array with a video camera, and orientation sensor. 
 
 ## Next steps
 

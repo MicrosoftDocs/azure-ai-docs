@@ -5,9 +5,9 @@ description: Learn how to deploy your machine learning model to an online endpoi
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-author: msakande
-ms.author: mopeakande
-ms.reviewer: sehan
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 04/28/2025
 ms.topic: how-to
 ms.custom: how-to, devplatv2, cliv2, sdkv2, update-code2, devx-track-azurecli
@@ -51,7 +51,7 @@ The main example in this article uses managed online endpoints for deployment. T
 
 Before you follow the steps in this article, make sure that you have the following prerequisites:
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An Azure Machine Learning workspace and a compute instance. If you don't have these resources, see [Create resources you need to get started](quickstart-create-resources.md).
 * Azure RBAC is used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the Owner or Contributor role for the Azure Machine Learning workspace, or a custom role must allow `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
 

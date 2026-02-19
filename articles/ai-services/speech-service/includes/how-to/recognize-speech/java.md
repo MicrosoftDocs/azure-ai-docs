@@ -1,10 +1,11 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/17/2024
+ms.date: 1/29/2026
 ms.custom: devx-track-java
-ms.author: eur
+ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/java.md)]
@@ -15,18 +16,20 @@ ms.author: eur
 
 To call the Speech service by using the Speech SDK, you need to create a [SpeechConfig](/java/api/com.microsoft.cognitiveservices.speech.speechconfig) instance. This class includes information about your Speech resource, like your key and associated region, endpoint, host, or authorization token.
 
-1. Create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and region.
+1. Create a Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and region.
 1. Create a `SpeechConfig` instance by using your Speech key and region.
 
 ```java
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class Program {
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("<paste-your-speech-key>", "<paste-your-region>");
+    public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI("<paste-your-speech-endpoint>"), "<paste-your-speech-key>");
     }
 }
 ```
@@ -47,12 +50,14 @@ To recognize speech by using your device microphone, create an `AudioConfig` ins
 ```java
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class Program {
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("<paste-your-speech-key>", "<paste-your-region>");
+    public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI("<paste-your-speech-endpoint>"), "<paste-your-speech-key>");
         fromMic(speechConfig);
     }
 
@@ -77,12 +82,14 @@ If you want to recognize speech from an audio file instead of using a microphone
 ```java
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class Program {
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("<paste-your-speech-key>", "<paste-your-region>");
+    public static void main(String[] args) throws InterruptedException, ExecutionException, URISyntaxException {
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new URI("<paste-your-speech-endpoint>"), "<paste-your-speech-key>");
         fromFile(speechConfig);
     }
 
@@ -152,7 +159,7 @@ Next, subscribe to the events that [`SpeechRecognizer`](/java/api/com.microsoft.
 * [`recognizing`](/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.recognizing): Signal for events that contain intermediate recognition results.
 * [`recognized`](/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.recognized): Signal for events that contain final recognition results, which indicate a successful recognition attempt.
 * [`sessionStopped`](/java/api/com.microsoft.cognitiveservices.speech.recognizer.sessionstopped): Signal for events that indicate the end of a recognition session (operation).
-* [`canceled`](/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.canceled): Signal for events that contain canceled recognition results. These results indicate a recognition attempt that was canceled as a result of a direct cancelation request. Alternatively, they indicate a transport or protocol failure.
+* [`canceled`](/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.canceled): Signal for events that contain canceled recognition results. These results indicate a recognition attempt that was canceled as a result of a direct cancellation request. Alternatively, they indicate a transport or protocol failure.
 
 ```java
 // First initialize the semaphore.

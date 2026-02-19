@@ -1,12 +1,12 @@
 ---
 title: Language support - Microsoft Translator Pro
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Language support for Microsoft Translator Pro speech-to-speech application.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 01/21/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -19,22 +19,22 @@ Microsoft Translator Pro provides real-time multilingual speech-to-speech suppor
 | Afrikaans (South Africa) | ✔️ |  |
 | Albanian (Albania) | ✔️ |  |
 | Amharic (Ethiopia) | ✔️ |  |
-| Arabic (Algeria) | ✔️ |  |
-| Arabic (Bahrain) | ✔️ |  |
-| Arabic (Egypt) | ✔️ |  |
-| Arabic (Iraq) | ✔️ |  |
-| Arabic (Jordan) | ✔️ |  |
-| Arabic (Kuwait) | ✔️ |  |
-| Arabic (Lebanon) | ✔️ |  |
-| Arabic (Libya) | ✔️ |  |
-| Arabic (Morocco) | ✔️ |  |
-| Arabic (Oman) | ✔️ |  |
-| Arabic (Qatar) | ✔️ |  |
-| Arabic (Saudi Arabia) | ✔️ |  |
-| Arabic (Syria) | ✔️ |  |
-| Arabic (Tunisia) | ✔️ |  |
-| Arabic (United Arab Emirates) | ✔️ |  |
-| Arabic (Yemen) | ✔️ |  |
+| Arabic (Algeria) | ✔️ | ✔️|
+| Arabic (Bahrain) | ✔️ | ✔️|
+| Arabic (Egypt) | ✔️ | ✔️|
+| Arabic (Iraq) | ✔️ | ✔️|
+| Arabic (Jordan) | ✔️ | ✔️|
+| Arabic (Kuwait) | ✔️ | ✔️|
+| Arabic (Lebanon) | ✔️ | ✔️|
+| Arabic (Libya) | ✔️ | ✔️|
+| Arabic (Morocco) | ✔️ | ✔️|
+| Arabic (Oman) | ✔️ | ✔️|
+| Arabic (Qatar) | ✔️ | ✔️|
+| Arabic (Saudi Arabia) | ✔️ | ✔️|
+| Arabic (Syria) | ✔️ | ✔️|
+| Arabic (Tunisia) | ✔️ | ✔️|
+| Arabic (United Arab Emirates) | ✔️ | ✔️|
+| Arabic (Yemen) | ✔️ | ✔️|
 | Armenian (Armenia) | ✔️ |  |
 | Azerbaijani (Latin, Azerbaijan) | ✔️ |  |
 | Basque | ✔️ |  |
@@ -46,27 +46,28 @@ Microsoft Translator Pro provides real-time multilingual speech-to-speech suppor
 | Chinese (Mandarin, Simplified) | ✔️ | ✔️ |
 | Chinese (Taiwanese Mandarin, Traditional) | ✔️ |  |
 | Croatian (Croatia) | ✔️ |  |
-| Czech (Czechia) | ✔️ |  |
-| Danish (Denmark) | ✔️ |  |
+| Czech (Czechia) | ✔️ | ✔️|
+| Danish (Denmark) | ✔️ | ✔️|
 | Dutch (Belgium) | ✔️ |  |
-| Dutch (Netherlands) | ✔️ |  |
-| Estonian (Estonia) | ✔️ |  |
+| Dutch (Netherlands) | ✔️ | ✔️|
+| English (United States) | ✔️ | ✔️|
+| Estonian (Estonia) | ✔️ | ✔️|
 | Filipino (Philippines) | ✔️ |  |
 | Finnish (Finland) | ✔️ |  |
-| French (Belgium) | ✔️ |  |
-| French (Canada) | ✔️ |  |
+| French (Belgium) | ✔️ | ✔️|
+| French (Canada) | ✔️ | ✔️|
 | French (France) | ✔️ | ✔️ |
-| French (Switzerland) | ✔️ |  |
+| French (Switzerland) | ✔️ | ✔️|
 | Galician | ✔️ |  |
 | Georgian (Georgia) | ✔️ |  |
-| German (Austria) | ✔️ |  |
+| German (Austria) | ✔️ | ✔️|
 | German (Germany) | ✔️ | ✔️ |
-| German (Switzerland) | ✔️ |  |
+| German (Switzerland) | ✔️ | ✔️|
 | Greek (Greece) | ✔️ |  |
-| Gujarati (India) | ✔️ |  |
+| Gujarati (India) | ✔️ | ✔️|
 | Hebrew (Israel) | ✔️ |  |
-| Hindi (India) | ✔️ |  |
-| Hungarian (Hungary) | ✔️ |  |
+| Hindi (India) | ✔️ | ✔️|
+| Hungarian (Hungary) | ✔️ | ✔️|
 | Icelandic (Iceland) | ✔️ |  |
 | Indonesian (Indonesia) | ✔️ |  |
 | Irish (Ireland) | ✔️ |  |
@@ -77,10 +78,10 @@ Microsoft Translator Pro provides real-time multilingual speech-to-speech suppor
 | Khmer (Cambodia) | ✔️ |  |
 | Kiswahili (Kenya) | ✔️ |  |
 | Kiswahili (Tanzania) | ✔️ |  |
-| Korean (Korea) | ✔️ |  |
+| Korean (Korea) | ✔️ | ✔️|
 | Lao (Laos) | ✔️ |  |
 | Latvian (Latvia) | ✔️ |  |
-| Lithuanian (Lithuania) | ✔️ |  |
+| Lithuanian (Lithuania) | ✔️ | ✔️|
 | Macedonian (North Macedonia) | ✔️ |  |
 | Malay (Malaysia) | ✔️ |  |
 | Malayalam (India) | ✔️ |  |
@@ -88,18 +89,18 @@ Microsoft Translator Pro provides real-time multilingual speech-to-speech suppor
 | Marathi (India) | ✔️ |  |
 | Mongolian (Mongolia) | ✔️ |  |
 | Nepali (Nepal) | ✔️ |  |
-| Norwegian Bokmal (Norway) | ✔️ |  |
+| Norwegian Bokmal (Norway) | ✔️ | ✔️|
 | Pashto (Afghanistan) | ✔️ |  |
 | Persian (Iran) | ✔️ |  |
-| Polish (Poland) | ✔️ |  |
-| Portuguese (Brazil) | ✔️ |  |
+| Polish (Poland) | ✔️ | ✔️|
+| Portuguese (Brazil) | ✔️ | ✔️|
 | Portuguese (Portugal) | ✔️ |  |
-| Romanian (Romania) | ✔️ |  |
+| Romanian (Romania) | ✔️ | ✔️|
 | Russian (Russia) | ✔️ | ✔️ |
 | Serbian (Cyrillic, Serbia) | ✔️ |  |
 | Sinhala (Sri Lanka) | ✔️ |  |
-| Slovak (Slovakia) | ✔️ |  |
-| Slovenian (Slovenia) | ✔️ |  |
+| Slovak (Slovakia) | ✔️ | ✔️|
+| Slovenian (Slovenia) | ✔️ | ✔️|
 | Somali (Somalia) | ✔️ |  |
 | Spanish (Argentina) | ✔️ |  |
 | Spanish (Bolivia) | ✔️ |  |
@@ -122,7 +123,7 @@ Microsoft Translator Pro provides real-time multilingual speech-to-speech suppor
 | Spanish (United States) | ✔️ |  |
 | Spanish (Uruguay) | ✔️ |  |
 | Spanish (Venezuela) | ✔️ |  |
-| Swedish (Sweden) | ✔️ |  |
+| Swedish (Sweden) | ✔️ | ✔️|
 | Tamil (India) | ✔️ |  |
 | Telugu (India) | ✔️ |  |
 | Thai (Thailand) | ✔️ |  |

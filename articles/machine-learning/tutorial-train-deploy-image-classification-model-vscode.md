@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: tutorial
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: tbombach
 ms.date: 04/03/2025
 ms.custom:
@@ -34,7 +34,7 @@ In this tutorial, you learn the following tasks:
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, sign up for a [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/). If you're using the free subscription, only CPU clusters are supported.
+- An Azure subscription. If you don't have one, sign up for a [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you're using the free subscription, only CPU clusters are supported.
 - [Visual Studio Code](https://code.visualstudio.com/docs/setup/setup-overview), a lightweight, cross-platform code editor.
 - Azure Machine Learning studio Visual Studio Code extension. For installation instructions, see [Setup Azure Machine Learning Visual Studio Code extension](./how-to-setup-vs-code.md).
 - CLI (v2). For installation instructions, see [Install and set up the CLI (v2)](how-to-configure-cli.md)

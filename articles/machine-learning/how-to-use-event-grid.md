@@ -6,12 +6,14 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
-ms.custom: devx-track-azurecli
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: truptiparkar
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: jturuk
 ms.date: 03/06/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Trigger applications, processes, or CI/CD workflows based on Azure Machine Learning events

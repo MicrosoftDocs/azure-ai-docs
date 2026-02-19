@@ -1,6 +1,26 @@
 {
     "redirections": [
         {
+            "source_path_from_root": "/articles/search/search-howto-managed-identities-data-sources.md",
+            "redirect_url": "/azure/search/search-how-to-managed-identities",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-monitor-indexers.md",
+            "redirect_url": "/azure/search/search-monitor-indexers",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/cognitive-search-incremental-indexing-conceptual.md",
+            "redirect_url": "/azure/search/enrichment-cache-how-to-manage",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-incremental-index.md",
+            "redirect_url": "/azure/search/enrichment-cache-how-to-configure",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/search/search-security-network-security-perimiter.md",
             "redirect_url": "/azure/search/search-security-network-security-perimeter",
             "redirect_document_id": true
@@ -9,6 +29,16 @@
             "source_path_from_root": "/articles/search/cognitive-search-quickstart-blob.md",
             "redirect_url": "/azure/search/search-get-started-skillset",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob.md",
+            "redirect_url": "/azure/search/tutorial-skillset",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob-dotnet.md",
+            "redirect_url": "/azure/search/tutorial-skillset",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md",
@@ -187,8 +217,8 @@
         },
         {
             "source_path_from_root": "/articles/search/search-performance-optimization.md",
-            "redirect_url": "/azure/search/search-reliability",
-            "redirect_document_id": true
+            "redirect_url": "/azure/reliability/reliability-ai-search",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/cognitive-search-quickstart-ocr.md",
@@ -327,8 +357,8 @@
         },
         {
             "source_path_from_root": "/articles/search/search-howto-index-documentdb.md",
-            "redirect_url": "/azure/search/search-howto-index-cosmosdb",
-            "redirect_document_id": true
+            "redirect_url": "/azure/search/search-how-to-index-cosmosdb-sql",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/search-create-index-portal.md",
@@ -414,6 +444,211 @@
         {
             "source_path_from_root": "/articles/search/tutorial-multimodal-index-image-verbalization-skill.md",
             "redirect_url": "/azure/search/tutorial-document-layout-image-verbalization",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-get-started-rest.md",
+            "redirect_url": "/azure/search/search-get-started-text",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-get-started-powershell.md",
+            "redirect_url": "/azure/search/search-get-started-text",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-reliability.md",
+            "redirect_url": "/azure/reliability/reliability-ai-search",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-agentic-retrieval-concept.md",
+            "redirect_url": "/azure/search/agentic-retrieval-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-agentic-retrieval-how-to-create.md",
+            "redirect_url": "/azure/search/agentic-retrieval-how-to-create-knowledge-base",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-agentic-retrieval-how-to-index.md",
+            "redirect_url": "/azure/search/agentic-retrieval-how-to-create-index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-agentic-retrieval-how-to-migrate.md",
+            "redirect_url": "/azure/search/agentic-retrieval-how-to-migrate",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-agentic-retrieval-how-to-pipeline.md",
+            "redirect_url": "/azure/search/agentic-retrieval-how-to-create-pipeline",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-agentic-retrieval-how-to-retrieve.md",
+            "redirect_url": "/azure/search/agentic-retrieval-how-to-retrieve",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-agentic-retrieval-how-to-synthesize.md",
+            "redirect_url": "/azure/search/agentic-retrieval-how-to-answer-synthesis",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-knowledge-source-how-to-blob.md",
+            "redirect_url": "/azure/search/agentic-knowledge-source-how-to-blob",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-knowledge-source-how-to-index.md",
+            "redirect_url": "/azure/search/agentic-knowledge-source-how-to-search-index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-knowledge-source-overview.md",
+            "redirect_url": "/azure/search/agentic-knowledge-source-overview",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-azure-data-lake-storage.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-data-lake-storage",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-changed-deleted-blobs.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-blob-changed-deleted",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-cosmosdb-gremlin.md",
+            "redirect_url": "/azure/search/search-how-to-index-cosmosdb-gremlin",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-cosmosdb-mongodb.md",
+            "redirect_url": "/azure/search/search-how-to-index-cosmosdb-mongodb",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-cosmosdb.md",
+            "redirect_url": "/azure/search/search-how-to-index-cosmosdb-sql",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-how-to-index-csv-blobs.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-blob-csv",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-encrypted-blobs.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-blob-encrypted",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-json-blobs.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-blob-json",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-mysql.md",
+            "redirect_url": "/azure/search/search-how-to-index-mysql",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-one-to-many-blobs.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-blob-one-to-many",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-plaintext-blobs.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-blob-plaintext",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-index-sharepoint-online.md",
+            "redirect_url": "/azure/search/search-how-to-index-sharepoint-online",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-indexing-azure-blob-storage.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-blob-storage",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-indexing-azure-tables.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-tables",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-index-azure-sql-managed-instance-with-managed-identity.md",
+            "redirect_url": "/azure/search/search-how-to-index-sql-managed-instance-with-managed-identity",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-how-to-index-markdown-blobs.md",
+            "redirect_url": "/azure/search/search-how-to-index-azure-blob-markdown",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-how-to-index-logic-apps-indexers.md",
+            "redirect_url": "/azure/search/search-how-to-index-logic-apps",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-models.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-index-schema.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-pipeline.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-query.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-maximize-relevance.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-rag-build-solution-minimize-storage.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-powerapps.md",
+            "redirect_url": "/azure/search/search-what-is-azure-search",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-csharp-create-mvc-app.md",
+            "redirect_url": "/azure/search/tutorial-csharp-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-get-started-rag.md",
+            "redirect_url": "https://github.com/Azure-Samples/azure-search-classic-rag/tree/main/quickstarts",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/keyless-connections.md",
+            "redirect_url": "/azure/search/search-security-rbac-client-code",
             "redirect_document_id": true
         }
     ]

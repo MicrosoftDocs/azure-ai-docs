@@ -1,17 +1,16 @@
 ---
 title: Text Analytics for health language support
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: "This article explains which natural languages are supported by the Text Analytics for health."
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-health
 ---
-
 # Language support for Text Analytics for health
 
 Use this article to learn which natural languages are supported by Text Analytics for health and its Docker container.  
@@ -88,7 +87,7 @@ Portuguese – “pt”
 Hebrew – “he”
 ```
 
-The following json is an example of a JSON file attached to the Language request's POST body, for a Spanish document:
+The following json is an example of a JSON file attached to Azure Language request's POST body, for a Spanish document:
 
 ```json
 json

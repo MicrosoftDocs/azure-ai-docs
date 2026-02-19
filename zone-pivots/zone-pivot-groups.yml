@@ -68,6 +68,7 @@ groups:
     title: Python
   - id: programming-language-rest
     title: REST
+
 - id: programming-languages-content-safety-abridged
 # Owner: pafarley
   title: Programming languages
@@ -81,6 +82,44 @@ groups:
     title: Python
   - id: programming-language-rest
     title: REST
+- id: programming-languages-content-safety-2
+# Owner: pafarley
+  title: Programming languages
+  prompt: Choose a platform
+  pivots:
+  - id: programming-language-foundry-portal
+    title: Foundry portal
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-rest
+    title: REST
+  - id: programming-language-typescript
+    title: TypeScript
+- id: programming-languages-content-safety-3
+# Owner: pafarley - doesn't have Java
+  title: Programming languages
+  prompt: Choose a platform
+  pivots:
+  - id: programming-language-foundry-portal
+    title: Foundry portal
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-rest
+    title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 - id: programming-languages-content-safety-foundry-rest
 # Owner: pafarley
   title: Programming languages
@@ -275,16 +314,6 @@ groups:
     title: REST
   - id: programming-language-typescript
     title: TypeScript
-- id: programming-languages-ai-search-rag-qs
-  title: Programming languages
-  prompt: Choose a programming language
-  pivots:
-  - id: javascript
-    title: JavaScript
-  - id: python
-    title: Python
-  - id: typescript
-    title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -399,29 +428,69 @@ groups:
     title: Objective-C
   - id: programming-language-python
     title: Python
+  - id: programming-language-swift
+    title: Swift
   - id: programming-language-rest
     title: REST
   - id: programming-language-cli
     title: Speech CLI
-  - id: programming-language-swift
-    title: Swift
-- id: programming-languages-set-thirteen
+- id: programming-languages-speech-diarization
+# Owner: eur
   title: Programming languages
-  prompt: Choose a programming language
+  prompt: Choose a programming language or tool
   pivots:
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
     title: C++
+  - id: programming-language-go
+    title: Go
   - id: programming-language-java
     title: Java
-- id: programming-languages-speech-services-studio
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-objectivec
+    title: Objective-C
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-swift
+    title: Swift
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-speech-translation
 # Owner: eur
   title: Programming languages
   prompt: Choose a programming language or tool
   pivots:
-  - id: ai-studio
-    title: Portal
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-go
+    title: Go
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-objectivec
+    title: Objective-C
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-swift
+    title: Swift
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-text-to-speech
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
@@ -434,10 +503,54 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-cli
-    title: Speech CLI
   - id: programming-language-swift
     title: Swift
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-text-to-speech-avatar
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: ai-foundry
+    title: Foundry portal
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-set-thirteen
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-java
+    title: Java
+- id: programming-languages-get-started-transcription
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: ai-foundry
+    title: Foundry portal
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-go
+    title: Go
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-swift
+    title: Swift
+  - id: programming-language-typescript
+    title: TypeScript
   - id: programming-language-rest
     title: REST
 - id: programming-languages-set-twenty-one
@@ -669,6 +782,15 @@ groups:
       title: C#
     - id: programming-language-rest
       title: REST
+- id: azure-ai-create-deployment
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: programming-language-cli
+      title: Azure CLI
+    - id: programming-language-bicep
+      title: Bicep
 - id: azure-ai-models-deployment
 # Owner: santiagxf
   title: Prograaming languages
@@ -680,14 +802,22 @@ groups:
       title: Azure CLI
     - id: programming-language-bicep
       title: Bicep
-
+- id: azure-ai-managed-compute-deployment
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: ai-foundry-portal
+      title: Foundry portal
+    - id: python-sdk
+      title: Python SDK
 - id: azure-ai-serverless-deployment
 # Owner: mopeakande
   title: Programming languages
   prompt: Choose a tool or API
   pivots:
     - id: ai-foundry-portal
-      title: Azure AI Foundry portal
+      title: Foundry portal
     - id: programming-language-cli
       title: Azure CLI
     - id: python-sdk
@@ -703,6 +833,15 @@ groups:
       title: Python
     - id: programming-language-rest
       title: REST
+- id: models-sold-directly-by-azure
+# Owner: mopeakande
+  title: Azure direct models
+  prompt: Choose a collection from Foundry Models sold directly by Azure
+  pivots:
+    - id: azure-openai
+      title: Azure OpenAI models
+    - id: azure-direct-others
+      title: Other model collections
 - id: azure-ai-model-fine-tune
 # Owner: ssalgadodev
   title: Programming languages
@@ -778,12 +917,16 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
+  - id: foundry-portal
+    title: AI Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-java
     title: Java
   - id: programming-language-javascript
     title: JavaScript
+  - id: programming-language-typescript
+    title: TypeScript
   - id: programming-language-python
     title: Python
   - id: programming-language-rest-api
@@ -940,16 +1083,16 @@ groups:
   title: Programming languages
   prompt: Choose your preferred language
   pivots:
-  - id: programming-language-dotnet
-    title: C#
-  - id:  programming-language-go
-    title: Go
-  - id:  programming-language-java
-    title: Java
-  - id:  programming-language-javascript
-    title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: programming-language-dotnet
+    title: C#
+  - id:  programming-language-javascript
+    title: JavaScript
+  - id:  programming-language-java
+    title: Java
+  - id:  programming-language-go
+    title: Go
 # Owner: mbullwin
 - id: openai-create-resource
   title: Programming languages
@@ -1005,18 +1148,18 @@ groups:
     title: C#
   - id: programming-language-cpp
     title: C++
-- id: custom-qna-quickstart
+- id: custom-cqa-quickstart
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: studio
-    title: Language Studio
+  - id: foundry
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-python
     title: Python
   - id: rest
-    title: REST
+    title: REST API
 # Owner: farazgis
 - id: programming-languages-document-sdk
   # Owner: lajanuar
@@ -1032,10 +1175,10 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-powershell
-    title: PowerShell
   - id: programming-language-python
     title: Python
+  - id: programming-language-powershell
+    title: PowerShell
 - id: openai-portal-js
   title: Programming languages
   prompt: Choose your preferred usage method
@@ -1056,18 +1199,28 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
+- id: openai-video-generation
+  title: Programming languages
+  prompt: Choose your preferred usage method
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: rest-api
+    title: REST API
 - id: agents-quickstart
   title: Usage methods
   prompt: Choose a usage method
   pivots:
   - id: ai-foundry-portal
     title: Foundry portal
-  - id: programming-language-csharp
-    title: C#
   - id: programming-language-python-azure
     title: Python
+  - id: programming-language-csharp
+    title: C#
   - id: programming-language-typescript
     title: TypeScript
+  - id: programming-language-java
+    title: Java
   - id: rest-api
     title: REST API
 # owner: aahi
@@ -1076,60 +1229,210 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: python
     title: Python
-# owner: aahi
+# owner: aashcraft
 - id: selection-code-interpreter
   title: Selections
   prompt: What would you like to see?
   pivots:
-  - id: portal
-    title: Azure AI Foundry portal
+  - id: python
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python 
+  - id: java
+    title: Java 
   - id: rest-api
     title: REST API
+- id: selection-code-interpreter-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+- id: selection-ai-search-tool
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
+- id: selection-fabric-tool
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
+- id: selection-browser-tool
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
+- id: selection-computer-use
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: typescript
+    title: TypeScript
+# owner: aashcraft
+- id: selection-web-search
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest-api
+    title: REST API
+  - id: typescript
+    title: TypeScript
+# owner: aahi
+- id: selection-image-generation
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest-api
+    title: REST API
+  - id: typescript
+    title: TypeScript
+- id: selection-deep-research
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: csharp
+    title: C#
+  - id: python
+    title: Python
+  - id: typescript
+    title: TypeScript
 # owner: aahi
 - id: selection-fabric-data-agent
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
+  - id: python
+    title: Python
   - id: rest
     title: REST API
+- id: selection-mcp-code
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: csharp
+    title: C#
+  - id: python
+    title: Python
+  - id: rest
+    title: REST API
+- id: selection-mcp-code-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: typescript
+    title: TypeScript
+  - id: rest
+    title: REST API
+- id: selection-agent-sharepoint
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST API
+- id: selection-agent-sharepoint-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-file-search-upload
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
+  - id: python  
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python  
-    title: Python
+  - id: java  
+    title: Java
   - id: rest
     title: REST API
+- id: selection-file-search-upload-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python  
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: fosteramanda
 - id: selection-azure-ai-search
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
+  - id: python
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python
+  - id: java
+    title: Java
   - id: rest
     title: REST API
 - id: selection-connected-agents
@@ -1137,7 +1440,7 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
   - id: csharp
     title: C# 
   - id: python
@@ -1148,21 +1451,37 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
+  - id: python
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python
+  - id: java
+    title: Java
   - id: rest
     title: REST API
+- id: selection-bing-grounding-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-bing-custom-grounding
   title: Selections
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
+  - id: python
+    title: Python
   - id: rest
     title: REST API
 - id: selection-openapi-function
@@ -1170,49 +1489,77 @@ groups:
   prompt: What would you like to see?
   pivots:
   - id: portal
-    title: Azure AI Foundry portal
+    title: Foundry portal
+  - id: python
+    title: Python 
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python 
+  - id: java
+    title: Java
   - id: rest-api
     title: REST API
+- id: selection-openapi-function-new
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+  - id: typescript
+    title: TypeScript
 - id: selection-azure-functions-samples
   title: Selections
   prompt: What would you like to see?
   pivots:
-  - id: csharp
-    title: C#
   - id: python
     title: Python
-  - id: rest
-    title: REST API
-- id: selection-function-calling-samples
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
   - id: csharp
     title: C#
-  - id: python
-    title: Python
-  - id: typescript
-    title: TypeScript
+  - id: java
+    title: Java
   - id: rest
     title: REST API
 - id: selection-function-calling
   title: Selections
   prompt: Choose a usage method
   pivots:
+  - id: python
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python
+  - id: java
+    title: Java
   - id: rest
     title: REST API
+- id: selection-function-calling-new
+  title: Selections
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST API
+- id: selection-agent-to-agent
+  title: Selections
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+  - id: rest-api
+    title: REST API
+  - id: typescript
+    title: TypeScript
 # owner: sgilley
 - id: programming-languages-sdk-overview
   title: Programming languages
@@ -1237,6 +1584,56 @@ groups:
     title: TypeScript
   - id: rest-api
     title: REST
+- id: voice-live-quickstart
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+- id: voice-live-quickstart-agents
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+- id: how-to-voice-live-proactive-messages
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#  
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+- id: how-to-voice-live-auto-truncation
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#  
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
@@ -1248,19 +1645,23 @@ groups:
   - id: programming-language-rest
     title: REST
 - id: search-quickstart-full-text
-# Owner: eur
-  title: Programming languages
-  prompt: Choose a programming language
+# Owner: haileytapia
+  title: Usage methods
+  prompt: Choose a usage method
   pivots:
-  - id: programming-language-csharp
+  - id: csharp
     title: C#
-  - id: programming-language-java
+  - id: java
     title: Java
-  - id: programming-language-javascript
+  - id: javascript
     title: JavaScript
-  - id: programming-language-python
+  - id: powershell
+    title: PowerShell
+  - id: python
     title: Python
-  - id: programming-language-typescript
+  - id: rest
+    title: REST
+  - id: typescript
     title: TypeScript
 - id: azure-portal-and-cli
 # Owner: Larryfr
@@ -1283,42 +1684,34 @@ groups:
   - id: azure-portal
     title: Azure portal
 # Owner: sgilley
-- id: project-type
-  title: Project types
-  prompt: Choose a project type
-  pivots:
-  - id: fdp-project
-    title: Foundry project
-  - id: hub-project
-    title: Hub based project 
-# Owner: sgilley
 - id: foundry-sdk-languages
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-    - id: programming-language-csharp
-      title: C#
-    - id: programming-language-go
-      title: Go
-    - id: programming-language-java
-      title: Java
-    - id: programming-language-javascript
-      title: JavaScript
     - id: programming-language-python
       title: Python
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-javascript
+      title: JavaScript
+    - id: programming-language-java
+      title: Java
+    - id: programming-language-go
+      title: Go
 # Owner: sgilley
 - id: foundry-sdk-overview-languages
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-    - id: programming-language-csharp
-      title: C#
-    - id: programming-language-java
-      title: Java
-    - id: programming-language-javascript
-      title: JavaScript
     - id: programming-language-python
       title: Python
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-javascript
+      title: JavaScript/TypeScript
+    - id: programming-language-java
+      title: Java
+      
 # Owner: samkemp
 - id: foundry-local-sdk
   title: Programming languages
@@ -1342,21 +1735,141 @@ groups:
     title: Python
 # Owner: haileytapia
 - id: search-get-started-agentic-retrieval
-  title: Python and REST
+  title: Programming languages
   prompt: Choose a usage method
   pivots:
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: programming-language-typescript
+    title: TypeScript
   - id: programming-language-rest
     title: REST
 # Owner: haileytapia
 - id: search-get-started-vector-search
-  title: Python and REST
+  title: Programming languages
+  prompt: Choose a usage method
+  pivots:
+  - id: dotnet
+    title: C#
+  - id: java
+    title: Java
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
+  - id: typescript
+    title: TypeScript
+# Owner: haileytapia
+- id: search-get-started-semantic
+  title: Programming languages
+  prompt: Choose a usage method
+  pivots:
+  - id: csharp
+    title: C#
+  - id: java
+    title: Java
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
+  - id: typescript
+    title: TypeScript
+# Owner: haileytapia
+- id: search-how-to-manage-index
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: azure-portal
+    title: Azure portal
+  - id: rest
+    title: REST APIs
+  - id: azure-sdks
+    title: Azure SDKs
+# Owner: haileytapia
+- id: search-get-started-rbac
+  title: Usage methods
   prompt: Choose a usage method
   pivots:
   - id: python
     title: Python
   - id: rest
     title: REST
+# Owner: heidist
+- id: tutorial-create-skillset
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST
+ # Owner: laujan/lajanuar
+- id: foundry-rest-api
+  title: API methods and platforms
+  prompt: Select the Foundry platform or REST API 
+  pivots:
+  - id: microsoft-foundry
+    title: Microsoft Foundry
+  - id: rest-api
+    title: Azure Language REST API
+# Owner: jburchel/jonburchel
+- id: set-up-key-vault
+  title: Set up Key Vault
+  prompt: Choose a method to set up Key Vault
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: bicep
+    title: Bicep
+# Owner: johalexander / ms-johnalex
+- id: ai-foundry-vsc-extension-languages
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: python
+    title: Python
+  - id: csharp
+    title: C#
+# Owner: haileytapia
+- id: agentic-retrieval-pivots
+  title: Agentic retrieval pivots
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
+  - id: csharp
+    title: C#
+# Owner: pafarley
+- id: fast-transcription-quickstart
+  title: Programming languages
+  prompt: Choose an API
+  pivots:
+  - id: programming-language-rest
+    title: REST API
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-java
+    title: Java
+# Owner: pafarley
+- id: llm-speech-quickstart
+  title: Programming languages
+  prompt: Choose an API
+  pivots:
+  - id: programming-language-rest
+    title: REST API
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-java
+    title: Java

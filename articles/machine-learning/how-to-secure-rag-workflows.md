@@ -3,8 +3,8 @@ title: Secure your RAG workflows with network isolation (preview)
 titleSuffix: Azure Machine Learning
 description: Learn how to secure your RAG workflows with managed network and custom virtual network scenarios.
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: namohan
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -15,6 +15,7 @@ ms.custom:
   - prompt-flow
   - ignite-2023
   - code03
+  - sfi-image-nochange
 ---
 
 # Secure your RAG workflows with network isolation (preview)
@@ -30,7 +31,7 @@ Depending on your setup and scenario, RAG workflows in Azure Machine Learning ma
 
 ## Prerequisites
 * An Azure subscription.
-* Access to Azure OpenAI in Azure AI Foundry Models.
+* Access to Azure OpenAI in Microsoft Foundry Models.
 * A secure Azure Machine Learning workspace: either with Workspace Managed Virtual Network or "Bring Your Own" Virtual Network setup.
 * Prompt flows enabled in your Azure Machine Learning workspace. You can enable prompt flows by turning on Build AI solutions with Prompt flow on the Manage preview features panel.
 
@@ -72,7 +73,7 @@ If you're using an **Allow only approved outbound** Managed Vnet workspace and a
 
 - If your workspace runs into network related issues where your compute is unable to create or start a compute, try adding a placeholder FQDN rule in the **Networking** tab of your workspace in the Azure portal, in order to initiate a managed network update. Then, re-create the Compute in the Azure Machine Learning workspace.
 
-- You might see an error message related to `< Resource > is not registered with Microsoft.Network resource provider.` In which case, you should **ensure the subscription which your AI Services / Azure OpenAI resource is registered with a Microsoft Network resource provider**. To do so, navigate to **Subscription**, then **Resource Providers** for the same tenant as your Managed Vnet Workspace.
+- You might see an error message related to `< Resource > is not registered with Microsoft.Network resource provider.` In which case, you should **ensure the subscription which your Foundry Tools / Azure OpenAI resource is registered with a Microsoft Network resource provider**. To do so, navigate to **Subscription**, then **Resource Providers** for the same tenant as your Managed Vnet Workspace.
 
 > [!NOTE]
 > It's expected for a first-time serverless job in the workspace to be Queued an additional 10-15 minutes while Managed Network is provisioning Private Endpoints for the first time. With Compute Instance and Compute Cluster, this process happens during the compute creation.

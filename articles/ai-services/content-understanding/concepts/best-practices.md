@@ -1,105 +1,150 @@
 ---
 title: Best practices for using Content Understanding
-titleSuffix: Azure AI services
-description: Learn how to best use Azure AI Content Understanding for document, image, video, and audio file content and field extractions.
-author: laujan
-ms.author: jfilcik
+titleSuffix: Foundry Tools
+description: Learn how to best use Azure Content Understanding in Foundry Tools for document, image, video, and audio file content and field extractions.
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 01/29/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
 ---
 
-# Best practices for Azure AI Content Understanding
+# Best practices for Azure Content Understanding in Foundry Tools
 
-Azure AI Content Understanding is an innovative Generative AI service designed to facilitate the precise and accurate analysis of extensive data sets. The service processes various content modalities, including documents, images, videos, and audio, transforming them into user-specified output formats.
+Azure Content Understanding in Foundry Tools uses generative AI to process documents, images, videos, and audio, transforming them into structured output formats. This article provides best practices to maximize accuracy and efficiency.
 
-This document provides guidance and best practices to effectively utilize Content Understanding for your data processing and analysis requirements.
+## Define effective field schemas
 
-## Use field descriptions to guide output
+Clear and detailed field definitions are critical to accurate extraction. Follow these principles:
 
-When defining a schema, it's essential to provide detailed field descriptions. Clear and concise descriptions guide the model to focus on the correct information, improving the accuracy of the output.
+### Write detailed descriptions
 
-##### &emsp; ***Example 1***
+Provide clear, specific descriptions that guide the model to the correct information. Include location hints, format expectations, and alternative labels.
 
-  * If you want to extract the date from an invoice, in addition to naming the field `Date`, provide a description such as:
+**Example - Invoice date field:**
+```text
+The date when the invoice was issued, typically found at the top right corner. May be labeled as 'Invoice Date', 'Billing Date', or 'Issue Date'. Format is usually MM/DD/YYYY or DD-MM-YYYY.
+```
 
+### Include all aliases
 
-    > `The date when the invoice was issued, typically found at the top right corner of the document.`
+List all possible names for each field, when possible, especially when working with diverse file templates. This diversity helps the model recognize the field regardless of labeling variations.
 
+**Example - Investment distributions:**
+```text
+Equal to the 'Distributions' column. Also disclosed as 'Realizations' or 'Realized Proceeds'.
+```
 
-##### &emsp; ***Example 2***
+### Use affirmative language
 
-   * Suppose you want to extract the `Customer Name` from an invoice. Your description might read:
+Describe what the field is rather than what it isn't. Positive descriptions are clearer and more effective.
 
-     > `The name of the customer or client to whom this invoice is addressed, usually located near the billing address. It should be the name of the business or person, but not the entire mailing address.`
+**Instead of:** "This field isn't the invoice date and isn't the due date."  
+**Use:** "The date when goods or services were delivered, found in the delivery information section."
 
-## Correct mistakes by editing field descriptions
+### Match language to content
 
-If the system's output isn't meeting expectations, the first step is to try refining and updating the field descriptions. Clarifying the context and being more explicit about what you need, reduces ambiguity and improves accuracy.
+Define field names and descriptions in the same language as your file. Language mismatches can significantly reduce accuracy.
 
-##### &emsp; ***Example 3***
+**Example:** For Italian invoices, use `Fornitore` with Italian descriptions instead of `Vendor` with English descriptions.
 
-   * If the `Shipping date` field generated inconsistent or incorrect extraction, often after a `Dispatch Date` label, update it to something more precise like:
+### Use structured types for repeated data
 
-     > `The date when the products were shipped, typically found below the item list. It may also be labeled something similar like Delivery Date or Dispatch Date. Dates should typically have a format like 1/23/2024 or 01-04-2025.`
+Define repeated items, like line items or entries, as arrays of objects rather than string fields requesting JSON output.
 
-   * This extra context guides the model to the right location in the document.
+**Example - Invoice line items:**
+```json
+"lineItems": {
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "description": { "type": "string" },
+      "quantity": { "type": "number" },
+      "unitPrice": { "type": "number" },
+      "total": { "type": "number" }
+    }
+  }
+}
+```
 
+### Specify generation methods
 
-## Use classification fields for specific outputs
+Explicitly set the method (`extract`, `generate`, or `classify`) for each field based on its purpose:
+- **Generate**: Values requiring inference or summarization, such as risk level or summary.  
+- **Classify**: Selection from predefined options, like document type or category.
+- **Extract**: Values appearing directly in the content, such as invoice number or date.
 
-When you need the system to choose from a set of predefined options, for example, document type, product category, or status, use classification fields. Where there's ambiguity with the options, provide clear descriptions for each option, enabling the model to categorize the data accurately.
+> [!NOTE]
+> `extract` is only supported for document analyzers.
 
-##### &emsp; ***Example 4***
+## Optimize classification and categorization
 
-   * If you need to classify documents as either `Invoice`, `Claim`, or `Report`, create a classification field with these words as category names.
+Content Understanding automatically handles visual template variations within semantic categories. Follow these guidelines:
 
-##### &emsp; ***Example 5***
+### Use semantic categories, not visual templates, for document classification
 
-   * When processing product images, you might need to assign them to categories like `AlcoholicDrinks`, `SoftDrinks`, `Snacks`, and `DairyProducts`. Since some items can appear similar, providing precise definitions for close-call cases can help. For example:
+Don't create separate categories for documents or files with the same semantic type but different visual layouts. For example, use one `Invoice` category for all invoice variations rather than `Invoice_Template_A` and `Invoice_Template_B`.
 
-     * **`Alcoholic Drinks`**: Beverages containing alcohol, such as beer, wine, and spirits. This category excludes soft drinks or other nonalcoholic beverages.
+### Write effective category definitions
 
-     * **`Soft Drinks`**: Carbonated nonalcoholic beverages, such as soda and sparkling water. This category doesn't include juices or alcoholic drinks.
+* **Use common titles**: "Annual Financial Report", "SEC Form 10-K"
+* **Use only ASCII characters** in category names
+* **Provide distinguishing context**: Semantic meaning, key content markers, or distinctive layouts
+* **Define an "Other" category** if you need to identify outliers
+* **Avoid checkbox-only differences**: Don't create separate categories that differ only in checkbox values
 
-   * By clearly defining each category, you ensure that the system correctly classifies products while minimizing misclassification.
+**Example - Tax form categories:**
+```
+"2024_Form_1040": "US Individual Income Tax Return for tax year 2024. Contains '2024' prominently at the top."
+"2025_Form_1040": "US Individual Income Tax Return for tax year 2025. Contains '2025' prominently at the top."
+```
 
-## Use confidence scores to determine when human review is needed
+## Use confidence scores effectively
 
-Confidence scores help you decide when to involve human reviewers. Customers can interpret confidence scores using thresholds to decide which results need more reviews, minimizing the risk of errors.
+Confidence scores help determine when human review is needed. Set different thresholds based on field criticality:
 
-   ##### &emsp; ***Example 6***
+* **Critical fields** (TotalAmount, ContractTerminationDate): Use higher thresholds (≥0.90)
+* **Important fields** (VendorName, InvoiceNumber): Use medium thresholds (≥0.80)  
+* **Non-critical fields** (Comments, Notes): Use lower thresholds (≥0.70)
 
-   * For an invoice review use case, if a key extracted field like `TotalInvoiceAmount` has a confidence score under **0.80**, route that document to manual review. This helps ensure that a human verifies critical fields like invoice totals or legal statements when necessary.
+Currently, only document analyzers support confidence scores.
 
-   * You might set different confidence thresholds based on the type of field. For instance, a lower threshold for a `Comments` field that's less critical and a higher one for `ContractTerminationDate` to ensure no mistakes.
+> [!NOTE]
+> These thresholds are included as an illustration. Determine thresholds experimentally for each use case.
 
-## Reduce errors by narrowing language selection for audio and video
+## Improve accuracy over time
 
-When you're working with audio and video content, selecting a narrow set of languages for transcription can potentially reduce errors. The more languages you include, the more the system has to guess which language is being spoken, which can increase misrecognition.
+### Start with descriptions, then add examples
 
-##### &emsp; ***Example 7***
+Prioritize refining field descriptions before adding labeled training examples. Clear descriptions often resolve issues without requiring more data.
 
-   * If you're certain that the content only contains English and Spanish, configuring your transcription to only these two languages can improve quality. But if the content accidentally includes other languages, such configuration can actually degrade overall quality.
+### Add training examples for low confidence
 
-## Transcript, document text, and speaker data: fields not required
+If accuracy or confidence scores are lower than expected with zero-shot extraction, add similar documents to the knowledge base as training examples to improve accuracy.
 
-By default, Content Extraction information such as speech transcripts, document text extracted by `OCR`, and video key frames can be accessed directly from the analyzer output for immediate review or custom processing. There's no need to define a field in the schema for these items. Fields can be used when more processing is needed, for example, summarizing transcripts, identifying entities, or extracting specific items from `OCR`. Each field can instruct the system to extract or generate the content you need.
+## Optimize audio and video processing
 
-## Classifier category names and descriptions
+All the best practices described earlier for defining field schemas apply to audio and video processing as well. The following are additional tips specific to audio and video content:
 
-To improve the classifier and splitting accuracy, it's important to give a good category name and description with context.
+### Narrow language selection
 
- ##### &emsp; ***Example 8***
+Specify only the languages you expect in the content. Including too many languages increases transcription errors as the system must guess which language is being spoken.
 
-   * For category names, make sure to use common titles (ex. Annual Financial Report, SEC Form 10-K).
-     
-   * For category descriptions, make sure to give context that distinguishes one category from another.
+**Example:** For content containing only English and Spanish, configure only those two languages rather than using autodetect from all available languages.
 
-     * Semantic definition: for example, `receipts for expense reporting`
-     * Key content: any content that can uniquely identify a category, such as  `2025` on tax forms to distinguish from older tax forms
-     * Common layout: layout that is distinguishable from others, such as `two-column form` or filled/unfilled checkbox
+### Avoid extracting content as fields unnecessarily    
+
+Speech transcripts, optical character recognition (OCR) text, and video key frames are automatically available in analyzer output. Don't define fields for this content unless you need extra processing, such as summarization or entity extraction.
+
+## Related content
+
+* [Create a custom analyzer](../tutorial/create-custom-analyzer.md)
+* [Prebuilt analyzers](prebuilt-analyzers.md)
+* [Service quotas and limits](../service-limits.md)
+
 

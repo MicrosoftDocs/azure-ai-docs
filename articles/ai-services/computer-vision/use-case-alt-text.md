@@ -1,15 +1,13 @@
 ---
 title: "Overview: Generate alt text of images with Image Analysis"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Grow your customer base by making your products and services more accessible. Generate a description of an image in human-readable language, using complete sentences. 
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

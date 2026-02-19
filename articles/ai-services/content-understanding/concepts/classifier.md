@@ -1,86 +1,111 @@
 ---
-title: Azure AI Content Understanding classifier overview
-titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding classifier solutions.
-author: laujan
-ms.author: lajanuar
+title: Azure Content Understanding in Foundry Tools Classifier Overview
+titleSuffix: Foundry Tools
+description: Learn about Azure Content Understanding in Foundry Tools classifier solutions.
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
 ---
 
-# Content Understanding classifier
+# Content Understanding classification/segmentation
 
-> [!IMPORTANT]
->
-> * The classifier API is only available for documents with the `2025-05-01-preview` release.
-> * Azure AI Content Understanding classifier is available in `2025-05-01-preview` release. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+Content Understanding allows customers to implement classification and splitting as part of the analyzer operation request. You can perform content classification and content extraction as part of a single API call. 
 
-Azure AI Content Understanding classifier enables you to detect and identify documents you process within your application. Content Understanding classifier can perform classification of an input file as a whole, or identify multiple documents or multiple instances of a single document within an input file.
+The global concept of `analyzer` now includes the concept of `contentCategories` and `enableSegment` to classify and split the input data you process within your application. This analyzer feature can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file. 
+
+Starting with the GA version, document classification and video segmentation design are unified, allowing for a coherent approach to process input data regardless of its modality. In the documentation, "Content Understanding classification" refers to the analyze operations required for classifying and splitting input data (`contentCategories` and `enableSegment`).
 
 ## Business use cases
 
-Classifier can process complex documents in various formats and templates:
+Content Understanding classification allows for processing complex documents and videos in various formats and templates:
 
-* **Invoices**: Categorize invoices from multiple vendors to process each category with a different Content Understanding analyzer if needed.
-* **Tax documents**: Categorize multiple tax documents into different types of tax forms such as 1040, 1099, etc.
-* **Contracts**: Long, unstructured contracts can now be categorized to streamline operations to understand different types of agreements and their specific legal implications.
+* **Invoices**: Categorize invoices from multiple vendors to process each category with a different Content Understanding analyzer, if needed.
+* **Tax documents**: Categorize multiple tax documents into different types of tax forms, such as 1040 and 1099.
+* **Contracts**: Categorize long, unstructured contracts to streamline operations to understand different types of agreements and their specific legal implications.
+* **Sports video**: Automatically segment the scenes to break the video into logical chunks such as ads and the actual sports content.
+
+## Classification/segmentation capabilities
+
+Content Understanding can analyze single or multi-file documents to identify if an input file can be classified into a category as defined. The following scenarios are supported:
+
+**Document scenarios:**
+* **Classify only**: Classifies the input file as a whole. For example, a single file that contains one document type, such as a loan application form.
+* **Classify and analyze**: Classifies and analyzes the input file by routing the input to the desired extraction analyzer.
+* **Classify and segment**: Classifies and segments a single input file that might have multiple types or instances of documents concatenated. For example, a loan application package that contains a loan application form, pay slip, and bank statement. Another example is a collection of scanned invoices in a single file.
+* **Classify, segment, and analyze**: Once the segments are classified, route each segment to the desired extraction analyzer for further field extraction.
+* **[Hierarchical classifier](#hierarchical-classifier)**: Optional additional analysis depending on the category can also be a classifier analyzer.
+
+**Video scenarios:**
+* **Segment only**: Split video into segments based on content characteristics defined in the `description` field of `contentCategories`. For example, splitting a sports broadcast into game play, commercials, and commentary segments.
+* **Segment and analyze**: Split video into segments and route each segment to an analyzer for field extraction.
+
+> [!NOTE]
+> The minimum unit for classification of documents is a single page. Intra-page classification is not supported.
+
+### Create classification categories
+
+Content Understanding classification doesn't require a training dataset. You can define up to 200 category names and descriptions within the analyze operation. By default, the entire file is treated as a single content object, which means the file will be associated to a single category.
+
+Starting with the GA version, you need to include the `other` category within the `contentCategories` to ensure that content can remain unmatched to any of your defined categories. If the `other` category is not included, all the files are forced to be classified into one of your defined categories. Each of the category names you define within `contentCategories` can also include a `description` to give further information about the category you're defining.
 
 
-## Content Understanding classifier capabilities
+### Input file splitting
 
-Content Understanding classifier can analyze a single- or multi-file documents to identify if an input file can be classified into a category as defined. Here are the currently supported scenarios:
+When you have more than one document in a file, the classifier can identify the different document types that are contained within the input file with splitting capability. The classifier response contains the page ranges for each of the identified document types that are contained within a file. This response can include multiple instances of the same document type.
 
-* A single file containing one document type, such as a loan application form.
-* A single file containing multiple document types. For instance, a loan application package that contains a loan application form, payslip, and bank statement.
-* A single file containing multiple instances of the same document. For instance, a collection of scanned invoices.
-* By default, there's an `$OTHER` class as well, which we utilize to categorize the pages into for cases where any of the defined categories doesn't seem suitable.
+When you run the `analyze` operation, it now includes a `enableSegment` property that gives you granular control over the splitting behavior. You can also specify the page numbers to analyze only certain pages of the input document:
 
+* To treat the entire input file as multiple documents combined together for classification, set `enableSegment` to `true`. When you do so, the service returns categories for the segments within the input file automatically.
+* To treat the entire input file as a single document, set `enableSegment` to `false`.
 
-### How to use Content Understanding classifier
+> [!NOTE]
+> For videos, only segmentation is supported. You must define a single `contentCategories` with `enableSegment` set to `true`. Use the `description` field to specify criteria for splitting the video into segments.
 
-Content Understanding classifier doesn't require any training dataset. Define up to 50 category name and description and create a classifier. By default, the entire file is treated as a single content object, meaning the file/object is associated to a single category.
-
-However, when you have more than one document in a file, the classifier can identify the different document types contained within the input file with splitting capability. The classifier response contains the page ranges for each of the identified document types contained within a file. This response can include multiple instances of the same document type.
-
-When you call the classifier, the `analyze` operation includes a `splitMode` property that gives you granular control over the splitting behavior. You can also specify the page numbers to analyze only certain pages of the input document.
-
-* To treat the entire input file as a single document for classification set the `splitMode` to `none`. When you do so, the service returns just one category for the entire input file.
-* To classify each page of the input file, set the `splitMode` to `perPage`. The service attempts to classify each page as an individual document.
-* Set the `splitMode` to `auto` and the service identifies the documents and associated page ranges.
 
 ### Optional analysis
 
-For a complete end to end flow, you may link classifier categories with existing analyzers. For each content object classified to categories with linked analyzers, the service automatically invokes analysis on the content object using the corresponding analyzer. As an example, this linking can be used to create classifiers that identify and analyze only invoices from a PDF that may contain multiple types of forms in a document.
+For a complete end-to-end flow, you can link classifier categories with existing custom analyzers and prebuilt analyzers. For each content object classified to categories with linked analyzers, the service automatically invokes analysis on the content object by using the corresponding analyzer.
 
-* Set the `analyzerId` to an existing analyzer to route and perform field extraction from the classified documents or pages.
+For example, you can use this linking to create classifiers that identify and analyze only invoices from a PDF that contains multiple types of forms in a document. Set `analyzerId` to one of our prebuilt analyzers or custom analyzers to route and perform field extraction from the classified documents or pages.
 
-### Classifier limits
+You can also omit setting any `analyzerId` to categorize, but not perform any content analysis on the categorized file or segment.
 
-For information on supported input document formats and classifier limits, refer to our [Service quotas and limits](../service-limits.md#classifier) page.
+On the top layer, you can also specify `omitContent` as true to ensure that original content object is omitted and only return content objects from other analysis performed on the classified segment or files.
 
+#### Hierarchical classifier
 
-### Best practices
+The newly designed analyzer operation allows for hierarchical splitting and classification. For example, within the base analyzer operation, you can set the `analyzerID` for the content categories you defined with your custom analyzer that performs additional classification or splitting, depending on the need. Defining hierarchical analyzers allow for scenarios such as categorizing different types of documents like invoices, contracts, and receipts, with the analyzerID for each of these categories can also be an analyze operation with additional classification enabled for different types of files within invoices, contracts, and receipts. 
 
-To improve classification and splitting quality, it's important to give a good category name and description so the model can understand the categories with some context. For more information on category names and descriptions, *see* [Best practices](../concepts/best-practices.md#classifier-category-names-and-descriptions).
+Document inputs support five levels of nesting, and video inputs support two.
 
-## Key benefits
+## Classifier limits
 
-* **Accuracy and reliability:** Ensure precise document classification, reducing errors and boosting efficiency.
-* **Scalability:** Seamlessly scale out document processing to meet business demands.
-* **Customizable:** Adapt document classifier to fit specific workflows.
+For information on supported input document formats and classifier limits, see [Service quotas and limits](../service-limits.md#basic-limits).
+
+## Best practices
+
+To improve classification and splitting quality, use a good category name and description so that the model can understand the categories with some context. For more information on category names and descriptions, see [Best practices](../concepts/best-practices.md#optimize-classification-and-categorization).
+
+### Key benefits
+
+* **Accuracy and reliability**: Ensure precise document classification to reduce errors and boost efficiency.
+* **Scalability**: Scale out document processing to meet business demands.
+* **Customizable**: Adapt the document classifier to fit specific workflows.
 
 ## Supported languages and regions
-For a detailed list of supported languages and regions, visit our [Language and region support](../language-region-support.md) page.
+
+For a list of supported languages and regions, see [Language and region support](../language-region-support.md).
 
 ## Data privacy and security
-Developers using Content Understanding should review Microsoft's policies on customer data. For more information, visit our [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy) page.
 
-## Next step
-* Try processing your document content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
-* Learn to analyze document content [**analyzer templates**](../quickstart/use-ai-foundry.md).
+Developers who use Content Understanding should review Microsoft policies on customer data. For more information, see [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy).
+
+## Related content
+
+* Try processing your document content in [Content Understanding Studio](../quickstart/content-understanding-studio.md)
+* Learn about how to process document content using [analyzer templates](../concepts/analyzer-templates.md).

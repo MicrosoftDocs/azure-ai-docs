@@ -1,11 +1,11 @@
 ---
 title: "Batch analysis and processing"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the Document Intelligence Batch analysis API
 author: laujan
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 02/25/2025
+ms.topic: how-to
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -21,7 +21,7 @@ The batch analysis API allows you to bulk process up to 10,000 documents using o
 
 ## Prerequisites
 
-* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 *  A [Document Intelligence Azure Resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer): once you have your Azure subscription, create a Document Intelligence resource in the Azure portal. You can use the free pricing tier (F0) to try the service. After your resource is deployed, select **"Go to resource"** to retrieve your **key** and **endpoint**. You need the resource key and endpoint to connect your application to the Document Intelligence service. You can also find these values on the **Keys and Endpoint** page in Azure portal.
 
@@ -53,7 +53,7 @@ Review [Managed identities for Document Intelligence](../authentication/managed-
 
 Review [**Create SAS tokens**](../authentication/create-sas-tokens.md) to learn more about generating SAS tokens and how they work.
 
-## Calling the batch analysis API
+## Call the batch analysis API
 
 ### 1. Specify the input files
 
@@ -62,15 +62,18 @@ The batch API supports two options for specifying the files to be processed.
 * If you want to process all the files in a container or a folder, and the number of files is less than the 10000 limit, use the ```azureBlobSource``` object in your request.
 
     ```bash
-    POST /documentModels/{modelId}:analyzeBatch
+    POST {endpoint}/documentintelligence/documentModels/{modelId}:analyzeBatch?api-version=2024-11-30
 
     {
       "azureBlobSource": {
-        "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
-        ...
-      },
-     ...
+        "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken"
+      
+    },
+    {
+       "resultContainerUrl": "https://myStorageAccount.blob.core.windows.net/myOutputContainer?mySasToken",
+       "resultPrefix": "trainingDocsResult/"
     }
+
 
     ```
 
@@ -88,7 +91,7 @@ Use a file list `JSONL` file with the following conditions:
   * When you want more control over which files get processed in each batch request;
 
    ```bash
-   POST /documentModels/{modelId}:analyzeBatch
+   POST {endpoint}/documentintelligence/documentModels/{modelId}:analyzeBatch?api-version=2024-11-30
 
    {
      "azureBlobFileListSource": {
@@ -119,13 +122,14 @@ Remember to replace the following sample container URL values with real values f
 
 This example shows a POST request with `azureBlobSource` input
 ```bash
-POST /documentModels/{modelId}:analyzeBatch
+POST {endpoint}/documentintelligence/documentModels/{modelId}:analyzeBatch?api-version=2024-11-30
 
 {
   "azureBlobSource": {
     "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
     "prefix": "inputDocs/"
   },
+  {
   "resultContainerUrl": "https://myStorageAccount.blob.core.windows.net/myOutputContainer?mySasToken",
   "resultPrefix": "batchResults/",
   "overwriteExisting": true
@@ -137,13 +141,14 @@ This example shows a POST request with `azureBlobFileListSource` and a file list
 
 
 ```bash
-POST /documentModels/{modelId}:analyzeBatch
+POST {endpoint}/documentintelligence/documentModels/{modelId}:analyzeBatch?api-version=2024-11-30
 
 {
    "azureBlobFileListSource": {
       "containerUrl": "https://myStorageAccount.blob.core.windows.net/myContainer?mySasToken",
       "fileList": "myFileList.jsonl"
     },
+{
   "resultContainerUrl": "https://myStorageAccount.blob.core.windows.net/myOutputContainer?mySasToken",
   "resultPrefix": "batchResults/",
   "overwriteExisting": true
@@ -155,7 +160,7 @@ Here's an example **successful** response
 
 ```bash
 202 Accepted
-Operation-Location: /documentModels/{modelId}/analyzeBatchResults/{resultId}
+Operation-Location: /documentintelligence/documentModels/{modelId}/analyzeBatchResults/{resultId}?api-version=2024-11-30
 ```
 
 ### 4. Retrieve API results
@@ -164,7 +169,7 @@ Use the `GET` operation to retrieve batch analysis results after the POST operat
 
 
 ```bash
-GET /documentModels/{modelId}/analyzeBatchResults/{resultId}
+GET {endpoint}/documentintelligence/documentModels/{modelId}/analyzeBatchResults/{resultId}?api-version=2024-11-30
 200 OK
 
 {

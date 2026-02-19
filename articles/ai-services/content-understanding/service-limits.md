@@ -1,88 +1,112 @@
 ---
 title: Service quotas and limits - Content Understanding
-titleSuffix: Azure AI services
-description: Quick reference, detailed description, and best practices for working within Azure AI Content Understanding service Quotas and Limits
-author: laujan
-ms.author: lajanuar
+titleSuffix: Foundry Tools
+description: Quick reference, detailed description, and best practices for working within Azure Content Understanding in Foundry Tools service Quotas and Limits
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
-ms.topic: conceptual
+ms.topic: limits-and-quotas
 ms.custom:
   - build-2025
 ---
 
 
-# Azure AI Content Understanding service quotas and limits
+# Azure Content Understanding in Foundry Tools service quotas and limits
 
-This article offers a quick reference of the quotas and limits for the Azure AI Content Understanding service.
-
-## Resource limits
-| Quota | Standard (S0) |
-| --- | --- |
-| Max analyzers | 100k |
-| Max classifiers | 100k |
-| Max person directories | 100k |
-| Max analysis/min | 1000 pages/images <br> Four hours of audio <br> Four hours of video  |
-| Max operations/min | 3000 |
+This article lists the quotas and limits for the Azure Content Understanding in Foundry Tools service.
 
 ## General limits
 
 | Property | Limit |
 | --- | --- |
-| Resource IDs | 1-64 characters (`[a-zA-Z0-9._-]{1,64}`) |
+| Analyzer ID | 1-64 characters. Alphanumeric, period, and underscore. Pattern: `[a-zA-Z0-9._]{1,64}` |
 | URL properties | ≤ 8,192 characters |
 | Description properties | ≤ 1,024 characters |
-| Field names | ≤ 64 characters (`[\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}._-]{1,64}`) |
-| Tags properties | ≤ 10 tags |
-| Tag key | ≤ 64 characters (`[a-zA-Z0-9+-.:=_/]{1,64}`) |
-| Tag value | ≤ 256 characters (`[a-zA-Z0-9+-.:=_/]{0,256}`) |
+| Field names | ≤ 64 characters. Unicode letters, numbers, combining marks, connecting punctuation, period, hyphen, and underscore. Pattern: `[\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}._-]{1,64}` |
+| Tags | ≤ 10 tags |
+| Tag key | ≤ 64 characters. Alphanumeric and `+ - . : = _ /` characters. Pattern: `[a-zA-Z0-9+-.:=_/]{1,64}` |
+| Tag value | ≤ 256 characters. Alphanumeric and `+ - . : = _ /` characters. Can be empty. Pattern: `[a-zA-Z0-9+-.:=_/]{0,256}` |
 | Image reference ID | ≤ 256 characters |
 
-## Analyzers
+## Resource limits
 
-### Input file limits
+| Quota | Standard (S0) |
+| --- | --- |
+| Max analyzers | 100,000 |
+| Max analysis/min | 1,000 pages/images <br> Four hours of audio <br> Four hours of video  |
+| Max operations/min | 3,000 |
 
-#### Document and text
+## Supported generative models
 
-| Supported File Types | File Size | Length |
+Content Understanding connects to Foundry Models for generative capabilities. The service is periodically updated to add support for more models. To learn more, see [Connect your Content Understanding analyzer to Foundry model deployments](./concepts/models-deployments.md).  
+
+The currently supported models are:
+
+| Model Type | Model | Version |
+|--|--|--|
+|Chat Completion | gpt-4o | `2024-08-06` |
+|Chat Completion | gpt-4o | `2024-11-20` |
+|Chat Completion | gpt-4o-mini | `2024-11-20` |
+|Chat Completion | gpt-4.1 | `2024-11-20` |
+|Chat Completion | gpt-4.1-mini | `2024-11-20` |
+|Chat Completion | gpt-4.1-nano | `2024-11-20` |
+|Embeddings | text-embedding-3-small |  |
+|Embeddings | text-embedding-3-large |  |
+|Embeddings | text-embedding-ada-002 |  |
+
+## Input file limits
+
+### Document and text
+
+| Supported file types | File size | Length |
 | --- | --- | --- |
-| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | ≤ 300 pages |
+| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.jpeg`, `.jpe`, `.png`, `.bmp`, `.heif`, `.heic` | ≤ 200 MB | ≤ 300 pages |
 | ✓ `.docx`, `.xlsx`, `.pptx` | ≤ 200 MB | ≤ 1M characters |
 | ✓ `.txt` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters |
 
 > [!NOTE]
-> [Pro mode](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
-> Total input may not exceed 100 MB and 150 pages.
+> [Pro mode (preview)](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
+> Total input can't exceed 100 MB and 150 pages.
 
-#### Image
+### Image
 
-| Supported File Types | File Size | Resolution |
+| Supported file types | File size | Resolution |
 | --- | --- | --- |
-| ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | Min: 50 x 50 pixels <br> Max: 10k x 10k pixels |
+| ✓ `.jpg`, `.jpeg`, `.jpe`, `.png`, `.bmp`, `.heif`, `.heic` | ≤ 200 MB | Min: 50 x 50 pixels <br> Max: 10k x 10k pixels |
 
-#### Audio
+### Audio
 
-| Supported File Types | File Size | Length |
+| Supported file types | File size | Length |
 | --- | --- |  --- |
-| ✓ `.wav` (`PCM`, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (`AAC`, `ALAC`)<br> ✓ `.spx` | ≤ 1 GB<sup>†</sup> | ≤ 4 hours<sup>†</sup> |
+| ✓ `.wav` (PCM, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (AAC, ALAC)<br> ✓ `.spx` | Max: 300 MB<sup>†</sup> | Max: 2 hours<sup>†</sup> |
 
-<sup>†</sup> For files ≤ 300 MB or ≤ 2 hours, Content Understanding transcription time is substantially reduced.
+<sup>†</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files 300 MB or less or 2 hours or less.
 
-#### Video
+### Video
 
-| Supported File Types | File Size | Resolution | Length |
-| ---| --- | --- | --- |
-| ✓  `.mp4`, `.m4v` <br> ✓ `.flv` (H.264 and `AAC`) <br> ✓ `.wmv`, `.asf` <br> ✓ `.avi` <br> ✓ `.mkv` <br> ✓ `.mov` | ≤20 GB † | Min: 320 x 240 pixels <br>Max: 1920 x 1,080 pixels | ≤4 hours †|
+#### Supported file types and resolution
 
-   > [!NOTE]
-   > Video analysis has the following limitations:
-   > * Direct upload: Maximum file size of 200 MB and maximum duration of 30 minutes when uploading video directly
-   > * Frame sampling: Analyzes approximately one frame per second, which may miss quick movements or brief events
-   > * Resolution: All frames are scaled to 512 x 512 pixels, which may affect visibility of small details or distant objects
+| Supported File Types | Resolution |
+| --- | --- |
+| ✓  `.mp4`, `.m4v` <br> ✓ `.flv` (H.264 and `AAC`) <br> ✓ `.wmv`, `.asf` <br> ✓ `.avi` <br> ✓ `.mkv` <br> ✓ `.mov` | Min: 320 x 240 pixels <br>Max: 1920 x 1,080 pixels |
+
+#### File size limits
+
+| Upload Method | File Size | Length | Description |
+| --- | --- | --- | --- |
+| analyzeBinary API (direct upload) | ≤ 200 MB | ≤ 30 minutes | Upload video files directly in the API request body by using the analyzeBinary API. The Microsoft Foundry UX and Content Understanding Studio UX use this method.  |
+| analyze API (file reference) | Max: 4 GB | Max: 2 hours | Reference video files via URL from Azure Blob Storage or similar storage when you use the analyze API. |
+
+> [!NOTE]
+> Video analysis has the following limitations:
+> * analyzeBinary API: Maximum file size of 200 MB and maximum duration of 30 minutes when uploading video directly in the request body
+> * Frame sampling: Analyzes approximately one frame per second, which might miss quick movements or brief events
+> * Resolution: All frames are scaled to 512 x 512 pixels, which might affect visibility of small details or distant objects
 
 
-### Field schema limits
+## Field schema limits
 
 Content Understanding supports both basic field value types and nested structures, including lists, groups, tables, and fixed tables.
 
@@ -92,11 +116,11 @@ Content Understanding supports both basic field value types and nested structure
 * **Table field**: A variable number of items with fixed subfields, represented as an array of objects of basic fields in the API.
 * **Fixed table field**: A group of fields with shared subfields, represented as an object of objects of basic fields in the API.
 
-#### Basic limits
+### Basic limits
 
 | Property | Document | Text | Image | Audio | Video |
 | --- | --- | --- | --- | --- | --- |
-| Max fields | 100 | 100 | 100 | 100 | 100 |
+| Max fields | 1,000 | 1,000 | 1,000 | 1,000 | 1,000 |
 | Max classify field categories | 300 | 300 | 300 | 300 | 300 |
 | Supported generation methods | extract<br>generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify |
 
@@ -107,48 +131,22 @@ Content Understanding supports both basic field value types and nested structure
 
 | Type | Limits |
 | -----| ------ |
-| Training data | Documents only <br/> 1 GB total <br/> 50k pages/images total |
-| Reference data | Documents only <br/> 100 MB total <br/> 5k pages total |
+| Training data | Documents only <br/> 1 GB total <br/> 50,000 pages/images total |
 
----
 
-## Classifier
+## Segmentation and classification limits
 
-### General limits
-
-   > [!NOTE]
-   > This limit is for [Content Understanding classifier](concepts/classifier.md) itself, not classify fields within the extraction capability.
+> [!NOTE]
+> These limits apply to [Content Understanding segmentation and classification](concepts/classifier.md) itself. They don't apply to classifying fields within the extraction capability.
 
 | Property | Limit |
 | --- | --- |
-| Category name | Can't start with a dollar sign (`$`)|
-| Category name and description | Maximum 120 characters for combined name and description in each category |
-| Number of categories | 1 to 50 per classifier |
+| Category name | Can't start with a dollar sign (`$`).|
+| Category name and description | Maximum 120 characters for combined name and description in each category. |
+| Number of categories | 200 per analyzer for documents, 1 for videos. |
+| Hierarchical classification | 5 layers for documents, 2 layers for videos |
 
-### Input file limits
 
-| Supported File Types | File Size | Length |
-| --- | --- | --- |
-| ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | ≤ 300 pages |
-| ✓ `.txt`  | ≤ 1 MB | ≤ 1M characters |
 
----
-
-## Face / Person Directories
-
-### General limits
-| Property | Value |
-| --- | --- |
-| Max faces per person directory | 1,000,000 |
-| Max persons per person directory | 1,000,000 |
-| Max detected faces per image | 100 |
-| Max identified person candidates per search | 10 |
-| Max similar faces returned per search | 1000 |
-
-### Input file limits
-
-| Supported File Types | File Size | Length |
-| --- | --- |  --- |
-| ✓ `.jpg`, `.png`, `.bmp`, `.webp`, `.gif`, `.ico` | ≤ 200 MB | Max: 15k x 15k pixels |
 
 

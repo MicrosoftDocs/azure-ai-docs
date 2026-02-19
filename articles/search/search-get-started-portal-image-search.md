@@ -6,22 +6,23 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 06/11/2025
+ms.date: 01/16/2026
 ms.custom:
   - references_regions
 ---
 
-# Quickstart: Search for multimodal content in the Azure portal
+# Quickstart: Multimodal search in the Azure portal
 
-In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting, chunking, vectorizing, and loading both text and images into a searchable index.
-
-Unlike [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md), which processes simple text-containing images, this quickstart supports advanced image processing for multimodal RAG scenarios.
+In this quickstart, you use the **Import data (new)** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting, chunking, vectorizing, and loading both text and images into a searchable index.
 
 This quickstart uses a multimodal PDF from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo. However, you can use different files and still complete this quickstart.
 
+> [!TIP]
+> Have text-heavy documents? See [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md) to chunk and vectorize content with optional image support.
+
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure AI Search service](search-create-service-portal.md). We recommend the Basic tier or higher.
 
@@ -35,31 +36,39 @@ This quickstart uses a multimodal PDF from the [azure-search-sample-data](https:
 
 ### Supported extraction methods
 
-For content extraction, you can choose either default extraction via Azure AI Search or enhanced extraction via [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview). The following table describes both extraction methods.
+For content extraction, choose either default extraction via Azure AI Search or enhanced extraction via [Azure Document Intelligence in Foundry Tools](/azure/ai-services/document-intelligence/overview).
 
 | Method | Description |
 |--|--|
-| Default extraction | Extracts location metadata from PDF images only. Doesn't require another Azure AI resource. |
-| Enhanced extraction | Extracts location metadata from text and images for multiple document types. Requires an [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>1</sup> in a [supported region](cognitive-search-skill-document-intelligence-layout.md#supported-regions). |
+| Default extraction | Extracts location metadata from PDF images only. Doesn't require another Azure resource. |
+| Enhanced extraction | Extracts location metadata from text and images for multiple document types. Requires an [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) <sup>1</sup> for integration. |
 
-<sup>1</sup> For billing purposes, you must [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
+<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. Currently, the wizard requires your search service and multi-service account to be in the [same supported region for the Document Layout skill](cognitive-search-skill-document-intelligence-layout.md#supported-regions), even when using keyless connections.
 
 ### Supported embedding methods
 
-For content embedding, you can choose either image verbalization (followed by text vectorization) or multimodal embeddings. Deployment instructions for the models are provided in a [later section](#deploy-models). The following table describes both embedding methods.
+For content embedding, choose one of the following methods:
 
-| Method | Description | Supported models |
++ **Image verbalization:** Uses an LLM to generate natural-language descriptions of images, and then uses an embedding model to vectorize plain text and verbalized images.
+
++ **Multimodal embeddings:** Uses an embedding model to directly vectorize both text and images.
+
+The portal supports the following models for each method. Deployment instructions are provided in a [later section](#deploy-models).
+
+| Provider | Models for image verbalization | Models for multimodal embeddings |
 |--|--|--|
-| Image verbalization | Uses an LLM to generate natural-language descriptions of images, and then uses an embedding model to vectorize plain text and verbalized images.<br><br>Requires an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> or [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).<br><br>For text vectorization, you can also use an [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>3</sup> in a [supported region](cognitive-search-skill-vision-vectorize.md). | LLMs:<br>GPT-4o<br>GPT-4o-mini<br>phi-4 <sup>4</sup><br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
-| Multimodal embeddings | Uses an embedding model to directly vectorize both text and images.<br><br>Requires an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) or [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>3</sup> in a [supported region](cognitive-search-skill-vision-vectorize.md). | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual |
+| [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) <sup>1</sup> | Embedding model: [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) | [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) |
+| [Microsoft Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects?view=foundry-classic&pivots=web-portal&preserve-view=true) | LLMs:<ul><li>phi-4</li><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul>Embedding models:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li><li>Cohere-embed-v3-english <sup>2</sup></li><li>Cohere-embed-v3-multilingual <sup>2</sup></li></ul> | <ul><li>Cohere-embed-v3-english <sup>2</sup></li><li>Cohere-embed-v3-multilingual <sup>2</sup></li></ul> |
+| [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&pivots=web-portal&preserve-view=true) | LLMs:<ul><li>phi-4</li><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul>Embedding models:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> | |
+| [Azure OpenAI resource](/azure/ai-foundry/openai/how-to/create-resource?view=foundry-classic&pivots=web-portal&preserve-view=true) <sup>3, 4</sup> | LLMs:<ul><li>gpt-4o</li><li>gpt-4o-mini</li><li>gpt-5</li><li>gpt-5-mini</li><li>gpt-5-nano</li></ul>Embedding models:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> | |
 
-<sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
+<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. Currently, the wizard requires your search service and multi-service account to be in the [same supported region for the Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md#supported-regions), even when using keyless connections.
 
-<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
+<sup>2</sup> To use this model in the wizard, you must provision it as a serverless API deployment. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment.
 
-<sup>3</sup> For billing purposes, you must [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
+<sup>3</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
-<sup>4</sup> `phi-4` is only available to Azure AI Foundry projects.
+<sup>4</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
 ### Public endpoint requirements
 
@@ -89,9 +98,9 @@ On your Azure AI Search service:
 
 1. [Enable role-based access](search-security-enable-roles.md).
 
-1. [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+1. [Configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-1. [Assign the following roles](search-security-rbac.md) to yourself:
+1. [Assign the following roles](search-security-rbac.md) to yourself.
 
    + **Search Service Contributor**
 
@@ -101,11 +110,11 @@ On your Azure AI Search service:
 
 ### [**Azure Storage**](#tab/storage-perms)
 
-Azure Storage is both the data source for your documents and the destination for extracted images. Your search service requires access to these storage containers, which you create in the next section.
+Azure Storage is both the data source for your documents and the destination for extracted images. Your search service requires access to the storage containers you create in the next section.
 
 On your Azure Storage account:
 
-+ Assign **Storage Blob Data Contributor** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Storage Blob Data Contributor** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ---
 
@@ -113,29 +122,32 @@ On your Azure Storage account:
 
 The following tabs cover all wizard-compatible resources for multimodal search. Select only the tabs that apply to your chosen [extraction method](#supported-extraction-methods) and [embedding method](#supported-embedding-methods).
 
+### [**Azure AI multi-service**](#tab/multi-service-perms)
+
+A multi-service account provides access to multiple Azure AI services, including [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview) for content extraction and [Azure Vision](/azure/ai-services/computer-vision/overview) for content embedding. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
+
+On your multi-service account:
+
++ Assign **Cognitive Services User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
+
+### [**Microsoft Foundry**](#tab/foundry-perms)
+
+> [!NOTE]
+> If you're using a hub-based project, skip this step. Hub-based projects support API keys instead of managed identities for authentication.
+
+The Microsoft Foundry model catalog provides LLMs for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [AML skill](cognitive-search-aml-skill.md).
+
+On the parent resource of your Microsoft Foundry project:
+
++ Assign **Azure AI Project Manager** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
+
 ### [**Azure OpenAI**](#tab/openai-perms)
 
 Azure OpenAI provides LLMs for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
 
 On your Azure OpenAI resource:
 
-+ Assign **Cognitive Services OpenAI User** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
-
-### [**Azure AI Foundry**](#tab/ai-foundry-perms)
-
-The Azure AI Foundry model catalog provides LLMs for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [AML skill](cognitive-search-aml-skill.md).
-
-On your Azure AI Foundry project:
-
-+ Assign **Azure AI Project Manager** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
-
-### [**Azure AI services**](#tab/ai-services-perms)
-
-An Azure AI multi-service resource provides multiple Azure AI services, including [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview) for content extraction and [Azure AI Vision](/azure/ai-services/computer-vision/overview) for content embedding. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
-
-On your Azure AI multi-service resource:
-
-+ Assign **Cognitive Services User** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Cognitive Services OpenAI User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ---
 
@@ -155,20 +167,12 @@ To prepare the sample data for this quickstart:
 
 ## Deploy models
 
-The wizard offers several options for content embedding. Image verbalization requires an LLM to describe images and an embedding model to vectorize text and image content, while direct multimodal embeddings only require an embedding model. These models are available through Azure OpenAI and Azure AI Foundry.
-
 > [!NOTE]
-> If you're using Azure AI Vision, skip this step. The multimodal embeddings are built into your Azure AI multi-service resource and don't require model deployment.
+> If you're using Azure Vision, skip this step. The multimodal embeddings are built into your multi-service account and don't require model deployment.
 
-To deploy the models for this quickstart:
+The wizard offers several options for content embedding. Image verbalization requires an LLM to describe images and an embedding model to vectorize text and image content, while direct multimodal embeddings only require an embedding model. These models are available through Azure OpenAI and Foundry.
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
-
-1. Select your Azure OpenAI resource or Azure AI Foundry project.
-
-1. From the left pane, select **Model catalog**.
-
-1. Deploy the models required for your chosen [embedding method](#supported-embedding-methods).
+To deploy the models required for your chosen [embedding method](#supported-embedding-methods), see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
 
 ## Start the wizard
 
@@ -176,9 +180,9 @@ To start the wizard for multimodal search:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
-1. On the **Overview** page, select **Import and vectorize data**.
+1. On the **Overview** page, select **Import data (new)**.
 
-   :::image type="content" source="media/search-get-started-portal-import-vectors/command-bar.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
+   :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
 1. Select your data source: **Azure Blob Storage** or **Azure Data Lake Storage Gen2**.
 
@@ -188,13 +192,17 @@ To start the wizard for multimodal search:
 
    :::image type="content" source="media/search-get-started-portal-images/wizard-scenarios-multimodal-rag.png" alt-text="Screenshot of the Multimodal RAG tile in the wizard." border="true" lightbox="media/search-get-started-portal-images/wizard-scenarios-multimodal-rag.png":::
 
-## Connect to your data
+## Run the wizard
+
+The wizard walks you through several configuration steps. This section covers each step in sequence.
+
+### Connect to your data
 
 Azure AI Search requires a connection to a data source for content ingestion and indexing. In this case, the data source is your Azure Storage account.
 
 To connect to your data:
 
-1. On the **Connect to your data** page, specify your Azure subscription.
+1. On the **Connect to your data** page, select your Azure subscription.
 
 1. Select the storage account and container to which you uploaded the sample data.
 
@@ -204,7 +212,7 @@ To connect to your data:
 
 1. Select **Next**.
 
-## Extract your content
+### Extract your content
 
 Depending on your chosen [extraction method](#supported-extraction-methods), the wizard provides configuration options for document cracking and chunking.
 
@@ -222,27 +230,27 @@ To use the Document Extraction skill:
 
 ### [**Enhanced extraction**](#tab/document-intelligence)
 
-Your Azure AI multi-service resource provides access to [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview), which calls the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) to recognize document structure and extract text and images relationally. It does so by attaching location metadata, such as page numbers and bounding polygons, to each image. The Document Layout skill also breaks text content into smaller, more manageable chunks.
+Your multi-service account provides access to [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview), which calls the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) to recognize document structure and extract text and images relationally. This skill attaches location metadata, such as page numbers and bounding polygons, to each image. It also breaks text content into smaller, more manageable chunks.
 
 To use the Document Layout skill:
 
 1. On the **Content extraction** page, select **AI Document Intelligence**.
 
-   :::image type="content" source="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png" alt-text="Screenshot of the wizard page with Azure AI Document Intelligence selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png":::
+   :::image type="content" source="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png" alt-text="Screenshot of the wizard page with Azure Document Intelligence selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png":::
 
-1. Specify your Azure subscription and multi-service resource.
+1. Select your Azure subscription and multi-service account.
 
 1. For the authentication type, select **System assigned identity**.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
-   :::image type="content" source="media/search-get-started-portal-images/doc-intelligence-options.png" alt-text="Screenshot of the wizard page with configuration options for Azure AI Document Intelligence selected." border="true" lightbox="media/search-get-started-portal-images/doc-intelligence-options.png":::
+   :::image type="content" source="media/search-get-started-portal-images/doc-intelligence-options.png" alt-text="Screenshot of the wizard page with configuration options for Azure Document Intelligence selected." border="true" lightbox="media/search-get-started-portal-images/doc-intelligence-options.png":::
 
 1. Select **Next**.
 
 ---
 
-## Embed your content
+### Embed your content
 
 During this step, the wizard uses your chosen [embedding method](#supported-embedding-methods) to generate vector representations of both text and images.
 
@@ -252,7 +260,7 @@ The wizard calls one skill to create descriptive text for images (image verbaliz
 
 For image verbalization, the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) uses your deployed LLM to analyze each extracted image and produce a natural-language description.
 
-For embeddings, the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) uses your deployed embedding model to convert text chunks and verbalized descriptions into high-dimensional vectors. These vectors enable similarity and hybrid retrieval.
+For embeddings, the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) uses your deployed embedding model to convert text chunks and verbalized descriptions into high-dimensional vectors. These vectors enable similarity and hybrid retrieval.
 
 To use the skills for image verbalization:
 
@@ -262,11 +270,11 @@ To use the skills for image verbalization:
 
 1. On the **Image Verbalization** tab:
 
-   1. For the kind, select your LLM provider: **Azure OpenAI** or **AI Foundry Hub catalog models**.
+   1. For the kind, select your LLM provider: **Azure OpenAI** or **Azure AI Foundry**.
 
-   1. Specify your Azure subscription, resource, and LLM deployment.
+   1. Select your Azure subscription, resource, and LLM deployment.
 
-   1. For the authentication type, select **System assigned identity**.
+   1. For the authentication type, select **System assigned identity** if you're not using a hub-based project. Otherwise, leave it as **API key**.
 
    1. Select the checkbox that acknowledges the billing effects of using these resources.
 
@@ -274,11 +282,11 @@ To use the skills for image verbalization:
 
 1. On the **Text Vectorization** tab:
 
-   1. For the kind, select your model provider: **Azure OpenAI**, **AI Foundry Hub catalog models**, or **AI Vision vectorization**.
+   1. For the kind, select your model provider: **Azure OpenAI**, **Azure AI Foundry**, or **AI Vision vectorization**.
 
-   1. Specify your Azure subscription, resource, and embedding model deployment.
+   1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
-   1. For the authentication type, select **System assigned identity**.
+   1. For the authentication type, select **System assigned identity** if you're not using a hub-based project. Otherwise, leave it as **API key**.
 
    1. Select the checkbox that acknowledges the billing effects of using these resources.
 
@@ -288,7 +296,7 @@ To use the skills for image verbalization:
 
 ### [**Multimodal embeddings**](#tab/multimodal-embeddings)
 
-If the raw content of your data includes text, the wizard calls the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize it. The same embedding skill is used to generate vector representations of images.
+If the raw content of your data includes text, the wizard calls the [AML skill](cognitive-search-aml-skill.md) or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize it. The same embedding skill is used to generate vector representations of images.
 
 The wizard also calls the [Shaper skill](cognitive-search-skill-shaper.md) to enrich the output with metadata, such as page numbers. This metadata is useful for associating vectorized content with its original context in the document.
 
@@ -298,11 +306,11 @@ To use the skills for multimodal embeddings:
 
    :::image type="content" source="media/search-get-started-portal-images/multimodal-embedding-tile.png" alt-text="Screenshot of the Multimodal Embedding tile in the wizard." border="true" lightbox="media/search-get-started-portal-images/multimodal-embedding-tile.png":::
 
-1. For the kind, select your model provider: **AI Foundry Hub catalog models** or **AI Vision vectorization**.
+1. For the kind, select your model provider: **Azure AI Foundry** or **AI Vision vectorization**.
 
-   If Azure AI Vision is unavailable, make sure your search service and multi-service resource are both in a [region that supports the Azure AI Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
+1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
-1. Specify your Azure subscription, resource, and embedding model deployment.
+1. For the authentication type, select **System assigned identity** if you're not using a hub-based project. Otherwise, leave it as **API key**.
 
 1. Select the checkbox that acknowledges the billing effects of using this resource.
 
@@ -312,13 +320,13 @@ To use the skills for multimodal embeddings:
 
 ---
 
-## Store the extracted images
+### Store the extracted images
 
 The next step is to send images extracted from your documents to Azure Storage. In Azure AI Search, this secondary storage is known as a [knowledge store](knowledge-store-concept-intro.md).
 
 To store the extracted images:
 
-1. On the **Image output** page, specify your Azure subscription.
+1. On the **Image output** page, select your Azure subscription.
 
 1. Select the storage account and blob container you created to store the images.
 
@@ -328,7 +336,11 @@ To store the extracted images:
 
 1. Select **Next**.
 
-## Map new fields
+### Add semantic ranking
+
+On the **Advanced settings** page, you can optionally add [semantic ranking](semantic-search-overview.md) to rerank results at the end of query execution. Reranking promotes the most semantically relevant matches to the top.
+
+### Map new fields
 
 On the **Advanced settings** page, you can optionally add fields to the index schema. By default, the wizard generates the fields described in the following table.
 
@@ -355,7 +367,13 @@ To add fields to the index schema:
 
 1. If you want to restore the schema to its original version, select **Reset**.
 
-## Schedule indexing
+Key points about this step:
+
++ The index schema provides vector and nonvector fields for chunked data.
+
++ Document parsing mode creates chunks (one search document per chunk).
+
+### Schedule indexing
 
 For data sources where the underlying data is volatile, you can [schedule indexing](search-howto-schedule-indexers.md) to capture changes at specific intervals or specific dates and times.
 
@@ -393,7 +411,7 @@ When the wizard completes the configuration, it creates the following objects:
 
   + The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images in natural language. If you're using direct multimodal embeddings, this skill is absent.
 
-  + The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called once for text vectorization and once for image vectorization.
+  + The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called once for text vectorization and once for image vectorization.
 
   + The [Shaper skill](cognitive-search-skill-shaper.md) enriches the output with metadata and creates new images with contextual information.
 
@@ -402,7 +420,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 ## Check results
 
-This quickstart creates a multimodal index that supports [hybrid search](hybrid-search-overview.md) over both text and images. Unless you use direct multimodal embeddings, the index doesn't accept images as query inputs, which requires the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) with an equivalent vectorizer. For more information, see [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md).
+This quickstart creates a multimodal index that supports [hybrid search](hybrid-search-overview.md) over both text and images. Unless you use direct multimodal embeddings, the index doesn't accept images as query inputs, which requires the [AML skill](cognitive-search-aml-skill.md) or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) with an equivalent vectorizer. For more information, see [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md).
 
 Hybrid search combines full-text queries and vector queries. When you issue a hybrid query, the search engine computes the semantic similarity between your query and the indexed vectors and ranks the results accordingly. For the index created in this quickstart, the results surface content from the `content_text` field that closely aligns with your query.
 
@@ -451,13 +469,13 @@ To query your multimodal index:
 
 ## Clean up resources
 
-This quickstart uses billable Azure resources. If you no longer need the resources, delete them from your subscription to avoid charges.
+[!INCLUDE [clean up resources (paid)](includes/resource-cleanup-paid.md)]
 
 ## Next steps
 
-This quickstart introduced you to the **Import and vectorize data** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
+This quickstart introduced you to the **Import data (new)** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
 
-+ [Tutorial: Image verbalization and Document Extraction skill](tutorial-document-extraction-image-verbalization.md)
-+ [Tutorial: Image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md)
-+ [Tutorial: Multimodal embeddings and Document Extraction skill](tutorial-document-extraction-multimodal-embeddings.md)
-+ [Tutorial: Multimodal embeddings and Document Layout skill](tutorial-document-layout-multimodal-embeddings.md)
++ [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
++ [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
++ [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md)
++ [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)

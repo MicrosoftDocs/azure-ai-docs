@@ -4,8 +4,8 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Learn how to configure and create a Data Science Virtual Machine on Azure for analytics and machine learning.
 services: machine-learning
 ms.service: azure-data-science-virtual-machines
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.topic: quickstart
 ms.reviewer: franksolomon
 ms.date: 04/27/2024

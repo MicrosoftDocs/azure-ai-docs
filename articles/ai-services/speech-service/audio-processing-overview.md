@@ -1,25 +1,25 @@
 ---
 title: Audio processing - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of audio processing and capabilities of the Microsoft Audio Stack.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
-ms.reviewer: hasshah
+ms.date: 08/06/2025
+author: PatrickFarley
+ms.author: pafarley
+ms.reviewer: jagoerge
 ---
 
 # Audio processing with the Microsoft Audio Stack
 
 The Microsoft Audio Stack is a set of enhancements optimized for speech processing scenarios. This includes examples like keyword recognition and speech recognition. It consists of various enhancements/components that operate on the input audio signal:
 
-* **Noise suppression** - Reduce the level of background noise.
 * **Beamforming** - Localize the origin of sound and optimize the audio signal using multiple microphones.
 * **Dereverberation** - Reduce the reflections of sound from surfaces in the environment.
 * **Acoustic echo cancellation** - Suppress audio being played out of the device while microphone input is active.
 * **Automatic gain control** - Dynamically adjust the person’s voice level to account for soft speakers, long distances, or noncalibrated microphones.
+* **Noise suppression** - Reduce the level of background noise. Requires microphone arrays for optimal performance; the effect is minimal with a single microphone or low SNR audio.
 
 [ ![Block diagram of Microsoft Audio Stack's enhancements.](media/audio-processing/mas-block-diagram.png) ](media/audio-processing/mas-block-diagram.png#lightbox)
 

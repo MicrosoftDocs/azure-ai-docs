@@ -1,16 +1,16 @@
 ---
 title: Limits and boundaries - custom question answering
-description: Custom question answering has meta-limits for parts of the knowledge base and service. It is important to keep your knowledge base within those limits in order to test and publish.
+description: Custom question answering has meta-limits for parts of the knowledge base and service. It's important to keep your knowledge base within those limits in order to test and publish.
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: limits-and-quotas
+ms.date: 12/11/2025
 ---
 
 # Project limits and boundaries
 
-Custom question answering limits provided below are a combination of the [Azure AI Search pricing tier limits](/azure/search/search-limits-quotas-capacity) and custom question answering limits. Both sets of limits affect how many projects you can create per resource and how large each project can grow.
+The following custom question answering limits are a combination of the [Azure AI Search pricing tier limits](/azure/search/search-limits-quotas-capacity) and custom question answering limits. Both sets of limits affect how many projects you can create per resource and how large each project can grow.
 
 ## Projects
 
@@ -18,10 +18,10 @@ The maximum number of projects is based on [Azure AI Search tier limits](/azure/
 
 Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/details/search/) for your scenario. Typically, you decide the number of projects you need based on number of different subject domains. One subject domain (for a single language) should be in one project.
 
-With custom question answering, you have a choice to set up your language resource in a single language or multiple languages. You can make this selection when you create your first project in the [Language Studio](https://language.azure.com/).
-
+With custom question answering, you have a choice to set up your language resource in a single language or multiple languages. 
   > [!IMPORTANT]
-  > You can publish N-1 projects of a single language or N/2 projects of different languages in a particular tier, where N is the maximum indexes allowed in the tier. Also check the maximum size and the number of documents allowed per tier.
+  > You can publish N-1 projects with a single language resource or N-2 projects with multiple language resources in a single tier. The `N` notation is the maximum indexes allowed in the tier.
+  > Also check the maximum size and the number of documents allowed per tier.
 
 For example, if your tier has 15 allowed indexes, you can publish 14 projects of the same language (one index per published project). The 15th index is used for all the projects for authoring and testing. If you choose to have projects in different languages, then you can only publish seven projects.
 
@@ -32,7 +32,7 @@ For example, if your tier has 15 allowed indexes, you can publish 14 projects of
 
 File names may not include the following characters:
 
-|Do not use character|
+|Don't use character|
 |--|
 |Single quote `'`|
 |Double quote `"`|
@@ -51,7 +51,7 @@ File names may not include the following characters:
 
 > [!NOTE]
 > Custom question answering currently has no limits on the number of sources that can be added. Throughput is currently capped at 10 text records per second for both management APIs and prediction APIs.
-> When using the F0 tier, upload is limited to 3 files.
+> If you use the F0 tier, upload is limited to three files.
 
 ### Maximum number of deep-links from URL
 
@@ -59,19 +59,19 @@ The maximum number of deep-links that can be crawled for extraction of question 
 
 ## Metadata limits
 
-Metadata is presented as a text-based `key:value` pair, such as `product:windows 10`. It is stored and compared in lower case. Maximum number of metadata fields is based on your **[Azure AI Search tier limits](/azure/search/search-limits-quotas-capacity)**.
+Metadata is presented as a text-based `key:value` pair, such as `product:windows 10`. Metadata is stored and compared in lower case. The maximum number of metadata fields is based on your **[Azure AI Search tier limits](/azure/search/search-limits-quotas-capacity)**.
 
-If you choose to projects with multiple languages in a single language resource, there is a dedicated test index per project. So the limit is applied per project in the language service.
-
-|**Azure AI Search tier** | **Free** | **Basic** |**S1** | **S2**| **S3** |**S3 HD**|
-|---|---|---|---|---|---|----|
-|Maximum metadata fields per language service (per project)|1,000|100*|1,000|1,000|1,000|1,000|
-
-If you don't choose the option to have projects with multiple different languages, then the limits are applied across all projects in the language service.
+If you choose to projects with multiple languages in a single language resource, there's a dedicated test index per project. So the limit is applied per project in Azure Language.
 
 |**Azure AI Search tier** | **Free** | **Basic** |**S1** | **S2**| **S3** |**S3 HD**|
 |---|---|---|---|---|---|----|
-|Maximum metadata fields per Language service (across all projects)|1,000|100*|1,000|1,000|1,000|1,000|
+|Maximum metadata fields per Language (per project)|1,000|100*|1,000|1,000|1,000|1,000|
+
+If you don't choose the option to have projects with multiple different languages, then the limits are applied across all projects in Azure Language.
+
+|**Azure AI Search tier** | **Free** | **Basic** |**S1** | **S2**| **S3** |**S3 HD**|
+|---|---|---|---|---|---|----|
+|Maximum metadata fields per Language (across all projects)|1,000|100*|1,000|1,000|1,000|1,000|
 
 ### By name and value
 
@@ -99,7 +99,7 @@ Overall limits on the content in the project:
 
 ## Create project call limits:
 
-These represent the limits for each create project action; that is, selecting *Create new project* or calling the REST API to create a project.
+The limits for each create project action, that is, selecting *Create new project* or calling the REST API to create a project are as follows:
 
 * Recommended maximum number of alternate questions per answer: 300
 * Maximum number of URLs: 10
@@ -108,7 +108,8 @@ These represent the limits for each create project action; that is, selecting *C
 
 ## Update project call limits
 
-These represent the limits for each update action; that is, selecting *Save* or calling the REST API with an update request.
+The limits for each update action, that is, selecting *Save* or calling the REST API with an update request are as follows:
+
 * Length of each source name: 300
 * Recommended maximum number of alternate questions added or deleted: 300
 * Maximum number of metadata fields added or deleted: 10
@@ -118,19 +119,21 @@ These represent the limits for each update action; that is, selecting *Save* or 
 ## Add unstructured file limits
 
 > [!NOTE]
-> * If you need to use larger files than the limit allows, you can break the file into smaller files before sending them to the API. 
+> * If you need to use larger files than the limit allows, you can break the file into smaller files before sending them to the API.
 
-These represent the limits when unstructured files are used to *Create new project* or call the REST API to create a project:
-* Length of file: We will extract first 32000 characters
+The limits when unstructured files are used to *Create new project* or call the REST API to create a project are as follows:
+
+* Length of file: The service extracts the first 32,000 characters.
 * Maximum three responses per file.
 
 ## Prebuilt custom question answering limits
 
 > [!NOTE]
-> * If you need to use larger documents than the limit allows, you can break the text into smaller chunks of text before sending them to the API. 
-> * A document is a single string of text characters.  
+> * A document is a single string of text characters.
+> * To use larger documents than the limit allows, you can break the text into smaller chunks before sending them to the API.
 
-These represent the limits when REST API is used to answer a question based without having to create a project:
+The limits when the REST API is used to answer a question without having to create a project is as follows:
+
 * Number of documents: 5
 * Maximum size of a single document:  5,120 characters
 * Maximum three responses per document.

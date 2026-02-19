@@ -2,7 +2,6 @@
 title: Add spell check to queries
 titleSuffix: Azure AI Search
 description: Attach spelling correction to the query pipeline, to fix typos on query terms before executing the query.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 08/27/2025
+ms.update-cycle: 365-days
 ---
 
 # Add spell check to queries in Azure AI Search
@@ -28,11 +28,11 @@ You can improve recall by spell-correcting words in a query before they reach th
 
 + [A query request](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) that has `speller=lexicon` and `queryLanguage` set to a [supported language](#supported-languages). Spell check works on strings passed in the `search` parameter. It's not supported for filters, fuzzy search, wildcard search, regular expressions, or vector queries.
 
-Use a search client that supports preview APIs on the query request. You can use a [REST client](search-get-started-rest.md) or beta releases of the Azure SDKs.
+Use a search client that supports preview APIs on the query request. You can use a [REST client](search-get-started-text.md) or beta releases of the Azure SDKs.
 
 | Client library | Versions |
 |----------|----------|
-| REST API | Versions 2020-06-30-Preview and later. We recommend the latest preview API. [2025-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-05-01-preview&preserve-view=true)|
+| REST API | Versions 2020-06-30-Preview and later. We recommend the latest preview API: [2025-11-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true)|
 | Azure SDK for .NET | [version 11.7.0-beta.4](https://www.nuget.org/packages/Azure.Search.Documents/11.7.0-beta.4) | 
 | Azure SDK for Java |  [version 11.8.0-beta.7](https://central.sonatype.com/artifact/com.azure/azure-search-documents/11.8.0-beta.7) |
 | Azure SDK for JavaScript | [version 11.3.0-beta.8](https://www.npmjs.com/package/@azure/search-documents/v/11.3.0-beta.8) |
@@ -40,10 +40,10 @@ Use a search client that supports preview APIs on the query request. You can use
 
 ## Spell correction with simple search
 
-The following example uses the built-in hotels-sample index to demonstrate spell correction on a simple text query. Without spell correction, the query returns zero results. With correction, the query returns one result for Johnson's family-oriented resort.
+The following example uses the [hotels-sample-index](search-get-started-portal.md) to demonstrate spell correction on a simple text query. Without spell correction, the query returns zero results. With correction, the query returns one result for Johnson's family-oriented resort.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview
 {
     "search": "famly acitvites",
     "speller": "lexicon",
@@ -64,7 +64,7 @@ Spelling correction occurs on individual query terms that undergo text analysis,
 This example uses fielded search over the Category field, with full Lucene syntax, and a misspelled query term. By including speller, the typo in "Suiite" is corrected and the query succeeds.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview
 {
     "search": "Category:(Resort and Spa) OR Category:Suiite",
     "queryType": "full",
@@ -80,7 +80,7 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
 This query, with typos in every term except one, undergoes spelling corrections to return relevant results. To learn more, see [Configure semantic ranker](semantic-how-to-query-request.md).
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-05-01-preview    
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview    
 {
     "search": "hisotoric hotell wiht great restrant nad wiifi",
     "queryType": "semantic",
@@ -94,7 +94,7 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
 
 ## Supported languages
 
-Valid values for `queryLanguage` can be found in the following table, copied from the list of [supported languages (REST API reference)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-05-01-preview&tabs=HTTP#querylanguage&preserve-view=true).
+Valid values for `queryLanguage` can be found in the following table, copied from the list of [supported languages (REST API reference)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&tabs=HTTP#querylanguage&preserve-view=true).
 
 | Language | queryLanguage |
 |----------|---------------|

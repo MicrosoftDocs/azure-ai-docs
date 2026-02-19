@@ -3,9 +3,9 @@ title: Configure a training job
 titleSuffix: Azure Machine Learning
 description: Train your machine learning model on various training environments (compute targets). You can easily switch between training environments. 
 services: machine-learning
-author: sdgilley
-ms.author: sgilley
-ms.reviewer: sgilley
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.date: 03/10/2025
@@ -27,7 +27,7 @@ All you need to do is define the environment for each compute target within a **
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today
+* If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today
 * The [Azure Machine Learning SDK for Python (v1)](/python/api/overview/azure/ml/install) (>= 1.13.0)
 * An [Azure Machine Learning workspace](../how-to-manage-workspace.md), `ws`
 * A compute target, `my_compute_target`. [Create a compute target](../how-to-create-attach-compute-studio.md) 

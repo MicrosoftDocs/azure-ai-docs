@@ -1,33 +1,35 @@
 ---
 title: 'Tutorial: Integrate Power BI with key phrase extraction'
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the key phrase extraction feature to get text stored in Power BI.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
-ms.custom: language-service-key-phrase, cogserv-non-critical-language
+ms.custom:
+  - language-service-key-phrase
+  - cogserv-non-critical-language
+  - sfi-image-nochange
 ---
-
 # Tutorial: Extract key phrases from text stored in Power BI
 
-Microsoft Power BI Desktop is a free application that lets you connect to, transform, and visualize your data. Key phrase extraction, one of the features of Azure AI Language, provides natural language processing. Given raw unstructured text, it can extract the most important phrases, analyze sentiment, and identify well-known entities such as brands. Together, these tools can help you quickly see what your customers are talking about and how they feel about it.
+Microsoft Power BI Desktop is a free application that lets you connect to, transform, and visualize your data. Key phrase extraction, one of the features of Azure Language in Foundry Tools, provides natural language processing. Given raw unstructured text, it can extract the most important phrases, analyze sentiment, and identify well-known entities such as brands. Together, these tools can help you quickly see what your customers are talking about and how they feel about it.
 
-In this tutorial, you'll learn how to:
+In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Use Power BI Desktop to import and transform data
 > * Create a custom function in Power BI Desktop
-> * Integrate Power BI Desktop with the Key Phrase Extraction feature of Azure AI Language
+> * Integrate Power BI Desktop with the Key Phrase Extraction feature of Language
 > * Use Key Phrase Extraction to get the most important phrases from customer feedback
 > * Create a word cloud from customer feedback
 
 ## Prerequisites
 
 - Microsoft Power BI Desktop. [Download at no charge](https://powerbi.microsoft.com/get-started/).
-- A Microsoft Azure account. [Create a free account](https://azure.microsoft.com/free/cognitive-services/) or [sign in](https://portal.azure.com/).
+- A Microsoft Azure account. [Create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) or [sign in](https://portal.azure.com/).
 - A Language resource. If you don't have one, you can [create one](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics).
 - The Language resource key that was generated for you when you created the resource.
 - Customer comments. You can [use our example data](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/tutorials/comments.csv) or your own data. This tutorial assumes you're using our example data.
@@ -37,7 +39,7 @@ In this tutorial, you'll learn how to:
 To get started, open Power BI Desktop and load the comma-separated value (CSV) file that you downloaded as part of the [prerequisites](#prerequisites). This file represents a day's worth of hypothetical activity in a fictional small company's support forum.
 
 > [!NOTE]
-> Power BI can use data from a wide variety of web-based sources, such as SQL databases. See the [Power Query documentation](/power-query/connectors/) for more information.
+> Power BI can use data from a wide variety of web-based sources, such as SQL databases. For more information, *see* [Power Query documentation](/power-query/connectors/).
 
 In the main Power BI Desktop window, select the **Home** ribbon. In the **External data** group of the ribbon, open the **Get Data** drop-down menu and select **Text/CSV**.
 
@@ -47,15 +49,15 @@ The Open dialog appears. Navigate to your Downloads folder, or to the folder whe
 
 ![The CSV Import dialog](../media/tutorials/power-bi/csv-import.png)
 
-The CSV import dialog lets you verify that Power BI Desktop has correctly detected the character set, delimiter, header rows, and column types. This information is all correct, so select **Load**.
+The CSV import dialog lets you verify that Power BI Desktop correctly detected the character set, delimiter, header rows, and column types. This information is all correct, so select **Load**.
 
-To see the loaded data, click the **Data View** button on the left edge of the Power BI workspace. A table opens that contains the data, like in Microsoft Excel.
+To see the loaded data, select the **Data View** button on the left edge of the Power BI workspace. A table opens that contains the data, like in Microsoft Excel.
 
 ![The initial view of the imported data](../media/tutorials/power-bi/initial-data-view.png)
 
 ## Prepare the data
 
-You might need to transform your data in Power BI Desktop before it's ready to be processed by Key Phrase Extraction.
+You might need to transform your data in Power BI Desktop before Key Phrase Extraction processing.
 
 The sample data contains a `subject` column and a `comment` column. With the Merge Columns function in Power BI Desktop, you can extract key phrases from the data in both these columns, rather than just the `comment` column.
 
@@ -65,7 +67,7 @@ In Power BI Desktop, select the **Home** ribbon. In the **External data** group,
 
 Select `FabrikamComments` in the **Queries** list at the left side of the window if it isn't already selected.
 
-Now select both the `subject` and `comment` columns in the table. You might need to scroll horizontally to see these columns. First click the `subject` column header, then hold down the Control key and click the `comment` column header.
+Now select both the `subject` and `comment` columns in the table. You might need to scroll horizontally to see these columns. First select the `subject` column header, then hold down the Control key and select the `comment` column header.
 
 ![Selecting fields to be merged](../media/tutorials/power-bi/select-columns.png)
 
@@ -79,7 +81,7 @@ You might also consider filtering out blank messages using the Remove Empty filt
 
 ## Understand the API
 
-[Key Phrase Extraction](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics-V3-1/operations/KeyPhrases) can process up to a thousand text documents per HTTP request. Power BI prefers to deal with records one at a time, so in this tutorial your calls to the API will include only a single document each. The Key Phrases API requires the following fields for each document being processed.
+[Key Phrase Extraction](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&branch=main&tabs=HTTP#analyzetextkeyphraseextractioninput&preserve-view=true) can process up to a thousand text documents per HTTP request. Power BI prefers to deal with records one at a time, so in this tutorial your calls to the API include only a single document each. The Key Phrases API requires the following fields for each document being processed.
 
 | Field | Description |
 | - | - |
@@ -89,10 +91,10 @@ You might also consider filtering out blank messages using the Remove Empty filt
 
 ## Create a custom function
 
-Now you're ready to create the custom function that will integrate Power BI and Key Phrase Extraction. The function receives the text to be processed as a parameter. It converts data to and from the required JSON format and makes the HTTP request to the Key Phrases API. The function then parses the response from the API and returns a string that contains a comma-separated list of the extracted key phrases.
+Now you're ready to create the custom function that integrates Power BI and Key Phrase Extraction. The function receives the text to be processed as a parameter. It converts data to and from the required JSON format and makes the HTTP request to the Key Phrases API. The function then parses the response from the API and returns a string that contains a comma-separated list of the extracted key phrases.
 
 > [!NOTE]
-> Power BI Desktop custom functions are written in the [Power Query M formula language](/powerquery-m/power-query-m-reference), or just "M" for short. M is a functional programming language based on [F#](/dotnet/fsharp/). You don't need to be a programmer to finish this tutorial, though; the required code is included below.
+> Power BI Desktop custom functions are written in the [Power Query M formula language](/powerquery-m/power-query-m-reference), or just "M" for short. M is a functional programming language based on [F#](/dotnet/fsharp/). You don't need to be a programmer to finish this tutorial, though; the required code is included.
 
 In Power BI Desktop, make sure you're still in the Query Editor window. If you aren't, select the **Home** ribbon, and in the **External data** group, select **Edit Queries**.
 
@@ -103,7 +105,7 @@ A new query, initially named `Query1`, appears in the Queries list. Double-click
 Now, in the **Home** ribbon, in the **Query** group, select **Advanced Editor** to open the Advanced Editor window. Delete the code that's already in that window and paste in the following code. 
 
 > [!NOTE]
-> Replace the example endpoint below (containing `<your-custom-subdomain>`) with the endpoint generated for your Language resource. You can find this endpoint by signing in to the [Azure portal](https://azure.microsoft.com/features/azure-portal/), navigating to your resource, and selecting **Key and endpoint**.
+> Replace the following example endpoint (containing `<your-custom-subdomain>`) with the endpoint generated for your Language resource. You can find this endpoint by signing in to the [Azure portal](https://azure.microsoft.com/features/azure-portal/), navigating to your resource, and selecting **Key and endpoint**.
 
 
 ```fsharp
@@ -150,12 +152,12 @@ After you close the Invoke Custom Function dialog, a banner may appear asking yo
 Select **Edit Credentials,** make sure `Anonymous` is selected in the dialog, then select **Connect.** 
 
 > [!NOTE]
-> You select `Anonymous` because Key Phrase Extraction authenticates requests using your access key, so Power BI does not need to provide credentials for the HTTP request itself.
+> You select `Anonymous` because Key Phrase Extraction authenticates requests using your access key, so Power BI doesn't need to provide credentials for the HTTP request itself.
 
 > [!div class="mx-imgBorder"]
 > ![setting authentication to anonymous](../media/tutorials/power-bi/access-web-content.png)
 
-If you see the Edit Credentials banner even after choosing anonymous access, you might have forgotten to paste your Language resource key into the code in the `KeyPhrases` [custom function](#create-a-custom-function).
+If you see the Edit Credentials banner even after choosing anonymous access, you check to see if you pasted your Language resource key into the code in the `KeyPhrases` [custom function](#create-a-custom-function).
 
 Next, a banner may appear asking you to provide information about your data sources' privacy. 
 
@@ -167,20 +169,20 @@ Select **Continue** and choose `Public` for each of the data sources in the dial
 
 ## Create the word cloud
 
-Once you have dealt with any banners that appear, select **Close & Apply** in the Home ribbon to close the Query Editor.
+Once you address with any banners that appear, select **Close & Apply** in the Home ribbon to close the Query Editor.
 
 Power BI Desktop takes a moment to make the necessary HTTP requests. For each row in the table, the new `keyphrases` column contains the key phrases detected in the text by the Key Phrases API. 
 
-Now you'll use this column to generate a word cloud. To get started, click the **Report** button in the main Power BI Desktop window, to the left of the workspace.
+Now you use this column to generate a word cloud. To get started, select the **Report** button in the main Power BI Desktop window, to the left of the workspace.
 
 > [!NOTE]
-> Why use extracted key phrases to generate a word cloud, rather than the full text of every comment? The key phrases provide us with the *important* words from our customer comments, not just the *most common* words. Also, word sizing in the resulting cloud isn't skewed by the frequent use of a word in a relatively small number of comments.
+> Why use extracted key phrases to generate a word cloud, rather than the full text of every comment? The key phrases provide us with the *important* words from our customer comments, not just the *most common* words. Also, word sizing in the resulting cloud doesn't correlate to the frequent use of a word in a relatively small number of comments.
 
-If you don't already have the Word Cloud custom visual installed, install it. In the Visualizations panel to the right of the workspace, click the three dots (**...**) and choose **Import From Market**. If the word "cloud" is not among the displayed visualization tools in the list, you can search for "cloud" and click the **Add** button next the Word Cloud visual. Power BI installs the Word Cloud visual and lets you know that it installed successfully.
+If you don't already have the Word Cloud custom visual installed, install it. In the Visualizations panel to the right of the workspace, select the three dots (**...**) and choose **Import From Market**. If the word "cloud" isn't among the displayed visualization tools in the list, you can search for "cloud" and select the **Add** button next the Word Cloud visual. Power BI installs the Word Cloud visual and lets you know that it installed successfully.
 
 ![adding a custom visual](../media/tutorials/power-bi/add-custom-visuals.png)<br><br>
 
-First, click the Word Cloud icon in the Visualizations panel.
+First, select the Word Cloud icon in the Visualizations panel.
 
 ![Word Cloud icon in visualizations panel](../media/tutorials/power-bi/visualizations-panel.png)
 
@@ -190,19 +192,19 @@ Now switch to the Format page of the Visualizations panel. In the Stop Words cat
 
 ![activating default stop words](../media/tutorials/power-bi/default-stop-words.png)
 
-Down a little further in this panel, turn off **Rotate Text** and **Title**.
+Scroll down the panel and turn off **Rotate Text** and **Title**.
 
 ![activate focus mode](../media/tutorials/power-bi/word-cloud-focus-mode.png)
 
-Select the Focus Mode tool in the report to get a better look at our word cloud. The tool expands the word cloud to fill the entire workspace, as shown below.
+Select the Focus Mode tool in the report to get a better look at our word cloud. The tool expands the word cloud to fill the entire workspace.
 
 ![A Word Cloud](../media/tutorials/power-bi/word-cloud.png)
 
 ## Using other features
 
-Azure AI Language also provides sentiment analysis and language detection. The language detection in particular is useful if your customer feedback isn't all in English.
+Language also provides sentiment analysis and language detection. The language detection in particular is useful if your customer feedback isn't all in English.
 
-Both of these other APIs are similar to the Key Phrases API. That means you can integrate them with Power BI Desktop using custom functions that are nearly identical to the one you created in this tutorial. Just create a blank query and paste the appropriate code below into the Advanced Editor, as you did earlier. (Don't forget your access key!) Then, as before, use the function to add a new column to the table.
+Both of these other APIs are similar to the Key Phrases API. That means you can integrate them with Power BI Desktop using custom functions that are nearly identical to the one you created in this tutorial. Just create a blank query and paste the appropriate code into the Advanced Editor, as you did earlier. (Don't forget your access key!) Then, as before, use the function to add a new column to the table.
 
 The Sentiment Analysis function below returns a label indicating how positive the sentiment expressed in the text is.
 
@@ -272,8 +274,8 @@ in  keyphrases
 
 ## Next steps
 
-Learn more about Azure AI Language, the Power Query M formula language, or Power BI.
+Learn more about Language, the Power Query M formula language, or Power BI.
 
-* [Azure AI Language overview](../../overview.md)
+* [Language overview](../../overview.md)
 * [Power Query M reference](/powerquery-m/power-query-m-reference)
 * [Power BI documentation](https://powerbi.microsoft.com/documentation/powerbi-landing-page/)

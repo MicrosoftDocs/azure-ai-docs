@@ -1,12 +1,12 @@
 ---
 title: Install and run content safety containers with Docker - Content Safety service
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use the content safety containers with Docker to perform content safety check on-premises.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
@@ -20,13 +20,13 @@ By using containers, you can use a subset of the Azure AI Content Safety feature
 
 ## Prerequisites
 
-You must meet the following prerequisites before you use content safety containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin. You need:
+You must meet the following prerequisites before you use content safety containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin. You need:
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure.
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 
 * A <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicescontent safetyServices"  title="Create a content safety service resource"  target="_blank">content safety service resource </a> with the standard (S) [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/).
 
-## Billing arguments
+## Billing information
 
 Content safety containers aren't licensed to run without being connected to Azure for metering. You must configure your container to always communicate billing information with the metering service. 
 
@@ -112,7 +112,7 @@ IMAGE ID         REPOSITORY                TAG
 <image-id>       <repository-path/name>    <tag-name>
 ```
 
-## Validate that a container is running
+## Validate the container
 
 There are several ways to validate that the container is running. Locate the *External IP* address and exposed port of the container in question, and open your preferred web browser. Use the various request URLs that follow to validate the container is running. 
 
@@ -144,14 +144,14 @@ You can have this container and a different Azure AI container running on the ho
 > | WS | `ws://localhost:5000` | 
 > | HTTP | `http://localhost:5000` |
 
-For more information on using WSS and HTTPS protocols, see [Container security](../../../cognitive-services-container-support.md#azure-ai-services-container-security) in the Azure AI services documentation.
+For more information on using WSS and HTTPS protocols, see [Container security](../../../cognitive-services-container-support.md#foundry-tools-container-security) in the Azure AI Foundry Tools documentation.
 
 ## Troubleshooting
 
 When you start or run the container, you might experience issues. Use an output mount and enable logging. Doing so allows the container to generate log files that are helpful when you troubleshoot issues.
 
 > [!TIP]
-> For more troubleshooting information and guidance, see [Azure AI containers frequently asked questions (FAQ)](../../../containers/container-faq.yml) in the Azure AI services documentation.
+> For more troubleshooting information and guidance, see [Azure AI containers frequently asked questions (FAQ)](../../../containers/container-faq.yml) in the Azure AI Foundry Tools documentation.
 
 ### Logging settings
 
@@ -166,7 +166,7 @@ ApiKey={API_KEY} \
 Logging:Console:LogLevel:Default=Information
 ```
 
-For more information about logging, see [usage records](../../../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation.
+For more information about logging, see [usage records](../../../containers/disconnected-containers.md#usage-records) in the Azure AI Foundry Tools documentation.
 
 ### Microsoft diagnostics container
 
@@ -191,9 +191,9 @@ The container tests for network connectivity to the billing endpoint.
 
 ## Run disconnected containers
 
-To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../../../containers/disconnected-containers.md) in the Azure AI services documentation.
+To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../../../containers/disconnected-containers.md) in the Azure AI Foundry Tools documentation.
 
-## Next steps
+## Related content
 
 * Review [analyze text container](./text-container.md) for text container configuration settings.
 *  Review [analyze image container](./image-container.md) for image container configuration settings.

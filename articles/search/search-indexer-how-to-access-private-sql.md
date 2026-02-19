@@ -2,12 +2,13 @@
 title: Connect to SQL Managed Instance
 titleSuffix: Azure AI Search
 description: Configure an indexer connection to access content in an Azure SQL Managed instance that's protected through a private endpoint.
-
 author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/27/2025
+ms.date: 01/23/2026
+ms.update-cycle: 365-days
+ms.custom: sfi-ropc-nochange
 ---
 
 # Create a shared private link for a SQL managed instance from Azure AI Search
@@ -124,7 +125,7 @@ On the Azure AI Search side, you can confirm request approval by revisiting the 
 
 You can now configure an indexer and its data source to use an outbound private connection to your managed instance.
 
-This article assumes a [REST client](search-get-started-rest.md) and uses the REST APIs.
+This article assumes a [REST client](search-get-started-text.md) and uses the REST APIs.
 
 
 1. [Create the data source definition](search-how-to-index-sql-database.md) as you would normally for Azure SQL. By default, a managed instance listens on port 3342, but on a virtual network it listens on 1433.
@@ -132,7 +133,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
     Provide the connection string that you copied earlier with an Initial Catalog set to your database name.
 
     ```http
-    POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
+    POST https://myservice.search.windows.net/datasources?api-version=2025-09-01
      Content-Type: application/json
      api-key: admin-key
      {
@@ -157,7 +158,7 @@ This article assumes a [REST client](search-get-started-rest.md) and uses the RE
    [Indexer execution](search-howto-run-reset-indexers.md#indexer-execution-environment) occurs in either a private execution environment that's specific to your search service, or a multitenant environment hosted by Microsoft and used to offload expensive skillset processing for multiple customers. **When connecting over a private endpoint, indexer execution must be private.**
 
    ```http
-    POST https://myservice.search.windows.net/indexers?api-version=2024-07-01
+    POST https://myservice.search.windows.net/indexers?api-version=2025-09-01
      Content-Type: application/json
      api-key: admin-key
        {
@@ -183,7 +184,7 @@ You can use [**Search explorer**](search-explorer.md) in Azure portal to check t
 
 If you ran the indexer in the previous step and successfully indexed content from your managed instance, then the test was successful. However, if the indexer fails or there's no content in the index, you can modify your objects and repeat testing by choosing any client that can invoke an outbound request from an indexer. 
 
-An easy choice is [running an indexer](search-howto-run-reset-indexers.md) in Azure portal, but you can also try a [REST client](search-get-started-rest.md) and REST APIs for more precision. Assuming that your search service isn't also configured for a private connection, the REST client connection to Azure AI Search can be over the public internet.
+An easy choice is [running an indexer](search-howto-run-reset-indexers.md) in Azure portal, but you can also try a [REST client](search-get-started-text.md) and REST APIs for more precision. Assuming that your search service isn't also configured for a private connection, the REST client connection to Azure AI Search can be over the public internet.
 
 Here are some reminders for testing:
 
@@ -204,4 +205,4 @@ Here are some reminders for testing:
 + [Index data from Azure SQL](search-how-to-index-sql-database.md)
 + [Management REST API](/rest/api/searchmanagement/)
 + [Search REST API](/rest/api/searchservice/)
-+ [Quickstart: Get started with REST](search-get-started-rest.md)
++ [Quickstart: Full-text search using REST](search-get-started-text.md)

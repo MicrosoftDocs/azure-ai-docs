@@ -1,16 +1,16 @@
 ---
-title: Azure AI Translator Transparency Note
-titleSuffix: Azure AI services
-description: Azure AI Translator Responsible AI Basics, use cases, terms
-author: PatrickFarley
-ms.author: pafarley
+title: Azure Translator in Foundry Tools Transparency Note
+titleSuffix: Foundry Tools
+description: Azure Translator in Foundry Tools Responsible AI Basics, use cases, terms
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: article
+ms.topic: concept-article
 ms.date: 05/12/2024
 ---
 
-# Azure AI Translator Transparency Note
+# Azure Translator in Foundry Tools Transparency Note
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
@@ -18,11 +18,11 @@ An artificial intelligence (AI) system includes not only the technology but also
 
 Microsoft Transparency Notes are part of a broader effort at Microsoft to put our AI principles into practice. To find out more, see [the Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai).
 
-## The basics of Azure AI Translator
+## The basics of Azure Translator in Foundry Tools
 
 ## Introduction
 
-Azure AI Translator is an AI service that translates text from one natural language to another. In machine learning literature this process is called machine translation. Applying AI techniques has made machine translation between languages significantly better over the past 70 years of machine translation research, to the point that we can present the result of machine translation to human recipients for direct consumption, without edits, in some use cases.
+Translator is an AI service that translates text from one natural language to another. In machine learning literature this process is called machine translation. Applying AI techniques has made machine translation between languages significantly better over the past 70 years of machine translation research, to the point that we can present the result of machine translation to human recipients for direct consumption, without edits, in some use cases.
 
 Translator provides an API that allows you to translate from one language to another language, or to multiple languages at once. 
 
@@ -45,7 +45,7 @@ Translation between some pairs might involve a pivot through a third language. F
 
 ### System behavior
 
-Azure AI Translator has capabilities to:
+Translator has capabilities to:
 - Translate text into multiple languages.
 - Transliterate text from one script to another.
 - Asynchronously translate batches of large documents into multiple languages that retain structure and layout as in the source document.
@@ -65,9 +65,9 @@ The following classes of translation use cases are provided to help you think th
 
 **Bidirectional translation**: Two or more humans who do not speak the same language employ machine translation in a live chat over instant messaging or in a spoken conversation. For example, a support agent doesn’t speak the same language as the customer seeking help.
 
-**Sequencing multiple AI services**:
-- **Speech translation**: Azure Speech, another one of the Azure AI Services, can translate speech between languages. Speech generates the transcript in the same language as the original speech and then internally employs Translator to translate the transcript. Use cases include translated human-to-human speech conversation, dubbing, or subtitling of content.
-- **Translation of text in images**: Azure Computer Vision, another Azure AI Service, can extract visible text from images. This extracted text can then be translated. Use cases include translation of scanned documents, menus, and signs.
+**Sequencing multiple Foundry Tools**:
+- **Speech translation**: Azure Speech, another one of the Foundry Tools, can translate speech between languages. Speech generates the transcript in the same language as the original speech and then internally employs Translator to translate the transcript. Use cases include translated human-to-human speech conversation, dubbing, or subtitling of content.
+- **Translation of text in images**: Azure Computer Vision, another Foundry Tool, can extract visible text from images. This extracted text can then be translated. Use cases include translation of scanned documents, menus, and signs.
 
 #### Considerations when choosing other use cases
 
@@ -118,7 +118,7 @@ In translations from a genderless original to a gendered translation, the transl
 
 Genderless constructs occur in a wide variety of languages, including Chinese, Finnish, Tamil, Turkish, and Vietnamese.
 
-#### Sequencing multiple AI services
+#### Sequencing multiple Foundry Tools
 
 When sequencing multiple services that each have a nonzero error rate, the errors compound. The translation of speech recognition or optical character recognition (OCR) results won’t be able to recover from a mistake in the recognition step and will add its own mistakes following the recognition.
   
@@ -178,7 +178,7 @@ Examples of potential biases in machine translation:
 - Users can get best performance on translating a text phrase into multiple target languages by making individual requests for each language rather than making a single request for multiple languages. This approach helps users to consume available translations instead of waiting for all translations to return by the system.
 - If your volume of translation is high, switch to higher commitment or volume tiers. 
 
-## Evaluation of Azure AI Translator 
+## Evaluation of Translator 
 
 ### Evaluation methods
 
@@ -192,7 +192,7 @@ We recommend that you measure quality for a representative test set for a given 
 
 There are many ways to measure quality. Automatic techniques calculate the distance to a human-created reference translation. The Bi-lingual Evaluation Understudy (BLEU) score is the oldest technique and is still popular. Other techniques employ a trained language model to measure the distance to sequences and context stored in the model, like the Cross-lingual Optimized Metric for Evaluation of Translation (COMET). In a human evaluation, the evaluators judge the translation on one or more criteria, for instance, accuracy and fluency. We continuously measure Translator quality by using a multitude of techniques. Human evaluation provides the most significant and reliable scores.
 
-## Evaluating and integrating Azure AI Translator for your use
+## Evaluating and integrating Translator for your use
 
 As Microsoft works to help customers safely develop and deploy solutions by using Translator, we are taking a principled approach to upholding personal agency and dignity by considering the AI systems' fairness, reliability & safety, privacy & security, inclusiveness, transparency, and human accountability. These considerations are in line with our commitment to developing responsible AI.  
   

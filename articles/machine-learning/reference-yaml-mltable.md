@@ -8,10 +8,10 @@ ms.subservice: mldata
 ms.topic: reference
 ms.custom: cliv2
 
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.date: 02/14/2024
-ms.reviewer: xunwan
+ms.reviewer: soumyapatro
 ---
 
 # CLI (v2) MLtable YAML schema
@@ -60,7 +60,7 @@ visit [Working with tables in Azure Machine Learning](how-to-mltable.md).
 |`drop_columns`     |   Adds a transformation step to remove specific columns from the dataset | An array of column names to drop | `- drop_columns: ["col1", "col2"]`
 | `keep_columns` | Adds a transformation step to keep the specified columns, and remove all others from the dataset | An array of column names to preserve | `- keep_columns: ["col1", "col2"]` |
 |`extract_columns_from_partition_format`   |     Adds a transformation step to use the partition information of each path, and then extract them into columns based on the specified partition format.| partition format to use |`- extract_columns_from_partition_format: {column_name:yyyy/MM/dd/HH/mm/ss}` creates a datetime column, where 'yyyy', 'MM', 'dd', 'HH', 'mm' and 'ss' are used to extract year, month, day, hour, minute, and second values for the datetime type |
-|`filter`    |    Filter the data, leaving only the records that match the specified expression.    |  An expression as a string | `- filter: 'col("temperature") > 32 and col("location") == "UK"'` <br>Only leave rows where the temperature exceeds 32, and UK is the location |
+|`filter`    |    Filter the data, leaving only the records that match the specified expression.    |  An expression as a string | `- filter: col('temperature') > 32 and col('location') == 'UK'` <br>Only leave rows where the temperature exceeds 32, and UK is the location |
 |`skip`    | Adds a transformation step to skip the first count rows of this MLTable.   | A count of the number of rows to skip | `- skip: 10`<br> Skip first 10 rows
 |`take`     | Adds a transformation step to select the first count rows of this MLTable.       | A count of the number of rows from the top of the table to take | `- take: 5`<br> Take the first five rows.
 |`take_random_sample`     |    Adds a transformation step to randomly select each row of this MLTable, with probability chance.     | `probability`<br>The probability of selecting an individual row. Must be in the range [0,1].<br><br>`seed`<br>Optional random seed | <code>- take_random_sample:<br>&emsp; &emsp;probability: 0.10<br>&emsp; &emsp;seed:123</code><br> Take a 10 percent random sample of rows using a random seed of 123
@@ -167,7 +167,7 @@ transformations:
                 mismatch_as: error
                 true_values: ["yes", "true", "1"]
                 false_values: ["no", "false", "0"]
-      - filter: 'col("col1") > 32 and col("col7") == "a_string"'
+      - filter: col('col1') > 32 and col('col7') == 'a_string'
       # create a column called timestamp with the values extracted from the folder information
       - extract_columns_from_partition_format: {timestamp:yyyy/MM/dd}
       - skip: 10
@@ -197,7 +197,7 @@ paths:
 transformations:
   - read_parquet:
         include_path_column: false
-  - filter: 'col("temperature") > 32 and col("location") == "UK"'
+  - filter: col('temperature') > 32 and col('location') == 'UK'
   - skip: 1000 # skip first 1000 rows
   # create a column called timestamp with the values extracted from the folder information
   - extract_columns_from_partition_format: {timestamp:yyyy/MM/dd}

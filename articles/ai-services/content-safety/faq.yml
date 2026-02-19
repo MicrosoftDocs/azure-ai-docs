@@ -1,14 +1,14 @@
 ### YamlMime:FAQ
 metadata:
   title: "Frequently asked questions - Azure AI Content Safety"
-  titleSuffix: Azure AI services
+  titleSuffix: Foundry Tools
   description: Get answers to frequently asked questions about Azure AI Content Safety.
   author: PatrickFarley
   manager: nitinme
 
   ms.service: azure-ai-content-safety
   ms.topic: faq
-  ms.date: 02/21/2025
+  ms.date: 09/16/2025
   ms.author: pafarley
   ms.custom:
 title: Azure AI Content Safety Frequently Asked Questions
@@ -23,22 +23,22 @@ sections:
       - question: |
           How do I get started with Content Safety? What are the first steps?
         answer: |
-          For references on how to start submitting text and images to Azure AI Content Safety, and view model responses and results, visit the [Azure AI Foundry portal](https://ai.azure.com/explore/contentsafety) page. You can use the sidebar to navigate to the Guardrails + controls page. 
+          For instructions on how to start submitting text and images to Azure AI Content Safety and view model responses and results, visit the [Microsoft Foundry portal](https://ai.azure.com/explore/contentsafety) page. Use the sidebar to navigate to the Guardrails + controls page.
 
       - question: |
           What types of media can Azure AI Content Safety classify/moderate? 
         answer: |
-          Our content harm classification models currently support the moderation of text, images, and multimodal content (images with text + OCR). The protected material, prompt shields, and groundedness detection models work with text content only. 
+          Our content harm classification models support the moderation of text, images, and multimodal content (images with text + OCR). The protected material, prompt shields, and groundedness detection models work with text content only.
  
       - question: |
-          How are Azure AI Content Safety's models priced?
+          How are Azure AI Content Safety models priced?
         answer: |
           A: We generally charge by volume. For example, the Image API is priced based on the number of images submitted. The Text API is billed for the number of text records submitted to the service. However, each model has its own corresponding rate. See the Azure [pricing page](https://aka.ms/content-safety-pricing) for more information about pricing tiers. 
         
       - question: |
           Why should I migrate from Azure Content Moderator to Azure AI Content Safety?
         answer: |
-          Azure Content Moderator is deprecated as of March 2024. Microsoft recommends that  Azure Content Moderator users migrate to Azure AI Content Safety because: 
+          Azure Content Moderator is deprecated as of March 2024. Microsoft recommends that Azure Content Moderator users migrate to Azure AI Content Safety because: 
           - Azure AI Content Safety offers more accurate and granular detection of harmful content in text and images using state-of-the-art AI models. 
           - Azure AI Content Safety supports multilingual content moderation (see [Language support](/azure/ai-services/content-safety/language-support)). 
           - Azure AI Content Safety enables responsible AI practices by monitoring both user-generated and AI-generated content. 
@@ -55,7 +55,7 @@ sections:
         answer: |
           No. The Azure AI Content Safety API returns classification metadata based on model outputs. Our results tell users whether material across various classes (sexual, violence, hate, self-harm) is present in input content, through either a returned severity level (such as in the Text API) or binary result (such as in Prompt Shields API).  
           
-          As a user, you use those results to inform appropriate enforcement actions—such as automatically tagging or removing certain content—based on your own policies and practices.
+          As the user, you use those results to inform appropriate enforcement actions—such as automatically tagging or removing certain content—based on your own policies and practices.
       - question: |
           What happens if I exceed the transaction limit on my free tier for Azure AI Content Safety? 
         answer: |
@@ -65,7 +65,7 @@ sections:
         answer: |
           The Content Safety API is optimized for real-time (synchronous) moderation needs. Our model results are returned directly in the API response message.
       - question: |
-          What is the current RPS (Requests Per Second) limit for each API? If I want to increase the RPS, what steps should I take?
+          What is the current RPS (requests per second) limit for each API? If I want to increase the RPS, what steps should I take?
         answer: |
           Refer to the [overview](./overview.md) for the current RPS limits for each API. To request an increase in RPS, [email us](mailto:contentsafetysupport@microsoft.com) with justification and an estimated traffic forecast.
       - question: |
@@ -89,12 +89,12 @@ sections:
       - question: |
           Does Content Safety support batch processing? 
         answer: |
-          Content Safety APIs don't support batch processing. Currently, Content Safety APIs achieve high concurrency in processing with generous default rate limits of 1000 per minute, depending on the model. While this is sufficient for most users, we're happy to increase rate limits for users that process or are looking to process higher volumes. 
+          Content Safety APIs don't support batch processing. Currently, Content Safety APIs achieve high concurrency in processing with generous default rate limits of 1000 per 10 seconds, depending on the model. While this is sufficient for most users, we're happy to increase rate limits for users that process or are looking to process higher volumes. 
       - question: |
           Can I access multiple models with a single API call? 
         answer: | 
           We have developed an API to combine several classifications into a single API endpoint, enabling users to access both model outputs with a single task, but this API is in preview. [Email us](mailto:contentsafetysupport@microsoft.com) to apply for access.
-  - name: Dissatisfied cases
+  - name: Dissatisfaction cases
     questions:
       - question: |
           How can we report false positives and false negatives or give other feedback? 
@@ -133,7 +133,7 @@ sections:
           Where are the trained models stored, and what security measures are in place? 
 
         answer: |
-          Trained models are secured to remain exclusive to your organization and the selected region, ensuring that they are not shared with other organizations, thus maintaining confidentiality and data integrity. Models are stored in Microsoft’s storage with multi-layer encryption. Customer-managed keys (CMK) are employed to enhance security. 
+          Trained models are secured to remain exclusive to your organization and the selected region, ensuring that they are not shared with other organizations, thus maintaining confidentiality and data integrity. Models are stored in Microsoft's storage with multi-layer encryption. Customer-managed keys (CMK) are employed to enhance security. 
       - question: |
           What is being done about access control and authorization for custom categories, especially if the goal is to offer custom categories to different departments or end users?
         answer: |

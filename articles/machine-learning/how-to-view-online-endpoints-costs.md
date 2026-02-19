@@ -4,11 +4,11 @@ titleSuffix: Azure Machine Learning
 description: 'Learn to view costs for a managed online endpoint in Azure Machine Learning in the Azure portal.'
 services: machine-learning
 ms.service: azure-machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.subservice: core
-ms.date: 08/15/2024
+ms.date: 11/14/2025
 ms.topic: concept-article
 ms.custom: how-to, deploy, devplatv2
 #customer intent: As an analyst, I need to view the costs associated with the machine learning endpoints for a workspace.
@@ -16,7 +16,7 @@ ms.custom: how-to, deploy, devplatv2
 
 # View costs for an Azure Machine Learning managed online endpoint
 
-Learn how to view costs for a managed online endpoint. Costs for your endpoints accrue to the associated workspace. You can see costs for a specific endpoint by using tags.
+Learn how to view costs for a managed online endpoint. The associated workspace accrues costs for your endpoints. You can see costs for a specific endpoint by using tags.
 
 > [!IMPORTANT]
 > This article only applies to viewing costs for Azure Machine Learning managed online endpoints. Managed online endpoints are different from other resources since they must use tags to track costs.
@@ -26,11 +26,11 @@ Learn how to view costs for a managed online endpoint. Costs for your endpoints 
 ## Prerequisites
 
 - Deploy an Azure Machine Learning managed online endpoint.
-- Have at least [Billing Reader](/azure/role-based-access-control/role-assignments-portal) access on the subscription where the endpoint is deployed.
+- Have at least [Billing Reader](/azure/role-based-access-control/role-assignments-portal) access on the subscription where you deploy the endpoint.
 
 ## View costs
 
-Navigate to the **Cost Analysis** page for your subscription:
+Go to the **Cost Analysis** page for your subscription:
 
 - In the [Azure portal](https://portal.azure.com), select **Cost Analysis** for your subscription.
 
@@ -53,12 +53,12 @@ Create a tag filter to show your managed online endpoint and managed online depl
 1. Select **Add filter** > **Tag** > **azuremldeployment**: *\<your deployment name>*.
 
    > [!NOTE]
-   > Dollar values in this image are fictitious and do not reflect actual costs.
+   > Dollar values in this image are fictitious and don't reflect actual costs.
 
    :::image type="content" source="./media/how-to-view-online-endpoints-costs/online-endpoints-cost-analysis-select-endpoint-deployment.png" lightbox="./media/how-to-view-online-endpoints-costs/online-endpoints-cost-analysis-select-endpoint-deployment.png" alt-text="Screenshot of the Cost Analysis view showing a red box around the Tag buttons.":::
 
 > [!TIP]
-> Managed online endpoints use virtual machines (VMs) for the deployments. If you submitted a request to create an online deployment and it failed, it might have passed the stage when compute is created. In that case, the failed deployment would incur charges. If you finished debugging or investigating the failure, you can delete the failed deployments to save the cost.
+> Managed online endpoints use virtual machines (VMs) for the deployments. If you submit a request to create an online deployment and it fails, it might pass the stage when compute is created. In that case, the failed deployment incurs charges. If you finish debugging or investigating the failure, you can delete the failed deployments to save the cost.
 
 ## Related content
 

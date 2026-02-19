@@ -1,13 +1,13 @@
 ### YamlMime:Hub
 
-title: Azure AI Content Understanding documentation
+title: Azure Content Understanding in Foundry Tools documentation
 summary: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
 metadata:
-  title: Azure AI Content Understanding documentation
+  title: Azure Content Understanding documentation
   description: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
-  author: laujan
-  ms.author: lajanuar
-  ms.date: 05/19/2025
+  author: PatrickFarley 
+  ms.author: pafarley
+  ms.date: 12/18/2025
   ms.service: azure-ai-content-understanding
   ms.topic: landing-page
   ms.custom:
@@ -21,33 +21,30 @@ highlightedContent:
     - title: "What's new?"
       itemType: whats-new
       url: whats-new.md
-    - title: Try REST API
+    - title: Try the REST API
       itemType: quickstart
       url: quickstart/use-rest-api.md
-    - title: Try AI Foundry
+    - title: Try Content Understanding Studio
       itemType: quickstart
-      url: quickstart/use-ai-foundry.md
+      url: quickstart/content-understanding-studio.md
 
 conceptualContent:
   items:
-    - title: AI Foundry
+    - title: Content Understanding Studio
       links:
         - itemType: quickstart
-          text: "Quickstart: Content Understanding with a single file"
-          url: quickstart/use-ai-foundry.md
-        - itemType: quickstart
-          text: "Quickstart: Content Understanding with multiple files"
-          url: quickstart/use-ai-foundry-pro-mode.md  
+          text: "Try out Content Understanding Studio"
+          url: /azure/ai-services/content-understanding/quickstart/content-understanding-studio
         - itemType: concept
-          text: Analyzer templates
-          url: concepts/analyzer-templates.md
+          text: CU Studio and Microsoft Foundry
+          url: /azure/ai-services/content-understanding/foundry-vs-content-understanding-studio
     - title: Analyzers
       links:
         - itemType: quickstart
           text: Quickstart
           url: quickstart/use-rest-api.md
         - itemType: concept
-          text: "Modes: standard and pro"
+          text: "Modes: standard and pro (preview)"
           url: concepts/standard-pro-modes.md
         - itemType: concept
           text: Prebuilt analyzers
@@ -55,19 +52,11 @@ conceptualContent:
         - itemType: how-to-guide
           text: Create a custom analyzer
           url: tutorial/create-custom-analyzer.md
-    - title: Classifiers
+    - title: Classification
       links:
         - itemType: overview
           text: Overview
           url: concepts/classifier.md
-    - title: Face and person directories
-      links:
-        - itemType: overview
-          text: Overview
-          url: face/overview.md
-        - itemType: how-to-guide
-          text: Build a person directory
-          url: tutorial/build-person-directory.md
     - title: Modalities
       links:
         - itemType: concept
@@ -85,10 +74,31 @@ conceptualContent:
     - title: Tutorials
       links:
         - itemType: how-to-guide
+          text: Create a custom analyzer with Content Understanding Studio
+          url: how-to/customize-analyzer-content-understanding-studio.md
+        - itemType: how-to-guide
           text: Create a custom analyzer
           url: tutorial/create-custom-analyzer.md
         - itemType: how-to-guide
-          text: Build a person directory
+          text: Classifier tutorial - Split and route
+          url: how-to/classification-content-understanding-studio.md
+        - itemType: how-to-guide
+          text: Migration from CU Preview to GA
+          url: how-to/migration-preview-to-ga.md
+        - itemType: how-to-guide
+          text: Copy and back up analyzers
+          url: how-to/copy-analyzers.md
+        - itemType: how-to-guide
+          text: Build a retrieval-augmented generation solution
+          url: tutorial/build-rag-solution.md
+        - itemType: how-to-guide
+          text: Build a robotic process automation solution
+          url: tutorial/robotic-process-automation.md
+        - itemType: how-to-guide
+          text: Create a Microsoft Foundry resource
+          url: how-to/create-multi-service-resource.md
+        - itemType: how-to-guide
+          text: Build a face-data person directory (preview)
           url: tutorial/build-person-directory.md
     - title: Resources
       links:
@@ -99,7 +109,7 @@ conceptualContent:
           text: Language and region support
           url: language-region-support.md
         - itemType: tutorial
-          text: Azure AI Content Understanding Samples (Python)
+          text: Azure Content Understanding Samples (Python)
           url: https://github.com/Azure-Samples/azure-ai-content-understanding-python
     - title: Reference
       links:

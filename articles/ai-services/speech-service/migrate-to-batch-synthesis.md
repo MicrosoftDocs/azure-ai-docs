@@ -1,13 +1,13 @@
 ---
 title: Migrate to Batch synthesis API - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document helps developers migrate code from Long Audio REST API to Batch synthesis REST API.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.reviewer: heikora
 ms.devlang: csharp
 ms.custom: devx-track-csharp

@@ -18,7 +18,7 @@ Learn how to deploy the Azure AI services [Anomaly Detector](../anomaly-detector
 
 ## Prerequisites
 
-* Use an Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free) before you begin.
+* Use an Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * Install the [Azure CLI](/cli/azure/install-azure-cli).
 * An [IoT Hub](/azure/iot-hub/iot-hub-create-through-portal) and an [IoT Edge](/azure/iot-edge/quickstart-linux) device.
 

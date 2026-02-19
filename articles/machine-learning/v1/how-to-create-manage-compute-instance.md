@@ -7,9 +7,9 @@ ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-azurecli, references_regions, cliv1
-author: sdgilley
-ms.author: sgilley
-ms.reviewer: swatig
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 05/02/2022
 ---
 

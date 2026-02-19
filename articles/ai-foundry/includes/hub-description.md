@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 
-A **[!INCLUDE [hub](hub-project-name.md)]** is hosted by an [Azure AI Foundry hub](../concepts/ai-resources.md). If your company has an administrative team that created a hub for you, you can create a project from that hub. If you're working on your own, you can create a project and a default hub is automatically be created for you.
+A **hub-based project** is hosted by a [Microsoft Foundry hub](../concepts/ai-resources.md). If your company has an administrative team that created a hub for you, you can create a project from that hub. If you're working on your own, you can create a project and a default hub is automatically be created for you.

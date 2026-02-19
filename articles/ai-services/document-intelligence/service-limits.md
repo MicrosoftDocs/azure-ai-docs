@@ -1,12 +1,12 @@
 ---
 title: Service quotas and limits - Document Intelligence
-titleSuffix: Azure AI services
-description: Quick reference, detailed description, and best practices for working within Azure AI Document Intelligence service Quotas and Limits
+titleSuffix: Foundry Tools
+description: Quick reference, detailed description, and best practices for working within Azure Document Intelligence in Foundry Tools Quotas and Limits
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 04/04/2025
+ms.topic: limits-and-quotas
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -22,7 +22,7 @@ monikerRange: '<=doc-intel-4.0.0'
 [!INCLUDE [applies to v2.1](includes/applies-to-v21.md)]
 ::: moniker-end
 
-This article contains both a quick reference and detailed description of Azure AI Document Intelligence service Quotas and Limits for all [pricing tiers](https://azure.microsoft.com/pricing/details/form-recognizer/). It also contains some best practices to avoid request throttling.
+This article contains both a quick reference and detailed description of Azure Document Intelligence in Foundry Tools Quotas and Limits for all [pricing tiers](https://azure.microsoft.com/pricing/details/form-recognizer/). It also contains some best practices to avoid request throttling.
 
 ## Model usage
 
@@ -55,7 +55,7 @@ For Document Intelligence v4.0 `2024-11-30` (GA) supports page and line features
 
 ## Billing
 
-Document Intelligence billing is calculated monthly based on the model type and the number of pages analyzed. You can find usage metrics on the metrics dashboard in the Azure portal. The dashboard displays the number of pages that Azure AI Document Intelligence processes. You can check the estimated cost spent on the resource by using the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/). For detailed instructions, see [Check usage and estimate cost](how-to-guides/estimate-cost.md). Here are some details:
+Document Intelligence billing is calculated monthly based on the model type and the number of pages analyzed. You can find usage metrics on the metrics dashboard in the Azure portal. The dashboard displays the number of pages that Azure Document Intelligence processes. You can check the estimated cost spent on the resource by using the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/). For detailed instructions, see [Check usage and estimate cost](how-to-guides/estimate-cost.md). Here are some details:
 
 - When you submit a document for analysis, the service analyzes all pages unless you specify a page range by using the `pages` parameter in your request. When the service analyzes Microsoft Excel and PowerPoint documents through the read, OCR, or layout model, it counts each Excel worksheet and PowerPoint slide as one page.
 
@@ -262,7 +262,7 @@ Document Intelligence billing is calculated monthly based on the model type and 
 
 ## Detailed description, Quota adjustment, and best practices
 
-The default limits can be extended by requesting an increase via a support ticket. Before requesting a quota increase (where applicable), ensure that it's necessary. Document Intelligence service uses autoscaling to bring the required computational resources `on-demand`, keep the customer costs low, and deprovision unused resources by not maintaining an excessive amount of hardware capacity. 
+The default limits can be extended by requesting an increase via a support ticket. Before requesting a quota increase (where applicable), ensure that it's necessary.
 
 If your application returns Response Code 429 (*Too many requests*) you are over the threshold for one or more of the transactions per second limits (TPS):
 * **Analyze transactions Per Second limit**  The TPS for submitting analyze requests (POST)
@@ -270,7 +270,7 @@ If your application returns Response Code 429 (*Too many requests*) you are over
 * **Model management operations Per Second limit** Operations related to  model management like build/train and copy.
 * **List operations Per Second limit** Operations related to listing models, operations.
 
-### General best practices to mitigate throttling during autoscaling
+### General best practices to mitigate throttling
 
 To minimize issues related to throttling (Response Code 429), we recommend using the following techniques:
 
@@ -283,9 +283,8 @@ The next sections describe specific cases of adjusting quotas.
 
 ### Increasing transactions per second request limit
 
-By default the number of transactions per second is limited to 15 transactions per second for a Document Intelligence resource. For the Standard pricing tier, this amount can be increased. Before submitting the request, ensure you're familiar with the material in [this section](#detailed-description-quota-adjustment-and-best-practices) and aware of these [best practices](#example-of-a-workload-pattern-best-practice).
+By default the number of transactions per second is limited to 15 transactions per second for a Document Intelligence resource. For the Standard pricing tier, TPS increase requests can be submitted, but whether they can be approved and at what TPS level adjustment will depend on the daily usage patterns and the best practices that are being followed. Before submitting the request, ensure you're familiar with the material in [this section](#detailed-description-quota-adjustment-and-best-practices) and aware of these [best practices](#example-of-a-workload-pattern-best-practice).
 
-The fist step would be to enable auto scaling. Follow this document to enable auto scaling on your resource * [enable auto scaling](../../ai-services/autoscale.md). With auto scaling enabled your resource can continue to accept requests over the TPS limits configured if there's capacity on the service. It can still result in request throttled. 
 
 Increasing the Concurrent Request limit does **not** directly affect your costs. Document Intelligence service uses "Pay only for what you use" model. The limit defines how high the Service can scale before it starts throttle your requests.
 
@@ -312,13 +311,13 @@ Initiate the increase of transactions per second(TPS) limit for your resource by
 
 ## Example of a workload pattern best practice
 
-This example presents the approach we recommend following to mitigate possible request throttling due to [Autoscaling being in progress](#detailed-description-quota-adjustment-and-best-practices). It isn't an *exact recipe*, but merely a template we invite to follow and adjust as necessary.
+This example presents the approach we recommend following to mitigate possible request throttling. It isn't an *exact recipe*, but merely a template we invite to follow and adjust as necessary.
 
- Let us suppose that a Document Intelligence resource has the default limit set. Start the workload to submit your analyze requests. If you find that you're seeing frequent throttling with response code 429 when checking for completion, start by implementing an exponential backoff on the GET analyze response request. By using a progressively longer wait time between retries for consecutive error responses, for example a  2-5-13-34 pattern of delays between requests. In general, we recommended not calling the get analyze response more than once every 2 seconds for a corresponding POST request. The `analyze` response also contains a **retry-after** header that indicates how long you should wait in seconds before checking for completion of that request. 
+ Let us suppose that a Document Intelligence resource has the default limit set. Start the workload to submit your analyze requests. If you find that you're seeing frequent throttling with response code 429 when checking for completion, start by implementing an exponential backoff on the GET analyze response request. By using a progressively longer wait time between retries for consecutive error responses, for example a  2-5-13-34 pattern of delays between requests. In general, we recommend not calling the get analyze response more than once every 2 seconds for a corresponding POST request. The `analyze` response also contains a **retry-after** header that indicates how long you should wait in seconds before checking for completion of that request.
 
 If you find that you're being throttled on the number of POST requests for documents being submitted, consider adding a delay between the requests. If your workload requires a higher degree of concurrent processing, you then need to create a support request to increase your service limits on transactions per second.
 
-Generally, we recommended testing the workload and the workload patterns before going to production.
+Generally, we recommend testing the workload and the workload patterns before going to production.
 
 ## Next steps
 

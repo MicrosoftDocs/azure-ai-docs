@@ -7,9 +7,9 @@ services: machine-learning
 ms.service: azure-data-science-virtual-machines
 ms.custom: devx-track-python
 
-author: fbsolo-ms1 
-ms.author: franksolomon 
-ms.topic: conceptual
+author: s-polly 
+ms.author: scottpolly 
+ms.topic: concept-article
 ms.reviewer: tklimmer
 ms.date: 04/17/2024
 ---

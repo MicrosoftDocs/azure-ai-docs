@@ -2,20 +2,20 @@
 title: Enable or disable semantic ranker
 titleSuffix: Azure AI Search
 description: Learn how to turn semantic ranker on or off in Azure AI Search, and how to prevent others from enabling it.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/31/2025
+ms.date: 11/10/2025
 ---
 
 # Enable or disable semantic ranker
 
-Semantic ranker is a premium feature billed by usage. By default, semantic ranker is enabled on a new billable search service and it's configured for the free plan, but anyone with *Contributor* permissions can disable it or change the billing plan. If you don't want anyone to use the feature, you can [disable it service-wide using the management REST API](#disable-semantic-ranker-using-the-rest-api).
+Semantic ranker is a premium feature billed by usage. By default, semantic ranker is enabled on a new billable search service and it's configured for the free plan, but anyone with *Contributor* permissions can disable it or change the billing plan. If you don't want anyone to use the feature, you can [disable it service-wide using the management REST API](#disable-semantic-ranker-using-the-rest-api). If you disable semantic ranking, you also disable [agentic retrieval](agentic-retrieval-overview.md).
 
 ## Check availability
 
@@ -31,7 +31,7 @@ Semantic ranker might not be enabled on older services. Follow these steps to en
 
 1. Navigate to your search service. On the **Overview** page, make sure the pricing tier is set to **Basic** or higher.
 
-1. On the left-navigation pane, select **Settings** > **Semantic ranker**.
+1. On the left-navigation pane, select **Settings** > **Premium features**.
 
 1. Select either the **Free plan** (default) or the **Standard plan**. You can switch between the free plan and the standard plan at any time.
 
@@ -41,19 +41,19 @@ The free plan is capped at 1,000 queries per month. After the first 1,000 querie
 
 ### [**REST**](#tab/enable-rest)
 
-To enable semantic ranker using the REST API, you can use the [Create or Update Service API](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchsemanticsearch&preserve-view=true).
+To enable semantic ranker, you can use [Services - Create Or Update (REST API)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2025-05-01&tabs=HTTP&preserve-view=true#searchsemanticsearch).
 
 Management REST API calls are authenticated through Microsoft Entra ID. For instructions on how to authenticate, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
 
 * Management REST API version 2023-11-01 or later provides the configuration property.
 
-* *Owner* or *Contributor* permissions are required to enable or disable features. 
+* *Owner* or *Contributor* permissions are required to enable or disable features.
 
 > [!NOTE]
 > Create or Update supports two HTTP methods: *PUT* and *PATCH*. Both PUT and PATCH can be used to update existing services, but only PUT can be used to create a new service. If PUT is used to update an existing service, it replaces all properties in the service with their defaults if they aren't specified in the request. When PATCH is used to update an existing service, it only replaces properties that are specified in the request. When using PUT to update an existing service, it's possible to accidentally introduce an unexpected scaling or configuration change. When enabling semantic ranking on an existing service, it's recommended to use PATCH instead of PUT.
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01
+PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-05-01
     {
       "properties": {
         "semanticSearch": "standard"
@@ -70,7 +70,7 @@ To turn off feature enablement, or for full protection against accidental usage 
 Management REST API calls are authenticated through Microsoft Entra ID. For instructions on how to authenticate, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01
+PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-05-01
     {
       "properties": {
         "semanticSearch": "disabled"

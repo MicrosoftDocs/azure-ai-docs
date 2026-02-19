@@ -3,17 +3,17 @@ title: Monitoring evaluation metrics descriptions and use cases (preview)
 titleSuffix: Azure Machine Learning
 description: Understand the metrics used when monitoring the performance of generative AI models deployed to production on Azure Machine Learning.
 services: machine-learning
-author: ZikeiWong
-ms.author: ziqiwang
+ms.author: scottpolly
+author: s-polly
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.reviewer: scottpolly
-reviewer: s-polly
+ms.reviewer: jturuk
 ms.topic: how-to
-ms.date: 09/06/2023
+ms.date: 08/25/2025
 ms.custom:
   - devplatv2
   - ignite-2023
+ms.update-cycle: 365-days
 ---
 
 
@@ -22,7 +22,7 @@ ms.custom:
 In this article, you learn about the metrics used when monitoring and evaluating generative AI models in Azure Machine Learning, and the recommended practices for using generative AI model monitoring.
 
 > [!IMPORTANT]
-> Monitoring is currently in public preview. This preview is provided without a service-level agreement, and is not recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
+> Monitoring is currently in public preview. This preview is provided without a service-level agreement, and isn't recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 Model monitoring tracks model performance in production and aims to understand it from both data science and operational perspectives. To implement monitoring, Azure Machine Learning uses monitoring signals acquired through data analysis on streamed data.  Each monitoring signal has one or more metrics. You can set thresholds for these metrics in order to receive alerts via Azure Machine Learning or Azure Monitor about model or data anomalies.
@@ -46,9 +46,9 @@ The relevance metric measures the extent to which the model's generated response
 ## Coherence
 Coherence evaluates how well the language model can produce output that flows smoothly, reads naturally, and resembles human-like language. How well does the bot communicate its messages in a brief and clear way, using simple and appropriate language and avoiding unnecessary or confusing information? How easy is it for the user to understand and follow the bot responses, and how well do they match the user's needs and expectations? 
 - **Use it when:** You would like to test the readability and user-friendliness of your model's generated responses in real-world applications.
-- **How to read it:** If the model's answers are highly coherent, it indicates that the AI system generates seamless, well-structured text with smooth transitions. Consistent context throughout the text enhances readability and understanding. Low coherence means that the quality of the sentences in a model's predicted answer is poor, and they don't fit together naturally. The generated text may lack a logical flow, and the sentences may appear disjointed, making it challenging for readers to understand the overall context or intended message. Answers are scored in their clarity, brevity, appropriate language, and ability to match defined user needs and expectations 
+- **How to read it:** If the model's answers are highly coherent, it indicates that the AI system generates seamless, well-structured text with smooth transitions. Consistent context throughout the text enhances readability and understanding. Low coherence means that the quality of the sentences in a model's predicted answer is poor, and they don't fit together naturally. The generated text might lack a logical flow, and the sentences might appear disjointed, making it challenging for readers to understand the overall context or intended message. Answers are scored in their clarity, brevity, appropriate language, and ability to match defined user needs and expectations 
 - **Scale:**
-    - 1 = "incoherent": suggests that the quality of the sentences in a model's predicted answer is poor, and they don't fit together naturally. The generated text may lack a logical flow, and the sentences may appear disjointed, making it challenging for readers to understand the overall context or intended message.
+    - 1 = "incoherent": suggests that the quality of the sentences in a model's predicted answer is poor, and they don't fit together naturally. The generated text might lack a logical flow, and the sentences might appear disjointed, making it challenging for readers to understand the overall context or intended message.
     - 5 = "perfectly coherent": suggests that the AI system generates seamless, well-structured text with smooth transitions and consistent context throughout the text that enhances readability and understanding. 
 
 ## Fluency

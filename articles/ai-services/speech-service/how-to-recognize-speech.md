@@ -1,13 +1,13 @@
 ---
 title: "How to recognize speech - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to convert speech to text, including object construction, supported audio input formats, and configuration options for speech recognition.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/16/2025
-ms.author: eur
+ms.date: 01/30/2026
+ms.author: pafarley
 ms.devlang: cpp
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 zone_pivot_groups: programming-languages-speech-services

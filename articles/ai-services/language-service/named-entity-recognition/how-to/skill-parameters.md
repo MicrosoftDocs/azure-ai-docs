@@ -1,6 +1,6 @@
 ---
 title: Named entity recognition skill parameters
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about skill parameters for named entity recognition.
 author: laujan
 manager: nitinme
@@ -8,13 +8,12 @@ ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 ---
-
 # Using named entity recognition skill parameters
 
-Use this article to get an overview of the different API parameters used to adjust the input to a Named Entity Recognition (NER) API call. The Generally Available NER service now supports the ability to specify a list of entity tags to be included into the response or excluded from the response. If a piece of text is classified as more than one entity type, the `overlapPolicy` parameter allows customers to specify how the service will handle the overlap. The `inferenceOptions` parameter allows for users to adjust the inference, such as excluding the detected entity values from being normalized and included in the metadata.
+Use this article to get an overview of the different API parameters used to adjust the input to a Named Entity Recognition (NER) API call. The Generally Available NER service now supports the ability to specify a list of entity tags to be included into the response or excluded from the response. If a piece of text is classified as more than one entity type, the `overlapPolicy` parameter allows customers to specify how the service handles the overlap. The `inferenceOptions` parameter allows for users to adjust the inference, such as excluding the detected entity values from being normalized and included in the metadata.
 
 ## InclusionList parameter
 
@@ -35,7 +34,7 @@ Parameters by supported API version
 
 ## inferenceOptions parameter
 
-Defines a selection of options available for adjusting the inference. Currently we have only one property called `excludeNormalizedValues` which excludes the detected entity values to be normalized and included in the metadata. The numeric and temporal entity types support value normalization. 
+Defines a selection of options available for adjusting the inference. Currently we have only one property called `excludeNormalizedValues` that excludes the detected entity values to be normalized and included in the metadata. The numeric and temporal entity types support value normalization. 
 
 ## Sample
 

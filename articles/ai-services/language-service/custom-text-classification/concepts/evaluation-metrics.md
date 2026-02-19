@@ -1,32 +1,31 @@
 ---
 title: Custom text classification evaluation metrics
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about evaluation metrics in custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 6/6/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # Evaluation metrics
 
 Your [dataset is split](../how-to/train-model.md#data-splitting) into two parts: a set for training, and a set for testing. The training set is used to train the model, while the testing set is used as a test for model after training to calculate the model performance and evaluation. The testing set isn't introduced to the model through the training process, to make sure that the model is tested on new data.
 
-Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to predict user defined classes for documents in the test set, and compares them with the provided data tags (which establishes a baseline of truth). The results are returned so you can review the model’s performance. For evaluation, custom text classification uses the following metrics:
+Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to predict user defined classes for documents in the test set, and compares them with the provided data tags (which establishes a baseline of truth). The results are returned so you can review the model's performance. For evaluation, custom text classification uses the following metrics:
 
 * **Precision**: Measures how precise/accurate your model is. It's the ratio between the correctly identified positives (true positives) and all identified positives. The precision metric reveals how many of the predicted classes are correctly labeled. 
 
     `Precision = #True_Positive / (#True_Positive + #False_Positive)`
 
-* **Recall**: Measures the model's ability to predict actual positive classes. It's the ratio between the predicted true positives and what was actually tagged. The recall metric reveals how many of the predicted classes are correct.
+* **Recall**: Measures the model's ability to predict actual positive classes. It's the ratio between the predicted true positives and what was tagged. The recall metric reveals how many of the predicted classes are correct.
 
     `Recall = #True_Positive / (#True_Positive + #False_Negatives)`
 
-* **F1 score**: The F1 score is a function of precision and recall. It's needed when you seek a balance between precision and recall.
+* **F1 score**: The F1 score is a function of precision and recall. Needed when you seek a balance between precision and recall.
 
     `F1 Score = 2 * Precision * Recall / (Precision + Recall)` <br> 
 
@@ -52,7 +51,7 @@ The below sections use the following example dataset:
 |--|--|--|
 | True Positive | 1 | Document 2 was correctly classified as *action*. |
 | False Positive | 1 | Document 5 was mistakenly classified as *action*. |
-| False Negative | 1 | Document 1 was not classified as *Action* though it should have. |
+| False Negative | 1 | Document 1 wasn't classified as *Action* though it should have. |
 
 **Precision** = `#True_Positive / (#True_Positive + #False_Positive) = 1 / (1 + 1) = 0.5`
 
@@ -66,7 +65,7 @@ The below sections use the following example dataset:
 |--|--|--|
 | True positive | 1 | Document 1 was correctly classified as *comedy*. |
 | False positive | 0 | No documents were mistakenly classified as *comedy*. |
-| False negative | 2 | Documents 5 and 4 were not classified as *comedy* though they should have. |
+| False negative | 2 | Documents 5 and 4 aren't classified as *comedy* though they should have. |
 
 **Precision** = `#True_Positive / (#True_Positive + #False_Positive) = 1 / (1 + 0) = 1`
 
@@ -78,9 +77,9 @@ The below sections use the following example dataset:
 
 | Key | Count | Explanation |
 |--|--|--|
-| True Positive | 4 | Documents 1, 2, 3 and 4 were given correct classes at prediction. |
-| False Positive | 1 | Document 5 was given a wrong class at prediction. |
-| False Negative | 2 | Documents 1 and 4 were not given all correct class at prediction. |
+| True Positive | 4 | Documents 1, 2, 3, and 4 were given correct classes at prediction. |
+| False Positive | 1 | Document 5 assigned the wrong class at prediction. |
+| False Negative | 2 | Documents 1 and 4 aren't given all correct class at prediction. |
 
 **Precision** = `#True_Positive / (#True_Positive + #False_Positive) = 4 / (4 + 1) = 0.8`
 
@@ -89,37 +88,37 @@ The below sections use the following example dataset:
 **F1 Score** = `2 * Precision * Recall / (Precision + Recall) =  (2 * 0.8 * 0.67) / (0.8 + 0.67) = 0.73`
 
 > [!NOTE] 
-> For single-label classification models, the number of false negatives and false positives are always equal. Custom single-label classification models always predict one class for each document. If the prediction is not correct, FP count of the predicted class increases by one and FN of the actual class increases by one, overall count of FP and FN for the model will always be equal. This is not the case for multi-label classification, because failing to predict one of the classes of a document is counted as a false negative. 
+> For single-label classification models, the number of false negatives and false positives are always equal. Custom single-label classification models always predict one class for each document. If the prediction isn't correct, `FP` count of the predicted class increases by one and `FN` of the actual class increases by one, overall count of `FP` and `FN` for the model is always equal. Not the case for multi-label classification, because failing to predict one of the classes of a document is counted as a false negative. 
 ## Interpreting class-level evaluation metrics
 
 So what does it actually mean to have a high precision or a high recall for a certain class?
 
 | Recall | Precision | Interpretation |
 |--|--|--|
-| High | High | This class is perfectly handled by the model. |
-| Low | High | The model can't always predict this class but when it does it is with high confidence. This may be because this class is underrepresented in the dataset so consider balancing your data distribution.|
-| High | Low | The model predicts this class well, however it is with low confidence. This may be because this class is over represented in the dataset so consider balancing your data distribution. |
-| Low | Low | This class is poorly handled by the model where it is not usually predicted and when it is, it is not with high confidence. |
+| High | High | The model successfully handled the class designation. |
+| Low | High | The model can't always predict this class but when it does it is with high confidence. This evaluation may be because this class is underrepresented in the dataset so consider balancing your data distribution.|
+| High | Low | The model predicts this class well; however it is with low confidence. May be due to class over-representation in the dataset so consider balancing your data distribution. |
+| Low | Low | The model handled this class poorly without high confidence. |
 
-Custom text classification models are expected to experience both false negatives and false positives. You need to consider how each will affect the overall system, and carefully think through scenarios where the model will ignore correct predictions, and recognize incorrect predictions. Depending on your scenario, either *precision* or *recall* could be more suitable evaluating your model's performance.  
+Custom text classification models are expected to experience both false negatives and false positives. You need to consider how each affects the overall system. Carefully consider scenarios where the model ignores correct predictions and recognize incorrect predictions. Depending on your scenario, either *precision* or *recall* could be more suitable evaluating your model's performance.  
 
 For example, if your scenario involves processing technical support tickets, predicting the wrong class could cause it to be forwarded to the wrong department/team. In this example, you should consider making your system more sensitive to false positives, and precision would be a more relevant metric for evaluation. 
 
-As another example, if your scenario involves categorizing email as  "*important*" or "*spam*", an incorrect prediction could cause you to miss a useful email if it's labeled "*spam*". However, if a spam email is labeled *important* you can disregard it. In this example, you should consider making your system more sensitive to false negatives, and recall would be a more relevant metric for evaluation. 
+As another example, if your scenario involves categorizing email as  "*important*" or "*spam*," an incorrect prediction could cause you to miss a useful email if labeled "*spam*." However, if a spam email is labeled *important* you can disregard it. In this example, you should consider making your system more sensitive to false negatives, and recall would be a more relevant metric for evaluation. 
 
-If you want to optimize for general purpose scenarios or when precision and recall are both important, you can utilize the F1 score. Evaluation scores are subjective depending on your scenario and acceptance criteria. There is no absolute metric that works for every scenario. 
+If you want to optimize for general purpose scenarios or when precision and recall are both important, you can utilize the F1 score. Evaluation scores are subjective depending on your scenario and acceptance criteria. There's no absolute metric that works for every scenario. 
 
 ## Guidance
 
-After you trained your model, you will see some guidance and recommendation on how to improve the model. It's recommended to have a model covering all points in the guidance section.
+After you trained your model, you can see some guidance and recommendation on how to improve the model. We recommend having a model covering all points in the guidance section.
 
-* Training set has enough data: When a class type has fewer than 15 labeled instances in the training data, it can lead to lower accuracy due to the model not being adequately trained on these cases.
+* Training set has enough data: A class type with fewer than 15 labeled instances in the training data can lead to lower accuracy due to the model having inadequate training on cases.
 
-* All class types are present in test set: When the testing data lacks labeled instances for a class type, the model’s test performance may become less comprehensive due to untested scenarios.
+* All class types are present in test set: When the testing data lacks labeled instances for a class type, the model's test performance may become less comprehensive due to untested scenarios.
 
-* Class types are balanced within training and test sets: When sampling bias causes an inaccurate representation of a class type’s frequency, it can lead to lower accuracy due to the model expecting that class type to occur too often or too little.
+* Class types are balanced within training and test sets: When sampling bias causes an inaccurate representation of a class type's frequency, it can lead to lower accuracy due to the model expecting that class type to occur too often or too little.
 
-* Class types are evenly distributed between training and test sets: When the mix of class types doesn’t match between training and test sets, it can lead to lower testing accuracy due to the model being trained differently from how it’s being tested.
+* Class types are evenly distributed between training and test sets: When the mix of class types doesn't match between training and test sets, it can lead to lower testing accuracy due to the model being trained differently from how it's being tested.
 
 * Class types in training set are clearly distinct: When the training data is similar for multiple class types, it can lead to lower accuracy because the class types may be frequently misclassified as each other.
 
@@ -133,7 +132,7 @@ This gives a holistic view of how well the model is performing and what kinds of
 
 You can use the Confusion matrix to identify classes that are too close to each other and often get mistaken (ambiguity). In this case consider merging these classes together. If that isn't possible, consider labeling more documents with both classes to help the model differentiate between them.
 
-All correct predictions are located in the diagonal of the table, so it is easy to visually inspect the table for prediction errors, as they will be represented by values outside the diagonal.
+All correct predictions are located in the diagonal of the table, so it's easy to visually inspect the table for prediction errors.
 
 :::image type="content" source="../media/confusion.png" alt-text="A screenshot of an example confusion matrix." lightbox="../media/confusion.png":::
 
@@ -152,5 +151,4 @@ Similarly,
 
 ## Next steps
 
-* [View a model's performance in Language Studio](../how-to/view-model-evaluation.md)
 * [Train a model](../how-to/train-model.md)

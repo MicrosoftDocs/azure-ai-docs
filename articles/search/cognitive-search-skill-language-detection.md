@@ -8,19 +8,20 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 12/09/2021
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 #	Language detection cognitive skill
 
-The **Language Detection** skill detects the language of input text and reports a single language code for every document submitted on the request. The language code is paired with a score indicating the strength of the analysis. This skill uses the machine learning models provided in [Azure AI Language](/azure/ai-services/language-service/overview).
+The **Language Detection** skill detects the language of input text and reports a single language code for every document submitted on the request. The language code is paired with a score indicating the strength of the analysis. This skill uses the machine learning models provided in [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview).
 
 This capability is especially useful when you need to provide the language of the text as input to other skills (for example, the [Sentiment Analysis skill](cognitive-search-skill-sentiment-v3.md) or [Text Split skill](cognitive-search-skill-textsplit.md)).
 
 See [supported languages](/azure/ai-services/language-service/language-detection/language-support) for Language Detection. If you have content expressed in an unsupported language, the response is `(Unknown)`.
 
 > [!NOTE]
-> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 
 ## @odata.type  
@@ -31,7 +32,7 @@ The maximum size of a record should be 50,000 characters as measured by [`String
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Inputs | Description |
 |---------------------|-------------|
@@ -40,7 +41,7 @@ Parameters are case-sensitive.
 
 ## Skill inputs
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Inputs	 | Description |
 |--------------------|-------------|

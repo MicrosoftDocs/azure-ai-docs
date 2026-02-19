@@ -1,20 +1,20 @@
 ---
-title: "What is a dictionary? - Azure AI Custom Translator"
-titleSuffix: Azure AI services
+title: "What is a dictionary? - Custom Translator"
+titleSuffix: Foundry Tools
 description: How to create an aligned document that specifies a list of phrases or sentences (and their translations) that you always want Microsoft Translator to translate the same way. Dictionaries are sometimes also called glossaries or term bases.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator, I want to understand how to use a dictionary to build a custom translation model.
 ---
 
-# What is a dictionary?
+# What is a Translator custom dictionary?
 
-An Azure AI Custom Translator dictionary is an aligned pair of documents that specifies a list of phrases or sentences and their corresponding translations. Use a dictionary in your training, when you want Custom Translator to translate any instances of the source phrase or sentence, using the translation you provide in the dictionary. Dictionaries are sometimes called glossaries or term bases. You can think of the dictionary as a brute force "copy and replace" for all the terms you list. Furthermore, Azure AI Custom Translator service builds and makes use of its own general purpose dictionaries to improve the quality of its translation. However, a customer provided dictionary takes precedent and is searched first to look up words or sentences.
+A Custom Translator dictionary is an aligned pair of documents that specifies a list of phrases or sentences and their corresponding translations. Use a dictionary in your training, when you want Custom Translator to translate any instances of the source phrase or sentence, using the translation you provide in the dictionary. Dictionaries are sometimes called glossaries or term bases. You can think of the dictionary as a brute force "copy and replace" for all the terms you list. Furthermore, Custom Translator builds and makes use of its own general purpose dictionaries to improve the quality of its translation. However, a customer provided dictionary takes precedent and is searched first to look up words or sentences.
 
 Dictionaries only work for projects in language pairs that have a fully supported Microsoft general neural network model behind them. [View the complete list of languages](../../../language-support.md).
 
@@ -32,7 +32,7 @@ The [neural phrase dictionary](../../neural-dictionary.md) extends our [dynamic 
 
 ## Sentence dictionary
 
-A sentence dictionary is case-insensitive. The sentence dictionary allows you to specify an exact target translation for a source sentence. For a sentence dictionary match to occur, the entire submitted sentence must match the source dictionary entry. A source dictionary entry that ends with punctuation is ignored during the match. If only a portion of the sentence matches, the entry isn't matched. When a match is detected, the target entry of the sentence dictionary is returned.
+A sentence dictionary isn't sensitive to letter case. It lets you define an exact target translation for a specific source sentence. For a match to occur, the entire input sentence must exactly match a source entry in the dictionary. If a source entry ends with punctuation, that punctuation is ignored during matching. Partial matches aren't accepted—only full sentence matches count. When a match is found, the dictionary returns the corresponding target translation.
 
 ## Dictionary-only trainings
 

@@ -6,11 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
-author: msakande
-ms.author: mopeakande
-ms.reviewer: sehan
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.custom: ignite-2023
-ms.date: 01/10/2024
+ms.date: 11/24/2025
 
 #CustomerIntent: As an ML Pro, I want to retrieve and inject secrets into the deployment environment easily so that deployments I create can consume the secrets in a secured manner.
 ---
@@ -19,18 +19,26 @@ ms.date: 01/10/2024
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-Secret injection in the context of an online endpoint is a process of retrieving secrets (such as API keys) from secret stores, and injecting them into your user container that runs inside an online deployment. Secrets are eventually accessed securely via environment variables, which are used by the inference server that runs your scoring script or by the inferencing stack that you bring with a BYOC (bring your own container) deployment approach.
+Secret injection in online endpoints helps you securely use API keys and other secrets in your deployments without exposing them in your code. This article explains:
+
+- Why secret injection matters for secure deployments
+- How to use managed identities to retrieve secrets
+- How the secret injection feature simplifies the process
+
+By the end, you'll understand which approach works best for your scenario.
+
+Secret injection in the context of an online endpoint is a process of retrieving secrets, such as API keys, from secret stores and injecting them into your user container that runs inside an online deployment. The inference server that runs your scoring script or the inferencing stack that you bring with a BYOC (bring your own container) deployment approach securely accesses secrets through environment variables.
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 ## Problem statement
 
-When you create an online deployment, you might want to use secrets from within the deployment to access external services. Some of these external services include Microsoft Azure OpenAI service, Azure AI Services, and Azure AI Content Safety.
+When you create an online deployment, you might want to use secrets from within the deployment to access external services. Some of these external services include Microsoft Azure OpenAI service, Foundry Tools, and Azure AI Content Safety.
 
-To use the secrets, you have to find a way to securely pass them to your user container that runs inside the deployment. We don't recommend that you include secrets as part of the deployment definition, since this practice would expose the secrets in the deployment definition. 
+To use the secrets, you need a way to securely pass them to your user container that runs inside the deployment. Don't include secrets as part of the deployment definition, since this practice exposes the secrets in the deployment definition. 
 
-A better approach is to store the secrets in secret stores and then retrieve them securely from within the deployment. However, this approach poses its own challenge: how the deployment should authenticate itself to the secret stores to retrieve secrets. Because the online deployment runs your user container using the _endpoint identity_, which is a [managed identity](/entra/identity/managed-identities-azure-resources/overview), you can use [Azure RBAC](/azure/role-based-access-control/overview) to control the endpoint identity's permissions and allow the endpoint to retrieve secrets from the secret stores.
-Using this approach requires you to do the following tasks:
+A better approach is to store the secrets in secret stores and then retrieve them securely from within the deployment. However, this approach poses its own challenge: how the deployment should authenticate itself to the secret stores to retrieve secrets. Because the online deployment runs your user container by using the _endpoint identity_, which is a [managed identity](/entra/identity/managed-identities-azure-resources/overview), you can use [Azure RBAC](/azure/role-based-access-control/overview) to control the endpoint identity's permissions and allow the endpoint to retrieve secrets from the secret stores.
+Using this approach requires you to complete the following tasks:
 
 - Assign the right roles to the endpoint identity so that it can read secrets from the secret stores.
 - Implement the scoring logic for the deployment so that it uses the endpoint's managed identity to retrieve the secrets from the secret stores.
@@ -41,7 +49,7 @@ While this approach of using a managed identity is a secure way to retrieve and 
 ## Managed identity associated with the endpoint
 
 
-An online deployment runs your user container with the managed identity associated with the endpoint. This managed identity, called the _endpoint identity_, is a [Microsoft Entra ID](/entra/fundamentals/whatis) that supports [Azure RBAC](/azure/role-based-access-control/overview). Therefore, you can assign Azure roles to the identity to control permissions that are required to perform operations. The endpoint identity can be either a system-assigned identity (SAI) or a user-assigned identity (UAI). You can decide which of these kinds of identities to use when you create the endpoint.
+An online deployment runs your user container with the managed identity associated with the endpoint. This managed identity, called the _endpoint identity_, is a [Microsoft Entra ID](/entra/fundamentals/whatis) that supports [Azure RBAC](/azure/role-based-access-control/overview). Therefore, you can assign Azure roles to the identity to control permissions that are required to perform operations. The endpoint identity can be either a system-assigned identity (SAI) or a user-assigned identity (UAI). You decide which of these kinds of identities to use when you create the endpoint.
 
 - For a _system-assigned identity_, the identity is created automatically when you create the endpoint, and roles with fundamental permissions (such as the Azure Container Registry pull permission and the storage blob data reader) are automatically assigned.
 - For a _user-assigned identity_, you need to create the identity first, and then associate it with the endpoint when you create the endpoint. You're also responsible for assigning proper roles to the UAI as needed.
@@ -59,37 +67,43 @@ The following roles are required by the secret stores:
 
 ## Implementation of secret injection
 
-Once secrets (such as API keys) are retrieved from secret stores, there are two ways to inject them into a user container that runs inside the online deployment:
+After you retrieve secrets, such as API keys, from secret stores, you can inject them into a user container that runs inside the online deployment in two ways:
 
-- Inject secrets yourself, using managed identities.
-- Inject secrets, using the secret injection feature.
+- **[Inject secrets yourself, by using managed identities](#secret-injection-by-using-managed-identities)** - For maximum control and flexibility
+- **[Inject secrets, by using the secret injection feature](#secret-injection-via-the-secret-injection-feature)** - For a simplified, code-free approach
 
-Both of these approaches involve two steps:
+Choose the approach that best fits your security requirements and development workflow.
 
-1. First, retrieve secrets from the secret stores, using the endpoint identity.
-1. Second, inject the secrets into your user container.
+Both approaches involve two steps:
 
-### Secret injection via the use of managed identities
+1. Retrieve secrets from the secret stores, by using the endpoint identity.
+1. Inject the secrets into your user container.
 
-In your deployment definition, you need to use the endpoint identity to call the APIs from secret stores. You can implement this logic either in your scoring script or in shell scripts that you run in your BYOC container. To implement secret injection via the use of managed identities, see the [example for using managed identities to interact with external services](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/managed/managed-identities).
+### Secret injection by using managed identities
+
+In your deployment definition, use the endpoint identity to call the APIs from secret stores. You can implement this logic either in your scoring script or in shell scripts that you run in your BYOC container. For more information about implementing secret injection by using managed identities, see the [example for using managed identities to interact with external services](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/managed/managed-identities).
 
 ### Secret injection via the secret injection feature
 
-To use the secret injection feature, in your deployment definition, map the secrets (that you want to refer to) from workspace connections or the Key Vault onto the environment variables. This approach doesn't require you to write any code in your scoring script or in shell scripts that you run in your BYOC container. To map the secrets from workspace connections or the Key Vault onto the environment variables, the following conditions must be met:
+To use the secret injection feature, map the secrets you want to refer to from workspace connections or the Key Vault onto the environment variables in your deployment definition. This approach doesn't require you to write any code in your scoring script or in shell scripts that you run in your BYOC container. To map the secrets from workspace connections or the Key Vault onto the environment variables, the following conditions must be met:
 
-- During endpoint creation, if an online endpoint was defined to enforce access to default secret stores (workspace connections under the current workspace), your user identity that creates the deployment under the endpoint should have the permissions to read secrets from workspace connections.
-- The endpoint identity that the deployment uses should have permissions to read secrets from either workspace connections or the Key Vault, as referenced in the deployment definition.
+- During endpoint creation, if you define an online endpoint to enforce access to default secret stores (workspace connections under the current workspace), your user identity that creates the deployment under the endpoint must have the permissions to read secrets from workspace connections.
+- The endpoint identity that the deployment uses must have permissions to read secrets from either workspace connections or the Key Vault, as referenced in the deployment definition.
 
 > [!NOTE]
-> - If the endpoint was successfully created with an SAI and the flag set to enforce access to default secret stores, then the endpoint would automatically have the permission for workspace connections. 
-> - In the case where the endpoint used a UAI, or the flag to enforce access to default secret stores wasn't set, then the endpoint identity might not have the permission for workspace connections. In such a situation, you need to manually assign the role for the workspace connections to the endpoint identity.
-> - The endpoint identity won't automatically receive permission for the external Key Vault. If you're using the Key Vault as a secret store, you'll need to manually assign the role for the Key Vault to the endpoint identity.
+> - If you successfully create the endpoint with an SAI and set the flag to enforce access to default secret stores, the endpoint automatically has permission for workspace connections. 
+> - If the endpoint uses a UAI, or you don't set the flag to enforce access to default secret stores, the endpoint identity might not have permission for workspace connections. In this situation, you need to manually assign the role for the workspace connections to the endpoint identity.
+> - The endpoint identity doesn't automatically receive permission for the external Key Vault. If you're using the Key Vault as a secret store, you need to manually assign the role for the Key Vault to the endpoint identity.
 
 For more information on using secret injection, see [Deploy machine learning models to online endpoints with secret injection (preview)](how-to-deploy-online-endpoint-with-secret-injection.md).
 
 
-## Related content
+## Next steps
 
-- [Deploy machine learning models to online endpoints with secret injection (preview)](how-to-deploy-online-endpoint-with-secret-injection.md)
-- [Authentication for managed online endpoints](concept-endpoints-online-auth.md)
-- [Online endpoints](concept-endpoints-online.md)
+Now that you understand secret injection concepts, learn how to implement it:
+
+- **[Deploy with secret injection (preview)](how-to-deploy-online-endpoint-with-secret-injection.md)** - Step-by-step guide to implement secret injection in your deployments
+- **[Authentication for managed online endpoints](concept-endpoints-online-auth.md)** - Understand authentication options for your endpoints
+- **[Online endpoints overview](concept-endpoints-online.md)** - Learn the fundamentals of online endpoints
+
+Ready to get started? Follow the [deployment guide](how-to-deploy-online-endpoint-with-secret-injection.md).

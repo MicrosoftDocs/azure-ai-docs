@@ -2,16 +2,14 @@
 title: Foundry Local REST API Reference
 titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local REST API.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
-ms.custom: build-2025
-ms.author: jburchel
-ms.reviewer: samkemp
-author: jburchel
-reviewer: samuel100
-ms.topic: concept-article
-ms.date: 05/20/2025
+ms.author: nakersha
+ms.reviewer: jonburchel
+author: natke
+reviewer: jonburchel
+ms.topic: reference
+ms.date: 11/24/2025
 ---
 
 # Foundry Local REST API Reference
@@ -19,14 +17,12 @@ ms.date: 05/20/2025
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 > [!CAUTION]
-> This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
+> This API refers to the REST API available in the Foundry Local CLI. This API is under active development and may include breaking changes without notice. We strongly recommend monitoring the changelog before building production applications.
 
-## OpenAI v1 compatibility
-
-### POST /v1/chat/completions
+## POST /v1/chat/completions
 
 This endpoint processes chat completion requests.  
-Fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create)
+It's fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create).
 
 **Request Body:**
 
@@ -53,8 +49,8 @@ _---Standard OpenAI Properties---_
   Up to 4 sequences that will cause the model to stop generating further tokens.
 - `max_tokens` (integer, optional)  
   Maximum number of tokens to generate. For newer models, use `max_completion_tokens` instead.
-- `max_completion_token` (integer, optional)  
-  Maximum token limit for generation, including both visible output and reasoning tokens.
+- `max_completion_tokens` (integer, optional)  
+  Maximum number of tokens the model can generate, including visible output and reasoning tokens.
 - `presence_penalty` (number, optional)  
   Value between -2.0 and 2.0. Positive values encourage the model to discuss new topics by penalizing tokens that have already appeared.
 - `frequency_penalty` (number, optional)  
@@ -74,7 +70,7 @@ _---Standard OpenAI Properties---_
       Function parameters described as a JSON Schema object.
 - `function_call` (string or object, optional)  
   Controls how the model responds to function calls.
-  - If object, may include:
+  - If object, can include:
     - `name` (string, optional)  
       The name of the function to call.
     - `arguments` (object, optional)  
@@ -125,10 +121,10 @@ _---Standard OpenAI Properties---_
 
 **Example:**
 
-- Request body
-  ```json
+Request body
+```json
   {
-    "model": "Phi-4-mini-instruct-generic-cpu",
+    "model": "qwen2.5-0.5b-instruct-generic-cpu",
     "messages": [
       {
         "role": "user",
@@ -149,14 +145,16 @@ _---Standard OpenAI Properties---_
     "function_call": null,
     "metadata": {}
   }
-  ```
-- Response body
-  ```json
+```
+
+Response body
+
+```json
   {
     "id": "chatcmpl-1234567890",
     "object": "chat.completion",
     "created": 1677851234,
-    "model": "Phi-4-mini-instruct-generic-cpu",
+    "model": "qwen2.5-0.5b-instruct-generic-cpu",
     "choices": [
       {
         "index": 0,
@@ -173,94 +171,54 @@ _---Standard OpenAI Properties---_
       "total_tokens": 30
     }
   }
-  ```
+```
 
-### POST /v1/embeddings
 
-Handles embedding generation requests.  
-Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)
+## GET /openai/status
 
-**Request Body:**
-
-- `model` (string)  
-  The embedding model to use (e.g., `"text-embedding-ada-002"`).
-- `input` (string or array)  
-  Input text to embed. Can be a single string or an array of strings/tokens.
-- `encoding_format` (string, optional)  
-  The encoding format (`"base64"` or `"float"`).
+Get server status information.
 
 **Response body:**
 
-- `object` (string)  
-  Always `"list"`.
-- `data` (array)  
-  List of embedding objects, each containing:
-  - `object` (string)  
-    Always `"embedding"`.
-  - `embedding` (array)  
-    The vector representation of the input text.
-  - `index` (integer)  
-    The position of this embedding in the input array.
-- `model` (string)  
-  The model used for embedding generation.
-- `usage` (object)  
-  Token usage statistics:
-  - `prompt_tokens` (integer)  
-    Number of tokens in the prompt.
-  - `total_tokens` (integer)  
-    Total tokens used.
+- `Endpoints` (array of strings)  
+  The HTTP server binding endpoints.
+- `ModelDirPath` (string)  
+  Directory where local models are stored.
+- `PipeName` (string)  
+  The current NamedPipe server name.
 
 **Example:**
 
-- Request body
-  ```json
+Response body
+```json
   {
-    "model": "qwen_w_embeddings",
-    "input": "Hello, how are you?"
+    "Endpoints": ["http://localhost:5272"],
+    "ModelDirPath": "/path/to/models",
+    "PipeName": "inference_agent"
   }
-  ```
-- Response body
-  ```json
-  {
-    "object": "list",
-    "data": [
-      {
-        "object": "embedding",
-        "embedding": [0.1, 0.2, 0.3, ...],
-        "index": 0
-      }
-    ],
-    "model": "qwen_w_embeddings",
-    "usage": {
-      "prompt_tokens": 10,
-      "total_tokens": 10
-    }
-  }
-  ```
+```
 
-## Custom API
+## GET /foundry/list
 
-### GET /foundry/list
-
-Retrieves a list of all available Foundry Local models in the catalog.
+Get a list of available Foundry Local models in the catalog.
 
 **Response:**
 
 - `models` (array)  
-  List of model objects, each containing:
+  Array of model objects. Each model includes:
   - `name`: The unique identifier for the model.
   - `displayName`: A human-readable name for the model, often the same as the name.
-  - `providerType`: The type of provider hosting the model (e.g., AzureFoundry).
+  - `providerType`: The type of provider hosting the model (for example, AzureFoundry).
   - `uri`: The resource URI pointing to the model's location in the registry.
   - `version`: The version number of the model.
-  - `modelType`: The format or type of the model (e.g., ONNX).
+  - `modelType`: The format or type of the model (for example, ONNX).
   - `promptTemplate`:
     - `assistant`: The template for the assistant's response.
     - `prompt`: The template for the user-assistant interaction.
   - `publisher`: The entity or organization that published the model.
-  - `task`: The primary task the model is designed to perform (e.g., chat-completion).
+  - `task`: The primary task the model is designed to perform (for example, chat completion).
   - `runtime`:
-    - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
+    - `deviceType`: The type of hardware the model is designed to run on (for example, CPU).
     - `executionProvider`: The execution provider used for running the model.
   - `fileSizeMb`: The size of the model file in megabytes.
   - `modelSettings`:
@@ -271,38 +229,10 @@ Retrieves a list of all available Foundry Local models in the catalog.
   - `licenseDescription`: A detailed description or link to the license terms.
   - `parentModelUri`: The URI of the parent model from which this model is derived.
 
-### POST /openai/register
 
-Registers an external model provider for use with Foundry Local.
+## GET /openai/models
 
-**Request Body:**
-
-- `TypeName` (string)  
-  Provider name (e.g., `"deepseek"`)
-- `ModelName` (string)  
-  Model name to register (e.g., `"deepseek-chat"`)
-- `BaseUri` (string)  
-  The OpenAI-compatible base URI for the provider
-
-**Response:**
-
-- 200 OK  
-  Empty response body
-
-**Example:**
-
-- Request body
-  ```json
-  {
-    "TypeName": "deepseek",
-    "ModelName": "deepseek-chat",
-    "BaseUri": "https://api.deepseek.com/v1"
-  }
-  ```
-
-### GET /openai/models
-
-Retrieves all available models, including both local models and registered external models.
+Get a list of cached models, including local and registered external models.
 
 **Response:**
 
@@ -311,14 +241,120 @@ Retrieves all available models, including both local models and registered exter
 
 **Example:**
 
-- Response body
-  ```json
+Response body
+
+```json
   ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
-  ```
+```
 
-### GET /openai/load/{name}
+## POST /openai/download
 
-Loads a model into memory for faster inference.
+Download a model from the catalog to local storage.
+
+> [!NOTE]
+> Large model downloads can take a long time. Set a high timeout for this request to avoid early termination.
+
+**Request Body:**
+
+- `model` (`WorkspaceInferenceModel` object)
+  - `Uri` (string)  
+    The model URI to download.
+  - `Name` (string)
+    The model name.
+  - `ProviderType` (string, optional)  
+    The provider type (for example, `"AzureFoundryLocal"`, `"HuggingFace"`).
+  - `Path` (string, optional)  
+    Remote path to the model files. For example, in a Hugging Face repository, this is the path to the model files.
+  - `PromptTemplate` (`Dictionary<string, string>`, optional)  
+    Includes:
+    - `system` (string, optional)  
+      The template for the system message.
+    - `user` (string, optional)
+      The template for the user's message.
+    - `assistant` (string, optional)  
+      The template for the assistant's response.
+    - `prompt` (string, optional)  
+      The template for the user-assistant interaction.
+  - `Publisher` (string, optional)  
+     The publisher of the model.
+- `token` (string, optional)  
+  Authentication token for protected models (GitHub or Hugging Face).
+- `progressToken` (object, optional)  
+  For AITK only. Token to track download progress.
+- `customDirPath` (string, optional)  
+  Custom download directory (used for CLI, not needed for AITK).
+- `bufferSize` (integer, optional)  
+  HTTP download buffer size in KB. No effect on NIM or Azure Foundry models.
+- `ignorePipeReport` (boolean, optional)  
+  If `true`, forces progress reporting via HTTP stream instead of pipe.
+  Defaults to `false` for AITK and `true` for Foundry Local.
+
+**Streaming Response:**
+
+During download, the server streams progress updates in the format:
+
+```text
+("file name", percentage_complete)
+```
+
+**Final Response body:**
+
+- `Success` (boolean)  
+  Whether the download completed successfully.
+- `ErrorMessage` (string, optional)  
+  Error details if download failed.
+
+**Example:**
+
+Request URI
+
+```http
+POST /openai/download
+```
+
+Request body
+
+Note that the version suffix must be supplied in the model name.
+
+```json
+{
+  "model": {
+    "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
+    "ProviderType": "AzureFoundryLocal",
+    "Name": "Phi-4-mini-instruct-generic-cpu:4",
+    "Publisher": "",
+    "PromptTemplate": {
+      "system": "<|system|>{Content}<|end|>",
+      "user": "<|user|>{Content}<|end|>",
+      "assistant": "<|assistant|>{Content}<|end|>",
+      "prompt": "<|user|>{Content}<|end|><|assistant|>"
+    }
+  }
+}
+```
+
+Response stream
+
+```text
+  ("genai_config.json", 0.01)
+  ("genai_config.json", 0.2)
+  ("model.onnx.data", 0.5)
+  ("model.onnx.data", 0.78)
+  ...
+  ("", 1)
+```
+
+Final response
+```json
+  {
+    "Success": true,
+    "ErrorMessage": null
+  }
+```
+
+## GET /openai/load/{name}
+
+Load a model into memory for faster inference.
 
 **URI Parameters:**
 
@@ -330,7 +366,7 @@ Loads a model into memory for faster inference.
 - `unload` (boolean, optional)  
   Whether to automatically unload the model after idle time. Defaults to `true`.
 - `ttl` (integer, optional)  
-  Time to live in seconds. If greater than 0, overrides `unload` parameter.
+  Time to live in seconds. If it's greater than 0, this value overrides the `unload` parameter.
 - `ep` (string, optional)  
   Execution provider to run this model. Supports: `"dml"`, `"cuda"`, `"qnn"`, `"cpu"`, `"webgpu"`.  
   If not specified, uses settings from `genai_config.json`.
@@ -342,38 +378,40 @@ Loads a model into memory for faster inference.
 
 **Example:**
 
-- Request URI
-  ```
+Request URI
+
+```http
   GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
-  ```
+```
 
-### GET /openai/unload/{name}
+## GET /openai/unload/{name}
 
-Unloads a model from memory.
+Unload a model from memory.
 
 **URI Parameters:**
 
-- `name` (string)  
+- `name` (string)
   The model name to unload.
 
 **Query Parameters:**
 
-- `force` (boolean, optional)  
+- `force` (boolean, optional)
   If `true`, ignores TTL settings and unloads immediately.
 
 **Response:**
 
-- 200 OK  
+- 200 OK
   Empty response body
 
 **Example:**
 
-- Request URI
-  ```
-  GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
-  ```
+Request URI
 
-### GET /openai/unloadall
+```http
+GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
+````
+
+## GET /openai/unloadall
 
 Unloads all models from memory.
 
@@ -382,9 +420,9 @@ Unloads all models from memory.
 - 200 OK  
   Empty response body
 
-### GET /openai/loadedmodels
+## GET /openai/loadedmodels
 
-Retrieves a list of currently loaded models.
+Get the list of currently loaded models.
 
 **Response:**
 
@@ -393,23 +431,24 @@ Retrieves a list of currently loaded models.
 
 **Example:**
 
-- Response body
-  ```json
-  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
-  ```
+Response body
 
-### GET /openai/getgpudevice
+```json
+["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
+```
 
-Retrieves the currently selected GPU device ID.
+## GET /openai/getgpudevice
+
+Get the current GPU device ID.
 
 **Response:**
 
 - 200 OK  
   An integer representing the current GPU device ID.
 
-### GET /openai/setgpudevice/{deviceId}
+## GET /openai/setgpudevice/{deviceId}
 
-Sets the active GPU device.
+Set the active GPU device.
 
 **URI Parameters:**
 
@@ -424,7 +463,7 @@ Sets the active GPU device.
 **Example:**
 
 - Request URI
-  ```
+  ```http
   GET /openai/setgpudevice/1
   ```
 
@@ -574,8 +613,9 @@ Counts tokens for a given chat completion request without performing inference.
 
 **Example:**
 
-- Request body
-  ```json
+Request body
+
+```json
   {
     "messages": [
       {
@@ -589,10 +629,12 @@ Counts tokens for a given chat completion request without performing inference.
     ],
     "model": "Phi-4-mini-instruct-cuda-gpu"
   }
-  ```
-- Response body
-  ```json
+```
+
+Response body
+
+```json
   {
     "tokenCount": 23
   }
-  ```
+```

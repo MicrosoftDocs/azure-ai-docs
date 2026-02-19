@@ -5,9 +5,9 @@ description: Upgrade parallel run step from v1 to v2 of Azure Machine Learning S
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
-author: sdgilley
-ms.author: sgilley
+ms.topic: how-to
+author: s-polly
+ms.author: scottpolly
 ms.date: 09/16/2022
 ms.reviewer: alainli
 ms.custom: migration

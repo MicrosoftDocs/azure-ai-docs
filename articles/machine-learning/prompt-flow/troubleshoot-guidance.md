@@ -5,14 +5,16 @@ description: This article addresses frequent questions prompt flow usage.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
+ms.topic: troubleshooting
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar
+ms.date: 09/05/2023
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: reference
-author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: chenjieting
-ms.date: 09/05/2023
+  - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Troubleshoot guidance
@@ -78,7 +80,7 @@ There are possible reasons for this issue:
 
     :::image type="content" source="./media/faq/datastore-with-wrong-account-key.png" alt-text="Screenshot that shows datastore with wrong account key." lightbox = "./media/faq/datastore-with-wrong-account-key.png":::
  
-- If you're using Azure AI Foundry, the storage account needs to set CORS to allow Azure AI Foundry access the storage account, otherwise, you see the flow missing issue. You can add following CORS settings to the storage account to fix this issue.
+- If you're using Microsoft Foundry, the storage account needs to set CORS to allow Foundry access the storage account, otherwise, you see the flow missing issue. You can add following CORS settings to the storage account to fix this issue.
     - Go to storage account page, select `Resource sharing (CORS)` under `settings`, and select to `File service` tab.
     - Allowed origins: `https://mlworkspace.azure.ai,https://ml.azure.com,https://*.ml.azure.com,https://ai.azure.com,https://*.ai.azure.com,https://mlworkspacecanary.azure.ai,https://mlworkspace.azureml-test.net`
     - Allowed methods: `DELETE, GET, HEAD, POST, OPTIONS, PUT`
@@ -93,7 +95,7 @@ This type of error related to compute session lacks required packages. If you're
 
 ### Where to find the serverless instance used by compute session?
 
-You can view the serverless instance used by compute session in the compute session list tab under compute page. Learn more about [how to manage serverless instance](./how-to-manage-compute-session.md#manage-serverless-instance-used-by-compute-session).
+You can view the serverless instance used by compute session in the compute session list tab under compute page. Learn more about [how to manage serverless instance](how-to-manage-compute-session.md#manage-serverless-instance-used-by-a-compute-session).
 
 
 ### Compute session failures using custom base image
@@ -145,7 +147,7 @@ You may encounter 409 error from Azure OpenAI, it means you have reached the rat
 
         In this case, if you find the message `request canceled` in the logs, it might be because the OpenAI API call is taking too long and exceeding the timeout limit.
 
-        An OpenAI API timeout could be caused by a network issue or a complex request that requires more processing time. For more information, see [OpenAI API timeout](https://help.openai.com/en/articles/6897186-timeout).
+        An OpenAI API timeout could be caused by a network issue or a complex request that requires more processing time. For more information, see [OpenAI API timeout](https://platform.openai.com/docs/actions/production#timeouts).
 
         Wait a few seconds and retry your request. This action usually resolves any network issues.
 
@@ -271,7 +273,7 @@ If you encounter an error like "Access denied to list workspace secret", check w
 
 ### How do I use credential-less datastore in prompt flow?
 
-To use credential-less storage in Azure AI Foundry portal, you need to basically do the following things:
+To use credential-less storage in Foundry portal, you need to basically do the following things:
 - Change the data store auth type to None.
 - Grant project MSI and user blob/file data contributor permission on storage.
 

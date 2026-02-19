@@ -1,10 +1,10 @@
 items:
-- name: Azure AI Document Intelligence Documentation
+- name: Azure Document Intelligence in Foundry Tools Documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure AI Document Intelligence?
+  - name: What is Azure Document Intelligence in Foundry Tools?
     displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer, region availability, regional availability
     href: overview.md
   - name: What's new
@@ -249,7 +249,7 @@ items:
 - name: Containers
   items:
   - name: Install and run containers
-    displayName: docker, docker-compose, container, compose, packages, az, acr, cli, import, pull, Azure AI Vision, kubernetes, cpu, EULA, billing
+    displayName: docker, docker-compose, container, compose, packages, az, acr, cli, import, pull, Azure Vision, kubernetes, cpu, EULA, billing
     href: containers/install-run.md
   - name: Configure containers
     displayName: docker, docker-compose, compose, containers, run, billing, keys, logging, EULA, telemetry, proxy
@@ -294,9 +294,9 @@ items:
       href: /ai-builder/id-reader?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/applied-ai-services/breadcrumb/toc.json
     - name: Business card
       href: /ai-builder/flow-business-card-reader?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
-  - name: Use Azure AI Document Intelligence with Azure AI Search
+  - name: Use Azure Document Intelligence with Azure Search
     href: /azure/search/cognitive-search-custom-skill-form
-  - name: Use Azure AI Document Intelligence with Azure Functions
+  - name: Use Azure Document Intelligence with Azure Functions
     href: tutorial-azure-function.md
 - name: Reference
   items:
@@ -371,5 +371,5 @@ items:
     href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/document-intelligence/context/context
   - name: Privacy and cookies
     href: https://privacy.microsoft.com/en-US/privacystatement
-  - name: Azure AI Document Intelligence release history
+  - name: Document Intelligence release history
     href: reference/release-history.md

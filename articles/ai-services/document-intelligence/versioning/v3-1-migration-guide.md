@@ -1,12 +1,12 @@
 ---
 title: "How-to: Migrate Document Intelligence applications to v3.1."
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this how-to guide, learn the differences between Document Intelligence API versions and how to move to the newer version of the API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 02/07/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---

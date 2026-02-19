@@ -5,7 +5,7 @@ description: Create an Anomaly Detector resource
 author: mrbullwinkle    
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/12/2025
 ms.author: mbullwin
 ---
@@ -19,7 +19,7 @@ Anomaly Detector service is a cloud-based Azure AI service that uses machine-lea
 
 ## Create an Anomaly Detector resource in Azure portal
 
-1. Create an Azure subscription if you don't have one - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+1. Create an Azure subscription if you don't have one - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 1. Once you have your Azure subscription, [create an Anomaly Detector resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAnomalyDetector) in the Azure portal, and fill out the following fields:
 
     - **Subscription**: Select your current subscription.

@@ -11,8 +11,9 @@ ms.custom:
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: chenjieting
+ms.reviewer: sooryar
 ms.date: 10/24/2023
+ms.update-cycle: 365-days
 ---
 
 # Overview of tools in prompt flow
@@ -35,7 +36,7 @@ The following table shows an index of tools in prompt flow.
 | [Azure OpenAI GPT-4 Turbo with Vision](./azure-open-ai-gpt-4v-tool.md) | Use AzureOpenAI GPT-4 Turbo with Vision model deployment to analyze images and provide textual responses to questions about them. | Default | [promptflow-tools](https://pypi.org/project/promptflow-tools/) |
 | [OpenAI GPT-4V](./openai-gpt-4v-tool.md) | Use OpenAI GPT-4V to leverage vision ability. | Default | [promptflow-tools](https://pypi.org/project/promptflow-tools/) |
 | [Index Lookup](./index-lookup-tool.md)*<sup>1</sup> | Search an Azure Machine Learning Vector Index for relevant results using one or more text queries. | Default | [promptflow-vectordb](https://pypi.org/project/promptflow-vectordb/) |
-| [Azure AI Language tools](https://microsoft.github.io/promptflow/integrations/tools/azure-ai-language-tool.html)* | This collection of tools is a wrapper for various Azure AI Language APIs, which can help effectively understand and analyze documents and conversations. The capabilities currently supported include: Abstractive Summarization, Extractive Summarization, Conversation Summarization, Entity Recognition, Key Phrase Extraction, Language Detection, PII Entity Recognition, Conversational PII, Sentiment Analysis, Conversational Language Understanding, Translator. You can learn how to use them by the [Sample flows](https://github.com/microsoft/promptflow/tree/e4542f6ff5d223d9800a3687a7cfd62531a9607c/examples/flows/integrations/azure-ai-language). | Custom | [promptflow-azure-ai-language](https://pypi.org/project/promptflow-azure-ai-language/) |
+| [Azure Language in Foundry Tools tools](https://microsoft.github.io/promptflow/integrations/tools/azure-ai-language-tool.html)* | This collection of tools is a wrapper for various Language APIs, which can help effectively understand and analyze documents and conversations. The capabilities currently supported include: Abstractive Summarization, Extractive Summarization, Conversation Summarization, Entity Recognition, Key Phrase Extraction, Language Detection, PII Entity Recognition, Conversational PII, Sentiment Analysis, Conversational Language Understanding, Translator. You can learn how to use them by the [Sample flows](https://github.com/microsoft/promptflow/tree/e4542f6ff5d223d9800a3687a7cfd62531a9607c/examples/flows/integrations/azure-ai-language). | Custom | [promptflow-azure-ai-language](https://pypi.org/project/promptflow-azure-ai-language/) |
 | [Rerank](./rerank-tool.md) | Rerank documents based on the relevancy to a given query | Default | [promptflow-vectordb](https://pypi.org/project/promptflow-vectordb/) |
 
 <sup>1</sup> The Index Lookup tool replaces the three deprecated legacy index tools: Vector Index Lookup, Vector DB Lookup, and Faiss Index Lookup. If you have a flow that contains one of those tools, follow the [migration steps](./index-lookup-tool.md#how-to-migrate-from-legacy-tools-to-the-index-lookup-tool) to upgrade your flow.

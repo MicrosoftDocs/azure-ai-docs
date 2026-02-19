@@ -1,12 +1,12 @@
 ---
 title: Create a project
-titleSuffix: Azure AI Foundry
-description: This article describes how to create an Azure AI Foundry project so you can work with generative AI in the cloud.
+titleSuffix: Microsoft Foundry
+description: This article describes how to create a Microsoft Foundry project so you can work with generative AI in the cloud.
+monikerRange: 'foundry-classic || foundry'
 author: sdgilley
 ms.author: sgilley
-manager: scottpolly
 ms.reviewer: deeikele
-ms.date: 05/20/2025
+ms.date: 01/09/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -15,176 +15,306 @@ ms.custom:
   - ignite-2024
   - build-aifnd
   - build-2025
-zone_pivot_groups: project-type
-# customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
+  - dev-focus
+ai-usage: ai-assisted
+# customer intent: As a developer, I want to create a Microsoft Foundry project so I can work with generative AI.
 ---
 
-# Create a project for Azure AI Foundry
+# Create a project for Microsoft Foundry
 
-This article describes how to create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work for exploring new ideas and as you prototype on a particular use case.
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
-Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+This article describes how to create a Foundry project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work—such as agents, evaluations, and files—as you build stateful apps and explore new ideas.
 
-::: zone pivot="hub-project"
+::: moniker range="foundry-classic"
 
-> [!TIP]
-> The rest of this article shows how to create a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+* [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
+* If you need access to open-source models or PromptFlow, [create a hub project type](../how-to/hub-create-projects.md) instead.
 
-* [!INCLUDE [hub-description](../includes/hub-description.md)]
+* For more information about the different project types, see [Types of projects](../what-is-foundry.md#types-of-projects).
 
-* Use this project type for:
+::: moniker-end
 
-    * Prompt flow
-    * Managed compute
-    * [Azure Machine Learning](../../machine-learning/index.yml) compatibility
-
-* This project can also be used for:
-
-    * Agents (preview)
-    * Project-level isolation of files and outputs
-    * Evaluations
-    * Playgrounds
+If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
 
 ## Prerequisites
 
-Use the following tabs to select the method you plan to use to create a [!INCLUDE [hub](../includes/hub-project-name.md)]:
+* [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-# [Azure AI Foundry portal](#tab/ai-foundry)
+:::moniker range="foundry"
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+:::moniker-end
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+:::moniker range="foundry-classic"
+* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+
+    If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
+:::moniker-end
+
+* Use the following tabs to select the method you want to use to create a Foundry project:
+
+    # [Foundry portal](#tab/foundry)
+    
+    - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+    
+    # [Python SDK](#tab/python)
+    
+    - [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
+    - Run `az login` or `az login --use-device-code` in your environment before running code.
+    - **Quick validation**: Before creating a project, verify your SDK and authentication are working by testing the client:
+    
+      ```python
+      from azure.identity import DefaultAzureCredential
+      from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+      
+      # Test authentication by instantiating the client
+      credential = DefaultAzureCredential()
+      subscription_id = "<your-subscription-id>"  # Replace with your subscription ID
+      client = CognitiveServicesManagementClient(credential, subscription_id)
+      print("✓ Authentication successful! Ready to create a project.")
+      ```
+    
+    ::: moniker range="foundry-classic"
+    
+    - Complete these steps to start your Python script:
+        1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
+        1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
+        1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+        
+            :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
+    
+        1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
+                
+            ```python
+            DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+            ```
+    
+              
+        1. (Optional) If you're working in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region you want to authenticate to. This example authenticates to the Azure Government - US region:
+                
+            ```python
+            from azure.identity import AzureAuthorityHosts
+            DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
+            ```
+    ::: moniker-end
+    
+    ::: moniker range="foundry"
+    
+    - Complete these steps to start your Python script:
+        1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
+        1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
+        1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+        
+            :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
+    
+        1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
+                
+            ```python
+            DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+            ```
+    ::: moniker-end
+    
+    
+    # [Azure CLI](#tab/azurecli)
+    
+    - Install the [Azure CLI](/cli/azure/install-azure-cli). 
+    - Set default values for `subscription`.
+    
+      ```azurecli
+        # Set your default subscription
+        az account set --subscription "{subscription-name}"
+       ```
+    
+    ---
+
+## Create a Foundry project
+
+# [Foundry portal](#tab/foundry)
+
+::: moniker range="foundry-classic"
+
+These steps provide a way to create a new Azure resource with basic, default settings. 
+
+To create a Foundry project, follow these steps:
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+
+1. [!INCLUDE [create-project-access](../includes/create-project-access.md)]
+
+1. Select **Foundry resource**, and then select **Next**.
+1. Provide a name for your project and select **Create**. Or see the next section for advanced options.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+These steps provide a way to create a new Azure resource with basic, defaulted, settings. 
+
+To create a Foundry project, follow these steps:
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+
+1. The project you're working on appears in the upper-left corner.
+1. To create a new project, select the project name, and then select **Create new project**.
+1. Give your project a name and select **Create project**. Or see next section for advanced options.
+
+::: moniker-end
+
+
+### Advanced options
+
+1. You create a Foundry project on a `Foundry` resource. The portal automatically creates this resource when you create the project. Select an existing **Resource group** to use, or leave the default to create a new resource group.
+
+    > [!TIP]
+    > Especially for getting started, create a new resource group for your project. The resource group makes it easy to manage the project and all its resources together.
+
+1. Select a **Location** or use the default. The location is the region where the project resources are hosted. 
+
+1. Select **Create**. You see the progress of resource creation. The project is created when the process is complete.
+
 
 # [Python SDK](#tab/python)
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- [Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
-- An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
-- [Azure CLI](/cli/azure/install-azure-cli) 
-- Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
+To create a Foundry project:
+
+
+- Add the following code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
+
+    :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_resource_project":::
+
+    References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
 
 
 # [Azure CLI](#tab/azurecli)
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- [Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you don't have the Azure CLI and machine learning extension installed, follow the steps in the [Install and set up the machine learning extension](/azure/machine-learning/how-to-configure-cli) article.
-- An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
+[!INCLUDE [create-project-cli](../default/includes/create-project-cli.md)]
 
 ---
 
-## Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
+## Create multiple projects on the same resource
 
-# [Azure AI Foundry portal](#tab/ai-foundry)
-
-[!INCLUDE [Create Azure AI Foundry project](../includes/create-hub-project.md)]
-
-# [Python SDK](#tab/python)
-
-The code in this section assumes you have an existing hub. If you don't have a hub, see [How to create and manage an Azure AI Foundry hub](create-azure-ai-resource.md) to create one.
-
-[!INCLUDE [SDK setup](../includes/development-environment-config.md)]
-
-6. Use the following code to create a project from a hub you or your administrator created previously. Replace example string values with your own values:
-
-    ```Python
-    from azure.ai.ml.entities import Project
-    
-    my_project_name = "myexampleproject"
-    my_display_name = "My Example Project"
-    hub_name = "myhubname" # Azure resource manager ID of the hub
-    hub_id=f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}"
-    
-    my_project = Project(name=my_project_name, 
-                    display_name=my_display_name,
-                    hub_id=hub_id)
-    
-    created_project = ml_client.workspaces.begin_create(workspace=my_project).result()
-    ```
-
-# [Azure CLI](#tab/azurecli)
-
-The code in this section assumes you have an existing hub. If you don't have a hub, see [How to create and manage an Azure AI Foundry hub](create-azure-ai-resource.md) to create one.
-
-1. To authenticate to your Azure subscription from the Azure CLI, use the following command:
-
-    ```azurecli
-    az login
-    ```
-
-    For more information on authenticating, see [Authentication methods](/cli/azure/authenticate-azure-cli).
-
-1. Once the extension is installed and authenticated to your Azure subscription, use the following command to create a new Azure AI Foundry project from an existing Azure AI Foundry hub:
-
-    ```azurecli
-    az ml workspace create --kind project --hub-id {my_hub_ID} --resource-group {my_resource_group} --name {my_project_name}
-    ```
-
-    Form `my_hub_ID` with this syntax: `/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.MachineLearningServices/workspaces/{hub_name}`.
-
----
+[!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
 
 ## View project settings
 
-# [Azure AI Foundry portal](#tab/ai-foundry)
+# [Foundry portal](#tab/foundry)
 
-On the project **Overview** page, you can find information about the project.
+::: moniker range="foundry-classic"
 
-:::image type="content" source="../media/how-to/projects/project-settings.png" alt-text="Screenshot of an Azure AI Foundry project settings page." lightbox = "../media/how-to/projects/project-settings.png":::
+On the **Home** project page, you find information about the project.
 
-- Name: The name of the project appears in the top left corner.
-- Subscription: The subscription that hosts the hub that hosts the project.
-- Resource group: The resource group that hosts the hub that hosts the project.
+- **Name**: The name of the project appears in the upper left corner. 
+- **Subscription**: The subscription that hosts the hub that hosts the project.
+- **Resource group**: The resource group that hosts the hub that hosts the project.
 
-Select **Management center** to navigate to the project resources in Azure AI Foundry portal.
-Select **Manage in Azure portal** to navigate to the project resources in the Azure portal.
+::: moniker-end
+
+::: moniker range="foundry"
+
+On the **Home** project page, you see the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
+
+::: moniker-end
 
 # [Python SDK](#tab/python)
 
-To manage or use the new project, include it in the `MLClient`:
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="show_project":::
 
-```python
-ml_client = MLClient(workspace_name=my_project_name, resource_group_name=resource_group, subscription_id=subscription_id,credential=DefaultAzureCredential())
-```
+References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
 
 # [Azure CLI](#tab/azurecli)
 
-To view settings for the project, use the `az ml workspace show` command. For example:
+To view settings for the project, use the `az cognitiveservices account connection show` command. For example:
 
 ```azurecli
-az ml workspace show --name {my_project_name} --resource-group {my_resource_group}
+az cognitiveservices account connection show \
+--name my-foundry-project \
+--resource-group my-foundry-rg
 ```
 
 ---
 
+## Delete projects
 
-## Access project resources
 
-Common configurations on the hub are shared with your project, including connections, compute instances, and network access, so you can start developing right away.
+# [Foundry portal](#tab/foundry)
 
-In addition, many resources are only accessible by users in your project workspace:
+::: moniker range="foundry-classic"
 
-- Components including datasets, flows, indexes, deployed model API endpoints (open and serverless).
-- Connections created by you under 'project settings.'
-- Azure Storage blob containers, and a fileshare for data upload within your project. Access storage using the following connections:
-   
-   | Data connection | Storage location | Purpose |
-   | --- | --- | --- |
-   | workspaceblobstore | {project-GUID}-azureml-blobstore | Default container for data uploads |
-   | workspaceartifactstore | {project-GUID}-azureml | Stores components and metadata for your project such as model weights |
-   | workspacefilestore | {project-GUID}-code | Hosts files created on your compute and using prompt flow |
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
+1. Open your project.
+1. Select **Management center**.
+1. Under **Resource**, select **Overview**.
+1. Select any projects you no longer want to keep.
+1. Select **Delete project**.
 
-> [!NOTE]
-> Storage connections aren't created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
+To delete the Foundry resource and all its projects:
+
+1. In the Management center, select the resource name from the Overview section to go to the Azure portal.
+1. In the Azure portal, select **Delete** to delete the resource and all its associated projects.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
+1. In the upper-right navigation, select **Operate**.
+1. In the left pane, select **Admin**.
+1. Select your project.
+1. In the upper right, select the trash can icon to delete the project.
+
+::: moniker-end 
+
+# [Python SDK](#tab/python)
+
+This code uses the variables and `client connection` from the Prerequisites. First, create the client connection:
+
+```python
+client.projects.begin_delete(
+    resource_group_name, foundry_resource_name, foundry_project_name
+)
+```
+
+References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+
+Delete a Foundry resource and all of its projects:
+
+```python
+# Delete projects
+projects = client.projects.list(resource_group_name, foundry_resource_name)
+
+for project in projects: 
+    print("Deleting project:", project.name)
+    client.projects.begin_delete(resource_group_name, foundry_resource_name,
+        project_name=project.name.split('/')[-1]
+    ).wait()
+
+# Delete resource
+print("Deleting resource:", foundry_resource_name)
+client.accounts.begin_delete(resource_group_name, foundry_resource_name).wait()
+```
+
+References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+
+# [Azure CLI](#tab/azurecli)
+
+Run the following command:
+
+```azurecli
+az cognitiveservices account project delete \
+--name my-foundry-rg \
+--project-name my-foundry-project
+```
+
+References: [az cognitiveservices account project delete](/cli/azure/cognitiveservices/account/project#az-cognitiveservices-account-project-delete).
+
+---
+
+> [!IMPORTANT]
+> Use with caution. You can't recover a project after it's deleted.
 
 ## Related content
 
-- [Quickstart: Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
+- [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md)
+- [What is Foundry?](../what-is-foundry.md)
 
-- [Learn more about hubs](../concepts/ai-resources.md)
-
-::: zone-end
-
-::: zone pivot="fdp-project"
-
-[!INCLUDE [create-project-fdp](../includes/create-project-fdp.md)]
-
-::: zone-end

@@ -1,25 +1,33 @@
 items:
-  - name: Azure AI Content Understanding documentation
+  - name: Azure Content Understanding in Foundry Tools documentation
     href: index.yml
   - name: Overview
-    expanded: true
+    expanded: true       
     items:
-      - name: What is Azure AI Content Understanding?
+      - name: What is Azure Content Understanding in Foundry Tools?
         displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
         href: overview.md
+      - name: Choose the right tool for document processing
+        href: choosing-right-ai-tool.md
       - name: What's new
         displayName: changelog, release, updates, previews
         href: whats-new.md
-      - name: Create an Azure AI Foundry resource
-        displayName: extract, text, images, OCR, optical character recognition
-        href: how-to/create-multi-service-resource.md
       - name: Service quotas and limits
         displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
         href: service-limits.md
       - name: Language and region support
         href: language-region-support.md
+      - name: Foundry and Content Understanding Studio comparison
+        displayName: studio, foundry, differences, comparison, use cases, features
+        href: foundry-vs-content-understanding-studio.md
+      - name: Pricing model details and examples
+        displayName: pricing, cost, examples, billing
+        href: pricing-explainer.md
       - name: Pricing
         href: https://azure.microsoft.com/pricing/details/content-understanding/
+      - name: Security features
+        displayName: security, features
+        href: concepts/secure-communications.md
       - name: FAQ
         displayName: FAQ, definition, updates, previews
         href: faq.yml
@@ -28,17 +36,35 @@ items:
         href: glossary.md
   - name: Quickstarts
     items:
-    - name: Try Content Understanding in the Azure AI Foundry portal
-      items:
-        - name: Use Content Understanding with a single file
-          displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, standard, mode
-          href: quickstart/use-ai-foundry.md
-        - name: Use Content Understanding with multiple files
-          displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, pro, mode
-          href: quickstart/use-ai-foundry-pro-mode.md
+    - name: Content Understanding Studio Quickstart
+      displayName: Content Understanding Studio, quickstart, prerequisites, setup, create, analyze, extract
+      href: quickstart/content-understanding-studio.md
     - name: Try Content Understanding REST API
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
+    - name: Create CU Task in Foundry (classic) (Preview)
+      displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
+      href: how-to/content-understanding-foundry-classic.md
+  - name: Concepts
+    items:
+    - name: What are analyzers?
+      displayName: analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/analyzer-reference.md
+    - name: Prebuilt analyzers
+      displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/prebuilt-analyzers.md
+    - name: Best practices
+      displayName: best practices, analyzers, optimization, fields
+      href: concepts/best-practices.md
+    - name: What are classifiers?
+      displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/classifier.md
+    - name: Foundry model deployments
+      displayName: foundry, model, deployments
+      href: concepts/models-deployments.md
+    - name: "Modes: standard and pro (Preview)"
+      displayName: standard, pro, modes, analyzers, optimization, fields
+      href: concepts/standard-pro-modes.md
   - name: Modalities
     items:
       - name: Document
@@ -46,54 +72,65 @@ items:
           - name: Overview
             displayName: document, text, images, video, audio, visual, structured, content, field, extraction
             href: document/overview.md
-          - name: Elements 🆕
+          - name: Elements
             displayName: document, text, images, video, audio, visual, structured, content, field, extraction
             href: document/elements.md
-          - name: Markdown 🆕
+          - name: Markdown
             displayName: document, text, images, video, audio, visual, structured, content, field, extraction
             href: document/markdown.md
+          - name: Analyzer Improvement
+            href: document/analyzer-improvement.md
+      - name: AudioVideo
+        items:
+          - name: Video Overview
+            displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+            href: video/overview.md
+          - name: Audio Overview
+            displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+            href: audio/overview.md
+          - name: Elements
+            displayName: audio, video, elements, schema, structure
+            href: video/elements.md
+          - name: Markdown
+            displayName: audio, video, markdown, formatting
+            href: video/markdown.md
       - name: Image
         displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
         href: image/overview.md
-      - name: Audio
-        displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-        href: audio/overview.md
-      - name: Video
-        href: video/overview.md
-        displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-  - name: Concepts
-    items:
-    - name: Analyzers
-      items:
-        - name: Analyzer templates in Azure AI Foundry
-          displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-          href: concepts/analyzer-templates.md
-        - name: Prebuilt analyzers 🆕
-          displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-          href: concepts/prebuilt-analyzers.md
-        - name: "Modes: standard and pro 🆕"
-          displayName: standard, pro, modes, analyzers, optimization, fields
-          href: concepts/standard-pro-modes.md
-        - name: Best practices
-          displayName: best practices, analyzers, optimization, fields
-          href: concepts/best-practices.md
-    - name: What are classifiers? 🆕
-      displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-      href: concepts/classifier.md
-    - name: What is face detection?🆕
-      displayName: recognition, detection, analysis, identification, verification
-      href: face/overview.md
+      - name: What is face detection? (preview)
+        displayName: recognition, detection, analysis, identification, verification
+        href: face/overview.md
   - name: Tutorials
     items:
-      - name: Create a custom analyzer 🆕
+      - name: Create a custom analyzer with Content Understanding Studio
         displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-        href: tutorial/create-custom-analyzer.md
-      - name: Build a face-data person directory 🆕
-        displayName: person, directory, search, index, vector
-        href: tutorial/build-person-directory.md
-      - name: Build a retrieval-augmented solution
+        href: how-to/customize-analyzer-content-understanding-studio.md
+      - name: Create a custom analyzer
+        displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+        href: tutorial/create-custom-analyzer.md        
+      - name: Classifier tutorial - Split and route
+        displayName: classifier, split, route, perPage, auto, analyzerId
+        href: how-to/classification-content-understanding-studio.md
+      - name: Migration from CU Preview to GA
+        displayName: migration, preview, GA, API changes
+        href: how-to/migration-preview-to-ga.md
+      - name: Copy and back up analyzers
+        href: how-to/copy-analyzers.md
+      - name: Build a retrieval-augmented generation solution
         displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
         href: tutorial/build-rag-solution.md
+      - name: Build a robotic process automation solution
+        href: tutorial/robotic-process-automation.md
+      - name: Create a Microsoft Foundry resource
+        displayName: extract, text, images, OCR, optical character recognition
+        href: how-to/create-multi-service-resource.md
+      - name: Build a face-data person directory (preview)
+        displayName: person, directory, search, index, vector
+        href: tutorial/build-person-directory.md
+  - name: Samples
+    items:
+      - name: Data extraction using Content Understanding
+        href: https://github.com/Azure-Samples/data-extraction-using-azure-content-understanding
   - name: Responsible AI
     items:
       - name: Transparency note

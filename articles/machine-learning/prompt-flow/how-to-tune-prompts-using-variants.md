@@ -10,15 +10,16 @@ ms.custom:
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: yijunzhang
+ms.reviewer: sooryar
 ms.date: 11/02/2023
+ms.update-cycle: 365-days
 ---
 
 # Tune prompts using variants
 
 Crafting a good prompt is a challenging task that requires a lot of creativity, clarity, and relevance. A good prompt can elicit the desired output from a pretrained language model, while a bad prompt can lead to inaccurate, irrelevant, or nonsensical outputs. Therefore, it's necessary to tune prompts to optimize their performance and robustness for different tasks and domains.
 
-So, we introduce [the concept of variants](concept-variants.md) which can help you test the model’s behavior under different conditions, such as different wording, formatting, context, temperature, or top-k, compare and find the best prompt and configuration that maximizes the model’s accuracy, diversity, or coherence.
+So, we introduce [the concept of variants](concept-variants.md) which can help you test the model's behavior under different conditions, such as different wording, formatting, context, temperature, or top-k, compare and find the best prompt and configuration that maximizes the model's accuracy, diversity, or coherence.
 
 In this article, we'll show you how to use variants to tune prompts and evaluate the performance of different variants.
 
@@ -82,19 +83,19 @@ Here are a few examples:
 URL: https://play.google.com/store/apps/details?id=com.spotify.music 
 Text content: Spotify is a free music and podcast streaming app with millions of songs, albums, and original podcasts. It also offers audiobooks, so users can enjoy thousands of stories. It has a variety of features such as creating and sharing music playlists, discovering new music, and listening to popular and exclusive podcasts. It also has a Premium subscription option which allows users to download and listen offline, and access ad-free music. It is available on all devices and has a variety of genres and artists to choose from. 
 OUTPUT: {"category": "App", "evidence": "Both"} 
-		
+        
 URL: https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw 
 Text content: NFL Sunday Ticket is a service offered by Google LLC that allows users to watch NFL games on YouTube. It is available in 2023 and is subject to the terms and privacy policy of Google LLC. It is also subject to YouTube's terms of use and any applicable laws. 
 OUTPUT: {"category": "Channel", "evidence": "URL"} 
-		
+        
 URL: https://arxiv.org/abs/2303.04671 
 Text content: Visual ChatGPT is a system that enables users to interact with ChatGPT by sending and receiving not only languages but also images, providing complex visual questions or visual editing instructions, and providing feedback and asking for corrected results. It incorporates different Visual Foundation Models and is publicly available. Experiments show that Visual ChatGPT opens the door to investigating the visual roles of ChatGPT with the help of Visual Foundation Models. 
 OUTPUT: {"category": "Academic", "evidence": "Text content"} 
-		
+        
 URL: https://ab.politiaromana.ro/ 
 Text content: There is no content available for this text. 
 OUTPUT: {"category": "None", "evidence": "None"}
-		
+        
 For a given URL : {{url}}, and text content: {{text_content}}.
 Classify above url to complete the category and indicate evidence.
 OUTPUT:    

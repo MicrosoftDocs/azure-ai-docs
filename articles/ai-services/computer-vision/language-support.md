@@ -1,24 +1,22 @@
 ---
-title: Language support - Azure AI Vision
-titleSuffix: Azure AI services
-description: This article provides a list of natural languages supported by Azure AI Vision features; OCR, Image analysis.
+title: Language support - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: This article provides a list of natural languages supported by Azure Vision in Foundry Tools features; OCR, Image analysis.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 09/25/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
-# Language support for Azure AI Vision
+# Language support for Azure Vision in Foundry Tools
 
-Some capabilities of Azure AI Vision support multiple languages; any capabilities not mentioned here only support English.
+Some capabilities of Azure Vision support multiple languages; any capabilities not mentioned here only support English.
 
 ## Optical Character Recognition (OCR)
 
-The Azure AI Vision [Read API](./overview-ocr.md) supports many languages. The `Read` API can extract text from images and documents with mixed languages, including from the same text line, without requiring a language parameter. See [How to specify the `Read` model](./how-to/call-read-api.md#determine-how-to-process-the-data-optional) to use the new languages.
+Azure Vision [Read API](./overview-ocr.md) supports many languages. The `Read` API can extract text from images and documents with mixed languages, including from the same text line, without requiring a language parameter. See [How to specify the `Read` model](./how-to/call-read-api.md#determine-how-to-process-the-data-optional) to use the new languages.
 
 > [!NOTE]
 > **Language code optional**
@@ -37,7 +35,7 @@ The following table lists the OCR supported languages for handwritten text by th
 |German |`de`|Spanish |`es`|
 |Italian |`it`|
 
-### Print text
+### Printed text
 
 The following table lists the OCR supported languages for print text by the most recent `Read` GA model.
 
@@ -128,7 +126,7 @@ The following table lists the OCR supported languages for print text by the most
 
 ## Image Analysis
 
-Some features of the [Analyze - Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API can return results in other languages, specified with the `language` query parameter. Other features return results in English regardless of what language is specified, and others throw an exception for unsupported languages. Features are specified with the `visualFeatures` and `details` query parameters; see the [Overview](overview-image-analysis.md) for a list of all the actions you can do with the [Analyze - Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API, or follow the [How-to guide](/azure/ai-services/computer-vision/how-to/call-analyze-image-40) to try them out.
+Some features of the [Analyze - Image](/rest/api/computervision/analyze-image) API can return results in other languages, specified with the `language` query parameter. Other features return results in English regardless of what language is specified, and others throw an exception for unsupported languages. Features are specified with the `visualFeatures` and `details` query parameters; see the [Overview](overview-image-analysis.md) for a list of all the actions you can do with the [Analyze - Image](/rest/api/computervision/analyze-image) API, or follow the [How-to guide](/azure/ai-services/computer-vision/how-to/call-analyze-image-40) to try them out.
 
 | Language | Language code | Categories | Tags | Description | Adult, Brands, Color, Faces, ImageType, Objects | Celebrities, Landmarks | Captions, Dense captions|
 |:---|:---:|:----:|:---:|:---:|:---:|:---:|:--:|

@@ -1,8 +1,8 @@
 ### YamlMime:FAQ
 metadata:
   title: Frequently asked questions - Anomaly Detector
-  titleSuffix: Azure AI services
-  description: Get answers to frequently asked questions about the Anomaly Detector Service in Azure AI services.
+  titleSuffix: Foundry Tools
+  description: Get answers to frequently asked questions about the Anomaly Detector Service in Foundry Tools.
   ms.service: azure-ai-anomaly-detector
   ms.topic: faq
   ms.date: 06/12/2025

@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 08/30/2023
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/python.md)]
@@ -19,10 +19,10 @@ Specify the language or voice of `SpeechConfig` to match your input text and use
 ```python
 # Set either the `SpeechSynthesisVoiceName` or `SpeechSynthesisLanguage`.
 speech_config.speech_synthesis_language = "en-US" 
-speech_config.speech_synthesis_voice_name ="en-US-AvaMultilingualNeural"
+speech_config.speech_synthesis_voice_name ="en-US-Ava:DragonHDLatestNeural"
 ```
 
-All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is, "I'm excited to try text to speech," and you select `es-ES-ElviraNeural`, the text is spoken in English with a Spanish accent.
+All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is, "I'm excited to try text to speech," and you select `es-ES-Ximena:DragonHDLatestNeural`, the text is spoken in English with a Spanish accent.
 
 If the voice doesn't speak the language of the input text, the Speech service doesn't create synthesized audio. For a full list of supported neural voices, see [Language and voice support for the Speech service](../../../language-support.md?tabs=tts).
 
@@ -132,7 +132,7 @@ To start using SSML for customization, make a minor change that switches the voi
 
    ```xml
    <speak version="1.0" xmlns="https://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-     <voice name="en-US-AvaMultilingualNeural">
+     <voice name="en-US-Ava:DragonHDLatestNeural">
        When you're on the freeway, it's a good idea to use a GPS.
      </voice>
    </speak>
@@ -156,7 +156,7 @@ To start using SSML for customization, make a minor change that switches the voi
    ```
 
 > [!NOTE]
-> To change the voice without using SSML, you can set the property on `SpeechConfig` by using `speech_config.speech_synthesis_voice_name = "en-US-AvaMultilingualNeural"`.
+> To change the voice without using SSML, you can set the property on `SpeechConfig` by using `speech_config.speech_synthesis_voice_name = "en-US-Ava:DragonHDLatestNeural"`.
 
 ## Subscribe to synthesizer events
 

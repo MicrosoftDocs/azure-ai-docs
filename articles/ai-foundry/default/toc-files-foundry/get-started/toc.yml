@@ -1,0 +1,11 @@
+items:
+- name: "Quickstart: Create resources"
+  href:  ../../tutorials/quickstart-create-foundry-resources.md
+ 
+- name: "Quickstart: Chat with an agent"
+  href: ../../../quickstarts/get-started-code.md
+
+- name: "Tutorial: Idea to prototype"
+  href: ../../tutorials/developer-journey-idea-to-prototype.md
+- name: Ask AI
+  href: ../../../concepts/ask-ai.md

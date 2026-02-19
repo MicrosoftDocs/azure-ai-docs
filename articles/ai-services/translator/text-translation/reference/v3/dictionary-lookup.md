@@ -1,18 +1,17 @@
 ---
 title: Translator Dictionary Lookup Method
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Dictionary Lookup method provides alternative translations for a word and a few idiomatic phrases.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
 
-# Translator 3.0: Dictionary Lookup
+# Azure Translator in Foundry Tools 3.0: Dictionary Lookup
 
 Provides alternative translations for a word and a few idiomatic phrases. Each translation has a part-of-speech and a list of back-translations. The back-translations enable a user to understand the translation in context. The [Dictionary Example](./dictionary-examples.md) operation includes example uses of each translation pair.
 
@@ -24,7 +23,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0
 ```
 
-_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+_See_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -41,7 +40,7 @@ Request headers include:
 
 | Headers  | Description |
 | ------ | ----------- |
-| Authentication headers | **Required request header**.<br/>See [Authentication](reference.md#authentication).|
+| Authentication headers | **Required request header**.<br/>See [Authentication](../authentication.md).|
 | Content-Type | **Required request header**.<br>Specifies the content type of the payload. Possible values are: `application/json`. |
 | Content-Length   | **Optional**.<br>The length of the request body. |
 | X-ClientTraceId   | **Optional**.<br/>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
@@ -52,7 +51,7 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 
 ```json
 [
-    {"Text":"fly"}
+    {"text":"fly"}
 ]
 ```
 
@@ -98,9 +97,9 @@ A successful response is a JSON array with one result for each string in the inp
 
 * `backTranslations`: A list of "back translations" of the target. For example, source words that the target can translate to. The list is guaranteed to contain the source word that was requested (for example, if the source word being looked up is `fly`, then  `fly` is included in the `backTranslations` list). However, it isn't guaranteed to be in the first position, and often isn't. Each element of the `backTranslations` list is an object described by the following properties:
 
-  * `normalizedText`: A string giving the normalized form of the source term that is a back-translation of the target. This value should be used as input to [lookup examples](./dictionary-examples.md).
+  * `normalizedText`: A string giving the normalized form of the source term that's a back-translation of the target. This value should be used as input to [lookup examples](./dictionary-examples.md).
 
-  * `displayText`: A string giving the source term that is a back-translation of the target in a form best suited for end-user display.
+  * `displayText`: A string giving the source term that's a back-translation of the target in a form best suited for end-user display.
 
   * `numExamples`: An integer representing the number of examples that are available for this translation pair. Actual examples must be retrieved with a separate call to [lookup examples](./dictionary-examples.md). The number is mostly intended to facilitate display in a UX. For example, a user interface can add a hyperlink to the back-translation if the number of examples is greater than zero. Then the back-translation is shown as plain text if there are no examples. The actual number of examples returned by a call to [lookup examples](./dictionary-examples.md) can be less than `numExamples`, because more filtering can be applied on the fly to remove "bad" examples.
 

@@ -1,21 +1,21 @@
 ---
 title: "Quickstart: Image Analysis 4.0"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to read text from images in your application using Image Analysis 4.0 through a native client SDK in the language of your choice.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: quickstart
-ms.date: 08/21/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 09/26/2025
 ms.author: pafarley
 ms.custom: devx-track-python, devx-track-csharp, mode-api, devx-track-dotnet, devx-track-extended-java, devx-track-js
 zone_pivot_groups: programming-languages-computer-vision-40
-keywords: Azure AI Vision, Azure AI Vision service
+keywords: Azure Vision in Foundry Tools, Azure Vision in Foundry Tools
 ---
 
 # Quickstart: Image Analysis 4.0
+
+[!INCLUDE [image-analysis-deprecation](../includes/image-analysis-deprecation.md)]
 
 Get started with the Image Analysis 4.0 REST API or client SDK to set up a basic image analysis application. The Image Analysis service provides you with AI algorithms for processing images and returning information on their visual features. Follow these steps to install a package to your application and try out the sample code.
 

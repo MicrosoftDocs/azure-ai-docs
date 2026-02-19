@@ -3,17 +3,17 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 03/29/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
+ai-usage: ai-assisted
 ---
-
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
 
-Use this quickstart to send language detection requests using the REST API. In the following example, you'll use cURL to identify the language that a text sample was written in.
+Use this quickstart to send language detection requests using the REST API. In the following example, you use cURL to identify the language that a text sample was written in.
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 
 ## Setting up
@@ -45,22 +45,9 @@ In a code editor, create a new file named `test_languagedetection_payload.json` 
     }
 }
 ```
-Save `test_detection_payload.json` somewhere on your computer. For example, your desktop.
+Save `test_languagedetection_payload.json` somewhere on your computer. For example, your desktop.
 
 ## Send a language detection request
-
-Use the following commands to send the API request using the program you're using. Copy the command into your terminal, and run it.
-
-parameter  |Description  |
-|---------|---------|
-|`-X POST <endpoint>`     | Specifies your endpoint for accessing the API.        |
-|`-H Content-Type: application/json`     | The content type for sending JSON data.          |
-|`-H "Ocp-Apim-Subscription-Key:<key>`    | Specifies the key for accessing the API.        |
-|`-d <documents>`     | The JSON containing the documents you want to send.         |
-
-Save `test_languagedetection_payload.json` somewhere on your computer. For example, your desktop. 
-
-## Send a language detection API request
 
 Use the following commands to send the API request using the program you're using. Copy the command into your terminal, and run it.
 
@@ -93,7 +80,7 @@ curl.exe -X POST $env:LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2023-
 -d "@C:\Users\<myaccount>\Desktop\test_languagedetection_payload.json"
 ```
 
-#### [Linux](#tab/linux)
+# [Linux](#tab/linux)
 
 Use the following commands to send the API request using the program you're using. Replace `/home/mydir/test_languagedetection_payload.json` with the location of the example JSON request file you created in the previous step.
 
@@ -104,7 +91,7 @@ curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2023-11-15-pr
 -d "@/home/mydir/test_languagedetection_payload.json"
 ```
 
-#### [macOS](#tab/macos)
+# [macOS](#tab/macos)
 
 Use the following commands to send the API request using the program you're using. Replace `/home/mydir/test_languagedetection_payload.json` with the location of the example JSON request file you created in the previous step.
 
@@ -113,17 +100,6 @@ curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2023-11-15-pr
 -H "Content-Type: application/json" \
 -H "Ocp-Apim-Subscription-Key: $LANGUAGE_KEY" \
 -d "@/home/mydir/test_languagedetection_payload.json"
-```
-
----
-
-Use the following commands to send the API request using the program you're using. Replace `/home/mydir/test_detection_payload.json` with the location of the example JSON request file you created in the previous step.
-
-```terminal
-curl -X POST $LANGUAGE_ENDPOINT/language/:analyze-text?api-version=2023-11-15-preview \
--H "Content-Type: application/json" \
--H "Ocp-Apim-Subscription-Key: $LANGUAGE_KEY" \
--d "@/home/mydir/test_detection_payload.json"
 ```
 
 ---

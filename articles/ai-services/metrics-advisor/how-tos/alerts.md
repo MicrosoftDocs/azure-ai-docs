@@ -65,10 +65,10 @@ Go to Metrics Advisor resource in Azure portal, and select "Identity", turn it t
 
 **Step2.** Create a web hook in Metrics Advisor workspace
 
-Log in to you workspace and select "Hooks" tab, then select "Create hook" button. 
+Log in to your workspace and select "Hooks" tab, then select "Create hook" button. 
 
 
-To create a web hook, you will need to add the following information:
+To create a web hook, you'll need to add the following information:
 
 |Parameter |Description  |
 |---------|---------|
@@ -84,7 +84,7 @@ To create a web hook, you will need to add the following information:
 
 - Request method is  **POST**
 - Timeout 30s
-- Retry for 5xx error, ignore other error. Will not follow 301/302 redirect request.
+- Retry for 5xx error, ignore other error. Won't follow 301/302 redirect request.
 - Request body: 
 ```
 {
@@ -92,7 +92,7 @@ To create a web hook, you will need to add the following information:
 	"hookId": "b0f27e91-28cf-4aa2-aa66-ac0275df14dd",
 	"alertType": "Anomaly",
 	"alertInfo": {
-		"anomalyAlertingConfigurationId": "1bc6052e-9a2a-430b-9cbd-80cd07a78c64",
+		"anomalyAlertingConfigurationId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
 		"alertId": "172536dbc00",
 		"timestamp": "2020-05-27T00:00:00Z",
 		"createdTime": "2020-05-29T10:04:45.590Z",
@@ -111,7 +111,7 @@ As mentioned, if accessing the endpoint needs to be authenticated by a certifica
 - Then select "Access policies" and "Add access policy", grant "get" permission for "Key permissions", "Secrete permissions" and "Certificate permissions". Select principal as the name of your Metrics Advisor resource. Select "Add" and "Save" button in "Access policies" page. 
 
 **Step4.** Receive anomaly notification
-When a notification is pushed through a web hook, you can  fetch incidents data by calling the "callBackUrl" in Webhook Request. Details for this api:
+When a notification is pushed through a web hook, you can  fetch incidents data by calling the "callBackUrl" in Webhook Request. Details for this API:
 
 -   [/alert/anomaly/configurations/{configurationId}/alerts/{alertId}/incidents](https://westus2.dev.cognitive.microsoft.com/docs/services/MetricsAdvisor/operations/getIncidentsFromAlertByAnomalyAlertingConfiguration)
 
@@ -121,7 +121,7 @@ By using web hook and Azure Logic Apps, it's possible to send email notification
 
 Metrics Advisor also supports automatically creating a work item in Azure DevOps to track issues/bugs when any anomaly is detected. All alerts can be sent through Azure DevOps hooks.
 
-To create an Azure DevOps hook, you will need to add the following information
+To create an Azure DevOps hook, you'll need to add the following information
 
 |Parameter |Description  |
 |---------|---------|

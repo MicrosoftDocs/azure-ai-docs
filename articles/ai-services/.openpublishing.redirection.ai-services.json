@@ -1,6 +1,91 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/ai-services/connect-services-ai-foundry-portal.md",
+      "redirect_url": "/azure/ai-services/connect-services-foundry-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/pattern-matching-overview.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-use-simple-language-pattern-matching.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-use-custom-entity-pattern-matching.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/cli.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/cpp.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/csharp.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/go.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/intro.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/java.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/javascript.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/luis-sign-up.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/objectivec.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/python.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/rest.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/quickstarts/intent-recognition/swift.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/intent-recognition-retire.md",
+      "redirect_url": "/azure/ai-services/speech-service/migrate-intent-recognition",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/index-spatial-analysis.yml",
       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
       "redirect_document_id": false
@@ -96,6 +181,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/voice-live-api-reference.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-live-api-reference-2025-10-01",
+      "redirect_document_id": false
+    },    
+    {
       "source_path_from_root": "/articles/ai-services/containers/index.yml",
       "redirect_url": "/azure/ai-services/cognitive-services-container-support",
       "redirect_document_id": false
@@ -127,17 +217,17 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/monitoring.md",
-      "redirect_url": "/azure/ai-services/openai/how-to/monitor-openai",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/monitor-openai",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/prepare-dataset.md",
-      "redirect_url": "/azure/ai-services/openai/concepts/fine-tuning-considerations",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/concepts/fine-tuning-considerations",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/audio-real-time.md",
-      "redirect_url": "/azure/ai-services/openai/realtime-audio-quickstart",
+      "redirect_url": "/azure/ai-foundry/openai/realtime-audio-quickstart",
       "redirect_document_id": false
     },
     {
@@ -182,8 +272,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/api-version-deprecation.md",
-      "redirect_url": "/azure/ai-services/openai/api-version-lifecycle",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/api-version-lifecycle",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-talent.md",
@@ -417,9 +507,104 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/computer-vision/use-case-queue-time.md",
-      "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/includes/video-retrieval-deprecation.md",
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
       "redirect_document_id": false
     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/intro-to-spatial-analysis-public-preview.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/transparency-note-spatial-analysis.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/responsible-use-deployment.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/disclosure-design.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/research-insights.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/reference-video-search.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/video-retrieval.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/includes/video-retrieval-input.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/content-understanding/concepts/analyzer-templates.md",
+       "redirect_url": "/azure/ai-services/content-understanding/concepts/prebuilt-analyzers",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-analyze.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-model-customization.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-modify-images.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-planogram.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/coco-verification.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/model-customization.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-model-customization.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-shelf-analysis.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
@@ -427,72 +612,77 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/quickstart-custom-commands-application.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-develop-custom-commands-application.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-setup-speech-sdk.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-send-activity-to-client.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-setup-web-endpoints.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-update-command-from-client.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-update-command-from-web-endpoint.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-deploy-cicd.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-developer-flow-test.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-debug-build-time.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-debug-runtime.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/custom-commands-references.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/custom-commands-encryption-of-data-at-rest.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/faq-voice-assistants.yml",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/custom-commands.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
@@ -508,6 +698,26 @@
     {
       "source_path_from_root": "/articles/ai-services/speech-service/get-started-speaker-recognition.md",
       "redirect_url": "/azure/ai-services/speech-service/speaker-recognition-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/speaker-recognition-overview.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/intent-recognition.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/get-started-intent-recognition-clu.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/get-started-intent-recognition.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
@@ -917,8 +1127,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/integrate-synapseml.md",
-      "redirect_url": "/azure/ai-services/openai/overview",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/overview",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
@@ -1122,23 +1332,23 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-messages.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#list---messages",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#list---messages",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-runs.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread-and-run",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#create---thread-and-run",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-threads.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#create---thread",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#list---assistants",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#list---assistants",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/meeting-transcription.md",
@@ -1153,6 +1363,21 @@
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-async-meeting-transcription.md",
       "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/voice-assistants.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-live",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to/voice-live-how-to-proactive-and-pregenerated-messages.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-live-quickstart",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-speech-transcription-editor.md",
+      "redirect_url": "/azure/ai-services/speech-service/how-to-custom-speech-create-project",
       "redirect_document_id": false
     },
     {
@@ -1172,8 +1397,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-personal-information.md",
-      "redirect_url": "/azure/ai-services/openai/concepts/content-filter",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/agents/concepts/agent-catalog.md",
@@ -1364,6 +1589,1432 @@
       "source_path_from_root": "/articles/ai-services/agents/whats-new.md",
       "redirect_url": "/azure/ai-foundry/agents/whats-new",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/configure-resources.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/how-to/configure-azure-resources",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/api-version-lifecycle.md",
+      "redirect_url": "/azure/ai-foundry/openai/api-version-lifecycle",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/audio-completions-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/audio-completions-quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/authoring-reference-preview.md",
+      "redirect_url": "/azure/ai-foundry/openai/authoring-reference-preview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/azure-government.md",
+      "redirect_url": "/azure/ai-foundry/openai/azure-government",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/chatgpt-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/chatgpt-quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/abuse-monitoring.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/abuse-monitoring",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/advanced-prompt-engineering.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/advanced-prompt-engineering",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/assistants.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/assistants",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/audio.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/audio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-credentials.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-credentials",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-annotations.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-annotations",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-configurability.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-configurability",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-document-embedding.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-document-embedding",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-groundedness.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-groundedness",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-prompt-shields.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-prompt-shields",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-protected-material.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-protected-material",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-severity-levels.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-severity-levels",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/content-streaming.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-streaming",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/customizing-llms.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/customizing-llms",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/default-safety-policies.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/default-safety-policies",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/fine-tuning-considerations.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/fine-tuning-considerations",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/gov-provisioned.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/gov-provisioned",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/gpt-4-v-prompt-engineering.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/gpt-4-v-prompt-engineering",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/gpt-with-vision.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/gpt-with-vision",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/legacy-models.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/legacy-models",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/model-retirements.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/model-retirements",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/model-router.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/model-router",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/model-versions.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/model-versions",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/models.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/models",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/prompt-engineering.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/prompt-engineering",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/prompt-transformation.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/prompt-transformation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/provisioned-migration.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/provisioned-migration",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/provisioned-throughput.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/provisioned-throughput",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/red-teaming.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/red-teaming",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/safety-system-message-templates.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/safety-system-message-templates",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/system-message.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/system-message",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/understand-embeddings.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/understand-embeddings",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/use-your-data.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/use-your-data",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/concepts/video-generation.md",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/video-generation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/dall-e-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/dall-e-quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/encrypt-data-at-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/encrypt-data-at-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/gpt-v-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/gpt-v-quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/assistant-functions.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/assistant-functions",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/assistant.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/assistant",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/assistants-logic-apps.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/assistants-logic-apps",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/azure-developer-cli.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/azure-developer-cli",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/batch-blob-storage.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/batch-blob-storage",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/batch.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/batch",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/business-continuity-disaster-recovery.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/business-continuity-disaster-recovery",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/chat-markup-language.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/chat-markup-language",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/chatgpt.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/chatgpt",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/code-interpreter.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/code-interpreter",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/completions.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/completions",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/computer-use.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/computer-use",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/content-filters.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/content-filters",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/create-resource.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/create-resource",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/dall-e.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/dall-e",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/deployment-types.md",
+      "redirect_url": "/azure/ai-foundry/foundry-models/concepts/deployment-types",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/dotnet-migration.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/dotnet-migration",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/dynamic-quota.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/dynamic-quota",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/embeddings.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/embeddings",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/evaluations.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/evaluations",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/file-search.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/file-search",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/fine-tune-test.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/fine-tune-test",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/fine-tuning-deploy.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/fine-tuning-deploy",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/fine-tuning-direct-preference-optimization",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/fine-tuning-functions.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/fine-tuning-functions",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/fine-tuning-safety-evaluation.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/fine-tuning-safety-evaluation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/fine-tuning-troubleshoot.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/fine-tuning-troubleshoot",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/fine-tuning-vision.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/fine-tuning-vision",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/fine-tuning.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/fine-tuning",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/function-calling.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/function-calling",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/gpt-with-vision.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/gpt-with-vision",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/json-mode.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/json-mode",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/latency.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/latency",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/manage-costs.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/manage-costs",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/managed-identity.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/managed-identity",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/migration-javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/migration-javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/migration.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/migration",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/model-router.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/model-router",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/monitor-openai.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/monitor-openai",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/network-security-perimeter.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/network-security-perimeter",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/network.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/network",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/on-your-data-best-practices.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/on-your-data-best-practices",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/on-your-data-configuration.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/on-your-data-configuration",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/predicted-outputs.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/predicted-outputs",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/prompt-caching.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/prompt-caching",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/provisioned-get-started.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/provisioned-get-started",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/provisioned-throughput-onboarding.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/provisioned-throughput-onboarding",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/quota.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/quota",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/realtime-audio-webrtc.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/realtime-audio-webrtc",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/realtime-audio-websockets.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/realtime-audio-websockets",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/realtime-audio.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/realtime-audio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/reasoning.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/reasoning",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/reinforcement-fine-tuning.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/reinforcement-fine-tuning",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/reproducible-output.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/reproducible-output",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/responses.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/risks-safety-monitor.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/risks-safety-monitor",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/role-based-access-control.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/role-based-access-control",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/spillover-traffic-management.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/spillover-traffic-management",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/stored-completions.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/stored-completions",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/structured-outputs.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/structured-outputs",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/use-blocklists.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/use-blocklists",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/use-web-app.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/use-web-app",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/weights-and-biases-integration.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/weights-and-biases-integration",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/work-with-code.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/work-with-code",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/working-with-models.md",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/working-with-models",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/agent-service.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/agent-service",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/ai-search-ingestion.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/ai-search-ingestion",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/api-surface.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/api-surface",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/api-versions/latest-authoring.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/api-versions/latest-authoring",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/api-versions/latest-inference-preview.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/api-versions/latest-inference-preview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/api-versions/latest-inference.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/api-versions/latest-inference",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/api-versions/new-inference-preview.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/api-versions/new-inference-preview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/audio-completions-ai-foundry.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-foundry",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/audio-completions-deploy-model.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-deploy-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/audio-completions-intro.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-intro",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/audio-completions-javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/audio-completions-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/audio-completions-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/audio-completions-typescript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/audio-completions-typescript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/batch/batch-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/batch/batch-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/batch/batch-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/batch/batch-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/batch/batch-studio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/batch/batch-studio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chat-completion.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chat-completion",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chat-go.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chat-go",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chatgpt-dotnet.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chatgpt-dotnet",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chatgpt-java.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chatgpt-java",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chatgpt-javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chatgpt-javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chatgpt-powershell.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chatgpt-powershell",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chatgpt-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chatgpt-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chatgpt-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chatgpt-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chatgpt-spring.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chatgpt-spring",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chatgpt-studio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chatgpt-studio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/chatgpt-typescript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/chatgpt-typescript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/connect-your-data-studio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/connect-your-data-studio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/content-filter-configurability.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/content-filter-configurability",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/create-resource-cli.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/create-resource-cli",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/create-resource-portal.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/create-resource-portal",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/create-resource-powershell.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/create-resource-powershell",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dall-e-dotnet.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dall-e-dotnet",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dall-e-go.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dall-e-go",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dall-e-java.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dall-e-java",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dall-e-javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dall-e-javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dall-e-powershell.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dall-e-powershell",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dall-e-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dall-e-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dall-e-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dall-e-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dall-e-studio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dall-e-studio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dall-e-typescript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dall-e-typescript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/deploy-web-app.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/deploy-web-app",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/deprecation.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/deprecation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/dotnet.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/dotnet",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/embeddings-powershell.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/embeddings-powershell",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/embeddings-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/embeddings-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/environment-variables.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/environment-variables",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/fine-tune-models.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/fine-tune-models",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/fine-tune.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/fine-tune",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/fine-tuning-openai-in-ai-studio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/fine-tuning-openai-in-ai-studio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/fine-tuning-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/fine-tuning-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/fine-tuning-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/fine-tuning-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/fine-tuning-studio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/fine-tuning-studio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/fine-tuning-unified.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/fine-tuning-unified",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/get-key-endpoint.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/get-key-endpoint",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/global-batch-limits.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/global-batch-limits",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/go.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/go",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/gpt-4-turbo.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/gpt-4-turbo",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/gpt-v-dotnet.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/gpt-v-dotnet",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/gpt-v-javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/gpt-v-javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/gpt-v-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/gpt-v-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/gpt-v-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/gpt-v-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/gpt-v-studio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/gpt-v-studio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/gpt-v-typescript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/gpt-v-typescript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/hourly-ptu-description.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/hourly-ptu-description",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/java.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/java",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/language-overview/dotnet.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/language-overview/dotnet",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/language-overview/go.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/language-overview/go",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/language-overview/java.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/language-overview/java",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/language-overview/javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/language-overview/javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/language-overview/python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/language-overview/python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/datazone-provisioned-managed.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/datazone-provisioned-managed",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/datazone-standard.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/datazone-standard",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/global-batch-datazone.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/global-batch-datazone",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/global-batch.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/global-batch",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/provisioned-global.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/provisioned-global",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/provisioned-models.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/provisioned-models",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/quota.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/quota",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/standard-audio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/standard-audio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/standard-chat-completions.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/standard-chat-completions",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/standard-completions.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/standard-completions",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/standard-embeddings.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/standard-embeddings",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/standard-global.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/standard-global",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/standard-gpt-35-turbo.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/standard-gpt-35-turbo",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/standard-gpt-4.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/standard-gpt-4",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/standard-image-generation.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/standard-image-generation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/model-matrix/standard-models.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/model-matrix/standard-models",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/on-your-data-authentication.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/on-your-data-authentication",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/powershell.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/powershell",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/preview-feature.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/preview-feature",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/prompt-chat-completion.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/prompt-chat-completion",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/prompt-completion.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/prompt-completion",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/realtime-deploy-model.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/realtime-deploy-model",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/realtime-javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/realtime-javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/realtime-portal.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/realtime-portal",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/realtime-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/realtime-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/realtime-typescript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/realtime-typescript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/resource-authentication.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/resource-authentication",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/retirement/models.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/retirement/models",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/safety-evaluation.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/safety-evaluation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/spring-environment-variables.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/spring-environment-variables",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/spring.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/spring",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/structured-outputs-dotnet.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/structured-outputs-dotnet",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/structured-outputs-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/structured-outputs-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/structured-outputs-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/structured-outputs-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/studio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/studio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/text-to-speech-dotnet.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/text-to-speech-dotnet",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/text-to-speech-javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/text-to-speech-javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/text-to-speech-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/text-to-speech-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/text-to-speech-typescript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/text-to-speech-typescript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/typescript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/typescript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-common-variables.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-common-variables",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-dotnet.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-dotnet",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-go.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-go",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-powershell.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-powershell",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-spring-common-variables.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-spring-common-variables",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-spring.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-spring",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-studio.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-studio",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/use-your-data-typescript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/use-your-data-typescript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/video-generation-intro.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/video-generation-intro",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/video-generation-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/video-generation-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/whisper-dotnet.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/whisper-dotnet",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/whisper-javascript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/whisper-javascript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/whisper-powershell.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/whisper-powershell",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/whisper-python.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/whisper-python",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/whisper-rest.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/whisper-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/includes/whisper-typescript.md",
+      "redirect_url": "/azure/ai-foundry/openai/includes/whisper-typescript",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/monitor-openai-reference.md",
+      "redirect_url": "/azure/ai-foundry/openai/monitor-openai-reference",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/overview.md",
+      "redirect_url": "/azure/ai-foundry/openai/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/quotas-limits.md",
+      "redirect_url": "/azure/ai-foundry/openai/quotas-limits",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/realtime-audio-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/realtime-audio-quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/realtime-audio-reference.md",
+      "redirect_url": "/azure/ai-foundry/openai/realtime-audio-reference",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/reference-preview-latest.md",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview-latest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/reference-preview.md",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/reference.md",
+      "redirect_url": "/azure/ai-foundry/openai/reference",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/references/azure-search.md",
+      "redirect_url": "/azure/ai-foundry/openai/references/azure-search",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/references/cosmos-db.md",
+      "redirect_url": "/azure/ai-foundry/openai/references/cosmos-db",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/references/elasticsearch.md",
+      "redirect_url": "/azure/ai-foundry/openai/references/elasticsearch",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/references/mongo-db.md",
+      "redirect_url": "/azure/ai-foundry/openai/references/mongo-db",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/containers/azure-kubernetes-recipe.md",
+      "redirect_url": "/azure/aks/what-is-aks",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/references/on-your-data.md",
+      "redirect_url": "/azure/ai-foundry/openai/references/on-your-data",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/references/pinecone.md",
+      "redirect_url": "/azure/ai-foundry/openai/references/pinecone",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/supported-languages.md",
+      "redirect_url": "/azure/ai-foundry/openai/supported-languages",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/text-to-speech-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/text-to-speech-quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/tutorials/embeddings.md",
+      "redirect_url": "/azure/ai-foundry/openai/tutorials/embeddings",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/tutorials/fine-tune.md",
+      "redirect_url": "/azure/ai-foundry/openai/tutorials/fine-tune",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/use-your-data-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/use-your-data-quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/video-generation-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/video-generation-quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/faq.yml",
+      "redirect_url": "/azure/ai-foundry/openai/faq",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/switching-endpoints.yml",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/switching-endpoints",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/index.yml",
+      "redirect_url": "/azure/ai-foundry/openai/index",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/whats-new.md",
+      "redirect_url": "/azure/ai-foundry/openai/whats-new",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/whisper-quickstart.md",
+      "redirect_url": "/azure/ai-foundry/openai/whisper-quickstart",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/qnamaker/tutorials/integrate-with-power-virtual-assistant-fallback-topic.md",
+      "redirect_url": "/azure/ai-services/language-service/tutorials/power-automate",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md",
+      "redirect_url": "/azure/ai-services/language-service/concepts/configure-azure-resources",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/multi-services-resource-search-skills.md",
+      "redirect_url": "/azure/ai-services/multi-service-resource",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry.md",
+      "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry-pro-mode.md",
+      "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/migrate-qnamaker-to-question-answering.md",
+      "redirect_url": "/azure/ai-services/qnamaker/how-to/migrate-qnamaker-to-question-answering",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/migrate-qnamaker.md",
+      "redirect_url": "/azure/ai-services/qnamaker/how-to/migrate-qnamaker",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/bot-service.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/how-to/deploy-agent",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/guided-conversations.md",
+      "redirect_url": "/azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/power-virtual-agents.md",
+      "redirect_url": "/microsoft-copilot-studio/fundamentals-get-started",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/tutorials/multiple-languages.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/quickstart/sdk",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/custom/azure-machine-learning-labeling.md",
+      "redirect_url": "/azure/ai-services/language-service/custom-text-classification/how-to/use-autolabeling",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis.md",
+      "redirect_url": "/azure/ai-services/luis/how-to/migrate-from-luis",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/concepts/migrate-language-service-latest.md ",
+      "redirect_url": "/azure/ai-services/language-service/reference/migrate-language-service-latest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/concepts/migrate.md",
+      "redirect_url": "/azure/ai-services/language-service/reference/migrate",
+      "redirect_document_id": true
     }
+
   ]
 }

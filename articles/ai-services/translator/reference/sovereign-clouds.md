@@ -1,16 +1,16 @@
 ---
 title: "Translator: sovereign clouds"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Using Translator in sovereign clouds
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Translator in sovereign (national) clouds
+# Azure Translator in Foundry Tools in sovereign (national) clouds
 
  Azure sovereign clouds are isolated in-country/region platforms with independent authentication, storage, and compliance requirements. Sovereign clouds are often used within geographical boundaries where there's a strict data residency requirement. Translator is currently deployed in the following sovereign clouds:
 
@@ -30,7 +30,7 @@ The following table lists the base URLs for Azure sovereign cloud endpoints:
 
 <!-- markdownlint-disable MD033 -->
 
-## Translator: sovereign clouds
+## Azure Translator in Foundry Tools: sovereign clouds
 
 ### [Azure US Government](#tab/us)
 
@@ -120,8 +120,8 @@ The Azure operated by 21Vianet cloud is a physical and logical network-isolated 
 |---|---|
 |Azure portal |<ul><li>[Azure operated by 21Vianet Portal](https://portal.azure.cn/)</li></ul>|
 |Regions <br></br>The region-identifier is a required header when using a multi-service resource. | <ul><li>`chinanorth` </li><li> `chinaeast2`</li></ul>|
-|Supported Feature|<ul><li>[Text translation](https://docs.azure.cn/cognitive-services/translator/reference/v3-0-reference)</li><li>[Document translation](../document-translation/overview.md)</li></ul>|
-|Supported Languages|<ul><li>[Translator language support.](https://docs.azure.cn/cognitive-services/translator/language-support)</li></ul>|
+|Supported Feature|<ul><li>[Text translation](../text-translation/reference/v3/reference.md)</li><li>[Document translation](../document-translation/overview.md)</li></ul>|
+|Supported Languages|<ul><li>[Translator language support.](../language-support.md)</li></ul>|
 
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD024 -->

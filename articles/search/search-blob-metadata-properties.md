@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 04/14/2025
 ---
 
@@ -24,11 +24,11 @@ Azure AI Search supports blob indexing and SharePoint document indexing for the 
 
 ## Document format properties
 
-The following table summarizes processing for each document format, and describes the metadata properties extracted by a blob indexer and the SharePoint Online indexer.
+The following table summarizes processing for each document format, and describes the metadata properties extracted by a blob indexer and the SharePoint indexer.
 
 | Document format / content type | Extracted metadata | Processing details |
 | --- | --- | --- |
-| CSV (text/csv) |`metadata_content_type`<br/>`metadata_content_encoding`<br/> | Extract text<br/>NOTE: If you need to extract multiple document fields from a CSV blob, see [Index CSV blobs](search-howto-index-csv-blobs.md) |
+| CSV (text/csv) |`metadata_content_type`<br/>`metadata_content_encoding`<br/> | Extract text<br/>NOTE: If you need to extract multiple document fields from a CSV blob, see [Index CSV blobs](search-how-to-index-azure-blob-csv.md) |
 | DOC (application/msword) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_character_count`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_page_count`<br/>`metadata_word_count` |Extract text, including embedded documents |
 | DOCM (application/vnd.ms-word.document.macroenabled.12) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_character_count`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_page_count`<br/>`metadata_word_count` |Extract text, including embedded documents |
 | DOCX (application/vnd.openxmlformats-officedocument.wordprocessingml.document) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_character_count`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_page_count`<br/>`metadata_word_count` |Extract text, including embedded documents |
@@ -36,7 +36,7 @@ The following table summarizes processing for each document format, and describe
 | EPUB (application/epub+zip) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_creation_date`<br/>`metadata_title`<br/>`metadata_description`<br/>`metadata_language`<br/>`metadata_keywords`<br/>`metadata_identifier`<br/>`metadata_publisher` |Extract text from all documents in the archive |
 | GZ (application/gzip) |`metadata_content_type` |Extract text from all documents in the archive |
 | HTML (text/html or application/xhtml+xml) |`metadata_content_encoding`<br/>`metadata_content_type`<br/>`metadata_language`<br/>`metadata_description`<br/>`metadata_keywords`<br/>`metadata_title` |Strip HTML elements and extract text |
-| JSON (application/json) |`metadata_content_type`<br/>`metadata_content_encoding` |Extract text<br/>NOTE: If you need to extract multiple document fields from a JSON blob, see [Index JSON blobs](search-howto-index-json-blobs.md) |
+| JSON (application/json) |`metadata_content_type`<br/>`metadata_content_encoding` |Extract text<br/>NOTE: If you need to extract multiple document fields from a JSON blob, see [Index JSON blobs](search-how-to-index-azure-blob-json.md) |
 | KML (application/vnd.google-earth.kml+xml) |`metadata_content_type`<br/>`metadata_content_encoding`<br/>`metadata_language`<br/> |Strip XML elements and extract text |
 | MSG (application/vnd.ms-outlook) |`metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_from_email`<br/>`metadata_message_to`<br/>`metadata_message_to_email`<br/>`metadata_message_cc`<br/>`metadata_message_cc_email`<br/>`metadata_message_bcc`<br/>`metadata_message_bcc_email`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_subject` |Extract text, including text extracted from attachments. `metadata_message_to_email`, `metadata_message_cc_email`, and `metadata_message_bcc_email` are string collections. The rest of the fields are strings.|
 | ODP (application/vnd.oasis.opendocument.presentation) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_title` |Extract text, including embedded documents |
@@ -61,4 +61,4 @@ The following table summarizes processing for each document format, and describe
 * [Indexers in Azure AI Search](search-indexer-overview.md)
 * [AI enrichment in Azure AI Search](cognitive-search-concept-intro.md)
 * [Search over Azure Blob Storage content](search-blob-storage-integration.md)
-* [Index data from SharePoint](search-howto-index-sharepoint-online.md)
+* [Index data from SharePoint](search-how-to-index-sharepoint-online.md)

@@ -1,15 +1,13 @@
 ---
 title: Using Azure resources in custom NER
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
 ### Create a new Language resource using PowerShell
 
 You can create a new resource and a storage account using the following CLI [template](https://github.com/Azure-Samples/cognitive-services-sample-data-files) and [parameters](https://github.com/Azure-Samples/cognitive-services-sample-data-files) files, which are hosted on GitHub.

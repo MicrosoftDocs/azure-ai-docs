@@ -1,30 +1,27 @@
 ---
-title: "Azure AI Services docs: What's new for May 2025"
-description: "What's new in the Azure AI Services docs for May 2025."
+title: "Foundry Tools docs: What's new for November 2025"
+description: Discover key changes and updates in Foundry Tools documentation for November 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
-ms.custom: May-2025
-ms.date: 06/02/2025
+ms.custom: November-2025
+ms.date: 11/04/2025
 ---
 
-# Azure AI Services docs: What's new for May 2025
+# What's new in Foundry Tools documentation?
 
-Welcome to what's new in the Azure AI Services docs for May 2025. This article lists some of the major changes to docs during this period.
+Welcome! This article highlights key changes and updates in Foundry Tools documentation for November 2025.
 
-## Updated articles
+## New articles
+- [Adaptive custom translation v1.0 (preview)](../ai-services/translator/custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md)
+- [Migrate from retired intent recognition](../ai-services/speech-service/migrate-intent-recognition.md)
+- [Recognized PII entities list](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories-list.md)
+- [Use the Call Center Voice Agent Accelerator](../ai-services/speech-service/voice-live-telephony.md)
+- [Voice live FAQ](../ai-services/speech-service/voice-live-faq.yml)
 
-- [Azure AI Agents function calling](../ai-services/agents/how-to/tools/function-calling.md)
-- [Azure AI Content Understanding documentation](../ai-services/content-understanding/index.yml)
-- [Azure AI Content Understanding video solutions (preview)](../ai-services/content-understanding/video/overview.md)
-- [Azure OpenAI Responses API (Preview)](../ai-services/openai/how-to/responses.md)
-- [Computer Use (preview) in Azure OpenAI](../ai-services/openai/how-to/computer-use.md) 
-- [Content Understanding audio solutions (preview)](../ai-services/content-understanding/audio/overview.md) 
-- [Content Understanding region and language support](../ai-services/content-understanding/language-region-support.md) 
-- [Content Understanding service quotas and limits](../ai-services/content-understanding/service-limits.md)
-- [Quickstart: Azure AI Content Understanding REST APIs](../ai-services/content-understanding/quickstart/use-rest-api.md)
-- [Realtime events reference](../ai-services/openai/realtime-audio-reference.md)
-- [Use an existing AI Search index with the Azure AI Search tool](../ai-services/agents/how-to/tools/azure-ai-search.md)
-- [Use the fast transcription API with Azure AI Speech](../ai-services/speech-service/fast-transcription-create.md) 
-- [Use the Microsoft Fabric data agent](../ai-services/agents/how-to/tools/fabric.md)
+### Updated articles
+
+- [Recognized **PII** and **PHI** entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
+- [Speech service supported regions](../ai-services/speech-service/regions.md)
+- [Synchronous document translation](../ai-services/translator/document-translation/reference/translate-document.md)

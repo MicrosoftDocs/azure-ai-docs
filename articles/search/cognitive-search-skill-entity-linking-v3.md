@@ -8,7 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 08/17/2022
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 # Entity Linking cognitive skill (v3)
@@ -16,7 +17,7 @@ ms.date: 08/17/2022
 The **Entity Linking** skill (v3) returns a list of recognized entities with links to articles in a well-known knowledge base (Wikipedia).
 
 > [!NOTE]
-> This skill is bound to the [Entity Linking](/azure/ai-services/language-service/entity-linking/overview) machine learning models in [Azure AI Language](/azure/ai-services/language-service/overview) and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to the [Entity Linking](/azure/ai-services/language-service/entity-linking/overview) machine learning models in [Azure Vision in Foundry Tools](/azure/ai-services/language-service/overview). It requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 
 ## @odata.type
@@ -33,15 +34,15 @@ Parameter names are case-sensitive and are all optional.
 
 | Parameter name     | Description |
 |--------------------|-------------|
-| `defaultLanguageCode` |    Language code of the input text. If the default language code is not specified,  English (en) will be used as the default language code. <br/> See the [full list of supported languages](/azure/ai-services/language-service/entity-linking/language-support). |
-| `minimumPrecision` | A value between 0 and 1. If the confidence score (in the `entities` output) is lower than this value, the entity is not returned. The default is 0. |
-| `modelVersion` | (Optional) Specifies the [version of the model](/azure/ai-services/language-service/concepts/model-lifecycle) to use when calling entity linking. It will default to the latest available when not specified. We recommend you do not specify this value unless it's necessary.|
+| `defaultLanguageCode` |    Language code of the input text. If the default language code isn't specified, English (en) is used as the default language code. <br/> See the [full list of supported languages](/azure/ai-services/language-service/entity-linking/language-support). |
+| `minimumPrecision` | A value between 0 and 1. If the confidence score (in the `entities` output) is lower than this value, the entity isn't returned. The default is 0. |
+| `modelVersion` | (Optional) Specifies the [version of the model](/azure/ai-services/language-service/concepts/model-lifecycle) to use when calling entity linking. It defaults to the latest available when not specified. We recommend you don't specify this value unless it's necessary.|
 
 ## Skill inputs
 
 | Input name      | Description                   |
 |---------------|-------------------------------|
-| `languageCode`    | A string indicating the language of the records. If this parameter is not specified, the default language code will be used to analyze the records. <br/>See the [full list of supported languages](/azure/ai-services/language-service/entity-linking/language-support). |
+| `languageCode`    | A string indicating the language of the records. If this parameter isn't specified, the default language code is used to analyze the records. <br/>See the [full list of supported languages](/azure/ai-services/language-service/entity-linking/language-support). |
 | `text`          | The text to analyze.          |
 
 ## Skill outputs
@@ -127,7 +128,7 @@ Parameter names are case-sensitive and are all optional.
 }
 ```
 
-The offsets returned for entities in the output of this skill are directly returned from the [Language Service APIs](/azure/ai-services/language-service/overview), which means if you are using them to index into the original string, you should use the [StringInfo](/dotnet/api/system.globalization.stringinfo) class in .NET in order to extract the correct content. For more information, see [Multilingual and emoji support in Language service features](/azure/ai-services/language-service/concepts/multilingual-emoji-support).
+The offsets returned for entities in the output of this skill are directly returned from the [Language Service APIs](/azure/ai-services/language-service/overview), which means if you're using them to index into the original string, you should use the [StringInfo](/dotnet/api/system.globalization.stringinfo) class in .NET in order to extract the correct content. For more information, see [Multilingual and emoji support in Language service features](/azure/ai-services/language-service/concepts/multilingual-emoji-support).
 
 ## Warning cases
 

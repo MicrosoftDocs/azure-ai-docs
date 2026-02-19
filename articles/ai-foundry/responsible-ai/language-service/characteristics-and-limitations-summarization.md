@@ -1,12 +1,12 @@
 ---
 title: Characteristics and limitations for summarization
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: System characteristics and limitations for summarization 
-author: YLXiong1125
-ms.author: ylxiong
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 04/09/2022
 ---
 
@@ -42,7 +42,7 @@ Large-scale, natural language models are trained with publicly available text da
 
 * **Inaccurate summary:** The feature uses an *abstractive* summarization method, in which the model doesn't simply extract contexts from the input text. Instead, the model tries to understand the input and paraphrase the key information in succinct natural sentences. However, there can be information or accuracy loss.
 
-* **Genre consideration:** The training data used to train the summarization feature in Azure AI services for language is mainly texts and transcripts between two participants. The model might perform with lower accuracy for the input text in other types of genres, such as documents or reports, which are less represented in the training data.
+* **Genre consideration:** The training data used to train the summarization feature in Foundry Tools for language is mainly texts and transcripts between two participants. The model might perform with lower accuracy for the input text in other types of genres, such as documents or reports, which are less represented in the training data.
 
 * **Language support:** Most of the training data is in English, and in other commonly used languages like German and Spanish. The trained models might not perform as well on input in other languages, because these languages are less represented in the training data. Microsoft is invested in expanding the language support of this feature.
 
@@ -78,7 +78,7 @@ You can use conversation summarization in a wide range of applications, each wit
 
 ## Next steps
 
-* [Transparency note for Azure AI Language](/azure/ai-foundry/responsible-ai/language-service/transparency-note)
+* [Transparency note for Azure Language in Foundry Tools](/azure/ai-foundry/responsible-ai/language-service/transparency-note)
 * [Transparency note for named entity recognition](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition)
 * [Transparency note for health](/azure/ai-foundry/responsible-ai/language-service/transparency-note-health)
 * [Transparency note for key phrase extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction)

@@ -6,10 +6,11 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 04/04/2025
+ms.date: 11/21/2025
 ---
 
 # Configure semantic ranker and return captions in search results
@@ -23,7 +24,7 @@ This article explains how to configure a search index for semantic reranking.
 
 ## Prerequisites
 
-+ A search service on a Basic tier or higher, subject to [region availability](search-region-support.md).
++ Azure AI Search in any [region that provides semantic ranking](search-region-support.md).
 
 + Semantic ranker [enabled on your search service](semantic-how-to-enable-disable.md).
 
@@ -42,7 +43,9 @@ You can specify a semantic configuration on new or existing indexes, using any o
 
 ## Add a semantic configuration
 
-A *semantic configuration* is a section in your index that establishes field inputs for semantic ranking. You can add or update a semantic configuration at any time, no rebuild necessary. If you create multiple configurations, you can specify a default. At query time, specify a semantic configuration on a [query request](semantic-how-to-query-request.md), or leave it blank to use the default.
+Some workloads create a semantic configuration automatically. If you're using [agentic retrieval](agentic-retrieval-overview.md) and a [knowledge source that indexes content](agentic-knowledge-source-overview.md#supported-knowledge-sources) on Azure AI Search, your generated index already has a semantic configuration that works for your content.
+
+For other workloads, you can set up a semantic configuration yourself. A *semantic configuration* is a section in your index that establishes the field inputs used for semantic ranking. You can add or update a semantic configuration at any time, no rebuild necessary. If you create multiple configurations, you can specify a default. At query time, specify a semantic configuration on a [query request](semantic-how-to-query-request.md), or leave it blank to use the default.
 
 You can create up to 100 semantic configurations in a single index.
 
@@ -51,7 +54,7 @@ A semantic configuration has a name and the following properties:
 | Property | Characteristics |
 |----------|-----------------|
 | Title field | A short string, ideally under 25 words. This field could be the title of a document, name of a product, or a unique identifier. If you don't have suitable field, leave it blank. | 
-| Content fields | Longer chunks of text in natural language form, subject to [maximum token input limits](semantic-search-overview.md#how-inputs-are-collected-and-summarized) on the machine learning models. Common examples include the body of a document, description of a product, or other free-form text. | 
+| Content fields | Longer chunks of text in natural language form, subject to [maximum token input limits](semantic-search-overview.md#how-the-system-collects-and-summarizes-inputs) on the machine learning models. Common examples include the body of a document, description of a product, or other free-form text. | 
 | Keyword fields | A list of keywords, such as the tags on a document, or a descriptive term, such as the category of an item. | 
 
 You can only specify one title field, but you can have as many content and keyword fields as you like. For content and keyword fields, list the fields in priority order because lower priority fields might get truncated.
@@ -164,12 +167,12 @@ SearchIndex searchIndex = new(indexName)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Starting in [2025-03-01-preview REST APIs](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and in Azure SDKs that provide the property, you can optionally configure an index to use prerelease semantic ranking models if one is deployed in your region. There's no mechanism for knowing if a prerelease is available, or if it was used on specific query. For this reason, we recommend that you use this property in test environments, and only if you're interested in trying out the very latest semantic ranking models.
+Using [previewREST APIs](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and preview Azure SDKs that provide the property, you can optionally configure an index to use prerelease semantic ranking models if one is deployed in your region. There's no mechanism for knowing if a prerelease is available, or if it was used on specific query. For this reason, we recommend that you use this property in test environments, and only if you're interested in trying out the very latest semantic ranking models.
 
 The configuration property is `"flightingOptIn": true`, and it's set in the semantic configuration section of an index. The property is null or false by default. You can set it true on a create or update request at any time, and it affects semantic queries moving forward, assuming the query stipulates a semantic configuration that includes the property.
 
 ```rest
-PUT https://myservice.search.windows.net/indexes('hotels')?allowIndexDowntime=False&api-version=2025-03-01-preview
+PUT https://myservice.search.windows.net/indexes('hotels')?allowIndexDowntime=False&api-version=2025-11-01-preview
 
 {
   "name": "hotels",

@@ -3,12 +3,12 @@ title: Manage models registry with MLflow
 titleSuffix: Azure Machine Learning
 description: Explore how to use MLflow in Azure Machine Learning to manage a models registry, and register, edit, query, and delete models.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 08/20/2024
+ms.date: 11/13/2025
 ms.topic: concept-article
 ms.custom: how-to
 
@@ -17,7 +17,7 @@ ms.custom: how-to
 
 # Manage models registry in Azure Machine Learning with MLflow
 
-Azure Machine Learning supports MLflow for model management when connected to a workspace. This approach is a convenient way to support the entire model lifecycle for users familiar with the MLFlow client.
+Azure Machine Learning supports MLflow for model management when connected to a workspace. This approach is a convenient way to support the entire model lifecycle for users familiar with the MLflow client.
 
 This article describes capabilities for managing a model registry with MLflow and how this method compares with other management options.
 
@@ -39,13 +39,13 @@ This article describes capabilities for managing a model registry with MLflow an
 
 - Azure Machine Learning doesn't support renaming models.
 
-- Machine Learning doesn't support deleting the entire model container.
+- Azure Machine Learning doesn't support deleting the entire model container.
 
 - Organizational registries aren't supported for model management with MLflow.
 
-- Model deployment from a specific model stage isn't currently supported in Machine Learning.
+- Model deployment from a specific model stage isn't currently supported in Azure Machine Learning.
 
-- Cross-workspace operations aren't currently supported in Machine Learning.
+- Cross-workspace operations aren't currently supported in Azure Machine Learning.
 
 ## Register new models
 
@@ -60,14 +60,14 @@ mlflow.register_model(f"runs:/{run_id}/{artifact_path}", model_name)
 ```
 
 > [!NOTE]
-> Models can only be registered to the registry in the same workspace where the run was tracked. Cross-workspace operations aren't currently supported in Azure Machine Learning.
+> You can only register models to the registry in the same workspace where you tracked the run. Azure Machine Learning doesn't currently support cross-workspace operations.
 
 > [!TIP]
 > Register models from runs or by using the `mlflow.<flavor>.log_model` method from inside the run. This approach preserves lineage from the job that generated the asset.
 
 ### Create models from assets
 
-If you have a folder with an **MLModel** MLflow model, you can register it directly. There's no need for the model to be always in the context of a run. For this approach, you can use the URI schema `file://path/to/model` to register MLflow models stored in the local file system.
+If you have a folder with an **MLModel** MLflow model, you can register it directly. The model doesn't need to be in the context of a run. For this approach, you can use the URI schema `file://path/to/model` to register MLflow models stored in the local file system.
 
 The following code creates a simple model by using the `scikit-learn` package and saves the model in MLflow format in local storage:
 
@@ -94,11 +94,11 @@ mlflow.register_model(f"file://{model_local_path}", "local-model-test")
 
 ## Query model registries
 
-You can use the MLflow SDK to query and search for models registered in the registry. The following sections demonstrate two ways to query for a model.
+Use the MLflow SDK to query and search for models registered in the registry. The following sections demonstrate two ways to query for a model.
 
 ### Query all models in registry
 
-You can query all registered models in the registry by using the MLflow client.
+Use the MLflow client to query all registered models in the registry.
 
 The following code prints the names of all models in the registry:
 
@@ -118,7 +118,7 @@ client.search_registered_models(order_by=["name ASC"])
 
 ### Get specific model versions
 
-The `search_registered_models()` method retrieves the model object, which contains all the model versions. To get the last registered model version for a given model, you can use the `get_registered_model()` method:
+The `search_registered_models()` method retrieves the model object, which contains all the model versions. To get the last registered model version for a given model, use the `get_registered_model()` method:
 
 ```python
 client.get_registered_model(model_name)
@@ -132,7 +132,7 @@ client.get_model_version(model_name, version=2)
 
 ## Load models from registry
 
-You can load models directly from the registry to restore logged models objects. For this task, use the functions `mlflow.<flavor>.load_model()` or `mlflow.pyfunc.load_model()` and indicate the URI of the model to load.
+You can load models directly from the registry to restore logged model objects. For this task, use the functions `mlflow.<flavor>.load_model()` or `mlflow.pyfunc.load_model()` and indicate the URI of the model to load.
 
 You can implement these functions with the following syntax:
 
@@ -147,15 +147,9 @@ To understand the differences between the functions `mlflow.<flavor>.load_model(
 MLflow supports stages for a model to manage the model lifecycle. The model version can transition from one stage to another. Stages are assigned to specific versions for a model. A model can have multiple versions on different stages.
 
 > [!IMPORTANT]
-> Stages can be accessed only by using the MLflow SDK. They aren't visible in the [Azure Machine Learning studio](https://ml.azure.com). Stages can't be retrieved by using the Azure Machine Learning SDK, the Azure Machine Learning CLI, or the Azure Machine Learning REST API. Deployment from a specific model stage isn't currently supported.
+> You can access stages only by using the MLflow SDK. They aren't visible in the [Azure Machine Learning studio](https://ml.azure.com). You can't retrieve stages by using the Azure Machine Learning SDK, the Azure Machine Learning CLI, or the Azure Machine Learning REST API. Deployment from a specific model stage isn't currently supported.
 
 ### Query model stages
-
-The following code uses the MLflow client to check all possible stages for a model:
-
-```python
-client.get_model_version_stages(model_name, version="latest")
-```
 
 You can see the model versions for each model stage by retrieving the model from the registry. The following code gets the model version that's currently in the `Staging` stage:
 
@@ -170,15 +164,15 @@ Multiple model versions can be in the same stage at the same time in MLflow. In 
 
 ### Transition model version
 
-Transitioning a model version to a particular stage can be done by using the MLflow client:
+Use the MLflow client to transition a model version to a particular stage:
 
 ```python
 client.transition_model_version_stage(model_name, version=3, stage="Staging")
 ```
 
-When you transition a model version to a particular stage, if the stage already has other model versions, the existing versions remain unchanged. This behavior applies by default.
+When you transition a model version to a particular stage, the existing model versions in that stage remain unchanged. This behavior is the default.
 
-Another approach is to set the `archive_existing_versions=True` parameter during the transition. This approach instructs MLflow to move any existing model versions to the stage `Archived`:
+To move existing model versions to the `Archived` stage, set the `archive_existing_versions=True` parameter during the transition:
 
 ```python
 client.transition_model_version_stage(
@@ -188,7 +182,7 @@ client.transition_model_version_stage(
 
 ### Load models from stages
 
-You can load a model in a particular stage directly from Python by using the `load_model` function and the following URI format. For this method to succeed, all libraries and dependencies must be installed in your working environment.
+You can load a model in a particular stage directly from Python by using the `load_model` function and the following URI format. For this method to succeed, you must install all libraries and dependencies in your working environment.
 
 Load the model from the `Staging` stage:
 
@@ -198,7 +192,7 @@ model = mlflow.pyfunc.load_model(f"models:/{model_name}/Staging")
 
 ## Edit and delete models
 
-Editing registered models is supported in both MLflow and Azure Machine Learning, but there are some important differences. The following sections describe some options.
+Both MLflow and Azure Machine Learning support editing registered models, but some important differences exist. The following sections describe some options.
 
 > [!NOTE]
 > Renaming models isn't supported in Azure Machine Learning because model objects are immutable.

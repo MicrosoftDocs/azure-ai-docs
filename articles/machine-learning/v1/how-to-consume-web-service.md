@@ -5,9 +5,9 @@ description: Learn how to call a web service endpoint that was generated when a 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: aashishb
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: jturuk
 ms.date: 03/11/2025
 ms.topic: how-to
 ms.devlang: csharp

@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.reviewer: None
-author: msakande
-ms.author: mopeakande
+ms.reviewer: shshubhe
+author: s-polly
+ms.author: scottpolly
 ms.date: 03/31/2025
 ms.custom: devx-track-azurecli, moe-wsvnet, update-code6
 # customer intent: As a developer, I want to see how to use private endpoints to provide network isolation so that I can improve the security of my Azure Machine Learning managed online endpoints.
@@ -29,7 +29,7 @@ If you prefer to use the legacy method for network isolation, see the following 
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * The [Azure CLI](/cli/azure/install-azure-cli) and the Azure CLI `ml` extension, installed and configured. For more information, see [Install and set up the CLI (v2)](how-to-configure-cli.md).
 
@@ -119,6 +119,9 @@ Because the workspace is configured to have a managed virtual network, any endpo
    :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint-workspacevnet.sh" ID="set_endpoint_name" :::
 
 1. Create an endpoint with `public_network_access` set to `disabled` to block inbound traffic:
+
+   > [!NOTE]
+   > The referenced script uses YAML configuration files from the cloned repository. Ensure you're in the correct directory (cli) after cloning the repository, or provide the full path to your YAML files. In Azure Cloud Shell, verify the files are accessible in your cloud storage before running the commands.
 
    :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint-workspacevnet.sh" ID="create_endpoint_inbound_blocked" :::
 

@@ -5,8 +5,8 @@ description: Troubleshooting steps when you get the "Validation for schema faile
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: scottpolly
 ms.topic: troubleshooting 
 ms.date: 01/22/2024

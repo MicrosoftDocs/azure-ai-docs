@@ -5,11 +5,11 @@ description: Upgrade data management from v1 to v2 of Azure Machine Learning SDK
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.topic: reference
-author: fbsolo-ms1
-ms.author: franksolomon
+ms.topic: how-to
+author: s-polly
+ms.author: scottpolly
 ms.date: 04/15/2024
-ms.reviewer: xunwan
+ms.reviewer: soumyapatro
 ms.custom: migration
 monikerRange: 'azureml-api-1 || azureml-api-2'
 ---

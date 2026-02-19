@@ -9,7 +9,7 @@ ms.topic: concept-article
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: mesameki
-ms.date: 09/30/2024
+ms.date: 10/30/2025
 ms.custom: responsible-ml, devx-track-python
 #Customer intent: As a data scientist, I want to learn about machine learning fairness and how to assess and mitigate unfairness in machine learning models.
 ---

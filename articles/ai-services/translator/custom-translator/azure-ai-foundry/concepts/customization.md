@@ -1,21 +1,21 @@
 ---
-title: Azure AI Foundry custom translations
-titleSuffix: Azure AI services
+title: Foundry Tools custom translations
+titleSuffix: Foundry Tools
 description: Build your own machine translation system using your preferred terminology and style.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
-ms.date: 05/19/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Foundry custom translations
+# Foundry tools custom translations
 
-Custom translation is a feature of the Azure AI Translator service. Azure AI Foundry custom translation allows users to customize Azure AI Translator's advanced neural machine translation when translating text using Translator (version 3 only).
+Custom translation is a feature of the Azure Translator. Microsoft Foundry custom translation allows users to customize Azure Translator's advanced neural machine translation when translating text using Translator (version 3 only).
 
-The feature can also be used to customize speech translation when used with [Azure AI Speech](../../../../speech-service/index.yml).
+The feature can also be used to customize speech translation when used with [Azure Speech in Foundry Tools](../../../../speech-service/index.yml).
 
 ## Custom translation
 
@@ -25,7 +25,7 @@ With Custom Translator, you can build neural translation systems that understand
 
 Use your previously translated documents (leaflets, webpages, documentation, etc.) to build a translation system that reflects your domain-specific terminology and style, better than a standard translation system. Users can upload `TMX`,`XLIFF`,`TXT`, `DOCX`, and `XLSX` documents.  
 
-The system also accepts data that is parallel at the document level but isn't yet aligned at the sentence level. If users have access to versions of the same content in multiple languages but in separate documents, Custom Translator os able to automatically match sentences across documents. The system can also use monolingual data in either or both languages to complement the parallel training data to improve the translations.
+The system also accepts data that's parallel at the document level but isn't yet aligned at the sentence level. If users have access to versions of the same content in multiple languages but in separate documents, Custom Translator os able to automatically match sentences across documents. The system can also use monolingual data in either or both languages to complement the parallel training data to improve the translations.
 
 The customized system is then available through a regular call to Translator using the category parameter.
 

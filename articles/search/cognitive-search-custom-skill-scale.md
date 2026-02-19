@@ -2,14 +2,14 @@
 title: 'Scale and manage custom skill'
 titleSuffix: Azure AI Search
 description: Learn the tools and techniques for efficiently scaling out a custom skill for maximum throughput. Custom skills invoke custom AI models or logic that you can add to an AI-enriched indexing pipeline in Azure AI Search.
-
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/18/2025
+ms.update-cycle: 365-days
 ---
 
 # Efficiently scale out a custom skill

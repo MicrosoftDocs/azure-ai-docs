@@ -1,12 +1,12 @@
 ---
 title: Guidance for integration and responsible use of question answering
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Guidance for integration and responsible use of question answering
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: best-practice
 ms.date: 09/29/2021
 ---
 

@@ -1,12 +1,12 @@
 ---
 title: Use cases for summarization
-titleSuffix: Azure AI services
-description: Summarization is a feature in Azure AI Language that produces a summary by extracting sentences from a document or text conversation. The feature condenses articles, papers, or documents to key sentences.
-author: ylxiong1125
-ms.author: ylxiong
+titleSuffix: Foundry Tools
+description: Summarization is a feature in Azure Language in Foundry Tools that produces a summary by extracting sentences from a document or text conversation. The feature condenses articles, papers, or documents to key sentences.
+author: laujan
+ms.author: lajanuar
 manager: yabinl
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 05/18/2022
 ---
 
@@ -89,7 +89,7 @@ The summarization models reflect certain societal views that are over-represente
 
 ## Next steps
 
-* [Transparency note for Azure AI Language](/azure/ai-foundry/responsible-ai/language-service/transparency-note)
+* [Transparency note for Azure Language in Foundry Tools](/azure/ai-foundry/responsible-ai/language-service/transparency-note)
 * [Transparency note for named entity recognition](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition)
 * [Transparency note for health](/azure/ai-foundry/responsible-ai/language-service/transparency-note-health)
 * [Transparency note for key phrase extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction)

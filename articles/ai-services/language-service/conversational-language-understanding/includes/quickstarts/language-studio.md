@@ -1,15 +1,15 @@
----
+<!-- ---
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Sign in to Language Studio
 
@@ -18,7 +18,7 @@ ms.author: lajanuar
 
 ## Create a conversational language understanding project
 
-Once you have a Language resource selected, create a conversational language understanding project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to the Language resource being used.
+Once you have a Language resource selected, create a conversational language understanding project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to Azure Language resource being used.
 
 For this quickstart, you can download [this sample project file](https://go.microsoft.com/fwlink/?linkid=2196152) and import it. This project can predict the intended commands from user input, such as: reading emails, deleting emails, and attaching a document to an email. 
 
@@ -46,4 +46,4 @@ Generally after training a model you would review its evaluation details. In thi
 
 ## Clean up resources
 
-[!INCLUDE [Delete project using Language studio](../language-studio/delete-project.md)]
+[!INCLUDE [Delete project using Language studio](../language-studio/delete-project.md)] -->

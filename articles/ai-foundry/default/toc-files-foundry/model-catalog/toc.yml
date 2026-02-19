@@ -1,0 +1,69 @@
+items:
+# Model Catalog Overview
+- name: Foundry Models sold directly by Azure
+  href: ../../../foundry-models/concepts/models-sold-directly-by-azure.md
+- name: Foundry Models from partners and community
+  href: ../../../foundry-models/concepts/models-from-partners.md
+- name: Model versions
+  href: ../../../foundry-models/concepts/model-versions.md
+- name: Marketplace configuration for partner models
+  href: ../../../foundry-models/how-to/configure-marketplace.md
+
+# Model Selection and Management
+- name: Model selection and management
+  items:
+  - name: GPT-5 vs GPT-4.1  
+    href: ../../../foundry-models/how-to/model-choice-guide.md
+  - name: Automatic model updates
+    href: ../../../openai/how-to/working-with-models.md
+  - name: Legacy models
+    href: ../../../openai/concepts/legacy-models.md
+
+# Model Router
+- name: Model router
+  items:
+  - name: Overview
+    href: ../../../openai/concepts/model-router.md
+    displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini
+  - name: What's new
+    href: ../../../foundry-models/whats-new-model-router.md
+  - name: Get started with model router
+    href: ../../../openai/how-to/model-router.md
+
+# APIs and Integration
+- name: Responses API with Foundry Models
+  href: ../../../foundry-models/how-to/generate-responses.md
+- name: Use blocklists
+  href: ../../../openai/how-to/use-blocklists.md
+
+# Image and Video Models
+- name: Image and video models
+  items:
+  - name: Image generation
+    href: ../../../openai/how-to/dall-e.md
+  - name: Image generation quickstart
+    href: ../../../openai/dall-e-quickstart.md
+  - name: Video generation
+    href: ../../../openai/video-generation-quickstart.md
+  - name: Vision-enabled chats
+    href: ../../../openai/how-to/gpt-with-vision.md
+  - name: Image prompt engineering techniques
+    href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
+
+# Audio Models
+- name: Audio models
+  items: 
+  - name: Realtime API for speech and audio
+    href: ../../../openai/how-to/realtime-audio.md
+  - name: Realtime API for speech and audio quickstart
+    href: ../../../openai/realtime-audio-quickstart.md
+  - name: Realtime API via WebRTC
+    href: ../../../openai/how-to/realtime-audio-webrtc.md
+  - name: Realtime API via WebSockets
+    href: ../../../openai/how-to/realtime-audio-websockets.md
+  - name: Realtime API via SIP
+    href: ../../../openai/how-to/realtime-audio-sip.md
+  - name: Speech to text with Whisper
+    href: ../../../openai/whisper-quickstart.md
+
+

@@ -1,14 +1,13 @@
 ---
 title: Disclosure design guidelines for synthetic voices
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Introduction to disclosure design guidelines and assessing disclosure level.
-services: ai-services
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
-ms.date: 12/03/2019
-ms.author: eur
+ms.topic: concept-article
+ms.date: 11/21/2025
 ---
 
 # Disclosure design guidelines for synthetic voices
@@ -25,7 +24,7 @@ Disclosure is a means of letting people know they're interacting with or listeni
 
 The need to disclose the synthetic origins of a computer-generated voice is relatively new. In the past, computer-generated voices were obviously that—no one would ever mistake them for a real person. Every day, however, the realism of synthetic voices improves, and they become increasingly indistinguishable from human voices.
 
-## Goals
+## Design principles
 
 These are the principles to keep in mind when designing synthetic voice experiences: 
 

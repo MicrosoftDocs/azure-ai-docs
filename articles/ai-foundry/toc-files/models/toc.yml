@@ -1,0 +1,387 @@
+items:
+- name: Explore Foundry Models
+  href: ../../concepts/foundry-models-overview.md
+- name: Foundry Models sold directly by Azure 
+  href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
+- name: Foundry Models from partners and community
+  href: ../../foundry-models/concepts/models-from-partners.md
+- name: Model versions
+  href: ../../foundry-models/concepts/model-versions.md
+- name: Model lifecycle and retirement
+  href: ../../concepts/model-lifecycle-retirement.md
+- name: Data, privacy, and security for Model Catalog
+  href: ../../how-to/concept-data-privacy.md
+- name: Foundry Models quotas and limits
+  href: ../../foundry-models/quotas-limits.md
+- name: Choose a model for your use case
+  items:
+  - name: Model leaderboards
+    href: ../../concepts/model-benchmarks.md
+  - name: Compare models
+    href: ../../how-to/benchmark-model-in-catalog.md
+  - name: Explore the model playgrounds
+    href: ../../concepts/concept-playgrounds.md
+  - name: GPT-5 vs GPT-4.1
+    href: ../../foundry-models/how-to/model-choice-guide.md
+- name: Model router
+  items:
+  - name: Overview
+    href: ../../openai/concepts/model-router.md
+    displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini
+  - name: What's new
+    href: ../../foundry-models/whats-new-model-router.md
+  - name: Get started with model router
+    href: ../../openai/how-to/model-router.md
+- name: Deploy Foundry Models
+  items:
+  - name: Deployment options in Microsoft Foundry portal
+    href: ../../concepts/deployments-overview.md
+  - name: Deployment types
+    href: ../../foundry-models/concepts/deployment-types.md   
+  - name: Configure Models from Partners and Community
+    href: ../../foundry-models/how-to/configure-marketplace.md
+  - name: Deploy Foundry Models using the Foundry portal
+    href: ../../foundry-models/how-to/deploy-foundry-models.md
+  - name: Deploy Foundry Models using code
+    href: ../../foundry-models/how-to/create-model-deployments.md
+  - name: Upgrade from GitHub Models to Microsoft Foundry Models
+    href: ../../foundry-models/how-to/quickstart-github-models.md
+  - name: Troubleshoot deployments and monitoring
+    href: ../../how-to/troubleshoot-deploy-and-monitor.md
+- name: Develop with AI models
+  items:
+  - name: Endpoints for Foundry Models
+    href: ../../foundry-models/concepts/endpoints.md
+  - name: Supported programming languages and SDKs
+    href: ../../openai/supported-languages.md
+  - name: Migrate from Azure AI Inference SDK to OpenAI SDK
+    href: ../../how-to/model-inference-to-openai-migration.md?tabs=openai&pivots=programming-language-python
+  - name: Azure AI Inference SDK
+    href: ../../foundry-models/supported-languages.md
+  - name: Responses API with Foundry Models
+    href: ../../foundry-models/how-to/generate-responses.md
+  - name: Work with chat models
+    items:
+    - name: Work with reasoning models
+      href: ../../foundry-models/how-to/use-chat-reasoning.md
+    - name: Work with multimodal models
+      href: ../../foundry-models/how-to/use-chat-multi-modal.md
+    - name: Use structured outputs
+      href: ../../foundry-models/how-to/use-structured-outputs.md
+  - name: Work with embedding models
+    items:
+    - name: Work with text embeddings
+      href: ../../foundry-models/how-to/use-embeddings.md
+    - name: Work with image embeddings
+      href: ../../foundry-models/how-to/use-image-embeddings.md
+  - name: Work with image models
+    href: ../../how-to/use-image-models.md
+  - name: Claude in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-claude.md
+  - name: Develop with LangChain and LangGraph
+    href: ../../how-to/develop/langchain.md
+  - name: Develop with Llama-Index
+    href: ../../how-to/develop/llama-index.md
+  - name: Develop with Semantic Kernel
+    href: ../../how-to/develop/semantic-kernel.md
+- name: Deployment in AI hub
+  items:
+  - name: Connect your AI hub to the Microsoft Foundry resource
+    href: ../../foundry-models/how-to/configure-project-connection.md
+  - name: Managed compute endpoints
+    items:
+    - name: Deploy models via managed compute
+      href: ../../how-to/deploy-models-managed.md
+    - name: Deploy models to managed compute pay-as-you-go
+      href: ../../how-to/deploy-models-managed-pay-go.md
+    - name: Healthcare AI models
+      items:
+      - name: Foundational AI models for healthcare
+        href: ../../how-to/healthcare-ai/healthcare-ai-models.md
+      - name: MedImageInsight model for embedding
+        href: ../../how-to/healthcare-ai/deploy-medimageinsight.md
+      - name: CXRReportGen model for text generation
+        href: ../../how-to/healthcare-ai/deploy-cxrreportgen.md
+      - name: MedImageParse models for prompted segmentation
+        href: ../../how-to/healthcare-ai/deploy-medimageparse.md
+  - name: Serverless API endpoints
+    items:
+    - name: Configure AI projects to work with Microsoft Foundry Models
+      href: ../../foundry-models/how-to/quickstart-ai-project.md
+    - name: Deploy models via serverless API
+      href: ../../how-to/deploy-models-serverless.md
+    - name: Consume models from a different project or hub
+      href: ../../how-to/deploy-models-serverless-connect.md
+    - name: Model region availability for serverless API 
+      href: ../../how-to/deploy-models-serverless-availability.md
+    - name: Guardrails & controls for serverless API 
+      href: ../../concepts/model-catalog-content-safety.md
+    - name: Inference examples for serverless deployments
+      href: ../../concepts/models-inference-examples.md
+- name: Azure OpenAI in Foundry Models
+  items:
+  - name: Upgrade from Azure OpenAI Service
+    href: ../../how-to/upgrade-azure-openai.md
+  - name: Quotas and limits
+    href: ../../openai/quotas-limits.md
+    displayName: openai 
+  - name: Azure OpenAI Models
+    href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
+    displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini, gpt-5-chat
+  - name: Model retirements
+    href: ../../openai/concepts/model-retirements.md
+  - name: What's new
+    href: ../../openai/whats-new.md
+  - name: Programming languages/SDKs
+    href: ../../openai/supported-languages.md
+  - name: API lifecycle
+    href: ../../openai/api-version-lifecycle.md
+  - name: Azure OpenAI FAQ
+    href: ../../openai/faq.yml
+  - name: Azure OpenAI in Azure Government
+    href: ../../openai/azure-government.md 
+  - name: Quickstarts
+    items:
+      - name: Audio generation
+        href: ../../openai/audio-completions-quickstart.md
+      - name: Vision-enabled chats
+        href: ../../openai/gpt-v-quickstart.md
+      - name: Image generation
+        href: ../../openai/dall-e-quickstart.md
+      - name: Video generation
+        href: ../../openai/video-generation-quickstart.md
+      - name: Realtime API for speech and audio
+        href: ../../openai/realtime-audio-quickstart.md
+      - name: Speech to text with Whisper
+        href: ../../openai/whisper-quickstart.md
+      - name: Text to speech (preview)
+        href: ../../openai/text-to-speech-quickstart.md
+  - name: Audio
+    items:
+        - name: Realtime API for speech and audio
+          href: ../../openai/how-to/realtime-audio.md
+        - name: Realtime API via WebRTC
+          href: ../../openai/how-to/realtime-audio-webrtc.md
+        - name: Realtime API via SIP
+          href: ../../openai/how-to/realtime-audio-sip.md
+        - name: Realtime API via WebSockets
+          href: ../../openai/how-to/realtime-audio-websockets.md
+        - name: Realtime API migration from Preview to GA
+          href: ../../openai/how-to/realtime-audio-preview-api-migration-guide.md
+  - name: Batch
+    items:
+       - name: Getting started with batch
+         href: ../../openai/how-to/batch.md
+       - name: Batch with Azure Blob Storage
+         href: ../../openai/how-to/batch-blob-storage.md   
+  - name: Responses & chat completions
+    items:
+      - name: Responses API
+        href: ../../openai/how-to/responses.md
+      - name: Reasoning models
+        displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini
+        href: ../../openai/how-to/reasoning.md
+      - name: Chat completions API
+        href: ../../openai/how-to/chatgpt.md
+        displayName: ChatGPT, chatgpt
+      - name: Codex
+        href: ../../openai/how-to/codex.md
+        displayName: codex, CODEX, codex cli, codex ide extension, gpt-5-codex
+      - name: Computer Use
+        href: ../../openai/how-to/computer-use.md
+        displayName: cua, computer using model
+      - name: Deep research
+        href: ../../openai/how-to/deep-research.md
+      - name: Web search
+        href: ../../openai/how-to/web-search.md
+      - name: Function calling
+        href: ../../openai/how-to/function-calling.md
+      - name: Predicted outputs
+        href: ../../openai/how-to/predicted-outputs.md
+      - name: Prompt caching
+        href: ../../openai/how-to/prompt-caching.md
+      - name: Structured outputs
+        href: ../../openai/how-to/structured-outputs.md
+      - name: Vision-enabled chats
+        href: ../../openai/how-to/gpt-with-vision.md
+      - name: Additional features
+        items:
+        - name: JSON mode
+          href: ../../openai/how-to/json-mode.md
+        - name: Reproducible output
+          href: ../../openai/how-to/reproducible-output.md
+  - name: Embeddings
+    items:
+      - name: Embeddings basics
+        href: ../../openai/how-to/embeddings.md
+      - name: Getting started with embeddings
+        href: ../../openai/tutorials/embeddings.md
+  - name: Evaluation
+    href: ../../openai/how-to/evaluations.md
+  - name: Image & video generation
+    items:
+    - name: Image generation
+      href: ../../openai/how-to/dall-e.md
+    - name: Video generation (preview)
+      href: ../../openai/concepts/video-generation.md
+  - name: Stored completions
+    href: ../../openai/how-to/stored-completions.md
+  - name: Webhooks
+    href: ../../openai/how-to/webhooks.md
+  - name: Concepts
+    items:
+      - name: Assistants
+        href: ../../openai/concepts/assistants.md
+      - name: Abuse monitoring
+        href: ../../openai/concepts/abuse-monitoring.md
+      - name: Audio
+        href: ../../openai/concepts/audio.md
+      - name: Default safety policies
+        href: ../../openai/concepts/default-safety-policies.md
+      - name: Prompt transformations
+        href: ../../openai/concepts/prompt-transformation.md
+      - name: Customizing Large Language Models (LLMs)
+        href: ../../openai/concepts/customizing-llms.md
+      - name: Embeddings
+        href: ../../openai/concepts/understand-embeddings.md
+      - name: Fine-tuning
+        href: ../../openai/concepts/fine-tuning-considerations.md
+      - name: Vision-enabled models
+        href: ../../openai/concepts/gpt-with-vision.md
+      - name: Video generation (preview)
+        href: ../../openai/concepts/video-generation.md
+      - name: Red teaming large language models (LLMs)
+        href: ../../openai/concepts/red-teaming.md
+      - name: Content credentials
+        href: ../../openai/concepts/content-credentials.md
+      - name: Prompt engineering
+        items:
+        - name: Prompt engineering techniques
+          href: ../../openai/concepts/prompt-engineering.md
+        - name: Image prompt engineering techniques
+          href: ../../openai/concepts/gpt-4-v-prompt-engineering.md
+      - name: System messages
+        items:
+        - name: System message design
+          href: ../../openai/concepts/advanced-prompt-engineering.md
+        - name: Safety system messages
+          href: ../../openai/concepts/system-message.md
+        - name: Safety system message templates
+          href: ../../openai/concepts/safety-system-message-templates.md
+      - name: Model versions
+        href: ../../openai/concepts/model-versions.md
+      - name: Legacy models
+        href: ../../openai/concepts/legacy-models.md
+  - name: How-to 
+    items:
+    - name: Assistants (preview)
+      items:
+      - name: Getting started with Assistants
+        href: ../../openai/how-to/assistant.md
+      - name: Tools
+        items:
+        - name: Code Interpreter
+          href: ../../openai/how-to/code-interpreter.md
+        - name: Function calling
+          items:
+          - name: Assistants function calling
+            href: ../../openai/how-to/assistant-functions.md
+          - name: Function calling with Azure Logic Apps
+            href: ../../openai/how-to/assistants-logic-apps.md
+        - name: File search
+          href: ../../openai/how-to/file-search.md
+    - name: Content filtering
+      href: ../../openai/how-to/content-filters.md
+    - name: Use blocklists
+      href: ../../openai/how-to/use-blocklists.md
+    - name: Risks & Safety Monitoring
+      href: ../../openai/how-to/risks-safety-monitor.md
+    - name: Use your data
+      items:
+        - name: Text data
+          href: ../../openai/concepts/use-your-data.md
+          displayName: use your data, on your data
+        - name: Network and access configuration
+          href: ../../openai/how-to/on-your-data-configuration.md
+        - name: Deploy and use web apps
+          href: ../../openai/how-to/use-web-app.md
+        - name: Troubleshooting and best practices
+          href: ../../openai/how-to/on-your-data-best-practices.md
+    - name: Migrate to OpenAI Python v1.x
+      href: ../../openai/how-to/migration.md
+    - name: Migrate to OpenAI JavaScript v4.x
+      href: ../../openai/how-to/migration-javascript.md
+    - name: Migrate to Azure OpenAI .NET v2.0
+      href: ../../openai/how-to/dotnet-migration.md
+    - name: Models
+      items:
+        - name: Manage models
+          href: ../../openai/how-to/working-with-models.md
+    - name: Networking and security
+      items:
+        - name: Virtual networks with private endpoints
+          href: ../../openai/how-to/network.md        
+        - name: Encryption of data at rest
+          href: ../../openai/encrypt-data-at-rest.md
+        - name: Managed identity
+          href: ../../openai/how-to/managed-identity.md
+        - name: Network security perimeter (preview)
+          href: ../../openai/how-to/network-security-perimeter.md
+    - name: Service management
+      items:
+        - name: Resource creation & model deployment
+          href: ../../openai/how-to/create-resource.md
+        - name: OpenAI vs Azure OpenAI (Python)
+          href: ../../openai/how-to/switching-endpoints.yml
+        - name: Manage quota
+          href: ../../openai/how-to/quota.md
+        - name: Dynamic quota
+          href: ../../openai/how-to/dynamic-quota.md
+        - name: Monitor Azure OpenAI
+          href: ../../openai/how-to/monitor-openai.md
+        - name: Performance & latency
+          href: ../../openai/how-to/latency.md
+        - name: Role-based access control (Azure RBAC)
+          href: ../../openai/how-to/role-based-access-control.md
+        - name: Business continuity & disaster recovery (BCDR)
+          href: ../../openai/how-to/business-continuity-disaster-recovery.md
+    - name: Deploy and use web apps
+      href: ../../openai/how-to/use-web-app.md
+  - name: Tutorials
+    items:
+      - name: Embeddings
+        href: ../../openai/tutorials/embeddings.md
+      - name: Fine-tuning GPT-4o mini
+        href: ../../openai/tutorials/fine-tune.md
+  - name: Security & Governance
+    items:
+      - name: Data, privacy, and security
+        href: ../../responsible-ai/openai/data-privacy.md
+      - name: Encryption of data at rest
+        href: ../../openai/encrypt-data-at-rest.md
+      - name: Managed identity
+        href: ../../openai/how-to/managed-identity.md
+      - name: Role-based access control (Azure RBAC)
+        href: ../../openai/how-to/role-based-access-control.md
+      - name: Business continuity & disaster recovery (BCDR)
+        href: ../../openai/how-to/business-continuity-disaster-recovery.md
+      - name: Use your data
+        items:
+        - name: Network and access configuration
+          href: ../../openai/how-to/on-your-data-configuration.md
+  - name: Responsible AI
+    items:
+      - name: Overview
+        href: ../../responsible-ai/openai/overview.md
+      - name : Transparency note
+        href: ../../responsible-ai/openai/transparency-note.md
+      - name: Limited access
+        href: ../../responsible-ai/openai/limited-access.md
+      - name: Code of conduct
+        href: /legal/ai-code-of-conduct
+      - name: Data, privacy, and security
+        href: ../../responsible-ai/openai/data-privacy.md
+      - name: Customer Copyright Commitment
+        href: ../../responsible-ai/openai/customer-copyright-commitment.md
+- name: Foundry Models FAQ
+  href: ../../foundry-models/faq.yml

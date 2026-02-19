@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 Create a **DELETE** request using the following URL, headers, and JSON body to delete a conversational language understanding deployment.
 
 
@@ -21,7 +20,7 @@ Create a **DELETE** request using the following URL, headers, and JSON body to d
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `myProject` |
 |`{DEPLOYMENT-NAME}`     | The name for your deployment name. This value is case-sensitive.   | `staging` |
-|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you are calling. | `2023-04-01` |
+|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
 
 ### Headers
 
@@ -32,4 +31,4 @@ Use the following header to authenticate your request.
 |`Ocp-Apim-Subscription-Key`| The key to your resource. Used for authenticating your API requests.|
 
 
-Once you send your API request, you will receive a `202` response indicating success, which means your deployment has been deleted.
+Once you send your API request, you receive a `202` response indicating success, which means your deployment is deleted.

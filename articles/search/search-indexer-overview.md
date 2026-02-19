@@ -2,15 +2,15 @@
 title: Indexer overview
 titleSuffix: Azure AI Search
 description: Crawl Azure SQL Database, SQL Managed Instance, Azure Cosmos DB, or Azure storage to extract searchable data and populate an Azure AI Search index.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 04/18/2025
+ms.topic: concept-article
+ms.date: 06/23/2025
+ms.update-cycle: 365-days
 ---
 
 # Indexers in Azure AI Search
@@ -33,7 +33,7 @@ You can use an indexer as the sole means for data ingestion, or in combination w
 |----------|---------|
 | Single data source | This pattern is the simplest: one data source is the sole content provider for a search index. Most supported data sources provide some form of change detection so that subsequent indexer runs pick up the difference when content is added or updated in the source. |
 | Multiple data sources | An indexer specification can have only one data source, but the search index itself can accept content from multiple sources, where each indexer job brings new content from a different data provider. Each source can contribute its share of full documents, or populate selected fields in each document. For a closer look at this scenario, see [Tutorial: Index from multiple data sources](tutorial-multiple-data-sources.md). |
-| Multiple indexers | Multiple data sources are typically paired with multiple indexers if you need to vary run time parameters, the schedule, or field mappings. </br></br>[Cross-region scale out of Azure AI Search](search-reliability.md#data-sync) is a variation of this scenario. You might have copies of the same search index in different regions. To synchronize search index content, you could have multiple indexers pulling from the same data source, where each indexer targets a different search index in each region.</br></br>[Parallel indexing](search-howto-large-index.md#parallel-indexing) of very large data sets also requires a multi-indexer strategy, where each indexer targets a subset of the data. |
+| Multiple indexers | Multiple data sources are typically paired with multiple indexers if you need to vary run time parameters, the schedule, or field mappings. </br></br>[Cross-region scale out of Azure AI Search](search-multi-region.md#data-synchronization) is a variation of this scenario. You might have copies of the same search index in different regions. To synchronize search index content, you could have multiple indexers pulling from the same data source, where each indexer targets a different search index in each region.</br></br>[Parallel indexing](search-howto-large-index.md#parallel-indexing) of very large data sets also requires a multi-indexer strategy, where each indexer targets a subset of the data. |
 | Content transformation | Indexers drive [skillset execution and AI enrichment](cognitive-search-concept-intro.md). Content transforms are defined in a [skillset](cognitive-search-working-with-skillsets.md) that you attach to the indexer. You can use skills to [incorporate data chunking and vectorization](vector-search-integrated-vectorization.md).|
 
  You should plan on creating one indexer for every target index and data source combination. You can have multiple indexers writing into the same index, and you can reuse the same data source for multiple indexers. However, an indexer can only consume one data source at a time, and can only write to a single index. As the following graphic illustrates, one data source provides input to one indexer, which then populates a single index:  
@@ -50,25 +50,25 @@ You can use an indexer as the sole means for data ingestion, or in combination w
 
 Indexers crawl data stores on Azure and outside of Azure.
 
-+ [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md)
-+ [Azure Cosmos DB](search-howto-index-cosmosdb.md)
-+ [Azure Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md)
++ [Azure Blob Storage](search-how-to-index-azure-blob-storage.md)
++ [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md)
++ [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md)
 + [Azure SQL Database](search-how-to-index-sql-database.md)
-+ [Azure Table Storage](search-howto-indexing-azure-tables.md)
++ [Azure Table Storage](search-how-to-index-azure-tables.md)
 + [Azure SQL Managed Instance](search-how-to-index-sql-managed-instance.md)
++ [Microsoft OneLake](search-how-to-index-onelake-files.md)
 + [SQL Server on Azure Virtual Machines](search-how-to-index-sql-server.md)
 + [Azure Files](search-file-storage-integration.md) (in preview)
-+ [Azure MySQL](search-howto-index-mysql.md) (in preview)
-+ [SharePoint in Microsoft 365](search-howto-index-sharepoint-online.md) (in preview)
-+ [Azure Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md) (in preview)
-+ [Azure Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md) (in preview)
-+ [OneLake](search-how-to-index-onelake-files.md) (in preview)
++ [Azure MySQL](search-how-to-index-mysql.md) (in preview)
++ [SharePoint in Microsoft 365](search-how-to-index-sharepoint-online.md) (in preview)
++ [Azure Cosmos DB for MongoDB](search-how-to-index-cosmosdb-mongodb.md) (in preview)
++ [Azure Cosmos DB for Apache Gremlin](search-how-to-index-cosmosdb-gremlin.md) (in preview)
 
 Azure Cosmos DB for Cassandra is not supported.
 
 Indexers accept flattened row sets, such as a table or view, or items in a container or folder. In most cases, it creates one search document per row, record, or item.
 
-Indexer connections to remote data sources can be made using standard Internet connections (public) or encrypted private connections when you use a shared private link. You can also set up connections to authenticate using a managed identity. For more information about secure connections, see [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) and [Connect to a data source using a managed identity](search-howto-managed-identities-data-sources.md).
+Indexer connections to remote data sources can be made using standard Internet connections (public) or encrypted private connections when you use a shared private link. You can also set up connections to authenticate using a managed identity. For more information about secure connections, see [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) and [Connect to a data source using a managed identity](search-how-to-managed-identities.md).
 
 ## Stages of indexing
 
@@ -88,11 +88,11 @@ You can also enable image extraction during document cracking for an [extra fee]
 
 Depending on the data source, the indexer will try different operations to extract potentially indexable content:
 
-+ When the document is a file with embedded images, such as a PDF, the indexer extracts text, images, and metadata. Indexers can open files from [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md#supported-document-formats), [Azure Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md#supported-document-formats), and [SharePoint](search-howto-index-sharepoint-online.md#supported-document-formats).
++ When the document is a file with embedded images, such as a PDF, the indexer extracts text, images, and metadata. Indexers can open files from [Azure Blob Storage](search-how-to-index-azure-blob-storage.md#supported-document-formats), [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md#supported-document-formats), and [SharePoint](search-how-to-index-sharepoint-online.md#supported-document-formats).
 
 + When the document is a record in [Azure SQL](search-how-to-index-sql-database.md), the indexer will extract non-binary content from each field in each record.
 
-+ When the document is a record in [Azure Cosmos DB](search-howto-index-cosmosdb.md), the indexer will extract non-binary content from fields and subfields from the Azure Cosmos DB document.
++ When the document is a record in [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md), the indexer will extract non-binary content from fields and subfields from the Azure Cosmos DB document.
 
 Note that the document cracking process can also be triggered later during the optional [skillset execution](cognitive-search-concept-intro.md) stage, using skillsets, for data transformation. Adding a skillset with [image skills](cognitive-search-concept-image-scenarios.md) allows document cracking to extract images and queue them for processing.
 
@@ -152,7 +152,7 @@ For more information, see [Create an indexer](search-howto-create-indexers.md)
 
 After the first indexer run, you can [rerun it on demand](search-howto-run-reset-indexers.md) or [set up a schedule](search-howto-schedule-indexers.md).
 
-You can monitor [indexer status in the Azure portal](search-howto-monitor-indexers.md) or through [Get Indexer Status API](/rest/api/searchservice/indexers/get-status). You should also [run queries on the index](search-query-create.md) to verify the result is what you expected.
+You can monitor [indexer status in the Azure portal](search-monitor-indexers.md) or through [Get Indexer Status API](/rest/api/searchservice/indexers/get-status). You should also [run queries on the index](search-query-create.md) to verify the result is what you expected.
 
 Indexers don't have dedicated processing resources. Based on this, indexers' status may show as idle before running (depending on other jobs in the queue) and run times may not be predictable. Other factors define indexer performance as well, such as document size, document complexity, image analysis, among others.
 
@@ -164,4 +164,4 @@ Now that you've been introduced to indexers, a next step is to review indexer pr
 + [Reset and run indexers](search-howto-run-reset-indexers.md)
 + [Schedule indexers](search-howto-schedule-indexers.md)
 + [Define field mappings](search-indexer-field-mappings.md)
-+ [Monitor indexer status](search-howto-monitor-indexers.md)
++ [Monitor indexer status](search-monitor-indexers.md)

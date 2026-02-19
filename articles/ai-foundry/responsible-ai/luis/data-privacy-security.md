@@ -1,12 +1,12 @@
 ---
 title: Data and privacy for Language Understanding (LUIS)
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document details issues for data, privacy, and security for Language Understanding (LUIS).
-author: skandil
-ms.author: sarakandil
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.subservice: azure-ai-luis
 ms.date: 02/08/2024
 ---
@@ -46,7 +46,7 @@ Customer controls include:
 
 Azure services are implemented while maintaining appropriate technical and organizational measures to protect customer data in the cloud.
 
-To maintain security and data governance requirements, run Docker containers for LUIS in your own environment. For more information on installing and running LUIS containers, see [Install and run Docker containers for LUIS](/azure/ai-services/luis/luis-container-howto?tabs=v3). For more information on the security model of Azure AI services, see [Azure AI services container security](/azure/ai-services/cognitive-services-container-support?tabs=luis#azure-cognitive-services-container-security). You're responsible for securing and maintaining the equipment and infrastructure required to operate LUIS's containers located on your premises.
+To maintain security and data governance requirements, run Docker containers for LUIS in your own environment. For more information on installing and running LUIS containers, see [Install and run Docker containers for LUIS](/azure/ai-services/luis/luis-container-howto?tabs=v3). For more information on the security model of Foundry Tools, see [Foundry Tools container security](/azure/ai-services/cognitive-services-container-support?tabs=luis#azure-cognitive-services-container-security). You're responsible for securing and maintaining the equipment and infrastructure required to operate LUIS's containers located on your premises.
 
 To learn more about Microsoft's privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/trust-center).
 

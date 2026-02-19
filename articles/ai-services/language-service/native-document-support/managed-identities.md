@@ -6,10 +6,9 @@ ms.topic: how-to
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 03/05/2025
+ms.date: 11/18/2025
+ms.custom: sfi-image-nochange
 ---
-
-
 # Managed identities for Language resources
 
 Managed identities for Azure resources are service principals that create a Microsoft Entra identity and specific permissions for Azure managed resources. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your source and target container URLs.
@@ -33,9 +32,9 @@ Managed identities for Azure resources are service principals that create a Micr
 
 To get started, you need the following resources:
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [create a free account](https://azure.microsoft.com/free/).
+* An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An [**single-service Azure AI Language**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) resource created in a regional location.
+* An [**single-service Azure Language in Foundry Tools**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) resource created in a regional location.
 
 * A brief understanding of [**Azure role-based access control (`Azure RBAC`)**](/azure/role-based-access-control/role-assignments-portal) using the Azure portal.
 
@@ -75,7 +74,7 @@ In the following steps, we enable a system-assigned managed identity and grant y
 
 ## Enable a system-assigned managed identity
 
-You must grant the Language resource access to your storage account before it can create, read, or delete blobs. Once you enabled the Language resource with a system-assigned managed identity, you can use Azure role-based access control (`Azure RBAC`), to give Language features access to your Azure storage containers.
+You must grant Azure Language resource access to your storage account before it can create, read, or delete blobs. Once you enabled Azure Language resource with a system-assigned managed identity, you can use Azure role-based access control (`Azure RBAC`), to give Language features access to your Azure storage containers.
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select your Language resource.
@@ -105,7 +104,7 @@ You must grant the Language resource access to your storage account before it ca
 
     :::image type="content" source="media/azure-role-assignments-page-portal.png" alt-text="Screenshot that shows the Azure role assignments page in the Azure portal.":::
 
-1. Next, assign a **Storage Blob Data Contributor** role to your Language service resource. The **Storage Blob Data Contributor** role gives Language (represented by the system-assigned managed identity) read, write, and delete access to the blob container and data. In the **Add role assignment** pop-up window, complete the fields as follows and select **Save**:
+1. Next, assign a **Storage Blob Data Contributor** role to your Language resource. The **Storage Blob Data Contributor** role gives Language (represented by the system-assigned managed identity) read, write, and delete access to the blob container and data. In the **Add role assignment** pop-up window, complete the fields as follows and select **Save**:
 
     | Field | Value|
     |------|--------|
@@ -124,7 +123,7 @@ You must grant the Language resource access to your storage account before it ca
 
 ## HTTP requests
 
-* A native document Language service operation request is submitted to your Language service endpoint via a POST request.
+* A native document Language operation request is submitted to your Language endpoint via a POST request.
 
 * With managed identity and `Azure RBAC`, you no longer need to include SAS URLs.
 
@@ -135,4 +134,4 @@ You must grant the Language resource access to your storage account before it ca
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Native document support](overview.md#native-document-support-for-azure-ai-language-preview)
+> [Native document support](overview.md#native-document-support-for-azure-language-in-foundry-tools-preview)

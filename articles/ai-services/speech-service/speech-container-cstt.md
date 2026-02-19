@@ -1,21 +1,21 @@
 ---
 title: Custom speech to text containers - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Install and run custom speech to text containers with Docker to perform speech recognition, transcription, generation, and more on-premises.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 4/28/2025
-ms.author: eur
+ms.date: 01/30/2026
+ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
 ---
 
 # Custom speech to text containers with Docker
 
-The custom speech to text container transcribes real-time speech or batch audio recordings with intermediate results. You can use a custom model that you created in the [custom speech portal](https://speech.microsoft.com/customspeech). In this article, you learn how to download, install, and run a custom speech to text container.
+The custom speech to text container transcribes real-time speech or batch audio recordings with intermediate results. You can use a custom model that you created in the [custom speech portal](https://speech.microsoft.com/customspeech). In this article, you'll learn how to download, install, and run a custom speech to text container.
 
 For more information about prerequisites, validating that a container is running, running multiple containers on the same host, and running disconnected containers, see [Install and run Speech containers with Docker](speech-container-howto.md).
 
@@ -194,23 +194,23 @@ Use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) 
 
 # [Disconnected custom speech to text](#tab/disconnected)
 
-To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Azure AI services documentation.
+To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Foundry Tools documentation.
 
 If you are approved to run the container disconnected from the internet, the following example shows the formatting of the `docker run` command to use, with placeholder values. Replace these placeholder values with your own values.
 
 In order to prepare and configure a disconnected custom speech to text container, you need two separate speech resources:
 
-- A regular Azure AI Speech resource that is either configured to use a "**S0 - Standard**" pricing tier or a "**Speech to Text (Custom)**" commitment tier pricing plan. This is used to train, download, and configure your custom speech models for use in your container.
-- An Azure AI Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan. This is used to download your disconnected container license file required to run the container in disconnected mode.
+- A regular Azure Speech in Foundry Tools resource that is either configured to use a "**S0 - Standard**" pricing tier or a "**Speech to Text (Custom)**" commitment tier pricing plan. This is used to train, download, and configure your custom speech models for use in your container.
+- An Azure Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan. This is used to download your disconnected container license file required to run the container in disconnected mode.
 
 Follow these steps to download and run the container in disconnected environments. 
-1. [Download a model for the disconnected container](#download-a-model-for-the-disconnected-container). For this step, use a regular Azure AI Speech resource that is either configured to use a "**S0 - Standard**" pricing tier or a "**Speech to Text (Custom)**" commitment tier pricing plan.
-1. [Download the disconnected container license](#download-the-disconnected-container-license). For this step, use an Azure AI Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan.
-1. [Run the disconnected container for service](#run-the-disconnected-container). For this step, use an Azure AI Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan.
+1. [Download a model for the disconnected container](#download-a-model-for-the-disconnected-container). For this step, use a regular Azure Speech resource that is either configured to use a "**S0 - Standard**" pricing tier or a "**Speech to Text (Custom)**" commitment tier pricing plan.
+1. [Download the disconnected container license](#download-the-disconnected-container-license). For this step, use an Azure Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan.
+1. [Run the disconnected container for service](#run-the-disconnected-container). For this step, use an Azure Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan.
 
 ### Download a model for the disconnected container
 
-For this step, use a regular Azure AI Speech resource that is either configured to use a "**S0 - Standard**" pricing tier or a "**Speech to Text (Custom)**" commitment tier pricing plan.
+For this step, use a regular Azure Speech resource that is either configured to use a "**S0 - Standard**" pricing tier or a "**Speech to Text (Custom)**" commitment tier pricing plan.
 
 [!INCLUDE [Custom speech container run](includes/containers-cstt-common-run.md)]
 
@@ -229,7 +229,7 @@ You can only use a license file with the appropriate container and model that yo
 | `{API_KEY}` | The key for your Speech resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |
 | `{CONTAINER_LICENSE_DIRECTORY}` | Location of the license folder on the container's local filesystem.<br/><br/>For example: `/path/to/license/directory` |
 
-For this step, use an Azure AI Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan.
+For this step, use an Azure Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan.
 
 ```bash
 docker run --rm -it -p 5000:5000 \ 
@@ -256,13 +256,13 @@ Wherever the container is run, the license file must be mounted to the container
 | `{NUMBER_CPUS}` | The appropriate number of CPUs to allocate for your container.<br/><br/>For example: `4` |
 | `{LICENSE_MOUNT}` | The path where the license is downloaded, and mounted.<br/><br/>For example: `/host/license:/path/to/license/directory` |
 | `{MODEL_PATH}` | The path where the model is located.<br/><br/>For example: `/host/models:/usr/local/models` |
-| `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation. |
+| `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../containers/disconnected-containers.md#usage-records) in the Foundry Tools documentation. |
 | `{ENDPOINT_URI}` | The endpoint for authenticating your service request. You can find it on your resource's **Key and endpoint** page, on the Azure portal.<br/><br/>For example: `https://<your-resource-name>.cognitiveservices.azure.com` |
 | `{API_KEY}` | The key for your Speech resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |
 | `{CONTAINER_LICENSE_DIRECTORY}` | Location of the license folder on the container's local filesystem.<br/><br/>For example: `/path/to/license/directory` |
 | `{CONTAINER_OUTPUT_DIRECTORY}` | Location of the output folder on the container's local filesystem.<br/><br/>For example: `/path/to/output/directory` |
 
-For this step, use an Azure AI Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan.
+For this step, use an Azure Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan.
 
 ```bash
 docker run --rm -it -p 5000:5000 --memory {MEMORY_SIZE} --cpus {NUMBER_CPUS} \ 

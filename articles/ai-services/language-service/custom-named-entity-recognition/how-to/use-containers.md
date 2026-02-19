@@ -1,17 +1,16 @@
 ---
 title: Use Docker containers for Custom Named Entity Recognition on-premises
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Docker containers for Custom Named Entity Recognition on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-named-entity-recognition
 keywords: on-premises, Docker, container, natural language processing
 ---
-
 # Install and run Custom Named Entity Recognition containers
 
 
@@ -23,7 +22,7 @@ Containers enable you to host the Custom Named Entity Recognition API on your ow
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/).
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure. 
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 
@@ -46,14 +45,14 @@ CPU core and memory correspond to the `--cpus` and `--memory` settings, which ar
 
 ## Export your Custom Named Entity Recognition model
 
-Before you proceed with running the docker image, you will need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders below with your own values:
+Before you proceed with running the docker image, you need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
 | **{API_KEY}** | The key for your Custom Named Entity Recognition resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`|
 | **{ENDPOINT_URI}** | The endpoint for accessing the Custom Named Entity Recognition API. You can find it on your resource's **Key and endpoint** page, on the Azure portal. | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
-| **{PROJECT_NAME}** | The name of the project containing the model that you want to export. You can find it on your projects tab in the Language Studio portal. |`myProject`|
-| **{TRAINED_MODEL_NAME}** | The name of the trained model you want to export. You can find your trained models on your model evaluation tab under your project in the Language Studio portal. |`myTrainedModel`|
+| **{PROJECT_NAME}** | The name of the project containing the model that you want to export. You can find it on your projects tab in Azure Language Studio portal. |`myProject`|
+| **{TRAINED_MODEL_NAME}** | The name of the trained model you want to export. You can find your trained models on your model evaluation tab under your project in Azure Language Studio portal. |`myTrainedModel`|
 
 ```bash
 curl --location --request PUT '{ENDPOINT_URI}/language/authoring/analyze-text/projects/{PROJECT_NAME}/exported-models/{TRAINED_MODEL_NAME}?api-version=2023-04-15-preview' \
@@ -86,15 +85,15 @@ Once the container is on the host computer, use the [docker run](https://docs.do
 > * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
 > * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
 
-To run the *Custom Named Entity Recognition* container, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the *Custom Named Entity Recognition* container, execute the following `docker run` command. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
 | **{API_KEY}** | The key for your Custom Named Entity Recognition resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`|
 | **{ENDPOINT_URI}** | The endpoint for accessing the Custom Named Entity Recognition API. You can find it on your resource's **Key and endpoint** page, on the Azure portal. | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
-| **{PROJECT_NAME}** | The name of the project containing the model that you want to export. You can find it on your projects tab in the Language Studio portal. |`myProject`|
+| **{PROJECT_NAME}** | The name of the project containing the model that you want to export. You can find it on your projects tab in Azure Language Studio portal. |`myProject`|
 | **{LOCAL_PATH}** | The path where the exported model in the previous step will be downloaded in. You can choose any path of your liking. |`C:/custom-ner-model`|
-| **{TRAINED_MODEL_NAME}** | The name of the trained model you want to export. You can find your trained models on your model evaluation tab under your project in the Language Studio portal. |`myTrainedModel`|
+| **{TRAINED_MODEL_NAME}** | The name of the trained model you want to export. You can find your trained models on your model evaluation tab under your project in Azure Language Studio portal. |`myTrainedModel`|
 
 
 ```bash
@@ -134,7 +133,7 @@ Use the host, `http://localhost:5000`, for container APIs.
 
 If you run the container with an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files that are helpful to troubleshoot issues that happen while starting or running the container.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 

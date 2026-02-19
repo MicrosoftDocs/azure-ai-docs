@@ -1,13 +1,14 @@
 ---
 title: How to specify a recognition model - Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to choose which recognition model to use with your Azure AI Face application.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/22/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
@@ -39,9 +40,9 @@ You can move to later recognition models at your own convenience; however, you'l
 
 ## Model recommendations
 
-The _recognition_04_ model (published 2021) is the most accurate model currently available. If you're a new customer, we recommend using this model. _Recognition_04_ provides improved accuracy for both similarity comparisons and person-matching comparisons. _Recognition_04_ improves recognition for enrolled users wearing face covers (surgical masks, N95 masks, cloth masks). Now you can build safe and seamless user experiences that use the latest _detection_03_ model to detect whether an enrolled user is wearing a face cover. Then you can use the latest _recognition_04_ model to recognize their identity. Each model operates independently of the others, and a confidence threshold set for one model isn't meant to be compared across the other recognition models.
+The _recognition_04_ model (published 2021) is the most accurate model currently available. If you're a new customer, use this model. _Recognition_04_ provides improved accuracy for both similarity comparisons and person-matching comparisons. _Recognition_04_ improves recognition for enrolled users wearing face covers (surgical masks, N95 masks, cloth masks). You can build safe and seamless user experiences that use the latest _detection_03_ model to detect whether an enrolled user is wearing a face cover, and then use the latest _recognition_04_ model to recognize their identity. Each model operates independently of the others, and a confidence threshold set for one model isn't meant to be compared across the other recognition models.
 
-Read on to learn how to specify a selected model in different Face operations while avoiding model conflicts. If you're an advanced user and would like to determine whether you should switch to the latest model, skip to the [Evaluate different models](#evaluate-different-models) section. You can evaluate the new model and compare results using your current data set.
+The following sections explain how to specify a selected model in different Face operations while avoiding model conflicts. If you're an advanced user and want to determine whether you should switch to the latest model, skip to the [Evaluate different models](#evaluate-different-models) section to evaluate the new model and compare results using your current data set.
 
 
 ## Detect faces with specified model

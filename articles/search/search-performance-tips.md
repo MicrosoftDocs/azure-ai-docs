@@ -5,8 +5,9 @@ description: Learn about tips and best practices for maximizing performance on a
 author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 03/21/2025
+ms.topic: best-practice
+ms.date: 08/01/2025
+ms.update-cycle: 365-days
 ---
 
 # Tips for better performance in Azure AI Search
@@ -22,7 +23,7 @@ This article is a collection of tips and best practices for boosting query and i
 
 ## Index size and schema
 
-Queries run faster on smaller indexes. This is partly a function of having fewer fields to scan, but it's also due to how the system caches content for future queries. After the first query, some content remains in memory where it's searched more efficiently. Because index size tends to grow over time, one best practice is to periodically revisit index composition, both schema and documents, to look for content reduction opportunities. However, if the index is right-sized, the only other calibration you can make is to increase capacity by [upgrading your service](search-how-to-upgrade.md), [adding replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas), or [switching to a higher tier](search-capacity-planning.md#change-your-pricing-tier). The section "[Tip: Switch to a Standard S2 tier](#tip-switch-to-a-standard-s2-tier)" discusses the scale up versus scale out decision.
+Queries run faster on smaller indexes. This is partly a function of having fewer fields to scan, but it's also due to how the system caches content for future queries. After the first query, some content remains in memory where it's searched more efficiently. Because index size tends to grow over time, one best practice is to periodically revisit index composition, both schema and documents, to look for content reduction opportunities. However, if the index is right-sized, the only other calibration you can make is to increase capacity by [upgrading your service](search-how-to-upgrade.md), [adding replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas), or [switching to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). The section "[Tip: Switch to a Standard S2 tier](#tip-switch-to-a-standard-s2-tier)" discusses the scale up versus scale out decision.
 
 Schema complexity can also adversely affect indexing and query performance. Excessive field attribution builds in limitations and processing requirements. [Complex types](search-howto-complex-data-types.md) take longer to index and query. The next few sections explore each condition.
 
@@ -109,7 +110,7 @@ Basic and Standard services created [in supported regions](search-limits-quotas-
 
 The Standard S1 search tier is often where customers start. A common pattern for S1 services is that indexes grow over time, which requires more partitions. More partitions lead to slower response times, so more replicas are added to handle the query load. As you can imagine, the cost of running an S1 service has now progressed to levels beyond the initial configuration.
 
-At this juncture, an important question to ask is whether it would be beneficial to [move to a higher tier](search-capacity-planning.md#change-your-pricing-tier), as opposed to progressively increasing the number of partitions or replicas of the current service.
+At this juncture, an important question to ask is whether it would be beneficial to [switch to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier), as opposed to progressively increasing the number of partitions or replicas of the current service.
 
 Consider the following topology as an example of a service that has taken on increasing levels of capacity:
 

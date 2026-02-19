@@ -18,7 +18,7 @@ Reference documentation [(training)](/javascript/api/@azure/cognitiveservices-cu
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * The current version of [Node.js](https://nodejs.org/)
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesCustomVision"  title="Create a Custom Vision resource"  target="_blank">create a Custom Vision resource </a> in the Azure portal to create a training and prediction resource.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
@@ -121,7 +121,7 @@ To add the sample images to the project, insert the following code after the tag
 
 
 > [!IMPORTANT]
-> You need to change the path to the images (`sampleDataRoot`) based on where you downloaded the Azure AI services Python SDK Samples repo.
+> You need to change the path to the images (`sampleDataRoot`) based on where you downloaded the Foundry Tools Python SDK Samples repo.
 
 > [!NOTE]
 > If you don't have a click-and-drag utility to mark the coordinates of regions, you can use the web UI at [Customvision.ai](https://www.customvision.ai/). In this example, the coordinates are already provided.

@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 01/30/2024
-ms.author: eur
+ms.date: 7/16/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/cpp.md)]
@@ -25,7 +25,7 @@ The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/
 ## Recognize speech from a microphone
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech in Foundry Tools Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 Follow these steps to create a console application and install the Speech SDK.
 
@@ -55,12 +55,12 @@ Follow these steps to create a console application and install the Speech SDK.
        auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
        auto endpoint = GetEnvironmentVariable("ENDPOINT");
         
-       if ((size(speechKey) == 0) || (size(endpoint) == 0)) {
+       if (std::string(speechKey).empty() || std::string(endpoint).empty()) {
            std::cout << "Please set both SPEECH_KEY and ENDPOINT environment variables." << std::endl;
            return -1;
        }
     
-       auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endpoint);
+       auto speechConfig = SpeechConfig::FromEndpoint(endpoint, speechKey);
     
        speechConfig->SetSpeechRecognitionLanguage("en-US");
     

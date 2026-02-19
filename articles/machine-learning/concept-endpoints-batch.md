@@ -6,13 +6,13 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
-author: msakande
-ms.author: mopeakande
-ms.reviewer: cacrest
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.custom:
   - devplatv2
   - ignite-2023
-ms.date: 04/04/2024
+ms.date: 08/25/2025
 #Customer intent: As an MLOps administrator, I want to understand what a managed endpoint is and why I need it.
 ---
 
@@ -32,7 +32,7 @@ Batch endpoints receive pointers to data and run jobs asynchronously to process 
 
 ## Batch deployments
 
-A deployment is a set of resources and computes required to implement the functionality that the endpoint provides. Each endpoint can host several deployments with different configurations, and this functionality helps to *decouple the endpoint's interface* from *the implementation details* that are defined by the deployment. When a batch endpoint is invoked, it automatically routes the client to its default deployment. This default deployment can be configured and changed at any time.
+A deployment is a set of resources and computes required to implement the functionality that the endpoint provides. An endpoint can host multiple deployments, each with its own configuration, decoupling the endpoint interface from the deployment implementation details. When a batch endpoint is invoked, it automatically routes the client to its default deployment. This default deployment can be configured and changed at any time.
 
 :::image type="content" source="./media/concept-endpoints/batch-endpoint.png" alt-text="Diagram showing the relationship between a batch endpoint and its deployments." lightbox="media/concept-endpoints/batch-endpoint.png":::
 

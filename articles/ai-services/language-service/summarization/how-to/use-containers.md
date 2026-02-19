@@ -1,23 +1,22 @@
 ---
 title: Use summarization Docker containers on-premises
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use Docker containers for the summarization API to summarize text, on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---
-
 # Use summarization Docker containers on-premises
 
 Containers enable you to host the Summarization API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Summarization remotely, then containers might be a good option.
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/).
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure. 
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 
@@ -67,13 +66,13 @@ docker run -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-servi
 docker run -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-services/textanalytics/summarization:cpu downloadModels=AbstractiveSummarization billing={ENDPOINT_URI} apikey={API_KEY}
 docker run -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-services/textanalytics/summarization:cpu downloadModels=ConversationSummarization billing={ENDPOINT_URI} apikey={API_KEY}
 ```
-It's not recommended to download models for all skills inside the same `HOST_MODELS_PATH`, as the container loads all models inside the `HOST_MODELS_PATH`. Doing so would use a large amount of memory. It's recommended to only download the model for the skill you need in a particular `HOST_MODELS_PATH`.
+It's not recommended to download models for all skills inside the same `HOST_MODELS_PATH`, as the container loads all models inside the `HOST_MODELS_PATH`. Doing so would use a large amount of memory. We recommend that you only download the model for the skill you need in a particular `HOST_MODELS_PATH`.
 
 In order to ensure compatibility between models and the container, re-download the utilized models whenever you create a container using a new image version. When using a disconnected container, the license should be downloaded again after downloading the models.
 
 ## Run the container with `docker run`
 
-Once the *Summarization* container is on the host computer, use the following `docker run` command to run the containers. The container will continue to run until you stop it. Replace the placeholders below with your own values:
+Once the *Summarization* container is on the host computer, use the following `docker run` command to run the containers. The container will continue to run until you stop it. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
@@ -85,7 +84,7 @@ Once the *Summarization* container is on the host computer, use the following `d
 docker run -p 5000:5000 -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-services/textanalytics/summarization:cpu eula=accept rai_terms=accept billing={ENDPOINT_URI} apikey={API_KEY}
 ```
 
-Or if you are running a GPU container, use this command instead.
+Or if you're running a GPU container, use this command instead.
 ```bash
 docker run -p 5000:5000 --gpus all -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-services/textanalytics/summarization:gpu eula=accept rai_terms=accept billing={ENDPOINT_URI} apikey={API_KEY}
 ```
@@ -126,7 +125,7 @@ Use the host, `http://localhost:5000`, for container APIs.
 
 If you run the container with an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files that are helpful to troubleshoot issues that happen while starting or running the container.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 

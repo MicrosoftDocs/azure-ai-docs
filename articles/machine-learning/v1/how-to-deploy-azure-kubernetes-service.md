@@ -7,9 +7,9 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1, FY25Q1-Linter
-author: Blackmist
-ms.author: larryfr
-ms.reviewer: bozhlin
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 09/09/2024
 # Customer Intent: As a data scientist, I want to deploy my machine learning model to Azure Kubernetes Service so that I can scale my model to meet production demands.
 ---
@@ -90,7 +90,7 @@ The front-end component (azureml-fe) that routes incoming inference requests to 
 
 > [!IMPORTANT]
 > * When using a cluster configured as `dev-test`, the self-scaler is *disabled*. Even for FastProd/DenseProd clusters, Self-Scaler is only enabled when telemetry shows that it's needed.
-> * Azure Machine Learning doesn't automatically upload or store logs from any containers, including system containers. For comprehensive debugging, it's recommended that you [enable Container Insights for your AKS cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-container-insights). This allows you to save, manage, and share container logs with the AML team when needed. Without this, AML can't guarantee support for issues related to azureml-fe.
+> * Azure Machine Learning doesn't automatically upload or store logs from any containers, including system containers. For comprehensive debugging, it's recommended that you [enable Container Insights for your AKS cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-container-insights). This allows you to save, manage, and share container logs with the Azure Machine Learning team when needed. Without this, Azure Machine Learning can't guarantee support for issues related to azureml-fe.
 > * The maximum request payload is 100MB.
 
 Azureml-fe scales both up (vertically) to use more cores, and out (horizontally) to use more pods. When making the decision to scale up, the time that it takes to route incoming inference requests is used. If this time exceeds the threshold, a scale-up occurs. If the time to route incoming requests continues to exceed the threshold, a scale-out occurs.
@@ -182,7 +182,7 @@ from azureml.core.compute import AksCompute
 aks_target = AksCompute(ws,"myaks")
 # If deploying to a cluster configured for dev/test, ensure that it was created with enough
 # cores and memory to handle this deployment configuration. Note that memory is also used by
-# things such as dependencies and AML components.
+# things such as dependencies and Azure Machine Learning components.
 deployment_config = AksWebservice.deploy_configuration(cpu_cores = 1, memory_gb = 1)
 service = Model.deploy(ws, "myservice", [model], inference_config, deployment_config, aks_target)
 service.wait_for_deployment(show_output = True)

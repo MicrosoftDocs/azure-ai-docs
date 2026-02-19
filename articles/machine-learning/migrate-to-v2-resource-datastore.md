@@ -5,9 +5,9 @@ description: Upgrade datastore management from v1 to v2 of Azure Machine Learnin
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
-author: sdgilley
-ms.author: sgilley
+ms.topic: how-to
+author: s-polly
+ms.author: scottpolly
 ms.date: 01/16/2025
 ms.reviewer: xunwan
 ms.custom: migration
@@ -156,10 +156,14 @@ blob_datastore = Datastore.register_azure_blob_container(workspace=ws,
     
     ml_client = MLClient(credential=DefaultAzureCredential(),
                          subscription_id=subscription_id, 
-                         resource_group_name=resource_group)
+                         resource_group_name=resource_group,
+                         workspace_name=workspace_name)
     
     datastore = ml_client.datastores.get(name='your datastore name')
     ```
+
+    > [!NOTE]
+    > `DefaultAzureCredential` attempts multiple authentication methods in order, including environment variables, managed identity, Azure CLI, and more. For local development, sign in via Azure CLI (`az login`) or set the `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_CLIENT_SECRET` environment variables for service principal authentication. For more information, see [Set up authentication for Azure Machine Learning resources and workflows](how-to-setup-authentication.md).
 
 ## Mapping of key functionality in SDK v1 and SDK v2
 

@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 08/14/2024
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.custom: devplatv2
 #customer intent: As a data scientist, I want to use Azure Data Factory to handle complex hybrid extract-transform-load, extract-load-transform, and data integration projects.
 ---
@@ -135,7 +135,7 @@ To create this pipeline in your existing Azure Data Factory and invoke batch end
 
 1. Ensure the compute where the batch endpoint runs has permissions to mount the data Azure Data Factory provides as input. The entity that invokes the endpoint still grants access.
 
-   In this case, it's Azure Data Factory. However, the compute where the batch endpoint runs needs to have permission to mount the storage account your Azure Data Factory provides. See [Accessing storage services](how-to-identity-based-service-authentication.md#accessing-storage-services) for details.
+   In this case, it's Azure Data Factory. However, the compute where the batch endpoint runs needs to have permission to mount the storage account your Azure Data Factory provides. See [Accessing storage services](how-to-identity-based-service-authentication.md#access-storage-services) for details.
 
 1. Open Azure Data Factory Studio. Select the pencil icon to open the Author pane and, under **Factory Resources**, select the plus sign.
 
@@ -143,8 +143,8 @@ To create this pipeline in your existing Azure Data Factory and invoke batch end
 
 1. Select a *.zip* file.
 
-   - To use managed identities, select [this file](https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-MI.zip).
-   - To use a service principle, select [this file](https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-SP.zip).
+   - To use managed identities, select `https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-MI.zip`.
+   - To use a service principle, select `https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-SP.zip`.
 
 1. A preview of the pipeline shows up in the portal. Select **Use this template**.
 

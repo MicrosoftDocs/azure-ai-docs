@@ -5,12 +5,20 @@ description: See how to deploy an MLflow model as a web service that Azure manag
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-author: msakande
-ms.author: mopeakande
-ms.reviewer: fasantia
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 03/31/2025
 ms.topic: how-to
-ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2, update-code1
+ms.custom:
+  - deploy
+  - mlflow
+  - devplatv2
+  - no-code-deployment
+  - devx-track-azurecli
+  - cliv2
+  - update-code3
+  - sfi-image-nochange
 # customer intent: As a developer, I want to see how to deploy an MLflow model to an online endpoint so that I can use the model to make predictions in real time.
 ---
 
@@ -25,14 +33,12 @@ For no-code-deployment, Azure Machine Learning:
 * Dynamically installs Python packages that you list in a conda.yaml file. As a result, dependencies are installed during container runtime.
 * Provides an MLflow base image, or curated environment, that contains the following items:
     * The [`azureml-inference-server-http`](how-to-inference-server-http.md) package
-    * The [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md) package
+    * The [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/libs/skinny/README_SKINNY.md) package
     * A scoring script for inferencing
-
-[!INCLUDE [mlflow-model-package-for-workspace-without-egress](includes/mlflow-model-package-for-workspace-without-egress.md)]
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 - A user account that has at least one of the following Azure role-based access control (Azure RBAC) roles:
   - An Owner role for the Azure Machine Learning workspace
@@ -411,19 +417,6 @@ version = registered_model.version
     )
     ```
 
-    Alternatively, if your endpoint doesn't have egress connectivity, use [model packaging (preview)](how-to-package-models.md) by including the argument `with_package=True`:
-
-    ```python
-    blue_deployment = ManagedOnlineDeployment(
-        name="blue",
-        endpoint_name=endpoint_name,
-        model=model,
-        instance_type="Standard_F4s_v2",
-        instance_count=1,
-        with_package=True,
-    )
-    ```
-
     # [Python (MLflow SDK)](#tab/mlflow)
 
     ```python
@@ -465,10 +458,8 @@ version = registered_model.version
     
     :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint-ncd.sh" ID="create_sklearn_deployment":::
 
-    If your endpoint doesn't have egress connectivity, use model packaging (preview) by including the flag `--package-model`:
-
     ```azurecli
-    az ml online-deployment create --package-model --name sklearn-deployment --endpoint $ENDPOINT_NAME -f endpoints/online/ncd/sklearn-deployment.yaml --all-traffic
+    az ml online-deployment create --name sklearn-deployment --endpoint $ENDPOINT_NAME -f endpoints/online/ncd/sklearn-deployment.yaml --all-traffic
     ```
 
     # [Python (Azure Machine Learning SDK)](#tab/sdk)
@@ -720,14 +711,14 @@ The following scoring script, score.py, provides an example of how to perform in
 
 #### Create an environment
 
-The next step is to create an environment that you can run the scoring script in. Because the model is an MLflow model, the conda requirements are also specified in the model package. For more information about the files included in an MLflow model, see [The MLmodel format](concept-mlflow-models.md#the-mlmodel-format). You build the environment by using the conda dependencies from the file. However, you need to also include the `azureml-inference-server-http` package, which is required for online deployments in Azure Machine Learning.
+The next step is to create an environment that you can run the scoring script in. Because the model is an MLflow model, the conda requirements are also specified in the model package. For more information about the files included in an MLflow model, see [The MLmodel format](concept-mlflow-models.md#the-mlmodel-format). You build the environment by using the conda dependencies from the file. However, you need to also include the `azureml-inference-server-http` and `azureml-ai-monitoring` packages, which are required for online deployments in Azure Machine Learning.
     
 You can create a conda definition file named conda.yaml that contains the following lines:
 
 :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/online/ncd/sklearn-diabetes/environment/conda.yaml":::
 
 > [!NOTE]
-> The `dependencies` section of this conda file includes the `azureml-inference-server-http` package.
+> The `dependencies` section of this conda file includes the `azureml-inference-server-http` and `azureml-ai-monitoring` packages.
 
 Use this conda dependencies file to create the environment:
 

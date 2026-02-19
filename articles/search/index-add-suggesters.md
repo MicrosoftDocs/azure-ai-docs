@@ -2,13 +2,13 @@
 title: Configure a suggester for autocomplete and suggestions
 titleSuffix: Azure AI Search
 description: Enable typeahead query actions in Azure AI Search by creating suggesters and formulating requests that invoke autocomplete or autosuggested query terms.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 04/14/2025
+ms.topic: how-to
+ms.date: 09/11/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -21,9 +21,9 @@ In Azure AI Search, typeahead or "search-as-you-type" is enabled by using a *sug
 
 Matches on partial terms can be either an autocompleted query or a suggested match. The same suggester supports both experiences.
 
-## Typeahead experiences in Azure AI Search
+## Typeahead experiences
 
-Typeahead can be either *autocomplete*, which completes a partial input for a whole term query, or *suggestions* that invite click through to a particular match. Autocomplete produces a query. Suggestions produce a matching document.
+Typeahead  in Azure AI Search can be either *autocomplete*, which completes a partial input for a whole term query, or *suggestions* that invite click through to a particular match. Autocomplete produces a query. Suggestions produce a matching document.
 
 The following screenshot illustrates both. Autocomplete anticipates a potential term, finishing *tw* with *in*. Suggestions are mini search results, where a field like `hotel name` represents a matching hotel search document from the index. For suggestions, you can surface any field that provides descriptive information.
 
@@ -45,7 +45,7 @@ To create a suggester, add one to an [index definition](/rest/api/searchservice/
 
 + If the string field is part of a complex type (for example, a City field within Address), include the parent in the field path: `"Address/City"` (REST, C#, and Python), or `["Address"]["City"]` (JavaScript).
 
-+ Use the default standard Lucene analyzer (`"analyzer": null`) or a [language analyzer](index-add-language-analyzers.md) (for example, `"analyzer": "en.Microsoft"`) on the field.
++ Use the default standard Lucene analyzer (`"analyzer": null`) or a [language analyzer](index-add-language-analyzers.md) (for example, `"analyzer": "fr.microsoft"`) on the field.
 
 If you try to create a suggester using preexisting fields, the API disallows it. Prefixes are generated during indexing, when partial terms in two or more character combinations are tokenized alongside whole terms. Given that existing fields are already tokenized, you have to rebuild the index if you want to add them to a suggester. For more information, see [Update or rebuild an index in Azure AI Search](search-howto-reindex.md).
 
@@ -68,21 +68,21 @@ When evaluating analyzers, consider using the [Analyze Text API](/rest/api/searc
 Fields that use [custom analyzers](index-add-custom-analyzers.md) or [built-in analyzers](index-add-custom-analyzers.md#built-in-analyzers), (except for standard Lucene) are explicitly disallowed to prevent poor outcomes.
 
 > [!NOTE]
-> If you need to work around the analyzer constraint, for example if you need a keyword or ngram analyzer for certain query scenarios, you should use two separate fields for the same content. This allows one of the fields to have a suggester, while the other can be set up with a custom analyzer configuration.
+> If you need to work around the analyzer constraint, for example if you need a keyword or ngram analyzer for certain query scenarios, you should use two separate fields for the same content. This allows one of the fields to have a suggester, while the other can be set up with a custom analyzer configuration. If you're using an indexer, you can map a source field to two different index fields to support multiple configuations.
 
 ## Create using the Azure portal
 
-When using **Add Index** or the **Import data** wizard to create an index, you have the option of enabling a suggester:
+In the Azure portal, you can specify a suggester when you select **Add index**.
 
-1. In the index definition, enter a name for the suggester.
-
-1. In each field definition for new fields, select a checkbox in the **Suggester** column. A checkbox is available on string fields only. 
-
-As previously noted, analyzer choice impacts tokenization and prefixing. Consider the entire field definition when enabling suggesters. 
+1. Select **Add index** and add a string field.
+1. Set field attribution to **Searchable**.
+1. Select an analyzer.
+1. Once fields are defined, select **Autocomplete settings**.
+1. Select the searchable string fields for which you want to enable an autocomplete experience.
 
 ## Create using REST
 
-In the REST API, add suggesters by using [Create Index](/rest/api/searchservice/indexes/create) or [Update Index](/rest/api/searchservice/indexes/create-or-update). 
+In the REST API, add suggesters by using [Create Index](/rest/api/searchservice/indexes/create). 
 
   ```json
   {
@@ -161,7 +161,7 @@ In a search application, client code should use a library like [jQuery UI Autoco
 API usage is illustrated in the following call to the Autocomplete REST API. There are two takeaways from this example. First, as with all queries, the operation is against the documents collection of an index and the query includes a `search` parameter, which in this case provides the partial query. Second, you must add `suggesterName` to the request. If a suggester isn't defined in the index, calls to autocomplete or suggestions fail.
 
 ```http
-POST /indexes/myxboxgames/docs/autocomplete?search&api-version=2024-07-01
+POST /indexes/myxboxgames/docs/autocomplete?search&api-version=2025-09-01
 {
   "search": "minecraf",
   "suggesterName": "sg"

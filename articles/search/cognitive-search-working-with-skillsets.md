@@ -5,23 +5,24 @@ description: Skillsets are used to apply AI processing to indexing pipelines in 
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 01/15/2025
+ms.topic: concept-article
+ms.date: 01/26/2026
+ms.update-cycle: 180-days
 ---
 
 # Skillset concepts in Azure AI Search
 
-This article is for developers who need a deeper understanding of skillset composition, and assumes familiarity with the high-level concepts of [AI enrichment](cognitive-search-concept-intro.md), or applied AI, in Azure AI Search.
+This article is for developers who need a deeper understanding of skillset composition, and assumes familiarity with the high-level concepts of [AI enrichment](cognitive-search-concept-intro.md) or how AI is applied in Azure AI Search to transform raw content during indexing.
 
-A skillset is a reusable object in Azure AI Search that's attached to [an indexer](search-indexer-overview.md). It contains one or more skills that call built-in AI or external custom processing over documents retrieved from an external data source.
+A skillset is a reusable object in Azure AI Search that's attached to [an indexer](search-indexer-overview.md). It contains one or more skills that call built-in AI or external custom processing over raw content retrieved from an external data source.
 
 The following diagram illustrates the basic data flow of skillset execution. 
 
 :::image type="content" source="media/cognitive-search-working-with-skillsets/skillset-process-diagram-1.png" alt-text="Diagram showing skillset data flows, with focus on inputs, outputs, and mappings." border="true":::
 
-From the onset of skillset processing to its conclusion, skills read from and write to an [*enriched document*](#enrichment-tree) that exists in memory. Initially, an enriched document is just the raw content extracted from a data source (articulated as the `"/document"` root node). With each skill execution, the enriched document gains structure and substance as each skill writes its output as nodes in the graph. 
+From the onset of skillset processing to its conclusion, skills read from and write to an [*enriched document tree](#enrichment-tree) that exists in memory. Initially, an enriched document is just the raw content extracted from a data source (articulated as the `"/document"` root node). With each skill execution, the enriched document gains structure and substance as each skill writes its output as nodes in the graph. 
 
-After skillset execution is done, the output of an enriched document finds its way into an index through user-defined *output field mappings*. Any raw content that you want transferred intact, from source to an index, is defined through *field mappings*. In contrast, *output field mappings* transfer in-memory content (nodes) to the index.
+After skillset execution is done, the output of an enriched document is routed to an index through user-defined *output field mappings*. Any raw content that you want transferred intact, from source to an index, is defined through *field mappings*. In contrast, *output field mappings* transfer in-memory content (nodes) to the index.
 
 To configure applied AI, specify settings in a skillset and indexer.
 
@@ -58,11 +59,11 @@ A context determines:
 
 ### Skill dependencies
 
-Skills can execute independently and in parallel, or sequentially if you feed the output of one skill into another skill. The following example demonstrates two [built-in skills](cognitive-search-predefined-skills.md) that execute in sequence:
+Skills can execute independently and in parallel, or sequentially in a dependent relationship if you feed the output of one skill into another skill. The following example demonstrates two [built-in skills](cognitive-search-predefined-skills.md) that execute in sequence:
 
 + Skill #1 is a [Text Split skill](cognitive-search-skill-textsplit.md) that accepts the contents of the "reviews_text" source field as input, and splits that content into "pages" of 5,000 characters as output. Splitting large text into smaller chunks can produce better outcomes for skills like sentiment detection.
 
-+ Skill #2 is a [Sentiment Detection skill](cognitive-search-skill-sentiment.md) accepts "pages" as input, and produces a new field called "Sentiment" as output that contains the results of sentiment analysis.
++ Skill #2 is a [Sentiment Detection skill](cognitive-search-skill-sentiment.md) depends on the split skill output. It accepts "pages" as input, and produces a new field called "Sentiment" as output that contains the results of sentiment analysis.
 
 Notice how the output of the first skill ("pages") is used in sentiment analysis, where "/document/reviews_text/pages/*" is both the context and input. For more information about path formulation, see [How to reference enrichments](cognitive-search-concept-annotations-syntax.md).
 
@@ -124,9 +125,9 @@ Notice how the output of the first skill ("pages") is used in sentiment analysis
 
 ## Enrichment tree
 
-An enriched document is a temporary, tree-like data structure created during skillset execution that collects all of the changes introduced through skills. Collectively, enrichments are represented as a hierarchy of addressable nodes. Nodes also include any unenriched fields that are passed in verbatim from the external data source. 
+An enriched document is a temporary, tree-like data structure created during skillset execution that collects all of the changes introduced through skills. Collectively, enrichments are represented as a hierarchy of addressable nodes. Nodes also include any unenriched fields that are passed in verbatim from the external data source. The best approach for examining the structure and content of an enrichment tree is through a [debug session](cognitive-search-debug-session.md) in the Azure portal.
 
-An enriched document exists for the duration of skillset execution, but can be [cached](cognitive-search-incremental-indexing-conceptual.md) or sent to a [knowledge store](knowledge-store-concept-intro.md). 
+An enriched document exists for the duration of skillset execution, but can be [cached](enrichment-cache-how-to-configure.md) or sent to a [knowledge store](knowledge-store-concept-intro.md). 
 
 Initially, an enriched document is simply the content extracted from a data source during [*document cracking*](search-indexer-overview.md#document-cracking), where text and images are extracted from the source and made available for language or image analysis. 
 

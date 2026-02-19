@@ -1,22 +1,22 @@
 ---
 title: "Speech Studio overview - Speech service"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Speech Studio is a set of UI-based tools for building and integrating features from Speech service in your applications.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about Speech Studio.
 ---
 
 # What is Speech Studio?
 
-[Speech Studio](https://aka.ms/speechstudio/) is a set of UI-based tools for building and integrating features from Azure AI Speech service in your applications. You create projects in Speech Studio by using a no-code approach, and then reference those assets in your applications by using the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), or the REST APIs.
+[Speech Studio](https://aka.ms/speechstudio/) is a set of UI-based tools for building and integrating features from Azure Speech in Foundry Tools service in your applications. You create projects in Speech Studio by using a no-code approach, and then reference those assets in your applications by using the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), or the REST APIs.
 
 > [!TIP]
-> You can also try speech to text and text to speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) without signing up or writing any code.
+> You can also try speech to text and text to speech in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) without signing up or writing any code.
 
 ## Speech Studio scenarios
 
@@ -24,7 +24,7 @@ Explore, try out, and view sample code for some of common use cases.
 
 * [Captioning](https://aka.ms/speechstudio/captioning): Choose a sample video clip to see real-time or offline processed captioning results. Learn how to synchronize captions with your input audio, apply profanity filters, get partial results, apply customizations, and identify spoken languages for multilingual scenarios. For more information, see the [captioning quickstart](captioning-quickstart.md).
 
-* [Call Center](https://aka.ms/speechstudio/callcenter): View a demonstration on how to use the Language and Speech services to analyze call center conversations. Transcribe calls in real-time or process a batch of calls, redact personally identifying information, and extract insights such as sentiment to help with your call center use case. For more information, see the [call center quickstart](call-center-quickstart.md).
+* [Call Center](https://aka.ms/speechstudio/callcenter): View a demonstration on how to use Azure Language and Speech services to analyze call center conversations. Transcribe calls in real-time or process a batch of calls, redact personally identifying information, and extract insights such as sentiment to help with your call center use case. For more information, see the [call center quickstart](call-center-quickstart.md).
 
 For a demonstration of these scenarios in Speech Studio, view this [introductory video](https://youtu.be/mILVerU6DAw).
 > [!VIDEO https://www.youtube.com/embed/mILVerU6DAw]

@@ -1,13 +1,14 @@
 ---
 title: Use Document Intelligence containers in disconnected environments
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to run Cognitive Services Docker containers disconnected from the internet.
 ms.service: azure-ai-document-intelligence
 author: laujan
 manager: nitinme
 ms.topic: reference
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
+ms.custom: sfi-ropc-nochange
 ---
 
 
@@ -34,9 +35,9 @@ Support for containers is currently available with Document Intelligence version
 
 ## What are disconnected containers?
 
-[Azure AI containers](../../cognitive-services-container-support.md) gives you the flexibility to run some Document Intelligence services locally in containers. Connected containers run locally in your environment and send usage information to the cloud for billing. Disconnected containers are intended for scenarios where no connectivity with the cloud is needed for the containers to run.
+[Azure containers](../../cognitive-services-container-support.md) gives you the flexibility to run some Document Intelligence services locally in containers. Connected containers run locally in your environment and send usage information to the cloud for billing. Disconnected containers are intended for scenarios where no connectivity with the cloud is needed for the containers to run.
 
-Azure AI Document Intelligence containers allow you to use Document Intelligence APIs with the benefits of containerization. Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to Standard pricing. With commitment tier pricing, you can commit to using Document Intelligence features for a fixed fee, at a predictable total cost, based on the needs of your workload.
+Azure Document Intelligence in Foundry Tools containers allow you to use Document Intelligence APIs with the benefits of containerization. Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to Standard pricing. With commitment tier pricing, you can commit to using Document Intelligence features for a fixed fee, at a predictable total cost, based on the needs of your workload.
 
 ## Get started
 
@@ -73,7 +74,7 @@ Start by provisioning a new resource in the portal.
 
 ## Gather required parameters
 
-There are three required parameters for all Azure AI services' containers:
+There are three required parameters for all Foundry Tools' containers:
 
 * The end-user license agreement (EULA) must be present with a value of *accept*.
 * The endpoint URL for your resource from the Azure portal.

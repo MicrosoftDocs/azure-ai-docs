@@ -1,13 +1,13 @@
 ---
 title: Get facial position with viseme
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about visemes that represent key poses in observed speech, such as the position of the lips, jaw, and tongue when producing a particular phoneme.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.reviewer: yulili
 ms.custom: references_regions, devx-track-extended-java, devx-track-js, devx-track-python
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
@@ -17,7 +17,7 @@ zone_pivot_groups: programming-languages-speech-services-nomore-variant
 # Get facial position with viseme
 
 > [!NOTE]
-> To explore the locales supported for viseme ID and blend shapes, refer to [the list of all supported locales](language-support.md?tabs=tts#viseme). Scalable Vector Graphics (SVG) is only supported for the `en-US` locale.
+> To explore the locales supported for viseme ID and blend shapes, refer to [the list of all supported locales](language-support.md?tabs=tts#visemes). Scalable Vector Graphics (SVG) is only supported for the `en-US` locale.
 
 A *viseme* is the visual description of a phoneme in spoken language. It defines the position of the face and mouth while a person is speaking. Each viseme depicts the key facial poses for a specific set of phonemes.
 
@@ -79,7 +79,7 @@ Visemes vary by language and locale. Each locale has a set of visemes that corre
 
 For 2D characters, you can design a character that suits your scenario and use Scalable Vector Graphics (SVG) for each viseme ID to get a time-based face position.
 
-With temporal tags that are provided in a viseme event, these well-designed SVGs is processed with smoothing modifications, and provide robust animation to the users. For example, the following illustration shows a red-lipped character designed for language learning.
+With temporal tags that are provided in a viseme event, these well-designed SVGs are processed with smoothing modifications, and provide robust animation to the users. For example, the following illustration shows a red-lipped character designed for language learning.
 
 ![Screenshot showing a 2D rendering example of four red-lipped mouths, each representing a different viseme ID that corresponds to a phoneme.](media/text-to-speech/viseme-demo-2D.png)
 
@@ -94,7 +94,7 @@ The blend shapes JSON string is represented as a 2-dimensional matrix. Each row 
 To get viseme with your synthesized speech, subscribe to the `VisemeReceived` event in the Speech SDK.
 
 > [!NOTE]
-> To request SVG or blend shapes output, you should use the `mstts:viseme` element in SSML. For details, see [how to use viseme element in SSML](speech-synthesis-markup-structure.md#viseme-element).
+> To request SVG or blend shapes output, you should use the `mstts:viseme` element in SSML. For details, see [how to use viseme element in SSML](speech-synthesis-markup-voice.md#viseme-element).
 
 The following snippet shows how to subscribe to the viseme event:
 

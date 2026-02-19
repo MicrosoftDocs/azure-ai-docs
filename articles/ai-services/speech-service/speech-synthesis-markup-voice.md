@@ -1,13 +1,13 @@
 ---
 title: Voice and sound with Speech Synthesis Markup Language (SSML) - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how you can use Speech Synthesis Markup Language (SSML) elements to customize what your Speech service voice sounds like.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 01/30/2026
+ms.author: pafarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn how to use Speech Synthesis Markup Language (SSML) elements to customize what my Speech service voice sounds like.
 ---
@@ -37,11 +37,11 @@ For information about the supported values for attributes of the `voice` element
 
 #### Single voice example
 
-This example uses the `en-US-AvaMultilingualNeural` voice. 
+This example uses the `en-US-Ava:DragonHDLatestNeural` voice. 
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         This is the text that is spoken.
     </voice>
 </speak>
@@ -51,14 +51,14 @@ This example uses the `en-US-AvaMultilingualNeural` voice.
 
 Within the `speak` element, you can specify multiple voices for text to speech output. These voices can be in different languages. For each voice, the text must be wrapped in a `voice` element.
 
-This example alternates between the `en-US-AvaMultilingualNeural` and `en-US-AndrewMultilingualNeural` voices. The neural multilingual voices can speak different languages based on the input text.
+This example alternates between the `en-US-Ava:DragonHDLatestNeural` and `en-US-Andrew:DragonHDLatestNeural` voices. The neural multilingual voices can speak different languages based on the input text.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         Good morning!
     </voice>
-    <voice name="en-US-AndrewMultilingualNeural">
+    <voice name="en-US-Andrew:DragonHDLatestNeural">
         Good morning to you too Ava!
     </voice>
 </speak>
@@ -152,7 +152,7 @@ The following table describes each supported `style` attribute:
 |`style="fearful"`|Expresses a scared and nervous tone, with higher pitch, higher vocal energy, and faster rate. The speaker is in a state of tension and unease.|
 |`style="friendly"`|Expresses a pleasant, inviting, and warm tone. It sounds sincere and caring.|
 |`style="gentle"`|Expresses a mild, polite, and pleasant tone, with lower pitch and vocal energy.|
-|`style="hopeful"`|Expresses a warm and yearning tone. It sounds like something good will happen to the speaker.|
+|`style="hopeful"`|Expresses a warm and yearning tone. It sounds like something good is expected to happen to the speaker.|
 |`style="lyrical"`|Expresses emotions in a melodic and sentimental way.|
 |`style="narration-professional"`|Expresses a professional, objective tone for content reading.|
 |`style="narration-relaxed"`|Expresses a soothing and melodious tone for content reading.|
@@ -244,7 +244,7 @@ This example uses a custom voice named **my-custom-voice**. The custom voice spe
 
 ## Speaker profile ID
 
-You use the `mstts:ttsembedding` element to specify the `speakerProfileId` property for a [personal voice](./personal-voice-overview.md). Personal voice is a custom voice that's trained on your own voice or your customer's voice. For more information, see [create a personal voice](./personal-voice-create-voice.md).
+You use the `mstts:ttsembedding` element to specify the `speakerProfileId` property for a [personal voice](./personal-voice-overview.md). Personal voice is a custom voice trained on your own voice or your customer's voice. For more information, see [create a personal voice](./personal-voice-create-voice.md).
 
 The following SSML example uses the `<mstts:ttsembedding>` element with a voice name and speaker profile ID.
 
@@ -269,8 +269,6 @@ The following table describes the usage of the `<lang xml:lang>` element's attri
 | `xml:lang`    | The language that you want the neural voice to speak. | Required to adjust the speaking language for the neural voice. If you're using `lang xml:lang`, the locale must be provided. |
 
 > [!NOTE]
-> The `<lang xml:lang>` element is incompatible with the `prosody` and `break` elements. You can't adjust pause and prosody like pitch, contour, rate, or volume in this element.
->
 > Non-multilingual voices don't support the `<lang xml:lang>` element by design.
 
 ### Multilingual voices with the lang element
@@ -281,22 +279,19 @@ Use the [multilingual voices section](language-support.md?tabs=tts#multilingual-
 | ------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------------ | ------------------ | ------------------------------------------------------------ |
 |`en-US-AndrewMultilingualNeural`<sup>1</sup> (Male)<br/>`en-US-AvaMultilingualNeural`<sup>1</sup> (Female)<br/>`en-US-BrianMultilingualNeural`<sup>1</sup> (Male)<br/>`en-US-EmmaMultilingualNeural`<sup>1</sup> (Female)| 77                            | Afrikaans (`af-ZA`), Albanian (`sq-AL`), Amharic (`am-ET`), Arabic (`ar-EG`), Armenian (`hy-AM`), Azerbaijani (`az-AZ`), Bahasa Indonesian (`id-ID`), Bangla (`bn-BD`), Basque (`eu-ES`), Bengali (`bn-IN`), Bosnian (`bs-BA`), Bulgarian (`bg-BG`), Burmese (`my-MM`), Catalan (`ca-ES`), Chinese Cantonese (`zh-HK`), Chinese Mandarin (`zh-CN`), Chinese Taiwanese (`zh-TW`), Croatian (`hr-HR`), Czech (`cs-CZ`), Danish (`da-DK`), Dutch (`nl-NL`), English (`en-US`), Estonian (`et-EE`), Filipino (`fil-PH`), Finnish (`fi-FI`), French (`fr-FR`), Galician (`gl-ES`), Georgian (`ka-GE`), German (`de-DE`), Greek (`el-GR`), Hebrew (`he-IL`), Hindi (`hi-IN`), Hungarian (`hu-HU`), Icelandic (`is-IS`), Irish (`ga-IE`), Italian (`it-IT`), Japanese (`ja-JP`), Javanese (`jv-ID`), Kannada (`kn-IN`), Kazakh (`kk-KZ`), Khmer (`km-KH`), Korean (`ko-KR`), Lao (`lo-LA`), Latvian (`lv-LV`), Lithuanian (`lt-LT`), Macedonian (`mk-MK`), Malay (`ms-MY`), Malayalam (`ml-IN`), Maltese (`mt-MT`), Mongolian (`mn-MN`), Nepali (`ne-NP`), Norwegian Bokmål (`nb-NO`), Pashto (`ps-AF`), Persian (`fa-IR`), Polish (`pl-PL`), Portuguese (`pt-BR`), Romanian (`ro-RO`), Russian (`ru-RU`), Serbian (`sr-RS`), Sinhala (`si-LK`), Slovak (`sk-SK`), Slovene (`sl-SI`), Somali (`so-SO`), Spanish (`es-ES`), Sundanese (`su-ID`), Swahili (`sw-KE`), Swedish (`sv-SE`), Tamil (`ta-IN`), Telugu (`te-IN`), Thai (`th-TH`), Turkish (`tr-TR`), Ukrainian (`uk-UA`), Urdu (`ur-PK`), Uzbek (`uz-UZ`), Vietnamese (`vi-VN`), Welsh (`cy-GB`), Zulu (`zu-ZA`) | 91                 | Afrikaans (South Africa) (`af-ZA`), Albanian (Albania) (`sq-AL`), Amharic (Ethiopia) (`am-ET`), Arabic (Egypt) (`ar-EG`), Arabic (Saudi Arabia) (`ar-SA`), Armenian (Armenia) (`hy-AM`), Azerbaijani (Azerbaijan) (`az-AZ`), Basque (Basque) (`eu-ES`), Bengali (India) (`bn-IN`), Bosnian (Bosnia and Herzegovina) (`bs-BA`), Bulgarian (Bulgaria) (`bg-BG`), Burmese (Myanmar) (`my-MM`), Catalan (Spain) (`ca-ES`), Chinese (Cantonese, Traditional) (`zh-HK`), Chinese (Mandarin, Simplified) (`zh-CN`), Chinese (Taiwanese Mandarin) (`zh-TW`), Croatian (Croatia) (`hr-HR`), Czech (Czech) (`cs-CZ`), Danish (Denmark) (`da-DK`), Dutch (Belgium) (`nl-BE`), Dutch (Netherlands) (`nl-NL`), English (Australia) (`en-AU`), English (Canada) (`en-CA`), English (Hong Kong SAR) (`en-HK`), English (India) (`en-IN`), English (Ireland) (`en-IE`), English (United Kingdom) (`en-GB`), English (United States) (`en-US`), Estonian (Estonia) (`et-EE`), Filipino (Philippines) (`fil-PH`), Finnish (Finland) (`fi-FI`), French (Belgium) (`fr-BE`), French (Canada) (`fr-CA`), French (France) (`fr-FR`), French (Switzerland) (`fr-CH`), Galician (Galician) (`gl-ES`), Georgian (Georgia) (`ka-GE`), German (Austria) (`de-AT`), German (Germany) (`de-DE`), German (Switzerland) (`de-CH`), Greek (Greece) (`el-GR`), Hebrew (Israel) (`he-IL`), Hindi (India) (`hi-IN`), Hungarian (Hungary) (`hu-HU`), Icelandic (Iceland) (`is-IS`), Indonesian (Indonesia) (`id-ID`), Irish (Ireland) (`ga-IE`), Italian (Italy) (`it-IT`), Japanese (Japan) (`ja-JP`), Javanese (Indonesia) (`jv-ID`), Kannada (India) (`kn-IN`), Kazakh (Kazakhstan) (`kk-KZ`), Khmer (Cambodia) (`km-KH`), Korean (Korea) (`ko-KR`), Lao (Laos) (`lo-LA`), Latvian (Latvia) (`lv-LV`), Lithuanian (Lithuania) (`lt-LT`), Macedonian (North Macedonia) (`mk-MK`), Malay (Malaysia) (`ms-MY`), Malayalam (India) (`ml-IN`), Maltese (Malta) (`mt-MT`), Mongolian (Mongolia) (`mn-MN`), Nepali (Nepal) (`ne-NP`), Norwegian (Bokmål, Norway) (`nb-NO`), Pashto (Afghanistan) (`ps-AF`), Persian (Iran) (`fa-IR`), Polish (Poland) (`pl-PL`), Portuguese (Brazil) (`pt-BR`), Portuguese (Portugal) (`pt-PT`), Romanian (Romania) (`ro-RO`), Russian (Russia) (`ru-RU`), Serbian (Cyrillic, Serbia) (`sr-RS`), Sinhala (Sri Lanka) (`si-LK`), Slovak (Slovakia) (`sk-SK`), Slovenian (Slovenia) (`sl-SI`), Somali (Somalia) (`so-SO`), Spanish (Mexico) (`es-MX`), Spanish (Spain) (`es-ES`), Sundanese (Indonesia) (`su-ID`), Swahili (Kenya) (`sw-KE`), Swedish (Sweden) (`sv-SE`), Tamil (India) (`ta-IN`), Telugu (India) (`te-IN`), Thai (Thailand) (`th-TH`), Turkish (Türkiye) (`tr-TR`), Ukrainian (Ukraine) (`uk-UA`), Urdu (Pakistan) (`ur-PK`), Uzbek (Uzbekistan) (`uz-UZ`), Vietnamese (Vietnam) (`vi-VN`), Welsh (United Kingdom) (`cy-GB`), Zulu (South Africa) (`zu-ZA`)|
 
-<sup>1</sup> Those are neural multilingual voices in Azure AI Speech. All multilingual voices can speak in the language in default locale of the input text without [using SSML](#adjust-speaking-languages). However, you can still use the `<lang xml:lang>` element to adjust the speaking accent of each language to set preferred accent such as British accent (`en-GB`) for English. The primary locale for each voice is indicated by the prefix in its name, such as the voice `en-US-AndrewMultilingualNeural`, its primary locale is `en-US`. 
-
-> [!NOTE] 
-> Multilingual voices don't fully support certain SSML elements, such as `break`, `emphasis`, `silence`, and `sub`.
+<sup>1</sup> Those are neural multilingual voices in Azure Speech in Foundry Tools. All multilingual voices can speak in the language in default locale of the input text without [using SSML](#adjust-speaking-languages). However, you can still use the `<lang xml:lang>` element to adjust the speaking accent of each language to set preferred accent such as British accent (`en-GB`) for English. The prefix in each voice name indicates its primary locale; for example, the primary locale for `en-US-AndrewMultilingualNeural` is `en-US`.
 
 ### Lang examples
 
 For information about the supported values for attributes of the `lang` element, see [Adjust speaking language](#adjust-speaking-languages). 
 
-You must specify `en-US` as the default language within the `speak` element, whether or not the language is adjusted elsewhere. In this example, the primary language for `en-US-AvaMultilingualNeural` is `en-US`. 
+You must specify `en-US` as the default language within the `speak` element, whether or not the language is adjusted elsewhere. In this example, the primary language for `en-US-Ava:DragonHDLatestNeural` is `en-US`. 
 
-This SSML snippet shows how to use `<lang xml:lang>` to speak `de-DE` with the `en-US-AvaMultilingualNeural` neural voice.
+This SSML snippet shows how to use `<lang xml:lang>` to speak `de-DE` with the `en-US-Ava:DragonHDLatestNeural` neural voice.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <lang xml:lang="de-DE">
             Wir freuen uns auf die Zusammenarbeit mit Ihnen!
         </lang>
@@ -308,7 +303,7 @@ Within the `speak` element, you can specify multiple languages including `en-US`
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <lang xml:lang="es-MX">
             ¡Esperamos trabajar con usted!
         </lang>
@@ -332,7 +327,7 @@ The following table describes the usage of the `prosody` element's attributes:
 
 | Attribute | Description | Required or optional |
 | ---------- | ---------- | ---------- |
-| `contour` | Contour represents changes in pitch. These changes are represented as an array of targets at specified time positions in the speech output. Sets of parameter pairs define each target. For example: <br/><br/>`<prosody contour="(0%,+20Hz) (10%,-2st) (40%,+10Hz)">`<br/><br/>The first value in each set of parameters specifies the location of the pitch change as a percentage of the duration of the text. The second value specifies the amount to raise or lower the pitch by using a relative value or an enumeration value for pitch (see `pitch`). Pitch contour doesn’t work on single words and short phrases. It is recommended to adjust the pitch contour on whole sentences or long phrases.| Optional |
+| `contour` | Contour represents changes in pitch. These changes are represented as an array of targets at specified time positions in the speech output. Sets of parameter pairs define each target. For example: <br/><br/>`<prosody contour="(0%,+20Hz) (10%,-2st) (40%,+10Hz)">`<br/><br/>The first value in each set of parameters specifies the location of the pitch change as a percentage of the duration of the text. The second value specifies the amount to raise or lower the pitch by using a relative value or an enumeration value for pitch (see `pitch`). Pitch contour doesn’t work on single words and short phrases. It's recommended to adjust the pitch contour on whole sentences or long phrases.| Optional |
 | `pitch`   | Indicates the baseline pitch for the text. Pitch changes can be applied at the sentence level. The pitch changes should be within 0.5 to 1.5 times the original audio. You can express the pitch as:<ul><li>An absolute value: Expressed as a number followed by "Hz" (Hertz). For example, `<prosody pitch="600Hz">some text</prosody>`.</li><li>A relative value:<ul><li>As a relative number: Expressed as a number preceded by "+" or "-" and followed by "Hz" or "st" that specifies an amount to change the pitch. For example: `<prosody pitch="+80Hz">some text</prosody>` or `<prosody pitch="-2st">some text</prosody>`. The "st" indicates the change unit is semitone, which is half of a tone (a half step) on the standard diatonic scale.<li>As a percentage: Expressed as a number preceded by "+" (optionally) or "-" and followed by "%", indicating the relative change. For example: `<prosody pitch="50%">some text</prosody>` or `<prosody pitch="-50%">some text</prosody>`.</li></ul></li><li>A constant value:<ul><li>`x-low` (equivalently 0.55,-45%)</li><li>`low` (equivalently 0.8, -20%)</li><li>`medium` (equivalently 1, default value)</li><li>`high` (equivalently 1.2, +20%)</li><li>`x-high` (equivalently 1.45, +45%)</li></ul></li></ul> | Optional |
 | `range`| A value that represents the range of pitch for the text. You can express `range` by using the same absolute values, relative values, or enumeration values used to describe `pitch`.| Optional |
 | `rate` | Indicates the speaking rate of the text. Speaking rate can be applied at the word or sentence level. The rate changes should be within `0.5` to `2` times the original audio. You can express `rate` as:<ul><li>A relative value: <ul><li>As a relative number: Expressed as a number that acts as a multiplier of the default. For example, a value of `1` results in no change in the original rate. A value of `0.5` results in a halving of the original rate. A value of `2` results in twice the original rate.</li><li>As a percentage: Expressed as a number preceded by "+" (optionally) or "-" and followed by "%", indicating the relative change. For example: `<prosody rate="50%">some text</prosody>` or `<prosody rate="-50%">some text</prosody>`.</li></ul><li>A constant value:<ul><li>`x-slow` (equivalently 0.5, -50%)</li><li>`slow` (equivalently 0.64, -46%)</li><li>`medium` (equivalently 1, default value)</li><li>`fast` (equivalently 1.55, +55%)</li><li>`x-fast` (equivalently 2, +100%)</li></ul></li></ul> | Optional |
@@ -348,7 +343,7 @@ This SSML snippet illustrates how the `rate` attribute is used to change the spe
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <prosody rate="+30.00%">
             Enjoy using text to speech.
         </prosody>
@@ -362,7 +357,7 @@ This SSML snippet illustrates how the `volume` attribute is used to change the v
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-    <voice name="en-US-AvaMultilingualNeural">
+    <voice name="en-US-Ava:DragonHDLatestNeural">
         <prosody volume="+20.00%">
             Enjoy using text to speech.
         </prosody>
@@ -435,7 +430,7 @@ Any audio included in the SSML document must meet these requirements:
 * The audio must not contain any customer-specific or other sensitive information.
 
 > [!NOTE]
-> The `audio` element is not supported by the [Long Audio API](migrate-to-batch-synthesis.md#text-inputs). For long-form text to speech, use the [batch synthesis API](batch-synthesis.md) instead.
+> The `audio` element isn't supported by the [Long Audio API](migrate-to-batch-synthesis.md#text-inputs). For long-form text to speech, use the [batch synthesis API](batch-synthesis.md) instead.
 
 The following table describes the usage of the `audio` element's attributes:
 
@@ -502,7 +497,7 @@ Only one background audio file is allowed per SSML document. You can intersperse
 > [!NOTE]
 > The `mstts:backgroundaudio` element should be put in front of all `voice` elements. If specified, it must be the first child of the `speak` element.
 >
-> The `mstts:backgroundaudio` element is not supported by the [Long Audio API](migrate-to-batch-synthesis.md#text-inputs). For long-form text to speech, use the [batch synthesis API](batch-synthesis.md) (Preview) instead.
+> The `mstts:backgroundaudio` element isn't supported by the [Long Audio API](migrate-to-batch-synthesis.md#text-inputs). For long-form text to speech, use the [batch synthesis API](batch-synthesis.md) (Preview) instead.
 
 The following table describes the usage of the `mstts:backgroundaudio` element's attributes:
 
@@ -521,10 +516,79 @@ For information about the supported values for attributes of the `mstts:backgrou
 <speak version="1.0" xml:lang="en-US" xmlns:mstts="http://www.w3.org/2001/mstts">
     <mstts:backgroundaudio src="https://contoso.com/sample.wav" volume="0.7" fadein="3000" fadeout="4000"/>
     <voice name="en-US-AvaMultilingualNeural">
-        The text provided in this document will be spoken over the background audio.
+        The text provided in this document are spoken over the background audio.
     </voice>
 </speak>
 ```
+
+
+## Viseme element
+
+A viseme is the visual description of a phoneme in spoken language. It defines the position of the face and mouth while a person is speaking. You can use the `mstts:viseme` element in SSML to request viseme output. For more information, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md).
+
+The viseme setting is applied to all input text within its enclosing `voice` element. To reset or change the viseme setting again, you must use a new `voice` element with either the same voice or a different voice.
+
+Usage of the `viseme` element's attributes are described in the following table.
+
+| Attribute | Description | Required or optional |
+| ---------- | ---------- | ---------- |
+| `type`    | The type of viseme output.<ul><li>`redlips_front` – lip-sync with viseme ID and audio offset output </li><li>`FacialExpression` – blend shapes output</li></ul> | Required  |
+
+> [!NOTE]
+> Currently, `redlips_front` only supports neural voices in `en-US` locale, and `FacialExpression` supports neural voices in `en-US` and `zh-CN` locales.
+
+### Viseme examples
+
+The supported values for attributes of the `viseme` element were [described previously](#viseme-element).
+
+This SSML snippet illustrates how to request blend shapes with your synthesized speech.
+
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
+  <voice name="en-US-AvaNeural">
+    <mstts:viseme type="FacialExpression"/>
+    Rainbow has seven colors: Red, orange, yellow, green, blue, indigo, and violet.
+  </voice>
+</speak>
+```
+
+## Voice conversion element
+
+Voice conversion (preview) is the process of transforming the voice characteristics of a given audio to a target voice speaker. After voice conversion, the resulting audio reserves source audio's linguistic content and prosody while the voice timbre sounds like the target speaker. For more information, see [voice conversion](./voice-conversion.md).
+
+Use the `<mstts:voiceconversion>` tag via Speech Synthesis Markup Language (SSML) to specify the source audio URL and the target voice for the conversion. For a complete list of supported target voices, see [supported voices for voice conversion](./language-support.md?tabs=tts#voice-conversion).
+
+The following table describes the usage of the `mstts:voiceconversion` element's attributes:
+
+| Attribute | Description | Required or optional |
+| ---------- | ---------- | ---------- |
+| `url` | The URL of the source audio file that provides linguistic content and prosody for the synthesized speech.<br/><br/>The `url` must be accessible via HTTPS URL. For example, `https://example.com/source.wav`<br/><br/>Input audio must be under 100 MB. | Required |
+
+Here's how the voice conversion works:
+- The source audio is a prerecorded audio file that contains the spoken words and prosody.
+  - Text content: The final synthesized speech follows the spoken words in the source audio.
+  - Prosody and rhythm: The speech maintains the timing and intonation from the source.
+- The `<voice>` tag specifies the target voice used for the output audio. For information about the supported target voices, see [supported voices for voice conversion](./language-support.md?tabs=tts#voice-conversion).
+- The output audio keeps the timbre (tone and voice quality) of the target voice, but follows the text and speaking style of the source audio.
+
+> [!NOTE]
+> All SSML elements related to prosody and pronunciation such as `<prosody>` or `<mstts:express-as>` are ignored.
+> 
+> Text input is optional and any text included in the SSML are ignored during rendering.
+
+
+### mstss voiceconversion examples
+
+The following example demonstrates how to use `<mstts:voiceconversion>` to synthesize speech using a **target neural voice** while **matching both the content and prosody** of a given source audio:
+
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
+    <voice xml:lang="en-US" xml:gender="Female" name="en-US-AvaMultilingualNeural">
+        <mstts:voiceconversion url="https://your.blob.core.windows.net/sourceaudio.wav"/>
+    </voice>
+</speak>
+```
+
 
 ## Next steps
 

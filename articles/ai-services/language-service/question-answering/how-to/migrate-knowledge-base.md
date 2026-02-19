@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
 # Move projects and question answer pairs
@@ -22,21 +22,21 @@ You might want to create copies of your projects or sources for several reasons:
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
-* A [language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled in the Azure portal. Remember your Microsoft Entra ID, Subscription, and the Language resource name you selected when you created the resource.
+* If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+* A [language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled in the Azure portal. Remember your Microsoft Entra ID, Subscription, and Azure Language resource name you selected when you created the resource.
 
 ## Export a project
 
 Exporting a project allows you to back up all the question answer sources that are contained within a single project.
 
 1. Sign in to the [Language Studio](https://language.azure.com/).
-1. Select the Language resource you want to move a project from.
+1. Select Azure Language resource you want to move a project from.
 1. Go to Custom Question Answering service. On the **Projects** page, you have the options to export in two formats, Excel or TSV. This will determine the contents of the file. The file itself will be exported as a .zip containing the contents of your project.
 2. You can export only one project at a time.
 
 ## Import a project  
 
-1. Select the Language resource, which will be the destination for your previously exported project.
+1. Select Azure Language resource, which will be the destination for your previously exported project.
 1. Go to Custom Question Answering service. On the **Projects** page, select **Import** and choose the format used when you selected export. Then browse to the local .zip file containing your exported project. Enter a name for your newly imported project and select **Done**.
 
 ## Export sources

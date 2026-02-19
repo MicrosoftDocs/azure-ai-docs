@@ -3,12 +3,12 @@ title: Artifacts and models in MLflow
 titleSuffix: Azure Machine Learning
 description: Learn how MLflow uses the concept of models instead of artifacts to represent trained models and enable a streamlined path to deployment.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
-ms.reviewer: cacrest
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 09/30/2024
+ms.date: 10/30/2025
 ms.topic: concept-article
 ms.custom: cliv2, sdkv2, FY25Q1-Linter
 #Customer intent: As a data scientist, I want to understand MLflow artifacts and models so I can use MLflow models to enable streamlined deployment workflows.
@@ -20,7 +20,7 @@ This article explains MLflow artifacts and MLflow models, and how MLflow models 
 
 ## Artifacts and models
 
-In MLflow, there are some fundamental differences between logging simple file artifacts and logging MLflow models.
+In MLflow, fundamental differences exist between logging simple file artifacts and logging MLflow models.
 
 ### Artifact
 
@@ -38,7 +38,7 @@ mlflow.log_artifact(filename)
 
 ### Model
 
-An MLflow model is an artifact for which you make stronger assumptions that provide a clear contract between the saved files and what they mean. If, however, you log your model's files simply as artifacts, you need to know what each of the files mean and how to load them for inference.
+An MLflow model is an artifact for which you make stronger assumptions that provide a clear contract between the saved files and what they mean. If you log your model's files simply as artifacts, you need to know what each of the files mean and how to load them for inference.
 
 You can log MLflow models by using the MLflow SDK, for example:
 
@@ -96,7 +96,7 @@ Considering the large number of machine learning frameworks available, MLflow in
 
 Because each model flavor indicates how to persist and load the model for a given framework, the MLmodel format doesn't enforce a single serialization mechanism that all models must support. Therefore, each flavor can use the methods that provide the best performance or best support according to their best practices, without compromising compatibility with the MLmodel standard.
 
-The following example shows the `flavors` section for an `fastai` model.
+The following example shows the `flavors` section for a `fastai` model.
 
 ```yaml
 flavors:
@@ -112,9 +112,9 @@ flavors:
 
 ### Model signature
 
-An MLflow [model signature](https://www.mlflow.org/docs/latest/models.html#model-signature) is an important part of the model specification, because it serves as a data contract between the model and the server running the model. A model signature is also important for parsing and enforcing a model's input types at deployment time. If a signature is available, MLflow enforces the input types when data is submitted to your model. For more information, see [MLflow signature enforcement](https://www.mlflow.org/docs/latest/models.html#signature-enforcement).
+An MLflow [model signature](https://www.mlflow.org/docs/latest/models.html#model-signature) is an important part of the model specification because it serves as a data contract between the model and the server running the model. A model signature is also important for parsing and enforcing a model's input types at deployment time. If a signature is available, MLflow enforces the input types when data is submitted to your model. For more information, see [MLflow signature enforcement](https://www.mlflow.org/docs/latest/models.html#signature-enforcement).
 
-Signatures are indicated at the time that models are logged, and are persisted in the `signature` section of the *MLmodel* file. The **Autolog** feature in MLflow automatically makes a best effort to infer signatures. However, you can log models manually if the inferred signatures aren't the ones you need. For more information, see [How to log models with signatures](https://www.mlflow.org/docs/latest/models.html#how-to-log-models-with-signatures). 
+You indicate signatures when you log models, and MLflow persists them in the `signature` section of the *MLmodel* file. The **Autolog** feature in MLflow automatically makes a best effort to infer signatures. However, you can log models manually if the inferred signatures aren't the ones you need. For more information, see [How to log models with signatures](https://www.mlflow.org/docs/latest/models.html#how-to-log-models-with-signatures). 
 
 There are two types of signatures:
 
@@ -136,11 +136,11 @@ signature:
 ```
 
 > [!TIP]
-> Azure Machine Learning generates a swagger file for a deployment of an MLflow model that has an available signature. This file makes it easier to test deployments using Azure Machine Learning studio.
+> Azure Machine Learning generates a swagger file for a deployment of an MLflow model that has an available signature. This file makes it easier to test deployments by using Azure Machine Learning studio.
 
 ### Model environment
 
-Requirements for the model to run are specified in the *conda.yaml* file. MLflow can automatically detect dependencies, or you can manually indicate them by calling the `mlflow.<flavor>.log_model()` method. Calling the method can be useful if the libraries that MLflow included in your environment aren't the ones you intended to use.
+Specify the requirements for the model to run in the *conda.yaml* file. MLflow can automatically detect dependencies, or you can manually indicate them by calling the `mlflow.<flavor>.log_model()` method. Calling the method can be useful if the libraries that MLflow included in your environment aren't the ones you intended to use.
 
 The following *conda.yaml* example shows an environment for a model created with the `fastai` framework:
 
@@ -164,11 +164,11 @@ name: mlflow-env
 ```
 
 >[!NOTE]
->An MLflow environment operates at the level of the model, but an Azure Machine Learning environment operates at the workspace level for registered environments or the jobs/deployments level for anonymous environments. When you deploy MLflow models, Azure Machine Learning builds the model environment and uses it for deployment. You can use the [Azure Machine Learning CLI](concept-v2.md) to override this behavior and deploy MLflow models to a specific Azure Machine Learning environment.
+>An MLflow environment operates at the level of the model, but an Azure Machine Learning environment operates at the workspace level for registered environments or the jobs and deployments level for anonymous environments. When you deploy MLflow models, Azure Machine Learning builds the model environment and uses it for deployment. You can use the [Azure Machine Learning CLI](concept-v2.md) to override this behavior and deploy MLflow models to a specific Azure Machine Learning environment.
 
 ### Predict function
 
-All MLflow models contain a `predict` function, which is called when the model is deployed by using a no-code deployment. What the `predict` function returns, for example classes, probabilities, or a forecast, depends on the framework or flavor used for training. The documentation of each flavor describes what it returns.
+All MLflow models contain a `predict` function. When you deploy the model by using a no-code deployment, the deployment calls the `predict` function. What the `predict` function returns, such as classes, probabilities, or a forecast, depends on the framework or flavor used for training. The documentation of each flavor describes what it returns.
 
 You can customize the `predict` function to change the way inference is executed. You can either [log models with a different behavior](how-to-log-mlflow-models.md#log-models-that-use-modified-prediction-behavior), or [log a custom model flavor](how-to-log-mlflow-models.md#log-custom-models).
 
@@ -176,17 +176,17 @@ You can customize the `predict` function to change the way inference is executed
 
 You can load MLflow models from the following locations:
 
-- Directly from the run where the models were logged
-- From the file system where the models are saved
-- From the model registry where the models are registered
+- Directly from the run where you logged the models
+- From the file system where you saved the models
+- From the model registry where you registered the models
 
 MLflow provides a consistent way to load these models regardless of location.
 
 There are two workflows for loading models:
 
-- **Load back the same object and types that were logged.** You can load models using the MLflow SDK and obtain an instance of the model with types belonging to the training library. For example, an Open Neural Network Exchange (ONNX) model returns a `ModelProto`, while a decision tree model trained with `scikit-learn` returns a `DecisionTreeClassifier` object. Use `mlflow.<flavor>.load_model()` to load back the same model object and types that were logged.
+- **Load back the same object and types that you logged.** You can load models by using the MLflow SDK and get an instance of the model with types belonging to the training library. For example, an Open Neural Network Exchange (ONNX) model returns a `ModelProto`, while a decision tree model trained with `scikit-learn` returns a `DecisionTreeClassifier` object. Use `mlflow.<flavor>.load_model()` to load back the same model object and types that you logged.
 
-- **Load back a model for running inference.** You can load models using the MLflow SDK and get a wrapper that has a guaranteed `predict` function. It doesn't matter which flavor you use, because every MLflow model has a `predict` function.
+- **Load back a model for running inference.** You can load models by using the MLflow SDK and get a wrapper that has a guaranteed `predict` function. It doesn't matter which flavor you use, because every MLflow model has a `predict` function.
 
   MLflow guarantees that you can call this function by using arguments of type `pandas.DataFrame`, `numpy.ndarray`, or `dict[string, numpyndarray]`, depending on the model signature. MLflow handles the type conversion to the input type that the model expects. Use `mlflow.pyfunc.load_model()` to load back a model for running inference.
 

@@ -5,9 +5,9 @@ description: Learn how to manage Azure Machine Learning hub workspaces in the Az
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: deeikele
-author: deeikele
-ms.reviewer: blackmist
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
 ms.date: 05/09/2024
 ms.topic: how-to
 ---
@@ -17,13 +17,13 @@ ms.topic: how-to
 In this article, you create, view, and delete [**Azure Machine Learning hub workspaces**](concept-hub-workspace.md) for [Azure Machine Learning](overview-what-is-azure-machine-learning.md), with the [Azure portal](https://portal.azure.com).
 
 > [!TIP]
-> An Azure Machine Learning hub workspace and an Azure AI Foundry hub are the same thing. Azure AI Foundry brings multiple Azure AI resources together for a unified experience. Azure Machine Learning is one of the resources, and provides both Azure AI Foundry hub and project workspaces. Hub and project workspaces can be used from both Azure Machine Learning studio and Azure AI Foundry.
+> An Azure Machine Learning hub workspace and a Microsoft Foundry hub are the same thing. Foundry brings multiple Azure AI resources together for a unified experience. Azure Machine Learning is one of the resources, and provides both Foundry hub and project workspaces. Hub and project workspaces can be used from both Azure Machine Learning studio and Foundry.
 
 As your needs change or your automation requirements increase, you can manage workspaces [with the CLI](how-to-manage-workspace-cli.md), [Azure PowerShell](how-to-manage-workspace-powershell.md), or [via the Visual Studio Code extension](how-to-setup-vs-code.md).
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 ## Limitations
 
@@ -41,16 +41,16 @@ As your needs change or your automation requirements increase, you can manage wo
 
 Use the following steps to create a hub from the Azure portal:
 
-1. From the Azure portal, search for `Azure AI Foundry` and create a new resource by selecting **+ New Azure AI**.
+1. From the Azure portal, search for `Foundry` and create a new resource by selecting **+ New Azure AI**.
 1. Enter your AI hub name, subscription, resource group, and location details.
 1. For advanced settings, select **Next: Resources** to specify resources, networking, encryption, identity, and tags. 
 
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png" alt-text="Screenshot of the option to set Azure AI hub basic information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png":::
 
-1. Select an existing **Azure AI services** resource or create a new one. New Azure AI services include multiple API endpoints for Speech, Content Safety and Azure OpenAI. You can also bring an existing Azure OpenAI resource. Optionally, choose an existing **Storage account**, **Key vault**, **Container Registry**, and **Application insights** to host artifacts generated when you use Azure AI Foundry.
+1. Select an existing **Foundry Tools** resource or create a new one. New Foundry Tools include multiple API endpoints for Speech, Content Safety and Azure OpenAI. You can also bring an existing Azure OpenAI resource. Optionally, choose an existing **Storage account**, **Key vault**, **Container Registry**, and **Application insights** to host artifacts generated when you use Foundry.
 
     > [!TIP]
-    > You can skip selecting Azure AI Services if you plan to only work in Azure Machine Learning studio. Azure AI Services is required for Azure AI Foundry, and provides access to pre-built AI models for use in prompt flow.
+    > You can skip selecting Foundry Tools if you plan to only work in Azure Machine Learning studio. Foundry Tools is required for Foundry, and provides access to pre-built AI models for use in prompt flow.
 
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-resources.png" alt-text="Screenshot of the Create an Azure AI hub with the option to set resource information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-resources.png"::: 
 
@@ -67,7 +67,7 @@ Use the following steps to create a hub from the Azure portal:
     :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-identity.png" alt-text="Screenshot of the Create an Azure AI hub with the option to select a managed identity." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-identity.png":::
    
     >[!Note]
-    >If you select **User assigned identity** and also selected an Azure AI Service, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new Azure AI hub.
+    >If you select **User assigned identity** and also selected a Foundry Tool, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new Azure AI hub.
     
 1. Add tags.
 
@@ -100,9 +100,9 @@ Hub networking settings can be set during resource creation or changed in the **
 
 At hub creation, select between the networking isolation modes: **Public**, **Private with Internet Outbound**, and **Private with Approved Outbound**. To secure your resource, select either **Private with Internet Outbound** or Private with Approved Outbound for your networking needs. For the private isolation modes, a private endpoint should be created for inbound access. For more information on network isolation, see [Managed virtual network isolation](/azure/ai-studio/how-to/configure-managed-network). To create a secure hub, see [Create a secure Azure AI hub](/azure/ai-studio/how-to/create-secure-ai-hub). 
 
-At hub creation in the Azure portal, creation of associated Azure AI services, Storage account, Key vault, Application insights, and Container registry is given. These resources are found on the Resources tab during creation. 
+At hub creation in the Azure portal, creation of associated Foundry Tools, Storage account, Key vault, Application insights, and Container registry is given. These resources are found on the Resources tab during creation. 
 
-To connect to Azure AI services (Azure OpenAI, Azure AI Search, and Azure AI Content Safety) or storage accounts in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), create a private endpoint in your virtual network. Ensure the public network access (PNA) flag is disabled when creating the private endpoint connection. For more about Azure AI services connections, see [Azure AI services and virtual networks](/azure/ai-services/cognitive-services-virtual-networks). You can optionally bring your own (BYO) search, but this requires a private endpoint connection from your virtual network.
+To connect to Foundry Tools (Azure OpenAI, Azure AI Search, and Azure AI Content Safety) or storage accounts in [Foundry portal](https://ai.azure.com/?cid=learnDocs), create a private endpoint in your virtual network. Ensure the public network access (PNA) flag is disabled when creating the private endpoint connection. For more about Foundry Tools connections, see [Foundry Tools and virtual networks](/azure/ai-services/cognitive-services-virtual-networks). You can optionally bring your own (BYO) search, but this requires a private endpoint connection from your virtual network.
 
 ### Encryption
 
@@ -123,4 +123,4 @@ You can configure your hub for these resources during creation or update after c
 
 ## Next steps
 
-Once you have a workspace hub, you can Create a project using [Azure Machine Learning studio](how-to-manage-workspace.md?tabs=mlstudio), [Azure AI Foundry](/azure/ai-studio/how-to/create-projects), [Azure SDK](how-to-manage-workspace.md?tabs=python), or [Using automation templates](how-to-create-workspace-template.md).
+Once you have a workspace hub, you can Create a project using [Azure Machine Learning studio](how-to-manage-workspace.md?tabs=mlstudio), [Foundry](/azure/ai-studio/how-to/create-projects), [Azure SDK](how-to-manage-workspace.md?tabs=python), or [Using automation templates](how-to-create-workspace-template.md).

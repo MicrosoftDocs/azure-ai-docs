@@ -1,17 +1,16 @@
 ---
 title: Conversational Language Understanding None Intent
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the default None intent in conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ms.reviewer: haelhamm
 ---
-
 # None intent
 
 Every project in conversational language understanding includes a default None intent. The None intent is a required intent and can't be deleted or renamed. The intent is meant to categorize utterances that don't belong to any of your other custom intents.

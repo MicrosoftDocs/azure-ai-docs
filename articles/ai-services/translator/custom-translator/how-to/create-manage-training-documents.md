@@ -1,18 +1,18 @@
 ---
-title: Build and upload Azure AI Custom Translator training documents
-titleSuffix: Azure AI services
-description: How to build and upload parallel documents (two documents where one is the origin and the other is the translation) using Azure AI Custom Translator.
+title: Build and upload Custom Translator training documents
+titleSuffix: Foundry Tools
+description: How to build and upload parallel documents (two documents where one is the origin and the other is the translation) using Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Build and manage Azure AI Custom Translator training documents
+# Build and manage Custom Translator training documents
 
-[Azure AI Custom Translator](../overview.md) enables you to build translation models that reflect your business, industry, and domain-specific terminology and style. Training and deploying a custom model is easy and doesn't require any programming skills. Custom Translator allows you to upload parallel files, translation memory files, or zip files.
+[Custom Translator](../overview.md) enables you to build translation models that reflect your business, industry, and domain-specific terminology and style. Training and deploying a custom model is easy and doesn't require any programming skills. Custom Translator allows you to upload parallel files, translation memory files, or zip files.
 
 [Parallel documents](../concepts/parallel-documents.md) are pairs of documents where one (target) is a translation of the other (source). One document in the pair contains sentences in the source language and the other document contains those sentences translated into the target language.
 
@@ -94,8 +94,8 @@ In workspace page you can view history of all document uploads details like docu
 
 ## Next steps
 
-- Learn [how to train an Azure AI Custom Translator model](train-custom-model.md).
+- Learn [how to train a Custom Translator model](train-custom-model.md).
 - Learn [how to test and evaluate model quality](test-your-model.md).
-- Learn [how to publish an Azure AI Custom Translator model](publish-model.md).
+- Learn [how to publish a Custom Translator model](publish-model.md).
 - Learn [how to translate with custom models](translate-with-custom-model.md).
 - Visit the [Custom Translator portal](https://portal.customtranslator.azure.ai)

@@ -1,16 +1,18 @@
 ---
 manager: nitinme
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 05/29/2025
-ms.author: fasantia
-author: santiagxf
+ms.date: 10/15/2025
+ms.author: mopeakande
+author: msakande
 ---
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../../model-inference/how-to/quickstart-github-models.md) if that's your case.
+- An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Microsoft Foundry Models](../how-to/quickstart-github-models.md) if that's your case.
 
-* An Azure AI Foundry resource (formerly known as Azure AI Services). For more information, see [Create an Azure AI Foundry resource](../../model-inference/how-to/quickstart-create-resources.md).
+- A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see [Create a project for Foundry (Foundry projects)](../../how-to/create-projects.md).
 
-* The endpoint URL and key.
+- The endpoint's URL.
 
-    :::image type="content" source="../media/overview/overview-endpoint-and-key.png" alt-text="Screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
+- The endpoint's key (if you choose to use API key for authentication).
+

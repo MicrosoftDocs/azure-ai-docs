@@ -1,9 +1,9 @@
 ---
-author: erhopf
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 07/01/2021
-ms.author: erhopf
+ms.author: pafarley
 ---
 
 Each request requires an authorization header. This table illustrates which headers are supported for each feature:
@@ -165,7 +165,7 @@ Follow the steps here [Use Microsoft Entra authentication](../how-to-configure-a
 
 > [!div class="checklist"]
 >
-> - Create an AI Foundry resource for Speech
+> - Create a Foundry resource for Speech
 > - Configure the Speech resource for Microsoft Entra authentication
 > - Get a Microsoft Entra access token
 > - Get the Speech resource ID

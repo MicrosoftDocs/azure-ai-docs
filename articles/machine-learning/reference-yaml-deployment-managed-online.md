@@ -7,10 +7,10 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: reference
 ms.custom: cliv2, build-2023, update-code
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 10/19/2023
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ---
 
 # CLI (v2) managed online deployment YAML schema
@@ -31,7 +31,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `tags` | object | Dictionary of tags for the deployment. | | |
 | `endpoint_name` | string | **Required.** Name of the endpoint to create the deployment under. | | |
 | `model` | string or object | The model to use for the deployment. This value can be either a reference to an existing versioned model in the workspace or an inline model specification. <br><br> To reference an existing model, use the `azureml:<model-name>:<model-version>` syntax. <br><br> To define a model inline, follow the [Model schema](reference-yaml-model.md#yaml-syntax). <br><br> As a best practice for production scenarios, you should create the model separately and reference it here. <br><br> This field is optional for [custom container deployment](how-to-deploy-custom-container.md) scenarios.| | |
-| `model_mount_path` | string | The path to mount the model in a custom container. Applicable only for [custom container deployment](how-to-deploy-custom-container.md) scenarios. If the `model` field is specified, it's mounted on this path in the container. | | |
+| `model_mount_path` | string | The path to mount the model in a custom container. Applicable only for [custom container deployment](how-to-deploy-custom-container.md) scenarios, where environment has `inference_config` configured. If the `model` field is specified, it's mounted on this path in the container. | | |
 | `code_configuration` | object | Configuration for the scoring code logic. <br><br> This field is optional for [custom container deployment](how-to-deploy-custom-container.md) scenarios. | | |
 | `code_configuration.code` | string | Local path to the source code directory for scoring the model. | | |
 | `code_configuration.scoring_script` | string | Relative path to the scoring file in the source code directory. | | |

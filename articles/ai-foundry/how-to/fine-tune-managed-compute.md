@@ -1,81 +1,113 @@
 ---
-title: Fine-tune models using a managed compute with Azure AI Foundry portal (preview)
-titleSuffix: Azure AI Foundry
-description: Learn how to fine-tune models using a managed compute with Azure AI Foundry.
-manager: scottpolly
+title: Deploy Fine-Tuned Models with Managed Compute in Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Deploy fine-tuned models using managed compute in Microsoft Foundry portal. Step-by-step guide to fine-tune, train, and deploy custom models with GPU compute resources.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 04/25/2025
+ms.date: 08/15/2025
 ms.reviewer: vkann
 reviewer: kvijaykannan
-ms.author: mopeakande
-author: msakande
-ms.custom: references_regions
-
+ms.author: ssalgado
+manager: nitinme
+author: ssalgadodev
+ms.custom: 
+  - references_regions
+  - hub-only
+ai-usage: ai-assisted
 #customer intent: As a data scientist using a managed compute, I want to learn how to fine-tune models to improve model performance for specific tasks. 
 ---
 
 # Fine-tune models using managed compute (preview)
 
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article explains how to use a managed compute to fine-tune a model in the Azure AI Foundry portal. Fine-tuning involves adapting a pretrained model to a new, related task or domain. When you use a managed compute for fine-tuning, you use your computational resources to adjust training parameters such as learning rate, batch size, and number of training epochs to optimize the model's performance for a specific task. 
+Learn how to fine-tune and deploy models using managed compute in Microsoft Foundry. Adjust training parameters (learning rate, batch size, epochs) to optimize performance.
 
-Fine-tuning a pretrained model to use for a related task is more efficient than building a new model, as fine-tuning builds upon the pretrained model's existing knowledge and reduces the time and data needed for training.
+Fine-tuning a pretrained model for a related task is more efficient than training a new model from scratch.
 
-To improve model performance, you might consider fine-tuning a foundation model with your training data. You can easily fine-tune foundation models by using the fine-tune settings in the Azure AI Foundry portal.
+Use the fine-tune settings in the portal to configure data, compute, and hyperparameters. After training completes you can evaluate and deploy the resulting model.
+
+In this article, you learn how to:
+
+- Select a foundation model.
+- Configure compute and data splits.
+- Tune hyperparameters safely.
+- Submit and monitor a fine-tune job.
+- Evaluate and deploy the fine-tuned model.
 
 
 ## Prerequisites
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
 ## Fine-tune a foundation model using managed compute
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
 
 1. If you're not already in your project, select it. 
 1. Select **Fine-tuning** from the left pane.
 
-    1. Select **Fine-tune model** and add the model that you want to fine-tune. This article uses _Phi-3-mini-4k-instruct_ for illustration.
+    1. Select **Fine-tune a model** and add the model that you want to fine-tune. This article uses _Phi-3-mini-4k-instruct_ for illustration.
     1. Select **Next** to see the available fine-tune options. Some foundation models support only the __Managed compute__ option.
 
 1. Alternatively, you could select **Model catalog** from the left sidebar of your project and find the model card of the foundation model that you want to fine-tune.
 
     1. Select __Fine-tune__ on the model card to see the available fine-tune options. Some foundation models support only the __Managed compute__ option.
 
-    :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-options.png" alt-text="Screenshot showing fine-tuning options for a foundation model in Azure AI Foundry." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-options.png":::
+    :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-options.png" alt-text="Screenshot showing fine-tuning options for a foundation model in Foundry." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-options.png":::
 
-1. Select __Managed compute__ to use your personal compute resources. This action opens up the "Basic settings" page of a window for specifying the fine-tuning settings.
+1. Select **Managed compute**. This opens **Basic settings**.
 
 ### Configure fine-tune settings
 
 In this section, you go through the steps to configure fine-tuning for your model, using a managed compute.
 
-1. Provide a name for the fine-tuned model on the "Basic settings" page, and select **Next** to go to the "Compute" page.
+1. Provide a model name (for example, `phi3mini-faq-v1`). Select **Next** for **Compute**.
 
-1. Select the Azure Machine Learning compute cluster to use for fine-tuning the model. Fine-tuning runs on GPU compute. Ensure that you have sufficient compute quota for the compute SKUs you plan to use.
+1. Select a GPU VM size. Ensure quota for the chosen SKU.
 
     :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png" alt-text="Screenshot showing settings for the compute to use for fine-tuning." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png":::
 
-1. Select **Next** to go to the "Training data" page. On this page, the "Task type" is preselected as **Chat completion**.
+1. Select **Next** for **Training data**. Task type may be preset (for example, **Chat completion**). 
 
-1. Provide the training data to use to fine-tune your model. You can choose to either upload a local file (in JSONL, CSV or TSV format) or select an existing registered dataset from your project.
+1. Provide training data (upload JSONL/CSV/TSV or select a registered dataset). Balance examples to reduce bias.
 
-1. Select **Next** to go to the "Validation data" page. Keep the **Automatic split of training data** selection to reserve an automatic split of training data for validation. Alternatively, you could provide a different validation dataset by uploading a local file (in JSONL, CSV or TSV format) or selecting an existing registered dataset from your project.
+1. Select **Next** for **Validation data**. Keep **Automatic split** or supply a separate dataset.
 
-1. Select **Next** to go to the "Task parameters" page. Tuning hyperparameters is essential for optimizing large language models (LLMs) in real-world applications. It allows for improved performance and efficient resource usage. You can choose to keep the default settings or customize parameters like epochs or learning rate.
+1. Select **Next** for **Task parameters**. Adjust epochs, learning rate, batch size. Start conservative; iterate based on validation metrics.
 
-1. Select **Next** to go to the "Review" page and check that all the settings look good.
+1. Select **Next** for **Review**. Confirm counts and parameters.
 
-1. Select **Submit** to submit your fine-tuning job. Once the job completes, you can view evaluation metrics for the fine-tuned model. You can then deploy this model to an endpoint for inferencing.
+1. Select **Submit** to start the job.
 
-## Related Contents
+### Monitor and evaluate
 
-- [Fine-tune models with Azure AI Foundry](../concepts/fine-tuning-overview.md)
-- [How to generate chat completions with Azure AI Foundry Models](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context)
-- [Featured models of Azure AI Foundry](../concepts/models-featured.md)
+- Track job status in the fine-tuning jobs list.
+- Review logs for preprocessing or allocation issues.
+- After completion, view generated evaluation metrics (if enabled) or run a separate evaluation comparing base vs fine-tuned model.
+
+### Deploy the fine-tuned model
+
+Deploy from the job summary. Use a deployment name like `faq-v1`. Record model version and dataset hash for reproducibility. Add tracing to monitor real requests.
+
+### Troubleshooting
+
+| Issue | Cause | Action |
+|-------|-------|-------|
+| Stuck in Queued | Insufficient GPU capacity | Try alternate SKU or region |
+| Overfitting quickly | Too many epochs / small dataset | Reduce epochs or expand data |
+| No metric improvement | Dataset noise / misaligned objective | Refine labeling or metric selection |
+| Higher latency post deploy | Larger base model / adapter overhead | Consider smaller base model or tune batch size |
+
+## Related content
+
+- [Fine-tune models overview](../concepts/fine-tuning-overview.md)
+- [Generate chat completions](../openai/api-version-lifecycle.md)
+- [Featured models](../concepts/models-inference-examples.md)

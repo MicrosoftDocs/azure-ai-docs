@@ -5,8 +5,9 @@ ms.topic: how-to
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
+ms.custom: sfi-image-nochange
 ---
 
 
@@ -52,7 +53,7 @@ Azure Blob Storage offers three resource types:
 
 To get started, you need:
 
-* An active [Azure account](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [create a free account](https://azure.microsoft.com/free/).
+* An active [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A [Document Intelligence](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource.
 
@@ -84,7 +85,7 @@ To get started, you need:
 ## Generating SAS tokens
 Once the prerequisites are met and you upload your documents, you can now generate SAS tokens. There are two paths you can take from here; one using the Azure portal and the other using the Azure storage explorer. Select between the two following tabs for more information.
 
-### [**Azure Portal**](#tab/azure-portal)
+### [**Azure portal**](#tab/azure-portal)
 
 The Azure portal is a web-based console that enables you to manage your Azure subscription and resources using a graphical user interface (GUI).
 

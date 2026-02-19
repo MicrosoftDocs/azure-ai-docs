@@ -1,15 +1,15 @@
 ---
-title: Create jobs and input data for batch endpoints
+title: Create Jobs and Input Data for Batch Endpoints
 titleSuffix: Azure Machine Learning
 description: Find out how to access input data from various sources in Azure Machine Learning batch endpoint jobs. See code for the Azure CLI, the Python SDK, and REST API calls.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
-ms.date: 12/02/2024
-ms.reviewer: cacrest
+author: s-polly
+ms.author: scottpolly
+ms.date: 01/13/2026
+ms.reviewer: jturuk
 ms.custom:
   - devplatv2
   - devx-track-azurecli
@@ -32,7 +32,7 @@ This article describes how to specify parameter inputs for batch endpoints and c
 - Read access to the input data from the compute cluster where the endpoint is deployed. 
 
   > [!TIP]
-  > Certain situations require using a credential-less data store or external Azure Storage account as data input. In these scenarios, ensure you [configure compute clusters for data access](how-to-authenticate-batch-endpoint.md#configure-compute-clusters-for-data-access), because the managed identity of the compute cluster is used for mounting the storage account. You still have granular access control, because the identity of the job (invoker) is used to read the underlying data.
+  > Certain situations require the use of a credential-less data store or external Azure Storage account as data input. In these scenarios, ensure that you [configure compute clusters for data access](how-to-authenticate-batch-endpoint.md#configure-compute-clusters-for-data-access), because the managed identity of the compute cluster is used for mounting the storage account. You still have granular access control because the identity of the job (the invoker) is used to read the underlying data.
 
 ## Establish authentication
 
@@ -59,7 +59,7 @@ Use the Azure Machine Learning SDK for Python to sign in:
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config(DefaultAzureCredential())
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 ```
 
 If your configuration runs outside an Azure Machine Learning compute instance, you need to specify the workspace where the endpoint is deployed:
@@ -92,7 +92,7 @@ For more information about various types of credentials, see [How to run jobs us
 
 ## Create basic jobs
 
-To create a job from a batch endpoint, you invoke the endpoint. Invocation can be done by using the Azure Machine Learning CLI, the Azure Machine Learning SDK for Python, or a REST API call.
+To create a job from a batch endpoint, you invoke the endpoint. You can perform invocation by using the Azure Machine Learning CLI, the Azure Machine Learning SDK for Python, or a REST API call.
 
 The following examples show invocation basics for a batch endpoint that receives a single input data folder for processing. For examples that involve various inputs and outputs, see [Understand inputs and outputs](#understand-inputs-and-outputs).
 
@@ -122,7 +122,7 @@ job = ml_client.batch_endpoints.invoke(
 
 # [REST](#tab/rest)
 
-Make a `POST` request to the invocation URL of the endpoint. To get the invocation URL, go to Azure Machine Learning studio and open the details page for the endpoint.
+Make a `POST` request to the invocation URI of the endpoint. To get the invocation URI, go to Azure Machine Learning studio and open the details page for the endpoint.
 
 Use the following body in your request:
  
@@ -152,7 +152,7 @@ Content-Type: application/json
 
 ### Invoke a specific deployment
 
-Batch endpoints can host multiple deployments under the same endpoint. The default endpoint is used unless the user specifies otherwise. You can use the following procedures to change the deployment that you use.
+Batch endpoints can host multiple deployments under the same endpoint. The default deployment is used unless you specify another one. You can use the following procedures to change the deployment that you use.
 
 # [Azure CLI](#tab/cli)
  
@@ -278,7 +278,7 @@ Content-Type: application/json
 
 Batch endpoints provide a durable API that consumers can use to create batch jobs. The same interface can be used to specify the inputs and outputs your deployment expects. Use inputs to pass any information your endpoint needs to perform the job. 
 
-:::image type="content" source="./media/concept-endpoints/batch-endpoint-inputs-outputs.png" border="false" alt-text="Diagram that shows how inputs and outputs are used in batch endpoints.":::
+:::image type="content" source="./media/concept-endpoints/batch-endpoint-inputs-outputs.png" border="false" alt-text="Diagram that shows how inputs and outputs are used in batch endpoints." lightbox="./media/concept-endpoints/batch-endpoint-inputs-outputs.png":::
 
 Batch endpoints support two types of inputs:
 
@@ -292,21 +292,21 @@ The following table summarizes the inputs and outputs for batch deployments:
 | Deployment type | Number of inputs | Supported input types | Number of outputs | Supported output types |
 | --- | --- | --- | --- | --- |
 | [Model deployment](concept-endpoints-batch.md#model-deployment) | 1 | [Data inputs](#explore-data-inputs) | 1 | [Data outputs](#explore-data-outputs) |
-| [Pipeline component deployment](concept-endpoints-batch.md#pipeline-component-deployment) | 0-N | [Data inputs](#explore-data-inputs) and [literal inputs](#explore-literal-inputs) | 0-N | [Data outputs](#explore-data-outputs) |
+| [Pipeline component deployment](concept-endpoints-batch.md#pipeline-component-deployment) | 0-*N* | [Data inputs](#explore-data-inputs) and [literal inputs](#explore-literal-inputs) | 0-*N* | [Data outputs](#explore-data-outputs) |
 
 > [!TIP]
 > Inputs and outputs are always named. Each name serves as a key for identifying the data and passing the value during invocation. Because model deployments always require one input and output, the names are ignored during invocation in model deployments. You can assign the name that best describes your use case, such as `sales_estimation`.
 
 ### Explore data inputs
 
-Data inputs refer to inputs that point to a location where data is placed. Because batch endpoints usually consume large amounts of data, you can't pass the input data as part of the invocation request. Instead, you specify the location where the batch endpoint should go to look for the data. Input data is mounted and streamed on the target compute instance to improve performance. 
+Data inputs refer to inputs that point to a location where data is located. Because batch endpoints usually consume large amounts of data, you can't pass the input data as part of the invocation request. Instead, you specify the location where the batch endpoint should go to look for the data. Input data is mounted and streamed on the target compute instance to improve performance. 
 
 Batch endpoints can read files that are located in the following types of storage:
 
 - [Azure Machine Learning data assets](#use-input-data-from-a-data-asset), including the folder (`uri_folder`) and file (`uri_file`) types.
 - [Azure Machine Learning data stores](#use-input-data-from-a-data-store), including Azure Blob Storage, Azure Data Lake Storage Gen1, and Azure Data Lake Storage Gen2.
 - [Azure Storage accounts](#use-input-data-from-an-azure-storage-account), including Blob Storage, Data Lake Storage Gen1, and Data Lake Storage Gen2.
-- Local data folders and files, when you use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to invoke endpoints. But the local data gets uploaded to the default data store of your Azure Machine Learning workspace.
+- Local data folders and files, when you use the Azure Machine Learning CLI or the Azure Machine Learning SDK for Python to invoke endpoints. The local data gets uploaded to the default data store of your Azure Machine Learning workspace.
 
 > [!IMPORTANT]
 > **Deprecation notice**: Data assets of type `FileDataset` (V1) are deprecated and will be retired in the future. Existing batch endpoints that rely on this functionality will continue to work. But there's no support for V1 datasets in batch endpoints that are created with:
@@ -316,14 +316,14 @@ Batch endpoints can read files that are located in the following types of storag
 
 ### Explore literal inputs
 
-Literal inputs refer to inputs that can be represented and resolved at invocation time, like strings, numbers, and boolean values. You typically use literal inputs to pass parameters to your endpoint as part of a pipeline component deployment. Batch endpoints support the following literal types:
+Literal inputs refer to inputs that can be represented and resolved at invocation time, like strings, numbers, and Boolean values. You typically use literal inputs to pass parameters to your endpoint as part of a pipeline component deployment. Batch endpoints support the following literal types:
 
 - `string`
 - `boolean`
 - `float`
 - `integer`
 
-Literal inputs are only supported in pipeline component deployments. To see how to specify literal endpoints, see [Create jobs with literal inputs](#create-jobs-with-literal-inputs).
+Literal inputs are only supported in pipeline component deployments. For information about specifying literal endpoints, see [Create jobs with literal inputs](#create-jobs-with-literal-inputs).
 
 ### Explore data outputs
 
@@ -341,7 +341,7 @@ The following examples show how to create jobs while taking data inputs from [da
 Azure Machine Learning data assets (formerly known as datasets) are supported as inputs for jobs. Follow these steps to run a batch endpoint job that uses input data that's stored in a registered data asset in Azure Machine Learning.
 
 > [!WARNING]
-> Data assets of type table (`MLTable`) aren't currently supported.
+> Data assets of type table (MLTable) aren't currently supported for model deployments. MLTable is supported for pipeline component deployments.
 
 1. Create the data asset. In this example, it consists of a folder that contains multiple CSV files. You use batch endpoints to process the files in parallel. You can skip this step if your data is already registered as a data asset.
 
@@ -439,7 +439,7 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
         --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$DATA_ASSET_ID
     ```
 
-    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
+    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input because a model deployment always requires only one data input.
 
     ```azurecli
     az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $DATA_ASSET_ID
@@ -515,7 +515,7 @@ Azure Machine Learning data assets (formerly known as datasets) are supported as
 
 ### Use input data from a data store
 
-Your batch deployment jobs can directly reference data that's in Azure Machine Learning registered data stores. In this example, you first upload some data to a data store in your Azure Machine Learning workspace. Then you run a batch deployment on that data.
+Your batch deployment jobs can directly reference data that's in Azure Machine Learning registered data stores. In this example, you first upload some data to a data store in your Azure Machine Learning workspace. You then run a batch deployment on that data.
 
 This example uses the default data store, but you can use a different data store. In any Azure Machine Learning workspace, the name of the default blob data store is **workspaceblobstore**. If you want to use a different data store in the following steps, replace `workspaceblobstore` with the name of your preferred data store.
 
@@ -581,7 +581,7 @@ This example uses the default data store, but you can use a different data store
         --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$INPUT_PATH
     ```
 
-    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
+    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input because a model deployment always requires only one data input.
 
     ```azurecli
     az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $INPUT_PATH --input-type uri_folder
@@ -729,7 +729,7 @@ For more information about extra required configurations for reading data from s
         --set inputs.heart_data.type="uri_folder" inputs.heart_data.path=$INPUT_DATA
     ```
 
-    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input, because a model deployment always requires only one data input.
+    For an endpoint that serves a model deployment, you can use the `--input` argument to specify the data input because a model deployment always requires only one data input.
 
     ```azurecli
     az ml batch-endpoint invoke --name $ENDPOINT_NAME --input $INPUT_DATA --input-type uri_folder
@@ -744,13 +744,13 @@ For more information about extra required configurations for reading data from s
         path: https://azuremlexampledata.blob.core.windows.net/data/heart-disease-uci/data
     ```
     
-    Then you can run the following command, which uses the `--file` argument to specify the inputs:
+    You can then run the following command, which uses the `--file` argument to specify the inputs:
 
     ```azurecli
     az ml batch-endpoint invoke --name $ENDPOINT_NAME --file inputs.yml
     ```
 
-    If your data is in a file, use the `uri_file` type in the inputs.yml file for the data input. 
+    If your data is in a file, use the `uri_file` type for the data input in the inputs.yml file. 
 
     # [Python SDK](#tab/sdk)
 

@@ -3,12 +3,18 @@ ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: include
-ms.date: 05/02/2025
+ms.date: 01/06/2026
 ms.author: jburchel
 reviewer: maanavdalal
 ms.reviewer: maanavd
 author: jonburchel
+ai-usage: ai-assisted
 ---
+
+## Prerequisites
+
+- Foundry Local installed and available on your PATH. For setup steps, see [Get started with Foundry Local](../../get-started.md).
+- Python 3.9 or later installed. You can download Python from the [official Python website](https://www.python.org/downloads/).
 
 ## Install pip packages
 
@@ -17,6 +23,7 @@ Install the following Python packages:
 ```bash
 pip install openai
 pip install foundry-local-sdk
+pip install requests
 ```
 
 > [!TIP]
@@ -32,9 +39,9 @@ Copy-and-paste the following code into a Python file named `app.py`:
 import openai
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded 
-# to your end-user's device. 
-alias = "phi-3.5-mini"
+# By using an alias, the most suitable model will be downloaded
+# to your end-user's device.
+alias = "qwen2.5-0.5b"
 
 # Create a FoundryLocalManager instance. This will start the Foundry
 # Local service if it is not already running and load the specified model.
@@ -53,11 +60,16 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
+Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
+
 Run the code using the following command:
 
 ```bash
 python app.py
 ```
+
+You should see a text response printed in your terminal. On the first run, Foundry Local might download execution providers and the model, which can take a few minutes.
 
 ### Streaming Response
 
@@ -67,15 +79,15 @@ If you want to receive a streaming response, you can modify the code as follows:
 import openai
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded 
+# By using an alias, the most suitable model will be downloaded
 # to your end-user's device.
-alias = "phi-3.5-mini"
+alias = "qwen2.5-0.5b"
 
-# Create a FoundryLocalManager instance. This will start the Foundry 
+# Create a FoundryLocalManager instance. This will start the Foundry
 # Local service if it is not already running and load the specified model.
 manager = FoundryLocalManager(alias)
 
-# The remaining code us es the OpenAI Python SDK to interact with the local model.
+# The remaining code uses the OpenAI Python SDK to interact with the local model.
 
 # Configure the client to use the local Foundry service
 client = openai.OpenAI(
@@ -96,11 +108,15 @@ for chunk in stream:
         print(chunk.choices[0].delta.content, end="", flush=True)
 ```
 
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
+
 You can run the code using the same command as before:
 
 ```bash
 python app.py
 ```
+
+You should see tokens stream to your terminal.
 
 ## Use `requests` with Foundry Local
 
@@ -110,9 +126,9 @@ import requests
 import json
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded 
-# to your end-user's device. 
-alias = "phi-3.5-mini"
+# By using an alias, the most suitable model will be downloaded
+# to your end-user's device.
+alias = "qwen2.5-0.5b"
 
 # Create a FoundryLocalManager instance. This will start the Foundry
 # Local service if it is not already running and load the specified model.
@@ -134,3 +150,5 @@ headers = {
 response = requests.post(url, headers=headers, data=json.dumps(payload))
 print(response.json()["choices"][0]["message"]["content"])
 ```
+
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)

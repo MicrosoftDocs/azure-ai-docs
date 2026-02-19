@@ -1,12 +1,12 @@
 ---
 title: Microsoft Translator Pro Transparency Note
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Microsoft Translator Pro responsible AI Basics, use cases, terms
-author: PatrickFarley
-ms.author: pafarley
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: article
+ms.topic: concept-article
 ms.date: 01/21/2024
 ---
 

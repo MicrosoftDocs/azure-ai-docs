@@ -1,21 +1,24 @@
 ---
-title: How to use image and audio in chat completions with Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to process audio and images with chat completions models with Azure AI Foundry Models
-manager: scottpolly
-author: msakande
-reviewer: santiagxf
-ms.service: azure-ai-model-inference
+title: How to use image and audio in chat completions with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to process audio and images with chat completions models with Microsoft Foundry Models
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 11/21/2025
 ms.author: mopeakande
-ms.reviewer: fasantia
+author: msakande
+ms.reviewer: achand
+reviewer: achandmsft
 ms.custom: generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-# How to use image and audio in chat completions with Azure AI Foundry Models
+# How to use image and audio in chat completions with Microsoft Foundry Models
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-python"
 
@@ -48,7 +51,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ## Related content
 
-* [Use embeddings models](../../model-inference/how-to/use-embeddings.md)
-* [Use image embeddings models](../../model-inference/how-to/use-image-embeddings.md)
-* [Use reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
-* [Azure AI Model Inference API](../../model-inference/reference/reference-model-inference-api.md)
+* [Use embeddings models](./use-embeddings.md)
+* [Use image embeddings models](./use-image-embeddings.md)
+* [Use reasoning models](./use-chat-reasoning.md)
+* [Azure AI Model Inference API](/rest/api/aifoundry/modelinference)

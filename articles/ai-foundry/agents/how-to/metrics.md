@@ -1,97 +1,185 @@
 ---
-title: Monitor Azure AI Foundry Agent Service
-description: Start here to learn how to use Azure Monitor to capture and analyze metrics for your Azure AI Foundry Agent Service.
-ms.date: 06/02/2025
-ms.custom: horz-monitor, subject-monitoring
-ms.topic: conceptual
+title: Monitor Foundry Agent Service with Azure Monitor
+description: Learn how to use Azure Monitor to view, analyze, and alert on platform metrics for Foundry Agent Service, including Log Analytics export and KQL queries.
+ms.date: 02/03/2026
+ms.custom: horz-monitor, subject-monitoring, pilot-ai-workflow-jan-2026
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.topic: how-to
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
-# Monitor Azure AI Foundry Agent Service
+# Monitor Foundry Agent Service with Azure Monitor
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
 Monitoring is available for agents in a [standard agent setup](../concepts/standard-agent-setup.md).
 
+[!INCLUDE [Feature preview](../../openai/includes/preview-feature.md)]
+
 > [!IMPORTANT]
-> Monitoring support is currently limited to Azure AI Foundry hubs. Azure AI Foundry projects are not supported.
+> Monitoring support is currently limited to Microsoft Foundry hubs. Foundry projects aren't supported.
+>
+> To learn about Foundry hubs and projects, see [What is Microsoft Foundry?](../../what-is-foundry.md) and [Migrate from hub-based to Foundry projects](../../how-to/migrate-project.md).
+
+> [!NOTE]
+> If you're using a Foundry project, use Foundry monitoring instead of Azure Monitor metrics.
+>
+> See [Monitor AI Agents with the Agent Monitoring Dashboard (preview)](../../default/observability/how-to/how-to-monitor-agents-dashboard.md).
+
+## Prerequisites
+
+- An agent running in a [standard agent setup](../concepts/standard-agent-setup.md).
+- Access to the Azure resource you want to monitor. To view metrics, you need the **Monitoring Reader** role or equivalent permissions.
+- To export metrics to Log Analytics or create alerts, you need the **Monitoring Contributor** role or equivalent permissions to create diagnostic settings and alert rules in your Azure subscription.
 
 ## Dashboards
 
-Azure AI Foundry Agent Service provides out-of-box dashboards. There are two key dashboards to monitor your resource: 
+Foundry Agent Service provides out-of-the-box dashboards. There are two key dashboards to monitor your resource:
 
-- The metrics dashboard in the AI Foundry resource view 
-- The dashboard in the overview pane within the Azure portal 
+- The metrics dashboard on the Foundry resource page.
+- The dashboard in the overview pane in the Azure portal.
 
-To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com) and then select **Monitoring** in the left navigation menu, then click **Metrics**.
+To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com), select your Agent Service resource, and then select **Monitoring** > **Metrics**.
 
+:::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-the-box dashboards for a resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
 
-:::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-box dashboards for a resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
+## Data collection and routing in Azure Monitor
 
-## Azure monitor platform metrics
+Azure Monitor collects platform metrics automatically for Azure resources. Platform metrics are stored in the Azure Monitor metrics database and are suitable for near real-time charts and metric alerts.
+
+If you want to query metrics in Log Analytics, build workbooks, export to external systems, or retain data longer, configure diagnostic settings to route metrics to other destinations. For more information, see [Monitoring data from Azure resources](/azure/azure-monitor/essentials/monitor-azure-resource#monitoring-data-from-azure-resources) and [Create diagnostic settings to collect platform logs and metrics in Azure](/azure/azure-monitor/essentials/diagnostic-settings).
+
+Platform metrics are retained for 93 days by default. If you route metrics to Log Analytics, retention depends on your workspace configuration.
+
+Routing metrics to Log Analytics can increase costs. For more information, see [Azure Monitor Logs cost calculations and options](/azure/azure-monitor/logs/cost-logs).
+
+## Azure Monitor platform metrics
 
 Azure Monitor provides platform metrics for most services. These metrics are:
 
-* Individually defined for each namespace.
-* Stored in the Azure Monitor time-series metrics database.
-* Lightweight and capable of supporting near real-time alerting.
-* Used to track the performance of a resource over time.
-* Collection: Azure Monitor collects platform metrics automatically. No configuration is required.
+- Individually defined for each namespace.
+- Stored in the Azure Monitor time-series metrics database.
+- Lightweight and capable of supporting near real-time alerting.
+- Used to track the performance of a resource over time.
+- Collected automatically by Azure Monitor (no configuration required).
 
-For a list of all metrics it's possible to gather for all resources in Azure Monitor, see [Supported metrics in Azure Monitor](/azure/azure-monitor/platform/metrics-supported).
+For a list of all metrics it's possible to gather for all resources in Azure Monitor, see [Supported metrics in Azure Monitor](/azure/azure-monitor/essentials/metrics-supported).
 
-## Azure AI Foundry Agent Service metrics
-Azure AI Foundry Agent Service has commonality with a subset of Azure AI services. Here's a list of currently available metrics on Azure Monitor:
+## Agent Service metrics
 
-| **Metric**      | **Name in REST API** | **Unit** | **Aggregation**                            | **Dimensions**                                         | **Time Grains** | **DS Export** |
-|-----------------|----------------------|----------|--------------------------------------------|--------------------------------------------------------|-----------------|---------------|
-| Agents          | `Agents`             | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`                                            | PT1M            | No            |
-| IndexedFiles    | `IndexedFiles`       | Count    | Average, Maximum, Minimum, Total (Sum)     | `ErrorCode`, `Status`, `VectorStoreId`                | PT1M            | No            |
-| Messages        | `Messages`           | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`, `ThreadId`                               | PT1M            | No            |
-| Runs            | `Runs`               | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `RunStatus`, `StatusCode`, `StreamType`    | PT1M            | No            |
-| Threads         | `Threads`            | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`                                            | PT1M            | No            |
-| Tokens          | `Tokens`             | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `TokenType`                                | PT1M            | No            |
-| ToolCalls       | `ToolCalls`          | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `ToolName`                                 | PT1M            | No            |
+Agent Service shares a subset of metrics with other Foundry components. The following metrics are currently available in Azure Monitor:
 
+| Metric | Name in REST API | Unit | Aggregation | Dimensions | Time grain |
+|---|---|---:|---|---|---|
+| Agents | `AgentEvents` | Count | Average, Maximum, Minimum, Total (Sum) | `EventType` | PT1M |
+| Indexed files | `AgentIndexedFilesRead` | Count | Average, Maximum, Minimum, Total (Sum) | `ErrorCode`, `Status`, `VectorStoreId`, `AgentId` | PT1M |
+| Runs | `AgentRuns` | Count | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `RunStatus`, `StatusCode`, `StreamType`, `ThreadId` | PT1M |
+| Messages | `AgentUserMessageEvents` | Count | Average, Maximum, Minimum, Total (Sum) | `EventType`, `AgentId`, `ThreadId` | PT1M |
+| Threads | `AgentThreadEvents` | Count | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `EventType` | PT1M |
+| Tokens | `AgentTotalTokens` | Count | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `ModelName`, `ModelVersion` | PT1M |
+| Tool calls | `AgentToolCalls` | Count | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `ToolName` | PT1M |
 
+For metric definitions, see [Monitoring data reference](../reference/monitor-service.md).
 
 ## Analyze monitoring data
 
-There are many tools for analyzing monitoring data.
+### Use Metrics Explorer in the Azure portal
 
-### Azure Monitor tools
+Azure Monitor supports [Metrics Explorer](/azure/azure-monitor/essentials/metrics-getting-started), which lets you view and analyze metrics for Azure resources.
 
-Azure Monitor supports the [metrics explorer](/azure/azure-monitor/essentials/metrics-getting-started), a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see Analyze metrics with Azure Monitor metrics explorer.
+Common analysis tasks include:
 
-## Azure Monitor export tools
+- Filtering a chart by a dimension (for example, by `AgentId`).
+- Splitting a chart by a dimension (for example, by `RunStatus` or `ToolName`).
+- Changing the time range and aggregation to match your investigation needs.
 
-You can get data out of Azure Monitor into other tools by using the [REST API for metrics](/rest/api/monitor/operation-groups) to extract metric data from the Azure Monitor metrics database. The API supports filter expressions to refine the data retrieved. For more information, see [Azure Monitor REST API reference](/rest/api/monitor/filter-syntax).
+### Verify you're receiving metrics
 
-To get started with the REST API for Azure Monitor, see [Azure monitoring REST API walkthrough](/azure/azure-monitor/essentials/rest-api-walkthrough).
+If you don't see data right away, confirm that metrics are flowing before you start deeper analysis:
 
-## Alerts
+- Generate activity for your agent (for example, create a run and send a few messages).
+- In Metrics Explorer, chart at least one metric (for example, `AgentRuns`) for your Agent Service resource.
+- If you exported metrics to Log Analytics, wait a few minutes for ingestion, and then run a basic `AzureMetrics` query.
 
-Azure Monitor alerts proactively notify you when specific conditions are found in your monitoring data. Alerts allow you to identify and address issues in your system before your customers notice them. For more information, see Azure Monitor alerts.
+### Export metrics with diagnostic settings
 
-There are many sources of common alerts for Azure resources. [The Azure Monitor Baseline Alerts (AMBA)](https://aka.ms/amba) site provides a semi-automated method of implementing important platform metric alerts, dashboards, and guidelines. The site applies to a continually expanding subset of Azure services, including all services that are part of the Azure Landing Zone (ALZ).
+If you want to query metrics in Log Analytics or export them to other systems, configure diagnostic settings for the Agent Service resource and route metrics to one or more destinations.
 
-The common alert schema standardizes the consumption of Azure Monitor alert notifications. For more information, see [Common alert schema](/azure/azure-monitor/alerts/alerts-common-schema).
+To configure diagnostic settings in the Azure portal:
 
-[Metric alerts](/azure/azure-monitor/alerts/alerts-types#metric-alerts) evaluate resource metrics at regular intervals. Metric alerts can also apply multiple conditions and dynamic thresholds.
+1. In the [Azure portal](https://portal.azure.com), open the Agent Service resource.
+1. Under **Monitoring**, select **Diagnostic settings**.
+1. Create a diagnostic setting and choose to export metrics to your destination (for example, a Log Analytics workspace).
+1. Save the diagnostic setting.
 
-Every organization's alerting needs vary and can change over time. Generally, all alerts should be actionable and have a specific intended response if the alert occurs. If an alert doesn't require an immediate response, the condition can be captured in a report rather than an alert. Some use cases might require alerting anytime certain error conditions exist. In other cases, you might need alerts for errors that exceed a certain threshold for a designated time period.
+After you save the setting, it appears in the **Diagnostic settings** list for the resource. Metrics typically begin flowing to the destination within a few minutes.
 
-Depending on what type of application you're developing with your use of Azure AI Foundry Agent Service, [Azure Monitor Application Insights](/azure/azure-monitor/overview) might offer more monitoring benefits at the application layer.
+For more information, see [Create diagnostic settings to collect platform logs and metrics in Azure](/azure/azure-monitor/essentials/diagnostic-settings).
 
-### Azure AI Foundry Agent Service alert rules
+### Query metrics with Log Analytics (KQL)
 
-You can set alerts for any metric listed in the [monitoring data reference](../reference/monitor-service.md).
+After you route metrics to a Log Analytics workspace, you can query them with KQL.
 
-[!INCLUDE [horz-monitor-advisor-recommendations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-advisor-recommendations.md)]
+The following query returns a sample of metric records:
 
-## Related content
+```kusto
+AzureMetrics
+| take 100
+| project TimeGenerated, MetricName, Total, Count, Maximum, Minimum, Average, TimeGrain, UnitName, ResourceId, Tags
+```
 
-- See [Monitoring data reference](../reference/monitor-service.md) for a reference of the metrics and other important values created for Azure AI Foundry Agent Service.
-- See [Monitoring Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for general details on monitoring Azure resources.
+To focus on Agent Service runs:
+
+```kusto
+AzureMetrics
+| where MetricName == "AgentRuns"
+| take 100
+| project TimeGenerated, Total, ResourceId
+```
+
+For query fundamentals, see [Kusto Query Language (KQL) overview](/kusto/query/).
+
+## Create alerts
+
+Azure Monitor alerts notify you when conditions are met in your monitoring data. For more information, see [Alerts in Azure Monitor](/azure/azure-monitor/alerts/alerts-overview).
+
+To create a metric alert rule:
+
+1. In the [Azure portal](https://portal.azure.com), open the Agent Service resource.
+1. Select **Monitoring** > **Alerts**.
+1. Select **Create** > **Alert rule**.
+1. Under **Condition**, select a metric (for example, `AgentRuns`).
+1. If needed, use dimensions (for example, `RunStatus` or `StatusCode`) to scope the alert.
+1. Configure the action group, severity, and evaluation frequency.
+1. Select **Create**.
+
+After you create the rule, it appears in the **Alert rules** list. The rule becomes active immediately and evaluates based on the frequency you configured.
+
+For application-layer observability, see [Monitor your generative AI applications (preview)](../../how-to/monitor-applications.md).
+
+## Troubleshooting
+
+### No data appears in Metrics Explorer
+
+- Confirm you're viewing the correct Agent Service resource.
+- Expand the time range (for example, last 24 hours).
+- Generate new activity (for example, create a run) and refresh the chart.
+- Confirm you have permissions to view monitoring data for the resource.
+
+### No data appears in Log Analytics
+
+- Confirm you created diagnostic settings for the Agent Service resource and selected the correct destination.
+- Wait a few minutes for ingestion, and then rerun your query.
+- Confirm you have permissions to query the Log Analytics workspace.
+
+## Next steps
+
+- If you're using a Foundry project, see [Monitor AI Agents with the Agent Monitoring Dashboard (preview)](../../default/observability/how-to/how-to-monitor-agents-dashboard.md).
+- For end-to-end debugging, see [Trace and observe AI agents in Foundry (preview)](../../how-to/develop/trace-agents-sdk.md).
+- For metric definitions, see [Monitoring data reference](../reference/monitor-service.md).

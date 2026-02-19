@@ -6,16 +6,16 @@ ms.topic: install-set-up-deploy
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ---
 
 # Enable Microsoft Entra ID authentication
 
 Microsoft Entra ID is a cloud-based identity solution designed to manage user access and permissions for Microsoft services, resources, and applications. Organizations that subscribe to Microsoft's online business services, such as Microsoft Azure, have access to Microsoft Entra ID.
 
-Microsoft Entra ID enables you to authenticate requests to your Azure AI resources without the need for passwords or keys. Instead, a robust layer of security is created by registering an identity application with the Microsoft Entra ID platform. This registration enables your identity application to make secure requests to your Azure AI resource API, thus establishing a trust relationship with the Microsoft identity platform.
+Microsoft Entra ID enables you to authenticate requests to your Azure resources without the need for passwords or keys. Instead, a robust layer of security is created by registering an identity application with the Microsoft Entra ID platform. This registration enables your identity application to make secure requests to your Azure resource API, thus establishing a trust relationship with the Microsoft identity platform.
 
-This article guides you on how to create and utilize a Microsoft Entra ID identity application to authenticate requests to your Azure AI resources. Here are the steps:
+This article guides you on how to create and utilize a Microsoft Entra ID identity application to authenticate requests to your Azure resources. Here are the steps:
 
 * [Set up prerequisites](#prerequisites).
 * [Disable key-based (local) authentication](#disable-key-authentication)
@@ -23,23 +23,20 @@ This article guides you on how to create and utilize a Microsoft Entra ID identi
 * [Add a client secret](#add-a-client-secret-credential)
 * [Assign an `RBAC` (role-based access control) role to grant access permissions to your application.](#add-api-permissions)
 * [Obtain an access token](#obtain-an-access-token-with-oauth-client-credentials-flow)
-* [Make a request to the Azure AI Translator API](#use-access-token-authentication-for-a-rest-api-request)
+* [Make a request to the Azure Translator API](#use-access-token-authentication-for-a-rest-api-request)
 
 ## Prerequisites
 
-Before you get started, you need an Azure account and an Azure AI services subscription.
+Before you get started, you need an Azure account and a Foundry Tools subscription.
 
-* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* An Azure AI Translator resource. Once you have your Azure subscription, create a [Translator single-service global resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.
+* An Azure Translator resource. Once you have your Azure subscription, create a [Translator single-service global resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.
 
 > [!IMPORTANT]
 > [Regional endpoints](../../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) don't support Microsoft Entra authentication.
 
-* curl command line tool installed.
-
-  * [Windows](https://curl.haxx.se/windows/)
-  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
+* cURL command-line tool installed.
 
 * **PowerShell version 7.*+** (or a similar command-line application.):
   * [Windows](/powershell/scripting/install/installing-powershell-on-windows)
@@ -52,7 +49,7 @@ Before you get started, you need an Azure account and an Azure AI services subsc
 
 ## Disable key authentication
 
-To use Microsoft Entra authentication, key-based (local) authentication must be turned off. Once key access is disabled, Microsoft Entra ID becomes the sole authorization method. Your organization can choose to deactivate local authentication and mandate Microsoft Entra for Azure AI resources. If not, you can disable key authentication for specific resources following these steps in `PowerShell`:
+To use Microsoft Entra authentication, key-based (local) authentication must be turned off. Once key access is disabled, Microsoft Entra ID becomes the sole authorization method. Your organization can choose to deactivate local authentication and mandate Microsoft Entra for Azure resources. If not, you can disable key authentication for specific resources following these steps in `PowerShell`:
 
 1. **Connect to Azure**
 
@@ -151,11 +148,11 @@ Client applications utilize credentials to gain access to a web API. These crede
 
     :::image type="content" source="../media/entra-id/client-secret-value.png" alt-text="Screenshot of the client secret value location for a registered application in the Azure portal.":::
 
-Now that your application has the proper authentication credentials, we add permissions for your application to access Azure AI Foundry resources.
+Now that your application has the proper authentication credentials, we add permissions for your application to access Microsoft Foundry resources.
 
 ## Add API permissions
 
-Next, let's add a permission that allows the application to access the Azure AI Services (Cognitive Services) APIs, including Azure AI Translator, as a user.
+Next, let's add a permission that allows the application to access the Foundry Tools (Cognitive Services) APIs, including Azure Translator, as a user.
 
 1. In the left navigation menu, navigate to **`API permissions`** then select **`Add a permission`** from the main window.
 
@@ -175,11 +172,11 @@ Next, let's add a permission that allows the application to access the Azure AI 
 
 That's it! The setup for your Microsoft Entra ID application is complete. Next, your Translator resource needs to grant your application access by adding a role assignment to your application specifically for the Translator resource. For more information, *see* [Azure role-based access control](/azure/role-based-access-control/overview)
 
-## Assign the Cognitive Services User role to Azure AI Translator resource
+## Assign the Cognitive Services User role to Azure Translator resource
 
-Role-based access control (Azure `RBAC`) is a security principal that enables you to control access to Azure resources. You can use `RBAC` to grant access to any resource that supports Microsoft Entra authentication, in our case, your Azure AI Translator instance. To grant your Microsoft Entra ID application access to your Translator resource, assign an Azure role using [Azure role-based access control (`Azure RBAC`)](/azure/role-based-access-control/overview).
+Role-based access control (Azure `RBAC`) is a security principal that enables you to control access to Azure resources. You can use `RBAC` to grant access to any resource that supports Microsoft Entra authentication, in our case, your Azure Translator instance. To grant your Microsoft Entra ID application access to your Translator resource, assign an Azure role using [Azure role-based access control (`Azure RBAC`)](/azure/role-based-access-control/overview).
 
-1. Staying in the Azure portal, navigate to your Azure AI Translator global resource.
+1. Staying in the Azure portal, navigate to your Azure Translator global resource.
 
 1. In the left menu, select **`Access control (IAM)`**.
 
@@ -331,4 +328,4 @@ Here's an example of the JSON response:
   [{"detectedLanguage":{"language":"es","score":1.0},"translations":[{"text":"Hello","to":"en"}]}]
   ```
 
-Well done! You now know how to use Microsoft Entra ID to authenticate requests to your Azure AI resource.
+Well done! You now know how to use Microsoft Entra ID to authenticate requests to your Azure resource.

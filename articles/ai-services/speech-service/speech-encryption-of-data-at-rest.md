@@ -1,13 +1,13 @@
 ---
 title: Speech service encryption of data at rest
-titleSuffix: Azure AI services
-description: Microsoft offers Microsoft-managed encryption keys, and also lets you manage your Azure AI services subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Speech service.
-author: eric-urban
+titleSuffix: Foundry Tools
+description: Microsoft offers Microsoft-managed encryption keys, and also lets you manage your Foundry Tools subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for Speech service.
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 3/10/2025
-ms.author: eur
+ms.topic: concept-article
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about data encryption at rest for Speech service.
 ---
 
@@ -15,7 +15,7 @@ ms.author: eur
 
 Speech service automatically encrypts your data when it's persisted it to the cloud. Speech service encryption protects your data and to help you to meet your organizational security and compliance commitments.
 
-## About Azure AI services encryption
+## About Foundry Tools encryption
 
 Data is encrypted and decrypted using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2) compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
 

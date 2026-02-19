@@ -5,9 +5,9 @@ description: Upgrade steps for Azure Container Instances web services to managed
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
-author: msakande
-ms.author: mopeakande
+ms.topic: how-to
+author: s-polly
+ms.author: scottpolly
 ms.date: 09/28/2022
 ms.reviewer: sehan
 ms.custom: upgrade
@@ -48,7 +48,7 @@ The upgrade tool will map the CPU/Memory requirement to corresponding SKU. If yo
 | (2, 4] | (5.7, 11.7] | DS3 V2 |
 | (2, 4] | (11.7, 16] | E4s V3 |
 
-"(" means greater than and "]" means less than or equal to. For example, “(0, 1]” means “greater than 0 and less than or equal to 1”.
+"(" means greater than and "]" means less than or equal to. For example, "(0, 1]" means "greater than 0 and less than or equal to 1".
 
 > [!IMPORTANT]
 > When upgrading from ACI, there will be some changes in how you'll be charged. See [our blog](https://aka.ms/acimoemigration) for a rough cost comparison to help you choose the right VM SKUs for your workload.

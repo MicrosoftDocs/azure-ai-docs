@@ -6,10 +6,11 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/10/2025
+ms.date: 11/10/2025
 ---
 
 # Plan and manage costs of an Azure AI Search service
@@ -43,14 +44,16 @@ Premium features are charged in addition to the base cost of your search service
 |-------|------|
 | Image extraction (AI enrichment) <sup>1</sup> | Per 1,000 images. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing). |
 | [Custom Entity Lookup skill](cognitive-search-skill-custom-entity-lookup.md) (AI enrichment) | Per 1,000 text records. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing) |
-| [Built-in or custom skills](cognitive-search-predefined-skills.md) (AI enrichment) <sup>2</sup> | Number of transactions. Billed at the rate of the model provider: Azure AI services, Azure OpenAI, or Azure AI Foundry. |
-| [Vectorizers](vector-search-how-to-configure-vectorizer.md) <sup>2</sup> | Number of vectorization operations. Billed at the rate of the model provider: Azure AI Vision, Azure OpenAI, or Azure AI Foundry. |
+| [Built-in or custom skills](cognitive-search-predefined-skills.md) (AI enrichment) <sup>2</sup> | Number of transactions. Billed at the rate of the model provider: Foundry Tools, Azure OpenAI, or Microsoft Foundry. |
+| [Vectorizers](vector-search-how-to-configure-vectorizer.md) <sup>2</sup> | Number of vectorization operations. Billed at the rate of the model provider: Azure Vision in Foundry Tools, Azure OpenAI, or Foundry. |
 | [Semantic ranker](semantic-search-overview.md) | Number of queries of `queryType=semantic`. Billed at a progressive rate. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing). |
+| [Agentic retrieval](agentic-retrieval-overview.md) | Number of agentic reasoning tokens, plus number of tokens used in query planning and answer formulation. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing). |
 | [Shared private link](search-indexer-howto-access-private.md) | [Billed for bandwidth](https://azure.microsoft.com/pricing/details/private-link/) as long as the shared private link exists and is used. |
+
 
 <sup>1</sup> Refers to images extracted from a file within the indexer pipeline. Text extraction is free. Image extraction is billed when you [enable the `indexAction` parameter](cognitive-search-concept-image-scenarios.md#configure-indexers-for-image-processing) or when you call the [Document Extraction skill](cognitive-search-skill-document-extraction.md).
 
-<sup>2</sup> Charges for Azure OpenAI models and Azure AI Foundry models appear on your bill for those services.
+<sup>2</sup> Charges for Azure OpenAI models and Foundry models appear on your bill for those services.
 
 ### How you're otherwise charged
 
@@ -58,7 +61,7 @@ Depending on your configuration and usage, the following charges might apply:
 
 + Data traffic might incur networking costs. See the [bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
-+ Several premium features, such as [knowledge stores](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md), and [enrichment caches](cognitive-search-incremental-indexing-conceptual.md), depend on Azure Storage and incur storage costs. Charges for these features appear on your Azure Storage bill.
++ Several premium features, such as [knowledge stores](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md), and [enrichment caches](enrichment-cache-how-to-configure.md), depend on Azure Storage and incur storage costs. Charges for these features appear on your Azure Storage bill.
 
 + [Customer-managed keys](search-security-manage-encryption-keys.md), which provide double encryption of sensitive content, require a billable [Azure Key Vault](https://azure.microsoft.com/pricing/details/key-vault/).
 
@@ -113,7 +116,7 @@ To minimize the costs of your Azure AI Search solution, use the following strate
 
 + Use [incremental indexing](search-howto-reindex.md) to process only new or changed data.
 
-+ Use [enrichment caching](cognitive-search-incremental-indexing-conceptual.md) and a [knowledge store](knowledge-store-concept-intro.md) to reuse previously enriched content. Although caching incurs a storage charge, it lowers the cumulative cost of [AI enrichment](cognitive-search-concept-intro.md).
++ Use [enrichment caching](enrichment-cache-how-to-configure.md) and a [knowledge store](knowledge-store-concept-intro.md) to reuse previously enriched content. Although caching incurs a storage charge, it lowers the cumulative cost of [AI enrichment](cognitive-search-concept-intro.md).
 
 + Keep vector payloads compact. For vector search, see the [vector  compression best practices](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/azure-ai-search-cut-vector-costs-up-to-92-5-with-new-compression-techniques/4404866).
 
@@ -137,7 +140,7 @@ Search runs as a continuous service. Dedicated resources are always operational 
 
 **Can I change the billing rate (tier) of an existing search service?**
 
-Existing services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
+Existing services can switch between Basic and Standard (S1, S2, and S3) tiers. Your current service configuration can't exceed the limits of the target tier, and your region can't have capacity constraints on the target tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
 ## Related content
 

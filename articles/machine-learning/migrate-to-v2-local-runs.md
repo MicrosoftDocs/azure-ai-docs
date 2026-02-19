@@ -5,9 +5,9 @@ description: Upgrade local runs from v1 to v2 of Azure Machine Learning SDK
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
-ms.author: sgilley
-author: sdgilley
+ms.topic: how-to
+ms.author: scottpolly
+author: s-polly
 ms.date: 09/16/2022
 ms.reviewer: balapv
 ms.custom: migration
@@ -57,7 +57,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     from azure.identity import DefaultAzureCredential
     
     #connect to the workspace
-    ml_client = MLClient.from_config(DefaultAzureCredential())
+    ml_client = MLClient.from_config(credential=DefaultAzureCredential())
     
     # set up pytorch environment
     env = Environment(

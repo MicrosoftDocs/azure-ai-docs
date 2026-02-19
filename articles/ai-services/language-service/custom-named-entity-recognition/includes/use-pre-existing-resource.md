@@ -1,27 +1,24 @@
 ---
-titleSuffix: Azure AI services
-description: Learn about the steps for using Azure resources with custom NER.
+titleSuffix: Foundry Tools
+description: Learn about the steps for using Azure resources with custom named entity recognition (NER).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 You can use an existing Language resource to get started with custom NER as long as this resource meets the below requirements:
 
 |Requirement  |Description  |
 |---------|---------|
-|Regions     | Make sure your existing resource is provisioned in one of the [supported regions](../service-limits.md#regional-availability). If not, you will need to create a new resource in one of these regions.        |
+|Regions     | Make sure your existing resource is provisioned in one of the [supported regions](../service-limits.md#regional-availability). If not, you need to create a new resource in one of these regions.        |
 |Pricing tier     | Learn more about [supported pricing tiers](../service-limits.md#language-resource-limits).        |
 |Managed identity     | Make sure that the resource's managed identity setting is enabled. Otherwise, read the next section. |
 
-To use custom named entity recognition, you'll need to [create an Azure storage account](/azure/storage/common/storage-account-create) if you don't have one already. 
+To use custom named entity recognition, you need to [create an Azure storage account](/azure/storage/common/storage-account-create) if you don't have one already. 
 
 ## Enable identity management for your resource
-
-# [Azure portal](#tab/portal)
 
 Your Language resource must have identity management, to enable it using the [Azure portal](https://portal.azure.com):
 
@@ -29,15 +26,6 @@ Your Language resource must have identity management, to enable it using the [Az
 2. From left hand menu, under **Resource Management** section, select **Identity**
 3. From **System assigned** tab, make sure to set **Status** to **On**
 
-# [Language Studio](#tab/studio)
-
-Your Language resource must have identity management, to enable it using [Language Studio](https://aka.ms/languageStudio):
-
-1. Select the settings icon in the top right corner of the screen
-2. Select **Resources**
-3. Select the check box **Managed Identity** for your Azure AI Language resource.
-
----
 
 ### Enable custom named entity recognition feature
 
@@ -50,7 +38,7 @@ Make sure to enable **Custom text classification / Custom Named Entity Recogniti
 5. Select **Apply**.
 
 >[!Important]
-> Make sure that the user making changes has **storage blob data contributor** role assigned for them.
+ > Make sure that the user making changes the **storage blob data contributor** role assigned for them.
 
 ### Add required roles
 

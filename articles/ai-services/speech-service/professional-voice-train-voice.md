@@ -1,13 +1,13 @@
 ---
 title: Train your professional voice model - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to train your professional voice model. 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/19/2025
-ms.author: eur
+ms.date: 12/19/2025
+ms.author: pafarley
 ms.custom: references_regions
 zone_pivot_groups: foundry-speech-studio-rest
 #Customer intent: As a developer, I want to learn how to train my professional voice model.

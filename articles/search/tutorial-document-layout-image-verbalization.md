@@ -1,94 +1,147 @@
 ---
-title: 'Tutorial: Use Image Verbalization and Document Layout Skill for Multimodal Indexing'
+title: 'Tutorial: Verbalize images from a structured document layout'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and GenAI Prompt skill for image verbalizations.
-
 manager: arjagann
 author: rawan    
 ms.author: rawan
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
 ms.topic: tutorial
-ms.date: 05/29/2025
+ms.date: 09/27/2025
 
 ---
 
-# Tutorial: Index mixed content using image verbalizations and the Document Layout skill
+# Tutorial: Verbalize images from a structured document layout
 
-In this Azure AI Search tutorial, learn how to build a multimodal indexing pipeline that chunks data based on document structure and uses image verbalization to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline that *chunks data based on document structure* and uses *image verbalization* to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index. Chunking is based on the [Azure Document Intelligence in Foundry Tools layout model](/azure/ai-services/document-intelligence/concept-layout) that recognizes document structure.
 
-From the source document, each image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities: text and verbalized images.
+To get image verbalizations, each extracted image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) that calls a chat completion model to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing searchable content from both modalities: text and verbalized images.
 
 In this tutorial, you use:
 
 + A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
-+ The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its locationMetadata from various documents, such as page numbers or bounding regions.
++ An indexer and skillset to create an indexing pipeline that includes AI enrichment through skills.
 
-  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability, is bound to Azure AI services, and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution to indexing multimodal content, see [Index multimodal content using image verbalization and Document Extraction skill](tutorial-document-extraction-image-verbalization.md).
++ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its `locationMetadata` from various documents, such as page numbers or bounding regions.
 
-+ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate image captions, which are text-based descriptions of visual content, for search and grounding.
++ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) that calls a chat completion model to create descriptions of visual content.
 
-+ A search index configured to store text and image embeddings and support for vector-based similarity search.
-
-> [!NOTE]
-> Setting `imageAction` to `generateNormalizedImages` is required for this tutorial and incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
-
-Using a REST client and the [Search REST APIs](/rest/api/searchservice/), you will:
-
-> [!div class="checklist"]
-> + Set up sample data and configure an `azureblob` data source
-> + Create an index with support for text and image embeddings
-> + Define a skillset with extraction, captioning, embedding and knowleage store file projection steps
-> + Create and run an indexer to process and index content
-> + Search the index you just created
++ A search index configured to store extracted text and image verbalizations. Some content is vectorized for vector-based similarity search.
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ [Microsoft Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to the Azure Document Intelligence Layout model used in this tutorial. You must use a Foundry resource for skillset access to this resource.
 
-+ [Azure Storage](/azure/storage/common/storage-account-create).
++ [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier.
 
-+ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier.
++ [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data and for creating a [knowledge store](knowledge-store-concept-intro.md).
+
++ [Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource) with a deployment of
+
+  + A chat completion model hosted in Foundry or another source. The model is used to verbalize image content. You provide the URI to the hosted model in the GenAI Prompt skill definition. You can use [any chat completion model](cognitive-search-skill-genai-prompt.md#supported-models).
+
+  + A text embedding model deployed in Foundry. The model is used to vectorize text content pull from source documents and the image descriptions generated by the chat completion model. For integrated vectorization, the embedding model must be located in Foundry, and it must be either text-embedding-ada-002, text-embedding-3-large, or text-embedding-3-small. If you want to use an external embedding model, use a custom skill instead of the Azure OpenAI embedding skill.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-### Download files
+## Limitations
 
-Download the following sample PDF:
++ The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability. For a list of supported regions, see [Document Layout skill> Supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
-+ [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
+## Prepare data
 
-### Upload sample data to Azure Storage
+The following instructions apply to Azure Storage which provides the sample data and also hosts the knowledge store. A search service identity needs read access to Azure Storage to retrieve the sample data, and it needs write access to create the knowledge store. The search service creates the container for cropped images during skillset processing, using the name you provide in an environment variable.
 
-1. In Azure Storage, create a new container named **doc-intelligence-multimodality-container**.
+1. Download the following sample PDF: [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
+
+1. In Azure Storage, create a new container named **sustainable-ai-pdf**.
 
 1. [Upload the sample data file](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
-1. [Create a role assignment in Azure Storage and Specify a managed identity in a connection string](search-howto-managed-identities-storage.md)
+1. [Create role assignments and specify a managed identity in a connection string](search-howto-managed-identities-storage.md):
 
-   1. For connections made using a system-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
+   1. Assign **Storage Blob Data Reader** for data retrieval by the indexer. Assign **Storage Blob Data Contributor** and **Storage Table Data Contributor** to create and load the knowledge store. You can use either a system-assigned managed identity or a user-assigned managed identity for your search service role assignment.
+
+   1. For connections made using a system-assigned managed identity, get a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
 
         ```json
         "credentials" : { 
             "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
         }
         ```
-   1. For connections made using a user-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
-    
-        ```json
-        "credentials" : { 
-            "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-        },
-        "identity" : { 
-            "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-            "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
-        }
-        ```
 
-### Copy a search service URL and API key
+   1. For connections made using a user-assigned managed identity, get a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
 
-For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-howto-managed-identities-data-sources.md).
+      ```json
+      "credentials" : { 
+          "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+      },
+      "identity" : { 
+          "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+          "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
+      }
+      ```
+
+## Prepare models
+
+This tutorial assumes you have an existing Azure OpenAI resource through which the skills a chat completion model for GenAI Prompt and also a text embedding model for vectorization. The search service connects to the models during skillset processing and during query execution using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
+
+You also need a role assignment for accessing the Azure Document Intelligence layout model via a Foundry resource.
+
+### Assign roles in Foundry
+
+1. Sign in to the Azure portal (not the Foundry portal) and find the Foundry resource. Make sure it's in a region that provides the [Azure Document Intelligence layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
+
+1. Select **Access control (IAM)**.
+
+1. Select **Add** and then **Add role assignment**.
+
+1. Search for **Cognitive Services User** and then select it.
+
+1. Choose **Managed identity** and then assign your [search service managed identity](search-how-to-managed-identities.md).
+
+### Assign roles in Azure OpenAI
+
+1. Sign in to the Azure portal (not the Foundry portal) and find the Azure OpenAI resource.
+
+1. Select **Access control (IAM)**.
+
+1. Select **Add** and then **Add role assignment**.
+
+1. Search for **Cognitive Services OpenAI User** and then select it.
+
+1. Choose **Managed identity** and then assign your [search service managed identity](search-how-to-managed-identities.md).
+
+For more information, see [Role-based access control for Azure OpenAI in Foundry Models](/azure/ai-foundry/openai/how-to/role-based-access-control).
+
+## Set up your REST file
+
+For this tutorial, your local REST client connection to Azure AI Search requires an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Connect to a search service](search-get-started-rbac.md).
+
+For authenticated connections that occur during indexer and skillset processing, the search service uses the role assignments you previously defined.
+
+1. Start Visual Studio Code and create a new file.
+
+1. Provide values for variables used in the request. For `@storageConnection`, make sure your connection string doesn't have a trailing semicolon or quotation marks. For `@imageProjectionContainer`, provide a container name that's unique in blob storage. Azure AI Search creates this container for you during skills processing.
+
+   ```http
+   @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
+   @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
+   @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
+   @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-FOUNDRY-ENDPOINT-HERE
+   @openAIResourceUri = PUT-YOUR-OPENAI-URI-HERE
+   @openAIKey = PUT-YOUR-OPENAI-KEY-HERE
+   @chatCompletionResourceUri = PUT-YOUR-CHAT-COMPLETION-URI-HERE
+   @chatCompletionKey = PUT-YOUR-CHAT-COMPLETION-KEY-HERE
+   @imageProjectionContainer=sustainable-ai-pdf-images
+   ```
+
+1. Save the file using a `.rest` or `.http` file extension. For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
+
+To get the Azure AI Search endpoint and API key:
 
 1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 
@@ -96,47 +149,26 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
    :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
-## Set up your REST file
-
-1. Start Visual Studio Code and create a new file.
-
-1. Provide values for variables used in the request.
-
-   ```http
-   @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
-   @apiKey = PUT-YOUR-ADMIN-API-KEY-HERE
-   @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-   @openAIResourceUri = PUT-YOUR-OPENAI-URI-HERE
-   @openAIKey = PUT-YOUR-OPENAI-KEY-HERE
-   @chatCompletionResourceUri = PUT-YOUR-CHAT-COMPLETION-URI-HERE
-   @chatCompletionKey = PUT-YOUR-CHAT-COMPLETION-KEY-HERE
-   @imageProjectionContainer=PUT-YOUR-IMAGE-PROJECTION-CONTAINER-HERE
-   ```
-
-1. Save the file using a `.rest` or `.http` file extension.
-
-For help with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
-
 ## Create a data source
 
 [Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
 ```http
 ### Create a data source using system-assigned managed identities
-POST {{baseUrl}}/datasources?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/datasources?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{apiKey}}
+  api-key: {{searchApiKey}}
 
   {
     "name": "doc-intelligence-image-verbalization-ds",
     "description": "A data source to store multi-modality documents",
     "type": "azureblob",
     "subtype": null,
-    "credentials": {
-      "connectionString":  "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;"
+    "credentials":{
+      "connectionString":"{{storageConnection}}"
     },
     "container": {
-      "name": "doc-intelligence-multimodality-container",
+      "name": "sustainable-ai-pdf",
       "query": null
     },
     "dataChangeDetectionPolicy": null,
@@ -147,6 +179,42 @@ POST {{baseUrl}}/datasources?api-version=2025-05-01-preview   HTTP/1.1
 
 ```
 
+Send the request. The response should look like:
+
+```json
+HTTP/1.1 201 Created
+Transfer-Encoding: chunked
+Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-11-01-preview -Preview
+Server: Microsoft-IIS/10.0
+Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
+Preference-Applied: odata.include-annotations="*"
+OData-Version: 4.0
+request-id: 4eb8bcc3-27b5-44af-834e-295ed078e8ed
+elapsed-time: 346
+Date: Sat, 26 Apr 2025 21:25:24 GMT
+Connection: close
+
+{
+  "name": "doc-extraction-multimodal-embedding-ds",
+  "description": null,
+  "type": "azureblob",
+  "subtype": null,
+  "indexerPermissionOptions": [],
+  "credentials": {
+    "connectionString": null
+  },
+  "container": {
+    "name": "sustainable-ai-pdf",
+    "query": null
+  },
+  "dataChangeDetectionPolicy": null,
+  "dataDeletionDetectionPolicy": null,
+  "encryptionKey": null,
+  "identity": null
+}
+```
+
 ## Create an index
 
 [Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
@@ -155,9 +223,9 @@ For nested JSON, the index fields must be identical to the source fields. Curren
 
 ```http
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{apiKey}}
+  api-key: {{searchApiKey}}
 
 {
     "name": "doc-intelligence-image-verbalization-index",
@@ -243,7 +311,7 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
             {
                 "name": "hnsw",
                 "algorithm": "defaulthnsw",
-                "vectorizer": "{{vectorizer}}"
+                "vectorizer": "demo-vectorizer"
             }
         ],
         "algorithms": [
@@ -259,7 +327,7 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
         ],
         "vectorizers": [
             {
-              "name": "{{vectorizer}}",
+              "name": "demo-vectorizer",
               "kind": "azureOpenAI",    
               "azureOpenAIParameters": {
                 "resourceUri": "{{openAIResourceUri}}",
@@ -301,15 +369,19 @@ Key points:
 
 ## Create a skillset
 
-[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
+[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that chunk and embed content prior to indexing. This skillset uses the Document Layout skill to extract text and images, preserving location metadata which is useful for citations in RAG applications. It uses Azure OpenAI Embedding skill to vectorize text content.
+
+The skillset also performs actions specific to images. It uses the GenAI Prompt skill to generate image descriptions. It also creates a knowledge store that stores intact images so that you can return them in a query.
+
 
 ```http
 ### Create a skillset
-POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{apiKey}}
+  api-key: {{searchApiKey}}
 
 {
+  "name": "doc-intelligence-image-verbalization-skillset",
   "description": "A sample skillset for multi-modality using image verbalization",
   "skills": [
     {
@@ -361,7 +433,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
     ],
     "resourceUri": "{{openAIResourceUri}}",
     "deploymentId": "text-embedding-3-large",
-    "apiKey": "",
+    "apiKey": "{{openAIKey}}",
     "dimensions": 3072,
     "modelName": "text-embedding-3-large"
     },
@@ -369,7 +441,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
     "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
     "uri": "{{chatCompletionResourceUri}}",
     "timeout": "PT1M",
-    "apiKey": "",
+    "apiKey": "{{chatCompletionKey}}",
     "name": "genAI-prompt-skill",
     "description": "GenAI Prompt skill for image verbalization",
     "context": "/document/normalized_images/*",
@@ -414,7 +486,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
     ],
     "resourceUri": "{{openAIResourceUri}}",
     "deploymentId": "text-embedding-3-large",
-    "apiKey": "",
+    "apiKey": "{{openAIKey}}",
     "dimensions": 3072,
     "modelName": "text-embedding-3-large"
     },
@@ -445,7 +517,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
    "indexProjections": {
       "selectors": [
         {
-          "targetIndexName": "{{index}}",
+          "targetIndexName": "doc-intelligence-image-verbalization-index",
           "parentKeyFieldName": "text_document_id",
           "sourceContext": "/document/text_sections/*",
           "mappings": [    
@@ -468,7 +540,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
           ]
         },        
         {
-          "targetIndexName": "{{index}}",
+          "targetIndexName": "doc-intelligence-image-verbalization-index",
           "parentKeyFieldName": "image_document_id",
           "sourceContext": "/document/normalized_images/*",
           "mappings": [    
@@ -501,6 +573,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
   },  
   "knowledgeStore": {
     "storageConnectionString": "{{storageConnection}}",
+    "identity": null,
     "projections": [
       {
         "files": [
@@ -538,9 +611,9 @@ Key points:
 
 ```http
 ### Create and run an indexer
-POST {{baseUrl}}/indexers?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{apiKey}}
+  api-key: {{searchApiKey}}
 
 {
   "dataSourceName": "doc-intelligence-image-verbalization-ds",
@@ -570,9 +643,9 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{apiKey}}
+  api-key: {{searchApiKey}}
   
   {
     "search": "*",
@@ -592,7 +665,7 @@ Send the request. This is an unspecified full-text search query that returns all
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-05-01-preview "
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-11-01-preview "
 }
 ```
 100 documents are returned in the response.
@@ -604,9 +677,9 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ```http
 ### Query for only images
-POST {{baseUrl}}/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{apiKey}}
+  api-key: {{searchApiKey}}
   
   {
     "search": "*",
@@ -617,9 +690,9 @@ POST {{baseUrl}}/indexes/doc-intelligence-image-verbalization-index/docs/search?
 
 ```http
 ### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
-POST {{baseUrl}}/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-intelligence-image-verbalization-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
-  api-key: {{apiKey}}
+  api-key: {{searchApiKey}}
   
   {
     "search": "energy",
@@ -634,20 +707,20 @@ Indexers can be reset to clear execution history, which allows a full rerun. The
 
 ```http
 ### Reset the indexer
-POST {{baseUrl}}/indexers/doc-intelligence-image-verbalization-indexer/reset?api-version=2025-05-01-preview   HTTP/1.1
-  api-key: {{apiKey}}
+POST {{searchUrl}}/indexers/doc-intelligence-image-verbalization-indexer/reset?api-version=2025-11-01-preview   HTTP/1.1
+  api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{baseUrl}}/indexers/doc-intelligence-image-verbalization-indexer/run?api-version=2025-05-01-preview   HTTP/1.1
-  api-key: {{apiKey}}
+POST {{searchUrl}}/indexers/doc-intelligence-image-verbalization-indexer/run?api-version=2025-11-01-preview   HTTP/1.1
+  api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{baseUrl}}/indexers/doc-intelligence-image-verbalization-indexer/status?api-version=2025-05-01-preview   HTTP/1.1
-  api-key: {{apiKey}}
+GET {{searchUrl}}/indexers/doc-intelligence-image-verbalization-indexer/status?api-version=2025-11-01-preview   HTTP/1.1
+  api-key: {{searchApiKey}}
 ```
 
 ## Clean up resources

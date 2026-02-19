@@ -1,14 +1,14 @@
 ---
 title: Keyword recognition recommendations and guidelines - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of recommendations and guidelines when using keyword recognition.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 3/10/2025
-ms.reviewer: hasshah
+ms.topic: best-practice
+ms.date: 08/07/2025
+ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about recommendations and guidelines for keyword recognition with the Speech service.
 ---
 
@@ -47,4 +47,4 @@ For applications that require latency optimization, applications can provide lig
 ## Next steps
 
 * [Get the Speech SDK.](speech-sdk.md)
-* [Learn more about Voice Assistants.](voice-assistants.md)
+* [Learn more about voice agents](voice-live.md)

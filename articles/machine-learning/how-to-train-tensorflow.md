@@ -5,9 +5,9 @@ description: Learn how Azure Machine Learning SDK (v2) enables you to scale out 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.author: sgilley
-author: sdgilley
-ms.reviewer: balapv
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: sooryar
 ms.date: 04/03/2024
 ms.topic: how-to
 ms.custom: sdkv2, update-code
@@ -28,7 +28,7 @@ Whether you're developing a TensorFlow model from the ground-up or you're bringi
 
 To benefit from this article, you need to:
 
-- Access an Azure subscription. If you don't have one already, [create a free account](https://azure.microsoft.com/free/).
+- Access an Azure subscription. If you don't have one already, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Run the code in this article using either an Azure Machine Learning compute instance or your own Jupyter notebook.
     - Azure Machine Learning compute instance—no downloads or installation necessary
         - Complete the [Create resources to get started](quickstart-create-resources.md) tutorial to create a dedicated notebook server preloaded with the SDK and the sample repository.

@@ -1,50 +1,54 @@
 ---
 title: Real-time synthesis for text to speech avatar - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use text to speech avatar with real-time synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/28/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.date: 08/07/2025
+ms.author: pafarley
+author: PatrickFarley
 ---
 
 # How to use text to speech avatar with real-time synthesis
 
-In this how-to guide, you learn how to use text to speech avatar with real-time synthesis. The synthetic avatar video will be generated in almost real time after the system receives the text input.
+This guide shows you how to use text to speech avatar with real-time synthesis. The avatar video is generated almost instantly after you enter text.
+
+Text to speech avatar can be used in the Voice Live API to create a more personalized voice conversation. See [Voice Live API overview](../voice-live.md) and [Avatar in Voice Live sample code](../voice-live-how-to.md#azure-text-to-speech-avatar) to learn more
 
 ## Prerequisites
 
-To get started, make sure you have the following prerequisites:
+You need:
 
-- **Azure subscription:** [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-- **Speech resource:** <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry"  title="Create an AI Foundry resource for Speech"  target="_blank">Create a speech resource</a> in the Azure portal. Select "Standard S0" pricing tier if you want to create speech resource to access avatar. 
-- **Your speech resource key and region:** After your Speech resource is deployed, select **Go to resource** to view and manage keys. 
+- **Azure subscription:** [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- **Foundry resource:** [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the supported regions. For more information about region availability, see [Text to speech avatar regions](../regions.md).
+
+ Or, if you use Speech Studio:
+- **Speech resource:** [Create a speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Select the **Standard S0** pricing tier to access avatars.
+- **Speech resource key and region:** After deployment, select **Go to resource** to view and manage your keys.
+
 
 ## Set up environment
 
-For real-time avatar synthesis, you need to install the Speech SDK for JavaScript to use with a webpage. For the installation instructions, see [Install the Speech SDK](/azure/ai-services/speech-service/quickstarts/setup-platform?pivots=programming-language-javascript&tabs=windows%2Cubuntu%2Cdotnetcli%2Cdotnet%2Cjre%2Cmaven%2Cbrowser%2Cmac%2Cpypi#install-the-speech-sdk-for-javascript).
+To use real-time avatar synthesis, install the Speech SDK for JavaScript for your webpage. See [Install the Speech SDK](/azure/ai-services/speech-service/quickstarts/setup-platform?pivots=programming-language-javascript&tabs=windows%2Cubuntu%2Cdotnetcli%2Cdotnet%2Cjre%2Cmaven%2Cbrowser%2Cmac%2Cpypi#install-the-speech-sdk-for-javascript).
 
-Here's the compatibility of real-time avatar on different platforms and browsers:
+Real-time avatar works on these platforms and browsers:
 
 | Platform | Chrome | Microsoft Edge | Safari | Firefox | Opera |
-|----------|--------|------|--------|---------|-------|
-| Windows  |   Y    |  Y   |  N/A   |   Y<sup>1</sup>   |   Y   |
-| Android  |   Y    |  Y   |  N/A   |   Y<sup>1</sup><sup>2</sup>  |   N   |
-| iOS      |   Y    |  Y   |   Y    |   Y     |   Y   |
-| macOS    |   Y    |  Y   |   Y    |   Y<sup>1</sup>    |   Y   |
+|----------|--------|---------------|--------|---------|-------|
+| Windows  |   Y    |      Y        |  N/A   |   Y¹    |   Y   |
+| Android  |   Y    |      Y        |  N/A   |   Y¹²   |   N   |
+| iOS      |   Y    |      Y        |   Y    |   Y     |   Y   |
+| macOS    |   Y    |      Y        |   Y    |   Y¹    |   Y   |
 
-<sup>1</sup> It dosesn't work with ICE server by Communication Service but works with Coturn.
-
-<sup>2</sup> Background transparency doesn't work.
+¹ Doesn't work with ICE server by Communication Service, but works with Coturn.
+² Background transparency doesn't work.
 
 ## Select text to speech language and voice
 
-The text to speech feature in the Speech service supports a broad portfolio of [languages and voices](../language-support.md?tabs=tts). You can get the full list or try them in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
+Speech service supports many [languages and voices](../language-support.md?tabs=tts). See the full list or try them in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
 
-To match your input text and use the specified voice, you can set the `SpeechSynthesisLanguage` or `SpeechSynthesisVoiceName` properties in the `SpeechConfig` object. The following code snippet shows how this technique works:
+To match your input text and use a specific voice, set the `SpeechSynthesisLanguage` or `SpeechSynthesisVoiceName` properties in the `SpeechConfig` object:
 
 ```JavaScript
 const speechConfig = SpeechSDK.SpeechConfig.fromSubscription("YourSpeechKey", "YourSpeechRegion");
@@ -53,21 +57,21 @@ speechConfig.speechSynthesisLanguage = "en-US";
 speechConfig.speechSynthesisVoiceName = "en-US-AvaMultilingualNeural";   
 ```
 
-All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is "I'm excited to try text to speech," and you select es-ES-ElviraNeural, the text is spoken in English with a Spanish accent.
+All neural voices are multilingual and fluent in their own language and English. For example, if you select **es-ES-ElviraNeural** and enter English text, the avatar speaks English with a Spanish accent.
 
-If the voice doesn't speak the language of the input text, the Speech service doesn't create synthesized audio. For a full list of supported neural voices, see [Language and voice support for the Speech service](../language-support.md?tabs=tts).
+If the voice doesn't support the input language, the Speech service doesn't create audio. See [Language and voice support](../language-support.md?tabs=tts) for the full list.
 
-The default voice is the first voice returned per locale from the [voice list API](../rest-text-to-speech.md#get-a-list-of-voices). The order of priority for speaking is as follows:
-- If you don't set `SpeechSynthesisVoiceName` or `SpeechSynthesisLanguage`, the default voice in `en-US` speaks.
-- If you only set `SpeechSynthesisLanguage`, the default voice in the specified locale speaks.
-- If both `SpeechSynthesisVoiceName` and `SpeechSynthesisLanguage` are set, the `SpeechSynthesisLanguage` setting is ignored. The voice that you specify by using `SpeechSynthesisVoiceName` speaks.
-- If the voice element is set by using Speech Synthesis Markup Language (SSML), the `SpeechSynthesisVoiceName` and `SpeechSynthesisLanguage` settings are ignored.
+Default voice selection:
+- If you don't set `SpeechSynthesisVoiceName` or `SpeechSynthesisLanguage`, the default voice in `en-US` is used.
+- If you set only `SpeechSynthesisLanguage`, the default voice in that locale is used.
+- If you set both, `SpeechSynthesisVoiceName` takes priority.
+- If you use SSML to set the voice, both properties are ignored.
 
 ## Select avatar character and style
 
-The supported avatar characters and styles can be found [here](avatar-gestures-with-ssml.md#supported-standard-avatar-characters-styles-and-gestures).
+See [supported standard avatars](standard-avatars.md).
 
-The following code snippet shows how to set avatar character and style:
+Set avatar character and style:
 
 ```JavaScript
 const avatarConfig = new SpeechSDK.AvatarConfig(
@@ -75,14 +79,22 @@ const avatarConfig = new SpeechSDK.AvatarConfig(
     "casual-sitting", // Set avatar style here.
 );  
 ```
+Set photo avatar:
+
+```JavaScript
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "anika", // Set photo avatar character here.
+);
+avatarConfig.photoAvatarBaseModel = "vasa-1"; // Set photo avatar base model here.
+```
 
 ## Set up connection to real-time avatar
 
-Real-time avatar uses WebRTC protocol to output the avatar video stream. You need to set up the connection with the avatar service through WebRTC peer connection.
+Real-time avatar uses the WebRTC protocol to stream video. Set up the connection with the avatar service using a WebRTC peer connection.
 
-First, you need to create a WebRTC peer connection object. WebRTC is a P2P protocol, which relies on ICE server for network relay. Speech service provides network relay function and exposes a REST API to issue the ICE server information. Therefore, we recommend you fetch the ICE server from the speech service. You can also choose to use your own ICE server.
+First, create a WebRTC peer connection object. WebRTC is peer-to-peer and relies on an ICE server for network relay. Speech service provides a REST API to get ICE server info. We recommend fetching ICE server details from Speech service, but you can use your own.
 
-Here's a sample request to fetch ICE information from the speech service endpoint:
+Sample request to fetch ICE info:
 
 ```HTTP
 GET /cognitiveservices/avatar/relay/token/v1 HTTP/1.1
@@ -91,7 +103,7 @@ Host: westus2.tts.speech.microsoft.com
 Ocp-Apim-Subscription-Key: YOUR_RESOURCE_KEY
 ```
 
-The following code snippet shows how to create the WebRTC peer connection. The ICE server URL, ICE server username, and ICE server credential can all be fetched from the payload of the previous HTTP request.
+Create the WebRTC peer connection using the ICE server URL, username, and credential from the previous response:
 
 ```JavaScript
 // Create WebRTC peer connection
@@ -105,11 +117,9 @@ peerConnection = new RTCPeerConnection({
 ```
 
 > [!NOTE]
->  The ICE server URL has two kinds: one with prefix `turn` (such as `turn:relay.communication.microsoft.com:3478`), and one with prefix `stun` (such as `stun:relay.communication.microsoft.com:3478`). In the previous example scenario, for `urls` you only need to include a URL with the `turn` prefix.
+>  The ICE server URL can start with `turn` (for example, `turn:relay.communication.microsoft.com:3478`) or `stun` (for example, `stun:relay.communication.microsoft.com:3478`). For `urls`, include only the `turn` URL.
 
-Secondly, you need to set up the video and audio player elements in the `ontrack` callback function of the peer connection. This callback is invoked twice during the connection, once for video track and once for audio track. You need to create both video and audio player elements in the callback function.
-
-The following code snippet shows how to do so:
+Next, set up the video and audio player elements in the `ontrack` callback of the peer connection. This callback runs twice—once for video, once for audio. Create both player elements in the callback:
 
 ```JavaScript
 // Fetch WebRTC video/audio streams and mount them to HTML video/audio player elements
@@ -134,7 +144,7 @@ peerConnection.addTransceiver('video', { direction: 'sendrecv' })
 peerConnection.addTransceiver('audio', { direction: 'sendrecv' })
 ```
 
-Thirdly, you need to invoke the Speech SDK to create an avatar synthesizer and connect to the avatar service, with the peer connection as a parameter.
+Then, use Speech SDK to create an avatar synthesizer and connect to the avatar service with the peer connection:
 
 ```JavaScript
 // Create avatar synthesizer
@@ -148,13 +158,13 @@ avatarSynthesizer.startAvatarAsync(peerConnection).then(
 );
 ```
 
-Our real-time API disconnects after 5 minutes of avatar's idle state. Even if the avatar isn't idle and functioning normally, the real-time API will disconnect after a 30-minute connection. To ensure continuous operation of the real-time avatar for more than 30 minutes, you can enable automatic reconnect. For information about how to set up automatic reconnect, refer to this [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "auto reconnect").
+The real-time API disconnects after 5 minutes of idle or after 30 minutes of connection. To keep the avatar running longer, enable automatic reconnect. See this [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "auto reconnect").
 
 ## Synthesize talking avatar video from text input
 
-After the previous steps, you should see the avatar video being played in the web browser. The avatar is active, with eye blink and slight body movement, but not speaking yet. The avatar is waiting for text input to start speaking.
+After setup, the avatar video plays in your browser. The avatar blinks and moves slightly, but doesn't speak until you send text input.
 
-The following code snippet shows how to send text to the avatar synthesizer and let the avatar speak:
+Send text to the avatar synthesizer to make the avatar speak:
 
 ```JavaScript
 var spokenText = "I'm excited to try text to speech avatar."
@@ -180,21 +190,21 @@ avatarSynthesizer.speakTextAsync(spokenText).then(
 
 ## Close the real-time avatar connection
 
-To avoid unnecessary costs after you finish using the real-time avatar, it’s important to close the connection. There are several ways to close the connection:
+To avoid extra costs, close the connection when you're done:
 
-- When the browser web page is closed, the WebRTC client side peer connection object is released. Then the avatar connection is automatically closed after a few seconds.
-- The connection is automatically closed if the avatar remains idle for 5 minutes.
-- You can proactively close the avatar connection by running the following code:
-  
+- Closing the browser releases the WebRTC peer connection and closes the avatar connection after a few seconds.
+- The connection closes automatically if the avatar is idle for 5 minutes.
+- You can close the avatar connection manually:
+
    ```javascript
    avatarSynthesizer.close()
-   ``` 
+   ```
 
 ## Edit background
 
 ### Set background color
 
-You can set the background color of the avatar video through the `backgroundColor` property of `AvatarConfig` object. The following code snippet shows how to set the background color:
+Set the background color of the avatar video using the `backgroundColor` property of `AvatarConfig`:
 
 ```JavaScript
 const avatarConfig = new SpeechSDK.AvatarConfig(
@@ -205,12 +215,12 @@ avatarConfig.backgroundColor = '#00FF00FF' // Set background color to green
 ```
 
 > [!NOTE]
->  The color string should be in format `#RRGGBBAA`. And the alpha channel (`AA` part) is always ignored as we don't support transparent background for real-time avatar.
+>  The color string should be in the format `#RRGGBBAA`. The alpha channel (`AA`) is ignored—transparent backgrounds aren't supported for real-time avatar.
 
 
 ### Set background image
 
-You can set the background image of the avatar video through the `backgroundImage` property of `AvatarConfig` object. You need upload the image to a public accessible URL and then assign the URL to the `backgroundImage` property. The following code snippet shows how to set the background image:
+Set the background image using the `backgroundImage` property of `AvatarConfig`. Upload your image to a public URL and assign it to `backgroundImage`:
 
 ```JavaScript
 const avatarConfig = new SpeechSDK.AvatarConfig(
@@ -222,20 +232,20 @@ avatarConfig.backgroundImage = "https://www.example.com/1920-1080-image.jpg" // 
 
 ### Set background video
 
-The avatar real-time synthesis API currently doesn't support setting background video directly. However, there's an alternative way to implement background customization on the client side, following these guidelines:
+The API doesn't support background video directly, but you can customize the background on the client side:
 
-- Set the background color to green (for ease of matting), which the avatar real-time synthesis API supports.
-- Create a canvas element with the same size as the avatar video.
-- Capture each frame of the avatar video and apply a pixel-by-pixel calculation to set the green pixel to transparent, and draw the recalculated frame to the canvas.
+- Set the background color to green (for easy matting).
+- Create a canvas element the same size as the avatar video.
+- For each frame, set green pixels to transparent and draw the frame to the canvas.
 - Hide the original video.
 
-With this approach, you can get an animated canvas that plays like a video, which has a transparent background. Here's the [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js#L142) to demonstrate such an approach.
+This gives you a transparent avatar on a canvas. See [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js#L142).
 
-After you have a transparent-background avatar, you can set the background to any dynamic content (like a video) by placing the dynamic content behind the canvas.
+You can then place any dynamic content (like a video) behind the canvas.
 
 ## Crop video
 
-The avatar video is by default in a 16:9 aspect ratio. If you want to crop the video to a different aspect ratio, you can crop the video to a rectangle subarea of the original video. You need specify the rectangle area by giving the coordinates of its top-left vertex and bottom-right vertex. The following code snippet shows how to crop the video:
+The avatar video is 16:9 by default. To crop to a different aspect ratio, specify the rectangle area using the coordinates of the top-left and bottom-right corners:
 
 ```JavaScript
 const videoFormat = new SpeechSDK.AvatarVideoFormat()
@@ -249,21 +259,90 @@ const avatarConfig = new SpeechSDK.AvatarConfig(
 )
 ```
 
-For a full sample with more context, you can go to our [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js) and search `crop`.
+For a full sample, see our [code example](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js) and search for `crop`.
+
+## Set video resolution
+A 4K resolution avatar's default output resolution is 3840x2160. However, you can adjust the output resolution while maintaining the original aspect ratio to suit your requirements. For instance, setting the output resolution to 1920x1080 during streaming can reduce network bandwidth consumption. 
+
+```JavaScript
+const videoFormat = new SpeechSDK.AvatarVideoFormat();
+videoFormat.width = 1920;
+videoFormat.height = 1080;
+```
+
+For further details, see the [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/0d852b2115e780cfb4b65343e6c23e67953e8f4e/samples/js/browser/avatar/js/basic.js#L224C1-L225C1).
+
+## Set avatar scene for photo avatar
+
+For photo avatars, you can configure the scene by adjusting zoom, position, and rotation parameters. This allows you to customize how the avatar appears in the video output.
+
+Create an `AvatarSceneConfig` object with the following parameters:
+- **zoom**: A value between 0 and 1, where 1.0 represents 100% zoom (default).
+- **positionX**: Horizontal position offset, ranging from -1 to 1, where 0 is centered.
+- **positionY**: Vertical position offset, ranging from -1 to 1, where 0 is centered.
+- **rotationX**: Rotation around the X-axis in radians.
+- **rotationY**: Rotation around the Y-axis in radians.
+- **rotationZ**: Rotation around the Z-axis in radians.
+- **amplitude**: Amplitude of the avatar movement, ranging from 0 to 1, where values less than 1 reduce movement amplitude and 1.0 (default) means full amplitude.
+
+Set the initial scene configuration when creating the avatar config:
+
+```JavaScript
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "anika", // Set photo avatar character here.
+);
+avatarConfig.photoAvatarBaseModel = "vasa-1";
+avatarConfig.scene = new SpeechSDK.AvatarSceneConfig(
+    1.0,  // zoom: 100%
+    0.0,  // positionX: centered
+    0.0,  // positionY: centered
+    0.0,  // rotationX: no rotation
+    0.0,  // rotationY: no rotation
+    0.0,  // rotationZ: no rotation
+    1.0   // amplitude: full movement
+);
+```
+
+You can also update the scene dynamically after the avatar session has started using the `updateSceneAsync` method:
+
+```JavaScript
+// Convert percentage and degree values to normalized values
+const zoom = 0.85; // 85% zoom
+const positionX = 0.1; // 10% offset to the right
+const positionY = -0.05; // 5% offset upward
+const rotationX = 10 * Math.PI / 180; // 10 degrees in radians
+const rotationY = 0;
+const rotationZ = 0;
+const amplitude = 0.8; // 80% movement amplitude
+
+const sceneConfig = new SpeechSDK.AvatarSceneConfig(
+    zoom,
+    positionX,
+    positionY,
+    rotationX,
+    rotationY,
+    rotationZ,
+    amplitude
+);
+```
+
+> [!NOTE]
+> The scene configuration is only available for photo avatars. Video avatars don't support this feature.
 
 ## Code samples
 
-You can find text to speech avatar code samples in the Speech SDK repository on GitHub. The samples demonstrate how to use real-time text to speech avatars in your web applications.
+Find text to speech avatar code samples in the Speech SDK GitHub repository. These samples show how to use real-time avatars in web and mobile apps:
 
-- Server + client
+- **Server + client**
     - [Python (server) + JavaScript (client)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/python/web/avatar)
     - [C# (server) + JavaScript (client)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/csharp/web/avatar)
-- Client only
+    - [Node.js (server) + JavaScript (client)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node/web/avatar)
+- **Client only**
     - [JavaScript](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
     - [Android](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/avatar)
     - [iOS](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios/avatar)
-
-These samples demonstrate how to use real-time text to speech avatars in your mobile applications.
+- **Voice Live**
+    - [Node.js](https://github.com/azure-ai-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar)
 
 ## Next steps
 

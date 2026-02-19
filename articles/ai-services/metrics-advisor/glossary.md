@@ -6,7 +6,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.custom: applied-ai-non-critical-metrics-advisor
-ms.topic: conceptual
+ms.topic: glossary
 ms.date: 06/12/2025
 ms.author: mbullwin
 ---

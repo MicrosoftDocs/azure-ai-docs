@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: concept-article
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: deeikele
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
 ms.date: 01/28/2025
 ms.custom: engagement-fy23, build-2024
 monikerRange: 'azureml-api-2 || azureml-api-1'
@@ -52,7 +52,7 @@ When you use a customer-managed key, there are two possible configurations:
 - [Service-side encryption](#service-side-encryption-of-metadata): The resources are stored service-side on Microsoft-managed resources. This configuration reduces costs and also reduces the chance of conflict with policies you may have set for your Azure subscription.
 - [Subscription-side encryption (classic)](#subscription-side-encryption-of-metadata-classic): The resources are hosted in your Azure subscription and encrypted with your key. While these resources exist in your subscription, Microsoft manages them. These resources are automatically created and configured when you create your Azure Machine Learning workspace.
 
-## Service-side encryption of metadata
+### Service-side encryption of metadata
 
 In this configuration, encrypted data is stored service-side on Microsoft-managed resources instead of in your subscription. Using service-side encryption reduces costs compared to the subscription-side encryption, and mitigates the likelihood of Azure policy conflicts.
 

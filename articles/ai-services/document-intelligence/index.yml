@@ -1,16 +1,16 @@
 ### YamlMime:Landing
 
-title: Azure AI Document Intelligence documentation # < 60 chars
-summary: Azure AI Document Intelligence is a cloud-based Azure AI service that uses machine-learning models to automate your data processing in applications and workflows. Document Intelligence is essential for enhancing data-driven strategies and enriching document search capabilities. # < 160 chars
+title: Azure Document Intelligence in Foundry Tools documentation # < 60 chars
+summary: Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft Foundry tool that uses machine-learning models to automate your data processing in applications and workflows. Document Intelligence is essential for enhancing data-driven strategies and enriching document search capabilities. # < 160 chars
 
 metadata:
-  title: Document Intelligence documentation - Quickstarts, Tutorials, API Reference - Azure AI services | Microsoft Docs
-  description: Azure AI Document Intelligence is a cloud-based Azure AI service that uses machine-learning models to extract key-value pairs, text, and tables from your documents. Document Intelligence analyzes your forms and documents, extracts text and data, maps field relationships as key-value pairs, and returns a structured JSON output. You quickly get accurate results that are tailored to your specific content without excessive manual intervention or extensive data science expertise. Use Document Intelligence to automate your data processing in applications and workflows, enhance data-driven strategies, and enrich document search capabilities.
+  title: Document Intelligence documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs
+  description: Azure Document Intelligence in Foundry Tools is a cloud-based Microsoft Foundry tool that uses machine-learning models to extract key-value pairs, text, and tables from your documents. Document Intelligence analyzes your forms and documents, extracts text and data, maps field relationships as key-value pairs, and returns a structured JSON output. You quickly get accurate results that are tailored to your specific content without excessive manual intervention or extensive data science expertise. Use Document Intelligence to automate your data processing in applications and workflows, enhance data-driven strategies, and enrich document search capabilities.
   ms.service: azure-ai-document-intelligence
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar
-  ms.date: 11/19/2024
+  ms.date: 11/18/2025
   monikerRange: '<=doc-intel-4.0.0'
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 # Limits: https://learn.learn.microsoft.com/help/contribute/contribute-how-to-write-landing-page?branch=main#limits
@@ -19,17 +19,17 @@ landingContent:
 # Cards and links should be based on top customer tasks or top subjects
 # Start card title with a verb
 # Card 1
-   - title: About Azure AI Document Intelligence
+   - title: About Azure Document Intelligence
      linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure AI Document Intelligence?
+          - text: What is Azure Document Intelligence?
             url: overview.md
           - text: Document Intelligence FAQ
             url: faq.yml
       - linkListType: whats-new
         links:
-          - text: What's new in Azure AI Document Intelligence?
+          - text: What's new in Azure Document Intelligence?
             url: whats-new.md
 
   #Card 2
@@ -87,10 +87,6 @@ landingContent:
         links:
            - text: Transparency notes
              url: /azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
-           - text: Characteristics and limitations
-             url:  /azure/ai-foundry/responsible-ai/document-intelligence/characteristics-and-limitations?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
-           - text: Guidance for integration and responsible use
-             url: /azure/ai-foundry/responsible-ai/document-intelligence/guidance-integration-responsible-use?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
            - text: Data privacy, compliance, and security
              url: /azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json#Card 5
    

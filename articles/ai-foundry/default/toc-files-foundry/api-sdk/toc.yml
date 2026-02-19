@@ -1,0 +1,75 @@
+items:
+# SDK Overview
+- name: Microsoft Foundry SDKs
+  href: ../../../how-to/develop/sdk-overview.md
+- name: Endpoints for Foundry Models
+  href: ../../../foundry-models/concepts/endpoints.md
+
+# Azure AI Projects SDK
+- name: Azure AI Projects
+  items:
+  - name: C#
+    href: /dotnet/api/overview/azure/ai.projects-readme
+  - name: JavaScript
+    href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview&preserve-view=true
+  - name: Python
+    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true
+  - name: REST API
+    href: /rest/api/aifoundry/aiprojects/
+  - name: REST API (preview)
+    href: ../../../reference/foundry-project-rest-preview.md
+
+# Azure OpenAI SDK and APIs
+- name: Azure OpenAI
+  items:
+  - name: API lifecycle
+    href: ../../../openai/api-version-lifecycle.md
+  - name: Dataplane SDK language support
+    href: ../../../openai/supported-languages.md
+  - name: v1 API
+    items:
+    - name: v1 API
+      href: ../../../openai/latest.md
+    - name: Chat
+      href: ../../../openai/latest.md#create-chat-completion
+    - name: Embeddings
+      href: ../../../openai/latest.md#create-embedding
+    - name: Evals (preview)
+      href: ../../../openai/latest.md#list-evals
+    - name: Files
+      href: ../../../openai/latest.md#create-file
+    - name: Fine-tuning
+      href: ../../../openai/latest.md#create-fine-tuning-job
+    - name: Models
+      href: ../../../openai/latest.md#list-models
+    - name: Responses
+      href: ../../../openai/latest.md#create-response
+    - name: Vector stores
+      href: ../../../openai/latest.md#list-vector-stores
+  - name: REST API (resource creation & deployment)
+    href: /rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP
+
+# Reference Documentation
+- name: Reference documentation
+  items:
+  - name: Azure OpenAI monitoring data reference
+    href: ../../../openai/monitor-openai-reference.md
+  - name: Audio events reference
+    href: ../../../openai/realtime-audio-reference.md
+
+# Foundry Tools APIs and SDKs
+- name: Foundry Tools SDKs
+  displayName: client library libraries development kit
+  href: ../../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
+- name: Foundry Tools REST APIs
+  displayName: swagger http
+  href: ../../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
+
+# Resource Management
+- name: Resource Management
+  items:
+  - name: Azure Resource Manager/Bicep/Terraform
+    href: /azure/templates/microsoft.cognitiveservices/accounts?pivots=deployment-language-bicep
+    displayName: ARM, ARM template, template 
+  - name: Azure CLI
+    href: /cli/azure/cognitiveservices?view=azure-cli-latest&preserve-view=true

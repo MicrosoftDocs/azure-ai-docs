@@ -1,10 +1,10 @@
 items:
-- name: Azure AI Vision Documentation
+- name: Azure Vision documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Azure AI Vision?
+  - name: What is Azure Vision?
     href: overview.md
   - name: Vision Studio
     href: overview-vision-studio.md
@@ -14,7 +14,7 @@ items:
     href: https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision
   - name: What's new
     href: whats-new.md
-  - name: Azure AI Vision FAQ
+  - name: Azure Vision FAQ
     href: FAQ.yml
 - name: Scenario deep-dives
   items:
@@ -52,15 +52,15 @@ items:
         href: https://aka.ms/azsdk/image-analysis/samples/js
     - name: Version 3.2
       items:
-      - name: Azure AI Foundry .NET SDK samples
+      - name: Microsoft Foundry .NET SDK samples
         href: https://github.com/Azure-Samples/cognitive-services-dotnet-sdk-samples
-      - name: Azure AI Foundry Java SDK samples
+      - name: Microsoft Foundry Java SDK samples
         href: https://github.com/Azure-Samples/cognitive-services-java-sdk-samples
-      - name: Azure AI Foundry Node.js SDK samples
+      - name: Microsoft Foundry Node.js SDK samples
         href: https://github.com/Azure-Samples/cognitive-services-node-sdk-samples
       - name: JavaScript Static Web app
         href: https://github.com/azure-samples/js-e2e-client-cognitive-services/tree/main/
-      - name: Azure AI Foundry Python SDK samples
+      - name: Microsoft Foundry Python SDK samples
         href: https://github.com/Azure-Samples/cognitive-services-python-sdk-samples
   - name: Responsible use of AI
     items:
@@ -72,26 +72,12 @@ items:
       href: ../../ai-foundry/responsible-ai/computer-vision/limited-access.md
   - name: How-to guides
     items:
+    - name: Migrate from Image Analysis
+      href: migration-options.md
     - name: Version 4.0
       items:
       - name: Call the Analyze API
         href: how-to/call-analyze-image-40.md
-      - name: Model customization
-        items:
-        - name: Create a custom model (preview)
-          href: how-to/model-customization.md
-        - name: Verify a custom model COCO file (preview)
-          href: how-to/coco-verification.md
-      - name: Product Recognition (preview)
-        items:
-        - name: Prepare images for Product Recognition
-          href: how-to/shelf-modify-images.md
-        - name: Product Recognition with prebuilt model
-          href: how-to/shelf-analyze.md
-        - name: Product Recognition with custom model
-          href: how-to/shelf-model-customization.md
-        - name: Check planogram compliance
-          href: how-to/shelf-planogram.md
       - name: Call the Multimodal embeddings APIs
         href: how-to/image-retrieval.md
       - name: Call the Background removal API (preview)
@@ -122,10 +108,6 @@ items:
         href: concept-generate-thumbnails-40.md
       - name: People detection
         href: concept-people-detection.md
-      - name: Model customization
-        href: concept-model-customization.md
-      - name: Product Recognition (preview)
-        href: concept-shelf-analysis.md
       - name: Multimodal embeddings
         href: concept-image-retrieval.md
       - name: Background removal (preview)
@@ -254,6 +236,8 @@ items:
         href: how-to/identity-access-token.md
       - name: Use customer-managed keys
         href: identity-encrypt-data-at-rest.md
+      - name: Use liveness detection with network isolation (preview)
+        href: how-to/liveness-use-network-isolation.md
   - name: Tutorials
     items:
     - name: Detect liveness in faces
@@ -305,39 +289,13 @@ items:
     - name: Client-side
       items:
       - name: Kotlin (Android)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-api-reference
+        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
       - name: Swift (iOS)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-api-reference
+        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
       - name: JavaScript (Web)
         href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
       - name: Understand the liveness versions
         href: sdk/understand-the-liveness-sdk-versions.md
-- name: Video Retrieval
-  items:
-  - name: Video Retrieval overview
-    href: intro-to-spatial-analysis-public-preview.md
-  - name: Responsible use of AI
-    items:
-    - name: Transparency note
-      href: ../../ai-foundry/responsible-ai/computer-vision/transparency-note-spatial-analysis.md
-    - name: Integration and responsible use
-      items:
-      - name: Responsible use in AI deployment 
-        href: ../../ai-foundry/responsible-ai/computer-vision/responsible-use-deployment.md
-      - name: Disclosure design guidelines
-        href: ../../ai-foundry/responsible-ai/computer-vision/disclosure-design.md
-      - name: Research insights
-        href: ../../ai-foundry/responsible-ai/computer-vision/research-insights.md
-    - name: Data, privacy, and security
-      href: ../../ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2.md
-  - name: How-to guides
-    items:
-    - name: Call the Video Retrieval APIs
-      href: how-to/video-retrieval.md
-  - name: Reference
-    items:
-    - name: Video Retrieval REST API
-      href: reference-video-search.md
 - name: Optical character recognition (OCR) (legacy)
   items:
   - name: OCR overview

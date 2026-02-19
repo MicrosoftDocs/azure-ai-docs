@@ -9,10 +9,10 @@ ms.custom:
   - build-2023
   - ignite-2023
 ms.topic: tutorial
-ms.reviewer: None
-author: ssalgadodev
-ms.author: ssalgado
-ms.date: 09/30/2024
+ms.reviewer: sooryar
+author: s-polly
+ms.author: scottpolly
+ms.date: 11/14/2025
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.
 ---
 
@@ -33,9 +33,9 @@ This tutorial takes you through steps to submit a cloud-based training job (comm
 > - Deploy the newly-trained model as an endpoint
 > - Call the Azure Machine Learning endpoint for inferencing
 
-If you would like to learn more about how to load your data into Azure, see [Tutorial: Upload, access, and explore your data in Azure Machine Learning](tutorial-explore-data.md).
+If you want to learn more about how to load your data into Azure, see [Tutorial: Upload, access, and explore your data in Azure Machine Learning](tutorial-explore-data.md).
 
-This video shows how to get started in Azure Machine Learning studio so that you can follow the steps in the tutorial. The video shows how to create a notebook, create a compute instance, and clone the notebook. The steps are also described in the following sections.
+This video shows how to get started in Azure Machine Learning studio so that you can follow the steps in the tutorial. The video shows how to create a notebook, create a compute instance, and clone the notebook. The following sections also describe the steps.
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=de35c980-0aeb-4391-a609-8017d15c4e72]
 
@@ -56,9 +56,9 @@ This video shows how to get started in Azure Machine Learning studio so that you
 
 ## Use a command job to train a model in Azure Machine Learning
 
-To train a model, you need to submit a *job*. Azure Machine Learning offers several different types of jobs to train models. Users can select their method of training based on complexity of the model, data size, and training speed requirements. In this tutorial, you learn how to submit a *command job* to run a *training script*.
+To train a model, you need to submit a *job*. Azure Machine Learning offers several different types of jobs to train models. You can select your method of training based on the complexity of the model, data size, and training speed requirements. In this tutorial, you learn how to submit a *command job* to run a *training script*.
 
-A command job is a function that allows you to submit a custom training script to train your model. This job can also be defined as a custom training job. A command job in Azure Machine Learning is a type of job that runs a script or command in a specified environment. You can use command jobs to train models, process data, or any other custom code you want to execute in the cloud.
+A command job is a function that you use to submit a custom training script to train your model. You can also define this job as a custom training job. A command job in Azure Machine Learning is a type of job that runs a script or command in a specified environment. You can use command jobs to train models, process data, or run any other custom code you want to execute in the cloud.
 
 This tutorial focuses on using a command job to create a custom training job that you use to train a model. Any custom training job requires the following items:
 
@@ -71,7 +71,7 @@ This tutorial provides these items for the example: creating a classifier to pre
 
 ## Create handle to workspace
 
-Before you dive in the code, you need a way to reference your workspace. Create `ml_client` for a handle to the workspace. Then use `ml_client` to manage resources and jobs.
+Before you dive into the code, you need a way to reference your workspace. Create `ml_client` as a handle to the workspace. Then use `ml_client` to manage resources and jobs.
 
 In the next cell, enter your subscription ID, resource group name, and workspace name. To find these values:
 
@@ -98,7 +98,7 @@ ml_client = MLClient(
 ```
 
 > [!NOTE]
-> Creating MLClient does not connect to the workspace. The client initialization is lazy. It waits for the first time it needs to make a call, which happens in the next code cell.
+> Creating MLClient doesn't connect to the workspace. The client initialization is lazy. It waits for the first time it needs to make a call, which happens in the next code cell.
 
 ```python
 # Verify that the handle works correctly.
@@ -109,7 +109,7 @@ print(ws.location,":", ws.resource_group)
 
 ## Create a job environment
 
-To run your Azure Machine Learning job on your compute resource, you need an environment. An environment lists the software runtime and libraries that you want installed on the compute where do the training. It's similar to the python environment on your local machine. For more information, see [What are Azure Machine Learning environments?](concept-environments.md)
+To run your Azure Machine Learning job on your compute resource, you need an environment. An environment lists the software runtime and libraries that you want installed on the compute where the training happens. It's similar to the Python environment on your local machine. For more information, see [What are Azure Machine Learning environments?](concept-environments.md).
 
 Azure Machine Learning provides many curated or ready-made environments that are useful for common training and inference scenarios.
 
@@ -178,7 +178,7 @@ You create an Azure Machine Learning *command job* to train a model for credit d
 
 The training script handles the data preparation, training, and registering of the trained model. The method `train_test_split` splits the dataset into test and training data. In this tutorial, you create a Python training script.
 
-Command jobs can be run from CLI, Python SDK, or studio interface. In this tutorial, use the Azure Machine Learning Python SDK v2 to create and run the command job.
+You can run command jobs from CLI, Python SDK, or studio interface. In this tutorial, use the Azure Machine Learning Python SDK v2 to create and run the command job.
 
 ## Create training script
 
@@ -346,31 +346,31 @@ ml_client.create_or_update(job)
 
 ## View job output and wait for job completion
 
-To view the job in Azure Machine Learning studio, select the link in the output of the previous cell. The output of this job looks like this in the Azure Machine Learning studio. Explore the tabs for various details like metrics, outputs etc. After the job finishes, it registers a model in your workspace as a result of training.
+To view the job in Azure Machine Learning studio, select the link in the output of the previous cell. The output of this job looks like this in the Azure Machine Learning studio. Explore the tabs for various details like metrics, outputs, and more. After the job finishes, it registers a model in your workspace as a result of training.
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/view-job.gif" alt-text="Screenshot shows the overview page for the job.":::
 
 > [!IMPORTANT]
-> Wait until the status of the job is complete before you return to this notebook to continue. The job takes 2 to 3 minutes to run. It could take longer, up to 10 minutes, if the compute cluster has been scaled down to zero nodes and custom environment is still building.
+> Wait until the status of the job is complete before you return to this notebook to continue. The job takes 2 to 3 minutes to run. It could take longer, up to 10 minutes, if the compute cluster scales down to zero nodes and the custom environment is still building.
 
-When you run the cell, the notebook output shows a link to the job's details page on Machine Learning studio. Alternatively, you can also select Jobs on the left pane.
+When you run the cell, the notebook output shows a link to the job's details page on Machine Learning studio. Alternatively, you can also select **Jobs** on the left pane.
 
-A job is a grouping of many runs from a specified script or piece of code. Information for the run is stored under that job. The details page gives an overview of the job, the time it took to run, when it was created, and other information. The page also has tabs to other information about the job such as metrics, Outputs + logs, and code. Here are the tabs available in the job's details page:
+A job is a grouping of many runs from a specified script or piece of code. The run stores information under that job. The details page gives an overview of the job, the time it took to run, when it was created, and other information. The page also has tabs to other information about the job such as metrics, **Outputs + logs**, and code. Here are the tabs available in the job's details page:
 
-- Overview: Basic information about the job, including its status, start and end times, and the type of job that was run
-- Inputs: The data and code that were used as inputs for the job. This section can include datasets, scripts, environment configurations, and other resources that were used during training.
-- Outputs + logs: Logs generated while the job was running. This tab helps troubleshooting if anything goes wrong with your training script or model creation.
-- Metrics: Key performance metrics from your model such as training score, f1 score, and precision score.
+- **Overview**: Basic information about the job, including its status, start and end times, and the type of job that was run
+- **Inputs**: The data and code that you used as inputs for the job. This section can include datasets, scripts, environment configurations, and other resources that you used during training.
+- **Outputs + logs**: Logs generated while the job was running. This tab helps troubleshooting if anything goes wrong with your training script or model creation.
+- **Metrics**: Key performance metrics from your model such as training score, f1 score, and precision score.
 
 <!-- nbend -->
 
 ## Clean up resources
 
-If you plan to continue now to other tutorials, skip to [Related content](#related-content).
+If you plan to continue to other tutorials, skip to [Related content](#related-content).
 
 ### Stop compute instance
 
-If you're not going to use it now, stop the compute instance:
+If you're not going to use the compute instance, stop it:
 
 1. In the studio, in the left pane, select **Compute**.
 1. In the top tabs, select **Compute instances**.
@@ -388,8 +388,8 @@ Learn about deploying a model:
 > [!div class="nextstepaction"]
 > [Deploy a model](tutorial-deploy-model.md).
 
-This tutorial used an online data file. To learn more about other ways to access data, see [Tutorial: Upload, access, and explore your data in Azure Machine Learning](tutorial-explore-data.md).
+This tutorial uses an online data file. To learn more about other ways to access data, see [Tutorial: Upload, access, and explore your data in Azure Machine Learning](tutorial-explore-data.md).
 
-Automated ML is a supplemental tool to reduce the amount of time a data scientist spends finding a model that works best with their data. For more information, see [What is automated machine learning](concept-automated-ml.md).
+Automated ML is a supplemental tool that reduces the amount of time a data scientist spends finding a model that works best with their data. For more information, see [What is automated machine learning](concept-automated-ml.md).
 
-If you would like more examples similar to this tutorial, see [Learn from sample notebooks](quickstart-create-resources.md#learn-from-sample-notebooks). These samples are available at the [GitHub examples page](https://github.com/Azure/azureml-examples). The examples include complete Python Notebooks that you can run code and learn to train a model. You can modify and run existing scripts from the samples, containing scenarios including classification, natural language processing, and anomaly detection.
+If you want more examples similar to this tutorial, see [Learn from sample notebooks](quickstart-create-resources.md#learn-from-sample-notebooks). These samples are available at the [GitHub examples page](https://github.com/Azure/azureml-examples). The examples include complete Python Notebooks that you can run code and learn to train a model. You can modify and run existing scripts from the samples, containing scenarios including classification, natural language processing, and anomaly detection.

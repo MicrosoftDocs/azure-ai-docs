@@ -1,30 +1,31 @@
 ---
 title: Quickstart - Custom named entity recognition (NER)
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Quickly start building an AI model to categorize and extract information from unstructured text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 01/31/2025
+ms.date: 01/11/2026
 ms.author: lajanuar
 ms.custom: language-service-custom-ner, mode-other
-zone_pivot_groups: usage-custom-language-features
+zone_pivot_groups: foundry-rest-api
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Quickstart: Custom named entity recognition
 
-Use this article to get started with creating a custom NER project where you can train custom models for custom entity recognition. A model is artificial intelligence software that's trained to do a certain task. For this system, the models extract named entities and are trained by learning from tagged data.
+This guide provides step-by-step instructions for using custom named entity recognition (NER) with Microsoft Foundry or the REST API. NER lets you detect and categorize entities in unstructured text—like people, places, organizations, and numbers. Custom NER enables the training of models to identify entities that are specific to a business and allows for ongoing adaptation as requirements change.
 
-In this article, we use Language Studio to demonstrate key concepts of custom Named Entity Recognition (NER). As an example we’ll build a custom NER model to extract relevant entities from loan agreements, such as the:
+To get start, [a sample loan agreement](https://go.microsoft.com/fwlink/?linkid=2175226) is provided as a dataset to build a custom NER model and extract these key entities:
+
 * Date of the agreement
-* Borrower's name, address, city and state  
-* Lender's name, address, city and state  
+* Borrower's name, address, city, and state
+* Lender's name, address, city, and state
 * Loan and interest amounts
 
-::: zone pivot="language-studio"
+::: zone pivot="microsoft-foundry"
 
-[!INCLUDE [Language Studio quickstart](includes/quickstarts/language-studio.md)]
+[!INCLUDE [Foundry](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 
@@ -34,13 +35,11 @@ In this article, we use Language Studio to demonstrate key concepts of custom Na
 
 ::: zone-end
 
-## Next steps
+## Related content
 
-After you've created entity extraction model, you can:
+After you create your entity extraction model, you can [use the runtime API to extract entities](how-to/call-api.md).
 
-* [Use the runtime API to extract entities](how-to/call-api.md)
-
-When you start to create your own custom NER projects, use the how-to articles to learn more about tagging, training and consuming your model in greater detail:
+As you create your own custom NER projects, use our how-to articles to learn more about tagging, training, and consuming your model in greater detail:
 
 * [Data selection and schema design](how-to/design-schema.md)
 * [Tag data](how-to/tag-data.md)

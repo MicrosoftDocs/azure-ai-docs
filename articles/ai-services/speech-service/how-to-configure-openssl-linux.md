@@ -1,14 +1,14 @@
 ---
 title: How to configure OpenSSL for Linux
-titleSuffix: Azure AI services
-description: In this guide, you learn how to configure OpenSSL for Linux with the Azure AI Speech SDK.
-author: eric-urban
-ms.author: eur
+titleSuffix: Foundry Tools
+description: In this guide, you learn how to configure OpenSSL for Linux with the Azure Speech in Foundry Tools SDK.
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.reviewer: jhakulin
 zone_pivot_groups: programming-languages-set-three
 #Customer intent: As a developer, I want to learn how to configure OpenSSL for Linux so that I can use the Speech SDK on my Linux system.
@@ -54,23 +54,30 @@ export SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt
 
 ## Certificate revocation checks
 
-When the Speech SDK connects to the Speech service, it checks the Transport Layer Security (TLS/SSL) certificate. The Speech SDK verifies that the certificate reported by the remote endpoint is trusted and isn't revoked. This verification provides a layer of protection against attacks involving spoofing and other related vectors. The check is accomplished by retrieving a certificate revocation list (CRL) from a certificate authority (CA) used by Azure. A list of Azure CA download locations for updated TLS CRLs can be found in [this document](/azure/security/fundamentals/tls-certificate-changes).
+In addition to the standard OpenSSL certificate validity checks, the Speech SDK can enable an additional revocation check for the Transport Layer Security (TLS/SSL) certificate.
+The Speech SDK verifies that the certificate reported by the remote endpoint is trusted and isn't revoked.
+This verification provides an added layer of protection against attacks involving compromised certificates.
+The check is accomplished by retrieving a certificate revocation list (CRL) from a certificate authority (CA) used by Azure.
+A list of Azure CA download locations for updated TLS CRLs can be found in [this document](/azure/security/fundamentals/tls-certificate-changes).
+
+> [!NOTE]
+> CRL checks are disabled by default in the Speech SDK 1.48 and newer releases.
 
 If a destination posing as the Speech service reports a revoked certificate in a retrieved CRL, the SDK terminates the connection and reports an error via a `Canceled` event. The authenticity of a reported certificate can't be checked without an updated CRL. Therefore, the Speech SDK also treats a failure to download a CRL from an Azure CA location as an error.
 
 > [!WARNING]
-> If your solution uses proxy or firewall it should be configured to allow access to all certificate revocation list URLs used by Azure. Note that many of these URLs are outside of `microsoft.com` domain, so allowing access to `*.microsoft.com` is not enough. See [this document](/azure/security/fundamentals/tls-certificate-changes) for details. In exceptional cases you may ignore CRL failures (see [the correspondent section](#bypassing-or-ignoring-crl-failures)), but such configuration is strongly not recommended, especially for production scenarios.
+> If your solution uses proxy or firewall it should be configured to allow access to all certificate revocation list URLs used by Azure. Note that many of these URLs are outside of `microsoft.com` domain, so allowing access to `*.microsoft.com` is not enough. See [this document](/azure/security/fundamentals/tls-certificate-changes) for details.
 
-### Large CRL files (>10 MB)
+### Large CRL files
 
 One cause of CRL-related failures is the use of large CRL files. This class of error is typically only applicable to special environments with extended CA chains. Standard public endpoints shouldn't encounter this class of issue.
 
-The default maximum CRL size used by the Speech SDK (10 MB) can be adjusted per config object. The property key for this adjustment is `CONFIG_MAX_CRL_SIZE_KB` and the value, specified as a string, is by default "10000" (10 MB). For example, when creating a `SpeechRecognizer` object (that manages a connection to the Speech service), you can set this property in its `SpeechConfig`. In the following code snippet, the configuration is adjusted to permit a CRL file size up to 15 MB.
+The default maximum CRL size used by the Speech SDK can be adjusted per config object. The property key for this adjustment is `CONFIG_MAX_CRL_SIZE_KB` and the value, specified as a string, is currently by default "100000" (100 MB). For example, when creating a `SpeechRecognizer` object (that manages a connection to the Speech service), you can set this property in its `SpeechConfig`. In the following code snippet, the configuration is adjusted to permit a CRL file size up to 150 MB.
 
 ::: zone pivot="programming-language-csharp"
 
 ```csharp
-config.SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
+config.SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "150000");
 ```
 
 ::: zone-end
@@ -78,7 +85,7 @@ config.SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
 ::: zone pivot="programming-language-cpp"
 
 ```cpp
-config->SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
+config->SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "150000");
 ```
 
 ::: zone-end
@@ -86,7 +93,7 @@ config->SetProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
 ::: zone pivot="programming-language-java"
 
 ```java
-config.setProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
+config.setProperty("CONFIG_MAX_CRL_SIZE_KB"", "150000");
 ```
 
 ::: zone-end
@@ -94,7 +101,7 @@ config.setProperty("CONFIG_MAX_CRL_SIZE_KB"", "15000");
 ::: zone pivot="programming-language-python"
 
 ```python
-speech_config.set_property_by_name("CONFIG_MAX_CRL_SIZE_KB"", "15000")
+speech_config.set_property_by_name("CONFIG_MAX_CRL_SIZE_KB"", "150000")
 ```
 
 ::: zone-end
@@ -102,7 +109,7 @@ speech_config.set_property_by_name("CONFIG_MAX_CRL_SIZE_KB"", "15000")
 ::: zone pivot="programming-language-go"
 
 ```go
-speechConfig.properties.SetPropertyByString("CONFIG_MAX_CRL_SIZE_KB", "15000")
+speechConfig.properties.SetPropertyByString("CONFIG_MAX_CRL_SIZE_KB", "150000")
 ```
 
 ::: zone-end
@@ -110,9 +117,6 @@ speechConfig.properties.SetPropertyByString("CONFIG_MAX_CRL_SIZE_KB", "15000")
 ### Bypassing or ignoring CRL failures
 
 If an environment can't be configured to access an Azure CA location, the Speech SDK can't retrieve an updated CRL. You can configure the SDK either to continue and log download failures or to bypass all CRL checks.
-
-> [!WARNING]
-> CRL checks are a security measure and bypassing them increases susceptibility to attacks. They should not be bypassed without thorough consideration of the security implications and alternative mechanisms for protecting against the attack vectors that CRL checks mitigate.
 
 To continue with the connection when a CRL can't be retrieved, set the property `"OPENSSL_CONTINUE_ON_CRL_DOWNLOAD_FAILURE"` to `"true"`. An attempt is still made to retrieve a CRL and failures is still emitted in logs, but connection attempts are allowed to continue.
 

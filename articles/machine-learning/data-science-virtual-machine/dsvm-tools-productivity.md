@@ -5,9 +5,9 @@ description: Learn about the productivity tools on the Data Science Virtual Mach
 keywords: deep learning, AI, data science tools, data science virtual machine, geospatial analytics, team data science process
 services: machine-learning
 ms.service: azure-data-science-virtual-machines
-author: fbsolo-ms1 
-ms.author: franksolomon 
-ms.topic: conceptual
+author: s-polly 
+ms.author: scottpolly 
+ms.topic: concept-article
 ms.reviewer: tklimmer
 ms.date: 04/22/2024
 ---

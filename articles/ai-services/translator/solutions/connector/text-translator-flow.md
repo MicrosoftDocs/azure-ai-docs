@@ -1,13 +1,13 @@
 ---
 title: Use Translator v3 connector to configure a Text translation flow
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use Microsoft Translator v3 connector and Power Automate to configure a Text translation flow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 ---
 
@@ -23,15 +23,15 @@ ms.author: lajanuar
 >
 > * The Translator connector is currently available in public preview. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
 
-This article guides you through configuring a Microsoft Translator v3 connector cloud flow that supports text translation and transliteration. The Translator v3 connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
+This article guides you through configuring a Microsoft Translator v3 connector cloud flow that supports text translation and transliteration. The Translator v3 connector creates a connection between your Translator instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
 
-Text translation is a cloud-based REST API feature of the Azure AI Translator service. The Text translation API enables quick and accurate source-to-target text translations in real time.
+Text translation is a cloud-based REST API feature of the Azure Translator. The Text translation API enables quick and accurate source-to-target text translations in real time.
 
 ## Prerequisites
 
-To get started, you need  an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+To get started, you need  an active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* Once you have your Azure subscription, create a [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI Foundry resource):
+* Once you have your Azure subscription, create a [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Microsoft Foundry resource):
 
 * You need the key and name from your resource to connect your application to Power Automate. Your Translator resource keys are found under the Resource Management section in the Azure portal and your resource name is located at the top of the page. Copy and paste your key and resource name in a convenient location, such as *Microsoft Notepad*.
 
@@ -103,7 +103,7 @@ Let's select an action. Choose to translate or transliterate text.
       :::image type="content" source="../../media/connectors/add-connection.png" alt-text="Screenshot showing the add-connection window.":::
 
 1. Next, the **Transliterate** action window appears.
-1. **Language**. Select the language of the text that is to be converted.
+1. **Language**. Select the language of the text that's to be converted.
 1. **Source script**. Select the name of the input text script.
 1. **Target script**. Select the name of transliterated text script.
 1. Select **Save**.

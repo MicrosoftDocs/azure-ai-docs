@@ -13,7 +13,7 @@ ms.date: 01/19/2024
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Python 3.x](https://www.python.org/)
 * Once your Azure subscription is set up, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesPersonalizer"  title="Create a Personalizer resource"  target="_blank">create a Personalizer resource </a> in the Azure portal and obtain your key and endpoint. After it deploys, select **Go to resource**.
     * You need the key and endpoint from the created resource to connect your application to the Personalizer API, which you paste into the quick-start code below.

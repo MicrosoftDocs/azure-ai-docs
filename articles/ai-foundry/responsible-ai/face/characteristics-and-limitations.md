@@ -1,12 +1,12 @@
 ---
 title: Characteristics, limitations, and how to measure accuracy when using the face service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics, Accuracy, and limitations when using the face service. Learn how to benchmark and measure accuracy when using the face service.  
-author: wguyman
-ms.author: wguyman
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
+ms.topic: concept-article
 ms.date: 06/21/2022
 ---
 
@@ -14,7 +14,7 @@ ms.date: 06/21/2022
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-Azure AI Vision Face API (“Face API”) is a building block for creating a facial AI system to which other building blocks must be added, so it is not possible to provide a universally applicable estimate of accuracy for the actual system you are planning to deploy. Companies may share accuracy as measured by public benchmark competitions, but these accuracies depend on details of each benchmark methodology and therefore won’t be the same as the accuracy of a deployed system. 
+Azure Vision in Foundry Tools Face API (“Face API”) is a building block for creating a facial AI system to which other building blocks must be added, so it is not possible to provide a universally applicable estimate of accuracy for the actual system you are planning to deploy. Companies may share accuracy as measured by public benchmark competitions, but these accuracies depend on details of each benchmark methodology and therefore won’t be the same as the accuracy of a deployed system. 
 
 Ultimately, system accuracy depends on several factors, including the camera technology and how it is configured, environmental conditions, the use case for the system, how people to be recognized interact with the camera, and how people interpret the system’s output. The following section is intended to help you understand key concepts that describe accuracy in the context of a facial recognition and liveness system. With that understanding, we then describe system design choices, how they influence accuracy, and reference metrics. 
 
@@ -40,7 +40,7 @@ You can use the [Fairness Assessment Sample Notebook](https://go.microsoft.com/f
 
 ## How accurate is the facial liveness detection model? 
 
-The facial liveness detection solution from Microsoft is conformant to [ISO/IEC 30107-3:2017 – Biometric presentation attack detection – Part 3: Testing and reporting](https://webstore.ansi.org/standards/iso/isoiec301072017-1662258) standard as validated by iBeta level 1 and level 2 conformance testing. 
+The facial liveness detection solution from Microsoft achieved a 0% penetration rate in [iBeta Level 1 and Level 2 Presentation Attack Detection (PAD) tests](https://servicetrust.microsoft.com/DocumentPage/ea3fa18f-3940-4c0b-aa96-41cb50898aee), conducted by a NIST/NVLAP-accredited laboratory and conformant to the [ISO/IEC 30107-3 PAD international standard](https://www.iso.org/standard/79520.html).
 
 ## Tradeoffs
 

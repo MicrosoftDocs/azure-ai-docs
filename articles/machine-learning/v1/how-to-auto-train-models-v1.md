@@ -7,10 +7,15 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
 author: manashgoswami
-ms.author: manashg
-ms.reviewer: ssalgado
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.date: 07/11/2024
-ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - devx-track-python
+  - automl
+  - sdkv1
+  - sfi-image-nochange
 
 #customer intent: As a developer, I want to train a regression model with Automated ML, so I can use the Azure Machine Learning Python SDK.
 ---
@@ -29,7 +34,7 @@ The process accepts training data and configuration settings. It automatically i
 
 ## Prerequisites
 
-- An Azure subscription. You can create a [free or paid account](https://azure.microsoft.com/free/) of Azure Machine Learning.
+- An Azure subscription. You can create a [free or paid account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) of Azure Machine Learning.
 
 - An Azure Machine Learning workspace or compute instance. To prepare these resources, see [Quickstart: Get started with Azure Machine Learning](../quickstart-create-resources.md).
 

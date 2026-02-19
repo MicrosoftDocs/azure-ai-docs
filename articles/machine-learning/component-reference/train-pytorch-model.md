@@ -10,6 +10,7 @@ ms.topic: reference
 author: likebupt
 ms.author: keli19
 ms.date: 03/19/2021
+ms.custom: sfi-image-nochange
 ---
 
 # Train PyTorch Model
@@ -77,7 +78,7 @@ Click on this component 'Metrics' tab and see training metric graphs, such as 'T
 
 ### How to enable distributed training
 
-To enable distributed training for **Train PyTorch Model** component, you can set in **Job settings** in the right pane of the component. Only **[AML Compute cluster](../how-to-create-attach-compute-cluster.md?tabs=python)** is supported for distributed training.
+To enable distributed training for **Train PyTorch Model** component, you can set in **Job settings** in the right pane of the component. Only **[Azure Machine Learning Compute cluster](../how-to-create-attach-compute-cluster.md?tabs=python)** is supported for distributed training.
 
 > [!NOTE]
 > **Multiple GPUs** are required to activate distributed training because NCCL backend Train PyTorch Model component uses needs cuda.
@@ -86,7 +87,7 @@ To enable distributed training for **Train PyTorch Model** component, you can se
 
     [![Screenshot showing how to set distributed training in runsetting](./media/module/distributed-training-run-setting.png)](./media/module/distributed-training-run-setting.png#lightbox)
 
-2. Make sure you have select AML compute for the compute target.
+2. Make sure you have select Azure Machine Learning compute for the compute target.
 
 3. In **Resource layout** section, you need to set the following values:
 

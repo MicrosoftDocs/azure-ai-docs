@@ -11,8 +11,9 @@ ms.custom:
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
+ms.reviewer: sooryar
 ms.date: 11/26/2024
+ms.update-cycle: 365-days
 ---
 
 # Custom tool package creation and usage

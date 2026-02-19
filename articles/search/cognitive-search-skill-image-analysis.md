@@ -2,33 +2,31 @@
 title: Image Analysis cognitive skill
 titleSuffix: Azure AI Search
 description: Extract semantic text through image analysis using the Image Analysis cognitive skill in an AI enrichment pipeline in Azure AI Search.
-
 author: gmndrg
 ms.author: gimondra
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 03/07/2024
+ms.date: 09/17/2025
 ---
 
 # Image Analysis cognitive skill
 
 The **Image Analysis** skill extracts a rich set of visual features based on the image content. For example, you can generate a caption from an image, generate tags, or identify celebrities and landmarks. This article is the reference documentation for the **Image Analysis** skill. See [Extract text and information from images](cognitive-search-concept-image-scenarios.md) for usage instructions.
 
-This skill uses the machine learning models provided by [Azure AI Vision](/azure/ai-services/computer-vision/overview) in Azure AI services. **Image Analysis** works on images that meet the following requirements:
+This skill uses the machine learning models provided by [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview). **Image Analysis** works on images that meet the following requirements:
 
 + The image must be presented in JPEG, PNG, GIF or BMP format
 + The file size of the image must be less than 4 megabytes (MB)
 + The dimensions of the image must be greater than 50 x 50 pixels
 
-Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
+Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in Microsoft OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
-This skill is implemented using the [AI Image Analysis API](/azure/ai-services/computer-vision/overview-image-analysis) version 3.2. If your solution requires calling a newer version of that service API (such as version 4.0), consider implementing through [Web API custom skill](cognitive-search-custom-skill-web-api.md).
+This skill is implemented using the [AI Image Analysis API](/azure/ai-services/computer-vision/overview-image-analysis) version 3.2. If your solution requires calling a newer version of that service API (such as version 4.0), consider implementing through [Web API custom skill](cognitive-search-custom-skill-web-api.md) or use the [ImageAnalysisV4 power skill](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Vision/ImageAnalysisV4/README.md).
 
 > [!NOTE]
-> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Foundry Tools and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Foundry Tools Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 > In addition, image extraction is [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
 >
@@ -39,12 +37,12 @@ Microsoft.Skills.Vision.ImageAnalysisSkill
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name | Description |
 |--------------------|-------------|
-| `defaultLanguageCode` | A string indicating the language to return. The service returns recognition results in a specified language. If this parameter isn't specified, the default value is "en". <br/><br/>Supported languages include a subset of [generally available languages](/azure/ai-services/computer-vision/language-support#analyze-image) of Azure AI Vision. When a language is newly introduced with general availability status into the AI Vision service, there is expected delay before they are fully integrated within this skill. |
-| `visualFeatures` | An array of strings indicating the visual feature types to return. Valid visual feature types include:  <ul><li>*adult* - detects if the image is pornographic (depicts nudity or a sex act), gory (depicts extreme violence or blood) or suggestive (also known as racy content). </li><li>*brands* - detects various brands within an image, including the approximate location. </li><li> *categories* - categorizes image content according to a [taxonomy](/azure/ai-services/computer-vision/category-taxonomy) defined by Azure AI services. </li><li>*description* - describes the image content with a complete sentence in supported languages.</li><li>*faces* - detects if faces are present. If present, generates coordinates, gender and age. </li><li>*objects* - detects various objects within an image, including the approximate location. </li><li> *tags* - tags the image with a detailed list of words related to the image content.</li></ul> Names of visual features are case-sensitive. Both *color* and *imageType* visual features have been deprecated, but you can access this functionality through a [custom skill](./cognitive-search-custom-skill-interface.md). Refer to the [Azure AI Vision Image Analysis documentation](/azure/ai-services/computer-vision/language-support#analyze-image) on which visual features are supported with each `defaultLanguageCode`.|
+| `defaultLanguageCode` | A string indicating the language to return. The service returns recognition results in a specified language. If this parameter isn't specified, the default value is "en". <br/><br/>Supported languages include a subset of [generally available languages](/azure/ai-services/computer-vision/language-support#analyze-image) of Azure Vision. When a language is newly introduced with general availability status into Azure Vision, there is expected delay before they are fully integrated within this skill. |
+| `visualFeatures` | An array of strings indicating the visual feature types to return. Valid visual feature types include:  <ul><li>*adult* - detects if the image is pornographic (depicts nudity or a sex act), gory (depicts extreme violence or blood) or suggestive (also known as racy content). </li><li>*brands* - detects various brands within an image, including the approximate location. </li><li> *categories* - categorizes image content according to a [taxonomy](/azure/ai-services/computer-vision/category-taxonomy) defined by Foundry Tools. </li><li>*description* - describes the image content with a complete sentence in supported languages.</li><li>*faces* - detects if faces are present. If present, generates coordinates, gender and age. </li><li>*objects* - detects various objects within an image, including the approximate location. </li><li> *tags* - tags the image with a detailed list of words related to the image content.</li></ul> Names of visual features are case-sensitive. Both *color* and *imageType* visual features have been deprecated, but you can access this functionality through a [custom skill](./cognitive-search-custom-skill-interface.md). Refer to the [Azure Vision Image Analysis documentation](/azure/ai-services/computer-vision/language-support#analyze-image) on which visual features are supported with each `defaultLanguageCode`.|
 | `details`	| An array of strings indicating which domain-specific details to return. Valid visual feature types include: <ul><li>*celebrities* - identifies celebrities if detected in the image.</li><li>*landmarks* - identifies landmarks if detected in the image. </li></ul> |
 
 ## Skill inputs

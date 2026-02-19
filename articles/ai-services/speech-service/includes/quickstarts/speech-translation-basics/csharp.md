@@ -1,9 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 06/08/2022
-ms.author: eur
+ms.date: 1/29/2026
+ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
@@ -79,7 +80,7 @@ Follow these steps to create a new console application and install the Speech SD
     
         async static Task Main(string[] args)
         {
-            var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(speechKey, endpoint);       
+            var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(new Uri(endpoint), speechKey);        
             speechTranslationConfig.SpeechRecognitionLanguage = "en-US";
             speechTranslationConfig.AddTargetLanguage("it");
     

@@ -1,18 +1,18 @@
 ---
-title: Azure AI Foundry custom translation data filtering
-titleSuffix: Azure AI services
+title: Foundry Tools custom translation data filtering
+titleSuffix: Foundry Tools
 description: How custom translation training documents for a custom system undergo a series of processing and filtering steps.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a custom translation, I want to understand how data is filtered before training a model.
 ---
 
-# Azure AI Foundry custom translation data filtering
+# Foundry custom translation data filtering
 
 When you submit documents to be used for training, the documents undergo a series of processing and filtering steps. These steps are explained here. The knowledge of the filtering can help you understand the sentence count displayed in custom translation and the steps you can take yourself to prepare the documents for training with custom translation.
 

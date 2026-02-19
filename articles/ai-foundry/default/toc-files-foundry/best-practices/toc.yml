@@ -1,0 +1,14 @@
+items:
+# Model Guidance
+- name: Get started with DeepSeek-R1 reasoning model
+  href: ../../../foundry-models/tutorials/get-started-deepseek-r1.md
+
+# Development Best Practices
+- name: Prompt engineering techniques
+  href: ../../../openai/concepts/prompt-engineering.md
+- name: Performance & latency
+  href: ../../../openai/how-to/latency.md
+
+# Security Best Practices
+- name: Red teaming large language models (LLMs)
+  href: ../../../openai/concepts/red-teaming.md

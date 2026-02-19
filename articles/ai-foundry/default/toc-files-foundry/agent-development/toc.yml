@@ -1,0 +1,72 @@
+items:
+# Getting Started
+- name: Agent development overview
+  href: ../../../agents/overview.md
+- name: FAQ
+  href: ../../../agents/faq.yml
+- name: Quotas, limits, models and region support
+  href: ../../agents/concepts/limits-quotas-regions.md
+
+# Core Concepts
+- name: Core concepts
+  items:
+  - name: Development lifecycle
+    href: ../../agents/concepts/development-lifecycle.md
+  - name: Agent runtime components
+    href: ../../agents/concepts/runtime-components.md
+  - name: Agent identity
+    href: ../../agents/concepts/agent-identity.md
+  - name: Hosted agents
+    href: ../../agents/concepts/hosted-agents.md
+  - name: Capability hosts
+    href: ../../../agents/concepts/capability-hosts.md
+  - name: Create a workflow
+    href: ../../agents/concepts/workflow.md
+
+# Hosted Agents
+- name: Hosted agents
+  items:
+  - name: Quickstart - Deploy your first hosted agent
+    href: ../../agents/quickstarts/quickstart-hosted-agent.md
+  - name: Deploy a hosted agent
+    href: ../../agents/how-to/deploy-hosted-agent.md
+  - name: Manage hosted agent lifecycle
+    href: ../../agents/how-to/manage-hosted-agent.md
+
+
+# System Messages
+- name: System messages
+  items:
+  - name: System message design
+    href: ../../../openai/concepts/advanced-prompt-engineering.md
+  - name: Safety system messages
+    href: ../../../openai/concepts/system-message.md
+  - name: Safety system message templates
+    href: ../../../openai/concepts/safety-system-message-templates.md
+
+# Publishing and Sharing
+- name: Publishing and sharing
+  items:
+  - name: Publish and share agents
+    href: ../../agents/how-to/publish-agent.md
+  - name: Publish to Microsoft 365 Copilot and Teams
+    href: ../../agents/how-to/publish-copilot.md
+  - name: Agent 365
+    href: ../../agents/how-to/agent-365.md
+
+
+# Observability and Monitoring
+- name: Observability and monitoring
+  items:
+  - name: Service monitoring
+    href: ../../../agents/how-to/metrics.md
+  - name: Monitor agents in the dashboard
+    href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
+  - name: Trace agents
+    items:
+    - name: Trace agent overview
+      href: ../../observability/concepts/trace-agent-concept.md
+    - name: Set up tracing
+      href: ../../observability/how-to/trace-agent-setup.md
+    - name: Tracing integrations
+      href: ../../observability/how-to/trace-agent-framework.md

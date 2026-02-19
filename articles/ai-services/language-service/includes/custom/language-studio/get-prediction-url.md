@@ -1,20 +1,19 @@
 ---
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. After the deployment job is completed successfully, select the deployment you want to use and from the top menu select **Get prediction URL**.
 
     :::image type="content" source="../../../media/custom/get-prediction-url-1.png" alt-text="A screenshot showing the button to get a prediction URL." lightbox="../../../media/custom/get-prediction-url-1.png":::
 
 2. In the window that appears, under the **Submit** pivot, copy the sample request URL and body. Replace the placeholder values such as `YOUR_DOCUMENT_HERE` and `YOUR_DOCUMENT_LANGUAGE_HERE` with the actual text and language you want to process.
 
-4. Submit the `POST` cURL request in your terminal or command prompt. You'll receive a 202 response with the API results if the request was successful.
+4. Submit the `POST` cURL request in your terminal or command prompt. You receive a 202 response with the API results if the request was successful.
 
 5. In the response header you receive extract `{JOB-ID}` from `operation-location`, which has the format: `{ENDPOINT}/language/analyze-text/jobs/<JOB-ID}>`
 

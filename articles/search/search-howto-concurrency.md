@@ -2,13 +2,13 @@
 title: Manage concurrent writes
 titleSuffix: Azure AI Search
 description: Use optimistic concurrency to avoid mid-air collisions on updates or deletes to Azure AI Search indexes, indexers, data sources.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/16/2025
+ms.date: 08/08/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -16,22 +16,28 @@ ms.custom:
 
 # Manage concurrency in Azure AI Search
 
-When managing Azure AI Search resources such as indexes and data sources, it's important to update resources safely, especially if resources are accessed concurrently by different components of your application. When two clients concurrently update a resource without coordination, race conditions are possible. To prevent this, Azure AI Search uses an *optimistic concurrency model*. There are no locks on a resource. Instead, there's an ETag for every resource that identifies the resource version so that you can formulate requests that avoid accidental overwrites.
+When managing Azure AI Search resources such as indexes and data sources, it's important to update resources safely, especially if resources are accessed concurrently by different components of your application.
+
+* Resource update operations may not complete immediately. For example, [updating an index](search-howto-reindex.md#update-an-index-schema) or an [indexer](search-how-to-create-indexers.md) may take several seconds to complete. Resource updates are *serialized*, which means multiple update operations may not run simultaneously on the same resource.
+* When two clients concurrently update a resource without coordination, a *race condition* is possible. One client could start an update operation while the other client recieves a conflict error. To prevent this, Azure AI Search supports an *optimistic concurrency model*. There are no locks on a resource. Instead, there's an ETag for every resource that identifies the resource version so that you can formulate requests that avoid accidental overwrites.
+
+
 
 ## How it works
 
-Optimistic concurrency is implemented through access condition checks in API calls writing to indexes, indexers, data sources, skillsets, and synonymMap resources.
+Optimistic concurrency is implemented through access condition checks in API calls writing to indexes, indexers, data sources, skillsets, knowledge bases, and synonymMap resources.
 
 All resources have an [*entity tag (ETag)*](https://en.wikipedia.org/wiki/HTTP_ETag) that provides object version information. By checking the ETag first, you can avoid concurrent updates in a typical workflow (get, modify locally, update) by ensuring the resource's ETag matches your local copy.
 
 + The REST API uses an [ETag](/rest/api/searchservice/common-http-request-and-response-headers-used-in-azure-search) on the request header.
 
-+ The Azure SDK for .NET sets the ETag through an accessCondition object, setting the [If-Match | If-Match-None header](/rest/api/searchservice/common-http-request-and-response-headers-used-in-azure-search) on the resource. Objects that use ETags, such as [SynonymMap.ETag](/dotnet/api/azure.search.documents.indexes.models.synonymmap.etag) and [SearchIndex.ETag](/dotnet/api/azure.search.documents.indexes.models.searchindex.etag), have an accessCondition object.
++ The Azure SDK for .NET sets the ETag through an accessCondition class, setting the [If-Match | If-Match-None header](/rest/api/searchservice/common-http-request-and-response-headers-used-in-azure-search) on the resource. Objects that use ETags, such as [SynonymMap.ETag](/dotnet/api/azure.search.documents.indexes.models.synonymmap.etag) and [SearchIndex.ETag](/dotnet/api/azure.search.documents.indexes.models.searchindex.etag), have an accessCondition class.
 
-Every time you update a resource, its ETag changes automatically. When you implement concurrency management, all you're doing is putting a precondition on the update request that requires the remote resource to have the same ETag as the copy of the resource that you modified on the client. If another process changes the remote resource, the ETag doesn't match the precondition and the request fails with HTTP 412. If you're using the .NET SDK, this failure manifests as an exception where the `IsAccessConditionFailed()` extension method returns true.
+Every time you update a resource, its ETag changes automatically. When you implement concurrency management, all you're doing is putting a precondition on the update request that requires the remote resource to have the same ETag as the copy of the resource that you modified on the client. If another process changes the remote resource, the ETag doesn't match the precondition and the request fails with HTTP 412 or 409. If you're using the .NET SDK, this failure manifests as an exception where the `IsAccessConditionFailed()` extension method returns true.
 
 > [!Note]
 > There is only one mechanism for concurrency. It's always used regardless of which API or SDK is used for resource updates.
+> Starting July 18, 2025, Azure AI Search began enforcing serialization for index creation and update operations to ensure consistency and reliability.
 
 ## Example
 
@@ -146,10 +152,10 @@ A design pattern for implementing optimistic concurrency should include a loop t
 
 This code snippet illustrates the addition of a synonymMap to an index that already exists.
 
-The snippet gets the "hotels" index, checks the object version on an update operation, throws an exception if the condition fails, and then retries the operation (up to three times), starting with index retrieval from the server to get the latest version.
+The snippet gets the [hotels-sample-index](search-get-started-portal.md), checks the object version on an update operation, throws an exception if the condition fails, and then retries the operation (up to three times), starting with index retrieval from the server to get the latest version.
 
 ```csharp
-private static void EnableSynonymsInHotelsIndexSafely(SearchServiceClient serviceClient)
+private static void EnableSynonymsInHotelsIndexSafely(SearchIndexClient indexClient)
 {
     int MaxNumTries = 3;
 
@@ -157,26 +163,26 @@ private static void EnableSynonymsInHotelsIndexSafely(SearchServiceClient servic
     {
         try
         {
-            Index index = serviceClient.Indexes.Get("hotels");
+            SearchIndex index = indexClient.GetIndex("hotels-sample-index");
             index = AddSynonymMapsToFields(index);
 
-            // The IfNotChanged condition ensures that the index is updated only if the ETags match.
-            serviceClient.Indexes.CreateOrUpdate(index, accessCondition: AccessCondition.IfNotChanged(index));
+            // The onlyIfUnchangedcondition ensures that the index is updated only if the ETags match.
+            indexClient.CreateOrUpdateIndex(index, onlyIfUnchanged: true);
 
             Console.WriteLine("Updated the index successfully.\n");
             break;
         }
-        catch (Exception e) when (e.IsAccessConditionFailed())
+        catch (RequestFailedException e) when (e.Status == 412)
         {
             Console.WriteLine($"Index update failed : {e.Message}. Attempt({i}/{MaxNumTries}).\n");
         }
     }
 }
 
-private static Index AddSynonymMapsToFields(Index index)
+private static SearchIndex AddSynonymMapsToFields(SearchIndex index)
 {
-    index.Fields.First(f => f.Name == "category").SynonymMaps = new[] { "desc-synonymmap" };
-    index.Fields.First(f => f.Name == "tags").SynonymMaps = new[] { "desc-synonymmap" };
+    index.Fields.First(f => f.Name == "category").SynonymMapNames.Add("desc-synonymmap");
+    index.Fields.First(f => f.Name == "tags").SynonymMapNames.Add("desc-synonymmap");
     return index;
 }
 ```
@@ -184,5 +190,6 @@ private static Index AddSynonymMapsToFields(Index index)
 ## See also
 
 + [ETag Struct](/dotnet/api/azure.etag?view=azure-dotnet&preserve-view=true)
-+ [Common HTTP request and response headers](/rest/api/searchservice/common-http-request-and-response-headers-used-in-azure-search)
-+ [HTTP status codes](/rest/api/searchservice/http-status-codes)
++ [SearchIndex.ETag Property](/dotnet/api/azure.search.documents.indexes.models.searchindex.etag?view=azure-dotnet&preserve-view=true)
++ [SearchIndexClient.CreateOrUpdateIndex Method](/dotnet/api/azure.search.documents.indexes.searchindexclient.createorupdateindex?view=azure-dotnet&preserve-view=true)
++ [HTTP Status Codes](/rest/api/searchservice/http-status-codes)

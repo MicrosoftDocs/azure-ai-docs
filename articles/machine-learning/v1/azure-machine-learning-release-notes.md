@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: UpdateFrequency5, devx-track-python
-ms.topic: reference
-ms.author: larryfr
-author: BlackMist
+ms.topic: release-notes
+ms.author: scottpolly
+author: s-polly
 ms.date: 11/12/2024
 ---
 
@@ -18,6 +18,15 @@ In this article, learn about Azure Machine Learning Python SDK releases. For the
 
 __RSS feed__: Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 `https://learn.microsoft.com/api/search/rss?search=%22Azure+machine+learning+release+notes%22&locale=en-us`
+
+## 2025-11-26
+### Azure Machine Learning SDK for Python v1.61.0
+  + **azureml-core**
+    + python 3.10 is the minimum supported version now for all automl packages
+    + Customers will see a clear and more granuler error detail when they try creating a file with length more than 255 chars.
+    + The fileNameTooLong error would be logged as well as classified as a User error after this change.
+    + The fileNameTooLong error would be logged as well as classified as a User error after this change.
+    + Added retry to internal dataset flow
 
 ## 2025-04-15
 ### Azure Machine Learning SDK for Python v1.60.0
@@ -69,7 +78,7 @@ AutoML supports scikit-learn version 1.5.1
   + **azureml-mlflow**
     + feat: Add `AZUREML_BLOB_MAX_SINGLE_PUT_SIZE` to control the size in bytes of upload chunks. Lowering this from the default (`64*1024*1024` that is 64MB) can remedy issues where write operations fail due to time outs.
     + Support for uploading and downloading models from Azure Machine Learning registries is currently experimental
-    + Adding support for users that want to download or upload model from AML registries
+    + Adding support for users that want to download or upload model from Azure Machine Learning registries
 
 ## 2023-08-21
 
@@ -305,7 +314,7 @@ AutoML supports scikit-learn version 1.5.1
     + The existing Azure Machine Learning SDK v1 packages with Python 3.6 still continues to run. However, Azure Machine Learning strongly recommends that you migrate your scripts and dependencies to a supported Python runtime version so that you continue to receive security patches and remain eligible for technical support.
     + We recommend using Python 3.8 version as a runtime for Azure Machine Learning SDK v1 packages.
     + In addition, Azure Machine Learning SDK v1 packages using Python 3.6 is no longer eligible for technical support.
-    + If you have any questions, contact us through AML Support.
+    + If you have any questions, contact us through Azure Machine Learning Support.
 
 ## 2022-06-27
 
@@ -448,7 +457,7 @@ This breaking change comes from the June release of `azureml-inference-server-ht
 + **Breaking changes**
   + **azureml-core**
     + Starting in version 1.37.0, Azure Machine Learning SDK uses MSAL as the underlying authentication library. MSAL uses Azure Active Directory (Azure AD) v2.0 authentication flow to provide more functionality and increases security for token cache. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview).
-    + Update AML SDK dependencies to the latest version of Azure Resource Management Client Library for Python (azure-mgmt-resource>=15.0.0,<20.0.0) & adopt track2 SDK.
+    + Update Azure Machine Learning SDK dependencies to the latest version of Azure Resource Management Client Library for Python (azure-mgmt-resource>=15.0.0,<20.0.0) & adopt track2 SDK.
     + Starting in version 1.37.0, azure-ml-cli extension should be compatible with the latest version of Azure CLI >=2.30.0.
     + When using Azure CLI in a pipeline, like as Azure DevOps, ensure all tasks/stages are using versions of Azure CLI above v2.30.0 for MSAL-based Azure CLI. Azure CLI 2.30.0 isn't backward compatible with prior versions and throws an error when using incompatible versions. To use Azure CLI credentials with Azure Machine Learning SDK, Azure CLI should be installed as pip package.
 
@@ -639,7 +648,7 @@ This breaking change comes from the June release of `azureml-inference-server-ht
 + **Bug fixes and improvements**
   + **azureml-core**
     + Improved documentation for platform property on Environment class
-    + Changed default AML Compute node scale down time from 120 seconds to 1800 seconds
+    + Changed default Azure Machine Learning Compute node scale down time from 120 seconds to 1800 seconds
     + Updated default troubleshooting link displayed on the portal for troubleshooting failed runs to: https://aka.ms/azureml-run-troubleshooting
   + **azureml-automl-runtime**
     + Data Cleaning: Samples with target values in [None, "", "nan", np.nan] is dropped prior to featurization and/or model training
@@ -718,13 +727,13 @@ The `ml` extension to the Azure CLI is the next-generation interface for Azure M
     + Run.fail() is now deprecated, use Run.tag() to mark run as failed or use Run.cancel() to mark the run as canceled.
     + Updated documentation with a note that libfuse should be installed when mounting a file dataset.
     + Add experimental register_dask_dataframe() support to tabular dataset.
-    + Support DatabricksStep with Azure Blob/ADL-S as inputs/outputs and expose parameter permit_cluster_restart to let customer decide whether AML can restart cluster when i/o access configuration need to be added into cluster
+    + Support DatabricksStep with Azure Blob/ADL-S as inputs/outputs and expose parameter permit_cluster_restart to let customer decide whether Azure Machine Learning can restart cluster when i/o access configuration need to be added into cluster
   + **azureml-dataset-runtime**
     + azureml-dataset-runtime now supports versions of pyarrow < 4.0.0
   + **azureml-mlflow**
     + Added support for deploying to Azure Machine Learning via our MLFlow plugin.
   + **azureml-pipeline-steps**
-    + Support DatabricksStep with Azure Blob/ADL-S as inputs/outputs and expose parameter permit_cluster_restart to let customer decide whether AML can restart cluster when i/o access configuration need to be added into cluster
+    + Support DatabricksStep with Azure Blob/ADL-S as inputs/outputs and expose parameter permit_cluster_restart to let customer decide whether Azure Machine Learning can restart cluster when i/o access configuration need to be added into cluster
   + **azureml-synapse**
     + Enable audience in msi authentication
   + **azureml-train-automl-client**
@@ -897,8 +906,8 @@ The `ml` extension to the Azure CLI is the next-generation interface for Azure M
 ### Azure Machine Learning SDK for Python v1.23.0
 + **Bug fixes and improvements**
   + **azureml-core**
-    + [Experimental feature] Add support to link synapse workspace into AML as a linked service
-    + [Experimental feature] Add support to attach synapse spark pool into AML as a compute
+    + [Experimental feature] Add support to link synapse workspace into Azure Machine Learning as a linked service
+    + [Experimental feature] Add support to attach synapse spark pool into Azure Machine Learning as a compute
     + [Experimental feature] Add support for identity based data access. Users can register datastore or datasets without providing credentials. In such case, users' Azure AD token or managed identity of compute target is used for authentication. To learn more, see [Connect to storage by using identity-based data access](./how-to-identity-based-data-access.md).
   + **azureml-pipeline-steps**
     + [Experimental feature] Add support for [SynapseSparkStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.synapsesparkstep)
@@ -1278,7 +1287,7 @@ Learn more about [image instance segmentation labeling](../how-to-label-data.md)
     + Update document for sku parameter. Remove sku in workspace update functionality in CLI and SDK.
     + Update description of the package for pypi overview page.
     + Updated documentation for Azure Machine Learning Environments.
-    + Expose service managed resources settings for AML workspace in SDK.
+    + Expose service managed resources settings for Azure Machine Learning workspace in SDK.
   + **azureml-dataprep**
     + Enable execute permission on files for Dataset mount.
   + **azureml-mlflow**
@@ -1572,7 +1581,7 @@ Learn more about [image instance segmentation labeling](../how-to-label-data.md)
     + Upgraded azureml-interpret to use interpret-community version 0.12.*
   + **azureml-mlflow**
     + Doc improvements to azureml-mlflow.
-    + Adds support for AML model registry with MLFlow.
+    + Adds support for Azure Machine Learning model registry with MLFlow.
   + **azureml-opendatasets**
     + Added support for Python 3.8
   + **azureml-pipeline-core**
@@ -2685,7 +2694,7 @@ The Experiment tab in the [new workspace portal](https://ml.azure.com) has been 
   + **azureml-pipeline-core**
     + Added notebook to describe Module, ModuleVersion, and ModuleStep
   + **azureml-pipeline-steps**
-    + Added RScriptStep to support R script run via AML pipeline.
+    + Added RScriptStep to support R script run via Azure Machine Learning pipeline.
     + Fixed metadata parameters parsing in AzureBatchStep that was causing the error message "assignment for parameter SubscriptionId isn't specified."
   + **azureml-train-automl**
     + Supported training_data, validation_data, label_column_name, weight_column_name as data input format
@@ -2693,7 +2702,7 @@ The Experiment tab in the [new workspace portal](https://ml.azure.com) has been 
   + **[azureml-pipeline-core](/python/api/azureml-pipeline-core/azureml.pipeline.core)**
     + Added a [notebook](https://aka.ms/pl-modulestep) to describe [Module](/python/api/azureml-pipeline-core/azureml.pipeline.core.module%28class%29), [ModuleVersion, and [ModuleStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.modulestep).
   + **[azureml-pipeline-steps](/python/api/azureml-pipeline-steps/azureml.pipeline.steps)**
-    + Added [RScriptStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.rscriptstep) to support R script run via AML pipeline.
+    + Added [RScriptStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.rscriptstep) to support R script run via Azure Machine Learning pipeline.
     + Fixed metadata parameters parsing in [AzureBatchStep that was causing the error message "assignment for parameter SubscriptionId isn't specified".
   + **[azureml-train-automl](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime)**
     + Supported training_data, validation_data, label_column_name, weight_column_name as data input format.
@@ -2814,7 +2823,7 @@ At the time, of this release, the following browsers are supported: Chrome, Fire
     + Introduce `partition_format` as argument to `Dataset.Tabular.from_delimited_files` and `Dataset.Tabular.from_parquet.files`. The partition information of each data path is extracted into columns based on the specified format. '{column_name}' creates string column, and '{column_name:yyyy/MM/dd/HH/mm/ss}' creates datetime column, where 'yyyy', 'MM', 'dd', 'HH', 'mm' and 'ss' are used to extract year, month, day, hour, minute, and second for the datetime type. The partition_format should start from the position of first partition key until the end of file path. For example, given the path '../USA/2019/01/01/data.csv' where the partition is by country/region and time, partition_format='/{Country}/{PartitionDate:yyyy/MM/dd}/data.csv' creates string column 'Country' with value 'USA' and datetime column 'PartitionDate' with value '2019-01-01'.
     + `to_csv_files` and `to_parquet_files` methods have been added to `TabularDataset`. These methods enable conversion between a `TabularDataset` and a `FileDataset` by converting the data to files of the specified format.
     + Automatically log into the base image registry when saving a Dockerfile generated by Model.package().
-    + 'gpu_support' is no longer necessary; AML now automatically detects and uses the nvidia docker extension when it's available. It will be removed in a future release.
+    + 'gpu_support' is no longer necessary; Azure Machine Learning now automatically detects and uses the nvidia docker extension when it's available. It will be removed in a future release.
     + Added support to create, update, and use PipelineDrafts.
     + This release improves the execution performance of automated machine learning local runs.
     + Users can query metrics from run history by name.
@@ -3047,7 +3056,7 @@ At the time, of this release, the following browsers are supported: Chrome, Fire
   + **azureml-opendatasets**
     + Pin `pyarrow` of `opendatasets` to old versions (<0.14.0) because of memory issue newly introduced there.
     + Move azureml-contrib-opendatasets to azureml-opendatasets.
-    + Allow open dataset classes to be registered to Azure Machine Learning workspace and use AML Dataset capabilities seamlessly.
+    + Allow open dataset classes to be registered to Azure Machine Learning workspace and use Azure Machine Learning Dataset capabilities seamlessly.
     + Improve NoaaIsdWeather enrich performance in non-SPARK version significantly.
   + **azureml-pipeline-steps**
     + DBFS Datastore is now supported for Inputs and Outputs in DatabricksStep.
@@ -3055,7 +3064,7 @@ At the time, of this release, the following browsers are supported: Chrome, Fire
     + In AzureBatchStep, changed *delete_batch_job_after_finish* default value to *true*.
   + **azureml-telemetry**
     +  Move azureml-contrib-opendatasets to azureml-opendatasets.
-    + Allow open dataset classes to be registered to Azure Machine Learning workspace and use AML Dataset capabilities seamlessly.
+    + Allow open dataset classes to be registered to Azure Machine Learning workspace and use Azure Machine Learning Dataset capabilities seamlessly.
     + Improve NoaaIsdWeather enrich performance in non-SPARK version significantly.
   + **azureml-train-automl**
     + Updated documentation on get_output to reflect the actual return type and provide other notes on retrieving key properties.
@@ -3100,7 +3109,7 @@ At the time, of this release, the following browsers are supported: Chrome, Fire
     + Fixed the issue that prevented the usage of preprocessing when AutoML would have been used in the context of Azure Machine Learning Pipelines.
   + **azureml-opendatasets**
     + Moved azureml-contrib-opendatasets to azureml-opendatasets.
-    + Allowed open dataset classes to be registered to Azure Machine Learning workspace and use AML Dataset capabilities seamlessly.
+    + Allowed open dataset classes to be registered to Azure Machine Learning workspace and use Azure Machine Learning Dataset capabilities seamlessly.
     + Improved NoaaIsdWeather enrich performance in non-SPARK version significantly.
   + **azureml-explain-model**
     + Updated online documentation for interpretability objects.

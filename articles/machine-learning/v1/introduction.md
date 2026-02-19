@@ -5,11 +5,10 @@ description: Learn about Azure Machine Learning SDK & CLI (v1).
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
-
+ms.topic: overview
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 07/26/2024
 ms.custom: UpdateFrequency5, cliv1
 ---

@@ -5,10 +5,10 @@ description: The feature set specification, transformations, and best practices.
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: franksolomon
-author: fbsolo-ms1
-ms.reviewer: yogipandey
-ms.date: 01/23/2025
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: soumyapatro
+ms.date: 01/28/2026
 ms.custom: template-concept
 ---
 
@@ -127,14 +127,15 @@ In a row-level transformation, a feature value calculation on a specific row onl
 Define a new feature set named `user_total_spend_profile`:
 
 ```python
-from pyspark.sql import Dataframe
+from pyspark.sql import DataFrame
+from pyspark.sql.functions import col
 from pyspark.ml import Transformer
 
 class UserTotalSpendProfileTransformer(Transformer):
 
-    def _transform(df: Dataframe) -> Dataframe:
-        df.withColumn("is_high_spend_user", col("total_spend") > 100.0) \
-           .withColumn("is_low_spend_user", col("total_spend") < 20.0)
+    def _transform(self, df: DataFrame) -> DataFrame:
+        return df.withColumn("is_high_spend_user", col("total_spend") > 100.0) \
+                 .withColumn("is_low_spend_user", col("total_spend") < 20.0)
 ```
 
 The feature set has three features, with data types as shown:
@@ -170,14 +171,14 @@ Start with this source data:
 Define a new feature set named `user_rolling_spend`. This feature set includes rolling 1-day and 3-day total spending, by user:
 
 ```python
-from pyspark.sql import Dataframe
+from pyspark.sql import DataFrame
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 from pyspark.ml import Transformer
 
 class UserRollingSpend(Transformer):
 
-    def _transform(df: Dataframe) -> Dataframe:
+    def _transform(self, df: DataFrame) -> DataFrame:
         days = lambda i: i * 86400
         w_1d = (Window.partitionBy("user_id").orderBy(F.col("timestamp").cast('long'))\
                 .rangeBetween(-days(1), 0))
@@ -272,7 +273,7 @@ from pyspark.sql import functions as F
 from pyspark.ml import Transformer
 from pyspark.sql.dataframe import DataFrame
 
-class TrsactionFeatureTransformer(Transformer):
+class TransactionFeatureTransformer(Transformer):
     def _transform(self, df: DataFrame) -> DataFrame:
         df1 = df.groupBy("user_id", F.window("timestamp", windowDuration="1 day",slideDuration="6 hours"))\
                 .agg(F.sum("spend").alias("sliding_24hr_spend"))

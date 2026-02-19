@@ -1,16 +1,15 @@
 ---
 title: Summarization language support
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about which languages are supported by document summarization.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-summarization, ignite-2023, build-2024
 ---
-
 # Language support for document and conversation summarization
 
 Use this article to learn which natural languages are supported by document and conversation summarization.

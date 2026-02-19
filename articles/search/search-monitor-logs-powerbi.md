@@ -4,12 +4,12 @@ description: Visualize Azure AI Search logs and metrics with Power BI.
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Visualize Azure AI Search Logs and Metrics with Power BI

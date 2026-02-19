@@ -4,12 +4,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
-
 Create a **DELETE** request using the following URL, headers, and JSON body to delete a deployment.
 
 
@@ -24,7 +21,7 @@ Create a **DELETE** request using the following URL, headers, and JSON body to d
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `myProject` |
 |`{DEPLOYMENT-NAME}`     | The name for your deployment name. This value is case-sensitive.   | `prod` |
-|`{API-VERSION}`     | The version of the API you are calling. The value referenced here is for the latest version released. Learn more about other available [API versions](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data)  | `2022-05-01` |
+|`{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest version released. Learn more about other available [API versions](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data)  | `2022-05-01` |
 
 ### Headers
 
@@ -35,4 +32,4 @@ Use the following header to authenticate your request.
 |`Ocp-Apim-Subscription-Key`| The key to your resource. Used for authenticating your API requests.|
 
 
-Once you send your API request, you will receive a `202` response indicating success, which means your deployment has been deleted. A successful call results with an `Operation-Location` header used to check the status of the job.
+Once you send your API request, you receive a `202` response indicating success, which means your deployment is deleted. A successful call results with an `Operation-Location` header used to check the status of the job.

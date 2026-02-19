@@ -1,13 +1,13 @@
 ---
 title: Migrate from v3.0 to v3.1 REST API - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This document helps developers migrate code from v3.0 to v3.1 of the Speech to text REST API.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 10/28/2025
 ms.reviewer: heikora
 ms.devlang: csharp
 ms.custom: devx-track-csharp
@@ -19,11 +19,11 @@ ms.custom: devx-track-csharp
 The Speech to text REST API is used for [fast transcription](./fast-transcription-create.md), [batch transcription](batch-transcription.md), and [custom speech](custom-speech-overview.md). Changes from version 3.0 to 3.1 are described in the sections below.
 
 > [!IMPORTANT]
-> Speech to text REST API version `2024-11-15` is the latest version that's generally available. 
+> Speech to text REST API version `2025-10-15` is the latest version that's generally available. 
 > - [Speech to text REST API](rest-speech-to-text.md) version `2024-05-15-preview` will be retired on a date to be announced. 
 > - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` will be retired on March 31st, 2026. 
 > 
-> For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), and [v3.2 to 2024-11-15](migrate-2024-11-15.md) migration guides.
+> For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), [v3.2 to 2024-11-15](migrate-2024-11-15.md) and [2024-11-15 to 2025-10-15](migrate-2025-10-15.md) migration guides.
 
 ## Base path
 

@@ -9,6 +9,12 @@ ms.topic: include
 ms.date: 03/25/2025
 ms.custom: include
 ---
+::: moniker range="foundry-classic"
 
-> [!NOTE]
-> You must use a **[!INCLUDE [hub](hub-project-name.md)]** for this feature. A **[!INCLUDE [fdp](fdp-project-name.md)]** isn't supported. See [How do I know which type of project I have?](../what-is-azure-ai-foundry.md#how-do-i-know) and [Create a hub based project](../how-to/create-projects.md?pivots="hub-project").
+> [!IMPORTANT]
+>
+> This article provides legacy support for hub-based projects. It will not work for **Foundry projects**. See [How do I know which type of project I have?](../what-is-foundry.md#how-do-i-know-which-type-of-project-i-have)
+>
+> **SDK compatibility note**: Code examples require a specific Microsoft Foundry SDK version. If you encounter compatibility issues, consider [migrating from a hub-based to a Foundry project](../how-to/migrate-project.md).
+
+::: moniker-end

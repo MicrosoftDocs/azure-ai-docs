@@ -2,14 +2,15 @@
 title: Troubleshoot data labeling project creation
 titleSuffix: Azure Machine Learning
 description: Learn how to troubleshoot and resolve issues when creating your data labeling project.
-author: sdgilley
-ms.author: sgilley
-ms.reviewer: vkann
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: soumyapatro
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.date: 03/10/2025
 ms.topic: troubleshooting
+ms.custom: sfi-image-nochange
 #customer intent: To troubleshoot and resolve issues that occur when creating your data labeling project.
 ---
 

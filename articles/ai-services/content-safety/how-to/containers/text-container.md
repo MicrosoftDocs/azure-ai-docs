@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
@@ -51,8 +51,8 @@ The following table represents the various `docker run` parameters and their cor
 
 | Parameter | Description |
 |---------|---------|
-| `{ENDPOINT_URI}` | The endpoint is required for metering and billing. For more information, see [billing arguments](./install-run-container.md#billing-arguments). |
-| `{API_KEY}` | The API key is required. For more information, see [billing arguments](./install-run-container.md#billing-arguments). |
+| `{ENDPOINT_URI}` | The endpoint is required for metering and billing. For more information, see [billing arguments](./install-run-container.md#billing-information). |
+| `{API_KEY}` | The API key is required. For more information, see [billing arguments](./install-run-container.md#billing-information). |
 
 When you run the content safety analyze text container, configure the port, GPU according to the content safety container [requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations).
 
@@ -66,7 +66,7 @@ Billing={ENDPOINT_URI} \
 ApiKey={API_KEY}
 ```
 
-This command:
+Command details:
 * Runs a `content safety` container from the container image.
 * Uses all available GPU resources (by specifying `--gpus all`). Content safety container requires CUDA for optimal performance. See more in  [host requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations). Also make sure your host install [NVIDIA container toolkit](./install-run-container.md#install-the-nvidia-container-toolkit)
 * Exposes TCP port 5000 and allocates a pseudo-TTY for the container.

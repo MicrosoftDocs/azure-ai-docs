@@ -8,8 +8,9 @@ ms.subservice: prompt-flow
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
+ms.reviewer: sooryar
 ms.date: 01/02/2024
+ms.update-cycle: 365-days
 ---
 
 # Azure OpenAI GPT-4 Turbo with Vision tool (preview)
@@ -28,7 +29,7 @@ Azure OpenAI GPT-4 Turbo with Vision tool enables you to leverage your AzureOpen
 
 - Create a GPT-4 Turbo with Vision deployment
 
-    Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
+    Go to [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
     Under Management, select Deployments and Create a GPT-4 Turbo with Vision deployment by selecting model name: `gpt-4` and model version `vision-preview`.
 

@@ -1,12 +1,12 @@
 ---
 title: Characteristics and limitations for LUIS
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics and limitations for Language Understanding
-author: skandil
-ms.author: sarakandil
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.subservice: azure-ai-luis
 ms.date: 02/08/2024
 ---
@@ -106,7 +106,7 @@ Reviewing suggested utterances should be part of the regular maintenance for the
 LUIS only processes text. The fidelity and formatting of the incoming text will affect the performance of the system. Make sure to consider the following:
 
 * Speech transcription quality might affect the quality of the results. If the source data is voice, make sure to use the highest quality combination of automatic and human transcription to ensure the best performance. Consider using custom speech models to obtain better quality results.
-* Lack of standard punctuation or casing might affect the quality of the results. If using a speech system, like Azure AI Speech to Text, be sure to select the option to include punctuation.
+* Lack of standard punctuation or casing might affect the quality of the results. If using a speech system, like Azure Speech in Foundry Tools to Text, be sure to select the option to include punctuation.
 * Frequent misspellings in the training data might affect the confidence of the response. Consider using a spell-checking service to correct misspelled words. You can easily integrate with [Bing Spell Check](/azure/ai-services/luis/luis-tutorial-bing-spellcheck).
 * Spell-checking could be introduced, but it might not always be the best solution to include. In all cases, the use of actual data, including spelling mistakes, would be best.
 * The training data for LUIS models is provided by the application owner. Data that most closely resembles the training data yields the best performance.

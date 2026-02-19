@@ -2,15 +2,16 @@
 title: Search over Azure Blob Storage content
 titleSuffix: Azure AI Search
 description: Learn how to extract text from Azure blobs and making the content full-text searchable in an Azure AI Search index.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: concept-article
+ms.date: 10/06/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 01/15/2025
+  - sfi-image-nochange
 ---
 
 # Search over Azure Blob Storage content
@@ -20,7 +21,7 @@ Searching across the variety of content types stored in Azure Blob Storage can b
 In this article, review the basic workflow for extracting content and metadata from blobs and sending it to a [search index](search-what-is-an-index.md) in Azure AI Search. The resulting index can be queried using full text search or vector search. Optionally, you can send processed blob content to a [knowledge store](knowledge-store-concept-intro.md) for non-search scenarios.
 
 > [!NOTE]
-> Already familiar with the workflow and composition? [Configure a blob indexer](search-howto-indexing-azure-blob-storage.md) is your next step.
+> Already familiar with the workflow and composition? [Configure a blob indexer](search-how-to-index-azure-blob-storage.md) is your next step.
 
 ## What it means to add search over blob data
 
@@ -44,22 +45,22 @@ You can start directly in your Storage Account portal page.
 
 1. In the left navigation page under **Data management**, select **Azure AI Search** to select or create a search service. 
 
-1. Follow the steps in the wizard to extract and optionally create searchable content from your blobs. The workflow is the [**Import data** wizard](search-get-started-skillset.md). The workflow creates an indexer, data source, index, and option skillset on your Azure AI Search service.
+1. Use an [import wizard](search-get-started-skillset.md) to extract and optionally create searchable content from your blobs. The workflow creates an indexer, data source, index, and optional skillset on your Azure AI Search service.
 
    :::image type="content" source="media/search-blob-storage-integration/blob-blade.png" alt-text="Screenshot of the Azure AI Search wizard in the Azure Storage portal page." border="true":::
 
 1. Use [Search explorer](search-explorer.md) in the search portal page to query your content.
 
-The wizard is the best place to start, but you'll discover more flexible options when you [configure a blob indexer](search-howto-indexing-azure-blob-storage.md) yourself. You can use a [REST client](search-get-started-rest.md). [Tutorial: Index and search semi-structured data (JSON blobs)](search-semi-structured-data.md) walks you through the steps of calling the REST API.
+The wizard is the best place to start, but you'll discover more flexible options when you [configure a blob indexer](search-how-to-index-azure-blob-storage.md) yourself. You can use a [REST client](search-get-started-text.md). [Tutorial: Index and search semi-structured data (JSON blobs)](search-semi-structured-data.md) walks you through the steps of calling the REST API.
 
 ## How blobs are indexed
 
 By default, most blobs are indexed as a single search document in the index, including blobs with structured content, such as JSON or CSV, which are indexed as a single chunk of text. However, for JSON or CSV documents that have an internal structure (delimiters), you can assign parsing modes to generate individual search documents for each line or element:
 
-+ [Indexing JSON blobs](search-howto-index-json-blobs.md)
-+ [Indexing CSV blobs](search-howto-index-csv-blobs.md)
-+ [Indexing Markdown blobs](search-how-to-index-markdown-blobs.md)
-+ [Indexing plain text blobs](search-howto-index-plaintext-blobs.md)
++ [Indexing JSON blobs](search-how-to-index-azure-blob-json.md)
++ [Indexing CSV blobs](search-how-to-index-azure-blob-csv.md)
++ [Indexing Markdown blobs](search-how-to-index-azure-blob-markdown.md)
++ [Indexing plain text blobs](search-how-to-index-azure-blob-plaintext.md)
 
 A compound or embedded document (such as a ZIP archive, a Word document with embedded Outlook email containing attachments, or an .MSG file with attachments) is also indexed as a single document. For example, all images extracted from the attachments of an .MSG file will be returned in the normalized_images field. If you have images, consider adding [AI enrichment](cognitive-search-concept-intro.md) to get more search utility from that content.
 
@@ -72,11 +73,11 @@ Textual content of a document is extracted into a string field named "content". 
 
 An *indexer* is a data-source-aware subservice in Azure AI Search, equipped with internal logic for sampling data, reading and retrieving data and metadata, and serializing data from native formats into JSON documents for subsequent import. 
 
-Blobs in Azure Storage are indexed using the [blob indexer](search-howto-indexing-azure-blob-storage.md). You can invoke this indexer by using the **Azure AI Search** command in Azure Storage, the [**Import data** wizards](search-import-data-portal.md), a REST API, or the .NET SDK. In code, you use this indexer by setting the type, and by providing connection information that includes an Azure Storage account along with a blob container. You can subset your blobs by creating a virtual directory, which you can then pass as a parameter, or by filtering on a file type extension.
+Blobs in Azure Storage are indexed using the [blob indexer](search-how-to-index-azure-blob-storage.md). You can invoke this indexer by using the **Azure AI Search** command in Azure Storage, an [import wizard](search-import-data-portal.md) in the Azure portal, a REST API, or the .NET SDK. In code, you use this indexer by setting the type, and by providing connection information that includes an Azure Storage account along with a blob container. You can subset your blobs by creating a virtual directory, which you can then pass as a parameter, or by filtering on a file type extension.
 
 An indexer ["cracks a document"](search-indexer-overview.md#document-cracking), opening a blob to inspect content. After connecting to the data source, it's the first step in the pipeline. For blob data, this is where PDF, Office docs, and other content types are detected. Document cracking with text extraction is no charge. If your blobs contain image content, images are ignored unless you [add AI enrichment](cognitive-search-concept-intro.md). Standard indexing applies only to text content.
 
-The Azure blob indexer comes with configuration parameters and supports change tracking if the underlying data provides sufficient information. You can learn more about the core functionality in [Index data from Azure Blob Storage](search-howto-indexing-azure-blob-storage.md).
+The Azure blob indexer comes with configuration parameters and supports change tracking if the underlying data provides sufficient information. You can learn more about the core functionality in [Index data from Azure Blob Storage](search-how-to-index-azure-blob-storage.md).
 
 ### Supported access tiers
 
@@ -97,7 +98,7 @@ You can control which blobs are indexed, and which are skipped, by the blob's fi
 Include specific file extensions by setting `"indexedFileNameExtensions"` to a comma-separated list of file extensions (with a leading dot). Exclude specific file extensions by setting `"excludedFileNameExtensions"` to the extensions that should be skipped. If the same extension is in both lists, it's excluded from indexing.
 
 ```http
-PUT /indexers/[indexer name]?api-version=2024-07-01
+PUT /indexers/[indexer name]?api-version=2025-09-01
 {
     "parameters" : { 
         "configuration" : { 
@@ -117,7 +118,7 @@ Add the following metadata properties and values to blobs in Blob Storage. When 
 | Property name | Property value | Explanation |
 | ------------- | -------------- | ----------- |
 | "AzureSearch_Skip" |`"true"` |Instructs the blob indexer to completely skip the blob. Neither metadata nor content extraction is attempted. This is useful when a particular blob fails repeatedly and interrupts the indexing process. |
-| "AzureSearch_SkipContent" |`"true"` |This is equivalent to the `"dataToExtract" : "allMetadata"` setting described [above](#PartsOfBlobToIndex) scoped to a particular blob. | 
+| "AzureSearch_SkipContent" |`"true"` |This is equivalent to the `"dataToExtract": "allMetadata"` setting described [here](/rest/api/searchservice/indexers/create?#blobindexerdatatoextract) but just scoped to a particular blob. | 
 
 ### Indexing blob metadata
 
@@ -136,9 +137,10 @@ The output of an indexer is a search index, used for interactive exploration usi
 + [Full query syntax](query-lucene-syntax.md)
 + [Filter expression syntax](query-odata-filter-orderby-syntax.md)
 
-A more permanent solution is to gather query inputs and present the response as search results in a client application. The following C# tutorial explains how to build a search application: [Add search to an ASP.NET Core (MVC) application](tutorial-csharp-create-mvc-app.md).
+A more permanent solution is to gather query inputs and present the response as search results in a client application.
 
 ## Next steps
 
 + [Upload, download, and list blobs with the Azure portal (Azure Blob storage)](/azure/storage/blobs/storage-quickstart-blobs-portal)
-+ [Set up a blob indexer (Azure AI Search)](search-howto-indexing-azure-blob-storage.md)
++ [Set up a blob indexer (Azure AI Search)](search-how-to-index-azure-blob-storage.md)
++ [Index large data sets](search-how-to-large-index.md)

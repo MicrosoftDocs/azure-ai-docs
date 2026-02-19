@@ -1,23 +1,23 @@
 ### YamlMime:Hub
 
-title: Azure AI Language documentation
+title: Azure Language in Foundry Tools documentation
 summary: Learn how to integrate AI into your applications that can extract information, classify text, understand conversational language, answer questions and more.
 brand: azure
 
 metadata:
-  title: Azure AI Language documentation - Tutorials, API Reference | Microsoft Docs
-  titleSuffix: Azure AI services
+  title: Azure Language in Foundry Tools documentation - Tutorials, API Reference | Microsoft Docs
+  titleSuffix: Foundry Tools
   description: Learn how to integrate AI that works on written text into your applications.
   author: laujan
   manager: nitinme
   ms.service: azure-ai-language
   ms.topic: hub-page
-  ms.date: 03/24/2025
+  ms.date: 09/27/2025
   ms.author: lajanuar
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
-    - title: What is Azure AI Language?
+    - title: What is Azure Language in Foundry Tools?
       itemType: overview
       url: overview.md
     - title: What's new?
@@ -30,7 +30,7 @@ highlightedContent:
 conceptualContent:
   items:
     - title: Extract information
-      summary: Use Natural Language Understanding (NLU) to extract information from unstructured text. For example, identify key phrases or Personally Identifiable Information (PII), summarize text, recognize and categorize named entities, or customize an entity extraction model on top of your domain set.
+      summary: Use Natural Language Understanding (NLU) to extract information from unstructured text.
       links:
         - itemType: overview
           text: Extract key phrases
@@ -106,3 +106,9 @@ additionalContent:
         links:
         - text: Support and help
           url: ../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context
+      - title: Announced for Deprecation
+        links:
+        - text: Language Understanding
+          url: ../luis/index.yml
+        - text: QnA Maker
+          url: ../qnamaker/index.yml

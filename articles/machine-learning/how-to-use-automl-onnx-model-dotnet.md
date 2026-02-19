@@ -2,9 +2,9 @@
 title: Make predictions with AutoML ONNX Model in .NET
 description: Learn how to make predictions using an AutoML ONNX model in .NET with ML.NET
 titleSuffix: Azure Machine Learning
-author: ssalgadodev
-ms.author: ssalgado
-ms.reviewer: manashg
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.date: 09/21/2023
 ms.topic: how-to
 services: machine-learning

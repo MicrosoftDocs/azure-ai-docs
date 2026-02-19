@@ -1,5 +1,5 @@
 ---
-title: Use Azure AI services with commitment tier pricing
+title: Use Foundry Tools with commitment tier pricing
 description: Learn how to sign up for commitment tier pricing, which is different than Standard pricing.
 author: aahill
 ms.author: aahi
@@ -8,35 +8,35 @@ ms.custom:
   - mode-other
   - ignite-2023
 ms.service: azure-ai-services
-ms.topic: conceptual
-ms.date: 5/19/2025
+ms.topic: how-to
+ms.date: 10/02/2025
 ---
 
 # Purchase commitment tier pricing
 
-Azure AI offers commitment tier pricing, allowing discounted rates compared to the Standard pricing model. With commitment tier pricing, you can commit to using the following Azure AI services features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload:
+Foundry Tools offers commitment tier pricing, allowing discounted rates compared to the Standard pricing model. With commitment tier pricing, you can commit to using the following Foundry Tools features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload:
 * Speech to text (Standard)
 * Text to speech (Neural)
 * Text Translation (Standard)
 * Language Understanding standard (Text Requests)
-* Azure AI Language
+* Azure Language
   * Sentiment Analysis
   * Key Phrase Extraction
   * Language Detection
   * Named Entity Recognition (NER)
-* Azure AI Vision - OCR
+* Vision in Foundry Tools - OCR
 * Document Intelligence – Custom/Invoice
 
-For more information, see [Azure AI services pricing](https://azure.microsoft.com/pricing/details/cognitive-services/).
+For more information, see [Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
 > [!NOTE]
-> You cannot use commitment tier pricing with an Azure AI Services or an Azure AI Foundry multi-service resource. You must use resources dedicated to single services, such as a Speech or Translator resource.
+> You cannot use commitment tier pricing with a Foundry Tools or a Microsoft Foundry multi-service resource. You must use resources dedicated to single services, such as a Speech or Translator resource.
 
 ## Create a new resource
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a new resource** for one of the applicable Azure AI services or Azure AI services listed.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a new resource** for one of the applicable Foundry Tools or Foundry Tools listed.
 
-2. Enter the applicable information to create your AI Foundry resource. Be sure to select the standard pricing tier.
+2. Enter the applicable information to create your Foundry resource. Be sure to select the standard pricing tier.
 
     > [!NOTE]
     > If you intend to purchase a commitment tier for disconnected container usage, you will need to request separate access and select the **Commitment tier disconnected containers** pricing tier. For more information, see [disconnected containers](./containers/disconnected-containers.md).
@@ -51,7 +51,7 @@ For more information, see [Azure AI services pricing](https://azure.microsoft.co
 2. In your Azure resource for one of the applicable features listed, select **Commitment tier pricing**.
 3. Select **Change** to view the available commitments for hosted API and container usage. Choose a commitment plan for one or more of the following offerings:
     * **Web**: web-based APIs, where you send data to Azure for processing.
-    * **Connected container**: Docker containers that enable you to [deploy Azure AI services on premises](cognitive-services-container-support.md), and maintain an internet connection for billing and metering.
+    * **Connected container**: Docker containers that enable you to [deploy Foundry Tools on premises](cognitive-services-container-support.md), and maintain an internet connection for billing and metering.
 
     :::image type="content" source="media/commitment-tier/commitment-tier-pricing.png" alt-text="A screenshot showing the commitment tier pricing page on the Azure portal." lightbox="media/commitment-tier/commitment-tier-pricing.png":::
 
@@ -95,4 +95,4 @@ To purchase additional quota, go to your resource in Azure portal and adjust the
 
 ## See also
 
-* [Azure AI services pricing](https://azure.microsoft.com/pricing/details/cognitive-services/).
+* [Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services/).

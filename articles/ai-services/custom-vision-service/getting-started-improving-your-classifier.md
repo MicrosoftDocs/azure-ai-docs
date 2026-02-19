@@ -1,6 +1,6 @@
 ---
 title: Improve your model - Custom Vision service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this article you learn how the amount, quality, and variety of data can improve the quality of your model in the Custom Vision service.
 #customer intent: As a developer, I want to improve my Custom Vision model so that it performs better with real-world data.
 author: PatrickFarley
@@ -13,6 +13,8 @@ ms.author: pafarley
 ---
 
 # How to improve your Custom Vision model
+
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
 
 In this guide, you learn how to improve the quality of your Custom Vision model. The quality of your [classifier](./getting-started-build-a-classifier.md) or [object detector](./get-started-build-detector.md) depends on the amount, quality, and variety of labeled data you provide and how balanced the overall dataset is. A good model has a balanced training dataset that is representative of what is submitted to it. The process of building such a model is iterative; it's common to take a few rounds of training to reach expected results.
 

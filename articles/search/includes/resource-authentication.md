@@ -1,33 +1,24 @@
 ---
-author: eric-urban 
-ms.author: eur 
+title: Include File
+description: Include file for Azure AI Search authentication and role-based access configuration.
+author: haileytap 
+ms.author: haileytapia 
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 2/12/2025
+ms.date: 02/02/2026
+# Use this file to describe authentication for search-only, non-integrated scenarios. For managed identities, use resource-authentication-identity.md.
 ---
 
-You need to retrieve the following information to authenticate your application with your Azure AI Search service:
+Before you begin, make sure you have permissions to access content and operations in Azure AI Search. This quickstart uses Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](../search-security-api-keys.md) instead.
 
-#### [Microsoft Entra ID](#tab/keyless)
+To configure the recommended role-based access:
 
-|Variable name | Value |
-|--------------------------|-------------|
-| `SEARCH_API_ENDPOINT` | This value can be found in the Azure portal. Select your search service and then from the left menu, select **Overview**. The **Url** value under **Essentials** is the endpoint that you need. An example endpoint might look like `https://mydemo.search.windows.net`. |
+1. [Enable role-based access](../search-security-enable-roles.md) for your search service.
 
-Learn more about [keyless authentication](/azure/search/keyless-connections) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
+1. [Assign the following roles](../search-security-rbac.md) to your user account.
 
-#### [API key](#tab/api-key)
+    + **Search Service Contributor**
 
-|Variable name | Value |
-|--------------------------|-------------|
-| `SEARCH_API_ENDPOINT` | This value can be found in the Azure portal. Select your search service and then from the left menu, select **Overview**. The **Url** value under **Essentials** is the endpoint that you need. An example endpoint might look like `https://mydemo.search.windows.net`. |
-| `SEARCH_API_KEY` | This value can be found in the Azure portal. Select your search service and then from the left menu, select **Settings** > **Keys**. You can use either `KEY1` or `KEY2`.|
+    + **Search Index Data Contributor**
 
-Learn more about [finding API keys](/azure/search/search-security-api-keys) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
----
-
-
-
+    + **Search Index Data Reader**

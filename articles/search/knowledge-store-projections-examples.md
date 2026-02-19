@@ -2,18 +2,22 @@
 title: Define projections
 titleSuffix: Azure AI Search
 description: Learn how to define table, object, and file projections in a knowledge store by reviewing syntax and examples.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: concept-article
+ms.date: 10/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 06/17/2025
+  - sfi-ropc-nochange
 ---
 
 # Define projections in a knowledge store
+
+> [!NOTE]
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 [Projections](knowledge-store-projection-overview.md) are the component of a [knowledge store definition](knowledge-store-concept-intro.md) that determines how AI enriched content is stored in Azure Storage. Projections determine the type, quantity, and composition of the data structures containing your content.
 
@@ -41,7 +45,7 @@ Recall that projections are defined under the `knowledgeStore` property of a ski
 If you need more background before getting started, review [this check list](knowledge-store-projection-overview.md#checklist-for-getting-started) for tips and workflow.
 
 > [!TIP]
-> When developing projections, [enable enrichment caching (preview)](search-howto-incremental-index.md) so that you can reuse existing enrichments while editing projection definitions. Enrichment caching is a preview feature, so be sure to use the preview REST API on the indexer request. Without caching, simple edits to a projection will result in a full reprocess of enriched content. By caching the enrichments, you can iterate over projections without incurring any skillset processing charges.
+> When developing projections, [enable enrichment caching (preview)](enrichment-cache-how-to-configure.md) so that you can reuse existing enrichments while editing projection definitions. Enrichment caching is a preview feature, so be sure to use the preview REST API on the indexer request. Without caching, simple edits to a projection will result in a full reprocess of enriched content. By caching the enrichments, you can iterate over projections without incurring any skillset processing charges.
 
 ## Requirements
 
@@ -269,7 +273,7 @@ You can process projections by following these steps:
 
 1. [Run the indexer](/rest/api/searchservice/indexers/run) to put the skillset into execution. 
 
-1. [Monitor indexer execution](search-howto-monitor-indexers.md) to check progress and catch any errors.
+1. [Monitor indexer execution](search-monitor-indexers.md) to check progress and catch any errors.
 
 1. Use Azure portal to verify object creation in Azure Storage.
 

@@ -1,19 +1,18 @@
 ---
 title: Orchestration workflow data formats
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the data formats accepted by orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:  language-service-orchestration
 ---
-
 # Data formats accepted by orchestration workflow
 
-When data is used by your model for learning, it expects the data to be in a specific format. When you tag your data in Language Studio, it gets converted to the JSON format described in this article. You can also manually tag your files.
+When data is used by your model for learning, it expects the data to be in a specific format. When you tag your data, it gets converted to the JSON format described in this article. You can also manually tag your files.
 
 
 ## JSON file format
@@ -67,7 +66,7 @@ If you upload a tags file, it should follow this format.
 
 |Key  |Placeholder  |Value  | Example |
 |---------|---------|----------|--|
-| `api-version` | `{API-VERSION}`     | The version of the API you are calling. The value referenced here is for the latest released [model version](../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) released. | `2022-03-01-preview` |
+| `api-version` | `{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest released [model version](../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) released. | `2022-03-01-preview` |
 |`confidenceThreshold`|`{CONFIDENCE-THRESHOLD}`|This is the threshold score below which the intent will be predicted as [none intent](none-intent.md)|`0.7`|
 | `projectName` | `{PROJECT-NAME}` | The name of your project. This value is case-sensitive. | `EmailApp` |
 | `multilingual` | `false`| Orchestration doesn't support the multilingual feature  | `false`|

@@ -8,7 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 04/20/2023
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 #	Text Merge cognitive skill
@@ -16,14 +17,14 @@ ms.date: 04/20/2023
 The **Text Merge** skill consolidates text from an array of strings into a single field. 
 
 > [!NOTE]
-> This skill isn't bound to Azure AI services. It is non-billable and has no Azure AI services key requirement.
+> This skill isn't bound to Foundry Tools. It's nonbillable and has no Foundry Tools key requirement.
 
 ## @odata.type  
 Microsoft.Skills.Text.MergeSkill
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name	 | Description |
 |--------------------|-------------|
@@ -34,7 +35,7 @@ Parameters are case-sensitive.
 | Input name | Description |
 |------------|-------------|
 | `itemsToInsert` | Array of strings to be merged. |
-| `text`          | (optional) Main text body to be inserted into. If `text` is not provided, elements of `itemsToInsert` will be concatencated. |
+| `text`          | (optional) Main text body to be inserted into. If `text` is not provided, elements of `itemsToInsert` will be concatenated. |
 | `offsets`       | (optional) Array of positions within `text` where `itemsToInsert` should be inserted. If provided, the number of elements of `text` must equal the number of elements of `textToInsert`. Otherwise all items will be appended at the end of `text`. |
 
 ## Skill outputs

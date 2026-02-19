@@ -3,9 +3,9 @@ title: Authentication secrets
 titleSuffix: Azure Machine Learning
 description: Learn how to securely get secrets from Azure Key Vault in your training jobs by using the Key Vault Secrets client library.
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
-ms.reviewer: roastala
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 08/20/2024
@@ -32,7 +32,7 @@ Before following the steps in this article, make sure you have the following pre
 > [!TIP]
 > Many of the prerequisites in this section require __Contributor__, __Owner__, or equivalent access to your Azure subscription, or the Azure Resource Group that contains the resources. You might need to contact your Azure administrator and have them perform these actions.
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
  
 * An Azure Machine Learning workspace. If you don't have one, use the steps in the [Create resources to get started](quickstart-create-resources.md) article to create one.
 

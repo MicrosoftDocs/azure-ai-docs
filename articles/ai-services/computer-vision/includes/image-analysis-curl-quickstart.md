@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Image Analysis REST API"
-titleSuffix: "Azure AI services"
+titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the Image Analysis REST API.
 author: PatrickFarley
 manager: nitinme
@@ -8,8 +8,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 09/30/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -23,9 +21,9 @@ Use the Image Analysis REST API to analyze an image for tags.
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Once you have your Azure subscription, create a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
-  * You need the key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
+  * You need the key and endpoint from the resource you create to connect your application to Azure Vision in Foundry Tools.
   * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 * [cURL](https://curl.se) installed.
 

@@ -5,11 +5,11 @@ description: Comparison of Azure Machine Learning SDK v1 logging APIs and MLflow
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
+ms.topic: how-to
 ms.custom: cliv2
 
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.date: 02/05/2025
 ms.reviewer: kritifaujdar
 ---

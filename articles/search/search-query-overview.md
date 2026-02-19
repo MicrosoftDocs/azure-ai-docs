@@ -2,13 +2,13 @@
 title: Query types
 titleSuffix: Azure AI Search
 description: Learn about the types of queries supported in Azure AI Search, including vector and hybrid queries, free text, filter, autocomplete and suggestions, geospatial search, system queries, and document lookup.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Querying in Azure AI Search
@@ -24,7 +24,7 @@ Azure AI Search supports query constructs for a broad range of scenarios, from f
 | [Full text search](search-lucene-query-architecture.md) | Inverted indexes of tokenized terms. | Full text queries iterate over inverted indexes that are structured for fast scans, where a match can be found in potentially any field, within any number of search documents. Text is analyzed and tokenized for full text search.|
 | [Vector search](vector-search-overview.md) | Vector indexes of generated embeddings. | Vector queries iterate over vector fields in a search index. |
 | [Hybrid search](hybrid-search-overview.md) | All of the above, in a single search index. | Combines text search and vector search in a single query request. Text search works on plain text content in "searchable" and "filterable" fields. Vector search works on content in vector fields. |
-| [Agentic retrieval (preview)](search-agentic-retrieval-concept.md) | All of the above, in a single search index. | This is an alternative retrieval path on Azure AI Search that leverages large language models for query planning. The response is designed for agent consumption, where the agent rather than search app client code coordinates the response delivered to the user. |
+| [Agentic retrieval (preview)](agentic-retrieval-overview.md) | All of the above, in a single search index. | This is an alternative retrieval path on Azure AI Search that leverages large language models for query planning. The response is designed for agent consumption, where the agent rather than search app client code coordinates the response delivered to the user. |
 | Others | Plain text and human-readable content.| Raw content, extracted verbatim from source documents, supporting filters and pattern matching queries like geo-spatial search, fuzzy search, and fielded search. |
 
 The remainder of this article brings focus to the last category: classic queries that work on plain text and human-readable content, extracted intact from original source, used for filters and other specialized query forms. If you're creating a traditional search application that isn't using AI, this section explains the query methods that you can implement in your client code.
@@ -60,7 +60,7 @@ Geospatial search uses kilometers for distance. Coordinates are specified in thi
 Here's an example of a filter for geospatial search. This filter finds other `Location` fields in the search index that have coordinates within a 300-kilometer radius of the geography point (in this example, Washington D.C.). It returns address information in the result, and includes an optional `facets` clause for self-navigation based on location.
 
 ```http
-POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01
+POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01
 {
     "count": true,
     "search": "*",

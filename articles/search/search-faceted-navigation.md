@@ -2,13 +2,13 @@
 title: Add facets to a query
 titleSuffix: Azure AI Search
 description: Add faceted navigation for self-directed navigation in applications that integrate with Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/04/2025
+ms.date: 11/05/2025
+ms.update-cycle: 365-days
 ---
 
 # Add faceted navigation to search results
@@ -217,7 +217,7 @@ Here's a screenshot of the [basic facet query example](search-faceted-navigation
 
     | Facet parameter | Description and usage |
     |-----------------|-----------------------|
-    | `count` | Maximum number of facet terms per structure; default is 10. An example is `Tags,count:5`. There's no upper limit on the number of terms, but higher values degrade performance, especially if the faceted field contains a large number of unique terms. This is due to the way faceting queries are distributed across shards. You can set count to zero or to a value that's greater than or equal to the number of unique values in the "facetable" field to get an accurate count across all shards. The tradeoff is increased latency.
+    | `count` | Maximum number of facet terms per structure; default is 10. An example is `"facet=category,count:5" gets the top five categories in facet results`. There's no upper limit on the number of terms, but higher values degrade performance, especially if the faceted field contains a large number of unique terms. If the count parameter is less than the number of unique terms, the results may not be accurate. This is due to the way faceting queries are distributed across shards. You can set count to zero or to a value that's greater than or equal to the number of unique values in the "facetable" field to get an accurate count across all shards. The tradeoff is increased latency.
     | `sort` | Set to `count`, `-count`, `value`, `-value`. Use `count` to sort descending by count. Use `-count` to sort ascending by count. Use `value` to sort ascending by value. Use `-value` to sort descending by value (for example, `"facet=category,count:3,sort:count"` gets the top three categories in facet results in descending order by the number of documents with each Category name). If the top three categories are Budget, Motel, and Luxury, and Budget has five hits, Motel has 6, and Luxury has 4, then the buckets are in the order Motel, Budget, Luxury. For `-value`, `"facet=rating,sort:-value"` produces buckets for all possible ratings, in descending order by value (for example, if the ratings are from 1 to 5, the buckets are ordered 5, 4, 3, 2, 1, irrespective of how many documents match each rating). |
     | `values` | Set to pipe-delimited numeric or `Edm.DateTimeOffset` values specifying a dynamic set of facet entry values. For example, `"facet=baseRate,values:10 | 20"` produces three buckets: one for base rate 0 up to but not including 10, one for 10 up to but not including 20, and one for 20 and higher. A string `"facet=lastRenovationDate,values:2010-02-01T00:00:00Z"` produces two buckets: one for hotels renovated before February 2010, and one for hotels renovated February 1, 2010 or later. The values must be listed in sequential, ascending order to get the expected results. |
     | `interval` | An integer interval greater than zero for numbers, or minute, hour, day, week, month, quarter, year for date time values. For example, `"facet=baseRate,interval:100"` produces buckets based on base rate ranges of size 100. If base rates are all between $60 and $600, there are buckets for 0-100, 100-200, 200-300, 300-400, 400-500, and 500-600. The string `"facet=lastRenovationDate,interval:year"` produces one bucket for each year when hotels were renovated. |

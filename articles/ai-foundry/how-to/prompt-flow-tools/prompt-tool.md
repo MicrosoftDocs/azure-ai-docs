@@ -1,14 +1,15 @@
 ---
-title: Prompt tool for flows in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: This article introduces you to the Prompt tool for flows in Azure AI Foundry portal.
-manager: scottpolly
+title: Prompt tool for flows in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Prompt tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: reference
-ms.date: 01/29/2025
+  - hub-only
+ms.topic: article
+ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -16,7 +17,9 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Prompt tool for flows in Azure AI Foundry portal
+# Prompt tool for flows in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -24,7 +27,9 @@ The prompt flow Prompt tool offers a collection of textual templates that serve 
 
 ## Prerequisites
 
-Prepare a prompt. The [LLM tool](llm-tool.md) and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates.
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
+
+Prepare a prompt. Both the [LLM tool](llm-tool.md) and Prompt tool support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates.
 
 In this example, the prompt incorporates Jinja templating syntax to dynamically generate the welcome message and personalize it based on the user's name. It also presents a menu of options for the user to choose from. Depending on whether the `user_name` variable is provided, it either addresses the user by name or uses a generic greeting.
     
@@ -42,14 +47,14 @@ Please select an option from the menu below:
 4. Contact customer support
 ```
 
-For more information and best practices, see [Prompt engineering techniques](../../../ai-services/openai/concepts/advanced-prompt-engineering.md).
+For more information and best practices, see [Prompt engineering techniques](../../openai/concepts/advanced-prompt-engineering.md).
 
 ## Build with the Prompt tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ Prompt** to add the Prompt tool to your flow.
 
-    :::image type="content" source="../../media/prompt-flow/prompt-tool.png" alt-text="Screenshot that shows the Prompt tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/prompt-tool.png":::
+    :::image type="content" source="../../media/prompt-flow/prompt-tool.png" alt-text="Screenshot that shows the Prompt tool added to a flow in Foundry portal." lightbox="../../media/prompt-flow/prompt-tool.png":::
 
 1. Enter values for the Prompt tool input parameters described in the [Inputs table](#inputs). For information about how to prepare the prompt input, see [Prerequisites](#prerequisites).
 1. Add more tools (such as the [LLM tool](llm-tool.md)) to your flow, as needed. Or select **Run** to run the flow.

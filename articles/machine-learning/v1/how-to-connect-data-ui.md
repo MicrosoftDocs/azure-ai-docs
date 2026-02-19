@@ -6,11 +6,14 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: yogipandey
+ms.author: scottpolly
 author: ynpandey
-ms.reviewer: fsolomon
+ms.reviewer: soumyapatro
 ms.date: 03/13/2025
-ms.custom: UpdateFrequency5, data4ml
+ms.custom:
+  - UpdateFrequency5
+  - data4ml
+  - sfi-image-nochange
 #Customer intent: As low code experience data scientist, I need to make my data in storage on Azure available to my remote compute to train my ML models.
 ---
 
@@ -36,7 +39,7 @@ For more information about the [Azure Machine Learning Python SDK](/python/api/o
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/)
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 - Access to [Azure Machine Learning studio](https://ml.azure.com/)
 

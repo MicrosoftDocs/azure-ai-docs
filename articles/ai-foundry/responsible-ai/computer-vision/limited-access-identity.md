@@ -1,13 +1,14 @@
 ---
 title: Limited Access features of Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about Face features that are in limited access.
+ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
-ms.date: 06/17/2022
+ms.topic: concept-article
+ms.date: 10/15/2025
 ---
 
 # Limited Access to Face API
@@ -16,12 +17,12 @@ ms.date: 06/17/2022
 
 Our vision is to empower developers and organizations to leverage AI to transform society in positive ways. We encourage responsible AI practices to protect the rights and safety of individuals. Microsoft facial recognition services are Limited Access in order to help prevent the misuse of the services in accordance with our [AI Principles](https://www.microsoft.com/ai/responsible-ai?SilentAuth=1&wa=wsignin1.0) and [facial recognition principles](https://blogs.microsoft.com/on-the-issues/2018/12/17/six-principles-to-guide-microsofts-facial-recognition-work/).
 
-Since the announcement on June 11th, 2020, Azure AI Face recognition services are strictly prohibited for use by or for U.S. police departments.
+Since the announcement on June 11th, 2020, Azure Face recognition in Foundry Tools is strictly prohibited for use by or for U.S. police departments.
 
 
 ## Registration process
 
-Customers and partners who wish to use Limited Access features of the Face API, including Face identification and Face verification, are required to register for access by [submitting a registration form](https://aka.ms/facerecognition). The Face Detection operation is available without registration.
+Customers and partners who wish to use Limited Access features of the Face API, including Face identification and Face verification, are required to register for access by [submitting a registration form](https://aka.ms/facerecognition). Note that these features are only available with Standard (S0) and Enterprise (E0) pricing tiers and are not supported in the Free (F0) tier. The Face Detection operation is available without registration.
 
 Access to Face API is subject to Microsoft's sole discretion based on eligibility criteria and a vetting process. Face API is available only to customers managed by Microsoft, defined as those customers and partners who are working directly with Microsoft account teams. Additionally, Face API is only available for certain use cases, and customers must select their desired use case in their registration. Microsoft may require customers and partners to reverify this information periodically. Read more about example use cases and disallowed use cases to avoid [here](../face/transparency-note.md).  
 

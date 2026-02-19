@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: meerakurup
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
 ms.date: 02/05/2025
 ms.custom: engagement-fy23, build-2023
 monikerRange: 'azureml-api-2 || azureml-api-1'

@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.custom: build-2023
-author: Blackmist
-ms.author: larryfr
-ms.reviewer: kritifaujdar
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 04/04/2025
 ms.topic: how-to
 ---
@@ -140,7 +140,7 @@ Example operations:
 * Use a component from registry in a pipeline.
 * Use an environment from registry in a component.
 
-Create a private endpoint to the registry, storage, and ACR in the **same subnet** as the private endpoint of the AML workspace. If you're trying to connect to multiple registries, create private endpoint for each registry and associated storage and ACRs. For more information, see the [How to create a private endpoint](#how-to-create-a-private-endpoint) section.
+Create a private endpoint to the registry, storage, and ACR in the **same subnet** as the private endpoint of the Azure Machine Learning workspace. If you're trying to connect to multiple registries, create private endpoint for each registry and associated storage and ACRs. For more information, see the [How to create a private endpoint](#how-to-create-a-private-endpoint) section.
 
 ### Deploy a model from registry to workspace 
 

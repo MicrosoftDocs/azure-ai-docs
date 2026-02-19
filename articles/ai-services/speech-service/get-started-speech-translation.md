@@ -1,15 +1,15 @@
 ---
 title: Speech translation quickstart - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: In this quickstart, you translate speech from one language to text in another language. 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: quickstart
-ms.date: 3/10/2025
-ms.author: eur
-zone_pivot_groups: programming-languages-speech-services
+ms.date: 01/30/2026
+ms.author: pafarley
+zone_pivot_groups: programming-languages-speech-translation
 keywords: speech translation
 ---
 
@@ -47,12 +47,12 @@ keywords: speech translation
 [!INCLUDE [Python include](./includes/quickstarts/speech-translation-basics/python.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/quickstarts/speech-translation-basics/rest.md)]
+::: zone pivot="programming-language-typescript"
+[!INCLUDE [TypeScript include](includes/quickstarts/speech-translation-basics/typescript.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-cli"
-[!INCLUDE [CLI include](includes/quickstarts/speech-translation-basics/cli.md)]
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/quickstarts/speech-translation-basics/rest.md)]
 ::: zone-end
 
 

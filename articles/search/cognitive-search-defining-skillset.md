@@ -5,17 +5,19 @@ description: Learn about skillsets and create a skillset in Azure AI Search usin
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 10/02/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 05/08/2025
+  - sfi-ropc-nochange
 ---
 
 # Create a skillset in Azure AI Search
 
 :::image type="content" source="media/cognitive-search-defining-skillset/indexer-stages-skillset.png" alt-text="Diagram showing the indexer stages, with Skillset Execution as the third stage of five.":::
 
-A skillset defines operations that generate textual content and structure from documents that contain images or unstructured text. Examples are optical character recognition (OCR) for images, entity recognition for undifferentiated text, and text translation. A skillset executes after text and images are extracted from an external data source, and after [field mappings](search-indexer-field-mappings.md) are processed.
+A skillset defines operations that generate vector and textual content and structure from documents that contain images or raw content. Examples are chunking skills, embedding (vectorization) skills, image verbalization, and other processes like optical character recognition (OCR) for images, entity recognition for undifferentiated text, and text translation. A skillset executes after raw content is extracted from an external data source, and after [field mappings](search-indexer-field-mappings.md) are processed.
 
 This article explains how to create a skillset using [REST APIs](/rest/api/searchservice/skillsets/create), but the same concepts and steps apply to other programming languages.
 
@@ -26,12 +28,14 @@ Rules for skillset definition include:
 + A skillset can repeat skills of the same type. For example, a skillset can have multiple Shaper skills.
 + A skillset supports chained operations, looping, and branching.
 
-Indexers drive skillset execution. You need an [indexer](search-howto-create-indexers.md), [data source](search-data-sources-gallery.md), and [index](search-what-is-an-index.md) before you can test your skillset.
+A skillset is attached to an indexer. To use the skillset, reference it in an [indexer](search-howto-create-indexers.md) and then run the indexer to import data, invoke skills processing, and send output to an [index](search-what-is-an-index.md). A skillset is high-level resource, but it's operational only within indexer processing. As a high-level resource, you can reference it in multiple indexers.
 
 > [!TIP]
-> Enable [enrichment caching](cognitive-search-incremental-indexing-conceptual.md) to reuse the content you've already processed and lower the cost of development.
+> Enable [enrichment caching](enrichment-cache-how-to-configure.md) to reuse the content you've already processed and lower the cost of development.
 
 ## Add a skillset definition
+
+Creating a skillset adds it to your search service. Updating a skillset fully overwrites an existing skillset with the contents of the request payload. A best practice for updates is to retrieve the skillset definition with a GET, modify it, and then update with PUT.
 
 Start with the basic structure. In the [Create Skillset REST API](/rest/api/searchservice/skillsets/create), the body of the request is authored in JSON and has the following sections:
 
@@ -44,8 +48,8 @@ Start with the basic structure. In the [Create Skillset REST API](/rest/api/sear
    ],
    "cognitiveServices":{
       "@odata.type":"#Microsoft.Azure.Search.CognitiveServicesByKey",
-      "description":"An Azure AI services resource in the same region as Azure AI Search",
-      "key":"<Your-Cognitive-Services-Multi-Service-Key>"
+      "description":"A Microsoft Foundry resource in the same region as Azure AI Search",
+      "key":"<Your-Azure-AI-Foundry-Resource-Key>"
    },
    "knowledgeStore":{
       "storageConnectionString":"<Your-Azure-Storage-Connection-String>",
@@ -63,9 +67,9 @@ Start with the basic structure. In the [Create Skillset REST API](/rest/api/sear
 
 After the name and description, a skillset has four main properties:
 
-+ `skills` array, an unordered [collection of skills](cognitive-search-predefined-skills.md). Skills can be utilitarian (like splitting text), transformational (based on AI from Azure AI services), or custom skills that you provide. An example of a skills array is provided in the next section.
++ `skills` array, an unordered [collection of skills](cognitive-search-predefined-skills.md). Skills are either standalone or chained together through input-output associations, where the output of one transform becomes input to another. Skills can be utilitarian (like splitting text), transformational (based on AI from Azure OpenAI or Foundry Tools), or custom skills that you provide. An example of a skills array is provided in the next section.
 
-+ `cognitiveServices` is used for [billable skills](cognitive-search-predefined-skills.md) that call Azure AI services APIs. Remove this section if you aren't using billable skills or Custom Entity Lookup. If you are, attach [an Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md).
++ `cognitiveServices` is used for [billable skills](cognitive-search-predefined-skills.md) that call Foundry Tools APIs. Remove this section if you aren't using billable skills or Custom Entity Lookup. If you are, attach [a Foundry resource](cognitive-search-attach-cognitive-services.md).
 
 + `knowledgeStore` (optional) specifies an Azure Storage account and settings for projecting skillset output into tables, blobs, and files in Azure Storage. Remove this section if you don't need it, otherwise [specify a knowledge store](knowledge-store-create-rest.md).
 
@@ -269,7 +273,7 @@ Although skill output can be optionally cached for reuse purposes, it's usually 
 
 ## Tips for a first skillset
 
-+ Try the [Import data wizard](search-get-started-portal.md) or [Import and vectorize data wizard](search-get-started-portal-import-vectors.md).
++ Try the [**Import data** wizard](search-get-started-portal.md) or [**Import data (new)** wizard](search-get-started-portal-import-vectors.md).
 
   The wizards automate several steps that can be challenging the first time around. It defines the skillset, index, and indexer, including field mappings and output field mappings. It also defines projections in a knowledge store if you're using one. For some skills, such as OCR or image analysis, the wizard adds utility skills that merge the image and text content that was separated during document cracking.
 

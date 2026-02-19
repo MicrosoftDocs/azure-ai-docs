@@ -8,6 +8,7 @@ ms.service: azure-ai-anomaly-detector
 ms.topic: how-to
 ms.date: 06/12/2025
 ms.author: mbullwin
+ms.custom: sfi-image-nochange
 ---
 
 

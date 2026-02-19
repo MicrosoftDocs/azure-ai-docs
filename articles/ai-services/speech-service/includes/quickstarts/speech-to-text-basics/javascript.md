@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 01/30/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/javascript.md)]
@@ -16,85 +16,96 @@ ms.author: eur
 
 You also need a *.wav* audio file on your local machine. You can use your own *.wav* file (up to 30 seconds) or download the [https://crbn.us/whatstheweatherlike.wav](https://crbn.us/whatstheweatherlike.wav) sample file.
 
-## Set up the environment
+## Setup
 
-To set up your environment, install the Speech SDK for JavaScript. Run this command: `npm install microsoft-cognitiveservices-speech-sdk`. For guided installation instructions, see [Install the Speech SDK](../../../quickstarts/setup-platform.md?pivots=programming-language-javascript).
+1. Create a new folder `transcription-quickstart` and go to the quickstart folder with the following command:
 
-### Set environment variables
+    ```shell
+    mkdir transcription-quickstart && cd transcription-quickstart
+    ```
+    
+1. Create the `package.json` with the following command:
+
+    ```shell
+    npm init -y
+    ```
+
+1. Install the Speech SDK for JavaScript with:
+
+    ```console
+    npm install microsoft-cognitiveservices-speech-sdk
+    ```
+
+### Retrieve resource information
 
 [!INCLUDE [Environment variables](../../common/environment-variables.md)]
 
 ## Recognize speech from a file
 
-> [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+To transcribe speech from a file:
 
-Follow these steps to create a Node.js console application for speech recognition.
+1. Create a new file named *transcription.js* with the following content:
 
-1. Open a command prompt window where you want the new project, and create a new file named *SpeechRecognition.js*.
-1. Install the Speech SDK for JavaScript:
+    ```javascript
+    import { readFileSync, createReadStream } from "fs";
+    import { SpeechConfig, AudioConfig, ConversationTranscriber, AudioInputStream } from "microsoft-cognitiveservices-speech-sdk";
+    // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+    const speechConfig = SpeechConfig.fromEndpoint(new URL(process.env.ENDPOINT), process.env.SPEECH_KEY);
+    function fromFile() {
+        const filename = "katiesteve.wav";
+        const audioConfig = AudioConfig.fromWavFileInput(readFileSync(filename));
+        const conversationTranscriber = new ConversationTranscriber(speechConfig, audioConfig);
+        const pushStream = AudioInputStream.createPushStream();
+        createReadStream(filename).on('data', function (chunk) {
+            pushStream.write(chunk.slice());
+        }).on('end', function () {
+            pushStream.close();
+        });
+        console.log("Transcribing from: " + filename);
+        conversationTranscriber.sessionStarted = function (s, e) {
+            console.log("SessionStarted event");
+            console.log("SessionId:" + e.sessionId);
+        };
+        conversationTranscriber.sessionStopped = function (s, e) {
+            console.log("SessionStopped event");
+            console.log("SessionId:" + e.sessionId);
+            conversationTranscriber.stopTranscribingAsync();
+        };
+        conversationTranscriber.canceled = function (s, e) {
+            console.log("Canceled event");
+            console.log(e.errorDetails);
+            conversationTranscriber.stopTranscribingAsync();
+        };
+        conversationTranscriber.transcribed = function (s, e) {
+            console.log("TRANSCRIBED: Text=" + e.result.text + " Speaker ID=" + e.result.speakerId);
+        };
+        // Start conversation transcription
+        conversationTranscriber.startTranscribingAsync(function () { }, function (err) {
+            console.trace("err - starting transcription: " + err);
+        });
+    }
+    fromFile();
+    ```
 
-   ```console
-   npm install microsoft-cognitiveservices-speech-sdk
-   ```
+    In *transcription.js*, replace *YourAudioFile.wav* with your own *.wav* file. This example only recognizes speech from a *.wav* file. For information about other audio formats, see [How to use compressed input audio](~/articles/ai-services/speech-service/how-to-use-codec-compressed-audio-input-streams.md). This example supports up to 30 seconds of audio.
 
-1. Copy the following code into *SpeechRecognition.js*:
-
-   ```javascript
-   const fs = require("fs");
-   const sdk = require("microsoft-cognitiveservices-speech-sdk");
-
-   // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-   const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
-   speechConfig.speechRecognitionLanguage = "en-US";
-
-   function fromFile() {
-       let audioConfig = sdk.AudioConfig.fromWavFileInput(fs.readFileSync("YourAudioFile.wav"));
-       let speechRecognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
-
-       speechRecognizer.recognizeOnceAsync(result => {
-           switch (result.reason) {
-               case sdk.ResultReason.RecognizedSpeech:
-                   console.log(`RECOGNIZED: Text=${result.text}`);
-                   break;
-               case sdk.ResultReason.NoMatch:
-                   console.log("NOMATCH: Speech could not be recognized.");
-                   break;
-               case sdk.ResultReason.Canceled:
-                   const cancellation = sdk.CancellationDetails.fromResult(result);
-                   console.log(`CANCELED: Reason=${cancellation.reason}`);
-
-                   if (cancellation.reason == sdk.CancellationReason.Error) {
-                       console.log(`CANCELED: ErrorCode=${cancellation.ErrorCode}`);
-                       console.log(`CANCELED: ErrorDetails=${cancellation.errorDetails}`);
-                       console.log("CANCELED: Did you set the speech resource key and region values?");
-                   }
-                   break;
-           }
-           speechRecognizer.close();
-       });
-   }
-   fromFile();
-   ```
-
-1. In *SpeechRecognition.js*, replace *YourAudioFile.wav* with your own *.wav* file. This example only recognizes speech from a *.wav* file. For information about other audio formats, see [How to use compressed input audio](~/articles/ai-services/speech-service/how-to-use-codec-compressed-audio-input-streams.md). This example supports up to 30 seconds of audio.
-
-1. To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md). For example, use `es-ES` for Spanish (Spain). If you don't specify a language, the default is `en-US`. For details about how to identify one of multiple languages that might be spoken, see [Language identification](~/articles/ai-services/speech-service/language-identification.md).
+    To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md). For example, use `es-ES` for Spanish (Spain). If you don't specify a language, the default is `en-US`. For details about how to identify one of multiple languages that might be spoken, see [Language identification](~/articles/ai-services/speech-service/language-identification.md).
 
 1. Run your new console application to start speech recognition from a file:
 
    ```console
-   node.exe SpeechRecognition.js
+   node transcription.js
    ```
 
-   > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+Wait a few moments to get the response.
 
-   The speech from the audio file should be output as text:
+## Output
 
-   ```output
-   RECOGNIZED: Text=I'm excited to try speech to text.
-   ```
+The speech from the audio file should be output as text:
+
+```output
+RECOGNIZED: Text=I'm excited to try speech to text.
+```
 
 ## Remarks
 

@@ -1,21 +1,21 @@
 ---
-title: Data, privacy, and security for Azure AI Translator
-titleSuffix: Azure AI services
-description: This document details issues for data, privacy, and security for Azure AI Translator
-author: PatrickFarley
-ms.author: pafarley
+title: Data, privacy, and security for Azure Translator in Foundry Tools
+titleSuffix: Foundry Tools
+description: This document details issues for data, privacy, and security for Azure Translator in Foundry Tools
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: article
+ms.topic: concept-article
 ms.date: 05/12/2024
 ---
 
 
-# Data, privacy, and security for Azure AI Translator
+# Data, privacy, and security for Azure Translator in Foundry Tools
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-This article provides some high-level details regarding how Azure AI Translator processes data provided by customers.
+This article provides some high-level details regarding how Azure Translator in Foundry Tools processes data provided by customers.
 
 ## What data does Translator process? 
 
@@ -45,4 +45,4 @@ To learn more about the Translator no-trace policy and compliance, visit [Transl
 
 ## Next steps
 
-* [Azure AI Translator transparency note](/azure/ai-foundry/responsible-ai/translator/transparency-note)
+* [Translator transparency note](/azure/ai-foundry/responsible-ai/translator/transparency-note)

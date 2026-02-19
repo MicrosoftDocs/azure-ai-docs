@@ -1,8 +1,7 @@
 ---
-title: Explore Azure AI Foundry Models in Azure Machine Learning
+title: Explore Microsoft Foundry Models in Azure Machine Learning
 titleSuffix: Azure Machine Learning
-description: This article introduces Azure AI Foundry Models and the model catalog in Azure Machine Learning.
-manager: scottpolly
+description: This article introduces Microsoft Foundry Models and the model catalog in Azure Machine Learning.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
@@ -10,14 +9,14 @@ ms.topic: concept-article
 ms.custom:
   - build-2025
 ms.date: 05/12/2025
-ms.reviewer: jcioffi
-ms.author: ssalgado
-author: ssalgadodev
+ms.reviewer: sooryar
+ms.author: scottpolly
+author: s-polly
 ---
 
-# Explore Azure AI Foundry Models in Azure Machine Learning
+# Explore Microsoft Foundry Models in Azure Machine Learning
 
-Azure AI Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, building an agent, enhancing an existing application, or exploring new AI capabilities. 
+Microsoft Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, building an agent, enhancing an existing application, or exploring new AI capabilities. 
 
 With Foundry Models, you can: 
 
@@ -27,7 +26,7 @@ With Foundry Models, you can:
 * Choose your path—bring your own model, use a hosted one, or integrate seamlessly with Azure services. 
 * Whether you're a developer, data scientist, or enterprise architect, Foundry Models gives you the flexibility and control to build AI solutions that scale—securely, responsibly, and fast.
 
-Azure AI Foundry offers a comprehensive catalog of AI models. There are over 1900+ models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models and more.
+Foundry offers a comprehensive catalog of AI models. There are over 1900+ models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models and more.
 
 Our catalog is organized into two main categories: 
 
@@ -52,7 +51,7 @@ These Models also have the benefit of fungible Provisioned Throughput, meaning y
 
 ## Models from Partners and Community
 
-These models constitute the vast majority of the Azure AI Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
+These models constitute the vast majority of the Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
 
 Characteristics of Models from Partners and Community: 
 * Developed and supported by external partners and community contributors 
@@ -65,7 +64,7 @@ Models are deployable as Managed Compute or Standard (pay-go) deployment options
  
 ## Choosing Between direct models and partner & community models 
 
-When selecting models from Azure AI Foundry Models, consider the following: 
+When selecting models from Foundry Models, consider the following: 
 * Use Case and Requirements: Models sold directly by Azure are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Azure Ecosystem Models excel in specialized use cases and innovation-led scenarios.
 * Support Expectations: Models sold directly by Azure come with robust Microsoft-provided support and maintenance. These models are supported by their providers, with varying levels of SLA and support structures.
 * Innovation and Specialization: Models from Partners and Community offer rapid access to specialized innovations and niche capabilities often developed by leading research labs and emerging AI providers.
@@ -74,15 +73,15 @@ When selecting models from Azure AI Foundry Models, consider the following:
 
 The model catalog organizes models into different collections:
 
-* **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI in Azure AI Foundry Models. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI in Azure AI Foundry Models](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
+* **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI in Foundry Models. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI in Foundry Models](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
-* **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Foundry](../ai-foundry/how-to/deploy-models-managed.md).
+* **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Foundry](../ai-foundry/how-to/deploy-models-managed.md).
 
 You can submit a request to add a model to the model catalog by using [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR_frVPkg_MhOoQxyrjmm7ZJUM09WNktBMURLSktOWEdDODBDRjg2NExKUy4u).
 
 ## Overview of Model Catalog capabilities
 
-The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
+The model catalog in Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other tha Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
 
 You can search and discover models that meet your need through keyword search and filters. Model catalog also offers the model performance leaderboard and benchmark metrics for select models. You can access them by selecting **Browse leaderboard** and **Compare Models**. Benchmark data is also accessible from the model card Benchmark tab.
  
@@ -123,7 +122,7 @@ Features | Managed compute | Standard deployments
 Deployment experience and billing | Model weights are deployed to dedicated virtual machines with managed compute. A managed compute, which can have one or more deployments, makes available a REST API for inference. You're billed for the virtual machine core hours that the deployments use. | Access to models is through a deployment that provisions an API to access the model. The API provides access to the model that Microsoft hosts and manages, for inference. You're billed for inputs and outputs to the APIs, typically in tokens. Pricing information is provided before you deploy.
 API authentication | Keys and Microsoft Entra authentication. | Keys only.
 Content safety | Use Azure AI Content Safety service APIs. | Azure AI Content Safety filters are available integrated with inference APIs. Azure AI Content Safety filters are billed separately.
-Network isolation | [Configure managed networks for Azure AI Foundry hubs](../ai-foundry/how-to/configure-managed-network.md).  | Managed compute follow your hub's public network access (PNA) flag setting. For more information, see the [Network isolation for models deployed via standard deployments](#network-isolation-for-models-deployed-via-standard-deployments) section later in this article.
+Network isolation | [Configure managed networks for Foundry hubs](../ai-foundry/how-to/configure-managed-network.md).  | Managed compute follow your hub's public network access (PNA) flag setting. For more information, see the [Network isolation for models deployed via standard deployments](#network-isolation-for-models-deployed-via-standard-deployments) section later in this article.
 
 ### Available models for supported deployment options
 
@@ -184,7 +183,7 @@ Models that are available for deployment as standard deployments with Standard b
 
 ### Billing
 
-The discovery, subscription, and consumption experience for models deployed via MaaS is in Azure AI Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.
+The discovery, subscription, and consumption experience for models deployed via MaaS is in Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.
 
 Models from non-Microsoft providers are billed through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
 
@@ -192,11 +191,11 @@ Models from Microsoft are billed via Azure meters as First Party Consumption Ser
 
 ### Fine-tuning models
 
-For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with Standard billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with Standard billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Foundry portal](https://ai.azure.com/?cid=learnDocs). 
 
 ### RAG with models deployed as standard deployments
 
-Azure AI Foundry enables users to make use of Vector Indexes and Retrieval Augmented Generation. Models that can be deployed as standard deployments can be used to generate embeddings and inferencing based on custom data to generate answers specific to their use case. For more information, see [Retrieval augmented generation and indexes](concept-retrieval-augmented-generation.md). 
+Foundry enables users to make use of Vector Indexes and Retrieval Augmented Generation. Models that can be deployed as standard deployments can be used to generate embeddings and inferencing based on custom data to generate answers specific to their use case. For more information, see [Retrieval augmented generation and indexes](concept-retrieval-augmented-generation.md). 
 
 ### Regional availability of offers and models
 
@@ -229,5 +228,5 @@ To set the PNA flag for the workspace:
   
 ## Related content
 
-- [Model deprecation and retirement in Azure AI model catalog](concept-model-lifecycle-and-retirement.md)
+- [Model deprecation and retirement in Foundry model catalog](concept-model-lifecycle-and-retirement.md)
 - [How to use Open Source foundation models curated by Azure Machine Learning](how-to-use-foundation-models.md)

@@ -1,12 +1,12 @@
 ---
 title: Guidance for integration and responsible use with Custom Vision
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Guidance for how to deploy Custom Vision responsibly, based on the knowledge and understanding from the team that created this product.
-author: adinatru
-ms.author: adinatru
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
-ms.topic: article
+ms.topic: best-practice
 ms.date: 07/07/2021
 ---
 

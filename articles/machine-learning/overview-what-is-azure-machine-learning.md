@@ -5,10 +5,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: overview
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: saoh
-ms.date: 09/18/2024
+ms.date: 09/09/2025
 ms.custom:
   - build-2023
   - build-2023-dataai
@@ -19,28 +19,28 @@ adobe-target: true
 
 # What is Azure Machine Learning?
 
-Azure Machine Learning is a cloud service for accelerating and managing the machine learning (ML) project lifecycle. ML professionals, data scientists, and engineers can use it in their day-to-day workflows to train and deploy models and manage machine learning operations (MLOps).
+Azure Machine Learning is a cloud service that accelerates and manages the machine learning (ML) project lifecycle. ML professionals, data scientists, and engineers use it in their daily workflows to train and deploy models and manage machine learning operations (MLOps).
 
 You can create a model in Machine Learning or use a model built from an open-source platform, such as PyTorch, TensorFlow, or scikit-learn. MLOps tools help you monitor, retrain, and redeploy models.
 
 > [!Tip]
-> **Free trial!** If you don't have an Azure subscription, create a free account before you begin. [Try the free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/machine-learning/search/). You get credits to spend on Azure services. After they're used up, you can keep the account and use [free Azure services](https://azure.microsoft.com/free/). Your credit card is never charged unless you explicitly change your settings and ask to be charged.
+> **Free trial!** If you don't have an Azure subscription, create a free account before you begin. [Try the free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You get credits to spend on Azure services. After you use up the credits, you can keep the account and use [free Azure services](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Your credit card isn't charged unless you explicitly change your settings and ask to be charged.
 
 ## Who is Azure Machine Learning for?
 
 Machine Learning is for individuals and teams implementing MLOps within their organization to bring ML models into production in a secure and auditable production environment.
 
-Data scientists and ML engineers can use tools to accelerate and automate their day-to-day workflows. Application developers can use tools for integrating models into applications or services. Platform developers can use a robust set of tools, backed by durable Azure Resource Manager APIs, for building advanced ML tooling.
+Data scientists and ML engineers can use tools to accelerate and automate their daily workflows. Application developers can use tools for integrating models into applications or services. Platform developers can use a robust set of tools, backed by durable Azure Resource Manager APIs, for building advanced ML tooling.
 
 Enterprises working in the Microsoft Azure cloud can use familiar security and role-based access control for infrastructure. You can set up a project to deny access to protected data and select operations.
 
 ## Productivity for everyone on the team
 
-ML projects often require a team with a varied skill set to build and maintain. Machine Learning has tools that help enable you to:
+ML projects often require a team with varied skills to build and maintain. Machine Learning has tools that enable you to:
 
 * Collaborate with your team via shared notebooks, compute resources, [serverless compute](how-to-use-serverless-compute.md), data, and environments
 
-* Develop models for fairness and explainability, tracking and auditability to fulfill lineage and audit compliance requirements
+* Develop models for fairness and explainability, tracking, and auditability to fulfill lineage and audit compliance requirements
 
 * Deploy ML models quickly and easily at scale, and manage and govern them efficiently with MLOps
 
@@ -48,18 +48,18 @@ ML projects often require a team with a varied skill set to build and maintain. 
 
 ### Cross-compatible platform tools that meet your needs
 
-Anyone on an ML team can use their preferred tools to get the job done. Whether you're running rapid experiments, hyperparameter-tuning, building pipelines, or managing inferences, you can use familiar interfaces including:
+Anyone on an ML team can use their preferred tools to get the job done. Whether you're running rapid experiments, hyperparameter tuning, building pipelines, or managing inferences, you can use familiar interfaces including:
 
 * [Azure Machine Learning studio](https://ml.azure.com)
 * [Python SDK (v2)](https://aka.ms/sdk-v2-install)
 * [Azure CLI (v2)](how-to-configure-cli.md)
 * [Azure Resource Manager REST APIs](/rest/api/azureml/)
 
-As you're refining the model and collaborating with others throughout the rest of the Machine Learning development cycle, you can share and find assets, resources, and metrics for your projects on the Machine Learning studio UI.
+As you refine the model and collaborate with others throughout the rest of the Machine Learning development cycle, you can share and find assets, resources, and metrics for your projects on the Machine Learning studio UI.
 
 ### Studio
 
-[Machine Learning studio](https://ml.azure.com) offers multiple authoring experiences depending on the type of project and the level of your past ML experience, without having to install anything.
+[Machine Learning studio](https://ml.azure.com) offers multiple authoring experiences depending on the type of project and level of your past ML experience, without requiring you to install anything.
 
 * **Notebooks**: Write and run your own code in managed Jupyter Notebook servers that are directly integrated in the studio. Or, open the notebooks in [VS Code](how-to-work-in-vs-code-remote.md), on the web or on your desktop.
 
@@ -75,25 +75,25 @@ As you're refining the model and collaborating with others throughout the rest o
 
 Azure Machine Learning includes tools to help you build Generative AI applications powered by Large Language Models (LLMs). The solution includes a model catalog, prompt flow, and a suite of tools to streamline the development cycle of AI applications.
 
-Both Azure Machine Learning studio and Azure AI Foundry allow you to work with LLMs.  Use this guide to determine [which studio you should use](/ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json).
+Both Azure Machine Learning studio and Microsoft Foundry allow you to work with LLMs. Use this guide to determine [which studio you should use](/ai/ai-studio-experiences-overview?toc=/azure/machine-learning/toc.json&bc=/azure/machine-learning/breadcrumb/toc.json).
 
 ### Model catalog
 
-The model catalog in Azure Machine Learning studio is the hub to discover and use a wide range of models that enable you to build Generative AI applications. The model catalog features hundreds of models from model providers such as Azure OpenAI service, Mistral, Meta, Cohere, NVIDIA, Hugging Face, including models trained by Microsoft. Models from providers other than Microsoft are Non-Microsoft Products, as defined in [Microsoft's Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), and subject to the terms provided with the model.
+The model catalog in Azure Machine Learning studio is the hub to discover and use a wide range of models that enable you to build Generative AI applications. The model catalog features hundreds of models from model providers such as Azure OpenAI service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models trained by Microsoft. Models from providers other tha Microsoft are Non-Microsoft Products, as defined in [Microsoft's Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), and subject to the terms provided with the model.
 
 ### Prompt flow
 
 Azure Machine Learning prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by Large Language Models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
 
-## Enterprise-readiness and security
+## Enterprise readiness and security
 
 Machine Learning integrates with the Azure cloud platform to add security to ML projects.
 
 Security integrations include:
 
-* Azure Virtual Networks with network security groups.
-* Azure Key Vault, where you can save security secrets, such as access information for storage accounts.
-* Azure Container Registry set up behind a virtual network.
+* Azure Virtual Networks with network security groups
+* Azure Key Vault, where you can save security secrets, such as access information for storage accounts
+* Azure Container Registry set up behind a virtual network
 
 For more information, see [Tutorial: Set up a secure workspace](tutorial-create-secure-workspace.md).
 
@@ -101,11 +101,11 @@ For more information, see [Tutorial: Set up a secure workspace](tutorial-create-
 
 Other integrations with Azure services support an ML project from end to end. They include:
 
-* Azure Synapse Analytics, which is used to process and stream data with Spark.
-* Azure Arc, where you can run Azure services in a Kubernetes environment.
-* Storage and database options, such as Azure SQL Database and Azure Blob Storage.
-* Azure App Service, which you can use to deploy and manage ML-powered apps.
-* [Microsoft Purview, which allows you to discover and catalog data assets across your organization](/azure/purview/register-scan-azure-machine-learning).
+* Azure Synapse Analytics, to process and stream data with Spark
+* Azure Arc, where you can run Azure services in a Kubernetes environment
+* Storage and database options, such as Azure SQL Database and Azure Blob Storage
+* Azure App Service, to deploy and manage ML-powered apps
+* [Microsoft Purview, to discover and catalog data assets across your organization](/azure/purview/register-scan-azure-machine-learning)
 
 > [!Important]
 > Azure Machine Learning doesn't store or process your data outside of the region where you deploy.
@@ -151,7 +151,7 @@ For more information, see [Open-source integration with Azure Machine Learning](
 
 ### Automated featurization and algorithm selection
 
-In a repetitive, time-consuming process, in classical ML, data scientists use prior experience and intuition to select the right data featurization and algorithm for training. Automated ML (AutoML) speeds this process. You can use it through the Machine Learning studio UI or the Python SDK.
+In classical ML, data scientists use prior experience and intuition to select the right data featurization and algorithm for training in a repetitive, time-consuming process. Automated ML (AutoML) speeds this process. You can use it through the Machine Learning studio UI or the Python SDK.
 
 For more information, see [What is automated machine learning?](concept-automated-ml.md).
 
@@ -163,9 +163,9 @@ For more information, see [Tune hyperparameters](how-to-tune-hyperparameters.md)
 
 ### Multinode distributed training
 
-Efficiency of training for deep learning and sometimes classical machine learning training jobs can be drastically improved via multinode distributed training. Azure Machine Learning compute clusters and  [serverless compute](how-to-use-serverless-compute.md) offer the latest GPU options.
+Training efficiency for deep learning and sometimes classical machine learning training jobs can be drastically improved via multinode distributed training. Azure Machine Learning compute clusters and [serverless compute](how-to-use-serverless-compute.md) offer the latest GPU options.
 
-Supported via Azure Machine Learning Kubernetes, Azure Machine Learning compute clusters, and  [serverless compute](how-to-use-serverless-compute.md):
+Supported via Azure Machine Learning Kubernetes, Azure Machine Learning compute clusters, and [serverless compute](how-to-use-serverless-compute.md):
 
 * PyTorch
 * TensorFlow
@@ -204,24 +204,24 @@ DevOps for ML models, often called MLOps, is a process for developing models for
 
 Learn more about [MLOps in Azure Machine Learning](concept-model-management-and-deployment.md).
 
-### Integrations enabling MLOPs
+### Integrations enabling MLOps
 
 Machine Learning is built with the model lifecycle in mind. You can audit the model lifecycle down to a specific commit and environment.
 
 Some key features enabling MLOps include:
 
-* `git` integration.
-* MLflow integration.
-* Machine learning pipeline scheduling.
-* Azure Event Grid integration for custom triggers.
-* Ease of use with CI/CD tools like GitHub Actions or Azure DevOps.
+* Git integration
+* MLflow integration
+* Machine learning pipeline scheduling
+* Azure Event Grid integration for custom triggers
+* Ease of use with CI/CD tools like GitHub Actions or Azure DevOps
 
 Machine Learning also includes features for monitoring and auditing:
 
-* Job artifacts, such as code snapshots, logs, and other outputs.
-* Lineage between jobs and assets, such as containers, data, and compute resources.
+* Job artifacts, such as code snapshots, logs, and other outputs
+* Lineage between jobs and assets, such as containers, data, and compute resources
 
-If you use Apache Airflow, the [airflow-provider-azure-machinelearning](https://github.com/Azure/airflow-provider-azure-machinelearning) package is a provider that enables you to submit workflows to Azure Machine Learning from Apache AirFlow.
+If you use Apache Airflow, the [airflow-provider-azure-machinelearning](https://github.com/Azure/airflow-provider-azure-machinelearning) package is a provider that enables you to submit workflows to Azure Machine Learning from Apache Airflow.
 
 ## Related content
 

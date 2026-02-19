@@ -1,13 +1,13 @@
 ---
 title: Configure Speech containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Speech service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging, and security settings for your containers.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 01/30/2026
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to configure Speech containers.
 ---
 
@@ -22,7 +22,7 @@ The Speech container runtime environment is configured using the `docker run` co
 [!INCLUDE [Container shared configuration settings table](../includes/cognitive-services-containers-configuration-shared-settings-table.md)]
 
 > [!IMPORTANT]
-> The [`ApiKey`](#apikey-configuration-setting), [`Billing`](#billing-configuration-setting), and [`Eula`](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container won't start. For more information about using these configuration settings to instantiate a container, see [Billing](speech-container-overview.md#billing).
+> The [`ApiKey`](#apikey-configuration-setting), [`Billing`](#billing-configuration-setting), and [`Eula`](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container won't start. For more information about using these configuration settings to instantiate a container, see [Billing](speech-container-overview.md#billing-information).
 
 ## ApiKey configuration setting
 
@@ -46,7 +46,7 @@ This setting can be found in the following place:
 
 | Required | Name | Data type | Description |
 | -------- | ---- | --------- | ----------- |
-| Yes | `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [billing](speech-container-overview.md#billing). For more information and a complete list of regional endpoints, see [Custom subdomain names for Azure AI services](../cognitive-services-custom-subdomains.md). |
+| Yes | `Billing` | String | Billing endpoint URI. For more information on obtaining the billing URI, see [billing](speech-container-overview.md#billing-information). For more information and a complete list of regional endpoints, see [Custom subdomain names for Foundry Tools](../cognitive-services-custom-subdomains.md). |
 
 ## Eula setting
 

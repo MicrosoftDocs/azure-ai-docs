@@ -1,14 +1,15 @@
 ---
 title: How to specify a detection model - Face
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to choose which face detection model to use with your Azure AI Face application.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/22/2025
+ms.date: 01/30/2026
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
@@ -18,15 +19,15 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 # Specify a face detection model
 
-This guide shows you how to specify a face detection model for the Azure AI Face service.
+This article shows you how to specify a face detection model for the Azure AI Face service.
 
-The Face service uses machine learning models to perform operations on human faces in images. We continue to improve the accuracy of our models based on customer feedback and advances in research, and we deliver these improvements as model updates. Developers can specify which version of the face detection model they'd like to use; they can choose the model that best fits their use case. Read on to learn how to specify the face detection model in certain face operations. The Face service uses face detection whenever it converts an image of a face into some other form of data.
+The Face service uses machine learning models to perform operations on human faces in images. We continue to improve the accuracy of our models based on customer feedback and advances in research, and we deliver these improvements as model updates. You can specify which version of the face detection model you'd like to use. Choose the model that best fits your use case. Read on to learn how to specify the face detection model in certain face operations. The Face service uses face detection whenever it converts an image of a face into some other form of data.
 
-If you aren't sure whether you should use the latest model, skip to the [Evaluate different models](#evaluate-different-models) section to evaluate the new model and compare results using your current data set.
+If you're not sure whether you should use the latest model, see the [Evaluate different models](#evaluate-different-models) section to evaluate the new model and compare results using your current data set.
 
 ## Prerequisites
 
-You should be familiar with the concept of AI face detection. If you aren't, see the face detection conceptual guide or how-to guide:
+You should be familiar with the concept of AI face detection. If you're not, see the face detection conceptual guide or how-to guide:
 
 * [Face detection concepts](../concept-face-detection.md)
 * [Call the detect API](identity-detect-faces.md)
@@ -38,11 +39,11 @@ The different face detection models are optimized for different tasks. See the f
 
 | Model | Description | Performance notes | Landmarks |
 |-------|-------------|-------------------|-----------|
-|**detection_01** | Default choice for all face detection operations. | Not optimized for small, side-view, or blurry faces. | Returns face landmarks if they're specified in the detect call. |
+|**detection_01** | Default choice for all face detection operations. | Not optimized for small, side-view, or blurry faces. | Returns face landmarks if you specify them in the detect call. |
 |**detection_02** | Released in May 2019 and available optionally in all face detection operations. | Improved accuracy on small, side-view, and blurry faces. | Doesn't return face landmarks. |
-|**detection_03** | Released in February 2021 and available optionally in all face detection operations. | Further improved accuracy, including on smaller faces (64x64 pixels) and rotated face orientations. | Returns face landmarks if they're specified in the detect call. |
+|**detection_03** | Released in February 2021 and available optionally in all face detection operations. | Further improved accuracy, including on smaller faces (64x64 pixels) and rotated face orientations. | Returns face landmarks if you specify them in the detect call. |
 
-Attributes are a set of features that can optionally be detected if they're specified in the detect call:
+Attributes are a set of features that you can optionally detect if you specify them in the detect call:
 
 | Model | accessories | blur | exposure | glasses | headPose | mask | noise | occlusion | qualityForRecognition |
 |-------|:-----------:|:----:|:--------:|:-------:|:--------:|:----:|:-----:|:---------:|:---------------------:|
@@ -50,7 +51,7 @@ Attributes are a set of features that can optionally be detected if they're spec
 |**detection_02** | | | | | | | | | |
 |**detection_03** | | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ (for recognition_03 or 04) |
 
-The best way to compare the performances of the detection models is to use them on a sample dataset. We recommend calling the [Detect] API on a variety of images, especially images of many faces or of faces that are difficult to see, using each detection model. Pay attention to the number of faces that each model returns.
+The best way to compare the performances of the detection models is to use them on a sample dataset. Call the [Detect] API on a variety of images, especially images of many faces or of faces that are difficult to see, using each detection model. Pay attention to the number of faces that each model returns.
 
 ## Detect faces with specified model
 
@@ -66,7 +67,7 @@ A request URL for the [Detect] REST API looks like this:
 
 `https://westus.api.cognitive.microsoft.com/face/v1.0/detect?detectionModel={detectionModel}&recognitionModel={recognitionModel}&returnFaceId={returnFaceId}&returnFaceAttributes={returnFaceAttributes}&returnFaceLandmarks={returnFaceLandmarks}&returnRecognitionModel={returnRecognitionModel}&faceIdTimeToLive={faceIdTimeToLive}`
 
-If you are using the client library, you can assign the value for `detectionModel` by passing in an appropriate string. If you leave it unassigned, the API uses the default model version (`detection_01`). See the following code example for the .NET client library.
+If you're using the client library, you can assign the value for `detectionModel` by passing in an appropriate string. If you don't assign a value, the API uses the default model version (`detection_01`). See the following code example for the .NET client library.
 
 ```csharp
 string imageUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/detection1.jpg";
@@ -132,7 +133,7 @@ using (var content = new ByteArrayContent(Encoding.UTF8.GetBytes(JsonConvert.Ser
 }
 ```
 
-This code creates a **FaceList** called `My face collection` and adds a Face to it with the `detection_03` model. If you don't specify the *detectionModel* parameter, the API uses the default model, `detection_01`.
+This code creates a **FaceList** called `My face collection` and adds a face to it with the `detection_03` model. If you don't specify the *detectionModel* parameter, the API uses the default model, `detection_01`.
 
 > [!NOTE]
 > You don't need to use the same detection model for all faces in a **FaceList** object, and you don't need to use the same detection model when detecting new faces to compare with a **FaceList** object.

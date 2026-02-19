@@ -5,12 +5,15 @@ description: Learn how to create a batch prediction pipeline. Deploy the pipelin
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: lagayhar
+ms.author: scottpolly
 author: lgayhardt
-ms.reviewer: keli19
+ms.reviewer: jturuk
 ms.date: 06/16/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, designer
+ms.custom:
+  - UpdateFrequency5
+  - designer
+  - sfi-image-nochange
 ---
 
 # Run batch predictions using Azure Machine Learning designer

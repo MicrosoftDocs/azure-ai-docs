@@ -5,10 +5,12 @@ description: Create an alias to define a secondary name that can be used to refe
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 10/01/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 05/29/2025
+  - sfi-image-nochange
 ---
 
 # Create an index alias in Azure AI Search
@@ -16,12 +18,14 @@ ms.date: 05/29/2025
 > [!IMPORTANT]
 > Index aliases are currently in public preview and available under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-An index alias in Azure AI Search is an alternate name for an index. You can use the alias instead of the index name in your application, which minimizes future updates to production code. If you need to switch to a newer index, you can update the alias mapping.
+In Azure AI Search, an index alias is a secondary name for a search index. You can create an alias that maps to a search index and substitute the alias name in places where you would otherwise reference an index name. This gives you flexibility if you ever need to change which index your application is pointing to. Instead of updating the references to the index name in your production code, you can just update the mapping for your alias.
+
+You can create and manage aliases in Azure AI Search service via HTTP requests (POST, GET, PUT, DELETE) against a given alias resource. Aliases are service level resources and maintained independently from search indexes. Once a search index is created, you can create an alias that maps to that search index.
 
 Before using an alias, your application sends requests directly to `hotel-samples-index`.
 
 ```http
-POST /indexes/hotel-samples-index/docs/search?api-version=2025-05-01-preview
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-11-01-preview
 {
     "search": "pool spa +airport",
     "select": "HotelId, HotelName, Category, Description",
@@ -32,7 +36,7 @@ POST /indexes/hotel-samples-index/docs/search?api-version=2025-05-01-preview
 After using an alias, your application sends requests to `my-alias`, which maps to `hotel-samples-index`.
 
 ```http
-POST /indexes/my-alias/docs/search?api-version=2025-05-01-preview
+POST /indexes/my-alias/docs/search?api-version=2025-11-01-preview
 {
     "search": "pool spa +airport",
     "select": "HotelId, HotelName, Category, Description",
@@ -44,18 +48,24 @@ POST /indexes/my-alias/docs/search?api-version=2025-05-01-preview
 
 You can only use an alias with document operations or to get and update an index definition. 
 
-Aliases can't be used to [delete an index](/rest/api/searchservice/indexes/delete), or [test text tokenization](/rest/api/searchservice/indexes/analyze), or referenced as the `targetIndexName` on an [indexer](/rest/api/searchservice/indexers/create-or-update).
+Aliases can't be used to [delete an index](/rest/api/searchservice/indexes/delete), or [test text tokenization](/rest/api/searchservice/indexes/analyze), or be referenced as the `targetIndexName` on an [indexer](/rest/api/searchservice/indexers/create-or-update) or [knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
 ## Create an index alias
 
+Creating an alias establishes a mapping between an alias name and an index name. If the request is successful, the alias can be used for indexing, querying, and other operations.
+
+Updating an alias allows you to map that alias to a different search index. When you update an existing alias, the entire definition is replaced with the contents of the request body. In general, the best pattern to use for updates is to retrieve the alias definition with a GET, modify it, and then update it with PUT.
+
 You can create an alias using the preview REST API, the preview SDKs, or through the [Azure portal](https://portal.azure.com). An alias consists of the `name` of the alias and the name of the search index that the alias is mapped to. Only one index name can be specified in the `indexes` array.
+
+The maximum number of aliases that you can create varies by pricing tier. For more information, see [Service limits](search-limits-quotas-capacity.md).
 
 ### [**REST API**](#tab/rest)
 
-You can use the [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to create an index alias.
+You can use the [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create an index alias.
 
 ```http
-POST /aliases?api-version=2025-05-01-preview
+POST /aliases?api-version=2025-11-01-preview
 {
     "name": "my-alias",
     "indexes": ["hotel-samples-index"]
@@ -75,8 +85,7 @@ Follow the steps below to create an index alias in the Azure portal.
 
 ### [**.NET SDK**](#tab/sdk)
 
-
-Using one of the beta packages from the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/), you can use the following syntax to create an index alias. 
+Using one of the preview packages from the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/), you can use the following syntax to create an index alias. 
 
 ```csharp
 // Create a SearchIndexClient
@@ -98,7 +107,7 @@ Aliases can be used for all document operations including querying, indexing, su
 This query sends the request to `my-alias`, which is mapped to an actual index on your search service. 
 
 ```http
-POST /indexes/my-alias/docs/search?api-version=2025-05-01-preview
+POST /indexes/my-alias/docs/search?api-version=2025-11-01-preview
 {
     "search": "pool spa +airport",
     "searchMode": any,
@@ -108,12 +117,30 @@ POST /indexes/my-alias/docs/search?api-version=2025-05-01-preview
 }
 ```
 
-## Update an alias
+## Get an alias definition
 
-PUT is required for alias updates as described in [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+This request returns a list of existing alias objects by name.
 
 ```http
-PUT /aliases/my-alias?api-version=2025-05-01-preview
+GET https://[service name].search.windows.net/aliases?api-version=[api-version]&$select=name
+api-key: [admin key]  
+```
+
+This request returns an alias definition
+
+```http
+GET https://[service name].search.windows.net/aliases/my-alias?api-version=[api-version]
+api-key: [admin key]  
+```
+
+## Update an alias
+
+The most common update to an alias is changing the index name when the underlying index is replaced with a newer version.
+
+PUT is required for alias updates as described in [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+
+```http
+PUT /aliases/my-alias?api-version=2025-11-01-preview
 {
     "name": "my-alias",
     "indexes": ["hotel-samples-index2"]
@@ -121,6 +148,8 @@ PUT /aliases/my-alias?api-version=2025-05-01-preview
 ```
 
 An update to an alias may take up to 10 seconds to propagate through the system so you should wait at least 10 seconds before deleting the index that the alias was previously mapped to.
+
+If you attempt to delete an index that is currently mapped to an alias, the operation will fail with 400 (Bad Request) and an error message stating that the alias(es) that's mapped to that index must be deleted or mapped to a different index before the index can be deleted.
 
 ## See also
 

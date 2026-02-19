@@ -1,9 +1,9 @@
 ---
-author: Blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 Azure allows you to place _locks_ on resources, so that they cannot be deleted or are read only. __Locking a resource can lead to unexpected results.__ Some operations that don't seem to modify the resource actually require actions that are blocked by the lock. 

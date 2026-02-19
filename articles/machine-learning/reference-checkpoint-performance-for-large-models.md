@@ -4,26 +4,26 @@ titleSuffix: Azure Machine Learning
 description: Learn how Nebula can save time, resources, and money for large model training applications
 services: machine-learning
 ms.service: azure-machine-learning
-ms.topic: reference
-ms.custom: ----, ----, ----
-
+ms.topic: how-to
 author: ziqiwang
 ms.author: ziqiwang
-ms.date: 03/28/2023
+ms.date: 10/30/2025
+ms.custom:
+  - ----
+  - sfi-image-nochange
 ---
 
 # Boost Checkpoint Speed and Reduce Cost with Nebula
 
 Learn how to boost checkpoint speed and reduce checkpoint cost for large Azure Machine Learning training models using Nebula.
 
+[!INCLUDE [nebula-package](includes/nebula-package.md)]
+
 ## Overview
 
 **Nebula** is a fast, simple, disk-less, model-aware checkpoint tool in Azure Container for PyTorch (ACPT). Nebula offers a simple, high-speed checkpointing solution for distributed large-scale model training jobs using PyTorch. By utilizing the latest distributed computing technologies, Nebula can reduce checkpoint times from hours to seconds - potentially saving 95% to 99.9% of time. Large-scale training jobs can greatly benefit from Nebula's performance.
 
 To make Nebula available for your training jobs, import the `nebulaml` python package in your script. Nebula has full compatibility with different distributed PyTorch training strategies, including PyTorch Lightning, DeepSpeed, and more. The Nebula API offers a simple way to monitor and view checkpoint lifecycles. The APIs support various model types, and ensure checkpoint consistency and reliability.  
-
-> [!IMPORTANT] 
-> The `nebulaml` package is not available on the public PyPI python package index. It is only available in the Azure Container for PyTorch (ACPT) curated environment on Azure Machine Learning. To avoid issues, do not attempt to install `nebulaml` from PyPI or using the `pip` command.
 
 In this document, you'll learn how to use Nebula with ACPT on Azure Machine Learning to quickly checkpoint your model training jobs. Additionally, you'll learn how to view and manage Nebula checkpoint data. You'll also learn how to resume the model training jobs from the last available checkpoint if there is interruption, failure or termination of Azure Machine Learning.
 

@@ -1,20 +1,20 @@
 ---
-title: Guidance for integration and responsible use with optical character recognition (OCR) - Azure AI Vision
-titleSuffix: Azure AI services
-description: Guidance for how to deploy the OCR service responsibly, based on the knowledge and understanding from the team that created this product.
-author: sanjeev3
-ms.author: sajagtap
+title: Guidance for integration and responsible use with optical character recognition (OCR) - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Guidance for how to deploy OCR responsibly, based on the knowledge and understanding from the team that created this product.
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
-ms.date: 05/04/2021
+ms.topic: best-practice
+ms.date: 10/15/2025
 ---
 
 # Guidance for integration and responsible use with OCR technology
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
-As Microsoft works to help customers responsibly develop and deploy solutions using Azure AI Vision Read optical character recognition (OCR) capabilities, we're taking a principled approach to upholding personal agency and dignity. Microsoft is considering the AI systems' fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations are in line with our commitment to developing responsible AI.
+As Microsoft works to help customers responsibly develop and deploy solutions using Azure Vision in Foundry Tools Read optical character recognition (OCR) capabilities, we're taking a principled approach to upholding personal agency and dignity. Microsoft is considering the AI systems' fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations are in line with our commitment to developing responsible AI.
 
 This article discusses OCR and the key considerations for making use of this technology responsibly. Consider the following factors when you decide how to use and implement AI-powered products and features:
 

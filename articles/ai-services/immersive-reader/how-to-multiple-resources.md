@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-immersive-reader
 ms.topic: how-to
 ms.date: 02/27/2024
-ms.author: sharmas
+ms.author: michtho
 ms.custom: devx-track-js
 #Customer intent: As a developer, I want to learn more about the Immersive Reader SDK so that I can fully utilize all that the SDK has to offer.
 ---
@@ -25,7 +25,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/ai-services).
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A single Immersive Reader resource configured for Microsoft Entra authentication. Follow [these instructions](how-to-create-immersive-reader.md) to get set up.
 * A [Node.js web app](quickstarts/client-libraries.md?pivots=programming-language-nodejs) that launches Immersive Reader.
 

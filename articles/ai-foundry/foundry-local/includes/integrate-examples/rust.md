@@ -1,10 +1,16 @@
 ---
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 05/02/2025
+ms.date: 01/06/2026
 ms.author: samkemp
 author: samuel100
+ai-usage: ai-assisted
 ---
+
+## Prerequisites
+
+- Foundry Local installed and running. For installation instructions, see [Get started with Foundry Local](../../get-started.md).
+- [Rust and Cargo](https://www.rust-lang.org/tools/install) installed.
 
 ## Create project
 
@@ -27,7 +33,7 @@ cargo add tokio --features full
 
 ## Update the `main.rs` file
 
-The following example demonstrates how to inference using a request to the Foundry Local service. The code initializes the Foundry Local service, loads a model, and generates a response using the `reqwest` library.
+The following example demonstrates how to run inference by sending a request to the Foundry Local service. The code initializes the Foundry Local service, loads a model, and generates a response using the `reqwest` library.
 
 Copy-and-paste the following code into the Rust file named `main.rs`:
 
@@ -64,9 +70,14 @@ async fn main() -> Result<()> {
 }
 ```
 
+Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
+
 Run the code using the following command:
 
 ```bash
 cargo run
 ```
+
+You should see a text response printed in your terminal. On the first run, Foundry Local might download execution providers and the model, which can take a few minutes.
 

@@ -4,550 +4,158 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/13/2025
+ms.date: 02/02/2026
 ---
 
-[!INCLUDE [Full text introduction](full-text-intro.md)]
+In this quickstart, you use the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
+
+Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results. This quickstart uses fictional hotel data from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-json-documents) GitHub repository to populate the index.
 
 > [!TIP]
-> You can [download the source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
+> Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-keyword-search) on GitHub.
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- An Azure AI Search service. [Create a service](../../search-create-service-portal.md) if you don't have one. For this quickstart, you can use a free service.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-## Microsoft Entra ID prerequisites
+- An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
-For the recommended keyless authentication with Microsoft Entra ID, you need to:
-- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
-- Assign both of the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
+- [Node.js 20 LTS](https://nodejs.org/en/download/) or later.
 
-## Retrieve resource information
+- [Visual Studio Code](https://code.visualstudio.com/download).
+
+- [Git](https://git-scm.com/downloads) to clone the sample repository.
+
+- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+
+## Configure access
 
 [!INCLUDE [resource authentication](../resource-authentication.md)]
 
-## Set up
+## Get endpoint
 
-1. Create a new folder `full-text-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+[!INCLUDE [resource endpoint](../resource-endpoint.md)]
 
-    ```shell
-    mkdir full-text-quickstart && cd full-text-quickstart
+## Set up the environment
+
+1. Use Git to clone the sample repository.
+
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-javascript-samples
     ```
 
-1. Create the `package.json` with the following command:
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-    ```shell
-    npm init -y
+    ```bash
+    cd azure-search-javascript-samples/quickstart-keyword-search
+    code .
     ```
 
-1. Install the Azure AI Search client library ([Azure.Search.Documents](/javascript/api/overview/azure/search-documents-readme)) for JavaScript with:
+1. In `sample.env`, replace the placeholder value for `SEARCH_API_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-    ```console
-    npm install @azure/search-documents
+1. Rename `sample.env` to `.env`.
+
+    ```bash
+    mv sample.env .env
     ```
 
-1. For the **recommended** passwordless authentication, install the Azure Identity client library with:
+1. Install the dependencies.
 
-    ```console
-    npm install @azure/identity
+    ```bash
+    npm install
     ```
 
+    When the installation completes, you should see a `node_modules` folder in the project directory.
 
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-## Create, load, and query a search index
+   ```azurecli
+   az login
+   ```
 
-In the prior [set up](#set-up) section, you installed the Azure AI Search client library and other dependencies. 
+## Run the code
 
-In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [explaining the code](#explaining-the-code) section.
+Run the application.
 
-The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
-
-#### [Microsoft Entra ID](#tab/keyless)
-
-```java
-String searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
+```bash
+node index.js
 ```
 
-#### [API key](#tab/api-key)
+### Output
 
-```java
-String searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-AzureKeyCredential credential = new AzureKeyCredential("<Your search service admin key>");
+The output should be similar to the following:
+
 ```
----
+Running Azure AI Search Javascript quickstart...
+Checking if index exists...
+Deleting index...
+Creating index...
+Index named hotels-quickstart-js has been created.
+Uploading documents...
+Index operations succeeded: true
+Querying the index...
 
-1. Create a new file named *index.js* and paste the following code into *index.js*:
+Query #1 - search everything:
+{"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Rating":4.8}
+{"HotelId":"2","HotelName":"Old Century Hotel","Rating":3.6}
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
+{"HotelId":"1","HotelName":"Stay-Kay City Hotel","Rating":3.6}
+Result count: 4
 
-    ```javascript
-    // Import from the @azure/search-documents library
-    import { SearchIndexClient, odata } from "@azure/search-documents";
-    // Import from the Azure Identity library
-    import { DefaultAzureCredential } from "@azure/identity";
-    // Importing the hotels sample data
-    import hotelData from './hotels.json' assert { type: "json" };
-    // Load the .env file if it exists
-    import * as dotenv from "dotenv";
-    dotenv.config();
-    // Defining the index definition
-    const indexDefinition = {
-        "name": "hotels-quickstart",
-        "fields": [
-            {
-                "name": "HotelId",
-                "type": "Edm.String",
-                "key": true,
-                "filterable": true
-            },
-            {
-                "name": "HotelName",
-                "type": "Edm.String",
-                "searchable": true,
-                "filterable": false,
-                "sortable": true,
-                "facetable": false
-            },
-            {
-                "name": "Description",
-                "type": "Edm.String",
-                "searchable": true,
-                "filterable": false,
-                "sortable": false,
-                "facetable": false,
-                "analyzerName": "en.lucene"
-            },
-            {
-                "name": "Description_fr",
-                "type": "Edm.String",
-                "searchable": true,
-                "filterable": false,
-                "sortable": false,
-                "facetable": false,
-                "analyzerName": "fr.lucene"
-            },
-            {
-                "name": "Category",
-                "type": "Edm.String",
-                "searchable": true,
-                "filterable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "Tags",
-                "type": "Collection(Edm.String)",
-                "searchable": true,
-                "filterable": true,
-                "sortable": false,
-                "facetable": true
-            },
-            {
-                "name": "ParkingIncluded",
-                "type": "Edm.Boolean",
-                "filterable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "LastRenovationDate",
-                "type": "Edm.DateTimeOffset",
-                "filterable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "Rating",
-                "type": "Edm.Double",
-                "filterable": true,
-                "sortable": true,
-                "facetable": true
-            },
-            {
-                "name": "Address",
-                "type": "Edm.ComplexType",
-                "fields": [
-                    {
-                        "name": "StreetAddress",
-                        "type": "Edm.String",
-                        "filterable": false,
-                        "sortable": false,
-                        "facetable": false,
-                        "searchable": true
-                    },
-                    {
-                        "name": "City",
-                        "type": "Edm.String",
-                        "searchable": true,
-                        "filterable": true,
-                        "sortable": true,
-                        "facetable": true
-                    },
-                    {
-                        "name": "StateProvince",
-                        "type": "Edm.String",
-                        "searchable": true,
-                        "filterable": true,
-                        "sortable": true,
-                        "facetable": true
-                    },
-                    {
-                        "name": "PostalCode",
-                        "type": "Edm.String",
-                        "searchable": true,
-                        "filterable": true,
-                        "sortable": true,
-                        "facetable": true
-                    },
-                    {
-                        "name": "Country",
-                        "type": "Edm.String",
-                        "searchable": true,
-                        "filterable": true,
-                        "sortable": true,
-                        "facetable": true
-                    }
-                ]
-            }
-        ],
-        "suggesters": [
-            {
-                "name": "sg",
-                "searchMode": "analyzingInfixMatching",
-                "sourceFields": [
-                    "HotelName"
-                ]
-            }
-        ]
-    };
-    async function main() {
-        // Your search service endpoint
-        const searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-        // Use the recommended keyless credential instead of the AzureKeyCredential credential.
-        const credential = new DefaultAzureCredential();
-        //const credential = new AzureKeyCredential(Your search service admin key);
-        // Create a SearchIndexClient to send create/delete index commands
-        const searchIndexClient = new SearchIndexClient(searchServiceEndpoint, credential);
-        // Creating a search client to upload documents and issue queries
-        const indexName = "hotels-quickstart";
-        const searchClient = searchIndexClient.getSearchClient(indexName);
-        console.log('Checking if index exists...');
-        await deleteIndexIfExists(searchIndexClient, indexName);
-        console.log('Creating index...');
-        let index = await searchIndexClient.createIndex(indexDefinition);
-        console.log(`Index named ${index.name} has been created.`);
-        console.log('Uploading documents...');
-        let indexDocumentsResult = await searchClient.mergeOrUploadDocuments(hotelData['value']);
-        console.log(`Index operations succeeded: ${JSON.stringify(indexDocumentsResult.results[0].succeeded)} `);
-        // waiting one second for indexing to complete (for demo purposes only)
-        sleep(1000);
-        console.log('Querying the index...');
-        console.log();
-        await sendQueries(searchClient);
-    }
-    async function deleteIndexIfExists(searchIndexClient, indexName) {
-        try {
-            await searchIndexClient.deleteIndex(indexName);
-            console.log('Deleting index...');
-        }
-        catch {
-            console.log('Index does not exist yet.');
-        }
-    }
-    async function sendQueries(searchClient) {
-        // Query 1
-        console.log('Query #1 - search everything:');
-        let searchOptions = {
-            includeTotalCount: true,
-            select: ["HotelId", "HotelName", "Rating"]
-        };
-        let searchResults = await searchClient.search("*", searchOptions);
-        for await (const result of searchResults.results) {
-            console.log(`${JSON.stringify(result.document)}`);
-        }
-        console.log(`Result count: ${searchResults.count}`);
-        console.log();
-        // Query 2
-        console.log('Query #2 - search with filter, orderBy, and select:');
-        let state = 'FL';
-        searchOptions = {
-            filter: odata `Address/StateProvince eq ${state}`,
-            orderBy: ["Rating desc"],
-            select: ["HotelId", "HotelName", "Rating"]
-        };
-        searchResults = await searchClient.search("wifi", searchOptions);
-        for await (const result of searchResults.results) {
-            console.log(`${JSON.stringify(result.document)}`);
-        }
-        console.log();
-        // Query 3
-        console.log('Query #3 - limit searchFields:');
-        searchOptions = {
-            select: ["HotelId", "HotelName", "Rating"],
-            searchFields: ["HotelName"]
-        };
-        searchResults = await searchClient.search("sublime palace", searchOptions);
-        for await (const result of searchResults.results) {
-            console.log(`${JSON.stringify(result.document)}`);
-        }
-        console.log();
-        // Query 4
-        console.log('Query #4 - limit searchFields and use facets:');
-        searchOptions = {
-            facets: ["Category"],
-            select: ["HotelId", "HotelName", "Rating"],
-            searchFields: ["HotelName"]
-        };
-        searchResults = await searchClient.search("*", searchOptions);
-        for await (const result of searchResults.results) {
-            console.log(`${JSON.stringify(result.document)}`);
-        }
-        console.log();
-        // Query 5
-        console.log('Query #5 - Lookup document:');
-        let documentResult = await searchClient.getDocument('3');
-        console.log(`HotelId: ${documentResult.HotelId}; HotelName: ${documentResult.HotelName}`);
-        console.log();
-    }
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-    main().catch((err) => {
-        console.error("The sample encountered an error:", err);
-    });
-    ```
+Query #2 - search with filter, orderBy, and select:
+{"HotelId":"2","HotelName":"Old Century Hotel","Rating":3.6}
 
-1. Create a file named *hotels.json* and paste the following code into *hotels.json*:
+Query #3 - limit searchFields:
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
 
-    ```json
-    {
-        "value": [
-            {
-                "HotelId": "1",
-                "HotelName": "Stay-Kay City Hotel",
-                "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-                "Category": "Boutique",
-                "Tags": ["view", "air conditioning", "concierge"],
-                "ParkingIncluded": false,
-                "LastRenovationDate": "2022-01-18T00:00:00Z",
-                "Rating": 3.6,
-                "Address": {
-                    "StreetAddress": "677 5th Ave",
-                    "City": "New York",
-                    "StateProvince": "NY",
-                    "PostalCode": "10022"
-                }
-            },
-            {
-                "HotelId": "2",
-                "HotelName": "Old Century Hotel",
-                "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
-                "Category": "Boutique",
-                "Tags": ["pool", "free wifi", "concierge"],
-                "ParkingIncluded": "false",
-                "LastRenovationDate": "2019-02-18T00:00:00Z",
-                "Rating": 3.6,
-                "Address": {
-                    "StreetAddress": "140 University Town Center Dr",
-                    "City": "Sarasota",
-                    "StateProvince": "FL",
-                    "PostalCode": "34243"
-                }
-            },
-            {
-                "HotelId": "3",
-                "HotelName": "Gastronomic Landscape Hotel",
-                "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-                "Category": "Suite",
-                "Tags": ["restaurant", "bar", "continental breakfast"],
-                "ParkingIncluded": "true",
-                "LastRenovationDate": "2015-09-20T00:00:00Z",
-                "Rating": 4.8,
-                "Address": {
-                    "StreetAddress": "3393 Peachtree Rd",
-                    "City": "Atlanta",
-                    "StateProvince": "GA",
-                    "PostalCode": "30326"
-                }
-            },
-            {
-                "HotelId": "4",
-                "HotelName": "Sublime Palace Hotel",
-                "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
-                "Category": "Boutique",
-                "Tags": ["concierge", "view", "air conditioning"],
-                "ParkingIncluded": true,
-                "LastRenovationDate": "2020-02-06T00:00:00Z",
-                "Rating": 4.6,
-                "Address": {
-                    "StreetAddress": "7400 San Pedro Ave",
-                    "City": "San Antonio",
-                    "StateProvince": "TX",
-                    "PostalCode": "78216"
-                }
-            }
-        ]
-    }
-    ```
+Query #4 - limit searchFields and use facets:
+{"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Rating":4.8}
+{"HotelId":"2","HotelName":"Old Century Hotel","Rating":3.6}
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
+{"HotelId":"1","HotelName":"Stay-Kay City Hotel","Rating":3.6}
 
-1. Create a file named *hotels_quickstart_index.json* and paste the following code into *hotels_quickstart_index.json*:
+Query #5 - Lookup document:
+HotelId: 3; HotelName: Gastronomic Landscape Hotel
+```
 
-    ```json
-    {
-    	"name": "hotels-quickstart",
-    	"fields": [
-    		{
-    			"name": "HotelId",
-    			"type": "Edm.String",
-    			"key": true,
-    			"filterable": true
-    		},
-    		{
-    			"name": "HotelName",
-    			"type": "Edm.String",
-    			"searchable": true,
-    			"filterable": false,
-    			"sortable": true,
-    			"facetable": false
-    		},
-    		{
-    			"name": "Description",
-    			"type": "Edm.String",
-    			"searchable": true,
-    			"filterable": false,
-    			"sortable": false,
-    			"facetable": false,
-    			"analyzerName": "en.lucene"
-    		},
-    		{
-    			"name": "Category",
-    			"type": "Edm.String",
-    			"searchable": true,
-    			"filterable": true,
-    			"sortable": true,
-    			"facetable": true
-    		},
-    		{
-    			"name": "Tags",
-    			"type": "Collection(Edm.String)",
-    			"searchable": true,
-    			"filterable": true,
-    			"sortable": false,
-    			"facetable": true
-    		},
-    		{
-    			"name": "ParkingIncluded",
-    			"type": "Edm.Boolean",
-    			"filterable": true,
-    			"sortable": true,
-    			"facetable": true
-    		},
-    		{
-    			"name": "LastRenovationDate",
-    			"type": "Edm.DateTimeOffset",
-    			"filterable": true,
-    			"sortable": true,
-    			"facetable": true
-    		},
-    		{
-    			"name": "Rating",
-    			"type": "Edm.Double",
-    			"filterable": true,
-    			"sortable": true,
-    			"facetable": true
-    		},
-    		{
-    			"name": "Address",
-    			"type": "Edm.ComplexType",
-    			"fields": [
-    				{
-    					"name": "StreetAddress",
-    					"type": "Edm.String",
-    					"filterable": false,
-    					"sortable": false,
-    					"facetable": false,
-    					"searchable": true
-    				},
-    				{
-    					"name": "City",
-    					"type": "Edm.String",
-    					"searchable": true,
-    					"filterable": true,
-    					"sortable": true,
-    					"facetable": true
-    				},
-    				{
-    					"name": "StateProvince",
-    					"type": "Edm.String",
-    					"searchable": true,
-    					"filterable": true,
-    					"sortable": true,
-    					"facetable": true
-    				},
-    				{
-    					"name": "PostalCode",
-    					"type": "Edm.String",
-    					"searchable": true,
-    					"filterable": true,
-    					"sortable": true,
-    					"facetable": true
-    				},
-    				{
-    					"name": "Country",
-    					"type": "Edm.String",
-    					"searchable": true,
-    					"filterable": true,
-    					"sortable": true,
-    					"facetable": true
-    				}
-    			]
-    		}
-    	],
-    	"suggesters": [
-    		{
-    			"name": "sg",
-    			"searchMode": "analyzingInfixMatching",
-    			"sourceFields": [
-    				"HotelName"
-    			]
-    		}
-    	]
-    }
-    ```
+## Understand the code
 
-1. Sign in to Azure with the following command:
+[!INCLUDE [understand code note](../understand-code-note.md)]
 
-    ```shell
-    az login
-    ```
+Now that you've run the code, let's break down the key steps:
 
-1. Run the JavaScript code with the following command:
+1. [Create a search client](#create-a-search-client)
+1. [Create a search index](#create-a-search-index)
+1. [Upload documents to the index](#upload-documents-to-the-index)
+1. [Query the index](#query-the-index)
 
-    ```shell
-    node index.js
-    ```
+### Create a search client
 
-## Explaining the code
+In `index.js`, you create two clients:
 
-### Create index
+- [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) creates the index.
+- [SearchClient](/javascript/api/@azure/search-documents/searchclient) loads and queries an existing index.
 
-The *hotels_quickstart_index.json* file defines how Azure AI Search works with the documents you load in the next step. Each field is identified by a `name` and have a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
+Both clients require the service endpoint and a credential for authentication. In this quickstart, you use [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential) for keyless authentication with Microsoft Entra ID.
 
-With our index definition in place, we want to import *hotels_quickstart_index.json* at the top of *index.js* so the main function can access the index definition.
+```javascript
+const credential = new DefaultAzureCredential();
+const indexClient = new SearchIndexClient(endpoint, credential);
+```
+
+### Create a search index
+
+This quickstart builds a hotels index that you load with hotel data and execute queries against. In this step, you import an index definition from a JSON file and create the index on your search service.
+
+The `hotels_quickstart_index.json` file defines the index schema, including the fields and their attributes. Each field is identified by a `name` and has a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `Address`, are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create).
+
+The following code imports `hotels_quickstart_index.json` at the top of `index.js` so the main function can access the index definition.
 
 ```javascript
 const indexDefinition = require('./hotels_quickstart_index.json');
 ```
 
-Within the main function, we then create a `SearchIndexClient`, which is used to create and manage indexes for Azure AI Search. 
-
-```javascript
-const indexClient = new SearchIndexClient(endpoint, new AzureKeyCredential(apiKey));
-```
-
-Next, we want to delete the index if it already exists. This operation is a common practice for test/demo code.
-
-We do this by defining a simple function that tries to delete the index.
+This quickstart deletes the index if it already exists, which is a common practice for test/demo code. The following function tries to delete the index.
 
 ```javascript
 async function deleteIndexIfExists(indexClient, indexName) {
@@ -560,7 +168,7 @@ async function deleteIndexIfExists(indexClient, indexName) {
 }
 ```
 
-To run the function, we extract the index name from the index definition and pass the `indexName` along with the `indexClient` to the `deleteIndexIfExists()` function.
+The following code extracts the index name from the index definition and passes the `indexName` along with the `indexClient` to the `deleteIndexIfExists()` function.
 
 ```javascript
 const indexName = indexDefinition["name"];
@@ -569,7 +177,7 @@ console.log('Checking if index exists...');
 await deleteIndexIfExists(indexClient, indexName);
 ```
 
-After that, we're ready to create the index with the `createIndex()` method.
+After that, you create the index with the `createIndex()` method.
 
 ```javascript
 console.log('Creating index...');
@@ -578,31 +186,25 @@ let index = await indexClient.createIndex(indexDefinition);
 console.log(`Index named ${index.name} has been created.`);
 ```
 
-### Load documents 
+### Upload documents to the index
 
-In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this case, we'll programmatically push the documents to the index.
+In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this quickstart, you programmatically push the documents to the index.
 
-Document inputs might be rows in a database, blobs in Blob storage, or, as in this sample, JSON documents on disk. Similar to what we did with the `indexDefinition`, we also need to import `hotels.json` at the top of *index.js* so that the data can be accessed in our main function.
+Document inputs might be rows in a database, blobs in Azure Blob Storage, or JSON documents on disk, as in this quickstart. Similar to the `indexDefinition`, you import `hotels.json` at the top of `index.js` so that the data can be accessed in the main function.
 
 ```javascript
 const hotelData = require('./hotels.json');
 ```
 
-To index data into the search index, we now need to create a `SearchClient`. While the `SearchIndexClient` is used to create and manage an index, the `SearchClient` is used to upload documents and query the index.
+To index data into the search index, you create a [SearchClient](/javascript/api/@azure/search-documents/searchclient). While `SearchIndexClient` creates and manages an index, `SearchClient` uploads documents and queries the index.
 
-There are two ways to create a `SearchClient`. The first option is to create a `SearchClient` from scratch:
-
-```javascript
- const searchClient = new SearchClient(endpoint, indexName, new AzureKeyCredential(apiKey));
-```
-
-Alternatively, you can use the `getSearchClient()` method of the `SearchIndexClient` to create the `SearchClient`:
+This quickstart obtains `SearchClient` from `SearchIndexClient` using [getSearchClient](/javascript/api/@azure/search-documents/searchindexclient#@azure-search-documents-searchindexclient-getsearchclient), which reuses the same credentials.
 
 ```javascript
 const searchClient = indexClient.getSearchClient(indexName);
 ```
 
-Now that the client is defined, upload the documents into the search index. In this case, we use the `mergeOrUploadDocuments()` method, which uploads the documents or merges them with an existing document if a document with the same key already exists.
+The following code uploads the documents into the search index using the `mergeOrUploadDocuments()` method, which uploads the documents or merges them with an existing document if a document with the same key already exists.
 
 ```javascript
 console.log('Uploading documents...');
@@ -611,17 +213,17 @@ let indexDocumentsResult = await searchClient.mergeOrUploadDocuments(hotelData['
 console.log(`Index operations succeeded: ${JSON.stringify(indexDocumentsResult.results[0].succeeded)}`);
 ```
 
-### Search an index
+### Query the index
 
-With an index created and documents uploaded, you're ready to send queries to the index. In this section, we send five different queries to the search index to demonstrate different pieces of query functionality available to you.
+With an index created and documents uploaded, you're ready to send queries to the index. This section sends five different queries to the search index to demonstrate different pieces of query functionality available to you.
 
-The queries are written in a `sendQueries()` function that we call in the main function as follows:
+The queries are written in a `sendQueries()` function called in the main function as follows:
 
 ```javascript
 await sendQueries(searchClient);
 ```
 
-Queries are sent using the `search()` method of `searchClient`. The first parameter is the search text and the second parameter specifies search options.
+The `search()` method of `searchClient` sends queries. The first parameter is the search text and the second parameter specifies search options.
 
 #### Query example 1
 
@@ -651,7 +253,7 @@ The remaining queries outlined below should also be added to the `sendQueries()`
 
 #### Query example 2
 
-In the next query, we specify the search term `"wifi"` and also include a filter to only return results where the state is equal to `'FL'`. Results are also ordered by the Hotel's `Rating`.
+The next query specifies the search term `"wifi"` and includes a filter to only return results where the state is equal to `'FL'`. Results are also ordered by the Hotel's `Rating`. A filter is a boolean expression evaluated over filterable fields in an index. Filter queries either include or exclude values. As such, there's no relevance score associated with a filter query.
 
 ```javascript
 console.log('Query #2 - Search with filter, orderBy, and select:');
@@ -670,7 +272,7 @@ for await (const result of searchResults.results) {
 
 #### Query example 3
 
-Next, the search is limited to a single searchable field using the `searchFields` parameter. This approach is a great option to make your query more efficient if you know you're only interested in matches in certain fields. 
+The third query limits the search to a single searchable field using the `searchFields` parameter. This approach is a great option to make your query more efficient if you know you're only interested in matches in certain fields.
 
 ```javascript
 console.log('Query #3 - Limit searchFields:');
@@ -679,20 +281,18 @@ searchOptions = {
     searchFields: ["HotelName"]
 };
 
-searchResults = await searchClient.search("Sublime Palace", searchOptions);
+searchResults = await searchClient.search("sublime cliff", searchOptions);
 for await (const result of searchResults.results) {
     console.log(`${JSON.stringify(result.document)}`);
 }
-console.log();
 ```
-
 
 #### Query example 4
 
-Another common option to include in a query is `facets`. Facets allow you to build out filters on your UI to make it easy for users to know what values they can filter down to.
+Another common option to include in a query is `facets`. Facets allow you to build out filters on your UI to make it easy for users to know what values they can filter down to. This query also limits the search to the `HotelName` field.
 
 ```javascript
-console.log('Query #4 - Use facets:');
+console.log('Query #4 - limit searchFields and use facets:');
 searchOptions = {
     facets: ["Category"],
     select: ["HotelId", "HotelName", "Rating"],
@@ -707,7 +307,7 @@ for await (const result of searchResults.results) {
 
 #### Query example 5
 
-The final query uses the `getDocument()` method of the `searchClient`. This allows you to efficiently retrieve a document by its key. 
+The final query uses the `getDocument()` method of the `searchClient`. This allows you to efficiently retrieve a document by its key.
 
 ```javascript
 console.log('Query #5 - Lookup document:');
@@ -717,6 +317,6 @@ console.log(`HotelId: ${documentResult.HotelId}; HotelName: ${documentResult.Hot
 
 #### Summary of queries
 
-The previous queries show multiple ways of matching terms in a query: full-text search, filters, and autocomplete.
+The previous queries show multiple ways of matching terms in a query: full-text search, filters, and document lookup.
 
-Full text search and filters are performed using the `searchClient.search` method. A search query can be passed in the `searchText` string, while a filter expression can be passed in the `filter` property of the `SearchOptions` class. To filter without searching, just pass "*" for the `searchText` parameter of the `search` method. To search without filtering, leave the `filter` property unset, or don't pass in a `SearchOptions` instance at all.
+The `searchClient.search` method performs full-text search and filters. You can pass a search query in the `searchText` string, while you pass a filter expression in the `filter` property of the `SearchOptions` class. To filter without searching, just pass `"*"` for the `searchText` parameter of the `search` method. To search without filtering, leave the `filter` property unset, or don't pass in a `SearchOptions` instance at all.

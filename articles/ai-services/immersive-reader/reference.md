@@ -9,7 +9,7 @@ ms.service: azure-ai-immersive-reader
 ms.custom: devx-track-js
 ms.topic: reference
 ms.date: 02/28/2024
-ms.author: sharmas
+ms.author: michtho
 ---
 
 # Immersive Reader JavaScript SDK reference (v1.4)

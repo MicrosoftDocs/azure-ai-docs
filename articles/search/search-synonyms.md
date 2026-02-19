@@ -2,7 +2,6 @@
 title: Add synonyms to expand queries for equivalent terms
 titleSuffix: Azure AI Search
 description: Create a synonym map to expand the scope of a search query over an Azure AI Search index. The query can search on equivalent terms provided in the synonym map, even if the query doesn't explicitly include the term.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Add synonyms in Azure AI Search
@@ -36,7 +36,7 @@ To create a synonym map, do so programmatically. the Azure portal doesn't suppor
 Use the [Create Synonym Map (REST API)](/rest/api/searchservice/synonym-maps/create) to create a synonym map.
 
 ```http
-POST /synonymmaps?api-version=2024-07-01
+POST /synonymmaps?api-version=2025-09-01
 {
     "name": "geo-synonyms",
     "format": "solr",
@@ -155,7 +155,7 @@ If the synonym map exists on the search service, it's used on the next query, wi
 Use the [Create or Update Index (REST API)](/rest/api/searchservice/indexes/create-or-update) to modify a field definition.
 
 ```http
-PUT /indexes?api-version=2024-07-01
+PUT /indexes?api-version=2025-09-01
 {
     "name":"hotels-sample-index",
     "fields":[
@@ -214,7 +214,7 @@ SearchIndex index = new SearchIndex(indexName)
 await indexClient.CreateIndexAsync(index);
 ```
 
-For more examples, see the [quickstart/v11 on GitHub](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/v11).
+For more examples, see [azure-search-dotnet-samples/quickstart-keyword-search/v11](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-keyword-search/AzureSearchQuickstart).
 
 ### [**Other SDKs**](#tab/other-sdks-assign)
 

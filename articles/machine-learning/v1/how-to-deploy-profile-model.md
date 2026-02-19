@@ -8,9 +8,9 @@ ms.subservice: inferencing
 ms.date: 03/07/2025
 ms.topic: how-to
 zone_pivot_groups: aml-control-methods
-ms.reviewer: None
-author: Blackmist
-ms.author: larryfr
+ms.reviewer: jturuk
+author: s-polly
+ms.author: scottpolly
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 ---
 

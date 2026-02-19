@@ -5,10 +5,10 @@ description: Create and run machine learning pipelines to create and manage the 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.reviewer: None
+ms.reviewer: jturuk
 author: lgayhardt
-ms.author: lagayhar
-ms.date: 10/21/2021
+ms.author: scottpolly
+ms.date: 02/18/2026
 ms.topic: how-to
 ms.custom: UpdateFrequency5, sdkv1
 ---
@@ -25,11 +25,11 @@ This article isn't a tutorial. For guidance on creating your first pipeline, see
 
 While you can use a different kind of pipeline called an [Azure Pipeline](/azure/devops/pipelines/targets/azure-machine-learning?context=azure%2fmachine-learning%2fservice%2fcontext%2fml-context&tabs=yaml) for CI/CD automation of ML tasks, that type of pipeline isn't stored in your workspace. [Compare these different pipelines](../concept-ml-pipelines.md#which-azure-pipeline-technology-should-i-use).
 
-The ML pipelines you create are visible to the members of your Azure Machine Learning [workspace](../how-to-manage-workspace.md). 
+Members of your Azure Machine Learning [workspace](../how-to-manage-workspace.md) can see the ML pipelines you create. 
 
 ML pipelines execute on compute targets (see [What are compute targets in Azure Machine Learning](../concept-compute-target.md)). Pipelines can read and write data to and from supported [Azure Storage](/azure/storage/) locations.
 
-If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Prerequisites
 
@@ -124,14 +124,14 @@ You can create an Azure Machine Learning compute for running your steps. The cod
 from azureml.core.compute import ComputeTarget, AmlCompute
 
 compute_name = "aml-compute"
-vm_size = "STANDARD_NC6"
+vm_size = "STANDARD_NC4AS_T4_V3"
 if compute_name in ws.compute_targets:
     compute_target = ws.compute_targets[compute_name]
     if compute_target and type(compute_target) is AmlCompute:
         print('Found compute target: ' + compute_name)
 else:
     print('Creating a new compute target...')
-    provisioning_config = AmlCompute.provisioning_configuration(vm_size=vm_size,  # STANDARD_NC6 is GPU-enabled
+    provisioning_config = AmlCompute.provisioning_configuration(vm_size=vm_size,  # STANDARD_NC4AS_T4_V3 is GPU-enabled
                                                                 min_nodes=0,
                                                                 max_nodes=4)
     # create the compute target
@@ -162,7 +162,7 @@ aml_run_config.target = compute_target
 
 USE_CURATED_ENV = True
 if USE_CURATED_ENV :
-    curated_environment = Environment.get(workspace=ws, name="AzureML-sklearn-0.24-ubuntu18.04-py37-cpu")
+    curated_environment = Environment.get(workspace=ws, name="AzureML-sklearn-1.5-ubuntu22.04-py39-cpu")
     aml_run_config.environment = curated_environment
 else:
     aml_run_config.environment.python.user_managed_dependencies = False
@@ -296,8 +296,7 @@ step = PythonScriptStep(name="Hello World",
                         script_name="hello_world.py",
                         compute_target=aml_compute,
                         source_directory=source_directory,
-                        allow_reuse=False,
-                        hash_paths=['hello_world.ipynb'])
+                        allow_reuse=False)
 ```
 
 > [!Note]
@@ -344,7 +343,7 @@ from azureml.pipeline.core import PipelineParameter
 pipeline_param = PipelineParameter(name="pipeline_arg", default_value="default_val")
 train_step = PythonScriptStep(script_name="train.py",
                             arguments=["--param1", pipeline_param],
-                            target=compute_target,
+                            compute_target=compute_target,
                             source_directory=project_folder)
 ```
 

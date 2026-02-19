@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 02/28/2023
 ms.custom: devx-track-java, linux-related-content
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/java.md)]

@@ -1,14 +1,14 @@
 ---
 title: Neural text to speech containers - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Install and run neural text to speech containers with Docker to perform speech synthesis and more on-premises.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 4/28/2025
-ms.author: eur
+ms.date: 12/29/2025
+ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
 #Customer intent: As a developer, I want to learn how to install and run neural text to speech containers with Docker.
@@ -31,7 +31,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:latest`<br/><br/>The `latest` tag pulls the `en-US` locale and `en-us-arianeural` voice. |
-| 3.10.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:3.10.0-amd64-en-us-arianeural` |
+| 3.11.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:3.11.0-amd64-en-us-arianeural` |
 
 All tags, except for `latest`, are in the following format and are case sensitive:
 
@@ -46,20 +46,20 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
   "name": "azure-cognitive-services/speechservices/neural-text-to-speech",
   "tags": [
     <--redacted for brevity-->
-    "3.10.0-amd64-tr-tr-emelneural",
-    "3.10.0-amd64-uk-ua-ostapneural",
-    "3.10.0-amd64-zh-cn-xiaochenneural-preview",
-    "3.10.0-amd64-zh-cn-xiaohanneural",
-    "3.10.0-amd64-zh-cn-xiaomoneural",
-    "3.10.0-amd64-zh-cn-xiaoqiuneural-preview",
-    "3.10.0-amd64-zh-cn-xiaoruineural",
-    "3.10.0-amd64-zh-cn-xiaoshuangneural-preview",
-    "3.10.0-amd64-zh-cn-xiaoxiaoneural",
-    "3.10.0-amd64-zh-cn-xiaoyanneural-preview",
-    "3.10.0-amd64-zh-cn-xiaoyouneural",
-    "3.10.0-amd64-zh-cn-yunxineural",
-    "3.10.0-amd64-zh-cn-yunyangneural",
-    "3.10.0-amd64-zh-cn-yunyeneural",
+    "3.11.0-amd64-tr-tr-emelneural",
+    "3.11.0-amd64-uk-ua-ostapneural",
+    "3.11.0-amd64-zh-cn-xiaochenneural-preview",
+    "3.11.0-amd64-zh-cn-xiaohanneural",
+    "3.11.0-amd64-zh-cn-xiaomoneural",
+    "3.11.0-amd64-zh-cn-xiaoqiuneural-preview",
+    "3.11.0-amd64-zh-cn-xiaoruineural",
+    "3.11.0-amd64-zh-cn-xiaoshuangneural-preview",
+    "3.11.0-amd64-zh-cn-xiaoxiaoneural",
+    "3.11.0-amd64-zh-cn-xiaoyanneural-preview",
+    "3.11.0-amd64-zh-cn-xiaoyouneural",
+    "3.11.0-amd64-zh-cn-yunxineural",
+    "3.11.0-amd64-zh-cn-yunyangneural",
+    "3.11.0-amd64-zh-cn-yunyeneural",
     "latest"
   ]
 }
@@ -117,7 +117,7 @@ This command:
 
 # [Disconnected neural text to speech](#tab/disconnected)
 
-To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Azure AI services documentation.
+To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../containers/disconnected-containers.md) in the Foundry Tools documentation.
 
 If you're approved to run the container disconnected from the internet, the following example shows the formatting of the `docker run` command to use, with placeholder values. Replace these placeholder values with your own values.
 
@@ -152,7 +152,7 @@ Placeholder | Value | Format or example |
  `{MEMORY_SIZE}` | The appropriate size of memory to allocate for your container.<br/><br/>For example: `4g` |
 | `{NUMBER_CPUS}` | The appropriate number of CPUs to allocate for your container.<br/><br/>For example: `4` |
 | `{LICENSE_MOUNT}` | The path where the license is located and mounted.<br/><br/>For example: `/host/license:/path/to/license/directory` |
-| `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation. |
+| `{OUTPUT_PATH}` | The output path for logging.<br/><br/>For example: `/host/output:/path/to/output/directory`<br/><br/>For more information, see [usage records](../containers/disconnected-containers.md#usage-records) in the Foundry Tools documentation. |
 | `{CONTAINER_LICENSE_DIRECTORY}` | Location of the license folder on the container's local filesystem.<br/><br/>For example: `/path/to/license/directory` |
 | `{CONTAINER_OUTPUT_DIRECTORY}` | Location of the output folder on the container's local filesystem.<br/><br/>For example: `/path/to/output/directory` |
 
@@ -200,7 +200,7 @@ For example, a model that was downloaded via the `latest` tag (defaults to "en-U
 </speak>
 ```
 
-## Next steps
+## Related content
 
 * See the [Speech containers overview](speech-container-overview.md)
 * Review [configure containers](speech-container-configuration.md) for configuration settings

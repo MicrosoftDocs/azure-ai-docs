@@ -3,14 +3,19 @@ title: Set up authentication (v1)
 titleSuffix: Azure Machine Learning
 description: Learn how to set up and configure authentication for various resources and workflows in Azure Machine Learning SDK v1.
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
-ms.reviewer: roastala
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: shshubhe
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 06/13/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, has-adal-ref, subject-rbac-steps, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - has-adal-ref
+  - subject-rbac-steps
+  - sdkv1
+  - sfi-ropc-nochange
 ---
 
 # Set up authentication for Azure Machine Learning resources and workflows using SDK v1

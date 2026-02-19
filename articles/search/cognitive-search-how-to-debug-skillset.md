@@ -2,15 +2,16 @@
 title: Debug a skillset
 titleSuffix: Azure AI Search
 description: Learn how to troubleshoot Azure AI Search skillset errors and issues by using a debug session in Azure portal.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 01/31/2026
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 05/08/2025
+  - sfi-image-nochange
 ---
 
 # Debug an Azure AI Search skillset in Azure portal
@@ -29,25 +30,25 @@ For background on how a debug session works, see [Debug sessions in Azure AI Sea
 
 + An existing enrichment pipeline, including a data source, a skillset, an indexer, and an index. 
 
-## Security and permissions
-
-+ To save a debug session to Azure storage, the search service identity must have **Storage Blob Data Contributor** permissions on Azure Storage. Otherwise, plan on choosing a full access connection string for the debug session connection to Azure Storage.
-
-+ If the Azure Storage account is behind a firewall, configure it to [allow search service access](search-indexer-howto-access-ip-restricted.md).
-
 ## Limitations
 
 Debug sessions work with all generally available [indexer data sources](search-data-sources-gallery.md) and most preview data sources, with the following exceptions:
 
-+ SharePoint Online indexer.
++ SharePoint indexer.
 
 + Azure Cosmos DB for MongoDB indexer.
 
-+ For the Azure Cosmos DB for NoSQL, if a row fails during index and there's no corresponding metadata, the debug session might not pick the correct row.
++ For Azure Cosmos DB for NoSQL, if a row fails during index and there's no corresponding metadata, the debug session might not pick the correct row.
 
-+ For the SQL API of Azure Cosmos DB, if a partitioned collection was previously non-partitioned, the debug session won't find the document.
++ For the NoSQL API of Azure Cosmos DB, if a partitioned collection was previously non-partitioned, the debug session won't find the document.
 
-+ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-howto-managed-identities-data-sources.md).
++ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-how-to-managed-identities.md).
+
+## Security and permissions
+
++ To save a debug session to Azure Storage, the search service identity must have **Storage Blob Data Contributor** permissions on Azure Storage. Otherwise, plan on choosing a full access connection string for the debug session connection to Azure Storage.
+
++ If the Azure Storage account is behind a firewall, configure it to [allow search service access](search-indexer-howto-access-ip-restricted.md).
 
 ## Create a debug session
 
@@ -65,9 +66,17 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 1. In **Document to debug**, choose the first document in the index or select a specific document. If you select a specific document, depending on the data source, you're asked for a URI or a row ID.
 
-   If your specific document is a blob, provide the blob URI. You can find the URI in the blob property page in the Azure portal.
+   For a specific document in Blob storage: provide the blob URI. You can find the URI in the blob property page in the Azure portal.
 
    :::image type="content" source="media/cognitive-search-debug/copy-blob-url.png" lightbox="media/cognitive-search-debug/copy-blob-url.png" alt-text="Screenshot of the URI property in blob storage." border="true":::
+
+   For a specific document in Azure CosmosDB for NoSQL: provide the document key in the search index for the value, and the ID of the entity in Cosmos DB for the partition key.
+
+   :::image type="content" source="media/cognitive-search-debug/cosmos-db-source.png" lightbox="media/cognitive-search-debug/cosmos-db-source.png" alt-text="Screenshot of the properties in Cosmos DB." border="true":::
+
+   Here's the debug session configuration for the Cosmos DB example.
+
+   :::image type="content" source="media/cognitive-search-debug/cosmos-db-document.png" lightbox="media/cognitive-search-debug/cosmos-db-document.png" alt-text="Screenshot of the Cosmos DB properties in debug session configuration." border="true":::
 
 1. In **Storage account**, choose a general-purpose storage account for caching the debug session.
 
@@ -131,7 +140,7 @@ If skills produce output but the search index is empty, check the field mappings
 
 Select one of the mapping options and expand the details view to review source and target definitions.
 
-+ [**Projection Mappings**](index-projections-concept-intro.md) are found in skillsets that provide integrated vectorization, such as the skills created by the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md). These mappings determine parent-child (chunk) field mappings and whether a secondary index is created for just the chunked content
++ [**Projection Mappings**](index-projections-concept-intro.md) are found in skillsets that provide integrated vectorization, such as the skills created by the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md). These mappings determine parent-child (chunk) field mappings and whether a secondary index is created for just the chunked content
 
 + [**Output Field Mappings**](cognitive-search-output-field-mapping.md) are found in indexers and are used when skillsets invoke built-in or custom skills. These mappings are used to set the data path from a node in the enrichment tree to a field in the search index. For more information about paths, see [enrichment node path syntax](cognitive-search-concept-annotations-syntax.md). 
 

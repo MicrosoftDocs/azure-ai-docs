@@ -1,22 +1,22 @@
 ---
-title: How to use image and audio in chat completions with Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn how to process audio and images with chat completions models with Azure AI Foundry Models
-manager: scottpolly
-author: mopeakande
-reviewer: santiagxf
-ms.service: azure-ai-model-inference
+title: How to use image and audio in chat completions with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to process audio and images with chat completions models with Microsoft Foundry Models
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 05/29/2025
+ms.date: 08/27/2025
 ms.author: mopeakande
-ms.reviewer: fasantia
+author: msakande
+ms.reviewer: balapv
+reviewer: balapv
 ms.custom: references_regions, tool_generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with _multimodal_ models deployed in Azure AI Foundry Models. Apart from text input, multimodal models can accept other input types, such as images or audio input.
+This article explains how to use chat completions API with _multimodal_ models deployed in Microsoft Foundry Models. Apart from text input, multimodal models can accept other input types, such as images or audio input.
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@ from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 
 client = ChatCompletionsClient(
-    endpoint="https://<resource>.services.ai.azure.com/api/models",
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
     model="Phi-4-multimodal-instruct"
 )
@@ -56,7 +56,7 @@ from azure.ai.inference import ChatCompletionsClient
 from azure.identity import DefaultAzureCredential
 
 client = ChatCompletionsClient(
-    endpoint="https://<resource>.services.ai.azure.com/api/models",
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=DefaultAzureCredential(),
     model="Phi-4-multimodal-instruct"
 )
@@ -88,7 +88,7 @@ Data URLs are of the form `data:image/{image_format};base64,{image_data_base64}`
 Now, create a chat completion request with the image:
 
 ```python
-from azure.ai.inference.models import TextContentItem, ImageContentItem, ImageUrl
+from azure.ai.inference.models import SystemMessage, UserMessage, TextContentItem, ImageContentItem, ImageUrl
 response = client.complete(
     messages=[
         SystemMessage("You are a helpful assistant that can generate responses based on images."),
@@ -135,7 +135,7 @@ Some models support only one image for each turn in the chat conversation and on
 The model can read the content from an **accessible cloud location** by passing the URL as an input. This approach requires the URL to be public and do not require specific handling.
 
 ```python
-from azure.ai.inference.models import TextContentItem, ImageContentItem, ImageUrl
+from azure.ai.inference.models import SystemMessage, UserMessage, TextContentItem, ImageContentItem, ImageUrl
 
 image_url = "https://news.microsoft.com/source/wp-content/uploads/2024/04/The-Phi-3-small-language-models-with-big-potential-1-1900x1069.jpg"
 
@@ -162,6 +162,8 @@ from azure.ai.inference.models import (
     AudioContentItem,
     InputAudio,
     AudioContentFormat,
+    SystemMessage,
+    UserMessage
 )
 
 response = client.complete(

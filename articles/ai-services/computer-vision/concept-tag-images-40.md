@@ -1,15 +1,13 @@
 ---
 title: Content tags - Image Analysis 4.0
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to generate image tags for a wide variety of objects by using the Image Analysis 4.0 API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 11/01/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.topic: concept-article
+ms.date: 01/30/2026
 ms.author: pafarley
 ---
 
@@ -17,14 +15,14 @@ ms.author: pafarley
 
 Image Analysis can return content tags for thousands of recognizable objects, living beings, scenery, and actions that appear in images. Tagging isn't limited to the main subject, such as a person in the foreground, but also includes the setting (indoor or outdoor), furniture, tools, plants, animals, accessories, gadgets, and so on. Tags aren't organized as a taxonomy and don't have inheritance hierarchies. When tags are ambiguous or not common knowledge, the API response provides hints to clarify the meaning of the tag in the context of a known setting.
 
-Try out the image tagging feature quickly and easily in your browser by using Azure AI Vision Studio.
+Try out the image tagging feature quickly and easily in your browser by using Azure Vision Studio.
 
 > [!div class="nextstepaction"]
 > [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
 ## Image tagging example
 
-The following JSON response illustrates what Azure AI Vision returns when tagging visual features detected in the example image.
+The following JSON response illustrates what Azure Vision returns when tagging visual features detected in the example image.
 
 :::image type="content" source="images/house_yard.png" alt-text="Photograph of a blue house and the front yard.":::
 

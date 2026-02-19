@@ -5,47 +5,50 @@ description: 'Prebuilt Docker images for inference (scoring) in Azure Machine Le
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.author: mopeakande
-author: msakande
-ms.date: 04/08/2024
+ms.author: scottpolly
+author: s-polly
+ms.date: 09/24/2025
 ms.topic: concept-article
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.custom: deploy, docker, prebuilt
+ai-usage: ai-assisted
 ---
 
-# Prebuilt Docker images for inference
+# Docker images for inference
 
-Prebuilt Docker container images for inference are used when deploying a model with Azure Machine Learning.  The images are prebuilt with popular machine learning frameworks and Python packages. You can also extend the packages to add other packages by using one of the following methods:
+Azure Machine Learning provides prebuilt Docker images for inference (scoring). These images include popular machine learning frameworks and commonly used Python packages. Extend an image to add more packages if needed.
 
-## Why should I use prebuilt images?
+## Why use prebuilt images
 
-* Reduces model deployment latency
-* Improves model deployment success rate
-* Avoids unnecessary image build during model deployment
-* Includes only the required dependencies and access right in the image/container
+Using prebuilt images helps in several ways:
 
-## List of prebuilt Docker images for inference 
+- Reduces model deployment latency
+- Increases deployment success rate
+- Avoids building container images during deployment
+- Keeps the image small by containing only the required dependencies and minimal access rights
+
+## List of prebuilt Docker images for inference
 
 > [!IMPORTANT]
-> The list provided in the following table includes only the inference Docker images that Azure Machine Learning **currently supports**.
+> The list in the following table includes only the inference Docker images that Azure Machine Learning **currently supports**.
 
-* All the Docker images run as non-root user.
-* We recommend using the `latest` tag for Docker images. Prebuilt Docker images for inference are published to the Microsoft container registry (MCR). For information on how to query the list of tags available, see the [MCR GitHub repository](https://github.com/microsoft/ContainerRegistry#browsing-mcr-content).
-* If you want to use a specific tag for any inference Docker image, Azure Machine Learning supports tags that range from `latest` to *six months* older than `latest`.  
+* All images run as non-root users.
+* Use the `latest` tag. Prebuilt images are published to the Microsoft Container Registry (MCR). To see available tags, go to the [MCR GitHub repository](https://github.com/microsoft/ContainerRegistry#browsing-mcr-content).
+* If you need a specific tag, Azure Machine Learning supports tags that are up to *six months* older than `latest`.
 
 **Inference minimal base images**
 
-Framework version | CPU/GPU | Pre-installed packages | MCR Path
- --- | --- | --- | --- |
+Framework version | CPU/GPU | Pre-installed packages | MCR path
+--- | --- | --- | ---
 NA | CPU | NA | `mcr.microsoft.com/azureml/minimal-ubuntu22.04-py39-cpu-inference:latest`
 NA | GPU | NA | `mcr.microsoft.com/azureml/minimal-ubuntu22.04-py39-cuda11.8-gpu-inference:latest`
 NA | CPU | NA | `mcr.microsoft.com/azureml/minimal-py312-inference:latest`
 
 > [!NOTE]
-> Azure Machine Learning supports [Curated environments](resource-curated-environments.md). You can [browse curated environments](how-to-manage-environments-in-studio.md#browse-curated-environments) and add filter for `Tags: Inferencing`.
+> Azure Machine Learning supports [curated environments](resource-curated-environments.md). To browse curated environments in Studio, go to [Manage environments in Studio](how-to-manage-environments-in-studio.md#browse-curated-environments) and apply the filter `Tags: Inferencing`.
 
 ## Related content
 
 * [GitHub examples of how to use inference prebuilt Docker images](https://github.com/Azure/azureml-examples/tree/main/cli/endpoints/online/custom-container)
-* [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
-* [Use a custom container to deploy a model to an online endpoint](how-to-deploy-custom-container.md)
+* Learn how to [deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
+* Discover how to [use a custom container to deploy a model to an online endpoint](how-to-deploy-custom-container.md).

@@ -1,8 +1,8 @@
 ---
 title: Azure AI SDK for JavaScript
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Provides an overview with links to available Azure AI client libraries and packages for JavaScript.
-author: eric-urban
+author: laujan
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
@@ -15,7 +15,7 @@ ms.author: lajanuar
 | Service | Description | Reference documentation |
 | --- | --- | --- |
 | ![Azure AI Search icon](~/reusable-content/ce-skilling/azure/media/ai-services/search.svg) [Azure AI Search](/azure/search/) | Bring AI-powered cloud search to your mobile and web apps. | &bullet;&NonBreakingSpace;[Azure AI Search SDK for JavaScript](/javascript/api/overview/azure/search-documents-readme?view=azure-node-latest&preserve-view=true) <br><br>&bullet;&NonBreakingSpace;[Azure AI Search npm package](https://www.npmjs.com/package/@azure/search-documents/v/12.0.0?activeTab=readme)  |
-| ![Azure OpenAI in Azure AI Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../../../openai/index.yml) | Perform a wide variety of natural language tasks. |  &bullet;&NonBreakingSpace; [Azure OpenAI SDK for JavaScript](/javascript/api/overview/azure/openai?view=azure-node-latest&preserve-view=true)<br><br>&bullet;&NonBreakingSpace;[Azure OpenAI npm package](https://www.npmjs.com/package/@azure/openai/v/1.0.0-beta.11) |
+| ![Azure OpenAI in Microsoft Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../../../../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. |  &bullet;&NonBreakingSpace; [Azure OpenAI SDK for JavaScript](/javascript/api/overview/azure/openai?view=azure-node-latest&preserve-view=true)<br><br>&bullet;&NonBreakingSpace;[Azure OpenAI npm package](https://www.npmjs.com/package/@azure/openai/v/1.0.0-beta.11) |
 | ![Bot service icon](~/reusable-content/ce-skilling/azure/media/ai-services/bot-services.svg) [Bot Service](/composer/) | Create bots and connect them across channels. | &bullet;&NonBreakingSpace;[Bot Service SDK for JavaScript](https://github.com/Microsoft/botbuilder-js?tab=readme-ov-file)<br><br>&bullet;&NonBreakingSpace;[Bot Builder npm package)](https://github.com/Microsoft/botbuilder-js#packages)  |
 | ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](../../../content-safety/index.yml) | Detect harmful content in applications and services.| &bullet;&NonBreakingSpace;[Content Safety SDK for JavaScript](/javascript/api/%40azure-rest/ai-content-safety/?view=azure-node-latest&preserve-view=true)<br><br>&bullet;&NonBreakingSpace;[Content Safety npm package](https://www.npmjs.com/package/@azure-rest/ai-content-safety/v/1.0.0-beta.1) |
 | ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](../../../custom-vision-service/index.yml) | Customize image recognition for your applications and models. |&bullet;&NonBreakingSpace;[Custom Vision SDK for JavaScript (prediction)](/javascript/api/%40azure/cognitiveservices-customvision-prediction/?view=azure-node-latest&preserve-view=true) <br><br>&bullet;&NonBreakingSpace;[Custom Vision npm package (prediction)](https://www.npmjs.com/package/@azure/cognitiveservices-customvision-prediction) <br><br>&bullet;&NonBreakingSpace;[Custom Vision SDK for JavaScript (training)](/javascript/api/%40azure/cognitiveservices-customvision-training/?view=azure-node-latest&preserve-view=true)<br><br>&bullet;&NonBreakingSpace;[Custom Vision npm package (training)](https://www.npmjs.com/package/@azure/cognitiveservices-customvision-training)  |

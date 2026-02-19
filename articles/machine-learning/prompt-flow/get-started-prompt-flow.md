@@ -5,14 +5,16 @@ description: Learn how to set up, create, evaluate, and deploy a prompt flow in 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
+ms.topic: how-to
+author: lgayhardt
+ms.author: lagayhar
+ms.reviewer: sooryar 
+ms.date: 07/17/2025
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: tutorial
-author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: yijunzhang
-ms.date: 10/03/2024
+  - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Get started with prompt flow
@@ -30,6 +32,9 @@ This article walks you through the main user journey of using prompt flow in Azu
 ## Set up a connection
 
 A connection helps securely store and manage secret keys or other sensitive credentials required for interacting with Large Language Models (LLM) and other external tools such as Azure Content Safety. Connection resources are shared with all members in the workspace.
+
+> [!NOTE]
+> The LLM tool in prompt flow does not support reasoning models (such as OpenAI o1 or o3). For reasoning model integration, use the Python tool to call the model APIs directly. For more information, see [Call a reasoning model from the Python tool](tools-reference/python-tool.md#call-a-reasoning-model-from-the-python-tool).. 
 
 1. To check if you already have an Azure OpenAI connection, select **Prompt flow** from the Azure Machine Learning studio left menu and then select the **Connections** tab on the **Prompt flow** screen.
 
@@ -49,7 +54,7 @@ A connection helps securely store and manage secret keys or other sensitive cred
 
    :::image type="content" source="./media/get-started-prompt-flow/create-aoai-connection.png" alt-text="Screenshot of the chat playground showing the Key and Endpoint for an Azure OpenAI resource." lightbox = "./media/get-started-prompt-flow/create-aoai-connection.png":::
 
-   For information about Microsoft Entra ID authentication, see [How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication](/azure/ai-services/openai/how-to/managed-identity).
+   For information about Microsoft Entra ID authentication, see [How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication](/azure/ai-services/openai/how-to/managed-identity).
 
 1. After you fill out all fields, select **Save** to create the connection.
 
@@ -63,7 +68,7 @@ In the **Flows** tab of the **Prompt flow** home page, select **Create** to crea
 
 In the **Explore gallery**, you can browse the built-in samples and select **View detail** on any tile to preview whether it's suitable for your scenario.
 
-This tutorial uses the **Web Classification** sample to walk through the main user journey. Web Classification is a flow demonstrating multiclass classification with a LLM. Given a URL, the flow classifies the URL into a web category with just a few shots, simple summarization, and classification prompts. For example, given a URL `https://www.imdb.com`, it classifies the URL into `Movie`.
+This tutorial uses the **Web Classification** sample to walk through the main user journey. Web Classification is a flow demonstrating multiclass classification with an LLM. Given a URL, the flow classifies the URL into a web category with just a few shots, simple summarization, and classification prompts. For example, given a URL `https://www.imdb.com`, it classifies the URL into `Movie`.
 
 To clone the sample, select **Clone** on the **Web Classification** tile.
 

@@ -1,24 +1,30 @@
 ---
-title: Set up your environment for Azure AI Foundry Agent Service
-titleSuffix: Azure AI Foundry
+title: Set up your environment for Foundry Agent Service
+titleSuffix: Microsoft Foundry
 description: Use this guide to set up your agent environment
 manager: nitinme
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda 
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 06/18/2025
+ms.date: 02/11/2026
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Set up your environment
 
-Creating your first agent with Azure AI Foundry Agent Service is a two-step process: 
-1. Set up your agent environment.
-1. Create and configure your agent using either the SDK of your choice or the Azure Foundry Portal. 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
-Use this article to learn more about setting up your agent environment.
+In this article, you deploy the infrastructure needed to create agents with Foundry Agent Service. After completing this setup, you can create and configure agents using either the SDK of your choice or the Foundry portal.
+
+Creating your first agent is a two-step process:
+
+1. Set up your agent environment (this article).
+1. Create and configure your agent.
 
 ### Required permissions 
 
@@ -29,23 +35,23 @@ Use this article to learn more about setting up your agent environment.
 | Create and edit agents                                                 | Azure AI User                    |
 
 ## Set up your agent environment
-To get started, you need an Azure AI Foundry resource and a Foundry project.  
+To get started, you need a Microsoft Foundry resource and a Foundry project.  
 Agents are created within a specific project, and each project acts as an isolated workspace. This means:
 * All agents in the same project share access to the same file storage, thread storage (conversation history), and search indexes.
 * Data is isolated between projects. Agents in one project cannot access resources from another.
-Projects are currently the unit of sharing and isolation in Foundry. See the [what is AI foundry](../../ai-foundry/what-is-azure-ai-foundry.md) article for more information on Foundry projects.
+Projects are currently the unit of sharing and isolation in Foundry. See the [what is AI foundry](../../ai-foundry/what-is-foundry.md) article for more information on Foundry projects.
 
 ### Prerequisites 
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
-* If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Azure AI Foundry Agent Service, see [Azure AI Foundry Agent Service RBAC roles](../concepts/rbac-azure-ai-foundry.md).
+* If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Agent Service, see [Agent Service RBAC roles](../concepts/rbac-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
 
 ### Choose your setup
-Azure AI Foundry Agent Service offers three environment configuration modes to suit different needs: 
+Agent Service offers three environment configuration modes to suit different needs: 
 
 - **Basic Setup**:  
 
@@ -61,6 +67,11 @@ Azure AI Foundry Agent Service offers three environment configuration modes to s
 
 ### Compare setup options
 
+> [!NOTE]
+> Private Network Isolation in the table below refers to Secured Agent outbound communication. Basic setup doesn't apply, and you can use Private Network Isolation for your Agents with Standard Setup only.
+> 
+> Inbound secured communication can be applied to all of setups below, by adding a private endpoint and disabling the inbound public access for your Foundry Account.
+
 | Use Cases                                                                | Basic Setup | Standard Setup with Public Networking | Standard Setup with Private Networking |
 |--------------------------------------------------------------------------|-------------|----------------------------------------|----------------------------------------|
 | Get started quickly without managing resources                          | ✅          |                                        |                                        |
@@ -69,14 +80,15 @@ Azure AI Foundry Agent Service offers three environment configuration modes to s
 | Private Network Isolation (Bring your own virtual network)              |             |                                        | ✅                                      |
 
 ### Deployment options
-To customize these templates, see [use your own resources](how-to\use-your-own-resources.md). 
 
-If you want support for Private Network Isolation see [network-secured setup](how-to\virtual-networks.md) for more information on how to bring your own virtual network.
+To customize these templates, see [use your own resources](how-to/use-your-own-resources.md).
+
+If you want support for Private Network Isolation, see [network-secured setup](how-to/virtual-networks.md) for more information on how to bring your own virtual network.
 
 | Description and Autodeploy  |  Diagram (click to zoom in) |
 |-----------------------------|------------------------------|
-| Deploy a basic agent setup that uses **Managed Identity** for authentication. <br> An account and project are created. <br> A GPT-4o model is deployed. <br> A Microsoft-managed Key Vault is used by default. <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Fsamples%2Fmicrosoft%2Finfrastructure-setup%2F40-basic-agent-setup%2Fbasic-setup.json) | :::image type="content" source="./media\quickstart\basic-setup-resources-foundry.png" alt-text="An architecture diagram for basic agent setup." lightbox="./media\quickstart\basic-setup-resources-foundry.png"::: |
-| Deploy a standard agent setup that uses **Managed Identity** for authentication. <br>An account and project are created. <br> A GPT-4o model is deployed. <br> Azure resources for storing customer data - **Azure Storage**, **Azure Cosmos DB**, and **Azure AI Search** - are automatically created if existing resources are't  provided. <br> These resources are connected to your project to store files, threads, and vector data. <br> A Microsoft-managed Key Vault is used by default.</li></ul> <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Fsamples%2Fmicrosoft%2Finfrastructure-setup%2F41-standard-agent-setup%2Fazuredeploy.json) | :::image type="content" source="./media\quickstart\standard-agent-setup.png" alt-text="An architecture diagram for standard agent setup." lightbox="./media\quickstart\standard-agent-setup.png"::: |
+| Deploy a basic agent setup that uses **Managed Identity** for authentication. <br> An account and project are created. <br> A GPT-4.1 model is deployed. <br> A Microsoft-managed Key Vault is used by default. <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Finfrastructure%2Finfrastructure-setup-bicep%2F40-basic-agent-setup%2Fazuredeploy.json) | :::image type="content" source="./media/quickstart/basic-setup-resources-foundry.png" alt-text="An architecture diagram for basic agent setup." lightbox="./media/quickstart/basic-setup-resources-foundry.png"::: |
+| Deploy a standard agent setup that uses **Managed Identity** for authentication. <br>An account and project are created. <br> A GPT-4.1 model is deployed. <br> Azure resources for storing customer data—**Azure Storage**, **Azure Cosmos DB**, and **Azure AI Search**—are automatically created if existing resources aren't provided. <br> These resources are connected to your project to store files, threads, and vector data. <br> A Microsoft-managed Key Vault is used by default. <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Finfrastructure%2Finfrastructure-setup-bicep%2F41-standard-agent-setup%2Fazuredeploy.json) | :::image type="content" source="./media/quickstart/standard-agent-setup.png" alt-text="An architecture diagram for standard agent setup." lightbox="./media/quickstart/standard-agent-setup.png"::: |
 
 ### [Optional] Model selection in autodeploy template
 
@@ -91,14 +103,48 @@ By default, the deployment template is configured with the following values:
 
 | Model Parameter  | Default Value  |
 |------------------|----------------|
-| modelName        | gpt-4o         |
+| modelName        | gpt-4.1        |
 | modelFormat      | OpenAI (for Azure OpenAI) |
-| modelVersion     | 2024-11-20     |
+| modelVersion     | 2025-04-14     |
 | modelSkuName     | GlobalStandard |
 | modelLocation    | eastus         |
 
+### Verify your deployment
+
+After deployment completes (typically 5-10 minutes), verify that your resources were created successfully:
+
+1. Go to the [Azure portal](https://portal.azure.com).
+1. Search for your resource group name.
+1. Confirm that the following resources exist:
+   - **Basic setup**: Foundry account, project, and model deployment.
+   - **Standard setup**: All basic resources plus Azure Storage account, Azure Cosmos DB account, and Azure AI Search service.
+
+> [!TIP]
+> If the deployment fails, check the **Deployments** section in your resource group for error details. Common issues include insufficient quota for the model or missing permissions.
+
+### Troubleshooting
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| Deployment fails with quota error | Insufficient quota for GPT-4.1 in the selected region | Request a quota increase or select a different region |
+| Permission denied during deployment | Missing **Role Based Access Administrator** role | Ask your subscription owner to grant you the required role |
+| Resources created but agent creation fails | Project not properly connected to resources | Verify the connection in the Foundry portal under **Project settings** > **Connected resources** |
+| Model not available | Model not deployed in your region | Check [model region support](./concepts/model-region-support.md) and select an available region |
+
 ### What's next?
+
+:::moniker range="foundry-classic"
+
 * [Create your first agent](quickstart.md)
+
+:::moniker-end
+
+:::moniker range="foundry"
+
+* [Create your first agent](../quickstarts/get-started-code.md)
+
+:::moniker-end
+
 * Explore more:
-    * [Use your existing resources](how-to\use-your-own-resources.md)
-    * [Network secured agent setup](how-to\virtual-networks.md)
+    * [Use your existing resources](how-to/use-your-own-resources.md)
+    * [Network secured agent setup](how-to/virtual-networks.md)

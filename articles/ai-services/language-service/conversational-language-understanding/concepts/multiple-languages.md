@@ -1,15 +1,14 @@
 ---
 title: Multilingual projects
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about how to make use of multilingual projects in conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 # Multilingual projects
 
 Conversational language understanding makes it easy for you to extend your project to several languages at once. When you enable multiple languages in projects, you can add language-specific utterances and synonyms to your project. You can get multilingual predictions for your intents and entities.
@@ -20,7 +19,7 @@ When you enable multiple languages in a project, you can train the project prima
 
 For example, you can train your project entirely with English utterances and query it in French, German, Mandarin, Japanese, Korean, and others. Conversational language understanding makes it easy for you to scale your projects to multiple languages by using multilingual technology to train your models.
 
-Whenever you identify that a particular language isn't performing as well as other languages, you can add utterances for that language in your project. In the [tag utterances](../how-to/tag-utterances.md) page in Language Studio, you can select the language of the utterance you're adding. When you introduce examples for that language to the model, it's introduced to more of the syntax of that language and learns to predict it better.
+Whenever you identify that a particular language isn't performing as well as other languages, you can add utterances for that language in your project. In the [tag utterances](../how-to/tag-utterances.md) page in Microsoft Foundry, you can select the language of the utterance you're adding. When you introduce examples for that language to the model, it's introduced to more of the syntax of that language and learns to predict it better.
 
 You aren't expected to add the same number of utterances for every language. You should build most of your project in one language and only add a few utterances in languages that you observe aren't performing well. If you create a project that's primarily in English and start testing it in French, German, and Spanish, you might observe that German doesn't perform as well as the other two languages. In that case, consider adding 5% of your original English examples in German, train a new model, and test in German again. You should see better results for German queries. The more utterances you add, the more likely the results are going to get better.
 

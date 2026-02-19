@@ -6,11 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: concept-article
-author: msakande
-ms.author: mopeakande
-ms.reviewer: sehan
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.custom: mktng-kw-nov2021, FY25Q1-Linter
-ms.date: 09/25/2024
+ms.date: 10/06/2025
 #Customer intent: As a data scientist, I want to understand how MLOps can help manage the lifecycle of my models so I can improve the quality and consistency of my machine learning solutions.
 ---
 
@@ -64,7 +64,7 @@ Model registration stores and versions your models in your Azure Machine Learnin
 
 A registered model is a logical container for one or more files that make up your model. For example, if your model is stored in multiple files, you can register the files as a single model in your Azure Machine Learning workspace. After registration, you can download or deploy the registered model and receive all the component files.
 
-You can also register models that are trained outside of Azure Machine Learning. Azure Machine Learning supports any model that can be loaded by using Python 3.5.2 or higher.
+You can also register models that are trained outside of Azure Machine Learning. Azure Machine Learning supports any model that can be loaded by using Python 3.10 or higher.
 
 You identify registered models by name and version. Whenever you register a model with the same name as an existing model, the registry increments the version number.
 

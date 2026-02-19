@@ -2,19 +2,19 @@
 title: BM25 relevance scoring
 titleSuffix: Azure AI Search
 description: Explains the concepts of BM25 relevance and scoring in Azure AI Search, and what a developer can do to customize the scoring result.
-
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 01/17/2025
+ms.topic: concept-article
+ms.date: 08/27/2025
+ms.update-cycle: 365-days
 ---
 
 # Relevance in keyword search (BM25 scoring)
 
-This article explains the BM25 relevance scoring algorithm used to compute search scores for [full text search](search-lucene-query-architecture.md). BM25 relevance is exclusive to full text search. Filter queries, autocomplete and suggested queries, wildcard search, and fuzzy search queries aren't scored or ranked for relevance.
+This article explains the BM25 relevance scoring algorithm used to compute search scores for [full text search](search-lucene-query-architecture.md). BM25 relevance applies to full text search only. Filter queries, autocomplete and suggested queries, wildcard search, and fuzzy search queries aren't scored or ranked for relevance.
 
 ## Scoring algorithms used in full text search
 
@@ -97,17 +97,17 @@ By default, the score of a document is calculated based on statistical propertie
 If you prefer to compute the score based on the statistical properties across all shards, you can do so by adding `scoringStatistics=global` as a [query parameter](/rest/api/searchservice/documents/search-post) (or add `"scoringStatistics": "global"` as a body parameter of the [query request](/rest/api/searchservice/documents/search-post)).
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2025-09-01
 {
     "search": "<query string>",
     "scoringStatistics": "global"
 }
 ```
 
-Using `scoringStatistics` will ensure that all shards in the same replica provide the same results. That said, different replicas can be slightly different from one another as they're always getting updated with the latest changes to your index. In some scenarios, you might want your users to get more consistent results during a "query session". In such scenarios, you can provide a `sessionId` as part of your queries. The `sessionId` is a unique string that you create to refer to a unique user session.
+Using `scoringStatistics` will ensure that all shards in the same replica provide the same results. That said, different replicas can be slightly different from one another as they're always getting updated with the latest changes to your index. In some scenarios, you might want your users to get more consistent results during a "query session". In such scenarios, you can provide a `sessionId` as part of your queries. The `sessionId` is a unique string that you create to refer to a unique user session. 
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2025-09-01
 {
     "search": "<query string>",
     "sessionId": "<string>"
@@ -134,7 +134,15 @@ In Azure AI Search, for keyword search and the text portion of a hybrid query, y
 
 ## featuresMode parameter (preview)
 
-[Search Documents](/rest/api/searchservice/documents/search-post) requests support a featuresMode parameter that provides more detail about a BM25 relevance score at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), featuresMode reveals information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index). 
+> [!NOTE]
+> The `featuresMode` parameter isn't documented in the REST APIs, but you can use it on a preview REST API call to Search Documents for text (Keyword) search that's BM25-ranked.
+
+[Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) requests support a `featuresMode` parameter that provides more detail about a BM25 relevance score at the field level. Whereas the `@searchScore` is calculated for the document all-up (how relevant is this document in the context of this query), featuresMode reveals information about individual fields, as expressed in a `@search.features` structure. The structure contains all fields used in the query (either specific fields through **searchFields** in a query, or all fields attributed as **searchable** in an index).
+
+Valid values for featuresMode:
+
++ "none" (default). No feature-level scoring details are returned.
++ "enabled". Returns detailed scoring breakdowns per field
 
 For each field, `@search.features` give you the following values:
 
@@ -142,31 +150,71 @@ For each field, `@search.features` give you the following values:
 + Similarity score, or a measure of how similar the content of the field is, relative to the query term
 + Term frequency, or the number of times the query term was found in the field
 
-For a query that targets the "description" and "title" fields, a response that includes `@search.features` might look like this:
+This parameter is especially useful when you're trying to understand why certain documents rank higher or lower in search results. It helps explain how different fields contribute to the overall score.
+
+For a query that targets a "description" field, a request might look like this:
+
+```http
+POST {{baseUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview  HTTP/1.1
+  Content-Type: application/json
+  Authorization: Bearer {{accessToken}}
+
+    {
+        "search": "lake view",
+        "select": "HotelId, HotelName, Tags, Description",
+        "featuresMode": "enabled",
+        "searchFields": "Description, Tags",
+        "count": true
+    }
+```
+
+A response that includes `@search.features` might look like the following example.
 
 ```json
-"value": [
- {
-    "@search.score": 5.1958685,
-    "@search.features": {
-        "description": {
-            "uniqueTokenMatches": 1.0,
-            "similarityScore": 0.29541412,
-            "termFrequency" : 2
-        },
-        "title": {
-            "uniqueTokenMatches": 3.0,
-            "similarityScore": 1.75451557,
-            "termFrequency" : 6
+  "value": [
+    {
+      "@search.score": 3.0860271,
+      "@search.features": {
+        "Description": {
+          "uniqueTokenMatches": 2.0,
+          "similarityScore": 3.0860272,
+          "termFrequency": 2.0
         }
+      },
+      "HotelName": "Downtown Mix Hotel",
+      "Description": "Mix and mingle in the heart of the city. Shop and dine, mix and mingle in the heart of downtown, where fab lake views unite with a cheeky design.",
+      "Tags": [
+        "air conditioning",
+        "laundry service",
+        "free wifi"
+      ]
+    },
+    {
+      "@search.score": 2.7294855,
+      "@search.features": {
+        "Description": {
+          "uniqueTokenMatches": 1.0,
+          "similarityScore": 1.6023184,
+          "termFrequency": 1.0
+        },
+        "Tags": {
+          "uniqueTokenMatches": 1.0,
+          "similarityScore": 1.1271671,
+          "termFrequency": 1.0
+        }
+      },
+      "HotelName": "Ocean Water Resort & Spa",
+      "Description": "New Luxury Hotel for the vacation of a lifetime. Bay views from every room, location near the pier, rooftop pool, waterfront dining & more.",
+      "Tags": [
+        "view",
+        "pool",
+        "restaurant"
+      ]
     }
- }
-]
+  ]
 ```
 
 You can consume these data points in [custom scoring solutions](https://github.com/Azure-Samples/search-ranking-tutorial) or use the information to debug search relevance problems.
-
-The featuresMode parameter isn't documented in the REST APIs, but you can use it on a preview REST API call to Search Documents for text (Keyword) search that's BM25-ranked.
 
 ## Number of ranked results in a full text query response
 

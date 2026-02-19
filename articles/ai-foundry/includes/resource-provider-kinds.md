@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Resource types for Foundry
+description: Include file that describes Azure AI resource types and kinds.
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: larryfr
@@ -14,8 +14,11 @@ ms.custom:
   - build-2025
 ---
 
-|Resource type|Resource provider|Kind|
+
+|Resource type|Resource provider and type|Kind|Supported capabilities|
 |---|---|---|
-|Azure AI Foundry hub|`Microsoft.MachineLearningServices/workspace`|`hub`|
-|Azure AI Foundry project|`Microsoft.MachineLearningServices/workspace`|`project`|
-|Azure AI Foundry *or*</br>Azure AI OpenAI Service|`Microsoft.CognitiveServices/account`|`AIServices`</br>`OpenAI`|
+|Microsoft Foundry|`Microsoft.CognitiveServices/account`|`AIServices`|Agents, Evaluations, Azure OpenAI, Speech, Vision, Language, and Content Understanding|
+|Foundry project|`Microsoft.CognitiveServices/account/project`|`AIServices`| **Subresource to the above** |
+|Azure Speech in Foundry Tools|`Microsoft.CognitiveServices/account`|`Speech`|Speech|
+|Azure Language in Foundry Tools|`Microsoft.CognitiveServices/account`|`Language`|Language|
+|Azure Vision in Foundry Tools|`Microsoft.CognitiveServices/account`|`Vision`|Vision|

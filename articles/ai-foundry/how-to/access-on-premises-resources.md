@@ -1,109 +1,187 @@
 ---
 title: How to access on-premises resources
-titleSuffix: Azure AI Foundry
-description: Learn how to configure an Azure AI Foundry managed network to securely allow access to your on-premises resources.
-manager: scottpolly
+titleSuffix: Microsoft Foundry
+description: Learn how to configure a Microsoft Foundry managed network to securely allow access to your on-premises resources.
+manager: mcleans
 ms.service: azure-ai-foundry
+ms.custom:
+  - hub-only
+  - dev-focus
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 01/06/2026
 ms.reviewer: meerakurup 
 ms.author: jburchel 
 author: jonburchel 
-# Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Azure AI Foundry.
+ai-usage: ai-assisted
+# Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Microsoft Foundry.
 ---
 
-# Access on-premises resources from your Azure AI Foundry's managed network
+# Access on-premises resources from your Microsoft Foundry managed network
 
 [!INCLUDE [hub-only](../includes/uses-hub-only.md)]
 
-To access your non-Azure resources located in a different virtual network or located entirely on-premises from your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)'s managed virtual network, an Application Gateway must be configured. Through this Application Gateway, full end to end access can be configured to your resources.
+You can configure an Azure Application Gateway to let your managed virtual network in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) reach non-Azure resources in another virtual network or on-premises. The gateway provides a secure, private end-to-end path to those resources.
 
-Azure Application Gateway is a load balancer that makes routing decisions based on the URL of an HTTPS request. Azure Machine Learning supports using an application gateway to securely communicate with non-Azure resources. For more on Application Gateway, see [What is Azure Application Gateway](/azure/application-gateway/overview).
+Azure Application Gateway is a load balancer that makes routing decisions based on the URL of an HTTPS request. For more information, see [What is Azure Application Gateway](/azure/application-gateway/overview).
 
-To access on-premises or custom virtual network resources from the managed virtual network, you configure an Application Gateway on your Azure virtual network. The application gateway is used for inbound access to the Azure AI Foundry portal's hub. Once configured, you then create a private endpoint from the Azure AI Foundry hub's managed virtual network to the Application Gateway. With the private endpoint, the full end to end path is secured and not routed through the Internet.
+Set up the application gateway in your Azure virtual network for inbound access to the Foundry hub. After you configure the gateway, create a private endpoint from the hub's managed virtual network to the gateway. The private endpoint keeps the entire end-to-end path private and off the internet.
 
-:::image type="content" source="../media/how-to/network/ai-studio-app-gateway.png" alt-text="Diagram of a managed network using Application Gateway to communicate with on-premises resources." lightbox="../media/how-to/network/ai-studio-app-gateway.png":::
+To learn how Application Gateway secures connections to non-Azure resources, see [How an application gateway works](/azure/application-gateway/how-application-gateway-works).
+
+:::image type="content" source="../media/how-to/network/ai-studio-app-gateway.png" alt-text="Diagram that shows a managed virtual network using Azure Application Gateway and a private endpoint to reach on-premises resources securely." lightbox="../media/how-to/network/ai-studio-app-gateway.png":::
 
 ## Prerequisites
 
-- Read the [How an application gateway works](/azure/application-gateway/how-application-gateway-works) article to understand how the Application Gateway can secure the connection to your non-Azure resources. 
-- Set up your Azure AI Foundry hub's managed virtual network and select your isolation mode, either Allow Internet Outbound or Allow Only Approved Outbound. For more information, see [Managed virtual network isolation](configure-managed-network.md).
-- Get the private HTTP(S) endpoint of the resource to access.
+- Set up your Foundry hub's managed virtual network and select an isolation mode: Allow Internet Outbound or Allow Only Approved Outbound. For more information, see [Managed virtual network isolation](configure-managed-network.md).
+- Get the resource's private HTTP(S) endpoint.
+- To use the Azure CLI example in this article, install the [Azure CLI](/cli/azure/install-azure-cli) and the `ml` extension (version 2.15.0 or higher).
+- To use the Python example in this article, install the [Azure SDK for Python](/python/api/overview/azure/ai-ml-readme) packages:
+  - `pip install azure-ai-ml azure-identity`
+- Ensure the hub's managed identity can approve private endpoint connections on the target Application Gateway. Assign the [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-enterprise-network-connection-approver) (or a custom role with equivalent permissions) on the Application Gateway resource.
+- Ensure the identity you use to create outbound private endpoint rules has permissions to create private endpoint connections, including these Azure RBAC actions:
+  - `Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/read`
+  - `Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/write`
+
+## Create the private endpoint outbound rule (Azure CLI or Python)
+
+After you create an Azure Application Gateway with a private frontend IP configuration named `appGwPrivateFrontendIpIPv4`, add a private endpoint outbound rule from the Foundry hub's managed virtual network to the Application Gateway.
+
+### Azure CLI
+
+The following example adds or updates a private endpoint outbound rule to an Application Gateway. Replace the placeholder values with your own values.
+
+```azurecli
+az ml workspace outbound-rule set \
+  --resource-group <resource-group> \
+  --workspace-name <hub-name> \
+  --rule <rule-name> \
+  --type private_endpoint \
+  --service-resource-id "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Network/applicationGateways/<APP_GW_NAME>" \
+  --subresource-target appGwPrivateFrontendIpIPv4 \
+  --spark-enabled false \
+  --fqdns "contoso.com,contoso2.com"
+```
+
+This command creates or updates a managed outbound rule and starts creating the managed private endpoint connection.
+
+### References
+
+* [az ml workspace outbound-rule set](/cli/azure/ml/workspace/outbound-rule?view=azure-cli-latest&preserve-view=true#az-ml-workspace-outbound-rule-set)
+
+### Python
+
+The following example updates an existing hub and configures a private endpoint outbound rule to an Application Gateway. Replace the placeholder values with your own values.
+
+```python
+from azure.ai.ml import MLClient
+from azure.ai.ml.entities import PrivateEndpointDestination
+from azure.identity import DefaultAzureCredential
+
+subscription_id = "<subscription-id>"
+resource_group = "<resource-group>"
+hub_name = "<hub-name>"
+
+ml_client = MLClient(
+    DefaultAzureCredential(),
+    subscription_id=subscription_id,
+    resource_group_name=resource_group,
+    workspace_name=hub_name,
+)
+
+hub = ml_client.workspaces.get(name=hub_name)
+
+hub.managed_network.outbound_rules = [
+    PrivateEndpointDestination(
+        name="<rule-name>",
+        service_resource_id="/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Network/applicationGateways/<APP_GW_NAME>",
+        subresource_target="appGwPrivateFrontendIpIPv4",
+        spark_enabled=False,
+        fqdns=["contoso.com", "contoso2.com"],
+    )
+]
+
+ml_client.workspaces.begin_update(hub).result()
+```
+
+### References
+
+* [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
+* [PrivateEndpointDestination](/python/api/azure-ai-ml/azure.ai.ml.entities.privateendpointdestination)
 
 ## Supported resources
 
-Application Gateway supports any backend target resource that uses HTTP or HTTPS protocol. Connections to the following resources from the managed virtual network are verified:
-- Jfrog Artifactory
-- Snowflake Database
+Application Gateway supports any backend resource that uses HTTP or HTTPS. Application Gateway verifies connections from the managed virtual network to the following resources:
+- JFrog Artifactory
+- Snowflake
 - Private APIs
 
 ## Configure Azure Application Gateway
 
-Follow the [Quickstart: Direct web traffic using the portal](/azure/application-gateway/quick-create-portal). To correctly set up your Application Gateway for use with Azure Machine Learning, use the following guidance when creating the Application Gateway:
+Follow the [Quickstart: Direct web traffic using the portal](/azure/application-gateway/quick-create-portal). To correctly set up your Application Gateway for use with Foundry, use the following guidance when creating the Application Gateway:
 
-1. From the __Basics__ tab:
+1. On the __Basics__ tab, review and apply the following settings.
 
     - Ensure your Application Gateway is in the same region as the selected Azure Virtual Network.
-    - Azure AI Foundry only supports IPv4 for Application Gateway.
-    - With your Azure Virtual Network, select one dedicated subnet for your Application Gateway. No other resources can be deployed in this subnet.
+    - Foundry supports only IPv4 for Application Gateway.
+    - In your virtual network, select one dedicated subnet for Application Gateway. Don't deploy other resources in this subnet.
 
-1. From the __Frontends__ tab, Application Gateway doesn't support private Frontend IP address only so Public IP addresses need to be selected or a new one created. Private IP addresses for the resources that the gateway connects to can be added within the range of the subnet you selected on the Basics tab.
+1. On the __Frontends__ tab, Application Gateway doesn't support only a private frontend IP address, so select or create a public IP address. Add private IP addresses for backend resources within the subnet range you selected on the Basics tab.
 
-1. From the __Backends__ tab, you can add your backend target to a backend pool. You can manage your backend targets by creating different backend pools. Request routing is based on the pools. You can add backend targets such as a Snowflake database. 
+1. On the __Backends__ tab, add backend targets to backend pools for routing. Create different pools as needed (for example, a Snowflake database).
 
-1. From the __Configuration__ tab, you configure how requests are received with the frontend IPs and routed to the backend. 
+1. On the __Configuration__ tab, configure how frontend IPs receive requests and route them to the backend.
 
     - In the __Listener__ section:
-        - You can create a listener with either HTTP or HTTPS protocol and specify the port you want it to listen to. If you want two listeners listening on the same front-end IP address and routing to different backend pools, you need to choose different ports. Incoming requests are differentiated based on ports.
-        - If you want end-to-end TLS encryption, select HTTPS listener and upload your own certificate for Application Gateway to decrypt request received by listener. For more information, see [Enabling end to end TLS on Azure Application Gateway](/azure/application-gateway/ssl-overview#end-to-end-tls-encryption).
-        - If you want a fully private backend target without any public network access, DO NOT setup a listener on the public frontend IP address and its associated routing rule. Application Gateway only forwards requests that listeners receive at the specific port. If you want to avoid adding public frontend IP listener by mistake, see [Network security rules](/azure/application-gateway/configuration-infrastructure#network-security-groups) to fully lock down public network access.
+        - Create a listener with HTTP or HTTPS and specify the listening port. To use two listeners on the same frontend IP that route to different backend pools, use different ports. Incoming requests are distinguished by port.
+        - For end-to-end TLS encryption, select an HTTPS listener and upload your certificate so Application Gateway can decrypt the request received by the listener. For more information, see [Enabling end to end TLS on Azure Application Gateway](/azure/application-gateway/ssl-overview#end-to-end-tls-encryption).
+        - For a fully private backend target without public network access, don't set up a listener on the public frontend IP address or its routing rule. Application Gateway forwards only requests that listeners receive on the specified port. To avoid adding a public frontend IP listener by mistake, see [Network security rules](/azure/application-gateway/configuration-infrastructure#network-security-groups) to lock down public network access.
 
-    - In the __Backend targets__ section, if you want to use HTTPS and Backend server's certificate is NOT issued by a well-known CA, you must upload the Root certificate (.CER) of the backend server. For more on configuring with a root certificate, see [Configure end-to-end TLS encryption using the portal](/azure/application-gateway/end-to-end-ssl-portal).
+    - In the __Backend targets__ section, if you use HTTPS and the backend server's certificate isn't issued by a well known CA, upload the root certificate (.CER) of the backend server. For more information, see [Configure end-to-end TLS encryption using the portal](/azure/application-gateway/end-to-end-ssl-portal).
 
-1. Once the Application Gateway resource is created, navigate to the new Application Gateway resource in the Azure portal. Under __Settings__, select, __Private link__ to enable a virtual network to privately access the Application Gateway through a private endpoint connection. The Private link configuration isn't created by default. 
+1. After the Application Gateway resource is created, go to it in the Azure portal. Under __Settings__, select __Private link__ to enable private access through a private endpoint connection. The Private link configuration isn't created by default.
 
     - Select __+ Add__ to add the Private Link configuration, and then use the following values to create the configuration:
         - Name: Provide a name for your private link configuration
-        - Private link subnet: Select a subnet in your virtual network. 
+        - Private link subnet: Select a subnet in your virtual network
         - Frontend IP Configuration: `appGwPrivateFrontendIpIPv4`
-    - To verify the Private link is set up correctly, navigate to the __Private endpoint connections__ tab and select __+ Private endpoint__. On the __Resource__ tab, the __Target sub-resource__ should be the name of your private Frontend IP configuration, `appGwPrivateFrontendIpIPv4`. If no value appears in the __Target sub-resource__, then the Application Gateway listener wasn't configured correctly. For more on setting up Private link in Application Gateway, see [Configure Azure Application Gateway Private Link](/azure/application-gateway/private-link-configure).
+    - To verify the Private link is set up correctly, go to the __Private endpoint connections__ tab and select __+ Private endpoint__. On the __Resource__ tab, the __Target sub-resource__ should be the name of your private frontend IP configuration, `appGwPrivateFrontendIpIPv4`. If no value appears in the __Target sub-resource__, the Application Gateway listener isn't configured correctly. For more information, see [Configure Azure Application Gateway Private Link](/azure/application-gateway/private-link-configure).
 
 ## Configure private link
 
-1. Now that your Application Gateway's front-end IP and backend pools are created, you can now configure the private endpoint from the managed virtual network to your Application Gateway. in the [Azure portal](https://portal.azure.com), navigate to your Azure AI Foundry hub's __Networking__ tab. Select __Workspace managed outbound access__, __+ Add user-defined outbound rules__. 
-1. In the __Workspace Outbound rules__ form, select the following to create your private endpoint:
+1. After you create the Application Gateway frontend IP and backend pools, configure the private endpoint from the managed virtual network to the Application Gateway. In the [Azure portal](https://portal.azure.com), go to your Foundry hub, select __Networking__, then select __Workspace managed outbound access__ > __+ Add user-defined outbound rules__. 
+1. In the __Workspace Outbound rules__ form, set the following values to create the private endpoint:
 
-    - Rule name: Provide a name for your private endpoint to Application Gateway.
+    - Rule name: Enter a name for the private endpoint to Application Gateway.
     - Destination Type: Private Endpoint
-    - Subscription and Resource Group: Select the Subscription and Resource Group where your Application Gateway is deployed
+    - Subscription and Resource Group: Select the subscription and resource group where the Application Gateway is deployed.
     - Resource Type: `Microsoft.Network/applicationGateways`
     - Resource name: The name of your Application Gateway resource.
-    - Sub resource: `appGwPrivateFrontendIpIPv4` 
-    - FQDNs: These FQDNs are the aliases that you want to use inside the Azure AI Foundry portal. They're resolved to the managed private endpoint's private IP address targeting Application Gateway. You might include multiple FQDNs depending on how many resources you would like to connect to with the Application Gateway.
+    - Subresource: `appGwPrivateFrontendIpIPv4`
+    - FQDNs: Enter the FQDN aliases to use in the Foundry portal. They're resolved to the managed private endpoint private IP address that targets the Application Gateway. Add multiple FQDNs if you need to reach multiple resources through the Application Gateway.
+      - All added FQDNs use the same IP address for the targeted Application Gateway.
+      - The IP address is in the managed virtual network range, not the customer's VNet range.
 
     > [!NOTE]
-    > - If you're using HTTPS listener with certificate uploaded, make sure the FQDN alias matches with the certificate's CN (Common Name) or SAN (Subject Alternative Name) otherwise HTTPS call fails with SNI (Server Name Indication).
-    > - The provided FQDNs must have at least three labels in the name to properly create the private DNS zone of the private endpoint for Application Gateway.
-    > - The FQDNs field is editable after the private endpoint creation through SDK or CLI. The field isn't editable in the Azure portal.
-    > - Dynamic sub-resource naming isn't supported for the private Frontend IP configuration. The Frontend IP name must be `appGwPrivateFrontendIpIPv4`.
+    > - If you use an HTTPS listener with an uploaded certificate, make sure the FQDN alias matches the certificate CN (Common Name) or SAN (Subject Alternative Name), otherwise the HTTPS call fails because of SNI (Server Name Indication).
+    > - Each FQDN must have at least three labels to create the private DNS zone for the private endpoint to the Application Gateway.
+    > - You can edit the FQDNs field after you create the private endpoint by using the SDK or CLI. You can't edit it in the Azure portal.
+    > - Dynamic subresource naming isn't supported for the private frontend IP configuration. The frontend IP name must be `appGwPrivateFrontendIpIPv4`.
 
-### Configure using Python SDK and Azure CLI
+### Configure by using the Python SDK and Azure CLI
 
-To create a private endpoint to Application Gateway with SDK, see [Azure SDK for Python](/python/api/azure-ai-ml/azure.ai.ml.entities.privateendpointdestination).
-
-To create a private endpoint to Application Gateway with the Azure CLI, use the `az ml workspace outbound-rule set` command. Set properties as needed for your configuration. For more information, see [Configure a managed network](configure-managed-network.md?tabs=azure-cli).
+To create the private endpoint outbound rule by using the Azure CLI or Python, see [Create the private endpoint outbound rule (Azure CLI or Python)](#create-the-private-endpoint-outbound-rule-azure-cli-or-python).
 
 ## Limitations
 
-- Application Gateway supports only HTTP(s) endpoints in the Backend pool. There's no support for non-HTTP(s) network traffic. Ensure your resources support HTTP(S) protocol.
-- To connect to Snowflake using the Application Gateway, you should add your own FQDN outbound rules to enable package/driver download and OCSP validation.
-  - The Snowflake JDBC driver uses HTTPS calls, but different drivers might have different implementations. Check if your resource uses HTTP(S) protocol or not.
-- Application Gateway isn't supported for Spark scenarios, such as Spark compute or serverless Spark compute. DNS resolution (for example, nslookup) fails when trying to resolve an FQDN from the Spark compute.
-- For more information on limitations, see [Frequently asked questions about Application Gateway](/azure/application-gateway/application-gateway-faq).
+- Application Gateway supports only HTTP(S) endpoints in the backend pool. It doesn't support non-HTTP(S) network traffic. Ensure resources use the HTTP(S) protocol.
+- When connecting to Snowflake through Application Gateway, add FQDN outbound rules to enable package and driver downloads and OCSP validation.
+  - The Snowflake JDBC driver uses HTTPS, but other drivers can differ. Verify that your resource uses the HTTP(S) protocol.
+- Application Gateway doesn't support Spark scenarios such as Spark compute or serverless Spark compute. DNS resolution (for example, with nslookup) fails when resolving an FQDN from Spark compute.
+- For more information, see [Frequently asked questions about Application Gateway](/azure/application-gateway/application-gateway-faq).
 
-## Application Gateway Errors
+## Application Gateway errors
 
-For errors related to the Application Gateway connection to your backend resources, follow the existing Application Gateway documentation based on the errors you receive:
+Troubleshoot Application Gateway connection errors to your backend resources:
 
 - [Troubleshoot backend health issues in Application Gateway](/azure/application-gateway/application-gateway-backend-health-troubleshooting)
 - [Troubleshooting bad gateway errors in Application Gateway](/azure/application-gateway/application-gateway-troubleshooting-502)

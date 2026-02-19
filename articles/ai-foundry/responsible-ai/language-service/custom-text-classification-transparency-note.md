@@ -1,12 +1,12 @@
 ---
 title: Use cases for custom text classification
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about use cases for custom text classification.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 04/26/2023
 ---
 
@@ -31,7 +31,7 @@ Custom text classification supports two types of projects:
 
 ### The basics of custom text classification
 
-Custom text classification is offered as part of the custom features within Azure AI Language. This feature enables its users to build custom AI models to classify text into custom categories predefined by the user. By creating a custom text classification project, developers can iteratively tag data and train, evaluate, and improve model performance before they make it available for consumption. The quality of the tagged data greatly affects model performance.
+Custom text classification is offered as part of the custom features within Azure Language in Foundry Tools. This feature enables its users to build custom AI models to classify text into custom categories predefined by the user. By creating a custom text classification project, developers can iteratively tag data and train, evaluate, and improve model performance before they make it available for consumption. The quality of the tagged data greatly affects model performance.
 
 To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Language Studio](https://aka.ms/languageStudio). You can easily get started with the service by following the steps in this [quickstart](/azure/ai-services/language-service/custom-text-classification/quickstart).
 

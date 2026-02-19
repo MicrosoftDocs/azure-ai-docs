@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: troubleshooting-general
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 07/29/2024
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.custom: devplatv2
 
 #customer intent: As a developer, I want to troubleshoot Azure Machine Learning batch endpoints jobs, so I can examine logs, diagnose errors, and resolve issues.

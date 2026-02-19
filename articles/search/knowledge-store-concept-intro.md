@@ -6,13 +6,18 @@ author: HeidiSteen
 manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: concept-article
+ms.date: 10/21/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 05/27/2025
+  - sfi-ropc-nochange
 ---
 
 # Knowledge store in Azure AI Search
+
+> [!NOTE]
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 Knowledge store is secondary storage for [AI-enriched content created by a skillset](cognitive-search-concept-intro.md) in Azure AI Search. In Azure AI Search, an indexing job always sends output to a search index, but if you attach a skillset to an indexer, you can optionally also send AI-enriched output to a container or table in Azure Storage. A knowledge store can be used for independent analysis or downstream processing in non-search scenarios like knowledge mining. 
 
@@ -137,7 +142,7 @@ For data sources that support change tracking, an indexer will process new and c
 
 ### Changes to a skillset
 
-If you're making changes to a skillset, you should [enable caching of enriched documents](cognitive-search-incremental-indexing-conceptual.md) to reuse existing enrichments where possible.
+If you're making changes to a skillset, you should [enable caching of enriched documents](enrichment-cache-how-to-configure.md) to reuse existing enrichments where possible.
 
 Without incremental caching, the indexer will always process documents in order of the high water mark, without going backwards. For blobs, the indexer would process blobs sorted by `lastModified`, regardless of any changes to indexer settings or the skillset. If you change a skillset, previously processed documents aren't updated to reflect the new skillset. Documents processed after the skillset change will use the new skillset, resulting in index documents being a mix of old and new skillsets.
 

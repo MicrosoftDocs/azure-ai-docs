@@ -5,13 +5,15 @@ description: Learn how to plan for disaster recovery and maintain business conti
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.custom: UpdateFrequency5
 ms.topic: how-to
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: andyaviles
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
 ms.date: 06/12/2025
 monikerRange: 'azureml-api-1'
+ms.custom:
+  - UpdateFrequency5
+  - sfi-image-nochange
 ---
 
 # Failover for business continuity and disaster recovery

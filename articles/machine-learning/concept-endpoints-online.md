@@ -6,11 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
-author: msakande
-ms.author: mopeakande
-ms.reviewer: sehan
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.custom: devplatv2, FY25Q1-Linter
-ms.date: 09/23/2024
+ms.date: 10/06/2025
 
 #Customer intent: As an ML pro, I want to understand what an online endpoint is and why I need it.
 ---
@@ -48,12 +48,12 @@ Managed online endpoints are the recommended way to use online endpoints in Azur
 |Attributes  |Managed online endpoints (v2)  |Container Instances or AKS (v1)  |
 |---------|---------|---------|
 |Network security/isolation |Easy inbound/outbound control with quick toggle |Virtual network not supported or requires complex manual configuration |
-|Managed service |• Fully managed compute provisioning/scaling<br>• Network configuration for data exfiltration prevention<br>• Host OS upgrade, controlled rollout of in-place updates |• Scaling is limited<br>• User must manage network configuration or upgrade |
+|Managed service |* Fully managed compute provisioning/scaling<br>* Network configuration for data exfiltration prevention<br>* Host OS upgrade, controlled rollout of in-place updates |* Scaling is limited<br>* User must manage network configuration or upgrade |
 |Endpoint/deployment concept |Distinction between endpoint and deployment enables complex scenarios such as safe rollout of models |No concept of endpoint |
-|Diagnostics and Monitoring |• Local endpoint debugging possible with Docker and Visual Studio Code<br>• Advanced metrics and logs analysis with chart/query to compare between deployments<br>• Cost breakdown to deployment level |No easy local debugging |
-|Scalability |Elastic, and automatic scaling (not bound by the default cluster size) |• Container Instances isn't scalable <br>• AKS v1 supports in-cluster scale only and requires scalability configuration |
+|Diagnostics and Monitoring |* Local endpoint debugging possible with Docker and Visual Studio Code<br>* Advanced metrics and logs analysis with chart/query to compare between deployments<br>* Cost breakdown to deployment level |No easy local debugging |
+|Scalability |Elastic, and automatic scaling (not bound by the default cluster size) |* Container Instances isn't scalable <br>* AKS v1 supports in-cluster scale only and requires scalability configuration |
 |Enterprise readiness |Private link, customer managed keys, Microsoft Entra ID, quota management, billing integration, Service Level Agreement (SLA) |Not supported |
-|Advanced ML features |• Model data collection<br>• Model monitoring<br>• Champion-challenger model, safe rollout, traffic mirroring<br>• Responsible AI extensibility |Not supported |
+|Advanced ML features |* Model data collection<br>* Model monitoring<br>* Champion-challenger model, safe rollout, traffic mirroring<br>* Responsible AI extensibility |Not supported |
 
 ### Managed online endpoints vs Kubernetes online endpoints
 
@@ -79,7 +79,7 @@ Managed online endpoints can help streamline your deployment process and provide
   > [!NOTE]
   > Managed online endpoints are based on Azure Machine Learning compute. When you use a managed online endpoint, you pay for the compute and networking charges. There's no added surcharge. For more information on pricing, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
   >
-  > If you use an Azure Machine Learning virtual network to secure outbound traffic from the managed online endpoint, you're charged for the Azure private link and fully-qualified domain name (FQDN) outbound rules that the managed virtual network uses. For more information, see [Pricing for managed virtual network](how-to-managed-network.md#pricing).
+  > If you use an Azure Machine Learning virtual network to secure outbound traffic from the managed online endpoint, you're charged for the Azure private link and fully qualified domain name (FQDN) outbound rules that the managed virtual network uses. For more information, see [Pricing for managed virtual network](how-to-managed-network.md#pricing).
 
 The following table highlights the key differences between managed online endpoints and Kubernetes online endpoints.
 
@@ -150,7 +150,7 @@ The following table describes the key attributes of a deployment:
 
 [!INCLUDE [machine-learning-shared-quota](includes/machine-learning-shared-quota.md)]
 
-To deploy Llama-2, Phi, Nemotron, Mistral, Dolly, and Deci-DeciLM models from the model catalog by using the shared quota, you must have an [Enterprise Agreement subscription](/azure/cost-management-billing/manage/create-enterprise-subscription). For more information on how to use the shared quota for online endpoint deployment, see [How to deploy foundation models using the studio](how-to-use-foundation-models.md#shared-quota).
+To deploy Llama, Phi, Mistral, and other models from the model catalog by using the shared quota, you must have an [Enterprise Agreement subscription](/azure/cost-management-billing/manage/create-enterprise-subscription). For more information on how to use the shared quota for online endpoint deployment, see [How to deploy foundation models using the studio](how-to-use-foundation-models.md#shared-quota).
 
 For more information on quotas and limits for resources in Azure Machine Learning, see [Manage and increase quotas and limits for resources with Azure Machine Learning](how-to-manage-quotas.md).
 

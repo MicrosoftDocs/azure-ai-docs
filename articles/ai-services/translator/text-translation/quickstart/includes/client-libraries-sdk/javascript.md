@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -55,7 +55,7 @@ npm i @azure-rest/ai-translation-text@1.0.0-beta.1
 
 ## Build your application
 
-To interact with the Translator service using the client library, you need to create an instance of the `TextTranslationClient`class. To do so, create a `TranslateCredential` with your `key` and `<region>` from the Azure portal and a `TextTranslationClient`  instance. For more information, *see* [Translator text sdks](../../../sdk-overview.md#3-authenticate-the-client).
+To interact with the Translator using the client library, you need to create an instance of the `TextTranslationClient`class. To do so, create a `TranslateCredential` with your `key` and `<region>` from the Azure portal and a `TextTranslationClient`  instance. For more information, *see* [Translator text sdks](../../../sdk-overview.md#3-authenticate-the-client).
 
 1. Create the `index.js` file in the app directory.
 
@@ -72,7 +72,7 @@ To interact with the Translator service using the client library, you need to cr
 ## Code sample
 
 > [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, see Azure AI services [security](../../../../../security-features.md).
+> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, see Foundry Tools [security](../../../../../security-features.md).
 
 **Translate text**
 

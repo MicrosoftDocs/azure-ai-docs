@@ -6,10 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: troubleshooting
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: meerakurup
-ms.date: 09/05/2024
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
+ms.date: 09/30/2025
+ms.custom: sfi-image-nochange
 # Customer Intent: As an admin, I need to understand how to troubleshoot connectivity problems to a workspace that is configured with a private endpoint.
 ---
 

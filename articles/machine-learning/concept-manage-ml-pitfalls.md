@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
-author: ssalgadodev
-ms.author: ssalgado
-ms.reviewer: manashg
-ms.date: 07/11/2024
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
+ms.date: 11/13/2025
 
 #customer intent: As a developer, I want to use Automated ML solutions in Azure Machine Learning, so I can find and address common issues like overfitting and imbalanced data.
 ---
@@ -20,7 +20,7 @@ Overfitting and imbalanced data are common pitfalls when you build machine learn
 
 ## Identify overfitting
 
-Overfitting in machine learning occurs when a model fits the training data too well. As a result, the model can't make accurate predictions on unseen test data. The model memorized specific patterns and noise in the training data, and it's not flexible enough to make predictions on real data.
+Overfitting in machine learning occurs when a model fits the training data too well. As a result, the model can't make accurate predictions on unseen test data. The model memorizes specific patterns and noise in the training data, and it's not flexible enough to make predictions on real data.
 
 Consider the following trained models and their corresponding train and test accuracies:
 
@@ -38,7 +38,7 @@ Consider the following trained models and their corresponding train and test acc
 
 ## Prevent overfitting
 
-In the most egregious cases, an overfitted model assumes the feature value combinations visible during training always result in the exact same output for the target. To avoid overfitting your data, the recommendation is to follow machine learning best practices. The are several methods you can configure in your model implementation. Automated ML also provides other options by default to help prevent overfitting.
+In the most extreme cases, an overfitted model assumes the feature value combinations visible during training always result in the exact same output for the target. To avoid overfitting your data, follow machine learning best practices. You can configure several methods in your model implementation. Automated ML also provides other options by default to help prevent overfitting.
 
 The following table summarizes common best practices:
 
@@ -57,7 +57,7 @@ The following sections describe best practices you can use in your machine learn
 
 ### Use more data
 
-Using more data is the simplest and best possible way to prevent overfitting, and this approach typically increases accuracy. When you use more data, it becomes harder for the model to memorize exact patterns. The model is forced to reach solutions that are more flexible to accommodate more conditions. It's also important to recognize statistical bias, to ensure your training data doesn't include isolated patterns that don't exist in live-prediction data. This scenario can be difficult to solve because there can be overfitting present when compared to live test data.
+Using more data is the simplest and best way to prevent overfitting, and this approach typically increases accuracy. When you use more data, it becomes harder for the model to memorize exact patterns. The model is forced to reach solutions that are more flexible to accommodate more conditions. It's also important to recognize statistical bias, to ensure your training data doesn't include isolated patterns that don't exist in live-prediction data. This scenario can be difficult to solve because there can be overfitting present when compared to live test data.
 
 ### Prevent target leakage
 
@@ -65,7 +65,7 @@ Target leakage is a similar issue. You might not see overfitting between the tra
 
 ### Incorporate fewer features
 
-Removing features can also help with overfitting by preventing the model from having too many fields to use to memorize specific patterns, thus causing it to be more flexible. It can be difficult to measure quantitatively. If you can remove features and retain the same accuracy, your model can be more flexible and reduce the risk of overfitting.
+Removing features can also help with overfitting by preventing the model from having too many fields to use to memorize specific patterns, thus causing it to be more flexible. It's difficult to measure quantitatively. If you can remove features and retain the same accuracy, your model can be more flexible and reduce the risk of overfitting.
 
 ## Review Automated ML features to prevent overfitting
 
@@ -81,16 +81,16 @@ Automated ML also implements explicit model complexity limitations to prevent ov
 
 ### Use cross-validation
 
-Cross-validation (CV) is the process of taking many subsets of your full training data and training a model on each subset. The idea is that a model might get "lucky" and have great accuracy with one subset, but by using many subsets, the model can't achieve high accuracy every time. When doing CV, you provide a validation holdout dataset, specify your CV folds (number of subsets) and Automated ML trains your model and tunes hyperparameters to minimize error on your validation set. One CV fold might be overfitted, but by using many of them, the process reduces the probability that your final model is overfitted. The tradeoff is that CV results in longer training times and greater cost, because you train a model one time for each *n* in the CV subsets. 
+Cross-validation (CV) is the process of taking many subsets of your full training data and training a model on each subset. The idea is that a model might get "lucky" and have great accuracy with one subset, but by using many subsets, the model can't achieve high accuracy every time. When doing CV, you provide a validation holdout dataset, specify your CV folds (number of subsets), and Automated ML trains your model and tunes hyperparameters to minimize error on your validation set. One CV fold might be overfitted, but by using many of them, the process reduces the probability that your final model is overfitted. The tradeoff is that CV results in longer training times and greater cost, because you train a model one time for each *n* in the CV subsets. 
 
 > [!NOTE]
-> Cross-validation isn't enabled by default. This feature must be configured in Automated machine learning settings. However, after cross-validation is configured and a validation data set is provided, the process is automated for you. 
+> Cross-validation isn't enabled by default. You must configure this feature in Automated machine learning settings. However, after cross-validation is configured and a validation data set is provided, the process is automated for you. 
 
 ## Identify models with imbalanced data
 
-Imbalanced data is commonly found in data for machine learning classification scenarios, and refers to data that contains a disproportionate ratio of observations in each class. This imbalance can lead to a falsely perceived positive effect of a model's accuracy, because the input data has bias towards one class, which results in the trained model to mimic that bias. 
+Imbalanced data is common in machine learning classification scenarios. It refers to data that contains a disproportionate ratio of observations in each class. This imbalance can lead to a falsely perceived positive effect of a model's accuracy, because the input data has bias toward one class, which results in the trained model to mimic that bias. 
 
-In addition, Automated ML jobs generate the following charts automatically. These charts help you understand the correctness of the classifications of your model, and identify models potentially impacted by imbalanced data.
+In addition, Automated ML jobs automatically generate the following charts. These charts help you understand the correctness of the classifications of your model, and identify models potentially impacted by imbalanced data.
 
 | Chart | Description |
 | --- | --- |
@@ -100,9 +100,9 @@ In addition, Automated ML jobs generate the following charts automatically. Thes
 
 ## Handle imbalanced data 
 
-As part of the goal to simplify the machine learning workflow, Automated ML offers built-in capabilities to help deal with imbalanced data: 
+To simplify the machine learning workflow, Automated ML offers built-in capabilities to help deal with imbalanced data: 
 
-- Automated ML creates a **column of weights** as input to cause rows in the data to be weighted up or down, which can be used to make a class more or less "important."
+- Automated ML creates a **column of weights** as input to cause rows in the data to be weighted up or down. You can use this column to make a class more or less "important."
 
 - The algorithms used by Automated ML detect imbalance when the number of samples in the minority class is equal to or fewer than 20% of the number of samples in the majority class. The minority class refers to the one with fewest samples and the majority class refers to the one with most samples. Later, automated machine learning runs an experiment with subsampled data to check if using class weights can remedy this problem and improve performance. If it ascertains a better performance through this experiment, it applies the remedy.
 

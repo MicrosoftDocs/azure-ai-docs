@@ -1,28 +1,34 @@
 ---
 title: Create and manage prompt flow compute sessions
-titleSuffix: Azure AI Foundry
-description: In this article, learn how to create and manage compute sessions to run prompt flows in Azure AI Foundry portal.
-manager: scottpolly
+titleSuffix: Microsoft Foundry
+description: In this article, learn how to create and manage compute sessions to run prompt flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 02/14/2025
+ms.date: 08/25/2025
 ms.reviewer: lochen
 ms.author: sgilley
 author: sdgilley
-# customer intent: Learn how to create and manage prompt flow compute sessions in Azure AI Foundry portal.
+ms.collection: ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
+# customer intent: Learn how to create and manage prompt flow compute sessions in Microsoft Foundry portal.
+
 ---
 
-# Create and manage prompt flow compute sessions in Azure AI Foundry portal
+# Create and manage prompt flow compute sessions in Microsoft Foundry portal
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-You need a compute session to run [prompt flows](prompt-flow.md). Use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to create and manage prompt flow compute sessions.
+You need a compute session to run [prompt flows](../concepts/prompt-flow.md). Use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to create and manage prompt flow compute sessions.
 
-A prompt flow compute session has computing resources that are required for the application to run, including a Docker image that contains all necessary dependency packages. In addition to flow execution, Azure AI Foundry uses the compute session to ensure the accuracy and functionality of the tools incorporated within the flow when you make updates to the prompt or code content.
+A prompt flow compute session has computing resources that are required for the application to run, including a Docker image that contains all necessary dependency packages. In addition to flow execution, Foundry uses the compute session to ensure the accuracy and functionality of the tools incorporated within the flow when you make updates to the prompt or code content.
 
 ## Prerequisites
 
@@ -38,7 +44,7 @@ By default, the compute session uses the environment defined in `flow.dag.yaml` 
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Go to your project in Azure AI Foundry portal.
+1. Go to your project in Foundry portal.
 1. From the left pane, select **Prompt flow** and then select the flow you want to run.
 1. From the top toolbar of your prompt flow, select **Start compute session**.
 
@@ -46,7 +52,7 @@ By default, the compute session uses the environment defined in `flow.dag.yaml` 
 
 In the advanced settings, you can select the compute type. You can choose between serverless compute and compute instance.
 
-1. Go to your project in Azure AI Foundry portal.
+1. Go to your project in Foundry portal.
 1. From the left pane, select **Prompt flow** and then select the flow you want to run.
 1. From the top toolbar of your prompt flow, select the dropdown arrow on the right side of the **Start compute session** button. Select **Start with advanced settings** to customize the compute session.
 

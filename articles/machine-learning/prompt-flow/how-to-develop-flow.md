@@ -5,14 +5,16 @@ description: Learn how to develop a prompt flow and a chat flow in Azure Machine
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
-  - ignite-2023
-  - build-2024
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: jinzhong
-ms.date: 10/16/2024
+ms.reviewer: sooryar
+ms.date: 09/22/2025
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 # Develop prompt flow
 
@@ -126,6 +128,15 @@ After you select **Run** to execute the flow, you can see the run status in the 
 After the flow run completes, you can select **View outputs** to check all historical outputs on the **Outputs** screen.
 
 :::image type="content" source="./media/how-to-develop-flow/authoring-test-result.png" alt-text="Screenshot of flow test result." lightbox ="./media/how-to-develop-flow/authoring-test-result.png":::
+
+#### Trace
+
+Tracing is disabled by default, to enable tracing you need to set the environment variable `PF_DISABLE_TRACING` to `false`. One way you can do this is by adding the following to the python node:
+
+```python
+import os
+os.environ["PF_DISABLE_TRACING"] = "false"
+```
 
 Select the **Trace** tab on the **Outputs** screen to see a graph that provides information about the duration and associated token cost of the flow. Select **flow** under **node name** to see detailed flow overview information in the right pane.
 

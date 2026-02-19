@@ -1,17 +1,16 @@
 ---
 title: Relation extraction in Text Analytics for health
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about relation extraction
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-health
 ---
-
 # Relation extraction
 
 Text Analytics for health features relation extraction, which is used to  identify meaningful connections between concepts, or entities, mentioned in the text. For example, a "time of condition" relation is found by associating a condition name with a time. Another example is a "dosage of medication" relation, which is found by relating an extracted medication to its extracted dosage. The following example shows how relations are expressed in the JSON output.

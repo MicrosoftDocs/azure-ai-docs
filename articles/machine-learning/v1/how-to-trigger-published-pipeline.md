@@ -5,12 +5,16 @@ description: Trigger pipelines so that you can automate routine, time-consuming 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: lagayhar
+ms.author: scottpolly
 author: lgayhardt
-ms.reviewer: keli19
+ms.reviewer: jturuk
 ms.date: 06/24/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, devx-track-python, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - devx-track-python
+  - sdkv1
+  - sfi-image-nochange
 #Customer intent: As a data scientist who uses Python, I want to improve my operational efficiency by scheduling the training pipeline of my model with the latest data.
 ---
 
@@ -26,7 +30,7 @@ After you learn how to create schedules, you'll learn how to retrieve and deacti
 
 ## Prerequisites
 
-* An Azure subscription. If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A Python environment in which the Azure Machine Learning SDK for Python is installed. For more information, see [Create and manage reusable environments for training and deployment with Azure Machine Learning](how-to-use-environments.md).
 

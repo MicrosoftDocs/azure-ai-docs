@@ -1,13 +1,11 @@
 ---
 title: "Image Analysis versions"
-titleSuffix: "Azure AI services"
+titleSuffix: "Foundry Tools"
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 01/20/2023
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -23,4 +21,4 @@ ms.author: pafarley
 > 
 > We recommend you use the Image Analysis 4.0 API if it supports your use case. Use version 3.2 if your use case is not yet supported by 4.0.
 >
-> You'll also need to use version 3.2 if you want to do image captioning and your Vision resource is outside the supported Azure regions. The image captioning feature in Image Analysis 4.0 is only supported in certain Azure regions. Image captioning in version 3.2 is available in all Azure AI Vision regions. See [Region availability](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
+> You'll also need to use version 3.2 if you want to do image captioning and your Vision resource is outside the supported Azure regions. The image captioning feature in Image Analysis 4.0 is only supported in certain Azure regions. Image captioning in version 3.2 is available in all Azure Vision regions. See [Region availability](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).

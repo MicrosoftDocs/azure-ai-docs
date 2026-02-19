@@ -1,13 +1,13 @@
 ---
 title: How to track Speech SDK memory usage - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Speech SDK supports numerous programming languages for speech to text and text to speech conversion, along with speech translation. This article discusses memory management tooling built into the SDK.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.reviewer: rhurey
 ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-python
 zone_pivot_groups: programming-languages-set-two-objective-c

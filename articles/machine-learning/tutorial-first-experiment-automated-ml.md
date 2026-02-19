@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: tutorial
-author: ssalgadodev
-ms.author: ssalgado
-ms.reviewer: manashg
-ms.date: 09/30/2024
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
+ms.date: 10/15/2025
 ms.custom: automl, build-2023
 #Customer intent: As a non-coding data scientist, I want to use automated machine learning techniques so that I can build a classification model.
 ---
@@ -30,14 +30,14 @@ You don't write any code in this tutorial. You use the studio interface to perfo
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-- Download the [**bankmarketing_train.csv**](https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv) data file. The **y** column indicates if a customer subscribed to a fixed term deposit, which is later identified as the target column for predictions in this tutorial.
+- Download the [**bank+marketing.zip**](https://archive.ics.uci.edu/static/public/222/bank+marketing.zip) data file. We will use the **bank-full.csv** file. The **y** column indicates if a customer subscribed to a fixed term deposit, which is later identified as the target column for predictions in this tutorial.
 
   > [!NOTE]
-  > This Bank Marketing dataset is made available under the [Creative Commons (CCO: Public Domain) License](https://creativecommons.org/publicdomain/zero/1.0/). Any rights in individual contents of the database are licensed under the [Database Contents License](https://creativecommons.org/publicdomain/zero/1.0/) and available on [Kaggle](https://www.kaggle.com/datasets/janiobachmann/bank-marketing-dataset). This dataset was originally available within the [UCI Machine Learning Database](https://archive.ics.uci.edu/ml/datasets/bank+marketing).
+  > This Bank Marketing dataset is made available under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/legalcode). This dataset is   available as part the [UCI Machine Learning Database](https://archive.ics.uci.edu/ml/datasets/bank+marketing).
   >
-  > [Moro et al., 2014] S. Moro, P. Cortez and P. Rita. A Data-Driven Approach to Predict the Success of Bank Telemarketing. Decision Support Systems, Elsevier, 62:22-31, June 2014.
+  > Moro, S., P. Rita, and P. Cortez. 2014. Bank Marketing. UCI Machine Learning Repository. https://doi.org/10.24432/C5K306.
 
 ## Create a workspace
 
@@ -99,7 +99,7 @@ Before you configure your experiment, upload the data file to your workspace in 
    1. In **Destination storage type**, select the default datastore that was automatically set up during your workspace creation: **workspaceblobstore**. You upload your data file to this location to make it available to your workspace.
    1. Select **Next**.
    1. In **File or folder selection**, select **Upload files or folder** > **Upload files**.
-   1. Choose the *bankmarketing_train.csv* file on your local computer. You downloaded this file as a [prerequisite](https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv).
+   1. Choose the *bankmarketing_train.csv* file on your local computer. You downloaded this file as a [prerequisite](https://archive.ics.uci.edu/static/public/222/bank+marketing.zip).
    1. Select **Next**.
 
       When the upload finishes, the **Data preview** area is populated based on the file type.
@@ -109,7 +109,7 @@ Before you configure your experiment, upload the data file to your workspace in 
       | Field | Description | Value for tutorial |
       |:---|:---|:---|
       | File format | Defines the layout and type of data stored in a file.| Delimited |
-      | Delimiter | One or more characters for specifying the boundary between&nbsp; separate, independent regions in plain text or other data streams. | Comma |
+      | Delimiter | One or more characters for specifying the boundary between&nbsp; separate, independent regions in plain text or other data streams. | Semicolon |
       | Encoding | Identifies what bit to character schema table to use to read your dataset. | UTF-8 |
       | Column headers | Indicates how the headers of the dataset, if any, are treated. | All files have same headers |
       | Skip rows | Indicates how many, if any, rows are skipped in the dataset. | None |

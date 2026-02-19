@@ -2,16 +2,15 @@
 title: Examples of full Lucene query syntax
 titleSuffix: Azure AI Search
 description: Explore query examples that demonstrate the Lucene query syntax for fuzzy search, proximity search, term boosting, regular expression search, and wildcard searches in an Azure AI Search index.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Examples of *full* Lucene search syntax (advanced queries)
@@ -28,7 +27,7 @@ The Lucene parser supports complex query formats, such as field-scoped queries, 
 
 The following queries are based on the hotels-sample-index, which you can create by following the instructions in this [quickstart](search-get-started-portal.md).
 
-Example queries are articulated using the REST API and POST requests. You can paste and run them in a [REST client](search-get-started-rest.md). Or, use the JSON view of [Search Explorer](search-explorer.md) in the Azure portal. In JSON view, you can paste in the query examples shown here in this article.
+Example queries are articulated using the REST API and POST requests. You can paste and run them in a [REST client](search-get-started-text.md). Or, use the JSON view of [Search Explorer](search-explorer.md) in the Azure portal. In JSON view, you can paste in the query examples shown here in this article.
 
 Request headers must have the following values:
 
@@ -40,7 +39,7 @@ Request headers must have the following values:
 URI parameters must include your search service endpoint with the index name, docs collections, search command, and API version, similar to the following example:
 
 ```http
-https://{{service-name}}.search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+https://{{service-name}}.search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 ```
 
 The request body should be formed as valid JSON:
@@ -69,7 +68,7 @@ Fielded search scopes individual, embedded search expressions to a specific fiel
 When you use this query syntax, you can omit the `searchFields` parameter when the fields you want to query are in the search expression itself. If you include `searchFields` with fielded search, the `fieldName:searchExpression` always takes precedence over `searchFields`.
 
 ```http
-POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-09-01
 {
     "search": "HotelName:(hotel NOT motel) AND Category:'Boutique'",
     "queryType": "full",
@@ -128,7 +127,7 @@ The field specified in `fieldName:searchExpression` must be a searchable field. 
 Fuzzy search matches on terms that are similar, including misspelled words. To do a fuzzy search, append the tilde `~` symbol at the end of a single word with an optional parameter, a value between 0 and 2, that specifies the edit distance. For example, `blue~` or `blue~1` would return blue, blues, and glue.
 
 ```http
-POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-09-01
 {
     "search": "Tags:conserge~",
     "queryType": "full",
@@ -192,7 +191,7 @@ Proximity search finds terms that are near each other in a document. Insert a ti
 This query searches for the terms *hotel* and  *airport* within five words of each other in a document. The quotation marks are escaped (`\"`) to preserve the phrase:
 
 ```http
-POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-09-01
 {
     "search": "Description: \"hotel airport\"~5",
     "queryType": "full",
@@ -224,7 +223,7 @@ Term boosting refers to ranking a document higher if it contains the boosted ter
 In this *before* query, search for *beach access* and notice that there are six documents that match on one or both terms.
 
 ```http
-POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-09-01
 {
     "search": "beach access",
     "queryType": "full",
@@ -307,7 +306,7 @@ In fact, only two documents match on *access*. The first instance is in second p
 In the *after* query, repeat the search, this time boosting results with the term *beach* over the term *access*. A human readable version of the query is `search=Description:beach^2 access`. Depending on your client, you might need to express `^2` as `%5E2`.
 
 ```http
-POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-09-01
 {
     "search": "Description:beach^2 access",
     "queryType": "full",
@@ -394,7 +393,7 @@ After you boost the term *beach*, the match on Campus Commander Hotel moves down
 A regular expression search finds a match based on the contents between forward slashes `/` and lower-case strings, as documented in the [RegExp class](https://lucene.apache.org/core/6_6_1/core/org/apache/lucene/util/automaton/RegExp.html).
 
 ```http
-POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-09-01
 {
     "search": "HotelName:/(Mo|Ho)tel/",
     "queryType": "full",
@@ -449,7 +448,7 @@ You can use generally recognized syntax for multiple (`*`) or single (`?`) chara
 In this query, search for hotel names that contain the prefix *sc*. You can't use a `*` or `?` symbol as the first character of a search.
 
 ```http
-POST /indexes/hotel-samples-index/docs/search?api-version=2024-07-01
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-09-01
 {
     "search": "HotelName:sc*",
     "queryType": "full",
@@ -480,7 +479,7 @@ The response for this query should look similar to the following example:
 
 Try specifying queries in code. The following link covers how to set up search queries using the Azure SDKs.
 
-+ [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md)
++ [Quickstart: Full-text search](search-get-started-text.md)
 
 More syntax reference, query architecture, and examples can be found in the following articles:
 

@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 1/21/2024
 ms.custom: devx-track-java
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/java.md)]
@@ -205,6 +205,90 @@ static void translateSpeech() throws ExecutionException, InterruptedException {
 
 For more information about speech to text, see [the basics of speech recognition](../../../get-started-speech-to-text.md).
 
+## Event based translation
+
+The `TranslationRecognizer` object exposes a `recognizing` event. The event fires several times and provides a mechanism to retrieve the intermediate translation results. 
+
+> [!NOTE]
+> Intermediate translation results aren't available when you use [multi-lingual speech translation](#multi-lingual-translation-with-language-identification).
+
+The following example prints the intermediate translation results to the console:
+
+```java
+import com.microsoft.cognitiveservices.speech.*;
+import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
+import com.microsoft.cognitiveservices.speech.translation.*;
+
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Semaphore;
+
+public class TranslationContinuous {
+    private static String SPEECH__SUBSCRIPTION__KEY = System.getenv("SPEECH__SUBSCRIPTION__KEY");
+    private static String SPEECH__SERVICE__REGION = System.getenv("SPEECH__SERVICE__REGION");
+
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        SpeechTranslationConfig speechTranslationConfig = SpeechTranslationConfig.fromSubscription(
+            SPEECH__SUBSCRIPTION__KEY, SPEECH__SERVICE__REGION);
+
+        String fromLanguage = "en-US";
+        speechTranslationConfig.setSpeechRecognitionLanguage(fromLanguage);
+        speechTranslationConfig.addTargetLanguage("de");
+        speechTranslationConfig.addTargetLanguage("fr");
+
+        AudioConfig audioConfig = AudioConfig.fromWavFileInput("YourAudioFile.wav");
+        TranslationRecognizer translationRecognizer = new TranslationRecognizer(speechTranslationConfig, audioConfig);
+
+        Semaphore stopTranslationSemaphore = new Semaphore(0);
+
+        // Subscribes to events
+        translationRecognizer.recognizing.addEventListener((s, e) -> {
+            System.out.println("RECOGNIZING: Text=" + e.getResult().getText());
+            for (Map.Entry<String, String> pair : e.getResult().getTranslations().entrySet()) {
+                System.out.printf("    TRANSLATING into '%s': %s\n", pair.getKey(), pair.getValue());
+            }
+        });
+
+        translationRecognizer.recognized.addEventListener((s, e) -> {
+            if (e.getResult().getReason() == ResultReason.TranslatedSpeech) {
+                System.out.println("RECOGNIZED: Text=" + e.getResult().getText());
+                for (Map.Entry<String, String> pair : e.getResult().getTranslations().entrySet()) {
+                    System.out.printf("    TRANSLATED into '%s': %s\n", pair.getKey(), pair.getValue());
+                }
+            } else if (e.getResult().getReason() == ResultReason.RecognizedSpeech) {
+                System.out.println("RECOGNIZED: Text=" + e.getResult().getText());
+                System.out.println("    Speech not translated.");
+            } else if (e.getResult().getReason() == ResultReason.NoMatch) {
+                System.out.println("NOMATCH: Speech could not be recognized.");
+            }
+        });
+
+        translationRecognizer.canceled.addEventListener((s, e) -> {
+            System.out.println("CANCELED: Reason=" + e.getReason());
+            if (e.getReason() == CancellationReason.Error) {
+                System.out.println("CANCELED: ErrorDetails=" + e.getErrorDetails());
+            }
+            stopTranslationSemaphore.release();
+        });
+
+        translationRecognizer.sessionStopped.addEventListener((s, e) -> {
+            System.out.println("Session stopped.");
+            stopTranslationSemaphore.release();
+        });
+
+        // Starts continuous recognition
+        System.out.println("Start translation...");
+        translationRecognizer.startContinuousRecognitionAsync().get();
+
+        // Waits for completion
+        stopTranslationSemaphore.acquire();
+
+        // Stops translation
+        translationRecognizer.stopContinuousRecognitionAsync().get();
+    }
+}
+```
+
 ## Synthesize translations
 
 After a successful speech recognition and translation, the result contains all the translations in a dictionary. The [`getTranslations`][translations] function returns a dictionary with the key as the target translation language and the value as the translated text. Recognized speech can be translated and then synthesized in a different language (speech-to-speech).
@@ -313,6 +397,23 @@ static void translateSpeech() throws ExecutionException, InterruptedException {
 ```
 
 For more information about speech synthesis, see [the basics of speech synthesis](../../../get-started-text-to-speech.md).
+
+## Multi-lingual translation with language identification
+
+In many scenarios, you might not know which input languages to specify. Using [language identification](../../../language-identification.md?pivots=programming-language-java#run-speech-translation) you can detect up to 10 possible input languages and automatically translate to your target languages. 
+
+The following example anticipates that `en-US` or `zh-CN` should be detected because they're defined in `AutoDetectSourceLanguageConfig`. Then, the speech is translated to `de` and `fr` as specified in the calls to `addTargetLanguage()`.
+
+```java
+speechTranslationConfig.addTargetLanguage("de");
+speechTranslationConfig.addTargetLanguage("fr");
+AutoDetectSourceLanguageConfig autoDetectSourceLanguageConfig = 
+    AutoDetectSourceLanguageConfig.fromLanguages(Arrays.asList("en-US", "zh-CN"));
+TranslationRecognizer translationRecognizer = 
+    new TranslationRecognizer(speechTranslationConfig, autoDetectSourceLanguageConfig, audioConfig);
+```
+
+For a complete code sample, see [language identification](../../../language-identification.md?pivots=programming-language-java#run-speech-translation).
 
 [speechtranslationconfig]: /java/api/com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig
 [audioconfig]: /java/api/com.microsoft.cognitiveservices.speech.audio.AudioConfig

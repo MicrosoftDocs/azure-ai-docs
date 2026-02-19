@@ -1,6 +1,6 @@
 ---
 title: Integrate Azure storage for notifications and model backup
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to integrate Azure storage to receive push notifications when you train or export Custom Vision models. You can also save a backup of exported models.
 author: PatrickFarley
 manager: nitinme
@@ -8,7 +8,9 @@ ms.service: azure-ai-custom-vision
 ms.topic: how-to
 ms.date: 01/29/2025
 ms.author: pafarley
-ms.custom: cogserv-non-critical-vision
+ms.custom:
+  - cogserv-non-critical-vision
+  - sfi-image-nochange
 #customer intent: As a developer, I want to integrate Azure storage with Custom Vision so that I can receive notifications and back up models.
 
 ---
@@ -28,7 +30,7 @@ This guide shows you how to use these REST APIs with cURL. You can also use an H
 
 - An Azure Custom Vision resource. If you don't have one, go to the Azure portal and [create a new Custom Vision resource](https://portal.azure.com/?microsoft_azure_marketplace_ItemHideKey=microsoft_azure_cognitiveservices_customvision#create/Microsoft.CognitiveServicesCustomVision?azure-portal=true). 
     > [!NOTE]
-    > This feature doesn't support the [Azure AI services multi-service resource](../multi-service-resource.md).
+    > This feature doesn't support the [Foundry Tools multi-service resource](../multi-service-resource.md).
 - An Azure Storage account with a blob container. Follow the [Storage quickstart](/azure/storage/blobs/storage-quickstart-blobs-portal) if you need help with this step.
 - [PowerShell version 6.0+](/powershell/scripting/install/installing-powershell-core-on-windows), or a similar command-line application.
 

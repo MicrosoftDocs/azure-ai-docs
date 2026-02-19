@@ -3,9 +3,9 @@ title: Manage training & deploy computes (studio)
 titleSuffix: Azure Machine Learning
 description: Use studio to manage training and deployment compute resources (compute targets) for machine learning.
 services: machine-learning
-author: sdgilley
-ms.author: sgilley
-ms.reviewer: vijetaj
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.date: 09/17/2024
@@ -24,7 +24,7 @@ You can also use [serverless compute](./how-to-use-serverless-compute.md) as a c
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today
+* If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today
 * An [Azure Machine Learning workspace](quickstart-create-resources.md)
 
 ## View compute targets

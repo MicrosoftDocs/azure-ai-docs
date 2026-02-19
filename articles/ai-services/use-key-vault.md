@@ -1,18 +1,22 @@
 ---
-title: Develop Azure AI services applications with Azure Key Vault
-description: Learn how to develop Azure AI services applications securely by using Azure Key Vault.
+title: Develop Foundry Tools applications with Azure Key Vault
+description: Learn how to develop Foundry Tools applications securely by using Azure Key Vault.
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-services
-ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 zone_pivot_groups: programming-languages-set-twenty-eight
+ms.custom:
+  - devx-track-extended-java
+  - devx-track-js
+  - devx-track-python
+  - sfi-image-nochange
 ---
 
-# Develop Azure AI services applications with Azure Key Vault
+# Develop Foundry Tools applications with Azure Key Vault
 
-Learn how to develop Azure AI services applications securely by using [Azure Key Vault](/azure/key-vault/general/overview). 
+Learn how to develop Foundry Tools applications securely by using [Azure Key Vault](/azure/key-vault/general/overview). 
 
 Key Vault reduces the risk that secrets may be accidentally leaked, because you avoid storing security information in your application. 
 
@@ -20,58 +24,58 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 
 ::: zone pivot="programming-language-csharp"
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free)
+* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Visual Studio IDE](https://visualstudio.microsoft.com/vs/)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
-* [An AI Foundry resource](./multi-service-resource.md?pivots=azportal)
+* [A Foundry resource](./multi-service-resource.md?pivots=azportal)
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free).
+* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Python 3.7 or later](https://www.python.org/)
 * [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
-* [An AI Foundry resource](./multi-service-resource.md?pivots=azportal)
+* [A Foundry resource](./multi-service-resource.md?pivots=azportal)
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free).
+* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Java Development Kit (JDK) version 8 or above](/azure/developer/java/fundamentals/)
 * [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
-* [An AI Foundry resource](./multi-service-resource.md?pivots=azportal)
+* [A Foundry resource](./multi-service-resource.md?pivots=azportal)
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free).
+* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Current Node.js v14 LTS or later](https://nodejs.org/)
 * [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
-* [An AI Foundry resource](./multi-service-resource.md?pivots=azportal)
+* [A Foundry resource](./multi-service-resource.md?pivots=azportal)
 
 ::: zone-end
 
 > [!NOTE]
-> Review the documentation and quickstart articles for the Azure AI service you're using to get an understanding of:
+> Review the documentation and quickstart articles for the Foundry Tool you're using to get an understanding of:
 > * The credentials and other information you will need to send API calls.
 > * The packages and code you will need to run your application.
 
-## Get your credentials from your Azure AI Foundry resource
+## Get your credentials from your Foundry resource
 
-Before you add your credential information to your Azure key vault, you need to retrieve them from your Azure AI Foundry resource. For example, if your service needs a key and endpoint you would find them using the following steps:
+Before you add your credential information to your Azure key vault, you need to retrieve them from your Foundry resource. For example, if your service needs a key and endpoint you would find them using the following steps:
 
 1. Navigate to your Azure resource in the [Azure portal](https://portal.azure.com/).
 1. From the collapsible menu on the left, select **Keys and Endpoint**.
 
     :::image type="content" source="language-service/custom-text-classification/media/get-endpoint-azure.png" alt-text="A screenshot showing the key and endpoint page in the Azure portal." lightbox="language-service/custom-text-classification/media/get-endpoint-azure.png":::
 
-Some Azure AI services require different information to authenticate API calls, such as a key and region. Make sure to retrieve this information before continuing on.
+Some Foundry Tools require different information to authenticate API calls, such as a key and region. Make sure to retrieve this information before continuing on.
 
 ## Add your credentials to your key vault
 
@@ -91,7 +95,7 @@ Repeat these steps to generate a secret for each required resource credential. F
     |---------|---------|
     |Upload options     | Generate         |
     |Name     | A secret name for your key or endpoint. For example: "CognitiveServicesKey" or "CognitiveServicesEndpoint"        |
-    |Value     | Your Azure AI Foundry resource key or endpoint.         |
+    |Value     | Your Foundry resource key or endpoint.         |
 
     Later your application will use the secret "Name" to securely access the "Value". 
 
@@ -323,7 +327,7 @@ python ./program.py
 
 If you're using a multi-service resource or Language resource, you can update [your application](#create-a-python-application) by following these steps to send an example Named Entity Recognition call by retrieving a key and endpoint from your key vault.   
 
-1. Install the Language service library:
+1. Install Azure Language service library:
 
     ```console
     pip install azure-ai-textanalytics==5.1.0
@@ -335,7 +339,7 @@ If you're using a multi-service resource or Language resource, you can update [y
     from azure.ai.textanalytics import TextAnalyticsClient
     # Authenticate the key vault secrets client using your key and endpoint 
     azure_key_credential = AzureKeyCredential(retrieved_key)
-    # Now you can use key vault credentials with the Language service
+    # Now you can use key vault credentials with Azure Language service
     language_service_client = TextAnalyticsClient(
         endpoint=retrieved_endpoint, 
         credential=azure_key_credential)
@@ -560,7 +564,7 @@ node index.js
 
 If you're using a multi-service resource or Language resource, you can update [your application](#create-a-new-nodejs-application) by following these steps to send an example Named Entity Recognition call by retrieving a key and endpoint from your key vault.   
 
-1. Install the Azure AI service for Language library, [@azure/ai-text-analytics](https://www.npmjs.com/package/@azure/ai-text-analytics/) to send API requests to the [Language service](./language-service/overview.md).
+1. Install the Foundry Tool for Language library, [@azure/ai-text-analytics](https://www.npmjs.com/package/@azure/ai-text-analytics/) to send API requests to the [Language service](./language-service/overview.md).
 
     ```terminal
     npm install @azure/ai-text-analytics@5.1.0
@@ -594,8 +598,8 @@ If you're using a multi-service resource or Language resource, you can update [y
 
 ## Next steps
 
-* See [What are Azure AI services](./what-are-ai-services.md) for available features you can develop along with [Azure Key Vault](/azure/key-vault/general/).  
+* See [What are Foundry Tools](./what-are-ai-services.md) for available features you can develop along with [Azure Key Vault](/azure/key-vault/general/).  
 * For additional information on secure application development, see:
     * [Best practices for using Azure Key Vault](/azure/key-vault/general/best-practices)
-    * [Azure AI services security](security-features.md)
-    * [Azure security baseline for Azure AI services](/security/benchmark/azure/baselines/cognitive-services-security-baseline?toc=/azure/ai-services/TOC.json)
+    * [Foundry Tools security](security-features.md)
+    * [Azure security baseline for Foundry Tools](/security/benchmark/azure/baselines/cognitive-services-security-baseline?toc=/azure/ai-services/TOC.json)

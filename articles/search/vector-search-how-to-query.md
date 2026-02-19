@@ -1,27 +1,27 @@
 ---
-title: Vector query how-to
+title: Create a Vector Query
 titleSuffix: Azure AI Search
 description: Learn how to build queries for vector search.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 06/19/2025
+ms.date: 09/29/2025
 ---
 
 # Create a vector query in Azure AI Search
 
-In Azure AI Search, if you have a [vector index](vector-search-how-to-create-index.md), this article explains how to:
+If you have a [vector index](vector-search-how-to-create-index.md) in Azure AI Search, this article explains how to:
 
 > [!div class="checklist"]
-> + [Query vector fields](#vector-query-request).
-> + [Query multiple vector fields at once](#multiple-vector-fields).
-> + [Set vector weights](#vector-weighting).
-> + [Query with integrated vectorization](#query-with-integrated-vectorization).
-> + [Set thresholds to exclude low-scoring results (preview)](#set-thresholds-to-exclude-low-scoring-results-preview).
+> + [Query vector fields](#vector-query-request)
+> + [Query multiple vector fields at once](#multiple-vector-fields)
+> + [Set vector weights](#vector-weighting)
+> + [Query with integrated vectorization](#query-with-integrated-vectorization)
+> + [Set thresholds to exclude low-scoring results (preview)](#set-thresholds-to-exclude-low-scoring-results-preview)
 
 This article uses REST for illustration. After you understand the basic workflow, continue with the Azure SDK code samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo, which provides end-to-end solutions that include vector queries.
 
@@ -35,7 +35,7 @@ You can also use [Search Explorer](search-explorer.md) in the Azure portal.
 
 + Optionally, [add a vectorizer](vector-search-how-to-configure-vectorizer.md) to your index for built-in text-to-vector or image-to-vector conversion during queries.
 
-+ Visual Studio Code with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and sample data if you want to run these examples on your own. To get started with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
++ Visual Studio Code with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and sample data if you want to run these examples on your own. To get started with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 ## Convert a query string input into a vector
 
@@ -93,9 +93,9 @@ This section shows you the basic structure of a vector query. You can use the Az
 
 If you're migrating from [**2023-07-01-Preview**](/rest/api/searchservice/index-preview), there are breaking changes. For more information, see [Upgrade to the latest REST API](search-api-migration.md).
 
-### [**2024-07-01**](#tab/query-2024-07-01)
+### [**2025-09-01**](#tab/query-2025-09-01)
 
-[**2024-07-01**](/rest/api/searchservice/search-service-api-versions#2024-07-01) is the stable REST API version of [Search POST](/rest/api/searchservice/documents/search-post). This version supports:
+The stable version supports:
 
 + `vectorQueries` is the construct for vector search.
 + `vectorQueries.kind` set to `vector` for a vector array or `text` if the input is a string and if you [have a vectorizer](#query-with-integrated-vectorization).
@@ -108,7 +108,7 @@ If you're migrating from [**2023-07-01-Preview**](/rest/api/searchservice/index-
 In the following example, the vector is a representation of this string: `"what Azure services support full text search"`. The query targets the `contentVector` field and returns `k` results. The actual vector has 1,536 embeddings, which are trimmed in this example for readability.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-09-01
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {
@@ -133,19 +133,19 @@ api-key: {{admin-api-key}}
 }
 ```
 
-### [**2024-05-01-preview**](#tab/query-2024-05-01-preview)
+### [**2025-11-01-preview**](#tab/query-2025-11-01-preview)
 
-[**2024-05-01-preview**](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) is the latest preview API version of [Search - POST](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true). It supports the same vector query syntax as **2024-07-01**, but it has extra parameters for hybrid search and minimum thresholds for excluding weaker results.
+[**2025-11-01-preview**](/rest/api/searchservice/search-service-api-versions#2025-11-01-preview) is the latest preview API version of [Search - POST](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true). It supports the same vector query syntax as **2025-09-01**, but it has extra parameters for hybrid search and minimum thresholds for excluding weaker results.
 
-This preview adds:
+This preview supports:
 
 + [`threshold`](#set-thresholds-to-exclude-low-scoring-results-preview) for excluding low-scoring results.
-+ [`Hybridsearch.MaxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) for more control over the inputs to a [hybrid query](hybrid-search-how-to-query.md).
++ [`hybridSearch.MaxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) for more control over the inputs to a [hybrid query](hybrid-search-how-to-query.md).
 
 In the following example, the vector is a representation of this string: `"what Azure services support full text search"`. The query targets the `contentVector` field and returns `k` results. The actual vector has 1,536 embeddings, which are trimmed in this example for readability.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-05-01-preview
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-11-01-preview
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {
@@ -176,6 +176,7 @@ api-key: {{admin-api-key}}
 
         }
     ]
+}
 ```
 
 ### [**Azure portal**](#tab/portal-vector-query)
@@ -266,7 +267,7 @@ You can set the `vectorQueries.fields` property to multiple vector fields. The v
 When querying multiple vector fields, ensure that each one contains embeddings from the same embedding model. The query should also be generated from the same embedding model.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-09-01
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {
@@ -337,7 +338,7 @@ Search indexes can't store images. Assuming that your index includes a field for
 
 ## Query with integrated vectorization
 
-This section shows a vector query that invokes the [integrated vectorization](vector-search-integrated-vectorization.md) to convert a text or [image query](search-get-started-portal-image-search.md) into a vector. We recommend the stable [**2024-07-01**](/rest/api/searchservice/documents/search-post) REST API, Search Explorer, or newer Azure SDK packages for this feature.
+This section shows a vector query that invokes the [integrated vectorization](vector-search-integrated-vectorization.md) to convert a text or [image query](search-get-started-portal-image-search.md) into a vector. We recommend the stable [**2025-09-01**](/rest/api/searchservice/documents/search-post) REST API, Search Explorer, or newer Azure SDK packages for this feature.
 
 A prerequisite is a search index that has a [vectorizer configured and assigned](vector-search-how-to-configure-vectorizer.md) to a vector field. The vectorizer provides connection information to an embedding model used at query time.
 
@@ -357,7 +358,7 @@ Search Explorer supports integrated vectorization at query time. If your index c
 
    Alternatively, you can select **View** > **JSON view** to view or modify the query. If vectors are present, Search Explorer sets up a vector query automatically. You can use the JSON view to select fields for use in the searche and response, add filters, and construct more advanced queries, such as [hybrid queries](hybrid-search-how-to-query.md). To see a JSON example, select the REST API tab in this section.
 
-### [**REST API**](#tab/builtin-2024-07-01)
+### [**REST API**](#tab/builtin-2025-09-01)
 
 1. Use [Index - GET](/rest/api/searchservice/indexes/get) to return the index definition and check for the presence of a vectorizer configuration. Look for `vectorizers` in your index definition. It should specify a deployed embedding model.
 
@@ -371,7 +372,7 @@ Search Explorer supports integrated vectorization at query time. If your index c
 Here's a simple example of a query that's vectorized at query time. The text string is vectorized and then used to query the `descriptionVector` field.
 
 ```http
-POST https://{{search-service}}.search.windows.net/indexes/{{index}}/docs/search?api-version=2024-07-01
+POST https://{{search-service}}.search.windows.net/indexes/{{index}}/docs/search?api-version=2025-09-01
 {
     "select": "title, genre, description",
     "vectorQueries": [
@@ -390,7 +391,7 @@ Here's a [hybrid query](hybrid-search-how-to-query.md) that uses integrated vect
 In this example, the search engine makes three vectorization calls to the vectorizers assigned to `descriptionVector`, `synopsisVector`, and `authorBioVector` in the index. The resulting vectors are used to retrieve documents against their respective fields. The search engine also executes a keyword search on the `search` query, which is `"mystery novel set in London"`.
 
 ```http
-POST https://{{search-service}}.search.windows.net/indexes/{{index}}/docs/search?api-version=2024-07-01
+POST https://{{search-service}}.search.windows.net/indexes/{{index}}/docs/search?api-version=2025-09-01
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {
@@ -472,7 +473,7 @@ Weights are used when calculating the [RRF scores](hybrid-search-ranking.md#weig
 The following example is a hybrid query with two vector query strings and one text string. Weights are assigned to the vector queries. The first query is 0.5 or half the weight, reducing its importance in the request. The second vector query is twice as important.
 
 ```http
-POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2024-07-01
+POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?api-version=2025-09-01
 
     { 
       "vectorQueries": [ 
@@ -524,17 +525,6 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
       ]
     }
 ```
-
- <!-- Keep H2 as-is. Direct link from a blog post. Bulk of maxtextsizerecall has moved to hybrid query doc-->
-## MaxTextSizeRecall for hybrid search (preview)
-
-Vector queries are often used in hybrid constructs that include nonvector fields. If you discover that BM25-ranked results are over or under represented in a hybrid query results, you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to increase or decrease the BM25-ranked results provided for hybrid ranking.
-
-You can only set this property in hybrid requests that include both `search` and `vectorQueries` components.
-
-This parameter is in preview. We recommend the  [2024-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) REST API version.
-
-For more information, see [Set maxTextRecallSize - Create a hybrid query](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode).
 
 ## Next steps
 

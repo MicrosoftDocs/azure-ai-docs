@@ -1,16 +1,16 @@
 ---
-title: Transparency Note for Azure AI Language
-titleSuffix: Azure AI services
-description: The Transparency note discusses Azure AI Language and the key considerations for making use of this technology responsibly.
-author: aahill
-ms.author: aahi
+title: Transparency Note for Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
+description: The Transparency note discusses Azure Language in Foundry Tools and the key considerations for making use of this technology responsibly.
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 04/26/2023
 ---
 
-# Transparency Note for Azure AI Language
+# Transparency Note for Azure Language in Foundry Tools
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
@@ -21,10 +21,10 @@ An AI system includes not only the technology, but also the people who will use 
 Microsoft's Transparency Notes are part of a broader effort at Microsoft to put our AI principles into practice. To find out more, see [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai).
 
 
-## The basics of Azure AI Language
+## The basics of Azure Language in Foundry Tools
 
 ### Introduction
-Azure AI Language is a cloud-based service that provides Natural Language Processing (NLP) features for text mining and text analysis, including the following features:
+Language is a cloud-based service that provides Natural Language Processing (NLP) features for text mining and text analysis, including the following features:
 
 * [Named Entity Recognition (NER), Personally Identifying Information (PII)](/azure/ai-services/language-service/named-entity-recognition/overview)
 * [Text analytics for health](/azure/ai-services/language-service/text-analytics-for-health/overview)
@@ -39,7 +39,7 @@ Azure AI Language is a cloud-based service that provides Natural Language Proces
 
 Read the overview to get an introduction to each feature and review the example use cases. See the How-to guides and the API reference to understand more details about what each feature does and what gets returned by the system.
 
-This article contains basic guidelines for how to use Azure AI Language features responsibly. Read the general information first and then jump to the specific article if you're using one of the features below.
+This article contains basic guidelines for how to use Language features responsibly. Read the general information first and then jump to the specific article if you're using one of the features below.
 
 * [Transparency note for Named Entity Recognition](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition)
 * [Transparency note for Personally Identifying Information](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information
@@ -56,7 +56,7 @@ This article contains basic guidelines for how to use Azure AI Language features
 ## Capabilities 
 
 ### Use cases 
-Azure AI Language services can be used in multiple scenarios across a variety of industries. Some examples listed by feature are:
+Language services can be used in multiple scenarios across a variety of industries. Some examples listed by feature are:
 
 * **Use Custom Named Entity Recognition for knowledge mining to enhance semantic search.** Search is foundational to any app that surfaces text content to users. Common scenarios include catalog or document search, retail product search, or knowledge mining for data science. Many enterprises across various industries want to build a rich search experience over private, heterogeneous content, which includes both structured and unstructured documents. As a part of their pipeline, developers can use custom NER for extracting entities from the text that are relevant to their industry. These entities can be used to enrich the indexing of the file for a more customized search experience. 
 
@@ -85,19 +85,19 @@ Azure AI Language services can be used in multiple scenarios across a variety of
 
 ### The quality of the incoming text to the system will affect your results.
 
-Azure AI Language features only process text. The fidelity and formatting of the incoming text will affect the performance of the system. Make sure you consider the following:
+Language features only process text. The fidelity and formatting of the incoming text will affect the performance of the system. Make sure you consider the following:
 
 * Speech transcription quality may affect the quality of the results. If your source data is voice, make sure you use the highest quality combination of automatic and human transcription to ensure the best performance. Consider using custom speech models for better quality results.
 
-* Lack of standard punctuation or casing may affect the quality of your results. If you are using a speech system, like Azure AI Speech to Text, be sure to select the option to include punctuation.
+* Lack of standard punctuation or casing may affect the quality of your results. If you are using a speech system, like Azure Speech in Foundry Tools to Text, be sure to select the option to include punctuation.
 
 * Optical character recognition (OCR) quality may affect the quality of the system. If your source data is images and you use OCR technology to generate the text, incorrectly generated text may affect the performance of the system. Consider using custom OCR models to help improve the quality of results.
 
 * If your data includes frequent misspellings, consider using Bing Spell Check to correct misspellings.
 
-* Tabular data may not be identified correctly depending on how you send the table text to the system. Assess how you send text from tables in source documents to the service. For tables in documents, consider using Azure AI Document Intelligence or a similar service. This will allow you to get the appropriate keys and values to send to Azure AI Language with contextual keys that are close enough to the values for the system to properly recognize the entities.
+* Tabular data may not be identified correctly depending on how you send the table text to the system. Assess how you send text from tables in source documents to the service. For tables in documents, consider using Azure Document Intelligence in Foundry Tools or a similar service. This will allow you to get the appropriate keys and values to send to Language with contextual keys that are close enough to the values for the system to properly recognize the entities.
 
-* Microsoft trained its Azure AI Language feature models (with the exception of language detection) using natural language text data that is comprised primarily of fully formed sentences and paragraphs. Therefore, using this service for data that most closely resembles this type of text will yield the best performance. We recommend avoiding use of this service to evaluate incomplete sentences and phrases where possible, as the performance may be reduced.
+* Microsoft trained its Language feature models (with the exception of language detection) using natural language text data that is comprised primarily of fully formed sentences and paragraphs. Therefore, using this service for data that most closely resembles this type of text will yield the best performance. We recommend avoiding use of this service to evaluate incomplete sentences and phrases where possible, as the performance may be reduced.
 
 * The service only supports single language text. If your text includes multiple languages for example "the sandwich was bueno", the output may not be accurate.
 
@@ -105,7 +105,7 @@ Azure AI Language features only process text. The fidelity and formatting of the
 
 ### Best practices for improving system performance
 
-Some features of Azure AI Language return confidence scores and can be evaluated using the approach described in the following sections. Other features which do not return a confidence score (such as key word extraction and summarization) will need to be evaluated using different methods. 
+Some features of Language return confidence scores and can be evaluated using the approach described in the following sections. Other features which do not return a confidence score (such as key word extraction and summarization) will need to be evaluated using different methods. 
 
 ### Understand confidence scores for sentiment analysis, named entity recognition, language detection, and health functions
 
@@ -114,7 +114,7 @@ In many cases, the system response can be used without examining the confidence 
 
 ### Understand and measuring performance
 
-The performance of Azure AI Language features is measured by examining how well the system recognizes the supported NLP concepts (at a given threshold value in comparison with a human judge.) For named entity extraction (NER), for example, one might count the true number of phone number entities in some text based on human judgement, and then compare with the output of the system from processing the same text. Comparing human judgement with the system recognized entities would allow you to classify the events into two kinds of correct (or "true") events and two kinds of incorrect (or "false") events.
+The performance of Language features is measured by examining how well the system recognizes the supported NLP concepts (at a given threshold value in comparison with a human judge.) For named entity extraction (NER), for example, one might count the true number of phone number entities in some text based on human judgement, and then compare with the output of the system from processing the same text. Comparing human judgement with the system recognized entities would allow you to classify the events into two kinds of correct (or "true") events and two kinds of incorrect (or "false") events.
 
 | Outcome | Correct/Incorrect | Definition | Example |
 |---------|-------------------|------------|---------|
@@ -123,11 +123,11 @@ The performance of Azure AI Language features is measured by examining how well 
 | False Positive | Incorrect | The system returns a result where a human judge would not. | The system incorrectly recognizes PII entity of category **Phone Number** for the text office number when given the text: "You can reach me at my office number."  |
 | False Negative | Incorrect | The system does not return a result when a human judge would. | The system incorrectly misses a **Phone Number** PII entity on the text **1-234-567-8910** when given the text: "You can reach me at my office number 1-234-567-9810." |
 
-Azure AI Language features will not always be correct. You'll likely experience both false negative and false positive errors. It's important to consider how each type of error will affect your system. Carefully think through scenarios where true events won't be recognized and where incorrect events will be recognized and what the downstream effects might be in your implementation. Make sure to build in ways to identify, report and respond to each type of error. Plan to periodically review the performance of your deployed system to ensure errors are being handled appropriately.
+Language features will not always be correct. You'll likely experience both false negative and false positive errors. It's important to consider how each type of error will affect your system. Carefully think through scenarios where true events won't be recognized and where incorrect events will be recognized and what the downstream effects might be in your implementation. Make sure to build in ways to identify, report and respond to each type of error. Plan to periodically review the performance of your deployed system to ensure errors are being handled appropriately.
 
 ### How to set confidence score thresholds
 
-You can choose to make decisions in your system based on the confidence score the system returns. You can adjust the confidence score threshold your system uses to meet your needs. If it is more important to identify all potential instances of the NLP concepts you want, you can use a lower threshold. This means that you may get more false positives but fewer false negatives. If it is more important for your system to recognize only true instances of the feature you're calling, you can use a higher threshold. If you use a higher threshold, you may get fewer false positives but more false negatives. Different scenarios call for different approaches. In addition, threshold values may not have consistent behavior across individual features of Azure AI Language and categories of entities. For example, do not make assumptions that using a certain threshold for NER category Phone Number would be sufficient for another NER category, or that a threshold you use in NER would work similarly for Sentiment Analysis. Therefore, it is critical that you test your system with any thresholds you are considering using with real data to determine the effects of various threshold values of your system in the context that it will be used.
+You can choose to make decisions in your system based on the confidence score the system returns. You can adjust the confidence score threshold your system uses to meet your needs. If it is more important to identify all potential instances of the NLP concepts you want, you can use a lower threshold. This means that you may get more false positives but fewer false negatives. If it is more important for your system to recognize only true instances of the feature you're calling, you can use a higher threshold. If you use a higher threshold, you may get fewer false positives but more false negatives. Different scenarios call for different approaches. In addition, threshold values may not have consistent behavior across individual features of Language and categories of entities. For example, do not make assumptions that using a certain threshold for NER category Phone Number would be sufficient for another NER category, or that a threshold you use in NER would work similarly for Sentiment Analysis. Therefore, it is critical that you test your system with any thresholds you are considering using with real data to determine the effects of various threshold values of your system in the context that it will be used.
 
 ### Fairness
 
@@ -137,11 +137,11 @@ One dimension we need to consider is how well the system performs for different 
 
 Each service and feature is different, and our testing may not perfectly match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate error rates for the service with real-world data that reflects your use case, including testing with users from different demographic groups. 
 
-For Azure AI Language, certain dialects and language varieties within our supported languages and text from some demographic groups may not yet have enough representation in our current training datasets. We encourage you to review our [responsible use guidelines](guidance-integration-responsible-use.md), and if you encounter performance differences, we encourage you to let us know.
+For Language, certain dialects and language varieties within our supported languages and text from some demographic groups may not yet have enough representation in our current training datasets. We encourage you to review our [responsible use guidelines](guidance-integration-responsible-use.md), and if you encounter performance differences, we encourage you to let us know.
 
 ## Performance varies across features and languages
 
-Various languages are supported for each Azure AI Language feature. You may find that performance for a particular feature is not consistent with another feature. Also, you may find that for a particular feature that performance is not consistent across various languages.
+Various languages are supported for each Language feature. You may find that performance for a particular feature is not consistent with another feature. Also, you may find that for a particular feature that performance is not consistent across various languages.
 
 ## Next steps
 
@@ -162,5 +162,5 @@ If you are using any of the features below, be sure to review the specific infor
 
 Also, make sure to review:
 
-* [Guidance for integration and responsible use with Azure AI Language](guidance-integration-responsible-use.md)
-* [Data Privacy for Azure AI Language](data-privacy.md)
+* [Guidance for integration and responsible use with Language](guidance-integration-responsible-use.md)
+* [Data Privacy for Language](data-privacy.md)

@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: concept-article
-ms.author: lagayhar
+ms.author: scottpolly
 author: lgayhardt
-ms.reviewer: lagayhar
-ms.date: 09/13/2024
+ms.reviewer: jturuk
+ms.date: 09/09/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
@@ -26,36 +26,60 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 :::moniker-end
 
-An Azure Machine Learning pipeline is an independently executable workflow of a complete machine learning task. An Azure Machine Learning pipeline helps to standardize the best practices of producing a machine learning model, enables the team to execute at scale, and improves the model building efficiency.
+
+
+An Azure Machine Learning pipeline is a workflow that automates a complete machine learning task. It standardizes best practices, supports team collaboration, and improves efficiency.
 
 ## Why are Azure Machine Learning pipelines needed?
 
-The core of a machine learning pipeline is to split a complete machine learning task into a multistep workflow. Each step is a manageable component that can be developed, optimized, configured, and automated individually. Steps are connected through well-defined interfaces. The Azure Machine Learning pipeline service automatically orchestrates all the dependencies between pipeline steps. This modular approach brings two key benefits:
-- [Standardize the Machine learning operation (MLOps) practice and support scalable team collaboration](#standardize-the-mlops-practice-and-support-scalable-team-collaboration)
-- [Training efficiency and cost reduction](#training-efficiency-and-cost-reduction)
+
+- [Standardizes machine learning operations (MLOps) and supports scalable team collaboration](#standardize-the-mlops-practice-and-support-scalable-team-collaboration)
+- [Improves training efficiency and reduces cost](#training-efficiency-and-cost-reduction)
+
+A pipeline breaks a machine learning task into steps. Each step is a manageable component that can be developed and automated separately. Azure Machine Learning manages dependencies between steps. This modular approach:
+- Standardizes MLOps and supports team collaboration
+- Improves training efficiency and reduces cost
+- [Standardizes machine learning operations (MLOps) and supports scalable team collaboration](#standardize-the-mlops-practice-and-support-scalable-team-collaboration)
+- [Improves training efficiency and reduces cost](#training-efficiency-and-cost-reduction)
 
 ### Standardize the MLOps practice and support scalable team collaboration
 
-Machine learning operation (MLOps) automates the process of building machine learning models and taking the model to production. This is a complex process. It usually requires collaboration from different teams with different skills. A well-defined machine learning pipeline can abstract this complex process into a multiple steps workflow, mapping each step to a specific task such that each team can work independently.  
 
-For example, a typical machine learning project includes the steps of data collection, data preparation, model training, model evaluation, and model deployment. Usually, the data engineers concentrate on data steps, data scientists spend most time on model training and evaluation, the machine learning engineers focus on model deployment and automation of the entire workflow. By leveraging machine learning pipeline, each team only needs to work on building their own steps. The best way of building steps is using [Azure Machine Learning component (v2)](concept-component.md), a self-contained piece of code that does one step in a machine learning pipeline. All these steps built by different users are finally integrated into one workflow through the pipeline definition. The pipeline is a collaboration tool for everyone in the project. The process of defining a pipeline and all its steps can be standardized by each company's preferred DevOps practice. The pipeline can be further versioned and automated. If the ML projects are described as a pipeline, then the best MLOps practice is already applied.  
+
+MLOps automates building and deploying models. Pipelines simplify this process by mapping each step to a specific task, so teams can work independently.
+
+
+
+For example, a project may include data collection, preparation, training, evaluation, and deployment. Data engineers, scientists, and ML engineers each own their steps. Steps are best built as [components](concept-component.md), then integrated into a single workflow. Pipelines can be versioned, automated, and standardized by DevOps practices.
 
 ### Training efficiency and cost reduction
 
-Besides being the tool to put MLOps into practice, the machine learning pipeline also improves large model training's efficiency and reduces cost. Taking modern natural language model training as an example. It requires pre-processing large amounts of data and GPU intensive transformer model training. It takes hours to days to train a model each time. When the model is being built, the data scientist wants to test different training code or hyperparameters and run the training many times to get the best model performance. For most of these trainings, there's usually small changes from one training to another one. It will be a significant waste if every time the full training from data processing to model training takes place. By using machine learning pipeline, it can automatically calculate which steps result is unchanged and reuse outputs from previous training. Additionally, the machine learning pipeline supports running each step on different computation resources. Such that, the memory heavy data processing work and run-on high memory CPU machines, and the computation intensive training can run on expensive GPU machines. By properly choosing which step to run on which type of machines, the training cost can be significantly reduced.
+
+
+Pipelines also improve efficiency and reduce costs. They reuse outputs from unchanged steps and let you run each step on the best compute resource for the task.
 
 ## Getting started best practices
 
-Depending on what a machine learning project already has, the starting point of building a machine learning pipeline might vary. There are a few typical approaches to building a pipeline.
 
-The first approach usually applies to the team that hasn't used pipeline before and wants to take some advantage of pipeline like MLOps. In this situation, data scientists typically have developed some machine learning models on their local environment using their favorite tools. Machine learning engineers need to take data scientists' output into production. The work involves cleaning up some unnecessary code from original notebook or Python code, changes the training input from local data to parameterized values, split the training code into multiple steps as needed, perform unit test of each step, and finally wraps all steps into a pipeline.
 
-Once the teams get familiar with pipelines and want to do more machine learning projects using pipelines, they'll find the first approach is hard to scale. The second approach is set up a few pipeline templates, each try to solve one specific machine learning problem. The template predefines the pipeline structure including how many steps, each step's inputs and outputs, and their connectivity. To start a new machine learning project, the team first forks one template repo. The team leader then assigns members which step they need to work on. The data scientists and data engineers do their regular work. When they're happy with their result, they structure their code to fit in the pre-defined steps. Once the structured codes are checked-in, the pipeline can be executed or automated. If there's any change, each member only needs to work on their piece of code without touching the rest of the pipeline code.
+You can build a pipeline in several ways, depending on your starting point.
 
-Once a team has built a collection of machine learnings pipelines and reusable components, they could start to build the machine learning pipeline from cloning previous pipeline or tie existing reusable component together. At this stage, the team's overall productivity will be improved significantly.  
+
+
+If you are new to pipelines, start by splitting existing code into steps, parameterizing inputs, and wrapping everything into a pipeline.
+
+
+
+To scale, use pipeline templates for common problems. Teams fork a template, work on assigned steps, and update only their part as needed.
+
+
+
+With reusable pipelines and components, teams can quickly create new workflows by cloning or combining existing pieces.
 
 :::moniker range="azureml-api-2"
-Azure Machine Learning offers different methods to build a pipeline. For users who are familiar with DevOps practices, we recommend using [CLI](how-to-create-component-pipelines-cli.md). For data scientists who are familiar with python, we recommend writing pipelines using the [Azure Machine Learning SDK v2](how-to-create-component-pipeline-python.md). For users who prefer to use the UI, they could use the [designer to build pipelines by using registered components](how-to-create-component-pipelines-ui.md).
+
+
+You can build pipelines using the [CLI](how-to-create-component-pipelines-cli.md), [Python SDK](how-to-create-component-pipeline-python.md), or [Designer UI](how-to-create-component-pipelines-ui.md).
 
 
 :::moniker-end
@@ -63,7 +87,9 @@ Azure Machine Learning offers different methods to build a pipeline. For users w
 <a name="compare"></a>
 ## Which Azure pipeline technology should I use?
 
-The Azure cloud provides several types of pipeline, each with a different purpose. The following table lists the different pipelines and what they're used for:
+
+
+Azure provides several types of pipelines for different purposes:
 
 | Scenario | Primary persona | Azure offering | OSS offering | Canonical pipe | Strengths |
 | -------- | --------------- | -------------- | ------------ | -------------- | --------- |
@@ -73,7 +99,9 @@ The Azure cloud provides several types of pipeline, each with a different purpos
 
 ## Next steps
 
-Azure Machine Learning pipelines are a powerful facility that begins delivering value in the early development stages.
+
+
+Azure Machine Learning pipelines add value from the start of development.
 
 :::moniker range="azureml-api-2"
 + [Define pipelines with the Azure Machine Learning CLI v2](./how-to-create-component-pipelines-cli.md)

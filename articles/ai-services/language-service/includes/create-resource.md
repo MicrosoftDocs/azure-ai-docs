@@ -3,15 +3,14 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 ### Create an Azure resource
 
-To use the code sample below, you'll need to deploy an Azure resource. This resource will contain a key and endpoint you'll use to authenticate the API calls you send to the Language service.
+To use the code sample below, you need to deploy an Azure resource. This resource will contain a key and endpoint you use to authenticate the API calls you send to Azure Language.
 
-1. Use the following link to <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics" target="_blank">create a language resource</a> using the Azure portal. You will need to sign in using your Azure subscription.
+1. Use the following link to <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics" target="_blank">create a language resource</a> using the Azure portal. You need to sign in using your Azure subscription.
 1. On the **Select additional features** screen that appears, select **Continue to create your resource**.
 
     :::image type="content" source="../media/portal-resource-additional-features.png" alt-text="A screenshot showing additional feature options in the Azure portal." lightbox="../media/portal-resource-additional-features.png":::

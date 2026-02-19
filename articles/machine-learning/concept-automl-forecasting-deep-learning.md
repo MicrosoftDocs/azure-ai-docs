@@ -3,20 +3,20 @@ title: Deep learning with AutoML forecasting
 titleSuffix: Azure Machine Learning
 description: Learn how Azure Machine Learning's AutoML uses deep learning to forecast time series values
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
-ms.reviewer: erwright
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
 ms.custom: automl, sdkv2
-ms.date: 08/09/2024
+ms.date: 11/14/2025
 show_latex: true
 ---
 
 # Deep learning with AutoML forecasting
 
-This article focuses on the deep learning methods for time series forecasting in AutoML. Instructions and examples for training forecasting models in AutoML can be found in our [set up AutoML for time series forecasting](./how-to-auto-train-forecast.md) article.
+This article focuses on the deep learning methods for time series forecasting in AutoML. For instructions and examples on training forecasting models in AutoML, see [set up AutoML for time series forecasting](./how-to-auto-train-forecast.md).
 
 Deep learning has numerous use cases in fields ranging from [language modeling](/azure/ai-services/openai/concepts/models) to [protein folding](https://www.deepmind.com/research/highlighted-research/alphafold), among many others. Time series forecasting also benefits from recent advances in deep learning technology. For example, deep neural network (DNN) models feature prominently in the top performing models from the [fourth](https://www.uber.com/blog/m4-forecasting-competition/) and [fifth](https://www.sciencedirect.com/science/article/pii/S0169207021001874) iterations of the high-profile Makridakis forecasting competition.
 
@@ -46,7 +46,7 @@ The dashed lines show paths through the network that end on the output at a time
 
 ### TCNForecaster architecture
 
-The core of the TCNForecaster architecture is the stack of convolutional layers between the pre-mix and the forecast heads. The stack is logically divided into repeating units called **blocks** that are, in turn, composed of **residual cells**. A residual cell applies causal convolutions at a set dilation along with normalization and nonlinear activation. Importantly, each residual cell adds its output to its input using a so-called residual connection. These connections [have been shown to benefit DNN training](https://arxiv.org/abs/1512.03385), perhaps because they facilitate more efficient information flow through the network. The following image shows the architecture of the convolutional layers for an example network with two blocks and three residual cells in each block:
+The core of the TCNForecaster architecture is the stack of convolutional layers between the premix and the forecast heads. The stack is logically divided into repeating units called **blocks** that are, in turn, composed of **residual cells**. A residual cell applies causal convolutions at a set dilation along with normalization and nonlinear activation. Importantly, each residual cell adds its output to its input by using a residual connection. These connections [benefit DNN training](https://arxiv.org/abs/1512.03385), perhaps because they facilitate more efficient information flow through the network. The following image shows the architecture of the convolutional layers for an example network with two blocks and three residual cells in each block:
 
 :::image type="content" source="media/concept-automl-forecasting-deep-learning/tcn-detail.png" alt-text="Diagram showing block and cell structure for TCNForecaster convolutional layers.":::
 
@@ -88,25 +88,25 @@ AutoML executes several preprocessing steps on your data to prepare for model tr
 
 |Step|Description|
 |--|--|
-Fill missing data|[Impute missing values and observation gaps](./concept-automl-forecasting-methods.md#missing-data-handling) and optionally [pad or drop short time series](./how-to-auto-train-forecast.md#short-series-handling)|
-|Create calendar features|Augment the input data with [features derived from the calendar](./concept-automl-forecasting-calendar-features.md) like day of the week and, optionally, holidays for a specific country/region.|
-|Encode categorical data|[Label encode](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) strings and other categorical types; this includes all [time series ID columns](./how-to-auto-train-forecast.md#forecast-job-settings).|
+|Fill missing data|[Impute missing values and observation gaps](./concept-automl-forecasting-methods.md#missing-data-handling) and optionally [pad or drop short time series](./how-to-auto-train-forecast.md#short-series-handling)|
+|Create calendar features|Augment the input data with [features derived from the calendar](./concept-automl-forecasting-calendar-features.md) like day of the week and, optionally, holidays for a specific country or region.|
+|Encode categorical data|[Label encode](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html) strings and other categorical types; this step includes all [time series ID columns](./how-to-auto-train-forecast.md#forecast-job-settings).|
 |Target transform|Optionally apply the natural logarithm function to the target depending on the results of certain statistical tests.|
-|Normalization|[Z-score normalize](https://en.wikipedia.org/wiki/Standard_score) all numeric data; normalization is performed per feature and per time series group, as defined by the [time series ID columns](./how-to-auto-train-forecast.md#forecast-job-settings).
+|Normalization|[Z-score normalize](https://en.wikipedia.org/wiki/Standard_score) all numeric data; normalization is performed per feature and per time series group, as defined by the [time series ID columns](./how-to-auto-train-forecast.md#forecast-job-settings).|
 
-These steps are included in AutoML's transform pipelines, so they're automatically applied when needed at inference time. In some cases, the inverse operation to a step is included in the inference pipeline. For example, if AutoML applied a $\log$ transform to the target during training, the raw forecasts are exponentiated in the inference pipeline.  
+AutoML includes these steps in its transform pipelines, so it automatically applies them when needed at inference time. In some cases, the inference pipeline includes the inverse operation to a step. For example, if AutoML applies a $\log$ transform to the target during training, the inference pipeline exponentiates the raw forecasts.  
 
 ### Training
 
-The TCNForecaster follows DNN training best practices common to other applications in images and language. AutoML divides preprocessed training data into **examples** that are shuffled and combined into **batches**. The network processes the batches sequentially, using back propagation and stochastic gradient descent to optimize the network weights with respect to a **loss function**. Training can require many passes through the full training data; each pass is called an **epoch**.
+The TCNForecaster follows DNN training best practices common to other applications in images and language. AutoML divides preprocessed training data into **examples** that it shuffles and combines into **batches**. The network processes the batches sequentially, using back propagation and stochastic gradient descent to optimize the network weights with respect to a **loss function**. Training can require many passes through the full training data; each pass is called an **epoch**.
 
 The following table lists and describes input settings and parameters for TCNForecaster training:
 
 |Training input|Description|Value|
 |--|--|--|
-|Validation data|A portion of data that is held out from training to guide the network optimization and mitigate over fitting.| [Provided by the user](./how-to-auto-train-forecast.md#prepare-training-and-validation-data) or automatically created from training data if not provided.|
-|Primary metric|Metric computed from median-value forecasts on the validation data at the end of each training epoch; used for early stopping and model selection.|[Chosen by the user](./how-to-auto-train-forecast.md#configure-experiment); normalized root mean squared error or normalized mean absolute error.|
-|Training epochs|Maximum number of epochs to run for network weight optimization.|100; automated early stopping logic may terminate training at a smaller number of epochs. 
+|Validation data|A portion of data that the system holds out from training to guide the network optimization and mitigate overfitting.| [Provided by the user](./how-to-auto-train-forecast.md#prepare-training-and-validation-data) or automatically created from training data if not provided.|
+|Primary metric|Metric computed from median-value forecasts on the validation data at the end of each training epoch; used for early stopping and model selection.|[Chosen by the user](./how-to-auto-train-forecast.md#configure-the-experiment); normalized root mean squared error or normalized mean absolute error.|
+|Training epochs|Maximum number of epochs to run for network weight optimization.|100; automated early stopping logic might terminate training at a smaller number of epochs. 
 |Early stopping patience|Number of epochs to wait for primary metric improvement before training is stopped.|20|
 |Loss function|The objective function for network weight optimization.|[Quantile loss](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_pinball_loss.html) averaged over 10th, 25th, 50th, 75th, and 90th percentile forecasts.|
 |Batch size|Number of examples in a batch. Each example has dimensions $n_{\text{input}} \times t_{\text{rf}}$ for input and $h$ for output.|Determined automatically from the total number of examples in the training data; maximum value of 1024.|
@@ -120,7 +120,7 @@ Inputs marked with an asterisk (*) are determined by a hyper-parameter search th
 
 ### Model search
 
-AutoML uses model search methods to find values for the following hyper-parameters:
+AutoML uses model search methods to find values for the following hyperparameters:
 
 * Network depth, or the number of [convolutional blocks](#tcnforecaster-architecture),
 * Number of cells per block,
@@ -128,14 +128,14 @@ AutoML uses model search methods to find values for the following hyper-paramete
 * Dropout ratio for network regularization,
 * Learning rate.
 
-Optimal values for these parameters can vary significantly depending on the problem scenario and training data, so AutoML trains several different models within the space of hyper-parameter values and picks the best one according to the primary metric score on the validation data.
+Optimal values for these parameters can vary significantly depending on the problem scenario and training data. AutoML trains several different models within the space of hyperparameter values and picks the best one according to the primary metric score on the validation data.
 
 The model search has two phases:
 
-1. AutoML performs a search over 12 "landmark" models. The landmark models are static and chosen to reasonably span the hyper-parameter space.
-2. AutoML continues searching through the hyper-parameter space using a random search.
+1. AutoML performs a search over 12 "landmark" models. The landmark models are static and chosen to reasonably span the hyperparameter space.
+1. AutoML continues searching through the hyperparameter space by using a random search.
   
-The search terminates when stopping criteria are met. The stopping criteria depend on the [forecast training job configuration](./how-to-auto-train-forecast.md#configure-experiment), but some examples include time limits, limits on number of search trials to perform, and early stopping logic when the validation metric isn't improving.
+The search terminates when stopping criteria are met. The stopping criteria depend on the [forecast training job configuration](./how-to-auto-train-forecast.md#configure-the-experiment). Some examples include time limits, limits on number of search trials to perform, and early stopping logic when the validation metric isn't improving.
  
 ## Next steps
 

@@ -5,8 +5,8 @@ description: This is a list of natural languages that the Azure AI Content Safet
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
-ms.topic: conceptual
-ms.date: 02/21/2025
+ms.topic: concept-article
+ms.date: 09/16/2025
 ms.author: pafarley
 
 ---
@@ -17,9 +17,7 @@ ms.author: pafarley
 > [!INCLUDE [language-notice](includes/language-notice.md)]
 
 > [!NOTE]
-> **Language auto-detection**
->
-> You don't need to specify a language code for text moderation or Prompt Shields. The service automatically detects your input language.
+> **Language auto-detection**: You don't need to specify a language code for text moderation or Prompt Shields. The service automatically detects your input language.
 
 
 

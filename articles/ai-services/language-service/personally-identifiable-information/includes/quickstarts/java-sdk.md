@@ -2,28 +2,33 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
   - language-service-pii
   - ignite-2024
   - build-2025
+ai-usage: ai-assisted
 ---
-
-[Reference documentation](/java/api/overview/azure/ai-textanalytics-readme?preserve-view=true&view=azure-java-stable) | [More samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics)
+<!-- markdownlint-disable MD041 -->
+[Reference documentation](/java/api/overview/azure/ai-textanalytics-readme?view=azure-java-stable&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.2.0) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics)
 
 Use this quickstart to create a Personally Identifiable Information (PII) detection application with the client library for Java. In the following example, you create a Java application that can identify [recognized sensitive information](../../concepts/entity-categories.md) in text.
 
-[!INCLUDE [Use Language Studio](../use-language-studio.md)]
+[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
-* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+* Once you have your Azure subscription, [create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
 * [Java Development Kit (JDK)](https://www.oracle.com/technetwork/java/javase/downloads/index.html) with version 8 or above
 
 ## Setting up
+
+[!INCLUDE [Create an Azure resource](../../../includes/create-resource.md)]
+
+[!INCLUDE [Get your key and endpoint](../../../includes/get-key-endpoint.md)]
 
 [!INCLUDE [Create environment variables](../../../includes/environment-variables.md)]
 
@@ -41,11 +46,9 @@ Create a Maven project in your preferred IDE or development environment. Then ad
 </dependencies>
 ```
 
-
-
 ## Code example
 
-Create a Java file named `Example.java`. Open the file and copy the below code. Then run the code. 
+Create a Java file named `Example.java`. Open the file and copy the following code. Then run the code.
 
 ```java
 import com.azure.core.credential.AzureKeyCredential;
@@ -60,6 +63,9 @@ public class Example {
     private static String languageEndpoint = System.getenv("LANGUAGE_ENDPOINT");
 
     public static void main(String[] args) {
+        if (languageKey == null || languageKey.isBlank() || languageEndpoint == null || languageEndpoint.isBlank()) {
+            throw new IllegalArgumentException("Missing LANGUAGE_KEY or LANGUAGE_ENDPOINT environment variables");
+        }
         TextAnalyticsClient client = authenticateClient(languageKey, languageEndpoint);
         recognizePiiEntitiesExample(client);
     }
@@ -71,7 +77,7 @@ public class Example {
                 .buildClient();
     }
 
-    // Example method for detecting sensitive information (PII) from text 
+    // Example method for detecting sensitive information (PII) from text
     static void recognizePiiEntitiesExample(TextAnalyticsClient client)
     {
         // The text that need be analyzed.
@@ -86,8 +92,6 @@ public class Example {
 }
 
 ```
-
-
 
 ## Output
 

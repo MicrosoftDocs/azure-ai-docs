@@ -10,13 +10,14 @@ ms.custom:
 ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
-ms.date: 06/28/2024
+ms.reviewer: sooryar
+ms.date: 11/14/2025
+ms.update-cycle: 365-days
 ---
 
-# Flows in prompt flow?
+# Flows in prompt flow
 
-In Azure Machine Learning prompt flow, users have the capability to develop a LLM-based AI application by engaging in the stages of developing, testing, tuning, and deploying a flow. This comprehensive workflow allows users to harness the power of Large Language Models (LLMs) and create sophisticated AI applications with ease.
+In Azure Machine Learning prompt flow, you can develop an LLM-based AI application by engaging in the stages of developing, testing, tuning, and deploying a flow. This comprehensive workflow allows you to harness the power of Large Language Models (LLMs) and create sophisticated AI applications with ease.
 
 ## Flows
 
@@ -24,7 +25,7 @@ A flow in prompt flow serves as an executable workflow that streamlines the deve
 
 Within a flow, nodes take center stage, representing specific tools with unique capabilities. These nodes handle data processing, task execution, and algorithmic operations, with inputs and outputs. By connecting nodes, you establish a seamless chain of operations that guides the flow of data through your application.
 
-To facilitate node configuration and fine-tuning, our user interface offers a notebook-like authoring experience. This intuitive interface allows you to effortlessly modify settings and edit code snippets within nodes. Additionally, a visual representation of the workflow structure is provided through a DAG (Directed Acyclic Graph) graph. This graph showcases the connectivity and dependencies between nodes, providing a clear overview of the entire workflow.
+To facilitate node configuration and fine-tuning, the user interface offers a notebook-like authoring experience. This intuitive interface allows you to effortlessly modify settings and edit code snippets within nodes. Additionally, a visual representation of the workflow structure is provided through a DAG (Directed Acyclic Graph) graph. This graph showcases the connectivity and dependencies between nodes, providing a clear overview of the entire workflow.
 
 With the flow feature in prompt flow, you have the power to design, customize, and optimize the logic of your AI application. The cohesive arrangement of nodes ensures efficient data processing and effective flow management, empowering you to create robust and advanced applications.
 
@@ -32,9 +33,9 @@ With the flow feature in prompt flow, you have the power to design, customize, a
 
 Azure Machine Learning prompt flow offers three different flow types to cater to various user scenarios:
 
-- **Standard flow**: Designed for general application development, the standard flow allows users to create a flow using a wide range of built-in tools for developing LLM-based applications. It provides flexibility and versatility for developing applications across different domains.
-- **Chat flow**: Specifically tailored for conversational application development, the Chat flow builds upon the capabilities of the standard flow and provides enhanced support for chat inputs/outputs and chat history management. With native conversation mode and built-in features, users can seamlessly develop and debug their applications within a conversational context.
-- **Evaluation flow**: Designed for evaluation scenarios, the evaluation flow enables users to create a flow that takes the outputs of previous flow runs as inputs. This flow type allows users to evaluate the performance of previous run results and output relevant metrics, facilitating the assessment and improvement of their models or applications.
+- **Standard flow**: Designed for general application development, the standard flow allows you to create a flow using a wide range of built-in tools for developing LLM-based applications. It provides flexibility and versatility for developing applications across different domains.
+- **Chat flow**: Specifically tailored for conversational application development, the Chat flow builds upon the capabilities of the standard flow and provides enhanced support for chat inputs/outputs and chat history management. With native conversation mode and built-in features, you can seamlessly develop and debug your applications within a conversational context.
+- **Evaluation flow**: Designed for evaluation scenarios, the evaluation flow enables you to create a flow that takes the outputs of previous flow runs as inputs. This flow type allows you to evaluate the performance of previous run results and output relevant metrics, facilitating the assessment and improvement of your models or applications.
 
 ## Next steps
 

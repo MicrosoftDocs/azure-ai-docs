@@ -6,11 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 08/20/2024
-ms.reviewer: cacrest
-ms.custom: devplatv2, update-code, devx-track-azurecli
+ms.reviewer: jturuk
+ms.custom: devplatv2, update-code3, devx-track-azurecli
 #customer intent: As a data scientist, I want to use batch model deployments for machine learning, such as classifying images according to a taxonomy.
 ---
 
@@ -26,7 +26,7 @@ You can use batch model deployments for processing tabular data, but also any ot
 
 ## About this sample
 
-This article uses a model that was built using TensorFlow along with the RestNet architecture. For more information, see [Identity Mappings in Deep Residual Networks](https://arxiv.org/abs/1603.05027). You can download [a sample of this model](https://azuremlexampledata.blob.core.windows.net/data/imagenet/model.zip). The model has the following constraints:
+This article uses a model that was built using TensorFlow along with the RestNet architecture. For more information, see [Identity Mappings in Deep Residual Networks](https://arxiv.org/abs/1603.05027). You can download `https://azuremlexampledata.blob.core.windows.net/data/imagenet/model.zip`. The model has the following constraints:
 
 - It works with images of size 244x244 (tensors of `(224, 224, 3)`).
 - It requires inputs to be scaled to the range `[0,1]`.

@@ -2,8 +2,8 @@
 title: Use software environments CLI v1
 titleSuffix: Azure Machine Learning
 description: Create and manage environments for model training and deployment with CLI v1. Manage Python packages and other settings for the environment.
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: osiotugo
 ms.service: azure-machine-learning
 ms.subservice: core

@@ -6,15 +6,13 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
  
 <a name="HOLTop"></a>
 
-Use the optical character recognition (OCR) client library to read printed and handwritten text from an image. The OCR service can read visible text in an image and convert it to a character stream. For more information on text recognition, see the [OCR overview](../../overview-ocr.md). The code in this section uses the latest [Azure AI Vision](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/) package.
+Use the optical character recognition (OCR) client library to read printed and handwritten text from an image. The OCR service can read visible text in an image and convert it to a character stream. For more information on text recognition, see the [OCR overview](../../overview-ocr.md). The code in this section uses the latest [Azure Vision in Foundry Tools](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/) package.
 
 > [!TIP]
 > You can also extract text from a local image. See the [ComputerVisionClient](/dotnet/api/microsoft.azure.cognitiveservices.vision.computervision.computervisionclient) methods, such as **ReadInStreamAsync**. Or, see the sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/dotnet/ComputerVision/ComputerVisionQuickstart.cs#162) for scenarios involving local images.
@@ -23,10 +21,10 @@ Use the optical character recognition (OCR) client library to read printed and h
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/) or current version of [.NET Core](https://dotnet.microsoft.com/download/dotnet-core).
-- <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure AI Vision resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- The key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
+- <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure Vision resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+- The key and endpoint from the resource you create to connect your application to Azure Vision.
   1. After your Azure Vision resource deploys, select **Go to resource**.
   1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in the quickstart.
@@ -74,7 +72,7 @@ Use the optical character recognition (OCR) client library to read printed and h
        ...
        ```
 
-    1. In the application directory, install the Azure AI Vision client library for .NET by using the following command:
+    1. In the application directory, install Azure Vision client library for .NET by using the following command:
 
        ```console
        dotnet add package Microsoft.Azure.CognitiveServices.Vision.ComputerVision --version 7.0.0
@@ -112,7 +110,7 @@ Use the optical character recognition (OCR) client library to read printed and h
 ## Output
 
 ```output
-Azure AI Vision - .NET quickstart example
+Azure Vision - .NET quickstart example
 
 ----------------------------------------------------------
 READ FILE FROM URL
@@ -137,7 +135,7 @@ calorie diet.
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+If you want to clean up and remove a Foundry Tools subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 - [Clean up resources with the Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Clean up resources with Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)

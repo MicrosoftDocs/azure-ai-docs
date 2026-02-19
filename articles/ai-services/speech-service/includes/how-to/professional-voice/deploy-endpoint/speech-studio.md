@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 5/19/2025
@@ -31,6 +31,15 @@ To create a custom voice endpoint:
 1. Select **Deploy** to create your endpoint.
 
 After your endpoint is deployed, the endpoint name appears as a link. Select the link to display information specific to your endpoint, such as the endpoint key, endpoint URL, and sample code. When the status of the deployment is **Succeeded**, the endpoint is ready for use.
+
+## Test your custom voice
+
+Once your custom voice endpoint has been deployed, you can try out your custom voice directly in the portal.
+
+1. Select **Deploy model** > **Deploy model**. 
+1. Select **Test endpoint**. 
+
+:::image type="content" source="../../../../media/custom-voice/cnv-endpoint-test.png" alt-text="Screenshot of a page to test an endpoint in Speech Studio." lightbox="../../../../media/custom-voice/cnv-endpoint-test.png":::
 
 ## Application settings
 

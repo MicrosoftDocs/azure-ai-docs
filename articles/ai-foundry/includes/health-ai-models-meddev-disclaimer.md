@@ -5,6 +5,7 @@ author: msakande
 ms.reviewer: itarapov
 ms.author: mopeakande
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 10/1/2024
 ms.custom: include

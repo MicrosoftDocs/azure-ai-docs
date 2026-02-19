@@ -1,50 +1,68 @@
 ---
 title: Text to speech overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Get an overview of the benefits and capabilities of the text to speech feature of the Speech service.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 01/30/2026
+ms.author: pafarley
+ms.custom: dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the text to speech feature of the Speech service.
 ---
 
 # What is text to speech?
 
-In this overview, you learn about the benefits and capabilities of the text to speech feature of the Speech service, which is part of Azure AI services.
+In this overview, you learn about the benefits and capabilities of the text to speech feature of the Speech service, which is part of Foundry Tools.
 
 Text to speech enables your applications, tools, or devices to convert text into human like synthesized speech. The text to speech capability is also known as speech synthesis. Use human like standard voices out of the box, or create a custom voice that's unique to your product or brand. For a full list of supported voices, languages, and locales, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
-## Core features
 
-Text to speech includes the following features:
+The Speech service provides standard (neural) voices and custom voice options:
+
+- **Standard voices**: High-quality neural voices available out of the box in 100+ languages and locales
+- **Custom voices**: Create unique brand voices with professional voice fine-tuning or personal voice options
+
+For a complete list of available voices and languages, see [Language and voice support](language-support.md?tabs=tts).
+
+## Get started
+
+For more comprehensive tutorials and examples:
+
+- [Text to speech quickstart](get-started-text-to-speech.md) - Complete tutorial with multiple languages
+- [Speech SDK documentation](speech-sdk.md) - Full SDK reference and samples  
+- [REST API reference](rest-text-to-speech.md) - HTTP-based integration
+- [Speech CLI](spx-overview.md) - Command-line tools
+
+> [!TIP]
+> To convert text to speech with a no-code approach, try the [Audio Content Creation](how-to-audio-content-creation.md) tool in [Speech Studio](https://aka.ms/speechstudio/audiocontentcreation).
+
+## Neural text to speech features
+
+Text to speech uses deep neural networks to make computer voices nearly indistinguishable from human recordings. With clear articulation, neural text to speech reduces listening fatigue during AI interactions.
+
+## Key features
 
 | Feature | Summary | Demo |
 | --- | --- | --- |
 | Standard voice (called *Neural* on the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)) | Highly natural out-of-the-box voices. Create an Azure subscription and Speech resource, and then use the [Speech SDK](./get-started-text-to-speech.md) or visit the [Speech Studio portal](https://speech.microsoft.com/portal) and select standard voices to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs. |
-| Custom voice | Easy-to-use self-service for creating a natural brand voice, with limited access for responsible use. Create an Azure subscription and Azure AI Foundry resource and then [apply to use custom voice](https://aka.ms/customneural). After you're granted access, go to the [professional voice fine-tuning documentation](./professional-voice-create-project.md) to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [voice samples](https://aka.ms/customvoice). |
+| Custom voice | Easy-to-use self-service for creating a natural brand voice, with limited access for responsible use. Create an Azure subscription and Microsoft Foundry resource and then [apply to use custom voice](https://aka.ms/customneural). After you're granted access, go to the [professional voice fine-tuning documentation](./professional-voice-create-project.md) to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [voice samples](https://aka.ms/customvoice). |
 
-### More about neural text to speech features
-
-Text to speech uses deep neural networks to make the voices of computers nearly indistinguishable from the recordings of people. With the clear articulation of words, neural text to speech significantly reduces listening fatigue when users interact with AI systems.
-
-The patterns of stress and intonation in spoken language are called _prosody_. Traditional text to speech systems break down prosody into separate linguistic analysis and acoustic prediction steps governed by independent models. That can result in muffled, buzzy voice synthesis.
-
-Here's more information about neural text to speech features in the Speech service, and how they overcome the limits of traditional text to speech systems:
+## Advanced features
 
 * **Real-time speech synthesis**: Use the [Speech SDK](./get-started-text-to-speech.md) or [REST API](rest-text-to-speech.md) to convert text to speech by using [standard voices](language-support.md?tabs=tts) or [custom voices](custom-neural-voice.md).
 
 * **Asynchronous synthesis of long audio**: Use the [batch synthesis API](batch-synthesis.md) to asynchronously synthesize text to speech files longer than 10 minutes (for example, audio books or lectures). Unlike synthesis performed via the Speech SDK or Speech to text REST API, responses aren't returned in real-time. The expectation is that requests are sent asynchronously, responses are polled for, and synthesized audio is downloaded when the service makes it available.
 
-* **Standard voices**: Azure AI Speech uses deep neural networks to overcome the limits of traditional speech synthesis regarding stress and intonation in spoken language. Prosody prediction and voice synthesis happen simultaneously, which results in more fluid and natural-sounding outputs. Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can use neural voices to:
+* **Standard voices**: Azure Speech in Foundry Tools uses deep neural networks to overcome the limits of traditional speech synthesis regarding stress and intonation in spoken language. Prosody prediction and voice synthesis happen simultaneously, which results in more fluid and natural-sounding outputs. Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can use neural voices to:
 
   - Make interactions with chatbots and voice assistants more natural and engaging.
   - Convert digital texts such as e-books into audiobooks.
   - Enhance in-car navigation systems.
 
-  For a full list of standard Azure AI Speech neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
+  For a full list of standard Azure Speech in Foundry Tools neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
 * **Improve text to speech output with SSML**: Speech Synthesis Markup Language (SSML) is an XML-based markup language used to customize text to speech outputs. With SSML, you can adjust pitch, add pauses, improve pronunciation, change speaking rate, adjust volume, and attribute multiple voices to a single document.
 
@@ -55,19 +73,12 @@ Here's more information about neural text to speech features in the Speech servi
   By using viseme events in Speech SDK, you can generate facial animation data. This data can be used to animate faces in lip-reading communication, education, entertainment, and customer service. Viseme is currently supported only for the `en-US` (US English) [neural voices](language-support.md?tabs=tts).
 
 > [!NOTE]
-> In addition to Azure AI Speech neural (non HD) voices, you can also use [Azure AI Speech high definition (HD) voices](high-definition-voices.md) and [Azure OpenAI neural (HD and non HD) voices](openai-voices.md). The HD voices provide a higher quality for more versatile scenarios.
+> In addition to Azure Speech neural (non HD) voices, you can also use [Azure Speech high definition (HD) voices](high-definition-voices.md) and [Azure OpenAI neural (HD and non HD) voices](openai-voices.md). The HD voices provide a higher quality for more versatile scenarios.
 > 
 > Some voices don't support all [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup-structure.md) tags. This includes neural text to speech HD voices, personal voices, and embedded voices. 
-- For Azure AI Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices). 
+- For Azure Speech high definition (HD) voices, check the SSML support [here](high-definition-voices.md#supported-and-unsupported-ssml-elements-for-azure-speech-hd-voices). 
 - For personal voice, you can find the SSML support [here](personal-voice-how-to-use.md#supported-and-unsupported-ssml-elements-for-personal-voice). 
 - For embedded voices, check the SSML support [here](embedded-speech.md#embedded-voices-capabilities).
-
-## Get started
-
-To get started with text to speech, see the [quickstart](get-started-text-to-speech.md). Text to speech is available via the [Speech SDK](speech-sdk.md), the [REST API](rest-text-to-speech.md), and the [Speech CLI](spx-overview.md).
-
-> [!TIP]
-> To convert text to speech with a no-code approach, try the [Audio Content Creation](how-to-audio-content-creation.md) tool in [Speech Studio](https://aka.ms/speechstudio/audiocontentcreation).
 
 ## Sample code
 
@@ -83,7 +94,7 @@ In addition to standard voices, you can create custom voices that are unique to 
 ## Pricing note
 
 ### Billable characters
-When you use the text to speech feature, you're billed for each character that's converted to speech, including punctuation. Although the SSML document itself isn't billable, optional elements that are used to adjust how the text is converted to speech, like phonemes and pitch, are counted as billable characters. Here's a list of what's billable:
+When you use the text to speech feature, billing is based on the total number of characters in each successfully processed request. This count includes all characters/letters, numbers, spaces, and punctuation; regardless of whether audio output is produced. Charges apply even if speech is not generated due to a mismatch between the selected voice language and the input text. Here's a list of what's billable:
 
 * Text passed to the text to speech feature in the SSML body of the request
 * All markup within the text field of the request body in the SSML format, except for `<speak>` and `<voice>` tags

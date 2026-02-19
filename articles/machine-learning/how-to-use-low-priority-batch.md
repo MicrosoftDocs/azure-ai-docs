@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 08/15/2024
-ms.reviewer: cacrest
+ms.reviewer: jturuk
 ms.custom: devplatv2
 #customer intent: As an analyst, I want to run batch inference workloads in the most cost efficient way possible.
 ---

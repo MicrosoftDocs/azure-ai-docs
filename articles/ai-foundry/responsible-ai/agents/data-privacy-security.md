@@ -1,13 +1,15 @@
 ---
 title: Data, privacy, and security for Azure AI Agent Service
-titleSuffix: Azure AI Services
+titleSuffix: Foundry Tools
 description: This document details issues for data, privacy, and security for Azure AI Agent Service
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.service: azure-ai-agent-service
-ms.date: 12/13/2024
-ms.topic: article
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.date: 11/19/2025
+ms.topic: concept-article
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Data, privacy, and security for Azure AI Agent Service
@@ -55,7 +57,7 @@ The diagram below illustrates how your data is processed. This diagram covers se
 
 ## Model inferencing 
 
-Azure AI Agent Service interacts with the configured model inferencing endpoints you designate. Models (base or fine-tuned) process your input prompts and generate output responses which may be further used or processed by your agent. Data is processed for model inferencing in accordance with the terms that apply to the relevant model. Learn more at [Data, privacy, and security for Azure OpenAI Service](/azure/ai-foundry/responsible-ai/openai/data-privacy) and [Data, privacy, and security for use of models through the model catalog in AI Foundry portal](/azure/ai-studio/how-to/concept-data-privacy). 
+Azure AI Agent Service interacts with the configured model inferencing endpoints you designate. Models (base or fine-tuned) process your input prompts and generate output responses which may be further used or processed by your agent. Data is processed for model inferencing in accordance with the terms that apply to the relevant model. Learn more at [Data, privacy, and security for Azure OpenAI Service](/azure/ai-foundry/responsible-ai/openai/data-privacy) and [Data, privacy, and security for use of models through the model catalog in Foundry portal](/azure/ai-studio/how-to/concept-data-privacy). 
 
 ## Data storage for Azure AI Agent Service features 
 
@@ -73,7 +75,7 @@ To use the Azure AI Agent Service, you must create an Azure OpenAI Service resou
 
 ## Preventing harmful content generation 
 
-To reduce the risk of harmful use of the Azure AI Agent Service, the Service includes [content filtering](/azure/ai-services/openai/concepts/content-filter) support. The outputs processed by the Azure AI Agent Service will be filtered in accordance with any content filtering that has been applied to the model deployment used by your agent.
+To reduce the risk of harmful use of the Azure AI Agent Service, the Service includes [content filtering](/azure/ai-foundry/openai/concepts/content-filter) support. The outputs processed by the Azure AI Agent Service will be filtered in accordance with any content filtering that has been applied to the model deployment used by your agent.
 
 ## See also 
 

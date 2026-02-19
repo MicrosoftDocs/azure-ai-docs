@@ -8,11 +8,11 @@ ms.custom: include file
 ms.date: 04/16/2020
 ---
 
-Azure AI services provides two natural language processing services, [Language Understanding](../luis/what-is-luis.md) and [QnA Maker](../qnamaker/overview/overview.md), each with a different purpose. Understand when to use each service and how they compliment each other.
+Foundry Tools provides two natural language processing services, [Language Understanding](../luis/what-is-luis.md) and [QnA Maker](../qnamaker/overview/overview.md), each with a different purpose. Understand when to use each service and how they compliment each other.
 
-Natural language processing (NLP) allows your client application, such as a chat bot, to work with your users, using natural language. A user enters a sentence or phrase. The user's text can have poor grammar, spelling, and punctuation. The Azure AI service can work through the user sentence anyway, returning information the chat bot needs to help the user.
+Natural language processing (NLP) allows your client application, such as a chat bot, to work with your users, using natural language. A user enters a sentence or phrase. The user's text can have poor grammar, spelling, and punctuation. Foundry Tools can work through the user sentence anyway, returning information the chat bot needs to help the user.
 
-## Azure AI services with NLP
+## Foundry Tools with NLP
 
 Language Understanding (LUIS) and QnA Maker provide NLP. The client application submits natural language text. The service takes the text, processes it, and returns a result.
 
@@ -20,7 +20,7 @@ Language Understanding (LUIS) and QnA Maker provide NLP. The client application 
 
 Language Understanding (LUIS) and QnA Maker solve different issues. LUIS determines the intent of a user's text (known as an utterance), while QnA Maker determines the answer to a user's text (known as a query).
 
-In order to pick the correct service, you need to understand the user text coming from the client application, and what information the client application needs to get from the Azure AI service.
+In order to pick the correct service, you need to understand the user text coming from the client application, and what information the client application needs to get from Foundry Tools.
 
 If your chat bot receives the text `How do I get to the Human Resources building on the Seattle North campus?`, use the chart below to understand how each service works with the text.
 

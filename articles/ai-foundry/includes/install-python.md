@@ -6,19 +6,19 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 08/29/2024
+ms.date: 12/18/2025
 ms.custom: include, ignite-2024
 ---
 
-First you need to create a new Python environment. DO NOT install packages into your global python installation. You should always use a virtual or conda environment when installing python packages, otherwise you can break your global install of Python.
+First, create a new Python environment. Don't install packages into your global Python installation. Always use a virtual or conda environment when installing Python packages. Otherwise, you can break your global install of Python.
 
 ### If needed, install Python
 
-We recommend using Python 3.10 or later, but having at least Python 3.9 is required. If you don't have a suitable version of Python installed, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
+Use Python 3.10 or later, but at least Python 3.9 is required. If you don't have a suitable version of Python installed, follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 
 ### Create a virtual environment
 
-If you already have Python 3.10 or higher installed,  create a virtual environment using the following commands:
+If you already have Python 3.10 or higher installed, create a virtual environment by using the following commands:
 
 # [Windows](#tab/windows)
 
@@ -43,7 +43,7 @@ source .venv/bin/activate
 
 ---
 
-Activating the Python environment means that when you run ```python``` or ```pip``` from the command line, you use the Python interpreter contained in the ```.venv``` folder of your application.
+When you activate the Python environment, running `python` or `pip` from the command line uses the Python interpreter in the `.venv` folder of your application.
 
 > [!NOTE]
-> You can use the ```deactivate``` command to exit the python virtual environment, and can later reactivate it when needed.
+> Use the `deactivate` command to exit the Python virtual environment. You can reactivate it later when needed.

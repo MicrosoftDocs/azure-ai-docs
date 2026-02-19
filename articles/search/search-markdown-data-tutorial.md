@@ -2,14 +2,15 @@
 title: 'Tutorial: Index Markdown Blobs'
 titleSuffix: Azure AI Search
 description: Learn how to index and search Markdown in Azure blobs using Azure AI Search REST APIs.
-
 author: mdonovan
 ms.author: mdonovan
 ms.service: azure-ai-search
+ms.topic: tutorial
+ms.date: 11/21/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
-ms.topic: tutorial
-ms.date: 03/28/2025
+  - sfi-ropc-nochange
 
 ---
 
@@ -19,7 +20,9 @@ ms.date: 03/28/2025
 
 Azure AI Search can index Markdown documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read Markdown data.
 
-This tutorial shows you how to index Markdown files indexed using the `oneToMany` Markdown parsing mode. It uses a REST client and the [Search REST APIs](/rest/api/searchservice/) to:
+This tutorial shows you how to index Markdown files indexed using the `oneToMany` Markdown parsing mode and the [Search Service REST APIs](/rest/api/searchservice/).
+
+In this tutorial, you:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
@@ -29,18 +32,19 @@ This tutorial shows you how to index Markdown files indexed using the `oneToMany
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ [Azure Storage](/azure/storage/common/storage-account-create).
++ An [Azure Storage account](/azure/storage/common/storage-account-create).
++ An [Azure AI Search service](search-create-service-portal.md).
 
-+ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.
-
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client Extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 > [!NOTE]
-> You can use a free search service for this tutorial. The Free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure you have room on your service to accept the new resources.
+> You can use a free search service for this tutorial. The Free tier limits you to three indexes, three indexers, and three data sources. This tutorial creates one of each. Before you start, make sure your service has room to accept the new resources.
 
-## Create a Markdown document
+## Prepare sample data
+
+### Create a Markdown file
 
 Copy and paste the following Markdown into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the Free tier.
 
@@ -191,19 +195,29 @@ Markdown is a lightweight yet powerful tool for writing documentation. It suppor
 Thank you for reviewing this example!
 ````
 
+### Upload the file and get a connection string
+
+Follow [these instructions](knowledge-store-create-rest.md#upload-data-to-azure-storage-and-get-a-connection-string) to upload the `sample_markdown.md` file to a container in your Azure Storage account. You must also get the storage account connection string. Make a note of the connection string and the container name for later use.
+
 ## Copy a search service URL and API key
 
-For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-howto-managed-identities-data-sources.md).
+For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-how-to-managed-identities.md).
 
-1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
 
-1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
+1. From the left pane, select **Overview**.
+
+1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
+
+1. From the left pane, select **Settings** > **Keys**.
+
+1. Make a note of an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests for adding, modifying, and deleting objects.
 
    :::image type="content" source="media/search-markdown-data-tutorial/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
 ## Set up your REST file
 
-1. Start Visual Studio Code and create a new file.
+1. Create a file in Visual Studio Code.
 
 1. Provide values for variables used in the request.
 
@@ -216,7 +230,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Save the file using a `.rest` or `.http` file extension.
 
-For help with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
+For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 ## Create a data source
 
@@ -224,25 +238,25 @@ For help with the REST client, see [Quickstart: Keyword search using REST](searc
 
 ```http
 ### Create a data source
-POST {{baseUrl}}/datasources?api-version=2024-11-01-preview  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
-        "name" : "sample-markdown-ds",
-        "description": null,
-        "type": "azureblob",
-        "subtype": null,
-        "credentials": {
-            "connectionString": "{{storageConnectionString}}"
-        },
-        "container": {
-            "name": "{{blobContainer}}",
-            "query": null
-        },
-        "dataChangeDetectionPolicy": null,
-        "dataDeletionDetectionPolicy": null
-    }
+{
+    "name" : "sample-markdown-ds",
+    "description": null,
+    "type": "azureblob",
+    "subtype": null,
+    "credentials": {
+        "connectionString": "{{storageConnectionString}}"
+    },
+    "container": {
+        "name": "{{blobContainer}}",
+        "query": null
+    },
+    "dataChangeDetectionPolicy": null,
+    "dataDeletionDetectionPolicy": null
+}
 ```
 
 Send the request. The response should look like:
@@ -252,7 +266,7 @@ HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
 ETag: "0x8DCF52E926A3C76"
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('sample-markdown-ds')?api-version=2024-11-01-preview
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('sample-markdown-ds')?api-version=2025-09-01
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -303,27 +317,27 @@ You only need fields for the Markdown elements that the parser supports. These f
 
 - `ordinal_position`: An integer value that indicates the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each content block.
 
-This implementation uses [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information about the parsed one-to-many document structure, see [Index Markdown blobs](search-how-to-index-markdown-blobs.md).
+This implementation uses [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information about the parsed one-to-many document structure, see [Index Markdown blobs](search-how-to-index-azure-blob-markdown.md).
 
 This example provides samples of how to index data both with and without field mappings. In this case, we know that `h1` contains the title of the document, so we can map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader`, respectively. The `content` and `ordinal_position` fields require no mapping because they're extracted from the Markdown directly into fields using those names. For an example of a full index schema that doesn't require field mappings, see the end of this section.
 
 ```http
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2024-11-01-preview  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
-      "name": "sample-markdown-index",  
-      "fields": [
-        {"name": "id", "type": "Edm.String", "key": true, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
-        {"name": "content", "type": "Edm.String", "key": false, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
-        {"name": "title", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
-        {"name": "h2_subheader", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
-        {"name": "h3_subheader", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
-        {"name": "ordinal_position", "type": "Edm.Int32", "searchable": false, "retrievable": true, "filterable": true, "facetable": true, "sortable": true}
-      ]
-    }
+{
+  "name": "sample-markdown-index",  
+  "fields": [
+    {"name": "id", "type": "Edm.String", "key": true, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+    {"name": "content", "type": "Edm.String", "key": false, "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+    {"name": "title", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+    {"name": "h2_subheader", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+    {"name": "h3_subheader", "type": "Edm.String", "searchable": true, "retrievable": true, "filterable": true, "facetable": true, "sortable": true},
+    {"name": "ordinal_position", "type": "Edm.Int32", "searchable": false, "retrievable": true, "filterable": true, "facetable": true, "sortable": true}
+  ]
+}
 ```
 
 ### Index schema in a configuration with no field mappings
@@ -359,34 +373,34 @@ If you use this schema, be sure to adjust later requests accordingly. This will 
 
 ```http
 ### Create and run an indexer
-POST {{baseUrl}}/indexers?api-version=2024-11-01-preview  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
+{
+  "name": "sample-markdown-indexer",
+  "dataSourceName": "sample-markdown-ds",
+  "targetIndexName": "sample-markdown-index",
+  "parameters" : { 
+    "configuration": { 
+      "parsingMode": "markdown",
+      "markdownParsingSubmode": "oneToMany",
+      "markdownHeaderDepth": "h3"
+      }
+    },
+  "fieldMappings" : [ 
     {
-      "name": "sample-markdown-indexer",
-      "dataSourceName": "sample-markdown-ds",
-      "targetIndexName": "sample-markdown-index",
-      "parameters" : { 
-        "configuration": { 
-          "parsingMode": "markdown",
-          "markdownParsingSubmode": "oneToMany",
-          "markdownHeaderDepth": "h3"
-          }
-        },
-      "fieldMappings" : [ 
-        {
-          "sourceFieldName": "/sections/h1",
-          "targetFieldName": "title",
-          "mappingFunction": null
-        }
-      ]
+      "sourceFieldName": "/sections/h1",
+      "targetFieldName": "title",
+      "mappingFunction": null
     }
+  ]
+}
 ```
 
 Key points:
 
-+ The indexer will only parse headers up to `h3`. Any lower-level headers (`h4`,`h5`,`h6`) will be treated as plain text and show up in the `content` field. This is why the index and field mappings only exist up to a depth of `h3`.
++ The indexer will only parse headers up to `h3`. Any lower-level headers (`h4`,`h5`,`h6`) are treated as plain text and show up in the `content` field. This is why the index and field mappings only exist up to a depth of `h3`.
 
 + The `content` and `ordinal_position` fields require no field mapping because they exist with those names in the enriched content.
 
@@ -396,14 +410,14 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-01-preview  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
   
-  {
-    "search": "*",
-    "count": true
-  }
+{
+  "search": "*",
+  "count": true
+}
 ```
 
 Send the request. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
@@ -437,14 +451,14 @@ Add a `search` parameter to search on a string.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-01-preview  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
   
-  {
-    "search": "h4",
-    "count": true,
-  }
+{
+  "search": "h4",
+  "count": true
+}
 ```
 
 Send the request. The response should look like:
@@ -490,16 +504,16 @@ Key points:
 Add a `select` parameter to limit the results to fewer fields. Add a `filter` to further narrow the search.
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2024-11-01-preview  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
   
-  {
-    "search": "Markdown",
-    "count": true,
-    "select": "title, content, h2_subheader",
-    "filter": "h2_subheader eq 'Conclusion'"
-  }
+{
+  "search": "Markdown",
+  "count": true,
+  "select": "title, content, h2_subheader",
+  "filter": "h2_subheader eq 'Conclusion'"
+}
 ```
 
 ```json
@@ -542,20 +556,16 @@ Indexers can be reset to clear execution history, which allows a full rerun. The
 
 ```http
 ### Reset the indexer
-POST {{baseUrl}}/indexers/sample-markdown-indexer/reset?api-version=2024-11-01-preview  HTTP/1.1
-  api-key: {{apiKey}}
-```
+POST {{baseUrl}}/indexers/sample-markdown-indexer/reset?api-version=2025-09-01  HTTP/1.1
+api-key: {{apiKey}}
 
-```http
 ### Run the indexer
-POST {{baseUrl}}/indexers/sample-markdown-indexer/run?api-version=2024-11-01-preview  HTTP/1.1
-  api-key: {{apiKey}}
-```
+POST {{baseUrl}}/indexers/sample-markdown-indexer/run?api-version=2025-09-01  HTTP/1.1
+api-key: {{apiKey}}
 
-```http
 ### Check indexer status 
-GET {{baseUrl}}/indexers/sample-markdown-indexer/status?api-version=2024-11-01-preview  HTTP/1.1
-  api-key: {{apiKey}}
+GET {{baseUrl}}/indexers/sample-markdown-indexer/status?api-version=2025-09-01  HTTP/1.1
+api-key: {{apiKey}}
 ```
 
 ## Clean up resources
@@ -569,4 +579,4 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 Now that you're familiar with the basics of Azure Blob indexing, take a closer look at indexer configuration for Markdown blobs in Azure Storage:
 
 > [!div class="nextstepaction"]
-> [Configure Markdown blob indexing](search-how-to-index-markdown-blobs.md)
+> [Configure Markdown blob indexing](search-how-to-index-azure-blob-markdown.md)

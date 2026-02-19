@@ -1,12 +1,12 @@
 ---
-title: Configure a connection to use Azure AI Foundry Models in your AI project
-titleSuffix: Azure AI Foundry
-description: Learn how to configure a connection to use Azure AI Foundry Models in your project.
-ms.service: azure-ai-model-inference
+title: Configure a connection to use Microsoft Foundry Models in your AI project
+titleSuffix: Microsoft Foundry
+description: Learn how to configure a connection to use Microsoft Foundry Models in your project.
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/19/2025
 ms.custom: ignite-2024, github-universe-2024
-manager: scottpolly
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
@@ -15,7 +15,9 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ---
 
-# Configure a connection to use Azure AI Foundry Models in your AI project
+# Configure a connection to use Microsoft Foundry Models in your AI project
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/configure-project-connection/portal.md)]
@@ -31,4 +33,4 @@ reviewer: santiagxf
 
 ## Next steps
 
-* [Develop applications using Azure AI Foundry Models](../../model-inference/supported-languages.md)
+* [Develop applications using Microsoft Foundry Models](../supported-languages.md)

@@ -2,26 +2,30 @@
 title: Projection examples
 titleSuffix: Azure AI Search
 description: Explore a detailed example that projects the output of a rich skillset into complex shapes that inform the structure and composition of content in a knowledge store.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: concept-article
+ms.date: 10/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 06/17/2025
+  - sfi-ropc-nochange
 ---
 
-# Detailed example of shapes and projections in a knowledge store
+# Example of shapes and projections in a knowledge store
 
-This article provides a detailed example that supplements [high-level concepts](knowledge-store-projection-overview.md) and [syntax-based articles](knowledge-store-projections-examples.md) by walking you through the shaping and projection steps required for fully expressing the output of a rich skillset in a [knowledge store](knowledge-store-concept-intro.md).
+> [!NOTE]
+> *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
-If your application requirements call for multiple skills and projections, this example can give you a better idea of how shapes and projections intersect.
+This article provides a detailed example that supplements [high-level concepts](knowledge-store-projection-overview.md) and [syntax-based articles](knowledge-store-projections-examples.md) by walking you through the shaping and projection steps required for fully expressing the output of a rich skillset in a [knowledge store](knowledge-store-concept-intro.md) in Azure Storage.
+
+If your application requirements call for multiple skills and projections, this example can give you a better idea of how shapes and projections interact.
 
 ## Set up sample data
 
-Sample documents aren't included with the Projections collection, but the [AI enrichment demo data files](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media) contain text and images that work with the projections described in this example.
+Sample documents aren't included with the Projections collection, but the [AI enrichment demo data files](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media) contain text and images that work with the projections described in this example. If you use this sample data, you can skip step that [attaches a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) because you stay under the daily indexer limit for free enrichments.
 
 Create a blob container in Azure Storage and upload all 14 items.
 
@@ -38,7 +42,7 @@ Pay close attention to skill outputs (targetNames). Outputs written to the enric
 ```json
 {
     "name": "projections-demo-ss",
-    "description": "Skillset that enriches blob data found in "merged_content". The enrichment granularity is a document.",
+    "description": "Skillset that enriches blob data found in the merged_content field. The enrichment granularity is a document.",
     "skills": [
         {
             "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
@@ -180,12 +184,15 @@ Pay close attention to skill outputs (targetNames). Outputs written to the enric
     ],
     "cognitiveServices": {
         "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-        "description": "An Azure AI services resource in the same region as Search.",
-        "key": "<Azure AI services All-in-ONE KEY>"
+        "description": "A Foundry resource in the same region as Search.",
+        "key": "{{cognitive-services-key}}"
     },
     "knowledgeStore": null
 }
 ```
+
+> [!NOTE]
+> The indexer can process up to 20 transactions per day at no charge. The sample data for this example stays under the 20-transaction limit, so if you're using the sample data, you can omit the `cognitiveServices` section.
 
 ## Example Shaper skill
 
@@ -656,4 +663,4 @@ When building projections of different types, file and object projections are ge
 The example in this article demonstrates common patterns on how to create projections. Now that you have a good understanding of the concepts, you're better equipped to build projections for your specific scenario.
 
 > [!div class="nextstepaction"]
-> [Configure caching for incremental enrichment](search-howto-incremental-index.md)
+> [Configure caching for incremental enrichment](enrichment-cache-how-to-configure.md)

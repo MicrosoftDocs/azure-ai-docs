@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 06/16/2025
+ms.update-cycle: 365-days
 ---
 
 # Add language analyzers to string fields in an Azure AI Search index

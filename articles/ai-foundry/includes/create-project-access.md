@@ -12,12 +12,12 @@ ms.custom: include
 
 What you do next depends on where you are:
 
-* **If you don't have any existing projects**: Follow the steps in [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md) to create your first project.
+* **If you don't have any existing projects**: Follow the steps in [Quickstart: Get started with Microsoft Foundry](../quickstarts/get-started-code.md) to create your first project.
 
 * **If you're in a project**: Select the project breadcrumb, then select **Create new resource**.
 
     :::image type="content" source="../media/how-to/projects/create-new-resource.png" alt-text="Screenshot shows creating a new project from a breadcrumb.":::
 
-* **If you're not in a project**: Select **Create new** in the top right to create a new [!INCLUDE [fdp-project-name-plural](fdp-project-name.md)]
+* **If you're not in a project**: Select **Create new** in the top right to create a new [!INCLUDE [fdp-project-name](fdp-project-name.md)]
 
-    :::image type="content" source="../media/how-to/projects/create-new.png" alt-text="Screenshot shows how to create a new project in Azure AI Foundry.":::
+    :::image type="content" source="../media/how-to/projects/create-new.png" alt-text="Screenshot shows how to create a new project in Foundry.":::

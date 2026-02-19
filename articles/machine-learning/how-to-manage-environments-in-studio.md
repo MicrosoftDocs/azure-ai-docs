@@ -5,8 +5,8 @@ description: Learn how to create and manage environments in the Azure Machine Le
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: osiotugo
 ms.date: 04/14/2025
 ms.topic: how-to
@@ -29,7 +29,7 @@ For a high-level overview of environments, see [What are Azure Machine Learning 
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free).
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An [Azure Machine Learning workspace](quickstart-create-resources.md).
 
 ## Browse curated environments

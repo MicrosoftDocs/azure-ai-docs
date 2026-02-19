@@ -4,8 +4,8 @@ titleSuffix: Azure Machine Learning
 description: Set up Azure Machine Learning automated ML to train time-series forecasting models with the Azure Machine Learning Python SDKv1.
 services: machine-learning
 author: manashgoswami
-ms.author: manashg
-ms.reviewer: ssalgado
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to

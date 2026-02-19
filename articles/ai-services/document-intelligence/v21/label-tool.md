@@ -1,14 +1,15 @@
 ---
 title: "How-to: Analyze documents, Label forms, train a model, and analyze forms with Document Intelligence "
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: How to use the Document Intelligence sample tool to analyze documents, invoices, receipts etc. Label and create a custom model to extract text, tables, selection marks, structure, and key-value pairs from documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 10/01/2025
 ms.author: lajanuar
 monikerRange: 'doc-intel-2.1.0'
+ms.custom: sfi-image-nochange
 ---
 
 <!-- markdownlint-disable MD001 -->
@@ -34,7 +35,7 @@ In this article, you use the Document Intelligence REST API with the Sample Labe
 
  You need the following resources to complete this project:
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer"  title="Create a Document Intelligence resource"  target="_blank">create a Document Intelligence resource </a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
   * You need the key and endpoint from the resource you create to connect your application to the Document Intelligence API. You paste your key and endpoint into the code later in the quickstart.
   * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
@@ -51,7 +52,7 @@ Try out the [**Document Intelligence Sample Labeling tool**](https://fott-2-1.az
 > [!div class="nextstepaction"]
 > [Try Prebuilt Models](https://fott-2-1.azurewebsites.net/)
 
-You need an Azure subscription ([create one for free](https://azure.microsoft.com/free/cognitive-services)) and a [Document Intelligence resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) endpoint and key to try out the Document Intelligence service.
+You need an Azure subscription ([create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)) and a [Document Intelligence resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) endpoint and key to try out the Document Intelligence service.
 
 ## Set up the Sample Labeling tool
 

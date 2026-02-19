@@ -1,26 +1,25 @@
 ---
 title: Install and run Docker containers for Sentiment Analysis
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use the Docker containers for the Sentiment Analysis API to perform natural language processing such as sentiment analysis, on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 keywords: on-premises, Docker, container, sentiment analysis, natural language processing
 ---
-
 # Install and run Sentiment Analysis containers
 
 Containers enable you to host the Sentiment Analysis API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Sentiment Analysis remotely, then containers might be a good option.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
-You must meet the following prerequisites before using Sentiment Analysis containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+You must meet the following prerequisites before using Sentiment Analysis containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure. 
     * On Windows, Docker must also be configured to support Linux containers.
@@ -63,7 +62,7 @@ Once the container is on the host computer, use the [docker run](https://docs.do
 > * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
 > * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
 
-To run the Sentiment Analysis container, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the Sentiment Analysis container, execute the following `docker run` command. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
@@ -110,7 +109,7 @@ Use the host, `http://localhost:5000`, for container APIs.
 
 If you run the container with an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files that are helpful to troubleshoot issues that happen while starting or running the container.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 
@@ -130,7 +129,7 @@ In this article, you learned concepts and workflow for downloading, installing, 
 * You must specify billing information when instantiating a container.
 
 > [!IMPORTANT]
-> Azure AI containers are not licensed to run without being connected to Azure for metering. Customers need to enable the containers to communicate billing information with the metering service at all times. Azure AI containers do not send customer data (e.g. text that is being analyzed) to Microsoft.
+> Azure AI containers are not licensed to run without being connected to Azure for metering. Customers need to enable the containers to communicate billing information with the metering service at all times. Azure AI containers do not send customer data (for example, text that is being analyzed) to Microsoft.
 
 ## Next steps
 

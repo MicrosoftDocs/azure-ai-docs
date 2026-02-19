@@ -1,30 +1,45 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: include
 ms.date: 4/14/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
-In this quickstart, you try real-time speech to text in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). 
+In this quickstart, you try real-time speech to text in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). 
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../../../includes/quickstarts/ai-foundry-prerequisites.md)]
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
 
 ## Try real-time speech to text
 
-1. Go to your Azure AI Foundry project. If you need to create a project, see [Create an Azure AI Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
+#### [Foundry (new) portal](#tab/new-foundry)
+
+1. [!INCLUDE [foundry-sign-in](../../../../../ai-foundry/default/includes/foundry-sign-in.md)]
+1. Select **Build** from the top right menu.
+1. Select **Models** on the left pane. 
+1. The **AI Services** tab shows the Foundry models that can be used out of the box in the Foundry portal. Select **Azure Speech - Speech to text** to open the Speech to Text playground.
+1. Optionally use the **Parameters** section to change the task, language, profanity policy, and other settings. You can also add special instructions for the LLM.
+1. Use the **Upload files** section to select your audio file. Then select **Start**.
+1. View the transcription output in the **Transcript** tab. Optionally view the raw API response output in the **JSON** tab.
+1. Switch to the **Code** tab to get the sample code for using the speech to text feature in your application.
+
+## Other Foundry (new) features
+
+
+[!INCLUDE [speech-features-foundry](../../../../../ai-foundry/default/includes/speech-features-foundry.md)]
+
+#### [Foundry (classic) portal](#tab/classic-foundry)
+
+1. [!INCLUDE [classic-sign-in](../../../../../ai-foundry/includes/classic-sign-in.md)]
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
     :::image type="content" source="../../../../../ai-services/media/ai-foundry/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="../../../../../ai-services/media/ai-foundry/azure-ai-services-playgrounds.png":::
-
-1. Optionally, you can select a different connection to use in the playground. In the Speech playground, you can connect to Azure AI Services multi-service resources or Speech service resources. 
-
-    :::image type="content" source="../../../../../ai-services/media/ai-foundry/speech-playground.png" alt-text="Screenshot of the Speech playground in a project." lightbox="../../../../../ai-services/media/ai-foundry/speech-playground.png":::
 
 1. Select **Real-time transcription**.
 1. Select **Show advanced options** to configure speech to text options such as: 
@@ -41,8 +56,8 @@ In this quickstart, you try real-time speech to text in [Azure AI Foundry](https
 
 1. You can view the real-time transcription at the bottom of the page.
 
-    :::image type="content" source="../../../media/ai-foundry/real-time-speech-to-text-results.png" alt-text="Screenshot of the real-time transcription results in Azure AI Foundry." lightbox="../../../media/ai-foundry/real-time-speech-to-text-results.png":::
+    :::image type="content" source="../../../media/ai-foundry/real-time-speech-to-text-results.png" alt-text="Screenshot of the real-time transcription results in Microsoft Foundry." lightbox="../../../media/ai-foundry/real-time-speech-to-text-results.png":::
 
 1. You can select the **JSON** tab to see the JSON output of the transcription. Properties include `Offset`, `Duration`, `RecognitionStatus`, `Display`, `Lexical`, `ITN`, and more.
 
-    :::image type="content" source="../../../media/ai-foundry/real-time-speech-to-text-results-json.png" alt-text="Screenshot of the real-time transcription results in JSON format in Azure AI Foundry." lightbox="../../../media/ai-foundry/real-time-speech-to-text-results-json.png":::
+    :::image type="content" source="../../../media/ai-foundry/real-time-speech-to-text-results-json.png" alt-text="Screenshot of the real-time transcription results in JSON format in Microsoft Foundry." lightbox="../../../media/ai-foundry/real-time-speech-to-text-results-json.png":::

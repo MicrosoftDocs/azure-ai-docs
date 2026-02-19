@@ -1,10 +1,10 @@
 ---
-author: sdgilley
+author: s-polly
 ms.service: azure-machine-learning
 ms.custom: build-2023
 ms.topic: include
 ms.date: 10/17/2024
-ms.author: sgilley
+ms.author: scottpolly
 ---
 
 > [!IMPORTANT]
@@ -18,4 +18,7 @@ ms.author: sgilley
 >
 > These series retired on August 31, 2024:
 > * [Azure Av1-series](/azure/virtual-machines/av1-series-retirement)
-> * [Azure HB-series](/azure/virtual-machines/hb-series-retirement) 
+> * [Azure HB-series](/azure/virtual-machines/sizes/overview)
+>
+> These series retired on September 30, 2025:
+> * [Azure NCv3-series](/azure/virtual-machines/ncv3-retirement)

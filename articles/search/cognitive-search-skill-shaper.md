@@ -8,7 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 02/22/2024
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 # Shaper cognitive skill
@@ -28,7 +29,7 @@ Primary use-cases for this skill include:
 The output name of a **Shaper** skill is always "output". Internally, the pipeline can map a different name, such as "analyzedText" as shown in the examples below, but the **Shaper** skill itself returns "output" in the response. This might be important if you are debugging enriched documents and notice the naming discrepancy, or if you build a custom skill and are structuring the response yourself.
 
 > [!NOTE]
-> This skill isn't bound to Azure AI services. It is non-billable and has no Azure AI services key requirement.
+> This skill isn't bound to Foundry Tools. It's nonbillable and has no Foundry Tools key requirement.
 
 ## @odata.type  
 Microsoft.Skills.Util.ShaperSkill

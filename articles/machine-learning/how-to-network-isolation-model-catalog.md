@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: how-to
-author: ssalgadodev
-ms.author: ssalgado
-ms.reviewer: timanghn
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.date: 12/15/2023
 ms.collection: ce-skilling-ai-copilot
 ---

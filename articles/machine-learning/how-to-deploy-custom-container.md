@@ -5,9 +5,9 @@ description: See how to use a custom container with an open-source server to dep
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-author: msakande
-ms.author: mopeakande
-ms.reviewer: sehan
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 03/31/2025
 ms.topic: how-to
 ms.custom: deploy, devplatv2, devx-track-azurecli, cliv2, sdkv2
@@ -337,7 +337,10 @@ In this case, when you create a deployment, your model is located under the foll
 You can optionally configure your `model_mount_path` value. By adjusting this setting, you can change the path where the model is mounted.
 
 > [!IMPORTANT]
-> The `model_mount_path` value must be a valid absolute path in Linux (the OS of the container image).
+> The `model_mount_path` value must be a valid absolute path in Linux (in the guest OS of the container image).
+
+> [!IMPORTANT]
+> `model_mount_path` is usable only in BYOC (Bring your own container) scenario. In BYOC scenario, the environment that the online deployment uses must have [`inference_config` parameter](#the-inference_config-parameter) configured. You can use Azure ML CLI or Python SDK to specify `inference_config` parameter when creating the environment. Studio UI currently doesn't support specifying this parameter.
 
 When you change the value of `model_mount_path`, you also need to update the `MODEL_BASE_PATH` environment variable. Set `MODEL_BASE_PATH` to the same value as `model_mount_path` to avoid a failed deployment due to an error about the base path not being found.
 

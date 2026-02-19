@@ -1,13 +1,13 @@
 items:
-- name: Azure AI Foundry documentation
+- name: Microsoft Foundry documentation
   href: ../ai-foundry/index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What are Azure AI services?
+  - name: What are Foundry Tools?
     href: what-are-ai-services.md
     displayName: applied, cognitive, form
-  - name: What's new in Azure AI services?
+  - name: What's new in Foundry Tools?
     href: whats-new-ai-services.md    
   - name: Language support
     href: language-support.md
@@ -15,15 +15,10 @@ items:
     href: https://azure.microsoft.com/pricing/details/cognitive-services/
 - name: Quickstarts
   items:
-  - name: Create an AI Foundry resource
+  - name: Create a Foundry resource
     href: multi-service-resource.md
-    displayName: applied, cognitive, form
-  - name: Create an AI Foundry resource using Bicep
-    href: create-account-bicep.md
-  - name: Create an AI Foundry resource using an ARM template
+  - name: Create a Foundry resource using an ARM template
     href: create-account-resource-manager-template.md
-  - name: Create an AI Foundry resource using Terraform
-    href: create-account-terraform.md
 - name: How-to
   items:
   - name: Plan and manage costs
@@ -36,11 +31,11 @@ items:
     href: diagnostic-logging.md
   - name: Recover or purge deleted resources
     href: recover-purge-resources.md
-  - name: Custom subdomains for Azure AI services
+  - name: Custom subdomains for Foundry Tools
     href: cognitive-services-custom-subdomains.md
   - name: Deploy containers
     items:
-    - name: Azure AI containers overview
+    - name: Foundry Tools containers overview
       href: cognitive-services-container-support.md
     - name: General container FAQ
       href: ./containers/container-faq.yml
@@ -54,8 +49,6 @@ items:
         href: ./containers/container-reuse-recipe.md
       - name: Deploy to Azure Container Instance
         href: ./containers/azure-container-instance-recipe.md
-      - name: Deploy to Azure Kubernetes
-        href: ./containers/azure-kubernetes-recipe.md
       - name: Deploy with Docker Compose
         href: ./containers/docker-compose-recipe.md
     - name: Other Container Services
@@ -98,9 +91,9 @@ items:
     href: cognitive-services-limited-access.md
 - name: Reference
   items:
-  - name: Azure AI Foundry SDKs
+  - name: Microsoft Foundry SDKs
     href: reference/sdk-package-resources.md
-  - name: Azure AI Foundry REST APIs
+  - name: Microsoft Foundry REST APIs
     href: reference/rest-api-resources.md
   - name: REST API
     href: /rest/api/cognitiveservices/accountmanagement/accounts
@@ -138,7 +131,7 @@ items:
   - name: Azure Government
     href: /azure/azure-government/compare-azure-government-global-azure
   - name: Videos
-    href: https://azure.microsoft.com/resources/videos/index/?services=cognitive-services
+    href: https://azure.microsoft.com/resources/videos/?services=cognitive-services
   - name: Azure Blog
     href: https://azure.microsoft.com/blog/
   - name: Artificial Intelligence and Machine Learning Blog

@@ -7,10 +7,10 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: how-to
 ms.custom: devplatv2
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.date: 04/02/2025
-ms.reviewer: amipatel
+ms.reviewer: sooryar
 ---
 
 # Submit a training job in the Azure Machine Learning studio
@@ -23,7 +23,7 @@ In this article, you learn how to use your own data and code to train a machine 
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/free/machine-learning/search/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An Azure Machine Learning workspace. To learn how, see [Create workspace resources](quickstart-create-resources.md).
 

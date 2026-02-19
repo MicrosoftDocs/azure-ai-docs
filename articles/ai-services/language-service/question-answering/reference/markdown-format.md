@@ -5,9 +5,8 @@ ms.service: azure-ai-language
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 11/21/2024
+ms.date: 12/15/2025
 ---
-
 # Markdown format supported in answer text
 
 Custom question answering stores answer text as markdown. There are many flavors of markdown. In order to make sure the answer text is returned and displayed correctly, use this reference.
@@ -16,7 +15,7 @@ Use the **[CommonMark](https://commonmark.org/help/tutorial/index.html)** tutori
 
 ## When to use rich-text editing versus markdown
 
-Rich-text editing of answers allows you, as the author, to use a formatting toolbar to quickly select and format text.
+Use a formatting toolbar for rich-text editing of answers, allowing you, as the author, to quickly select and format text.
 
 Markdown is a better tool when you need to autogenerate content to create projects to be imported as part of a CI/CD pipeline or for batch testing.
 
@@ -26,8 +25,8 @@ Following is the list of markdown formats that you can use in your answer text.
 
 |Purpose|Format|Example markdown|
 |--|--|--|
-A new line between 2 sentences.|`\n\n`|`How can I create a bot with \n\n custom question answering?`|
-|Headers from h1 to h6, the number of `#` denotes which header. 1 `#` is the h1.|`\n# text \n## text \n### text \n####text \n#####text` |`## Creating a bot \n ...text.... \n### Important news\n ...text... \n### Related Information\n ....text...`<br><br>`\n# my h1 \n## my h2\n### my h3 \n#### my h4 \n##### my h5`|
+A new line between two sentences.|`\n\n`|`How can I create a bot with \n\n custom question answering?`|
+|Headers from h1 to h6, the number of `#` denotes which header. One `#` is the h1.|`\n# text \n## text \n### text \n####text \n#####text` |`## Creating a bot \n ...text.... \n### Important news\n ...text... \n### Related Information\n ....text...`<br><br>`\n# my h1 \n## my h2\n### my h3 \n#### my h4 \n##### my h5`|
 |Italics |`*text*`|`How do I create a bot with *custom question answering*?`|
 |Strong (bold)|`**text**`|`How do I create a bot with **custom question answering***?`|
 |URL for link|`[text](https://www.my.com)`|`How do I create a bot with [custom question answering](https://language.cognitive.azure.com/)?`|
@@ -38,12 +37,12 @@ A new line between 2 sentences.|`\n\n`|`How can I create a bot with \n\n custom 
 |Italics URL for link|`[*text*](https://www.my.com)`|`How do I create a bot with [*custom question answering*](https://language.cognitive.azure.com/)?`|
 |Escape markdown symbols|`\*text\*`|`How do I create a bot with \*custom question answering*\*?`|
 |Ordered list|`\n 1. item1 \n 1. item2`|`This is an ordered list: \n 1. List item 1 \n 1. List item 2`<br>The preceding example uses automatic numbering built into markdown.<br>`This is an ordered list: \n 1. List item 1 \n 2. List item 2`<br>The preceding example uses explicit numbering.|
-|Unordered list|`\n * item1 \n * item2`<br>or<br>`\n - item1 \n - item2`|`This is an unordered list: \n * List item 1 \n * List item 2`|
+|Unordered list|`\n * item1 \n * item2`<br>`or`<br>`\n - item1 \n - item2`|`This is an unordered list: \n * List item 1 \n * List item 2`|
 |Nested lists|`\n * Parent1 \n\t * Child1 \n\t * Child2 \n * Parent2`<br><br>`\n * Parent1 \n\t 1. Child1 \n\t * Child2 \n 1. Parent2`<br><br>You can nest ordered and unordered lists together. The tab, `\t`, indicates the indentation level of the child element.|`This is an unordered list: \n * List item 1 \n\t * Child1 \n\t * Child2 \n * List item 2`<br><br>`This is an ordered nested list: \n 1. Parent1 \n\t 1. Child1 \n\t 1. Child2 \n 1. Parent2`|
 
-* Custom question answering doesn't process the image in any way. It is the client application's role to render the image.
+* Custom question answering doesn't process the image in any way. It's the client application's role to render the image.
 
-If you want to add content using update/replace project APIs and the content/file contains html tags, you can preserve the HTML in your file by ensuring that opening and closing of the tags are converted in the encoded format.
+If you're adding content through the update or replace project APIs and your content or file includes HTML tags, be sure to preserve the HTML within your file. This step ensures that all opening and closing tags are properly converted to their encoded format.
 
 | Preserve HTML  | Representation in the API request  | Representation in KB |
 |-----------|---------|-------------------------|

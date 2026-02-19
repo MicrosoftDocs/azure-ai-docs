@@ -1,17 +1,16 @@
 ---
 title: Orchestration workflow none intent
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the default None intent in orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom:  language-service-orchestration
 ms.reviewer: haelhamm
 ---
-
 # The "None" intent in orchestration workflow
 
 Every project in orchestration workflow includes a default None intent. The None intent is a required intent and can't be deleted or renamed. The intent is meant to categorize any utterances that do not belong to any of your other custom intents. 
@@ -28,7 +27,7 @@ The score should be set according to your own observations of prediction scores,
 
 When you export a project's JSON file, the None score threshold is defined in the _**"settings"**_ parameter of the JSON as the _**"confidenceThreshold"**_, which accepts a decimal value between 0.0 and 1.0.
 
-The default score for Orchestration Workflow projects is set at **0.5** when creating new project in Language Studio.
+The default score for Orchestration Workflow projects is set at **0.5** when creating a new project.
 
 > [!NOTE]
 > During model evaluation of your test set, the None score threshold is not applied.

@@ -2,15 +2,15 @@
 title: Security filter pattern
 titleSuffix: Azure AI Search
 description: Learn how to implement security privileges at the document level for Azure AI Search search results, using security filters and user identities.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/06/2025
+ms.date: 01/23/2026
 ---
 
 # Security filters for trimming results in Azure AI Search
@@ -20,8 +20,8 @@ For search solutions that can't use the [built-in access control list (ACL) supp
 This article describes a pattern for security filtering having the following steps:
 
 > [!div class="checklist"]
-> * Assemble source documents with the required content
-> * Create a field for the principal identifiers 
+> * Assemble source documents with the required content, including a string for storing an identity
+> * Create a field  in the search index for the principal identifiers 
 > * Push the documents to the search index for indexing
 > * Query the index with the `search.in` filter function
 
@@ -29,9 +29,7 @@ It concludes with links to demos and examples that provide hands-on learning. We
 
 ## About the security filter pattern
 
-Although Azure AI Search doesn't integrate with security subsystems for access to content within an index, many customers who have document-level security requirements find that filters can meet their needs.
-
-In Azure AI Search, a security filter is a regular OData filter that includes or excludes a search result based on a string consisting of a security principal. There's no authentication or authorization through the security principal. The principal is just a string, used in a filter expression, to include or exclude a document from the search results.
+The security filter pattern simulates document-level authorization by using a regular OData filter that includes or excludes a search result based on a string consisting of a security principal. There's no authentication or authorization through the security principal. The principal is just a string, used in a filter expression, to include or exclude a document from the search results.
 
 There are several ways to achieve security filtering. One way is through a complicated disjunction of equality expressions: for example, `Id eq 'id1' or Id eq 'id2'`, and so forth. This approach is error-prone, difficult to maintain, and in cases where the list contains hundreds or thousands of values, slows down query response time by many seconds. 
 
@@ -79,7 +77,7 @@ In the search index, within the fields collection, you need one field that conta
    The following index schema satisfies the field requirements. Documents that you index on Azure AI Search should have values for all of these fields, including the "group_ids". For the document with `file_name` "secured_file_b", only users that belong to group IDs "group_id1" or "group_id2" have read access to the file.
 
    ```https
-   POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=2024-07-01
+   POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=2025-09-01
    {
         "name": "securedfiles",  
         "fields": [
@@ -103,7 +101,7 @@ In Azure AI Search, the approaches for loading data are:
 The following example shows a single HTTP POST request to the docs collection of your index's URL endpoint (see [Documents - Index](/rest/api/searchservice/documents/)). The body of the HTTP request is a JSON rendering of the documents to be indexed:
 
 ```http
-POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=2024-07-01
+POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=2025-09-01
 {
     "value": [
         {
@@ -157,7 +155,7 @@ This sample shows how to set up query using a POST request.
 Issue the HTTP POST request, specifying the filter in the request body:
 
 ```http
-POST https://[service name].search.windows.net/indexes/securedfiles/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/securedfiles/docs/search?api-version=2025-09-01
 
 {
    "filter":"group_ids/any(g:search.in(g, 'group_id1, group_id2'))"  

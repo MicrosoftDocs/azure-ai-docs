@@ -11,48 +11,49 @@ ms.custom:
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
+ms.reviewer: sooryar
 ms.date: 11/02/2023
+ms.update-cycle: 365-days
 ---
 
 # Python tool
 
-The Python tool empowers you to offer customized code snippets as self-contained executable nodes in prompt flow. You can easily create Python tools, edit code, and verify results.
+The Python tool enables you to create customized code snippets as self-contained executable nodes in prompt flow. You can easily create Python tools, edit code, and verify results.
 
 ## Inputs
 
 | Name   | Type   | Description                                          | Required |
-|--------|--------|------------------------------------------------------|---------|
-| Code   | string | Python code snippet                                  | Yes     |
-| Inputs | -      | List of tool function parameters and its assignments | -       |
+|--------|--------|------------------------------------------------------|----------|
+| Code   | string | Python code snippet                                  | Yes      |
+| Inputs | -      | List of tool function parameters and their assignments | -        |
 
 ### Types
 
-| Type                                                | Python example                  | Description                                |
-|-----------------------------------------------------|---------------------------------|--------------------------------------------|
-| int                                                 | param: int                      | Integer type                               |
-| bool                                                | param: bool                     | Boolean type                               |
-| string                                              | param: str                      | String type                                |
-| double                                              | param: float                    | Double type                                |
-| list                                                | param: list or param: List[T]   | List type                                  |
-| object                                              | param: dict or param: Dict[K, V] | Object type                                |
-| [Connection](../concept-connections.md) | param: CustomConnection         | Connection type is handled specially |
+| Type                                                | Python example                   | Description                                 |
+|-----------------------------------------------------|----------------------------------|---------------------------------------------|
+| int                                                 | param: int                       | Integer type                                |
+| bool                                                | param: bool                      | Boolean type                                |
+| string                                              | param: str                       | String type                                 |
+| double                                              | param: float                     | Double type                                 |
+| list                                                | param: list or param: List[T]    | List type                                   |
+| object                                              | param: dict or param: Dict[K, V] | Object type                                 |
+| [Connection](../concept-connections.md)             | param: CustomConnection          | Connection type is handled specially        |
 
 Parameters with the `Connection` type annotation are treated as connection inputs, which means:
 
-- Prompt flow extension shows a selector to select the connection.
-- During execution time, prompt flow tries to find the connection with the same name from the parameter value passed in.
+- The prompt flow extension shows a selector to choose the connection.
+- During execution, prompt flow tries to find the connection with the same name from the parameter value passed in.
 
 > [!NOTE]
 > The `Union[...]` type annotation is supported *only* for the connection type, for example, `param: Union[CustomConnection, OpenAIConnection]`.
 
 ## Outputs
 
-Outputs are the return of the Python tool function.
+The outputs are the return value of the Python tool function.
 
 ## Write with the Python tool
 
-Use the following guidelines to write with the Python tool.
+Use the following guidelines when writing with the Python tool.
 
 ### Guidelines
 
@@ -60,15 +61,15 @@ Use the following guidelines to write with the Python tool.
 
 - Python tool code must contain a function decorated with `@tool` (tool function), which serves as the entry point for execution. Apply the `@tool` decorator only once within the snippet.
 
-   The sample in the next section defines the Python tool `my_python_tool`, which is decorated with `@tool`.
+   The following sample defines the Python tool `my_python_tool`, which is decorated with `@tool`.
 
 - Python tool function parameters must be assigned in the `Inputs` section.
 
-    The sample in the next section defines the input `message` and assigns it `world`.
+    The following sample defines the input `message` and assigns it `world`.
 
-- A Python tool function has a return.
+- A Python tool function must have a return value.
 
-    The sample in the next section returns a concatenated string.
+    The following sample returns a concatenated string.
 
 ### Code
 
@@ -91,17 +92,64 @@ def my_python_tool(message: str, my_conn: CustomConnection) -> str:
 
 #### Inputs
 
-| Name    | Type   | Sample value in flow YAML | Value passed to function|
-|---------|--------|-------------------------| ------------------------|
-| message | string | `world`                 | `world`                 |
-| my_conn | `CustomConnection` | `my_conn`               | `CustomConnection` object |
+| Name    | Type               | Sample value in flow YAML | Value passed to function  |
+|---------|--------------------|----------------------------|---------------------------|
+| message | string             | `world`                    | `world`                   |
+| my_conn | `CustomConnection` | `my_conn`                  | `CustomConnection` object |
 
-Prompt flow tries to find the connection named `my_conn` during execution time.
+Prompt flow tries to find the connection named `my_conn` during execution.
 
 #### Outputs
 
 ```python
 "hello world"
+```
+
+## Call a reasoning model from the Python tool
+
+If you need to call reasoning models that the LLM node doesn't support, you can use the Python tool to call the models directly. The following example shows how to call a reasoning model from the Python tool.
+
+```python
+from promptflow import tool
+from promptflow.connections import AzureOpenAIConnection
+from openai import AzureOpenAI
+ 
+@tool
+def my_python_tool(
+    OpenAIConnection: AzureOpenAIConnection,
+    scope_reply: str
+):
+    model_name = "o3-mini"
+    deployment = "o3-mini"
+    print(OpenAIConnection['api_base'])
+    endpoint = OpenAIConnection['api_base'] #"https://<your endpoint>.openai.azure.com/"
+    model_name = "o3-mini" #your model name
+    deployment = "o3-mini" #your deployment name
+ 
+    subscription_key = OpenAIConnection['api_key']
+    api_version = "2024-12-01-preview" #Supply an API version that supports reasoning models.
+ 
+    client = AzureOpenAI(
+        api_version=api_version,
+        azure_endpoint=endpoint,
+        api_key=subscription_key,
+    )
+ 
+    response = client.chat.completions.create(
+        messages=[
+            {
+                "role": "system",
+                "content": "You are a helpful assistant.",
+            },
+            {
+                "role": "user",
+                "content": "I am going to Paris, what should I see?",
+            }
+        ],
+        max_completion_tokens=100000,
+        model=deployment
+    )
+    return response.choices[0].message.content
 ```
 
 ## Custom connection in the Python tool
@@ -110,9 +158,9 @@ If you're developing a Python tool that requires calling external services with 
 
 ### Create a custom connection
 
-Create a custom connection that stores all your large language model API key or other required credentials.
+Create a custom connection that stores all your large language model API keys or other required credentials.
 
-1. Go to prompt flow in your workspace, and then go to the **Connections** tab.
+1. Go to prompt flow in your workspace, and then select the **Connections** tab.
 1. Select **Create** > **Custom**.
 
     :::image type="content" source="../media/how-to-integrate-with-langchain/custom-connection-1.png" alt-text="Screenshot that shows flows on the Connections tab highlighting the Custom button in the drop-down menu. " lightbox = "../media/how-to-integrate-with-langchain/custom-connection-1.png":::

@@ -1,12 +1,12 @@
 ---
-title: Deploy a user-managed glossary in Azure AI Translator container
-titleSuffix: Azure AI services
-description: How to deploy a user-managed glossary in the Azure AI Translator container environment.
+title: Deploy a user-managed glossary in Azure Translator container
+titleSuffix: Foundry Tools
+description: How to deploy a user-managed glossary in the Azure Translator container environment.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -16,9 +16,9 @@ recommendations: false
 
 # Deploy a user-managed glossary
 
-Azure AI Translator containers enable you to run several features of the Translator service in your own environment and are great for specific security and data governance requirements.
+Azure Translator in Foundry Tools containers allow you to use many of the Translator's features within your own environment, making them ideal for meeting specific security and data governance needs.
 
-There can be times when you're running a container with a multi-layered ingestion process when you discover that you need to implement an update to sentence and/or phrase files. Since the standard phrase and sentence files are encrypted and read directly into memory at runtime, you need to implement a quick-fix engineering solution to implement a dynamic update. This update can be implemented using our user-managed glossary feature:
+Sometimes, when operating a container with a complex ingestion process, you may encounter the need to update sentence or phrase files. Because the default sentence and phrase files are encrypted and loaded directly into memory at runtime, you need a rapid engineering solution to allow for dynamic updates. You can address this need by implementing our user-managed glossary feature:
 
 * To deploy the **phrase&#8203;fix** solution, you need to create a **phrase&#8203;fix** glossary file to specify that a listed phrase is translated in a specified way.
 

@@ -1,12 +1,12 @@
 ---
 title: Disaster recovery guidance - Document Intelligence 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the copy model API to back up your Document Intelligence resources.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 02/27/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -33,7 +33,7 @@ ms.author: lajanuar
 
 ::: moniker range=">= doc-intel-2.1.0"
 
-When you create a Document Intelligence resource in the Azure portal, you specify a region. From then on, your resource and all of its operations stay associated with that particular Azure server region. It's rare, but not impossible, to encounter a network issue that hits an entire region. If your solution needs to always be available, then you should design it to either fail-over into another region or split the workload between two or more regions. Both approaches require at least two Document Intelligence resources in different regions and the ability to sync custom models and classifiers across regions.
+When you create a Document Intelligence resource in the Azure portal, you specify a region. From then on, your resource and all of its operations stay associated with that particular Azure region. It's rare, but not impossible, to encounter a network issue that hits an entire region. If your solution needs to always be available, then you should design it to either fail-over into another region or split the workload between two or more regions. Both approaches require at least two Document Intelligence resources in different regions and the ability to sync custom models and classifiers across regions.
 
 The Copy API enables this scenario by allowing you to copy custom models and classifiers from one Document Intelligence account or into others, which can exist in any supported geographical region. This guide shows you how to use the Copy REST API with cURL for custom models. You can also use an HTTP request service to issue the requests.
 

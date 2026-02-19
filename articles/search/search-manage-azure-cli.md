@@ -2,7 +2,6 @@
 title: Azure CLI scripts using the az search module
 titleSuffix: Azure AI Search
 description: Create and configure an Azure AI Search service with the Azure CLI. You can scale a service up or down, manage admin and query api-keys, and query for system information.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -11,7 +10,8 @@ ms.custom:
   - devx-track-azurecli
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/21/2025
+ms.date: 09/25/2025
+ms.update-cycle: 365-days
 ---
 
 # Manage your Azure AI Search service using the Azure CLI
@@ -25,6 +25,7 @@ Use the [**az search module**](/cli/azure/search) to perform the following tasks
 > * [Return service information](#get-search-service-information)
 > * [Create or delete a service](#create-or-delete-a-service)
 > * [Create a service with a private endpoint](#create-a-service-with-a-private-endpoint)
+> * [Create a service with confidential computing](#create-a-service-with-confidential-computing)
 > * [Regenerate admin API-keys](#regenerate-admin-keys)
 > * [Create or delete query api-keys](#create-or-delete-query-keys)
 > * [Scale up or down with replicas and partitions](#scale-replicas-and-partitions)
@@ -32,10 +33,10 @@ Use the [**az search module**](/cli/azure/search) to perform the following tasks
 
 Occasionally, questions are asked about tasks *not* on the above list.
 
-You can't change a service name, region, or tier programmatically or in the Azure portal. Dedicated resources are allocated when a service is created. As such, changing the underlying hardware (location or node type) requires a new service.
+You can't change the name or region of a service programmatically or in the Azure portal. Dedicated resources are allocated when a service is created, so changing the underlying hardware (location or node type) requires a new service.
 
 > [!NOTE]
-> The 2025-02-01-preview supports changing your pricing tier using the [Management REST APIs](search-manage-rest.md#upgrade-a-service) and the [Azure portal](search-capacity-planning.md#change-your-pricing-tier). Currently, you can only move up between Basic and Standard (S1, S2, and S3) tiers, such as going from Basic to S1.
+> The [Search Management REST APIs](search-manage-rest.md#upgrade-a-service) and [Azure portal](search-capacity-planning.md#change-your-pricing-tier) support changing your pricing tier. Currently, you can only switch between Basic and Standard (S1, S2, and S3) tiers.
 
 You can't use tools or APIs to transfer content, such as an index, from one service to another. Within a service, programmatic creation of content is through [Search Service REST API](/rest/api/searchservice/) or an SDK such as [Azure SDK for .NET](/dotnet/api/overview/azure/search.documents-readme). While there are no dedicated commands for content migration, you can write script that calls REST API or a client library to create and load indexes on a new service.
 
@@ -304,6 +305,23 @@ az search private-endpoint-connection delete \
     --name <pe-connection-name> \
     --service-name <search-service-name> \
     --resource-group <search-service-resource-group-name> 
+```
+
+## Create a service with confidential computing
+
+[Confidential computing](search-security-overview.md#data-in-use) is an optional compute type for data-in-use protection. When configured, your search service is deployed on confidential VMs (DCasv5 or DCesv5) instead of standard VMs. This compute type also incurs a 10% surcharge for billable tiers. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/).
+
+For daily usage, confidential computing isn't necessary. We only recommend this compute type for stringent regulatory, compliance, or security requirements. For more information, see [Confidential computing use cases](/azure/confidential-computing/use-cases-scenarios).
+
+The compute type is fixed for the lifetime of your search service. To permanently configure confidential computing, set the `compute-type` property to `confidential` on a new service.
+
+```azurecli-interactive
+az search service create \
+  --name <search-service-name> \
+  --resource-group <search-service-resource-group-name> \
+  --location <search-service-region> \
+  --sku basic \
+  --compute-type confidential
 ```
 
 ## Regenerate admin keys

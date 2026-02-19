@@ -3,12 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
-
-
 # [Language API (Preview)](#tab/language)
 
 > [!NOTE]
@@ -17,7 +14,7 @@ ms.author: lajanuar
 ```bash
 curl -i -X POST 'http://<serverURL>:5000/language/analyze-text/jobs?api-version=2022-04-01-preview' --header 'Content-Type: application/json' --header --data-binary @example.json
 ```
-The following JSON is an example of a JSON file attached to the Language request's POST body:
+The following JSON is an example of a JSON file attached to Azure Language request's POST body:
 
 ```json
 example.json
@@ -45,7 +42,7 @@ example.json
 ```
 ### Container response body
 
-The following JSON is an example of the Language response body from the containerized synchronous call:
+The following JSON is an example of Azure Language response body from the containerized synchronous call:
 
 ```json
 {

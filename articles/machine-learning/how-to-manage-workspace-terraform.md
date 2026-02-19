@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.custom: devx-track-terraform
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: deeikele
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
 ms.date: 06/13/2025
 ms.topic: how-to
 ms.tool: terraform
@@ -22,7 +22,7 @@ A Terraform configuration file is a document that defines the resources needed f
 
 ## Prerequisites
 
-- An Azure subscription with a free or paid version of Azure Machine Learning. If you don't have an Azure subscription, [create a free account before you begin](https://azure.microsoft.com/free/).
+- An Azure subscription with a free or paid version of Azure Machine Learning. If you don't have an Azure subscription, [create a free account before you begin](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Terraform installed and configured according to the instructions in [Quickstart: Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 <!--- [Azure CLI](/cli/azure/install-azure-cli) installed.-->
 

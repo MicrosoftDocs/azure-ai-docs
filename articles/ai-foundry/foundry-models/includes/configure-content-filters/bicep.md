@@ -1,9 +1,12 @@
 ---
 manager: nitinme
-author: santiagxf
-ms.author: fasantia 
-ms.service: azure-ai-model-inference
-ms.date: 1/21/2025
+author: msakande
+ms.author: mopeakande
+ms.reviewer: yinchang
+reviewer: ychang-msft
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
+ms.date: 08/29/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
@@ -16,15 +19,15 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Services resource name.
+  * Your Foundry Tools resource name.
 
-  * The resource group where the Azure AI Services resource is deployed.
+  * The resource group where you deployed the Foundry Tools resource.
 
-  * The model name, provider, version, and SKU you would like to deploy. You can use the Azure AI Foundry portal or the Azure CLI to identify it. In this example we deploy the following model:
+  * The model name, provider, version, and SKU you want to deploy. You can use the Microsoft Foundry portal or the Azure CLI to find this information. In this example, deploy the following model:
 
-    * **Model name:**: `Phi-3.5-vision-instruct`
+    * **Model name:**: `Phi-4-mini-instruct`
     * **Provider**: `Microsoft`
-    * **Version**: `2`
+    * **Version**: `1`
     * **Deployment type**: Global standard
 
 ## Add a model deployment with custom content filtering
@@ -35,13 +38,13 @@ zone_pivot_groups: azure-ai-models-deployment
 
     :::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-content-filter-template.bicep":::
 
-2. Use the template `ai-services-deployment-template.bicep` to describe model deployments:
+1. Use the template `ai-services-deployment-template.bicep` to describe model deployments:
 
     __ai-services-deployment-template.bicep__
 
     :::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-deployment-template.bicep":::
 
-3. Create the main deployment definition:
+1. Create the main deployment definition:
 
     __main.bicep__
 
@@ -77,14 +80,14 @@ zone_pivot_groups: azure-ai-models-deployment
     }
     ```
 
-4. Run the deployment:
+1. Run the deployment:
 
     ```azurecli
     RESOURCE_GROUP="<resource-group-name>"
     ACCOUNT_NAME="<azure-ai-model-inference-name>" 
-    MODEL_NAME="Phi-3.5-vision-instruct"
+    MODEL_NAME="Phi-4-mini-instruct"
     PROVIDER="Microsoft"
-    VERSION=2
+    VERSION=1
     RAI_POLICY_NAME="custom-policy"
     
     az deployment group create \

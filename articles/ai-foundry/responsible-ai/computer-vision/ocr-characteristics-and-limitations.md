@@ -1,13 +1,13 @@
 ---
-title: Capabilities and limitations of optical character recognition (OCR) - Azure AI Vision
-titleSuffix: Azure AI services
-description: Characteristics and limitations for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure AI Vision API.
-author: sanjeev3
-ms.author: sajagtap
+title: Capabilities and limitations of optical character recognition (OCR) - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Characteristics and limitations for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure Vision in Foundry Tools API.
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
-ms.topic: article
-ms.date: 02/12/2021
+ms.topic: concept-article
+ms.date: 10/15/2025
 ---
 
 # Capabilities and limitations of optical character recognition

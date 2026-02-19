@@ -1,17 +1,16 @@
 ---
 title: What is the Azure AI Face service?
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The Azure AI Face service provides AI algorithms that you use to detect, recognize, and analyze human faces in images.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: overview
-ms.date: 02/21/2025
+ms.date: 11/21/2025
 ms.author: pafarley
-ms.custom:
-  - ignite-2023
 keywords: facial recognition, facial recognition software, facial analysis, face matching, face recognition app, face search by image, facial recognition search
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 #Customer intent: As the developer of an app that deals with images of humans, I want to learn what the Face service does so I can determine if I should use its features.
@@ -50,11 +49,9 @@ For a more structured approach, follow a Training module for Face.
 
 The following are common use cases for the Face service:
 
-**Verify user identity**: Verify a person against a trusted face image. This verification could be used to grant access to digital or physical properties such as a bank account, access to a building, and so on. In most cases, the trusted face image could come from a government-issued ID such as a passport or driver’s license, or it could come from an enrollment photo taken in person. During verification, liveness detection can play a critical role in verifying that the image comes from a real person, not a printed photo or mask. For more details on verification with liveness, see the [liveness tutorial](./Tutorials/liveness.md). For identity verification without liveness, follow the [quickstart](./quickstarts-sdk/identity-client-library.md).
-
-**Liveness detection**: Liveness detection is an anti-spoofing feature that checks whether a user is physically present in front of the camera. It's used to prevent spoofing attacks using a printed photo, recorded video, or a 3D mask of the user's face. [Liveness tutorial](./Tutorials/liveness.md)
-
-**Touchless access control**: Compared to today’s methods like cards or tickets, opt-in face identification enables an enhanced access control experience while reducing the hygiene and security risks from card sharing, loss, or theft. Facial recognition assists the check-in process with a human in the loop for check-ins in airports, stadiums, theme parks, buildings, reception kiosks at offices, hospitals, gyms, clubs, or schools.
+- **Verify user identity**: Verify a person against a trusted face image. This verification could be used to grant access to digital or physical properties such as a bank account, access to a building, and so on. In most cases, the trusted face image could come from a government-issued ID such as a passport or driver’s license, or it could come from an enrollment photo taken in person. During verification, liveness detection can play a critical role in verifying that the image comes from a real person, not a printed photo or mask. For more details on verification with liveness, see the [liveness tutorial](./Tutorials/liveness.md). For identity verification without liveness, follow the [quickstart](./quickstarts-sdk/identity-client-library.md).
+- **Liveness detection**: Liveness detection is an anti-spoofing feature that checks whether a user is physically present in front of the camera. It's used to prevent spoofing attacks using a printed photo, recorded video, or a 3D mask of the user's face. [Liveness tutorial](./Tutorials/liveness.md)
+- **Touchless access control**: Compared to today’s methods like cards or tickets, opt-in face identification enables an enhanced access control experience while reducing the hygiene and security risks from card sharing, loss, or theft. Facial recognition assists the check-in process with a human in the loop for check-ins in airports, stadiums, theme parks, buildings, reception kiosks at offices, hospitals, gyms, clubs, or schools.
 
 **Face redaction**: Redact or blur detected faces of people recorded in a video to protect their privacy.
 
@@ -88,7 +85,7 @@ The goal of liveness detection is to ensure that the system is interacting with 
 
 The liveness detection solution successfully defends against a variety of spoof types ranging from paper printouts, 2d/3d masks, and spoof presentations on phones and laptops. Liveness detection is an active area of research, with continuous improvements being made to counteract increasingly sophisticated spoofing attacks over time. Continuous improvements will be rolled out to the client and the service components over time as the overall solution gets more robust to new types of attacks.
 
-Our liveness detection solution meets [iBeta Level 1 and 2 ISO/IEC 30107-3](https://www.ibeta.com/wp-content/uploads/2023/11/230622-Microsoft-PAD-Level-2-Confirmation-Letter.pdf) compliance.
+Our liveness detection solution meets achieved a 0% penetration rate in [iBeta Level 1 and Level 2 Presentation Attack Detection (PAD) tests](https://servicetrust.microsoft.com/DocumentPage/ea3fa18f-3940-4c0b-aa96-41cb50898aee), conducted by a NIST/NVLAP-accredited laboratory and conformant to the [ISO/IEC 30107-3 PAD international standard](https://www.iso.org/standard/79520.html).
 
 Tutorials
 - [Face liveness Tutorial](Tutorials/liveness.md)
@@ -96,7 +93,7 @@ Concepts
 - [Abuse monitoring](concept-liveness-abuse-monitoring.md)
 
 Face liveness SDK reference docs:
-- [Java (Android)](https://aka.ms/liveness-sdk-java)
+- [Java (Android)](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/vision/azure-ai-vision-imageanalysis/src/samples/README.md)
 - [Swift (iOS)](https://aka.ms/liveness-sdk-ios)
 - [JavaScript (Web)](https://aka.ms/liveness-sdk-web)
 
@@ -162,7 +159,7 @@ Input requirements for face verification:
 
 ## Data privacy and security
 
-As with all of the Azure AI services resources, developers who use the Face service must be aware of Microsoft's policies on customer data. For more information, see the [Azure AI services page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center.
+As with all of the Foundry Tools resources, developers who use the Face service must be aware of Microsoft's policies on customer data. For more information, see the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center.
 
 ## Next step
 

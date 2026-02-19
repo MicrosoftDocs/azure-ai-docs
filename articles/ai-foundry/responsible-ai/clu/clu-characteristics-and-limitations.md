@@ -1,12 +1,12 @@
 ---
 title: Characteristics and limitations for CLU
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Characteristics and limitations for using conversational language understanding.
-author: skandil
-ms.author: sarakandil
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 09/15/2021
 ---
 
@@ -86,7 +86,7 @@ Adding new files or training a different model with random set splits leads to d
 CLU only processes text. The fidelity and formatting of the incoming text affects the performance of the system. Make sure to consider the following:
 
 * Speech transcription quality might affect the quality of the results. If the source data is voice, use the highest quality combination of automatic and human transcription to ensure the best performance. Consider using custom speech models to obtain better-quality results.
-* Lack of standard punctuation or casing might affect the quality of the results. If you're using a speech system, like Azure AI Speech to Text, select the option to include punctuation.
+* Lack of standard punctuation or casing might affect the quality of the results. If you're using a speech system, like Azure Speech in Foundry Tools to Text, select the option to include punctuation.
 * Frequent misspellings in the training data might affect the confidence of the response. Consider using a spell-checking service to correct misspelled words. However, introducing spell-checking may not be the best solution. In all cases, the use of actual data, including spelling mistakes, provides the best results.
 * The training data for CLU models is provided by the developer. Data used in production that most closely resembles the training data yields the best performance.
 

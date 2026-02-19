@@ -1,36 +1,36 @@
 ---
-title: Azure AI services for Call Center Overview
-titleSuffix: Azure AI services
-description: Azure AI services for Language and Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels.
+title: Foundry Tools for Call Center Overview
+titleSuffix: Foundry Tools
+description: Foundry Tools for Language and Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels.
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
+ms.date: 08/07/2025
+author: PatrickFarley
+ms.author: pafarley
 ms.reviewer: jagoerge
 ---
 
 # Call center overview
 
-Azure AI Language and Azure AI Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels. With the Language and Speech services, you can further analyze call center transcriptions, extract and redact conversation   (PII), summarize the transcription, and detect the sentiment.
+Azure Language in Foundry Tools and Azure Speech in Foundry Tools can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels. With Azure Language and Speech services, you can further analyze call center transcriptions, extract and redact conversation   (PII), summarize the transcription, and detect the sentiment.
 
-Some example scenarios for the implementation of Azure AI services in call and contact centers are:
+Some example scenarios for the implementation of Foundry Tools in call and contact centers are:
 - Virtual agents: Conversational AI-based telephony-integrated voice bots and voice-enabled chatbots
 - Agent-assist: Real-time transcription and analysis of a call to improve the customer experience by providing insights and suggest actions to agents
 - Post-call analytics: Post-call analysis to create insights into customer conversations to improve understanding and support continuous improvement of call handling, optimization of quality assurance and compliance control as well as other insight driven optimizations.
 
 > [!TIP]
-> Try the [Language Studio](https://language.cognitive.azure.com) or [Speech Studio](https://aka.ms/speechstudio/callcenter) for a demonstration on how to use the Language and Speech services to analyze call center conversations. 
+> Try the [Language Studio](https://language.cognitive.azure.com) or [Speech Studio](https://aka.ms/speechstudio/callcenter) for a demonstration on how to use Azure Language and Speech services to analyze call center conversations. 
 > 
 > To deploy a call center transcription solution to Azure with a no-code approach, try the [Ingestion Client](./ingestion-client.md).
 
-## Azure AI services features for call centers
+## Foundry Tools features for call centers
 
-A holistic call center implementation typically incorporates technologies from the Language and Speech services. 
+A holistic call center implementation typically incorporates technologies from Azure Language and Speech services. 
 
 Audio data typically used in call centers generated through landlines, mobile phones, and radios are often narrowband, in the range of 8 KHz, which can create challenges when you're converting speech to text. The Speech service recognition models are trained to ensure that you can get high-quality transcriptions, however you choose to capture the audio.
 
-Once you transcribe your audio with the Speech service, you can use the Language service to perform analytics on your call center data such as: sentiment analysis, summarizing the reason for customer calls, how they were resolved, extracting and redacting conversation PII, and more.
+Once you transcribe your audio with the Speech service, you can use Azure Language service to perform analytics on your call center data such as: sentiment analysis, summarizing the reason for customer calls, how they were resolved, extracting and redacting conversation PII, and more.
 
 ### Speech service
 
@@ -69,5 +69,5 @@ You can find an overview of all Language service features and customization opti
 ## Next steps
 
 * [Post-call transcription and analytics quickstart](./call-center-quickstart.md)
-* [Try out the Language Studio](https://language.cognitive.azure.com)
+* [Try out Azure Language Studio](https://language.cognitive.azure.com)
 * [Try out the Speech Studio](https://aka.ms/speechstudio/callcenter)

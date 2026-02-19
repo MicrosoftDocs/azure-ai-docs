@@ -1,16 +1,15 @@
 ---
 title: Choose conversational language understanding or orchestration workflow
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn when to choose between conversational language understanding or orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: best-practice
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
-
 # When to use conversational language understanding or orchestration workflow apps
 
 When you create large applications, you should consider whether your use case is best served by a single conversational app (flat architecture) or by multiple apps that are orchestrated.

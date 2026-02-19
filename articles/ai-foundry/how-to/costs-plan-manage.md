@@ -1,12 +1,13 @@
 ---
-title: Plan and manage costs for Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: Learn how to plan for and manage costs for Azure AI Foundry by using cost analysis in the Azure portal.
+title: Plan and manage costs for Microsoft Foundry hubs
+titleSuffix: Microsoft Foundry
+description: Learn how to plan for and manage costs for Microsoft Foundry hubs by using cost analysis in the Azure portal.
 ms.author: mopeakande
+manager: nitinme
 author: msakande 
-manager: scottpolly
-ms.reviewer: obiume
-ms.date: 05/07/2025
+ms.reviewer: aashishb
+reviewer: aashishb
+ms.date: 09/26/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -17,58 +18,58 @@ ms.custom:
   - build-2025
 ---
 
-# Plan and manage costs for Azure AI Foundry
+# Plan and manage costs for Microsoft Foundry hubs
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-This article describes how you plan for and manage costs for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). First, you use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources for the service to estimate costs. Next, as you add Azure resources, review the estimated costs.
+This article describes how to plan for and manage costs for [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hubs by using cost analysis in the Azure portal. First, use the Azure pricing calculator to help plan for Foundry costs before you add any resources. Next, as you add Azure resources, review the estimated costs. 
 
-> [!TIP]
-> Azure AI Foundry does not have a specific page in the Azure pricing calculator. Azure AI Foundry is composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services.
+Foundry hub projects don't have a specific page in the Azure pricing calculator. Foundry hubs are composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services. You use Foundry Tools in Foundry portal. Costs for Foundry Tools are only a portion of the monthly costs in your Azure bill. You're billed for all Azure services and resources used in your Azure subscription, including third-party services.
 
-You use Azure AI services in Azure AI Foundry portal. Costs for Azure AI services are only a portion of the monthly costs in your Azure bill. You're billed for all Azure services and resources used in your Azure subscription, including the third-party services.
+> [!NOTE]
+> This article is specific to Foundry hub projects. For other costs associated with Foundry, refer to [Foundry cost management](../concepts/manage-costs.md).
 
 ## Prerequisites
 
-Cost analysis in Microsoft Cost Management supports most Azure account types, but not all of them. To view the full list of supported account types, see [Understand Cost Management data](/azure/cost-management-billing/costs/understand-cost-mgt-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn). To view cost data, you need at least read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+Cost analysis in Microsoft Cost Management supports most Azure account types, but not all of them. To view the full list of supported account types, see [Understand Cost Management data](/azure/cost-management-billing/costs/understand-cost-mgt-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn). To view cost data, at a minimum, you need read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
-## Estimate costs before using Azure AI services
+## Estimate costs before using Foundry Tools
 
-Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you add Azure AI services.
+Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you add Foundry Tools.
 
 1. Select a product such as Azure OpenAI in the Azure pricing calculator.
 
     :::image type="content" source="../media/cost-management/pricing-calculator-select-product.png" alt-text="Screenshot of selecting Azure OpenAI in the Azure pricing calculator." lightbox="../media/cost-management/pricing-calculator-select-product.png":::
 
-1. Enter the number of units you plan to use. For example, enter the number of tokens for prompts and completions.
+1. Enter the number of units you plan to use. For example, enter the number of input tokens.
 
     :::image type="content" source="../media/cost-management/pricing-calculator-estimate-openai.png" alt-text="Screenshot of Azure OpenAI cost estimate in the Azure pricing calculator." lightbox="../media/cost-management/pricing-calculator-estimate-openai.png":::
 
-1. You can select more than one product to estimate costs for multiple products. For example, select Virtual Machines to add potential costs for compute resources.
+1. Select more than one product to estimate costs for multiple products. For example, search for and select Virtual Machines to add potential costs for compute resources.
 
     :::image type="content" source="../media/cost-management/pricing-calculator-estimate.png" alt-text="Screenshot of total estimate in the Azure pricing calculator." lightbox="../media/cost-management/pricing-calculator-estimate.png":::
 
 As you add new resources to your project, return to this calculator and add the same resource here to update your cost estimates.
 
 
-### Costs that typically accrue with Azure AI Foundry hubs
+### Costs that typically accrue with Foundry hubs
 
 When you create resources for a hub, resources for other Azure services are also created. They are:
 
 | Service pricing page | Description with example use cases | 
 | --- | --- | 
-| [Azure AI services](https://azure.microsoft.com/pricing/details/cognitive-services/) | You pay to use services such as Azure OpenAI, Speech, Content Safety, Vision, Document Intelligence, and Language. Costs vary for each service and for some features within each service. For more information about provisioning of Azure AI services, see [Azure AI Foundry hubs](../concepts/ai-resources.md).| 
+| [Foundry Tools](https://azure.microsoft.com/pricing/details/cognitive-services/) | You pay to use services such as Azure OpenAI, Speech, Content Safety, Vision, Document Intelligence, and Language. Costs vary for each service and for some features within each service. For more information about provisioning of Foundry Tools, see [Foundry hubs](../concepts/ai-resources.md).| 
 | [Azure AI Search](https://azure.microsoft.com/pricing/details/search/) | An example use case is to store data in a [vector search index](./index-add.md). |
-| [Azure Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/) | Compute instances are needed to run [Visual Studio Code (Web or Desktop)](./develop/vscode.md) and [prompt flow](./prompt-flow.md) via Azure AI Foundry.<br/><br/>When you create a compute instance, the virtual machine (VM) stays on so it's available for your work.<br/><br/>Enable idle shutdown to save on cost when the VM is idle for a specified time period.<br/><br/>Or set up a schedule to automatically start and stop the compute instance to save cost when you aren't planning to use it. | 
-| [Azure Virtual Machine](https://azure.microsoft.com/pricing/details/virtual-machines/) | Azure Virtual Machines gives you the flexibility of virtualization for a wide range of computing solutions with support for Linux, Windows Server, SQL Server, Oracle, IBM, SAP, and more. |
+| [Azure Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/) | You need compute instances to run [prompt flow](../concepts/prompt-flow.md) via Foundry.<br/><br/>When you create a compute instance, the virtual machine (VM) stays on so it's available for your work.<br/><br/>Enable idle shutdown to save on cost when the VM is idle for a specified time period.<br/><br/>Alternatively, set up a schedule to automatically start and stop the compute instance to save cost when you aren't planning to use it. | 
+| [Azure Virtual Machine](https://azure.microsoft.com/pricing/details/virtual-machines/) | Azure Virtual Machines gives you the flexibility of virtualization for a wide range of computing solutions. It supports Linux, Windows Server, SQL Server, Oracle, IBM, SAP, and more. |
 | [Azure Container Registry Basic account](https://azure.microsoft.com/pricing/details/container-registry) | Provides storage of private Docker container images, enabling fast, scalable retrieval, and network-close deployment of container workloads on Azure. |
-| [Azure Blob Storage](https://azure.microsoft.com/pricing/details/storage/blobs/) | Can be used to store Azure AI Foundry project files. |
+| [Azure Blob Storage](https://azure.microsoft.com/pricing/details/storage/blobs/) | Can be used to store Foundry project files. |
 | [Key Vault](https://azure.microsoft.com/pricing/details/key-vault/) | A key vault for storing secrets. |
 | [Azure Private Link](https://azure.microsoft.com/pricing/details/private-link/) | Azure Private Link enables you to access Azure PaaS Services (for example, Azure Storage and SQL Database) over a private endpoint in your virtual network. |
 
-### Costs might accrue before deleting an Azure AI Foundry hub
+### Costs might accrue before deleting a Foundry hub
 
-Before you delete a hub in the Azure portal or with Azure CLI, the following sub resources are common costs that accumulate even when you aren't actively working in the workspace. If you're planning on returning to your hub at a later time, these resources might continue to accrue costs: 
+Before you delete a hub in the Azure portal or with Azure CLI, the following sub resources are common costs that accumulate even when you aren't actively working in the workspace. If you plan to return to your hub at a later time, these resources might continue to accrue costs: 
 - Azure AI Search (for the data)
 - Virtual machines
 - Load Balancer
@@ -77,14 +78,14 @@ Before you delete a hub in the Azure portal or with Azure CLI, the following sub
 
 Each VM is billed per hour it's running. Cost depends on VM specifications. VMs that are running but not actively working on a dataset are still charged via the load balancer. For each compute instance, one load balancer is billed per day. Every 50 nodes of a compute cluster have one standard load balancer billed. To avoid load balancer costs on stopped compute instances and compute clusters, delete the compute resource.
 
-Compute instances also incur P10 disk costs even in stopped state. This cost is because any user content saved to disk is persisted across the stopped state similar to Azure VMs. We're working on making the OS disk size/ type configurable to better control costs. For Azure Virtual Networks, one virtual network is billed per subscription and per region. Virtual networks can't span regions or subscriptions. Setting up private endpoints in virtual network setups might also incur charges. If your virtual network uses an Azure Firewall, the firewall might also incur charges. Bandwidth usage is charged; the more data transferred, the more you're charged. 
+Compute instances also incur P10 disk costs even in stopped state. This cost is because any user content saved to disk is persisted across the stopped state similar to Azure VMs. For Azure Virtual Networks, one virtual network is billed per subscription and per region. Virtual networks can't span regions or subscriptions. Setting up private endpoints in virtual network setups might also incur charges. If your virtual network uses an Azure Firewall, the firewall might also incur charges. Bandwidth usage is charged; the more data is transferred, the more you're charged. 
 
 For more information, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 
 > [!TIP]
-> Using a managed virtual network is free. However some features of the managed network rely on Azure Private Link (for private endpoints) and Azure Firewall (for FQDN rules) and will incur charges. For more information, see [Managed virtual network isolation](configure-managed-network.md#pricing).
+> Using a managed virtual network is free. However some features of the managed network rely on Azure Private Link (for private endpoints) and Azure Firewall (for fully qualified domain name (FQDN) rules) and incur charges. For more information, see [Managed virtual network isolation](configure-managed-network.md#pricing).
 
-### Costs might accrue after deleting an Azure AI Foundry hub
+### Costs might accrue after deleting a Foundry hub
 
 After you delete a hub in the Azure portal or with Azure CLI, the following resources continue to exist. They continue to accrue costs until you delete them.
 
@@ -95,57 +96,55 @@ After you delete a hub in the Azure portal or with Azure CLI, the following reso
 
 ## Monitor costs
 
-As you use Azure AI Foundry, you incur costs. Azure resource usage unit costs vary by time intervals (seconds, minutes, hours, and days) or by unit usage (bytes, megabytes, and so on). You can see the incurred costs in [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+As you use Foundry, you incur costs. Azure resource usage unit costs vary by time intervals (seconds, minutes, hours, and days) or by unit usage (bytes, megabytes, and so on). You can see the incurred costs in [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
-When you use cost analysis, you view costs in graphs and tables for different time intervals. Some examples are by day, current and prior month, and year. You also view costs against budgets and forecasted costs. Switching to longer views over time can help you identify spending trends. And you see where overspending might occur. If you create budgets, you can also easily see where they're exceeded.
+When you use cost analysis, you view costs in graphs and tables for different time intervals. Some examples are by day, current and prior month, and year. You also view costs against budgets and forecasted costs. Switching to longer views over time can help you identify spending trends so you can see where overspending might occur. If you create budgets, you can also easily see where they're exceeded.
 
-### Monitor Azure AI Foundry costs
+### Monitor Foundry costs
 
-You can get to cost analysis from the [Azure portal](https://portal.azure.com).
+You can access cost analysis from the [Azure portal](https://portal.azure.com).
 
 > [!IMPORTANT]
-> Your Azure AI foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
+> Your Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
 
-For the examples in this section, assume that all Azure AI Foundry Services are in the same resource group. But you can have resources in different resource groups. For example, your Azure AI Search resource might be in a different resource group than your project.
+For the examples in this section, assume that all Foundry Services are in the same resource group. However, you can have resources in different resource groups. For example, your Azure AI Search resource might be in a different resource group than your project.
 
 Here's an example of how to monitor costs for a project. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-1. Select your project and then select **Management center** from the left menu. 
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. Select your project, then select **Management center** from the left menu. 
 1. Under the **Project** heading, select **Overview**. 
 1. Select **View cost for resources** from the **Total cost** section. The [Azure portal](https://portal.azure.com) opens to the resource group for your project.
 
-    :::image type="content" source="../media/cost-management/project-costs/project-settings-go-view-costs.png" alt-text="Screenshot of the Azure AI Foundry portal showing how to see project settings." lightbox="../media/cost-management/project-costs/project-settings-go-view-costs.png":::
+    :::image type="content" source="../media/cost-management/project-costs/project-settings-go-view-costs.png" alt-text="Screenshot of the Foundry portal showing how to see project settings." lightbox="../media/cost-management/project-costs/project-settings-go-view-costs.png":::
 
 1. Expand the **Resource** column to see the costs for each service that's underlying your [project](../concepts/ai-resources.md). But this view doesn't include costs for all resources that you use in a project.
 
     :::image type="content" source="../media/cost-management/project-costs/costs-per-project-resource.png" alt-text="Screenshot of the Azure portal cost analysis with the project and associated resources." lightbox="../media/cost-management/project-costs/costs-per-project-resource.png":::
 
-1. Select **Costs by resource** > **Resources**.
+1. Select **Costs by resource** > **Resources** to open the Cost analysis page.
 
     :::image type="content" source="../media/cost-management/project-costs/select-costs-per-resource.png" alt-text="Screenshot of the Azure portal cost analysis with the button to select costs by resources." lightbox="../media/cost-management/project-costs/select-costs-per-resource.png":::
 
-1. On the **Cost analysis** page where you're taken to, make sure the scope is set to your resource group. 
+1. On the **Cost analysis** page, make sure the scope is set to your resource group. 
 
     :::image type="content" source="../media/cost-management/project-costs/costs-per-resource-group-details.png" alt-text="Screenshot of the Azure portal cost analysis for a resource group." lightbox="../media/cost-management/project-costs/costs-per-resource-group-details.png":::
 
     In this example:
-    - The resource group name is **rg-contosoairesource**.
-    - The total cost for all resources and services in the example resource group is **$222.97**. In this example, $222.97 is the total cost for your application or solution that you're building with Azure AI Foundry. Again, this example assumes that all Azure AI Foundry Services are in the same resource group. But you can have resources in different resource groups.
-    - The project name is **contoso-outdoor-proj**.
-    - The costs that are limited to resources and services in the example [project](../concepts/ai-resources.md) total **$212.06**. 
+    - The resource group name is **rg-contoso-ai**.
+    - The total cost for all resources and services in the example resource group is **$174.71**. In this example, $174.71 is the total cost for your application or solution that you're building with Foundry. Again, this example assumes that all Foundry Services are in the same resource group. But you can have resources in different resource groups.
+    - The project name is **contoso-proj**.
+    - The costs that are limited to resources and services in the example [project](../concepts/ai-resources.md) total **$8.40**. 
     
-1. Expand **contoso-outdoor-proj** to see the costs for services underlying the [project](../concepts/ai-resources.md) resource. 
-
-    :::image type="content" source="../media/cost-management/project-costs/costs-per-project-resource-details.png" alt-text="Screenshot of the Azure portal cost analysis with project expanded." lightbox="../media/cost-management/project-costs/costs-per-project-resource-details.png":::
-
-1. Expand **contoso_ai_resource** to see the costs for services underlying the [hub](../concepts/ai-resources.md) resource. You can also apply a filter to focus on other costs in your resource group. 
+1. Expand any of the resources listed to see the costs for their underlying services. You can also apply a filter to focus on other costs in your particular resource group. 
 
 You can also view resource group costs directly from the Azure portal. To do so:
 1. Sign in to [Azure portal](https://portal.azure.com).
 1. Select **Resource groups**. 
-1. Find and select the resource group that contains your Azure AI Foundry Services.
-1. From the left pane, select **Cost analysis**.
+1. Find and select the resource group that contains your Foundry Services.
+1. From the left pane, select **Cost Management** > **Cost analysis**.
 
     :::image type="content" source="../media/cost-management/project-costs/costs-per-resource-group.png" alt-text="Screenshot of the Azure portal cost analysis at the resource group level." lightbox="../media/cost-management/project-costs/costs-per-resource-group.png":::
 
@@ -153,19 +152,19 @@ For more information, see the [Azure pricing calculator](https://azure.microsoft
 
 ### Monitor costs for models offered through the Azure Marketplace
 
-Serverless API deployments are offered through the Azure Marketplace. The model publishers might apply different costs depending on the offering. Each project in Azure AI Foundry portal has its own subscription with the offering, which allows you to monitor the costs and the consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
+Azure Marketplace offers serverless API deployments. Model publishers might apply different costs depending on the offering. Each project in the Foundry portal has its own subscription with the offering, which you can use to monitor the costs and consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
 
 1. Sign in to [Azure portal](https://portal.azure.com).
 
-1. On the left pane, select **Cost Management + Billing** and then, on the same menu, select **Cost Management**.
+1. On the left pane, select **Cost Management + Billing** and then select **Cost Management**.
 
-1. On the left pane, under the section **Cost Management**, select now **Cost Analysis**.
+1. On the left pane, under the section for **Reporting + analytics**, select **Cost Analysis**.
 
 1. Select a view such as **Resources**. The cost associated with each resource is displayed.
 
     :::image type="content" source="../media/cost-management/marketplace/costs-model-as-service-cost-analysis.png" alt-text="A screenshot of the Cost Analysis tool displaying how to show cost per resource." lightbox="../media/cost-management/marketplace/costs-model-as-service-cost-analysis.png":::
 
-1. On the **Type** column, select the filter icon to filter all the resources of type **microsoft.saas/resources**. This type corresponds to resources created from offers from the Azure Marketplace. For convenience, you can filter by resource types containing the string **SaaS**. 
+1. On the **Type** column, select the filter icon to filter all the resources of type **microsoft.saas/resources**. This type corresponds to resources created from offers available in Azure Marketplace. For convenience, you can filter by resource types containing the string **SaaS**. 
 
     :::image type="content" source="../media/cost-management/marketplace/costs-model-as-service-cost-filter.png" alt-text="A screenshot of how to filter by resource type containing the string 'SaaS'." lightbox="../media/cost-management/marketplace/costs-model-as-service-cost-filter.png":::
 
@@ -181,7 +180,7 @@ Serverless API deployments are offered through the Azure Marketplace. The model 
     :::image type="content" source="../media/cost-management/marketplace/costs-model-as-service-cost-details.png" alt-text="A screenshot showing different resources corresponding to different model offers and their associated meters." lightbox="../media/cost-management/marketplace/costs-model-as-service-cost-details.png":::
 
     > [!TIP]
-    > Remember that one resource is created per each project, per each plan your project subscribes to.
+    > Remember that one resource is created per project, for each plan that your project subscribes to.
 
 1. When you expand the details, costs are reported per each of the meters associated with the offering. Each meter might track different sources of costs like inferencing, or fine tuning. The following meters are displayed (when some cost is associated with them):
 
@@ -196,28 +195,28 @@ Serverless API deployments are offered through the Azure Marketplace. The model 
 
 ## Create budgets
 
-You can create [budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to manage costs and create [alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that automatically notify stakeholders of spending anomalies and overspending risks. Alerts are based on spending compared to budget and cost thresholds. Budgets and alerts are created for Azure subscriptions and resource groups, so they're useful as part of an overall cost monitoring strategy. 
+To manage costs, create [budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) and set up [alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that automatically notify stakeholders of spending anomalies and overspending risks. Alerts are based on spending compared to budget and cost thresholds. Create budgets and alerts for Azure subscriptions and resource groups, so they're useful as part of an overall cost monitoring strategy. 
 
-Budgets can be created with filters for specific resources or services in Azure if you want more granularity present in your monitoring. Filters help ensure that you don't accidentally create new resources that cost you more money. For more about the filter options when you create a budget, see [Group and filter options](/azure/cost-management-billing/costs/group-filter?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+Create budgets with filters for specific resources or services in Azure if you want more granularity in your monitoring. Filters help ensure that you don't accidentally create new resources that cost you more money. For more about the filter options when you create a budget, see [Group and filter options](/azure/cost-management-billing/costs/group-filter?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
 ## Export cost data
 
 You can also [export your cost data](/azure/cost-management-billing/costs/tutorial-export-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to a storage account. Exporting data is helpful when you or others need to do more data analysis for costs. For example, finance teams can analyze the data using Excel or Power BI. You can export your costs on a daily, weekly, or monthly schedule and set a custom date range. Exporting cost data is the recommended way to retrieve cost datasets.
 
 
-## Understand the full billing model for Azure AI services
+## Understand the full billing model for Foundry Tools
 
-Azure AI services run on Azure infrastructure that accrues costs along with Azure AI when you deploy the new resource. It's important to understand that extra infrastructure might accrue cost. You need to manage that cost when you make changes to deployed resources.
+Foundry Tools run on Azure infrastructure that accrues costs along with Azure AI when you deploy the new resource. It's important to understand that extra infrastructure might accrue cost. You need to manage that cost when you make changes to deployed resources.
 
-When you create or use Azure AI services resources, you might get charged based on the services that you use. There are two billing models available for Azure AI services: 
+When you create or use Foundry Tools resources, you might get charged based on the services that you use. Two billing models are available for Foundry Tools: 
 
-- serverless API: serverless API pricing, you're billed according to the Azure AI services offering that you use, based on its billing information.
-- Commitment tiers: With commitment tier pricing, you commit to using several service features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload. You're billed according to the plan you choose. See [Quickstart: purchase commitment tier pricing](../../ai-services/commitment-tier.md) for information on available services, how to sign up, and considerations when purchasing a plan.
+- Serverless API: With serverless API pricing, you're billed according to the Foundry Tools offering that you use, based on its billing information.
+- Commitment tiers: With commitment tier pricing, you commit to using several service features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload. You're billed according to the plan you choose. For information on available services, how to sign up, and considerations when purchasing a plan, see [Quickstart: purchase commitment tier pricing](../../ai-services/commitment-tier.md).
 
 > [!NOTE]
-> If you use the resource above the quota provided by the commitment plan, you will be charged for the additional usage as per the overage amount mentioned in the Azure portal when you purchase a commitment plan. 
+> If you use the resource above the quota provided by the commitment plan, you pay for the extra usage as described in the overage amount in the Azure portal when you purchase a commitment plan. 
 
-You can pay for Azure AI services charges with your Azure Prepayment (previously called monetary commitment) credit. However, you can't use Azure Prepayment credit to pay for charges for third-party products and services including ones from the Azure Marketplace.
+You can pay for Foundry Tools charges with your Azure Prepayment (previously called monetary commitment) credit. However, you can't use Azure Prepayment credit to pay for charges for third-party products and services, including ones from Azure Marketplace.
 
 For more information, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 

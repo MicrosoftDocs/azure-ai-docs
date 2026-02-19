@@ -2,7 +2,6 @@
 title: moreLikeThis (preview) query feature
 titleSuffix: Azure AI Search
 description: Describes the moreLikeThis (preview) feature, which is available in preview versions of the Azure AI Search REST API.
-
 author: bevloh
 ms.author: beloh
 ms.service: azure-ai-search
@@ -10,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: concept-article
 ms.date: 02/20/2025
+ms.update-cycle: 365-days
 ---
 
 # moreLikeThis (preview) in Azure AI Search
@@ -25,7 +25,7 @@ The `moreLikeThis` parameter isn't supported for [complex types](search-howto-co
 
 ## Examples
 
-All following examples use the hotels sample from [Quickstart: Create a search index in the Azure portal](search-get-started-portal.md).
+All following examples use the hotels sample from [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md).
 
 ### Simple query
 
@@ -67,4 +67,4 @@ GET /indexes/hotels-sample-index/docs?moreLikeThis=20&searchFields=Description&$
 You can use any REST client for this exercise.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Text search using REST](search-get-started-rest.md)
+> [Quickstart: Full-text search using REST](search-get-started-text.md)

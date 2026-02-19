@@ -5,13 +5,17 @@ description: Create an Azure Machine Learning workspace and required Azure servi
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.reviewer: shshubhe
+ms.author: scottpolly
+author: s-polly
 ms.date: 08/16/2024
 ms.topic: how-to
-ms.custom: subject-rbac-steps, cliv2, build-2023
 monikerRange: 'azureml-api-2 || azureml-api-1'
+ms.custom:
+  - subject-rbac-steps
+  - cliv2
+  - build-2023
+  - sfi-image-nochange
 ---
 # Tutorial: How to create a secure workspace with an Azure Virtual Network
 

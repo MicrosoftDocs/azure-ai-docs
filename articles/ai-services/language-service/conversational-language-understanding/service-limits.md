@@ -1,16 +1,15 @@
 ---
 title: Conversational Language Understanding limits
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the data, region, and throughput limits for Conversational Language Understanding
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 06/04/2025
+ms.topic: limits-and-quotas
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-clu, references_regions
 ---
-
 # Conversational language understanding limits
 
 Use this article to learn about the data and service limits when using conversational language understanding.
@@ -21,11 +20,11 @@ Use this article to learn about the data and service limits when using conversat
 
   |Tier|Description|Limit|
   |--|--|--|
-  |F0|Free tier|You are only allowed **one** F0 Language resource **per subscription**.|
+  |F0|Free tier|You're only allowed **one** F0 Language resource **per subscription**.|
   |S |Paid tier|You can have up to 100 Language resources in the S tier per region.| 
 
 
-See [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/) for more information.
+For more information, *see* [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).
 
 * You can have up to **500** projects per resource.
 
@@ -33,7 +32,7 @@ See [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/lan
 
 ### Regional availability
 
-See [Language service regional availability](../concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).
+See [Language regional availability](../concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).
 
 ## API limits
 
@@ -47,7 +46,7 @@ See [Language service regional availability](../concepts/regional-support.md#con
 
 |Pricing tier |Item |Limit |
 | --- | --- | ---|
-|F|Training time| 1 hour per month  |
+|F|Training time| One hour per month  |
 |S|Training time| Unlimited, Standard |
 |F|Prediction Calls| 5,000 request per month  |
 |S|Prediction Calls| Unlimited, Standard |
@@ -75,10 +74,10 @@ The following limits are observed for the conversational language understanding.
 | Item | Limits |
 |--|--|
 | Project name |  You can only use letters `(a-z, A-Z)`, and numbers `(0-9)` , symbols  `_ . -`, with no spaces. Maximum allowed length is 50 characters. |
-| Model name |  You can only use letters `(a-z, A-Z)`, numbers `(0-9)` and symbols `_ . -`. Maximum allowed length is 50 characters.  |
-| Deployment name |  You can only use letters `(a-z, A-Z)`, numbers `(0-9)` and symbols `_ . -`. Maximum allowed length is 50 characters.  |
-| Intent name| You can only use letters `(a-z, A-Z)`, numbers `(0-9)` and all symbols except ":", `$ & %  * (  ) + ~ # / ?`. Maximum allowed length is 50 characters.|
-| Entity name| You can only use letters `(a-z, A-Z)`, numbers `(0-9)` and all symbols except ":", `$ & %  * (  ) + ~ # / ?`. Maximum allowed length is 50 characters.|
+| Model name |  You can only use letters `(a-z, A-Z)`, numbers `(0-9)`, and symbols `_ . -`. Maximum allowed length is 50 characters.|
+| Deployment name |  You can only use letters `(a-z, A-Z)`, numbers `(0-9)`, and symbols `_ . -`. Maximum allowed length is 50 characters.|
+| Intent name| You can only use letters `(a-z, A-Z)`, numbers `(0-9)`, and all symbols except ":", `$ & %  * (  ) + ~ # / ?`. Maximum allowed length is 50 characters.|
+| Entity name| You can only use letters `(a-z, A-Z)`, numbers `(0-9)`, and all symbols except ":", `$ & %  * (  ) + ~ # / ?`. Maximum allowed length is 50 characters.|
 
 ## Next steps
 

@@ -1,33 +1,32 @@
 ---
 title: Deploy a key phrase extraction container to Azure Kubernetes Service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Deploy a key phrase extraction container image to Azure Kubernetes Service, and test it in a web browser.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-language
 ---
-
 # Deploy a key phrase extraction container to Azure Kubernetes Service
 
-Learn how to deploy a [key phrase extraction Docker container](../key-phrase-extraction/how-to/use-containers.md) image to Azure Kubernetes Service (AKS). This procedure shows how to create a Language resource, how to associate a container image, and how to exercise this orchestration of the two from a browser. Using containers can shift your attention away from managing infrastructure to instead focusing on application development. While this article uses the key phrase extraction container as an example, you can use this process for other containers offered by Azure AI Language
+Learn how to deploy a [key phrase extraction Docker container](../key-phrase-extraction/how-to/use-containers.md) image to Azure Kubernetes Service (AKS). This procedure shows how to create a Language resource, how to associate a container image, and how to exercise this orchestration of the two from a browser. Using containers can shift your attention away from managing infrastructure to instead focusing on application development. While this article uses the key phrase extraction container as an example, you can use this process for other containers offered by Azure Language in Foundry Tools
 
 ## Prerequisites
 
 This procedure requires several tools that must be installed and run locally. Don't use Azure Cloud Shell. You need the following:
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A text editor, for example, [Visual Studio Code](https://code.visualstudio.com/download).
 * The [Azure CLI](/cli/azure/install-azure-cli) installed.
 * The [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) installed.
 * An Azure resource with the correct pricing tier. Not all pricing tiers work with this container:
-    * **Azure AI Language** resource with F0 or standard pricing tiers only.
-    * **Azure AI services** resource with the S0 pricing tier.
+    * **Language** resource with F0 or standard pricing tiers only.
+    * **Foundry Tools** resource with the S0 pricing tier.
 
-[!INCLUDE [Create an Azure AI Language resource](../includes/containers/create-text-analytics-resource.md)]
+[!INCLUDE [Create a Language resource](../includes/containers/create-text-analytics-resource.md)]
 
 [!INCLUDE [Create a language container on Azure Kubernetes Service (AKS)](../../containers/includes/create-aks-resource.md)]
 
@@ -111,7 +110,7 @@ This procedure requires several tools that must be installed and run locally. Do
     ```
 
   > [!IMPORTANT]
-  > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../security-features.md) article for more information.
+  > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Foundry Tools [security](../../security-features.md) article for more information.
 
 1. Save the file, and close the text editor.
 1. Run the Kubernetes `apply` command with the *keyphrase.yaml* file as its target:

@@ -1,85 +1,118 @@
 ---
-title: Entity Metadata provided by Named Entity Recognition
-titleSuffix: Azure AI services
-description: Learn about entity metadata in the NER feature.
+title: Entity Metadata provided by Named Entity Recognition (NER)
+titleSuffix: Foundry Tools
+description: View entity metadata values for named entity recognition (NER) named entities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---
-
 # Entity Metadata
 
-The Entity Metadata object captures optional additional information about detected entities, providing resolutions specifically for numeric and temporal entities. This attribute is populated only when there's supplementary data available, enhancing the comprehensiveness of the detected entities. The Metadata component encompasses resolutions designed for both numeric and temporal entities. It's important to handle cases where the Metadata attribute may be empty or absent, as its presence isn't guaranteed for every entity.
+The entity metadata object stores optional supplementary details about detected entities, specifically providing standardized resolutions for numeric and temporal data. 
 
-Currently, metadata components handle resolutions to a standard format for an entity. Entities can be expressed in various forms and resolutions provide standard predictable formats for common quantifiable types. For example, "eighty" and "80" should both resolve to the integer `80`.
+This attribute is only populated when extra information is available and may be empty or missing for some entities. 
 
-You can use NER resolutions to implement actions or retrieve further information. For example, your service can extract datetime entities to extract dates and times that are provided to a meeting scheduling system. 
+Metadata resolutions convert various entity forms into consistent formats—for example, both "eighty" and "80" resolve to the integer 80. These NER resolutions enable downstream actions, such as extracting date and time entities for integration with a meeting scheduling system.
+
 
 > [!NOTE]
->  Entity Metadata are only supported starting from **_api-version=2023-04-15-preview_**. For older API versions, you may check the [Entity Resolutions article](./entity-resolutions.md).
+>  Support for Entity Metadata is available with API `2023-04-15-preview` and later versions. For older API versions, see [Entity Resolutions](./entity-resolutions.md).
 
-This article documents the resolution objects returned for each entity category or subcategory under the metadata object.
+## Entities with metadata attributes
 
-## Numeric Entities
+|Entities|Entities|Entities|Entities|Entities|Entities|
+|:---:|:---:|:---:|:---:|:---:|:---:|
+|[Age](#age)|[Area](#area)|[Currency](#currency)|[Date](#date)|[Datetime](#datetime)|[Information](#information)|
+|[Length](#length)|[Number](#number)|[NumericRange](#numericrange)|[Ordinal](#ordinal)|[Set](#set)|[Speed](#speed)|
+|[Temperature](#temperature)|[Time](#time)|[Volume](#volume)|[Weight](#weight)|||
+
 
 ### Age
 
-Examples: "10 years old", "23 months old", "sixty Y.O."
+|Metadata|Type|Description|
+|---|---|---|
+|**unit**|string|Unit of measurement for age.|
+|**value**|number|Numeric value for age.|
 
 ```json
 "metadata": {
-                "metadataKind": "AgeMetadata",
                 "unit": "Year",
                 "value": 10
             }
-```              
+```
 
-Possible values for "unit":
-- Year
-- Month
-- Week
-- Day
+**Possible values for *unit***:
+
+* Day
+* Month
+* Week
+* Year
+* Unspecified
 
 
-### Currency
+### Area
 
-Examples: "30 Egyptian pounds", "77 USD"
+|Metadata|Type|Description|
+|---|---|---|
+|**unit**|string|Unit of measurement for area.|
+|**value**|number|Numeric value for area.|
 
-```json
+
+```JSON
 "metadata": {
-                "unit": "Egyptian pound",
-                "ISO4217": "EGP",
+                "unit": "Acre",
                 "value": 30
             }
 ```
 
-Possible values for "unit" and "ISO4217":
-- [ISO 4217 reference](https://docs.1010data.com/1010dataReferenceManual/DataTypesAndFormats/currencyUnitCodes.html).
+**Possible values for *unit***:
 
-## Datetime/Temporal entities
+* Acre
+* SquareCentimeter
+* SquareDecameter
+* SquareDecimeter
+* SquareFoot
+* SquareHectometer
+* SquareInch
+* SquareKilometer
+* SquareMeter
+* SquareMile
+* SquareMillimeter
+* SquareYard
+* Unspecified
 
-Datetime includes several different subtypes that return different response objects.
+### Currency
 
-### Date
-
-Specific days.
-
-Examples: "January 1 1995", "12 april", "7th of October 2022", "tomorrow"
+|Metadata|Type|Description|
+|---|---|---|
+|**unit**|string|Name of currency.|
+|**value**|number|Numeric value for currency.|
+|**ISO4217**|string|The ISO 4217 three-letter currency code uses the first two letters from the country's ISO 3166 code, and, when possible, the third letter is the first letter of the currency name.|
 
 ```json
 "metadata": {
-                "dateValues": [
-                    {
-                        "timex": "1995-01-01",
-                        "value": "1995-01-01"
-                    }
-                ]
+                "unit": "Egyptian pound",
+                "value": 30,
+                "ISO4217": "EGP"
             }
 ```
+
+**Possible values for *ISO4217***:
+- [ISO 4217 reference](https://docs.1010data.com/1010dataReferenceManual/DataTypesAndFormats/currencyUnitCodes.html).
+
+
+
+### Date
+
+|Metadata|Type|Description|
+|---|---|---|
+|**timex**|string|The ISO 8601 formatted date: `YYYY-MM-DD` (year, month, day). |
+|**value**|string|The actual denoted date.|
+
 
 Whenever an ambiguous date is provided, you're offered different options for your resolution. For example, "12 April" could refer to any year. Resolution provides this year and the next as options. The `timex` value `XXXX` indicates no year was specified in the query.
 
@@ -98,7 +131,7 @@ Whenever an ambiguous date is provided, you're offered different options for you
             }
 ```
 
-Ambiguity can occur even for a given day of the week. For example, saying "Monday" could refer to last Monday or this Monday. Once again the `timex` value indicates no year or month was specified, and uses a day of the week identifier (W) to indicate the first day of the week. 
+Ambiguity can occur even for a given day of the week. For example, saying "Monday" could refer to last Monday or this Monday. Once again the `timex` value indicates no year or month was specified, and uses a day of the week identifier (W) to indicate the first day of the week.
 
 ```json
 "metadata" :{
@@ -115,38 +148,18 @@ Ambiguity can occur even for a given day of the week. For example, saying "Monda
             }
 ```
 
-
-### Time
-
-Specific times.
-
-Examples: "9:39:33 AM", "seven AM", "20:03"
-
-```json
-"metadata": {
-                "timex": "T09:39:33",
-                "value": "09:39:33"
-            }
-```
-
 ### Datetime
 
-Specific date and time combinations.
+|Metadata|Type|Description|
+|---|---|---|
+|timex|string|The ISO 8601 formatted date and time:<br>`YYYY-MM-DDTHH:MM:SS`(year, month, day, hour, minutes, seconds, milliseconds) with a `T` separator. |
+|value|string|The actual denoted date and time.|
 
-Examples: "6 PM tomorrow", "8 PM on January 3rd", "Nov 1 19:30"
-
-```json
-"metadata": {
-                "timex": "2022-10-07T18",
-                "value": "2022-10-07 18:00:00"
-            }
-```
-
-Similar to dates, you can have ambiguous datetime entities. For example, "May 3rd noon" could refer to any year. Resolution provides this year and the next as options. The `timex` value **XXXX** indicates no year was specified. 
+Similar to dates, you can have ambiguous datetime entities. Resolution provides this year and the next as options. The `timex` value **XXXX** indicates no year was specified.
 
 ```json
 "metadata": {
-                 "dateValues": [ 
+                 "dateValues": [
                        {
                            "timex": "XXXX-05-03T12",
                            "value": "2022-05-03 12:00:00"
@@ -159,189 +172,336 @@ Similar to dates, you can have ambiguous datetime entities. For example, "May 3r
               }
 ```
 
-### Datetime ranges
+### Information
 
-A datetime range is a period with a beginning and end date, time, or datetime.
-
-Examples: "from january 3rd 6 AM to april 25th 8 PM 2022", "between Monday to Thursday", "June", "the weekend"
-
-The "duration" parameter indicates the time passed in seconds (S), minutes (M), hours (H), or days (D). This parameter is only returned when an explicit start and end datetime are in the query. "Next week" would only return with "begin" and "end" parameters for the week.
+|Metadata|Type|Description|
+|---|---|---|
+|**unit**|string|Unit of measurement for information (data).|
+|**value**|number|Numeric value for information.|
 
 ```json
+
 "metadata": {
-                "duration": "PT2702H",
-                "begin": "2022-01-03 06:00:00",
-                "end": "2022-04-25 20:00:00"
+                "unit": "Kilobit",
+                "value": 30
             }
+
 ```
+
+**Possible values for *unit***:
+
+* Bit
+* Byte
+* Gigabit
+* Gigabyte
+* Kilobit
+* Kilobyte
+* Megabit
+* Megabyte
+* Petabit
+* Petabyte
+* Terabit
+* Terabyte
+* Unspecified
+
+### Length
+
+|Metadata|Type|Description|
+|---|---|---|
+|**unit**|string|Unit of measurement for length|
+|**value**|number|Numeric value.|
+
+```json
+
+"metadata": {
+                "unit": "Kilobit",
+                "value": 30
+            }
+
+```
+**Possible values for *unit***:
+
+* Centimeter
+* Decameter
+* Decimeter
+* Foot
+* Hectometer
+* Inch
+* Kilometer
+* LightYear
+* Meter
+* Micrometer
+* Mile
+* Millimeter
+* Nanometer
+* Picometer
+* Point
+* Yard
+* Unspecified
+
+### Number
+
+|Metadata|Type|Description|
+|---|---|---|
+|**numberKind**|string|Number type.|
+|**value**|number|Numeric value for number.|
+
+```json
+
+"metadata": {
+                "numberKind": "Integer",
+                "value": 30
+            }
+
+```
+
+**Possible values for *numberKind***:
+
+* Decimal
+* Fraction
+* Integer
+* Percent
+* Power
+* Unspecified
+
+### NumericRange
+
+|Metadata|Type|Description|
+|---|---|---|
+|**rangeKind**|string|A supported numeric range.|
+|**minimum**|number|The beginning value of  the interval.|
+|**maximum**|number|The ending value of the interval.|
+
+```json
+
+"metadata": {
+                "rangeKind": "length",
+                "minimum": 30,
+                "maximum": 100
+            }
+
+```
+**Possible values for *rangeKind***:
+
+* Age
+* Area
+* Currency
+* Information
+* Length
+* Number
+* Speed
+* Temperature
+* Volume
+* Weight
+
+### Ordinal
+
+|Metadata|Type|Description|
+|---|---|---|
+|**offset**|string|The offset with respect to the reference (for example, offset = -1 indicates the second to last)|
+|**relativeTo**|The reference point that the ordinal number denotes.|
+|**value**|number|Numeric value for ordinal position.|
+
+```json
+
+"metadata": {
+                "offset": -1,
+                "relativeTo":"Current",
+                "value": "first"
+            }
+
+```
+
+**Possible values for *relativeTo***:
+
+* Current
+* End
+* Start
 
 ### Set
 
-A set is a recurring datetime period. Sets don't resolve to exact values, as they don't indicate an exact datetime. 
+A recurring datetime period (example: "every Monday at 6:00 PM.")
 
-Examples: "every Monday at 6 PM", "every Thursday", "every weekend"
+|Metadata|Type|Description|
+|---|---|---|
+|**timex**|string|The ISO 8601 formatted date and time:<br>`YYYY-MM-DDTHH:MM:SS`(year, month, day, hour, minutes, seconds, milliseconds) with a `T` separator. |
+|**value**|string|Sets don't resolve to exact values, as they don't indicate an exact datetime.|
 
-For "every Monday at 6 PM", the `timex` value indicates no specified year with the starting **XXXX**, then every Monday through **WXX-1** to determine first day of every week, and finally **T18** to indicate 6 PM. 
 
 ```json
+
 "metadata": {
                 "timex": "XXXX-WXX-1T18",
                 "value": "not resolved"
             }
+
 ```
 
-## Dimensions
+**Possible values for *type***:
 
-Examples: "24 km/hr", "44 square meters", "sixty six kilobytes"
+* begin
+* end
+* duration
+* modifier (example: `before`, `after`)
+* timex
+
+
+### Speed
+
+|Metadata|Type|Description|
+|---|---|---|
+|**unit**|string|Unit of measurement for speed.|
+|**value**|number|Numeric value for speed.|
 
 ```json
+
 "metadata": {
-                "unit": "KilometersPerHour",
-                "value": 24
+                "unit": "Knots",
+                "value": 50
             }
+
 ```
 
-Possible values for the "unit" field values:
+**Possible values for *unit***:
 
-- **For Measurements**:
-  - SquareKilometer
-  - SquareHectometer
-  - SquareDecameter
-  - SquareMeter
-  - SquareDecimeter
-  - SquareCentimeter
-  - SquareMillimeter
-  - SquareInch
-  - SquareFoot
-  - SquareMile
-  - SquareYard
-  - Acre
+* CentimetersPerMillisecond
+* FeetPerMinute
+* FeetPerSecond
+* KilometersPerHour
+* KilometersPerMillisecond
+* KilometersPerMinute
+* KilometersPerSecond
+* Knots
+* MetersPerMillisecond
+* MetersPerSecond
+* MilesPerHour
+* YardsPerMinute
+* YardsPerSecond
+* Unspecified
 
-- **For Information**:
-  - Bit
-  - Kilobit
-  - Megabit
-  - Gigabit
-  - Terabit
-  - Petabit
-  - Byte
-  - Kilobyte
-  - Megabyte
-  - Gigabyte
-  - Terabyte
-  - Petabyte
-  
-- **For Length, width, height**:
-  - Kilometer
-  - Hectometer
-  - Decameter
-  - Meter
-  - Decimeter
-  - Centimeter
-  - Millimeter
-  - Micrometer
-  - Nanometer
-  - Picometer
-  - Mile
-  - Yard
-  - Inch
-  - Foot
-  - Light year
-  - Pt
+### Temperature
 
-- **For Speed**:
-  - MetersPerSecond
-  - KilometersPerHour
-  - KilometersPerMinute
-  - KilometersPerSecond
-  - MilesPerHour
-  - Knot
-  - FootPerSecond
-  - FootPerMinute
-  - YardsPerMinute
-  - YardsPerSecond
-  - MetersPerMillisecond
-  - CentimetersPerMillisecond
-  - KilometersPerMillisecond
-
-- **For Volume**:
-  - CubicMeter
-  - CubicCentimeter
-  - CubicMillimiter
-  - Hectoliter
-  - Decaliter
-  - Liter
-  - Deciliter
-  - Centiliter
-  - Milliliter
-  - CubicYard
-  - CubicInch
-  - CubicFoot
-  - CubicMile
-  - FluidOunce
-  - Teaspoon
-  - Tablespoon
-  - Pint
-  - Quart
-  - Cup
-  - Gill
-  - Pinch
-  - FluidDram
-  - Barrel
-  - Minim
-  - Cord
-  - Peck
-  - Bushel
-  - Hogshead
-
-- **For Weight**:
-  - Kilogram
-  - Gram
-  - Milligram
-  - Microgram
-  - Gallon
-  - MetricTon
-  - Ton
-  - Pound
-  - Ounce
-  - Grain
-  - Pennyweight
-  - LongTonBritish
-  - ShortTonUS
-  - ShortHundredweightUS
-  - Stone
-  - Dram
-
-
-## Ordinal
-
-Examples: "3rd", "first", "last"
+|Metadata|Type|Description|
+|---|---|---|
+|**unit**|string|Unit of measurement for temperature.|
+|**value**|number|Numeric value.|
 
 ```json
+
 "metadata": {
-                "offset": "3",
-                "relativeTo": "Start",
-                "value": "3"
+                "unit" "Kelvin",
+                "value": 310
             }
+
 ```
+**Possible values for *unit***:
 
-Possible values for "relativeTo":
-- Start
-- End
+* Celsius
+* Fahrenheit
+* Kelvin
+* Rankine
+* Unspecified
 
-## Temperature
 
-Examples: "88 deg fahrenheit", "twenty three degrees celsius"
+
+### Time
+
+|Metadata|Type|Description|
+|---|---|---|
+|**timex**|string|The ISO 8601 formatted date time:<br>`[hh]:[mm]:[ss]`(hour, minutes, seconds).|
+|**value**|number|Numeric value.|
 
 ```json
+
 "metadata": {
-                "unit": "Fahrenheit",
-                "value": 88
+                "timex":"T14:30:15",
+                "value": "14:30:15"
             }
+
 ```
 
-Possible values for "unit":
-- Celsius
-- Fahrenheit
-- Kelvin
-- Rankine
+### Volume
+
+|Metadata|Type|Description|
+|---|---|---|
+|**unit**|string|Unit of measurement for volume.|
+|**value**|number|Numeric value for volume.|
+
+```json
+
+"metadata": {
+                "unit": "Quart",
+                "value": 4
+            }
+
+```
+**Possible values for *unit***:
+
+* Barrel
+* Bushel
+* Centiliter
+* Cord
+* CubicCentimeter
+* CubicFoot
+* CubicInch
+* CubicMeter
+* CubicMile
+* CubicMillimeter
+* CubicYard
+* Cup
+* Decaliter
+* FluidDram
+* FluidOunce
+* Gill
+* Hectoliter
+* Hogshead
+* Liter
+* Milliliter
+* Minim
+* Peck
+* Pinch
+* Pint
+* Quart
+* Tablespoon
+* Teaspoon
+* Unspecified
+
+### Weight
+
+|Metadata|Type|Description|
+|---|---|---|
+|**unit**|string|Unit of measurement for weight.|
+|**value**|number|Numeric value for weight.|
+
+```json
+
+"metadata": {
+                "unit": "Ounce",
+                "value": 16
+            }
+
+```
+**Possible values for *unit***:
+
+* Dram
+* Gallon
+* Grain
+* Gram
+* Kilogram
+* LongTonBritish
+* MetricTon
+* Milligram
+* Ounce
+* PennyWeight
+* Pound
+* ShortHundredWeightUS
+* ShortTonUS
+* Stone
+* Ton
+* Unspecified
+
+
+## Next steps
+
+
+Learn [how to use NER](../how-to-call.md)

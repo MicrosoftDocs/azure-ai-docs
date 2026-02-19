@@ -1,13 +1,13 @@
 ---
-title: Face detection - Azure AI Vision
-titleSuffix: Azure AI services
-description: Learn concepts related to the face detection feature of the Azure AI Vision API.
+title: Face detection - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Learn concepts related to the face detection feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 01/22/2025
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
@@ -109,7 +109,7 @@ The next example demonstrates the JSON response returned for an image containing
 
 ## Use the API
 
-The face detection feature is part of the [Analyze Image 3.2](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP) API. You can call this API through a native SDK or through REST calls. Include `Faces` in the **visualFeatures** query parameter. Then, when you get the full JSON response, simply parse the string for the contents of the `"faces"` section.
+The face detection feature is part of the [Analyze Image 3.2](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP&preserve-view=true) API. You can call this API through a native SDK or through REST calls. Include `Faces` in the **visualFeatures** query parameter. Then, when you get the full JSON response, simply parse the string for the contents of the `"faces"` section.
 
 ## Next step
 

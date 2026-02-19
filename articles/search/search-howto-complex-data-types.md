@@ -2,7 +2,6 @@
 title: Model complex data types
 titleSuffix: Azure AI Search
 description: Nested or hierarchical data structures can be modeled in an Azure AI Search index using ComplexType and Collections data types.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh
@@ -12,6 +11,7 @@ ms.custom:
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Model complex data types in Azure AI Search
@@ -22,7 +22,7 @@ Complex fields represent either a single object in the document, or an array of 
 
 Azure AI Search natively supports complex types and collections. These types allow you to model almost any JSON structure in an Azure AI Search index. In previous versions of Azure AI Search APIs, only flattened row sets could be imported. In the newest version, your index can now more closely correspond to source data. In other words, if your source data has complex types, your index can have complex types also.
 
-To get started, we recommend the [Hotels data set](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels), which you can load in the **Import data** wizard in the Azure portal. The wizard detects complex types in the source and suggests an index schema based on the detected structures.
+To get started, we recommend the [hotels data set](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels), which you can load using an [import wizard](search-get-started-portal.md) in the Azure portal. The wizard detects complex types in the source and suggests an index schema based on the detected structures.
 
 > [!NOTE]
 > Support for complex types became generally available starting in `api-version=2019-05-06`. 
@@ -251,7 +251,7 @@ response = openai_client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-For the end-to-end example, see [Quickstart: Generative search (RAG) with grounding data from Azure AI Search](search-get-started-rag.md).
+For the end-to-end example, see [classic RAG in Azure AI Search](https://github.com/Azure-Samples/azure-search-classic-rag/blob/main/README.md).
 
 ## Select complex fields
 
@@ -365,13 +365,11 @@ var combinedCountryCategoryFilter = "(" + countryFilter + " and " + catgFilter +
 
 ```
 
-If you implement the workaround, be sure to test extentively.
+If you implement the workaround, be sure to test extensively.
 
 ## Next steps
 
-Try the [Hotels data set](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/hotels) in the **Import data** wizard. You need the Azure Cosmos DB connection information provided in the readme to access the data.
-
-With that information in hand, your first step in the wizard is to create a new Azure Cosmos DB data source. Further on in the wizard, when you get to the target index page, you see an index with complex types. Create and load this index, and then execute queries to understand the new structure.
+Use an import wizard with sample data to guide you through creating, loading, and querying an index.
 
 > [!div class="nextstepaction"]
-> [Quickstart: portal wizard for import, indexing, and queries](search-get-started-portal.md)
+> [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md)

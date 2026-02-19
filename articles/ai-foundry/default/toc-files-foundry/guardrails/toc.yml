@@ -1,0 +1,47 @@
+items:
+# Getting Started
+- name: Overview
+  href: ../../guardrails/guardrails-overview.md
+- name: How to configure Guardrails and controls
+  href: ../../guardrails/how-to-create-guardrails.md
+
+# Content Filtering and Risk Detection
+- name: Content filters
+  items:
+  - name: Harm categories and severity levels
+    href: ../../../openai/concepts/content-filter-severity-levels.md
+  - name: Prompt shields
+    href: ../../../openai/concepts/content-filter-prompt-shields.md
+  - name: Sensitive data leakage 
+    href: ../../../openai/concepts/content-filter-personal-information.md
+  - name: Groundedness detection
+    href: ../../../openai/concepts/content-filter-groundedness.md
+  - name: Protected material for code
+    href: ../../../../ai-services/content-safety/quickstart-protected-material-code.md
+  - name: Protected material for text
+    href: ../../../openai/concepts/content-filter-protected-material.md
+
+# Custom Controls
+- name: Custom controls
+  items:
+  - name: Block lists
+    href: ../../../../ai-services/content-safety/quickstart-blocklist.md
+  - name: Custom categories
+    href: ../../../../ai-services/content-safety/concepts/custom-categories.md?context=/azure/ai-foundry/context/context&view=foundry&preserve-view=true
+
+# Configuration and Policies
+- name: Configuration and policies
+  items:
+  - name: Intervention points
+    href: ../../guardrails/intervention-points.md
+  - name: Default safety policies
+    href: ../../../openai/concepts/default-safety-policies.md
+  - name: Safety system messages
+    href: ../../../openai/concepts/safety-system-message-templates.md
+
+# Monitoring and Streaming
+- name: Content streaming
+  href: ../../../openai/concepts/content-streaming.md
+- name: Abuse monitoring
+  href: ../../../openai/concepts/abuse-monitoring.md
+

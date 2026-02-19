@@ -1,31 +1,30 @@
 ---
 title: How to use Text Analytics for health containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to extract and label medical information on premises using Text Analytics for health Docker container.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-health, devx-track-azurecli
 ms.devlang: azurecli
 ---
-
 # Use Text Analytics for health containers
 
 Containers enable you to host the Text Analytics for health API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Text Analytics for health remotely, then containers might be a good option.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
-You must meet the following prerequisites before using Text Analytics for health containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+You must meet the following prerequisites before using Text Analytics for health containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
-* [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure. 
+* [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure.
     * On Windows, Docker must also be configured to support Linux containers.
-    * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 
+    * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/).
 * A <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics"  title="Create a Language resource"  target="_blank">Language resource </a> with the free (F0) or standard (S) [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/text-analytics/).
 
 [!INCLUDE [Gathering required parameters](../../../containers/includes/container-gathering-required-parameters.md)]
@@ -49,7 +48,7 @@ The Text Analytics for health container image can be found on the `mcr.microsoft
 
 To use the latest version of the container, you can use the `latest` tag. You can also find a full list of [tags on the MCR](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/healthcare/tags).
 
-Use the [`docker pull`](https://docs.docker.com/engine/reference/commandline/pull/) command to download this container image from the Microsoft public container registry. You can find the featured tags on the  [Microsoft Container Registry](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/healthcare/about)  
+Use the [`docker pull`](https://docs.docker.com/engine/reference/commandline/pull/) command to download this container image from the Microsoft public container registry. You can find the featured tags on the  [Microsoft Container Registry](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/healthcare/about)
 
 ```
 docker pull mcr.microsoft.com/azure-cognitive-services/textanalytics/healthcare:<tag-name>
@@ -59,25 +58,26 @@ docker pull mcr.microsoft.com/azure-cognitive-services/textanalytics/healthcare:
 
 ## Run the container with `docker run`
 
-Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the containers. The container will continue to run until you stop it.
+Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command and run the containers. The container continues to run until you stop it.
 
 > [!IMPORTANT]
-> * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
-> * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
->   * The [responsible AI](/azure/ai-foundry/responsible-ai/text-analytics/transparency-note-health)  (RAI) acknowledgment must also be present with a value of `accept`.
+
+> * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove the back slash based on your host operating system's requirements.
+> * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container doesn't start. For more information, see [Billing](#billing).
+> * The [responsible AI](/azure/ai-foundry/responsible-ai/language-service/transparency-note) (RAI) acknowledgment must also be present with a value of `accept`.
 > * The sentiment analysis and language detection containers use v3 of the API, and are generally available. The key phrase extraction container uses v2 of the API, and is in preview.
 
-There are multiple ways you can install and run the Text Analytics for health container. 
+There are multiple ways you can install and run the Text Analytics for health container.
 
 - Use the Azure portal to create a Language resource, and use Docker to get your container.
-- Use an Azure VM with Docker to run the container. 
+- Use an Azure virtual machine (VM) with Docker and run the container.
 - Use the following PowerShell and Azure CLI scripts to automate resource deployment and container configuration.
 
-When you use the Text Analytics for health container, the data contained in your API requests and responses is not visible to Microsoft, and is not used for training the model applied to your data. 
+When you use the Text Analytics for health container, the data contained in your API requests and responses isn't visible to Microsoft, and isn't used for training the model applied to your data.
 
 ### Run the container locally
 
-To run the container in your own environment after downloading the container image, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the container in your own environment after downloading the container image, execute the following `docker run` command. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
@@ -90,26 +90,26 @@ mcr.microsoft.com/azure-cognitive-services/textanalytics/healthcare:<tag-name> \
 Eula=accept \
 rai_terms=accept \
 Billing={ENDPOINT_URI} \
-ApiKey={API_KEY} 
+ApiKey={API_KEY}
 ```
 
 This command:
 
 - Runs the Text Analytics for health container from the container image
 - Allocates 6 CPU core and 12 gigabytes (GB) of memory
-- Exposes TCP port 5000 and allocates a pseudo-TTY for the container
+- Exposes `TCP` port 5000 and allocates a pseudo-TTY for the container
 - Accepts the end user license agreement (EULA) and responsible AI (RAI) terms
 - Automatically removes the container after it exits. The container image is still available on the host computer.
 
 ### Demo UI to visualize output
 
-The container provides REST-based query prediction endpoint APIs.  We have also provided a visualization tool in the container that is accessible by appending `/demo` to the endpoint of the container. For example:
+The container provides REST-based query prediction endpoint APIs. We also provide a visualization tool in the container that is accessible by appending `/demo` to the endpoint of the container. For example:
 
 ```
 http://<serverURL>:5000/demo
 ```
 
-Use the example cURL request below to submit a query to the container you have deployed replacing the `serverURL` variable with the appropriate value.
+Use the following example cURL request to submit a query to the container you deployed by replacing the `serverURL` variable with the appropriate value.
 
 ```bash
 curl -X POST 'http://<serverURL>:5000/text/analytics/v3.1/entities/health' --header 'Content-Type: application/json' --header 'accept: application/json' --data-binary @example.json
@@ -118,30 +118,30 @@ curl -X POST 'http://<serverURL>:5000/text/analytics/v3.1/entities/health' --hea
 
 ### Install the container using Azure Web App for Containers
 
-Azure [Web App for Containers](https://azure.microsoft.com/services/app-service/containers/) is an Azure resource dedicated to running containers in the cloud. It brings out-of-the-box capabilities such as autoscaling, support for docker containers and docker compose, HTTPS support and much more.
+Azure [Web App for Containers](https://azure.microsoft.com/services/app-service/containers/) is an Azure resource dedicated to running containers in the cloud. It offers built-in features like autoscaling, support for Docker containers and Docker Compose, and HTTPS support.
 
 > [!NOTE]
-> Using Azure Web App you will automatically get a domain in the form of `<appservice_name>.azurewebsites.net`
+> With Azure Web App, you automatically get a domain in the form of `<appservice_name>.azurewebsites.net`
 
 Run this PowerShell script using the Azure CLI to create a Web App for Containers, using your subscription and the container image over HTTPS. Wait for the script to complete (approximately 25-30 minutes) before submitting the first request.
 
 ```azurecli
 $subscription_name = ""                    # THe name of the subscription you want you resource to be created on.
 $resource_group_name = ""                  # The name of the resource group you want the AppServicePlan
-                                           #    and AppSerivce to be attached to.
+                                           #    and AppService to be attached to.
 $resources_location = ""                   # This is the location you wish the AppServicePlan to be deployed to.
                                            #    You can use the "az account list-locations -o table" command to
                                            #    get the list of available locations and location code names.
 $appservice_plan_name = ""                 # This is the AppServicePlan name you wish to have.
 $appservice_name = ""                      # This is the AppService resource name you wish to have.
-$TEXT_ANALYTICS_RESOURCE_API_KEY = ""      # This should be taken from the Language resource.
-$TEXT_ANALYTICS_RESOURCE_API_ENDPOINT = "" # This should be taken from the Language resource.
+$TEXT_ANALYTICS_RESOURCE_API_KEY = ""      # This should be taken from Azure Language resource.
+$TEXT_ANALYTICS_RESOURCE_API_ENDPOINT = "" # This should be taken from Azure Language resource.
 $DOCKER_IMAGE_NAME = "mcr.microsoft.com/azure-cognitive-services/textanalytics/healthcare:latest"
 
 az login
 az account set -s $subscription_name
 az appservice plan create -n $appservice_plan_name -g $resource_group_name --is-linux -l $resources_location --sku P3V2
-az webapp create -g $resource_group_name -p $appservice_plan_name -n $appservice_name -i $DOCKER_IMAGE_NAME 
+az webapp create -g $resource_group_name -p $appservice_plan_name -n $appservice_name -i $DOCKER_IMAGE_NAME
 az webapp config appsettings set -g $resource_group_name -n $appservice_name --settings Eula=accept rai_terms=accept Billing=$TEXT_ANALYTICS_RESOURCE_API_ENDPOINT ApiKey=$TEXT_ANALYTICS_RESOURCE_API_KEY
 
 # Once deployment complete, the resource should be available at: https://<appservice_name>.azurewebsites.net
@@ -149,13 +149,13 @@ az webapp config appsettings set -g $resource_group_name -n $appservice_name --s
 
 ### Install the container using Azure Container Instance
 
-You can also use an Azure Container Instance (ACI) to make deployment easier. ACI is a resource that allows you to run Docker containers on-demand in a managed, serverless Azure environment. 
+You can also use an Azure Container Instance (ACI) to make deployment easier. ACI is a resource that allows you to run Docker containers on-demand in a managed, serverless Azure environment.
 
-See [How to use Azure Container Instances](../../../containers/azure-container-instance-recipe.md) for steps on deploying an ACI resource using the Azure portal. You can also use the below PowerShell script using Azure CLI, which will create an ACI on your subscription using the container image.  Wait for the script to complete (approximately 25-30 minutes) before submitting the first request.  Due to the limit on the maximum number of CPUs per ACI resource, do not select this option if you expect to submit more than 5 large documents (approximately 5000 characters each) per request.
-See the [ACI regional support](/azure/container-instances/container-instances-region-availability) article for availability information. 
+See [How to use Azure Container Instances](../../../containers/azure-container-instance-recipe.md) for steps on deploying an ACI resource using the Azure portal. You can also use the following PowerShell script using Azure CLI, which creates an ACI on your subscription using the container image. Wait for the script to complete (approximately 25-30 minutes) before submitting the first request. Due to the limit on the maximum number of CPUs per ACI resource, don't select this option if you expect to submit more than five large documents (approximately 5,000 characters each) per request.
+See the [ACI regional support](/azure/container-instances/container-instances-region-availability) article for availability information.
 
-> [!NOTE] 
-> Azure Container Instances don't include HTTPS support for the builtin domains. If you need HTTPS, you will need to manually configure it, including creating a certificate and registering a domain. You can find instructions to do this with NGINX below.
+> [!NOTE]
+> Azure Container Instances don't include HTTPS support for the builtin domains. If you need HTTPS, you need to manually configure it, including creating a certificate and registering a domain. You can find instructions with the following NGINX example:
 
 ```azurecli
 $subscription_name = ""                    # The name of the subscription you want you resource to be created on.
@@ -165,8 +165,8 @@ $resources_location = ""                   # This is the location you wish the w
                                            # You can use the "az account list-locations -o table" command to
                                            # Get the list of available locations and location code names.
 $azure_container_instance_name = ""        # This is the AzureContainerInstance name you wish to have.
-$TEXT_ANALYTICS_RESOURCE_API_KEY = ""      # This should be taken from the Language resource.
-$TEXT_ANALYTICS_RESOURCE_API_ENDPOINT = "" # This should be taken from the Language resource.
+$TEXT_ANALYTICS_RESOURCE_API_KEY = ""      # This should be taken from Azure Language resource.
+$TEXT_ANALYTICS_RESOURCE_API_ENDPOINT = "" # This should be taken from Azure Language resource.
 $DNS_LABEL = ""                            # This is the DNS label name you wish your ACI will have
 $DOCKER_IMAGE_NAME = "mcr.microsoft.com/azure-cognitive-services/textanalytics/healthcare:latest"
 
@@ -179,20 +179,20 @@ az container create --resource-group $resource_group_name --name $azure_containe
 
 ### Secure ACI connectivity
 
-By default there is no security provided when using ACI with container API. This is because typically containers will run as part of a pod which is protected from the outside by a network bridge. You can however modify a container with a front-facing component, keeping the container endpoint private. The following examples use [NGINX](https://www.nginx.com) as an ingress gateway to support HTTPS/SSL and client-certificate authentication.
+By default, ACI with the container API doesn't provide security—containers usually run inside a pod, and a network bridge isolates the pod from external access. You can, however, modify a container with a front-facing component, keeping the container endpoint private. The following examples use [NGINX](https://www.nginx.com) as an ingress gateway to support HTTPS/SSL and client-certificate authentication.
 
 > [!NOTE]
-> NGINX is an open-source, high-performance HTTP server and proxy. An NGINX container can be used to terminate a TLS connection for a single container. More complex NGINX ingress-based TLS termination solutions are also possible.
+> NGINX is an open-source, high-performance HTTP server, and proxy. An NGINX container can be used to terminate a `TLS` connection for a single container. More complex NGINX ingress-based `TLS` termination solutions are also possible.
 
 #### Set up NGINX as an ingress gateway
 
-NGINX uses [configuration files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) to enable features at runtime. In order to enable TLS termination for another service, you must specify an SSL certificate to terminate the TLS connection and  `proxy_pass` to specify an address for the service. A sample is provided below.
+NGINX uses [configuration files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) to enable features at runtime. In order to enable `TLS` termination for another service, you must specify an SSL certificate to terminate the `TLS` connection and  `proxy_pass` to specify an address for the service. A sample is provided:
 
 
 > [!NOTE]
 > `ssl_certificate` expects a path to be specified within the NGINX container's local filesystem. The address specified for `proxy_pass` must be available from within the NGINX container's network.
 
-The NGINX container will load all of the files in the `_.conf_` that are mounted under `/etc/nginx/conf.d/` into the HTTP configuration path.
+The NGINX container loads all of the files in the `_.conf_` that are mounted under `/etc/nginx/conf.d/` into the HTTP configuration path.
 
 ```nginx
 server {
@@ -213,9 +213,9 @@ server {
 }
 ```
 
-#### Example Docker compose file
+#### Compose file example
 
-The below example shows how a [docker compose](https://docs.docker.com/reference/cli/docker/compose/) file can be created to deploy NGINX and health containers:
+The following example shows how a [docker compose](https://docs.docker.com/reference/cli/docker/compose/) file can be created to deploy NGINX and health containers:
 
 ```yaml
 version: "3.7"
@@ -262,7 +262,7 @@ Use the host, `http://localhost:5000`, for container APIs.
 
 ### Structure the API request for the container
 
-You can use the [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or the example cURL request below to submit a query to the container you deployed, replacing the `serverURL` variable with the appropriate value.  Note the version of the API in the URL for the container is different than the hosted API.
+You can use the [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or the following example cURL request to submit a query to the container you deployed, replacing the `serverURL` variable with the appropriate value. Note the version of the API in the URL for the container is different than the hosted API.
 
 [!INCLUDE [Use APIs in container](../includes/container-request.md)]
 
@@ -289,13 +289,13 @@ var client = new TextAnalyticsClient("http://localhost:5000", "your-text-analyti
 
 ## Troubleshooting
 
-If you run the container with an output [mount](configure-containers.md#mount-settings) and logging enabled, the container generates log files that are helpful to troubleshoot issues that happen while starting or running the container.
+If you run the container with an output [mount](configure-containers.md#mount-settings) and logging enabled, the container generates log files. These log files are useful for troubleshooting issues that may occur while the container is starting or running.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 
-Text Analytics for health containers send billing information to Azure, using a _Language_ resource on your Azure account. 
+Text Analytics for health containers send billing information to Azure, using a _Language_ resource on your Azure account.
 
 [!INCLUDE [Container's Billing Settings](../../../includes/cognitive-services-containers-how-to-billing-info.md)]
 
@@ -310,7 +310,7 @@ In this article, you learned concepts and workflow for downloading, installing, 
 * You must specify billing information when instantiating a container.
 
 > [!IMPORTANT]
-> Azure AI containers are not licensed to run without being connected to Azure for metering. Customers need to enable the containers to communicate billing information with the metering service at all times. Azure AI containers do not send customer data (e.g. text that is being analyzed) to Microsoft.
+> Azure AI containers aren't licensed to run without being connected to Azure for metering. Customers must ensure that the containers are always able to communicate billing information to the metering service. Azure AI containers don't send customer data (for example, text that is being analyzed) to Microsoft.
 
 ## Next steps
 

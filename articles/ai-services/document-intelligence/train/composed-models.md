@@ -1,12 +1,12 @@
 ---
 title: Composed custom models - Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Compose several custom models into a single model for easier data extraction from groups of distinct form types.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 02/27/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 

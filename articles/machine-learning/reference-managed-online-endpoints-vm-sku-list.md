@@ -2,13 +2,13 @@
 title: Managed online endpoints VM SKU list
 titleSuffix: Azure Machine Learning
 description: Lists the VM SKUs that can be used for managed online endpoints in Azure Machine Learning.
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
-ms.date: 10/18/2023
+ms.date: 10/18/2025
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
+ms.topic: overview
 ms.custom:
   - devplatv2
   - build-2025
@@ -103,7 +103,7 @@ The following table shows the virtual machine (VM) stock keeping units (SKUs) th
 |  standardNDSv2Family  | STANDARD_ND40RS_V2 | Yes | NvidiaGpu | 8 | 40 | Yes |
 |  standardNDv5H100Family  | STANDARD_ND96IS_H100_V5 | - | NvidiaGpu | 8 | 96 | Yes |
 |  standardNDv5H100Family  | STANDARD_ND96ISR_H100_V5 | Yes | NvidiaGpu | 8 | 96 | Yes |
-|  standardNVADSA10v5Family | STANDARD_NV6ADS_A10_V5	 | - | NvidiaGpu | 1/6 | 6  | - |
+|  standardNVADSA10v5Family | STANDARD_NV6ADS_A10_V5     | - | NvidiaGpu | 1/6 | 6  | - |
 |  standardNVADSA10v5Family | STANDARD_NV12ADS_A10_V5  | - | NvidiaGpu | 1/3 | 12 | - |
 |  standardNVADSA10v5Family | STANDARD_NV18ADS_A10_V5  | - | NvidiaGpu | 1/2 | 18 | - |
 |  standardNVADSA10v5Family | STANDARD_NV36ADS_A10_V5  | - | NvidiaGpu | 1   | 36 | - |

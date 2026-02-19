@@ -2,28 +2,28 @@
 title: Integrated vectorization
 titleSuffix: Azure AI Search
 description: Add a vector embedding step in an Azure AI Search skillset to vectorize content during indexing or queries.
-
-author: heidisteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 06/11/2025
+ms.topic: concept-article
+ms.date: 01/23/2026
 ---
 
 # Integrated vector embedding in Azure AI Search
 
 Integrated vectorization is an extension of the indexing and query pipelines in Azure AI Search. It adds the following capabilities:
 
-+ Vector encoding during indexing
++ Vector encoding during indexer-driven indexing
 + Vector encoding during queries
 
 [Data chunking](vector-search-how-to-chunk-documents.md) isn't a hard requirement, but unless your raw documents are small, chunking is necessary for meeting the token input requirements of embedding models.
 
 Vector conversions are one-way: nonvector-to-vector. For example, there's no vector-to-text conversion for queries or results, such as converting a vector result to a human-readable string, which is why indexes contain both vector and nonvector fields.
 
-Integrated vectorization speeds up the development and minimizes maintenance tasks during data ingestion and query time because there are fewer operations that you have to implement manually. This capability is now generally available.
+Integrated vectorization speeds up the development and minimizes maintenance tasks during data ingestion and query time because there are fewer operations that you have to implement manually. 
 
 ## Using integrated vectorization during indexing
 
@@ -35,17 +35,17 @@ For integrated data chunking and vector conversions, you're taking a dependency 
 
 + [A skillset](cognitive-search-working-with-skillsets.md) configured for:
 
-  + [Text Split skill](cognitive-search-skill-textsplit.md), used to chunk the data.
+  + A chunking strategy: [Text Split skill](cognitive-search-skill-textsplit.md), [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), or one of the [document parsing modes](vector-search-how-to-chunk-documents.md#common-chunking-techniques). 
   
   + An embedding skill, used to generate vector arrays, which can be any of the following:
 
     + [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md), attached to text-embedding-ada-002,text-embedding-3-small, text-embedding-3-large on Azure OpenAI.
 
     + [Custom skill](cognitive-search-custom-skill-web-api.md) that points to another embedding model on Azure or on another site.
- 
-    + [Azure AI Vision skill (preview)](cognitive-search-skill-vision-vectorize.md) that points to the multimodal API for Azure AI Vision.
 
-    + [AML skill pointing to the model catalog in Azure AI Foundry portal](cognitive-search-aml-skill.md) that points to selected models in the model catalog.
+    + [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md) that points to the multimodal API for Azure Vision.
+
+    + [AML skill](cognitive-search-aml-skill.md) that points to select models in the Microsoft Foundry model catalog.
 
 ## Using integrated vectorization in queries
 
@@ -61,8 +61,8 @@ For text-to-vector conversion during queries, you take a dependency on these com
     |-----------------|------------|
     | [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md) | [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) |
     | [Custom skill](cognitive-search-custom-skill-web-api.md) | [Custom Web API vectorizer](vector-search-vectorizer-custom-web-api.md) |
-    | [Azure AI Vision skill (preview)](cognitive-search-skill-vision-vectorize.md)  | [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md) |
-    | [AML skill pointing to the model catalog in Azure AI Foundry portal](cognitive-search-aml-skill.md) | [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
+    | [Azure Vision multimodal embeddings skill (preview)](cognitive-search-skill-vision-vectorize.md)  | [Azure Vision vectorizer](vector-search-vectorizer-ai-services-vision.md) |
+    | [AML skill pointing to the model catalog in Foundry portal](cognitive-search-aml-skill.md) | [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) |
 
 ## Component diagram
 
@@ -70,17 +70,17 @@ The following diagram shows the components of integrated vectorization.
 
 :::image type="content" source="media/vector-search-integrated-vectorization/integrated-vectorization-architecture.png" alt-text="Diagram of components in an integrated vectorization workflow." border="false" lightbox="media/vector-search-integrated-vectorization/integrated-vectorization-architecture.png":::
 
-The workflow is an indexer pipeline. Indexers retrieve data from supported data sources and initiate data enrichment (or applied AI) by calling Azure OpenAI or Azure AI services or custom code for text-to-vector conversions or other processing.
+The workflow is an indexer pipeline. Indexers retrieve data from supported data sources and initiate data enrichment (or applied AI) by calling Azure OpenAI or Foundry Tools or custom code for text-to-vector conversions or other processing.
 
 The diagram focuses on integrated vectorization, but your solution isn't limited to this list. You can add more skills for AI enrichment, create a knowledge store, add semantic ranking, add relevance tuning, and other query features.
 
 ## Availability and pricing
 
-Integrated vectorization is available in all regions and tiers. However, if you're using Azure AI skills and vectorizers, make sure your Azure AI services multi-service resource is available in the [same region as Azure AI Search](search-region-support.md).
+Integrated vectorization is available in all regions and tiers. However, if you're using skills and vectorizers for AI enrichment, regional requirements might apply. For more information, see [Attach a Foundry resource to a skillset](cognitive-search-attach-cognitive-services.md).
 
 If you're using a custom skill and an Azure hosting mechanism (such as an Azure function app, Azure Web App, and Azure Kubernetes), check the [Azure product by region page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=search) for feature availability. 
 
-Data chunking (Text Split skill) is free and available on all Azure AI services in all regions.
+Data chunking (Text Split skill) is free and available on all Foundry Tools in all regions.
 
 > [!NOTE]
 > Some older search services created before January 1, 2019 are deployed on infrastructure that doesn't support vector workloads. If you try to add a vector field to a schema and get an error, it's a result of outdated services. In this situation, you must create a new search service to try out the vector feature.
@@ -104,14 +104,14 @@ For query-only vectorization:
 A more common scenario - data chunking and vectorization during indexing:
 
 1. [Create a data source](search-howto-create-indexers.md#prepare-a-data-source) connection to a supported data source for indexer-based indexing.
-1. [Create a skillset](cognitive-search-defining-skillset.md) that calls [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and [AzureOpenAIEmbeddingModel](cognitive-search-skill-azure-openai-embedding.md) or another embedding skill to vectorize the chunks.
+1. [Create a skillset](cognitive-search-defining-skillset.md) that calls [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and [Azure OpenAI Embedding](cognitive-search-skill-azure-openai-embedding.md) or another embedding skill to vectorize the chunks.
 1. [Create an index](search-how-to-create-search-index.md) that specifies a [vectorizer](vector-search-how-to-configure-vectorizer.md) for query time, and assign it to vector fields.
 1. [Create an indexer](search-howto-create-indexers.md) to drive everything, from data retrieval, to skillset execution, through indexing. We recommend running the indexer [on a schedule](search-howto-schedule-indexers.md) to pick up changed documents or any documents that were missed due to throttling.
 
 Optionally, [create secondary indexes](index-projections-concept-intro.md) for advanced scenarios where chunked content is in one index, and nonchunked in another index. Chunked indexes (or secondary indexes) are useful for RAG apps.
 
 > [!TIP]
-> [Try the **Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
+> [Try the **Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
 
 ### Secure connections to vectorizers and models
 
@@ -125,15 +125,7 @@ For vectorization scenarios, you would use:
 
 + `sites` for embedding models accessed as a [custom skill](cognitive-search-custom-skill-interface.md) or [custom vectorizer](vector-search-vectorizer-custom-web-api.md). The `sites` group ID is for App services and Azure functions, which you could use to host an embedding model that isn't one of the Azure OpenAI embedding models.
 
-## Limitations
-
-Make sure you know the [Azure OpenAI quotas and limits for embedding models](/azure/ai-services/openai/quotas-limits). Azure AI Search has retry policies, but if the quota is exhausted, retries fail.
-
-Azure OpenAI token-per-minute limits are per model, per subscription. Keep this in mind if you're using an embedding model for both query and indexing workloads. If possible, [follow best practices](/azure/ai-services/openai/quotas-limits#general-best-practices-to-remain-within-rate-limits). Have an embedding model for each workload, and try to deploy them in different subscriptions.
-
-On Azure AI Search, remember there are [service limits](search-limits-quotas-capacity.md) by tier and workloads. 
-
-## Benefits of integrated vectorization 
+## Benefits
 
 Here are some of the key benefits of the integrated vectorization: 
 
@@ -146,6 +138,14 @@ Here are some of the key benefits of the integrated vectorization:
 + Projecting chunked content to secondary indexes. Secondary indexes are created as you would any search index (a schema with fields and other constructs), but they're populated in tandem with a primary index by an indexer. Content from each source document flows to fields in primary and secondary indexes during the same indexing run. 
 
   Secondary indexes are intended for question and answer or chat style apps. The secondary index contains granular information for more specific matches, but the parent index has more information and can often produce a more complete answer. When a match is found in the secondary index, the query returns the parent document from the primary index. For example, assuming a large PDF as a source document, the primary index might have basic information (title, date, author, description), while a secondary index has chunks of searchable content.
+
+## Limitations
+
+Make sure you know the [Azure OpenAI quotas and limits for embedding models](/azure/ai-services/openai/quotas-limits). Azure AI Search has retry policies, but if the quota is exhausted, retries fail.
+
+Azure OpenAI token-per-minute limits are per model, per subscription. Keep this in mind if you're using an embedding model for both query and indexing workloads. If possible, [follow best practices](/azure/ai-services/openai/quotas-limits#general-best-practices-to-remain-within-rate-limits). Have an embedding model for each workload, and try to deploy them in different subscriptions.
+
+On Azure AI Search, remember there are [service limits](search-limits-quotas-capacity.md) by tier and workloads.
 
 ## Next steps
 

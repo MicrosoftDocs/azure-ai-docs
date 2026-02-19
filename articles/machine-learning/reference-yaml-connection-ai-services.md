@@ -1,7 +1,7 @@
 ---
-title: 'CLI (v2) AI Services connection YAML schema'
+title: 'CLI (v2) Foundry Tools connection YAML schema'
 titleSuffix: Azure Machine Learning
-description: Reference documentation for the CLI (v2) Azure AI Services connections YAML schema.
+description: Reference documentation for the CLI (v2) Foundry Tools connections YAML schema.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -9,13 +9,13 @@ ms.custom:
   - build-2024
 ms.topic: reference
 
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.date: 08/29/2024
 ms.reviewer: ambadal
 ---
 
-# CLI (v2) Azure AI Services connection YAML schema
+# CLI (v2) Foundry Tools connection YAML schema
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
@@ -33,19 +33,19 @@ ms.reviewer: ambadal
 | `is_shared` | boolean | `true` if the connection is shared across other projects in the hub; otherwise, `false`. | | `true` |
 | `endpoint` | string | **Required.** The URL of the endpoint. | | |
 | `api_key` | string | The API key used to authenticate the connection. If not provided, the connection is authenticated via Microsoft Entra ID (credential-less authentication). | | |
-| `ai_services_resource_id` | string | **Required.** The fully qualified Azure resource ID of the Azure AI Services resource. | | |
+| `ai_services_resource_id` | string | **Required.** The fully qualified Azure resource ID of the Foundry Tools resource. | | |
 
 
 ## Remarks
 
-There are two ways to create connections to Azure AI Services:
+There are two ways to create connections to Foundry Tools:
 
-- One connection for all Azure AI Services except Azure AI Search.
-- One connection for each individual Azure AI Service.
+- One connection for all Foundry Tools except Azure AI Search.
+- One connection for each individual Foundry Tool.
 
-The schema described in this article is for **one connection for all Azure AI Services except Azure AI Search**.
+The schema described in this article is for **one connection for all Foundry Tools except Azure AI Search**.
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Azure AI Services connection is specific to Azure AI Foundry.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Microsoft Foundry connections, the Foundry Tools connection is specific to Foundry.
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
 title: How to use private endpoints with Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Speech service with private endpoints provided by Azure Private Link.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.reviewer: alexeyo
+ms.date: 09/11/2025
+ms.reviewer: pafarley
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 #Customer intent: As a developer, I want to learn how to use Speech service with private endpoints provided by Azure Private Link.
 ---
@@ -20,13 +20,13 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 This article explains how to set up and use Private Link and private endpoints with the Speech service. This article then describes how to remove private endpoints later, but still use the Speech resource.
 
 > [!NOTE]
-> Before you proceed, review [how to use virtual networks with Azure AI services](../cognitive-services-virtual-networks.md).
+> Before you proceed, review [how to use virtual networks with Foundry Tools](../cognitive-services-virtual-networks.md).
 
 
-Setting up an AI Foundry resource for Speech for the private endpoint scenarios requires performing the following tasks:
+Setting up a Foundry resource for Speech for the private endpoint scenarios requires performing the following tasks:
 1. [Create a custom domain name](#create-a-custom-domain-name)
 1. [Turn on private endpoints](#turn-on-private-endpoints)
-1. [Adjust existing applications and solutions](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-with-a-private-endpoint)
+1. [Adjust existing applications and solutions](#adjust-an-application-to-use-a-foundry-resource-for-speech-with-a-private-endpoint)
 
 [!INCLUDE [](includes/speech-vnet-service-enpoints-private-endpoints.md)]
 
@@ -34,7 +34,7 @@ This article describes the usage of the private endpoints with Speech service. U
 
 ## Create a custom domain name
 > [!CAUTION]
-> an AI Foundry resource for Speech with a custom domain name enabled uses a different way to interact with Speech service. You might have to adjust your application code for both of these scenarios: [with private endpoint](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-with-a-private-endpoint) and [*without* private endpoint](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-without-private-endpoints).
+> A Foundry resource for Speech with a custom domain name enabled uses a different way to interact with Speech service. You might have to adjust your application code for both of these scenarios: [with private endpoint](#adjust-an-application-to-use-a-foundry-resource-for-speech-with-a-private-endpoint) and [*without* private endpoint](#adjust-an-application-to-use-a-foundry-resource-for-speech-without-private-endpoints).
 >
 
 [!INCLUDE [Custom Domain include](includes/how-to/custom-domain.md)]
@@ -62,7 +62,7 @@ Use these parameters instead of the parameters in the article that you chose:
 | Resource            | **\<your-speech-resource-name>**         |
 | Target sub-resource | **account**                              |
 
-**DNS for private endpoints:** Review the general principles of [DNS for private endpoints in Azure AI Foundry resources](../cognitive-services-virtual-networks.md#apply-dns-changes-for-private-endpoints). Then confirm that your DNS configuration is working correctly by performing the checks described in the following sections.
+**DNS for private endpoints:** Review the general principles of [DNS for private endpoints in Microsoft Foundry resources](../cognitive-services-virtual-networks.md#apply-dns-changes-for-private-endpoints). Then confirm that your DNS configuration is working correctly by performing the checks described in the following sections.
 
 ### Resolve DNS from the virtual network
 
@@ -111,21 +111,21 @@ If you plan to access the resource by using only a private endpoint, you can ski
 > [!NOTE]
 > The resolved IP address points to a virtual network proxy endpoint, which dispatches the network traffic to the private endpoint for the Speech resource. The behavior will be different for a resource with a custom domain name but *without* private endpoints. See [this section](#dns-configuration) for details.
 
-## Adjust an application to use an AI Foundry resource for Speech with a private endpoint
+## Adjust an application to use a Foundry resource for Speech with a private endpoint
 
-an AI Foundry resource for Speech with a custom domain interacts with the Speech service in a different way.
+A Foundry resource for Speech with a custom domain interacts with the Speech service in a different way.
 This is true for a custom-domain-enabled Speech resource both with and without private endpoints.
 Information in this section applies to both scenarios.
 
-Follow instructions in this section to adjust existing applications and solutions to use an AI Foundry resource for Speech with a custom domain name and a private endpoint turned on.
+Follow instructions in this section to adjust existing applications and solutions to use a Foundry resource for Speech with a custom domain name and a private endpoint turned on.
 
-an AI Foundry resource for Speech with a custom domain name and a private endpoint turned on uses a different way to interact with the Speech service. This section explains how to use such a resource with the Speech service REST APIs and the [Speech SDK](speech-sdk.md).
+A Foundry resource for Speech with a custom domain name and a private endpoint turned on uses a different way to interact with the Speech service. This section explains how to use such a resource with the Speech service REST APIs and the [Speech SDK](speech-sdk.md).
 
 > [!NOTE]
-> an AI Foundry resource for Speech without private endpoints that uses a custom domain name also has a special way of interacting with the Speech service.
-> This way differs from the scenario of an AI Foundry resource for Speech that uses a private endpoint.
+> A Foundry resource for Speech without private endpoints that uses a custom domain name also has a special way of interacting with the Speech service.
+> This way differs from the scenario of a Foundry resource for Speech that uses a private endpoint.
 > This is important to consider because you may decide to remove private endpoints later.
-> See [Adjust an application to use an AI Foundry resource for Speech without private endpoints](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-without-private-endpoints) later in this article.
+> See [Adjust an application to use a Foundry resource for Speech without private endpoints](#adjust-an-application-to-use-a-foundry-resource-for-speech-without-private-endpoints) later in this article.
 
 ### Speech resource with a custom domain name and a private endpoint: Usage with the REST APIs
 
@@ -147,7 +147,7 @@ The next subsections describe both cases.
 
 #### Speech to text REST API
 
-Usually, Speech resources use [Azure AI services regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) for communicating with the [Speech to text REST API](rest-speech-to-text.md). These resources have the following naming format: <p/>`{region}.api.cognitive.microsoft.com`.
+Usually, Speech resources use [Foundry Tools regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) for communicating with the [Speech to text REST API](rest-speech-to-text.md). These resources have the following naming format: <p/>`{region}.api.cognitive.microsoft.com`.
 
 This is a sample request URL:
 
@@ -158,7 +158,7 @@ https://westeurope.api.cognitive.microsoft.com/speechtotext/v3.1/transcriptions
 > [!NOTE]
 > See [this article](sovereign-clouds.md) for Azure Government and Microsoft Azure operated by 21Vianet endpoints.
 
-After you turn on a custom domain for an AI Foundry resource for Speech (which is necessary for private endpoints), that resource will use the following DNS name pattern for the basic REST API endpoint: <p/>`{your custom name}.cognitiveservices.azure.com`
+After you turn on a custom domain for a Foundry resource for Speech (which is necessary for private endpoints), that resource will use the following DNS name pattern for the basic REST API endpoint: <p/>`{your custom name}.cognitiveservices.azure.com`
 
 That means that in our example, the REST API endpoint name is: <p/>`my-private-link-speech.cognitiveservices.azure.com`
 
@@ -168,17 +168,17 @@ https://my-private-link-speech.cognitiveservices.azure.com/speechtotext/v3.1/tra
 ```
 This URL should be reachable from the virtual network with the private endpoint attached (provided the [correct DNS resolution](#resolve-dns-from-the-virtual-network)).
 
-After you turn on a custom domain name for an AI Foundry resource for Speech, you typically replace the host name in all request URLs with the new custom domain host name. All other parts of the request (like the path `/speechtotext/v3.1/transcriptions` in the earlier example) remain the same.
+After you turn on a custom domain name for a Foundry resource for Speech, you typically replace the host name in all request URLs with the new custom domain host name. All other parts of the request (like the path `/speechtotext/v3.1/transcriptions` in the earlier example) remain the same.
 
 > [!TIP]
 > Some customers develop applications that use the region part of the regional endpoint's DNS name (for example, to send the request to the Speech resource deployed in the particular Azure region).
 >
-> A custom domain for an AI Foundry resource for Speech contains *no* information about the region where the resource is deployed. So the application logic described earlier will *not* work and needs to be altered.
+> A custom domain for a Foundry resource for Speech contains *no* information about the region where the resource is deployed. So the application logic described earlier will *not* work and needs to be altered.
 
 #### Speech to text REST API for short audio and Text to speech REST API
 
 The [Speech to text REST API for short audio](rest-speech-to-text-short.md) and the [Text to speech REST API](rest-text-to-speech.md) use two types of endpoints:
-- [Azure AI services regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) for communicating with the Azure AI services REST API to obtain an authorization token
+- [Foundry Tools regional endpoints](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) for communicating with the Foundry Tools REST API to obtain an authorization token
 - Special endpoints for all other operations
 
 > [!NOTE]
@@ -231,7 +231,6 @@ All possible values for the region (first element of the DNS name) are listed in
 
 | DNS name value | Speech service offering                                    |
 |----------------|-------------------------------------------------------------|
-| `commands`     | [Custom Commands](custom-commands.md)                       |
 | `s2s`          | [Speech Translation](speech-translation.md)                 |
 | `stt`          | [Speech to text](speech-to-text.md)                         |
 | `tts`          | [Text to speech](text-to-speech.md)                         |
@@ -243,60 +242,18 @@ Private-endpoint-enabled endpoints communicate with Speech service via a special
 
 A "standard" endpoint URL looks like: <p/>`{region}.{speech service offering}.speech.microsoft.com/{URL path}`
 
-A private endpoint URL looks like: <p/>`{your custom name}.cognitiveservices.azure.com/{speech service offering}/{URL path}`
+A private endpoint URL looks like: <p/>`{your custom name}.cognitiveservices.azure.com/{URL path}`
 
-**Example 1.** An application is communicating by using the following URL (speech recognition using the base model for US English in West Europe):
-
-```
-wss://westeurope.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US
-```
-
-To use it in the private-endpoint-enabled scenario when the custom domain name of the Speech resource is `my-private-link-speech.cognitiveservices.azure.com`, you must modify the URL like this:
-
-```
-wss://my-private-link-speech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US
-```
-
-Notice the details:
-
-- The host name `westeurope.stt.speech.microsoft.com` is replaced by the custom domain host name `my-private-link-speech.cognitiveservices.azure.com`.
-- The second element of the original DNS name (`stt`) becomes the first element of the URL path and precedes the original path. So the original URL `/speech/recognition/conversation/cognitiveservices/v1?language=en-US` becomes `/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US`.
-
-**Example 2.** An application uses the following URL to synthesize speech in West Europe:
-```
-wss://westeurope.tts.speech.microsoft.com/cognitiveservices/websocket/v1
-```
-
-The following equivalent URL uses a private endpoint, where the custom domain name of the Speech resource is `my-private-link-speech.cognitiveservices.azure.com`:
-
-```
-wss://my-private-link-speech.cognitiveservices.azure.com/tts/cognitiveservices/websocket/v1
-```
-
-The same principle in Example 1 is applied, but the key element this time is `tts`.
+The Speech SDK automatically will configure the `/{URL path}` depending on the service used.
+Therefore only the `/{baseURL}` must be configured as described.
 
 #### Modifying applications
 
 Follow these steps to modify your code:
 
-1. Determine the application endpoint URL:
+1. Determine the application endpoint URL from the 'Keys and Endpoints' menu of your resource on Azure portal. In this example it would be `my-private-link-speech.cognitiveservices.azure.com`.
 
-   - [Turn on logging for your application](how-to-use-logging.md) and run it to log activity.
-   - In the log file, search for `SPEECH-ConnectionUrl`. In matching lines, the `value` parameter contains the full URL that your application used to reach the Speech service.
-
-   Example:
-
-   ```
-   (114917): 41ms SPX_DBG_TRACE_VERBOSE:  property_bag_impl.cpp:138 ISpxPropertyBagImpl::LogPropertyAndValue: this=0x0000028FE4809D78; name='SPEECH-ConnectionUrl'; value='wss://westeurope.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?traffictype=spx&language=en-US'
-   ```
-
-   So the URL that the application used in this example is:
-
-   ```
-   wss://westeurope.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US
-   ```
-
-2. Create a `SpeechConfig` instance by using a full endpoint URL:
+2. Create a `SpeechConfig` instance by using an endpoint URL:
 
    1. Modify the endpoint that you determined, as described in the earlier [Construct endpoint URL](#construct-endpoint-url) section.
 
@@ -308,9 +265,9 @@ Follow these steps to modify your code:
 
       To make it work, modify how you instantiate the `SpeechConfig` class and use "from endpoint"/"with endpoint" initialization. Suppose we have the following two variables defined:
       - `speechKey` contains the key of the private-endpoint-enabled Speech resource.
-      - `endPoint` contains the full *modified* endpoint URL (using the type required by the corresponding programming language). In our example, this variable should contain:
+      - `endPoint` contains the *modified* endpoint URL (using the type required by the corresponding programming language). In our example, this variable should contain:
         ```
-        wss://my-private-link-speech.cognitiveservices.azure.com/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US
+        wss://my-private-link-speech.cognitiveservices.azure.com
         ```
 
       Create a `SpeechConfig` instance:
@@ -335,27 +292,27 @@ Follow these steps to modify your code:
       config: sdk.SpeechConfig = sdk.SpeechConfig.fromEndpoint(new URL(endPoint), speechKey);
       ```
 
-> [!TIP]
-> The query parameters specified in the endpoint URI are not changed, even if they're set by other APIs. For example, if the recognition language is defined in the URI as query parameter `language=en-US`, and is also set to `ru-RU` via the corresponding property, the language setting in the URI is used. The effective language is then `en-US`.
->
-> Parameters set in the endpoint URI always take precedence. Other APIs can override only parameters that are not specified in the endpoint URI.
-
 After this modification, your application should work with the private-endpoint-enabled Speech resources. We're working on more seamless support of private endpoint scenarios.
+
+### Speech resource with a custom domain name and without private endpoints: Usage with the Speech SDK
+
+Using the Speech SDK with custom-domain-enabled Speech resources *without* private endpoints is equivalent to the configuration described *with* private endpoints in this document.
+
 
 [!INCLUDE [](includes/speech-studio-vnet.md)]
 
 
-## Adjust an application to use an AI Foundry resource for Speech without private endpoints
+## Adjust an application to use a Foundry resource for Speech without private endpoints
 
-In this article, we noted several times that enabling a custom domain for an AI Foundry resource for Speech is irreversible. Such a resource uses a different way of communicating with Speech service, compared to the ones that are using [regional endpoint names](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
+In this article, we noted several times that enabling a custom domain for a Foundry resource for Speech is irreversible. Such a resource uses a different way of communicating with Speech service, compared to the ones that are using [regional endpoint names](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
 
-This section explains how to use an AI Foundry resource for Speech with a custom domain name but without any private endpoints with the Speech service REST APIs and [Speech SDK](speech-sdk.md). This might be a resource that was once used in a private endpoint scenario, but then had its private endpoints deleted.
+This section explains how to use a Foundry resource for Speech with a custom domain name but without any private endpoints with the Speech service REST APIs and [Speech SDK](speech-sdk.md). This might be a resource that was once used in a private endpoint scenario, but then had its private endpoints deleted.
 
 ### DNS configuration
 
-Remember how a custom domain DNS name of the private-endpoint-enabled Speech resource is [resolved from public networks](#resolve-dns-from-other-networks). In this case, the IP address resolved points to a proxy endpoint for a virtual network. That endpoint is used for dispatching the network traffic to the private-endpoint-enabled Azure AI Foundry resource.
+Remember how a custom domain DNS name of the private-endpoint-enabled Speech resource is [resolved from public networks](#resolve-dns-from-other-networks). In this case, the IP address resolved points to a proxy endpoint for a virtual network. That endpoint is used for dispatching the network traffic to the private-endpoint-enabled Microsoft Foundry resource.
 
-However, when *all* resource private endpoints are removed (or right after the enabling of the custom domain name), the CNAME record of the Speech resource is reprovisioned. It now points to the IP address of the corresponding [Azure AI services regional endpoint](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
+However, when *all* resource private endpoints are removed (or right after the enabling of the custom domain name), the CNAME record of the Speech resource is reprovisioned. It now points to the IP address of the corresponding [Foundry Tools regional endpoint](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
 
 So the output of the `nslookup` command looks like this:
 ```dos
@@ -389,22 +346,6 @@ In this case, usage of the Speech to text REST API for short audio and usage of 
 > When you're using the Speech to text REST API for short audio and Text to speech REST API in custom domain scenarios, use an API key passed through the `Ocp-Apim-Subscription-Key` header. (See details for [Speech to text REST API for short audio](rest-speech-to-text-short.md#request-headers) and [Text to speech REST API](rest-text-to-speech.md#request-headers))
 >
 > Using an authorization token and passing it to the special endpoint via the `Authorization` header will work *only* if you've turned on the **All networks** access option in the **Networking** section of your Speech resource. In other cases you will get either `Forbidden` or `BadRequest` error when trying to obtain an authorization token.
-
-### Speech resource with a custom domain name and without private endpoints: Usage with the Speech SDK
-
-Using the Speech SDK with custom-domain-enabled Speech resources *without* private endpoints is equivalent to the general case as described in the [Speech SDK documentation](speech-sdk.md).
-
-In case you have modified your code for using with a [private-endpoint-enabled Speech resource](#speech-resource-with-a-custom-domain-name-and-a-private-endpoint-usage-with-the-speech-sdk), consider the following.
-
-In the section on [private-endpoint-enabled Speech resources](#speech-resource-with-a-custom-domain-name-and-a-private-endpoint-usage-with-the-speech-sdk), we explained how to determine the endpoint URL, modify it, and make it work through "from endpoint"/"with endpoint" initialization of the `SpeechConfig` class instance.
-
-However, if you try to run the same application after having all private endpoints removed (allowing some time for the corresponding DNS record reprovisioning), you'll get an internal service error (404). The reason is that the [DNS record](#dns-configuration) now points to the regional Azure AI services endpoint instead of the virtual network proxy, and the URL paths like `/stt/speech/recognition/conversation/cognitiveservices/v1?language=en-US` isn't found there.
-
-You need to roll back your application to the standard instantiation of `SpeechConfig` in the style of the following code:
-
-```csharp
-var config = SpeechConfig.FromSubscription(speechKey, azureRegion);
-```
 
 [!INCLUDE [](includes/speech-vnet-service-enpoints-private-endpoints-simultaneously.md)]
 

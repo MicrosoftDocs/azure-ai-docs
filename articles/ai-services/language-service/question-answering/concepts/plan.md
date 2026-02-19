@@ -4,8 +4,8 @@ description: Learn how to plan your custom question answering app. Understand ho
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: get-started
+ms.date: 12/15/2025
 ---
 
 # Plan your custom question answering app
@@ -27,17 +27,17 @@ Custom question answering throughput is currently capped at 10 text records per 
 
 ### Language resource
 
-A single language resource with the custom question answering feature enabled can host more than one project. The number of projects is determined by the Azure AI Search pricing tier's quantity of supported indexes. Learn more about the [relationship of indexes to projects](azure-resources.md#index-usage).
+A single language resource with the custom question answering feature enabled can host more than one project. The number of projects is determined via the Azure AI Search pricing tier's quantity of supported indexes. Learn more about the [relationship of indexes to projects](azure-resources.md#index-usage).
 
 ### Project size and throughput
 
-When you build a real app, plan sufficient resources for the size of your project and for your expected query prediction requests.
+When you build a real app, plan sufficient resources for the size of your project and your expected query prediction requests.
 
-A project size is controlled by the:
+Project size control factors:
 * [Azure AI Search resource](/azure/search/search-limits-quotas-capacity) pricing tier limits
 * [Custom question answering limits](./limits.md)
 
-The project query prediction request is controlled by the web app plan and web app. Refer to [recommended settings](azure-resources.md#recommended-settings) to plan your pricing tier.
+The project query prediction request is controlled via the web app plan and web app. Refer to [recommended settings](azure-resources.md#recommended-settings) to plan your pricing tier.
 
 ### Understand the impact of resource selection
 
@@ -53,15 +53,15 @@ A project is directly tied its language resource. It holds the question and answ
 
 ### Language considerations
 
-You can now have projects in different languages within the same language resource where the custom question answering feature is enabled. When you create the first project, you can choose whether you want to use the resource for projects in a single language that will apply to all subsequent projects or make a language selection each time a project is created.
+You can now have projects in different languages within the same language resource where the custom question answering feature is enabled. When you create your first project, you can decide whether to set a single language for all future projects or to select a language each time you start a new one. This choice determines if the resource applies to projects in one language or allow for language selection with each new project.
 
 ### Ingest data sources
 
 Custom question answering also supports unstructured content. You can upload a file that has unstructured content.
 
-Currently we do not support URLs for unstructured content.
+Currently we don't support URLs for unstructured content.
 
-The ingestion process converts supported content types to markdown. All further editing of the *answer* is done with markdown. After you create a project, you can edit QnA pairs in Language Studio with rich text authoring.
+The ingestion process converts supported content types to markdown. All further editing of the *answer* is done with markdown. After you create a project, you can edit QnA pairs with rich text authoring.
 
 ### Data format considerations
 
@@ -71,19 +71,19 @@ Because the final format of a QnA pair is markdown, it's important to understand
 
 Add a bot personality to your project with [chit-chat](../how-to/chit-chat.md). This personality comes through with answers provided in a certain conversational tone such as *professional* and *friendly*. This chit-chat is provided as a conversational set, which you have total control to add, edit, and remove.
 
-A bot personality is recommended if your bot connects to your project. You can choose to use chit-chat in your project even if you also connect to other services, but you should review how the bot service interacts to know if that is the correct architectural design for your use.
+A bot personality is recommended if your bot connects to your project. You can include chit-chat in your project even if you're connecting to other services. However, it's important to review how the bot service interacts with these integrations to ensure this approach fits your overall architectural design.
 
 ### Conversation flow with a project
 
 Conversation flow usually begins with a salutation from a user, such as `Hi` or `Hello`. Your project can answer with a general answer, such as `Hi, how can I help you`, and it can also provide a selection of follow-up prompts to continue the conversation.
 
-You should design your conversational flow with a loop in mind so that a user knows how to use your bot and isn't abandoned by the bot in the conversation. [Follow-up prompts](../tutorials/guided-conversations.md) provide linking between QnA pairs, which allow for the conversational flow.
+Design your conversational flow so that users always know how to interact with your bot and are never left without guidance. By including a loop or clear navigation, you ensure users aren't abandoned during the conversation. [Follow-up prompts](../tutorials/guided-conversations.md) provide linking between QnA pairs, which allow for the conversational flow.
 
 ### Authoring with collaborators
 
 Collaborators may be other developers who share the full development stack of the project application or may be limited to just authoring the project.
 
-project authoring supports several role-based access permissions you apply in the Azure portal to limit the scope of a collaborator's abilities.
+Project authoring supports several role-based access permissions you apply in the Azure portal to limit the scope of a collaborator's abilities.
 
 ## Integration with client applications
 
@@ -95,7 +95,7 @@ To authenticate a client request correctly, the client application must send the
 
 Conversation flow in a client application, such as an Azure bot, may require functionality before and after interacting with the project.
 
-Does your client application support conversation flow, either by providing alternate means to handle follow-up prompts or including chit-chit? If so, design these early and make sure the client application query is handled correctly by another service or when sent to your project.
+Does your client application support conversation flow, either by providing alternate means to handle follow-up prompts or including chit-chit? If so, design these features early and make sure the client application query is handled correctly via another service or when sent to your project.
 
 ### Active learning from a client application
 
@@ -105,7 +105,7 @@ Custom question answering uses _active learning_ to improve your project by sugg
 
 If your project doesn't find an answer, it returns the _default answer_. This answer is configurable on the **Settings** page.
 
-This default answer is different from the Azure bot default answer. You configure the default answer for your Azure bot in the Azure portal as part of configuration settings. It's returned when the score threshold isn't met.
+This default answer is different from the Azure bot default answer. You configure the default answer for your Azure bot in the Azure portal as part of configuration settings. The default answer is then returned when the score threshold isn't met.
 
 ## Prediction
 
@@ -141,7 +141,7 @@ Each pair can contain:
 
 Developing a project to insert into a DevOps pipeline requires that the project is isolated during batch testing.
 
-A project shares the Azure AI Search index with all other projects on the language resource. While the project is isolated by partition, sharing the index can cause a difference in the score when compared to the published project.
+A project shares the Azure AI Search index with all other projects on the language resource. While the project is isolated via a partition, sharing the index can cause a difference in the score when compared to the published project.
 
 To have the _same score_ on the `test` and `production` projects, isolate a language resource to a single project. In this architecture, the resource only needs to live as long as the isolated batch test.
 

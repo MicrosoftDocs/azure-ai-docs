@@ -1,37 +1,104 @@
 ---
-title: Quotas and limits for Azure AI Foundry Agent Service
-titleSuffix: Azure AI Foundry
-description: Learn about the quotas and limits for when you use Azure AI Foundry Agent Service.
+title: Quotas and limits for Foundry Agent Service
+titleSuffix: Microsoft Foundry
+description: Learn the quotas and limits for Foundry Agent Service, including file sizes, vector stores, threads, messages, tools, and how to handle limit errors.
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
-ms.topic: conceptual
-ms.date: 05/29/2025
-ms.custom: azure-ai-agents
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.topic: concept-article
+ms.date: 02/02/2026
+ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
-# Azure AI Foundry Agent Service quotas and limits
+# Foundry Agent Service quotas and limits
 
-This article contains a reference and a detailed description of the quotas and limits for Azure AI Foundry Agent Service.
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
-## Quotas and limits for the Azure AI Foundry Agent Service
+This article describes the quotas and limits for Foundry Agent Service. Understanding these limits helps you design agents that scale reliably and avoid runtime errors in production.
 
-The following sections provide you with a guide to the default quotas and limits that apply to Azure AI Foundry Agent Service:
+## How quotas and limits apply
 
-| Limit Name | Limit Value |
-|--|--|
-| Max files per agent/thread | 10,000 |
-| Max file size for agents & fine-tuning | 512 MB |
-| Max size for all uploaded files for agents |200 GB |  
-| agents token limit | 2,000,000 token limit |
+Foundry Agent Service enforces limits in two places:
 
-The 2,000,000 agent limit refers to the maximum number of distinct Agent resources that can be created within a single Azure subscription per region. It does not apply to threads or token usage.
+- **Agent Service limits**. Limits for agent and thread artifacts, such as file uploads, vector store attachments, message counts, and tool registration.
+- **Model limits**. Quotas and rate limits for the model deployments your agents call.
 
-## Quotas and limits for Azure OpenAI models
+If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md). If you're using file search, see [Vector stores for file search](../default/agents/concepts/vector-stores.md?view=foundry&preserve-view=true).
 
-See the [Azure OpenAI](../../ai-services/openai/quotas-limits.md) for current quotas and limits for the Azure OpenAI models that you can use with Azure AI Foundry Agent Service. 
+## Default quotas and limits for the service
 
-## Next steps
+The following table lists default limits enforced by the Agent Service. These limits apply to all Foundry projects regardless of subscription type or region.
 
-[Learn about the models available for Azure AI Foundry Agent Service](concepts\model-region-support.md)
+| Limit name | Limit value |
+| --- | --- |
+| Maximum number of files per agent/thread | 10,000 |
+| Maximum file size for agents | 512 MB |
+| Maximum size for all uploaded files for agents | 300 GB |
+| Maximum file size in tokens for attaching to a vector store | 2,000,000 tokens |
+| Maximum number of messages per thread | 100,000 |
+| Maximum size of `text` content per message | 1,500,000 characters |
+| Maximum number of tools registered per agent | 128 |
+
+Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../openai/quotas-limits.md) for model-specific rate limits.
+
+## Handle limit errors
+
+When you exceed a limit, the Agent Service returns an error. Handle these errors gracefully in your application.
+
+| Error scenario | HTTP status | Error code | Recommended action |
+| --- | --- | --- | --- |
+| File too large | 400 | `file_size_exceeded` | Split content into smaller files |
+| Vector store token limit | 400 | `token_limit_exceeded` | Reduce file content or split files |
+| Thread message cap | 400 | `message_limit_exceeded` | Create a new thread |
+| Message content too large | 400 | `content_size_exceeded` | Use file search for large content |
+| Too many tools | 400 | `tool_limit_exceeded` | Remove unused tools |
+| Rate limit exceeded | 429 | `rate_limit_exceeded` | Implement exponential backoff |
+
+For example:
+
+- **File exceeds the maximum size**: Uploading the file fails. Split the content into smaller files or reduce file size before you upload.
+- **Vector store token limit**: Attaching a file to a vector store fails if the file exceeds the token limit. Reduce the file content or split it into multiple files.
+- **Thread message cap**: Adding messages can fail after a thread reaches the message limit. Create a new thread for a new conversation session, or archive and rotate threads as part of your application design.
+- **Message content size**: Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
+- **Tool registration cap**: Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
+
+For file search scenarios, see [Vector stores for file search](../default/agents/concepts/vector-stores.md?view=foundry&preserve-view=true) for guidance on managing vector store growth.
+
+## Best practices to stay within limits
+
+Use the following practices to reduce limit-related failures:
+
+- **Keep files small and focused**. Prefer multiple smaller documents over a single large document.
+- **Avoid very large messages**. Put long content in uploaded files and query it by using file search.
+- **Plan for long conversations**. Treat threads as session state and rotate to new threads when conversations become very long.
+- **Register only required tools**. Remove unused tools from agent definitions.
+- **Monitor usage trends**. Track agent activity using [Foundry Agent Service metrics](how-to/metrics.md) to identify growth before you hit limits.
+
+## Quotas and limits for models
+
+Agents follow the quotas and rate limits for the model deployments they use.
+
+For current model quotas and limits, see:
+
+- [Azure OpenAI quotas and limits](../openai/quotas-limits.md).
+- [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md).
+
+To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../how-to/quota.md).
+
+## Request a limit increase
+
+The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
+
+- **Model quotas**: You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../how-to/quota.md).
+- **Agent Service limits**: The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints using the best practices described earlier.
+
+## Related content
+
+- [Supported models in Foundry Agent Service](concepts/model-region-support.md)
+- [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md)
+- [Monitor Foundry Agent Service](how-to/metrics.md)
+- [Vector stores for file search](../default/agents/concepts/vector-stores.md?view=foundry&preserve-view=true)

@@ -2,10 +2,10 @@
 title: Precise answering using answer span detection - custom question answering
 description: Understand Precise answering feature available in custom question answering.
 ms.service: azure-ai-language
-ms.topic: conceptual
+ms.topic: feature-guide
 author: laujan
 ms.author: lajanuar
-ms.date: 11/21/2024
+ms.date: 12/15/2025
 ms.custom: language-service-question-answering
 ---
 
@@ -17,9 +17,9 @@ This feature is beneficial for both content developers as well as end users. Now
 
 ## Precise answering via the portal
 
-In the [Language Studio portal](https://aka.ms/languageStudio), when you open the test pane, you will see an option to **Include short answer response** on the top above show advanced options.
+When you open the test pane, you can see an option to **Include short answer response** on the top above show advanced options.
 
-When you enter a query in the test pane, you will see a short-answer along with the answer passage, if there is a short answer present in the answer passage.
+When you enter a query in the test pane, you can see a short-answer along with the answer passage, if there is a short answer present in the answer passage.
 
 >[!div class="mx-imgBorder"]
 >[![Screenshot of test pane with short answer checked and a question containing a short answer response.](../media/precise-answering/short-answer.png)](../media/precise-answering/short-answer.png#lightbox)
@@ -33,4 +33,4 @@ The service also returns back the confidence score of the precise answer as an *
 
 ## Deploying a bot
 
-When you publish a bot, you get the precise answer enabled experience by default in your application, where you will see short answer along with the answer passage. Refer to the API reference for REST API to see how to use the precise answer (called AnswerSpan) in the response. User has the flexibility to choose other experiences by updating the template through the Bot app service.
+When you publish a bot, you get the precise answer enabled experience by default in your application, where you can see short answer along with the answer passage. Refer to the API reference for REST API to see how to use the precise answer (called AnswerSpan) in the response. User has the flexibility to choose other experiences by updating the template through the Bot app service.

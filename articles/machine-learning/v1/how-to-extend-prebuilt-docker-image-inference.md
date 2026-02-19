@@ -5,11 +5,11 @@ description: 'Extend Prebuilt docker images in Azure Machine Learning'
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 03/07/2025
 ms.topic: how-to
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.custom: UpdateFrequency5, deploy, docker, prebuilt
 ---
 

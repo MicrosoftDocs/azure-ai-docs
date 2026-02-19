@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.custom: devx-track-python
-author: fbsolo-ms1
-ms.author: franksolomon
-ms.reviewer: franksolomon
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: soumyapatro
 ms.date: 08/01/2024
 ms.topic: how-to
 monikerRange: 'azureml-api-2 || azureml-api-1'

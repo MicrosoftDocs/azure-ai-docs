@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: concept-article
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: namanjoshi
 ms.date: 05/12/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'
@@ -44,7 +44,7 @@ Project workspaces that are created using a hub obtain the hub's security settin
 | Network settings | One [managed virtual network](how-to-managed-network.md) is shared between hub and project workspaces. To access content in the hub and project workspaces, create a single private link endpoint on the hub workspace. |
 | Encryption settings | Encryption settings pass down from hub to project. |
 | Storage for encrypted data | When you bring your customer-managed keys for encryption, hub and project workspaces share the same managed resource group for storing encrypted service data. |
-| Connections | Project workspaces can consume shared connections created on the hub. This feature is currently only supported in [Azure AI Foundry]()  |
+| Connections | Project workspaces can consume shared connections created on the hub. This feature is currently only supported in [Microsoft Foundry]()  |
 | Compute instance | Reuse a compute instance across all project workspaces associated to the same hub. |
 | Compute quota | Any compute quota consumed by project workspaces is deducted from the hub workspace quota balance. |
 | Storage | Associated resource for storing workspace data. Project workspaces use designated containers starting with a prefix {workspaceGUID}, and have a conditional [Azure Attribute Based Access](/azure/role-based-access-control/conditions-overview) role assignment for the workspace identity for accessing these containers only. |
@@ -59,7 +59,7 @@ Data that is uploaded in one project workspace, is stored in isolation from data
 Once a hub is created, there are multiple ways to create a project workspace using it:
 
 1. [Using ML Studio](how-to-manage-workspace.md?tabs=mlstudio)
-1. [Using Azure AI Foundry](/azure/ai-studio/how-to/create-projects)
+1. [Using Foundry](/azure/ai-studio/how-to/create-projects)
 2. [Using Azure SDK](how-to-manage-workspace.md?tabs=python)
 4. [Using automation templates](how-to-create-workspace-template.md)
 5. [Using Azure CLI](/cli/azure/ml/workspace)
@@ -84,11 +84,11 @@ Features that are supported using hub/project workspaces differ from regular wor
 | Feature | Default workspace | Hub workspace | Project workspace | Note |
 |--|--|--|--|--|
 |Self-serve create project workspaces from Studio| - | X | X | - |
-|Create shared connections on hub | |X|X| Only in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) |
+|Create shared connections on hub | |X|X| Only in [Foundry portal](https://ai.azure.com/?cid=learnDocs) |
 |Consume shared connections from hub | |X|X| - |
 |Reuse compute instance across workspaces|-|X|X| |
 |Share compute quota across workspaces|-|X|X||
-|Build GenAI apps in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)|-|X|X||
+|Build GenAI apps in [Foundry portal](https://ai.azure.com/?cid=learnDocs)|-|X|X||
 |Single private link endpoint across workspaces|-|X|X||
 |Managed virtual network|X|X|X|-|
 |BYO virtual network|X|-|-|Use alternative [managed virtual network](how-to-managed-network.md)|
@@ -109,6 +109,6 @@ To learn more about setting up Azure Machine Learning, see:
 + [Create and manage a workspace](how-to-manage-workspace.md)
 + [Get started with Azure Machine Learning](quickstart-create-resources.md)
 
-To learn more about hub workspace support in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), see:
+To learn more about hub workspace support in [Foundry portal](https://ai.azure.com/?cid=learnDocs), see:
 
 + [How to configure a managed network for hubs](/azure/ai-studio/how-to/configure-managed-network)

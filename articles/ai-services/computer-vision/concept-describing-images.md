@@ -1,21 +1,19 @@
 ---
-title: Image descriptions - Azure AI Vision
-titleSuffix: Azure AI services
-description: Concepts related to the image description feature of the Azure AI Vision API.
+title: Image descriptions - Azure Vision in Foundry Tools
+titleSuffix: Foundry Tools
+description: Concepts related to the image description feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
-ms.date: 09/25/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.topic: concept-article
+ms.date: 09/26/2025
 ms.author: pafarley
 ---
 
 # Image descriptions
 
-Azure AI Vision can analyze an image and generate a human-readable phrase that describes its contents. The service returns several descriptions based on different visual features, and each description is given a confidence score. The final output is a list of descriptions ordered from highest to lowest confidence.
+Azure Vision in Foundry Tools can analyze an image and generate a human-readable phrase that describes its contents. The service returns several descriptions based on different visual features, and each description is given a confidence score. The final output is a list of descriptions ordered from highest to lowest confidence.
 
 English is the only supported language for image descriptions.
 
@@ -57,10 +55,10 @@ The following JSON response illustrates what the Analyze Image API returns when 
 
 ## Use the API
 
-The image description feature is part of the [Analyze Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API. You can call this API through a native SDK or through REST calls. Include `Description` in the **visualFeatures** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"description"` section.
+The image description feature is part of the [Analyze Image](/rest/api/computervision/analyze-image) API. You can call this API through a native SDK or through REST calls. Include `Description` in the **visualFeatures** query parameter. Then, when you get the full JSON response, parse the string for the contents of the `"description"` section.
 
 * [Quickstart: Image Analysis REST API or client libraries](./quickstarts-sdk/image-analysis-client-library.md?pivots=programming-language-csharp)
 
-## Next steps
+## Related content
 
 Learn the related concepts of [tagging images](concept-tagging-images.md) and [categorizing images](concept-categorizing-images.md).

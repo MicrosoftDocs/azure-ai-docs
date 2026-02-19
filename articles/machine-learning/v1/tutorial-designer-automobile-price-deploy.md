@@ -10,7 +10,10 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: tutorial
 ms.date: 06/09/2025
-ms.custom: UpdateFrequency5, designer
+ms.custom:
+  - UpdateFrequency5
+  - designer
+  - sfi-image-nochange
 ---
 
 # Tutorial: Deploy a machine learning model using designer

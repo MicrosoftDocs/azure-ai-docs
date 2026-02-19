@@ -11,8 +11,9 @@ ms.custom:
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
+ms.reviewer: sooryar
 ms.date: 11/02/2023
+ms.update-cycle: 365-days
 ---
 
 # SerpAPI tool

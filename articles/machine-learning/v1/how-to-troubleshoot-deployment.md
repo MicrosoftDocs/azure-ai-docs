@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.date: 03/10/2025
-author: Blackmist
-ms.author: larryfr
-ms.reviewer: sehan
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.topic: troubleshooting
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 #Customer intent: As a data scientist, I want to figure out why my model deployment fails so that I can fix it.
@@ -32,7 +32,7 @@ Learn how to troubleshoot and solve, or work around, common errors you might enc
 
 ## Prerequisites
 
-* An **Azure subscription**. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An **Azure subscription**. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The [Azure Machine Learning SDK](/python/api/overview/azure/ml/install).
 * The [Azure CLI](/cli/azure/install-azure-cli).
 * The [CLI extension v1 for Azure Machine Learning](reference-azure-machine-learning-cli.md).

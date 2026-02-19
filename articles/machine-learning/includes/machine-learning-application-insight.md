@@ -3,7 +3,7 @@ author: nibaccam
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 > [!TIP]

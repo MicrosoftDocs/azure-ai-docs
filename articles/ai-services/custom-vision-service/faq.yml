@@ -1,8 +1,8 @@
 ### YamlMime:FAQ
 metadata:
   title: "Frequently asked questions - Custom Vision"
-  titleSuffix: Azure AI services
-  description: Get answers to frequently asked questions about the Custom Vision Service in Azure AI services.
+  titleSuffix: Foundry Tools
+  description: Get answers to frequently asked questions about the Custom Vision Service in Foundry Tools.
   author: PatrickFarley
   manager: nitinme
   ms.service: azure-ai-custom-vision
@@ -13,7 +13,7 @@ metadata:
 title: Custom Vision frequently asked questions
 summary: |
   > [!TIP]
-  > If you can't find answers to your questions in this FAQ, ask the Azure AI Vision API community on [Stack Overflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858).
+  > If you can't find answers to your questions in this FAQ, ask the Azure Vision in Foundry Tools API community on [Stack Overflow](https://stackoverflow.com/questions/tagged/project-oxford+or+microsoft-cognitive) or contact Help and Support on [UserVoice](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858).
   
   
 sections:
@@ -67,7 +67,7 @@ sections:
       - question: |
           What is the difference between Custom Vision and AutoML?
         answer: |
-          Custom Vision is a tool for easily building Azure AI Vision models without needing to have any data science or ML knowledge. These models are pre-trained using datasets optimized for specific domains.
+          Custom Vision is a tool for easily building Azure Vision in Foundry Tools models without needing to have any data science or ML knowledge. These models are pre-trained using datasets optimized for specific domains.
 
           Sometimes, your scenario might require more control over model training, deployment, and the end-to-end ML lifecycle. AutoML is the ideal solution when you need this extra control, and it's addressed to customers with ML knowledge.
 

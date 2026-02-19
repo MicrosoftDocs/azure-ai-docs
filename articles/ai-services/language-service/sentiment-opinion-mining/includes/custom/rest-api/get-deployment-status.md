@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 Use the following **GET** request to query the status of the deployment job. You can use the URL you received from the previous step, or replace the placeholder values with your own values. 
 
 ```rest
@@ -18,8 +17,8 @@ Use the following **GET** request to query the status of the deployment job. You
 | `{ENDPOINT}` | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 | `{PROJECT-NAME}` | The name of your project. This value is case-sensitive.   | `myProject` |
 | `{DEPLOYMENT-NAME}`     | The name of your deployment. This value is case-sensitive.  | `staging` |
-|`{JOB-ID}`     | The ID for locating your model's training status. This is in the `location` header value you received in the previous step.  | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx` |
-|`{API-VERSION}`     | The version of the API you're calling. The value referenced here is for the latest version released. See [Model lifecycle](../../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.  | `2023-04-15-preview` |
+|`{JOB-ID}`     | The ID for locating your model's training status. It's in the `location` header value you received in the previous step.  | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx` |
+|`{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest version released. See [Model lifecycle](../../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.  | `2023-04-15-preview` |
 
 #### Headers
 

@@ -1,8 +1,8 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 The Speech service phone set for `zh-TW` is based on the native phone <a href="https://zh.wikipedia.org/wiki/%E6%B3%A8%E9%9F%B3%E7%AC%A6%E8%99%9F" target="_blank">Bopomofo </a> set.

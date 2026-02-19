@@ -2,31 +2,28 @@
 title: Semantic ranking
 titleSuffix: Azure AI Search
 description: Learn how Azure AI Search uses deep learning semantic ranking models from Bing to make search results more intuitive.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 06/10/2025
+ms.date: 01/15/2026
 ---
 
 # Semantic ranking in Azure AI Search
 
-In Azure AI Search, *semantic ranker* is a feature that measurably improves search relevance by using Microsoft's language understanding models to rerank search results. This article is a high-level introduction to help you understand the behaviors and benefits of semantic ranker.
+In Azure AI Search, *semantic ranker* is a feature that measurably improves search relevance by using Microsoft's language understanding models to rerank search results. Semantic ranker is also built into [agentic retrieval](agentic-retrieval-overview.md). This article is a high-level introduction to help you understand the behaviors and benefits of semantic ranker.
 
-Semantic ranker is a premium feature, billed by usage. We recommend this article for background, but if you'd rather get started, [follow these steps](#how-to-get-started-with-semantic-ranker).
-
-> [!NOTE]
-> Semantic ranker doesn't use generative AI or vectors for secondary level 2 (L2) ranking. If you're looking for vectors and similarity search, see [Vector search in Azure AI Search](vector-search-overview.md).
+Semantic ranker is a premium feature that's billed by usage, but you can use it for free subject to [service limits](/azure/search/search-limits-quotas-capacity#index-limits) for the free tier. We recommend this article for background, but if you'd rather get started, [follow these steps](#how-to-get-started-with-semantic-ranker).
 
 ## What is semantic ranking?
 
 Semantic ranker is a collection of query-side capabilities that improve the quality of an initial [BM25-ranked](index-similarity-and-scoring.md) or [RRF-ranked](hybrid-search-ranking.md) search result for text-based queries, the text portion of vector queries, and hybrid queries. Semantic ranking extends the query execution pipeline in three ways:
 
-* First, it always adds secondary ranking over an initial result set that was scored using BM25 or Reciprocal Rank Fusion (RRF). This secondary ranking uses multi-lingual, deep learning models adapted from Microsoft Bing to promote the most semantically relevant results.
+* First, it always adds secondary ranking over an initial result set that was scored using BM25 or Reciprocal Rank Fusion (RRF). This secondary ranking uses multilingual, deep learning models adapted from Microsoft Bing to promote the most semantically relevant results.
 
 * Second, it returns captions and optionally extracts answers in the response, which you can render on a search page to improve the user's search experience.
 
@@ -45,29 +42,29 @@ Here are the capabilities of the semantic reranker.
 
 ## How semantic ranker works
 
-Semantic ranker feeds a query and results to language understanding models hosted by Microsoft and scans for better matches. 
+Semantic ranker takes a query and results, then sends them to language understanding models hosted by Microsoft. It scans for better matches. 
 
-The following illustration explains the concept. Consider the term "capital". It has different meanings depending on whether the context is finance, law, geography, or grammar. Through language understanding, the semantic ranker can detect context and promote results that fit query intent.
+The following illustration explains the concept. Consider the term "capital". It has different meanings depending on whether the context is finance, law, geography, or grammar. Through language understanding, the semantic ranker detects context and promotes results that fit query intent.
 
 :::image type="content" source="media/semantic-search-overview/semantic-vector-representation.png" alt-text="Illustration of vector representation for context." border="true":::
 
-Semantic ranking is both resource and time intensive. In order to complete processing within the expected latency of a query operation, inputs to the semantic ranker are consolidated and reduced so that the reranking step can be completed as quickly as possible.
+Semantic ranking uses a lot of resources and time. To finish processing within the expected latency of a query operation, the system consolidates and reduces inputs to the semantic ranker. This approach helps complete the reranking step as quickly as possible.
 
-There are three steps to semantic ranking:
+Semantic ranking has three steps:
 
-* Collect and summarize inputs
-* Score results using the semantic ranker
-* Output rescored results, captions, and answers
+1. Collect and summarize inputs
+1. Score results by using the semantic ranker
+1. Output rescored results, captions, and answers
 
-### How inputs are collected and summarized
+### How the system collects and summarizes inputs
 
 In semantic ranking, the query subsystem passes search results as an input to summarization and ranking models. Because the ranking models have input size constraints and are processing intensive, search results must be sized and structured (summarized) for efficient handling.
 
-1. Semantic ranker starts with a [BM25-ranked result](index-ranking-similarity.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. Only text is used in the reranking exercise, and only the top 50 results progress to semantic ranking, even if results include more than 50. Typically, fields used in semantic ranking are informational and descriptive.
+1. The semantic ranker starts with a [BM25-ranked result](index-ranking-similarity.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. The reranking exercise uses only text. Even if results include more than 50 results, only the top 50 results progress to semantic ranking. Typically, semantic ranking uses informational and descriptive fields.
 
-1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. Inputs are assembled from the "title", "keyword", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
+1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. The model assembles inputs from the "title", "keyword", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
 
-1. Excessively long strings are trimmed to ensure the overall length meets the input requirements of the summarization step. This trimming exercise is why it's important to add fields to your semantic configuration in priority order. If you have very large documents with text-heavy fields, anything after the maximum limit is ignored.
+1. The system trims excessively long strings to ensure the overall length meets the input requirements of the summarization step. This trimming exercise is why it's important to add fields to your semantic configuration in priority order. If you have very large documents with text-heavy fields, the system ignores anything after the maximum limit.
 
    | Semantic field | Token limit |
    |-----------|-------------|
@@ -75,17 +72,17 @@ In semantic ranking, the query subsystem passes search results as an input to su
    | "keywords | 128 tokens |
    | "content" | remaining tokens |
 
-1. Summarization output is a summary string for each document, composed of the most relevant information from each field. Summary strings are sent to the ranker for scoring, and to machine reading comprehension models for captions and answers.
+1. The summarization output is a summary string for each document, composed of the most relevant information from each field. The system sends summary strings to the ranker for scoring, and to machine reading comprehension models for captions and answers.
 
    As of November 2024, the maximum length of each generated summary string passed to the semantic ranker is 2,048 tokens. Previously, it was 256 tokens.
 
-### How ranking is scored
+## How results are scored
 
-Scoring is done over the caption, and any other content from the summary string that fills out the 2,048 token length.
+The system scores results based on the caption and any other content from the summary string that fills out the 2,048 token length.
 
-1. Captions are evaluated for conceptual and semantic relevance, relative to the query provided.
+1. The system evaluates captions for conceptual and semantic relevance, relative to the query you provide.
 
-1. A **@search.rerankerScore** is assigned to each document based on the semantic relevance of the document for the given query. Scores range from 4 to 0 (high to low), where a higher score indicates higher relevance.
+1. The system assigns a **@search.rerankerScore** to each document based on the semantic relevance of the document for the given query. Scores range from 4 to 0 (high to low), where a higher score indicates higher relevance.
 
    | Score | Meaning |
    |-------|---------|
@@ -95,16 +92,16 @@ Scoring is done over the caption, and any other content from the summary string 
    | 1.0   | The document is related to the question, and it answers a small part of it. |
    | 0.0   | The document is irrelevant. |
 
-1. Matches are listed in descending order by score and included in the query response payload. The payload includes answers, plain text and highlighted captions, and any fields that you marked as retrievable or specified in a select clause.
+1. The system lists matches in descending order by score and includes them in the query response payload. The payload includes answers, plain text and highlighted captions, and any fields that you marked as retrievable or specified in a select clause.
 
 > [!NOTE]
-> For any given query, the distributions of **@search.rerankerScore** can exhibit slight variations due to conditions at the infrastructure level. Ranking model updates have also been known to affect the distribution. For these reasons, if you're writing custom code for minimum thresholds, or [setting the threshold property](vector-search-how-to-query.md#set-thresholds-to-exclude-low-scoring-results-preview) for vector and hybrid queries, don't make the limits too granular.
+> For any given query, the distributions of **@search.rerankerScore** can exhibit slight variations due to conditions at the infrastructure level. Ranking model updates can also affect the distribution. For these reasons, if you're writing custom code for minimum thresholds or [setting the threshold property](vector-search-how-to-query.md#set-thresholds-to-exclude-low-scoring-results-preview) for vector and hybrid queries, don't make the limits too granular.
 
 ### Outputs of semantic ranker
 
 From each summary string, the machine reading comprehension models find passages that are the most representative.
 
-Outputs are:
+The outputs are:
 
 * A [semantic caption](semantic-how-to-query-request.md) for the document. Each caption is available in a plain text version and a highlight version, and is frequently fewer than 200 words per document.
 
@@ -118,9 +115,9 @@ What semantic ranker *can* do:
 
 * Promote matches that are semantically closer to the intent of original query.
 
-* Find strings to use as captions and answers. Captions and answers are returned in the response and can be rendered on a search results page.
+* Find strings to use as captions and answers. The response returns captions and answers, which you can render on a search results page.
 
-What semantic ranker *can't* do is rerun the query over the entire corpus to find semantically relevant results. Semantic ranking reranks the existing result set, consisting of the top 50 results as scored by the default ranking algorithm. Furthermore, semantic ranker can't create new information or strings. Captions and answers are extracted verbatim from your content so if the results don't include answer-like text, the language models won't produce one.
+What semantic ranker *can't* do is rerun the query over the entire corpus to find semantically relevant results. Semantic ranking reranks the existing result set, consisting of the top 50 results as scored by the default ranking algorithm. Furthermore, semantic ranker can't create new information or strings. The language models extract captions and answers verbatim from your content, so if the results don't include answer-like text, they won't produce one.
 
 Although semantic ranking isn't beneficial in every scenario, certain content can benefit significantly from its capabilities. The language models in semantic ranker work best on searchable content that is information-rich and structured as prose. A knowledge base, online documentation, or documents that contain descriptive content see the most gains from semantic ranker capabilities.
 
@@ -130,32 +127,32 @@ The following video provides an overview of the capabilities.
 
 > [!VIDEO https://www.youtube.com/embed/yOf0WfVd_V0]
 
-
 ## How semantic ranker uses synonym maps
 
-If you have already enabled support for [synonym maps associated to a field](search-synonyms.md#assign-synonyms-to-fields) in your search index, and that field is included in the [semantic ranker configuration](semantic-how-to-configure.md), the semantic ranker will automatically apply the configured synonyms during the reranking process.
-
+If you enable support for [synonym maps associated to a field](search-synonyms.md#assign-synonyms-to-fields) in your search index, and include that field in the [semantic ranker configuration](semantic-how-to-configure.md), the semantic ranker automatically applies the configured synonyms during the reranking process.
 
 ## Availability and pricing
 
-Semantic ranker is available on search services at the Basic and higher tiers, subject to [regional availability](search-region-support.md).
+Semantic ranker is available [in selected regions](search-region-support.md). Use it as a standalone feature and as a built-in component of [agentic retrieval](agentic-retrieval-overview.md).
 
-When you configure semantic ranker, choose a pricing plan for the feature:
+You can disable semantic ranker for your search service, use it on a limited basis for free, or use it more expansively with pay-as-you-go billing:
 
-* At lower query volumes (under 1,000 monthly), semantic ranking is free.
-* At higher query volumes, choose the standard pricing plan.
+| Plan | Description |
+|------|-------------|
+| Free | A free tier search service provides 1,000 semantic ranker requests per month and 50 million free agentic reasoning tokens per month. Higher tiers can also use the free plan. |
+| Standard | The standard plan is pay-as-you-go pricing once the monthly free quota is consumed. After the first 1,000 semantic ranker requests, you pay for each additional 1,000 requests. After the first 50 million agentic reasoning tokens per month, you pay a nominal fee for each one million agentic reasoning tokens. The transition from Free to Standard is seamless. You aren't notified when the transition occurs. For more information about charges by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search). |
 
 The [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/) shows you the billing rate for different currencies and intervals.
 
-Charges for semantic ranker are levied when query requests include `queryType=semantic` and the search string isn't empty (for example, `search=pet friendly hotels in New York`). If your search string is empty (`search=*`), you aren't charged, even if the queryType is set to semantic.
+Charges for semantic ranker occur when query requests include `queryType=semantic` and the search string isn't empty (for example, `search=pet friendly hotels in New York`). If your search string is empty (`search=*`), you aren't charged, even if the queryType is set to semantic.
 
 ## How to get started with semantic ranker
 
 1. [Check regional availability](search-region-support.md).
 
-1. [Sign in to Azure portal](https://portal.azure.com) to verify your search service is Basic or higher.
+1. [Sign in to Azure portal](https://portal.azure.com).
 
-1. [Configure semantic ranker for the search service, choosing a pricing plan](semantic-how-to-enable-disable.md).
+1. [Configure semantic ranker for the search service, choosing a pricing plan](semantic-how-to-enable-disable.md). The free plan is the default.
 
 1. [Configure semantic ranker in a search index](semantic-how-to-configure.md).
 

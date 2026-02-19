@@ -1,36 +1,35 @@
 ---
 title: Prebuilt API - custom question answering
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use the custom question answering Prebuilt API to ask and receive answers to questions without having to create a project. 
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ---
-
 # Prebuilt API
 
-The custom question answering **prebuilt API** provides you the capability to answer questions based on a passage of text without having to create projects, maintain question and answer pairs, or incurring costs for underutilized infrastructure. This functionality is provided as an API and can be used to meet question and answering needs without having to learn the details about custom question answering.
+The custom question answering **prebuilt API** provides you with the capability to answer questions based on a passage of text without having to create projects, maintain question and answer pairs, or incurring costs for underutilized infrastructure. This functionality is provided as an API and can be used to meet question and answering needs without having to learn the details about custom question answering.
 
-Given a user query and a block of text/passage the API will return an answer and precise answer (if available).
+Given a user query and a block of text/passage the API returns an answer and precise answer (if available).
 
 ## Example API usage
 
-Imagine that you have one or more blocks of text from which you would like to get answers for a given question. Normally you would have had to create as many sources as the number of blocks of text. However, now with the prebuilt API you can query the blocks of text without having to define content sources in a project.
+Imagine that you have one or more blocks of text from which you would like to get answers for a given question. Normally you have to create as many sources as the number of blocks of text. However, now with the prebuilt API you can query the blocks of text without having to define content sources in a project.
 
 Some other scenarios where this API can be used are:
 
-* You are developing an ebook reader app for end users, which allows them to highlight text, enter a question and find answers over a highlighted passage of text.
+* You're developing an ebook reader app for end users, which allows them to highlight text, enter a question and find answers over a highlighted passage of text.
 * A browser extension that allows users to ask a question over the content being currently displayed on the browser page.
 * A health bot that takes queries from users and provides answers based on the medical content that the bot identifies as most relevant to the user query.
 
-Below is an example of a sample request:
+Here's an example of a sample request:
 
 ## Sample request
 
 ```
-POST https://{Unique-to-your-endpoint}.api.cognitive.microsoft.com/language/:query-text
+POST https://{Unique-to-your-endpoint}.cognitiveservices.azure.com/language/:query-text
 ```
 
 ### Sample query over a single block of text
@@ -50,7 +49,7 @@ Request Body
       "records": [
         {
           "id": "1",
-          "text": "Power and charging. It takes two to four hours to charge the Surface Pro 4 battery fully from an empty state. It can take longer if you’re using your Surface for power-intensive activities like gaming or video streaming while you’re charging it."
+          "text": "Power and charging. It takes two to four hours to charge the Surface Pro 4 battery fully from an empty state. It can take longer if you're using your Surface for power-intensive activities like gaming or video streaming while you're charging it."
         },
         {
           "id": "2",
@@ -65,7 +64,7 @@ Request Body
 
 ## Sample response
 
-In the above request body, we query over a single block of text. A sample response received for the above query is shown below,
+In the request body, we query over a single block of text. Here's a sample response received for the query:
 
 ```json
 {
@@ -75,7 +74,7 @@ In the above request body, we query over a single block of text. A sample respon
       "body": {
         "answers": [
           {
-            "answer": "Power and charging. It takes two to four hours to charge the Surface Pro 4 battery fully from an empty state. It can take longer if you’re using your Surface for power-intensive activities like gaming or video streaming while you’re charging it.",
+            "answer": "Power and charging. It takes two to four hours to charge the Surface Pro 4 battery fully from an empty state. It can take longer if you're using your Surface for power-intensive activities like gaming or video streaming while you're charging it.",
             "confidenceScore": 0.93,
             "id": "1",
             "answerSpan": {
@@ -88,7 +87,7 @@ In the above request body, we query over a single block of text. A sample respon
             "length": 224
           },
           {
-            "answer": "It takes two to four hours to charge the Surface Pro 4 battery fully from an empty state. It can take longer if you’re using your Surface for power-intensive activities like gaming or video streaming while you’re charging it.",
+            "answer": "It takes two to four hours to charge the Surface Pro 4 battery fully from an empty state. It can take longer if you're using your Surface for power-intensive activities like gaming or video streaming while you're charging it.",
             "confidenceScore": 0.92,
             "id": "1",
             "answerSpan": {
@@ -101,7 +100,7 @@ In the above request body, we query over a single block of text. A sample respon
             "length": 224
           },
           {
-            "answer": "It can take longer if you’re using your Surface for power-intensive activities like gaming or video streaming while you’re charging it.",
+            "answer": "It can take longer if you're using your Surface for power-intensive activities like gaming or video streaming while you're charging it.",
             "confidenceScore": 0.05,
             "id": "1",
             "answerSpan": null,
@@ -128,98 +127,98 @@ These numbers represent the **per individual API call limits**:
 * Maximum three responses per document.
 
 ### Language codes supported
-The following language codes are supported by Prebuilt API. These language codes are in accordance to the [ISO 639-1 codes standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+The following language codes support the Prebuilt API. These language codes are in accordance to the [ISO 639-1 codes standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
 Language code|Language
 ----|----
-af|Afrikaans
-am|Amharic
-ar|Arabic
-as|Assamese
-az|Azerbaijani
-ba|Bashkir
-be|Belarusian
-bg|Bulgarian
-bn|Bengali
-ca|Catalan, Valencian
-ckb|Central Kurdish
-cs|Czech
-cy|Welsh
-da|Danish
-de|German
-el|Greek, Modern (1453–)
-en|English
-eo|Esperanto
-es|Spanish, Castilian
-et|Estonian
-eu|Basque
-fa|Persian
-fi|Finnish
-fr|French
-ga|Irish
-gl|Galician
-gu|Gujarati
-he|Hebrew
-hi|Hindi
-hr|Croatian
-hu|Hungarian
-hy|Armenian
-id|Indonesian
-is|Icelandic
-it|Italian
-ja|Japanese
-ka|Georgian
-kk|Kazakh
-km|Central Khmer
-kn|Kannada
-ko|Korean
-ky|Kirghiz, Kyrgyz
-la|Latin
-lo|Lao
-lt|Lithuanian
-lv|Latvian
-mk|Macedonian
-ml|Malayalam
-mn|Mongolian
-mr|Marathi
-ms|Malay
-mt|Maltese
-my|Burmese
-ne|Nepali
-nl|Dutch, Flemish
-nn|Norwegian Nynorsk
-no|Norwegian
-or|Odia
-pa|Punjabi, Panjabi
-pl|Polish
-ps|Pashto, Pushto
-pt|Portuguese
-ro|Romanian
-ru|Russian
-sa|Sanskrit
-sd|Sindhi
-si|Sinhala, Sinhalese
-sk|Slovak
-sl|Slovenian
-sq|Albanian
-sr|Serbian
-sv|Swedish
-sw|Swahili
-ta|Tamil
-te|Telugu
-tg|Tajik
-th|Thai
-tl|Tagalog
-tr|Turkish
-tt|Tatar
-ug|Uighur, Uyghur
-uk|Ukrainian
-ur|Urdu
-uz|Uzbek
-vi|Vietnamese
-yi|Yiddish
-zh|Chinese
+`af`|Afrikaans
+`am`|Amharic
+`ar`|Arabic
+`as`|Assamese
+`az`|Azerbaijani
+`ba`|Bashkir
+`be`|Belarusian
+`bg`|Bulgarian
+`bn`|Bengali
+`ca`|Catalan
+`ckb`|Central Kurdish
+`cs`|Czech
+`cy`|Welsh
+`da`|Danish
+`de`|German
+`el`|Greek, Modern (1453–)
+`en`|English
+`eo`|Esperanto
+`es`|Spanish, Castilian
+`et`|Estonian
+`eu`|Basque
+`fa`|Persian
+`fi`|Finnish
+`fr`|French
+`ga`|Irish
+`gl`|Galician
+`gu`|Gujarati
+`he`|Hebrew
+`hi`|Hindi
+`hr`|Croatian
+`hu`|Hungarian
+`hy`|Armenian
+`id`|Indonesian
+`is`|Icelandic
+`it`|Italian
+`ja`|Japanese
+`ka`|Georgian
+`kk`|Kazakh
+`km`|Central Khmer
+`kn`|Kannada
+`ko`|Korean
+`ky`|Kirghiz, Kyrgyz
+`la`|Latin
+`lo`|Lao
+`lt`|Lithuanian
+`lv`|Latvian
+`mk`|Macedonian
+`ml`|Malayalam
+`mn`|Mongolian
+`mr`|Marathi
+`ms`|Malay
+`mt`|Maltese
+`my`|Burmese
+`ne`|Nepali
+`nl`|Dutch, Flemish
+`nn`|Norwegian Nynorsk
+`no`|Norwegian
+`or`|Odia
+`pa`|Punjabi, Punjabi
+`pl`|Polish
+`ps`|Pashto, Pushto
+`pt`|Portuguese
+`ro`|Romanian
+`ru`|Russian
+`sa`|Sanskrit
+`sd`|Sindhi
+`si`|Sinhala, Singhalese
+`sk`|Slovak
+`sl`|Slovenian
+`sq`|Albanian
+`sr`|Serbian
+`sv`|Swedish
+`sw`|Swahili
+`ta`|Tamil
+`te`|Telugu
+`tg`|Tajik
+`th`|Thai
+`tl`|Tagalog
+`tr`|Turkish
+`tt`|Tatar
+`ug`|Uighur, Uyghur
+`uk`|Ukrainian
+`ur`|Urdu
+`uz`|Uzbek
+`vi`|Vietnamese
+`yi`|Yiddish
+`zh`|Chinese
 
 ## Prebuilt API reference
 
-Visit the [full prebuilt API samples](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/Language/stable/2021-10-01/examples/questionanswering/SuccessfulQueryText.json) documentation to understand the input and output parameters required for calling the API.
+Visit the [full prebuilt API samples](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/LanguageQuestionAnswering/stable/2021-10-01/examples/questionanswering/SuccessfulQueryText.json) documentation to understand the input and output parameters required for calling the API.

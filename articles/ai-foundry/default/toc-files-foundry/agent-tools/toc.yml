@@ -1,0 +1,110 @@
+items:
+
+# Tool Catalog and Management
+- name: Overview of agent tools
+  items:
+  - name: Tool catalog (preview)
+    href: ../../agents/concepts/tool-catalog.md
+  - name: Create a private tool catalog (preview)
+    href: ../../agents/how-to/private-tool-catalog.md
+  - name: Tool best practices
+    href: ../../agents/concepts/tool-best-practice.md
+  - name: Tool governance
+    href: ../../agents/how-to/tools/governance.md
+
+- name: Code interpreter
+  href: ../../agents/how-to/tools/code-interpreter.md
+- name: Custom code interpreter (preview)
+  href: ../../agents/how-to/tools/custom-code-interpreter.md
+- name: Browser automation (preview)
+  href: ../../agents/how-to/tools/browser-automation.md
+- name: Computer Use (preview)
+  href: ../../agents/how-to/tools/computer-use.md
+- name: Image generation (preview)
+  href: ../../agents/how-to/tools/image-generation.md
+
+# Memory Tools
+- name: Memory (preview)
+  items:
+  - name: What is memory?
+    href: ../../agents/concepts/what-is-memory.md
+  - name: Create and use memory
+    href: ../../agents/how-to/memory-usage.md
+
+# Search and Retrieval Tools
+- name: Search and retrieval
+  items:
+  - name: Retrieval Augmented Generation (RAG) overview
+    href: ../../../concepts/retrieval-augmented-generation.md
+  - name: Azure AI Search
+    href: ../../agents/how-to/tools/ai-search.md
+  - name: File search
+    href: ../../agents/how-to/tools/file-search.md
+  - name: Vector stores for file search
+    href: ../../agents/concepts/vector-stores.md
+  - name: SharePoint (preview)
+    href: ../../agents/how-to/tools/sharepoint.md
+  - name: Web search capabilities
+    items:
+    - name: Web search overview
+      href: ../../agents/how-to/tools/web-overview.md
+    - name: Web search tool (preview)
+      href: ../../agents/how-to/tools/web-search.md
+    - name: Grounding with Bing tools
+      href: ../../agents/how-to/tools/bing-tools.md
+  - name: Fabric data agent (preview)
+    href: ../../agents/how-to/tools/fabric.md
+
+# Foundry IQ
+- name: Foundry IQ (preview)
+  items:
+  - name: What is Foundry IQ?
+    href: ../../agents/concepts/what-is-foundry-iq.md
+  - name: FAQ
+    href: ../../agents/concepts/foundry-iq-faq.yml
+  - name: Connect knowledge base to agents
+    href: ../../agents/how-to/foundry-iq-connect.md
+  
+# Azure AI Services Integration
+- name: Foundry Tools
+  items:
+  - name: Azure Speech in Foundry Tools
+    href: ../../agents/how-to/tools/azure-ai-speech.md
+  - name: Azure Language in Foundry Tools
+    items:
+    - name: Azure Language tools and agents
+      href: /azure/ai-services/language-service/concepts/foundry-tools-agents?context=/azure/ai-foundry/context/context
+    - name: Try CLU multi-turn conversations
+      href: /azure/ai-services/language-service/conversational-language-understanding/how-to/quickstart-multi-turn-conversations?context=/azure/ai-foundry/context/context
+    - name: Detect Personally Identifiable Information (PII)
+      href: /azure/ai-services/language-service/personally-identifiable-information/quickstart?context=/azure/ai-foundry/context/context
+    - name: Try Azure Language detection
+      href: /azure/ai-services/language-service/language-detection/quickstart?context=/azure/ai-foundry/context/context
+  - name: Azure Translator in Foundry Tools
+    items:
+    - name: Azure text translation
+      href: /azure/ai-services/translator/text-translation/overview?context=/azure/ai-foundry/context/context
+    - name: Azure document translation
+      href: /azure/ai-services/translator/document-translation/overview?context=/azure/ai-foundry/context/context
+
+# MCP Server
+- name: Model Context Protocol (MCP)
+  items:
+  - name: Connect to MCP server
+    href: ../../agents/how-to/tools/model-context-protocol.md
+  - name: MCP authentication
+    href: ../../agents/how-to/mcp-authentication.md
+  - name: Build your own MCP server
+    href: ../../mcp/build-your-own-mcp-server.md
+
+# Protocols
+- name: Protocols
+  items:
+  - name: Agent2Agent (A2A) tool (preview)
+    href: ../../agents/how-to/tools/agent-to-agent.md
+  - name: Agent2Agent (A2A) authentication (preview)
+    href: ../../agents/concepts/agent-to-agent-authentication.md
+  - name: OpenAPI tool
+    href: ../../agents/how-to/tools/openapi.md
+  - name: Function calling
+    href: ../../agents/how-to/tools/function-calling.md

@@ -1,19 +1,18 @@
 ---
 title: Identify and extract Personally Identifying Information (PII) from conversations
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article shows you how to detect and redact Personally Identifying Information (PII) from speech, chat, and spoken-word transcriptions and call transcripts.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 03/05/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
-
 # Detect and redact Personally Identifying Information in conversations
 
-Azure AI Language conversation PII API analyzes audio discourse to identify and redact sensitive information (PII) using various predefined categories. This API works on both transcribed text (referred to as transcripts) and chats. For transcripts, it also facilitates the redaction of audio segments containing PII by providing the timing information for those segments.
+Azure Language in Foundry Tools conversation PII API analyzes audio discourse to identify and redact sensitive information (PII) using various predefined categories. This API works on both transcribed text (referred to as transcripts) and chats. For transcripts, it also facilitates the redaction of audio segments containing PII by providing the timing information for those segments.
 
 ## Determine how to process the data (optional)
 
@@ -23,11 +22,11 @@ By default, this feature uses the latest available AI model on your input. You c
 
 ### Language support
 
-For more information, *see* the [PII Language Support page](../language-support.md). Currently the conversational PII GA model only supports the English language. The preview model and API support the [same list languages](../../concepts/language-support.md) as the other Language services.
+For more information, *see* the [PII Language Support page](../language-support.md). Currently the conversational PII GA model only supports the English language. The preview model and API support the [same list languages](../../concepts/language-support.md) as the other Languages.
 
 ### Region support
 
-The conversational PII API supports all Azure regions supported by the Language service.
+The conversational PII API supports all Azure regions supported by Azure Language.
 
 ## Submitting data
 

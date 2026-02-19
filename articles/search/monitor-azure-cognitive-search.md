@@ -1,9 +1,10 @@
 ---
 title: Monitor Azure AI Search
 description: Start here to learn how to monitor Azure AI Search.
-ms.date: 01/27/2025
+ms.date: 07/25/2025
+ms.update-cycle: 365-days
 ms.custom: horz-monitor
-ms.topic: conceptual
+ms.topic: concept-article
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
@@ -12,9 +13,6 @@ ms.service: azure-ai-search
 # Monitor Azure AI Search
 
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
-
-> [!NOTE]
-> Azure AI Search doesn't log the identity of the person or app accessing content or operations on the search service. If you require this level of monitoring, you need to implement it in your client application.
 
 [!INCLUDE [horz-monitor-resource-types](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-types.md)]
 
@@ -69,30 +67,10 @@ AzureDiagnostics
 | summarize count() by OperationName
 ```
 
-#### Long-running queries
-
-This Kusto query against AzureDiagnostics returns `Query.Search` operations, sorted by duration (in milliseconds). For more examples of `Query.Search` queries, see [Analyze performance in Azure AI Search](search-performance-analysis.md).
-
-```Kusto
-AzureDiagnostics
-| project OperationName, resultSignature_d, DurationMs, Query_s, Documents_d, IndexName_s
-| where OperationName == "Query.Search"
-| sort by DurationMs   
-```
-
-#### Indexer status
-
-This Kusto query returns the status of indexer operations. Results include the operation name, description of the request (which includes the name of the indexer), result status (Success or Failure), and the [HTTP status code](/rest/api/searchservice/http-status-codes). For more information about indexer execution, see [Monitor indexer status](search-howto-monitor-indexers.md).
-
-```Kusto
-AzureDiagnostics
-| project OperationName, Description_s, Documents_d, ResultType, resultSignature_d
-| where OperationName == "Indexers.Status"
-```
-
 [!INCLUDE [horz-monitor-alerts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-alerts.md)]
 
 ### Azure AI Search alert rules
+
 The following table lists common and recommended alert rules for Azure AI Search. On a search service, throttling or query latency that exceeds a given threshold are the most commonly used alerts, but you might also want to be notified if a search service is deleted.
 
 | Alert type | Condition | Description  |
@@ -108,7 +86,7 @@ The following table lists common and recommended alert rules for Azure AI Search
 - [Azure AI Search monitoring data reference](monitor-azure-cognitive-search-data-reference.md)
 - [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource)
 - [Monitor queries](search-monitor-queries.md)
-- [Monitor indexer-based indexing](search-howto-monitor-indexers.md)
+- [Monitor indexer-based indexing](search-monitor-indexers.md)
 - [Visualize resource logs](search-monitor-logs-powerbi.md)
 - [Analyze performance in Azure AI Search](search-performance-analysis.md)
 - [Tips for better performance](search-performance-tips.md)

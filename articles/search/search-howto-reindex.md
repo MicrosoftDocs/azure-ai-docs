@@ -2,25 +2,44 @@
 title: Update or rebuild an index
 titleSuffix: Azure AI Search
 description: Update or rebuild an index to update the schema or clean out obsolete documents. You can fully rebuild or do partial indexing.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
+  - dev-focus
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 01/20/2026
+ai-usage: ai-assisted
+ms.update-cycle: 180-days
 ---
 
 # Update or rebuild an index in Azure AI Search
 
-This article explains how to update an existing index in Azure AI Search with schema changes or content changes through incremental indexing. It explains the circumstances under which rebuilds are required, and provides recommendations for mitigating the effects of rebuilds on ongoing query requests.
+This article explains how to update an existing index in Azure AI Search with schema changes or content changes through incremental indexing.
 
-During active development, it's common to drop and rebuild indexes when you're iterating over index design. Most developers work with a small representative sample of their data so that reindexing goes faster.
+> [!TIP]
+> To update documents immediately, skip to [Update content](#update-content). For schema changes, see [Update an index schema](#update-an-index-schema).
 
-For schema changes on applications already in production, we recommend creating and testing a new index that runs side by side an existing index. Use an [index alias](search-how-to-alias.md) to swap in the new index so that you can avoid changes your application code.
+## Prerequisites
+
++ An Azure AI Search service (any tier). [Create a service](search-create-service-portal.md) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+
++ An existing search index with documents. This article assumes you already [created an index](search-how-to-create-search-index.md) and [loaded documents](search-how-to-load-search-index.md).
+
++ Permissions to update or rebuild indexes:
+  + **Key-based authentication**: An [admin API key](search-security-api-keys.md) for your search service.
+  + **Role-based authentication**: [Search Index Data Contributor](search-security-rbac.md) role for document updates, or [Search Service Contributor](search-security-rbac.md) for schema changes.
+
++ For SDK development, install the Azure Search client library:
+  + Python: [azure-search-documents](https://pypi.org/project/azure-search-documents/)
+  + .NET: [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents/)
+  + JavaScript: [@azure/search-documents](https://www.npmjs.com/package/@azure/search-documents)
+  + Java: [azure-search-documents](https://central.sonatype.com/artifact/com.azure/azure-search-documents)
+
+> [!TIP]
+> During active development, it's common to drop and rebuild indexes when iterating over index design. Work with a small representative sample of data so that reindexing goes faster. For production schema changes, create and test a new index side by side, then use an [index alias](search-how-to-alias.md) to swap indexes without changing application code.
 
 ## Update content
 
@@ -46,15 +65,17 @@ The body of the request contains one or more documents to be indexed. Within the
 }
 ```
 
+**Reference:** [Documents - Index](/rest/api/searchservice/documents)
+
 + First, use the APIs for loading documents, such as [Documents - Index (REST)](/rest/api/searchservice/documents) or an equivalent API in the Azure SDKs. For more information about indexing techniques, see [Load documents](search-how-to-load-search-index.md).
 
 + For a large update, batching (up to 1,000 documents per batch, or about 16 MB per batch, whichever limit comes first) is recommended and significantly improves indexing performance.
 
-+ Set the `@search.action` parameter on the API to determine the effect on existing documents.
++ Set the `@search.action` parameter on the API to determine the effect on existing documents. Use `mergeOrUpload` for incremental updates (most common), `delete` to remove documents, or `merge` for partial field updates on existing documents.
 
    | Action | Effect |
    |--------|--------|
-   | delete | Removes the entire document from the index. If you want to remove an individual field, use merge instead, setting the field in question to null. Deleted documents and fields don't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the Azure portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the Azure portal and through APIs. |
+   | delete | Removes the entire document from the index. If you want to remove an individual field, use merge instead, setting the field in question to null. Deleted documents and fields don't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the Azure portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the Azure portal and through APIs. For more information, see [Delete documents in a search index](search-how-to-delete-documents.md).|
    | merge | Updates a document that already exists, and fails a document that can't be found. Merge replaces existing values. For this reason, be sure to check for collection fields that contain multiple values, such as fields of type `Collection(Edm.String)`. For example, if a `tags` field starts with a value of `["budget"]` and you execute a merge with `["economy", "pool"]`, the final value of the `tags` field is `["economy", "pool"]`. It won't be `["budget", "economy", "pool"]`. <br><br>The same behavior applies to complex collections. If the document contains a complex collection field named Rooms with a value of `[{ "Type": "Budget Room", "BaseRate": 75.0 }]`, and you execute a merge with a value of `[{ "Type": "Standard Room" }, { "Type": "Budget Room", "BaseRate": 60.5 }]`, the final value of the Rooms field will be `[{ "Type": "Standard Room" }, { "Type": "Budget Room", "BaseRate": 60.5 }]`. It won't append or merge new and existing values. |
    | mergeOrUpload | Behaves like merge if the document exists, and upload if the document is new. This is the most common action for incremental updates. |
    | upload | Similar to an "upsert" where the document is inserted if it's new, and updated or replaced if it exists. If the document is missing values that the index requires, the document field's value is set to null. |
@@ -158,16 +179,16 @@ Status code 429 indicates that you've exceeded your quota on the number of docum
 
 + To merge inline changes into string collection, provide the entire value. Recall the `tags` field example from the previous section. New values overwrite the old values for an entire field, and there's no merging within the content of a field.
 
-Here's a [REST API example](search-get-started-rest.md) demonstrating these tips:
+Here's a [REST API example](search-get-started-text.md) demonstrating these tips:
 
 ```rest
 ### Get Stay-Kay City Hotel by ID
-GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2024-07-01  HTTP/1.1
+GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
 ### Change the description, city, and tags for Stay-Kay City Hotel
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -186,10 +207,77 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search.index?api-version=
     }
        
 ### Retrieve the same document, confirm the overwrites and retention of all other values
-GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2024-07-01  HTTP/1.1
+GET  {{baseUrl}}/indexes/hotels-vector-quickstart/docs('1')?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 ```
+
+**Reference:** [Documents - Index](/rest/api/searchservice/documents), [Lookup Document](/rest/api/searchservice/documents/get)
+
+### SDK examples
+
+The following examples show how to update documents using the Azure SDKs.
+
+### [**Python**](#tab/sdk-python)
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents import SearchClient
+
+# Set up the client
+service_name = "<your-search-service-name>"
+index_name = "hotels-sample-index"
+api_key = "<your-admin-api-key>"
+
+endpoint = f"https://{service_name}.search.windows.net"
+credential = AzureKeyCredential(api_key)
+client = SearchClient(endpoint=endpoint, index_name=index_name, credential=credential)
+
+# Update documents using merge_or_upload
+documents = [
+    {
+        "HotelId": "1",
+        "Description": "Updated description for the hotel.",
+        "Tags": ["updated", "renovated"]
+    }
+]
+
+result = client.merge_or_upload_documents(documents=documents)
+print(f"Updated {len(result)} document(s)")
+```
+
+**Reference:** [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient), [merge_or_upload_documents](/python/api/azure-search-documents/azure.search.documents.searchclient#azure-search-documents-searchclient-merge-or-upload-documents)
+
+### [**C#**](#tab/sdk-csharp)
+
+```csharp
+using Azure;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
+
+// Set up the client
+string serviceName = "<your-search-service-name>";
+string indexName = "hotels-sample-index";
+string apiKey = "<your-admin-api-key>";
+
+Uri endpoint = new Uri($"https://{serviceName}.search.windows.net");
+AzureKeyCredential credential = new AzureKeyCredential(apiKey);
+SearchClient searchClient = new SearchClient(endpoint, indexName, credential);
+
+// Update documents using MergeOrUpload
+var batch = IndexDocumentsBatch.MergeOrUpload(
+    new[]
+    {
+        new Hotel { HotelId = "1", Description = "Updated description.", Tags = new[] { "updated", "renovated" } }
+    });
+
+IndexDocumentsResult result = await searchClient.IndexDocumentsAsync(batch);
+Console.WriteLine($"Updated {result.Results.Count} document(s)");
+```
+
+**Reference:** [SearchClient](/dotnet/api/azure.search.documents.searchclient), [IndexDocumentsAsync](/dotnet/api/azure.search.documents.searchclient.indexdocumentsasync), [IndexDocumentsBatch](/dotnet/api/azure.search.documents.models.indexdocumentsbatch)
+
+---
 
 ## Update an index schema
 
@@ -254,9 +342,9 @@ When you create the index, physical storage is allocated for each field in the i
 
 To minimize disruption to application code, consider [creating an index alias](search-how-to-alias.md). Application code references the alias, but you can update the name of the index that the alias points to.
 
-## Add an index description (preview)
+## Add an index description
 
-Beginning with REST API version 2025-05-01-preview, a `ddescription` is now supported. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on the index name alone.
+An index has a `description` property that you can specify and use when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be based on the description rather than on the index name alone.
 
 An index description is a schema update, and you can add it without having to rebuild the entire index.
 
@@ -287,11 +375,11 @@ The Azure portal supports the latest preview API.
 
 1. Copy the JSON so that you can use it as the basis of a new request.
 
-1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and the preview API.
+1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update).
 
 1. Provide the *full* JSON of the existing schema, plus the new `description` field. The field must be a top-level field, on the same level as `name` or `fields`. The value must be less than 4,000 characters and in Unicode.
 
-1. To confirm the change, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+1. To confirm the change, issue another [GET](/rest/api/searchservice/indexes/get).
 
 ---
 
@@ -305,7 +393,7 @@ If indexing workloads introduce unacceptable levels of query latency, conduct [p
 
 You can begin querying an index as soon as the first document is loaded. If you know a document's ID, the [Lookup Document REST API](/rest/api/searchservice/documents/get) returns the specific document. For broader testing, you should wait until the index is fully loaded, and then use queries to verify the context you expect to see.
 
-You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-rest.md) to check for updated content.
+You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-text.md) to check for updated content.
 
 If you added or renamed a field, use [select](search-query-odata-select.md) to return that field: 
 
@@ -317,49 +405,28 @@ If you added or renamed a field, use [select](search-query-odata-select.md) to r
 
 The Azure portal provides index size and vector index size. You can check these values after updating an index, but remember to expect a small delay as the service processes the change and to account for portal refresh rates, which can be a few minutes.
 
-## Delete orphan documents
+## Troubleshoot reindexing
 
-Azure AI Search supports document-level operations so that you can look up, update, and delete a specific document in isolation. The following example shows how to delete a document. 
+The following table lists common issues when updating or rebuilding indexes and how to resolve them.
 
-Deleting a document doesn't immediately free up space in the index. Every few minutes, a background process performs the physical deletion. Whether you use the Azure portal or an API to return index statistics, you can expect a small delay before the deletion is reflected in the Azure portal and API metrics.
-
-1. Identify which field is the document key. In the Azure portal, you can view the fields of each index. Document keys are string fields and are denoted with a key icon to make them easier to spot.
-
-1. Check the values of the document key field: `search=*&$select=HotelId`. A simple string is straightforward, but if the index uses a base-64 encoded field, or if search documents were generated from a `parsingMode` setting, you might be working with values that you aren't familiar with.
-
-1. [Look up the document](/rest/api/searchservice/documents/get) to verify the value of the document ID and to review its content before deleting it. Specify the key or document ID in the request. The following examples illustrate a simple string for the [Hotels sample index](search-get-started-portal.md) and a base-64 encoded string for the metadata_storage_path key of the [cog-search-demo index](cognitive-search-tutorial-blob.md).
-
-    ```http
-    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2024-07-01
-    ```
-
-    ```http
-    GET https://[service name].search.windows.net/indexes/cog-search-demo/docs/aHR0cHM6Ly9oZWlkaWJsb2JzdG9yYWdlMi5ibG9iLmNvcmUud2luZG93cy5uZXQvY29nLXNlYXJjaC1kZW1vL2d1dGhyaWUuanBn0?api-version=2024-07-01
-    ```
-
-1. [Delete the document](/rest/api/searchservice/documents) using a delete `@search.action` to remove it from the search index.
-
-    ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2024-07-01
-    Content-Type: application/json   
-    api-key: [admin key] 
-    {  
-      "value": [  
-        {  
-          "@search.action": "delete",  
-          "id": "1111"  
-        }  
-      ]  
-    }
-    ```
+| Issue | Cause | Resolution |
+| ----- | ----- | ---------- |
+| 207 response with mixed results | Some documents succeeded, others failed. | Check `statusCode` for each document in response. If 503, throttle requests and retry. |
+| 409 Version conflict | Concurrent updates to same document. | Serialize updates to the same document or implement retry with exponential backoff. |
+| 429 Too Many Requests | Storage quota exceeded or too many concurrent requests. | Delete documents to free space, or upgrade service tier for more capacity. |
+| 503 Service unavailable | Service under heavy load. | Wait and retry with exponential backoff. Consider reducing batch size. |
+| Document count unchanged after delete | Deletion is asynchronous. | Wait 2-3 minutes for background process to complete physical deletion. |
+| New field returns null | Field added to schema but documents not reindexed. | Run indexer or push updated documents to populate the new field. |
+| Schema change rejected | Attempted incompatible change (rename, type change). | Drop and rebuild the index. Use index alias to minimize downtime. |
 
 ## See also
 
 + [Indexer overview](search-indexer-overview.md)
++ [Delete documents from a search index](search-how-to-delete-documents.md)
 + [Index large data sets at scale](search-howto-large-index.md)
 + [Indexing in the Azure portal](search-import-data-portal.md)
 + [Azure SQL Database indexer](search-how-to-index-sql-database.md)
-+ [Azure Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md)
-+ [Azure blob indexer](search-howto-indexing-azure-blob-storage.md)
-+ [Azure tables indexer](search-howto-indexing-azure-tables.md)
++ [Azure Cosmos DB for NoSQL indexer](search-how-to-index-cosmosdb-sql.md)
++ [Azure blob indexer](search-how-to-index-azure-blob-storage.md)
++ [Azure tables indexer](search-how-to-index-azure-tables.md)
 + [Security in Azure AI Search](search-security-overview.md)

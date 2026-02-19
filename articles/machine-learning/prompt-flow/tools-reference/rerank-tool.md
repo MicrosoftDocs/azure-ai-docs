@@ -7,9 +7,10 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: reference
 ms.date: 08/29/2024
-ms.reviewer: jingyizhu
+ms.reviewer: sooryar
 ms.author: lagayhar
 author: lgayhardt
+ms.update-cycle: 365-days
 ---
 
 # Rerank tool (preview)
@@ -22,7 +23,7 @@ The prompt flow Rerank tool improves search quality of relevant documents given 
 
 ## Use the Rerank tool
 
-1. Create or open a flow in Azure AI Foundry portal. For more information, see [Create a flow](../how-to-develop-flow.md#create-and-develop-your-prompt-flow).
+1. Create or open a flow in Microsoft Foundry portal. For more information, see [Create a flow](../how-to-develop-flow.md#create-and-develop-your-prompt-flow).
 1. Select **+More tools** > **Rerank tool** to add the Rerank tool to your flow.
 
      :::image type="content" source="../media/rerank-tool/rerank-tool.png" alt-text="Screenshot that shows the rerank tool added to a flow in Azure Machine Learning" lightbox="../media/rerank-tool/rerank-tool.png":::

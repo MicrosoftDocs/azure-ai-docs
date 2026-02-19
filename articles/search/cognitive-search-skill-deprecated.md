@@ -8,17 +8,18 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 08/17/2022
+ms.date: 01/07/2026
+ms.update-cycle: 365-days
 ---
 
 # Deprecated Cognitive Skills in Azure AI Search
 
 This document describes cognitive skills that are considered deprecated (retired). Use the following guide for the contents:
 
-* Skill Name: The name of the skill that will be deprecated; it maps to the @odata.type attribute.
-* Last available api version: The last version of the Azure AI Search public API through which skillsets containing the corresponding deprecated skill can be created/updated. Indexers with attached skillsets with these skills will continue to run even in future API versions until the "End of support" date, at which point they start failing.
+* Skill Name: The name of the skill to be deprecated; it maps to the @odata.type attribute.
+* Last available API version: The last version of the Azure AI Search public API through which skillsets containing the corresponding deprecated skill can be created/updated. Indexers with attached skillsets with these skills will continue to run even in future API versions until the "End of support" date, at which point they start failing.
 * End of support: The day after which the corresponding skill is considered unsupported and stops working. Previously created skillsets should still continue to function, but users are recommended to migrate away from a deprecated skill.
-* Recommendations: Migration path forward to use a supported skill. Users are advised to follow the recommendations to continue to receive support.
+* Recommendations: Migration path to use a supported skill. Users are advised to follow the recommendations to continue to receive support.
 
 If you're using the [Microsoft.Skills.Text.EntityRecognitionSkill](#microsoftskillstextentityrecognitionskill) (Entity Recognition cognitive skill (v2)), this article helps you upgrade your skillset to use the [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-search-skill-entity-recognition-v3.md) which is generally available and introduces new features. 
 
@@ -28,7 +29,7 @@ If you're using the [Microsoft.Skills.Text.NamedEntityRecognitionSkill](#microso
 
 ## Microsoft.Skills.Text.EntityRecognitionSkill
 
-### Last available api version
+### Last available API version
 
 2021-04-30-Preview
 
@@ -356,7 +357,7 @@ To migrate to the [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-se
 
 ## Microsoft.Skills.Text.SentimentSkill
 
-### Last available api version
+### Last available API version
 
 2021-04-30-Preview
 
@@ -371,20 +372,20 @@ Use [Microsoft.Skills.Text.V3.SentimentSkill](cognitive-search-skill-sentiment-v
 To migrate to the [Microsoft.Skills.Text.V3.SentimentSkill](cognitive-search-skill-sentiment-v3.md), make one or more of the following changes to your skill definition. You can update the skill definition using the [Update Skillset API](/rest/api/searchservice/skillsets/create-or-update).
 
 > [!NOTE]
-> The skill outputs for the Sentiment Skill V3 are not compatible with the index definition based on the SentimentSkill. You will have to make changes to the index definition, skillset (later skill inputs and/or knowledge store projections) and indexer output field mappings to replace the sentiment skill with the new version.
+> The skill outputs for the Sentiment Skill V3 aren't compatible with the index definition based on the SentimentSkill. You must make changes to the index definition, skillset (later skill inputs and/or knowledge store projections) and indexer output field mappings to replace the sentiment skill with the new version.
 
 1. *(Required)* Change the `@odata.type` from `"#Microsoft.Skills.Text.SentimentSkill"` to `"#Microsoft.Skills.Text.V3.SentimentSkill"`.
 
-2. *(Required)* The Sentiment Skill V3 provides a `positive`, `neutral`, and `negative` score for the overall text and the same scores for each sentence in the overall text, whereas the previous SentimentSkill only provided a single double that ranged from 0.0 (negative) to 1.0 (positive) for the overall text. You will need to update your index definition to accept the three double values in place of a single score, and make sure all of your downstream skill inputs, knowledge store projections, and output field mappings are consistent with the naming changes.
+2. *(Required)* The Sentiment Skill V3 provides a `positive`, `neutral`, and `negative` score for the overall text and the same scores for each sentence in the overall text, whereas the previous SentimentSkill only provided a single double that ranged from 0.0 (negative) to 1.0 (positive) for the overall text. You must update your index definition to accept the three double values in place of a single score, and make sure all of your downstream skill inputs, knowledge store projections, and output field mappings are consistent with the naming changes.
 
 It's recommended to replace the old SentimentSkill with the SentimentSkill V3 entirely, update your downstream skill inputs, knowledge store projections, indexer output field mappings, and index definition to match the new output format, and reset your indexer so that all of your documents have consistent sentiment results going forward.
 
 > [!NOTE]
-> If you need any additional help updating your enrichment pipeline to use the latest version of the sentiment skill or if resetting your indexer is not an option for you, please open a [new support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest) where we can work with you directly.
+> If you need any more help updating your enrichment pipeline to use the latest version of the sentiment skill or if resetting your indexer isn't an option for you, open a [new support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest) where we can work with you directly.
 
 ## Microsoft.Skills.Text.NamedEntityRecognitionSkill
 
-### Last available api version
+### Last available API version
 
 2017-11-11-Preview
 
@@ -445,7 +446,7 @@ To migrate to the [Microsoft.Skills.Text.V3.EntityRecognitionSkill](cognitive-se
     }
     ```
 
-3. *(Optional)* If you don't explicitly specify the `categories`, the `EntityRecognitionSkill V3` can return different type of categories besides those that were supported by the `NamedEntityRecognitionSkill`. If this behavior is undesirable, make sure to explicitly set the `categories` parameter to `["Person", "Location", "Organization"]`.
+3. *(Optional)* If you don't explicitly specify the `categories`, the `EntityRecognitionSkill V3` can return a different type of category besides those supported by the `NamedEntityRecognitionSkill`. If this behavior is undesirable, make sure to explicitly set the `categories` parameter to `["Person", "Location", "Organization"]`.
 
     _Sample Migration Definitions_
 

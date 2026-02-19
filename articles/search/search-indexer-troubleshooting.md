@@ -2,14 +2,14 @@
 title: Indexer troubleshooting
 titleSuffix: Azure AI Search
 description: Provides indexer problem and resolution guidance for cases when no error messages are returned from the service search.
-
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 05/29/2025
+ms.topic: troubleshooting-general
+ms.date: 10/23/2025
+ms.update-cycle: 365-days
 ---
 
 # Indexer troubleshooting guidance for Azure AI Search
@@ -19,25 +19,40 @@ Occasionally, indexers run into problems that don't produce errors or that occur
 > [!NOTE]
 > If you have an Azure AI Search error to investigate, see [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md) instead.
 
+## Best practices
+
+These are some best practices and recommendations when working with indexers:
+
+### Indexers are designed to run on a schedule
+
+- For reliable indexing, configure your indexers to run on a [regular schedule](search-howto-schedule-indexers.md). Scheduled runs automatically pick up any documents missed in previous runs due to transient errors, network interruptions, or temporary service issues. This approach helps maintain data consistency and minimizes the need for manual intervention.  
+- For [large data sources](search-how-to-large-index.md), the initial enumeration and indexing can take hours or even days. Running your indexer on a schedule allows that progress continues and errors are retried automatically. Avoid relying solely on manual or on-demand indexer runs, as these do not provide the same reliability or transient error recovery.
+
+### Indexers provide best-effort indexing over time
+
+- Built-in indexers are designed to process all documents without permanent errors over time, if not in the current run, then in subsequent scheduled runs. They offer a convenient, low/no-code way to index data for common scenarios, enabling faster development and easier maintenance. However, if they have AI enrichment capabilities, they are not optimized for very large-scale workloads. For guidance on handling large datasets, see [how to index large data sets](search-how-to-large-index.md).
+- If your solution requires strict control over indexing timelines, use the Push APIs instead, such as the [Documents Index REST API](/rest/api/searchservice/documents) or the [IndexDocuments method (Azure SDK for .NET)](/dotnet/api/azure.search.documents.searchclient.indexdocuments). These options give you full control of the indexing pipeline.
+- Indexers can occasionally fall out of schedule. While this is uncommon and auto-recovery mechanisms exist, recovery may take time. This behavior is expected.
+
 <a name="connection-errors"></a>
 
 ## Troubleshoot connections to restricted resources
 
 For data sources under Azure network security, indexers are limited in how they make the connection. Currently, indexers can access restricted data sources [behind an IP firewall](search-indexer-howto-access-ip-restricted.md) or on a virtual network through a [private endpoint](search-indexer-howto-access-private.md) using a shared private link.
 
-### Error connecting to Azure AI services on a private connection
+### Error connecting to a Microsoft Foundry resource on a private connection
 
 If you get an error code 403 with the following message, you might have a problem with how the resource endpoint is specified in a skillset:
 
 * `"A Virtual Network is configured for this resource. Please use the correct endpoint for making requests. Check https://aka.ms/cogsvc-vnet for more details."`
 
-This error occurs if you have [configured a shared private link](search-indexer-howto-access-private.md) for connections to Azure AI services multi-service, and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.cognitiveservices.azure.com`). A custom domain might be missing if you created the resource in Azure AI Foundry.
+This error occurs if you've [configured a shared private link](search-indexer-howto-access-private.md) for connections to an Azure Foundry resource and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.services.ai.azure.com`). A custom domain might be missing if you created the resource in the Foundry portal instead of the Azure portal.
 
-If the Azure AI services multi-service account isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) when attaching a billable Azure AI resource.
+If the Foundry resource isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) to attach the resource.
 
 ### Firewall rules
 
-Azure Storage, Azure Cosmos DB and Azure SQL provide a configurable firewall. There's no specific error message when the firewall blocks the request. Typically, firewall errors are generic. Some common errors include:
+Azure Storage, Azure Cosmos DB, and Azure SQL provide a configurable firewall. There's no specific error message when the firewall blocks the request. Typically, firewall errors are generic. Some common errors include:
 
 * `The remote server returned an error: (403) Forbidden`
 * `This request is not authorized to perform this operation`
@@ -90,7 +105,7 @@ If the database is paused, the first sign in from your search service is expecte
 
 ## Microsoft Entra Conditional Access policies
 
-When you create a SharePoint Online indexer, there's a step requiring you to sign in to your Microsoft Entra app after providing a device code. If you receive a message that says `"Your sign-in was successful but your admin requires the device requesting access to be managed"`, the indexer is probably blocked from the SharePoint document library by a [Conditional Access](/azure/active-directory/conditional-access/overview) policy.
+When you create a SharePoint indexer, there's a step requiring you to sign in to your Microsoft Entra app after providing a device code. If you receive a message that says `"Your sign-in was successful but your admin requires the device requesting access to be managed"`, the indexer is probably blocked from the SharePoint document library by a [Conditional Access](/azure/active-directory/conditional-access/overview) policy.
 
 To update the policy and allow indexer access to the document library:
 
@@ -98,7 +113,7 @@ To update the policy and allow indexer access to the document library:
 
 1. Select **Policies** on the left menu. If you don't have access to view this page, you need to either find someone who has access or get access.
 
-1. Determine which policy is blocking the SharePoint Online indexer from accessing the document library. The policy that might be blocking the indexer includes the user account that you used to authenticate during the indexer creation step in the **Users and groups** section. The policy also might have **Conditions** that:
+1. Determine which policy is blocking the SharePoint indexer from accessing the document library. The policy that might be blocking the indexer includes the user account that you used to authenticate during the indexer creation step in the **Users and groups** section. The policy also might have **Conditions** that:
 
     * Restrict **Windows** platforms.
     * Restrict **Mobile apps and desktop clients**.
@@ -108,7 +123,7 @@ To update the policy and allow indexer access to the document library:
 
     First, obtain the fully qualified domain name (FQDN) of your search service. The FQDN looks like `<your-search-service-name>.search.windows.net`. You can find the FQDN in the Azure portal.
 
-    ![Obtain service FQDN](media\search-indexer-howto-secure-access\search-service-portal.png "Obtain service FQDN")
+    :::image type="content" source="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the search service Overview page." border="true" lightbox="media/search-get-started-rest/get-endpoint.png":::
 
     Now that you have the FQDN, get the IP address of the search service by performing a `nslookup` (or a `ping`) of the FQDN. In the following example, you would add "150.0.0.1" to an inbound rule on the Azure Storage firewall. It might take up to 15 minutes after the firewall settings have been updated for the search service indexer to be able to access the Azure Storage account.
 
@@ -175,12 +190,12 @@ To update the policy and allow indexer access to the document library:
 
 ## Indexing unsupported document types
 
-If you're indexing content from Azure Blob Storage, and the container includes blobs of an [unsupported content type](search-howto-indexing-azure-blob-storage.md#SupportedFormats), the indexer skips that document. In other cases, there might be problems with individual documents. 
+If you're indexing content from Azure Blob Storage, and the container includes blobs of an [unsupported content type](search-how-to-index-azure-blob-storage.md#SupportedFormats), the indexer skips that document. In other cases, there might be problems with individual documents. 
 
-In this situation, you can [set configuration options](search-howto-indexing-azure-blob-storage.md#DealingWithErrors) to allow indexer processing to continue if there are problems with individual documents.
+In this situation, you can [set configuration options](search-how-to-index-azure-blob-storage.md#DealingWithErrors) to allow indexer processing to continue if there are problems with individual documents.
 
 ```http
-PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2024-07-01
+PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2025-09-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -204,15 +219,15 @@ Indexers extract documents or rows from an external [data source](/rest/api/sear
 
 ## Missing content from Blob Storage
 
-The blob indexer [finds and extracts text from blobs in a container](search-howto-indexing-azure-blob-storage.md). Some problems with extracting text include:
+The blob indexer [finds and extracts text from blobs in a container](search-how-to-index-azure-blob-storage.md). Some problems with extracting text include:
 
 * The document only contains scanned images. PDF blobs that have non-text content, such as scanned images (JPGs), don't produce results in a standard blob indexing pipeline. If you have image content with text elements, you can use [OCR or image analysis](cognitive-search-concept-image-scenarios.md) to find and extract the text.
 
-* The blob indexer is configured to only index metadata. To extract content, the blob indexer must be configured to [extract both content and metadata](search-howto-indexing-azure-blob-storage.md#PartsOfBlobToIndex):
+* The blob indexer is configured to only index metadata. To extract content, the blob indexer must be configured to [extract both content and metadata](search-how-to-index-azure-blob-storage.md#PartsOfBlobToIndex):
 
 
 ```http
-PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2024-07-01
+PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2025-09-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -235,7 +250,7 @@ An indexer might show a different document count than either the data source, th
 - If the ID column in the data source isn't unique. This applies to data sources that have the concept of columns, such as Azure Cosmos DB.
 - If the data source definition has a different query than the one you're using to estimate the number of records. In example, in your database, you're querying the database record count, while in the data source definition query, you might be selecting just a subset of records to index.
 - The counts are being checked at different intervals for each component of the pipeline: data source, indexer and index.
-- The data source has a file that's mapped to many documents. This condition can occur when [indexing blobs](search-howto-index-json-blobs.md) and "parsingMode" is set to **`jsonArray`** and **`jsonLines`**.
+- The data source has a file that's mapped to many documents. This condition can occur when [indexing blobs](search-how-to-index-azure-blob-json.md) and "parsingMode" is set to **`jsonArray`** and **`jsonLines`**.
 
 ## Documents processed multiple times
 
@@ -290,4 +305,5 @@ If you have [sensitivity labels set on documents](/microsoft-365/compliance/sens
 ## See also
 
 * [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md)
-* [Monitor indexer-based indexing](search-howto-monitor-indexers.md)
+* [Monitor indexer-based indexing](search-monitor-indexers.md)
+* [Index large data sets](search-how-to-large-index.md)

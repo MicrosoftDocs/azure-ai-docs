@@ -3,8 +3,8 @@ title: Bing COVID-19
 description: Learn how to use the Bing COVID-19 dataset in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-ms.reviewer: franksolomon
-ms.date: 06/11/2024
+ms.reviewer: scottpolly
+ms.date: 10/28/2025
 ---
 
 # Bing COVID-19
@@ -53,7 +53,7 @@ The data is available strictly for educational and academic purposes under [thes
 - government agencies
 - medical research
 
-Data used or cited in publications should include an attribution to **‘Bing COVID-19 Tracker’**, with a link to [www.bing.com/covid](https://www.bing.com/covid).
+Data used or cited in publications should include an attribution to **'Bing COVID-19 Tracker'**, with a link to [www.bing.com/covid](https://www.bing.com/covid).
 
 ## Contact
 

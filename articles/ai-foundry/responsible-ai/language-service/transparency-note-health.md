@@ -1,12 +1,12 @@
 ---
-title: Transparency note - Health feature of Azure AI Language
-titleSuffix: Azure AI services
-description: Azure AI service for language includes a feature that uses natural language processing techniques to find and label valuable health information, such as diagnosis, symptoms, medications and treatments in unstructured text documents.
-author: aahill
-ms.author: aahi
+title: Transparency note - Health feature of Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
+description: Foundry Tool for language includes a feature that uses natural language processing techniques to find and label valuable health information, such as diagnosis, symptoms, medications and treatments in unstructured text documents.
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 02/01/2023
 ---
 
@@ -29,7 +29,7 @@ Microsoft's Transparency notes are part of a broader effort at Microsoft to put 
 
 ### Introduction
 
-The Text Analytics for health feature of Azure AI Language uses natural language processing techniques to find and label valuable health information such as diagnoses, symptoms, medications, and treatments in unstructured text. The service can be used for diverse types of unstructured medical documents, including discharge summaries, clinical notes, clinical trial protocols, medical publications, and more. Text Analytics for health performs Named Entity Recognition (NER), extracts relations between identified entities, surfaces assertions such as negation and conditionality, and links detected entities to common vocabularies.
+The Text Analytics for health feature of Azure Language in Foundry Tools uses natural language processing techniques to find and label valuable health information such as diagnoses, symptoms, medications, and treatments in unstructured text. The service can be used for diverse types of unstructured medical documents, including discharge summaries, clinical notes, clinical trial protocols, medical publications, and more. Text Analytics for health performs Named Entity Recognition (NER), extracts relations between identified entities, surfaces assertions such as negation and conditionality, and links detected entities to common vocabularies.
 
 Text Analytics for health can receive unstructured text in English as part of its general availability offering. Additional languages are currently supported in a preview offering. For more information, see [Language support](/azure/ai-services/language-service/text-analytics-for-health/language-support).
 
@@ -117,7 +117,7 @@ The customer is responsible for providing sufficient labelled data and vocabular
 
 ## Limitations
 
-* **Coverage**: SDOH extraction capability might not cover all potential SDOH. Recognition is limited to ethnicity and the entity types listed here Entity categories recognized by Text Analytics for health - Azure AI services | Microsoft Learn.
+* **Coverage**: SDOH extraction capability might not cover all potential SDOH. Recognition is limited to ethnicity and the entity types listed here Entity categories recognized by Text Analytics for health - Foundry Tools | Microsoft Learn.
 * **Languages**: Currently, SDOH and ethnicity extraction capabilities are enabled for English text only. Text Analytics for health can receive unstructured text in English as part of its general availability offering. Additional languages are currently supported in a preview offering.
 * **Spelling**: Incorrect spelling might affect the output. Specifically, entity linking looks for terms and synonyms based only on a specific, correct spelling. If a drug name, for example, is misspelled, the system might have enough information to recognize that the text is a drug name, but it might not identify the link as it would for the correctly spelled drug name.
 * **Performance**: Potential error types have been outlined in the System performance section below.
@@ -213,8 +213,8 @@ Custom Text Analytics for health features an internal evaluation as part of the 
 
 ### Evaluating and integrating Text Analytics for health for your use
 
-Microsoft wants to help you responsibly develop and deploy solutions that use Azure AI Language. These considerations are in line with our commitment to developing responsible AI.
-When you decide how to use and implement products and solutions powered by Azure AI Language features, consider the following factors.
+Microsoft wants to help you responsibly develop and deploy solutions that use Language. These considerations are in line with our commitment to developing responsible AI.
+When you decide how to use and implement products and solutions powered by Language features, consider the following factors.
 
 ## General guidelines
 
@@ -232,12 +232,12 @@ When you're getting ready to deploy Text Analytics for health, the following act
 
 ## See also
 
-* [Transparency note for Azure AI Language](transparency-note.md)
+* [Transparency note for Language](transparency-note.md)
 * [Transparency note for Named Entity Recognition and Personally Identifying Information](transparency-note-named-entity-recognition.md)
 * [Transparency note for Key Phrase Extraction](transparency-note-key-phrase-extraction.md)
 * [Transparency note for Language Detection](transparency-note-language-detection.md)
 * [Transparency note for Question answering](transparency-note-question-answering.md)
 * [Transparency note for Summarization](transparency-note-extractive-summarization.md)
 * [Transparency note for Sentiment Analysis](transparency-note-sentiment-analysis.md)
-* [Data Privacy and Security for  Azure AI Language](data-privacy.md)
-* [Guidance for integration and responsible use with Azure AI Language](guidance-integration-responsible-use.md)
+* [Data Privacy and Security for  Language](data-privacy.md)
+* [Guidance for integration and responsible use with Language](guidance-integration-responsible-use.md)

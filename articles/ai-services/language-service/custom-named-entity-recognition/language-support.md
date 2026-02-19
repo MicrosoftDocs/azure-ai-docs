@@ -1,31 +1,30 @@
 ---
 title: Language and region support for custom named entity recognition
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about the languages and regions supported by custom named entity recognition.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.custom: language-service-custom-ner
 ms.author: lajanuar
 ---
-
 # Language support for custom named entity recognition
 
 Use this article to learn about the languages currently supported by custom named entity recognition feature.
 
 ## Multi-lingual option
 
-With custom NER, you can train a model in one language and use to extract entities from documents in another language. This feature is powerful because it helps save time and effort. Instead of building separate projects for every language, you can handle multi-lingual dataset in one project. Your dataset doesn't have to be entirely in the same language but you should enable the multi-lingual option for your project while creating or later in project settings. If you notice your model performing poorly in certain languages during the evaluation process, consider adding more data in these languages to your training set.
+With custom named entity recognition (NER), you can train a model in one language and use to extract entities from documents in another language. This feature is powerful because it helps save time and effort. Instead of building separate projects for every language, you can handle multi-lingual dataset in one project. Your dataset doesn't have to be entirely in the same language but you should enable the multi-lingual option for your project while creating or later in project settings. If you notice your model performing poorly in certain languages during the evaluation process, consider adding more data in these languages to your training set.
 
 
 You can train your project entirely with English documents, and query it in: French, German, Mandarin, Japanese, Korean, and others. Custom named entity recognition 
 makes it easy for you to scale your projects to multiple languages by using multilingual technology to train your models.
 
-Whenever you identify that a particular language is not performing as well as other languages, you can add more documents for that language in your project. In the [data labeling](how-to/tag-data.md) page in Language Studio, you can select the language of the document you're adding. When you introduce more documents for that language to the model, it is introduced to more of the syntax of that language, and learns to predict it better.
+Whenever you identify that a particular language isn't performing as well as other languages, you can add more documents for that language in your project. For data labeling in [Microsoft Foundry](https://ai.azure.com/), you can select the language of the document you're adding. When you introduce more documents for that language to the model, the model is introduced to more of the syntax of that language, and learns to predict it better.
 
-You aren't expected to add the same number of documents for every language. You should build the majority of your project in one language, and only add a few documents in languages you observe aren't performing well. If you create a project that is primarily in English, and start testing it in French, German, and Spanish, you might observe that German doesn't perform as well as the other two languages. In that case, consider adding 5% of your original English documents in German, train a new model and test in German again. You should see better results for German queries. The more labeled documents you add, the more likely the results are going to get better. 
+You aren't expected to add the same number of documents for every language. You should build most your project in one language, and only add a few documents in languages you observe aren't performing well. If you develop a project mainly in English, and then begin testing it in French, German, and Spanish, you may notice some differences. Specifically, German may underperform compared to the other two languages. While French and Spanish might yield better results, German could present more challenges or produce less favorable outcomes during testing. In that case, consider adding 5% of your original English documents in German, train a new model and test in German again. You should see better results for German queries. The more labeled documents you add, the more likely the results are going to get better. 
 
 When you add data in another language, you shouldn't expect it to negatively affect other languages. 
 

@@ -1,21 +1,24 @@
 ---
 title: Custom voice lite - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use custom voice lite to demo and evaluate custom voice before investing in professional recordings to create a higher-quality voice.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/12/2025
-ms.author: eur
+ms.date: 12/29/2025
+ms.author: pafarley
 ---
 
 # Custom voice lite
 
-Custom voice lite is a project type where can demo and evaluate custom voice before investing in professional recordings to create a higher-quality voice. No application is required for demo and evaluation purposes. However, Microsoft restricts and selects the recording and testing samples for use with custom voice lite. You must apply for full access to professional voice fine-tuning in order to deploy and use the custom voice lite model for business purpose. In that case, request access on the [intake form](https://aka.ms/customneural).
+Custom voice lite is a project type you can use to demo and evaluate a custom voice before you invest in professional recordings to create a higher-quality voice. 
+
+> [!IMPORTANT]
+> No application is required for demo and evaluation purposes. However, Microsoft restricts and selects the recording and testing samples for use with custom voice lite. You must apply for full access to professional voice fine-tuning in order to deploy and use the custom voice lite model for business purpose. Request access using the [intake form](https://aka.ms/customneural).
 
 > [!NOTE]
-> Custom voice lite is only available in the [Speech Studio](https://aka.ms/speechstudio/customvoice). It isn't available through the Azure AI Foundry portal, REST API, or SDKs.
+> Custom voice lite is only available in the [Speech Studio](https://aka.ms/speechstudio/customvoice). It isn't available through the Microsoft Foundry portal, REST API, or SDKs.
 
 With a custom voice lite project, you record your voice online by reading 20-50 pre-defined scripts provided by Microsoft. After you've recorded at least 20 samples, you can start to train a model. Once the model is trained successfully, you can review the model and check out 20 output samples produced with another set of pre-defined scripts.
 
@@ -25,7 +28,7 @@ See the [supported languages](language-support.md?tabs=tts) for custom voice.
 
 The following table summarizes key differences between custom voice lite and professional voice fine-tuning.  
 
-|**Items**|**Lite**| **Professional**|
+|**Item**|**Lite**| **Professional**|
 |---------------|---------------|---------------|
 |Target scenarios |Demonstration or evaluation |Professional scenarios like brand and character voices for chat bots, or audio content reading.|   
 |Training data |Record online using Speech Studio |Bring your own data. Recording in a professional studio is recommended. |   
@@ -125,7 +128,7 @@ To deploy a custom voice lite model, follow these steps in [Speech Studio](https
 
 From here, you can use the custom voice lite model similarly as you would use a professional voice model. For example, you can [suspend or resume](professional-voice-deploy-endpoint.md) an endpoint after it's created, to limit spend and conserve resources that aren't in use. You can also access the voice in the [Audio Content Creation](how-to-audio-content-creation.md) tool in the [Speech Studio](https://aka.ms/speechstudio/audiocontentcreation).
 
-## Next steps
+## Related content
 
 * [Fine-tune a professional voice](professional-voice-create-project.md) 
 * [Try the text to speech quickstart](get-started-text-to-speech.md)

@@ -1,21 +1,28 @@
 ---
-title: 'How to configure content filters for models in Azure AI Foundry'
-titleSuffix: Azure AI Foundry
-description: Learn to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
-manager: scottpolly
-ms.service: azure-ai-model-inference
+title: 'How to configure content filters for models in Microsoft Foundry'
+titleSuffix: Microsoft Foundry
+description: Learn to use and configure the content filters that come with Microsoft Foundry, including getting approval for gated modifications.
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
-author: msakande
-ms.author: mopeakande
+ms.date: 12/08/2025
+author: ssalgadodev
+ms.author: ssalgado
+ms.reviewer: yinchang
+reviewer: ychang-msft
 recommendations: false
 ms.custom: ignite-2024, github-universe-2024
 zone_pivot_groups: azure-ai-models-deployment
-ms.reviewer: fasantia
-reviewer: santiagxf
+ai-usage: ai-assisted
+
+#CustomerIntent: As a developer working with Microsoft Foundry Models, I want to configure custom content filters for my model deployments so that I can implement appropriate safety guardrails, control harmful content detection at specific severity levels, and ensure my AI applications comply with responsible AI standards and organizational policies.
 ---
 
-# How to configure content filters for models in Azure AI Foundry
+# How to configure content filters for models in Microsoft Foundry
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/configure-content-filters/portal.md)]
@@ -29,7 +36,6 @@ reviewer: santiagxf
 [!INCLUDE [bicep](../../foundry-models/includes/configure-content-filters/bicep.md)]
 ::: zone-end
 
-## Next steps
-
-- Read more about [content filtering categories and severity levels](../../model-inference/concepts/content-filter.md) with Azure OpenAI in Azure AI Foundry Models.
-- Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../../../ai-services/openai/concepts/red-teaming.md).
+## Related content
+- [Content filtering for Microsoft Foundry Models](../concepts/content-filter.md)
+- [Introduction to red teaming large language models (LLMs)](../../openai/concepts/red-teaming.md)

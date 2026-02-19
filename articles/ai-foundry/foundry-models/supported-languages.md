@@ -1,27 +1,34 @@
 ---
-title: Supported programming languages for models in Azure AI Foundry Models
-titleSuffix: Azure AI Foundry
-description: Learn about supported programming languages for models in Azure AI Foundry Models
+title: Supported programming languages for models in Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to choose the right programming languages and SDKs for deploying and using models in Microsoft Foundry Models.
 author: msakande
-manager: scottpolly
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: concept-article
-ms.date: 05/19/2025
+ms.date: 11/21/2025
 ms.author: mopeakande
-ms.reviewer: fasantia
-reviewer: santiagxf
+ms.reviewer: achand
+reviewer: achandmsft
+ai-usage: ai-assisted
+
+#CustomerIntent: As a developer building AI applications with Microsoft Foundry Models, I want to know which programming languages and SDKs are supported for Microsoft Foundry Models so that I can choose the right tools for my application development.
 ---
 
 # Supported programming languages for Azure AI Inference SDK
 
-All models deployed to Azure AI Foundry Models support the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-To use these SDKs, connect them to the [Azure AI model inference URI](how-to/inference.md#azure-openai-inference-endpoint) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
+[!INCLUDE [migrate-model-inference-to-v1-openai](../includes/migrate-model-inference-to-v1-openai.md)]
+
+All models deployed to Microsoft Foundry Models support the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
+
+To use these SDKs, connect them to the [Azure AI model inference URI](./concepts/endpoints.md) (usually in the form `https://<resource-name>.services.ai.azure.com/models`).
 
 ## Azure AI Inference package
 
-The Azure AI Inference package allows you to consume all models deployed to the Azure AI Foundry resource and easily change among them. Azure AI Inference package is part of the Azure AI Foundry SDK.
+The Azure AI Inference package allows you to consume all models deployed to the Foundry resource and easily switch the model deployment from one to another. The Azure AI Inference package is part of the Microsoft Foundry SDK.
 
 | Language   | Documentation | Package | Examples |
 |------------|---------|-----|-------|
@@ -43,9 +50,8 @@ The Azure AI Inference package allows you to consume all models deployed to the 
 
 ## Limitations
 
-> [!WARNING]
-> Cohere SDK and Mistral SDK aren't supported in Azure AI Foundry.
+Foundry doesn't support the Cohere SDK or the Mistral SDK.
 
-## Next steps
+## Next step
 
-- To see what models are currently supported, check out the [Models](../model-inference/concepts/models.md) section
+- To see what models are currently supported, see [Foundry Models and capabilities](./concepts/models-sold-directly-by-azure.md).

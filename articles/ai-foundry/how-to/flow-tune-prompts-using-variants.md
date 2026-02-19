@@ -1,14 +1,15 @@
 ---
 title: Tune prompts using variants
-titleSuffix: Azure AI Foundry
-description: Learn how to tune prompts using variants in Prompt flow with Azure AI Foundry.
-manager: scottpolly
+titleSuffix: Microsoft Foundry
+description: Learn how to tune prompts using variants in Prompt flow with Microsoft Foundry.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 3/31/2025
+ms.date: 9/22/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -16,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Tune prompts using variants in Azure AI Foundry portal
+# Tune prompts using variants in Microsoft Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -25,6 +26,8 @@ In this article, you learn how to use variants to tune prompts and evaluate the 
 Crafting a good prompt is a challenging task that requires much creativity, clarity, and relevance. A good prompt can elicit the desired output from a pretrained language model, while a bad prompt can lead to inaccurate, irrelevant, or nonsensical outputs. Therefore, it's necessary to tune prompts to optimize their performance and robustness for different tasks and domains.
 
 Variants can help you test the model’s behavior under different conditions, such as different wording, formatting, context, temperature, or top-k. You can compare and find the best prompt and configuration that maximizes the model's accuracy, diversity, or coherence.
+
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 ## Variants in Prompt flow
 

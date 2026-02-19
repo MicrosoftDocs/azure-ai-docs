@@ -1,13 +1,13 @@
 ---
 title: Azure AI SDK for C++
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Provides an overview with links to available Azure AI client libraries and packages for C++.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
 ms.date: 03/06/2024
-ms.author: lajanuar
+ms.author: pafarley
 ---
 
 ## Supported services

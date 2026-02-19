@@ -2,15 +2,15 @@
 title: Indexer errors and warnings
 titleSuffix: Azure AI Search
 description: This article provides information and solutions to common errors and warnings you might encounter during AI enrichment in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 02/19/2025
+ms.topic: error-reference
+ms.date: 10/14/2025
+ms.update-cycle: 180-days
 ---
 
 # Troubleshooting common indexer errors and warnings in Azure AI Search
@@ -78,9 +78,9 @@ Indexer with a Blob data source was unable to extract the content or metadata fr
 
 | Reason | Details/Example | Resolution |
 | --- | --- | --- |
-| Blob is over the size limit | `Document is '150441598' bytes, which exceeds the maximum size '134217728' bytes for document extraction for your current service tier.` | [Blob indexing errors](search-howto-indexing-azure-blob-storage.md#DealingWithErrors) |
-| Blob has unsupported content type | `Document has unsupported content type 'image/png'` | [Blob indexing errors](search-howto-indexing-azure-blob-storage.md#DealingWithErrors) |
-| Blob is encrypted | `Document could not be processed - it may be encrypted or password protected.` | You can skip the blob with [blob settings](search-howto-indexing-azure-blob-storage.md#PartsOfBlobToIndex). |
+| Blob is over the size limit | `Document is '150441598' bytes, which exceeds the maximum size '134217728' bytes for document extraction for your current service tier.` | [Blob indexing errors](search-how-to-index-azure-blob-storage.md#DealingWithErrors) |
+| Blob has unsupported content type | `Document has unsupported content type 'image/png'` | [Blob indexing errors](search-how-to-index-azure-blob-storage.md#DealingWithErrors) |
+| Blob is encrypted | `Document could not be processed - it may be encrypted or password protected.` | You can skip the blob with [blob settings](search-how-to-index-azure-blob-storage.md#PartsOfBlobToIndex). |
 | Transient issues | `Error processing blob: The request was aborted: The request was canceled.` `Document timed out during processing.` | Occasionally there are unexpected connectivity issues. Try running the document through your indexer again later. |
 
 <a name="could-not-parse-document"></a>
@@ -92,7 +92,7 @@ Indexer read the document from the data source, but there was an issue convertin
 | Reason | Details/Example | Resolution |
 | --- | --- | --- |
 | The document key is missing | `Document key cannot be missing or empty` | Ensure all documents have valid document keys. The document key is determined by setting the 'key' property as part of the [index definition](/rest/api/searchservice/indexes/create#request-body). Indexers emit this error when the property flagged as the 'key' can't be found on a particular document. |
-| The document key is invalid | `Invalid document key. Keys can only contain letters, digits, underscore (_), dash (-), or equal sign (=). ` | Ensure all documents have valid document keys. Review [Indexing Blob Storage](search-howto-indexing-azure-blob-storage.md) for more details. If you're using the blob indexer, and your document key is the `metadata_storage_path` field, make sure that the indexer definition has a [base64Encode mapping function](search-indexer-field-mappings.md?tabs=rest#base64encode-function) with `parameters` equal to `null`, instead of the path in plain text. |
+| The document key is invalid | `Invalid document key. Keys can only contain letters, digits, underscore (_), dash (-), or equal sign (=). ` | Ensure all documents have valid document keys. Review [Indexing Blob Storage](search-how-to-index-azure-blob-storage.md) for more details. If you're using the blob indexer, and your document key is the `metadata_storage_path` field, make sure that the indexer definition has a [base64Encode mapping function](search-indexer-field-mappings.md?tabs=rest#base64encode-function) with `parameters` equal to `null`, instead of the path in plain text. |
 | The document key is invalid | `Document key cannot be longer than 1024 characters` | Modify the document key to meet the validation requirements. |
 | Couldn't apply field mapping to a field | `Could not apply mapping function 'functionName' to field 'fieldName'. Array cannot be null. Parameter name: bytes` | Double check the [field mappings](search-indexer-field-mappings.md) defined on the indexer, and compare with the data of the specified field of the failed document. It might be necessary to modify the field mappings or the document data. |
 | Couldn't read field value | `Could not read the value of column 'fieldName' at index 'fieldIndex'. A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.)` | These errors are typically due to unexpected connectivity issues with the data source's underlying service. Try running the document through your indexer again later. |
@@ -140,9 +140,9 @@ If your data source has a field with a different data type than the field you're
 
 There are two cases under which you might encounter this error message, each of which should be treated differently. Follow the instructions below depending on what skill returned this error for you.
 
-### Built-in Azure AI services skills
+### Built-in Foundry Tools skills
 
-Many of the built-in cognitive skills, such as language detection, entity recognition, or OCR, are backed by an Azure AI services API endpoint. Sometimes there are transient issues with these endpoints and a request will time out. For transient issues, there's no remedy except to wait and try again. As a mitigation, consider setting your indexer to [run on a schedule](search-howto-schedule-indexers.md). Scheduled indexing picks up where it left off. Assuming transient issues are resolved, indexing and cognitive skill processing should be able to continue on the next scheduled run.
+Many of the built-in cognitive skills, such as language detection, entity recognition, or OCR, are backed by a Foundry Tools API endpoint. Sometimes there are transient issues with these endpoints and a request will time out. For transient issues, there's no remedy except to wait and try again. As a mitigation, consider setting your indexer to [run on a schedule](search-howto-schedule-indexers.md). Scheduled indexing picks up where it left off. Assuming transient issues are resolved, indexing and cognitive skill processing should be able to continue on the next scheduled run.
 
 If you continue to see this error on the same document for a built-in cognitive skill, file a [support ticket](https://portal.azure.com/#create/Microsoft.Support) to get assistance, as this isn't expected.
 
@@ -232,7 +232,7 @@ This error occurs when the indexer is attempting to [project data into a knowled
 
 ## `Error: The cognitive service for skill '<skill-name>' has been throttled`
 
-Skill execution failed because the call to Azure AI services was throttled. Typically, this class of failure occurs when too many skills are executing in parallel. If you're using the Microsoft.Search.Documents client library to run the indexer, you can use the [SearchIndexingBufferedSender](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample05_IndexingDocuments.md#searchindexingbufferedsender) to get automatic retry on failed steps. Otherwise, you can [reset and rerun the indexer](search-howto-run-reset-indexers.md).
+Skill execution failed because the call to Foundry Tools was throttled. Typically, this class of failure occurs when too many skills are executing in parallel. If you're using the Microsoft.Search.Documents client library to run the indexer, you can use the [SearchIndexingBufferedSender](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/samples/Sample05_IndexingDocuments.md#searchindexingbufferedsender) to get automatic retry on failed steps. Otherwise, you can [reset and rerun the indexer](search-howto-run-reset-indexers.md).
 
 ## `Error: Expected IndexAction metadata`
 
@@ -354,7 +354,7 @@ The ability to resume an unfinished indexing job is predicated on having documen
 
 It's possible to override this behavior, enabling incremental progress and suppressing this warning by using the `assumeOrderByHighWaterMarkColumn` configuration property.
 
-For more information, see [Incremental progress and custom queries](search-howto-index-cosmosdb.md#IncrementalProgress).
+For more information, see [Incremental progress and custom queries](search-how-to-index-cosmosdb-sql.md#IncrementalProgress).
 
 <a name="some-data-was-lost-during projection-row-x-in-table-y-has-string-property-z-which-was-too-long"></a>
 
@@ -409,7 +409,7 @@ Collections with [Lazy](/azure/cosmos-db/index-policy#indexing-mode) indexing po
 
 ## `Warning: The document contains very long words (longer than 64 characters). These words may result in truncated and/or unreliable model predictions.`
 
-This warning is passed from the Language service of Azure AI services. In some cases, it's safe to ignore this warning, for example if the long string is just a long URL. Be aware that when a word is longer than 64 characters, it's 'truncated to 64 characters which can affect model predictions.
+This warning is passed from the Language service of Foundry Tools. In some cases, it's safe to ignore this warning, for example if the long string is just a long URL. Be aware that when a word is longer than 64 characters, it's 'truncated to 64 characters which can affect model predictions.
 
 ## `Error: Cannot write more bytes to the buffer than the configured maximum buffer size`
 
@@ -423,3 +423,24 @@ This error usually happens in Azure SQL indexers when the source column type use
 For example, if the column used for change detection is of type datetime, but the indexer expects a rowversion type because convertHighWaterMarkToRowVersion is enabled, the mismatch will cause an error.
 
 Check the data type for the 'High Water Mark' column in the source and update the indexer configuration accordingly. Once verified and updated, reset and rerun the indexer to process the column values.
+
+## `Error: Access denied to Virtual Network/Firewall rules.`
+
+This error typically occurs due to one of the following:
+- Firewall restrictions on Azure resources required by your indexer, depending on your configuration. These resources may include: the [data source](search-data-sources-gallery.md#generally-available-data-sources-by-azure-ai-search), Azure Storage account (used for [debug sessions](cognitive-search-debug-session.md), [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md) or [knowledge store](knowledge-store-concept-intro.md)), Azure Function (used for [web API custom skills](cognitive-search-custom-skill-web-api.md)), or Microsoft Foundry deployments used during [AI enrichment](cognitive-search-concept-intro.md).
+- Private endpoint configurations that block access from the indexer to those resources.
+
+Ensure that the indexer has access to your setup components by reviewing your resource configurations to confirm they allow traffic to all required services:
+- [Firewall and IP restriction settings](search-indexer-howto-access-ip-restricted.md)
+- [Shared private link setup](search-indexer-howto-access-private.md)
+
+## `Error: Credentials provided in the connection string are invalid or have expired.`
+
+This error occurs when the Azure AI Search indexer cannot authenticate using the provided connection string or it has issues accessing the storage account to verify the credentials. 
+
+| Possible Cause | Details/Example | Resolution |
+|---|---|---|
+| Expired or rotated key | A connection string contains an outdated key that no longer works. | Go to the resource that is being contacted (for example, Azure Storage or Azure SQL) and copy the latest access keys if using key-based authentication, then update the data source or connection string accordingly. |
+| Managed identity not enabled or access not granted | The AI Search service [managed identity](search-how-to-managed-identities.md) is enabled but lacks the required access roles. | - Enable system or user-assigned [managed identity](search-how-to-managed-identities.md) on the search Service.<br>- Assign appropriate role(s) to the identity (for example, `Storage Blob Data Reader` for blob containers). Each [data source](search-data-sources-gallery.md) has its own permission requirements. |
+| Network/firewall blocks identity access | The resource contacted is configured to restrict network access. | Configure [network settings](search-indexer-howto-access-ip-restricted.md) to allow Azure AI Search access. |
+| Key authorization has been disabled | Shared key access removed on the source, but the Search service data source configuration still uses key-based authentication. | Use [managed identity](search-how-to-managed-identities.md) authentication and ensure role-based permissions are in place. From an Azure Storage perspective, this means that [shared key authorization functionality is blocked](/azure/storage/common/shared-key-authorization-prevent), either from the storage account itself, or enforced through enterprise-level Azure Policies. |

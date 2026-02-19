@@ -2,10 +2,9 @@
 author: laujan
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 1. Copy the command into a text editor.
 2. Make the following changes in the command where needed:
     1. Replace the value `<your-language-resource-key>` with your key.

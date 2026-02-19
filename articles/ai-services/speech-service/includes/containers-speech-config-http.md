@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 04/18/2023
-ms.author: eur
+ms.author: pafarley
 ---
 
 Speech containers provide websocket-based query endpoint APIs that are accessed through the Speech SDK and Speech CLI. By default, the Speech SDK and Speech CLI use the public Speech service. To use the container, you need to change the initialization method.
@@ -128,6 +128,6 @@ speech_config = speechsdk.SpeechConfig(
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-When you use the Speech CLI in a container, include the `--host http://localhost:5000/` option. You must also specify `--key none` to ensure that the CLI doesn't try to use a Speech key for authentication. For information about how to configure the Speech CLI, see [Get started with the Azure AI Speech CLI](../spx-basics.md?tabs=dockerinstall#download-and-install).
+When you use the Speech CLI in a container, include the `--host http://localhost:5000/` option. You must also specify `--key none` to ensure that the CLI doesn't try to use a Speech key for authentication. For information about how to configure the Speech CLI, see [Get started with the Azure Speech in Foundry Tools CLI](../spx-basics.md?tabs=dockerinstall#download-and-install).
 ::: zone-end
 

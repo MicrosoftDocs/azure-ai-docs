@@ -7,8 +7,9 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Design patterns for multitenant SaaS applications and Azure AI Search
@@ -80,7 +81,7 @@ In the case of a multitenant scenario, the application developer consumes one or
 
 In an index-per-tenant model, multiple tenants occupy a single Azure AI Search service where each tenant has their own index.
 
-Tenants achieve data isolation because all search requests and document operations are issued at an index level in Azure AI Search. In the application layer, there's the need awareness to direct the various tenants’ traffic to the proper indexes while also managing resources at the service level across all tenants.
+This approach works because all search requests and document operations are issued at an index level in Azure AI Search. In the application layer, there's the need awareness to direct the various tenants’ traffic to the proper indexes while also managing resources at the service level across all tenants.
 
 A key attribute of the index-per-tenant model is the ability for the application developer to oversubscribe the capacity of a search service among the application’s tenants. If the tenants have an uneven distribution of workload, the optimal combination of tenants can be distributed across a search service’s indexes to accommodate a number of highly active, resource-intensive tenants while simultaneously serving a long tail of less active tenants. The trade-off is the inability of the model to handle situations where each tenant is concurrently highly active.
 

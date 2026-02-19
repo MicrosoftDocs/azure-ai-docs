@@ -1,20 +1,19 @@
 ---
 title: "Scale to handle more enrolled users - Face"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This guide is an article on how to scale up from existing PersonGroup and FaceList objects to LargePersonGroup and LargeFaceList objects.
-author: nitinme
+author: PatrickFarley
 manager: nitinme
 #customer intent: As a developer, I want to scale up from existing PersonGroup and FaceList objects to LargePersonGroup and LargeFaceList objects so that I can handle more enrolled users.
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/29/2025
-ms.author: nitinme
+ms.date: 01/30/2026
+ms.author: pafarley
 ms.devlang: csharp
-ms.custom:
-  - devx-track-csharp
-  - ignite-2023
+ms.custom: devx-track-csharp
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 

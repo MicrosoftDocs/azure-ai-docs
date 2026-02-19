@@ -1,12 +1,13 @@
 ---
-title: 'C# Tutorial: Optimize Indexing Using the Push API'
+title: 'C# Tutorial: Use the Push API to Optimize Indexing'
 titleSuffix: Azure AI Search
 description: Learn how to efficiently index data using Azure AI Search's push API. This tutorial and sample code are in C#.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 03/28/2025
+ms.date: 11/21/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -14,9 +15,9 @@ ms.custom:
 
 # Tutorial: Optimize indexing using the push API
 
-Azure AI Search supports [two basic approaches](search-what-is-data-import.md) for importing data into a search index: *pushing* your data into the index programmatically, or *pulling* in your data by pointing an [Azure AI Search indexer](search-indexer-overview.md) to a supported data source.
+Azure AI Search supports two basic methods for [importing data](search-what-is-data-import.md) into a search index: *pushing* your data into the index programmatically or *pulling* your data by pointing an [indexer](search-indexer-overview.md) to a supported data source.
 
-This tutorial explains how to efficiently index data using the [push model](search-what-is-data-import.md#pushing-data-to-an-index) by batching requests and using an exponential backoff retry strategy. You can [download and run the sample application](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/optimize-data-indexing). This tutorial also explains the key aspects of the application and what factors to consider when indexing data.
+This tutorial explains how to efficiently index data using the [push model](search-what-is-data-import.md#pushing-data-to-an-index) by batching requests and using an exponential backoff retry strategy. You can download and run the [sample application](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/optimize-data-indexing/v11). This tutorial also explains the key aspects of the application and what factors to consider when indexing data.
 
 In this tutorial, you use C# and the [Azure.Search.Documents library](/dotnet/api/overview/azure/search) from the Azure SDK for .NET to:
 
@@ -29,7 +30,7 @@ In this tutorial, you use C# and the [Azure.Search.Documents library](/dotnet/ap
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 + [Visual Studio](https://visualstudio.microsoft.com/downloads/).
 
 <a name="get-service-info"></a>
@@ -42,46 +43,48 @@ Source code for this tutorial is in the [optimize-data-indexing/v11](https://git
 
 The following factors affect indexing speeds. For more information, see [Index large data sets](search-howto-large-index.md).
 
-+ **Service tier and number of partitions/replicas**: Adding partitions or upgrading your tier increases indexing speeds.
++ **Pricing tier and number of partitions/replicas**: Adding partitions or upgrading your tier increases indexing speeds.
 + **Index schema complexity**: Adding fields and field properties lowers indexing speeds. Smaller indexes are faster to index.
 + **Batch size**: The optimal batch size varies based on your index schema and dataset.
 + **Number of threads/workers**: A single thread doesn't take full advantage of indexing speeds.
 + **Retry strategy**: An exponential backoff retry strategy is a best practice for optimum indexing.
 + **Network data transfer speeds**: Data transfer speeds can be a limiting factor. Index data from within your Azure environment to increase data transfer speeds.
 
-## Create an Azure AI Search service
+## Create a search service
 
-This tutorial requires an Azure AI Search service, which you can [create in the Azure portal](search-create-service-portal.md). You can also [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. To accurately test and optimize indexing speeds, we recommend using the same tier you plan to use in production.
+This tutorial requires an Azure AI Search service, which you can [create in the Azure portal](search-create-service-portal.md). You can also [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. To accurately test and optimize indexing speeds, we recommend using the same pricing tier you plan to use in production.
 
 ### Get an admin key and URL for Azure AI Search
 
-This tutorial uses key-based authentication. Copy an admin API key to paste into the *appsettings.json* file.
+This tutorial uses key-based authentication. Copy an admin API key to paste into the `appsettings.json` file.
 
-1. Sign in to the [Azure portal](https://portal.azure.com). On your service **Overview** page, copy the endpoint URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
 
-1. On **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either the primary or secondary key on requests for adding, modifying, and deleting objects.
+1. From the left pane, select **Overview** and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`
+
+1. From the left pane, select **Settings** > **Keys** and copy an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests to add, modify, or delete objects.
 
     :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the HTTP endpoint and API key locations.":::
 
 ## Set up your environment
 
-1. Start Visual Studio and open *OptimizeDataIndexing.sln*.
+1. Open the `OptimizeDataIndexing.sln` file in Visual Studio.
 
-1. In Solution Explorer, open *appsettings.json* to provide your service's connection information.
+1. In Solution Explorer, edit the `appsettings.json` file with the connection information you collected in the previous step.
 
-```json
-{
-  "SearchServiceUri": "https://{service-name}.search.windows.net",
-  "SearchServiceAdminApiKey": "",
-  "SearchIndexName": "optimize-indexing"
-}
-```
+    ```json
+    {
+      "SearchServiceUri": "https://{service-name}.search.windows.net",
+      "SearchServiceAdminApiKey": "",
+      "SearchIndexName": "optimize-indexing"
+    }
+    ```
 
 ## Explore the code
 
-After you update *appsettings.json*, the sample program in *OptimizeDataIndexing.sln* should be ready to build and run.
+After you update `appsettings.json`, the sample program in `OptimizeDataIndexing.sln` should be ready to build and run.
 
-This code is derived from the C# section of [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md), which provides detailed information about the basics of working with the .NET SDK.
+This code is derived from the C# section of [Quickstart: Full-text search](search-get-started-text.md), which provides detailed information about the basics of working with the .NET SDK.
 
 This simple C#/.NET console app performs the following tasks:
 
@@ -91,12 +94,12 @@ This simple C#/.NET console app performs the following tasks:
     + Using multiple threads to increase indexing speeds
     + Using an exponential backoff retry strategy to retry failed items
 
- Before running the program, take a minute to study the code and the index definitions for this sample. The relevant code is in several files:
+Before you run the program, take a minute to study the code and the index definitions for this sample. The relevant code is in several files:
 
-  + *Hotel.cs* and *Address.cs* contain the schema that defines the index
-  + *DataGenerator.cs* contains a simple class to make it easy to create large amounts of hotel data
-  + *ExponentialBackoff.cs* contains code to optimize the indexing process as described in this article
-  + *Program.cs* contains functions that create and delete the Azure AI Search index, indexes batches of data, and tests different batch sizes
+  + `Hotel.cs` and `Address.cs` contain the schema that defines the index
+  + `DataGenerator.cs` contains a simple class to make it easy to create large amounts of hotel data
+  + `ExponentialBackoff.cs` contains code to optimize the indexing process as described in this article
+  + `Program.cs` contains functions that create and delete the Azure AI Search index, indexes batches of data, and tests different batch sizes
 
 ### Create the index
 
@@ -104,7 +107,7 @@ This sample program uses the Azure SDK for .NET to define and create an Azure AI
 
 The data model is defined by the `Hotel` class, which also contains references to the `Address` class. `FieldBuilder` drills down through multiple class definitions to generate a complex data structure for the index. Metadata tags are used to define the attributes of each field, such as whether it's searchable or sortable.
 
-The following snippets from the *Hotel.cs* file specify a single field and a reference to another data model class.
+The following snippets from the `Hotel.cs` file specify a single field and a reference to another data model class.
 
 ```csharp
 . . .
@@ -115,7 +118,7 @@ public Address Address { get; set; }
 . . .
 ```
 
-In the *Program.cs* file, the index is defined with a name and a field collection generated by the `FieldBuilder.Build(typeof(Hotel))` method, and then created as follows:
+In the `Program.cs` file, the index is defined with a name and a field collection generated by the `FieldBuilder.Build(typeof(Hotel))` method, and then created as follows:
 
 ```csharp
 private static async Task CreateIndexAsync(string indexName, SearchIndexClient indexClient)
@@ -132,7 +135,7 @@ private static async Task CreateIndexAsync(string indexName, SearchIndexClient i
 
 ### Generate data
 
-A simple class is implemented in the *DataGenerator.cs* file to generate data for testing. The purpose of this class is to make it easy to generate a large number of documents with a unique ID for indexing.
+A simple class is implemented in the `DataGenerator.cs` file to generate data for testing. The purpose of this class is to make it easy to generate a large number of documents with a unique ID for indexing.
 
 To get a list of 100,000 hotels with unique IDs, run the following code:
 
@@ -360,7 +363,7 @@ After the function finishes running, you can verify that all of the documents we
 
 After the program finishes running, you can explore the populated search index either programmatically or using the [Search explorer](search-explorer.md) in the Azure portal.
 
-### Programatically
+### Programmatically
 
 There are two main options for checking the number of documents in an index: the [Count Documents API](/rest/api/searchservice/documents/count) and the [Get Index Statistics API](/rest/api/searchservice/indexes/get-statistics). Both paths require time to process, so don't be alarmed if the number of documents returned is initially lower than you expect.
 

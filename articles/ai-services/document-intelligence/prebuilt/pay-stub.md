@@ -1,13 +1,13 @@
 ---
 title: Document Intelligence payStub model
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Automate compensation and earnings information from pay slips and stubs.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 11/19/2024
-ms.author: admaheshwari
+ms.topic: concept-article
+ms.date: 11/18/2025
+ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
 
@@ -25,7 +25,7 @@ The Document Intelligence payStub model combines powerful Optical Character Reco
 
 Pay stubs are essential documents issued by employers to employees, providing earnings, deductions, and net pay information for a specific pay period. See how data is extracted using `prebuilt-payStub.us` model. You need the following resources:
 
-* An Azure subscription—you can [create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* An Azure subscription—you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 

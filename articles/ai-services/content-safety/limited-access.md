@@ -5,12 +5,12 @@ description: This article explains why certain Azure AI Content Safety features 
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-ai-content-safety
-ms.date: 04/29/2025
+ms.date: 09/16/2025
 ---
 
-# Limited Access to Content Safety features
+# Limited Access to Content Safety Features
 
 The Azure AI Content Safety [disconnected containers](./how-to/containers/container-overview.md) and [embedded SDK](./how-to/embedded-content-safety.md) are Limited Access features available by registration only, and only for certain use cases. These features allow for on-device analysis where cloud connectivity is intermittent or unavailable.
 

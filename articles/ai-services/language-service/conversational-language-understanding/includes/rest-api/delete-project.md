@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 Create a `DELETE` request by using the following URL, headers, and JSON body to delete a conversational language understanding project.
 
 ### Request URL

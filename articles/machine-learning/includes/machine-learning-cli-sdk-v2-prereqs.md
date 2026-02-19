@@ -1,9 +1,9 @@
 ---
-author: blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 * An Azure Machine Learning workspace. For instructions for creating a workspace, see [Create the workspace](../quickstart-create-resources.md#create-the-workspace).
@@ -17,6 +17,8 @@ ms.author: larryfr
     The examples in this article assume that you use a Bash shell or a compatible shell. For example, you can use a shell on a Linux system or [Windows Subsystem for Linux](/windows/wsl/about). 
 
     # [Python SDK](#tab/python)
+
+    * Python 3.10 or later.
 
     To install the Python SDK v2, use the following command:
 

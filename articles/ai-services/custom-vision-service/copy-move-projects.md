@@ -1,6 +1,6 @@
 ---
 title: Copy and back up Custom Vision projects
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use the ExportProject and ImportProject APIs to copy and back up your Custom Vision projects.
 author: PatrickFarley
 manager: nitinme
@@ -22,7 +22,7 @@ The **[ExportProject](/rest/api/customvision/projects/export)** and **[ImportPro
 > For an example of this scenario using the Python client library, see the [Move Custom Vision Project](https://github.com/Azure-Samples/custom-vision-move-project/tree/master/) repository on GitHub.
 
 > [!TIP]
-> If you want to move your Custom Vision project to [Azure AI Vision Image Analysis 4.0](/azure/ai-services/computer-vision/how-to/model-customization), see the [Migration guide](/azure/ai-services/computer-vision/how-to/migrate-from-custom-vision). To compare the two services, see the [Comparison page](/azure/ai-services/custom-vision-service/concepts/compare-alternatives).
+> If you want to move your Custom Vision project to [Azure Vision in Foundry Tools Image Analysis 4.0](/azure/ai-services/computer-vision/how-to/model-customization), see the [Migration guide](/azure/ai-services/computer-vision/how-to/migrate-from-custom-vision). To compare the two services, see the [Comparison page](/azure/ai-services/custom-vision-service/concepts/compare-alternatives).
 
 ## Prerequisites
 

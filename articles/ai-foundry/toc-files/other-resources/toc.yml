@@ -1,0 +1,25 @@
+items:
+- name: What's new in Microsoft Foundry?
+  href: ../../whats-new-foundry.md
+- name: Foundry (classic) FAQ
+  href: ../../faq.yml
+- name: Foundry known issues
+  href: ../../reference/foundry-known-issues.md  
+- name: Support & help options
+  href: ../../../ai-services/cognitive-services-support-options.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: Use Microsoft Foundry with a screen reader
+  href: ../../tutorials/screen-reader.md
+- name: Feature availability
+  href: ../../reference/region-support.md
+- name: Region support
+  href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
+- name: Azure updates
+  href: https://azure.microsoft.com/updates/?query=cognitive%20services
+- name: Pricing calculator
+  href: https://azure.microsoft.com/pricing/calculator/
+- name: Compliance
+  href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
+- name: Service Level Agreement (SLA)
+  href: https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/
+- name: Azure Government
+  href: /azure/azure-government/compare-azure-government-global-azure

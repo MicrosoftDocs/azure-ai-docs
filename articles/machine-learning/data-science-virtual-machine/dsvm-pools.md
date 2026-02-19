@@ -6,9 +6,9 @@ keywords: deep learning, AI, data science tools, data science virtual machine, g
 services: machine-learning
 ms.service: azure-data-science-virtual-machines
 
-author: fbsolo-ms1
-ms.author: franksolomon 
-ms.topic: conceptual
+author: s-polly
+ms.author: scottpolly 
+ms.topic: concept-article
 ms.reviewer: vijetaj
 ms.date: 04/11/2024
 ---

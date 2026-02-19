@@ -1,12 +1,12 @@
 ---
 title: Characteristics and limitations of Pronunciation Assessment
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article provides information on the characteristics and limitations of using Pronunciation Assessment and the considerations you should make for it's responsible use.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
+ms.topic: concept-article
 ms.date: 05/17/2021
 ---
 
@@ -14,11 +14,11 @@ ms.date: 05/17/2021
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
-As a part of the Azure AI Speech service, pronunciation assessment empowers end-to-end education solutions for computer-assisted language learning. Pronunciation Assessment involves multiple criteria to assess learners' performance at multiple levels of detail, with perceptions similar to human judges.
+As a part of the Azure Speech in Foundry Tools service, pronunciation assessment empowers end-to-end education solutions for computer-assisted language learning. Pronunciation Assessment involves multiple criteria to assess learners' performance at multiple levels of detail, with perceptions similar to human judges.
 
 ## How accurate is Pronunciation Assessment?
 
-Pronunciation Assessment feature provides objective scores, like pronunciation accuracy and fluency degree, for language learners in [computer-assisted language learning](https://en.wikipedia.org/wiki/Computer-assisted_language_learning). The performance of pronunciation assessment depends on Azure AI Speech-To-Text transcription accuracy with the use of a submitted transcription as reference, and [inter-rater agreement](https://en.wikipedia.org/wiki/Inter-rater_reliability) between the system and human judges. For a definition of Speech-To-Text accuracy, see [Characteristics and limitations for using speech to text](https://aka.ms/STT-characteristics-limitation).
+Pronunciation Assessment feature provides objective scores, like pronunciation accuracy and fluency degree, for language learners in [computer-assisted language learning](https://en.wikipedia.org/wiki/Computer-assisted_language_learning). The performance of pronunciation assessment depends on Azure Speech-To-Text transcription accuracy with the use of a submitted transcription as reference, and [inter-rater agreement](https://en.wikipedia.org/wiki/Inter-rater_reliability) between the system and human judges. For a definition of Speech-To-Text accuracy, see [Characteristics and limitations for using speech to text](https://aka.ms/STT-characteristics-limitation).
 
 The following sections are designed to help you understand key concepts about accuracy as they apply to using Pronunciation Assessment.
 
@@ -54,6 +54,6 @@ In our evaluations, Microsoft Pronunciation Assessment has performed >0.5 Pearso
 
 Pronunciation Assessment's performance will vary depending on the real-world uses that customers implement. In order to ensure optimal performance in their scenarios, customers should conduct their own evaluations of the solutions they implement using Pronunciation Assessment.
 
-- Before using Pronunciation Assessment in your applications, consider whether this product performs well in your scenario. Collect real-life data from the target scenario, test how Pronunciation Assessment performs, and make sure Speech-To-Text and Pronunciation Assessment can deliver the accuracy you need, see [Evaluate and improve Azure AI services Custom Speech accuracy](/azure/ai-services/speech-service/how-to-custom-speech-evaluate-data).
+- Before using Pronunciation Assessment in your applications, consider whether this product performs well in your scenario. Collect real-life data from the target scenario, test how Pronunciation Assessment performs, and make sure Speech-To-Text and Pronunciation Assessment can deliver the accuracy you need, see [Evaluate and improve Foundry Tools Custom Speech accuracy](/azure/ai-services/speech-service/how-to-custom-speech-evaluate-data).
 - Select suitable thresholds per the target scenario. Pronunciation Assessment provides accuracy scores at different levels and you may need to consider the threshold employed in real-use. For example, the grading method for children's learning might not be as strict as that for adult learning. Consider setting a higher mispronunciation detection threshold for adult learning.
 

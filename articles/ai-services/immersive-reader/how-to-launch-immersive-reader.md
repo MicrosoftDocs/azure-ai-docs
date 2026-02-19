@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-immersive-reader
 ms.topic: how-to
 ms.date: 02/21/2024
-ms.author: sharmas
+ms.author: michtho
 ms.custom: devx-track-js, devx-track-extended-java, devx-track-python
 zone_pivot_groups: immersive-reader-how-to-guides
 ---

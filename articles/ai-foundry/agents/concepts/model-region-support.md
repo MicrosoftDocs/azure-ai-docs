@@ -1,96 +1,215 @@
 ---
-title: Supported models in Azure AI Foundry Agent Service
-titleSuffix: Azure AI Foundry
-description: Learn about the models you can use with Azure AI Foundry Agent Service.
+title: Azure OpenAI models and regions for Foundry Agent Service
+titleSuffix: Microsoft Foundry
+description: Find supported Azure OpenAI models and regions for Microsoft Foundry Agent Service. Compare gpt-5, gpt-4o, and gpt-4 availability across global and regional deployments.
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
-ms.topic: conceptual
-ms.date: 06/03/2025
-ms.custom: azure-ai-agents
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.topic: concept-article
+ms.date: 02/02/2026
+ms.custom: azure-ai-agents, references_regions, pilot-ai-workflow-jan-2026
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
-# Models supported by Azure AI Foundry Agent Service
+# Azure OpenAI models and regions for Foundry Agent Service
 
-Agents are powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs. 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-## Azure OpenAI models
+Azure OpenAI models power agents in Microsoft Foundry Agent Service. This article helps you choose a supported model and region combination for your deployment. Choosing the right model and region affects your agent's capabilities, latency, and cost.
 
-Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment: 
+To use these models, you need a [Microsoft Foundry project](../../what-is-foundry.md) with access to Foundry Agent Service.
 
-- **Standard** is offered with a global deployment option, routing traffic globally to provide higher throughput.
-- **Provisioned** is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
+Microsoft Foundry offers two main types of deployments:
 
-All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see [deployment types guide](../../../ai-services/openai/how-to/deployment-types.md).
+- *Standard* includes a global deployment option that routes traffic across Azure's global infrastructure to maximize throughput and availability.
+- *Provisioned* also includes a global deployment option. You can purchase and deploy provisioned throughput units (PTUs) across Azure's global infrastructure for predictable performance.
 
-Azure AI Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
+All deployments can perform the same inference operations. However, the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md).
 
+## How to use this page
+
+Use the tables in this article to choose a supported combination of deployment type, model version, and Azure region.
+
+- **Deployment type**: Use the tabs to select the deployment type you plan to use (standard or provisioned).
+- **Region**: The **Region** column lists the Azure region where you deploy the model.
+- **Availability markers**:
+  - ✅: Supported.
+  - Blank cells or `-`: Not supported.
+
+## Choose a model
+
+Select a model based on your agent's requirements:
+
+- **gpt-5 family** (gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat): Frontier-scale reasoning for complex, multi-step tasks. Registration is required for access.
+- **gpt-4.1 family** (gpt-4.1, gpt-4.1-mini, gpt-4.1-nano): Cost-effective models for general-purpose agent workloads.
+- **gpt-4o family** (gpt-4o, gpt-4o-mini): Multimodal capabilities with vision support.
+- **gpt-4 and gpt-35-turbo**: Legacy models for backward compatibility.
+
+> [!TIP]
+> **Quick start**: For most new agents, deploy **gpt-4o, 2024-11-20** in **swedencentral** or **eastus2** using Global standard deployment. These regions have broad model availability and low latency for most scenarios.
+
+## Available models
+
+Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
+
+Keep in mind that model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs.
+
+::: moniker range="foundry-classic"
 > [!NOTE]
-> * The following table is for serverless API deployment availability. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../../ai-services/openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../../ai-services/openai/concepts/models.md#global-standard-model-availability). 
-> * [Hub based projects](../../what-is-azure-ai-foundry.md#project-types) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo
+>
+> - [Hub-based projects](../../what-is-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.
+> - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
+> - The [file search tool](../how-to/tools-classic/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
+> - The gpt-5 models can use only the [code interpreter](../how-to/tools-classic/code-interpreter.md) and [file search](../how-to/tools-classic/file-search.md) tools.
+> - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
+::: moniker-end
 
-| REGION           | o1 | o3-mini | gpt-4.1, 2025-04-14 | gpt-4.1-mini, 2025-04-14 | gpt-4.1-nano, 2025-04-14 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 | gpt-4, 0613 | gpt-4, turbo-2024-04-09 | gpt-4-32k, 0613 | gpt-35-turbo, 1106 | gpt-35-turbo, 0125 |
-|------------------|----|---------|---------------------|--------------------------|--------------------------|--------------------|--------------------|--------------------|-------------------------|-------------|-------------------------|-----------------|--------------------|--------------------|
-| australiaeast    |    |         |                     |                          |                          |                    |                    | X                  |                         | X           |                         | X               | X                  | X                  |
-| canadaeast       |    |         |                     |                          |                          |                    |                    | X                  |                         | X           |                         | X               | X                  | X                  |
-| eastus           |    |         |                     |                          |                          | X                  | X                  | X                  | X                       | X           | X                       |                 |                    | X                  |
-| eastus2          |    |         |                     |                          |                          | X                  | X                  | X                  | X                       | X           | X                       |                 |                    | X                  |
-| francecentral    |    |         |                     |                          |                          |                    |                    | X                  |                         | X           |                         | X               | X                  | X                  |
-| japaneast        |    |         |                     |                          |                          |                    |                    | X                  |                         |             |                         |                 |                    | X                  |
-| koreacentral     |    |         |                     |                          |                          |                    |                    |                    |                         |             |                         |                 |                    |                    |
-| norwayeast       |    |         |                     |                          |                          |                    |                    | X                  |                         |             |                         |                 |                    |                    |
-| polandcentral    |    |         |                     |                          |                          |                    |                    |                    |                         |             |                         |                 |                    |                    |
-| southindia       |    |         |                     |                          |                          |                    |                    | X                  |                         |             |                         |                 | X                  |                    |
-| swedencentral    |    |         |                     |                          |                          | X                  | X                  | X                  | X                       | X           | X                       | X               | X                  | X                  |
-| switzerlandnorth |    |         |                     |                          |                          |                    |                    | X                  |                         | X           |                         | X               |                    | X                  |
-| uaenorth         |    |         |                     |                          |                          |                    |                    |                    |                         |             |                         |                 |                    |                    |
-| uksouth          |    |         |                     |                          |                          |                    |                    | X                  |                         |             |                         |                 | X                  | X                  |
-| westus           |    |         |                     |                          |                          | X                  | X                  | X                  | X                       |             | X                       |                 | X                  |                    |
-| westus3          |    |         |                     |                          |                          | X                  | X                  | X                  | X                       |             | X                       |                 |                    |                    |
-
-## Non-Microsoft models
-
-The Azure AI Foundry Agent Service also supports the following models from the Azure AI Foundry model catalog.
-
-* Meta-Llama-405B-Instruct
-
-To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to make a deployment, and then reference the deployment name in your agent. For example:
-
-```python
-agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
-```
-## Azure AI Foundry models
-
-### Models with tool-calling 
-
-To best support agentic scenarios, we recommend using models that support tool-calling. The Azure AI Foundry Agent Service currently supports all agent-compatible models from the Azure AI Foundry model catalog. 
-
-To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to make a model deployment, then reference the deployment name in your agent. For example: 
-
-`agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent")`
-
+::: moniker range="foundry"
 > [!NOTE]
-> This option should only be used for open-source models (for example, Cepstral, Mistral, Llama) and not for OpenAI models, which are natively supported in the service. This option should also only be used for models that support tool-calling. 
+>
+> - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
+> - The [file search tool](../../default/agents/how-to/tools/file-search.md?view=foundry&preserve-view=true) is currently unavailable in the Italy North and Brazil South regions.
+> - The gpt-5 models are available for the [code interpreter](../../default/agents/how-to/tools/code-interpreter.md?view=foundry&preserve-view=true) and [file search](../../default/agents/how-to/tools/file-search.md?view=foundry&preserve-view=true) tools.
+> - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
+::: moniker-end
 
-### Models without tool-calling 
+# [Global standard](#tab/global-standard)
 
-Though tool-calling support is a core capability for agentic scenarios, we now provide the ability to use models that don’t support tool-calling in our API and SDK. This option can be helpful when you have specific use-cases that don’t require tool-calling. 
+| Region | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-5-nano | gpt-5-chat | gpt-4.1 | gpt-4.1-nano | gpt-4.1-mini | gpt-4o (05-13) | gpt-4o (08-06) | gpt-4o (11-20) | gpt-4o-mini | gpt-4 | gpt-4-turbo |
+| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| australiaeast | | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| brazilsouth | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ |
+| canadaeast | | ✅ | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus | | | ✅ | ✅ | | | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| francecentral | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| germanywestcentral | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| italynorth | | | | | | | ✅ | ✅ | ✅ | | | ✅ | ✅ | | |
+| japaneast | | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| norwayeast | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southafricanorth | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ |
+| southcentralus | ✅ | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southindia | | | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| swedencentral | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| switzerlandnorth | | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| uksouth | | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westeurope | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ |
+| westus | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus3 | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-The following steps will allow you to utilize any chat-completion model that is available through a [serverless API](/azure/ai-foundry/how-to/model-catalog-overview): 
+# [Global provisioned managed](#tab/ptu-global)
 
- 
+| Region | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-4.1 | gpt-4.1-nano | gpt-4.1-mini | gpt-4o (05-13) | gpt-4o (08-06) | gpt-4o (11-20) | gpt-4o-mini |
+| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| australiaeast | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| brazilsouth | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| canadaeast | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| francecentral | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| germanywestcentral | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| italynorth | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| japaneast | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| norwayeast | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| polandcentral | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southafricanorth | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southcentralus | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southeastasia | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southindia | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| swedencentral | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| switzerlandnorth | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| uksouth | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westeurope | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus3 | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-1. Deploy your desired model through serverless API. Model will show up on your **Models + Endpoints** page. 
+# [Standard](#tab/standard)
 
-1. Click on model name to see model details, where you'll find your model's target URI and key. 
+| Region | o3-deep-research | gpt-4o (05-13) | gpt-4o (08-06) | gpt-4o (11-20) | gpt-4o-mini | gpt-4 | gpt-4-turbo | gpt-4-32k | gpt-35-turbo (1106) | gpt-35-turbo (0125) |
+| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| australiaeast | | | | ✅ | | ✅ | | ✅ | ✅ | ✅ |
+| canadaeast | | | | ✅ | | ✅ | | ✅ | ✅ | ✅ |
+| eastus | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | | ✅ |
+| eastus2 | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | | ✅ |
+| francecentral | | | | ✅ | | ✅ | | ✅ | ✅ | ✅ |
+| japaneast | | | | ✅ | | | | | | ✅ |
+| norwayeast | ✅ | | | ✅ | | | | | | |
+| southcentralus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | | ✅ |
+| southindia | | | | ✅ | | | | | ✅ | ✅ |
+| swedencentral | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| switzerlandnorth | | | | ✅ | | ✅ | | ✅ | | ✅ |
+| uksouth | | | | ✅ | | | | | ✅ | ✅ |
+| westeurope | | | | | | | | | | ✅ |
+| westus | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ | | ✅ | ✅ |
+| westus3 | | ✅ | ✅ | ✅ | ✅ | | ✅ | | | ✅ |
 
-1. Create a new Serverless connection on **Connected Resources** page, using the target URI and key. 
+# [Provisioned managed](#tab/ptu)
 
-The model can now be referenced in your code (`Target URI` + `@` + `Model Name`), for example: 
+| Region | gpt-5 | gpt-5-mini | gpt-4.1 | gpt-4.1-nano | gpt-4.1-mini | gpt-4o (05-13) | gpt-4o (08-06) | gpt-4o (11-20) | gpt-4o-mini | gpt-4 | gpt-4-turbo | gpt-4-32k | gpt-35-turbo (1106) | gpt-35-turbo (0125) |
+| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| australiaeast | | | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| brazilsouth | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |
+| canadaeast | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | |
+| eastus | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| francecentral | | | | | | ✅ | ✅ | | ✅ | ✅ | | ✅ | | ✅ |
+| germanywestcentral | | | | | | ✅ | ✅ | ✅ | | ✅ | | ✅ | ✅ | |
+| japaneast | | | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ | | | ✅ |
+| southafricanorth | | | | | | ✅ | | | | ✅ | ✅ | ✅ | ✅ | |
+| southcentralus | ✅ | | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southeastasia | | | | | | | ✅ | ✅ | ✅ | | | | | |
+| southindia | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ |
+| swedencentral | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| switzerlandnorth | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| uksouth | | | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westeurope | | | | | | | | ✅ | | | | | | |
+| westus | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus3 | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-`Model=https://Phi-4-mejco.eastus.models.ai.azure.com/@Phi-4-mejco`
+---
 
-## Next steps
+## Non-OpenAI models
 
-[Create a new Agent project](../quickstart.md)
+In addition to Azure OpenAI models, you can use models sold directly by Azure. These models offer specialized capabilities for specific use cases, such as deterministic reasoning or high-throughput generation.
+
+[!INCLUDE [agent-service-models-support-list](../includes/agent-service-models-support-list.md)]
+
+## View all agent-supported models in the Foundry portal
+
+[!INCLUDE [agent-service-view-models-in portal](../includes/agent-service-view-models-in-portal.md)]
+
+## Verify model support
+
+Model availability can change over time.
+
+- To verify what you can deploy for your project and region, use the Foundry portal model experience described in the previous section.
+- If you use provisioned throughput, make sure you have provisioned throughput units (PTUs) available in the target region. For background, see [Provisioned throughput](../../openai/concepts/provisioned-throughput.md).
+
+## Troubleshooting
+
+### A model or version isn't available in your region
+
+- Confirm you selected the right tab for your deployment type.
+- Try a different region that supports the model and version.
+- If you're using gpt-5 models, make sure your subscription has access. Some models require registration.
+
+### File search isn't available
+
+- File search isn't available in Italy North and Brazil South. Choose a supported region, or use a different tool.
+
+### Provisioned throughput deployment fails
+
+- Confirm you have enough PTUs available in the region.
+- Review [Provisioned throughput](../../openai/concepts/provisioned-throughput.md) and [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md).
+
+## Related content
+
+- [Create a new agent](../quickstart.md)
+- [Foundry Agent Service quotas and limits](../quotas-limits.md)
+- [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md)
+- [Feature availability across cloud regions](../../reference/region-support.md)

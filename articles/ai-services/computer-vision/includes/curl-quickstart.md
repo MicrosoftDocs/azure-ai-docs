@@ -1,14 +1,12 @@
 ---
 title: "Quickstart: Optical character recognition REST API"
-titleSuffix: "Azure AI services"
+titleSuffix: "Foundry Tools"
 description: In this quickstart, get started with the Optical character recognition REST API.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -19,10 +17,10 @@ Use the optical character recognition (OCR) REST API to read printed and handwri
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [cURL](https://curl.haxx.se/) installed.
-- <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure AI Vision resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- The key and endpoint from the resource you create to connect your application to the Azure AI Vision service.
+- <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure Vision in Foundry Tools resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+- The key and endpoint from the resource you create to connect your application to Azure Vision.
   1. After your Azure Vision resource deploys, select **Go to resource**.
   1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in the quickstart.
@@ -135,7 +133,7 @@ A successful response is returned in JSON. The sample application parses and dis
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+If you want to clean up and remove a Foundry Tools subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 - [Clean up resources with the Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Clean up resources with Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)

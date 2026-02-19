@@ -1,70 +1,73 @@
 ---
-title: Fine-tune models using serverless API deployments in Azure AI Foundry portal
-titleSuffix: Azure AI Foundry
-description: Learn how to fine-tune models deployed via serverless API deployments in Azure AI Foundry.
-manager: scottpolly
+title: Deploy Fine-Tuned Models with Serverless API in Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Deploy fine-tuned models using serverless API in Microsoft Foundry. Learn how to fine-tune, train, and deploy custom large language models with cost-effective serverless options.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 01/28/2026
 ms.reviewer: rasavage
 reviewer: RSavage2
 ms.author: ssalgado
+manager: nitinme
 author: ssalgadodev
 ms.custom: references_regions
 zone_pivot_groups: azure-ai-model-fine-tune
+ai-usage: ai-assisted
 ---
 
-# Fine-tune models using serverless API deployments in Azure AI Foundry
+# Fine-tune models by using serverless API deployments in Microsoft Foundry
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Azure AI Foundry enables you to customize large language models to your specific datasets through a process called fine-tuning. This process offers significant benefits by allowing for customization and optimization tailored to specific tasks and applications. The advantages include improved performance, cost efficiency, reduced latency, and tailored outputs.
+Learn how to deploy fine-tuned models by using serverless API deployments in Microsoft Foundry. This comprehensive guide shows you how to fine-tune large language models (LLMs) to your specific datasets and deploy them with serverless infrastructure, offering improved performance, cost efficiency, reduced latency, and tailored outputs.
 
-**Cost Efficiency**: Azure AI Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to pay-as-you-go pricing.
+**Cost efficiency**: Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to pay-as-you-go pricing.
 
-**Model Variety**: Azure AI Foundry's serverless API deployment fine-tuning  offers support for both proprietary and open-source models, providing users with the flexibility to select the models that best suit their needs without being restricted to a single type.
+**Model variety**: Foundry's serverless API deployment fine-tuning offers support for both proprietary and open-source models, providing users with the flexibility to select the models that best suit their needs without being restricted to a single type.
 
-**Customization and Control**: Azure AI Foundry provides greater customization and control over the fine-tuning process, enabling users to tailor models more precisely to their specific requirements.
+**Customization and control**: Foundry provides greater customization and control over the fine-tuning process, which allows users to tailor models more precisely to their specific requirements.
 
-In this article, you will discover how to fine-tune models that are deployed using serverless API deployments in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-
+This article explains how to fine-tune models that are deployed using serverless API deployments in [Foundry](https://ai.azure.com/?cid=learnDocs).
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- A [Foundry project](create-projects.md).
 
-- Access to the [Azure portal](https://portal.azure.com).
-
-- An [Azure AI Foundry project](create-projects.md).
-
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __owner__ or __contributor__ role for the Azure subscription. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned the __Owner__ or __Contributor__ role for the Azure subscription. For more information on permissions, see [role-based access control in Foundry portal](../concepts/rbac-foundry.md).
 
 ## Verify registration of subscription provider
-Verify the subscription is registered to the Microsoft.Network resource provider.
-1.	Sign in to the [Azure portal](https://portal.azure.com).
-1.	Select **Subscriptions** from the left menu.
-1.	Select the subscription you want to use.
-1.	Select **Settings** > **Resource providers** from the left menu.
-1.	Add Microsoft.Network to the list of resource providers if it is not in the list.
+
+Verify that your subscription is registered to the *Microsoft.Network* resource provider.
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Select the subscription you want to use.
+1. Under **Settings** in the sidebar menu, select **Resource providers**.
+1. Select **Microsoft.Network** and choose **Register** if it's not registered.
 
 ::: zone pivot="foundry-portal"
 
 ## Find models with fine-tuning support
 
-The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the Azure regions of support for fine-tuning, see [region availability for models as serverless API deployment.](deploy-models-serverless-availability.md) Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
+The Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models and regions that support fine-tuning, see [region availability for models in serverless APIs](deploy-models-serverless-availability.md).
 
+Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a region where the model provider makes the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
-You can also go to the Azure AI Foundry portal to view all models that contain fine-tuning support:
+Go to the Foundry portal to view all models that contain fine-tuning support:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+
 1. If you're not already in your project, select it. 
+
 1. Navigate to the model catalog.
+
 1. Select the **Fine-tuning tasks** filter. 
-    
+
     :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-filters.png" alt-text="Screenshot of model catalog fine-tuning filter options." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-filters.png":::
 
 1. Select **All** or select a specific task.
-
 
 ## Prepare data for fine-tuning
 
@@ -73,13 +76,13 @@ Prepare your training and validation data to fine-tune your model. Your training
 Make sure all your training examples follow the expected format for inference. To fine-tune models effectively, ensure a diverse dataset by maintaining data balance, including various scenarios, and periodically refining training data to align with real-world expectations. These actions ultimately lead to more accurate and balanced model responses.
 
 > [!TIP]
-> Different model types require a different format of training data.
+> Different model types require training data in different formats.
 
 # [Chat completion](#tab/chat-completion)
 
 ### Example file format
 
-The supported file type is JSON Lines. Files are uploaded to the default datastore and made available in your project.
+The supported file type is JSON Lines (JSONL). Files are uploaded to the default datastore and made available in your project.
 
 ```json
     {"messages": [{"role": "system", "content": "You are an Xbox customer support agent whose primary goal is to help users with issues they are experiencing with their Xbox devices. You are friendly and concise. You only provide factual answers to queries, and do not provide answers that are not related to Xbox."}, {"role": "user", "content": "Is Xbox better than PlayStation?"}, {"role": "assistant", "content": "I apologize, but I cannot provide personal opinions. My primary job is to assist you with any issues related to your Xbox device. Do you have any Xbox-related issues that need addressing?"}]}
@@ -89,7 +92,7 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
 
 # [Text generation](#tab/text-generation)
 
-The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document in which each line represents a single prompt-completion pair.
+The training and validation data you use *must* be formatted as a JSON Lines (JSONL) document in which each line represents a single prompt-completion pair.
 
 ### Example file format
 
@@ -99,7 +102,8 @@ The training and validation data you use **must** be formatted as a JSON Lines (
 {"prompt": "<prompt text>", "completion": "<ideal generated text>"}
 ```
 
-Here are some example datasets on Hugging Face that you can use to fine-tune your model:
+Here are some example datasets on Hugging Face to use to fine-tune your model:
+
 - [dair-ai/emotion](https://huggingface.co/datasets/dair-ai/emotion)
 
     :::image type="content" source="../media/how-to/fine-tune/dataset-dair-ai-emotion.png" alt-text="Screenshot of example emotion data on Hugging Face." lightbox="../media/how-to/fine-tune/dataset-dair-ai-emotion.png":::
@@ -108,67 +112,52 @@ Here are some example datasets on Hugging Face that you can use to fine-tune you
 
     :::image type="content" source="../media/how-to/fine-tune/dataset-setfit-mrpc.png" alt-text="Screenshot of example Microsoft Research Paraphrase Corpus (MRPC) data on Hugging Face." lightbox="../media/how-to/fine-tune/dataset-setfit-mrpc.png":::
 
-Single text classification requires the training data to include at least two fields such as `text1` and `label`. Text pair classification requires the training data to include at least three fields such as `text1`, `text2`, and `label`. 
+*Single text classification* requires the training data to include at least two fields such as `text1` and `label`. *Text pair classification* requires the training data to include at least three fields such as `text1`, `text2`, and `label`. 
 
 The supported file type is JSON Lines. Files are uploaded to the default datastore and made available in your project.
 
 ---
 
-## Use the Fine-tune model wizard
+## Use the fine-tune model wizard
 
-Azure AI Foundry portal provides the Create custom model wizard, so you can interactively create and train a fine-tuned model for your Azure resource.
+Foundry portal provides a custom model wizard, to interactively create and train a fine-tuned model for your Azure resource.
 
 ### Select the base model
 
-1. Choose the model you want to fine-tune from the Azure AI Foundry [model catalog](https://ai.azure.com/explore/models).
-2. On the model's **Details page**, select **fine-tune**. Some foundation models support both **serverless API deployment** and **Managed compute**, while others support one or the other.
-3. If you're presented the options for **serverless API deployment** and [**Managed compute**](./fine-tune-managed-compute.md), select **serverless API deployment** for fine-tuning. This action opens up a wizard that shows information about **Serverless API** fine-tuning for your model.
+1. Select **Fine-tuning** from the sidebar menu, then choose **+ Fine-tune model**.
+1. Select the model you want to fine-tune from the list under **Base models**, then select **Next**.
 
 ### Choose your training data
+
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
 
-- If your training data is already uploaded to the service, select **Files from Azure AI Foundry**.
+Select **+ Add training data**.
+
+- If your training data is already uploaded to the service, select **Existing files on this resource**.
     - Select the file from the dropdown list shown.
 - To upload new training data, use one of the following options:
-    - Select **Local file** to upload training data from a local file.
+    - Select **Upload files** to upload training data from a local file.
     - Select **Azure blob or other shared web locations** to import training data from Azure Blob or another shared web location.
-      
-For large data files, we recommend that you import from an Azure Blob store. For more information about Azure Blob Storage, see [What is Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview)?
+- To use a ready-to-go dataset for quick fine-tuning, choose from the list under **Select data**.
 
-### Upload training data from local file
-
-You can upload a new training dataset to the service from a local file by using one of the following methods:
-- Drag and drop the file into the client area of the **Training data pane**, and then select **Upload file**.
-- Select **Browse for a file** from the client area of the **Training data pane**, choose the file to upload from the **Open** dialog, and then select **Upload file**.
-After you select and upload the training dataset, select **Next** to continue.
+For large data files, we recommend that you import from an Azure Blob store. For more information about Azure Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview)
 
 ### Choose your validation data
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose **Next** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
-The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
 
-### Split training data
-You can automatically divide your training data to generate a validation dataset.
-After you select Automatic split of training data, select **Next** to continue.
+The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, choose **Submit** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
-### Use existing data in Azure AI Foundry
+Select **+ Add validation data**. The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
 
--	If your validation data is already uploaded to the service, select **Choose dataset**.
-    -	Select the file from the list shown in the **Validation data** pane.
--	To upload new validation data, use one of the following options:
-    -	Select **Local file** to upload validation data from a local file.
-    -	Select **Azure blob or other shared web locations** to import validation data from Azure Blob or another shared web location.
+- If your validation data is already uploaded to the service, select **Existing files on this resource**.
+    - Select the file from the list shown in the **Validation data** pane.
+- To upload new validation data, use one of the following options:
+    - Select **Upload files** to upload validation data from a local file.
+    - Select **Azure blob or other shared web locations** to import validation data from Azure Blob or another shared web location.
+
 For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed.
 
-> [!Note]  
->- Similar to training data files, validation data files must be formatted as JSONL files,   
->- encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.  
-
-### Upload validation data from local file
-
-You can upload a new validation dataset to the service from a local file by using one of the following methods:
--	Drag and drop the file into the client area of the **Validation data** pane, and then select **Upload file**.
--	Select **Browse for a file** from the client area of the **Validation data** pane, choose the file to upload from the **Ope**n dialog, and then select **Upload file**.
-After you select and upload the validation dataset, select **Next** to continue.
+> [!Note]
+>- Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be smaller than 512 MB.
 
 ### Configure task parameters
 
@@ -176,102 +165,94 @@ The **Fine-tune model** wizard shows the parameters for training your fine-tuned
 
 |**Name**| **Type**| **Description**|
 |---|---|---|
-|`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
-| `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
-|`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
+| **Batch size (1-32)** |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, larger batch sizes tend to work better for larger datasets. The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
+| **Learning rate multiplier (0.0-10.0)** | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pretraining multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate might be useful to avoid overfitting. |
+| **Number of epochs (1-10)** | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 
 Select **Default** to use the default values for the fine-tuning job, or select **Custom** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
-After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model).
 
-### Review your choices and train your model
-
-The **Review** pane of the wizard displays information about your configuration choices.
-
-If you're ready to train your model, select **Start Training job** to start the fine-tuning job and return to the **Models** Tab.
-
+After you configure the advanced options, select **Submit**.
 
 ### Check the status of your custom model
 
-The **Fine-tuning tab** displays information about your custom model. The tab includes information about the status and job ID of the fine-tune job for your custom model. When the job completes, the tab displays the file ID of the result file. You might need to select **Refresh** in order to see an updated status for the model training job.
+The **Fine-tuning tab** displays information about your custom model. The tab includes information about the status and job ID of the fine-tuned job for your custom model. When the job completes, the tab displays the file ID of the result file. You might need to select **Refresh** in order to see an updated status for the model training job.
 
 :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/project-running.png" alt-text="Screenshot of the running projects dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/project-running.png":::
 
-
 After you start a fine-tuning job, it can take some time to complete. Your job might be queued behind other jobs on the system. Training your model can take minutes or hours depending on the model and dataset size.
-Here are some of the tasks you can do on the **Models** tab:
+Here are some of the tasks to do on the **Models** tab:
 
--	Check the status of the fine-tuning job for your custom model in the Status column of the Customized models tab.
--	In the Model name column, select the model’s name to view more information about the custom model. You can see the status of the fine-tuning job, training results, training events, and hyperparameters used in the job.
--	Select **Refresh** to update the information on the page.
-
+- Check the status of the fine-tuning job for your custom model in the **Status** column of the **Customized models** tab.
+- In the model name column, select the model’s name to view more information about the custom model. You can see the status of the fine-tuning job, training results, training events, and hyperparameters used in the job.
+- Select **Refresh** to update the information on the page.
 
 :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png" alt-text="Screenshot of the fine-tuning details dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/fine-tune-details.png":::
 
-
 ### Supported enterprise scenarios for fine-tuning
 
-Several enterprise scenarios are supported for serverless API deployment fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
+Several enterprise scenarios are supported for serverless API deployment fine-tuning. The following table outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
->- Data connections auth can be changed via AI Foundry by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
->- Storage auth can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
+>- Data connections authentication can be changed via Foundry by selecting the datastore connection where your dataset is stored, and navigating to the **Access details** > **Authentication Method** setting.
+>- Storage authentication can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
 >- Storage networking can be changed in Azure Storage > **Networking** page.
 
-| **Storage Networking** | **Storage Auth** | **Data Connection Auth** | **Support** |
+| **Storage networking** | **Storage auth** | **Data connection auth** | **Support** |
 |--|--|--|--|
-| Public Network Access = Enabled | Account key enabled | SAS/Account Key | Yes, UX and SDK |
-| Public Network Access = Enabled | Account key disabled | Entra-Based Auth (Credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token | 
+| Public network access = Enabled | Account key enabled | SAS/Account key | Yes, UX and SDK |
+| Public network access = Enabled | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you might need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token | 
 | Enabled from selected virtual networks and IP addresses | Account key enabled | Account key | Yes, UX and SDK <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list |
 | Enabled from selected virtual networks and IP addresses | Account key enabled | SAS | Yes, UX and SDK  <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list |
-| Enabled from selected virtual networks and IP addresses | Account key disabled | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br>*Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token. Also ensure the IP of the compute running the browser must be in the selected list |
-| Public Network Access = Disabled | Account key enabled | SAS/Account Key | Yes, UX and SDK. <br><br> *Note:*  for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage |
-| Public Network Access = Disabled | Account key disabled | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage |
+| Enabled from selected virtual networks and IP addresses | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK. <br><br>*Note:* for UX, you might need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use account key/SAS token. Also ensure the IP of the compute running the browser must be in the selected list |
+| Public network access = Disabled | Account key enabled | SAS/Account key | Yes, UX and SDK. <br><br> *Note:*  for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage |
+| Public network access = Disabled | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage |
 
+The preceding scenarios should work in a managed virtual network workspace as well. To learn how to set up managed virtual network Foundry hub, see [How to configure a managed network for Foundry hubs](./configure-managed-network.md).
 
-The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Foundry hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
+Using customer-managed keys (CMKs) is *not* a supported enterprise scenario with serverless API deployment fine-tuning.
 
-Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with serverless API deployment fine-tuning.
-
-Issues fine-tuning with unique network setups on the workspace and storage usually points to a networking setup issue.
+Issues fine-tuning with unique network setups on the workspace and storage usually point to a networking setup issue.
 
 ---
 
 ## Deploy a fine-tuned model
-When the fine-tuning job succeeds, you can deploy the custom model from the **Fine-tune** tab. You must deploy your custom model to make it available for use with completion calls.
+
+After the fine-tuning job succeeds, deploy the custom model from the **Fine-tuning** tab. You must deploy your custom model to make it available for use with completion calls.
 
 > [!IMPORTANT]
-> After you deploy a customized model and finishing with the endpoint, please remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't
-> delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-
-> tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model. To learn more about
-> planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan to manage costs for Azure AI Foundry Service](./costs-plan-manage.md).  
+> After you deploy a customized model and finish with the endpoint, remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model.
+>
+> To learn more about planning and managing costs with Foundry, refer to the guidance in [Plan and manage costs for Foundry Service](./costs-plan-manage.md).
 
 > [!NOTE]
 > Only one deployment is permitted for a custom model. An error message is displayed if you select an already-deployed custom model.
 > To deploy your custom model, select the custom model to deploy, and then select Deploy model.
 
-
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Deploy** to start the deployment of your custom model.
 
-
-You can also deploy a finetuned model through the **Models + endpoints** tab by selecting the **Deploy model** button and then selecting **Deploy Fine-tuned model** from the dropdown
+You can also deploy a fine-tuned model through the **Models + endpoints** tab by selecting the **Deploy model** button and then selecting **Deploy Fine-tuned model** from the dropdown
 
 :::image type="content" source="../media/how-to/fine-tune/fine-tune-serverless/manage-deployments.png" alt-text="Screenshot of the fine-tuning manage deployments dashboard." lightbox="../media/how-to/fine-tune/fine-tune-serverless/manage-deployments.png":::
 
-Next select the fine-tuned model you wish to deploy and select **Deploy**.
+Next, select the fine-tuned model you wish to deploy and select **Deploy**.
 
 ### Cross region deployment
-Fine-tuning supports deploying a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription/region.
-The only limitations are that the new region must also support fine-tuning and when deploying cross subscription, the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
-Cross subscription/region deployment can be accomplished via [Python](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb) 
+
+Fine-tuning supports deploying a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription or region.
+
+The only limitations are that the new region must also support fine-tuning, and when deploying cross subscription, the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
+
+Cross subscription or region deployment can be accomplished via [Python](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb).
 
 ### Use a deployed custom model
-After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Azure AI Foundry portal](https://portal.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as temperature and max_tokens, as you can with other deployed models.
+
+After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in [Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as temperature and max_tokens, as you can with other deployed models.
 
 ### Clean up your fine-tuned models 
 
-You can delete a fine-tuned model from the fine-tuning model list in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) or from the model details page. To delete the fine-tuned model from the Fine-tuning page,
+You can delete a fine-tuned model from the fine-tuning model list in [Foundry](https://ai.azure.com/?cid=learnDocs) or from the model details page. To delete the fine-tuned model from the Fine-tuning page,
 
-1. Select __Fine-tuning__ from the left navigation in your Azure AI Foundry project.
+1. Select __Fine-tuning__ from the sidebar menu in your Foundry project.
 1. Select the __Delete__ button to delete the fine-tuned model.
 
 >[!NOTE]
@@ -283,9 +264,9 @@ You can delete a fine-tuned model from the fine-tuning model list in [Azure AI F
 
 ### Create a client to consume the model
 
-The following sections walk you through how to fine-tune a model in python. To find a notebook example of this code, please see [Fine-tuning LLM with Model-As-Service](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb)
+The following sections walk you through how to fine-tune a model in python. To find a notebook example of this code, see [Fine-tuning LLM with model as a service](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb).
 
-1. Ensure to install dependencies to start fine-tuning your model. 
+1. Install dependencies to start fine-tuning your model. 
 
 ```python
 %pip install azure-ai-ml
@@ -295,7 +276,7 @@ The following sections walk you through how to fine-tune a model in python. To f
 %pip install azureml-mlflow
 ```
 
-2. Create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
+1. Create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables. Replace *<SUBSCRIPTION_ID>*, *<RESOURCE_GROUP_NAME>*, and *<WORKSPACE_NAME>* with your own values.
 
 ```python
 from azure.ai.ml import MLClient
@@ -320,7 +301,7 @@ except:
         workspace_name="<PROJECT_NAME OR WORKSPACE_NAME>",
     )
 
-# the models, fine tuning pipelines and environments are available in various AzureML system registries,
+# The models, fine tuning pipelines and environments are available in various AzureML system registries,
 # Example: Phi family of models are in "azureml", Llama family of models are in "azureml-meta" registry.
 registry_ml_client = MLClient(credential, registry_name="azureml")
 
@@ -331,9 +312,11 @@ workspace.id
 
 ### Find models with fine-tuning support
 
-The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the Azure regions of support for fine-tuning, see [region availability for models in a serverless API deployment.](deploy-models-serverless-availability.md) Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
+The Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models and regions that support fine-tuning, see [Region availability for models in serverless APIs](deploy-models-serverless-availability.md).
 
-For this example, we use a Phi-4-mini-instruct model. In this code snippet, the model ID property of the model will be passed as input to the fine tuning job. This is also available as the Asset ID field in model details page in Azure AI Foundry Model Catalog.
+Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a region where the model provider makes the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
+
+This example uses a *Phi-4-mini-instruct* model. In this code snippet, the model ID property of the model is passed as input to the fine tuning job. This is also available as the **Asset ID** field in model details page in the Foundry model catalog.
 
 ```python
 model_name = "Phi-4-mini-instruct"
@@ -358,7 +341,7 @@ Make sure all your training examples follow the expected format for inference. T
 
 #### Example file format
 
-The supported file type is JSON Lines. Files are uploaded to the default datastore and made available in your project.
+The supported file type is JSON Lines (JSONL). Files are uploaded to the default datastore and made available in your project.
 
 ```json
     {"messages": [{"role": "system", "content": "You are an Xbox customer support agent whose primary goal is to help users with issues they are experiencing with their Xbox devices. You are friendly and concise. You only provide factual answers to queries, and do not provide answers that are not related to Xbox."}, {"role": "user", "content": "Is Xbox better than PlayStation?"}, {"role": "assistant", "content": "I apologize, but I cannot provide personal opinions. My primary job is to assist you with any issues related to your Xbox device. Do you have any Xbox-related issues that need addressing?"}]}
@@ -368,7 +351,7 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
 
 # [Text generation](#tab/text-generation)
 
-The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document in which each line represents a single prompt-completion pair.
+The training and validation data you use *must* be formatted as a JSON Lines (JSONL) document in which each line represents a single prompt-completion pair.
 
 #### Example file format
 
@@ -379,6 +362,7 @@ The training and validation data you use **must** be formatted as a JSON Lines (
 ```
 
 Here are some example datasets on Hugging Face that you can use to fine-tune your model:
+
 - [dair-ai/emotion](https://huggingface.co/datasets/dair-ai/emotion)
 
     :::image type="content" source="../media/how-to/fine-tune/dataset-dair-ai-emotion.png" alt-text="Screenshot of example emotion data on Hugging Face." lightbox="../media/how-to/fine-tune/dataset-dair-ai-emotion.png":::
@@ -387,7 +371,7 @@ Here are some example datasets on Hugging Face that you can use to fine-tune you
 
     :::image type="content" source="../media/how-to/fine-tune/dataset-setfit-mrpc.png" alt-text="Screenshot of example Microsoft Research Paraphrase Corpus (MRPC) data on Hugging Face." lightbox="../media/how-to/fine-tune/dataset-setfit-mrpc.png":::
 
-Single text classification requires the training data to include at least two fields such as `text1` and `label`. Text pair classification requires the training data to include at least three fields such as `text1`, `text2`, and `label`. 
+*Single text classification* requires the training data to include at least two fields such as `text1` and `label`. *Text pair classification* requires the training data to include at least three fields such as `text1`, `text2`, and `label`. 
 
 The supported file type is JSON Lines. Files are uploaded to the default datastore and made available in your project.
 
@@ -422,7 +406,7 @@ except:
 
 ### Create validation data
 
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose to skip this step to continue to the next section. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
+The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can skip this step and continue to the next section. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
 ```python
 from azure.ai.ml.entities import Data
@@ -446,11 +430,9 @@ except:
     validation_data_asset = workspace_ml_client.data.create_or_update(validation_data)
 ```
 
+### Create marketplace subscription for partner models
 
-
-### Create marketplace subscription for third-party models
-
-This step is required for all non-Microsoft models. An example of a Microsoft model is the Phi family of models. 
+This step is required for all non-Microsoft models. An example of a Microsoft model is the Phi family of models.
 
 ```python
 model_id_to_subscribe = "/".join(model_to_finetune.id.split("/")[:-2])
@@ -484,21 +466,20 @@ except Exception as ex:
 
 ### Submit the fine-tuning job using the model and data as inputs
 
+The following set of parameters are required to fine-tune your model.
 
-There are following set of parameters that are required to fine-tune your model. Each parameter is defined in the following:
-
-- model: Base model to fine-tune.
-- training_data: Training data for fine-tuning the base model.
-- validation_data: Validation data for fine-tuning the base model.
-- task: Fine-tuning task to perform. eg. CHAT_COMPLETION for chat-completion fine-tuning jobs.
-- outputs: Output registered model name.
+- `model`: Base model to fine-tune
+- `training_data`: Training data for fine-tuning the base model
+- `validation_data`: Validation data for fine-tuning the base model
+- `task`: Fine-tuning task to perform, for example, CHAT_COMPLETION for chat-completion fine-tuning jobs
+- `outputs`: Output registered model name
 
 The following parameters are optional:
 
-- hyperparameters: Parameters that control the fine-tuning behavior at run-time.
-- name: Fine-tuning job name
-- experiment_name: Experiment name for fin-tuning job.
-- display_name: Fine-tuning job display name.
+- `hyperparameters`: Parameters that control the fine-tuning behavior at run time
+- `name`: Fine-tuning job name
+- `experiment_name`: Experiment name for fine-tuning job
+- `display_name`: Fine-tuning job display name
 
 ```python
 from azure.ai.ml.finetuning import FineTuningTaskType, create_finetuning_job
@@ -558,14 +539,12 @@ finetune_model_name
 
 ### Deploy a fine-tuned model
 
-When the fine-tuning job succeeds, you can deploy the custom model.
+After the fine-tuning job succeeds, you can deploy the custom model.
 
 > [!IMPORTANT]
-> After you deploy a customized model and finishing with the endpoint, please remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't
-> delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-
-> tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model. To learn more about
-> planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan to manage costs for Azure AI Foundry Service](./costs-plan-manage.md).  
-
+> After you deploy a customized model and finish with the endpoint, remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model.
+>
+> To learn more about planning and managing costs with Foundry, refer to the guidance in [Plan and manage costs for Foundry hubs](./costs-plan-manage.md).  
 
 ```python
 # Deploy the model as a serverless endpoint
@@ -574,39 +553,38 @@ endpoint_name = f"{normalized_model_name}-ft-{short_guid}"  # Name must be uniqu
 model_id = f"azureml://locations/{workspace.location}/workspaces/{workspace._workspace_id}/models/{finetune_model_name}/versions/1"
 ```
 
-
 ### Supported enterprise scenarios for fine-tuning
 
-Several enterprise scenarios are supported for serverless API deployment fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
+Several enterprise scenarios are supported for serverless API deployment fine-tuning. The following table outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
->- Data connections auth can be changed via AI Foundry by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
->- Storage auth can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
+>- Data connections authentication can be changed via Foundry by selecting the datastore connection where your dataset is stored, and navigating to the **Access details** > **Authentication Method** setting.
+>- Storage authentication can be changed in Azure Storage > **Settings** > **Configurations** page > **Allow storage account key access**.  
 >- Storage networking can be changed in Azure Storage > **Networking** page.
 
-| **Storage Networking**     |  **Storage Auth**   | **Data Connection Auth**         | **Support**             |
-| ------------------------------------------------------------ | ------------------------------ | --------------------------------- | ----------------------- |
-| Public Network Access = Enabled                               | Account key enabled            | SAS/Account Key                  | Yes, UX and SDK         |
-| Public Network Access = Enabled                               | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token | 
-| Enabled from selected virtual networks and IP addresses      | Account key enabled            | Account key                      | Yes, UX and SDK <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list        |
-| Enabled from selected virtual networks and IP addresses      | Account key enabled            | SAS                               | Yes, UX and SDK  <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list       |
-| Enabled from selected virtual networks and IP addresses      | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br>*Note:* for UX, you may need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token. Also ensure the IP of the compute running the browser must be in the selected list |
-| Public Network Access = Disabled                              | Account key enabled            | SAS/Account Key                  | Yes, UX and SDK. <br><br> *Note:*  for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage           |
-| Public Network Access = Disabled                              | Account key disabled           | Entra-Based Auth (Credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the Vnet_ that has appropriate access to the storage                |
+| **Storage networking**     |  **Storage auth**   | **Data connection auth**         | **Support**             |
+| -------------------------- | ------------------- | -------------------------------- | ----------------------- |
+| Public network access = Enabled  | Account key enabled  | SAS/Account Key    | Yes, UX and SDK         |
+| Public network access = Enabled  | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you might need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token | 
+| Enabled from selected virtual networks and IP addresses    | Account key enabled       | Account key   | Yes, UX and SDK <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list        |
+| Enabled from selected virtual networks and IP addresses    | Account key enabled       | SAS           | Yes, UX and SDK  <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list       |
+| Enabled from selected virtual networks and IP addresses    | Account key disabled      | Entra-based auth (credentialless) | Yes, UX and SDK. <br><br>*Note:* for UX, you might need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token. Also ensure the IP of the compute running the browser must be in the selected list |
+| Public network access = Disabled    | Account key enabled  | SAS/Account key   | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage  |
+| Public network access = Disabled    | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage  |
 
+The preceding scenarios should work in a managed virtual network workspace, as well. To learn how to set up managed virtual network Foundry hub, see [How to set up a managed network for Foundry hubs](./configure-managed-network.md).
 
-The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Foundry hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
+Using customer-managed keys (CMKs) is *not* a supported enterprise scenario with serverless API deployment fine-tuning.
 
-Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with serverless API deployment fine-tuning.
+Issues fine-tuning with unique network setups on the workspace and storage usually point to a networking setup issue.
 
-Issues fine-tuning with unique network setups on the workspace and storage usually points to a networking setup issue.
+### Cross-region deployment
 
+Fine-tuning supports deployment of a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription or region.
 
-### Cross region deployment
+The only limitations are that the new region must also support fine-tuning, and when deploying cross subscription, the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
 
-Fine-tuning supports deploying a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription/region.
-The only limitations are that the new region must also support fine-tuning and when deploying cross subscription, the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
-Cross subscription/region deployment can be accomplished via [Python](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb) 
+Cross subscription or region deployment can be accomplished via [Python](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb).
 
 ```python
 
@@ -655,7 +633,7 @@ else:
 
 ### Use a deployed custom model
 
-After your custom model deploys, you can use it like any other deployed model. You can continue to use the same parameters with your custom model, such as temperature and max_tokens, as you can with other deployed models.
+After your custom model deploys, you can use it like any other deployed model. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
 
 ```python
 endpoint = workspace_ml_client.serverless_endpoints.get(endpoint_name)
@@ -687,7 +665,7 @@ response.json()
 
 ### Clean up your fine-tuned models 
 
-After you are finished with your model, you run the following code to clean up your fine-tuned model. 
+After you finish with your model, run the following code to clean up your fine-tuned model. 
 
 ```python
 workspace_ml_client.serverless_endpoints.begin_delete(endpoint_name).result()
@@ -705,21 +683,25 @@ You can find the pricing information on the __Pricing and terms__ tab of the dep
 
 #### Cost for non-Microsoft models
 
-Non-Microsoft models deployed as a serverless API deployment are offered through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models.
+Non-Microsoft models deployed as a serverless API deployment are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models.
 
 Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
 For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
-:::image type="content" source="../media/deploy-monitor/serverless/costs-model-as-service-cost-details.png" alt-text="A screenshot showing different resources corresponding to different model offers and their associated meters." lightbox="../media/deploy-monitor/serverless/costs-model-as-service-cost-details.png":::
+:::image type="content" source="../media/deploy-monitor/serverless/costs-model-as-service-cost-details.png" alt-text="Screenshot showing different resources corresponding to different model offers and their associated meters." lightbox="../media/deploy-monitor/serverless/costs-model-as-service-cost-details.png":::
 
 ## Sample notebook
 
-You can use this [sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb) to create a standalone fine-tuning job to enhance a model's ability to summarize dialogues between two people using the Samsum dataset. The training data utilized is the ultrachat_200k dataset, which is divided into four splits suitable for supervised fine-tuning (sft) and generation ranking (gen). The notebook employs the available Azure AI models for the chat-completion task (If you would like to use a different model than what's used in the notebook, you can replace the model name). The notebook includes setting up prerequisites, selecting a model to fine-tune, creating training and validation datasets, configuring and submitting the fine-tuning job, and finally, creating a serverless deployment using the fine-tuned model for sample inference.
+You can use this [sample notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat_completion_with_model_as_service.ipynb) to create a standalone fine-tuning job to enhance a model's ability to summarize dialogues between two people using the Samsum dataset.
+
+The training data is the ultrachat_200k dataset, which is divided into four splits suitable for supervised fine-tuning (sft) and generation ranking (gen). The notebook employs the available Azure AI models for the chat-completion task (If you would like to use a different model than what's used in the notebook, you can replace the model name).
+
+The notebook includes setting up prerequisites, selecting a model to fine-tune, creating training and validation datasets, configuring and submitting the fine-tuning job, and finally, creating a serverless deployment using the fine-tuned model for sample inference.
 
 ## Sample CLI
 
-Additionally, you can use this sample [CLI](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat-completion-finetuning.yaml) to create a standalone fine-tuning job to enhance a model's ability to summarize dialogues between two people using a dataset. 
+Additionally, you can use this [sample CLI](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/finetuning/standalone/model-as-a-service/chat-completion/chat-completion-finetuning.yaml) to create a standalone fine-tuning job to enhance a model's ability to summarize dialogues between two people using a dataset. 
 
 ```yaml
 type: finetuning
@@ -750,14 +732,18 @@ outputs:
     type: mlflow_model 
 ```
 
-The training data used is the same as demonstrated in the SDK notebook. The CLI employs the available Azure AI models for the chat-completion task. If you prefer to use a different model than the one in the CLI sample, you can update the arguments, such as 'model path,' accordingly.
+The training data used is the same as demonstrated in the SDK notebook. The CLI employs the available Azure AI models for the chat-completion task. If you prefer to use a different model than the one in the CLI sample, you can update the arguments, such as `model path`, accordingly.
 
 ## Content filtering
 
-Serverless API deployment models are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability. With Azure AI Content Safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](../concepts/content-filtering.md).
+Serverless API deployment models are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability.
 
+With Azure AI Content Safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
-## Next steps
-- [What is Azure AI Foundry?](../what-is-azure-ai-foundry.md)
-- [Learn more about deploying Mistral models](./deploy-models-mistral.md)
-- [Azure AI FAQ article](../faq.yml)
+To learn more about Azure AI Content Safety, see [Content filtering in Foundry portal](../concepts/content-filtering.md).
+
+## Related content
+
+- [What is Foundry?](../what-is-foundry.md)
+- [Learn more about deploying Mistral models](../concepts/models-inference-examples.md)
+- [Foundry frequently asked questions](../faq.yml)

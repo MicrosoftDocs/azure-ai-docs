@@ -1,23 +1,23 @@
 ---
 title: Cancel translation method
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: The cancel translation method cancels a current processing or queued operation.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/18/2025
 ---
 
 # Cancel translation
 
 Reference</br>
-Feature: **Azure AI Translator → Document translation**</br>
+Feature: **Azure Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **DELETE**
 
-* This method cancels a translation job that is currently processing or queued (pending) as indicated in the request by the `id` query parameter. 
+* This method cancels a translation job that's currently processing or queued (pending) as indicated in the request by the `id` query parameter. 
 * An operation isn't canceled if already completed, failed, or still canceling. In those instances, a bad request is returned. 
 * Completed translations can't be canceled and are charged.
 
@@ -25,7 +25,7 @@ HTTP method: **DELETE**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ```bash
   curl -i -X  DELETE "{document-translation-endpoint}/translator/document/batches/{id}?api-version={date}"
@@ -97,7 +97,7 @@ The following information is returned in a successful response.
 |code|string|Enums containing high-level error codes. Accepted values:<br>&bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
 |message|string|Gets high-level error message.|
 |target|string|Gets the source of the error. For example, it would be "documents" or `document id` for an invalid document.|
-|innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details (key value pair), inner error (it can be nested).|
+|innerError|InnerTranslationError|New Inner Error format that conforms to Foundry Tools API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details (key value pair), inner error (it can be nested).|
 |innerError.code|string|Gets code error string.|
 |innerError.message|string|Gets high-level error message.|
 |innerError.target|string|Gets the source of the error. For example, it would be `documents` or `document id` if there was an invalid document.|

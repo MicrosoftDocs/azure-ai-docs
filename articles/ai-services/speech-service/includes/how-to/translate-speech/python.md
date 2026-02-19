@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 1/21/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/python.md)]
@@ -175,6 +175,83 @@ translate_speech_to_text()
 ```
 
 For more information about speech to text, see [the basics of speech recognition](../../../get-started-speech-to-text.md).
+
+## Event based translation
+
+The `TranslationRecognizer` object exposes a `recognizing` event. The event fires several times and provides a mechanism to retrieve the intermediate translation results. 
+
+> [!NOTE]
+> Intermediate translation results aren't available when you use [multi-lingual speech translation](#multi-lingual-translation-with-language-identification).
+
+The following example prints the intermediate translation results to the console:
+
+```python
+import os
+import azure.cognitiveservices.speech as speechsdk
+
+speech_key, service_region = os.environ['SPEECH__SERVICE__KEY'], os.environ['SPEECH__SERVICE__REGION']
+from_language, to_language = 'en-US', 'de'
+
+def translate_speech_continuous():
+    translation_config = speechsdk.translation.SpeechTranslationConfig(
+        subscription=speech_key, region=service_region)
+    
+    translation_config.speech_recognition_language = from_language
+    translation_config.add_target_language(to_language)
+    
+    audio_config = speechsdk.audio.AudioConfig(filename="whatstheweatherlike.wav")
+    translation_recognizer = speechsdk.translation.TranslationRecognizer(
+        translation_config=translation_config, audio_config=audio_config)
+    
+    done = False
+    
+    def recognizing_cb(evt):
+        print(f'RECOGNIZING in "{from_language}": Text={evt.result.text}')
+        for language, translation in evt.result.translations.items():
+            print(f'    TRANSLATING into "{language}": {translation}')
+    
+    def recognized_cb(evt):
+        if evt.result.reason == speechsdk.ResultReason.TranslatedSpeech:
+            print(f'RECOGNIZED in "{from_language}": Text={evt.result.text}')
+            for language, translation in evt.result.translations.items():
+                print(f'    TRANSLATED into "{language}": {translation}')
+        elif evt.result.reason == speechsdk.ResultReason.RecognizedSpeech:
+            print(f'RECOGNIZED: Text={evt.result.text}')
+            print('    Speech not translated.')
+        elif evt.result.reason == speechsdk.ResultReason.NoMatch:
+            print('NOMATCH: Speech could not be recognized.')
+    
+    def canceled_cb(evt):
+        print(f'CANCELED: Reason={evt.cancellation_details.reason}')
+        if evt.cancellation_details.reason == speechsdk.CancellationReason.Error:
+            print(f'CANCELED: ErrorDetails={evt.cancellation_details.error_details}')
+        nonlocal done
+        done = True
+    
+    def session_stopped_cb(evt):
+        print('SESSION STOPPED')
+        nonlocal done
+        done = True
+    
+    # Connect callbacks
+    translation_recognizer.recognizing.connect(recognizing_cb)
+    translation_recognizer.recognized.connect(recognized_cb)
+    translation_recognizer.canceled.connect(canceled_cb)
+    translation_recognizer.session_stopped.connect(session_stopped_cb)
+    
+    # Start continuous recognition
+    print('Start translation...')
+    translation_recognizer.start_continuous_recognition()
+    
+    # Wait for completion
+    while not done:
+        pass
+    
+    # Stop recognition
+    translation_recognizer.stop_continuous_recognition()
+
+translate_speech_continuous()
+```
 
 ## Synthesize translations
 

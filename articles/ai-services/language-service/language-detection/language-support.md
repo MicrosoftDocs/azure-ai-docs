@@ -1,16 +1,15 @@
 ---
 title: Language Detection language support
-titleSuffix: Azure AI services
-description: This article explains which natural languages are supported by the Language Detection API.
+titleSuffix: Foundry Tools
+description: This article explains which natural languages are supported by Azure Language Detection API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-language-detection, ignite-2024
 ---
-
 # Language support for Language Detection
 
 Use this article to learn which natural languages that language detection supports.

@@ -1,28 +1,28 @@
 ---
-title: Featured models of Azure AI model catalog
+title: Featured models of Foundry model catalog
 titleSuffix: Azure Machine Learning
-description: Explore various models available within the Azure AI model catalog.
-author: msakande
+description: Explore various models available within the Foundry model catalog.
+author: s-polly
 reviewer: santiagxf
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
-ms.date: 04/16/2025
-ms.author: mopeakande
-ms.reviewer: fasantia
+ms.date: 07/29/2025
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.custom: references_regions, tool_generated
 ms.collection: ce-skilling-ai-copilot 
 
 ---
 
-# Featured models of Azure AI model catalog
+# Featured models of Foundry model catalog
 
-The Azure AI model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via standard deployments. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](concept-model-catalog.md#deployment-options) to find models in the catalog that are available for deployment via managed compute or standard deployment.
+The Foundry model catalog offers a large selection of models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists featured models in the model catalog that can be deployed and hosted on Microsoft's servers via standard deployments. For some of these models, you can also host them on your infrastructure for deployment via managed compute. See [Available models for supported deployment options](concept-model-catalog.md#deployment-options) to find models in the catalog that are available for deployment via managed compute or standard deployment.
 
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../ai-foundry/model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [Azure AI model catalog](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Azure AI model inference](../ai-foundry/model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog](https://ai.azure.com/explore/models).
 
-:::image type="content" source="../ai-foundry/media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI Foundry model catalog section and the models available." lightbox="../ai-foundry/media/models-featured/models-catalog.gif":::
+:::image type="content" source="../ai-foundry/media/models-featured/models-catalog.gif" alt-text="An animation showing Foundry model catalog section and the models available." lightbox="../ai-foundry/media/models-featured/models-catalog.gif":::
 
 
 
@@ -36,11 +36,11 @@ The Jamba family models are AI21's production-grade Mamba-based large language m
 | [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 
 
-See [this model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=ai21).
+See [this model collection in the model catalog](https://ai.azure.com/explore/models?&selectedCollection=ai21).
 
 ## Azure OpenAI
 
-Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. These models include:
+Azure OpenAI in Microsoft Foundry Models offers a diverse set of models with different capabilities and price points. These models include:
 
 - State-of-the-art models designed to tackle reasoning and problem-solving tasks with increased focus and capability
 - Models that can understand and generate natural language and code
@@ -59,7 +59,7 @@ Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with diff
 | [text-embedding-3-small](https://ai.azure.com/explore/models/text-embedding-3-small/version/1/registry/azure-openai) | [embeddings](../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/machine-learning/context/context) |   - **Input:** text (8,191 tokens) <br /> - **Output:** Vector (1,536 dim.) |
 
 
-See [this model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=aoai).
+See [this model collection in the model catalog](https://ai.azure.com/explore/models?&selectedCollection=aoai).
 
 ## Cohere
 
@@ -121,7 +121,7 @@ The following table lists the Cohere rerank models. To perform inferencing with 
 
 *Queries*, not to be confused with a user's query, is a pricing meter that refers to the cost associated with the tokens used as input for inference of a Cohere Rerank model. Cohere counts a single search unit as a query with up to 100 documents to be ranked. Documents longer than 500 tokens (for Cohere-rerank-v3.5) or longer than 4096 tokens (for Cohere-rerank-v3-English and Cohere-rerank-v3-multilingual) when including the length of the search query are split up into multiple chunks, where each chunk counts as a single document.
 
-See the [Cohere model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=cohere).
+See the [Cohere model collection in the model catalog](https://ai.azure.com/explore/models?&selectedCollection=cohere).
 
 ## Core42
 
@@ -131,7 +131,7 @@ Core42 includes autoregressive bi-lingual LLMs for Arabic & English with state-o
 | ------ | ---- | --- | 
 | [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/1/registry/azureml-core42) | [chat-completion](../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | 
 
-See [this model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=core42).
+See [this model collection in the model catalog](https://ai.azure.com/explore/models?&selectedCollection=core42).
 
 #### Inference examples: Core42
 
@@ -156,7 +156,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 
 For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI model inference](../ai-foundry/model-inference/tutorials/get-started-deepseek-r1.md).
 
-See [this model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
+See [this model collection in the model catalog](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
 #### Inference examples: DeepSeek
 
@@ -193,7 +193,7 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 | [Meta-Llama-3-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-70B-Instruct/version/9/registry/azureml-meta) (deprecated)| [chat-completion](../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 
 
-See [this model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=meta).
+See [this model collection in the model catalog](https://ai.azure.com/explore/models?&selectedCollection=meta).
 
 #### Inference examples: Meta Llama
 
@@ -212,7 +212,7 @@ For more examples of how to use Meta Llama models, see the following examples:
 
 ## Microsoft
 
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
+Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
 
 | Model  | Type | Capabilities |
@@ -247,7 +247,7 @@ For more examples of how to use Microsoft models, see the following examples:
 | Llama-Index                               | Python            | [Link](https://aka.ms/azureai/llamaindex)             |  
 
 
-See [the Microsoft model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=phi).
+See [the Microsoft model collection in the model catalog](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
 
 ## Mistral AI
@@ -255,7 +255,7 @@ See [the Microsoft model collection in the Azure AI model catalog](https://ai.az
 Mistral AI offers two categories of models, namely: 
 
 - _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, Mistral Medium 3 (25.05), and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
-- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../ai-foundry/how-to/deploy-models-mistral-open.md?context=/azure/machine-learning/context/context)(that are available to download and run on self-hosted managed endpoints).
+- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../ai-foundry/concepts/models-inference-examples.md#mistral-ai)(that are available to download and run on self-hosted managed endpoints).
 
 | Model  | Type | Capabilities |
 | ------ | ---- | --- | 
@@ -270,7 +270,7 @@ Mistral AI offers two categories of models, namely:
 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) | [chat-completion (with images)](../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context) |  - **Input:** text and images (131,072 tokens), <br> image-based tokens are 16px x 16px <br> blocks of the original images <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral) | [chat-completion](../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/machine-learning/context/context) |  - **Input:** text (32,768 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 
-See [this model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=mistral).
+See [this model collection in the model catalog](https://ai.azure.com/explore/models?&selectedCollection=mistral).
 
 #### Inference examples: Mistral
 
@@ -332,7 +332,7 @@ There are four pricing meters that determine the price you pay. These meters are
 | paygo-finetuned-model-inference-input-tokens | Costs associated with the tokens used as input for inference when *finetune_steps* > 0 |
 | paygo-finetuned-model-inference-output-tokens | Costs associated with the tokens used as output for inference when *finetune_steps* > 0 |
 
-See the [Nixtla model collection in the Azure AI model catalog](https://ai.azure.com/explore/models?&selectedCollection=nixtla).
+See the [Nixtla model collection in the model catalog](https://ai.azure.com/explore/models?&selectedCollection=nixtla).
 
 ## NTT DATA
 

@@ -1,0 +1,133 @@
+items:
+- name: Azure AI Projects
+  items:
+  - name: C#
+    href: /dotnet/api/overview/azure/ai.projects-readme?view=azure-dotnet-preview&preserve-view=true
+  - name: JavaScript
+    href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview&preserve-view=true
+  - name: Python
+    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true
+  - name: REST API
+    href: /rest/api/aifoundry/aiprojects/
+- name: Azure AI Agents
+  items:
+    - name: C#
+      href: /dotnet/api/overview/azure/ai.agents.persistent-readme?view=azure-dotnet-preview&preserve-view=true
+    - name: Java
+      href: /java/api/overview/azure/ai-agents-persistent-readme
+    - name: JavaScript
+      href: /javascript/api/overview/azure/ai-agents-readme?view=azure-node-preview&preserve-view=true
+    - name: Python
+      href: /python/api/overview/azure/ai-agents-readme?view=azure-python-preview&preserve-view=true
+    - name: REST API
+      href: /rest/api/aifoundry/aiagents 
+    - name: Data monitoring reference
+      href: ../../agents/reference/monitor-service.md
+- name: Azure AI Evaluation SDK
+  href: /python/api/overview/azure/ai-evaluation-readme
+- name: Azure Machine Learning Python SDK
+  href: /python/api/overview/azure/ai-ml-readme
+- name: Azure Machine Learning REST API
+  href: /rest/api/azureml
+- name: Foundry Tools SDKs
+  displayName: client library libraries development kit
+  href: ../../../ai-services/reference/sdk-package-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: Foundry Tools REST APIs
+  displayName: swagger http
+  href: ../../../ai-services/reference/rest-api-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+- name: Azure OpenAI
+  items:
+  - name: v1 API
+    items:
+      - name: v1 API
+        href: ../../openai/latest.md 
+      - name: Chat
+        href: ../../openai/latest.md#create-chat-completion
+      - name: Embeddings
+        href: ../../openai/latest.md#create-embedding   
+      - name: Evals (preview)
+        href: ../../openai/latest.md#list-evals
+      - name: Files
+        href: ../../openai/latest.md#create-file
+      - name: Fine-tuning
+        href: ../../openai/latest.md#create-fine-tuning-job
+      - name: Models
+        href: ../../openai/latest.md#list-models
+      - name: Responses
+        href: ../../openai/latest.md#create-response   
+      - name: Vector stores
+        href: ../../openai/latest.md#list-vector-stores
+  - name: Previous versions
+    items:
+       - name:  2024-10-21 API reference
+         href: ../../openai/reference.md
+       - name: Preview APIs
+         items:
+          - name: v1 Preview API
+            href: ../../openai/reference-preview-latest.md
+          - name: 2025-04-01-preview - Authoring 
+            href: ../../openai/authoring-reference-preview.md
+          - name: 2025-04-01-preview - Inference 
+            href: ../../openai/reference-preview.md
+  - name: Assistants API Reference
+    items:
+      - name: REST
+        items:
+        - name: Assistants
+          href: ../../openai/reference-preview.md#list---assistants
+        - name: Threads
+          href: ../../openai/reference-preview.md#create---thread
+        - name: Messages
+          href: ../../openai/reference-preview.md#list---messages
+        - name: Runs
+          href: ../../openai/reference-preview.md#create---thread-and-run
+      - name: SDK 
+        items:
+        - name: C#
+          href: /dotnet/api/overview/azure/ai.openai.assistants-readme?context=/azure/ai-foundry/openai/context/context
+        - name: Go
+          href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
+        - name: Java
+          href: /java/api/overview/azure/ai-openai-assistants-readme?context=/azure/ai-foundry/openai/context/context
+        - name: JavaScript
+          href: /javascript/api/overview/azure/openai-assistants-readme?context=/azure/ai-foundry/openai/context/context
+        - name: Python
+          href: https://platform.openai.com/docs/api-reference/assistants
+        
+  - name: Azure OpenAI On Your Data API Reference
+    items:
+      - name: Azure OpenAI On Your Data
+        href: ../../openai/references/on-your-data.md
+      - name: Data source - Azure AI Search
+        href: ../../openai/references/azure-search.md
+      - name: Data source - Azure Cosmos DB for MongoDB vCore
+        href: ../../openai/references/cosmos-db.md
+      - name: Data source - Elasticsearch (preview)
+        href: ../../openai/references/elasticsearch.md
+      - name: Data source - Pinecone (preview)
+        href: ../../openai/references/pinecone.md
+      - name: Data source - Mongo DB (preview)
+        href: ../../openai/references/mongo-db.md
+      - name: Ingestion API (preview)
+        href: /rest/api/azureopenai/ingestion-jobs
+  - name: Azure Resource Manager/Bicep/Terraform
+    href: /azure/templates/microsoft.cognitiveservices/accounts?pivots=deployment-language-bicep
+    displayName: ARM, ARM template, template 
+  - name: Azure CLI
+    href: /cli/azure/cognitiveservices?view=azure-cli-latest&preserve-view=true
+  - name: Go
+    href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
+  - name: Java
+    href: /java/api/com.azure.ai.openai?view=azure-java-preview&preserve-view=true
+  - name: JavaScript
+    href: /azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript
+  - name: .NET 
+    href: /dotnet/api/azure.ai.openai?view=azure-dotnet-preview&preserve-view=true
+  - name: REST API (fine-tuning)
+    href: /rest/api/azureopenai/fine-tuning?view=rest-azureopenai-2024-03-01-preview&preserve-view=true 
+  - name: REST API (resource creation & deployment)
+    href: /rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP
+  - name: Azure OpenAI monitoring data reference
+    href: ../../openai/monitor-openai-reference.md
+  - name: Audio events reference
+    href: ../../openai/realtime-audio-reference.md

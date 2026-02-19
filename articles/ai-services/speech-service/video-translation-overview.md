@@ -1,28 +1,29 @@
 ---
 title: Video translation overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: With video translation, you can seamlessly integrate multi-language voice-over capabilities into your videos.
+author: PatrickFarley
+reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 6/13/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.date: 10/21/2025
+ms.author: pafarley
+ms.reviewer: pafarley
 ms.custom: references_regions
-#Customer intent: As a developer, I want to learn about video translation in Azure AI Speech.
+#Customer intent: As a developer, I want to learn about video translation in Azure Speech in Foundry Tools.
 ---
 
 # What is video translation?
 
-Video translation is a feature in Azure AI Speech that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more.
+Video translation is a feature in Azure Speech in Foundry Tools that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more.
 
 The process of replacing the original language of a video with speech recorded in a different language is essential for catering to diverse audiences. This method, typically achieved through human recording and manual post-production, ensures that viewers can enjoy video content in their native language. However, it comes with key pain points:
 - **High cost**: Traditional video translation methods often require expensive human voice actors and extensive post-production work, making it a costly endeavor for content creators.
 - **Time-consuming**: The manual process of recording and editing translated speech can take a significant amount of time, delaying the release of localized content.
 - **Inconsistent quality**: Human voice actors might not always accurately replicate the original speaker's voice, leading to a less immersive experience for viewers.
 
-With video translation in Azure AI Speech, these challenges are effectively addressed. The feature automates the translation process, significantly reducing costs and production time while ensuring high-quality results. Accurately replicating the original speaker's voice creates a seamless and immersive viewing experience for audiences worldwide.
+With video translation in Azure Speech, these challenges are effectively addressed. The feature automates the translation process, significantly reducing costs and production time while ensuring high-quality results. Accurately replicating the original speaker's voice creates a seamless and immersive viewing experience for audiences worldwide.
 - **Cost-effective**: Reduces the need for expensive human voice actors and manual post-production work.
 - **Time-efficient**: Significantly shortens the time required to produce localized videos.
 - **High-quality**: Accurately replicates the original speaker's voice, ensuring a seamless and immersive viewing experience.
@@ -30,7 +31,7 @@ With video translation in Azure AI Speech, these challenges are effectively addr
 
 ## Use case 
 
-Video translation provided by Azure AI Speech has a wide range of use cases across various industries and content types. Here are some key applications: 
+Video translation provided by Azure Speech has a wide range of use cases across various industries and content types. Here are some key applications: 
 
 - **News + interviews**: News organizations can translate and dub news segments and interviews to provide accurate and timely information to audiences worldwide. 
 
@@ -80,13 +81,13 @@ This diagram provides a high-level overview of the workflow.
 
 ## Supported regions and languages
 
-Currently, video translation in Azure AI Speech is only supported in the East US region.
+For the most up-to-date information about regional availability for video translation, see the [Azure Speech regions table](regions.md?tabs=speech-translation).
 
 We support video translation between various languages, enabling you to tailor your content to specific linguistic preferences. For the languages supported for video translation, refer to the [supported source and target languages](language-support.md?tabs=speech-translation#video-translation). 
 
 ## Pricing 
 
-For pricing details on video translation, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Video translation pricing is only visible for [service regions](#supported-regions-and-languages) where the feature is available.
+For pricing details on video translation, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Video translation pricing is only visible for service regions where the feature is available. See the [Speech service regions table](regions.md?tabs=speech-translation) for current regional availability.
 
 ## Related content
 

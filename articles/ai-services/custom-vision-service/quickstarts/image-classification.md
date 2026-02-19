@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Image classification with Custom Vision SDK"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to create an image classification project, add tags, train your project, and make predictions using the Custom Vision client library or the REST API.
 author: PatrickFarley
 ms.author: pafarley

@@ -1,16 +1,15 @@
 ---
 title: How to perform language detection
-titleSuffix: Azure AI services
-description: This article will show you how to detect the language of written text using language detection.
+titleSuffix: Foundry Tools
+description: This article shows you how to detect the language of written text using language detection.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/04/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-language-detection
 ---
-
 # How to use language detection
 
 The Language Detection feature can evaluate text, and return a language identifier that indicates the language a document was written in.
@@ -33,7 +32,7 @@ By default, language detection will use the latest available AI model on your te
 
 When you submit documents to be evaluated, language detection will attempt to determine if the text was written in any of [the supported languages](../language-support.md).  
 
-If you have content expressed in a less frequently used language, you can try the Language Detection feature to see if it returns a code. The response for languages that can't be detected is `unknown`.
+If you have content expressed in a less frequently used language, you can try Azure Language Detection feature to see if it returns a code. The response for languages that can't be detected is `unknown`.
 
 ## Submitting data
 
@@ -49,7 +48,7 @@ Analysis is performed upon receipt of the request. Using the language detection 
 
 When you get results from language detection, you can stream the results to an application or save the output to a file on the local system.
 
-Language detection will return one predominant language for each document you submit, along with it's [ISO 639-1](https://www.iso.org/standard/22109.html) name, a human-readable name, a confidence score, script name, and script code according to the [ISO 15924 standard](https://wikipedia.org/wiki/ISO_15924). A positive score of 1 indicates the highest possible confidence level of the analysis.
+Language detection returns one predominant language for each document you submit, along with it's [ISO 639-1](https://www.iso.org/standard/22109.html) name, a human-readable name, a confidence score, script name, and script code according to the [ISO 15924 standard](https://wikipedia.org/wiki/ISO_15924). A positive score of 1 indicates the highest possible confidence level of the analysis.
 
 
 ### Ambiguous content
@@ -80,7 +79,7 @@ For example, "communication" is common to both English and French and if given w
 }
 ```
 
-With the second document, the language detection model has additional context to make a better judgment because it contains the `countryHint` property in the input above. This will return the following output.
+With the second document, the language detection model has additional context to make a better judgment because it contains the `countryHint` property in the input above. This returns the following output.
  
 
 **Output**

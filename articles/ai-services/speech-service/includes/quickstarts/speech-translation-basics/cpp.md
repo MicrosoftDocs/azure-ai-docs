@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 06/08/2022
-ms.author: eur
+ms.date: 7/17/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/cpp.md)]
@@ -45,11 +45,11 @@ Follow these steps to create a new console application and install the Speech SD
     
     int main()
     {
-        // This example requires environment variables named "SPEECH_KEY" and "END_POINT"
+        // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
-        auto endpoint = GetEnvironmentVariable("END_POINT");
+        auto endpoint = GetEnvironmentVariable("ENDPOINT");
 
-        auto speechTranslationConfig = SpeechTranslationConfig::FromEndpoint(speechKey, endpoint);
+        auto speechTranslationConfig = SpeechTranslationConfig::FromEndpoint(endpoint, speechKey);
         speechTranslationConfig->SetSpeechRecognitionLanguage("en-US");
         speechTranslationConfig->AddTargetLanguage("it");
     

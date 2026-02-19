@@ -2,15 +2,17 @@
 title: Create a full text query 
 titleSuffix: Azure AI Search
 description: Learn how to construct a query request for full text search in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - dev-focus
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 01/20/2026
+ai-usage: ai-assisted
+ms.update-cycle: 180-days
 ---
 
 # Create a full text query in Azure AI Search
@@ -19,9 +21,22 @@ If you're building a query for [full text search](search-lucene-query-architectu
 
 ## Prerequisites
 
-+ A [search index](search-how-to-create-search-index.md) with string fields attributed as *searchable*.
++ An Azure AI Search service (any tier). [Create a service](search-create-service-portal.md) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-+ Read permissions on the search index. For read access, include a [query API key](search-security-api-keys.md) on the request, or give the caller [Search Index Data Reader](search-security-rbac.md) permissions.
++ A [search index](search-how-to-create-search-index.md) with string fields attributed as *searchable*. You can also use an [index alias](search-how-to-alias.md) as the endpoint of your query request.
+
++ Permissions to query the index:
+  + **Key-based authentication**: A [query API key](search-security-api-keys.md) for your search service.
+  + **Role-based authentication**: [Search Index Data Reader](search-security-rbac.md) role.
+
++ For SDK development, install the Azure Search client library:
+  + Python: [azure-search-documents](https://pypi.org/project/azure-search-documents/)
+  + .NET: [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents/)
+  + JavaScript: [@azure/search-documents](https://www.npmjs.com/package/@azure/search-documents)
+  + Java: [azure-search-documents](https://central.sonatype.com/artifact/com.azure/azure-search-documents)
+
+> [!TIP]
+> For a quick code example, skip to [Example of a full text query request](#example-of-a-full-text-query-request).
 
 ## Example of a full text query request
 
@@ -32,7 +47,7 @@ A full text query is specified in a `search` parameter and consists of terms, qu
 The following [Search POST REST API](/rest/api/searchservice/documents/search-post) call illustrates a query request using `search` and other parameters.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 {
     "search": "NY +view",
     "queryType": "simple",
@@ -43,6 +58,8 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
     "count": true
 }
 ```
+
+**Reference:** [Search POST](/rest/api/searchservice/documents/search-post)
 
 ### Key points
 
@@ -60,7 +77,7 @@ Parameters used to shape the response:
 
 + **`top`** returns the specified number of best-matching documents. In this example, only 10 hits are returned. You can use top and skip (not shown) to page the results.
 
-+ **`count`** tells you how many documents in the entire index match overall, which can be more than what are returned. 
++ **`count`** tells you how many documents in the entire index match overall, which can be more than what are returned. Valid values are "true" or "false". Defaults to "false". Count is accurate if the index is stable, but will under or over-report any documents that are actively added, updated, or deleted. If you’d like to get only the count without any documents, you can use $top=0.
 
 + **`orderby`** is used if you want to sort results by a value, such as a rating or location. Otherwise, the default is to use the relevance score to rank results. A field must be attributed as *sortable* to be a candidate for this parameter.
 
@@ -94,18 +111,24 @@ In the Azure portal, when you open an index, you can work with Search Explorer a
       }
     ```
 
+   **Reference:** [Search POST](/rest/api/searchservice/documents/search-post)
+
    The following screenshot illustrates the query and response:
 
    :::image type="content" source="media/search-explorer/search-explorer-full-text-query-hotels.png" alt-text="Screenshot of Search Explorer with a full text query.":::
 
 ### [**REST API**](#tab/rest-text-query)
 
-Use a REST client to set up a request. If you need help with getting started, see [Quickstart: Text search using REST](search-get-started-rest.md).
+When called with GET, the length of the request URL can't exceed 8 KB. This length is enough for most applications. However, some applications produce large queries, specifically when OData filter expressions are used. For these applications, HTTP POST is a better choice because it allows larger filters than GET.
+
+With POST, the number of clauses in a filter is the limiting factor, not the size of the raw filter string since the request size limit for POST is approximately 16 MB. Even though the POST request size limit is large, filter expressions can't be arbitrarily complex. For more information about filter complexity limitations, see [OData Expression Syntax](query-odata-filter-orderby-syntax.md).
+
+Use a REST client to set up a request. If you need help with getting started, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 The following example calls the REST API for full text search:
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
 {
     "search": "NY +view",
     "queryType": "simple",
@@ -116,16 +139,100 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
 }
 ```
 
+**Reference:** [Search POST](/rest/api/searchservice/documents/search-post)
+
+**Continuation of Partial Search Responses**
+
+Sometimes Azure AI Search can't return all the requested results in a single Search response. A partial response can happen for different reasons, such as when the query returns too many documents by not specifying $top, or by specifying a value for $ top that's too large. In such cases, Azure AI Search includes the @odata.nextLink annotation in the response body, and also @search.nextPageParameters if it was a POST request. You can use the values of these annotations to formulate another Search request to get the next part of the search response. This behavior is called a *continuation* of the original Search request, and the annotations are called *continuation tokens*. See the example in the Response section for details on the syntax of these annotations and where they appear in the response body.  
+
+The reasons why Azure AI Search might return continuation tokens are implementation-specific and subject to change. Robust clients should always be ready to handle cases where fewer documents than expected are returned and a continuation token is included to continue retrieving documents. Also note that you must use the same HTTP method as the original request in order to continue. For example, if you sent a GET request, any continuation requests you send must also use GET (and likewise for POST).
+
+> [!NOTE]
+> The purpose of @odata.nextLink and @search.nextPageParameters is to protect the service from queries that request too many results, not to provide a general mechanism for paging. If you want to page through results, use $top and $skip together. For example, if you want pages of size 10, your first request should have $top=10 and $skip=0, the second request should have $top=10 and $skip=10, the third request should have $top=10 and $skip=20, and so on.
+
 ### [**Azure SDKs**](#tab/sdk-text-query)
 
-The following Azure SDKs provide a `SearchClient` that has methods for formulating query requests.
+The following examples show how to run a full-text query using the Azure SDKs.
+
+#### Python
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents import SearchClient
+
+# Set up the client
+service_name = "<your-search-service-name>"
+index_name = "hotels-sample-index"
+api_key = "<your-query-api-key>"
+
+endpoint = f"https://{service_name}.search.windows.net"
+credential = AzureKeyCredential(api_key)
+client = SearchClient(endpoint=endpoint, index_name=index_name, credential=credential)
+
+# Run a full-text search query
+results = client.search(
+    search_text="NY +view",
+    search_mode="all",
+    search_fields=["HotelName", "Description", "Address/City", "Tags"],
+    select=["HotelName", "Description", "Address/City", "Tags"],
+    top=10,
+    include_total_count=True
+)
+
+print(f"Total documents matching query: {results.get_count()}")
+for result in results:
+    print(f"Hotel: {result['HotelName']}")
+```
+
+**Reference:** [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient), [search](/python/api/azure-search-documents/azure.search.documents.searchclient#azure-search-documents-searchclient-search)
+
+#### C#
+
+```csharp
+using Azure;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
+
+// Set up the client
+string serviceName = "<your-search-service-name>";
+string indexName = "hotels-sample-index";
+string apiKey = "<your-query-api-key>";
+
+Uri endpoint = new Uri($"https://{serviceName}.search.windows.net");
+AzureKeyCredential credential = new AzureKeyCredential(apiKey);
+SearchClient searchClient = new SearchClient(endpoint, indexName, credential);
+
+// Run a full-text search query
+SearchOptions options = new SearchOptions
+{
+    SearchMode = SearchMode.All,
+    IncludeTotalCount = true,
+    Size = 10
+};
+options.SearchFields.Add("HotelName");
+options.SearchFields.Add("Description");
+options.Select.Add("HotelName");
+options.Select.Add("Description");
+
+SearchResults<SearchDocument> response = await searchClient.SearchAsync<SearchDocument>("NY +view", options);
+
+Console.WriteLine($"Total documents matching query: {response.TotalCount}");
+await foreach (SearchResult<SearchDocument> result in response.GetResultsAsync())
+{
+    Console.WriteLine($"Hotel: {result.Document["HotelName"]}");
+}
+```
+
+**Reference:** [SearchClient](/dotnet/api/azure.search.documents.searchclient), [SearchAsync](/dotnet/api/azure.search.documents.searchclient.searchasync), [SearchOptions](/dotnet/api/azure.search.documents.searchoptions)
+
+#### Additional SDK resources
 
 | Azure SDK | Client | Examples |
-|-----------|--------|----------|
+| --------- | ------ | -------- |
 | .NET | [SearchClient](/dotnet/api/azure.search.documents.searchclient) | [DotNetHowTo](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo) |
 | Java | [SearchClient](/java/api/com.azure.search.documents.searchclient) | [SearchForDynamicDocumentsExample.java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents/SearchForDynamicDocumentsExample.java) |
 | JavaScript | [SearchClient](/javascript/api/@azure/search-documents/searchclient) | [SDK examples](/javascript/api/overview/azure/search-documents-readme?view=azure-node-latest#examples&preserve-view=true) |
-| Python | [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient) | [sample_simple_query.py ](https://github.com/Azure/azure-sdk-for-python/blob/7cd31ac01fed9c790cec71de438af9c45cb45821/sdk/search/azure-search-documents/samples/sample_simple_query.py) |
+| Python | [SearchClient](/python/api/azure-search-documents/azure.search.documents.searchclient) | [sample_simple_query.py](https://github.com/Azure/azure-sdk-for-python/blob/7cd31ac01fed9c790cec71de438af9c45cb45821/sdk/search/azure-search-documents/samples/sample_simple_query.py) |
 
 ---
 
@@ -167,9 +274,25 @@ During indexing, the search engine uses a text analyzer on strings to maximize t
 
 The key point is that what you think your index contains, and what's actually in it, can be different. If queries don't return expected results, you can inspect the tokens created by the analyzer through the [Analyze Text (REST API)](/rest/api/searchservice/indexes/analyze). For more information about tokenization and the effect on queries, see [Partial term search and patterns with special characters](search-query-partial-matching.md).
 
+## Troubleshoot queries
+
+The following table lists common query issues and how to resolve them.
+
+| Issue | Cause | Resolution |
+| ----- | ----- | ---------- |
+| Empty results | No documents match query terms. | Verify field is marked *searchable* in schema. Use [Analyze Text API](/rest/api/searchservice/indexes/analyze) to check tokenization. |
+| Unexpected results | Query matches unintended fields. | Use `searchFields` to limit which fields are searched. |
+| Too many results | Query is too broad. | Add filters, use `searchMode=all`, or add required terms with `+` operator. |
+| Results not ranked as expected | Relevance scoring doesn't match expectations. | Consider [scoring profiles](index-add-scoring-profiles.md) or [semantic ranking](semantic-search-overview.md). |
+| Partial matches missing | Analyzer tokenized differently than expected. | Use wildcard (`*`) suffix or check analyzer behavior with Analyze Text API. |
+| Filter not working | Field isn't marked *filterable*. | Update index schema to set `filterable: true` on the field. |
+
 ## Related content
 
 Now that you have a better understanding of how query requests work, try the following quickstarts for hands-on experience.
 
 + [Search explorer](search-explorer.md)
-+ [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md)
++ [Quickstart: Full-text search](search-get-started-text.md)
++ [Simple query syntax](query-simple-syntax.md)
++ [Full Lucene query syntax](query-lucene-syntax.md)
++ [OData filter syntax](query-odata-filter-orderby-syntax.md)

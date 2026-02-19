@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: concept-article
-author: Blackmist
-ms.author: larryfr
-ms.reviewer: osiotugo
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 06/13/2025
 ms.custom: sdkv2, build-2023
 ---

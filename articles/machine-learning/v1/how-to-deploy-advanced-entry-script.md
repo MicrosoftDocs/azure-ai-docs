@@ -7,9 +7,9 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
 ms.date: 03/11/2025
-author: msakande
-ms.author: mopeakande
-ms.reviewer: sehan
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.custom: UpdateFrequency5, deploy, sdkv1
 # customer intent: As a developer, I want to see how to use advanced entry scripts in Azure Machine Learning so that I can implement schema generation, accept raw data, and load registered models.
 ---

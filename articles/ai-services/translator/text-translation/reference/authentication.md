@@ -1,33 +1,33 @@
 ---
-title: Authentication and authorization in Azure AI Translator service
-titleSuffix: Azure AI services
-description: "There are several ways to authenticate a request and authorize access to Azure AI Translator resource In this article, learn about each method, and how to make a request."
+title: Authentication and authorization in Azure Translator in Foundry Tools service
+titleSuffix: Foundry Tools
+description: "There are several ways to authenticate a request and authorize access to Azure Translator resource In this article, learn about each method, and how to make a request."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
 # Authentication and authorization
 
-Each request to an Azure AI service must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you can explore ways to authenticate a request and the requirements for each.
+Each request to a Foundry Tool must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you can explore ways to authenticate a request and the requirements for each.
 
-* Authenticate with a [single-service]() or [multi-service]() resource key.
-* Authenticate with a [bearer token]().
-* Authenticate with [Microsoft Entra ID]().
+* Authenticate with a [single-service regional](#authenticating-with-a-regional-resource), [single-service-global](#authenticating-with-a-global-resource) or [multi-service](#authenticating-with-a-multi-service-resource) resource key.
+* Authenticate with a [bearer token](#authenticating-with-an-access-token).
+* Authenticate with [Microsoft Entra ID](../../how-to/microsoft-entra-id-auth.md) is a cloud-based identity solution designed to manage user access and permissions for Microsoft services, resources, and applications. Microsoft Entra ID enables you to authenticate requests to your Azure resources without the need for passwords or keys. 
 
 ## Headers
 
-Subscribe to Translator or [multi-service](https://azure.microsoft.com/pricing/details/cognitive-services/) in Azure AI services, and use your key (available in the Azure portal) to authenticate.
+Subscribe to Translator or [multi-service](https://azure.microsoft.com/pricing/details/cognitive-services/) in Foundry Tools, and use your key (available in the Azure portal) to authenticate.
 
 There are three headers that you can use to authenticate your subscription. This table describes how each is used:
 
 |Headers|Description|
 |:----|:----|
-|Ocp-Apim-Subscription-Key|*Use with Azure AI services subscription if you're passing your secret key*.<br/>The value is the Azure secret key for your subscription to Translator.|
-|Authorization|*Use with Azure AI services subscription if you're passing an authentication token.*<br/>The value is the Bearer token: `Bearer <token>`.|
+|Ocp-Apim-Subscription-Key|*Use with Foundry Tools subscription if you're passing your secret key*.<br/>The value is the Azure secret key for your subscription to Translator.|
+|Authorization|*Use with Foundry Tools subscription if you're passing an authentication token.*<br/>The value is the Bearer token: `Bearer <token>`.|
 |Ocp-Apim-Subscription-Region|*Use with multi-service and regional translator resource.*<br/>The value is the region of the multi-service or regional translator resource. This value is optional when using a global translator resource.|
 
 ### Secret key
@@ -117,7 +117,7 @@ curl --header "Ocp-Apim-Subscription-Key: <your-key>" --data "" "https://central
 curl --data "" "https://centralus.api.cognitive.microsoft.com/sts/v1.0/issueToken?Subscription-Key=<your-key>"
 ```
 
-A successful request returns the encoded access token as plain text in the response body. The valid token is passed to the Translator service as a bearer token in the Authorization.
+A successful request returns the encoded access token as plain text in the response body. The valid token is passed to the Translator as a bearer token in the Authorization.
 
 ```bash
 Authorization: Bearer <Base64-access_token>
@@ -129,7 +129,7 @@ An authentication token is valid for 10 minutes. The token should be reused when
 
 ## Authentication with Microsoft Entra ID
 
- Translator v3.0 supports Microsoft Entra authentication, Microsoft's cloud-based identity and access management solution. Authorization headers enable the Translator service to validate that the requesting client is authorized to use the resource and to complete the request.
+ Translator v3.0 supports Microsoft Entra authentication, Microsoft's cloud-based identity and access management solution. Authorization headers enable the Translator to validate that the requesting client is authorized to use the resource and to complete the request.
 
 ### **Prerequisites**
 
@@ -207,7 +207,7 @@ curl -X POST https://<your-custom-domain>.cognitiveservices.azure.com/translator
 ```
 ## Virtual Network support
 
-The Translator service is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Azure AI services virtual networks](../../../cognitive-services-virtual-networks.md?tabs=portal).
+The Translator is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Foundry Tools virtual networks](../../../cognitive-services-virtual-networks.md?tabs=portal).
 
 Once you turn on this capability, you must use the custom endpoint to call the Translator. You can't use the global translator endpoint ("api.cognitive.microsofttranslator.com") and you can't authenticate with an access token.
 

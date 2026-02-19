@@ -1,21 +1,25 @@
 ---
-title: "Quickstart: Use the Language Detection client library"
-titleSuffix: Azure AI services
-description: Use this quickstart to start using Language Detection.
+title: "Quickstart: Detect the language of text"
+titleSuffix: Foundry Tools
+description: Use Azure Language in Foundry Tools to detect the language of text with client libraries, the REST API, or the Microsoft Foundry portal.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 02/17/2025
+ms.date: 02/06/2026
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-language-detection, mode-api, devx-track-extended-java, devx-track-js, devx-track-python
 keywords: text mining, language detection
 zone_pivot_groups: programming-languages-text-analytics
+ai-usage: ai-assisted
 ---
+# Quickstart: Detect the language of text
 
-# Quickstart: using the Language Detection client library and REST API
+In this quickstart, you use the Azure Language in Foundry Tools language detection feature to identify the language of input text. You can get started using your preferred client library, the REST API, or the Microsoft Foundry portal.
+
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ::: zone pivot="programming-language-csharp"
 
@@ -49,17 +53,30 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
+[!INCLUDE [Microsoft Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 
+## Troubleshooting
+
+| Issue | Resolution |
+|---|---|
+| You get a `401` or `403` error when calling the API. | Confirm your key and endpoint are correct for the same Azure AI resource. If you recently changed role assignments, wait a few minutes and try again. |
+| You get an error about missing environment variables. | Confirm `LANGUAGE_KEY` and `LANGUAGE_ENDPOINT` are set in your environment before you run the sample. |
+| The Foundry experience doesn't match the steps. | In the Foundry portal, use the version toggle to switch between Foundry (classic) and Foundry (new), then follow the matching tab in the Foundry section. |
+| The API returns `unknown` as the detected language. | The input text might be too short or ambiguous. Provide a longer text sample or set the **Country/region hint** to improve accuracy. |
+| The API returns an `InvalidCountryHint` error. | Confirm the country/region hint code is a valid ISO 3166-1 alpha-2 code (for example, `US`, `FR`, `JP`). |
+
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+If you no longer need the resources you created in this quickstart, delete the individual resource or the entire resource group. Deleting the resource group also deletes all other resources associated with it.
 
 * [Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)
 
-## Next steps
+## Related content
 
 * [Language detection overview](overview.md)
+* [Call the Language Detection API](how-to/call-api.md)
+* [Language support](language-support.md)
+* [Use containers](how-to/use-containers.md)

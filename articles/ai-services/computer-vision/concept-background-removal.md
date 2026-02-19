@@ -1,15 +1,13 @@
 ---
 title: Background removal - Image Analysis
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about background removal, an operation of Image Analysis
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -54,7 +52,7 @@ It's important to note the limitations of background removal:
 
 ## Use the API
 
-The background removal feature is available through the [Segment](/rest/api/computervision/image-analysis/segment?view=rest-computervision-2023-02-01-preview&tabs=HTTP) API (`imageanalysis:segment`). See the [Background removal how-to guide](./how-to/background-removal.md) for more information.
+The background removal feature is available through the [Segment](/rest/api/computervision/image-analysis/segment?tabs=HTTP) API (`imageanalysis:segment`). See the [Background removal how-to guide](./how-to/background-removal.md) for more information.
 
 ## Next step
 

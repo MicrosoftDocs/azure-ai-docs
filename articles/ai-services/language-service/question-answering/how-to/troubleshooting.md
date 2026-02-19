@@ -1,16 +1,15 @@
 ---
 title: Troubleshooting - custom question answering
-description: The curated list of the most frequently asked questions regarding custom question answering will help you adopt the feature faster and with better results.
+description: The curated list of the most frequently asked questions regarding custom question answering helps you adopt the feature faster and with better results.
 ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: troubleshooting
-ms.date: 11/21/2024
+ms.date: 12/15/2025
 ---
-
 # Troubleshooting for custom question answering
 
-The curated list of the most frequently asked questions regarding custom question answering will help you adopt the feature faster and with better results.
+The curated list of the most frequently asked questions regarding custom question answering helps you adopt the feature faster and with better results.
 
 ## Manage predictions
 
@@ -18,7 +17,7 @@ The curated list of the most frequently asked questions regarding custom questio
 <summary><b>How can I improve the throughput performance for query predictions?</b></summary>
 
 **Answer**:
-Throughput performance issues indicate you need to scale up your Azure AI Search. Consider adding a replica to your Azure AI Search to improve performance.
+Throughput performance issues indicate you need to scale up your Azure AI Search. Consider adding a replica to your Azure AI Search and improve performance.
 
 Learn more about [pricing tiers](../Concepts/azure-resources.md).
 </details>
@@ -29,7 +28,7 @@ Learn more about [pricing tiers](../Concepts/azure-resources.md).
 <summary><b>Why is my URL(s)/file(s) not extracting question-answer pairs?</b></summary>
 
 **Answer**:
-It's possible that custom question answering can't auto-extract some question-and-answer (QnA) content from valid FAQ URLs. In such cases, you can paste the QnA content in a .txt file and see if the tool can ingest it. Alternately, you can editorially add content to your project through the [Language Studio portal](https://language.azure.com).
+It's possible that custom question answering can't autoextract some question-and-answer (QnA) content from valid FAQ URLs. In such cases, you can paste the QnA content in a .txt file and see if the tool can ingest it.
 
 </details>
 
@@ -45,7 +44,7 @@ The size of the project depends on the SKU of Azure search you choose when creat
 <summary><b>How do I share a project with others?</b></summary>
 
 **Answer**:
-Sharing works at the level of the language resource, that is, all projects associated a language resource can be shared.
+Project sharing works at the level of the language resource, that is, all projects associated a language resource can be shared.
 </details>
 
 <details>
@@ -68,7 +67,7 @@ You can share an entire language resource, not individual projects.
 <summary><b>The updates that I made to my project are not reflected in production. Why not?</b></summary>
 
 **Answer**:
-Every edit operation, whether in a table update, test, or setting, needs to be saved before it can be deployed. Be sure to select **Save** after making changes and then re-deploy your project for those changes to be reflected in production.
+Every edit operation, whether in a table update, test, or setting, needs to be saved before it can be deployed. Be sure to select **Save** after making changes and then redeploy your project for those changes to be reflected in production.
 
 </details>
 
@@ -77,9 +76,9 @@ Every edit operation, whether in a table update, test, or setting, needs to be s
 
 **Answer**:
 
-#### Multimedia auto-extraction for files and URLs
+#### Multimedia autoextraction for files and URLs
 
-* URLS - limited HTML-to-Markdown conversion capability.
+* Links - limited HTML-to-Markdown conversion capability.
 * Files - not supported
 
 #### Answer text in markdown
@@ -104,7 +103,7 @@ If you have content from multiple languages, be sure to create a separate projec
 <summary><b>I deleted my existing Search service. How can I fix this?</b></summary>
 
 **Answer**:
-If you delete an Azure AI Search index, the operation is final and the index cannot be recovered.
+If you delete an Azure AI Search index, the operation is final and the index can't be recovered.
 
 </details>
 
@@ -120,7 +119,7 @@ In case you deleted the `testkbv2` index in your Search service, you can restore
 <summary><b>Can I use the same Azure AI Search resource for projects using multiple languages?</b></summary>
 
 **Answer**:
-To use multiple language and multiple projects, the user has to create a project for each language and the first project created for the language resource has to select the option **I want to select the language when I create a project in this resource**. This will create a separate Azure search service per language.
+To use multiple language and multiple projects, the user has to create a project for each language and the first project created for the language resource has to select the option **I want to select the language when I create a project in this resource**. This requirement creates a separate Azure search service per language.
 
 </details>
 
@@ -130,7 +129,7 @@ To use multiple language and multiple projects, the user has to create a project
 <summary><b>Do I need to use Bot Framework in order to use custom question answering?</b></summary>
 
 **Answer**:
-No, you do not need to use the [Bot Framework](https://github.com/Microsoft/botbuilder-dotnet) with custom question answering. However, custom question answering is offered as one of several templates in [Azure AI Bot Service](/azure/bot-service/). Bot Service enables rapid intelligent bot development through Microsoft Bot Framework, and it runs in a server-less environment.
+No, you don't need to use the [Bot Framework](https://github.com/Microsoft/botbuilder-dotnet) with custom question answering. However, custom question answering is offered as one of several templates in [Azure AI Bot Service](/azure/bot-service/). Bot Service enables rapid intelligent bot development through Microsoft Bot Framework, and it runs in a server-less environment.
 
 </details>
 

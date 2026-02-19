@@ -6,11 +6,16 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: tutorial
-author: sdgilley
-ms.author: sgilley
-ms.reviewer: amsaied
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar
 ms.date: 04/03/2024
-ms.custom: UpdateFrequency5, devx-track-python, contperf-fy21q, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - devx-track-python
+  - contperf-fy21q
+  - sdkv1
+  - sfi-image-nochange
 ---
 
 # Tutorial: Train your first machine learning model (SDK v1, part 2 of 3)
@@ -321,7 +326,7 @@ The current training script prints metrics to the terminal. Azure Machine Learni
                 running_loss += loss.item()
                 if i % 2000 == 1999:
                     loss = running_loss / 2000
-                    # ADDITIONAL CODE: log loss metric to AML
+                    # ADDITIONAL CODE: log loss metric to Azure Machine Learning
                     run.log('loss', loss)
                     print(f'epoch={epoch + 1}, batch={i + 1:5}: loss {loss:.2f}')
                     running_loss = 0.0
@@ -339,7 +344,7 @@ In *train.py*, you access the run object from _within_ the training script itsel
 run = Run.get_context()
 
 ...
-# ADDITIONAL CODE: log loss metric to AML
+# ADDITIONAL CODE: log loss metric to Azure Machine Learning
 run.log('loss', loss)
 ```
 

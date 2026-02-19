@@ -1,14 +1,14 @@
 ---
 title: Keyword recognition overview - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of the features, capabilities, and restrictions for keyword recognition by using the Speech SDK.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.reviewer: hasshah
+ms.date: 08/07/2025
+ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about keyword recognition and how to use it with the Speech service.
 ---
 
@@ -117,4 +117,4 @@ The offline keyword recognition scenario is best suited for products without net
 ## Related content
 
 * [Read the quickstart to generate on-device keyword recognition models using custom keyword](custom-keyword-basics.md)
-* [Learn more about voice assistants](voice-assistants.md)
+* [Learn more about voice agents](voice-live.md)

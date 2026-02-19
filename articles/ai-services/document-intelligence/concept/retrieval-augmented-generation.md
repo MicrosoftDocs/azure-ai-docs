@@ -1,17 +1,17 @@
 ---
-title: Retrieval-Augmented Generation (RAG) with Azure AI Document Intelligence 
-titleSuffix: Azure AI services
-description: Introduction to how semantic chunking can help with Retrieval-Augmented Generation (RAG) implementation using Azure AI Document Intelligence Layout model.
+title: Retrieval-Augmented Generation (RAG) with Azure Document Intelligence in Foundry Tools 
+titleSuffix: Foundry Tools
+description: Introduction to how semantic chunking can help with Retrieval-Augmented Generation (RAG) implementation using Azure Document Intelligence in Foundry Tools Layout model.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 02/27/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
 
-# Retrieval-Augmented Generation with Azure AI Document Intelligence
+# Retrieval-Augmented Generation with Azure Document Intelligence in Foundry Tools
 
 <!-- markdownlint-disable MD036 -->
 
@@ -23,7 +23,7 @@ Retrieval-Augmented Generation (RAG) is a design pattern that combines a pretrai
 
 The Document Intelligence [Layout model](../prebuilt/layout.md) is an advanced machine-learning based document analysis API. The Layout model offers a comprehensive solution for advanced content extraction and document structure analysis capabilities. With the Layout model, you can easily extract text and structural elements to divide large bodies of text into smaller, meaningful chunks based on semantic content rather than arbitrary splits. The extracted information can be conveniently outputted to Markdown format, enabling you to define your semantic chunking strategy based on provided building blocks.
 
-:::image type="content" source="../media/rag/azure-rag-processing.png" alt-text="Screenshot depicting semantic chunking with RAG using Azure AI Document Intelligence.":::
+:::image type="content" source="../media/rag/azure-rag-processing.png" alt-text="Screenshot depicting semantic chunking with RAG using Azure Document Intelligence.":::
 
 ## Semantic chunking
 
@@ -107,11 +107,11 @@ You can follow the [Document Intelligence Studio quickstart](../studio-overview.
 
 ## Build document chat with semantic chunking
 
-* [Azure OpenAI on your data](../../openai/concepts/use-your-data.md) enables you to run supported chat on your documents. Azure OpenAI on your data applies the Document Intelligence Layout model to extract and parse document data by chunking long text based on tables and paragraphs. You can also customize your chunking strategy using [Azure OpenAI sample scripts](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts) located in our GitHub repo.
+* [Azure OpenAI on your data](../../../ai-foundry/openai/concepts/use-your-data.md) enables you to run supported chat on your documents. Azure OpenAI on your data applies the Document Intelligence Layout model to extract and parse document data by chunking long text based on tables and paragraphs. You can also customize your chunking strategy using [Azure OpenAI sample scripts](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts) located in our GitHub repo.
 
-* Azure AI Document Intelligence is now integrated with [LangChain](https://python.langchain.com/docs/integrations/document_loaders/azure_document_intelligence) as one of its document loaders. You can use it to easily load the data and output to Markdown format. For more information, see our [sample code](https://github.com/microsoft/Form-Recognizer-Toolkit/blob/main/SampleCode/Python/sample_rag_langchain.ipynb) that shows a simple demo for RAG pattern with Azure AI Document Intelligence as document loader and Azure Search as retriever in LangChain.
+* Azure Document Intelligence is now integrated with [LangChain](https://python.langchain.com/docs/integrations/document_loaders/azure_document_intelligence) as one of its document loaders. You can use it to easily load the data and output to Markdown format. For more information, see our [sample code](https://github.com/microsoft/Form-Recognizer-Toolkit/blob/main/SampleCode/Python/sample_rag_langchain.ipynb) that shows a simple demo for RAG pattern with Azure Document Intelligence as document loader and Azure Search as retriever in LangChain.
 
-* The chat with your data solution accelerator [code sample](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator) demonstrates an end-to-end baseline RAG pattern sample. It uses Azure AI Search as a retriever and Azure AI Document Intelligence for document loading and semantic chunking.
+* The chat with your data solution accelerator [code sample](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator) demonstrates an end-to-end baseline RAG pattern sample. It uses Azure Search as a retriever and Azure Document Intelligence for document loading and semantic chunking.
 
 ## Use case
 
@@ -130,7 +130,7 @@ key = "<api_key>"
 from langchain_community.document_loaders import AzureAIDocumentIntelligenceLoader
 from langchain.text_splitter import MarkdownHeaderTextSplitter
 
-# Initiate Azure AI Document Intelligence to load the document. You can either specify file_path or url_path to load the document.
+# Initiate Azure Document Intelligence to load the document. You can either specify file_path or url_path to load the document.
 loader = AzureAIDocumentIntelligenceLoader(file_path="<path to your file>", api_key = key, api_endpoint = endpoint, api_model="prebuilt-layout")
 docs = loader.load()
 
@@ -152,7 +152,7 @@ splits
 
 ## Next steps
 
-* Learn more about [Azure AI Document Intelligence](../overview.md).
+* Learn more about [Azure Document Intelligence](../overview.md).
 
 * [Learn how to process your own forms and documents](../studio-overview.md) with the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
 

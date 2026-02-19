@@ -1,17 +1,16 @@
 ---
 title: Confidence score - Custom question answering
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: When a user query is matched against a knowledge base, Custom question answering returns relevant answers, along with a confidence score.
 #services: cognitive-services
 manager: nitinme
 author: laujan
 ms.author: lajanuar
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 06/04/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.custom: language-service-question-answering
 ---
-
 # Confidence score
 
 When a user query is matched against a project (also known as a knowledge base), Custom question answering returns relevant answers, along with a confidence score. This score indicates the confidence that the answer is the right match for the given user query.

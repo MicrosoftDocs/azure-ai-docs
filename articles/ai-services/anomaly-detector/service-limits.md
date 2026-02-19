@@ -5,7 +5,7 @@ description: Service limits for Anomaly Detector service, including Univariate A
 author: jr-MS
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
-ms.topic: conceptual
+ms.topic: limits-and-quotas
 ms.date: 06/12/2025
 ms.author: jingruhan
 ---

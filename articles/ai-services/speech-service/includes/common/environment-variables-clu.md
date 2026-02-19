@@ -1,12 +1,12 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 8/11/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
-Your application must be authenticated to access Azure AI Foundry resources. This article shows you how to use environment variables to store your credentials. You can then access the environment variables from your code to authenticate your application. For production, use a more secure way to store and access your credentials. 
+Your application must be authenticated to access Microsoft Foundry resources. This article shows you how to use environment variables to store your credentials. You can then access the environment variables from your code to authenticate your application. For production, use a more secure way to store and access your credentials. 
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)] 
 
@@ -15,6 +15,7 @@ To set the environment variables, open a console window, and follow the instruct
 - To set the `LANGUAGE_ENDPOINT` environment variable, replace `your-language-endpoint` with one of the regions for your resource.
 - To set the `SPEECH_KEY` environment variable, replace `your-speech-key` with one of the keys for your resource.
 - To set the `SPEECH_REGION` environment variable, replace `your-speech-region` with one of the regions for your resource.
+- To set the `ENDPOINT` environment variable, replace `your-speech-endpoint` with the actual endpoint of your Speech resource.
 
 #### [Windows](#tab/windows)
 
@@ -23,6 +24,7 @@ setx LANGUAGE_KEY your-language-key
 setx LANGUAGE_ENDPOINT your-language-endpoint
 setx SPEECH_KEY your-speech-key
 setx SPEECH_REGION your-speech-region
+setx ENDPOINT your-speech-endpoint
 ```
 
 > [!NOTE]
@@ -37,6 +39,7 @@ export LANGUAGE_KEY=your-language-key
 export LANGUAGE_ENDPOINT=your-language-endpoint
 export SPEECH_KEY=your-speech-key
 export SPEECH_REGION=your-speech-region
+export ENDPOINT=your-speech-endpoint
 ```
 
 After you add the environment variables, run `source ~/.bashrc` from your console window to make the changes effective.
@@ -52,6 +55,7 @@ export LANGUAGE_KEY=your-language-key
 export LANGUAGE_ENDPOINT=your-language-endpoint
 export SPEECH_KEY=your-speech-key
 export SPEECH_REGION=your-speech-region
+export ENDPOINT=your-speech-endpoint
 ```
 
 After you add the environment variables, run `source ~/.bash_profile` from your console window to make the changes effective.

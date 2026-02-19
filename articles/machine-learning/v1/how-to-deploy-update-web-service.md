@@ -6,9 +6,9 @@ description: Learn how to refresh a web service that is already deployed in Azur
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: bozhlin
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: jturuk
 ms.date: 03/06/2025
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 ---

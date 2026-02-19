@@ -3,14 +3,20 @@ title: Set up MLOps with GitHub
 titleSuffix: Azure Machine Learning
 description: Learn how to set up a sample MLOps environment in Azure Machine Learning with GitHub Actions
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
-ms.reviewer: kritifaujdar
+ms.reviewer: jturuk
 ms.subservice: mlops
 ms.date: 02/07/2025
 ms.topic: concept-article
-ms.custom: cli-v2, sdk-v2, github-actions-azure, build-2023, build-2023-dataai
+ms.custom:
+  - cli-v2
+  - sdk-v2
+  - github-actions-azure
+  - build-2023
+  - build-2023-dataai
+  - sfi-image-nochange
 ---
 
 # Set up MLOps with GitHub
@@ -32,7 +38,7 @@ In this article, you learn about using Azure Machine Learning to set up an end-t
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Machine Learning workspace.
 - Git running on your local machine.
 - GitHub as the source control repository
@@ -224,7 +230,7 @@ This training pipeline contains the following steps:
    - This component uses the trained model to predict taxi fares on the test set.
    - Input: ML model and Test dataset
    - Output: Performance of model and a deploy flag whether to deploy or not.
-   - This component compares the performance of the model with all previous deployed models on the new test dataset and decides whether to promote or not model into production. Promoting model into production happens by registering the model in AML workspace.
+   - This component compares the performance of the model with all previous deployed models on the new test dataset and decides whether to promote or not model into production. Promoting model into production happens by registering the model in Azure Machine Learning workspace.
 
 **Register Model**
    - This component scores the model based on how accurate the predictions are in the test set.

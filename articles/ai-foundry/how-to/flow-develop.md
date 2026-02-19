@@ -1,15 +1,16 @@
 ---
 title: How to build with prompt flow
-titleSuffix: Azure AI Foundry
+titleSuffix: Microsoft Foundry
 description: This article provides instructions on how to build with prompt flow.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 01/10/2025
+ms.date: 09/03/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -18,6 +19,8 @@ ms.update-cycle: 180-days
 ---
 
 # Develop a prompt flow
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -29,33 +32,34 @@ With prompt flow, you're able to:
 - Test, debug, and iterate your flows with ease.
 - Create prompt variants and compare their performance.
 
-In this article, you learn how to create and develop your first prompt flow in Azure AI Foundry portal.
+In this article, you learn how to create and develop your first prompt flow in Microsoft Foundry portal.
 
 ## Prerequisites
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
-- Prompt flow requires a compute session. If you don't have a runtime, you can [create one in Azure AI Foundry portal](./create-manage-compute-session.md).
+- Prompt flow requires a compute session. If you don't have a runtime, you can [create one in Foundry portal](./create-manage-compute-session.md).
 - You need a deployed model.
 - In your project, configure access control for the blob storage account. Assign the **Storage Blob Data Contributor** role to your user account.
-    - In the bottom left of the Azure AI Foundry portal, select **Management center**.
-    - In **Connected resources** for your project, select the link that corresponds to the **Azure Blob Storage** type. 
-    - Select **View in Azure Portal**
+    - In the bottom left of the Foundry portal, select **Management center**.
+    - In **Connected resources** for your hub, select the link that corresponds to the **Azure Blob Storage** type. 
+    - Select **View in Azure portal**
     - In the Azure portal, select **Access control (IAM)**.
     - Select **Add>Add role assignment**.
     - Search for **Storage Blob Data Contributor**, then select it.
     - Use the **Add role assignment** page to add yourself as a member.
     - Select **Review + assign** to review the assignment.
     - Select **Review + assign** to assign the role.
-    
+
 ## Create and develop your Prompt flow
 
 You can create a flow by either cloning the samples available in the gallery or creating a flow from scratch. If you already have flow files in local or file share, you can also import the files to create a flow.
 
-To create a prompt flow from the gallery in Azure AI Foundry portal:
+To create a prompt flow from the gallery in Foundry portal:
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your project. 
+[!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. Select your project.
 1. If you're in the Management center, select **Go to project** to return to your project.
 1. From the collapsible left menu, select **Prompt flow**.
 1. Select **+ Create**.
@@ -65,12 +69,12 @@ To create a prompt flow from the gallery in Azure AI Foundry portal:
     :::image type="content" source="../media/prompt-flow/create-standard-flow.png" alt-text="Screenshot of selecting and creating a standard flow." lightbox="../media/prompt-flow/create-standard-flow.png":::
 
 1. The prompt flow authoring page opens. Select **Start compute session** to have a compute session running for the flow.
-1. You can start authoring your flow now. By default you see a sample flow. This example flow has nodes for the LLM and Python tools. 
+1. You can start authoring your flow now. By default you see a sample flow. This example flow has nodes for the LLM and Python tools.
 
     :::image type="content" source="../media/prompt-flow/create-flow-in-out.png" alt-text="Screenshot of flow input and output on the edit prompt flow page." lightbox="../media/prompt-flow/create-flow-in-out.png":::
 
     > [!NOTE]
-    > The graph view for visualization only. It shows the flow structure you're developing. You cannot edit the graph view directly, but you can zoom in, zoom out, and scroll. You can select a node in the graph view to highlight and navigate to the node in the tool edit view.
+    > The graph view for visualization only. It shows the flow structure you're developing. You can't edit the graph view directly, but you can zoom in, zoom out, and scroll. You can select a node in the graph view to highlight and navigate to the node in the tool edit view.
 
 1. Optionally, you can add more tools to the flow. The visible tool options are **LLM**, **Prompt**, and **Python**. To view more tools, select **+ More tools**. 
 
@@ -128,17 +132,24 @@ If the condition isn't met, the node is skipped. The node status is shown as "By
 
 You can test the flow in two ways:
 
-- Run **single node**.
-    - To run a single node, select the **Run icon** on a node in the default view. Once running is completed, you can quickly check result in **node output section**.
-
+- Run single node:
+    - To run a single node, select the **Run** icon on a node in the default view. Once running is completed, you can quickly check result in node *Outputs* section.
+n
     :::image type="content" source="../media/prompt-flow/node-card-run.png" alt-text="Screenshot shows the run button in the node card.":::
 
-- Run **the whole flow**.
-    - To run the whole flow, select the **Run button** at the right top.
+- Run the whole flow:
+    - To run the whole flow, select the **Run** button at the right top.
 
 #### View test result and trace (preview)
 
-For the whole flow run, after you execute the flow, you can see the run status in the run banner. Then you can select **View trace** to view the trace for checking the result and observing the flow execution, where you can see the input and output of the whole flow and each node, along with more detailed information for debugging. It's available during the running and after the run is completed.
+Tracing is disabled by default, to enable tracing you need to set the environment variable `PF_DISABLE_TRACING` to `false`. One way you can do this is by adding the following to the python node:
+
+```python
+import os
+os.environ["PF_DISABLE_TRACING"] = "false"
+```
+
+For the whole flow run, after you execute the flow, you can see the run status in the run banner. To view the trace for checking the result and observing the flow execution, you can select **View outputs** and then select the **trace** tab. You can see the input and output of the whole flow and each node, along with more detailed information for debugging. It's available during the running and after the run is completed.
 
 ##### Understand the trace view
 
@@ -150,12 +161,6 @@ Select the **Trace** tab on the Outputs screen to see a graph that provides info
 > In prompt flow SDK, we defined several span types, including **LLM**, **Function**, **Embedding**, **Retrieval**, and **Flow**. And the system automatically creates spans with execution information in designated attributes and events.
 >
 > To learn more about span types, see  [Trace span](https://microsoft.github.io/promptflow/reference/trace-span-spec-reference.html).
-
-After the flow run is completed, for checking the results, you can select the **View test results** button to check all historical run records in a list. By default, the run records created in the last 7 days are displayed. You can select the **Filter** to change the condition.
-
-:::image type="content" source="../media/prompt-flow/authoring-test-result.png" alt-text="Screenshot of flow test result."lightbox="../media/prompt-flow/authoring-test-result.png":::
-
-You can also select on the **Name** of the run record to view the detailed information in trace view.
 
 ## Develop a chat flow
 
@@ -171,7 +176,7 @@ The most important elements that differentiate a chat flow from a standard flow 
 - **Chat history**: Chat history is the record of all interactions between the user and the chatbot, including both user inputs and AI-generated outputs. Maintaining chat history is essential for keeping track of the conversation context and ensuring the AI can generate contextually relevant responses. 
 - **Chat output**: Chat output refers to the AI-generated messages that are sent to the user in response to their inputs. Generating contextually appropriate and engaging chat output is vital for a positive user experience.
 
-A chat flow can have multiple inputs, chat history and chat input are **required** in chat flow.
+A chat flow can have multiple inputs, chat history, and chat input are **required** in chat flow.
 
 - In the chat flow inputs section, a flow input can be marked as chat input. Then you can fill the chat input value by typing in the chat box.
 - Prompt flow can help user to manage chat history. The `chat_history` in the Inputs section is reserved for representing Chat history. All interactions in the chat box, including user chat inputs, generated chat outputs, and other flow inputs and outputs, are automatically stored in chat history. User can't manually set the value of `chat_history` in the Inputs section. It's structured as a list of inputs and outputs:
@@ -206,7 +211,7 @@ A chat flow can have multiple inputs, chat history and chat input are **required
     ```
 
 > [!NOTE]
-> The capability to automatically save or manage chat history is a feature on the authoring page when conducting tests in the chat box. For batch runs, it's necessary for users to include the chat history within the batch run dataset. If there's no chat history available for testing, simply set the chat_history to an empty list `[]` within the batch run dataset.
+> The capability to automatically save or manage chat history is a feature on the authoring page when conducting tests in the chat box. For batch runs, it's necessary for users to include the chat history within the batch run dataset. If there's no chat history available for testing, set the chat_history to an empty list `[]` within the batch run dataset.
 
 ### Author prompt with chat history
 

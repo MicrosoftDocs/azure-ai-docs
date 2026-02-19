@@ -3,19 +3,19 @@ title: Azure Container for PyTorch
 titleSuffix: Azure Machine Learning
 description: Azure Container for PyTorch (ACPT), a curated environment that includes the best of Microsoft technologies for training with PyTorch on Azure.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: parinitarahi
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: build-2023, build-2023-dataai
-ms.topic: reference
+ms.topic: overview 
 ms.date: 05/13/2024
 ---
 
 # Azure Container for PyTorch (ACPT)
 
-Azure Container for PyTorch is a lightweight, standalone environment that includes needed components to effectively run optimized training for large models on Azure Machine Learning. The Azure Machine Learning [curated environments](resource-curated-environments.md) are available in the user’s workspace by default and are backed by cached Docker images that use the latest version of the Azure Machine Learning SDK. It helps with reducing preparation costs and faster deployment time. ACPT can be used to quickly get started with various deep learning tasks with PyTorch on Azure.
+Azure Container for PyTorch is a lightweight, standalone environment that includes needed components to effectively run optimized training for large models on Azure Machine Learning. The Azure Machine Learning [curated environments](resource-curated-environments.md) are available in the user's workspace by default and are backed by cached Docker images that use the latest version of the Azure Machine Learning SDK. It helps with reducing preparation costs and faster deployment time. ACPT can be used to quickly get started with various deep learning tasks with PyTorch on Azure.
 
 > [!NOTE]
 > Use the [Python SDK](how-to-use-environments.md), [CLI](/cli/azure/ml/environment#az-ml-environment-list), or Azure Machine Learning [studio](how-to-manage-environments-in-studio.md) to get the full list of environments and their dependencies. For more information, see the [environments article](how-to-use-environments.md#use-a-curated-environment).
@@ -36,7 +36,9 @@ Azure Container for PyTorch is a lightweight, standalone environment that includ
 
 ## Supported configurations for Azure Container for PyTorch (ACPT)
 
-**Description**: The Azure Curated Environment for PyTorch is our latest PyTorch curated environment. It's optimized for large, distributed deep learning workloads and comes prepackaged with the best of Microsoft technologies for accelerated training (e.g., Onnx Runtime Training (ORT), DeepSpeed, MSCCL, etc.).
+**Description**: The Azure Curated Environment for PyTorch is our latest PyTorch curated environment. It's optimized for large, distributed deep learning workloads and comes prepackaged with the best of Microsoft technologies for accelerated training (e.g., Onnx Runtime Training (ORT), DeepSpeed, MSCCL, etc.). Other packages like fairscale, horovod, msccl, protobuf, pyspark, pytest, pytorch-lightning, tensorboard, torchvision, and torchmetrics are provided to support all training needs.
+
+[!INCLUDE [nebula-package](includes/nebula-package.md)]
 
 The following configurations are supported:
 
@@ -47,7 +49,7 @@ The following configurations are supported:
 |acpt-pytorch-2.0-cuda11.7|Ubuntu 20.04|cu117|3.10|2.0.1|1.17.3|0.13.1|1.17.3|0.16.11|
 |acpt-pytorch-1.13-cuda11.7|Ubuntu 20.04|cu117|3.10|1.13.1|1.17.3|0.13.1|1.17.3|0.16.11|
 
-Other packages like fairscale, horovod, msccl, protobuf, pyspark, pytest, pytorch-lightning, tensorboard, NebulaML, torchvision, and torchmetrics are provided to support all training needs.
+
 
 To learn more, see [Create custom ACPT curated environments](how-to-azure-container-for-pytorch-environment.md).
 

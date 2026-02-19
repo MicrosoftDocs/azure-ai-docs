@@ -1,31 +1,29 @@
 ---
 title: Migrate to v3.x of the Read OCR container
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to migrate to the v3 Read OCR containers. 
-author: aahill
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 02/27/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
-ms.author: aahi
-ms.custom: cogserv-non-critical-vision
+ms.date: 09/26/2025
+ms.author: pafarley
+ms.custom: sfi-ropc-nochange
 ---
 
 # Migrate to v3.x of the Read OCR container
 
-If you're using version 2 of the Azure AI Vision Read OCR container, use this article to learn how to upgrade your application to use version 3.x of the container.
+If you're using version 2 of Azure Vision in Foundry Tools Read OCR container, use this article to learn how to upgrade your application to use version 3.x of the container.
 
 ## API changes
 
-The Read v3.2 container uses version 3 of the Azure AI Vision API and has the following endpoints:
+The Read v3.2 container uses version 3 of Azure Vision API and has the following endpoints:
 
 * `/vision/v3.2/read/analyzeResults/{operationId}`
 * `/vision/v3.2/read/analyze`
 * `/vision/v3.2/read/syncAnalyze`
 
-See the [Azure AI Vision v3 REST API migration guide](./upgrade-api-versions.md) for detailed information on updating your applications to use version 3 of the Read API. Synchronous operations are only supported in containers.
+See the [Azure Vision v3 REST API migration guide](./upgrade-api-versions.md) for detailed information on updating your applications to use version 3 of the Read API. Synchronous operations are only supported in containers.
 
 ## Configuration changes
 
@@ -77,6 +75,6 @@ Set the timer with `Queue:Azure:QueueVisibilityTimeoutInMilliseconds`, which set
 
 * Review [Configure containers](computer-vision-resource-container-config.md) for configuration settings
 * Review [OCR overview](overview-ocr.md) to learn more about recognizing printed and handwritten text
-* Refer to the [Read API](/rest/api/computervision/read/read?view=rest-computervision-v3.2-preview&tabs=HTTP) for details about the methods supported by the container.
-* Refer to [Frequently asked questions (FAQ)](FAQ.yml) to resolve issues related to Azure AI Vision functionality.
+* Refer to the [Read API](/rest/api/computervision/read/read) for details about the methods supported by the container.
+* Refer to [Frequently asked questions (FAQ)](FAQ.yml) to resolve issues related to Azure Vision functionality.
 * Use more [Azure AI containers](../cognitive-services-container-support.md)

@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
 author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: lochen
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 09/13/2024
 ms.custom:
   - sdkv2
@@ -80,7 +80,7 @@ The following Python SDK examples are from the [Build pipeline with subpipeline 
 
 # [Studio UI](#tab/ui)
 
-To access components in Azure Machine Learning studio, you need to register the components. To register pipeline components, follow the instructions at [Register component in your workspace](how-to-create-component-pipelines-ui.md#register-component-in-your-workspace). After that, you can view and use the components in the studio asset library and components list page.
+To access components in Azure Machine Learning studio, you need to register the components. To register pipeline components, follow the instructions at [Register component in your workspace](how-to-create-component-pipelines-ui.md#register-a-component-in-your-workspace). After that, you can view and use the components in the studio asset library and components list page.
 
 ---
 
@@ -114,7 +114,7 @@ You can find other Python SDK v2 pipeline component-related notebooks and inform
 
 # [Studio UI](#tab/ui)
 
-After you register a pipeline component, you can drag and drop the component into the studio Designer canvas and use the UI to build a pipeline job. For detailed instructions, see [Create pipelines using registered components](how-to-create-component-pipelines-ui.md#create-pipeline-using-registered-component).
+After you register a pipeline component, you can drag and drop the component into the studio Designer canvas and use the UI to build a pipeline job. For detailed instructions, see [Create pipelines using registered components](how-to-create-component-pipelines-ui.md#create-pipeline-by-using-registered-component).
 
 The following screenshots are from the [nyc_taxi_data_regression_with_pipeline_component](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component/nyc_taxi_data_regression_with_pipeline_component/nyc_taxi_data_regression_with_pipeline_component.ipynb) notebook in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
 

@@ -1,18 +1,18 @@
 ---
-title: Service limits - Translator Service
-titleSuffix: Azure AI services
+title: Service limits - Translator
+titleSuffix: Foundry Tools
 description: This article lists service limits for the Translator text and document translation. Charges are incurred based on character count, not request frequency with a limit of 50,000 characters per request. Character limits are subscription-based, with F0 limited to 2 million characters per hour.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
-ms.date: 04/14/2025
+ms.topic: limits-and-quotas
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Service limits for Azure AI Translator Service
+# Azure Translator in Foundry Tools service limits
 
-This article provides both a quick reference and detailed description of Azure AI Translator Service character and array limits for text and document translation.
+This article provides both a quick reference and detailed description of Azure Translator character and array limits for text and document translation.
 
 ## Text translation
 
@@ -74,6 +74,7 @@ The Translator has a maximum latency of 15 seconds using standard models and 120
 |Attribute | Limit|
 |---|---|
 |Document size| ≤ 40 MB |
+|Image file size (**2025-12-01-preview**)| ≤ 5 MB|
 |Total number of files.|≤ 1000 |
 |Total content size in a batch | ≤ 250 MB|
 |Number of target languages in a batch| ≤ 10 |

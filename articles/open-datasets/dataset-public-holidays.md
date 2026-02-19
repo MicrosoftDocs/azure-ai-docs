@@ -4,7 +4,7 @@ description: Learn how to use the Public Holidays dataset in Azure Open Datasets
 ms.service: azure-open-datasets
 ms.custom: devx-track-python
 ms.topic: sample
-ms.date: 04/16/2021
+ms.date: 10/28/2025
 ---
 
 # Public Holidays

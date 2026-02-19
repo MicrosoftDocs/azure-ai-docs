@@ -1,29 +1,27 @@
 ---
 title: What is Vision Studio?
-titleSuffix: Azure AI services
-description: Learn how to set up and use Vision Studio to test features of Azure AI Vision on the web.
+titleSuffix: Foundry Tools
+description: Learn how to set up and use Vision Studio to test features of Azure Vision in Foundry Tools on the web.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: overview
-ms.date: 11/04/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 01/30/2026
 ms.author: pafarley
 ---
 
 # What is Vision Studio?
 
-[Vision Studio](https://portal.vision.cognitive.azure.com) is a set of UI-based tools that lets you explore, build, and integrate features from Azure AI Vision.
+[Vision Studio](https://portal.vision.cognitive.azure.com) is a set of UI-based tools that lets you explore, build, and integrate features from Azure Vision in Foundry Tools.
 
 Vision Studio lets you try several service features and sample their returned data in a quick, straightforward manner. Using Vision Studio, you can start experimenting with the services and learning what they offer without needing to write any code. Then, use the available client libraries and REST APIs to embed these services into your own applications.
 
 ## Get started using Vision Studio
 
-To use Vision Studio, you need an Azure subscription and a resource for Azure AI services for authentication. You can also use this resource to call the services in the try-it-out experiences. Follow these steps to get started.
+To use Vision Studio, you need an Azure subscription and a resource for Foundry Tools for authentication. You can also use this resource to call the services in the try-it-out experiences. Follow these steps to get started.
 
-1. Create an Azure subscription if you don't have one already. You can [create one for free](https://azure.microsoft.com/free/ai/).
+1. Create an Azure subscription if you don't have one already. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 1. Go to the [Vision Studio website](https://portal.vision.cognitive.azure.com). If it's your first visit, a popup window prompts you to sign in to Azure and then choose or create a Vision resource. You can skip this step and do it later.
 
@@ -48,13 +46,13 @@ To use Vision Studio, you need an Azure subscription and a resource for Azure AI
 
 ## Preconfigured features
 
-Azure AI Vision offers multiple features that use prebuilt, preconfigured models for performing various tasks, such as: understanding how people move through a space, detecting faces in images, and extracting text from images. See the [Azure AI Vision overview](overview.md) for a list of features offered by the Vision service.
+Azure Vision offers multiple features that use prebuilt, preconfigured models for performing various tasks, such as: understanding how people move through a space, detecting faces in images, and extracting text from images. See the [Azure Vision overview](overview.md) for a list of features offered by the Vision service.
 
 Each of these features has one or more try-it-out experiences in Vision Studio that allow you to upload images and receive JSON and text responses. These experiences help you quickly test the features using a no-code approach.
 
 ## Clean up resources
 
-If you want to remove an AI Foundry resource after using Vision Studio, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it. You can't delete your resource directly from Vision Studio, so use one of the following methods:
+If you want to remove a Foundry resource after using Vision Studio, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it. You can't delete your resource directly from Vision Studio, so use one of the following methods:
 * [Use the Azure portal](../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Use the Azure CLI](../multi-service-resource.md?pivots=azcli#clean-up-resources)
 
@@ -64,4 +62,4 @@ If you want to remove an AI Foundry resource after using Vision Studio, you can 
 ## Related content
 
 * Go to [Vision Studio](https://portal.vision.cognitive.azure.com) to begin using features offered by the service.
-* For more information on the features offered, see the [Azure AI Vision overview](overview.md).
+* For more information on the features offered, see the [Azure Vision overview](overview.md).

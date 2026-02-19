@@ -3,17 +3,16 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
 
-Use this quickstart to send Named Entity Recognition (NER) requests using the REST API. In the following example, you'll use cURL to identify [recognized entities](../../concepts/named-entity-categories.md) in text.
+Use this quickstart to send Named Entity Recognition (NER) requests using the REST API. In the following example, you use cURL to identify [recognized entities](../../concepts/named-entity-categories.md) in text.
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 
 ## Setting up

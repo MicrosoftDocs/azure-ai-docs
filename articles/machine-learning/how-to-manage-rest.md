@@ -2,15 +2,16 @@
 title: Use REST to manage ML resources
 titleSuffix: Azure Machine Learning
 description: How to use REST APIs to create, run, and delete Azure Machine Learning resources, such as a workspace, or register models.
-author: Blackmist
-ms.author: larryfr
-ms.reviewer: deeikele
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: shshubhe
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 08/21/2024
 ms.topic: how-to
 ms.custom:
+
 ---
 
 # Create, run, and delete Azure Machine Learning resources using REST
@@ -25,13 +26,14 @@ In this article, you learn how to:
 > * Retrieve an authorization token
 > * Create a properly-formatted REST request using service principal authentication
 > * Use GET requests to retrieve information about Azure Machine Learning's hierarchical resources
+> * Use GET requests to retrieve and manage jobs
 > * Use PUT and POST requests to create and modify resources
 > * Use PUT requests to create Azure Machine Learning workspaces
 > * Use DELETE requests to clean up resources 
 
 ## Prerequisites
 
-- An **Azure subscription** for which you have administrative rights. If you don't have such a subscription, try the [free or paid personal subscription](https://azure.microsoft.com/free/)
+- An **Azure subscription** for which you have administrative rights. If you don't have such a subscription, try the [free or paid personal subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - An [Azure Machine Learning workspace](quickstart-create-resources.md).
 - Administrative REST requests use service principal authentication. Follow the steps in [Set up authentication for Azure Machine Learning resources and workflows](./how-to-setup-authentication.md#service-principal-authentication) to create a service principal in your workspace
 - The **curl** utility. The **curl** program is available in the [Windows Subsystem for Linux](/windows/wsl/install-win10) or any UNIX distribution. In PowerShell, **curl** is an alias for **Invoke-WebRequest** and `curl -d "key=val" -X POST uri` becomes `Invoke-WebRequest -Body "key=val" -Method POST -Uri uri`. 
@@ -44,7 +46,7 @@ Administrative REST requests are authenticated with an OAuth2 implicit flow. Thi
 - Your client ID (which will be associated with the created token)
 - Your client secret (which you should safeguard)
 
-You should have these values from the response to the creation of your service principal. Getting these values is discussed in [Set up authentication for Azure Machine Learning resources and workflows](./how-to-setup-authentication.md#service-principal-authentication). If you're using your company subscription, you might not have permission to create a service principal. In that case, you should use either a [free or paid personal subscription](https://azure.microsoft.com/free/).
+You should have these values from the response to the creation of your service principal. Getting these values is discussed in [Set up authentication for Azure Machine Learning resources and workflows](./how-to-setup-authentication.md#service-principal-authentication). If you're using your company subscription, you might not have permission to create a service principal. In that case, you should use either a [free or paid personal subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 To retrieve a token:
 
@@ -128,7 +130,7 @@ The above call will result in a compacted JSON response of the form:
 
 To retrieve the set of workspaces in a resource group, run the following, replacing `<YOUR-SUBSCRIPTION-ID>`, `<YOUR-RESOURCE-GROUP>`, and `<YOUR-ACCESS-TOKEN>`: 
 
-```
+```bash
 curl https://management.azure.com/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/providers/Microsoft.MachineLearningServices/workspaces/?api-version=2023-10-01 \
 -H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
 ```
@@ -202,6 +204,50 @@ providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/mod
 -H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
 ```
 
+## Retrieve and manage jobs
+
+Jobs are a fundamental concept in Azure Machine Learning, representing training runs, batch inference, and other machine learning workloads. You can use REST API calls to retrieve job information, monitor status, and manage job lifecycle.
+
+### Get a specific job by ID
+
+To retrieve details about a specific job using its ID, you can use the management API:
+
+```bash
+curl https://management.azure.com/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/\
+providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/jobs/<JOB-ID>?api-version=2024-04-01 \
+-H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
+```
+
+This will return a JSON response with complete job details including status, configuration, and results.
+
+### List all jobs in a workspace
+
+To get a list of all jobs in your workspace:
+
+```bash
+curl https://management.azure.com/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/\
+providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/jobs?api-version=2024-04-01 \
+-H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
+```
+
+### Get job runs using regional API
+
+You can also retrieve job information using the regional API server. To list job runs:
+
+```bash
+curl https://<REGIONAL-API-SERVER>/history/v1.0/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/\
+providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/runs?api-version=2023-10-01 \
+-H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
+```
+
+To get details about a specific run:
+
+```bash
+curl https://<REGIONAL-API-SERVER>/history/v1.0/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/\
+providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/runs/<RUN-ID>?api-version=2023-10-01 \
+-H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
+```
+
 Notice that to list experiments the path begins with `history/v1.0` while to list models, the path begins with `modelmanagement/v1.0`. The REST API is divided into several operational groups, each with a distinct path. 
 
 |Area|Path|
@@ -209,6 +255,7 @@ Notice that to list experiments the path begins with `history/v1.0` while to lis
 |Artifacts|/rest/api/azureml|
 |Data stores|/azure/machine-learning/how-to-access-data|
 |Hyperparameter tuning|hyperdrive/v1.0/|
+|Jobs|/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs|
 |Models|modelmanagement/v1.0/|
 |Run history|execution/v1.0/ and history/v1.0/|
 

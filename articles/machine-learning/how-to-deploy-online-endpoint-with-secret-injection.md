@@ -5,9 +5,9 @@ description: Learn to use secret injection with online endpoint and deployment t
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-author: msakande
-ms.author: mopeakande
-ms.reviewer: sehan
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: jturuk
 ms.date: 01/10/2024
 ms.topic: how-to
 ms.custom: how-to, ignite-2023, sdkv2, devx-track-azurecli
@@ -30,7 +30,7 @@ You'll learn to:
 
 ## Prerequisites
 
-- To use Azure Machine Learning, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+- To use Azure Machine Learning, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 - Install and configure the [Azure Machine Learning CLI (v2) extension](how-to-configure-cli.md) or the [Azure Machine Learning Python SDK (v2)](https://aka.ms/sdk-v2-install).
 
@@ -49,9 +49,9 @@ You can choose to store your secrets (such as API keys) using either:
 
 #### Use workspace connection as a secret store
 
-You can create workspace connections to use in your deployment. For example, you can create a connection to Microsoft Azure OpenAI in Azure AI Foundry Models by using [Workspace Connections - Create REST API](/rest/api/azureml/2023-08-01-preview/workspace-connections/create).
+You can create workspace connections to use in your deployment. For example, you can create a connection to Microsoft Azure OpenAI in Microsoft Foundry Models by using [Workspace Connections - Create REST API](/rest/api/azureml/2023-08-01-preview/workspace-connections/create).
 
-Alternatively, you can create a custom connection by using Azure Machine Learning studio (see [How to create a custom connection for prompt flow](./prompt-flow/tools-reference/python-tool.md#create-a-custom-connection)) or Azure AI Foundry (see [How to create a custom connection in Azure AI Foundry portal](/azure/ai-studio/how-to/connections-add?tabs=custom#create-a-new-connection)).
+Alternatively, you can create a custom connection by using Azure Machine Learning studio (see [How to create a custom connection for prompt flow](./prompt-flow/tools-reference/python-tool.md#create-a-custom-connection)) or Foundry (see [How to create a custom connection in Foundry portal](/azure/ai-studio/how-to/connections-add?tabs=custom#create-a-new-connection)).
 
 1. Create an Azure OpenAI connection:
 

@@ -5,9 +5,9 @@ description: Learn how to start, monitor, and track your machine learning experi
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: sgilley
-author: sdgilley
-ms.reviewer: amipatel
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: jturuk
 ms.date: 03/22/2024
 ms.topic: how-to
 ms.custom: build-2023
@@ -38,7 +38,7 @@ This article explains how to:
 
 You need the following items:
 
-* To use Azure Machine Learning, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* To use Azure Machine Learning, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * You must have an Azure Machine Learning workspace. A workspace is created in [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
 ## Job display name 

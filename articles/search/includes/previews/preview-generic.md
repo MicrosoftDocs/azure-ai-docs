@@ -1,8 +1,8 @@
 ---
 title: Include file
 description: Include file
-author: eric-urban
-ms.author: eur
+author: HeidiSteen
+ms.author: heidist
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 03/19/2024

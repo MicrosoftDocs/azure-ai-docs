@@ -2,14 +2,14 @@
 title: Audit and manage Azure Machine Learning
 titleSuffix: Azure Machine Learning
 description: Learn how to use Azure Policy with Azure Machine Learning to make sure your workspaces are compliant with your requirements.
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.date: 09/04/2024
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.reviewer: jhirono
+ms.reviewer: shshubhe
 ms.custom: FY25Q1-Linter
 # Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and manage Azure Machine Learning resources so that I can ensure compliance with my organization's requirements.
 ---
@@ -28,7 +28,7 @@ Azure Policy provides a set of policies that you can use for common scenarios wi
 
 The following table lists the built-in policies you can assign with Azure Machine Learning. For a list of all Azure built-in policies, see [Built-in policies](/azure/governance/policy/samples/built-in-policies).
 
-[!INCLUDE [azure-policy-reference-policies-machine-learning](~/azure-docs-pr-policy-includes/includes/policy/reference/bycat/policies-machine-learning.md)]
+[!INCLUDE [azure-policy-reference-policies-machine-learning](~/azure-policy-autogen-docs/includes/policy/reference/bycat/policies-machine-learning.md)]
 
 Policies can be set at different scopes, such as at the subscription or resource group level. For more information, see the [Azure Policy documentation](/azure/governance/policy/overview).
 

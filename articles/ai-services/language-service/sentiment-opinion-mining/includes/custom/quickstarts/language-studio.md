@@ -3,24 +3,23 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 
 
-## Create a new Azure Language resource and Azure storage account
+## Create a new Azure Language in Foundry Tools resource and Azure storage account
 
-Before you can use Custom sentiment analysis, you'll need to create an Azure Language resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset that will be used to build your model.
+Before you can use Custom sentiment analysis, you'll need to create an Azure Language resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset used to build your model.
 
 > [!IMPORTANT]
-> To quickly get started, we recommend creating a new Azure Language resource using the steps provided in this article. Using the steps in this article will let you create the Language resource and storage account at the same time, which is easier than doing it later.
+> To quickly get started, we recommend creating a new Azure Language resource using the steps provided in this article. Using the steps in this article lets you create Azure Language resource and storage account at the same time, which is easier than doing it later.
 <!--
-> If you have a [pre-existing resource](../../../custom/how-to/create-project.md#using-a-pre-existing-language-resource) that you'd like to use, you will need to connect it to storage account.
+> If you have a [pre-existing resource](../../../custom/how-to/create-project.md#using-a-preexisting-language-resource) that you'd like to use, you need to connect it to storage account.
 -->
 
 [!INCLUDE [create a new resource from the Azure portal](../../../../includes/custom/resource-creation-azure-portal.md)]
@@ -29,7 +28,7 @@ Before you can use Custom sentiment analysis, you'll need to create an Azure Lan
 
 ## Upload sample data to blob container
 
-After you have created an Azure storage account and connected it to your Language resource, you will need to upload the documents from the sample dataset to the root directory of your container. These documents will later be used to train your model.
+After you create an Azure storage account and connected it to your Language resource, you need to upload the documents from the sample dataset to the root directory of your container. These documents are used to train your model.
 
 Start by [downloading the sample dataset for Custom sentiment analysis projects](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/Custom%20sentiment%20analysis/example_data.zip). Open the .zip file, and extract the folder containing the documents. The provided sample dataset contains documents, each of which is a short example of a customer review.
 
@@ -37,7 +36,7 @@ Start by [downloading the sample dataset for Custom sentiment analysis projects]
 
 ## Create a Custom sentiment analysis project
 
-Once your resource and storage container are configured, create a new Custom sentiment analysis project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to the Language resource being used.
+Once your resource and storage container are configured, create a new Custom sentiment analysis project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to Azure Language resource being used.
 
 [!INCLUDE [Create a project using Language Studio](../../../../includes/custom/language-studio/create-project.md)]
     

@@ -3,13 +3,17 @@ title: 'Quickstart: Create a Data Science VM - Resource Manager template'
 titleSuffix: Azure Data Science Virtual Machine
 description: Learn how to use an Azure Resource Manager template to quickly deploy a Data Science Virtual Machine
 services: machine-learning
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.reviewer: franksolomon
 ms.date: 04/23/2024
 ms.topic: quickstart
 ms.service: azure-data-science-virtual-machines
-ms.custom: subject-armqs, mode-arm, devx-track-arm-template
+ms.custom:
+  - subject-armqs
+  - mode-arm
+  - devx-track-arm-template
+  - sfi-image-nochange
 ---
 
 # Quickstart: Create an Ubuntu Data Science Virtual Machine using an ARM template
@@ -24,7 +28,7 @@ If your environment meets the prerequisites and you know how to use ARM template
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/services/machine-learning/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/products/machine-learning/) before you begin.
 
 * You need the [Azure CLI](/cli/azure/install-azure-cli) to use the CLI commands in this document from your **local environment**.
 

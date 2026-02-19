@@ -1,11 +1,11 @@
 ---
-title: Build a retrieval-augmented generation solution with Azure AI Content Understanding
-titleSuffix: Azure AI services
+title: Build a retrieval-augmented generation solution with Azure Content Understanding in Foundry Tools
+titleSuffix: Foundry Tools
 description: Learn to build a retrieval-augmented generation solution with Content Understanding
-author: laujan
+author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
 ms.custom:
@@ -14,7 +14,7 @@ ms.custom:
 
 # Tutorial: Build a retrieval-augmented generation solution 
 
-This tutorial explains how to create a retrieval-augmented generation (RAG) solution using Azure AI Content Understanding. It covers the key steps to build a strong RAG system, offers tips to improve relevance and accuracy, and shows how to connect with other Azure services. By the end, you can use Content Understanding to handle multimodal data, improve retrieval, and help AI models provide accurate and meaningful responses.
+This tutorial explains how to create a retrieval-augmented generation (RAG) solution using Azure Content Understanding in Foundry Tools. It covers the key steps to build a strong RAG system, offers tips to improve relevance and accuracy, and shows how to connect with other Azure services. By the end, you can use Content Understanding to handle multimodal data, improve retrieval, and help AI models provide accurate and meaningful responses.
 
 ## Exercises included in this tutorial
 
@@ -27,25 +27,25 @@ This tutorial explains how to create a retrieval-augmented generation (RAG) solu
 
 ## Prerequisites
 
-To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/).
+To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
+* Once you have your Azure subscription, create a [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
 
-   * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
+   * This resource is listed under **Foundry** > **Foundry** in the portal.
 
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the multi-service resource page in the Azure portal.":::
 
 * **Azure AI Search Resource:** Set up an [Azure AI Search resource](../../../search/search-create-service-portal.md) to enable indexing and retrieval of multimodal data.
-* **Azure OpenAI Chat Model Deployment:** Deploy an [Azure OpenAI chat model](../../openai/how-to/deployment-types.md) that enables conversational interactions.
+* **Azure OpenAI Chat Model Deployment:** Deploy an [Azure OpenAI chat model](../../../ai-foundry/foundry-models/concepts/deployment-types.md) that enables conversational interactions.
 * **Embedding Model Deployment:** Ensure you have an embedding model deployed to generate vector representations for semantic search.
 * **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/operation-groups?preserve-view=true).
 * **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
 * This tutorial follows this sample code can be found in our [Python notebook](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples). Follow the [README](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/README.md) to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial.
-* The multimodal data used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
+* The multimodal data used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure Content Understanding in Foundry Tools.
 
 ## Extract data
 
-Retrieval-augmented generation (*RAG**) is a method that enhances the functionality of Large Language Models (**LLM**) by integrating data from external knowledge sources. Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure AI Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
+Retrieval-augmented generation (*RAG**) is a method that enhances the functionality of Large Language Models (**LLM**) by integrating data from external knowledge sources. Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
 
 ## Implementation steps
 
@@ -71,7 +71,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Load and validate Azure AI Services configs
+# Load and validate Foundry Tools configs
 AZURE_AI_SERVICE_ENDPOINT = os.getenv("AZURE_AI_SERVICE_ENDPOINT")
 AZURE_AI_SERVICE_API_VERSION = os.getenv("AZURE_AI_SERVICE_API_VERSION") or "2024-12-01-preview"
 AZURE_DOCUMENT_INTELLIGENCE_API_VERSION = os.getenv("AZURE_DOCUMENT_INTELLIGENCE_API_VERSION") or "2024-11-30"
@@ -112,7 +112,7 @@ sys.path.append(str(parent_dir))
 ```
 ---
 
-#### Code sample: create analyzer
+#### Code sample: Create analyzer
 
 ``` python
 from pathlib import Path
@@ -355,9 +355,9 @@ for analyzer_result in analyzer_results:
 ```
 
 ---
-### Extraction Results
+### Extraction results
 
-The following code samples demonstrate the output of content and field extraction using Azure AI Content Understanding. The JSON response contains multiple fields, each serving a specific purpose in representing the extracted data.
+The following code samples demonstrate the output of content and field extraction using Azure Content Understanding. The JSON response contains multiple fields, each serving a specific purpose in representing the extracted data.
 
 - **Markdown Field**: The `markdown` field provides a simplified, human-readable representation of the extracted content. It's especially useful for quick previews or for integrating the extracted data into applications that require structured text, such as knowledge bases or search interfaces. For example, with a document, the `markdown` field might include headers, paragraphs, and other structural elements formatted for easy readability.
 
@@ -611,7 +611,7 @@ The result shows the extraction of video segments into meaningful units, spoken 
 
 ## Preprocessing output from Content Understanding
 
-Once the data is extracted using Azure AI Content Understanding, the next step is to prepare the analysis output for embedding within a search system. Preprocessing the output ensures that the extracted content is transformed into a format suitable for indexing and retrieval. This step involves converting the JSON output from the analyzers into structured strings, preserving both the content and metadata for seamless integration into downstream workflows.
+Once the data is extracted using Azure Content Understanding, the next step is to prepare the analysis output for embedding within a search system. Preprocessing the output ensures that the extracted content is transformed into a format suitable for indexing and retrieval. This step involves converting the JSON output from the analyzers into structured strings, preserving both the content and metadata for seamless integration into downstream workflows.
 
 The following example demonstrates how to preprocess the output data from the analyzers, including documents, images, audio, and video. The process of converting each JSON output into a structured string lays the groundwork for embedding the data into a vector-based search system, enabling efficient retrieval and enhanced RAG workflows.
 
@@ -680,7 +680,7 @@ for doc in all_splits:
 ---
 ## Embed and index extracted content
 
-After preprocessing the extracted data from Azure AI Content Understanding is complete, the next step is to embed and index the content for efficient retrieval. This step involves transforming the structured strings into vector embeddings using an embedding model and storing them within an Azure AI Search system. By embedding the content, you enable semantic search capabilities, allowing the system to retrieve the most relevant information based on meaning rather than exact keyword matches. This step is critical for building a robust RAG solution, as it ensures that the extracted content is optimized for advanced search and retrieval workflows.
+After preprocessing the extracted data from Azure Content Understanding is complete, the next step is to embed and index the content for efficient retrieval. This step involves transforming the structured strings into vector embeddings using an embedding model and storing them within an Azure AI Search system. By embedding the content, you enable semantic search capabilities, allowing the system to retrieve the most relevant information based on meaning rather than exact keyword matches. This step is critical for building a robust RAG solution, as it ensures that the extracted content is optimized for advanced search and retrieval workflows.
 
 
 ``` python

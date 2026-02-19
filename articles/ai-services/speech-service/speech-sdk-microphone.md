@@ -1,13 +1,13 @@
 ---
 title: Microphone array recommendations - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Speech SDK microphone array recommendations. These array geometries are recommended for use with the Microsoft Audio Stack.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 3/10/2025
-ms.author: eur
+ms.topic: best-practice
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the microphone array recommendations for the Speech service.
 ---
 

@@ -1,17 +1,19 @@
 ---
 title: Limits and quotas - Custom Vision Service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains the different types of licensing keys and about the limits and quotas for the Custom Vision Service.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-custom-vision
-ms.topic: conceptual
+ms.topic: limits-and-quotas
 ms.date: 01/22/2025
 ms.author: pafarley
 ---
 
 # Limits and quotas
+
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
 
 There are two tiers of subscription to the Custom Vision service. You can sign up for an F0 (free) or S0 (standard) subscription through the Azure portal. This page outlines the limitations of each tier. See the [Custom Vision pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/custom-vision-service/) for more details on pricing and transactions.
 

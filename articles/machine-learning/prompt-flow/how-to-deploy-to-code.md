@@ -5,14 +5,16 @@ description: Learn how to deploy your flow to a managed online endpoint or Kuber
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
-  - devx-track-azurecli
-  - ignite-2023
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: keli19
+ms.reviewer: sooryar
 ms.date: 05/08/2024
+ms.custom:
+  - devx-track-azurecli
+  - ignite-2023
+  - sfi-ropc-nochange
+ms.update-cycle: 365-days
 ---
 
 # Deploy a flow to online endpoint for real-time inference with CLI

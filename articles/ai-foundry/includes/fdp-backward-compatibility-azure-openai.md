@@ -11,16 +11,16 @@ ms.custom: include file
 ---
 
 > [!CAUTION]
-> Backward compatibility for Azure OpenAI users who onboarded to Foundry Developer Platform:
+> Users who previously managed their model deployments and ran evaluations by using `oai.azure.com`, and then onboarded to the Microsoft Foundry developer platform, have these limitations when they use `ai.azure.com`:
 >
-> Users who previously used oai.azure.com to manage their model deployments and run evaluations and have since onboarded to Foundry Developer Platform (FDP) will have a few limitations when using ai.azure.com:
+> - These users can't view their evaluations that were created through the Azure OpenAI API. To view these evaluations, they have to go back to `oai.azure.com`.
+> - These users can't use the Azure OpenAI API to run evaluations within Foundry. Instead, they should continue to use `oai.azure.com` for this task. However, they can use the Azure OpenAI evaluators that are available directly in Foundry (`ai.azure.com`) in the option for dataset evaluation creation. The option for fine-tuned model evaluation isn't supported if the deployment is a migration from Azure OpenAI to Foundry.
 >
-> - First, users will be unable to view their evaluations that were created using the Azure OpenAI API. Instead, to view these, users have to navigate back to oai.azure.com.
-> - Second, users will be unable to use the Azure OpenAI API to run evaluations within AI Foundry. Instead, these users should continue to use oai.azure.com for this. However, users can use the Azure OpenAI evaluators that are available directly in AI Foundry (ai.azure.com) in the dataset evaluation creation option. The Fine-tuned  model evaluation option isn't supported if the deployment is a migration from Azure OpenAI to Azure Foundry.
-> - For the dataset upload + bring your own storage scenario, a few configurations requirements need to happen:
+> For the scenario of dataset upload and bring your own storage, there are a few configuration requirements:
 >
->   - Account authentication needs to be Entra ID.
->   - The storage needs to be added to the account (if it’s added to the project, you'll get service errors).
->   - User needs to add their project to their storage account through access control in the Azure portal.
+> - Account authentication must be Microsoft Entra ID.
+> - The storage must be added to the account. Adding it to the project causes service errors.
+> - Users must add their project to their storage account through access control in the Azure portal.
 >
-> To learn more about creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub, see [How to use Azure OpenAI in Azure AI Foundry Models evaluation](../../ai-services/openai/how-to/evaluations.md)
+> To learn more about creating evaluations with OpenAI evaluation graders in the Azure OpenAI hub, see [How to use Azure OpenAI in Foundry models evaluation](../../ai-services/openai/how-to/evaluations.md).
+

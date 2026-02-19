@@ -1,28 +1,28 @@
 ---
 title: 'SDK and CLI v2 expressions'
 titleSuffix: Azure Machine Learning
-description: SDK and CLI v2 use expressions when a value may not be known when authoring a job or component.
+description: SDK and CLI v2 use expressions when a value might not be known when authoring a job or component.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: concept-article
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: zhanxia
-ms.date: 07/16/2024
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: sooryar
+ms.date: 11/14/2025
 ms.custom: cliv2, sdkv2
 ---
 
 # Expressions in Azure Machine Learning SDK and CLI v2
 
-With Azure Machine Learning SDK and CLI v2, you can use _expressions_ when a value may not be known when you're authoring a job or component. When you submit a job or call a component, the expression is evaluated and the value is substituted.
+With Azure Machine Learning SDK and CLI v2, you can use _expressions_ when a value might not be known when you're authoring a job or component. When you submit a job or call a component, the expression is evaluated and the value is substituted.
 
-The format for an expression is `${{ <expression> }}`. Some expressions are evaluated on the _client_, when submitting the job or component. Other expressions are evaluated on the _server_ (the compute where the job or component is running.)
+The format for an expression is `${{ <expression> }}`. Some expressions are evaluated on the _client_, when submitting the job or component. Other expressions are evaluated on the _server_ (the compute where the job or component runs).
 
 ## Client expressions
 
 > [!NOTE]
-> The "client" that evaluates the expression is where the job is submitted or component is ran. For example, your local machine or a compute instance.
+> The "client" that evaluates the expression is where you submit the job or run the component. For example, your local machine or a compute instance.
 
 | Expression | Description | Scope |
 | ---- | ---- | ---- |

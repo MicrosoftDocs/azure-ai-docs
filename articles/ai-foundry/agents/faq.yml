@@ -1,60 +1,207 @@
 ### YamlMime:FAQ
 metadata:
-  title: Azure AI Foundry Agent Service frequently asked questions
-  titleSuffix: Azure AI Foundry
-  description: Get answers to the most popular questions about Azure AI Foundry Agent Service
+  title: Foundry Agent Service frequently asked questions
+  titleSuffix: Microsoft Foundry
+  description: Get answers to common questions about Foundry Agent Service, including setup options, data handling, pricing, and networking.
   #services: cognitive-services
   manager: nitinme
-  ms.service: azure-ai-agent-service
+  ms.service: azure-ai-foundry
+  ms.subservice: azure-ai-foundry-agent-service
   ms.topic: faq
-  ms.date: 01/15/2025
+  ms.date: 02/02/2026
   ms.author: aahi
   author: aahill
-title: Azure AI Foundry Agent Service frequently asked questions
+  ms.custom:
+  - references_regions
+  - pilot-ai-workflow-jan-2026
+  monikerRange: 'foundry-classic || foundry'
+title: Foundry Agent Service frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../../ai-services/cognitive-services-support-options.md). Azure AI Foundry Agent Service is part of Azure AI services.
+  Find answers to common questions about Foundry Agent Service.
+
+  If you can't find answers to your questions in this article and you still need help, see [Foundry Tools support and help options](../../ai-services/cognitive-services-support-options.md). Foundry Agent Service is part of Foundry Tools.
+
+  For getting started, see:
+  - [What is Foundry Agent Service?](overview.md)
+  - [Set up your environment](environment-setup.md)
+  - [Quotas and limits](quotas-limits.md)
 sections:
+  - name: Setup and access
+    questions:
+      - question: |
+          What's the difference between basic setup and standard setup?
+        answer: |
+          **Basic setup** stores agent state in Microsoft-managed resources.
+
+          **Standard setup** stores agent data (threads, files, and vector stores) in your Azure resources that you connect through capability hosts.
+
+          To compare setup options and choose the right one, see [Set up your environment](environment-setup.md#choose-your-setup) and [Capability hosts](concepts/capability-hosts.md).
+      - question: |
+          What permissions (RBAC roles) do I need?
+        answer: |
+          Role requirements depend on what you're doing. Common roles include:
+
+          * **Azure AI Account Owner**: Create accounts and projects
+          * **Azure AI User**: Create and edit agents
+          * **Role Based Access Control Administrator** (or **Owner**): Required for standard setup to assign roles to connected resources
+
+          For standard setup, you also need the `Microsoft.Authorization/roleAssignments/write` permission.
+
+          For complete role requirements, see [Required permissions](environment-setup.md#required-permissions) and [Role-based access control (RBAC) in Microsoft Foundry](../concepts/rbac-foundry.md).
+      - question: |
+          Where should I start if I'm new to Foundry Agent Service?
+        answer: |
+          Start with [Set up your environment](environment-setup.md), then create your first agent.
+
+          - Classic experience: [Quickstart: Create a new agent](quickstart.md)
+          - New Foundry experience: [Quickstart: Get started with agents in code](../quickstarts/get-started-code.md)
   - name: General
     questions:
       - question: |
           Do you store any data used in the Foundry Agent Service API? 
         answer: |
-          Yes. Foundry Agent Service is a stateful API, meaning it retains data. There are two types of data stored in the Foundry Agent Service API: 
-          * Stateful entities: Threads, messages, and runs created during usage. 
-          * Files: Uploaded during Foundry Agent Service setup or as part of a message.  
+          Yes. Foundry Agent Service is a stateful API, which means that it retains data. Two types of data are stored in the Foundry Agent Service API: 
+          * **Stateful entities**: Conversations and responses created during usage. 
+          * **Files and vector stores**: Data uploaded during Foundry Agent Service setup or as part of a response generation.  
+
+          To learn how conversations and responses work, see [Agent runtime components](../default/agents/concepts/runtime-components.md). 
       - question: |
           Where is this data stored?
         answer: |
-          Data is stored in a secure, Microsoft-managed storage account that is logically separated.  
+          * **Basic setup**: Data is stored in a secure, Microsoft-managed storage account that's logically separated.  
+          * **Standard setup**: Data is stored in your own Azure resources, so you have full ownership and control:
+            * **Azure Storage**: Files and attachments
+            * **Azure Cosmos DB**: Threads and conversation history
+            * **Azure AI Search**: Vector stores
+
+          To learn about setup options that control where data is stored, see [Set up your environment](environment-setup.md#choose-your-setup).
       - question: |
           How long is this data stored?
         answer: |
-          All used data persists in this system unless you explicitly delete this data. Use the delete function with the thread ID of the thread you want to delete. Clearing the Run in the Foundry Agent Service Playground doesn't delete threads, however deleting them using delete function won't list them in the thread page. 
+          Data persists unless you explicitly delete it. To delete agent data, use the API or SDK to delete threads, files, or vector stores.
+
+          For concepts and terminology (for example, conversation and response), see [Agent runtime components](../default/agents/concepts/runtime-components.md).
       - question: | 
-          Does Foundry Agent Service support customer-managed key encryption (CMK)?
+          Does Foundry Agent Service support CMK encryption?
         answer: |
-          Today we support CMK for Threads and Files in Foundry Agent Service.
+          * Basic setup supports Microsoft-managed keys only.  
+          * Standard setup supports customer-managed keys (CMKs).
       - question: |
-          Is my data used by Microsoft for training models? 
+          Does Microsoft use my data for training models? 
         answer: |
-          No. Data is not used by Microsoft for training models. See the [Responsible AI documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information.
+          No, Microsoft doesn't use your data for training models. For more information, see the [Responsible AI documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy).
       - question: |
           Where is data stored geographically?
         answer: |
-          Azure AI Foundry Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview). 
+          Foundry Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview). 
       - question: |
           How am I charged for Foundry Agent Service?
         answer: |
-          * Inference cost (input and output) of the base model you're using for each Agent (for example gpt-4-0125). If you've created multiple agents, you'll be charged for the base model attached to each Agent.
-          * If you've enabled the Code Interpreter tool - for example your agent calls Code Interpreter simultaneously in two different threads, this would create two Code Interpreter sessions, each of which would be charged. Each session is active by default for one hour, which means that you would only pay this fee once if your user keeps giving instructions to Code Interpreter in the same thread for up to one hour.
-          * File search is billed based on the vector storage used. 
+          * You're charged for inference cost (input and output) of the base model that you're using for each agent (for example, gpt-4-0125). If you created multiple agents, you're charged for the base model attached to each agent.
+          * If you enabled the Code Interpreter tool, you're charged for its use per session. For example, if your agent calls Code Interpreter simultaneously in two threads, this activity creates two Code Interpreter sessions. Each of those sessions is charged.
+          
+            By default, each session is active for one hour. If your user keeps giving instructions to Code Interpreter in the same thread for up to one hour, you pay this fee only once.
+          * File search is billed based on the vector storage that you use. 
 
           For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
       - question: |
           Is there any additional pricing or quota for using Foundry Agent Service? 
         answer: |
           No. All [quotas](quotas-limits.md) apply to using models with Foundry Agent Service.
+  - name: Tools and integrations
+    questions:
       - question: |
-          Does the Foundry Agent Service API support non-Azure OpenAI models?   
+          Where can I learn about tools like Code Interpreter and File Search?
         answer: |
-          Yes, the Foundry Agent Service API supports non-Azure OpenAI models. See the [models](concepts\model-region-support.md) page for more information.
+          Start with [Tools overview](how-to/tools-classic/overview.md), then see the tool-specific guidance:
+
+          - [Use Code Interpreter](how-to/tools-classic/code-interpreter.md)
+          - [Use File Search](how-to/tools-classic/file-search.md)
+      - question: |
+          How do I bring my own storage, Azure Cosmos DB, or Azure AI Search for agent data?
+        answer: |
+          Use capability hosts and connect your own resources.
+
+          - Concepts: [Capability hosts](concepts/capability-hosts.md)
+          - How-to: [Use your own resources](how-to/use-your-own-resources.md)
+  - name: Monitoring and operations
+    questions:
+      - question: |
+          How do I monitor Foundry Agent Service?
+        answer: |
+          To understand usage and monitoring options, see [Metrics](how-to/metrics.md) and [Monitor the service](reference/monitor-service.md).
+      - question: |
+          What should I do for business continuity and disaster recovery (BCDR)?
+        answer: |
+          Agent Service BCDR guidance depends on your setup and the resources you provision. For the current guidance, see [BCDR for agents](overview.md#bcdr-for-agents).
+  - name: Virtual networking
+    questions:
+      - question: |
+          What is virtual network isolation? 
+        answer: |
+          Virtual networks help secure inbound and outbound access to your Azure resources. You achieve network isolation through virtual network integrations in Azure.
+
+          For Agent Service private networking requirements and limitations, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md).
+      - question: |
+          Why do I need subnet delegation? 
+        answer: |
+          Agent Service networking uses Azure Container Apps. When you deploy into your virtual network, you must use a dedicated subnet delegated to `Microsoft.App/environments`.
+
+          For details, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md) and [Virtual network configuration](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
+      - question: |
+          What regions support virtual network isolation?
+        answer: | 
+          Region availability for virtual network isolation can change. For the current supported regions and limitations, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md).
+      - question: |
+          What class range is supported for public or private Class A, B, and C subnets? 
+        answer: |
+          Only private IP ranges are supported:
+
+          * **Class A**: 10.0.0.0/8
+          * **Class B**: 172.16.0.0/12
+          * **Class C**: 192.168.0.0/16
+
+          Public IP ranges aren't supported for agent subnets.  
+      - question: |
+          What is the minimum size for the agent subnet, and how many IPs should I use?
+        answer: |
+          The recommended delegated agent subnet size is /24. The minimum is /27.
+
+          For sizing guidance and how IPs are consumed, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md) and [Virtual network configuration](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
+      - question: |
+          What is the minimum and recommended address range for virtual networks in Foundry Agent Service? 
+        answer: |
+          As long as the agent subnet and private endpoints have address space, the address range for virtual networks can be anything. 
+      - question: |
+          Can I use peered virtual networks? Can I have resources in different virtual networks?  
+        answer: |
+          Yes. The virtual network is in your subscription, and you should be able to peer with any virtual network. But data transfer is costly, so we don't recommend it. The requirement is that all resources must be in the same region as the Microsoft Foundry resource.  
+      - question: |
+          Do I need to add any FQDNs to an allow list if I'm using an Azure firewall? 
+        answer: |
+          Yes. Allow the required fully qualified domain names (FQDNs) for managed identity as described in [Use Azure Firewall with Azure Container Apps](/azure/container-apps/use-azure-firewall), or allow the `AzureActiveDirectory` service tag.
+
+          For Agent Service private networking guidance, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md).
+      - question: 
+          Can multiple Microsoft Foundry resources reuse the virtual network? 
+        answer: |
+          Yes, multiple Microsoft Foundry resources can reuse the same virtual network. However, each Foundry resource requires its own dedicated agent runtime subnet—the agent subnet can't be shared across multiple Foundry resources.
+      - question: |
+          Does the virtual network need to be in the same resource group as Foundry?
+        answer: |
+          They don't need to be in the same resource group, but they do need to be in the same region.
+      - question: |
+          What additional configuration do I need if I want to add tools to my agents? 
+        answer: |
+          If you're using a network-secured setup, some tools require additional configuration, such as private endpoints and resource connections.
+
+          For the current guidance and limitations, see [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md).
+
+additionalContent: |
+
+  ## Next steps
+  - [What is Foundry Agent Service?](overview.md)
+  - [Set up your environment](environment-setup.md)
+  - [Quickstart: Create a new agent (classic)](quickstart.md)
+  - [Tools overview](how-to/tools-classic/overview.md)
+  - [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md)

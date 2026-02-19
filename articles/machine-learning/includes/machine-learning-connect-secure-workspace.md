@@ -1,9 +1,9 @@
 ---
-author: Blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 To connect to a workspace that's secured behind a VNet, use one of the following methods:

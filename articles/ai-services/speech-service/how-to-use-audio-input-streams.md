@@ -1,13 +1,13 @@
 ---
 title: Speech SDK audio input stream concepts
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An overview of the capabilities of the Speech SDK audio input stream.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 #Customer intent: As a developer, I want to learn how to use the audio input stream in the Speech SDK so that I can stream audio into the recognizer.

@@ -1,12 +1,12 @@
 ---
-title: Transparency note - Language Detection feature of Azure AI Language
-titleSuffix: Azure AI services
-description: The language detection feature of Azure AI Language detects the language an input text is written in and reports a single language code for every document submitted on the request in a wide range of languages, variants, dialects, and some regional/cultural languages. The language code is paired with a confidence score.
-author: aahill
-ms.author: aahi
+title: Transparency note - Language Detection feature of Azure Language in Foundry Tools
+titleSuffix: Foundry Tools
+description: The language detection feature of Azure Language in Foundry Tools detects the language an input text is written in and reports a single language code for every document submitted on the request in a wide range of languages, variants, dialects, and some regional/cultural languages. The language code is paired with a confidence score.
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 01/31/2024
 ---
 
@@ -17,7 +17,7 @@ ms.date: 01/31/2024
 ## What is a transparency note?
 
 > [!IMPORTANT]
-> This article assumes that you're familiar with guidelines and best practices for Azure AI Language. For more information, see [Transparency note for Azure AI Language](transparency-note.md).
+> This article assumes that you're familiar with guidelines and best practices for Azure Language in Foundry Tools. For more information, see [Transparency note for Language](transparency-note.md).
 
 An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, its capabilities and limitations, and how to achieve the best performance. Microsoft's Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
 
@@ -25,7 +25,7 @@ Microsoft's Transparency notes are part of a broader effort at Microsoft to put 
 
 ## Introduction to language detection
 
-The [language detection](/azure/ai-services/language-service/language-detection/overview) feature of Azure AI Language detects the language an input text is written in and reports a single language code for every document submitted on the request in a wide range of languages, variants, dialects, and some regional/cultural languages. The language code is paired with a confidence score.
+The [language detection](/azure/ai-services/language-service/language-detection/overview) feature of Language detects the language an input text is written in and reports a single language code for every document submitted on the request in a wide range of languages, variants, dialects, and some regional/cultural languages. The language code is paired with a confidence score.
 
 Be sure to check the list of [supported languages](/azure/ai-services/language-service/language-detection/language-support) to ensure the languages you need are supported.
 
@@ -33,7 +33,7 @@ Be sure to check the list of [supported languages](/azure/ai-services/language-s
 
 Language detection is used in multiple scenarios across a variety of industries. Some examples include:
 
-* **Preprocessing text of other Azure AI Language features**. Other Azure AI Language features require a language code to be sent in the request to identify the source language. If you don't know the source language of your text, you can use language detection as a pre-processor to obtain the language code.
+* **Preprocessing text of other Language features**. Other Language features require a language code to be sent in the request to identify the source language. If you don't know the source language of your text, you can use language detection as a pre-processor to obtain the language code.
 
 * **Detect languages for business workflow**. For example, if a company receives email in various languages from customers, they could use language detection to route the emails by language to native speakers that can communicate best with those customers.
 
@@ -46,7 +46,7 @@ Language detection is used in multiple scenarios across a variety of industries.
 
 ## Characteristics and limitations
 
-Depending on your scenario and input data, you could experience different levels of performance. The following information is designed to help you understand key concepts about performance as they apply to using Azure AI Language's language detection.
+Depending on your scenario and input data, you could experience different levels of performance. The following information is designed to help you understand key concepts about performance as they apply to using Language's language detection.
 
 ### System limitations and best practices for enhancing performance
 
@@ -62,12 +62,12 @@ Depending on your scenario and input data, you could experience different levels
 
 ## See also
 
-* [Transparency note for Azure AI Language](transparency-note.md)
+* [Transparency note for Language](transparency-note.md)
 * [Transparency note for Named Entity Recognition and Personally Identifying Information](transparency-note-named-entity-recognition.md)
 * [Transparency note for Health](transparency-note-health.md)
 * [Transparency note for Key Phrase Extraction](transparency-note-key-phrase-extraction.md)
 * [Transparency note for Question answering](transparency-note-question-answering.md)
 * [Transparency note for Summarization](transparency-note-extractive-summarization.md)
 * [Transparency note for Sentiment Analysis](transparency-note-sentiment-analysis.md)
-* [Data Privacy and Security for  Azure AI Language](data-privacy.md)
-* [Guidance for integration and responsible use with Azure AI Language](guidance-integration-responsible-use.md)
+* [Data Privacy and Security for  Language](data-privacy.md)
+* [Guidance for integration and responsible use with Language](guidance-integration-responsible-use.md)

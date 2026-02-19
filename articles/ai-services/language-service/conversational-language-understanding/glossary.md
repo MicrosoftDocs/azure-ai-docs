@@ -1,16 +1,15 @@
 ---
 title: Definitions used in conversational language understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about definitions used in conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
-
 # Terms and definitions used in conversation language understanding 
 
 Use this article to learn about some of the definitions and terms you may encounter when using conversation language understanding. 
@@ -19,7 +18,7 @@ Use this article to learn about some of the definitions and terms you may encoun
 Entities are words in utterances that describe information used to fulfill or identify an intent. If your entity is complex and you would like your model to identify specific parts, you can break your model into subentities. For example, you might want your model to predict an address, but also the subentities of street, city, state, and zipcode. 
 
 ## F1 score
-The F1 score is a function of Precision and Recall. It's needed when you seek a balance between [precision](#precision) and [recall](#recall).
+The F1 score is a function of Precision and Recall and needed when you seek a balance between [precision](#precision) and [recall](#recall).
 
 ## Intent
 An intent represents a task or action the user wants to perform. It's a purpose or goal expressed in a user's input, such as booking a flight, or paying a bill.
@@ -27,10 +26,10 @@ An intent represents a task or action the user wants to perform. It's a purpose 
 ## List entity
 A list entity represents a fixed, closed set of related words along with their synonyms. List entities are exact matches, unlike machined learned entities.
 
-The entity will be predicted if a word in the list entity is included in the list. For example, if you have a list entity called "size" and you have the words "small, medium, large" in the list, then the size entity will be predicted for all utterances where the words "small", "medium", or "large" are used regardless of the context.
+An entity is predicted whenever a word from the entity's list appears in the input. For instance, consider an entity list named "size" that contains the words "small," "medium," and "large." If any of these words are used in an utterance, the size entity is recognized. This prediction occurs regardless of the surrounding context in which these words are mentioned.
 
 ## Model
-A model is an object that's trained to do a certain task, in this case conversation understanding tasks. Models are trained by providing labeled data to learn from so they can later be used to understand utterances.
+A model is an object trained to do a certain task, in this case conversation understanding tasks. Models are trained by providing labeled data to learn from so they can later be used to understand utterances.
 
 * **Model evaluation** is the process that happens right after training to know how well does your model perform.
 * **Deployment** is the process of assigning your model to a deployment to make it available for use via the [prediction API](https://aka.ms/ct-runtime-swagger).
@@ -43,10 +42,10 @@ Overfitting happens when the model is fixated on the specific examples and isn't
 Measures how precise/accurate your model is. It's the ratio between the correctly identified positives (true positives) and all identified positives. The precision metric reveals how many of the predicted classes are correctly labeled.
 
 ## Project
-A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to the Azure resource being used.
+A project is a work area for building your custom ML models based on your data. Your project is only accessible to you and others who have access to the Azure resource being used.
 
 ## Recall
-Measures the model's ability to predict actual positive classes. It's the ratio between the predicted true positives and what was actually tagged. The recall metric reveals how many of the predicted classes are correct.
+Measures the model's ability to predict actual positive classes. It's the ratio between the predicted true positives and what was tagged. The recall metric reveals how many of the predicted classes are correct.
 
 ## Regular expression
 A regular expression entity represents a regular expression. Regular expression entities are exact matches.
@@ -59,7 +58,7 @@ Training data is the set of information that is needed to train a model.
 
 ## Utterance
 
-An utterance is user input that is short text representative of a sentence in a conversation. It's a natural language phrase such as "book 2 tickets to Seattle next Tuesday". Example utterances are added to train the model and the model predicts on new utterance at runtime
+An utterance is user input that's short text representative of a sentence in a conversation. It's a natural language phrase such as "book 2 tickets to Seattle next Tuesday." Example utterances are added to train the model and the model predicts on new utterance at runtime
 
 
 ## Next steps

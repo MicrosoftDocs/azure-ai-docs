@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Document Intelligence Java SDK"
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Form and document processing, data extraction, and analysis using Document Intelligence Java client library.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 02/10/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
@@ -32,7 +32,7 @@ In this quickstart, use the following features to analyze and extract data and v
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The latest version of [Visual Studio Code](https://code.visualstudio.com/) or your preferred IDE. *See* [Java in Visual Studio Code](https://code.visualstudio.com/docs/languages/java).
 
@@ -47,10 +47,10 @@ In this quickstart, use the following features to analyze and extract data and v
 
   * [**Gradle**](https://docs.gradle.org/current/userguide/installation.html), version 6.8 or later.
 
-* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource, in the Azure portal, to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+* A Foundry Tools or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource, in the Azure portal, to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
     > [!TIP]
-    > Create an Azure AI Foundry resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+    > Create a Microsoft Foundry resource if you plan to access multiple Foundry Tools under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 * After your resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect your application to the Document Intelligence API. Later, you paste your key and endpoint into the code:
 
@@ -255,7 +255,7 @@ Extract text, selection marks, text styles, table structures, and bounding regio
 > [!div class="checklist"]
 >
 > * For this example, you'll need a **document file at a URI**. You can use our [sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf) for this quickstart.
-> * To analyze a given file at a URI, you'll use the `beginAnalyzeDocumentFromUrl` method and pass `prebuilt-layout` as the model Id. The returned value is an `AnalyzeResult` object containing data about the submitted document.
+> * To analyze a given file at a URI, you'll use the `beginAnalyzeDocument` method and pass `prebuilt-layout` as the model Id. The returned value is an `AnalyzeResult` object containing data about the submitted document.
 > * We've added the file URI value to the `documentUrl` variable in the main method.
 
 :::moniker range="doc-intel-4.0.0"
@@ -264,9 +264,11 @@ Extract text, selection marks, text styles, table structures, and bounding regio
 
 ```java
 
-import com.azure.ai.documentintelligence.models.AnalyzeDocumentRequest;
+import com.azure.ai.documentintelligence.DocumentIntelligenceClient;
+import com.azure.ai.documentintelligence.DocumentIntelligenceClientBuilder;
+import com.azure.ai.documentintelligence.models.AnalyzeDocumentOptions;
+import com.azure.ai.documentintelligence.models.AnalyzeOperationDetails;
 import com.azure.ai.documentintelligence.models.AnalyzeResult;
-import com.azure.ai.documentintelligence.models.AnalyzeResultOperation;
 import com.azure.ai.documentintelligence.models.DocumentTable;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.util.polling.SyncPoller;
@@ -291,17 +293,11 @@ public class DocIntelligence {
     String modelId = "prebuilt-layout";
     String documentUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf";
 
-    SyncPoller <AnalyzeResultOperation, AnalyzeResultOperation> analyzeLayoutPoller =
-      client.beginAnalyzeDocument(modelId,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          new AnalyzeDocumentRequest().setUrlSource(documentUrl));
+    AnalyzeDocumentOptions options = new AnalyzeDocumentOptions(documentUrl);
 
-    AnalyzeResult analyzeLayoutResult = analyzeLayoutPoller.getFinalResult().getAnalyzeResult();
+    SyncPoller<AnalyzeOperationDetails, AnalyzeResult> analyzeLayoutPoller = client.beginAnalyzeDocument(modelId, options);
+
+    AnalyzeResult analyzeLayoutResult = analyzeLayoutPoller.getFinalResult();
 
     // pages
     analyzeLayoutResult.getPages().forEach(documentPage -> {
@@ -336,16 +332,14 @@ public class DocIntelligence {
       DocumentTable documentTable = tables.get(i);
       System.out.printf("Table %d has %d rows and %d columns.%n", i, documentTable.getRowCount(),
         documentTable.getColumnCount());
-      documentTable.getCells().forEach(documentTableCell -> {
+      documentTable.getCells().forEach(documentTableCell ->
         System.out.printf("Cell '%s', has row index %d and column index %d.%n", documentTableCell.getContent(),
-          documentTableCell.getRowIndex(), documentTableCell.getColumnIndex());
-      });
+          documentTableCell.getRowIndex(), documentTableCell.getColumnIndex()));
       System.out.println();
     }
 
     // styles
-    analyzeLayoutResult.getStyles().forEach(documentStyle -
-      > System.out.printf("Document is handwritten %s.%n", documentStyle.isHandwritten()));
+    analyzeLayoutResult.getStyles().forEach(documentStyle -> System.out.printf("Document is handwritten %s.%n", documentStyle.isHandwritten()));
   }
 }
 
@@ -636,16 +630,17 @@ Analyze and extract common fields from specific document types using a prebuilt 
 
 ```java
 
-import com.azure.ai.documentintelligence.models.AnalyzeDocumentRequest;
+import com.azure.ai.documentintelligence.DocumentIntelligenceClient;
+import com.azure.ai.documentintelligence.DocumentIntelligenceClientBuilder;
+import com.azure.ai.documentintelligence.models.AnalyzeDocumentOptions;
+import com.azure.ai.documentintelligence.models.AnalyzeOperationDetails;
 import com.azure.ai.documentintelligence.models.AnalyzeResult;
-import com.azure.ai.documentintelligence.models.AnalyzeResultOperation;
-import com.azure.ai.documentintelligence.models.Document;
+import com.azure.ai.documentintelligence.models.AnalyzedDocument;
 import com.azure.ai.documentintelligence.models.DocumentField;
 import com.azure.ai.documentintelligence.models.DocumentFieldType;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.util.polling.SyncPoller;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -658,140 +653,130 @@ public class DocIntelligence {
 
   public static void main(String[] args) {
 
+    // create your `DocumentIntelligenceClient` instance and `AzureKeyCredential` variable
+    DocumentIntelligenceClient client = new DocumentIntelligenceClientBuilder()
+      .credential(new AzureKeyCredential(key))
+      .endpoint(endpoint)
+      .buildClient();
+
     // sample document
     String modelId = "prebuilt-invoice";
     String invoiceUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf";
 
-    public static void main(final String[] args) throws IOException {
+    SyncPoller<AnalyzeOperationDetails, AnalyzeResult> analyzeInvoicesPoller =
+      client.beginAnalyzeDocument(modelId, new AnalyzeDocumentOptions(invoiceUrl));
 
-      // Instantiate a client that will be used to call the service.
-      DocumentIntelligenceClient client = new DocumentIntelligenceClientBuilder()
-        .credential(new AzureKeyCredential(key))
-        .endpoint(endpoint)
-        .buildClient();
+    AnalyzeResult analyzeInvoiceResult = analyzeInvoicesPoller.getFinalResult();
 
-      SyncPoller<AnalyzeResultOperation, AnalyzeResultOperation > analyzeInvoicesPoller =
-        client.beginAnalyzeDocument(modelId, 
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            new AnalyzeDocumentRequest().setUrlSource(invoiceUrl));
-
-      AnalyzeResult analyzeInvoiceResult = analyzeInvoicesPoller.getFinalResult().getAnalyzeResult();
-
-      for (int i = 0; i < analyzeInvoiceResult.getDocuments().size(); i++) {
-        Document analyzedInvoice = analyzeInvoiceResult.getDocuments().get(i);
-        Map < String, DocumentField > invoiceFields = analyzedInvoice.getFields();
-        System.out.printf("----------- Analyzing invoice  %d -----------%n", i);
-        DocumentField vendorNameField = invoiceFields.get("VendorName");
-        if (vendorNameField != null) {
-          if (DocumentFieldType.STRING == vendorNameField.getType()) {
-            String merchantName = vendorNameField.getValueString();
-            System.out.printf("Vendor Name: %s, confidence: %.2f%n",
-              merchantName, vendorNameField.getConfidence());
-          }
+    for (int i = 0; i < analyzeInvoiceResult.getDocuments().size(); i++) {
+      AnalyzedDocument analyzedInvoice = analyzeInvoiceResult.getDocuments().get(i);
+      Map<String, DocumentField> invoiceFields = analyzedInvoice.getFields();
+      System.out.printf("----------- Analyzing invoice  %d -----------%n", i);
+      DocumentField vendorNameField = invoiceFields.get("VendorName");
+      if (vendorNameField != null) {
+        if (DocumentFieldType.STRING == vendorNameField.getType()) {
+          String merchantName = vendorNameField.getValueAsString();
+          System.out.printf("Vendor Name: %s, confidence: %.2f%n",
+            merchantName, vendorNameField.getConfidence());
         }
+      }
 
-        DocumentField vendorAddressField = invoiceFields.get("VendorAddress");
-        if (vendorAddressField != null) {
-          if (DocumentFieldType.STRING == vendorAddressField.getType()) {
-            String merchantAddress = vendorAddressField.getValueString();
-            System.out.printf("Vendor address: %s, confidence: %.2f%n",
-              merchantAddress, vendorAddressField.getConfidence());
-          }
+      DocumentField vendorAddressField = invoiceFields.get("VendorAddress");
+      if (vendorAddressField != null) {
+        if (DocumentFieldType.STRING == vendorAddressField.getType()) {
+          String merchantAddress = vendorAddressField.getValueAsString();
+          System.out.printf("Vendor address: %s, confidence: %.2f%n",
+            merchantAddress, vendorAddressField.getConfidence());
         }
+      }
 
-        DocumentField customerNameField = invoiceFields.get("CustomerName");
-        if (customerNameField != null) {
-          if (DocumentFieldType.STRING == customerNameField.getType()) {
-            String merchantAddress = customerNameField.getValueString();
-            System.out.printf("Customer Name: %s, confidence: %.2f%n",
-              merchantAddress, customerNameField.getConfidence());
-          }
+      DocumentField customerNameField = invoiceFields.get("CustomerName");
+      if (customerNameField != null) {
+        if (DocumentFieldType.STRING == customerNameField.getType()) {
+          String merchantAddress = customerNameField.getValueAsString();
+          System.out.printf("Customer Name: %s, confidence: %.2f%n",
+            merchantAddress, customerNameField.getConfidence());
         }
+      }
 
-        DocumentField customerAddressRecipientField = invoiceFields.get("CustomerAddressRecipient");
-        if (customerAddressRecipientField != null) {
-          if (DocumentFieldType.STRING == customerAddressRecipientField.getType()) {
-            String customerAddr = customerAddressRecipientField.getValueString();
-            System.out.printf("Customer Address Recipient: %s, confidence: %.2f%n",
-              customerAddr, customerAddressRecipientField.getConfidence());
-          }
+      DocumentField customerAddressRecipientField = invoiceFields.get("CustomerAddressRecipient");
+      if (customerAddressRecipientField != null) {
+        if (DocumentFieldType.STRING == customerAddressRecipientField.getType()) {
+          String customerAddr = customerAddressRecipientField.getValueAsString();
+          System.out.printf("Customer Address Recipient: %s, confidence: %.2f%n",
+            customerAddr, customerAddressRecipientField.getConfidence());
         }
+      }
 
-        DocumentField invoiceIdField = invoiceFields.get("InvoiceId");
-        if (invoiceIdField != null) {
-          if (DocumentFieldType.STRING == invoiceIdField.getType()) {
-            String invoiceId = invoiceIdField.getValueString();
-            System.out.printf("Invoice ID: %s, confidence: %.2f%n",
-              invoiceId, invoiceIdField.getConfidence());
-          }
+      DocumentField invoiceIdField = invoiceFields.get("InvoiceId");
+      if (invoiceIdField != null) {
+        if (DocumentFieldType.STRING == invoiceIdField.getType()) {
+          String invoiceId = invoiceIdField.getValueAsString();
+          System.out.printf("Invoice ID: %s, confidence: %.2f%n",
+            invoiceId, invoiceIdField.getConfidence());
         }
+      }
 
-        DocumentField invoiceDateField = invoiceFields.get("InvoiceDate");
-        if (customerNameField != null) {
-          if (DocumentFieldType.DATE == invoiceDateField.getType()) {
-            LocalDate invoiceDate = invoiceDateField.getValueDate();
-            System.out.printf("Invoice Date: %s, confidence: %.2f%n",
-              invoiceDate, invoiceDateField.getConfidence());
-          }
+      DocumentField invoiceDateField = invoiceFields.get("InvoiceDate");
+      if (invoiceDateField != null) {
+        if (DocumentFieldType.DATE == invoiceDateField.getType()) {
+          LocalDate invoiceDate = invoiceDateField.getValueAsDate();
+          System.out.printf("Invoice Date: %s, confidence: %.2f%n",
+            invoiceDate, invoiceDateField.getConfidence());
         }
+      }
 
-        DocumentField invoiceTotalField = invoiceFields.get("InvoiceTotal");
-        if (customerAddressRecipientField != null) {
-          if (DocumentFieldType.NUMBER == invoiceTotalField.getType()) {
-            Double invoiceTotal = invoiceTotalField.getValueNumber();
-            System.out.printf("Invoice Total: %.2f, confidence: %.2f%n",
-              invoiceTotal, invoiceTotalField.getConfidence());
-          }
+      DocumentField invoiceTotalField = invoiceFields.get("InvoiceTotal");
+      if (invoiceTotalField != null) {
+        if (DocumentFieldType.DOUBLE == invoiceTotalField.getType()) {
+          Double invoiceTotal = invoiceTotalField.getValueAsDouble();
+          System.out.printf("Invoice Total: %.2f, confidence: %.2f%n",
+            invoiceTotal, invoiceTotalField.getConfidence());
         }
+      }
 
-        DocumentField invoiceItemsField = invoiceFields.get("Items");
-        if (invoiceItemsField != null) {
-          System.out.printf("Invoice Items: %n");
-          if (DocumentFieldType.ARRAY == invoiceItemsField.getType()) {
-            List < DocumentField > invoiceItems = invoiceItemsField.getValueArray();
-            invoiceItems.stream()
-              .filter(invoiceItem -> DocumentFieldType.OBJECT == invoiceItem.getType())
-              .map(documentField -> documentField.getValueObject())
-              .forEach(documentFieldMap -> documentFieldMap.forEach((key, documentField) -> {
+      DocumentField invoiceItemsField = invoiceFields.get("Items");
+      if (invoiceItemsField != null) {
+        System.out.printf("Invoice Items: %n");
+        if (DocumentFieldType.LIST == invoiceItemsField.getType()) {
+          List<DocumentField> invoiceItems = invoiceItemsField.getValueAsList();
+          invoiceItems.stream()
+            .filter(invoiceItem -> DocumentFieldType.MAP == invoiceItem.getType())
+            .map(documentField -> documentField.getValueAsMap())
+            .forEach(documentFieldMap -> documentFieldMap.forEach((key, documentField) -> {
 
-                // See a full list of fields found on an invoice here:
-                // https://aka.ms/documentintelligence/invoicefields
+              // See a full list of fields found on an invoice here:
+              // https://aka.ms/documentintelligence/invoicefields
 
-                if ("Description".equals(key)) {
-                  if (DocumentFieldType.STRING == documentField.getType()) {
-                    String name = documentField.getValueString();
-                    System.out.printf("Description: %s, confidence: %.2fs%n",
-                      name, documentField.getConfidence());
-                  }
+              if ("Description".equals(key)) {
+                if (DocumentFieldType.STRING == documentField.getType()) {
+                  String name = documentField.getValueAsString();
+                  System.out.printf("Description: %s, confidence: %.2fs%n",
+                    name, documentField.getConfidence());
                 }
-                if ("Quantity".equals(key)) {
-                  if (DocumentFieldType.NUMBER == documentField.getType()) {
-                    Double quantity = documentField.getValueNumber();
-                    System.out.printf("Quantity: %f, confidence: %.2f%n",
-                      quantity, documentField.getConfidence());
-                  }
+              }
+              if ("Quantity".equals(key)) {
+                if (DocumentFieldType.DOUBLE == documentField.getType()) {
+                  Double quantity = documentField.getValueAsDouble();
+                  System.out.printf("Quantity: %f, confidence: %.2f%n",
+                    quantity, documentField.getConfidence());
                 }
-                if ("UnitPrice".equals(key)) {
-                  if (DocumentFieldType.NUMBER == documentField.getType()) {
-                    Double unitPrice = documentField.getValueNumber();
-                    System.out.printf("Unit Price: %f, confidence: %.2f%n",
-                      unitPrice, documentField.getConfidence());
-                  }
+              }
+              if ("UnitPrice".equals(key)) {
+                if (DocumentFieldType.DOUBLE == documentField.getType()) {
+                  Double unitPrice = documentField.getValueAsDouble();
+                  System.out.printf("Unit Price: %f, confidence: %.2f%n",
+                    unitPrice, documentField.getConfidence());
                 }
-                if ("ProductCode".equals(key)) {
-                  if (DocumentFieldType.NUMBER == documentField.getType()) {
-                    Double productCode = documentField.getValueNumber();
-                    System.out.printf("Product Code: %f, confidence: %.2f%n",
-                      productCode, documentField.getConfidence());
-                  }
+              }
+              if ("ProductCode".equals(key)) {
+                if (DocumentFieldType.DOUBLE == documentField.getType()) {
+                  Double productCode = documentField.getValueAsDouble();
+                  System.out.printf("Product Code: %f, confidence: %.2f%n",
+                    productCode, documentField.getConfidence());
                 }
-              }));
-          }
+              }
+            }));
         }
       }
     }

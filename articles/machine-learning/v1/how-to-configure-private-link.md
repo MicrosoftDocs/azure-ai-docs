@@ -7,9 +7,9 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-azurecli, sdkv1
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: meerakurup
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
 ms.date: 07/26/2024
 ---
 

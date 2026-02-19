@@ -4,16 +4,15 @@ description: This quickstart shows how to get started with the custom question a
 ms.topic: include
 author: laujan
 ms.author: lajanuar
-ms.date: 12/19/2023
+ms.date: 12/15/2025
 ---
-
 Use this quickstart for the custom question answering client library for Python to:
 
 * Get an answer from a project.
 * Get an answer from a body of text that you send along with your question.
 * Get the confidence score for the answer to your question.
 
-[Package (PyPI)][questionanswering_pypi_package] | [Additional samples][questionanswering_samples] | [Library source code][questionanswering_client_src] 
+[Package (PyPI)][questionanswering_pypi_package] | [Samples][questionanswering_samples] | [Library source code][questionanswering_client_src] 
 
 [questionanswering_client_src]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/cognitivelanguage/azure-ai-language-questionanswering/
 [questionanswering_pypi_package]: https://pypi.org/project/azure-ai-language-questionanswering/
@@ -21,12 +20,12 @@ Use this quickstart for the custom question answering client library for Python 
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Python 3.x](https://www.python.org/)
 * Custom question answering requires a [Language resource](https://portal.azure.com/?quickstart=true#create/Microsoft.CognitiveServicesTextAnalytics) with the custom question answering feature enabled to generate an API key and endpoint.
-	* After your Language resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect to the API. Paste your key and endpoint into the code below later in the quickstart.
-* To create a Language resource with [Azure CLI](../../../multi-service-resource.md?pivots=azcli) provide the following other properties: `--api-properties qnaAzureSearchEndpointId=/subscriptions/<azure-subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Search/searchServices/<azure-search-service-name> qnaAzureSearchEndpointKey=<azure-search-service-auth-key>`
-* An existing project to query. If you have not set up a project, you can follow the instructions in the [**Language Studio quickstart**](../quickstart/sdk.md). Or add a project that uses this [Surface User Guide URL](https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf) as a data source.
+    * After your Language resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect to the API. Paste your key and endpoint into the code later in the quickstart.
+* Create a Language resource with [Azure CLI](../../../multi-service-resource.md?pivots=azcli) and provide the following properties: `--api-properties qnaAzureSearchEndpointId=/subscriptions/<azure-subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Search/searchServices/<azure-search-service-name> qnaAzureSearchEndpointKey=<azure-search-service-auth-key>`
+* An existing project to query. If you don't have a project, you can follow the instructions in the [**Microsoft Foundry quickstart**](../quickstart/sdk.md). Or add a project that uses this [Surface User Guide URL](https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf) as a data source.
 
 
 
@@ -46,25 +45,25 @@ pip install azure-ai-language-questionanswering
 
 ### Generate an answer from a project
 
-The example below will allow you to query a project using get_answers to get an answer to your question. You can copy this code into a dedicated .py file or into a cell in [Jupyter Notebook/Lab](https://jupyter.org/).
+The example allows you to query a project using get_answers to get an answer to your question. You can copy this code into a dedicated .py file or into a cell in [Jupyter Notebook/Lab](https://jupyter.org/).
 
-You need to update the code below and provide your own values for the following variables.
+You need to update the code and provide your own values for the following variables.
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `endpoint`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.api.cognitive.microsoft.com/`|
-| `credential` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys always for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
+| `endpoint`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/`|
+| `credential` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys always for secure key rotation with zero downtime. The key value is part of the sample request.|
 | `knowledge_base_project` | The name of your question answering project.|
-| `deployment`             | There are two possible values: `test`, and `production`. `production` is dependent on you having deployed your project from **Language Studio** > **question answering** > **Deploy project**.|
+| `deployment`             | There are two possible values: `test`, and `production`. `production`.|
 
 > [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, see the Azure AI services [security article](../../../security-features.md).
+> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, see the Foundry Tools [security article](../../../security-features.md).
 
 ```python
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.language.questionanswering import QuestionAnsweringClient
 
-endpoint = "https://{YOUR-ENDPOINT}.api.cognitive.microsoft.com/"
+endpoint = "https://{YOUR-ENDPOINT}.cognitiveservices.azure.com/"
 credential = AzureKeyCredential("{YOUR-LANGUAGE-RESOURCE-KEY}")
 knowledge_base_project = "{YOUR-PROJECT-NAME}"
 deployment = "production"
@@ -87,14 +86,14 @@ if __name__ == '__main__':
 
 While we're hard coding the variables for our example. For production, consider using a secure way of storing and accessing your credentials. For example, [Azure key vault](/azure/key-vault/general/overview) provides secure key storage.
 
-When you run the code above, if you're using the data source from the prerequisites you get an answer that looks as follows:
+When you run the code, if you're using the data source from the prerequisites you get an answer that looks as follows:
 
 ```
 Q: How much battery life do I have left?
 A: If you want to see how much battery you have left, go to **Start  **> **Settings  **> **Devices  **> **Bluetooth & other devices  **, then find your pen. The current battery level will appear under the battery icon.
 ```
 
-For information on how confident custom question answering is that this is the correct response add another print statement underneath the existing print statements:
+For information on confident scores add the following print statements:
 
 ```python
 print("Q: {}".format(question))
@@ -102,7 +101,7 @@ print("A: {}".format(output.answers[0].answer))
 print("Confidence Score: {}".format(output.answers[0].confidence)) # add this line 
 ```
 
-You'll now receive a result with a confidence score:
+You receive a result with a confidence score:
 
 ```
 Q: How much battery life do I have left?
@@ -110,7 +109,7 @@ A: If you want to see how much battery you have left, go to **Start  **> **Setti
 Confidence Score: 0.9185
 ```
 
-The confidence score returns a value between 0 and 1. You can think of this like a percentage and multiply by 100 so a confidence score of 0.9185 means custom question answering is 91.85% confident this is the correct answer to the question based on the project.
+Consider the confidence score as a percentage by multiplying it by 100. For example, a confidence score of 0.9185 indicates that the custom question-answering system is 91.85% confident that its response is correct based on the project information.
 
 If you want to exclude answers where the confidence score falls below a certain threshold, you can modify the AnswerOptions to add the `confidence_threshold` parameter.
 
@@ -145,7 +144,7 @@ from azure.core.credentials import AzureKeyCredential
 from azure.ai.language.questionanswering import QuestionAnsweringClient
 from azure.ai.language.questionanswering import models as qna
 
-endpoint = "https://{YOUR-ENDPOINT}.api.cognitive.microsoft.com/"
+endpoint = "https://{YOUR-ENDPOINT}.cognitiveservices.azure.com/"
 credential = AzureKeyCredential("YOUR-LANGUAGE-RESOURCE-KEY")
 
 def main():

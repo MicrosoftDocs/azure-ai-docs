@@ -2,9 +2,9 @@
 title: Create and explore datasets with labels
 titleSuffix: Azure Machine Learning
 description: Learn how to export data labels from your Azure Machine Learning labeling projects and use them for machine learning tasks.
-author: sdgilley
-ms.author: sgilley
-ms.reviewer: vkann
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: soumyapatro
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
@@ -25,7 +25,7 @@ Azure Machine Learning datasets with labels are referred to as labeled datasets.
 
 ## Prerequisites
 
-* An Azure subscription. If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * The [Azure Machine Learning SDK for Python](/python/api/overview/azure/ml/intro), or access to [Azure Machine Learning studio](https://ml.azure.com/).
 * A Machine Learning workspace. See [Create workspace resources](../quickstart-create-resources.md).
 * Access to an Azure Machine Learning data labeling project. If you don't have a labeling project, first create one for [image labeling](../how-to-create-image-labeling-projects.md) or [text labeling](../how-to-create-text-labeling-projects.md).

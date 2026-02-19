@@ -1,13 +1,13 @@
 ---
-title: "Sentence pairing and alignment - Azure AI Custom Translator"
-titleSuffix: Azure AI services
-description: During the training execution, sentences present in parallel documents are paired or aligned. Azure AI Custom Translator learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
+title: "Sentence pairing and alignment - Custom Translator"
+titleSuffix: Foundry Tools
+description: During the training execution, sentences present in parallel documents are paired or aligned. Custom Translator learns translations one sentence at a time, by reading a sentence and translating it. Then it aligns words and phrases in these two sentences to each other.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator user, I want to know how sentence alignment works, so that I can have better understanding of underlying process of sentence extraction, pairing, filtering, aligning.
 ---
@@ -28,7 +28,7 @@ If you know you have parallel documents, you can override the
 sentence alignment by supplying prealigned text files. You can extract all
 sentences from both documents into text file, organized one sentence per line,
 and upload with an `.align` extension. The `.align` extension signals Custom
-Translator that it should skip sentence alignment.
+Azure Translator in Foundry Tools that it should skip sentence alignment.
 
 For best results, try to make sure that you have one sentence per line in your
  files. Don't have newline characters within a sentence—it causes poor

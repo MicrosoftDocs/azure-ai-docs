@@ -1,13 +1,693 @@
 {
   "redirections": [
     {
+      "source_path": "articles/ai-services/luis/context/context.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/luis",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/migrate-from-luis.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/context/context.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/app-schema-definition.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/app-schema-definition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/choose-natural-language-processing-service.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/choose-natural-language-processing-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/client-libraries-rest-api.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/client-libraries-rest-api",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/data-collection.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/data-collection",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/developer-reference-resource.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/developer-reference-resource",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/encrypt-data-at-rest.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/encrypt-data-at-rest",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/faq.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/get-started-get-model-rest-apis.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/get-started-get-model-rest-apis",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to-application-settings-portal.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/how-to-application-settings-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/howto-add-prebuilt-models.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/howto-add-prebuilt-models",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/index.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-concept-data-alteration.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-concept-data-alteration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-concept-data-extraction.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-concept-data-extraction",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-concept-data-storage.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-concept-data-storage",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-concept-devops-automation.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-concept-devops-automation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-concept-devops-sourcecontrol.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-concept-devops-sourcecontrol",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-concept-devops-testing.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-concept-devops-testing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-concept-model.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-concept-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-concept-prebuilt-model.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-concept-prebuilt-model",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-concept-prediction-score.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-concept-prediction-score",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-container-configuration.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-container-configuration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-container-howto.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-container-howto",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-container-limitations.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-container-limitations",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-get-started-create-app.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-get-started-create-app",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-get-started-get-intent-from-browser.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-get-started-get-intent-from-browser",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-glossary.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-glossary",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-how-to-azure-subscription.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-how-to-azure-subscription",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-how-to-batch-test.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-how-to-batch-test",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-how-to-collaborate.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-how-to-collaborate",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-how-to-manage-versions.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-how-to-manage-versions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-how-to-model-intent-pattern.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-how-to-model-intent-pattern",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-how-to-use-dashboard.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-how-to-use-dashboard",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-language-support.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-language-support",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-limits.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-limits",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-application-settings.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-application-settings",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-age.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-age",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-currency.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-currency",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-datetimev2.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-datetimev2",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-deprecated.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-deprecated",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-dimension.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-dimension",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-domains.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-domains",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-email.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-email",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-entities.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-entities",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-geographyv2.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-geographyv2",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-keyphrase.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-keyphrase",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-number.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-number",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-ordinal-v2.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-ordinal-v2",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-ordinal.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-ordinal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-percentage.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-percentage",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-person.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-person",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-phonenumber.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-phonenumber",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-sentiment.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-sentiment",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-temperature.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-temperature",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-prebuilt-url.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-prebuilt-url",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-regions.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-regions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-reference-response-codes.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-reference-response-codes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-traffic-manager.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-traffic-manager",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-tutorial-bing-spellcheck.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-tutorial-bing-spellcheck",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-tutorial-node-import-utterances-csv.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-tutorial-node-import-utterances-csv",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/luis-user-privacy.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/luis-user-privacy",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/reference-entity-list.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/reference-entity-list",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/reference-entity-machine-learned-entity.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/reference-entity-machine-learned-entity",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/reference-entity-pattern-any.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/reference-entity-pattern-any",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/reference-entity-regular-expression.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/reference-entity-regular-expression",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/reference-entity-simple.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/reference-entity-simple",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/reference-pattern-syntax.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/reference-pattern-syntax",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/role-based-access-control.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/role-based-access-control",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/schema-change-prediction-runtime.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/schema-change-prediction-runtime",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/what-is-luis.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/what-is-luis",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/whats-new.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/whats-new",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/concepts/application-design.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/concepts/application-design",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/concepts/entities.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/concepts/entities",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/concepts/intents.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/concepts/intents",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/concepts/patterns-features.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/concepts/patterns-features",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/concepts/utterances.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/concepts/utterances",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/entities.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/how-to/entities",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/improve-application.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/how-to/improve-application",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/intents.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/how-to/intents",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/label-utterances.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/how-to/label-utterances",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/orchestration-projects.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/how-to/orchestration-projects",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/publish.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/how-to/publish",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/sign-in.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/how-to/sign-in",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/how-to/train-test.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/how-to/train-test",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/luis/tutorial/build-decomposable-application.md",
+      "redirect_url": "/previous-versions/azure/ai-services/luis/tutorial/build-decomposable-application",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/choose-natural-language-processing-service.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/choose-natural-language-processing-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/encrypt-data-at-rest.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/encrypt-data-at-rest",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/index.yml",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/limits.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/limits",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-app-service.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-app-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-document-format-guidelines.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-document-format-guidelines",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-markdown-format.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-markdown-format",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-private-endpoint.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-private-endpoint",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/reference-tsv-format-batch-testing.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/reference-tsv-format-batch-testing",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/troubleshooting.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/troubleshooting",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/whats-new.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/whats-new",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/azure-resources.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/azure-resources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/best-practices.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/best-practices",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/confidence-score.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/confidence-score",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/data-sources-and-content.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/data-sources-and-content",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/development-lifecycle-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/development-lifecycle-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/plan.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/plan",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/query-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/query-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/question-answer-set.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/question-answer-set",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/concepts/role-based-access-control.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/concepts/role-based-access-control",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/add-sharepoint-datasources.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/add-sharepoint-datasources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/change-default-answer.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/change-default-answer",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/chit-chat-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/chit-chat-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/configure-qna-maker-resources.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/configure-qna-maker-resources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/edit-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/edit-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/get-analytics-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/get-analytics-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/improve-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/improve-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/manage-knowledge-bases.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/manage-knowledge-bases",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/manage-qna-maker-app.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/manage-qna-maker-app",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/metadata-generateanswer-usage.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/metadata-generateanswer-usage",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/migrate-qnamaker-to-question-answering.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/migrate-qnamaker-to-question-answering",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/migrate-qnamaker.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/migrate-qnamaker",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/multi-turn.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/multi-turn",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/network-isolation.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/network-isolation",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/query-knowledge-base-with-metadata.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/query-knowledge-base-with-metadata",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/set-up-qnamaker-service-azure.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/set-up-qnamaker-service-azure",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/test-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/test-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/use-active-learning.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/use-active-learning",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/how-to/using-prebuilt-api.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/how-to/using-prebuilt-api",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/overview/language-support.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/overview/language-support",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/overview/overview.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/overview/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/quickstarts/add-question-metadata-portal.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/quickstarts/add-question-metadata-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/quickstarts/create-publish-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/quickstarts/create-publish-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/quickstarts/get-answer-from-knowledge-base-using-url-tool.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/quickstarts/get-answer-from-knowledge-base-using-url-tool",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/quickstarts/quickstart-sdk.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/quickstarts/quickstart-sdk",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/tutorials/create-faq-bot-with-azure-bot-service.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/tutorials/create-faq-bot-with-azure-bot-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/qnamaker/tutorials/export-knowledge-base.md",
+      "redirect_url": "/previous-versions/azure/ai-services/qnamaker/tutorials/export-knowledge-base",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/concepts/connections.md",
       "redirect_url": "/azure/ai-foundry/how-to/connections-add",
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-foundry/how-to/develop/connections-add-sdk.md",
+      "redirect_url": "/azure/ai-foundry/how-to/connections-add",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/how-to/develop/vscode.md",
+      "redirect_url": "/azure/ai-foundry/how-to/develop/get-started-projects-vs-code",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/azure-openai-in-azure-ai-foundry.md",
-      "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
+      "redirect_url": "/azure/ai-foundry/what-is-foundry",
       "redirect_document_id": false
     },
     {
@@ -291,6 +971,16 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-foundry/openai/concepts/models.md",
+      "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/foundry-models/concepts/models.md",
+      "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/text-to-speech-avatar/custom-avatar-endpoint.md",
       "redirect_url": "/azure/ai-services/speech-service/custom-avatar-create",
       "redirect_document_id": false
@@ -461,6 +1151,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-foundry/concepts/concept-model-distillation.md",
+      "redirect_url": "../openai/how-to/stored-completions",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/model-inference/quotas-limits.md",
       "redirect_url": "../foundry-models/quotas-limits",
       "redirect_document_id": false
@@ -484,6 +1179,86 @@
       "source_path": "articles/ai-foundry/model-inference/index.yml",
       "redirect_url": "../foundry-models/index",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/concept-package-models.md",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-package-models-moe.md",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-package-models-app-service.md",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-package-models.md",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/create-account-terraform.md",
+      "redirect_url": "/azure/ai-foundry/how-to/create-resource-terraform",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/create-account-bicep.md",
+      "redirect_url": "/azure/ai-foundry/how-to/create-resource-template",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/foundry-models/how-to/inference.md",
+      "redirect_url": "/azure/ai-foundry/foundry-models/concepts/endpoints",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/application-sharing-policy-not-supported.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace?view=azureml-api-2",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/compute-a10-sku-not-supported.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/compute-idleshutdown-bicep.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/compute-slowness-terminal-mounted-path.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/jupyter-r-kernel-not-starting.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/workspace-move-compute-instance-same-name.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/how-to/disaster-recovery.md",
+      "redirect_url": "/azure/ai-foundry/how-to/agent-service-disaster-recovery",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/concepts/authentication-options-ai-foundry.md",
+      "redirect_url": "/azure/ai-foundry/concepts/rbac-foundry",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/default/agents/how-to/tools/knowledge-retrieval.md",
+      "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
+      "redirect_document_id": true
     }
   ]
 }

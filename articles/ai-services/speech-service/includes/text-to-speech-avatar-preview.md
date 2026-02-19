@@ -1,8 +1,8 @@
 ---
  title: include file
  description: include file
- author: eric-urban
- ms.author: eur
+ author: PatrickFarley
+ ms.author: pafarley
  ms.service: azure-ai-speech
  ms.topic: include
  ms.date: 11/15/2023

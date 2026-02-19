@@ -1,16 +1,16 @@
 ---
-title: Enable Virtual Network service endpoints with Azure AI Custom Translator service
-titleSuffix: Azure AI services
-description: This article describes how to use Azure AI Custom Translator service with an Azure Virtual Network service endpoint.
+title: Enable Virtual Network service endpoints with Custom Translator service
+titleSuffix: Foundry Tools
+description: This article describes how to use Custom Translator service with an Azure Virtual Network service endpoint.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: moelghaz
 ms.topic: how-to
 ---
 
-# Enable Azure AI Custom Translator through Azure Virtual Network
+# Enable Custom Translator through Azure Virtual Network
 
 In this article, we show you how to set up and use `VNet` service endpoints with Custom Translator.
 
@@ -19,7 +19,7 @@ Azure Virtual Network (`VNet`) [service endpoints](/azure/virtual-network/virtua
 For more information, see [Azure Virtual Network overview](/azure/virtual-network/virtual-networks-overview)
 
 > [!NOTE]
-> Before you start, review [how to use virtual networks with Azure AI services](../../../cognitive-services-virtual-networks.md).
+> Before you start, review [how to use virtual networks with Foundry Tools](../../../cognitive-services-virtual-networks.md).
 
  To set up a Translator resource for `VNet` service endpoint scenarios, you need the resources:
 
@@ -28,14 +28,14 @@ For more information, see [Azure Virtual Network overview](/azure/virtual-networ
 
 ## Configure virtual networks resource networking settings
 
-To start, you need to add all virtual networks that are allowed access via the service endpoint to the Translator resource networking properties. To enable access to a Translator resource via the `VNet`, you need to enable the `Microsoft.CognitiveServices` service endpoint type for the required subnets of your virtual network. Doing so routes all subnet traffic related to Azure AI services through the private global network. If you intend to access any other Azure AI Foundry resources from the same subnet, make sure these resources are also configured to allow your virtual network.
+To start, you need to add all virtual networks that are allowed access via the service endpoint to the Translator resource networking properties. To enable access to a Translator resource via the `VNet`, you need to enable the `Microsoft.CognitiveServices` service endpoint type for the required subnets of your virtual network. Doing so routes all subnet traffic related to Foundry Tools through the private global network. If you intend to access any other Microsoft Foundry resources from the same subnet, make sure these resources are also configured to allow your virtual network.
 
 > [!NOTE]
 >
 > * If a virtual network isn't added as *allowed* in the Translator resource networking properties, it doesn't have access to the Translator resource via the service endpoint, even if the `Microsoft.CognitiveServices` service endpoint is enabled for the virtual network.
 > * If the service endpoint is enabled but the virtual network isn't allowed, the Translator resource isn't accessible for the virtual network through a public IP address. This restriction applies regardless of your other network security settings.
-> * Enabling the `Microsoft.CognitiveServices` endpoint routes all traffic related to Azure AI services through the private global network. Thus, the virtual network should be explicitly allowed to access the resource.
-> * This guidance applies for all Azure AI Foundry resources, not just for Translator resources.
+> * Enabling the `Microsoft.CognitiveServices` endpoint routes all traffic related to Foundry Tools through the private global network. Thus, the virtual network should be explicitly allowed to access the resource.
+> * This guidance applies for all Foundry resources, not just for Translator resources.
 
 Let's get started:
 
@@ -63,7 +63,7 @@ Let's get started:
       * If you create a new virtual network, the **default** subnet is automatically configured to the `Microsoft.CognitiveServices` service endpoint. This operation can take few minutes.
 
     > [!NOTE]
-    > As described in the [previous section](#configure-virtual-networks-resource-networking-settings), when you configure a virtual network as *allowed* for the Translator resource, the `Microsoft.CognitiveServices` service endpoint is automatically enabled. If you later disable it, you need to re-enable it manually to restore the service endpoint access to the Translator resource (and to a subset of other Azure AI Foundry resources).
+    > As described in the [previous section](#configure-virtual-networks-resource-networking-settings), when you configure a virtual network as *allowed* for the Translator resource, the `Microsoft.CognitiveServices` service endpoint is automatically enabled. If you later disable it, you need to re-enable it manually to restore the service endpoint access to the Translator resource (and to a subset of other Foundry resources).
 
 1. Now, when you choose the **Selected Networks and Private Endpoints** tab, you can see your enabled virtual network and subnets under the **Virtual networks** section.
 

@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.topic: include
 ms.date: 02/02/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 Use the following procedure to download and install the SDK. The steps include [downloading the required libraries and header files](https://aka.ms/csspeech/linuxbinary) as a *.tar* file.
@@ -36,7 +36,7 @@ Use the following procedure to download and install the SDK. The steps include [
    ls -l "$SPEECHSDK_ROOT"
    ```
 
-   The directory listing should contain the partner notices and license files. The listing should also contain an *include* directory that holds header (*.h*) files and a *lib* directory that holds libraries for arm32, arm64, x64, and x86.
+   The directory listing should contain the partner notices and license files. The listing should also contain an *include* directory that holds header (*.h*) files and a *lib* directory that holds libraries for arm32, arm64, and x64.
 
     | Path | Description |
     |:-----|:----|
@@ -47,4 +47,3 @@ Use the following procedure to download and install the SDK. The steps include [
     | *lib/arm32* | Native library for ARM32 required to link your application |
     | *lib/arm64* | Native library for ARM64 required to link your application |
     | *lib/x64* | Native library for x64 required to link your application |
-    | *lib/x86* | Native library for x86 required to link your application |

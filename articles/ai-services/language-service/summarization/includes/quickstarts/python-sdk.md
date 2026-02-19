@@ -1,7 +1,7 @@
 ---
 author: laujan
 ms.author: lajanuar
-ms.date: 12/19/2023
+ms.date: 12/15/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:
@@ -9,7 +9,6 @@ ms.custom:
   - ignite-2024
   - build-2025
 ---
-
 # [Text summarization](#tab/text-summarization)
 
 [Reference documentation](/python/api/azure-ai-textanalytics/azure.ai.textanalytics?view=azure-python&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics/samples) | [Package (PyPi)](https://pypi.org/project/azure-ai-textanalytics/5.3.0/) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/textanalytics/azure-ai-textanalytics) 
@@ -27,13 +26,13 @@ ms.custom:
 
 Use this quickstart to create a text summarization application with the client library for Python. In the following example, you'll create a Python application that can summarize documents or text-based customer service conversations.
 
-[!INCLUDE [Use Language Studio](../use-language-studio.md)]
+[!INCLUDE [Use Microsoft Foundry](../use-microsoft-foundry.md)]
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Python 3.x](https://www.python.org/)
-* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
+* Once you have your Azure subscription, [create a Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
     * You'll need the key and endpoint from the resource you create to connect your application to the API. You paste your key and endpoint into the code below later in the quickstart.
     * You can use the free pricing tier (`Free F0`) to try the service, and upgrade later to a paid tier for production.
 * To use the Analyze feature, you'll need a Language resource with the standard (S) pricing tier.
@@ -162,19 +161,19 @@ with client:
                     {
                         "conversationItems": [
                             {
-                                "text": "Hello, you’re chatting with Rene. How may I help you?",
+                                "text": "Hello, you're chatting with Rene. How may I help you?",
                                 "id": "1",
                                 "role": "Agent",
                                 "participantId": "Agent_1",
                             },
                             {
-                                "text": "Hi, I tried to set up wifi connection for Smart Brew 300 coffee machine, but it didn’t work.",
+                                "text": "Hi, I tried to set up wifi connection for Smart Brew 300 coffee machine, but it didn't work.",
                                 "id": "2",
                                 "role": "Customer",
                                 "participantId": "Customer_1",
                             },
                             {
-                                "text": "I’m sorry to hear that. Let’s see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
+                                "text": "I'm sorry to hear that. Let's see what we can do to fix this issue. Could you please try the following steps for me? First, could you push the wifi connection button, hold for 3 seconds, then let me know if the power light is slowly blinking on and off every second?",
                                 "id": "3",
                                 "role": "Agent",
                                 "participantId": "Agent_1",
@@ -198,7 +197,7 @@ with client:
                                 "participantId": "Customer_1",
                             },
                             {
-                                "text": "I’m very sorry to hear that. Let me see if there’s another way to fix the issue. Please hold on for a minute.",
+                                "text": "I'm very sorry to hear that. Let me see if there's another way to fix the issue. Please hold on for a minute.",
                                 "id": "7",
                                 "role": "Agent",
                                 "participantId": "Agent_1",

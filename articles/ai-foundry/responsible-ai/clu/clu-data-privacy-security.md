@@ -1,12 +1,12 @@
 ---
 title: Data and privacy for conversational language understanding
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: This article explains issues for data, privacy, and security for conversational language understanding.
-author: skandil
-ms.author: sarakandil
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: article
+ms.topic: concept-article
 ms.date: 09/15/2021
 ---
 # Data and privacy for conversational language understanding

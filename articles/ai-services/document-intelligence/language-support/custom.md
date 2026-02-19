@@ -1,12 +1,12 @@
 ---
 title: Language and locale support for custom models - Document Intelligence 
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Document Intelligence custom model language extraction and detection support
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.topic: conceptual
-ms.date: 11/19/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ---
 
 # Language support: custom models
@@ -33,7 +33,7 @@ ms.date: 11/19/2024
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD036 -->
 
-Azure AI Document Intelligence models provide multilingual document processing support. Our language support capabilities enable your users to communicate with your applications in natural ways and empower global outreach. Custom models are trained using your labeled datasets to extract distinct data from structured, semi-structured, and unstructured documents specific to your use cases. Standalone custom models can be combined to create composed models. The following tables list the available language and locale support by model and feature:
+Azure Document Intelligence in Foundry Tools models provide multilingual document processing support. Our language support capabilities enable your users to communicate with your applications in natural ways and empower global outreach. Custom models are trained using your labeled datasets to extract distinct data from structured, semi-structured, and unstructured documents specific to your use cases. Standalone custom models can be combined to create composed models. The following tables list the available language and locale support by model and feature:
 
 ## Custom classifier
 

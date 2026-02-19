@@ -1,12 +1,12 @@
 ---
 title: Use cases for Custom Vision
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: An introduction to Azure AI Custom Vision, and what to consider to use the technology responsibly.
-author: adinatru
-ms.author: adinatru
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
-ms.topic: article
+ms.topic: concept-article
 ms.date: 07/07/2021
 ---
 
@@ -48,7 +48,7 @@ Project | A logical grouping that encompasses the training data, the models trai
 
 Custom Vision's functionality can be divided into two features. **Image classification** applies one or more labels to an image. **Object detection** returns the coordinates in the image where the applied label(s) can be found for detected objects. Both features are delivered through APIs, SDKs and a website: https://customvision.ai.
 
-Custom Vision supports the creation and use of custom Azure AI Vision models through the following high-level functions. They represent the two core activities you will complete to prepare your model for use:
+Custom Vision supports the creation and use of custom Azure Vision in Foundry Tools models through the following high-level functions. They represent the two core activities you will complete to prepare your model for use:
 
 - **Data labeling** is the process of annotating the training images with the classes of images that the model needs to classify. In the case of object detection, you annotate the training images with bounding boxes that surround the object to be detected in the image. Custom Vision provides you with a web portal where you can label training images with classes you select. Once the training data is labeled, you can use it for training the model.
 
@@ -71,15 +71,15 @@ You might use Azure AI Custom Vision for the following scenarios:
 
 We encourage customers to leverage Custom Vision in their innovative solutions or applications. However, here are some considerations when choosing a use case:
 
-* **Not suitable for facial detection or recognition**. Custom Vision was not designed or tested to recognize or identify individuals in images. Instead, consider using [Azure AI services Face](https://azure.microsoft.com/services/cognitive-services/face/) which has multiple face detectors available for use.
+* **Not suitable for facial detection or recognition**. Custom Vision was not designed or tested to recognize or identify individuals in images. Instead, consider using [Foundry Tools Face](https://azure.microsoft.com/services/cognitive-services/face/) which has multiple face detectors available for use.
 
 * **Not suitable for biometric identification**. Custom Vision was not designed or tested to verify the identity of individuals based on biometric markers such as iris recognition, fingerprint identification, or passports or other forms of ID for the purpose of identification and verification of a person.
 
-* **Not suitable for training custom models for large-scale sets of images that contain hundreds of classes and tags**. [Azure AI Vision](/azure/ai-services/computer-vision/overview) has these capabilities as pre-built models for large scale image processing with thousands of tags.
+* **Not suitable for training custom models for large-scale sets of images that contain hundreds of classes and tags**. [Vision](/azure/ai-services/computer-vision/overview) has these capabilities as pre-built models for large scale image processing with thousands of tags.
 
 * **Not suitable for detecting or extracting text**. Custom Vision was not designed or tested for processing text within images. Use [Optical Character Recognition (OCR)](/azure/ai-services/computer-vision/overview-ocr) for this purpose instead.
 
-* **Not suitable for generating human-readable description of images that can be used as alt-text for accessibility purposes**. Custom Vision was not designed or tested to generate descriptions for this purpose. [Azure AI Vision](/azure/ai-services/computer-vision/overview) has these capabilities to generate image descriptions and it's most suitable for this purpose.
+* **Not suitable for generating human-readable description of images that can be used as alt-text for accessibility purposes**. Custom Vision was not designed or tested to generate descriptions for this purpose. [Vision](/azure/ai-services/computer-vision/overview) has these capabilities to generate image descriptions and it's most suitable for this purpose.
 
 * **Do not use Custom Vision for medical diagnosis** including for use as a medical device, clinical support, diagnostic tool, or other technology intended to be used in the diagnosis, cure, mitigation, treatment, or prevention of disease or other conditions, and no license or right is granted by Microsoft to use this capability for such purposes. This capability is not designed or intended to be implemented or deployed as a substitute for professional medical advice or healthcare opinion, diagnosis, treatment, or the clinical judgment of a healthcare professional, and should not be used as such. The customer is solely responsible for any use of Custom Vision for medical diagnosis.
 

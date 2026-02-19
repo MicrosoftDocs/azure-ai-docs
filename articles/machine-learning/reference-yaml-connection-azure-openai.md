@@ -9,8 +9,8 @@ ms.custom:
   - build-2024
 ms.topic: reference
 
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.date: 08/29/2024
 ms.reviewer: ambadal
 ---
@@ -38,9 +38,9 @@ ms.reviewer: ambadal
 
 ## Remarks
 
-The schema described in this article is used to create a connection to Azure OpenAI only. If you would rather create a single connection for Azure AI Services, see the [Azure AI Services connection schema](reference-yaml-connection-ai-services.md). If you need to create a connection to the non-Microsoft OpenAI service, see the [OpenAI connection schema](reference-yaml-connection-openai.md).
+The schema described in this article is used to create a connection to Azure OpenAI only. If you would rather create a single connection for Foundry Tools, see the [Foundry Tools connection schema](reference-yaml-connection-ai-services.md). If you need to create a connection to the non-Microsoft OpenAI service, see the [OpenAI connection schema](reference-yaml-connection-openai.md).
 
-While the `az ml connection` commands can be used to manage both Azure Machine Learning and Azure AI Foundry connections, the Azure AI Services connection is specific to Azure AI Foundry.
+While the `az ml connection` commands can be used to manage both Azure Machine Learning and Microsoft Foundry connections, the Foundry Tools connection is specific to Foundry.
 
 ## Examples
 

@@ -1,15 +1,15 @@
 ---
 title: Sovereign Clouds - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to use Sovereign Clouds
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 3/10/2025
-ms.reviewer: alexeyo
+ms.date: 08/07/2025
+ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn how to use Speech service in sovereign clouds.
 ---
 
@@ -27,20 +27,32 @@ Available to US government entities and their partners only. See more informatio
 - **Available pricing tiers:**
   - Free (F0) and Standard (S0). See more details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)
 - **Supported features:**
+  - [Speech Studio](https://speech.azure.us/)
   - Speech to text
-    - Custom speech (Acoustic Model (AM) and Language Model (LM) adaptation)
-      - [Speech Studio](https://speech.azure.us/)
+    - Real-time transcription
+    - Batch transcription
+    - Language ID
+    - Speaker diarization
+    - Custom speech
   - Text to speech
     - Standard voice
     - Neural voice
   - Speech translation
+    - Real-time speech translation
+  - Keyword recognition
 - **Unsupported features:**
-  - Custom commands
-  - Custom voice
-  - Personal voice
-  - Text to speech avatar
+    - Custom voice
+    - Personal voice
+    - Text to speech avatar
+    - Fast transcription
+    - Pronunciation assessment
+    - Custom keyword
+    - Voice Live
+    - Live interpreter
+    - Video translation
+    - LLM speech
 - **Supported languages:**
-  - See the list of supported languages [here](language-support.md)
+  - Same as public clouds. See the list of supported languages [here](language-support.md)
 
 ### Endpoint information
 
@@ -99,7 +111,7 @@ spx recognize --endpoint "usGovEndpoint" --file myaudio.wav
 ```
 
 Replace `subscriptionKey` with your Speech resource key.
-Replace `usGovEndpoint` with the endpoint from the Azure Portal.
+Replace `usGovEndpoint` with the endpoint from the Azure portal.
 
 ## Microsoft Azure operated by 21Vianet
 
@@ -114,21 +126,31 @@ Available to organizations with a business presence in China. See more informati
 - **Available pricing tiers:**
   - Free (F0) and Standard (S0). See more details [here](https://www.azure.cn/pricing/details/cognitive-services/index.html)
 - **Supported features:**
+  - [Speech Studio](https://speech.azure.cn/)
   - Speech to text
-    - Custom speech (Acoustic Model (AM) and Language Model (LM) adaptation)
-      - [Speech Studio](https://speech.azure.cn/)
-    - [Pronunciation assessment](how-to-pronunciation-assessment.md)
+    - Real-time transcription
+    - Batch transcription
+    - Language ID
+    - Speaker diarization
+    - Custom speech
+  - Pronunciation assessment
   - Text to speech
     - Standard voice
     - Neural voice
-  - Speech translator
+  - Speech translation
+    - Real-time speech translation
+  - Keyword recognition
 - **Unsupported features:**
-  - Custom commands
-  - Custom voice
-  - Personal voice
-  - Text to speech avatar
+    - Custom voice
+    - Personal voice
+    - Text to speech avatar
+    - Custom keyword
+    - Voice Live
+    - Live interpreter
+    - Video translation
+    - LLM speech
 - **Supported languages:**
-  - See the list of supported languages [here](language-support.md)
+  - Same as public clouds. See the list of supported languages [here](language-support.md)
 
 ### Endpoint information
 
@@ -187,4 +209,4 @@ Speech CLI should be used like this (note the `--endpoint` option):
 spx recognize --endpoint "azCnEndpoint" --file myaudio.wav
 ```
 
-Replace `subscriptionKey` with your Speech resource key. Replace `azCnEndpoint` with the endpoint from the Azure Portal.
+Replace `subscriptionKey` with your Speech resource key. Replace `azCnEndpoint` with the endpoint from the Azure portal.

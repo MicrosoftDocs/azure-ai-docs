@@ -1,12 +1,12 @@
 ---
 title: Configure Document Intelligence containers
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to configure the Document Intelligence container to parse form and table data.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
@@ -16,7 +16,7 @@ ms.author: lajanuar
 
 :::moniker range="doc-intel-2.1.0"
 
-Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models, `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models, and `2024-11-30 (GA)` for Layout model:
+Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models, `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models, and `2024-11-30 (GA)` for Read and Layout model:
 
 * [REST API `2022-08-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 * [REST API `2023-07-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.1%20(2023-07-31)&tabs=HTTP&preserve-view=true)
@@ -38,7 +38,7 @@ With Document Intelligence containers, you can build an application architecture
 
 > [!IMPORTANT]
 >
-> Document Intelligence v4.0 container is currently available for Layout model only.
+> Document Intelligence v4.0 container is currently available for Read and Layout model only.
 
 ## Configuration settings
 
@@ -47,7 +47,7 @@ Each container has the following configuration settings:
 |Required|Setting|Purpose|
 |--|--|--|
 |Yes|[Key](#key-and-billing-configuration-setting)|Tracks billing information.|
-|Yes|[Billing](#key-and-billing-configuration-setting)|Specifies the endpoint URI of the service resource on Azure. For more information, _see_ [Billing](install-run.md#billing). For more information and a complete list of regional endpoints, _see_ [Custom subdomain names for Azure AI services](../../../ai-services/cognitive-services-custom-subdomains.md).|
+|Yes|[Billing](#key-and-billing-configuration-setting)|Specifies the endpoint URI of the service resource on Azure. For more information, _see_ [Billing](install-run.md#billing). For more information and a complete list of regional endpoints, _see_ [Custom subdomain names for Foundry Tools](../../../ai-services/cognitive-services-custom-subdomains.md).|
 |Yes|[Eula](#eula-setting)| Indicates that you accepted the license for the container.|
 |No|[ApplicationInsights](#applicationinsights-setting)|Enables adding [Azure Application Insights](/azure/application-insights) customer support for your container.|
 |No|[Fluentd](#fluentd-settings)|Writes log and, optionally, metric data to a Fluentd server.|
@@ -133,7 +133,7 @@ networks:
 
 #### **Receipt and OCR Read containers**
 
-In this example, enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Receipt container and {COMPUTER_VISION_ENDPOINT_URI} and {COMPUTER_VISION_KEY} values for your Azure AI Vision Read container.
+In this example, enter {FORM_RECOGNIZER_ENDPOINT_URI} and {FORM_RECOGNIZER_KEY} values for your Receipt container and {COMPUTER_VISION_ENDPOINT_URI} and {COMPUTER_VISION_KEY} values for your Azure Vision Read container.
 
 ```yml
 version: "3"

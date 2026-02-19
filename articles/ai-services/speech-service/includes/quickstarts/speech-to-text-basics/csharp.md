@@ -1,9 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 01/30/2024
-ms.author: eur
+ms.date: 1/29/2026
+ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
@@ -25,7 +26,7 @@ The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/
 ## Recognize speech from a microphone
 
 > [!TIP]
-> Try out the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
+> Try out the [Azure Speech in Foundry Tools Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit) to easily build and run samples on Visual Studio Code.
 
 Follow these steps to create a console application and install the Speech SDK.
 
@@ -84,7 +85,7 @@ Follow these steps to create a console application and install the Speech SDK.
 
        async static Task Main(string[] args)
        {
-           var speechConfig = SpeechConfig.FromEndpoint(speechKey, endpoint);
+           var speechConfig = SpeechConfig.FromEndpoint(new Uri(endpoint), speechKey);
            speechConfig.SpeechRecognitionLanguage = "en-US";
 
            using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();

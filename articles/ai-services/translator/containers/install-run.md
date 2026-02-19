@@ -1,12 +1,12 @@
 ---
 title: Install and run Translator container using Docker API
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use the Translator container and API to translate text and documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 12/05/2025
 ms.author: lajanuar
 recommendations: false
 keywords: on-premises, Docker, container, identify
@@ -17,11 +17,11 @@ keywords: on-premises, Docker, container, identify
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD051 -->
 
-# Install and run Azure AI Translator container
+# Install and run Azure Translator container
 
-Containers enable you to host the Azure AI Translator API on your own infrastructure. The container image includes all libraries, tools, and dependencies needed to run an application consistently in any private, public, or personal computing environment. If your security or data governance requirements can't be fulfilled by calling Azure AI Translator API remotely, containers are a good option.
+Containers enable you to host the Azure Translator API on your own infrastructure. The container image includes all libraries, tools, and dependencies needed to run an application consistently in any private, public, or personal computing environment. If your security or data governance requirements can't be fulfilled by calling Azure Translator API remotely, containers are a good option.
 
-In this article, learn how to install and run the Translator container online with Docker API. The Azure AI Translator container supports the following operations:
+In this article, learn how to install and run the Translator container online with Docker API. The Azure Translator container supports the following operations:
 
 * **Text translation**. Translate the contextual meaning of words or phrases from supported `source` to supported `target` language in real time. For more information, *see* [**Container: translate text**](translator-container-supported-parameters.md).
 
@@ -39,15 +39,15 @@ To get started, you need the following resources, gated access approval, and too
 >
 > Your translator resource must meet the following requirements:
 >
-> * Your Translator instance must be a **Translator** resource (**not** a multi-service Azure AI Foundry resource).
+> * Your Translator instance must be a **Translator** resource (**not** a multi-service Microsoft Foundry resource).
 >
-> * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information, *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#overview).
+> * Your Translator instance must be a **regional** resource (**not** a global Azure Translator resource) within am available Azure geographic region. For more information, *see* [Azure Translator region pricing options](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#overview).
 
-* An active [**Azure subscription**](https://portal.azure.com/). If you don't have one, you can [**create a free 12-month account**](https://azure.microsoft.com/free/).
+* An active [**Azure subscription**](https://portal.azure.com/). If you don't have one, you can [**create a free 12-month account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An approved access request to either a [Translator connected container](https://aka.ms/csgate-translator) or [Translator disconnected container](https://aka.ms/csdisconnectedcontainers).
 
-* An [**Azure AI Translator *regional* resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) created under your approved subscription ID.
+* An [**Azure Translator *regional* resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) created under your approved subscription ID.
 
    * You need the API key and endpoint URI associated with your resource.
    * Both values are required to start the container and can be found on the resource overview page in the Azure portal.
@@ -115,17 +115,17 @@ The following table describes the minimum and recommended specifications and the
 
 ## Required input
 
-All Azure AI containers require the following input values:
+All Azure containers require the following input values:
 
 * **EULA accept setting**. You must have an end-user license agreement (EULA) set with a value of `Eula=accept`.
 
-* **API key** and **Endpoint URL**. The API key is used to start the container. You can retrieve the API key and Endpoint URL values by navigating to your Azure AI Translator resource **Keys and Endpoint** page and selecting the `Copy to clipboard` <span class="docon docon-edit-copy x-hidden-focus"></span> icon.
+* **API key** and **Endpoint URL**. The API key is used to start the container. You can retrieve the API key and Endpoint URL values by navigating to your Azure Translator resource **Keys and Endpoint** page and selecting the `Copy to clipboard` <span class="docon docon-edit-copy x-hidden-focus"></span> icon.
 
 * If you're translating documents, be sure to use the document translation endpoint.
 
 > [!IMPORTANT]
 >
-> * Keys are used to access your Azure AI resource. Don't share your keys. Store them securely, for example, using Azure Key Vault.
+> * Keys are used to access your Azure resource. Don't share your keys. Store them securely, for example, using Azure Key Vault.
 >
 > * We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
 
@@ -139,8 +139,8 @@ All Azure AI containers require the following input values:
 
 | Option | Description |
 |--------|-------------|
-| `ApiKey` | The key of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
-| `Billing` | The endpoint of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
+| `ApiKey` | The key of the Foundry resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
+| `Billing` | The endpoint of the Foundry resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
 | `Eula` | Indicates that you accepted the license for the container.<br/>The value of this option must be set to **accept**. |
 
 ### Connecting to Azure
@@ -153,17 +153,17 @@ All Azure AI containers require the following input values:
 
 ## Container images and tags
 
-The Azure AI services container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. Azure AI Translator container resides within the azure-cognitive-services/translator repository and is named `text-translation`. The fully qualified container image name is `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`.
+The Foundry Tools container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. Azure Translator container resides within the azure-cognitive-services/translator repository and is named `text-translation`. The fully qualified container image name is `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`.
 
-To use the latest version of the container, use the latest tag. You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.
+To use the latest version of the container, use the latest tag. You can view the full list of [Foundry Tools Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.
 
 ## Use containers
 
-Select a tab to choose your Azure AI Translator container environment:
+Select a tab to choose your Azure Translator container environment:
 
 ### [**Connected containers**](#tab/connected)
 
-Azure AI Translator containers enable you to run the Azure AI Translator service `on-premise` in your own environment. Connected containers run locally and send usage information to the cloud for billing.
+Azure Translator containers enable you to run the Azure Translator `on-premise` in your own environment. Connected containers run locally and send usage information to the cloud for billing.
 
 ## Download and run container image
 
@@ -228,13 +228,13 @@ The container provides a REST-based Translator endpoint API. Here's an example r
 
 ### [**Disconnected (offline) containers**](#tab/disconnected)
 
-Disconnected containers enable you to use the Azure AI Translator API by exporting the docker image to your machine with internet access and then using Docker offline. Disconnected containers are intended for scenarios where no connectivity with the cloud is needed for the containers to run.
+Disconnected containers enable you to use the Azure Translator API by exporting the docker image to your machine with internet access and then using Docker offline. Disconnected containers are intended for scenarios where no connectivity with the cloud is needed for the containers to run.
 
 ## Disconnected container commitment plan
 
 * Commitment plans for disconnected containers have a calendar year commitment period.
 
-* When you purchase a plan, you're charged the full price immediately.
+* When you purchase a plan, you're charged for the full price immediately.
 
 * During the commitment period, you can't change your commitment plan; however you can purchase more units at a pro-rated price for the remaining days in the year.
 
@@ -262,7 +262,7 @@ Disconnected containers enable you to use the Azure AI Translator API by exporti
 
 ## Gather required parameters
 
-There are three required parameters for all Azure AI services' containers:
+There are three required parameters for all Foundry Tools' containers:
 
 * The end-user license agreement (EULA) must be present with a value of *accept*.
 
@@ -283,7 +283,7 @@ Both the endpoint URL and API key are needed when you first run the container to
 
 1. You should have [Docker tools](#docker-tools) installed in your local environment.
 
-1. Download the Azure AI Translator container with `docker pull`.
+1. Download the Azure Translator container with `docker pull`.
 
     |Docker pull command | Value |Format|
     |----------|-------|------|
@@ -353,7 +353,7 @@ docker run --rm -it -p 5000:5000 \
 [image]
 ```
 
-### Translator translation models and container configuration
+### Azure Translator in Foundry Tools translation models and container configuration
 
 After you  [configured the container](#configure-the-container-to-run-in-a-disconnected-environment), the values for the downloaded translation models and container configuration will be generated and displayed in the container output:
 
@@ -442,7 +442,7 @@ There are several ways to validate that the container is running:
 
 Some Translator queries require supporting containers to successfully complete operations. **If you are using Office documents and don't require source language detection, only the Translator container is required.** However if source language detection is required or you're using scanned PDF documents, supporting containers are required:
 
-The following table lists the required supporting containers for your text and document translation operations. The Translator container sends billing information to Azure via the Azure AI Translator resource on your Azure account.
+The following table lists the required supporting containers for your text and document translation operations. The Translator container sends billing information to Azure via the Azure Translator resource on your Azure account.
 
 |Operation|Request query|Document type|Supporting containers|
 |-----|-----|-----|-----|
@@ -473,13 +473,15 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
     services:
       azure-ai-translator:
         container_name: azure-ai-translator
-        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation::latest
+        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
         environment:
             - EULA=accept
             - billing={TRANSLATOR_ENDPOINT_URI}
             - apiKey={TRANSLATOR_KEY}
             - ladurl=http://azure-ai-language:5000
             - VISIONURL=http://azure-ai-read:5000
+            - Languages=en,es
+
         ports:
               - "5000:5000"
         volumes:
@@ -525,15 +527,15 @@ If you installed Docker Desktop CLI, it includes Docker compose and its prerequi
    >
    > For more information, *see* [docker CLI reference](https://docs.docker.com/engine/reference/commandline/docker/).
 
-### Translator and supporting container images and tags
+### Azure Translator in Foundry Tools and supporting container images and tags
 
-The Azure AI services container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. The following table lists the fully qualified image location for text and document translation:
+The Foundry Tools container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. The following table lists the fully qualified image location for text and document translation:
 
 |Container|Image location|Notes|
 |--------|-------------|---------------|
-|Translator: Text and document translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
-|Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Azure AI services Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
-|Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Azure AI services Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
+|Translator: Text and document translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Foundry Tools Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
+|Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Foundry Tools Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
+|Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Foundry Tools Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
 
 ## Other parameters and commands
 
@@ -555,7 +557,7 @@ docker run -v /host/output:{OUTPUT_PATH} ... <image> ... Mounts:Output={OUTPUT_P
 
 #### Environment variable names in Kubernetes deployments
 
-* Some Azure AI Containers, for example Translator, require users to pass environmental variable names that include colons (`:`) when running the container.
+* Some Azure containers, for example Translator, require users to pass environmental variable names that include colons (`:`) when running the container.
 
 * Kubernetes doesn't accept colons in environmental variable names.
 To resolve, you can replace colons with two underscore characters (`__`) when deploying to Kubernetes. See the following example of an acceptable format for environmental variable names:
@@ -654,9 +656,9 @@ The aggregated value of `billedUnit` for the following meters is counted towards
 
 ### Summary
 
-In this article, you learned concepts and workflows for downloading, installing, and running an Azure AI Translator container:
+In this article, you learned concepts and workflows for downloading, installing, and running an Azure Translator container:
 
-* Azure AI Translator container supports text translation, synchronous document translation, and text transliteration.
+* Azure Translator container supports text translation, synchronous document translation, and text transliteration.
 
 * Container images are downloaded from the container registry and run in Docker.
 

@@ -1,17 +1,16 @@
 ---
 title: Entity categories recognized by Text Analytics for health
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn about categories recognized by Text Analytics for health
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-health
 ---
-
 # Supported Text Analytics for health entity categories
 
 Text Analytics for health processes and extracts insights from unstructured medical data. The service detects and surfaces medical concepts, assigns assertions to concepts, infers semantic relations between concepts and links them to common medical ontologies.

@@ -2,14 +2,13 @@
 title: Consume deployed standard deployments from a different workspace
 titleSuffix: Azure Machine Learning
 description: Learn how to consume a standard deployment from a different workspace than the one where it was deployed. 
-manager: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 ms.date: 05/09/2024
-ms.reviewer: None
-ms.author: mopeakande
-author: msakande
+ms.reviewer: jturuk
+ms.author: scottpolly
+author: s-polly
 ms.collection: ce-skilling-ai-copilot 
 ms.custom: 
  - build-2024

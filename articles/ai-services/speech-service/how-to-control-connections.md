@@ -1,13 +1,13 @@
 ---
 title: Service connectivity how-to - Speech SDK
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Learn how to monitor for connection status and manually connect or disconnect from the Speech service.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.reviewer: travisw
 zone_pivot_groups: programming-languages-set-thirteen
 ms.devlang: cpp

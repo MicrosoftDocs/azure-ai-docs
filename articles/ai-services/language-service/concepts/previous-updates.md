@@ -1,19 +1,18 @@
 ---
 title: Previous language service updates
-titleSuffix: Azure AI services
-description: An archive of previous Azure AI Language updates.
+titleSuffix: Foundry Tools
+description: An archive of previous Azure Language in Foundry Tools updates.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
-ms.topic: conceptual
-ms.date: 11/21/2024
+ms.topic: release-notes
+ms.date: 11/18/2025
 ms.author: lajanuar
 ROBOTS: NOINDEX
 ---
+# Previous updates for Azure Language in Foundry Tools
 
-# Previous updates for Azure AI Language
-
-This article contains a list of previously recorded updates for Azure AI Language. For more current service updates, see [What's new](../whats-new.md).
+This article contains a list of previously recorded updates for Azure Language in Foundry Tools. For more current service updates, see [What's new](../whats-new.md).
 
 ## October 2021
 
@@ -27,7 +26,7 @@ This article contains a list of previously recorded updates for Azure AI Languag
 
 * General availability for text analytics for health containers and API.
 * General availability for opinion mining.
-* General availability for PII extraction and redaction.
+* General availability for `PII` extraction and redaction.
 * General availability for asynchronous operation.
 
 ## June 2021
@@ -35,16 +34,16 @@ This article contains a list of previously recorded updates for Azure AI Languag
 ### General API updates
 
 * New model-version `2021-06-01` for key phrase extraction based on transformers. It provides:
-  * Support for 10 languages (Latin and CJK). 
+  * Support for 10 languages (Latin and `CJK`). 
   * Improved key phrase extraction.
 * The `2021-06-01` model version for Named Entity Recognition (NER) which provides 
   * Improved AI quality and expanded language support for the *Skill* entity category. 
-  * Added Spanish, French, German, Italian and Portuguese language support for the *Skill* entity category
+  * Added Spanish, French, German, Italian, and Portuguese language support for the *Skill* entity category
 
 ### Text Analytics for health updates
 
-* A new model version `2021-05-15` for the `/health` endpoint and on-premises container which provides
-    * 5 new entity types: `ALLERGEN`, `CONDITION_SCALE`, `COURSE`, `EXPRESSION` and `MUTATION_TYPE`,
+* A new model version `2021-05-15` for the `/health` endpoint and on-premises container that provides
+    * Five new entity types: `ALLERGEN`, `CONDITION_SCALE`, `COURSE`, `EXPRESSION`, and `MUTATION_TYPE`,
     * 14 new relation types,
     * Assertion detection expanded for new entity types and
     * Linking support for `ALLERGEN` entity type
@@ -63,28 +62,28 @@ This article contains a list of previously recorded updates for Azure AI Languag
 * Changes in the opinion mining JSON response body: 
     * `aspects` is now `targets` and `opinions` is now `assessments`. 
 * Changes in the JSON response body of the hosted web API of text analytics for health: 
-    * The `isNegated` boolean name of a detected entity object for negation is deprecated and replaced by assertion detection.
-    * A new property called `role` is now part of the extracted relation between an attribute and an entity as well as the relation between entities.  This adds specificity to the detected relation type.
+    * The `isNegated` boolean name of a detected entity object for negation deprecated and replaced with assertion detection.
+    * A new property called `role` is now part of the extracted relation between an attribute and an entity and the relation between entities. This property adds specificity to the detected relation type.
 * Entity linking is now available as an asynchronous task.
-* A new `pii-categories` parameter for the PII feature.
-    * This parameter lets you specify select PII entities, as well as those not supported by default for the input language.
+* A new `pii-categories` parameter for the `PII` feature.
+    * This parameter lets you specify select `PII` entities, and those entities not supported by default for the input language.
 * Updated client libraries, which include asynchronous and text analytics for health operations.
 
-* A new model version `2021-03-01` for text analytics for health API and on-premises container which provides:
+* A new model version `2021-03-01` for text analytics for health API and on-premises container that provides:
     * A rename of the `Gene` entity type to `GeneOrProtein`.
     * A new `Date` entity type.
-    * Assertion detection which replaces negation detection.
+    * Assertion detection that replaces negation detection.
     * A new preferred `name` property for linked entities that is normalized from various ontologies and coding systems. 
-* A new text analytics for health container image with tag `3.0.015490002-onprem-amd64` and the new model-version `2021-03-01` has been released to the container preview repository. 
-    * This container image will no longer be available for download from `containerpreview.azurecr.io` after April 26th, 2021.
+* A new text analytics for health container image with tag `3.0.015490002-onprem-amd64` and the new model-version `2021-03-01` is released to the container preview repository. 
+    * This container image will no longer be available for download from `containerpreview.azurecr.io` after April 26, 2021.
 * **Processed Text Records** is now available as a metric in the **Monitoring** section for your text analytics resource in the Azure portal.  
 
 ## February 2021
 
-* The `2021-01-15` model version for the PII feature, which provides:
-  * Expanded support for 9 new languages
+* The `2021-01-15` model version for the `PII` feature, which provides:
+  * Expanded support for nine new languages
   * Improved AI quality
-* The S0 through S4 pricing tiers are being retired on March 8th, 2021.
+* The S0 through S4 pricing tiers are being retired on March 8, 2021.
 * The language detection container is now generally available.
 
 ## January 2021
@@ -92,7 +91,7 @@ This article contains a list of previously recorded updates for Azure AI Languag
 * The `2021-01-15` model version for Named Entity Recognition (NER), which provides 
   * Expanded language support. 
   * Improved AI quality of general entity categories for all supported languages. 
-* The `2021-01-05` model version for language detection, which provides additional language support.
+* The `2021-01-05` model version for language detection, which provides added language support.
 
 ## November 2020
 
@@ -102,40 +101,40 @@ This article contains a list of previously recorded updates for Azure AI Languag
 ## October 2020
 
 * Hindi support for sentiment analysis, starting with model version `2020-04-01`. 
-* Model version `2020-09-01` for language detection, which adds additional language support and accuracy improvements.
+* Model version `2020-09-01` for language detection, which adds added language support and accuracy improvements.
 
 ## September 2020
 
-* PII now includes the new `redactedText` property in the response JSON where detected PII entities in the input text are replaced by an `*` for each character of those entities.
+* `PII` now includes the new `redactedText` property in the response JSON where detected `PII` entities in the input text are replaced with an `*` for each character of those entities.
 * Entity linking endpoint now includes the `bingID` property in the response JSON for linked entities.
 * The following updates are specific to the September release of the text analytics for health container only.
-    * A new container image with tag `1.1.013530001-amd64-preview` with the new model-version `2020-09-03` has been released to the container preview repository. 
+    * A new container image with tag `1.1.013530001-amd64-preview` with the new model-version `2020-09-03` is released to the container preview repository. 
     * This model version provides improvements in entity recognition, abbreviation detection, and latency enhancements.
 
 ## August 2020
 
-* Model version `2020-07-01` for key phrase extraction, PII detection, and language detection. This update adds:
-    * Additional government and country/region specific entity categories for Named Entity Recognition.
+* Model version `2020-07-01` for key phrase extraction, `PII` detection, and language detection. This update adds:
+    * Added government and country/region specific entity categories for Named Entity Recognition.
     * Norwegian and Turkish support in Sentiment Analysis.
-* An HTTP 400 error will now be returned for API requests that exceed the published data limits. 
+* An HTTP 400 error is now returned for API requests that exceed the published data limits. 
 * Endpoints that return an offset now support the optional `stringIndexType` parameter, which adjusts the returned `offset` and `length` values to match a supported string index scheme.
 
 The following updates are specific to the August release of the Text Analytics for health container only.
 
 * New model-version for Text Analytics for health: `2020-07-24`
     
-The following properties in the JSON response have changed:
+The following properties in the JSON response are changed:
 
-* `type` has been renamed to `category` 
-* `score` has been renamed to `confidenceScore`
-* Entities in the `category` field of the JSON output are now in pascal case. The following entities have been renamed:
-    * `EXAMINATION_RELATION` has been renamed to `RelationalOperator`.
-    * `EXAMINATION_UNIT` has been renamed to `MeasurementUnit`.
-    * `EXAMINATION_VALUE` has been renamed to `MeasurementValue`.
-    * `ROUTE_OR_MODE` has been renamed `MedicationRoute`.
-    * The relational entity `ROUTE_OR_MODE_OF_MEDICATION` has been renamed to `RouteOfMedication`.
+* `type` is renamed to `category` 
+* `score` is renamed to `confidenceScore`
+* Entities in the `category` field of the JSON output are now in pascal case. The following entities are renamed:
+    * `EXAMINATION_RELATION` is renamed to `RelationalOperator`.
+    * `EXAMINATION_UNIT` is renamed to `MeasurementUnit`.
+    * `EXAMINATION_VALUE` is renamed to `MeasurementValue`.
+    * `ROUTE_OR_MODE` is renamed `MedicationRoute`.
+    * The relational entity `ROUTE_OR_MODE_OF_MEDICATION` is renamed to `RouteOfMedication`.
 
-The following entities have been added:
+The following entities are added:
 
 * Named Entity Recognition
     * `AdministrativeEvent`
@@ -163,23 +162,24 @@ The following entities have been added:
        * Event - Natural
        * Event - Sports
 
-* The following properties in the JSON response have been added:
+* The following properties in the JSON response are added:
+
    * `SentenceText` in sentiment analysis
    * `Warnings` for each document 
 
-* The names of the following properties in the JSON response have been changed, where applicable:
+* The names of the following properties in the JSON response are changed, where applicable:
 
-* `score` has been renamed to `confidenceScore`
+* `score` is renamed to `confidenceScore`
     * `confidenceScore` has two decimal points of precision. 
-* `type` has been renamed to `category`
-* `subtype` has been renamed to `subcategory`
+* `type` is renamed to `category`
+* `subtype` is renamed to `subcategory`
 
 * New sentiment analysis feature - opinion mining
 * New personal (`PII`) domain filter for protected health information (`PHI`).
 
 ## February 2020
 
-Additional entity types are now available in the Named Entity Recognition (NER). This update introduces model version `2020-02-01`, which includes:
+Added entity types are now available in the Named Entity Recognition (NER). This update introduces model version `2020-02-01`, which includes:
 
 * Recognition of the following general entity types (English only):
     * PersonType
@@ -200,7 +200,7 @@ Additional entity types are now available in the Named Entity Recognition (NER).
 
 ### October 2019
 
-* Introduction of PII feature
+* Introduction of `PII` feature
 * Model version `2019-10-01`, which includes:
     * Named entity recognition:
         * Expanded detection and categorization of entities found in text. 

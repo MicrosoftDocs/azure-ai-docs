@@ -3,10 +3,9 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 ### Create environment variables 
 
 Your application must be authenticated to send API requests. For production, use a secure way of storing and accessing your credentials. In this example, you will write your credentials to environment variables on the local machine running the application.
@@ -31,7 +30,7 @@ setx LANGUAGE_ENDPOINT your-endpoint
 > [!NOTE]
 > If you only need to access the environment variables in the current running console, you can set the environment variable with `set` instead of `setx`.
 
-After you add the environment variables, you might need to restart any running programs that will need to read the environment variables, including the console window. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example.
+After you add the environment variables, you might need to restart any running programs that will need to read the environment variables, including the console window. For example, if you're using Visual Studio as your editor, restart Visual Studio before running the example.
 
 #### [Linux](#tab/linux)
 

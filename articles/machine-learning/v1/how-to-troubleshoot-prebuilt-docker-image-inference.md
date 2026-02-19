@@ -5,11 +5,11 @@ description: 'Troubleshooting steps for using prebuilt Docker images for inferen
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 03/05/2025
 ms.topic: how-to
-ms.reviewer: sehan
+ms.reviewer: jturuk
 ms.custom: UpdateFrequency5, deploy, docker, prebuilt, troubleshoot, devx-track-python
 ---
 # Troubleshooting prebuilt docker images for inference

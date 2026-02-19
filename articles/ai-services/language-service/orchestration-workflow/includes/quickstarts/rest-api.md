@@ -3,13 +3,12 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
-
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 
 
@@ -23,7 +22,7 @@ ms.author: lajanuar
 ## Get your resource keys and endpoint
 
 1. Go to your resource overview page in the [Azure portal](https://portal.azure.com/#home).
-2. From the menu on the left side, select **Keys and Endpoint**. You will use the endpoint and key for the API requests 
+2. From the menu on the left side, select **Keys and Endpoint**. The endpoint and key are used for API requests. 
 
     :::image type="content" source="../../../media/azure-portal-resource-credentials.png" alt-text="A screenshot showing the key and endpoint page in the Azure portal" lightbox="../../../media/azure-portal-resource-credentials.png":::
 
@@ -31,7 +30,7 @@ ms.author: lajanuar
 
 ## Create an orchestration workflow project 
 
-Once you have a Language resource created, create an orchestration workflow project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to the Language resource being used.
+Once you have a Language resource created, create an orchestration workflow project. A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to Azure Language resource being used.
 
 For this quickstart, complete the [CLU](../../../conversational-language-understanding/quickstart.md) quickstart to create a CLU project to be used in orchestration workflow.
 

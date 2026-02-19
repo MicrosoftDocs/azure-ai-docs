@@ -1,18 +1,18 @@
 ---
-title: Word alignment - Azure AI Translator
-titleSuffix: Azure AI services
-description: To receive alignment information, use the Azure AI Translator translate method and include the optional includeAlignment parameter.
+title: Word alignment - Azure Translator in Foundry Tools
+titleSuffix: Foundry Tools
+description: To receive alignment information, use the Azure Translator translate method and include the optional includeAlignment parameter.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# How to receive and use word alignment information
+# Azure Translator in Foundry Tools word alignment
 
-To receive alignment information, use the Azure AI Translator translate method and include the optional `includeAlignment` parameter.
+To receive alignment information, use the Azure Translator translate method and include the optional `includeAlignment` parameter.
 
 ## Alignment information format
 

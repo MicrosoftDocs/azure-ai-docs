@@ -8,7 +8,7 @@ ms.service: azure-ai-immersive-reader
 ms.custom: devx-track-js
 ms.topic: how-to
 ms.date: 02/23/2024
-ms.author: sharmas
+ms.author: michtho
 ---
 
 # How to prepare HTML content for Immersive Reader

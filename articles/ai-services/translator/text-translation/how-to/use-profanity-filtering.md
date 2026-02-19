@@ -1,18 +1,18 @@
 ---
-title: Profanity filtering - Azure AI Translator
-titleSuffix: Azure AI services
-description: Use Azure AI Translator profanity filtering to determine the level of profanity translated in your text.
+title: Profanity filtering - Azure Translator in Foundry Tools
+titleSuffix: Foundry Tools
+description: Use Azure Translator profanity filtering to determine the level of profanity translated in your text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.topic: conceptual
-ms.date: 05/19/2025
+ms.topic: concept-article
+ms.date: 11/18/2025
 ms.author: lajanuar
 ---
 
-# Add profanity filtering with Azure AI Translator
+# Azure Translator in Foundry Tools profanity filtering
 
-In most cases, the Azure AI Translator service retains profanity that is present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures. As a result, the degree of profanity in the target language can be amplified or reduced.
+In most cases, the Azure Translator retains profanity that's present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures. As a result, the degree of profanity in the target language can be amplified or reduced.
 
 If you want to avoid seeing profanity in the translation, even if profanity is present in the source text, use the profanity filtering option available in the `Translate()` method. This option allows you to choose whether you want the profanity deleted, marked with appropriate tags, or no action taken.
 

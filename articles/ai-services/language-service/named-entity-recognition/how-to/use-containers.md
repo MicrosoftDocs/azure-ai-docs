@@ -1,6 +1,6 @@
 ---
 title: Use named entity recognition Docker containers on-premises
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: Use Docker containers for the Named Entity Recognition API to determine the language of written text, on-premises.
 author: laujan
 manager: nitinme
@@ -8,22 +8,21 @@ ms.service: azure-ai-language
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 11/18/2025
 ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---
-
 # Install and run Named Entity Recognition containers
 
 Containers enable you to host the Named Entity Recognition API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Named Entity Recognition remotely, then containers might be a good option.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
 You must meet the following prerequisites before using Named Entity Recognition containers. 
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/).
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure. 
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 
@@ -61,14 +60,14 @@ docker pull mcr.microsoft.com/azure-cognitive-services/textanalytics/ner:latest
 
 ## Run the container with `docker run`
 
-Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the containers. The container will continue to run until you stop it. Replace the placeholders below with your own values:
+Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the containers. The container will continue to run until you stop it. Replace the placeholders with your own values:
 
 
 > [!IMPORTANT]
 > * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
 > * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
 
-To run the Named Entity Recognition container, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the Named Entity Recognition container, execute the following `docker run` command. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
@@ -117,7 +116,7 @@ For information on how to call NER see [our guide](../how-to-call.md).
 
 If you run the container with an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files that are helpful to troubleshoot issues that happen while starting or running the container.
 
-[!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Foundry Tools FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
 ## Billing
 

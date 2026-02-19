@@ -7,8 +7,9 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 05/27/2025
+ms.update-cycle: 365-days
 ---
 
 # Reference a path to enriched nodes using context and source properties an Azure AI Search skillset
@@ -50,7 +51,7 @@ The following list includes several common examples:
 + `/document/pages/*` or `/document/sentences/*` become the context if you're breaking a large document into smaller chunks for processing. If "context" is `/document/pages/*`, the skill executes once over each page in the document. Because there might be more than one page or sentence, you can append `/*` to catch them all.
 + `/document/normalized_images/*` is created during document cracking if the document contains images. All paths to images start with normalized_images. Since there are often multiple images embedded in a document, append `/*`.
 
-Examples in the remainder of this article are based on the "content" field generated automatically by [Azure blob indexers](search-howto-indexing-azure-blob-storage.md) as part of the [document cracking](search-indexer-overview.md#document-cracking) phase. When referring to documents from a Blob container, use a format such as `"/document/content"`, where the "content" field is part of the "document".
+Examples in the remainder of this article are based on the "content" field generated automatically by [Azure blob indexers](search-how-to-index-azure-blob-storage.md) as part of the [document cracking](search-indexer-overview.md#document-cracking) phase. When referring to documents from a Blob container, use a format such as `"/document/content"`, where the "content" field is part of the "document".
 
 <a name="example-1"></a>
 

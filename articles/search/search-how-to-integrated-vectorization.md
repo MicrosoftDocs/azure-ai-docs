@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/11/2025
+ms.date: 01/16/2026
 ---
 
 # Set up integrated vectorization in Azure AI Search using REST
@@ -18,7 +18,7 @@ This article describes the end-to-end workflow for [integrated vectorization](ve
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure AI Search service](search-create-service-portal.md). We recommend the Basic tier or higher.
 
@@ -26,9 +26,9 @@ This article describes the end-to-end workflow for [integrated vectorization](ve
 
 + A [supported embedding model](#supported-embedding-models).
 
-+ Completion of [Quickstart: Connect without keys](search-get-started-rbac.md) and [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity). Although you can use key-based authentication for data plane operations, this article assumes [roles and managed identities](#role-based-access), which are more secure.
++ Completion of [Quickstart: Connect without keys](search-get-started-rbac.md) and [Configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity). Although you can use key-based authentication for data plane operations, this article assumes [roles and managed identities](#role-based-access), which are more secure.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)<!--or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/)-->.
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)<!--or Python prerequisites-->.
 
 ### Supported data sources
 
@@ -36,27 +36,27 @@ Integrated vectorization works with [all supported data sources](search-indexer-
 
 | Supported data source | Description |
 |--|--|
-| [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) | This data source works with blobs and tables. You must use a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold. |
+| [Azure Blob Storage](/azure/storage/common/storage-account-create) | This data source works with blobs and tables. You must use a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold. |
 | [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) | This is an Azure Storage account with a hierarchical namespace enabled. To confirm that you have Data Lake Storage, check the **Properties** tab on the **Overview** page.<br><br> :::image type="content" source="media/search-how-to-integrated-vectorization/data-lake-storage-account.png" alt-text="Screenshot of an Azure Data Lake Storage account in the Azure portal." border="true" lightbox="media/search-how-to-integrated-vectorization/data-lake-storage-account.png"::: |
-<!--| [OneLake](search-how-to-index-onelake-files.md) | This data source is currently in preview. For information about limitations and supported shortcuts, see [OneLake indexing](search-how-to-index-onelake-files.md). |-->
+| [Microsoft OneLake](search-how-to-index-onelake-files.md) | This data source connects to OneLake files and shortcuts. |
 
 ### Supported embedding models
 
-For integrated vectorization, you must use one of the following embedding models on an Azure AI platform. Deployment instructions are provided in a [later section](#prepare-your-embedding-model).
+Use one of the following embedding models for integrated vectorization. Deployment instructions are provided in a [later section](#prepare-your-embedding-model).
 
 | Provider | Supported models |
 |--|--|
-| [Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> | text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
-| [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) <sup>3</sup> | For text and images: [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>4</sup></li> |
-<!--| [Azure AI Foundry model catalog](/azure/ai-foundry/what-is-azure-ai-foundry) | For text:<br>Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br><br>For images:<br>Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |-->
+| [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> | text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
+| [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) <sup>3</sup> | For text and images: [Azure Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>4</sup></li> |
+<!--| [Foundry model catalog](/azure/ai-foundry/what-is-azure-ai-foundry) | For text:<br>Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br><br><br>For text and images:<br>Cohere-embed-v4 |-->
 
 <sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
-<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. Only Azure OpenAI resources created in the Azure portal are compatible with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
+<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
-<sup>3</sup> For billing purposes, you must [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
+<sup>3</sup> For billing purposes, you must [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. Unless you use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) (preview) to create the skillset, both resources must be in the same region.
 
-<sup>4</sup> The Azure AI Vision multimodal embedding model is available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
+<sup>4</sup> The Azure Vision multimodal embedding model is available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
 ### Role-based access
 
@@ -64,12 +64,12 @@ You can use Microsoft Entra ID with role assignments or key-based authentication
 
 To configure role-based access for integrated vectorization:
 
-1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 1. On your data source platform and embedding model provider, create role assignments that allow your search service to access data and models. See [Prepare your data](#prepare-your-data) and [Prepare your embedding model](#prepare-your-embedding-model).
 
 > [!NOTE]
-> Free search services support role-based connections to Azure AI Search. However, they don't support managed identities on outbound connections to Azure Storage or Azure AI Vision. This lack of support requires key-based authentication on connections between free search services and other Azure resources.
+> Free search services support role-based connections to Azure AI Search. However, they don't support managed identities on outbound connections to Azure Storage or Azure Vision. This lack of support requires that you use key-based authentication on connections between free search services and other Azure resources.
 >
 > For more secure connections, use the Basic tier or higher. You can then enable roles and configure a managed identity for authorized access.
 
@@ -78,7 +78,7 @@ To configure role-based access for integrated vectorization:
 In this section, you retrieve the endpoint and Microsoft Entra token for your Azure AI Search service. Both values are necessary to establish connections in REST<!--and Python--> requests.
 
 > [!TIP]
-> The following steps assume that you're using [role-based access](#role-based-access) for proof-of-concept testing. If you want to use integrated vectorization for app development, see [Connect your app to Azure AI Search using identities](keyless-connections.md).
+> The following steps assume that you're using [role-based access](#role-based-access) for proof-of-concept testing. If you want to use integrated vectorization for app development, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
@@ -108,7 +108,7 @@ In this section, you prepare your data for integrated vectorization by uploading
 
    1. Select **Add** > **Add role assignment**.
 
-   1. Under **Job function roles**, select **[Storage Blob Data Reader](search-howto-managed-identities-data-sources.md#assign-a-role)**, and then select **Next**.
+   1. Under **Job function roles**, select **[Storage Blob Data Reader](search-how-to-managed-identities.md#assign-a-role)**, and then select **Next**.
 
    1. Under **Members**, select **Managed identity**, and then select **Select members**.
 
@@ -122,9 +122,9 @@ In this section, you prepare your data for integrated vectorization by uploading
 
 1. (Optional) Synchronize deletions in your container with deletions in the search index. To configure your indexer for deletion detection:
 
-   1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account. If you're using [native soft delete](search-howto-index-changed-deleted-blobs.md#native-blob-soft-delete), the next step isn't required.
+   1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account. If you're using [native soft delete](search-how-to-index-azure-blob-changed-deleted.md#native-blob-soft-delete), the next step isn't required.
 
-   1. [Add custom metadata](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-howto-index-changed-deleted-blobs.md).
+   1. [Add custom metadata](search-how-to-index-azure-blob-changed-deleted.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-how-to-index-azure-blob-changed-deleted.md).
 
 ### [ADLS Gen2](#tab/prepare-data-adlsgen2)
 
@@ -140,7 +140,7 @@ In this section, you prepare your data for integrated vectorization by uploading
 
    1. Select **Add** > **Add role assignment**.
 
-   1. Under **Job function roles**, select **[Storage Blob Data Reader](search-howto-managed-identities-data-sources.md#assign-a-role)**, and then select **Next**.
+   1. Under **Job function roles**, select **[Storage Blob Data Reader](search-how-to-managed-identities.md#assign-a-role)**, and then select **Next**.
 
    1. Under **Members**, select **Managed identity**, and then select **Select members**.
 
@@ -156,9 +156,9 @@ In this section, you prepare your data for integrated vectorization by uploading
 
    1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account.
 
-   1. [Add custom metadata](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are deleted. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-howto-index-changed-deleted-blobs.md).
+   1. [Add custom metadata](search-how-to-index-azure-blob-changed-deleted.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are deleted. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-how-to-index-azure-blob-changed-deleted.md).
 
-<!--### [OneLake](#tab/prepare-data-onelake)
+### [OneLake](#tab/prepare-data-onelake)
 
 1. Sign in to [Power BI](https://powerbi.com/) and [create a workspace](/fabric/data-engineering/tutorial-lakehouse-get-started).
 
@@ -186,11 +186,11 @@ In this section, you prepare your data for integrated vectorization by uploading
 
 1. To obtain connection IDs:
 
-   1. At the top of your browser, locate the lakehouse URL, which has the following format: `https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111?experience=power-bi`.
+   1. At the top of your browser, locate the lakehouse URL, which has the following format: `https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111`. Remove any query parameters, such as `?experience=power-bi`.
 
    1. Copy the workspace ID, which is listed after "groups" in the URL. You specify this ID later in [Set variables](#set-variables). In our example, the workspace ID is `00000000-0000-0000-0000-000000000000`.
 
-   1. Copy the lakehouse ID, which is listed after "lakehouses" in the URL. You specify this ID later in [Set variables](#set-variables). In our example, the lakehouse ID is `11111111-1111-1111-1111-111111111111`.-->
+   1. Copy the lakehouse ID, which is listed after "lakehouses" in the URL. You specify this ID later in [Set variables](#set-variables). In our example, the lakehouse ID is `11111111-1111-1111-1111-111111111111`.
 
 ---
 
@@ -224,19 +224,17 @@ Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and tex
 
 1. To deploy an embedding model:
 
-   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
-
-   1. From the left pane, select **Model catalog**.
+   1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
    1. Copy the deployment and model names, which you specify later in [Set variables](#set-variables). The deployment name is the custom name you chose, while the model name is the model you deployed, such as `text-embedding-ada-002`.
 
-### [Azure AI Vision](#tab/prepare-model-ai-vision)
+### [Azure Vision](#tab/prepare-model-vision)
 
-Azure AI Search supports Azure AI Vision image retrieval through multimodal embeddings (version 4.0). Internally, Azure AI Search calls the [multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to connect to Azure AI Vision.
+Azure AI Search supports Azure Vision image retrieval through multimodal embeddings (version 4.0). Internally, Azure AI Search calls the [multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to connect to Azure Vision.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI multi-service resource.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Microsoft Foundry resource.
 
 1. To assign roles:
 
@@ -254,16 +252,16 @@ Azure AI Search supports Azure AI Vision image retrieval through multimodal embe
 
    1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
 
-   1. Copy the endpoint for your Azure AI multi-service resource. You specify this URL later in [Set variables](#set-variables).
+   1. Copy the endpoint with the `https://[resource-name].services.ai.azure.com` format. You specify this URL later in [Set variables](#set-variables).
 
    > [!NOTE]
-   > The multimodal embeddings are built into your Azure AI multi-service resource, so there's no model deployment step.
+   > The multimodal embeddings are built into your Microsoft Foundry resource, so there's no model deployment step.
 
-<!--### [Azure AI Foundry model catalog](#tab/prepare-model-catalog)
+<!--### [Foundry model catalog](#tab/prepare-model-catalog)
 
-Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, Azure AI Search calls the [Azure Machine Learning (AML) skill](cognitive-search-aml-skill.md) to connect to the catalog.
+Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, Azure AI Search calls the [Azure Machine Learning (AML) skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
-For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) with a [hub that's connected to an Azure OpenAI resource and an Azure AI Search service](/azure/ai-foundry/how-to/create-projects#create-a-project).
+For the model catalog, you should have a [Foundry project](/azure/ai-foundry/how-to/create-projects) with a [hub that's connected to an Azure OpenAI resource and an Azure AI Search service](/azure/ai-foundry/how-to/create-projects#create-a-project).
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure OpenAI resource.
 
@@ -281,9 +279,7 @@ For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-f
 
 1. To deploy an embedding model:
 
-   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
-
-   1. From the left pane, select **Model catalog**.
+   1. Sign in to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
@@ -320,21 +316,21 @@ In this section, you specify the connection information for your Azure AI Search
    |--|--|--|
    | Azure Blob Storage | `@storageConnectionString` and `@blobContainer` | The connection string and the name of the container you created in [Prepare your data](#prepare-your-data). |
    | ADLS Gen2 | `@storageConnectionString` and `@blobContainer` | The connection string and the name of the container you created in [Prepare your data](#prepare-your-data). |
-   <!--| OneLake | `@workspaceId` and `@lakehouseId` | The workspace and lakehouse IDs you obtained in [Prepare your data](#prepare-your-data). |-->
+   | OneLake | `@workspaceId` and `@lakehouseId` | The workspace and lakehouse IDs you obtained in [Prepare your data](#prepare-your-data). |
 
 1. Depending on your embedding model provider, add the following variables.
 
    | Embedding model provider | Variables | Enter this information |
    |--|--|--|
    | Azure OpenAI | `@aoaiEndpoint`, `@aoaiDeploymentName`, and `@aoaiModelName` | The endpoint, deployment name, and model name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
-   | Azure AI Vision | `@aiMultiServiceEndpoint` | The endpoint you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
-   <!--| Azure AI Foundry model catalog | `@aoaiEndpoint`, `@aiFoundryDeploymentName`, and `@aiFoundryModelName` | The endpoint, deployment name, and model name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |-->
+   | Azure Vision | `@AiFoundryEndpoint` | The endpoint you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
+   <!--| Foundry model catalog | `@aoaiEndpoint`, `@aiFoundryDeploymentName`, and `@aiFoundryModelName` | The endpoint, deployment name, and model name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |-->
 
 1. To verify the variables, send the following request.
 
    ```HTTP
    ### List existing indexes by name
-   GET {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+   GET {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
    ```
@@ -365,8 +361,8 @@ In this section, you specify the connection information for your Azure AI Search
    | Embedding model provider | Variables | Enter this information |
    |--|--|--|
    | Azure OpenAI | `AZURE_OPENAI_ACCOUNT` and `AZURE_DEPLOYMENT_MODEL` | The endpoint, model name, and deployment name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
-   | Azure AI Vision | `XYZ` | ... |
-   | Azure AI Foundry model catalog | `XYZ` | ... |
+   | Azure Vision | `XYZ` | ... |
+   | Foundry model catalog | `XYZ` | ... |
 
 ---
 -->
@@ -381,7 +377,7 @@ In this section, you connect to a [supported data source](#supported-data-source
 
    ```HTTP
    ### Create a data source
-   POST {{baseUrl}}/datasources?api-version=2024-07-01  HTTP/1.1
+   POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
@@ -405,7 +401,7 @@ In this section, you connect to a [supported data source](#supported-data-source
 
 1. To create the data source, select **Send request**.
 
-<!--1. If you're using OneLake, set `credentials.connectionString` to `ResourceId={{workspaceId}}` and `container.name` to `{{lakehouseId}}`.-->
+1. If you're using OneLake, set `credentials.connectionString` to `ResourceId={{workspaceId}}` and `container.name` to `{{lakehouseId}}`.
 
 <!--
 ### [Python](#tab/connect-data-python)
@@ -456,7 +452,7 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
 
    ```HTTP
    ### Create a skillset
-   POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
+   POST {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
@@ -528,7 +524,7 @@ To vectorize your chunked content, the skillset needs an embedding skill that po
 <!--### [REST](#tab/embedding-skill-rest)-->
 
 1. After the built-in chunking skill in the `skills` array, call the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
-or [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md)<!--[Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md), or [AML skill](cognitive-search-aml-skill.md) (for the Azure AI Foundry model catalog)-->. You can paste one of the following definitions.
+or [Azure Vision skill](cognitive-search-skill-vision-vectorize.md)<!--[Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure Vision skill](cognitive-search-skill-vision-vectorize.md), or [AML skill](cognitive-search-aml-skill.md) (for the Foundry model catalog)-->. You can paste one of the following definitions.
 
    ```HTTP
         {
@@ -572,17 +568,17 @@ or [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md)<!--[Azure
    ```
 
    > [!NOTE]
-   > The Azure AI Vision skill is in public preview. If you want to call this skill, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision multimodal embeddings skill is in public preview. If you want to call this skill, use the latest preview API.
 
 1. If you're using the Azure OpenAI Embedding skill, set `dimensions` to the [number of embeddings generated by your embedding model](cognitive-search-skill-azure-openai-embedding.md#supported-dimensions-by-modelname).
 
-1. If you're using the Azure AI Vision skill, [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) after the `skills` array. This attachment is for billing purposes.
+1. If you're using the Azure Vision multimodal embeddings skill, [attach your Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) after the `skills` array. This attachment is for billing purposes.
 
    ```HTTP
        "skills": [ ... ],
        "cognitiveServices": {
          "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
-         "subdomainUrl": "{{aiMultiServiceEndpoint}}"
+         "subdomainUrl": "{{AiFoundryEndpoint}}"
         }
    ```
 
@@ -608,7 +604,7 @@ or [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md)<!--[Azure
         }
    ```
 
-The Azure AI Vision skill and AML skill (for indexer connections to the Azure AI Foundry model catalog) are in public preview. If you want to call these skills, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+The Azure Vision multimodal embeddings skill and AML skill (for indexer connections to the Foundry model catalog) are in public preview. If you want to call these skills, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
 
 ### [Python](#tab/embedding-skill-python)
 
@@ -634,7 +630,7 @@ In addition to vector fields, the sample index in the following steps contains n
 
    ```HTTP
    ### Create a vector index
-   POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+   POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
@@ -724,7 +720,7 @@ In addition to vector fields, the sample index in the following steps contains n
    | Embedding skill | Enter this value |
    |--|--|
    | Azure OpenAI | The [number of embeddings generated by your embedding model](cognitive-search-skill-azure-openai-embedding.md#supported-dimensions-by-modelname). |
-   | Azure AI Vision | `1024` |
+   | Azure Vision | `1024` |
    <!--| AML | The [number of embeddings generated by your embedding model](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md#expected-field-dimensions). |-->
 
 <!--### [Python](#tab/vector-index-python)
@@ -738,7 +734,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
 
 <!--### [REST](#tab/vectorizer-rest)-->
 
-1. Add the [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) or [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md)<!--[Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md), [Azure AI Vision vectorizer](vector-search-vectorizer-ai-services-vision.md), or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md)--> after `vectorSearch.profiles`. You can paste one of the following definitions.
+1. Add the [Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md) or [Azure Vision vectorizer](vector-search-vectorizer-ai-services-vision.md)<!--[Azure OpenAI vectorizer](vector-search-vectorizer-azure-open-ai.md), [Azure Vision vectorizer](vector-search-vectorizer-ai-services-vision.md), or [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md)--> after `vectorSearch.profiles`. You can paste one of the following definitions.
 
    ```HTTP
          "profiles": [ ... ],
@@ -756,7 +752,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
              "name": "my-ai-services-vision-vectorizer",
              "kind": "aiServicesVision",
              "aiServicesVisionParameters": {
-               "resourceUri": "{{aiMultiServiceEndpoint}}",
+               "resourceUri": "{{AiFoundryEndpoint}}",
                "modelVersion": "2023-04-15"
              }
            }
@@ -764,7 +760,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
    ```
 
    > [!NOTE]
-   > The Azure AI Vision vectorizer is in public preview. If you want to call this vectorizer, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer is in public preview. If you want to call this vectorizer, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
 
 1. Specify your vectorizer in `vectorSearch.profiles`.
 
@@ -795,7 +791,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
    ```
 
    > [!NOTE]
-   > The Azure AI Vision vectorizer and Azure AI Foundry model catalog vectorizer are in public preview. If you want to call these vectorizers, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in public preview. If you want to call these vectorizers, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
 
 <!--### [Python](#tab/vectorizer-python)
 
@@ -812,7 +808,7 @@ In this section, you create an [indexer](search-indexer-overview.md) to drive th
 
    ```HTTP
    ### Create an indexer
-   POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
+   POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
@@ -849,7 +845,7 @@ In this section, you verify that your content was successfully indexed by [creat
 
    ```HTTP
    ### Run a vector query
-   POST {{baseUrl}}/indexes('my-vector-index')/docs/search.post.search?api-version=2024-07-01  HTTP/1.1
+   POST {{baseUrl}}/indexes('my-vector-index')/docs/search.post.search?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
@@ -868,7 +864,7 @@ In this section, you verify that your content was successfully indexed by [creat
    ```
 
    > [!NOTE]
-   > The Azure AI Vision vectorizer is in public preview. If you previously called this vectorizer, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer is in public preview. If you previously called this vectorizer, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
 
    For queries that invoke integrated vectorization, `kind` must be set to `text`, and `text` must specify a text string. This string is passed to the vectorizer assigned to the vector field. For more information, see [Query with integrated vectorization](vector-search-how-to-query.md#query-with-integrated-vectorization).
 
@@ -877,7 +873,7 @@ In this section, you verify that your content was successfully indexed by [creat
 <!--
 
    > [!NOTE]
-   > The Azure AI Vision vectorizer and Azure AI Foundry model catalog vectorizer are in public preview. If you previously called these vectorizers, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
+   > The Azure Vision vectorizer and Microsoft Foundry model catalog vectorizer are in public preview. If you previously called these vectorizers, use a preview API, such as [`2025-03-01-preview`](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true).
 
 ### [Python](#tab/vector-queries-python)
 

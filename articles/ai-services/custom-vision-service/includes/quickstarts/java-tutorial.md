@@ -28,7 +28,7 @@ Artifact (Maven) for [(training)](https://search.maven.org/artifact/com.azure/az
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The current version of the [Java Development Kit(JDK)](https://www.microsoft.com/openjdk).
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 * Once you have your Azure subscription, create a [Custom Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesCustomVision) in the Azure portal to create a training and prediction resource.
@@ -97,7 +97,7 @@ In the application's `CustomVisionQuickstart` class, create variables that retri
 
 
 > [!IMPORTANT]
-> Remember to remove the keys from your code when you're done, and never post them publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../../security-features.md) article for more information.
+> Remember to remove the keys from your code when you're done, and never post them publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Foundry Tools [security](../../../security-features.md) article for more information.
 
 In the application's `main` method, add calls for the methods used in this quickstart. You'll define these later.
 

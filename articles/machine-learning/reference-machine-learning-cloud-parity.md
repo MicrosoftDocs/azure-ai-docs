@@ -5,11 +5,10 @@ description: This article lists feature availability differences between public 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: reference
-
+ms.topic: concept-article 
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 02/28/2025
 ms.custom:
   - references_regions
@@ -37,177 +36,177 @@ The information in the rest of this document provides information on what featur
 ### Model Catalog in USGOV Virginia and Arizona 
 | Model Name | MaaP Inference  | Batch Enabled | standard deployment (serverless Compute Inferencing)|  Standard deployment (Fine-tuning) | 
 |----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|:-------------:|
-|ALLaM-2-7b-instruct	|maap-inference		||||	
-|Aurora	|maap-inference			||||
-|AutoML-Image-Classification|	maap-inference|	batch-enabled		|||
-|AutoML-Image-Instance-Segmentation|	maap-inference|	batch-enabled		|||
-|AutoML-Image-Object-Detection	|maap-inference	|batch-enabled	|||	
-|bert-base-cased	|maap-inference|	batch-enabled	|||	
-|bert-base-uncased	|maap-inference	|batch-enabled		|||
-|bert-large-cased|	maap-inference|	batch-enabled		|||
-|bert-large-uncased|	maap-inference|	batch-enabled|||		
-|BiomedCLIP-PubMedBERT_256-vit_base_patch16_224|	maap-inference|	batch-enabled		|||
-|bytetrack_yolox_x_crowdhuman_mot17-private-half	|maap-inference|	batch-enabled		|||
-|camembert-base	|maap-inference|	batch-enabled		|||
-|CodeLlama-13b-hf|	maap-inference	|batch-enabled		|||
-|CodeLlama-13b-Instruct-hf|	maap-inference	|batch-enabled		|||
-|CodeLlama-13b-Python-hf	|maap-inference|	batch-enabled		|||
-|CodeLlama-34b-hf|	maap-inference	|batch-enabled		|||
-|CodeLlama-34b-Instruct-hf|	maap-inference|	batch-enabled		|||
-|CodeLlama-34b-Python-hf	|maap-inference|	batch-enabled		|||
-|CodeLlama-70b-hf|	maap-inference			||||
-|CodeLlama-70b-Instruct-hf |	maap-inference			||||
-|CodeLlama-70b-Python-hf |		maap-inference				||||
-|CodeLlama-7b-hf |		maap-inference |		batch-enabled		 |	 |	 |	
-|CodeLlama-7b-Instruct-hf	 |	maap-inference	|batch-enabled		|||
-|CodeLlama-7b-Python-hf |	maap-inference |	batch-enabled		|||
-|compvis-stable-diffusion-v1-4	|maap-inference	|batch-enabled		|||
-|CxrReportGen	maap-inference	|batch-enabled		||||
-|databricks-dolly-v2-12b	|maap-inference |	batch-enabled		
-|Deci-DeciCoder-1b	|maap-inference	|batch-enabled		
-|deci-decidiffusion-v1-0	|maap-inference	|batch-enabled		
-|Deci-DeciLM-7B	|maap-inference|	batch-enabled		
-|Deci-DeciLM-7B-instruct	|maap-inference|	batch-enabled		
-|deepset-minilm-uncased-squad2	|maap-inference	|batch-enabled		
-|deepset-roberta-base-squad2|	maap-inference	|batch-enabled		
-|distilbert-base-cased	|maap-inference	|batch-enabled		
-|distilbert-base-cased-distilled-squad	|maap-inference|	batch-enabled		
-|distilbert-base-uncased|	maap-inference|	batch-enabled		
-|distilbert-base-uncased-distilled-squad|	maap-inference	|batch-enabled		
-|distilbert-base-uncased-finetuned-sst-2-english	|maap-inference|	batch-enabled		
-|distilgpt2|	maap-inference	|batch-enabled		
-|distilroberta-base	|maap-inference|	batch-enabled		
-|facebook-bart-large-cnn|	maap-inference|	batch-enabled		
-|facebook-deit-base-patch16-224|	maap-inference|	batch-enabled		
-|facebook-dinov2-base-imagenet1k-1-layer|	maap-inference|	batch-enabled		
-|Facebook-DinoV2-Image-Embeddings-ViT-Base	|maap-inference|	batch-enabled		
-|Facebook-DinoV2-Image-Embeddings-ViT-Giant	|maap-inference|	batch-enabled		
-|facebook-sam-vit-base	|maap-inference	|batch-enabled		
-|facebook-sam-vit-huge|	maap-inference	|batch-enabled		
-|facebook-sam-vit-large	|maap-inference	|batch-enabled		
-|financial-reports-analysis	|maap-inference	|batch-enabled		
-|finiteautomata-bertweet-base-sentiment-analysis|	maap-inference	|batch-enabled		
-|google-vit-base-patch16-224	|maap-inference	|batch-enabled			
-|Jean-Baptiste-camembert-ner|	maap-inference|	batch-enabled		
-|Llama-2-13b	|maap-inference|	batch-enabled|	maas-inference|	maas-finetuning|
-|Llama-2-13b-chat	|maap-inference	|| maas-inference		
-|Llama-2-70b	|maap-inference	|batch-enabled |	maas-inference|	maas-finetuning|
-|Llama-2-70b-chat	|maap-inference||	maas-inference		
-|Llama-2-7b	maap-inference|	batch-enabled||	maas-inference|	maas-finetuning|
-|Llama-2-7b-chat	|maap-inference	||maas-inference		|
-|Llama-3.2-11B-Vision-Instruct|	maap-inference	|| maas-inference		
-|Llama-3.2-1B	|maap-inference			
-|Llama-3.2-1B-Instruct	| maap-inference			
-|Llama-3.2-3B	|maap-inference			
-|Llama-3.2-3B-Instruct	|maap-inference			
-|Llama-3.2-90B-Vision-Instruct| maap-inference||	maas-inference		
-|Llama-Guard-3-11B-Vision	|maap-inference			
-|Llama-Guard-3-1B	|maap-inference			
-|Llama-Guard-3-8B|	maap-inference			
-|MatterSim|	maap-inference			
-|MedImageInsight|	maap-inference|	batch-enabled		
-|MedImageParse	|maap-inference|	batch-enabled		
-|Meta-Llama-3-70B	|maap-inference			
-|Meta-Llama-3-70B-Instruct	|maap-inference	||maas-inference		
-|Meta-Llama-3-8B	maap-inference			
-|Meta-Llama-3-8B-Instruct	|maap-inference||	maas-inference		
-|Meta-Llama-3.1-70B|maap-inference			
-|Meta-Llama-3.1-70B-Instruct	|maap-inference||	maas-inference|	maas-finetuning	
-|Meta-Llama-3.1-8B|	maap-inference			
-|Meta-Llama-3.1-8B-Instruct	|maap-inference||	maas-inference|	maas-finetuning	
-|microsoft-beit-base-patch16-224-pt22k-ft22k|	maap-inference	|batch-enabled		
-|microsoft-deberta-base	|maap-inference	|batch-enabled		
-|microsoft-deberta-base-mnli	|maap-inference|	batch-enabled		
-|microsoft-deberta-large	|maap-inference|	batch-enabled		
-|microsoft-deberta-large-mnli|	maap-inference	|batch-enabled		
-|microsoft-deberta-xlarge	|maap-inference	| batch-enabled		
-|microsoft-llava-med-v1.5-mistral-7b	|maap-inference	|batch-enabled		
-|microsoft-rad-dino	|maap-inference	|batch-enabled		
-|microsoft-swinv2-base-patch4-window12-192-22k|	maap-inference|	batch-enabled		
-|mistral-community-Mixtral-8x22B-v0-1	|maap-inference			
-|mistralai-Mistral-7B-Instruct-v0-2	|maap-inference			
-|mistralai-Mistral-7B-Instruct-v01|	maap-inference			
-|mistralai-Mistral-7B-v01	maap-inference|	batch-enabled		
-|mistralai-Mixtral-8x22B-Instruct-v0-1|	maap-inference			
-|mistralai-Mixtral-8x22B-v0-1|	maap-inference			
-|mistralai-Mixtral-8x7B-Instruct-v01	|maap-inference			
-|mistralai-Mixtral-8x7B-v01	|maap-inference			
-|mmd-3x-deformable-detr_refine_twostage_r50_16xb2-50e_coco	|maap-inference|	batch-enabled		
-|mmd-3x-mask-rcnn_swin-t-p4-w7_fpn_1x_coco	|maap-inference	|batch-enabled		
-|mmd-3x-sparse-rcnn_r101_fpn_300-proposals_crop-ms-480-800-3x_coco|	maap-inference|	batch-enabled		
-|mmd-3x-sparse-rcnn_r50_fpn_300-proposals_crop-ms-480-800-3x_coco|	maap-inference|	batch-enabled		
-|mmd-3x-vfnet_r50-mdconv-c3-c5_fpn_ms-2x_coco	|maap-inference|	batch-enabled		
-|mmd-3x-vfnet_x101-64x4d-mdconv-c3-c5_fpn_ms-2x_coco	|maap-inference	|batch-enabled		
-|mmd-3x-yolof_r50_c5_8x8_1x_coco	|maap-inference|	batch-enabled		
-|mmeft|	maap-inference|	batch-enabled		
-|Muse|	maap-inference			
-|ocsort_yolox_x_crowdhuman_mot17-private-half |	maap-inference|	batch-enabled		
-|Phi-3-medium instruct (128k) |	maap-inference||	maas-inference|	maas-finetuning	
-|Phi-3-medium instruct (4k)	|maap-inference||	maas-inference	|maas-finetuning	
-|Phi-3-mini instruct (128k)	|maap-inference||	maas-inference|	maas-finetuning	
-|Phi-3-mini instruct (4k)|	maap-inference||	maas-inference	|maas-finetuning	
-|Phi-3-small instruct (128k)|maap-inference	||maas-inference		
-|Phi-3-small instruct (8k)	|maap-inference||	maas-inference		
-|Phi-3-vision-128k-instruct|	maap-inference			
-|Phi-3.5-mini instruct (128k)|	maap-inference	||maas-inference|	maas-finetuning	
-|Phi-3.5-MoE instruct (128k)	|maap-inference	||maas-inference|	maas-finetuning	
-|Phi-3.5-vision instruct (128k)|	maap-inference||	maas-inference		
-|Phi-4	maap-inference	|||maas-inference		
-|Prism	maap-inference	||batch-enabled		
-|projecte-aina-aguila-7b|	maap-inference			
-|projecte-aina-FLOR-1-3B|	maap-inference			
-|projecte-aina-FLOR-1-3B-Instructed	| maap-inference			
-|projecte-aina-FLOR-6-3B	|maap-inference			||||
-|projecte-aina-FLOR-6-3B-Instructed	|maap-inference			
-|Prompt-Guard-86M|	maap-inference			
-|Prov-GigaPath	|maap-inference|	batch-enabled		
-|roberta-base	|maap-inference	|batch-enabled		
-|roberta-base-openai-detector|	maap-inference	|batch-enabled		
-|roberta-large|	maap-inference	|batch-enabled		
-|roberta-large-mnli	|maap-inference|	batch-enabled		
-|roberta-large-openai-detector|	maap-inference	|batch-enabled		
-|runwayml-stable-diffusion-inpainting	|maap-inference|	batch-enabled		
-|runwayml-stable-diffusion-v1-5|	maap-inference|	batch-enabled		
-|Salesforce-BLIP-2-opt-2-7b-image-to-text|	maap-inference|	batch-enabled		
-|Salesforce-BLIP-2-opt-2-7b-vqa	|maap-inference|	batch-enabled		
-|Salesforce-BLIP-image-captioning-base	|maap-inference|	batch-enabled		
-|Salesforce-BLIP-vqa-base	|maap-inference	|batch-enabled		
-|snowflake-arctic-base	|maap-inference			
-|snowflake-arctic-instruct	|maap-inference			
-|sshleifer-distilbart-cnn-12-6	|maap-inference	|batch-enabled		
-|stabilityai-stable-diffusion-2-1	|maap-inference|	batch-enabled		
-|stabilityai-stable-diffusion-2-inpainting| maap-inference	|batch-enabled		
-|stabilityai-stable-diffusion-xl-base-1-0|	maap-inference	|batch-enabled		
-|stabilityai-stable-diffusion-xl-refiner-1-0|	maap-inference|	batch-enabled		
-|supply-chain-trade-regulations	|maap-inference|	batch-enabled		
-|t5-base	|maap-inference	|batch-enabled		
-|t5-large	|maap-inference|	batch-enabled		
-|t5-small|	maap-inference|	batch-enabled		
-|TamGen	|maap-inference			
-|tiiuae-falcon-40b	|maap-inference	 |batch-enabled		
-|tiiuae-falcon-7b|	maap-inference |	batch-enabled		
-|Virchow	|maap-inference |	batch-enabled		
-|Virchow2|	maap-inference|	batch-enabled	|||	
+|ALLaM-2-7b-instruct    |maap-inference        ||||    
+|Aurora    |maap-inference            ||||
+|AutoML-Image-Classification|    maap-inference|    batch-enabled        |||
+|AutoML-Image-Instance-Segmentation|    maap-inference|    batch-enabled        |||
+|AutoML-Image-Object-Detection    |maap-inference    |batch-enabled    |||    
+|bert-base-cased    |maap-inference|    batch-enabled    |||    
+|bert-base-uncased    |maap-inference    |batch-enabled        |||
+|bert-large-cased|    maap-inference|    batch-enabled        |||
+|bert-large-uncased|    maap-inference|    batch-enabled|||        
+|BiomedCLIP-PubMedBERT_256-vit_base_patch16_224|    maap-inference|    batch-enabled        |||
+|bytetrack_yolox_x_crowdhuman_mot17-private-half    |maap-inference|    batch-enabled        |||
+|camembert-base    |maap-inference|    batch-enabled        |||
+|CodeLlama-13b-hf|    maap-inference    |batch-enabled        |||
+|CodeLlama-13b-Instruct-hf|    maap-inference    |batch-enabled        |||
+|CodeLlama-13b-Python-hf    |maap-inference|    batch-enabled        |||
+|CodeLlama-34b-hf|    maap-inference    |batch-enabled        |||
+|CodeLlama-34b-Instruct-hf|    maap-inference|    batch-enabled        |||
+|CodeLlama-34b-Python-hf    |maap-inference|    batch-enabled        |||
+|CodeLlama-70b-hf|    maap-inference            ||||
+|CodeLlama-70b-Instruct-hf |    maap-inference            ||||
+|CodeLlama-70b-Python-hf |        maap-inference                ||||
+|CodeLlama-7b-hf |        maap-inference |        batch-enabled         |     |     |    
+|CodeLlama-7b-Instruct-hf     |    maap-inference    |batch-enabled        |||
+|CodeLlama-7b-Python-hf |    maap-inference |    batch-enabled        |||
+|compvis-stable-diffusion-v1-4    |maap-inference    |batch-enabled        |||
+|CxrReportGen    maap-inference    |batch-enabled        ||||
+|databricks-dolly-v2-12b    |maap-inference |    batch-enabled        
+|Deci-DeciCoder-1b    |maap-inference    |batch-enabled        
+|deci-decidiffusion-v1-0    |maap-inference    |batch-enabled        
+|Deci-DeciLM-7B    |maap-inference|    batch-enabled        
+|Deci-DeciLM-7B-instruct    |maap-inference|    batch-enabled        
+|deepset-minilm-uncased-squad2    |maap-inference    |batch-enabled        
+|deepset-roberta-base-squad2|    maap-inference    |batch-enabled        
+|distilbert-base-cased    |maap-inference    |batch-enabled        
+|distilbert-base-cased-distilled-squad    |maap-inference|    batch-enabled        
+|distilbert-base-uncased|    maap-inference|    batch-enabled        
+|distilbert-base-uncased-distilled-squad|    maap-inference    |batch-enabled        
+|distilbert-base-uncased-finetuned-sst-2-english    |maap-inference|    batch-enabled        
+|distilgpt2|    maap-inference    |batch-enabled        
+|distilroberta-base    |maap-inference|    batch-enabled        
+|facebook-bart-large-cnn|    maap-inference|    batch-enabled        
+|facebook-deit-base-patch16-224|    maap-inference|    batch-enabled        
+|facebook-dinov2-base-imagenet1k-1-layer|    maap-inference|    batch-enabled        
+|Facebook-DinoV2-Image-Embeddings-ViT-Base    |maap-inference|    batch-enabled        
+|Facebook-DinoV2-Image-Embeddings-ViT-Giant    |maap-inference|    batch-enabled        
+|facebook-sam-vit-base    |maap-inference    |batch-enabled        
+|facebook-sam-vit-huge|    maap-inference    |batch-enabled        
+|facebook-sam-vit-large    |maap-inference    |batch-enabled        
+|financial-reports-analysis    |maap-inference    |batch-enabled        
+|finiteautomata-bertweet-base-sentiment-analysis|    maap-inference    |batch-enabled        
+|google-vit-base-patch16-224    |maap-inference    |batch-enabled            
+|Jean-Baptiste-camembert-ner|    maap-inference|    batch-enabled        
+|Llama-2-13b    |maap-inference|    batch-enabled|    maas-inference|    maas-finetuning|
+|Llama-2-13b-chat    |maap-inference    || maas-inference        
+|Llama-2-70b    |maap-inference    |batch-enabled |    maas-inference|    maas-finetuning|
+|Llama-2-70b-chat    |maap-inference||    maas-inference        
+|Llama-2-7b    maap-inference|    batch-enabled||    maas-inference|    maas-finetuning|
+|Llama-2-7b-chat    |maap-inference    ||maas-inference        |
+|Llama-3.2-11B-Vision-Instruct|    maap-inference    || maas-inference        
+|Llama-3.2-1B    |maap-inference            
+|Llama-3.2-1B-Instruct    | maap-inference            
+|Llama-3.2-3B    |maap-inference            
+|Llama-3.2-3B-Instruct    |maap-inference            
+|Llama-3.2-90B-Vision-Instruct| maap-inference||    maas-inference        
+|Llama-Guard-3-11B-Vision    |maap-inference            
+|Llama-Guard-3-1B    |maap-inference            
+|Llama-Guard-3-8B|    maap-inference            
+|MatterSim|    maap-inference            
+|MedImageInsight|    maap-inference|    batch-enabled        
+|MedImageParse    |maap-inference|    batch-enabled        
+|Meta-Llama-3-70B    |maap-inference            
+|Meta-Llama-3-70B-Instruct    |maap-inference    ||maas-inference        
+|Meta-Llama-3-8B    maap-inference            
+|Meta-Llama-3-8B-Instruct    |maap-inference||    maas-inference        
+|Meta-Llama-3.1-70B|maap-inference            
+|Meta-Llama-3.1-70B-Instruct    |maap-inference||    maas-inference|    maas-finetuning    
+|Meta-Llama-3.1-8B|    maap-inference            
+|Meta-Llama-3.1-8B-Instruct    |maap-inference||    maas-inference|    maas-finetuning    
+|microsoft-beit-base-patch16-224-pt22k-ft22k|    maap-inference    |batch-enabled        
+|microsoft-deberta-base    |maap-inference    |batch-enabled        
+|microsoft-deberta-base-mnli    |maap-inference|    batch-enabled        
+|microsoft-deberta-large    |maap-inference|    batch-enabled        
+|microsoft-deberta-large-mnli|    maap-inference    |batch-enabled        
+|microsoft-deberta-xlarge    |maap-inference    | batch-enabled        
+|microsoft-llava-med-v1.5-mistral-7b    |maap-inference    |batch-enabled        
+|microsoft-rad-dino    |maap-inference    |batch-enabled        
+|microsoft-swinv2-base-patch4-window12-192-22k|    maap-inference|    batch-enabled        
+|mistral-community-Mixtral-8x22B-v0-1    |maap-inference            
+|mistralai-Mistral-7B-Instruct-v0-2    |maap-inference            
+|mistralai-Mistral-7B-Instruct-v01|    maap-inference            
+|mistralai-Mistral-7B-v01    maap-inference|    batch-enabled        
+|mistralai-Mixtral-8x22B-Instruct-v0-1|    maap-inference            
+|mistralai-Mixtral-8x22B-v0-1|    maap-inference            
+|mistralai-Mixtral-8x7B-Instruct-v01    |maap-inference            
+|mistralai-Mixtral-8x7B-v01    |maap-inference            
+|mmd-3x-deformable-detr_refine_twostage_r50_16xb2-50e_coco    |maap-inference|    batch-enabled        
+|mmd-3x-mask-rcnn_swin-t-p4-w7_fpn_1x_coco    |maap-inference    |batch-enabled        
+|mmd-3x-sparse-rcnn_r101_fpn_300-proposals_crop-ms-480-800-3x_coco|    maap-inference|    batch-enabled        
+|mmd-3x-sparse-rcnn_r50_fpn_300-proposals_crop-ms-480-800-3x_coco|    maap-inference|    batch-enabled        
+|mmd-3x-vfnet_r50-mdconv-c3-c5_fpn_ms-2x_coco    |maap-inference|    batch-enabled        
+|mmd-3x-vfnet_x101-64x4d-mdconv-c3-c5_fpn_ms-2x_coco    |maap-inference    |batch-enabled        
+|mmd-3x-yolof_r50_c5_8x8_1x_coco    |maap-inference|    batch-enabled        
+|mmeft|    maap-inference|    batch-enabled        
+|Muse|    maap-inference            
+|ocsort_yolox_x_crowdhuman_mot17-private-half |    maap-inference|    batch-enabled        
+|Phi-3-medium instruct (128k) |    maap-inference||    maas-inference|    maas-finetuning    
+|Phi-3-medium instruct (4k)    |maap-inference||    maas-inference    |maas-finetuning    
+|Phi-3-mini instruct (128k)    |maap-inference||    maas-inference|    maas-finetuning    
+|Phi-3-mini instruct (4k)|    maap-inference||    maas-inference    |maas-finetuning    
+|Phi-3-small instruct (128k)|maap-inference    ||maas-inference        
+|Phi-3-small instruct (8k)    |maap-inference||    maas-inference        
+|Phi-3-vision-128k-instruct|    maap-inference            
+|Phi-3.5-mini instruct (128k)|    maap-inference    ||maas-inference|    maas-finetuning    
+|Phi-3.5-MoE instruct (128k)    |maap-inference    ||maas-inference|    maas-finetuning    
+|Phi-3.5-vision instruct (128k)|    maap-inference||    maas-inference        
+|Phi-4    maap-inference    |||maas-inference        
+|Prism    maap-inference    ||batch-enabled        
+|projecte-aina-aguila-7b|    maap-inference            
+|projecte-aina-FLOR-1-3B|    maap-inference            
+|projecte-aina-FLOR-1-3B-Instructed    | maap-inference            
+|projecte-aina-FLOR-6-3B    |maap-inference            ||||
+|projecte-aina-FLOR-6-3B-Instructed    |maap-inference            
+|Prompt-Guard-86M|    maap-inference            
+|Prov-GigaPath    |maap-inference|    batch-enabled        
+|roberta-base    |maap-inference    |batch-enabled        
+|roberta-base-openai-detector|    maap-inference    |batch-enabled        
+|roberta-large|    maap-inference    |batch-enabled        
+|roberta-large-mnli    |maap-inference|    batch-enabled        
+|roberta-large-openai-detector|    maap-inference    |batch-enabled        
+|runwayml-stable-diffusion-inpainting    |maap-inference|    batch-enabled        
+|runwayml-stable-diffusion-v1-5|    maap-inference|    batch-enabled        
+|Salesforce-BLIP-2-opt-2-7b-image-to-text|    maap-inference|    batch-enabled        
+|Salesforce-BLIP-2-opt-2-7b-vqa    |maap-inference|    batch-enabled        
+|Salesforce-BLIP-image-captioning-base    |maap-inference|    batch-enabled        
+|Salesforce-BLIP-vqa-base    |maap-inference    |batch-enabled        
+|snowflake-arctic-base    |maap-inference            
+|snowflake-arctic-instruct    |maap-inference            
+|sshleifer-distilbart-cnn-12-6    |maap-inference    |batch-enabled        
+|stabilityai-stable-diffusion-2-1    |maap-inference|    batch-enabled        
+|stabilityai-stable-diffusion-2-inpainting| maap-inference    |batch-enabled        
+|stabilityai-stable-diffusion-xl-base-1-0|    maap-inference    |batch-enabled        
+|stabilityai-stable-diffusion-xl-refiner-1-0|    maap-inference|    batch-enabled        
+|supply-chain-trade-regulations    |maap-inference|    batch-enabled        
+|t5-base    |maap-inference    |batch-enabled        
+|t5-large    |maap-inference|    batch-enabled        
+|t5-small|    maap-inference|    batch-enabled        
+|TamGen    |maap-inference            
+|tiiuae-falcon-40b    |maap-inference     |batch-enabled        
+|tiiuae-falcon-7b|    maap-inference |    batch-enabled        
+|Virchow    |maap-inference |    batch-enabled        
+|Virchow2|    maap-inference|    batch-enabled    |||    
 
 
 ### Azure OpenAI Models in Model Catalog in USGOV Virginia and Arizona 
 | Model Name | Azure OpenAI Deployment | MaaP Inference  | Batch Enabled | MaaS (serverless Compute Inferencing)|
 |----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|:-------------:|
-|gpt-35-turbo|	aoai-deployment	
-|gpt-4	|aoai-deployment	
-|OpenAI GPT-4o mini	|aoai-deployment	
-|OpenAI GPT-4o	|aoai-deployment	
-|OpenAI Text Embedding 3 (large)	|aoai-deployment	
-|OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32	||maap-inference	|batch-enabled
-|OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336	||maap-inference	|batch-enabled
-|openai-clip-vit-base-patch32|	|maap-inference|	batch-enabled
-|openai-clip-vit-large-patch14||	maap-inference| batch-enabled
-|openai-whisper-large||	maap-inference|	batch-enabled
-|openai-whisper-large-v3	||maap-inference|	batch-enabled
-|text-embedding-ada-002	|aoai-deployment
-|gpt2	||maap-inference	|batch-enabled
-|gpt2-large||	maap-inference	|batch-enabled
-|gpt2-medium	|| maap-inference|	batch-enabled
+|gpt-35-turbo|    aoai-deployment    
+|gpt-4    |aoai-deployment    
+|OpenAI GPT-4o mini    |aoai-deployment    
+|OpenAI GPT-4o    |aoai-deployment    
+|OpenAI Text Embedding 3 (large)    |aoai-deployment    
+|OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32    ||maap-inference    |batch-enabled
+|OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336    ||maap-inference    |batch-enabled
+|openai-clip-vit-base-patch32|    |maap-inference|    batch-enabled
+|openai-clip-vit-large-patch14||    maap-inference| batch-enabled
+|openai-whisper-large||    maap-inference|    batch-enabled
+|openai-whisper-large-v3    ||maap-inference|    batch-enabled
+|text-embedding-ada-002    |aoai-deployment
+|gpt2    ||maap-inference    |batch-enabled
+|gpt2-large||    maap-inference    |batch-enabled
+|gpt2-medium    || maap-inference|    batch-enabled
 
 
 

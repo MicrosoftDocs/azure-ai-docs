@@ -10,7 +10,7 @@ In this example, write your credentials to environment variables on the local ma
 
 [!INCLUDE [find key and endpoint](./find-key.md)]
 
-To set the environment variable for your key and endpoint, open a console window and follow the instructions for your operating system and development environment.
+To set the environment variable for your key and endpoint, open a console window and complete the instructions that follow for your operating system and development environment.
 
 - To set the `FACE_APIKEY` environment variable, replace `<your_key>` with one of the keys for your resource.
 - To set the `FACE_ENDPOINT` environment variable, replace `<your_endpoint>` with the endpoint for your resource.

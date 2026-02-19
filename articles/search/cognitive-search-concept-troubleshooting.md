@@ -7,8 +7,9 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: best-practice
 ms.date: 05/08/2025
+ms.update-cycle: 365-days
 ---
 
 # Tips for AI enrichment in Azure AI Search
@@ -17,7 +18,7 @@ This article contains tips to help you get started with AI enrichment and skills
 
 ## Tip 1: Start simple and start small
 
-Both the [**Import data wizard**](search-get-started-skillset.md) and [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) in the Azure portal support AI enrichment. Without writing any code, you can create and examine all of the objects used in an enrichment pipeline: an index, indexer, data source, and skillset.
+Both the [**Import data** wizard](search-get-started-skillset.md) and the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal support AI enrichment. Without writing any code, you can create and examine all of the objects used in an enrichment pipeline: an index, indexer, data source, and skillset.
 
 Another way to start simply is by creating a data source with just a handful of documents or rows in a table that are representative of the documents that will be indexed. A small data set is the best way to increase the speed of finding and fixing issues.Run your sample through the end-to-end pipeline and check that the results meet your needs. Once you're satisfied with the results, you're ready to add more files to your data source.
 
@@ -71,7 +72,7 @@ For [parallel indexing](search-howto-large-index.md), distribute your data into 
 ## See also
 
 + [Quickstart: Create an AI enrichment pipeline in the Azure portal](search-get-started-skillset.md)
-+ [Tutorial: Learn AI enrichment REST APIs](cognitive-search-tutorial-blob.md)
-+ [How to configure blob indexers](search-howto-indexing-azure-blob-storage.md)
++ [Tutorial: Learn AI enrichment REST APIs](tutorial-skillset.md)
++ [How to configure blob indexers](search-how-to-index-azure-blob-storage.md)
 + [How to define a skillset](cognitive-search-defining-skillset.md)
 + [How to map enriched fields to an index](cognitive-search-output-field-mapping.md)

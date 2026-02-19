@@ -6,7 +6,7 @@ author: ccrestana
 ms.author: cacrest
 ---
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - An Azure Machine Learning workspace. To create a workspace, see [Manage Azure Machine Learning workspaces](../how-to-manage-workspace.md).
 - The following permissions in the Azure Machine Learning workspace:
   - For creating or managing batch endpoints and deployments: Use an Owner, Contributor, or custom role that has been assigned the `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*` permissions.

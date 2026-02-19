@@ -5,35 +5,43 @@ description: Learn how to manage Azure Machine Learning workspaces in the Azure 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: fsolomon
-ms.date: 03/05/2025
+ms.author: scottpolly
+author: s-polly
+ms.date: 01/28/2026
 ms.topic: how-to
-ms.custom: fasttrack-edit, FY21Q4-aml-seo-hack, contperf-fy21q4, sdkv2, event-tier1-build-2022, ignite-2022, devx-track-python
+ms.custom:
+  - fasttrack-edit
+  - FY21Q4-aml-seo-hack
+  - contperf-fy21q4
+  - sdkv2
+  - event-tier1-build-2022
+  - ignite-2022
+  - devx-track-python
+  - sfi-image-nochange
 ---
 
 # Manage Azure Machine Learning workspaces in the portal or with the Python SDK (v2)
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-In this article, you create, view, and delete [**Azure Machine Learning workspaces**](concept-workspace.md) for [Azure Machine Learning](overview-what-is-azure-machine-learning.md), with the [Azure portal](https://portal.azure.com) or the [SDK for Python](https://aka.ms/sdk-v2-install).
+In this article, you create, view, and delete [**Azure Machine Learning workspaces**](concept-workspace.md) for [Azure Machine Learning](overview-what-is-azure-machine-learning.md) by using the [Azure portal](https://portal.azure.com) or the [SDK for Python](https://aka.ms/sdk-v2-install).
 
-As your needs change or your automation requirements increase, you can manage workspaces [with the CLI](how-to-manage-workspace-cli.md), [Azure PowerShell](how-to-manage-workspace-powershell.md),  or [via the Visual Studio Code extension](how-to-setup-vs-code.md).
+As your needs change or your automation requirements increase, you can manage workspaces [by using the CLI](how-to-manage-workspace-cli.md), [Azure PowerShell](how-to-manage-workspace-powershell.md), or [via the Visual Studio Code extension](how-to-setup-vs-code.md).
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
-* With the Python SDK:
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
+* By using the Python SDK:
+   1. Python 3.10 or later.
    1. [Install the SDK v2](https://aka.ms/sdk-v2-install).
-   1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
+   1. Install `azure-identity`: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
    1. Provide your subscription details:
 
       [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
       [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=subscription_id)]
 
-   1. Get a handle to the subscription. All the Python code in this article uses `ml_client`:
+   1. Get a handle to the subscription. The Python code in this article uses `ml_client`:
 
       [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=ml_client)]
       
@@ -56,7 +64,7 @@ As your needs change or your automation requirements increase, you can manage wo
 
 * For network isolation with online endpoints, you can use workspace-associated resources (Azure Container Registry (ACR), Storage account, Key Vault, and Application Insights) from a resource group different from your workspace. However, these resources must belong to the same subscription and tenant as your workspace. For information about the limitations that apply to securing managed online endpoints, using a workspace's managed virtual network, see [Network isolation with managed online endpoints](concept-secure-online-endpoint.md#limitations).
 
-* Workspace creation also creates an Azure Container Registry (ACR) by default. Since ACR doesn't currently support unicode characters in resource group names, use a resource group that avoids these characters.
+* Workspace creation also creates an Azure Container Registry (ACR) by default. Since ACR doesn't currently support Unicode characters in resource group names, use a resource group that avoids these characters.
 
 * Azure Machine Learning doesn't support hierarchical namespace (Azure Data Lake Storage Gen2 feature) for the default storage account of the workspace.
 
@@ -70,11 +78,11 @@ You can create a workspace [directly in Azure Machine Learning studio](./quickst
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-* **Basic configuration for getting started** Without specification, [associated resources](concept-workspace.md#associated-resources) and the Azure resource group are created automatically. This code creates a workspace named `myworkspace`, dependent Azure resources (Storage account, Key Vault, Container Registry, Application Insights), and a resource group named `myresourcegroup` in `eastus2`.
+* **Basic configuration for getting started**. If you don't specify, the process automatically creates [associated resources](concept-workspace.md#associated-resources) and the Azure resource group. This code creates a workspace named `myworkspace`, dependent Azure resources (Storage account, Key Vault, Container Registry, Application Insights), and a resource group named `myresourcegroup` in `eastus2`.
 
    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=basic_workspace_name)]
 
-* **Use existing Azure resources**. To bring existing Azure resources, reference them using the Azure resource ID format. Find the specific Azure resource IDs in the Azure portal, or with the SDK. This example assumes that the resource group, Storage account, Key Vault, Application Insights, and Container Registry already exist.
+* **Use existing Azure resources**. To bring existing Azure resources, reference them by using the Azure resource ID format. Find the specific Azure resource IDs in the Azure portal, or with the SDK. This example assumes that the resource group, Storage account, Key Vault, Application Insights, and Container Registry already exist.
 
    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=basic_ex_workspace_name)]
 
@@ -97,7 +105,7 @@ You can create a workspace [directly in Azure Machine Learning studio](./quickst
 
 For more information, see [Workspace SDK reference](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace).
 
-If you have problems in accessing your subscription, see [Set up authentication for Azure Machine Learning resources and workflows](how-to-setup-authentication.md), and the [Authentication in Azure Machine Learning](https://aka.ms/aml-notebook-auth) notebook.
+If you have problems accessing your subscription, see [Set up authentication for Azure Machine Learning resources and workflows](how-to-setup-authentication.md), and the [Authentication in Azure Machine Learning](https://aka.ms/aml-notebook-auth) notebook.
 
 # [Portal](#tab/azure-portal)
 
@@ -143,11 +151,11 @@ If you have problems in accessing your subscription, see [Set up authentication 
 
 # [Studio](#tab/studio)
 
-1. Provide a name for the Azure Machine Learning workspace resource.
+1. Enter a name for the Azure Machine Learning workspace resource.
 
-1. Provide a friendly name for displaying your workspace in Studio.
+1. Enter a friendly name to display your workspace in Studio.
 
-1. Optionally, select a [hub workspace](concept-hub-workspace.md), to host your workspace in a shared environment for your team, with preconfigured security, access to company resources, and shared compute. 
+1. Optionally, select a [hub workspace](concept-hub-workspace.md) to host your workspace in a shared environment for your team. The hub workspace provides preconfigured security, access to company resources, and shared compute. 
 
    :::image type="content" source="media/concept-hub-workspace/project-workspace-create.png" alt-text="Screenshot of creating a workspace using hub in Azure Machine Learning studio.":::
 
@@ -156,7 +164,7 @@ If you have problems in accessing your subscription, see [Set up authentication 
 ### Networking
 
 > [!IMPORTANT]
-> For more information about use of a private endpoint and virtual network with your workspace, see [Network isolation and privacy](how-to-network-security-overview.md).
+> For more information about using a private endpoint and virtual network with your workspace, see [Network isolation and privacy](how-to-network-security-overview.md).
 
 # [Python SDK](#tab/python)
 
@@ -168,11 +176,11 @@ This class requires an existing virtual network.
 
 # [Portal](#tab/azure-portal)
 
-1. The default network configuration uses a **Public endpoint**, which is accessible on the public internet. However, you can select **Private with Internet Outbound** or **Private with Approved Outbound** to limit access to your workspace to an Azure Virtual Network you created. Then scroll down to configure the settings.
+1. The default network configuration uses a **Public endpoint**, which is accessible on the public internet. However, you can select **Private with Internet Outbound** or **Private with Approved Outbound** to limit access to your workspace to an Azure Virtual Network you created. Then, scroll down to configure the settings.
 
    :::image type="content" source="media/how-to-manage-workspace/select-private-endpoint.png" alt-text="Screenshot of the private endpoint selection.":::
 
-1. Under **Workspace Inbound access** select **Add** to open the **Create private endpoint** form.
+1. Under **Workspace Inbound access**, select **Add** to open the **Create private endpoint** form.
 1. On the **Create private endpoint** form, set the location, name, and virtual network to use. To use the endpoint with a Private DNS Zone, select **Integrate with private DNS zone** and select the zone using the **Private DNS Zone** field. Select **OK** to create the endpoint.
 
    :::image type="content" source="media/how-to-manage-workspace/create-private-endpoint.png" alt-text="Screenshot of the private endpoint creation.":::
@@ -185,7 +193,7 @@ This class requires an existing virtual network.
 
 # [Studio](#tab/studio)
 
-1. To create a workspace with disabled internet connectivity via Studio, you should specify a hub workspace that has public network access disabled. Workspaces created without a hub in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), have public internet access enabled. A private hub has a 'lock' icon.
+1. To create a workspace with disabled internet connectivity via Studio, specify a hub workspace that has public network access disabled. Workspaces created without a hub in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) have public internet access enabled. A private hub has a 'lock' icon.
 
    :::image type="content" source="media/how-to-manage-workspace/studio-private-hub-selection.png" alt-text="Screenshot of the private hub with the 'lock' icon.":::
  
@@ -199,12 +207,12 @@ By default, an Azure Cosmos DB instance stores the workspace metadata. Microsoft
 
 #### Use your own data encryption key
 
-You can provide your own key for data encryption. Providing your own key creates the Azure Cosmos DB instance that stores metadata in your Azure subscription. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
+You can provide your own key for data encryption. When you provide your own key, you create the Azure Cosmos DB instance that stores metadata in your Azure subscription. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
 
 Use these steps to provide your own key:
 
 > [!IMPORTANT]
-> Before you follow these steps, you must first perform these actions:
+> Before you follow these steps, first perform these actions:
 >
 > Follow the steps in [Configure customer-managed keys](how-to-setup-customer-managed-keys.md) to:
 >
@@ -227,9 +235,9 @@ ws = Workspace(
     display_name="My workspace",
     description="This example shows how to create a workspace",
     customer_managed_key=CustomerManagedKey(
-        key_vault="/subscriptions/<SUBSCRIPTION_ID>/resourcegroups/<RESOURCE_GROUP>/providers/microsoft.keyvault/vaults/<VAULT_NAME>"
+        key_vault="/subscriptions/<SUBSCRIPTION_ID>/resourcegroups/<RESOURCE_GROUP>/providers/microsoft.keyvault/vaults/<VAULT_NAME>",
         key_uri="<KEY-IDENTIFIER>"
-    )
+    ),
     tags=dict(purpose="demo")
 )
 
@@ -238,7 +246,7 @@ ml_client.workspaces.begin_create(ws)
 
 # [Portal](#tab/azure-portal)
 
-1. Select **Encrypt data using a ustomer-managed key**, and then select **Click to select key**. This configuration creates Azure resources used to encrypt data in your Azure subscription. Alternatively, select **Use service-side encryption** to use service-side resources for encryption. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
+1. Select **Encrypt data using a customer-managed key**, and then select **Click to select key**. This configuration creates Azure resources used to encrypt data in your Azure subscription. Alternatively, select **Use service-side encryption** to use service-side resources for encryption. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
 
     :::image type="content" source="media/how-to-manage-workspace/advanced-workspace.png" alt-text="Screenshot of the customer-managed keys.":::
 
@@ -248,7 +256,7 @@ ml_client.workspaces.begin_create(ws)
 
 # [Studio](#tab/studio)
 
-1. To create a workspace with customer-managed key encryption via Studio, you should specify a hub workspace that is customer-managed key encryption enabled. To verify the hub workspace configuration, view it in the Azure portal. 
+1. To create a workspace with customer-managed key encryption via Studio, specify a hub workspace that has customer-managed key encryption enabled. To verify the hub workspace configuration, view it in the Azure portal. 
  
 1. If you don't select a hub workspace at time of creation, your workspace uses Microsoft-managed keys by default.
    
@@ -260,26 +268,26 @@ In the portal, use the **Identity** page to configure managed identity, storage 
 
 #### Managed identity
 
-A workspace can be given either a system assigned identity or a user assigned identity. This identity is used to access resources in your subscription. For more information, see [Set up authentication between Azure Machine Learning and other services](how-to-identity-based-service-authentication.md).
+You can assign either a system assigned identity or a user assigned identity to a workspace. Use this identity to access resources in your subscription. For more information, see [Set up authentication between Azure Machine Learning and other services](how-to-identity-based-service-authentication.md).
 
 #### Storage account access
 
-Choose between **Credential-based access** or **Identity-based access** when connecting to the default storage account. For identity-based authentication, the Storage Blob Data Contributor role must be granted to the workspace managed identity on the storage account.
+Choose between **Credential-based access** or **Identity-based access** when connecting to the default storage account. For identity-based authentication, you must grant the Storage Blob Data Contributor role to the workspace managed identity on the storage account.
 
 #### Data impact
 
 To limit the data that Microsoft collects on your workspace, select **High business impact workspace** in the portal, or set `hbi_workspace=true ` in Python. For more information on this setting, see [Encryption at rest](concept-data-encryption.md#encryption-at-rest).
 
 > [!IMPORTANT]
-> Selecting high business impact can only happen when creating a workspace. You can't change this setting after workspace creation.
+> You can select high business impact only when creating a workspace. You can't change this setting after workspace creation.
 
 ### Tags
 
-Tags are name/value pairs that enable you to categorize resources and view consolidated billing by applying the same tag to multiple resources and resource groups.
+Tags are name/value pairs that you use to categorize resources and view consolidated billing by applying the same tag to multiple resources and resource groups.
 
 Assign tags for the workspace by entering the name/value pairs. For more information, see [Use tags to organize your Azure resources](/azure/azure-resource-manager/management/tag-resources).
 
-Also use tags to [enforce workspace policies)(#enforce-policies).
+Also use tags to [enforce policies](#enforce-policies).
 
 
 
@@ -294,11 +302,11 @@ To use code on your local environment that references this workspace, download t
 
    :::image type="content" source="./media/how-to-manage-workspace/configure.png" alt-text="Screenshot of the 'download config.json' option.":::
 
-Place the file in the directory structure that holds your Python scripts or Jupyter Notebooks. The same directory, a subdirectory named *.azureml*, or a parent directory can hold this file. When you create a compute instance, this file is added to the correct directory on the VM for you.
+Place the file in the directory structure that holds your Python scripts or Jupyter Notebooks. The same directory, a subdirectory named *.azureml*, or a parent directory can hold this file. When you create a compute instance, you add this file to the correct directory on the VM.
 
 ## Enforce policies
 
-You can turn on/off these features of a workspace:
+Turn on or off these features for a workspace:
 
 * Feedback opportunities in the workspace. Opportunities include occasional in-product surveys and the smile-frown feedback tool in the banner of the workspace.
 * Ability to [try out preview features](how-to-enable-preview-features.md) in the workspace.
@@ -307,37 +315,37 @@ These features are on by default. To turn them off:
 
 * When creating the workspace, turn off features from the [Tags](#tags) section:
 
-   1. Turn off feedback by adding the pair "ADMIN_HIDE_SURVEY: TRUE"
-   1. Turn off previews by adding the pair "AZML_DISABLE_PREVIEW_FEATURE": "TRUE"
+   1. Turn off feedback by adding the pair `ADMIN_HIDE_SURVEY: TRUE`
+   1. Turn off previews by adding the pair `AZML_DISABLE_PREVIEW_FEATURE: TRUE`
 
 * For an existing workspace, turn off features from the **Tags** section:
 
-   1. Go to workspace resource in the [Azure portal](https://portal.azure.com)
-   1. Open **Tags** from left panel
-   1. Turn off feedback by adding the pair "ADMIN_HIDE_SURVEY: TRUE"
-   1. Turn off previews by adding the pair "AZML_DISABLE_PREVIEW_FEATURE: TRUE"
+   1. Go to workspace resource in the [Azure portal](https://portal.azure.com).
+   1. Open **Tags** from the left panel.
+   1. Turn off feedback by adding the pair `ADMIN_HIDE_SURVEY: TRUE`
+   1. Turn off previews by adding the pair `AZML_DISABLE_PREVIEW_FEATURE: TRUE`.
    1. Select **Apply**.  
 
 :::image type="content" source="media/how-to-manage-workspace/tags.png" alt-text="Screenshot shows setting tags to prevent feedback in the workspace.":::
 
-You can turn off previews at a subscription level, ensuring that it's off for all workspace in the subscription. In this case, users in the subscription also can't access the preview tool before selecting a workspace. This setting is useful for administrators who want to ensure that preview features aren't used in their organization. 
+You can turn off previews at a subscription level, ensuring that it's off for all workspaces in the subscription. In this case, users in the subscription also can't access the preview tool before selecting a workspace. This setting is useful for administrators who want to ensure that preview features aren't used in their organization. 
 
 If the preview setting is disabled at the subscription level, setting it on individual workspaces is ignored.
 
 To disable preview features at the subscription level:
 
-1. Go to subscription resource in the [Azure portal](https://portal.azure.com)
-1. Open **Tags** from left panel
-1. Turn off previews for all workspaces in the subscription by adding the pair "AZML_DISABLE_PREVIEW_FEATURE": "TRUE"
+1. Go to subscription resource in the [Azure portal](https://portal.azure.com).
+1. Open **Tags** from the left panel.
+1. Turn off previews for all workspaces in the subscription by adding the pair `AZML_DISABLE_PREVIEW_FEATURE: TRUE`.
 1. Select **Apply**.  
 
 ## Connect to a workspace
 
-When running machine learning tasks with the SDK, you require a MLClient object that specifies the connection to your workspace. You can create an `MLClient` object from parameters, or with a configuration file.
+When you run machine learning tasks by using the SDK, you need an `MLClient` object that specifies the connection to your workspace. You can create an `MLClient` object from parameters or by using a configuration file.
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-* **With a configuration file:** This code reads the contents of the configuration file to find your workspace. It opens a prompt to sign in if you didn't already authenticate.
+* **By using a configuration file:** This code reads the contents of the configuration file to find your workspace. It opens a prompt to sign in if you didn't already authenticate.
 
     ```python
     from azure.ai.ml import MLClient
@@ -345,11 +353,11 @@ When running machine learning tasks with the SDK, you require a MLClient object 
     # read the config from the current directory
     ws_from_config = MLClient.from_config(credential=DefaultAzureCredential())
     ```
-* **From parameters**: There's no need to have a config.json file available if you use this approach.
+* **From parameters:** You don't need a config.json file if you use this approach.
     
     [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=ws)]
 
-If you have problems in accessing your subscription, see [Set up authentication for Azure Machine Learning resources and workflows](how-to-setup-authentication.md), and the [Authentication in Azure Machine Learning](https://aka.ms/aml-notebook-auth) notebook.
+If you have problems accessing your subscription, see [Set up authentication for Azure Machine Learning resources and workflows](how-to-setup-authentication.md), and the [Authentication in Azure Machine Learning](https://aka.ms/aml-notebook-auth) notebook.
 
 ## Find a workspace
 
@@ -362,7 +370,7 @@ See a list of all the workspaces you have available. You can also search for a w
 [!Notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=my_ml_client)]
 [!Notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=ws_name)]
 
-To obtain specific workspace details:
+To get specific workspace details:
 
 [!Notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=ws_location)]
 
@@ -394,7 +402,7 @@ When you no longer need a workspace, delete it.
 [!INCLUDE [machine-learning-delete-workspace](includes/machine-learning-delete-workspace.md)]
 
 > [!TIP]
-> The default behavior for Azure Machine Learning is to _soft delete_ the workspace. This means that the workspace isn't immediately deleted, but instead is marked for deletion. For more information, see [Soft delete](./concept-soft-delete.md).
+> The default behavior for Azure Machine Learning is to _soft delete_ the workspace. This behavior means that the workspace isn't immediately deleted, but instead is marked for deletion. For more information, see [Soft delete](./concept-soft-delete.md).
 
 # [Python SDK](#tab/python)
 
@@ -430,7 +438,7 @@ You can't delete a workspace from studio. Instead, use the Azure portal or the P
 
 ## Troubleshooting
 
-* **Supported browsers in Azure Machine Learning studio**: We suggest that you use the most up-to-date browser that's compatible with your operating system. These browsers are supported:
+* **Supported browsers in Azure Machine Learning studio**: Use the most up-to-date browser that's compatible with your operating system. These browsers are supported:
   * Microsoft Edge (The new Microsoft Edge, latest version. Note: Microsoft Edge legacy isn't supported)
   * Safari (latest version, Mac only)
   * Chrome (latest version)
@@ -438,7 +446,7 @@ You can't delete a workspace from studio. Instead, use the Azure portal or the P
 
 * **Azure portal**:
   * If you go directly to your workspace from a share link from the SDK or the Azure portal, you can't view the standard **Overview** page that has subscription information in the extension. Additionally, in this scenario, you can't switch to another workspace. To view another workspace, go directly to [Azure Machine Learning studio](https://ml.azure.com) and search for the workspace name.
-  * All assets (Data, Experiments, Computes, and so on) are only available in [Azure Machine Learning studio](https://ml.azure.com). The Azure portal doesn't* offer them.
+  * You can only access all assets (Data, Experiments, Computes, and so on) in [Azure Machine Learning studio](https://ml.azure.com). The Azure portal doesn't offer them.
   * Attempting to export a template for a workspace from the Azure portal might return an error similar to this text: `Could not get resource of the type <type>. Resources of this type will not be exported.` As a workaround, use one of the templates provided at [https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices) as the basis for your template.
 
 ### Workspace diagnostics
@@ -461,7 +469,7 @@ Examples in this article come from [workspace.ipynb](https://github.com/Azure/az
 
 ## Next steps
 
-Once you have a workspace, learn how to [Train and deploy a model](tutorial-train-deploy-notebook.md).
+After creating a workspace, learn how to [Train and deploy a model](tutorial-train-deploy-notebook.md).
 
 To learn more about planning a workspace for your organization's requirements, visit [Organize and set up Azure Machine Learning](/azure/cloud-adoption-framework/ready/azure-best-practices/ai-machine-learning-resource-organization).
 

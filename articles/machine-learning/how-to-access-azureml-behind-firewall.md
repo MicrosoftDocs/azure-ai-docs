@@ -6,13 +6,15 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: meerakurup
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: shshubhe
 ms.date: 04/03/2025
-ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 monikerRange: 'azureml-api-2 || azureml-api-1'
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Configure inbound and outbound network traffic

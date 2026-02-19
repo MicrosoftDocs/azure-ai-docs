@@ -1,12 +1,12 @@
 ---
 title: Call Center Telephony Integration - Speech service
-titleSuffix: Azure AI services
+titleSuffix: Foundry Tools
 description: A common scenario for speech to text is transcribing large volumes of telephony data that come from various systems, such as interactive voice response (IVR) in real-time. This requires an integration with the Telephony System used.
 ms.service: azure-ai-speech
-ms.topic: conceptual
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
+ms.topic: concept-article
+ms.date: 12/19/2025
+author: PatrickFarley
+ms.author: pafarley
 ms.reviewer: jagoerge
 ms.custom: template-concept
 ---
@@ -23,7 +23,7 @@ For easier integration the Speech service also supports "ALAW in WAV container" 
 
 ## Azure Communication Services 
 
-[Azure Communication Services](/azure/communication-services/overview) calls automation APIs provide telephony integration. real-time event triggers to perform actions based on custom business logic specific to their domain. Within the call automation APIs developers can use simple AI powered APIs, which can be used to play personalized greeting messages, recognize conversational voice inputs to gather information on contextual questions to drive a more self-service model with customers, use sentiment analysis to improve customer service overall. These content specific APIs are orchestrated through Azure AI services with support for customization of AI models without developers needing to terminate media streams on their services and streaming back to Azure for AI functionality. For more information, see [Azure Communication Services](/azure/communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration?context=/azure/ai-services/speech-service/context/context).
+[Azure Communication Services](/azure/communication-services/overview) calls automation APIs provide telephony integration. real-time event triggers to perform actions based on custom business logic specific to their domain. Within the call automation APIs developers can use simple AI powered APIs, which can be used to play personalized greeting messages, recognize conversational voice inputs to gather information on contextual questions to drive a more self-service model with customers, use sentiment analysis to improve customer service overall. These content specific APIs are orchestrated through Foundry Tools with support for customization of AI models without developers needing to terminate media streams on their services and streaming back to Azure for AI functionality. For more information, see [Azure Communication Services](/azure/communication-services/concepts/call-automation/azure-communication-services-azure-cognitive-services-integration?context=/azure/ai-services/speech-service/context/context).
 
 ## Next steps
 

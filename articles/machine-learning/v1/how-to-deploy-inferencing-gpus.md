@@ -5,9 +5,9 @@ description: This article teaches you how to use Azure Machine Learning to deplo
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.author: larryfr
-author: Blackmist
-ms.reviewer: vaidyas
+ms.author: scottpolly
+author: s-polly
+ms.reviewer: jturuk
 ms.date: 03/07/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, sdkv1
