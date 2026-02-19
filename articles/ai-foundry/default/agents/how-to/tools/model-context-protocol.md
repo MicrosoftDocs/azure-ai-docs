@@ -926,7 +926,7 @@ The following steps outline how to connect to a remote MCP server from Foundry A
 
 ## Known limitations
 
-- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 120 seconds. If your MCP server takes longer than 120 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
+- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
 
 ## Common questions and errors
 
