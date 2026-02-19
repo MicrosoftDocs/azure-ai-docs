@@ -255,7 +255,7 @@ Prompt-based evaluators support three scoring methods:
 - **Continuous**: Float scores for fine-grained measurement on a range you define (for example, 0.0–1.0). Higher is better.
 - **Binary** (true/false): Boolean result for threshold-based checks.
 
-The LLM must return a JSON object with `result` and `reason`. The type of `result` matches your scoring method: an integer for ordinal, a float for continuous, or a boolean for binary.
+The evaluator must return a JSON object with `result` and `reason`. The type of `result` matches your scoring method: an integer for ordinal, a float for continuous, or a boolean for binary.
 
 The following example prompt uses ordinal scoring (1–5) to evaluate the friendliness of a response:
 
