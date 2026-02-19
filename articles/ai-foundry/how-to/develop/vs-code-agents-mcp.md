@@ -34,7 +34,7 @@ Foundry developers can stay productive by developing, testing, and deploying MCP
 
 ## Create an Azure AI agent within the designer view
 
-To create an Azure AI agent, follow the steps in [Create and edit Azure AI agents within the designer view](./vs-code-agents.md#create-and-edit-an-azure-ai-agent-within-the-designer-view).
+To create an Azure AI agent, follow the steps in [Create and edit Azure AI agents within the designer view](./vs-code-agents.md#create-an-ai-agent-in-the-designer).
 
 ## Add an existing MCP server tool to the AI agent
 
