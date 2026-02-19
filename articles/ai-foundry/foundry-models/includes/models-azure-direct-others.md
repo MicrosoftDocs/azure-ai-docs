@@ -52,6 +52,8 @@ You can run these models through the BFL service provider API and through the [i
 
 #### Code samples for FLUX.2[pro] and FLUX.2[flex]
 
+These code samples use FLUX.2[pro] for illustration. To interchange models, replace the API and model in the following code.
+
 **Image generation** 
 
 - Input: Text 
