@@ -37,7 +37,7 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
-Java SDK samples are coming soon.
+Java SDK samples are not yet available.
 
 ## Prerequisites
 
