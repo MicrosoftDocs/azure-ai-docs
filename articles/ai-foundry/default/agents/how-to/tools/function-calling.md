@@ -1,7 +1,7 @@
 ---
 title: Use function calling with Microsoft Foundry agents
 titleSuffix: Microsoft Foundry
-description: Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, or REST and return outputs to the agent.
+description: Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, TypeScript, or REST and return outputs to the agent.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -28,7 +28,10 @@ You can run agents with function tools in the Microsoft Foundry portal. However,
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+> [!NOTE]
+> The Java SDK does not currently support function calling with the new agent APIs (`azure-ai-projects` package). Java support is available for the classic agent APIs only. For Java function calling examples with classic agents, see the [classic agent documentation](../../../../agents/how-to/tools-classic/function-calling.md).
 
 ## Prerequisites
 
@@ -36,7 +39,12 @@ Before you start, make sure you have:
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - A Foundry project and a deployed model.
-- The latest prerelease SDK package for your language (`azure-ai-projects>=2.0.0b1` for Python, `Azure.AI.Projects.OpenAI` prerelease for .NET). For installation and authentication steps, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+- The latest prerelease SDK package for your language:
+  - Python: `azure-ai-projects>=2.0.0b1`
+  - .NET: `Azure.AI.Projects.OpenAI` (prerelease)
+  - TypeScript: `@azure/ai-projects` (latest beta)
+  
+  For installation and authentication steps, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
 
 ### Environment variables
 
@@ -46,6 +54,7 @@ Each language uses different environment variable names. Use one set consistentl
 | --- | --- | --- |
 | Python | `AZURE_AI_PROJECT_ENDPOINT` | `AZURE_AI_MODEL_DEPLOYMENT_NAME` |
 | C# | `FOUNDRY_PROJECT_ENDPOINT` | `MODEL_DEPLOYMENT_NAME` |
+| TypeScript | `AZURE_AI_PROJECT_ENDPOINT` | `MODEL_DEPLOYMENT_NAME` |
 | REST API | `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` | (use the request body field) |
 
 > [!TIP]
@@ -505,7 +514,164 @@ The response contains a function call item that you need to process:
 
 After you process the function call and provide the output back to the agent, the final response includes the weather information in natural language.
 
-::: zone-end
+:::zone-end
+
+:::zone pivot="typescript"
+
+Use the following code sample to create an agent with function tools, handle function calls from the model, and provide function results to get the final response.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+
+/**
+ * Define a function tool for the model to use
+ */
+const funcTool = {
+  type: "function" as const,
+  name: "get_horoscope",
+  description: "Get today's horoscope for an astrological sign.",
+  strict: true,
+  parameters: {
+    type: "object",
+    properties: {
+      sign: {
+        type: "string",
+        description: "An astrological sign like Taurus or Aquarius",
+      },
+    },
+    required: ["sign"],
+    additionalProperties: false,
+  },
+};
+
+/**
+ * Generate a horoscope for the given astrological sign.
+ */
+function getHoroscope(sign: string): string {
+  return `${sign}: Next Tuesday you will befriend a baby otter.`;
+}
+
+export async function main(): Promise<void> {
+  // Create AI Project client
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = await project.getOpenAIClient();
+
+  // Create agent with function tools
+  console.log("Creating agent with function tools...");
+  const agent = await project.agents.createVersion("function-tool-agent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions: "You are a helpful assistant that can use function tools.",
+    tools: [funcTool],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Prompt the model with tools defined
+  console.log("\nGenerating initial response...");
+  const response = await openAIClient.responses.create(
+    {
+      input: [
+        {
+          type: "message",
+          role: "user",
+          content: "What is my horoscope? I am an Aquarius.",
+        },
+      ],
+    },
+    {
+      body: { agent: { name: agent.name, type: "agent_reference" } },
+    },
+  );
+  console.log(`Response output: ${response.output_text}`);
+
+  // Process function calls
+  const inputList: Array<{
+    type: "function_call_output";
+    call_id: string;
+    output: string;
+  }> = [];
+
+  for (const item of response.output) {
+    if (item.type === "function_call") {
+      if (item.name === "get_horoscope") {
+        // Parse the function arguments
+        const args = JSON.parse(item.arguments);
+
+        // Execute the function logic for get_horoscope
+        const horoscope = getHoroscope(args.sign);
+
+        // Provide function call results to the model
+        inputList.push({
+          type: "function_call_output",
+          call_id: item.call_id,
+          output: JSON.stringify({ horoscope }),
+        });
+      }
+    }
+  }
+
+  console.log("\nFinal input:");
+  console.log(JSON.stringify(inputList, null, 2));
+
+  // Submit function results to get final response
+  const finalResponse = await openAIClient.responses.create(
+    {
+      input: inputList,
+      previous_response_id: response.id,
+    },
+    {
+      body: { agent: { name: agent.name, type: "agent_reference" } },
+    },
+  );
+
+  // The model should be able to give a response!
+  console.log("\nFinal output:");
+  console.log(finalResponse.output_text);
+
+  // Clean up
+  console.log("\nCleaning up resources...");
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+### Expected output
+
+The following example shows the expected output:
+
+```console
+Creating agent with function tools...
+Agent created (id: <agent-id>, name: function-tool-agent, version: <version>)
+
+Generating initial response...
+Response output: 
+
+Final input:
+[
+  {
+    "type": "function_call_output",
+    "call_id": "call_abc123",
+    "output": "{\"horoscope\":\"Aquarius: Next Tuesday you will befriend a baby otter.\"}"
+  }
+]
+
+Final output:
+Your horoscope for Aquarius: Next Tuesday you will befriend a baby otter.
+
+Cleaning up resources...
+Agent deleted
+```
+
+:::zone-end
 
 ## Verify function calling works
 

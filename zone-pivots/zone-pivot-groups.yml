@@ -1255,6 +1255,8 @@ groups:
     title: Python
   - id: csharp
     title: C#
+  - id: typescript
+    title: TypeScript
 - id: selection-ai-search-tool
   title: Selections
   prompt: What would you like to see?
@@ -1508,6 +1510,8 @@ groups:
     title: Python 
   - id: csharp
     title: C#
+  - id: java
+    title: Java
   - id: rest
     title: REST API
   - id: typescript
@@ -1546,6 +1550,8 @@ groups:
     title: Python
   - id: csharp
     title: C#
+  - id: typescript
+    title: TypeScript
   - id: rest
     title: REST API
 - id: selection-agent-to-agent

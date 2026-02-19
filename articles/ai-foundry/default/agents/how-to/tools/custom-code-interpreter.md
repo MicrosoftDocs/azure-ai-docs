@@ -34,6 +34,10 @@ This article uses the Azure CLI and a runnable sample project.
 
 For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
+## SDK limitations
+
+Custom code interpreter is currently supported only through the Python SDK and REST API. The C#, JavaScript/TypeScript, and Java SDKs do not yet support this feature. If you need custom code interpreter functionality with these languages, use the REST API directly.
+
 ## Prerequisites
 
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.60.0 or later.
