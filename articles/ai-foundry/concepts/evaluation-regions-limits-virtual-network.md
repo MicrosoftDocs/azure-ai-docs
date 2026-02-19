@@ -1,7 +1,7 @@
 ---
-title: Rate limits, region, and virtual network support for evaluation
+title: Rate limits, region support, and enterprise features for evaluation
 titleSuffix: Microsoft Foundry
-description: Learn about region availability, rate limits, and virtual network support for evaluation in Microsoft Foundry.
+description: Learn about region availability, rate limits, virtual network support, and using your own storage account for evaluation in Microsoft Foundry.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
@@ -12,11 +12,11 @@ monikerRange: 'foundry-classic || foundry'
 ms.custom: references_regions
 ---
 
-# Rate limits, region, and virtual network support for evaluation
+# Rate limits, region support, and enterprise features for evaluation
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]  
 
-This article provides an overview of which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, and how to configure virtual network support for network isolation.
+This article provides an overview of which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, how to configure virtual network support for network isolation, and using your own storage account to run evaluations.
 
 ## Region support
 
@@ -34,7 +34,7 @@ Certain AI-assisted evaluators and AI red teaming are available only in the foll
 
 ### Agent playground evaluation region support
 
-Supported regions for agent playground evaluation in the Foundry portal:
+The Foundry portal supports agent playground evaluation in the following regions:
 
 - East US 2
 - West US
@@ -83,7 +83,7 @@ Use exponential backoff when retrying failed requests.
 
 ## Virtual network support for evaluation
 
-For network isolation purposes, you can bring your own virtual network for evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
+For network isolation, you can bring your own virtual network for evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
 
 > [!NOTE]
 > If you connect Application Insights, evaluation data is sent to it. Virtual network support for Application Insights and tracing isn't available. Inline datasource isn't supported.
@@ -93,12 +93,24 @@ For network isolation purposes, you can bring your own virtual network for evalu
 
 ### Virtual network region support
 
-Bring your own virtual network for evaluation is supported in all regions except:
+Bringing your own virtual network for evaluation is supported in all regions except:
 
 - Central India
 - East Asia
 - North Europe
 - Qatar Central
+
+## Bring your own storage
+
+You can  use your own storage account to run evaluations.
+
+::: moniker range="foundry-classic"
+You can either use a Bicep template or [manually create and provision access](../how-to/evaluations-storage-account.md) to your storage account in the Azure portal. To use a Bicep template, follow these steps.
+::: moniker-end
+
+1. Create and connect your storage account to your Foundry project at the resource level. You can [use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
+1. Make sure the connected storage account has access to all projects.
+1. If you connected your storage account by using Microsoft Entra ID, make sure to give managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
 
 ## Related content
 
