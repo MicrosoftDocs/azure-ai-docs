@@ -18,6 +18,9 @@ monikerRange: foundry-classic
 
 # Create and manage Foundry Classic agents in Visual Studio Code (preview)
 
+> [!NOTE]
+> This document refers to the classic version of the agents API. 
+
 [Foundry Agent Service](../../agents/overview.md?view=foundry-classic&preserve-view=true) lets you build, configure, and deploy agents without leaving Visual Studio Code (VS Code). In this article, you create an agent by using the designer, add tools, test the agent in the playground, generate sample code, and clean up resources when you're done.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
