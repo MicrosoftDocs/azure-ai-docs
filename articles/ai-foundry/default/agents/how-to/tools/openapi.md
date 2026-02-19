@@ -1,16 +1,16 @@
 ---
 title: Connect OpenAPI tools to Microsoft Foundry agents
 titleSuffix: Microsoft Foundry
-description: Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication. Integrate external APIs with your AI agents today.
+description: Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/12/2026
+ms.date: 02/19/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-openapi-function-new
 ---
@@ -25,7 +25,10 @@ Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifi
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+> [!NOTE]
+> For Java, use the `com.azure:azure-ai-agents` package for OpenAPI agent tools. The `com.azure:azure-ai-projects` package doesn't currently expose OpenAPI agent tool types.
 
 ## Prerequisites
 
@@ -40,6 +43,7 @@ Before you begin, make sure you have:
   - Python: `azure-ai-projects` (latest prerelease version)
   - C#: `Azure.AI.Projects.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
+  - Java: `com.azure:azure-ai-agents`
 
 ### Environment variables
 
@@ -454,6 +458,141 @@ Here are 5 top hotels in Paris, France:
 - `AuthenticationException`: Invalid API key in project connection, or missing/incorrect `securitySchemes` configuration in OpenAPI spec.
 - Tool not used: Verify `ToolChoice = ResponseToolChoice.CreateRequiredChoice()` forces tool usage.
 - **API key not passed to API**: Ensure the OpenAPI spec has proper `securitySchemes` and `security` sections configured.
+
+:::zone-end
+
+:::zone pivot="java"
+
+## Create a Java agent with OpenAPI tool capabilities
+
+This Java example creates an agent with an OpenAPI tool by using `com.azure:azure-ai-agents` and a local OpenAPI 3.0 spec file. The sample uses anonymous authentication and calls a public API endpoint.
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.AgentsServiceVersion;
+import com.azure.ai.agents.ConversationsClient;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.OpenApiAgentTool;
+import com.azure.ai.agents.models.OpenApiAnonymousAuthDetails;
+import com.azure.ai.agents.models.OpenApiFunctionDefinition;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.json.JsonProviders;
+import com.azure.json.JsonReader;
+import com.openai.models.conversations.Conversation;
+import com.openai.models.conversations.items.ItemCreateParams;
+import com.openai.models.responses.EasyInputMessage;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+
+public class OpenApiAgentJavaSample {
+    public static void main(String[] args) throws Exception {
+        String endpoint = System.getenv("AZURE_AI_PROJECT_ENDPOINT");
+        if (endpoint == null || endpoint.isBlank()) {
+            endpoint = System.getenv("PROJECT_ENDPOINT");
+        }
+
+        String model = System.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME");
+        if (model == null || model.isBlank()) {
+            model = System.getenv("MODEL_DEPLOYMENT_NAME");
+        }
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .endpoint(endpoint)
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .serviceVersion(AgentsServiceVersion.V2025_11_15_PREVIEW);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+        ConversationsClient conversationsClient = builder.buildConversationsClient();
+
+        JsonReader reader = JsonProviders.createReader(Files.readAllBytes(Path.of("openapi_spec.json")));
+        BinaryData spec = reader.getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped()));
+
+        OpenApiFunctionDefinition toolDefinition = new OpenApiFunctionDefinition(
+            "httpbin_get",
+            spec,
+            new OpenApiAnonymousAuthDetails())
+            .setDescription("Get request metadata from an OpenAPI endpoint.");
+
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("Use the OpenAPI tool for HTTP request metadata.")
+            .setTools(Arrays.asList(new OpenApiAgentTool(toolDefinition)));
+
+        AgentVersionDetails agentVersion = agentsClient.createAgentVersion("openapiValidationAgentJava", agentDefinition);
+        System.out.println("Agent: " + agentVersion.getName() + ", version: " + agentVersion.getVersion());
+
+        Conversation conversation = conversationsClient.getConversationService().create();
+        conversationsClient.getConversationService().items().create(
+            ItemCreateParams.builder()
+                .conversationId(conversation.id())
+                .addItem(EasyInputMessage.builder()
+                    .role(EasyInputMessage.Role.USER)
+                    .content("Use the OpenAPI tool and summarize the returned URL and origin in one sentence.")
+                    .build())
+                .build());
+
+        try {
+            AgentReference agentReference = new AgentReference(agentVersion.getName()).setVersion(agentVersion.getVersion());
+            ResponseCreateParams.Builder options = ResponseCreateParams.builder().maxOutputTokens(300L);
+            Response response = responsesClient.createWithAgentConversation(agentReference, conversation.id(), options);
+
+            String text = response.output().stream()
+                .filter(item -> item.isMessage())
+                .map(item -> item.asMessage().content()
+                    .get(item.asMessage().content().size() - 1)
+                    .asOutputText()
+                    .text())
+                .reduce((first, second) -> second)
+                .orElse("<no message output>");
+
+            System.out.println("Status: " + response.status().map(Object::toString).orElse("unknown"));
+            System.out.println("Response: " + text);
+        } finally {
+            agentsClient.deleteAgentVersion(agentVersion.getName(), agentVersion.getVersion());
+            System.out.println("Agent deleted");
+        }
+    }
+}
+```
+
+### What this code does
+
+This Java example creates an agent with an OpenAPI tool and runs a conversation-scoped response:
+
+1. Loads the OpenAPI specification from `openapi_spec.json`.
+1. Creates an agent version with `OpenApiAgentTool`.
+1. Creates a conversation and adds a user message.
+1. Creates a response by passing `AgentReference` and conversation ID.
+1. Cleans up by deleting the agent version.
+
+### Required inputs
+
+- Environment variables: `AZURE_AI_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`) and `AZURE_AI_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`)
+- Local file: `openapi_spec.json` (OpenAPI 3.0 specification)
+
+### Expected output
+
+```console
+Agent: openapiValidationAgentJava, version: 1
+Status: completed
+Response: The API response reports URL ... and origin ...
+Agent deleted
+```
+
+### Common errors
+
+- `Invalid OpenAPI specification`: Parse the OpenAPI JSON into an object before passing it to `OpenApiFunctionDefinition`.
+- `Invalid conversation id`: Create a conversation and pass `conversation.id()` to `createWithAgentConversation`.
+- `AuthenticationFailedException`: Verify `DefaultAzureCredential` can get a token for your signed-in account.
 
 :::zone-end
 

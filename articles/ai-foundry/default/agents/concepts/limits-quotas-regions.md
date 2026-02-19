@@ -25,7 +25,7 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 - An Azure subscription.
 - A [Microsoft Foundry project](../../../how-to/create-projects.md).
-- A [deployed model](../../../agents/concepts/model-region-support.md) compatible with Agent Service. Model and region availability can vary.
+- A deployed model compatible with Agent Service. Model and region availability can vary.
 
 ## Supported regions
 
@@ -72,7 +72,7 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 ### A model or version isn't available in your region
 
 - Confirm you selected the right tab for your deployment type (global standard vs. provisioned).
-- Try a different region that supports the model and version. See the [model and region support table](../../../agents/concepts/model-region-support.md).
+- Try a different region that supports the model and version. See the [model and region support table](../../../default/agents/concepts/limits-quotas-regions.md).
 - If you're using gpt-5 models, [registration](https://aka.ms/openai/gpt-5/2025-08-07) is required. Access is granted according to Microsoft's eligibility criteria.
 
 ### A tool isn't available in your region
@@ -172,7 +172,6 @@ The limits in this article are default values for Foundry Agent Service. If your
 ## Related content
 
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
-- [Model and region support for Foundry Agent Service](../../../agents/concepts/model-region-support.md)
 - [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
 - [Monitor Foundry Agent Service](../../../agents/how-to/metrics.md)

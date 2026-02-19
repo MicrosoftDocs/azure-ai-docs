@@ -46,7 +46,7 @@ Your existing resource configurations and state stay the same, including:
 
 ## Limitations
 
-* Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service.
+* Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent service is [available](../default/agents/concepts/limits-quotas-regions.md) in select regions compared to Azure OpenAI service.
 * Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [additional DNS zone configurations](#private-network-configuration) next to your existing Azure OpenAI DNS Zone before all Foundry capabilities can be used.

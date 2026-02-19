@@ -37,6 +37,9 @@ By using [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-worksp
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
+> [!NOTE]
+> The Java SDK does not currently support the Browser Automation tool. If you need browser automation in a Java application, use the REST API directly.
+
 ## How it works
 
 The interaction starts when the user sends a query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following URL \<url\>."* When the agent receives the request, Foundry Agent Service creates an isolated browser session using your provisioned Playwright workspace. Each session is sandboxed for privacy and security.
