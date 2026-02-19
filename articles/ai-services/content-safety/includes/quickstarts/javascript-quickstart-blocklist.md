@@ -8,9 +8,10 @@ ms.custom:
 ms.topic: include
 ms.date: 07/16/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
-[Reference documentation](https://www.npmjs.com/package/@azure-rest/ai-content-safety/v/1.0.0) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentsafety/ai-content-safety-rest) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/js/1.0.0) |
+[Reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/ai-content-safety?view=azure-node-latest) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentsafety/ai-content-safety-rest) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/js/1.0.0) |
 
 ## Prerequisites
 
@@ -36,7 +37,7 @@ npm init
 
 ### Install the client SDK 
 
-Install the `@azure-rest/ai-content-safety` npm package:
+Install the required npm packages:
 
 ```console
 npm install @azure-rest/ai-content-safety
@@ -55,6 +56,9 @@ Your app's `package.json` file will be updated with the dependencies.
 ## Create and use a blocklist
 
 Create a new file in your directory, *index.js*. Open it in your preferred editor or IDE and paste in the following code. This code creates a new blocklist, adds items to it, and then analyzes a text string against the blocklist.
+
+> [!NOTE]
+> After you edit a blocklist, it can take a few minutes before text analysis reflects the changes. If you don't see matches right away, retry the analyze call after a short delay.
 
 ```javascript
 const ContentSafetyClient = require("@azure-rest/ai-content-safety").default;

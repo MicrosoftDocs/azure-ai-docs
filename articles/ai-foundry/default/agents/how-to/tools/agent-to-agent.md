@@ -37,6 +37,9 @@ The following table shows SDK and setup support. A checkmark (✔️) indicates 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
+> [!NOTE]
+> The Java SDK does not currently support A2A tools with the new agent APIs (`azure-ai-projects` package). A2A integration is available through Python, C#, TypeScript, and REST API only.
+
 ## Prerequisites
 
 - An Azure subscription with an active Foundry project.

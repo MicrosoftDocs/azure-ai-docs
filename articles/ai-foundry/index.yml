@@ -56,7 +56,7 @@ productDirectory:
       links:
         - url: foundry-models/concepts/models.md
           text: Foundry Models sold directly by Azure
-        - url: ../ai-services/openai/concepts/models.md
+        - url: ../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md
           text: Azure OpenAI in Foundry Models
         - url: foundry-models/concepts/deployment-types.md
           text: Deployment types

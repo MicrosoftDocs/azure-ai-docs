@@ -1,16 +1,16 @@
 ---
 title: How to generate text responses with Microsoft Foundry Models
 titleSuffix: Microsoft Foundry
-description: Learn how to prompt Microsoft Foundry Models to generate text, using the Responses API.
+description: Learn how to generate text responses from Foundry Models, such as Microsoft AI and DeepSeek models, by using the Responses API.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 01/07/2026
+ms.date: 02/11/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand
 reviewer: achandmsft
-ms.custom: generated
+ms.custom: generated, pilot-ai-workflow-jan-2026
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
@@ -36,6 +36,12 @@ To use the Responses API with deployed models in your application, you need:
 ## Use the Responses API to generate text
 
 Use the code in this section to make Responses API calls for Foundry Models. In the code samples, you create the client to consume the model and then send it a basic request. 
+
+> [!IMPORTANT]
+> Some of the SDK packages used in these samples are currently in preview. API surface and behavior might change before general availability.
+
+> [!TIP]
+> When you deploy a model in the Foundry portal, you assign it a deployment name. Use this deployment name (not the model catalog ID) in the `model` parameter of your API calls.
 
 > [!NOTE]
 > Use keyless authentication with **Microsoft Entra ID**. To learn more about keyless authentication, see [What is Microsoft Entra authentication?](/entra/identity/authentication/overview-authentication) and [DefaultAzureCredential](/azure/developer/python/sdk/authentication/overview#defaultazurecredential).
@@ -137,7 +143,7 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
     ```
 
 
-# [Java](#tab/Java)
+# [Java](#tab/java)
 
 Authentication with Microsoft Entra ID requires some initial setup. First, install the Azure Identity client library. For more options on how to install this library, see [Azure Identity client library for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity/README.md#include-the-package).
 
@@ -191,7 +197,6 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
 curl -X POST https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME/openai/responses?api-version={{API_VERSION}} \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-
 -d '{
     "model": "MAI-DS-R1",
     "input": "What is the capital/major city of France?"
@@ -200,26 +205,43 @@ curl -X POST https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_
 
 ---
 
+The response includes the generated text along with model and usage metadata.
+
 ## Supported Foundry Models
 
 A selection of Foundry Models are supported for use with the Responses API.
 
-#### View supported models in the Foundry portal
+### View supported models in the Foundry portal
 
 [!INCLUDE [agent-service-view-models-in-portal](../../agents/includes/agent-service-view-models-in-portal.md)]
 
-#### List of supported models
+### List of supported models
 
+:::moniker range="foundry"
+
+This section lists some of the Foundry Models that are supported for use with the Responses API. For the Azure OpenAI models that are supported, see [Available Azure OpenAI models](../../default/agents/concepts/limits-quotas-regions.md).
+:::moniker-end
+
+:::moniker range="foundry-classic"
 This section lists some of the Foundry Models that are supported for use with the Responses API. For the Azure OpenAI models that are supported, see [Available Azure OpenAI models](../../agents/concepts/model-region-support.md#available-models).
+:::moniker-end
 
 [!INCLUDE [agent-service-models-support-list](../../agents/includes/agent-service-models-support-list.md)]
+
+## Troubleshoot common errors
+
+| Error | Cause | Resolution |
+|---|---|---|
+| 401 Unauthorized | Invalid or expired credential | Verify your `DefaultAzureCredential` has the **Cognitive Services OpenAI User** role assigned on the resource. |
+| 404 Not Found | Wrong endpoint or deployment name | Confirm your endpoint URL includes `/api/projects/YOUR_PROJECT_NAME` and the deployment name matches your Foundry portal. |
+| 400 Model not supported | Model doesn't support Responses API | Check the [supported models list](#supported-foundry-models) and verify your deployment uses a compatible model. |
 
 ## Related content
 
 - [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration.md)
 - [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
-- [Generate chat completions with Foundry Models, using the OpenAI v1 chat completions API ](../../openai/api-version-lifecycle.md#model-support)
+- [Model support for v1 Azure OpenAI API](../../openai/api-version-lifecycle.md#model-support)
 
 
 

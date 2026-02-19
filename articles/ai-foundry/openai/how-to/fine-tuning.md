@@ -1,6 +1,6 @@
 ---
-title: 'Customize a Model with Microsoft Foundry Fine-Tuning'
-titleSuffix: Azure OpenAI
+title: Customize a model with fine-tuning
+titleSuffix: Microsoft Foundry
 description: Learn how to fine-tune and customize Foundry models by using Python, REST APIs, or the Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets.
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -8,8 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
 ms.date: 12/01/2025
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 zone_pivot_groups: openai-fine-tuning
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
@@ -33,7 +33,7 @@ In this article, you learn how to:
 - Choose appropriate datasets and formats for fine-tuning.
 - Trigger a fine-tuning job, monitor the status, and fetch results.
 - Deploy and evaluate a fine-tuned model.
-- Iterate based on evaluation feedback.
+- Clean up your resources when you no longer need them.
 
 ::: moniker range="foundry"
 

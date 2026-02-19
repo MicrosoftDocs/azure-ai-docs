@@ -135,7 +135,7 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.ai
 
 ### Create a continuous evaluation rule
 
-Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [What are evaluators?](../../../concepts/observability.md#what-are-evaluators).
+Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [Built in evaluators](../../../concepts/built-in-evaluators.md).
 
 ```python
 from azure.ai.projects.models import (

@@ -7,9 +7,9 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 11/26/2025
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 02/11/2026
+author: ssalgadodev
+ms.author: ssalgado
 monikerRange: 'foundry-classic || foundry'
 ---
 
@@ -25,7 +25,7 @@ Fine-tuned model evaluation filters are set to predefined thresholds and can't b
 
 ## Data evaluation
 
-Before training starts, your data is evaluated for potentially harmful content (violence, sexual, hate, and fairness, self-harm – see category definitions [here](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#risk-categories)). If harmful content is detected above the specified severity level, your training job will fail, and you'll receive a message informing you of the categories of failure.
+Before training starts, the service evaluates your data for potentially harmful content across the [harm categories](../concepts/content-filter-severity-levels.md#harm-category-descriptions) listed earlier. If harmful content is detected above the specified severity level, your training job fails, and you receive a message informing you of the categories of failure.
 
 **Sample message:**
 
@@ -39,11 +39,11 @@ If the fine-tuning job fails due to the detection of harmful content in training
 
 ## Model evaluation
 
-After training completes but before the fine-tuned model is available for deployment, the resulting model is evaluated for potentially harmful responses using Azure’s built-in [risk and safety metrics](/azure/ai-foundry/concepts/evaluation-metrics-built-in?tabs=warning#risk-and-safety-metrics). Using the same approach to testing that we use for the base large language models, our evaluation capability simulates a conversation with your fine-tuned model to assess the potential to output harmful content, again using specified harmful content [categories](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#risk-categories) (violence, sexual, hate, and fairness, self-harm).  
+After training completes but before the fine-tuned model is available for deployment, the service evaluates the resulting model for potentially harmful responses using Azure's built-in [risk and safety metrics](/azure/ai-foundry/concepts/evaluation-metrics-built-in?tabs=warning#risk-and-safety-metrics). Using the same approach to testing used for the base large language models, the evaluation simulates a conversation with your fine-tuned model to assess the potential to output harmful content across the [harm categories](../concepts/content-filter-severity-levels.md#harm-category-descriptions) listed earlier.
 
 If a model is found to generate output containing content detected as harmful at above an acceptable rate, you'll be informed that your model isn't available for deployment, with information about the specific categories of harm detected:
 
-**Sample Message**:
+**Sample message:**
 
 ```output
 This model is unable to be deployed. Model evaluation identified that this fine tuned model scores above acceptable thresholds for [Violence, Self Harm]. Please review your training data set and resubmit the job.
@@ -55,8 +55,7 @@ As with data evaluation, the model is evaluated automatically within your fine-t
 
 ## Next steps
 
-- To modify content safety for fine-tuning refer to terms listed in the [form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
-
+- To request modified content safety thresholds for fine-tuning, submit the [request form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu).
 - Explore the fine-tuning capabilities in the [Foundry fine-tuning tutorial](../tutorials/fine-tune.md).
-- Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models)
-- Learn more about [Foundry quotas](../quotas-limits.md)
+- Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
+- Learn more about [Foundry quotas](../quotas-limits.md).
