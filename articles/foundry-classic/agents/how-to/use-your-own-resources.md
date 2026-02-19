@@ -13,6 +13,7 @@ ms.reviewer: fosteramanda
 ms.custom:
   - azure-ai-agents
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Use your own resources (classic)

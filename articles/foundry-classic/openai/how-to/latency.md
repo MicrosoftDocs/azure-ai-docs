@@ -11,6 +11,7 @@ ms.author: mbullwin
 recommendations: false
 ms.custom:
 - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Performance and latency (classic)

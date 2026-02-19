@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
 ai-usage: ai-assisted
 # zone_pivot_groups: set-up-key-vault
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Set up an Azure Key Vault connection in Microsoft Foundry (classic)

@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.date: 04/16/2025
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Transparency note for Azure OpenAI (classic)

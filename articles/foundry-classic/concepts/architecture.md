@@ -12,6 +12,7 @@ ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry architecture (classic) 

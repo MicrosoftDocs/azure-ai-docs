@@ -15,6 +15,7 @@ ms.custom:
   - "dev-focus"
 ai-usage: ai-assisted
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a Foundry resource by using templates.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Quickstart: Create a Microsoft Foundry resource using a Bicep file (classic)

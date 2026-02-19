@@ -12,6 +12,7 @@ ms.topic: how-to
 ms.date: 02/10/2026
 manager: nitinme
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # How to use function calling with Azure OpenAI in Microsoft Foundry Models (classic)

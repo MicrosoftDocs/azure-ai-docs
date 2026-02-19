@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - build-2025
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Default Guardrail policies for Azure OpenAI (classic)

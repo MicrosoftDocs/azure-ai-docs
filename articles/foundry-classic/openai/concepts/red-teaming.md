@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - build-2025
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Planning red teaming for large language models (LLMs) and their applications (classic)

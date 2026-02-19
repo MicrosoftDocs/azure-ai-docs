@@ -13,6 +13,7 @@ recommendations: false
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Prompt caching (classic)

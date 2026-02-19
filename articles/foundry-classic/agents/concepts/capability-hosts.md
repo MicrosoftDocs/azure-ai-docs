@@ -14,6 +14,7 @@ ms.custom:
   - pilot-ai-workflow-jan-2026
   - classic-and-new
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Capability hosts (classic)

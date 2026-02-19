@@ -13,6 +13,7 @@ ms.date: 12/04/2025
 ms.author: mopeakande
 ms.reviewer: haakar
 reviewer: haakar
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry Models quotas and limits (classic)

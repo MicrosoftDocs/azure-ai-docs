@@ -11,6 +11,7 @@ ms.topic: how-to
 ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Vision fine-tuning (classic)

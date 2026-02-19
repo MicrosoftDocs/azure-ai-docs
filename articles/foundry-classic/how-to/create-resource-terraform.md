@@ -16,6 +16,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 #customer intent: As a Terraform user, I want to see how to configure Microsoft Foundry using Terraform, so I can automate my setup.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Use Terraform to manage Microsoft Foundry resources (classic)

@@ -12,6 +12,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 12/05/2025
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Connect to your own storage (classic)

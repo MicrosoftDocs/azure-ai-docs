@@ -14,6 +14,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Model router for Microsoft Foundry (classic)

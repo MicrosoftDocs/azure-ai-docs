@@ -13,6 +13,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ai-usage: ai-assisted
 author: sdgilley
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Retrieval augmented generation (RAG) and indexes (classic)

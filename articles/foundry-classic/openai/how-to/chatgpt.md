@@ -13,6 +13,7 @@ ms.date: 11/26/2025
 manager: nitinme
 keywords: ChatGPT
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Work with chat completions models (classic)

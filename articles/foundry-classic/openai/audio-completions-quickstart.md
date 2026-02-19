@@ -14,6 +14,7 @@ ms.custom:
 zone_pivot_groups: audio-completions-quickstart
 recommendations: false
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Quickstart: Get started with Azure OpenAI audio generation (classic)

@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.date: 10/01/2025
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic) 

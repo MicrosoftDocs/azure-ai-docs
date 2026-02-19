@@ -11,6 +11,7 @@ ms.date: 12/19/2025
 ms.custom:
   - azure-ai-agents
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Built-in enterprise readiness with standard agent setup (classic) 

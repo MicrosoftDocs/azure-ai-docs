@@ -14,6 +14,7 @@ ai-usage: ai-assisted
 
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Learn how to use JSON mode (classic)

@@ -14,6 +14,7 @@ ms.author: jburchel
 author: jonburchel 
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # How to configure a private link for Microsoft Foundry (Foundry projects) (classic)

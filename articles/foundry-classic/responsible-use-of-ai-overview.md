@@ -11,6 +11,7 @@ author: PatrickFarley
 ms.custom:
   - ignite-2024
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Responsible AI for Microsoft Foundry (classic)

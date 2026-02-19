@@ -13,6 +13,7 @@ ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # See evaluation results in the Microsoft Foundry portal (classic)

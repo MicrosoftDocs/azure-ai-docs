@@ -15,6 +15,7 @@ ms.custom:
   - ignite-2025, pilot-ai-workflow-jan-2026
   - classic-and-new
 #customerIntent: As a developer or data scientist working with latency-sensitive AI applications, I want to understand and implement priority processing for Microsoft Foundry models so that I can achieve predictable low latency and high availability for time-critical workloads without requiring long-term commitments or provisioned capacity.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Enable priority processing for Microsoft Foundry models (preview) (classic)

@@ -14,6 +14,7 @@ ms.custom:
 zone_pivot_groups: openai-portal-js-python-ts
 recommendations: false
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # GPT Realtime API for speech and audio (classic)

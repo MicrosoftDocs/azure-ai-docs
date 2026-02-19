@@ -49,10 +49,10 @@ sections:
           How is prompt injection handled, and how do we ensure no malicious code is running from prompt injection? 
         answer: |
           Prompt templates in prompt flow provide robust examples and instructions for avoiding prompt injection attacks in the application. Azure AI Content Safety helps detect offensive or inappropriate content in text and images. Content moderation also checks for jailbreaks.
-      - question: |
-          What is the billing model for serverless API deployments? 
-        answer: |
-          "CLASSIC-ONLY: Llama 2 family models - remove this question"
+# CLASSIC-ONLY:       - question: |
+# CLASSIC-ONLY:           What is the billing model for serverless API deployments? 
+# CLASSIC-ONLY:         answer: |
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: Microsoft Foundry (classic) offers serverless API deployment models and hosted fine-tuning for [Llama 2 family models](./concepts/models-inference-examples.md). Currently, there's no extra charge for Microsoft Foundry (classic) outside of typical Foundry Tools and other Azure resource charges. -->
       - question: |
           Can all models be secured with content filtering? 
         answer: |
@@ -82,4 +82,4 @@ additionalContent: |
 
   ## Related content
   - [Microsoft Foundry](what-is-foundry.md)
-  "CLASSIC-ONLY: Plan and manage costs - remove this question"
+  <!-- CLASSIC-ONLY: - [Plan and manage costs](./how-to/costs-plan-manage.md) -->

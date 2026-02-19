@@ -13,6 +13,7 @@ ms.author: lagayhar
 author: lgayhardt
 # customer intent: As a developer, I want to run evaluations in the cloud using the Microsoft Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Run evaluations in the cloud by using the Microsoft Foundry SDK (classic)

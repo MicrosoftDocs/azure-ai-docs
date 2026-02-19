@@ -15,6 +15,7 @@ ms.author: johalexander
 author: ms-johnalex
 zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: I want to learn how to use the Microsoft Foundry SDK and endpoints to build AI applications on Azure.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry SDKs and Endpoints (classic)

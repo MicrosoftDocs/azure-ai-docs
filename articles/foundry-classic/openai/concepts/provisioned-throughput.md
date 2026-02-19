@@ -17,6 +17,7 @@ ms.reviewer: seramasu
 reviewer: rsethur
 recommendations: false
 #CustomerIntent As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # What is provisioned throughput for Foundry Models? (classic)

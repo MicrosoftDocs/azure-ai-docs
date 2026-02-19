@@ -13,6 +13,7 @@ ms.custom:
   - arb-aiml, dev-focus
   - classic-and-new
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Foundry Agent Service platform outage recovery (classic)

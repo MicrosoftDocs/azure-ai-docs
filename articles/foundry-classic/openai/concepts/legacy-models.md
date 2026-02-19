@@ -13,6 +13,7 @@ author: mrbullwinkle
 ms.author: mbullwin 
 recommendations: false
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Retired Azure OpenAI models in Microsoft Foundry (classic)

@@ -11,6 +11,7 @@ ms.author: scottpolly
 ms.reviewer: bgilmore
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry known issues (classic)

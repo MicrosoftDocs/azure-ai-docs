@@ -16,6 +16,7 @@ reviewer: rsethur
 ms.date: 02/10/2026
 recommendations: false
 #customerIntent: As a developer, I want to create and configure provisioned deployments so I can optimize performance and throughput for my AI applications.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Get started with provisioned deployments in Microsoft Foundry (classic)

@@ -12,6 +12,7 @@ ms.custom:
   - dev-focus
   - classic-and-new
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Built-in policy for model deployment in Microsoft Foundry portal (classic)

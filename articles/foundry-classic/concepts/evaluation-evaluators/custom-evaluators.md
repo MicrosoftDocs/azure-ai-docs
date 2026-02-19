@@ -13,6 +13,7 @@ ms.custom:
   - build-2025
 # customer intent: As a developer, I want to create custom evaluators so I can measure domain-specific quality metrics for my AI application's generations.
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Custom evaluators (classic)

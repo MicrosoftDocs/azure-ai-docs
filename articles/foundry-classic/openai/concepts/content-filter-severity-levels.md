@@ -13,6 +13,7 @@ ms.custom:
   - classic-and-new
 
 # customer intent: As a developer, I want to understand the harm categories and severity levels in Microsoft Foundry so that I can properly handle content filtering in my applications.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Harm categories and severity levels in Microsoft Foundry (classic)

@@ -10,6 +10,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Azure OpenAI monitoring data reference (classic)

@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - dev-focus
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Disable preview features in Microsoft Foundry by using role-based access control (classic)

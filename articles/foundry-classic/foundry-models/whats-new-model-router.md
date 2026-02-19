@@ -11,6 +11,7 @@ ms.topic: whats-new
 
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # What's new in model router in Microsoft Foundry Models? (classic)

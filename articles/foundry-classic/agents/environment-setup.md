@@ -13,6 +13,7 @@ ms.custom:
   - azure-ai-agents
   - classic-and-new
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Set up your environment (classic)

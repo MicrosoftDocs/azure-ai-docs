@@ -15,6 +15,7 @@ ms.custom:
   - references-regions
 ai-usage: ai-assisted 
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Microsoft Foundry.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Customer-managed keys (CMKs) for Microsoft Foundry (classic)

@@ -10,6 +10,7 @@ ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Configure managed virtual network for Microsoft Foundry projects (classic)

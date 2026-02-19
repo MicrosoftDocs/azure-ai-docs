@@ -11,6 +11,7 @@ ms.date: 02/13/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Prompt Shields in Microsoft Foundry (classic)

@@ -78,7 +78,7 @@ sections:
       - question: |
           I asked the model a question about something that happened recently before the knowledge cutoff and it got the answer wrong. Why does this happen?
         answer: |
-          "CLASSIC-ONLY: use your data feature - remove this question"
+          <!-- CLASSIC-ONLY: This is expected behavior. First there's no guarantee that every recent event was part of the model's training data. And even when information was part of the training data, without using additional techniques like Retrieval Augmented Generation (RAG) to help ground the model's responses there's always a chance of ungrounded responses occurring. Both Azure OpenAI's [use your data feature](./concepts/use-your-data.md) and [Bing Chat](https://www.microsoft.com/edge/features/bing-chat?form=MT00D8) use Azure OpenAI models combined with Retrieval Augmented Generation to help further ground model responses. -->
           
           The frequency that a given piece of information appeared in the training data can also impact the likelihood that the model will respond in a certain way. 
 
@@ -139,10 +139,10 @@ sections:
   
   - name: Learning more and where to ask questions
     questions:
-      - question: |
-          Where can I read about the latest updates to Azure OpenAI? 
-        answer: |        
-          "CLASSIC-ONLY: what's new page - remove this question"
+# CLASSIC-ONLY:       - question: |
+# CLASSIC-ONLY:           Where can I read about the latest updates to Azure OpenAI? 
+# CLASSIC-ONLY:         answer: |        
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: For monthly updates, see our [what's new page](./whats-new.md). -->
       - question: |
           Where can I get training to get started learning and build my skills around Azure OpenAI?
         answer: |        
@@ -220,10 +220,10 @@ sections:
           What happens if my image is unclear?
         answer: |
           If an image is ambiguous or unclear, the model will do its best to interpret it. However, the results might be less accurate. A good rule of thumb is that if an average human can't see the info in an image at the resolutions used in low/high res mode, then the model can't either.
-      - question: |
-          What are the known limitations of GPT-4 Turbo with Vision?
-        answer: |
-          "CLASSIC-ONLY: limitations - remove this question"
+# CLASSIC-ONLY:       - question: |
+# CLASSIC-ONLY:           What are the known limitations of GPT-4 Turbo with Vision?
+# CLASSIC-ONLY:         answer: |
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: See the [limitations](./concepts/gpt-with-vision.md#input-limitations) section of the GPT-4 Turbo with Vision concepts guide. -->
       - question: |
           I keep getting truncated responses when I use GPT-4 Turbo vision models. Why is this happening?
         answer:
@@ -269,22 +269,22 @@ sections:
           * File search is billed based on the vector storage used. 
 
           For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
-      - question: |
-          Is there any additional pricing or quota for using Assistants? 
-        answer: |
-          "CLASSIC-ONLY: quotas - remove this question"
+# CLASSIC-ONLY:       - question: |
+# CLASSIC-ONLY:           Is there any additional pricing or quota for using Assistants? 
+# CLASSIC-ONLY:         answer: |
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: No. All [quotas](./quotas-limits.md) apply to using models with Assistants. -->
       - question: |
           Does the Assistants API support non-Azure OpenAI models?   
         answer: |
           Assistants API only supports Azure OpenAI models.
-      - question: |
-          Is the Assistants API generally available?
-        answer: |
-          "CLASSIC-ONLY: What's New - remove this question"
-      - question: |
-          What are some examples or other resources I can use to learn about Assistants?  
-        answer: |
-          "CLASSIC-ONLY: Conceptual - remove this question"
+# CLASSIC-ONLY:       - question: |
+# CLASSIC-ONLY:           Is the Assistants API generally available?
+# CLASSIC-ONLY:         answer: |
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: The Assistants API is currently in public preview. Stay informed of our latest product updates by regularly visiting our [What's New](./whats-new.md) page. -->
+# CLASSIC-ONLY:       - question: |
+# CLASSIC-ONLY:           What are some examples or other resources I can use to learn about Assistants?  
+# CLASSIC-ONLY:         answer: |
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: See the [Conceptual](./concepts/assistants.md), [how-to](./how-to/assistant.md) articles for information on getting started and using Assistants. You can also check out Azure OpenAI Assistants code samples on [GitHub](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Assistants). -->
   - name: Web app
     questions:
       - question: |
@@ -305,10 +305,10 @@ sections:
           How can I access Azure OpenAI on your data?  
         answer:
           All Azure OpenAI customers can use Azure OpenAI on your data via the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and Rest API.
-      - question: |
-          What data sources does Azure OpenAI on your data support?
-        answer:
-          "CLASSIC-ONLY: conceptual article - remove this question"
+# CLASSIC-ONLY:       - question: |
+# CLASSIC-ONLY:           What data sources does Azure OpenAI on your data support?
+# CLASSIC-ONLY:         answer:
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: Azure OpenAI on your data supports ingestion from Azure AI Search, Azure Blob Storage, and uploading local files. You can learn more about Azure OpenAI on your data from the [conceptual article](./concepts/use-your-data.md) and [quickstart](../quickstarts/get-started-code.md). -->
       - question: |
           How much does it cost to use Azure OpenAI on your data?
         answer:
@@ -317,18 +317,18 @@ sections:
           How can I customize or automate the index creation process?
         answer:
           You can prepare the index yourself using a [script provided on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395). Using this script will create an Azure AI Search index with all the information needed to better use your data, with your documents broken down into manageable chunks. See the README file with the data preparation code for details on how to run it.
-      - question: | 
-          How can I update my index?
-        answer:
-          "CLASSIC-ONLY: schedule an automatic index refresh - remove this question"
-      - question: | 
-          What file types does Azure OpenAI on your data support?
-        answer:
-          "CLASSIC-ONLY: Using your data - remove this question"
-      - question: |
-          Is responsible AI supported by Azure OpenAI on your data?
-        answer:
-          "CLASSIC-ONLY: Azure OpenAI on your data - remove this question"
+# CLASSIC-ONLY:       - question: | 
+# CLASSIC-ONLY:           How can I update my index?
+# CLASSIC-ONLY:         answer:
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: You can [schedule an automatic index refresh](concepts/use-your-data.md#schedule-automatic-index-refreshes), or upload additional data to your Azure Blob Container and use it as your data source when you create a new index. The new index will include all of the data in your container. -->
+# CLASSIC-ONLY:       - question: | 
+# CLASSIC-ONLY:           What file types does Azure OpenAI on your data support?
+# CLASSIC-ONLY:         answer:
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: See [Using your data](./concepts/use-your-data.md#data-formats-and-file-types) for more information on supported file types. -->
+# CLASSIC-ONLY:       - question: |
+# CLASSIC-ONLY:           Is responsible AI supported by Azure OpenAI on your data?
+# CLASSIC-ONLY:         answer:
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of Azure OpenAI and works with the [models](../foundry-models/concepts/models-sold-directly-by-azure.md) available in Azure OpenAI. The [content filtering](../foundry-models/concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview) for extra guidance on using Azure OpenAI on your data responsibly. -->
       - question: |
           Is there a token limit on the system message? 
         answer: 
@@ -363,6 +363,6 @@ sections:
 additionalContent: |
 
   ## Next steps
-  "CLASSIC-ONLY: Azure OpenAI quotas and limits - remove this question"
-  "CLASSIC-ONLY: Azure OpenAI what's new - remove this question"
+  <!-- CLASSIC-ONLY: - [Azure OpenAI quotas and limits](quotas-limits.md) -->
+  <!-- CLASSIC-ONLY: - [Azure OpenAI what's new](whats-new.md) -->
   - [Azure OpenAI quickstarts](./how-to/responses.md)

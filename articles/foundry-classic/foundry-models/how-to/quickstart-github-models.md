@@ -13,6 +13,7 @@ ms.author: mopeakande
 recommendations: false
 ai-usage: ai-assisted
 #CustomerIntent: As a developer using GitHub Models, I want to learn how to upgrade my endpoint to Microsoft Foundry Models so that I can access enhanced features and capabilities for my AI applications.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Upgrade from GitHub Models to Microsoft Foundry Models (classic)

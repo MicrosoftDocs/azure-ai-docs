@@ -13,6 +13,7 @@ ms.custom:
   - classic-and-new
 recommendations: false
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Use the GPT Realtime API for speech and audio (classic)

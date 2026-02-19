@@ -10,6 +10,7 @@ ms.subservice: azure-ai-foundry-openai
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Protected material detection filter (classic)

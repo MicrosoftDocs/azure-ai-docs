@@ -12,6 +12,7 @@ ms.custom:
   - ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
   - classic-and-new
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Deployment types for Microsoft Foundry Models (classic)

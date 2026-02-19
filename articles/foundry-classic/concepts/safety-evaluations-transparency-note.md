@@ -12,6 +12,7 @@ ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to understand the capabilities, limitations, and best practices for Microsoft Foundry safety evaluations so I can responsibly evaluate and deploy my generative AI applications.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry risk and safety evaluations (preview) Transparency Note (classic)

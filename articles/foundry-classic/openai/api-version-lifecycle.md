@@ -14,6 +14,7 @@ ms.custom:
   - pilot-ai-workflow-jan-2026
   - classic-and-new
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Azure OpenAI in Microsoft Foundry Models v1 API (classic)

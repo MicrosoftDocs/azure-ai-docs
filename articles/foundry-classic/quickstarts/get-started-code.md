@@ -19,6 +19,7 @@ ms.custom:
   - peer-review-program
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Microsoft Foundry quickstart (classic)

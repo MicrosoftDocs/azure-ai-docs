@@ -11,6 +11,7 @@ ms.date: 02/12/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # GPT-5 vs GPT-4.1: choosing the right model for your use case (classic)

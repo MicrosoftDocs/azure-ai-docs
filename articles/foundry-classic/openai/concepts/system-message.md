@@ -15,6 +15,7 @@ ms.author: mbullwin
 recommendations: false
 ai-usage: ai-assisted
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Safety system messages (classic)

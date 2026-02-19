@@ -13,6 +13,7 @@ ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to jump start my journey with an AI template.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Get started with an AI template (classic)

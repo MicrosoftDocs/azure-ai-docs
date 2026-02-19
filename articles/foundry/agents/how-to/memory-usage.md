@@ -617,4 +617,4 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 - [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 <!-- CLASSIC-ONLY: - [Foundry Agent Service quotas and limits](../../agents/quotas-limits.md) -->
-<!-- CLASSIC-ONLY: - [Build an agent with Microsoft Foundry](../../agents/quickstart.md) -->
+- [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)

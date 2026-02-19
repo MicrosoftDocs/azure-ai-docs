@@ -14,6 +14,7 @@ ms.custom:
 # customer intent:
 ai-usage: ai-assisted
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Use model router for Microsoft Foundry (classic)

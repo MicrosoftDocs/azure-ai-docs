@@ -14,6 +14,7 @@ ms.custom:
 recommendations: false
 ai-usage: ai-assisted
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Use the GPT Realtime API via SIP (classic)

@@ -19,6 +19,7 @@ keywords:
     - tool calling
     - content filters
     - agent observability
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # What is Foundry Agent Service? (classic)

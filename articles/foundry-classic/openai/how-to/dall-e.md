@@ -14,6 +14,7 @@ ms.custom:
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
 ai-usage: ai-assisted
 
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # How to use Azure OpenAI image generation models (classic)

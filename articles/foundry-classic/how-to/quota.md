@@ -17,6 +17,7 @@ author: msakande
 manager: nitinme
 ai-usage: ai-assisted
 # Customer intent: As a Microsoft Foundry user, I want to know how to manage and increase quotas for resources with Microsoft Foundry.
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Manage and increase quotas for resources with Microsoft Foundry (Foundry projects) (classic)
