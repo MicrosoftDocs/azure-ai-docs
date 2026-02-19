@@ -69,6 +69,12 @@ If you want to continue using your hub-based project and connection string, you 
     * `Microsoft.App`
     * `Microsoft.ContainerService`
 
+:::moniker range="foundry-classic"
+
+To use the [Grounding with Bing Search tool](../how-to/tools-classic/bing-grounding.md) the following provider must be registered: `Microsoft.Bing`
+
+:::moniker-end
+
 :::moniker range="foundry"
 
 To use the [Grounding with Bing Search tool](../../default/agents/how-to/tools/bing-tools.md) the following provider must be registered: `Microsoft.Bing`
