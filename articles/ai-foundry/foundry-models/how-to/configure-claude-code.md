@@ -5,7 +5,7 @@ description: Set up Claude Code CLI and VS Code extension to use Claude models i
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 02/12/2026
+ms.date: 02/19/2026
 ms.custom: dev-focus
 author: msakande
 ms.author: mopeakande
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 # Configure Claude Code with Microsoft Foundry
 
-Anthropic's [Claude Code](https://docs.anthropic.com/en/docs/claude-code) is an AI coding agent available as a CLI tool and VS Code extension. When you configure Claude Code with Microsoft Foundry, you run the coding agent on Azure infrastructure while keeping your data inside your compliance boundary. This configuration provides enterprise-grade security, private networking, role-based access control, and cost management.
+Anthropic's [Claude Code](https://docs.anthropic.com/en/docs/claude-code) is an AI coding agent available as a CLI tool and VS Code extension. When you configure Claude Code with Microsoft Foundry, you run the coding agent on Azure infrastructure while keeping your data inside your compliance boundary. This configuration provides enterprise-grade security, private networking, role-based access control, and cost management. Claude Code is more than a chat with your code agent—it's an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools. It works in your terminal, IDE, browser, and as a desktop app.
 
 In this article, you learn how to:
 
@@ -32,9 +32,12 @@ In this article, you learn how to:
 ## Prerequisites
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
-- Access to Microsoft Foundry with appropriate permissions to create and manage resources.
+- Access to [Microsoft Foundry](https://ai.azure.com/) with Contributor permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../../how-to/deploy-models-serverless-availability.md#region-availability) for Claude models.
+- **Contributor** or **Owner** role on your Foundry resource group. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
+- Access to [Azure Marketplace](../../foundry-models/how-to/configure-marketplace.md) to deploy Foundry Models from partners.
 - `homebrew` (macOS) or Node.js 18 or later with `npm` for installing the Claude Code CLI. See [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+- For Windows, install and configure WSL2. See [Install WSL](https://learn.microsoft.com/windows/wsl/install).
 - (Optional) [Azure CLI](/cli/azure/install-azure-cli) installed with `az login` completed for Microsoft Entra ID authentication.
 
 ### System requirements
@@ -43,13 +46,23 @@ In this article, you learn how to:
 | ----------- | ------- |
 | Operating system | macOS 12+, Ubuntu 20.04+/Debian 10+, Windows 11 via WSL2 |
 | RAM | 4-GB minimum (8-GB recommended) |
-| Git (optional) | 2.23+ for pull request helpers |
+| Git (optional, recommended) | 2.23+ for pull request helpers |
 
 ## Deploy a Claude model in Foundry
 
-Before configuring Claude Code, deploy an available [Claude model](../concepts/models-from-partners.md#anthropic), such as Opus 4.5 in Microsoft Foundry. Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). 
+Before configuring Claude Code, deploy the available [Claude models](../concepts/models-from-partners.md#anthropic) that Claude Code needs. Claude models in Foundry are available for [global standard deployment](../concepts/deployment-types.md#global-standard). Claude Code uses different models for different tasks:
 
-1. To deploy a Claude model, such as Opus 4.5, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
+| Claude Code role | Recommended deployment | Purpose |
+|---|---|---|
+| Primary model | `claude-sonnet-4-6` | General coding — balanced speed and quality |
+| Fast model | `claude-haiku-4-5` | Quick operations — file reads, small edits |
+| Extended thinking | `claude-opus-4-6` | Complex reasoning tasks (optional) |
+
+Other Claude models available in Foundry include `claude-sonnet-4-6`, `claude-opus-4-5` and `claude-opus-4-1`.
+
+To deploy the models:
+
+1. To deploy a Claude model, such as Opus 4.6, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
 
 1. After deployment, select the deployment's **Details** tab and note your **Target URI** and **Key**. You need these values for configuration.
 
@@ -69,6 +82,7 @@ To use Model Router with Claude Code, first deploy the Claude models you want in
 
 Install the Claude Code CLI and verify the installation. Use npm or Homebrew.
 
+
 **Installation with npm**
 
 ```bash
@@ -76,7 +90,15 @@ npm install -g @anthropic-ai/claude-code
 claude --version # verify installation
 ```
 
+After installation, verify that `claude` is in your PATH by running `claude --version`. If the command isn't found, add the install location to your PATH:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+```
+
 **Installation with Homebrew**
+
+If using macOS:
 
 ```bash
 brew install claude-code
@@ -85,12 +107,13 @@ claude --version # verify installation
 
 For more installation options, see [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code).
 
-## Configure environment variables
+## Configure Claude Code for Foundry
 
 Set environment variables to connect Claude Code to your Microsoft Foundry deployment.
 
 > [!TIP]
-> Find your Foundry resource name in the Azure portal under your resource's **Overview** page, or in the Foundry portal URL: `https://ai.azure.com/resource/{your-resource-name}`.
+> Find your Foundry resource name in the Azure portal under your resource's **Overview** page, or in the Foundry portal URL: `https://ai.azure.com/resource/<your-resource-name>`.
+> Alternatively, use the base URL, which is of the form: `https://<your-resource-name>.services.ai.azure.com`. Find the Project endpoint on the home page of the Foundry Portal, and copy the part of the URL that comes before `/api/projects/<your-project-name>`.
 
 # [Bash / WSL](#tab/bash)
 
@@ -98,15 +121,15 @@ Set environment variables to connect Claude Code to your Microsoft Foundry deplo
 # Required: Enable Foundry integration
 export CLAUDE_CODE_USE_FOUNDRY=1
 
-# Azure resource name (replace {resource} with your resource name)
-export ANTHROPIC_FOUNDRY_RESOURCE={resource}
+# Azure resource name (replace <your-resource-name> with your resource name)
+export ANTHROPIC_FOUNDRY_RESOURCE=<your-resource-name>
 # Or provide the full base URL:
-# export ANTHROPIC_FOUNDRY_BASE_URL=https://{resource}.services.ai.azure.com
+# export ANTHROPIC_FOUNDRY_BASE_URL=https://<your-resource-name>.services.ai.azure.com
 
 # Optional: Specify model deployment names if different from defaults
-export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-5"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"
 export ANTHROPIC_DEFAULT_HAIKU_MODEL="claude-haiku-4-5"
-export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-5"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"
 ```
 
 # [PowerShell](#tab/powershell)
@@ -115,36 +138,78 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-5"
 # Required: Enable Foundry integration
 $env:CLAUDE_CODE_USE_FOUNDRY = "1"
 
-# Azure resource name (replace {resource} with your resource name)
-$env:ANTHROPIC_FOUNDRY_RESOURCE = "{resource}"
+# Azure resource name (replace <your-resource-name> with your resource name)
+$env:ANTHROPIC_FOUNDRY_RESOURCE = "<your-resource-name>"
 # Or provide the full base URL:
-# $env:ANTHROPIC_FOUNDRY_BASE_URL = "https://{resource}.services.ai.azure.com"
+# $env:ANTHROPIC_FOUNDRY_BASE_URL = "https://<your-resource-name>.services.ai.azure.com"
 
 # Optional: Specify model deployment names if different from defaults
-$env:ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-5"
+$env:ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-6"
 $env:ANTHROPIC_DEFAULT_HAIKU_MODEL = "claude-haiku-4-5"
-$env:ANTHROPIC_DEFAULT_OPUS_MODEL = "claude-opus-4-5"
+$env:ANTHROPIC_DEFAULT_OPUS_MODEL = "claude-opus-4-6"
 ```
 
+
+The following table describes each variable:
+
+| Variable | Description |
+|---|---|
+| `CLAUDE_CODE_USE_FOUNDRY` | Set to `1` to enable the Microsoft Foundry integration. |
+| `ANTHROPIC_FOUNDRY_RESOURCE` | Your Foundry resource name. Claude Code constructs the endpoint URL as `https://<resource-name>.services.ai.azure.com/anthropic`. |
+| `ANTHROPIC_DEFAULT_SONNET_MODEL` | The deployment name for the Claude Sonnet model (primary coding model). |
+| `ANTHROPIC_DEFAULT_HAIKU_MODEL` | The deployment name for the Claude Haiku model (fast operations). |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL` | The deployment name for the Claude Opus model (complex reasoning). |
+
+> [!TIP]
+> If you use a custom endpoint URL, set `ANTHROPIC_FOUNDRY_BASE_URL` instead of `ANTHROPIC_FOUNDRY_RESOURCE`:
+>
+> ```bash
+> export ANTHROPIC_FOUNDRY_BASE_URL=https://<your-resource-name>.services.ai.azure.com/anthropic
+> ```
+
+To persist these variables across terminal sessions, add them to your shell profile (such as `~/.bashrc` or `~/.zshrc`).
 ---
 
 ## Authenticate with Foundry
 
-Choose one of the following authentication methods.
+Claude Code supports two authentication methods for Microsoft Foundry. Choose the method that best fits your security requirements.
 
 ### Option A: Microsoft Entra ID (recommended)
 
 Microsoft Entra ID authentication uses your Azure CLI credentials automatically. Run `az login` before starting Claude Code:
 
-```bash
-az login
-```
+1. Sign in with the Azure CLI:
+
+  ```bash
+  az login
+  ```
+
+1. Verify your sign-in targets the correct subscription:
+
+  ```bash
+  az account show
+  ```
+
+1. If your Foundry resource is in a different tenant than your default Azure CLI tenant, specify the tenant ID:
+
+  ```bash
+  az login --tenant <tenant-id>
+  ```
+
+When you use Microsoft Foundry, the `/login` and `/logout` commands inside Claude Code are disabled. Authentication is handled through your Azure credentials.
+
 
 Claude Code detects your Azure CLI session and uses it for authentication without extra configuration.
 
 ### Option B: API key
 
 If you prefer API key authentication, set the key in your environment variables.
+
+1. In the [Microsoft Foundry portal](https://ai.azure.com/nextgen), open your resource.
+1. On the **Home** page, find the **Project API key** field.
+1. Select **Copy Project API key** to copy the value.
+1. Set the environment variable in your terminal:
+
 
 # [Bash / WSL](#tab/bash)
 
@@ -160,7 +225,9 @@ $env:ANTHROPIC_FOUNDRY_API_KEY = "<your-foundry-api-key>"
 
 ---
 
-Find your API key in the Foundry portal under your model deployment's **Details** tab.
+> [!TIP]
+> You can also find your API key in the Foundry portal under your model deployment's **Details** tab.
+ 
 
 ## Configure the VS Code extension
 
@@ -176,7 +243,7 @@ The Claude Code VS Code extension provides a native graphical interface for Clau
     {
       "Claude Code: Environment Variables": {
         "CLAUDE_CODE_USE_FOUNDRY": "1",
-        "ANTHROPIC_FOUNDRY_RESOURCE": "{your-resource-name}",
+        "ANTHROPIC_FOUNDRY_RESOURCE": "<your-resource-name>",
         "ANTHROPIC_FOUNDRY_API_KEY": "<optional-for-non-entra-auth>"
       }
     }
@@ -190,32 +257,63 @@ The extension supports auto-accept edits mode, plan mode, extended thinking, and
 
 ## Validate the configuration
 
-Verify that Claude Code is correctly configured to use Microsoft Foundry. Open a terminal, launch Claude Code, and run the `/status` command:
+Verify that Claude Code is correctly configured to use Microsoft Foundry. 
 
-```bash
-claude
-> /status
-```
+1. Open a terminal and navigate to a project directory:
 
-The output should look similar to:
+  ```bash
+  cd your-project
+  ```
 
-```text
-Claude Code v1.0.0
-─────────────────────────────────────
-API Provider:      Microsoft Foundry
-Foundry Resource:  your-resource-name
-Model:             claude-sonnet-4-5
-Status:            Connected
-─────────────────────────────────────
-```
+1. Launch Claude Code:
 
-Confirm the following in the status output:
+  ```bash
+  claude
+  ```
 
-| Field | Expected value |
-| ----- | -------------- |
-| API provider | Microsoft Foundry |
-| Foundry resource | Your Foundry resource name |
-| Model | Your deployed model (for example, `claude-sonnet-4-5`) |
+  Claude Code defaults to the Sonnet model for general coding. If you haven't deployed all three models yet, you can specify a deployed model directly:
+
+  ```bash
+  claude --model claude-opus-4-6
+  ```
+
+1. Run the `/status` command:
+
+  ```bash
+  > /status
+  ```
+
+  The output should look similar to:
+
+  ```text
+  Claude Code v1.0.0
+  ─────────────────────────────────────
+  Version: 2.1.47
+  Session name: /rename to add a name
+  Session ID: your-session-ID
+  cwd: C:\WINDOWS\system32
+  API provider: Microsoft Foundry
+  Microsoft Foundry Resource: <your-resource-name>
+  Model: Default (claude-sonnet-4-6)
+  Memory:
+  Setting sources:
+  ─────────────────────────────────────
+  ```
+  
+  Confirm the following in the status output:
+  
+  | Field | Expected value |
+  | ----- | -------------- |
+  | API provider | Microsoft Foundry |
+  | Foundry resource | Your Foundry resource name |
+  | Model | Your deployed model (for example, `claude-sonnet-4-6`) |
+
+
+1. Send a test prompt such as "Summarize this project's structure."
+
+1. Confirm that Claude Code responds with an analysis of your project. A successful connection shows Claude Code's interactive prompt without authentication errors.
+
+If Claude Code displays an error like "Failed to get token" or "model is not available," see the [Troubleshooting](#troubleshooting) section. If Claude Code starts and responds to prompts, your Foundry connection is working correctly.
 
 ## Create project context with CLAUDE.md
 
@@ -281,6 +379,19 @@ claude
 # Or run a one-off command
 claude "explain the agent orchestration in src/workflows/"
 ```
+
+## Configure Azure RBAC
+
+To grant team members access to your Foundry-hosted Claude models, assign one of the following built-in roles:
+
+| Role | Permissions |
+|---|---|
+| **Azure AI User** | Invoke models, view deployments |
+| **Cognitive Services User** | Invoke models, view deployments |
+
+These roles include all required permissions for running Claude Code with Foundry.
+
+For more restrictive access, create a custom role scoped to the specific data actions your team needs. For guidance on defining custom roles, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
 ## (Optional) Integrate Spec Kit for structured development
 
@@ -424,22 +535,53 @@ $env:ANTHROPIC_MAX_TOKENS = "100000"
 
 ::: moniker-end
 
+## Clean up resources
+
+If you no longer need the Claude model deployments, delete them to free up deployment slots and quota in your resource. Claude models use Global Standard deployments with pay-per-token billing, so idle deployments don't incur charges. However, each deployment counts against your [deployment limit](../../foundry-models/quotas-limits.md) of 32 per resource.
+
+### Delete deployments in the Foundry portal
+
+Use either of these navigation paths:
+
+- Select **Operate** from the top navigation, then select **Assets** > **Models** from the left navigation. Select the deployment you want to delete, then select **Delete**.
+- Select **Build** from the top navigation, then select **Models** from the left navigation. Select the deployment name to open its detail page, select the **Details** tab, then select **Delete** from the top panel.
+
+### Delete deployments with the Azure CLI
+
+Run the [az cognitiveservices account deployment delete](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete) command for each deployment:
+
+```azurecli
+az cognitiveservices account deployment delete \
+  --deployment-name <deployment-name> \
+  --name <resource-name> \
+  --resource-group <resource-group-name>
+```
+
+Replace `<deployment-name>` with the model deployment name (such as `claude-sonnet-4-6`), `<resource-name>` with your Foundry resource name, and `<resource-group-name>` with the resource group that contains your Foundry resource.
+
 ## Troubleshooting
 
-| Issue | Solution |
+| Problem | Solution |
 | ----- | -------- |
 | Authorization failed (HTTP 401/403) | Verify that `az login` completed successfully or that the API key is set correctly. Check that your account has access to the Foundry resource. |
-| Model not found | Verify that the deployment name in your environment variables matches the deployment name in the Foundry portal. |
+| Claude Code starts but can't find models | Verify `ANTHROPIC_FOUNDRY_RESOURCE` matches your resource name and that the `ANTHROPIC_DEFAULT_*_MODEL` values match your deployment names. |
 | Rate limit exceeded (HTTP 429) | Adjust `ANTHROPIC_MAX_TOKENS` or check your quotas in the Foundry portal under **Operate** > **Quotas**. |
 | VS Code extension not connecting | Ensure environment variables are set before launching VS Code. Try launching VS Code from the terminal after setting variables. |
 | WSL + VS Code extension issues | The extension might check for the API key on the Windows host instead of within WSL. Set the environment variable on both the Windows host and WSL, then launch a new terminal from WSL and run `code .` |
 | Region errors | Claude models are only available in East US2 and Sweden Central. |
+| "Failed to get token from azureADTokenProvider: ChainedTokenCredential authentication failed" | Sign in with `az login`, or set `ANTHROPIC_FOUNDRY_API_KEY` for API key authentication. |
+| "The model `<model-name>` is not available on your foundry deployment" | Deploy the missing model in the Foundry portal. Claude Code requires each model role (Sonnet, Haiku, Opus) to have a corresponding deployment. |
+| "Token tenant does not match resource tenant" | Your Azure CLI is signed in to a different tenant than your Foundry resource. Run `az login --tenant <tenant-id>` to sign in to the correct tenant. |
+| Deployment creation fails in the Foundry portal | Verify you have **Contributor** or **Owner** role on the resource group, and your subscription has [Azure Marketplace access](../../foundry-models/how-to/configure-marketplace.md) enabled. |
+| Claude Code prompts for Anthropic login | Verify `CLAUDE_CODE_USE_FOUNDRY=1` is set. Without this variable, Claude Code uses the default Anthropic API. |
+
 
 ## Related content
 
 - [Deploy and use Claude models in Microsoft Foundry](use-foundry-models-claude.md)
-- [Codex with Azure OpenAI in Microsoft Foundry Models](../../openai/how-to/codex.md)
-- [Model Router overview](../../openai/concepts/model-router.md)
 - [Data, privacy, and security for Claude models](../../responsible-ai/claude-models/data-privacy.md)
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)
+- [Monitor model usage and costs](../../how-to/costs-plan-manage.md)
+- [Claude in Microsoft Foundry (Anthropic docs)](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
+- [Claude Code Documentation (Anthropic docs)](https://docs.anthropic.com/en/docs/claude-code)
 - [Spec Kit on GitHub](https://github.com/github/spec-kit)
