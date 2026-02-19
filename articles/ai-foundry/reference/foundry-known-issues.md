@@ -118,22 +118,21 @@ The following tables describe the current known issues for Translator.
 | 5005   | Content | Translating documents containing visible watermarks or seals | Visible watermarks or seals can overlap with text, making it difficult for the models to accurately recognize and process the content. Documents might remain untranslated or only partially translated. | Use clean, watermark-free documents for optimal translation results. | May 21, 2025 |
 
 
-### Azure Vision in Foundry Tools
+<!-- ### Azure Vision in Foundry Tools
 
-No currently active known issues.
+No currently active known issues. -->
 
-## AI Search
+<!-- ## AI Search
 
-No currently active known issues.
+No currently active known issues. -->
 
+<!-- ## Azure OpenAI (Foundry Models)
 
-## Azure OpenAI (Foundry Models)
+No currently active known issues. -->
 
-No currently active known issues.
+<!-- ## Observability
 
-## Observability
-
-No currently active known issues.
+No currently active known issues. -->
 
 ## Azure Machine Learning
 
