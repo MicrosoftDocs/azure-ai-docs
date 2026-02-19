@@ -1,15 +1,15 @@
 ---
-title: "Disable Use of Grounding With Bing (temp)"
-description: "Learn how to manage Grounding With Bing in Microsoft Foundry and Azure. (temp)"
+title: "Manage Grounding With Bing Access (temp)"
+description: "Learn how to manage Grounding with Bing in Microsoft Foundry and Azure. (temp)"
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
 ms.service: azure-ai-foundry
-ms.topic: how-to
-ms.date: 11/13/2025
+ms.topic: overview
+ms.date: 02/17/2026
 ---
 
-# Manage Grounding With Bing in Microsoft Foundry and Azure (temp)
+# Manage Grounding with Bing in Microsoft Foundry and Azure (temp)
 
 Grounding with Bing enables agents to retrieve and incorporate real-time public web data into model-generated responses. It supports summarization, question answering, conversational assistance, and other scenarios by using Grounding with Bing Search or Grounding with Bing Custom Search to fill knowledge gaps.
 
@@ -23,7 +23,7 @@ As an admin, you can manage access to Grounding with Bing in the following ways:
 
 ## Disable Grounding with Bing Search tools
 
-You can disable Grounding with Bing Search and/or Grounding with Bing Custom Search at the subscription or resource group level. For more information, see [Disable use of Grounding with Bing Search and Grounding with Bing Custom Search](./tools/bing-tools.md#disable-use-of-grounding-with-bing-search-and-grounding-with-bing-custom-search).
+You can disable Grounding with Bing Search, Grounding with Bing Custom Search, or both at the subscription or resource group level. For more information, see [Disable use of Grounding with Bing Search and Grounding with Bing Custom Search](./tools/bing-tools.md#disable-use-of-grounding-with-bing-search-and-grounding-with-bing-custom-search).
 
 ## Disable web search tool
 
@@ -32,6 +32,9 @@ You can disable the web search tool for all accounts in a subscription. For more
 ## Disable web knowledge
 
 You can disable Web Knowledge Source access for all search services in a subscription. For more information, see [Disable use of Web Knowledge Source](../../../search/agentic-knowledge-source-how-to-web-manage.md#disable-use-of-web-knowledge-source).
+
+> [!TIP]
+> To reenable access after disabling it, follow the steps in the linked articles to reverse the policy, setting, or feature registration.
 
 ## Related content
 

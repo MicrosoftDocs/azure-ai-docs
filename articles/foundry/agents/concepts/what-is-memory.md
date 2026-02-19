@@ -128,6 +128,6 @@ You're billed for usage of the underlying chat and embedding models you configur
 
 ## Related content
 
-- Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
-<!-- CLASSIC-ONLY: - Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../agents/concepts/model-region-support.md). -->
-- Build a complete agent: [Microsoft Foundry Quickstart](../../quickstarts/get-started-code.md).
+- Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)
+<!-- CLASSIC-ONLY: - Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../agents/concepts/model-region-support.md) -->
+- Build a complete agent: [Microsoft Foundry quickstart](../../quickstarts/get-started-code.md)
