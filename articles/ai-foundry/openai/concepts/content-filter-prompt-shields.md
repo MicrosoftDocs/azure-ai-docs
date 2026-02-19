@@ -59,7 +59,7 @@ Prompt Shields are part of the Azure OpenAI content filtering system. You can en
 
 ## Spotlighting (preview)
 
-Spotlighting provides enhanced protection when your application processes untrusted third-party documents that might contain embedded malicious instructions. Use Spotlighting when you need an additional defense layer beyond standard document attack detection, especially for applications that handle user-uploaded files or external web content.
+Spotlighting provides enhanced protection against indirect attacks when your application processes third-party documents that might contain embedded malicious instructions. Use Spotlighting when you need an additional defense layer beyond standard document attack detection, especially for applications that handle user-uploaded files or external web content.
 
 ### How it works
 
@@ -67,7 +67,7 @@ Spotlighting tags input documents with special formatting to indicate lower trus
 
 ### Cost and limitations
 
-There's no direct cost for spotlighting, but it increases document tokens by approximately 30-40% due to base-64 encoding, which can increase total costs. Spotlighting can also cause large documents to exceed input size limits. Spotlighting is only available for models used via the Chat Completions API.
+There's no direct cost for spotlighting, but it increases document tokens due to base-64 encoding, which can increase total costs. Spotlighting can also cause large documents to exceed input size limits. Spotlighting is only available for models used via the Chat Completions API.
 
 ### Enable Spotlighting
 

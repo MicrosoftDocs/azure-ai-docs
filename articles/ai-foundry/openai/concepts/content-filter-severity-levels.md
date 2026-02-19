@@ -26,7 +26,7 @@ For an overview of how guardrails work, see [Guardrails and controls overview](.
 The content safety system uses neural multiclass classification models to detect and filter harmful content for both text and image. Content detected at the "safe" severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 
 > [!NOTE]
-> The text content safety models for the hate, sexual, violence, and self-harm categories are trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. The service can work in many other languages, but detection accuracy and false positive rates may vary. For production use in other languages, conduct thorough testing to validate performance meets your requirements.
+> The text content safety models for the hate, sexual, violence, and self-harm categories are trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. The service can work in many other languages, but detection accuracy and false positive rates may vary. In call cases, conduct thorough testing to validate performance meets your requirements.
 
 ## Harm category descriptions
 
