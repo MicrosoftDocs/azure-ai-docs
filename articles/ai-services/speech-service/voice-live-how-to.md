@@ -65,15 +65,7 @@ Here's an example `session.update` message that configures several aspects of th
     "instructions": "You are a helpful AI assistant responding in natural, engaging language.",
     "turn_detection": {
         "type": "azure_semantic_vad",
-        "threshold": 0.3,
-        "prefix_padding_ms": 200,
-        "silence_duration_ms": 200,
-        "remove_filler_words": false,
-        "end_of_utterance_detection": {
-            "model": "semantic_detection_v1",
-            "threshold_level": "default",
-            "timeout_ms": 1000
-        },
+        "silence_duration_ms": 500,
     },
     "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"},
     "input_audio_echo_cancellation": {"type": "server_echo_cancellation"},
@@ -148,30 +140,6 @@ Turn detection is the process of detecting when the end-user started or stopped 
 | `eagerness` | string | Optional | This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. Only available with type `semantic_vad`. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` will let the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
 | `interrupt_response` | boolean | Optional | Enable or disable barge-in interruption (default: false). Only available with type `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
 | `auto_truncate` | boolean | Optional | Auto-truncate on interruption (default: false). |
-| `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The Voice Live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection can be used with either VAD selection.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported values are:<br/>&nbsp;&nbsp;`semantic_detection_v1` supporting English.<br/>&nbsp;&nbsp;`semantic_detection_v1_multilingual` supporting English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi.<br/>Other languages are bypassed.<br/>- `threshold_level`: Option setting for detection threshold level (`low`, `medium`, `high` and `default`), the default equals `medium` setting. With a lower setting the probability the sentence is complete will be higher.<br/>- `timeout_ms`: Optional setting for maximum time in milliseconds to wait for more user speech. Defaults to 1000 ms. <br/><br/>End of utterance detection currently doesn't support gpt-realtime, gpt-4o-mini-realtime, and phi4-mm-realtime.|
-
-Here's an example of end of utterance detection in a session object:
-
-```json
-{
-    "session": {
-        "instructions": "You are a helpful AI assistant responding in natural, engaging language.",
-        "turn_detection": {
-            "type": "azure_semantic_vad",
-            "threshold": 0.3,
-            "prefix_padding_ms": 300,
-            "speech_duration_ms":80,
-            "silence_duration_ms": 500,
-            "remove_filler_words": false,
-            "end_of_utterance_detection": {
-                "model": "semantic_detection_v1",
-                "threshold_level": "default",
-                "timeout_ms": 1000
-            }
-        }
-    }
-}
-```
 
 ## Audio input through Azure speech to text
 
