@@ -211,19 +211,19 @@ If you prefer API key authentication, set the key in your environment variables.
 1. Select **Copy Project API key** to copy the value.
 1. Set the environment variable in your terminal:
 
-# [Bash / WSL](#tab/bash)
-
-```bash
-export ANTHROPIC_FOUNDRY_API_KEY="<your-foundry-api-key>"
-```
-
-# [PowerShell](#tab/powershell)
-
-```powershell
-$env:ANTHROPIC_FOUNDRY_API_KEY = "<your-foundry-api-key>"
-```
-
----
+  # [Bash / WSL](#tab/bash)
+  
+  ```bash
+  export ANTHROPIC_FOUNDRY_API_KEY="<your-foundry-api-key>"
+  ```
+  
+  # [PowerShell](#tab/powershell)
+  
+  ```powershell
+  $env:ANTHROPIC_FOUNDRY_API_KEY = "<your-foundry-api-key>"
+  ```
+  
+  ---
 
 > [!TIP]
 > You can also find your API key in the Foundry portal under your model deployment's **Details** tab.
@@ -283,37 +283,36 @@ Verify that Claude Code is correctly configured to use Microsoft Foundry.
     > /status
     ```
 
-  The output should look similar to:
-
-  ```text
-  Claude Code v1.0.0
-  ─────────────────────────────────────
-  Version: 2.1.47
-  Session name: /rename to add a name
-  Session ID: your-session-ID
-  cwd: C:\WINDOWS\system32
-  API provider: Microsoft Foundry
-  Microsoft Foundry Resource: <your-resource-name>
-  Model: Default (claude-sonnet-4-6)
-  Memory:
-  Setting sources:
-  ─────────────────────────────────────
-  ```
+    The output should look similar to:
   
-  Confirm the following in the status output:
-  
-  | Field | Expected value |
-  | ----- | -------------- |
-  | API provider | Microsoft Foundry |
-  | Foundry resource | Your Foundry resource name |
-  | Model | Your deployed model (for example, `claude-sonnet-4-6`) |
-
+    ```text
+    Claude Code v1.0.0
+    ─────────────────────────────────────
+    Version: 2.1.47
+    Session name: /rename to add a name
+    Session ID: your-session-ID
+    cwd: C:\WINDOWS\system32
+    API provider: Microsoft Foundry
+    Microsoft Foundry Resource: <your-resource-name>
+    Model: Default (claude-sonnet-4-6)
+    Memory:
+    Setting sources:
+    ─────────────────────────────────────
+    ```
+    
+    Confirm the following in the status output:
+    
+    | Field | Expected value |
+    | ----- | -------------- |
+    | API provider | Microsoft Foundry |
+    | Foundry resource | Your Foundry resource name |
+    | Model | Your deployed model (for example, `claude-sonnet-4-6`) |
 
 1. Send a test prompt such as "Summarize this project's structure."
 
 1. Confirm that Claude Code responds with an analysis of your project. A successful connection shows Claude Code's interactive prompt without authentication errors.
 
-If Claude Code displays an error like "Failed to get token" or "model is not available", see the [Troubleshooting](#troubleshooting) section. If Claude Code starts and responds to prompts, your Foundry connection is working correctly.
+  If Claude Code displays an error like "Failed to get token" or "model is not available", see the [Troubleshooting](#troubleshooting) section. If Claude Code starts and responds to prompts, your Foundry connection is working correctly.
 
 ## Create project context with CLAUDE.md
 
