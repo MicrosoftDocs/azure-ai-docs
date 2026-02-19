@@ -69,7 +69,7 @@ To add an MCP server tool to your agent, follow these steps:
 
 After you add an MCP tool, deploy the agent to Foundry so that it's available for testing and use.
 
-1. In the designer, select the **Create Agent on MicrosoftFoundry** button.
+1. In the designer, select the **Create Agent on Microsoft Foundry** button.
 
 1. In VS Code, refresh the **Resources** view. The deployed agent appears in the **Classic Agents** subsection.
 
