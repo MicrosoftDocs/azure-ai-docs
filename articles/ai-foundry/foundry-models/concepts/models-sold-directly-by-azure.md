@@ -36,7 +36,7 @@ This article lists a selection of Microsoft Foundry Models sold directly by Azur
 
 Models sold directly by Azure include all Azure OpenAI models and specific, selected models from top providers. These models are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft. For models offered by partners outside of this list, see [Foundry Models from partners and community](models-from-partners.md).
 
-Use the tabs at the top of this page to switch between [Azure OpenAI models](https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai) and [other model collections](https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-direct-others) from providers like Cohere, DeepSeek, Meta, Mistral AI, and xAI.
+Use the tabs at the top of this page to switch between [Azure OpenAI models](./models-sold-directly-by-azure?pivots=azure-openai) and [other model collections](./models-sold-directly-by-azure?pivots=azure-direct-others) from providers like Cohere, DeepSeek, Meta, Mistral AI, and xAI.
 
 ::: moniker range="foundry-classic"
 

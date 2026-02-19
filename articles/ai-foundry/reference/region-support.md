@@ -142,8 +142,7 @@ Use the following table to investigate regional availability for specific featur
 | Speech capabilities            | Azure Speech capabilities, including custom neural voice, vary in regional availability due to underlying hardware availability.                     | [Speech service supported regions](../../ai-services/speech-service/regions.md).                           |
 | Serverless deployment     | Some models in the model catalog can be deployed as serverless deployments.                                                      | [Region availability for models in serverless deployment](../how-to/deploy-models-serverless-availability.md). |
 | Azure AI Content Safety        | To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability).       |
-| Agent Service         | Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Agent Service region availability](../../ai-services/default/agents/concepts/limits-quotas-regions.md#azure-openai-models). |
-
+| Agent Service         | Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Agent Service region availability](../agents/concepts/model-region-support.md#azure-openai-models). |
 
 
 ## Foundry in sovereign clouds
