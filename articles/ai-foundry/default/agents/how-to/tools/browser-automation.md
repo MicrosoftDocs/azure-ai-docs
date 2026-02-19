@@ -60,34 +60,63 @@ Before you begin, make sure you have:
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - Contributor or Owner role on a resource group.
 - A Foundry project with a configured endpoint.
-- An AI model deployed in your project.
+- An AI model deployed in your project (for example, `gpt-4o`).
 - A Playwright workspace resource.
 - A project connection set up for your Playwright workspace.
 
+### SDK requirements
+
+For Python examples, install the required packages:
+
+```bash
+pip install azure-ai-projects azure-identity python-dotenv
+```
+
+For the latest features, you might need the prerelease version:
+
+```bash
+pip install azure-ai-projects --pre --upgrade
+```
+
+### Environment variables
+
 For the SDK examples, set these environment variables:
 
-- `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
-- `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`: The connection resource ID for the Playwright workspace connection.
+| Variable | Description | Format |
+|----------|-------------|--------|
+| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint URL | `https://{account-name}.services.ai.azure.com/api/projects/{project-name}` |
+| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your deployed model name | `gpt-4o` |
+| `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID` | The connection resource ID | See the format that follows |
 
-Use the following format for your connection ID: `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
+**Get your project endpoint**: Open your project in the [Foundry portal](https://ai.azure.com), and copy the endpoint from the project overview page.
+
+**Connection ID format**: Use `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`. You can find this value on the tool's details page after you connect the Browser Automation tool.
 
 ## Set up Browser Automation
 
-1. Create a [Playwright Workspace](https://aka.ms/pww/docs/manage-workspaces) resource.
-  1. [Generate an access token](/azure/app-testing/playwright-workspaces/how-to-manage-access-tokens) for the Playwright workspace resource.
-  1. Copy the workspace region endpoint from the **Workspace Details** page.
-  1. Assign the Contributor role to your project's managed identity on the Playwright workspace resource. Alternatively, [configure a custom role](/azure/app-testing/playwright-workspaces/how-to-manage-workspace-access#create-a-custom-role-for-restricted-tenants).
-1. Create a connection in your Foundry project using the Playwright workspace region endpoint and Playwright workspace access token.
-   1. Go to the [Foundry portal](https://ai.azure.com/nextgen) and select your project.
-   1. Select **Operate** in the upper-right navigation, then select **Admin** in the left pane.
-   1. Select your project name in the **All projects** list.
-   1. Select **Add connection**, then select **Serverless** connection.
-   1. Enter a name for the connection (for example, `playwright-workspace`).
-   1. Set **Endpoint** to the Playwright workspace region endpoint. It starts with `wss://`.
-      - For more information, see the Playwright documentation for [configuring the service endpoint](/azure/app-testing/playwright-workspaces/quickstart-run-end-to-end-tests?tabs=playwrightcli&pivots=playwright-test-runner#configure-the-browser-endpoint).
-   1. Set **Key** to your Playwright access token.
-   1. Select **Add connection**.
+### Step 1: Create a Playwright workspace
+
+1. In the [Azure portal](https://portal.azure.com), create a [Playwright Workspace](https://aka.ms/pww/docs/manage-workspaces) resource.
+1. After the workspace is created, go to **Settings** > **Access Management**.
+1. Confirm the **Playwright Service Access Token** authentication method is enabled.
+1. Select **Generate Token**, enter a name (for example, `foundry-connection`), and choose an expiry period.
+1. **Copy the token immediately**. You can't view it again after closing the page.
+1. On the workspace **Overview** page, copy the **Browser endpoint** (it starts with `wss://`).
+1. Give the project identity a Contributor role on the Playwright workspace resource, or [configure a custom role](https://aka.ms/pww/docs/manage-workspace-access).
+
+### Step 2: Connect the Browser Automation tool in Foundry
+
+1. Go to the [Foundry portal](https://ai.azure.com/nextgen) and select your project.
+1. Select **Build** > **Tools**.
+1. Select **Connect a tool**.
+1. In the **Configured** tab, select **Browser Automation**, then select **Add tool**.
+1. Fill in the required fields:
+   - **Name**: A unique name for your connection.
+   - **Playwright workspace region endpoint**: Paste the `wss://` endpoint you copied.
+   - **Access token**: Paste the access token you generated.
+1. Select **Connect**.
+
+After the connection is created, you can view the **Project connection ID** on the tool's details page. Use this value for the `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID` environment variable.
 
 ## Code example
 
@@ -489,6 +518,16 @@ This tool uses a Playwright workspace resource to run browser sessions. Review t
 - Confirm `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID` matches the Playwright workspace connection resource ID in your project.
 - Confirm the project identity has access to the Playwright workspace resource.
 - If you recently rotated the Playwright access token, update the Foundry project connection key.
+
+:::zone pivot="python"
+
+### Python SDK errors
+
+- **Workspace not found**: Verify your `FOUNDRY_PROJECT_ENDPOINT` uses the correct format: `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`. Don't use the legacy Azure ML endpoint format.
+- **Unexpected keyword argument errors**: Ensure you're using the latest version of `azure-ai-projects`. Run `pip install azure-ai-projects --pre --upgrade` to update.
+- **Import errors**: Install all required packages: `pip install azure-ai-projects azure-identity python-dotenv`.
+
+:::zone-end
 
 ### Requests time out
 

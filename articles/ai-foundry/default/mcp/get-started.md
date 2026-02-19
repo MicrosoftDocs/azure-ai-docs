@@ -1,7 +1,7 @@
 ---
 title: Get started using Foundry MCP Server with Visual Studio Code
-description: Learn how to connect to and consume Foundry MCP Server operations with Visual Studio Code
-keywords: azure developer cli, azd
+description: Connect to Foundry MCP Server from Visual Studio Code, authenticate with Entra ID, and run your first prompts against Foundry services.
+keywords: mcp, model context protocol, foundry mcp server, visual studio code
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 # Get started with Foundry MCP Server (preview) using Visual Studio Code
 
-Foundry MCP Server (preview) is a Microsoft-managed, cloud-hosted implementation of the Model Context Protocol (MCP). It exposes curated tools that let your agents perform read and write operations against Foundry services without calling backend APIs directly.
+Foundry MCP Server (preview) is a cloud-hosted implementation of the Model Context Protocol (MCP). It exposes curated tools that let your agents perform read and write operations against Foundry services without calling backend APIs directly.
 
 Use an MCP-compliant client such as Visual Studio Code to connect to the public endpoint, authenticate with Entra ID, and let LLMs access the tools. After you connect, you can build agents that invoke these tools with natural language prompts.
 
@@ -27,15 +27,16 @@ In this article, you learn how to:
 ## Prerequisites
 
 - Azure account with an active subscription. If you don't have one, [create a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- Foundry project. If you don't have a project, create one with the [Microsoft Foundry SDK Quickstart](/azure/ai-foundry/quickstarts/get-started-code?tabs=python#first-run-experience).
-- [Visual Studio Code](https://code.visualstudio.com/download).
+- A Foundry project. If you don't have a project, create one with the [Microsoft Foundry SDK Quickstart](/azure/ai-foundry/quickstarts/get-started-code?tabs=python#first-run-experience).
+- [Visual Studio Code](https://code.visualstudio.com/download) (version 1.99 or later).
 - [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) Visual Studio Code extension.
+- Contributor or higher role on the Foundry project you want to access.
 
 ## Benefits of Foundry MCP Server
 
 - **Cloud-hosted interface for AI tool orchestration**: Foundry MCP Server (preview) provides a secure, scalable endpoint for MCP-compliant clients. You don't need to deploy infrastructure, enabling seamless integration and multi-agent scenarios.
 - **Identity and access control**: The server enforces authentication and authorization with Microsoft Entra ID. It performs all operations within the authenticated user's permissions (On-Behalf-Of flow).
-- **Scenario-focused, extensible tools**: The MCP Server exposes a growing set of tools for read and write operations on models, deployments, evaluations, and agents in Foundry. The tools are extensible, letting developers and agents interact with services without knowing backend APIs or data schemas.
+- **Scenario-focused, extensible tools**: Foundry MCP Server exposes a growing set of tools for read and write operations on models, deployments, evaluations, and agents in Foundry. The tools are extensible, letting developers and agents interact with services without knowing backend APIs or data schemas.
 - **Accelerated agent and developer productivity**: Natural language workflows (via MCP clients and large language models) enable rapid tool discovery and invocation, streamlining development and multi-agent orchestration.
 
 ## Install and start Foundry MCP Server
@@ -101,7 +102,7 @@ Install Foundry MCP Server for a specific workspace to scope it to that folder:
 
     :::image type="content" source="../media/mcp/foundry-mcp-server-tools.png" alt-text="A screenshot showing Foundry MCP Server as GitHub Copilot tool.":::
 
-    To learn more about Agent Mode, visit the [Visual Studio Code Documentation](https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode).
+    To learn more about Agent Mode, visit the [Visual Studio Code documentation](https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode).
 
 ---
 
@@ -117,19 +118,16 @@ Install Foundry MCP Server for a specific workspace to scope it to that folder:
 
     :::image type="content" source="../media/mcp/foundry-mcp-server-run-tool.png" alt-text="Screenshot of options to run Foundry MCP Server operations.":::
 
-    The response resembles the following shortened output:
+    The response resembles the following shortened output. Your actual results vary based on current model availability.
 
     ```text
     Latest / Notable Foundry Models (Preview Snapshot)
-    Curated from the model catalog and benchmark data you requested. I've grouped by category and highlighted truly recent arrivals (2025 releases or late 2024 previews), plus why you'd pick them. Where available, I note cost, performance, or capability signals (e.g., throughput_gtps, reasoning focus, modality).
     
     1. Frontier & Reasoning Models
-    gpt-5-pro (2025-10-06) – Latest flagship conversational / reasoning model from OpenAI; expect top-tier multi-turn coherence and complex tool orchestration.
-    gpt-5 (2025-08-07), gpt-5-mini, gpt-5-nano – New performance tiers; mini/nano are cost-optimized for high-volume requests.
-    o3-pro (2025-06-10) – High reasoning accuracy (multiple >0.95 accuracy slices) but very high latency (p50 ~102s) indicating chain-of-thought style deliberation. Use only for tasks requiring deep reasoning (complex math, logic).
-    o3 (2025-04-16) – Balanced reasoning; much faster than o3-pro; good accuracy/quality trade-off.
-    o4-mini (2025-04-16) – Successor in "o" line; strong quality with better latency than o3-pro.
-    Phi-4 (versions through 7) – Microsoft small frontier open model; competitive quality at radically lower token cost (input $0.125 / 1M tokens). Strong for cost-sensitive general tasks.
+    gpt-4o (2024-11-20) – Flagship multimodal model; strong multi-turn coherence.
+    o3 (2025-04-16) – Balanced reasoning with good accuracy/quality trade-off.
+    o4-mini (2025-04-16) – Strong quality with better latency than o3.
+    Phi-4 – Microsoft small frontier open model; competitive quality at lower cost.
 
     // Further output omitted
     ```
@@ -139,8 +137,24 @@ Install Foundry MCP Server for a specific workspace to scope it to that folder:
     ```text
     What tools can I use from Foundry MCP Server (preview)?
     Tell me about the latest models on Foundry
-    Show me details about the GPT-5-mini model on Foundry
+    Show me details about the GPT-4o model on Foundry
     ```
+
+## Troubleshooting
+
+| Issue | Resolution |
+| ----- | ---------- |
+| Server doesn't start | Verify you entered the URL `https://mcp.ai.azure.com` correctly. Open the **Command Palette** and run **MCP: List Servers** to check server status. |
+| Authentication prompt doesn't appear | Make sure the GitHub Copilot extension is installed and you're signed in to Visual Studio Code with a Microsoft account that has access to your Azure subscription. |
+| Foundry tools don't appear in Agent Mode | Confirm the server is running (green indicator in **MCP: List Servers**). Check that you selected **Agent Mode** in the Copilot chat panel, then select the tools icon and search for *Foundry*. |
+| "Access denied" or permission errors | Verify you have Contributor or higher role on the Foundry project. The server uses On-Behalf-Of flow with your Entra ID credentials. |
+
+## Remove Foundry MCP Server
+
+To remove the server configuration:
+
+- **User profile**: Open the **Command Palette**, run **MCP: List Servers**, select the Foundry server, and choose **Remove Server**.
+- **Workspace**: Delete the server entry from the `.vscode/mcp.json` file in your project folder.
 
 ## Related content
 

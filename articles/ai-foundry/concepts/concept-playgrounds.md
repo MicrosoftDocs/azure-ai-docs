@@ -162,6 +162,18 @@ To get started with the agents playground, see [Understanding the agent developm
 
 ::: moniker range="foundry-classic"
 
+[!INCLUDE [evaluations-agent-playground-classic](../includes/evaluations-agent-playground-classic.md)]
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+[!INCLUDE [evaluations-agent-playground](../default/includes/evaluations-agent-playground.md)]
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
 ## Chat playground
 
 The chat playground is the place to test the latest reasoning models from models including Azure OpenAI, DeepSeek, and Meta. For all reasoning models, the chat playground provides a chain-of-thought summary drop-down that lets you see how the model thinks through its response before sharing the output.
