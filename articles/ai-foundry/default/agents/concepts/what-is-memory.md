@@ -121,7 +121,7 @@ To mitigate security risks, consider these actions:
 - Search memories: 1,000 requests per minute
 - Update memories: 1,000 requests per minute
 
-For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../../../agents/quotas-limits.md?view=foundry&preserve-view=true).
+For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md).
 
 ## Pricing
 

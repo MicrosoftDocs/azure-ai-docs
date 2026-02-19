@@ -10,7 +10,6 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
 ms.date: 02/02/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 

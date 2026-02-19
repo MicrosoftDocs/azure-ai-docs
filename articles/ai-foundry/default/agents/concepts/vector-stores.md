@@ -21,7 +21,7 @@ Vector stores can be attached to both agents and conversations. Currently, you c
 
 In the current agents developer experience, response generation uses **responses** and **conversations**. Some SDKs and older samples use the term *run*. If you see both terms, treat *run* as response generation. For migration guidance, see [How to migrate to the new agent service](../how-to/migrate.md).
 
-For a list of limits for vector search (such as maximum allowable file sizes), see the [quotas and limits](../../../agents/quotas-limits.md) article.
+For a list of limits for vector search (such as maximum allowable file sizes), see the [quotas and limits](../concepts/limits-quotas-regions.md) article.
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ Vector stores are often the first place retrieval workflows fail in production, 
 	- Embedding model: text-embedding-3-large at 256 dimensions
 	- Maximum number of chunks added to context: 20
 
-For file size and token limits, see [quotas and limits](../../../agents/quotas-limits.md).
+For file size and token limits, see [quotas and limits](../concepts/limits-quotas-regions.md).
 
 ## Key concepts
 
@@ -134,14 +134,14 @@ For the supported file types list and encoding requirements, see [Supported file
 Key limits to keep in mind:
 
 - You can attach at most one vector store to an agent and at most one vector store to a conversation.
-- File size and token limits vary by feature. See [Quotas and limits](../../../agents/quotas-limits.md).
+- File size and token limits vary by feature. See [Quotas and limits](../concepts/limits-quotas-regions.md).
 
 ## Troubleshooting
 
 - **Your vector store isn't searchable yet**: Wait for ingestion to finish. Use SDK polling helpers or poll the vector store until its status is **completed**.
 - **Response generation fails after a few days**: Your conversation vector store might have expired. Recreate a new vector store with the same files and reattach it.
 - **A file disappeared from multiple agents or conversations**: You might have deleted the underlying file object, which removes the file from all vector store configurations across your organization.
-- **Uploads or ingestion fail**: Check file size and token limits in [Quotas and limits](../../../agents/quotas-limits.md).
+- **Uploads or ingestion fail**: Check file size and token limits in [Quotas and limits](../concepts/limits-quotas-regions.md).
 
 ## Next steps
 
