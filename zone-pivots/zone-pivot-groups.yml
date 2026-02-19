@@ -1255,6 +1255,8 @@ groups:
     title: Python
   - id: csharp
     title: C#
+  - id: typescript
+    title: TypeScript
 - id: selection-ai-search-tool
   title: Selections
   prompt: What would you like to see?
