@@ -5,6 +5,8 @@ items:
   href: ../../../how-to/develop/install-cli-sdk.md
 - name: Work in VS Code
   href: ../../../how-to/develop/get-started-projects-vs-code.md
+- name: Configure Claude Code with Microsoft Foundry
+  href: ../../../foundry-models/how-to/configure-claude-code.md
 
 # Getting Started with Development
 - name: Start with an AI template

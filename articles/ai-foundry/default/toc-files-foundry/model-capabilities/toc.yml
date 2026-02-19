@@ -18,8 +18,6 @@ items:
     href: ../../../openai/supported-languages.md
   - name: Claude in Foundry Models
     href: ../../../foundry-models/how-to/use-foundry-models-claude.md
-  - name: Configure Claude Code with Microsoft Foundry
-    href: ../../../foundry-models/how-to/configure-claude-code.md
 
 # Performance and Throughput
 - name: Performance and throughput
