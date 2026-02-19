@@ -62,12 +62,11 @@ Test your declarative agent workflow by using the remote agent playground in the
 1. Select **Declarative Agents**.
 1. Select the version of the workflow you want to test. 
 1. The **Remote Agent Playground** pane opens and starts a conversation with your agent.
-
-> [!TIP]
-> You can also open the **Remote Agent Playground** from the **Tools** subsection and select your agent from the dropdown list.
-
 1. In the input box at the bottom of the **Remote Agent Playground** pane, type a message and press **Enter**.
 1. Review the agent's response. Verify that the response matches the expected behavior for your workflow's defined actions.
+ 
+> [!TIP]
+> You can also open the **Remote Agent Playground** from the **Tools** subsection and select your agent from the dropdown list.
 
 ## Convert a YAML workflow to Agent Framework code
 
