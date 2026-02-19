@@ -38,21 +38,21 @@ No currently active known issues.
 
 ## Foundry Tools
 
-### Azure Content Safety in Foundry Tools
+<!-- ### Azure Content Safety in Foundry Tools
 
-No currently active known issues.
+No currently active known issues. -->
 
-### Azure Content Understanding in Foundry Tools
+<!-- ### Azure Content Understanding in Foundry Tools
 
-No currently active known issues.
+No currently active known issues. -->
 
-### Azure Document Intelligence in Foundry Tools
+<!-- ### Azure Document Intelligence in Foundry Tools
 
-No currently active known issues.
+No currently active known issues. -->
 
-### Azure Language in Foundry Tools
+<!-- ### Azure Language in Foundry Tools
 
-No currently active known issues.
+No currently active known issues. -->
 
 ### Azure Speech in Foundry Tools
 
