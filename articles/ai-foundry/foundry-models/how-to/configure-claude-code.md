@@ -271,7 +271,7 @@ Verify that Claude Code is correctly configured to use Microsoft Foundry.
     claude
     ```
 
-  Claude Code defaults to the Sonnet model for general coding. If you haven't deployed all three models yet, you can specify a deployed model directly:
+    Claude Code defaults to the Sonnet model for general coding. If you haven't deployed all three models yet, you can specify a deployed model directly:
 
     ```bash
     claude --model claude-opus-4-6
