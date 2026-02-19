@@ -155,16 +155,16 @@ For authenticated connections that occur during indexer and skillset processing,
 
    ```http
    @foundryUrl = PUT-YOUR-MULTISERVICE-AZURE-AI-FOUNDRY-ENDPOINT-HERE
-   @modelVersion = 2023-04-15
+   @azureAiVisionModelVersion = 2023-04-15
    ```
 
 1. Add these variables if you're using the GenAI Prompt skill and Azure OpenAI Embedding skill:
 
    ```http
-   @openAIResourceUri = PUT-YOUR-OPENAI-URI-HERE
-   @openAIKey = PUT-YOUR-OPENAI-KEY-HERE
-   @chatCompletionResourceUri = PUT-YOUR-CHAT-COMPLETION-URI-HERE
-   @chatCompletionKey = PUT-YOUR-CHAT-COMPLETION-KEY-HERE
+    @chatCompletionModelUri = PUT-YOUR-DEPLOYED-MODEL-URI-HERE
+    @chatCompletionModelKey = PUT-YOUR-MODEL-KEY-HERE
+    @textEmbeddingModelUri = PUT-YOUR-DEPLOYED-MODEL-URI-HERE
+    @textEmbeddingModelKey = PUT-YOUR-MODEL-KEY-HERE
    ```
 
 1. Save the file using a `.rest` or `.http` file extension. For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
@@ -380,7 +380,7 @@ POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
                 "aiServicesVisionParameters": {
                     "resourceUri": "{{foundryUrl}}",
                     "authIdentity": null,
-                    "modelVersion": "{{modelVersion}}"
+                    "modelVersion": "{{azureAiVisionModelVersion}}"
                 }
             }
         ]     
@@ -418,7 +418,12 @@ Key points:
 
 [Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that extract, chunk, and vectorize content prior to indexing.
 
-Here's the basic definition. In the sections that follow, you'll add skills based on the behaviors you want for content extraction, chunking, and vectorization.
+A framework for the request is provided in the following example. It has static elements and placeholders for elements added in later sections:
+
++ Skills based on the behaviors you want for content extraction, chunking, and vectorization.
++ Index projections that correspond to skill output
+
+Skills and index projections are the only elements that vary. The `name`, `description`, `cognitiveServices`, and `knowledgeStore` are the same for every skillset.
 
 ```http
 ### Create a skillset
@@ -432,59 +437,13 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
     "skills": [ 
       ADD SKILLS HERE - AT LEAST ONE SKILL IS REQUIRED
   ],
+  "indexProjections": {
+      ADD INDEX PROJECTIONS HERE
+  },
   "cognitiveServices": {
     "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
     "subdomainUrl": "{{foundryUrl}}",
     "identity": null
-  },
-  "indexProjections": {
-      "selectors": [
-        {
-          "targetIndexName": "demo-multimodal-index",
-          "parentKeyFieldName": "text_document_id",
-          "sourceContext": "/document/pages/*",
-          "mappings": [              
-            {
-              "name": "content_embedding",
-              "source": "/document/pages/*/text_vector"
-            },
-            {
-              "name": "content_text",
-              "source": "/document/pages/*"
-            },             
-            {
-              "name": "document_title",
-              "source": "/document/document_title"
-            }      
-          ]
-        },
-        {
-          "targetIndexName": "demo-multimodal-index",
-          "parentKeyFieldName": "image_document_id",
-          "sourceContext": "/document/normalized_images/*",
-          "mappings": [                                   
-            {
-              "name": "content_embedding",
-              "source": "/document/normalized_images/*/image_vector"
-            },
-            {
-              "name": "content_path",
-              "source": "/document/normalized_images/*/new_normalized_images/imagePath"
-            },
-            {
-              "name": "location_metadata",
-              "source": "/document/normalized_images/*/new_normalized_images/location_metadata"
-            },                      
-            {
-              "name": "document_title",
-              "source": "/document/document_title"
-            }                
-          ]
-        }
-      ],
-      "parameters": {
-        "projectionMode": "skipIndexingParentDocuments"
-      }
   },
   "knowledgeStore": {
     "storageConnectionString": "{{storageConnection}}",
@@ -611,11 +570,23 @@ Choose either approach for the skills array of your skillset.
 
 Key points:
 
-+ The `content_text` field is populated with text extracted using the Document Extraction Skill and chunked using the Split Skill
++ For extraction, text and images are extracted separately and sent to two nodes in the document enrichment tree.
 
-+ `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
++ For chunking, properties are inline for Document Layout, or specified as properties for the Text Split skill.
 
-+ The Azure Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
+<!-- This skillset extracts text and images, verbalizes images, vectorizes text, and shapes the image metadata for projection into the index.
+
+Key points:
+
+The content_text field is populated in two ways:
+
+From document text extracted using the Document Extraction skill and chunked using the Text Split skill
+
+From image content using the GenAI Prompt skill, which generates descriptive captions for each normalized image
+
+The content_embedding field contains 3072-dimensional embeddings for both page text and verbalized image descriptions. These are generated using the text-embedding-3-large model from Azure OpenAI.
+
+content_path contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when imageAction is set to generateNormalizedImages, and can be mapped from the enriched document from the source field /document/normalized_images/*/imagePath. -->
 
 ## Vectorize multimodal content
 
@@ -641,7 +612,7 @@ This skillset extracts text and images, vectorizes both, and shapes the image me
     "name": "text-embedding-skill",
     "description": "Vision Vectorization skill for text",
     "context": "/document/pages/*", 
-    "modelVersion": "{{modelVersion}}", 
+    "modelVersion": "{{azureAiVisionModelVersion}}", 
     "inputs": [ 
       { 
         "name": "text", 
@@ -660,7 +631,7 @@ This skillset extracts text and images, vectorizes both, and shapes the image me
     "name": "image-embedding-skill",
     "description": "Vision Vectorization skill for images",
     "context": "/document/normalized_images/*", 
-    "modelVersion": "{{modelVersion}}", 
+    "modelVersion": "{{azureAiVisionModelVersion}", 
     "inputs": [ 
       { 
         "name": "image", 
@@ -724,7 +695,7 @@ This skillset extracts text and images, vectorizes both, and shapes the image me
 This skillset vectorizes text, verbalizes images as text, and then vectorizes the text descriptions. It also shapes the image metadata for projection into the index.
 
 ```json
-  {
+{
     "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
     "name": "text-embedding-skill",
     "description": "Embedding skill for text",
@@ -746,8 +717,8 @@ This skillset vectorizes text, verbalizes images as text, and then vectorizes th
     "searchApiKey": "{{openAIKey}}",
     "dimensions": 3072,
     "modelName": "text-embedding-3-large"
-    },
-    {
+  },
+  {
     "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
     "name": "genAI-prompt-skill",
     "description": "GenAI Prompt skill for image verbalization",
@@ -775,8 +746,8 @@ This skillset vectorizes text, verbalizes images as text, and then vectorizes th
             "targetName": "verbalizedImage"
             }
         ]
-    },    
-    {
+  },    
+  {
     "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
     "name": "verbalized-image-embedding-skill",
     "description": "Embedding skill for verbalized images",
@@ -792,8 +763,8 @@ This skillset vectorizes text, verbalizes images as text, and then vectorizes th
         {
         "name": "embedding",
         "targetName": "verbalizedImage_vector"
-        }
-    ],
+    }
+  ],
     "resourceUri": "{{openAIResourceUri}}",
     "deploymentId": "text-embedding-3-large",
     "searchApiKey": "{{openAIKey}}",
@@ -837,7 +808,14 @@ This skillset vectorizes text, verbalizes images as text, and then vectorizes th
           "targetName": "new_normalized_images"
         }
       ]
-    }
+}
+```
+
+Index projections shapes the skill output for the index. This is the index projection for 
+
+```
+
+
 ```
 ---
 
@@ -845,7 +823,9 @@ Key points:
 
 + The `content_text` field is populated with text extracted using the Document Extraction Skill and chunked using the Split Skill
 
-+ `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
++ Within `indexProjections`, the `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
+
++ The Azure AI Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
 ## Run the indexer
 
