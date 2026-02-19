@@ -8,7 +8,7 @@ ms.author: jburchel
 ms.reviewer: ankamene
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 02/19/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -24,20 +24,17 @@ This article shows you how to enable AI Gateway for a Microsoft Foundry resource
 - Permissions to create or reuse an Azure API Management (APIM) instance:
   - To create an APIM instance: **Contributor** or **Owner** on the target resource group (or subscription).
   - To manage an existing APIM instance: **API Management Service Contributor** (or **Owner**) on the APIM instance. For more information, see [How to use role-based access control in Azure API Management](/azure/api-management/api-management-role-based-access-control).
-
 - Access to the Foundry portal (**Admin console**) for the target Foundry resource.
   - For example: **Azure AI Account Owner** or **Azure AI Owner** on the Foundry resource. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
-
 - Decision on whether to create a dedicated APIM instance or reuse an existing one.
 
-### Requirements for using an existing API Management instance
+## Requirements for using an existing API Management instance
 
 When you select **Use existing APIM**, only API Management instances that meet all of the following requirements are listed:
 
-- The API Management instance must be in the **same Microsoft Entra tenant** as the Foundry resource.
+- The API Management instance must be in the **same Microsoft Entra tenant** and the same **subscription** as the Foundry resource.
 - You must have at least the **API Management Service Contributor** role (or Owner) on the API Management instance.
-- The API Management instance must be in a subscription that you can access from the Foundry portal.
-- The API Management instance must use a **supported SKU** for AI Gateway.
+- The API Management instance must use a **supported service tier** for AI Gateway. Currently, instances in the [v2 tiers](/azure/api-management/v2-service-tiers-overview) are supported. 
 - The API Management instance must not already be associated with another AI Gateway.
 
 If none of your API Management instances appear in the list, verify that the instance meets the requirements above and that you have the required permissions.
