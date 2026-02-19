@@ -1546,6 +1546,8 @@ groups:
     title: Python
   - id: csharp
     title: C#
+  - id: typescript
+    title: TypeScript
   - id: rest
     title: REST API
 - id: selection-agent-to-agent

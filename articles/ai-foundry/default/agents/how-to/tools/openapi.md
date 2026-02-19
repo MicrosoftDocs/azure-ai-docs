@@ -27,6 +27,9 @@ Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifi
 |---------|---------|---------|---------|---------|---------|---------|
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
+> [!NOTE]
+> The Java SDK does not currently support OpenAPI tools with the new agent APIs (`azure-ai-projects` package). Java support is available for the classic agent APIs only. For Java OpenAPI examples with classic agents, see the [classic agent documentation](../../../../agents/how-to/tools-classic/openapi-spec.md).
+
 ## Prerequisites
 
 Before you begin, make sure you have:

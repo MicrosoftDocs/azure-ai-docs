@@ -44,6 +44,9 @@ The following table shows SDK and setup support for MCP connections.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
+> [!NOTE]
+> The Java SDK does not currently support MCP tools with the new agent APIs (`azure-ai-projects` package). MCP integration is available through Python, C#, TypeScript, and REST API only.
+
 ## Prerequisites
 
 Before you begin, ensure you have:
