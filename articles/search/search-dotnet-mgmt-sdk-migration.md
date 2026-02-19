@@ -1,23 +1,23 @@
 ---
-title: Upgrade management SDKs
+title: Upgrade Management SDKs
 titleSuffix: Azure AI Search
 description: Learn about the management libraries and packages used for control plane operations in Azure AI Search.
 manager: nitinme
-author: bevloh
-ms.author: beloh
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.devlang: csharp
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: upgrade-and-migration-article
-ms.date: 02/24/2025
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 
 # Upgrade versions of the Azure Search .NET Management SDK
 
-This article points you to libraries in the Azure SDK for .NET for managing a search service. These libraries provide the APIs used to create, configure, and delete search services. They also provide APIS used to adjust capacity, manage API keys, and configure network security.
+This article points you to libraries in the Azure SDK for .NET for managing a search service. These libraries provide the APIs used to create, configure, and delete search services. They also provide APIs used to adjust capacity, manage API keys, and configure network security.
 
 Management SDKs target a specific version of the Management REST API. Release notes for each library indicate which REST API version is the target for each package. For more information about concepts and operations, see [Search Management (REST)](/rest/api/searchmanagement/).
 
@@ -27,7 +27,7 @@ The following table lists the client libraries used to provision a search servic
 
 | Namespace | Version| Status | Change log |
 |-----------|--------|--------|------------|
-| [Azure.ResourceManager.Search](/dotnet/api/overview/azure/resourcemanager.search-readme?view=azure-dotnet&preserve-view=true) | [Package versions](https://www.nuget.org/packages/Azure.ResourceManager.Search) | **Current** | [Change Lot](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.ResourceManager.Search/CHANGELOG.md) |
+| [Azure.ResourceManager.Search](/dotnet/api/overview/azure/resourcemanager.search-readme?view=azure-dotnet&preserve-view=true) | [Package versions](https://www.nuget.org/packages/Azure.ResourceManager.Search) | **Current** | [Change log](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.ResourceManager.Search/CHANGELOG.md) |
 | [Microsoft.Azure.Management.Search](/dotnet/api/overview/azure/search/management/management-cognitivesearch(deprecated)?view=azure-dotnet&preserve-view=true) | [Package versions](https://www.nuget.org/packages/Microsoft.Azure.Management.Search#versions-body-tab) | **Deprecated** | [Release notes](https://www.nuget.org/packages/Microsoft.Azure.Management.Search#release-body-tab) |
 
 ## Checklist for upgrade

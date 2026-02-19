@@ -1,18 +1,18 @@
 ---
-title: moreLikeThis (preview) query feature
+title: moreLikeThis Query Feature
 titleSuffix: Azure AI Search
-description: Describes the moreLikeThis (preview) feature, which is available in preview versions of the Azure AI Search REST API.
-author: bevloh
-ms.author: beloh
+description: Describes the moreLikeThis feature, which is available in preview versions of the Azure AI Search REST API.
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 02/20/2025
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 
-# moreLikeThis (preview) in Azure AI Search
+# moreLikeThis in Azure AI Search
 
 > [!IMPORTANT] 
 > This feature is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports this feature.
