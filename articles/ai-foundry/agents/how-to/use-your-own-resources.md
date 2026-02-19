@@ -82,17 +82,17 @@ To use the [Grounding with Bing Search tool](../../default/agents/how-to/tools/b
 
 :::moniker-end
 
-    ```console
-    az provider register --namespace 'Microsoft.KeyVault'
-    az provider register --namespace 'Microsoft.CognitiveServices'
-    az provider register --namespace 'Microsoft.Storage'
-    az provider register --namespace 'Microsoft.MachineLearningServices'
-    az provider register --namespace 'Microsoft.Search'
-    az provider register --namespace 'Microsoft.App'
-    az provider register --namespace 'Microsoft.ContainerService'
-    # only to use Grounding with Bing Search tool
-    az provider register --namespace 'Microsoft.Bing'
-    ```
+```console
+az provider register --namespace 'Microsoft.KeyVault'
+az provider register --namespace 'Microsoft.CognitiveServices'
+az provider register --namespace 'Microsoft.Storage'
+az provider register --namespace 'Microsoft.MachineLearningServices'
+az provider register --namespace 'Microsoft.Search'
+az provider register --namespace 'Microsoft.App'
+az provider register --namespace 'Microsoft.ContainerService'
+# only to use Grounding with Bing Search tool
+az provider register --namespace 'Microsoft.Bing'
+```
 
 ## Choose basic or standard agent setup
 
