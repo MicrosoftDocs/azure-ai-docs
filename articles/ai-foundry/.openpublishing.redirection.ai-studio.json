@@ -1596,6 +1596,11 @@
           "source_path_from_root": "/articles/ai-foundry/openai/dall-e-quickstart.md",
           "redirect_url": "/azure/ai-foundry/openai/how-to/dall-e#quickstart",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/realtime-audio-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/realtime-audio#quickstart",
+          "redirect_document_id": false
         }
     ]
 }

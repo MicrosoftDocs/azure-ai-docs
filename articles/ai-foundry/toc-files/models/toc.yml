@@ -148,8 +148,6 @@ items:
         - name: Speech to text with Whisper
           href: ../../openai/whisper-quickstart.md
         - name: Realtime API for speech and audio
-          href: ../../openai/realtime-audio-quickstart.md
-        - name: Realtime API for speech and audio
           href: ../../openai/how-to/realtime-audio.md
         - name: Text to speech (preview)
           href: ../../openai/text-to-speech-quickstart.md
@@ -219,8 +217,6 @@ items:
       href: ../../openai/how-to/dall-e.md
     - name: Video generation (preview)
       href: ../../openai/concepts/video-generation.md
-    - name: Image generation
-      href: ../../openai/dall-e-quickstart.md
   - name: Stored completions
     href: ../../openai/how-to/stored-completions.md
   - name: Webhooks
