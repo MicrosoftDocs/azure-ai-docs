@@ -2,7 +2,7 @@ items:
 # Fundamentals
 - name: Observability overview
   href: ../../../concepts/observability.md
-- name: Rate limits, region and virtual network support 
+- name: Rate limits, region support, and enterprise features 
   href: ../../../concepts/evaluation-regions-limits-virtual-network.md
 - name: Transparency Note for safety evaluations
   href: ../../../concepts/safety-evaluations-transparency-note.md
