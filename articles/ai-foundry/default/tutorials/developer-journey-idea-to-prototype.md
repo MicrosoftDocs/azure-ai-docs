@@ -679,14 +679,6 @@ You now have:
 
 These patterns reduce prototype-to-production friction: you can add data sources, enforce governance, and integrate monitoring without rewriting core logic.
 
-## Clean up resources
-
-To avoid unnecessary costs, delete the resources you created in this tutorial:
-
-1. **Delete the agent**: The agent is automatically deleted at the end of `main.py` (Python) or `Program.cs` (C#). If you interrupted the run, delete it manually from the **Agents** page in the Foundry portal.
-1. **Delete the evaluation run**: In the Foundry portal, go to **Evaluation**, select the evaluation run, and delete it.
-1. **Remove SharePoint sample documents**: If you uploaded the sample `.docx` files to a production SharePoint site, remove them from the document library.
-1. **(Optional) Delete the Foundry project**: If you created a project only for this tutorial, delete it from the Foundry portal to remove all associated resources.
 
 ## Next steps
 
@@ -711,6 +703,15 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 - [Fine-tune models and generate evaluation insights for continuous improvement](../../openai/how-to/fine-tuning.md).
 - [Integrate Azure API Management gateway with continuous quality monitoring](../configuration/enable-ai-api-management-gateway-portal.md).
 - [Implement fleet governance, compliance controls, and cost optimization](/azure/cloud-adoption-framework/scenarios/ai/platform/governance).
+
+## Clean up resources
+
+To avoid unnecessary costs, delete the resources you created in this tutorial:
+
+1. **Delete the agent**: The agent is automatically deleted at the end of `main.py` (Python) or `Program.cs` (C#). If you interrupted the run, delete it manually from the **Agents** page in the Foundry portal.
+1. **Delete the evaluation run**: In the Foundry portal, go to **Evaluation**, select the evaluation run, and delete it.
+1. **Remove SharePoint sample documents**: If you uploaded the sample `.docx` files to a production SharePoint site, remove them from the document library.
+1. **(Optional) Delete the Foundry project**: If you created a project only for this tutorial, delete it from the Foundry portal to remove all associated resources.
 
 ## Related content
 
