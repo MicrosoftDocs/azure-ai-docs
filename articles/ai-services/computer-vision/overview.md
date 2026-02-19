@@ -29,7 +29,6 @@ Azure Vision can power many digital asset management (DAM) scenarios. DAM is the
 
 ## Get started
 
-Use [Vision Studio](https://portal.vision.cognitive.azure.com/) to quickly try out Azure Vision features in your web browser.
 
 To get started building Azure Vision into your app, follow a quickstart.
 * [Quickstart: Optical character recognition (OCR)](quickstarts-sdk/client-library.md)

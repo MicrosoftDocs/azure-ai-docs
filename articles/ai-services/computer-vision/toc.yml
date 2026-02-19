@@ -6,8 +6,6 @@ items:
   items:
   - name: What is Azure Vision?
     href: overview.md
-  - name: Vision Studio
-    href: overview-vision-studio.md
   - name: Language support
     href: language-support.md
   - name: Pricing
@@ -190,6 +188,8 @@ items:
     href: identity-quotas-limits.md
   - name: Pricing
     href: https://azure.microsoft.com/pricing/details/cognitive-services/face-api
+  - name: Vision Studio
+    href: overview-vision-studio.md
   - name: Face quickstart
     href: quickstarts-sdk/identity-client-library.md
   
