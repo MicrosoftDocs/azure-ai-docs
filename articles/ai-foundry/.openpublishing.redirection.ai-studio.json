@@ -1591,7 +1591,7 @@
           "source_path_from_root": "/articles/ai-foundry/openai/video-generation-quickstart.md",
           "redirect_url": "/azure/ai-foundry/openai/concepts/video-generation#quickstart",
           "redirect_document_id": false
-        }
+        },
         {
           "source_path_from_root": "/articles/ai-foundry/openai/dall-e-quickstart.md",
           "redirect_url": "/azure/ai-foundry/openai/how-to/dall-e#quickstart",
