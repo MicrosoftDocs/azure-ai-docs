@@ -155,10 +155,7 @@ To learn which regions support AI-assisted evaluators, the rate limits that appl
 
 Observability features such as risk and safety evaluations and continuous evaluations are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
 
-> [!IMPORTANT]
-> Evaluations in the agent playground are enabled by default for all Foundry projects and are included in consumption-based billing. To turn off playground evaluations, select the metrics box in the agents playground and unselect all evaluators.
->
-> :::image type="content" source="../media/evaluations/agent-playground-evaluation-metrics.png" alt-text="Screenshot of the Foundry portal showing agent playground with the metrics box selected." lightbox="../media/evaluations/agent-playground-evaluation-metrics.png":::
+[!INCLUDE [evaluations-agent-playground-classic](../includes/evaluations-agent-playground-classic.md)]
 
 ::: moniker-end
 
@@ -166,10 +163,7 @@ Observability features such as risk and safety evaluations and continuous evalua
 
 Observability features such as risk and safety evaluations and evaluations in the agent playground are billed based on consumption as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
 
-> [!IMPORTANT]
-> Evaluations in the agent playground are enabled by default for all Foundry projects and are included in consumption-based billing. To turn off playground evaluations, select metrics in the upper right of the agents playground and unselect all evaluators.
->
-> :::image type="content" source="../default/media/observability/agent-playground-evaluation-metrics.png" alt-text="Screenshot of the Foundry portal showing agent playground with the metrics selected." lightbox="../default/media/observability/agent-playground-evaluation-metrics.png":::
+[!INCLUDE [evaluations-agent-playground](../default/includes/evaluations-agent-playground.md)]
 
 ::: moniker-end
 
