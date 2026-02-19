@@ -85,7 +85,7 @@ If you no longer need the guardrail policy, you can delete it:
 
 1. Select the policy that you want to remove.
 
-1. Select **Delete**, and then confirm the deletion.
+1. Select **Delete Policy**, and then confirm the deletion.
 
 > [!NOTE]
 > Deleting a policy in the Foundry portal also removes the associated policy assignment in Azure Policy.
