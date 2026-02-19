@@ -43,11 +43,11 @@ sections:
         answer: |
           Foundry Models support all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](./concepts/models-sold-directly-by-azure.md).
 
-# CLASSIC-ONLY:           The Microsoft model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Microsoft Foundry](../../ai-studio/concepts/deployments-overview.md).
+          <!-- CLASSIC-ONLY: The Microsoft model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Microsoft Foundry](../../ai-studio/concepts/deployments-overview.md). -->
 # CLASSIC-ONLY:       - question: |
 # CLASSIC-ONLY:           My company hasn't approved specific models for use. How can I prevent users from deploying them?
 # CLASSIC-ONLY:         answer: |
-# CLASSIC-ONLY:           You can restrict the models available for deployment in Foundry Tools by using the Azure policies. Models are listed in the catalog but any attempt to deploy them is blocked. Read [Control AI model deployment with custom policies](./how-to/configure-deployment-policies.md).
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: You can restrict the models available for deployment in Foundry Tools by using the Azure policies. Models are listed in the catalog but any attempt to deploy them is blocked. Read [Control AI model deployment with custom policies](./how-to/configure-deployment-policies.md). -->
   - name: SDKs and programming languages
     questions:
       - question: |
@@ -57,7 +57,7 @@ sections:
 
           Cohere SDK, Mistral SDK, and model provider-specific SDKs aren't supported when connected to Foundry Tools.
 
-# CLASSIC-ONLY:           For more information, see [supported SDKs and programming languages](./supported-languages.md).
+          <!-- CLASSIC-ONLY: For more information, see [supported SDKs and programming languages](./supported-languages.md). -->
       - question: |
           Do Foundry Models work with the latest Python library released by OpenAI (version>=1.0)?
         answer: |
@@ -101,7 +101,7 @@ sections:
 # CLASSIC-ONLY:       - question: |
 # CLASSIC-ONLY:           How are Models from Partners and Community available? 
 # CLASSIC-ONLY:         answer: |
-# CLASSIC-ONLY:           Models from Partners and Community available for deployment in Foundry Tools with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Foundry Tools service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
+# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: Models from Partners and Community available for deployment in Foundry Tools with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Foundry Tools service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md). -->
       - question: |
           How is data processed by the Global-Standard deployment type?
         answer: |
