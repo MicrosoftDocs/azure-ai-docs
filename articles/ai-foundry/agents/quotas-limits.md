@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Foundry Agent Service quotas and limits
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article describes the quotas and limits for Foundry Agent Service. Understanding these limits helps you design agents that scale reliably and avoid runtime errors in production.
 
