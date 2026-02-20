@@ -837,7 +837,7 @@ The following examples show how to create an agent with the MCP tool and call it
 
 Set these environment variables:
 
-- `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
+- `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
 - `AGENT_TOKEN`: A bearer token for Foundry.
 - `MCP_PROJECT_CONNECTION_NAME` (optional): Your MCP project connection name.
 
@@ -858,7 +858,7 @@ If your MCP server doesn't require authentication, omit `project_connection_id` 
 ### 1. Create an MCP agent
 
 ```bash
-curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
@@ -885,7 +885,7 @@ To use an authenticated MCP server with a project connection, add `"project_conn
 ### 2. Create a response
 
 ```bash
-curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
@@ -901,7 +901,7 @@ If the response includes an output item with `type` set to `mcp_approval_request
 If the MCP tool requires approval, send a follow-up request:
 
 ```bash
-curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
@@ -921,7 +921,7 @@ curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
 Delete the agent:
 
 ```bash
-curl -X DELETE "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-mcp?api-version=v1" \
+curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-mcp?api-version=v1" \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 

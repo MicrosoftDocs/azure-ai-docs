@@ -57,7 +57,7 @@ Each language uses different environment variable names. Use one set consistentl
 | Python | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
 | C# | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
 | TypeScript | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
-| REST API | `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` | (use the request body field) |
+| REST API | `FOUNDRY_PROJECT_ENDPOINT` | (use the request body field) |
 
 > [!TIP]
 > If you use `DefaultAzureCredential`, sign in by using `az login` before running the samples.
@@ -420,7 +420,7 @@ Start by defining a function for your agent to call. When you create a function 
 ## Create an agent
 
 ```bash
-curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
@@ -452,7 +452,7 @@ curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
 ## Create a conversation
 
 ```bash
-curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/conversations" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/conversations" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
@@ -478,7 +478,7 @@ Save the returned conversation ID (`conv_xyz...`) for the next step.
 Replace `<CONVERSATION_ID>` with the ID from the previous step.
 
 ```bash
-curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
@@ -704,14 +704,14 @@ When you finish testing, delete the resources you created to avoid ongoing costs
 Delete the agent:
 
 ```bash
-curl -X DELETE "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-function-calling?api-version=v1" \
+curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-function-calling?api-version=v1" \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 Delete the conversation:
 
 ```bash
-curl -X DELETE "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/conversations/<CONVERSATION_ID>" \
+curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/conversations/<CONVERSATION_ID>" \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
