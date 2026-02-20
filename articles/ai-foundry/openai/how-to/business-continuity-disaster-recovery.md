@@ -21,7 +21,7 @@ Azure OpenAI is available in multiple regions. When you create an Azure OpenAI r
 
 It's rare, but not impossible, to encounter a network issue that hits an entire region. If your service needs to always be available, then you should design it to either failover into another region or split the workload between two or more regions. Both approaches require at least two Azure OpenAI resources in different regions. This article provides general recommendations for how to implement Business Continuity and Disaster Recovery (BCDR) for your Azure OpenAI applications.
 
-By default, the Azure OpenAI provides a [default service level agreement](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1). While the default resiliency may be sufficient for many applications, applications requiring high degrees of resiliency and business continuity should take extra steps to further strengthen their model infrastructure.
+By default, the Azure OpenAI provides a [default service level agreement](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1). While the default reliability may be sufficient for many applications, applications requiring high degrees of business continuity should take extra steps to further strengthen their model infrastructure.
 
 ## Standard Deployments
 
@@ -65,10 +65,10 @@ The other benefit of this architecture is that it allows you to stack Standard d
 
 ## BCDR for agents
 
-To support service resilience, the Agents service relies on customer-provisioned Cosmos DB accounts. This ensures that your agent state can be preserved and recovered if there is a regional outage.
+To support service reliability, the Agents service relies on customer-provisioned Cosmos DB accounts. This ensures that your agent state can be preserved and recovered if there is a regional outage.
 
 1. As an Azure Standard customer, you provision and manage your own single-tenant Cosmos DB account.
-1. All of the agent state is stored in your Cosmos DB. Backup and recovery rely on Cosmos DB’s native capabilities, which you control.
+1. All of the agent state is stored in your Cosmos DB. Backup and recovery rely on Cosmos DB's native capabilities, which you control.
 1. If the primary region becomes unavailable, the agent will automatically become available in the secondary region by connecting to the same Cosmos DB account.
     Since all history is preserved in Cosmos DB, the agent can continue operation with minimal disruption.
 
