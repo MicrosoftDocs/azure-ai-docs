@@ -10,7 +10,7 @@ ms.reviewer: samkemp
 author: jonburchel
 reviewer: samuel100
 ms.topic: concept-article
-ms.date: 01/05/2026
+ms.date: 10/10/2023
 ai-usage: ai-assisted
 ---
 
@@ -85,111 +85,128 @@ The following table summarizes the commands related to managing and running mode
 | `foundry model download <model>` | Downloads a model to the local cache without running it. |
 | `foundry model load <model>` | Loads a model into the service. |
 | `foundry model unload <model>` | Unloads a model from the service. |
+| `foundry model chat-completion` | Streams chat completions using OpenAI's Chat API. |
 
-### Model list ordering
+### Chat Completion Command
 
-When multiple model ID variants are available for an alias, the model list shows the models in priority order. The first model in the list is the model that runs when you specify the model by `alias`.
+The `foundry model chat-completion` command allows you to interact with conversational AI models using OpenAI's Chat API. You can specify the model, prompt message, and additional options for enhanced functionality.
 
-### Model list filtering
+#### Arguments
 
-The `foundry model list` command supports filtering models by using the `--filter` option. You can filter models based on a single attribute by using key-value pairs.
+| **Argument** | **Description** |
+| --- | --- |
+| `model` | The model to use for generating chat completions. Specify by alias or model ID. |
+| `promptMessage` | The input prompt for the chat model. |
 
-```bash
-foundry model list --filter <key>=<value>
-```
+#### Options
 
-This command prints models that match the filter key and value.
+| **Option** | **Description** |
+| --- | --- |
+| `--imageFilePath <path>` | Optional. Specifies the path to an image file to provide additional context for the chat model. |
+| `--maxTokens <number>` | Optional. Sets the maximum number of tokens for the response. |
 
-Reference: [Model list filtering](#model-list-filtering)
-
-> [!NOTE]
-> When you run `foundry model list` for the first time after installation, Foundry Local automatically downloads the relevant execution providers (EPs) for your machine's hardware configuration. You see a progress bar indicating the download completion before the model list appears.
-
-**Supported filter keys:**
-
-#### device - Hardware Device Type
-
-Filters models by the hardware device they run on.
-
-**Possible values:**
-
-- `CPU` - Central processing unit models
-- `GPU` - Graphics processing unit models
-- `NPU` - Neural processing unit models
-
-#### provider - Execution Provider
-
-Filters models by their execution provider or runtime.
-
-**Possible values:**
-
-- `CPUExecutionProvider` - CPU-based execution
-- `CUDAExecutionProvider` - NVIDIA CUDA GPU execution
-- `WebGpuExecutionProvider` - WebGPU execution
-- `QNNExecutionProvider` - Qualcomm Neural Network execution (NPU)
-- `OpenVINOExecutionProvider` - Intel OpenVINO execution
-- `NvTensorRTRTXExecutionProvider` - NVIDIA TensorRT execution
-- `VitisAIExecutionProvider` - AMD Vitis AI execution
-
-#### task - Model Task Type
-
-Filters models by their intended use case or task.
-
-**Common values:**
-
-- `chat-completion`: Conversational AI models
-- `text-generation`: Text generation models
-
-#### alias - Model Alias
-
-Filters models by their alias identifier. Supports wildcard matching with `*` suffix.
-
-**Sample values:**
-
-- `phi4-cpu`
-- `qwen2.5-coder-0.5b-instruct-generic-cpu`
-- `deepseek-r1-distill-qwen-1.5b-generic-cpu`
-- `phi-4-mini-instruct-generic-cpu`
-
-### Special filter features
-
-**Negation Support:** Prefix any value with `!` to exclude matching models.
+#### Examples
 
 ```bash
-foundry model list --filter device=!GPU
+foundry model chat-completion qwen2.5-coder-0.5b-instruct-generic-cpu "Write a poem about AI."
 ```
 
-This command excludes GPU models from the results.
-
-Reference: [Special filter features](#special-filter-features)
-
-**Wildcard Matching (alias only):** Append `*` to match prefixes when filtering by alias.
+This command uses the `qwen2.5-coder-0.5b-instruct-generic-cpu` model to generate a poem about AI.
 
 ```bash
-foundry model list --filter alias=qwen*
+foundry model chat-completion phi4-cpu "Summarize the latest AI trends." --maxTokens 100
 ```
 
-This command returns models whose alias starts with `qwen`.
-
-Reference: [Special filter features](#special-filter-features)
-
-### Examples
+This command generates a summary of AI trends with a maximum of 100 tokens.
 
 ```bash
-foundry model list --filter device=GPU
-foundry model list --filter task=chat-completion
-foundry model list --filter provider=CUDAExecutionProvider
+foundry model chat-completion phi4-cpu "Analyze this image." --imageFilePath ./images/sample.jpg
 ```
 
-These examples filter the model list by device, task, and execution provider.
+This command analyzes the provided image file using the specified model.
 
-Reference: [Model list filtering](#model-list-filtering)
+---
 
-> [!NOTE]
->
-> - All comparisons are case-insensitive.
-> - Only one filter can be used per command.
-> - Unrecognized filter keys result in an error.
+## Download commands
+
+The following table summarizes the commands for downloading models and catalogs:
+
+| **Command** | **Description** |
+| --- | --- |
+| `foundry model download <model>` | Downloads a model to the local cache without running it. |
+| `foundry model download-model` | Downloads a model using a URI and saves it to the specified output directory. |
+| `foundry model download-model-catalog` | Downloads models from a catalog using the model name and output directory. |
+
+### Download Model Command
+
+The `foundry model download-model` command supports downloading models using various providers. You can specify the URI, output directory, and additional options.
+
+#### Arguments
+
+| **Argument** | **Description** |
+| --- | --- |
+| `uri` | The URI of the model to download. |
+| `outputDirectory` | The directory where the downloaded model will be saved. |
+
+#### Options
+
+| **Option** | **Description** |
+| --- | --- |
+| `--revision <revision>` | Optional. Specifies the model revision to download. |
+| `--path <path>` | Optional. Specifies a custom path for the downloaded model. |
+| `--token <token>` | Optional. Authentication token for accessing the model. |
+| `--bufferSize <size>` | Optional. Sets the buffer size for downloading. |
+| `--provider <provider>` | Optional. Specifies the provider for downloading the model. |
+
+#### Examples
+
+```bash
+foundry model download-model https://example.com/model.zip ./models
+```
+
+This command downloads the model from the specified URI and saves it to the `./models` directory.
+
+```bash
+foundry model download-model https://example.com/model.zip ./models --revision v1.2 --provider OpenVINOExecutionProvider
+```
+
+This command downloads the model revision `v1.2` using the OpenVINO execution provider.
+
+---
+
+### Download Model Catalog Command
+
+The `foundry model download-model-catalog` command supports downloading models from a catalog using the model name and output directory.
+
+#### Arguments
+
+| **Argument** | **Description** |
+| --- | --- |
+| `modelName` | The name of the model to download from the catalog. |
+| `outputDirectory` | The directory where the downloaded model will be saved. |
+
+#### Options
+
+| **Option** | **Description** |
+| --- | --- |
+| `--bufferSize <size>` | Optional. Sets the buffer size for downloading. |
+| `--provider <provider>` | Optional. Specifies the provider for downloading the model. |
+
+#### Examples
+
+```bash
+foundry model download-model-catalog phi4-cpu ./models
+```
+
+This command downloads the `phi4-cpu` model from the catalog and saves it to the `./models` directory.
+
+```bash
+foundry model download-model-catalog qwen2.5-coder-0.5b ./models --provider CUDAExecutionProvider
+```
+
+This command downloads the `qwen2.5-coder-0.5b` model using the CUDA execution provider.
+
+---
 
 ## Service commands
 
@@ -217,7 +234,6 @@ The following table summarizes the commands for managing the local cache where m
 | `foundry cache list` | Lists all models stored in the local cache. |
 | `foundry cache cd <path>` | Changes the cache directory to the specified path. |
 | `foundry cache remove <model>` | Removes a model from the local cache. |
-
 
 ## Execution providers
 
@@ -247,5 +263,7 @@ Foundry Local automatically downloads these execution providers on first run. Th
 | `QNNExecutionProvider` (Qualcomm) | Snapdragon(R) X Elite - X1Exxxxx - Qualcomm(R) Hexagon(TM) NPU with minimum driver version 30.0.140.0 and later versions<br>Snapdragon(R) X Plus - X1Pxxxxx - Qualcomm(R) Hexagon(TM) NPU with minimum driver version 30.0.140.0 and later versions | To view the QNN License, download the Qualcomm® Neural Processing SDK, extract the ZIP, and open the LICENSE.pdf file. |
 | `VitisAIExecutionProvider` (AMD) | Min: Adrenalin Edition 25.6.3 with NPU driver 32.00.0203.280<br>Max: Adrenalin Edition 25.9.1 with NPU driver 32.00.0203.297 | No additional license required |
 
+## Related content
 
-
+- [Get started with Foundry Local](../get-started.md)
+- [Foundry Local overview](../overview.md)

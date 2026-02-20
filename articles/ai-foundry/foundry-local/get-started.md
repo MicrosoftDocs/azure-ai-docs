@@ -2,7 +2,7 @@
 title: Get started with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to install, configure, and run your first AI model with Foundry Local
-ms.date: 01/06/2026
+ms.date: 10/13/2023
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: quickstart
@@ -130,6 +130,68 @@ The Foundry CLI organizes commands into these main categories:
 - **Service**: Commands for managing the Foundry Local service.
 - **Cache**: Commands for managing the local model cache (downloaded models on local disk).
 
+### Chat Completion Command
+
+The `chat-completion` command uses OpenAI's Chat API to stream chat completions. It supports the following arguments and options:
+
+#### Arguments:
+- `model`: Specifies the model to use for chat completion.
+- `promptMessage`: The prompt message to send to the model.
+
+#### Options:
+- `--imageFilePath`: (Optional) Path to an image file to include in the prompt.
+- `--maxTokens`: (Optional) Maximum number of tokens for the response.
+
+#### Example:
+```bash
+foundry chat-completion --model gpt-oss-20b --promptMessage "What is the capital of France?" --maxTokens 100
+```
+
+This command sends the prompt message to the specified model and streams the response in real time.
+
+Reference: [Foundry Local CLI reference](reference/reference-cli.md)
+
+### Download Model Command
+
+The `download-model` command downloads models from a specified URI to a local directory. It supports the following arguments and options:
+
+#### Arguments:
+- `uri`: The URI of the model to download.
+- `outputDirectory`: The directory where the model will be saved.
+
+#### Options:
+- `--revision`: (Optional) Specifies the revision of the model.
+- `--path`: (Optional) Custom path for the model.
+- `--token`: (Optional) Authentication token for the model provider.
+- `--bufferSize`: (Optional) Buffer size for downloading.
+- `--provider`: (Optional) Specifies the provider for the model.
+
+#### Example:
+```bash
+foundry download-model --uri https://models.example.com/model1 --outputDirectory ./models --revision v1 --provider openai
+```
+
+Reference: [Foundry Local CLI reference](reference/reference-cli.md)
+
+### Download Model Catalog Command
+
+The `download-model-catalog` command downloads models from a catalog based on the model name. It supports the following arguments and options:
+
+#### Arguments:
+- `modelName`: The name of the model to download.
+- `outputDirectory`: The directory where the model will be saved.
+
+#### Options:
+- `--bufferSize`: (Optional) Buffer size for downloading.
+- `--provider`: (Optional) Specifies the provider for the model.
+
+#### Example:
+```bash
+foundry download-model-catalog --modelName gpt-oss-20b --outputDirectory ./models --provider openai
+```
+
+Reference: [Foundry Local CLI reference](reference/reference-cli.md)
+
 To view all commands, use:
 
 ```bash
@@ -139,8 +201,6 @@ foundry --help
 ```bash
 foundry model --help
 ```
-
-foundry --help
 
 ```bash
 foundry service --help

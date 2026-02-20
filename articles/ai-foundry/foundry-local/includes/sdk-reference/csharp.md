@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 01/05/2026
+ms.date: 10/06/2023
 ms.author: samkemp
 author: samuel100
 ai-usage: ai-assisted
@@ -83,7 +83,6 @@ In this new architecture:
 - The REST **web server is *optional***. You can still use the web server if you want to integrate with other tools that communicate over HTTP. Read [Use chat completions via REST server with Foundry Local](../../how-to/how-to-integrate-with-inference-sdks.md) for details on how to use this feature.
 - The SDK has **native support for chat completions and audio transcriptions**, allowing you to build conversational AI applications with fewer dependencies. Read [Use Foundry Local native chat completions API](../../how-to/how-to-use-native-chat-completions.md) for details on how to use this feature.
 - On Windows devices, you can use a Windows ML build that handles **hardware acceleration** for models on the device by pulling in the right runtime and drivers.
-
 
 #### API changes
 
@@ -213,7 +212,6 @@ In your project file (`.csproj`), add the following line to import the `ExcludeE
   
 <Import Project="ExcludeExtraLibs.props" />
 ```
-
 
 #### Windows: CUDA dependencies
 

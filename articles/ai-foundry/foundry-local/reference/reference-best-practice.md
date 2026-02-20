@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: troubleshooting
-ms.date: 01/05/2026
+ms.date: 10/06/2023
 ms.author: jburchel
 author: jonburchel
 reviewer: maanavdalal
@@ -36,6 +36,71 @@ foundry --help
 This command lists available commands and options.
 
 Reference: [Foundry Local CLI Reference](./reference-cli.md)
+
+### New CLI Commands
+
+#### `chat-completion`
+
+The `chat-completion` command uses OpenAI's Chat API to stream chat completions. It supports specifying a model, prompt message, optional image file path, and maximum tokens for the response.
+
+**Arguments:**
+- `model`: The model to use for generating chat completions.
+- `promptMessage`: The input prompt for the chat.
+
+**Options:**
+- `--imageFilePath`: (Optional) Path to an image file to include in the prompt.
+- `--maxTokens`: (Optional) Maximum number of tokens for the response.
+
+**Example:**
+
+```bash
+foundry chat-completion --model gpt-4 --promptMessage "What is the capital of France?" --maxTokens 100
+```
+
+This command streams a response from the GPT-4 model with a maximum of 100 tokens.
+
+#### `download-model`
+
+The `download-model` command downloads models using various providers. It supports specifying a URI, output directory, and additional options for revision, path, token, buffer size, and provider.
+
+**Arguments:**
+- `uri`: The URI of the model to download.
+- `outputDirectory`: The directory where the model will be saved.
+
+**Options:**
+- `--revision`: (Optional) Specify the model revision to download.
+- `--path`: (Optional) Path within the output directory.
+- `--token`: (Optional) Authentication token for the provider.
+- `--bufferSize`: (Optional) Buffer size for downloading.
+- `--provider`: (Optional) Specify the provider (e.g., Azure, AWS).
+
+**Example:**
+
+```bash
+foundry download-model --uri https://example.com/model --outputDirectory ./models --provider azure --bufferSize 1024
+```
+
+This command downloads a model from the specified URI to the `./models` directory using Azure as the provider.
+
+#### `download-model-catalog`
+
+The `download-model-catalog` command supports downloading models from a catalog using the model name and output directory. Additional options include buffer size and provider.
+
+**Arguments:**
+- `modelName`: The name of the model to download from the catalog.
+- `outputDirectory`: The directory where the model will be saved.
+
+**Options:**
+- `--bufferSize`: (Optional) Buffer size for downloading.
+- `--provider`: (Optional) Specify the provider (e.g., Azure, AWS).
+
+**Example:**
+
+```bash
+foundry download-model-catalog --modelName bert-base --outputDirectory ./models --provider aws --bufferSize 2048
+```
+
+This command downloads the `bert-base` model from the catalog to the `./models` directory using AWS as the provider.
 
 ## Security best practices
 

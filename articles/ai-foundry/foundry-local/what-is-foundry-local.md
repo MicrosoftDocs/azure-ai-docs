@@ -6,7 +6,7 @@ keywords: Foundry Tools, cognitive
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: overview
-ms.date: 01/06/2026
+ms.date: 10/06/2023
 ms.reviewer: samkemp
 ms.author: jburchel
 author: jonburchel
@@ -37,11 +37,17 @@ Run these commands to verify your installation and run a model locally.
 foundry --help
 foundry model list
 foundry model run qwen2.5-0.5b
+foundry chat-completion --model gpt-4 --promptMessage "Hello, how can I assist you today?" --maxTokens 100
+foundry download-model --uri https://example.com/model.onnx --outputDirectory ./models --provider azure
+foundry download-model-catalog --modelName qwen2.5-0.5b --outputDirectory ./catalog --provider azure
 ```
 
 - `foundry --help` prints the available CLI commands.
 - `foundry model list` lists available models. The first run might download execution providers for your hardware.
 - `foundry model run qwen2.5-0.5b` downloads the model (first run) and starts an interactive prompt in your terminal.
+- `foundry chat-completion` generates streaming chat completions using OpenAI's Chat API. Specify the model, prompt message, optional image file path, and maximum tokens for the response.
+- `foundry download-model` downloads a model from a specified URI to the output directory. Options include revision, path, token, buffer size, and provider.
+- `foundry download-model-catalog` downloads a model from a catalog using the model name and output directory. Options include buffer size and provider.
 
 Reference: [Foundry Local CLI reference](reference/reference-cli.md)
 
