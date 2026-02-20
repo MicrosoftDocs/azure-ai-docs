@@ -4,7 +4,7 @@ description: "Learn how to create custom evaluators for your AI applications usi
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
-ms.date: 01/30/2026
+ms.date: 02/17/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -20,9 +20,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
-
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+
+Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
 
 ## Code-based evaluators
 

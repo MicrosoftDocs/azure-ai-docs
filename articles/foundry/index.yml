@@ -60,15 +60,16 @@ productDirectory:
           text: Deployment types
         - url: foundry-models/tutorials/get-started-deepseek-r1.md
           text: Get started with DeepSeek-R1
-# CLASSIC-ONLY:         - url: ./concepts/fine-tuning-overview.md
+        - url: ./openai/how-to/fine-tuning.md
+          text: Learn how to fine-tune models
     # Card
     - title: Foundry Agent Service
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.svg
       links:
-        - url: ../foundry/agents/overview.md
+        - url: ./agents/overview.md
           text: Orchestrate and host AI agents to automate and execute business processes
-        # - url: ../foundry/agents/quickstart.md
-        #   text: Create a custom AI agent using Agent Service
+#        - url: ./agents/quickstart.md
+#          text: Create a custom AI agent using Agent Service
         - url: /azure/developer/ai/get-started-multi-agents
           text: Azure AI app template for agents
         - url: ./concepts/ai-red-teaming-agent.md
@@ -83,9 +84,10 @@ productDirectory:
           text: What is Content Safety?
         - url: ./observability/how-to/trace-agent-setup.md
           text: Trace your application with Microsoft Foundry project library 
-        - url: ./observability/how-to/evaluate-agent.md
-          text: Evaluate agentic workflows
-# CLASSIC-ONLY:         - url: ./how-to/monitor-applications.md
+        # - url: ./observability/how-to/evaluate-agent.md
+        #   text: Evaluate agentic workflows
+        # - url: ./how-to/monitor-applications.md
+        #   text: Monitor your generative AI applications
     # Card
     - title: Foundry IQ
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/foundry-iq.png
@@ -123,7 +125,6 @@ productDirectory:
           text: Orchestrate workflows with pipelines
         - url: /azure/machine-learning/concept-automated-ml
           text: What is automated machine learning (AutoML)?
-
     # Card
     - title: Foundry Local
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure-foundry-local.png
@@ -197,3 +198,4 @@ additionalContent:
               url: /training/browse/?resource_type=learning%20path&expanded=data-ai&subjects=artificial-intelligence
             - text: AI Engineer career path
               url: /training/career-paths/ai-engineer
+              

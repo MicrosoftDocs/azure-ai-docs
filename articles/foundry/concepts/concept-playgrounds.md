@@ -96,6 +96,8 @@ In the agents playground, you can:
 
 To get started with the agents playground, see [Understanding the agent development lifecycle](../agents/concepts/development-lifecycle.md).
 
+[!INCLUDE [evaluations-agent-playground](../includes/evaluations-agent-playground.md)]
+
 ## Model playground
 
 When you deploy a model in the [!INCLUDE [foundry-link](../includes/foundry-link.md)] portal, you immediately land on its playground. The model playground is an interactive experience designed for developers to test and experiment with the latest models from providers like Azure OpenAI, DeepSeek, xAI, and Meta. The playground gives you full control over model behavior, safety, and deployment so that you can tune system prompts, compare model outputs in real time, or integrate tools like web search and code execution.

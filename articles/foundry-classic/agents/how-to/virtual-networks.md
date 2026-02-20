@@ -23,7 +23,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 
 > [!TIP]
-> See the [FAQ article](../faq.yml#virtual-networking) for common questions when working with Virtual Networks.
+> See the [FAQ article](../faq.yml) for common questions when working with Virtual Networks.
 
 > [!NOTE]
 > End-to-end network isolation is not supported in the new Foundry portal experience. Please use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation is enabled. 

@@ -93,6 +93,8 @@ The agents playground lets you explore, prototype, and test agents without runni
 
 To get started with the agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
 
+[!INCLUDE [evaluations-agent-playground-classic](../includes/evaluations-agent-playground-classic.md)]
+
 ## Chat playground
 
 The chat playground is the place to test the latest reasoning models from models including Azure OpenAI, DeepSeek, and Meta. For all reasoning models, the chat playground provides a chain-of-thought summary drop-down that lets you see how the model thinks through its response before sharing the output.
