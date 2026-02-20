@@ -23,7 +23,7 @@ This article provides a quick reference and detailed description of the quotas a
 
 ## Quotas and limits reference
 
-Azure uses quotas and limits to prevent budget overruns due to fraud and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide a quick guide to the default quotas and limits that apply to Foundry Models:
+The following sections provide a quick guide to the default quotas and limits that apply to Foundry Models:
 
 ### Resource limits (per Azure subscription, per region)
 
