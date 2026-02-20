@@ -18,9 +18,6 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 
 # Connect agents to Model Context Protocol servers
 
-> [!NOTE]
-> When you use a [Network Secured Microsoft Foundry](../../../../agents/how-to/virtual-networks.md), you can't use private MCP servers deployed in the same virtual network. You can only use publicly accessible MCP servers.
-
 Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers by using the MCP tool. This extends agent capabilities with external tools and data sources. By connecting to remote MCP server endpoints, your agents can access tools hosted by developers and organizations that MCP-compatible clients like Foundry Agent Service can use.
 
 MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
