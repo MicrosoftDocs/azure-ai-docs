@@ -133,15 +133,12 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
 
     + If your indexer uses application API permissions, choose **Application** permissions.
       - For standard indexing, select:
-        `Files.Read.All`
         `Sites.Read.All`
 
       - If you're enabling content indexing and [basic ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md), select:
-        `Files.Read.All`
         `Sites.FullControl.All` (instead of Sites.Read.All)
 
       - If you need to enable content indexing and limit [ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md) to specific sites, select:
-        `Files.Read.All`
         `Sites.Selected`
          Then grant the application full control only for those selected sites.
 
