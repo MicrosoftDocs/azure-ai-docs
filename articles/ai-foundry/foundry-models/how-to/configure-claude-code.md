@@ -5,7 +5,7 @@ description: Set up Claude Code CLI and VS Code extension to use Claude models i
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 02/20/2026
 ms.custom: dev-focus
 author: msakande
 ms.author: mopeakande
@@ -24,7 +24,6 @@ In this article, you learn how to:
 - Set up the Claude Code VS Code extension
 - Authenticate with Microsoft Entra ID or API keys
 - Create project context files for better AI assistance
-- Integrate Spec Kit for structured development workflows
 - Run Claude Code in GitHub Actions for CI/CD automation
 
 [!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
@@ -316,13 +315,13 @@ Verify that Claude Code is correctly configured to use Microsoft Foundry.
 
 ## Create project context with CLAUDE.md
 
-Claude Code reads `CLAUDE.md` files for project context. Files load in order, with later files overriding earlier ones:
+You can give Claude Code extra instructions and guidance using `CLAUDE.md` files. Claude Code looks for `CLAUDE.md` files in the following places and merges them top-down (that is, the files load in order, with later files overriding earlier ones), giving it context about your personal preferences, project-specific details, and the current task:
 
 1. `~/.claude/CLAUDE.md` – Global defaults across all projects
 1. `./CLAUDE.md` – Repository root settings
 1. `./current-dir/CLAUDE.md` – Current directory specifics
 
-Create a `CLAUDE.md` file in your project root to help Claude Code understand your codebase. Here's an example for a [Microsoft Agent Framework](https://aka.ms/agent-framework) project:
+For example, create a `CLAUDE.md` file in your project root to help Claude Code understand your codebase. Here's an example for a [Microsoft Agent Framework](https://aka.ms/agent-framework) project:
 
 ````markdown
 # Project: Customer Service Agent
@@ -391,47 +390,6 @@ To grant team members access to your Foundry-hosted Claude models, assign one of
 These roles include all required permissions for running Claude Code with Foundry.
 
 For more restrictive access, create a custom role scoped to the specific data actions your team needs. For guidance on defining custom roles, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
-
-## (Optional) Integrate Spec Kit for structured development
-
-[Spec Kit](https://github.com/github/spec-kit) provides structured commands for turning requirements into implementation. Install it [globally or for one-time use](https://github.com/github/spec-kit?tab=readme-ov-file#1-install-specify-cli).
-
-| Command | Purpose | Output |
-| ------- | ------- | ------ |
-| `/speckit.constitution` | Set project principles and coding standards | `.speckit/constitution.md` |
-| `/speckit.specify` | Define feature requirements | `.speckit/spec.md` |
-| `/speckit.plan` | Create architecture and dependencies | `.speckit/plan.md` |
-| `/speckit.tasks` | Generate ordered task list | `.speckit/tasks.md` |
-| `/speckit.implement` | Execute tasks and create files | Implementation files |
-
-### Example: Build an Agent Framework tool
-
-The following example shows how to use Spec Kit commands to build a SharePoint MCP tool for RAG grounding:
-
-```bash
-# 1. Set project principles
-claude /speckit.constitution
-# Creates .speckit/constitution.md with coding standards, patterns
-
-# 2. Define the feature
-claude /speckit.specify
-> "Add a SharePoint MCP tool that retrieves documents for RAG grounding"
-# Creates .speckit/spec.md with requirements
-
-# 3. Plan implementation
-claude /speckit.plan
-# Creates .speckit/plan.md with architecture, dependencies
-
-# 4. Generate tasks
-claude /speckit.tasks
-# Creates .speckit/tasks.md with ordered task list
-
-# 5. Implement
-claude /speckit.implement
-# Executes tasks, creates files, runs tests
-```
-
-For detailed usage and installation, see [Spec Kit on GitHub](https://github.com/github/spec-kit).
 
 ## Run Claude Code in GitHub Actions
 
@@ -581,6 +539,6 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 - [Data, privacy, and security for Claude models](../../responsible-ai/claude-models/data-privacy.md)
 - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)
 - [Monitor model usage and costs](../../how-to/costs-plan-manage.md)
+- [Microsoft Dev Blogs | Claude Code + Microsoft Foundry: Enterprise AI Coding Agent Setup](https://devblogs.microsoft.com/all-things-azure/claude-code-microsoft-foundry-enterprise-ai-coding-agent-setup/)
 - [Claude in Microsoft Foundry (Anthropic docs)](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
 - [Claude Code Documentation (Anthropic docs)](https://docs.anthropic.com/en/docs/claude-code)
-- [Spec Kit on GitHub](https://github.com/github/spec-kit)
