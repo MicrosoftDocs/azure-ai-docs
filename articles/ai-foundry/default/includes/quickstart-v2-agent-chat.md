@@ -45,4 +45,6 @@ Interact with your agent.
 
 ---
 
+You see the agent's responses to both prompts. The follow-up response demonstrates that the agent maintains conversation history across turns.
+
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]
