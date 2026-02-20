@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 02/17/2026
 author: aahill
 ms.author: aahi
 recommendations: false
