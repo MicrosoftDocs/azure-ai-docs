@@ -222,7 +222,7 @@ print(f"Red Team scan status: {get_red_team_response.status}")
 curl --request GET \  --header 'authorization: Bearer {{ai_token}}'  --url https://{{account}}.services.ai.azure.com/api/projects/{{project}}/redteams/runs/{{scan_id}}
 ```
 
-- Replace `"{{scan_id}"` with the ID returned by the POST API.
+- Replace `"{{scan_id}}"` with the ID returned by the POST API.
 
 ---
 
