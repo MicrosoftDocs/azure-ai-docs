@@ -53,8 +53,8 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
   - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
 - Environment variables configured:
-  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
-  - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
+  - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
+  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
   - `SHAREPOINT_PROJECT_CONNECTION_ID`: Your SharePoint connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
   - For REST samples: `API_VERSION`, `AGENT_TOKEN`
 - See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for additional authentication setup details.

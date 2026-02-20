@@ -51,8 +51,8 @@ Before you begin, make sure you have:
 
 | Variable | Description |
 | --- | --- |
-| `AZURE_AI_PROJECT_ENDPOINT` | Your Foundry project endpoint URL (not the external OpenAPI service endpoint). |
-| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Your deployed model name. |
+| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint URL (not the external OpenAPI service endpoint). |
+| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your deployed model name. |
 | `OPENAPI_PROJECT_CONNECTION_NAME` | (For API key auth) Your project connection name for the OpenAPI service. |
 
 - OpenAPI 3.0 specification file that meets these requirements:
@@ -64,7 +64,7 @@ Before you begin, make sure you have:
 - For API key/token authentication: a project connection configured with your API key or token. See [Add a new connection to your project](../../../../how-to/connections-add.md).
 
 > [!NOTE]
-> The `AZURE_AI_PROJECT_ENDPOINT` value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
+> The `FOUNDRY_PROJECT_ENDPOINT` value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
 
 ## Understand limitations
 
@@ -252,7 +252,7 @@ This example creates an agent with an OpenAPI tool that calls the wttr.in weathe
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 - Local file: `weather_openapi.json` (OpenAPI specification)
 
 ### Expected output

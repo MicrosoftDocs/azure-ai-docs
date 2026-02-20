@@ -54,9 +54,9 @@ Each language uses different environment variable names. Use one set consistentl
 
 | Language | Project endpoint | Model deployment name |
 | --- | --- | --- |
-| Python | `AZURE_AI_PROJECT_ENDPOINT` | `AZURE_AI_MODEL_DEPLOYMENT_NAME` |
-| C# | `FOUNDRY_PROJECT_ENDPOINT` | `MODEL_DEPLOYMENT_NAME` |
-| TypeScript | `AZURE_AI_PROJECT_ENDPOINT` | `MODEL_DEPLOYMENT_NAME` |
+| Python | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
+| C# | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
+| TypeScript | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
 | REST API | `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` | (use the request body field) |
 
 > [!TIP]

@@ -48,8 +48,8 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 - Ensure your Fabric data agent and Foundry project are in the same tenant.
 - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
 - Get these values before you run the samples:
-  - Your Foundry project endpoint: `AZURE_AI_PROJECT_ENDPOINT`.
-  - Your model deployment name: `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
+  - Your Foundry project endpoint: `FOUNDRY_PROJECT_ENDPOINT`.
+  - Your model deployment name: `FOUNDRY_MODEL_DEPLOYMENT_NAME`.
   - Your Fabric connection ID (project connection ID): `FABRIC_PROJECT_CONNECTION_ID`.
 - For the REST sample, also set:
   - `API_VERSION`.
@@ -198,8 +198,7 @@ with (
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
-- Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.\n- Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
 
 ### Expected output
 

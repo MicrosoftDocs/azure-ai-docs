@@ -54,8 +54,8 @@ Before you begin, ensure you have:
 - The latest prerelease SDK package for your language. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for installation details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Environment variables configured:
-  - `AZURE_AI_PROJECT_ENDPOINT` or `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
-  - `AZURE_AI_MODEL_DEPLOYMENT_NAME` or `MODEL_DEPLOYMENT_NAME`: Your model deployment name.
+  - `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
+  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
   - `MCP_PROJECT_CONNECTION_NAME`: Your MCP project connection name.
 - Access to a remote MCP server endpoint (such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
 

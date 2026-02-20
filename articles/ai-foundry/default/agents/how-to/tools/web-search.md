@@ -47,8 +47,8 @@ Java SDK samples are not yet available.
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Environment variables configured:
-  - `AZURE_AI_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`): Your Foundry project endpoint URL.
-  - `AZURE_AI_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`): Your model deployment name.
+  - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
+  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
 
 ## Code examples
 

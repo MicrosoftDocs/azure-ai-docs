@@ -59,8 +59,8 @@ The following Python sample shows how to create an agent with the code interpret
 
 Set these environment variables:
 
-- `AZURE_AI_PROJECT_ENDPOINT`
-- `AZURE_AI_MODEL_DEPLOYMENT_NAME`
+- `FOUNDRY_PROJECT_ENDPOINT`
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 
 ```python
 import os

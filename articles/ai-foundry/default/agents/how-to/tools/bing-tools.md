@@ -62,8 +62,8 @@ Before you begin, make sure you have:
   - C#: `Azure.AI.Projects.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
 - Environment variables set up:
-  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-  - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
+  - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
+  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
   - For SDK samples:
     - `BING_PROJECT_CONNECTION_NAME`: Your Grounding with Bing Search project connection name.
     - `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME`: Your Grounding with Bing Custom Search project connection name.
@@ -247,7 +247,7 @@ This example creates an agent with grounding by using the Bing Search tool that 
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_NAME`
 - Azure credentials configured for `DefaultAzureCredential`
 
 ### Expected output
@@ -360,7 +360,7 @@ This example creates an agent with Grounding with Bing Custom Search tool that s
 
 **Required inputs**
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
 - Azure credentials configured for `DefaultAzureCredential`
 - User input at runtime
 
@@ -1188,8 +1188,8 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 **Problem**: Code fails with `KeyError` or "environment variable not found" errors.
 
 **Solution**: Ensure you set all required environment variables:
-- `AZURE_AI_PROJECT_ENDPOINT`
-- `AZURE_AI_MODEL_DEPLOYMENT_NAME`
+- `FOUNDRY_PROJECT_ENDPOINT`
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 - `BING_PROJECT_CONNECTION_ID` or `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`
 - For custom search: `BING_CUSTOM_SEARCH_INSTANCE_NAME`
 - For REST API: `AGENT_TOKEN`
