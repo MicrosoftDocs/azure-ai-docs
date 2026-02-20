@@ -293,8 +293,8 @@ class OpenAPIDemo
     public static void Main()
     {
         // First, create an agent client and read the environment variables, which will be used in the next steps.
-        var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-        var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
         AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
         // Create an Agent with `OpenAPIAgentTool` and anonymous authentication.
@@ -342,7 +342,7 @@ This C# example creates an agent with an OpenAPI tool that retrieves weather inf
 
 ### Required inputs
 
-- Environment variables: `PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 - Local file: `Assets/weather_openapi.json` (OpenAPI specification)
 
 ### Expected output
@@ -377,8 +377,8 @@ class OpenAPIConnectedDemo
     public static void Main()
     {
         // First, we need to create agent client and read the environment variables, which will be used in the next steps.
-        var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-        var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
         AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
         // Create an Agent with `OpenAPIAgentTool` and authentication by project connection security scheme.
@@ -443,7 +443,7 @@ This C# example demonstrates using an OpenAPI tool with API key authentication t
 
 ### Required inputs
 
-- Environment variables: `PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 - Local file: `Assets/tripadvisor_openapi.json`
 - Project connection: `tripadvisor` with valid API key configured
 
@@ -499,12 +499,12 @@ import java.util.Arrays;
 
 public class OpenApiAgentJavaSample {
     public static void main(String[] args) throws Exception {
-        String endpoint = System.getenv("AZURE_AI_PROJECT_ENDPOINT");
+        String endpoint = System.getenv("FOUNDRY_PROJECT_ENDPOINT");
         if (endpoint == null || endpoint.isBlank()) {
             endpoint = System.getenv("PROJECT_ENDPOINT");
         }
 
-        String model = System.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME");
+        String model = System.getenv("FOUNDRY_MODEL_DEPLOYMENT_NAME");
         if (model == null || model.isBlank()) {
             model = System.getenv("MODEL_DEPLOYMENT_NAME");
         }
@@ -580,7 +580,7 @@ This Java example creates an agent with an OpenAPI tool and runs a conversation-
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`) and `AZURE_AI_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`)
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`) and `FOUNDRY_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`)
 - Local file: `openapi_spec.json` (OpenAPI 3.0 specification)
 
 ### Expected output
