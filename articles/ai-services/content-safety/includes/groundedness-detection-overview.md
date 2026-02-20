@@ -4,18 +4,60 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: include
-ms.date: 11/21/2025
+ms.date: 02/18/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 
-Groundedness detection in Azure AI Content Safety helps you ensure that large language model (LLM) responses are based on your provided source material, reducing the risk of non-factual or fabricated outputs. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Groundedness detection requires [document embedding and formatting](/azure/ai-foundry/openai/concepts/content-filter-document-embedding#embedding-documents-in-your-prompt). 
+Groundedness detection in Azure AI Content Safety helps you ensure that large language model (LLM) responses are based on your provided source material, reducing the risk of non-factual or fabricated outputs.
+
+Ungroundedness refers to instances where LLMs produce information that is non-factual or inaccurate from what was present in the source materials.
+
+Groundedness detection requires [document embedding and formatting](../../../ai-foundry/openai/concepts/content-filter-document-embedding.md#embedding-documents-in-your-prompt).
+
+
+To understand groundedness detection, it's helpful to be familiar with these core concepts:
 
 ## Key terms
 
 - **Retrieval Augmented Generation (RAG)**: RAG is a technique for augmenting LLM knowledge with other data. LLMs can reason about wide-ranging topics, but their knowledge is limited to the public data that was available at the time they were trained. If you want to build AI applications that can reason about private data or data introduced after a model’s cutoff date, you need to provide the model with that specific information. The process of bringing the appropriate information and inserting it into the model prompt is known as Retrieval Augmented Generation (RAG). For more information, see [Retrieval-augmented generation (RAG)](https://python.langchain.com/docs/tutorials/rag/).
 - **Groundedness and Ungroundedness in LLMs**: This refers to the extent to which the model's outputs are based on provided information or reflect reliable sources accurately. A grounded response adheres closely to the given information, avoiding speculation or fabrication. In groundedness measurements, source information is crucial and serves as the grounding source.
 
+## Detection modes
+
+Groundedness detection offers two modes to balance speed with interpretability:
+
+- **Non-Reasoning mode**: Fast detection for online applications. Returns binary grounded/ungrounded results without detailed explanations.
+- **Reasoning mode**: Provides detailed explanations for detected ungrounded segments. Better for understanding root causes and mitigation strategies.
+
+Choose Non-Reasoning mode for real-time applications where latency matters. Use Reasoning mode during development and debugging to understand why content is flagged.
+
+## Domain selection
+
+Choose a domain to optimize detection for your use case:
+
+- **Medical**: Optimized for medical, healthcare, and scientific content where accuracy is critical
+- **Generic**: Suitable for general-purpose content including customer support, documentation, and business communications
+
+Domain selection tunes the detection model's sensitivity and correction behavior for domain-specific terminology and patterns.
+
+## Task specification
+
+Specify the task type to optimize detection:
+
+- **Summarization**: For validating generated summaries against source documents
+- **QnA**: For validating question-and-answer responses against knowledge bases
+
+Task selection adjusts detection sensitivity and correction logic for task-specific patterns.
+
+## Groundedness correction (preview)
+
+The groundedness detection API includes an optional **correction feature** that not only detects ungrounded content but automatically corrects it based on your grounding sources. This is useful for:
+
+- Automatically fixing factual errors in generated summaries
+- Ensuring AI responses align with source material
+- Reducing manual review time for high-volume content
 
 ## User scenarios
 
@@ -119,3 +161,23 @@ Example API Request:
 **Expected outcome:**
 
 The correction feature identifies `SuperWidget v2.1` as ungrounded and updates it to `SuperWidget v2.2` in the response. The response returns the corrected text: `"Our latest product is SuperWidget v2.2."`
+
+## Limitations
+
+### Language availability
+
+Currently, groundedness detection supports **English language content** only. While the API doesn't restrict non-English submissions, accuracy and quality are optimized for English.
+
+### Text length limitations
+
+Maximum text length varies by mode. See [Input requirements](../overview.md#input-requirements) for current limits.
+
+### Region availability
+
+Groundedness detection is available in specific Azure regions. See [Region availability](../overview.md#region-availability) for supported regions.
+
+### Rate limitations
+
+Default query rate limits apply. For higher throughput requirements, contact [Content Safety support](mailto:contentsafetysupport@microsoft.com).
+
+
