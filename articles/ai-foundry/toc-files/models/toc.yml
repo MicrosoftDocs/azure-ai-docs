@@ -149,8 +149,6 @@ items:
           href: ../../openai/whisper-quickstart.md
         - name: Realtime API for speech and audio
           href: ../../openai/how-to/realtime-audio.md
-        - name: Text to speech (preview)
-          href: ../../openai/text-to-speech-quickstart.md
         - name: Realtime API via WebRTC
           href: ../../openai/how-to/realtime-audio-webrtc.md
         - name: Realtime API via SIP
@@ -159,6 +157,9 @@ items:
           href: ../../openai/how-to/realtime-audio-websockets.md
         - name: Realtime API migration from Preview to GA
           href: ../../openai/how-to/realtime-audio-preview-api-migration-guide.md
+        - name: Text to speech (preview)
+          href: ../../openai/text-to-speech-quickstart.md
+
   - name: Batch
     items:
        - name: Getting started with batch
@@ -195,8 +196,6 @@ items:
         href: ../../openai/how-to/structured-outputs.md
       - name: Vision-enabled chats
         href: ../../openai/how-to/gpt-with-vision.md
-      - name: Vision-enabled chats
-        href: ../../openai/gpt-v-quickstart.md
       - name: Additional features
         items:
         - name: JSON mode
