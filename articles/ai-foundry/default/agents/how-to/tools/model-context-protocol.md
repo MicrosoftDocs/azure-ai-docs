@@ -488,14 +488,11 @@ The following TypeScript sample demonstrates how to create an agent with MCP too
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import OpenAI from "openai";
+import * as readline from "readline";
 import "dotenv/config";
 
-import * as readline from "readline";
-
-import * as readline from "readline";
-
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 
 export async function main(): Promise<void> {
   // Create AI Project client
@@ -690,10 +687,11 @@ The following TypeScript sample demonstrates how to create an agent with MCP too
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import OpenAI from "openai";
+import * as readline from "readline";
 import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const mcpConnectionName = process.env["MCP_PROJECT_CONNECTION_NAME"] || "";
 
 export async function main(): Promise<void> {

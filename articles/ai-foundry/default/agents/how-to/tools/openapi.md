@@ -874,13 +874,13 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ## Create an agent with OpenAPI tool capabilities
 
-The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities by using the `OpenApiAgentTool` and synchronous Azure AI Projects client. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities by using the `OpenApiTool` and synchronous Azure AI Projects client. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import {
   AIProjectClient,
-  OpenApiAgentTool,
+  OpenApiTool,
   OpenApiFunctionDefinition,
   OpenApiAnonymousAuthDetails,
 } from "@azure/ai-projects";
@@ -888,8 +888,8 @@ import * as fs from "fs";
 import * as path from "path";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const weatherSpecPath = path.resolve(__dirname, "../assets", "weather_openapi.json");
 
 function loadOpenApiSpec(specPath: string): unknown {
@@ -905,7 +905,7 @@ function loadOpenApiSpec(specPath: string): unknown {
   }
 }
 
-function createWeatherTool(spec: unknown): OpenApiAgentTool {
+function createWeatherTool(spec: unknown): OpenApiTool {
   const auth: OpenApiAnonymousAuthDetails = { type: "anonymous" };
   const definition: OpenApiFunctionDefinition = {
     name: "get_weather",
@@ -1009,7 +1009,7 @@ This TypeScript example creates an agent with an OpenAPI tool for weather data b
 
 ## Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 - Local file: `../assets/weather_openapi.json` (OpenAPI specification)
 
 ### Expected output
@@ -1047,7 +1047,7 @@ The following TypeScript code example demonstrates how to create an AI agent tha
 import { DefaultAzureCredential } from "@azure/identity";
 import {
   AIProjectClient,
-  OpenApiAgentTool,
+  OpenApiTool,
   OpenApiFunctionDefinition,
   OpenApiProjectConnectionAuthDetails,
 } from "@azure/ai-projects";
@@ -1055,8 +1055,8 @@ import * as fs from "fs";
 import * as path from "path";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const tripAdvisorProjectConnectionId =
   process.env["TRIPADVISOR_PROJECT_CONNECTION_ID"] || "<tripadvisor project connection id>";
 const tripAdvisorSpecPath = path.resolve(__dirname, "../assets", "tripadvisor_openapi.json");
@@ -1074,7 +1074,7 @@ function loadOpenApiSpec(specPath: string): unknown {
   }
 }
 
-function createTripAdvisorTool(spec: unknown): OpenApiAgentTool {
+function createTripAdvisorTool(spec: unknown): OpenApiTool {
   const auth: OpenApiProjectConnectionAuthDetails = {
     type: "project_connection",
     security_scheme: {
@@ -1186,7 +1186,7 @@ This TypeScript example demonstrates using an OpenAPI tool with API key authenti
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`, `TRIPADVISOR_PROJECT_CONNECTION_ID`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `TRIPADVISOR_PROJECT_CONNECTION_ID`
 - Local file: `../assets/tripadvisor_openapi.json`
 - Project connection configured with TripAdvisor API key
 

@@ -749,7 +749,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const bingConnectionName = process.env["BING_PROJECT_CONNECTION_NAME"] || "<bing connection name>";
 
 async function verifyConnection(): Promise<void> {
@@ -786,9 +786,9 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName =
-  process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+  process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const bingConnectionName =
   process.env["BING_PROJECT_CONNECTION_NAME"] || "<bing connection name>";
 
@@ -892,7 +892,7 @@ This example creates an agent with grounding by using the Bing Search tool that 
 
 **Required inputs**
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_NAME`
 - Azure credentials configured for `DefaultAzureCredential`
 
 **Expected output**
@@ -924,9 +924,9 @@ import { AIProjectClient } from "@azure/ai-projects";
 import * as readline from "readline";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName =
-  process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+  process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const bingCustomSearchConnectionName =
   process.env["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME"] ||
   "<bing custom search connection name>";
@@ -1050,7 +1050,7 @@ This example creates an agent with Grounding with Bing Custom Search tool that s
 
 **Required inputs**
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
 - Azure credentials configured for `DefaultAzureCredential`
 - User input provided at runtime via console
 

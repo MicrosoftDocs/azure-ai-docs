@@ -318,7 +318,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const fabricConnectionName = process.env["FABRIC_PROJECT_CONNECTION_NAME"] || "<fabric connection name>";
 
 async function verifyConnection(): Promise<void> {
@@ -354,9 +354,9 @@ import { AIProjectClient } from "@azure/ai-projects";
 import * as readline from "readline";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName =
-  process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+  process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const fabricConnectionName =
   process.env["FABRIC_PROJECT_CONNECTION_NAME"] || "<fabric connection name>";
 
@@ -446,7 +446,7 @@ main().catch((err) => {
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
 - Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
 
 ### Expected output
