@@ -68,7 +68,7 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
-    :::code language="txt" source="..\..\code-samples\voice-live-agents\requirements.txt":::
+    :::code language="txt" source="..\..\code-samples\voice-live-agents\requirements":::
 
 1. Install the packages:
 
