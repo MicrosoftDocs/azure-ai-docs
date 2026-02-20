@@ -57,7 +57,7 @@ Before configuring Claude Code, deploy the available [Claude models](../concepts
 | Fast model | `claude-haiku-4-5` | Quick operations — file reads, small edits |
 | Extended thinking | `claude-opus-4-6` | Complex reasoning tasks (optional) |
 
-Other Claude models available in Foundry include `claude-sonnet-4-6`, `claude-opus-4-5` and `claude-opus-4-1`.
+Other Claude models available in Foundry include `claude-sonnet-4-5`, `claude-opus-4-5` and `claude-opus-4-1`.
 
 To deploy a model:
 
