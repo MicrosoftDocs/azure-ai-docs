@@ -32,7 +32,7 @@ This article uses the Azure CLI and a runnable sample project.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | - | - | - | ✔️ (GA) | - | ✔️ |
+| ✔️ | ✔️ (Preview) | - | - | - | ✔️ (GA) | - | ✔️ |
 
 For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
