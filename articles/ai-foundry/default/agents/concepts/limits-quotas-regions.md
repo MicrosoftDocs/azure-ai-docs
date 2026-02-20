@@ -25,7 +25,7 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 - An Azure subscription.
 - A [Microsoft Foundry project](../../../how-to/create-projects.md).
-- A [deployed model](../../../default/agents/concepts/limits-quotas-regions.md) compatible with Agent Service. Model and region availability can vary.
+- A deployed model compatible with Agent Service. Model and region availability can vary.
 
 ## Supported regions
 
@@ -172,7 +172,6 @@ The limits in this article are default values for Foundry Agent Service. If your
 ## Related content
 
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
-- [Model and region support for Foundry Agent Service](../../../default/agents/concepts/limits-quotas-regions.md)
 - [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
 - [Monitor Foundry Agent Service](../../../agents/how-to/metrics.md)
