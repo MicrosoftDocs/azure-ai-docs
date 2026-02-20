@@ -8,7 +8,7 @@ items:
   - name: Python
     href: /python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true
   - name: REST API
-    href: /rest/api/aifoundry/aiprojects/
+    href: ../../../reference/foundry-project.md
 - name: Azure AI Agents
   items:
     - name: C#
