@@ -24,6 +24,9 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
+> [!NOTE]
+> **Retired packages**: The following SDK v1 packages are being retired: azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, azureml-pipeline-steps, and azureml-train-core.
+
 In this article, you learn how to troubleshoot when you get errors running a [machine learning pipeline](../concept-ml-pipelines.md) in the [Azure Machine Learning SDK](/python/api/overview/azure/ml/intro) and [Azure Machine Learning designer](concept-designer.md). 
 
 ## Troubleshooting tips
@@ -54,6 +57,9 @@ If you perform a management operation on a compute target from a remote job, you
 
 For example, you receive an error if you try to create or attach a compute target from an ML Pipeline that is submitted for remote execution.
 ## Troubleshooting `ParallelRunStep` 
+
+> [!NOTE]
+> `ParallelRunStep` is part of the retired azureml-pipeline-steps package. Customers should plan migration to SDK v2 alternatives. For more information, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python) and [Run batch inference using batch endpoints](/azure/machine-learning/how-to-use-batch-model-deployments).
 
 The script for a `ParallelRunStep` *must contain* two functions:
 - `init()`: Use this function for any costly or common preparation for later inference. For example, use it to load the model into a global object. This function is called only once at beginning of process.
@@ -348,6 +354,9 @@ model_download_step = PythonScriptStep(
 ```
 
 ## Next steps
+
+> [!NOTE]
+> The azureml-pipeline-core and azureml-pipeline-steps references below apply to the retired SDK v1 packages as of June 30, 2026. For the recommended path forward, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
 
 * For a complete tutorial using `ParallelRunStep`, see [Tutorial: Build an Azure Machine Learning pipeline for batch scoring](../tutorial-pipeline-batch-scoring-classification.md).
 
