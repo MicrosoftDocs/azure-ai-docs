@@ -90,7 +90,7 @@ with (
             tools=[
                 WebSearchTool(
                     user_location=WebSearchApproximateLocation(
-                        type="approximate", country="GB", city="London", region="London"
+                        country="GB", city="London", region="London"
                     )
                 )
             ],
