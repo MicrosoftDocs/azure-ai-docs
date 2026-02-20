@@ -110,7 +110,6 @@ You can modify the [reasoning effort](../openai/how-to/reasoning.md) parameter t
 | ------- | ----- | ---------- |
 | HTTP 429 Too Many Requests | Token-per-minute or request-per-minute limit exceeded | Implement retry logic with exponential backoff. Use the `Retry-After` header value. |
 | HTTP 431 Request Header Fields Too Large | More than 10 custom headers sent | Reduce custom headers to 10 or fewer. |
-| High latency on Global Standard | Usage exceeds the usage tier threshold | Review your [usage tier](#usage-tiers) and consider spreading deployments across regions. |
 | Quota page shows 0 available | Subscription or regional quota fully allocated | Move unused quota from another deployment. To increase your limit, [request a quota increase](#request-increases-to-the-default-limits). |
 | Model not available in region | Model isn't deployed or supported in the selected region | Check [model availability](concepts/models-sold-directly-by-azure.md) and choose an available region. |
 
