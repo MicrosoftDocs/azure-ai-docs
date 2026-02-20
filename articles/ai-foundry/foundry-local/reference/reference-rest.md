@@ -467,7 +467,131 @@ Set the active GPU device.
   GET /openai/setgpudevice/1
   ```
 
-## POST /v1/chat/completions/tokenizer/encode/count
+### POST /openai/download
+
+Downloads a model to local storage.
+
+> [!NOTE]
+> Model downloads can take significant time, especially for large models. We recommend setting a high timeout for this request to avoid premature termination.
+
+**Request Body:**
+
+- `model` (`WorkspaceInferenceModel` object)  
+  - `Uri` (string)  
+    The model URI to download.
+  - `Name` (string)
+    The model name.
+  - `ProviderType` (string, optional)  
+    The provider type (e.g., `"AzureFoundryLocal"`,`"HuggingFace"`).
+  - `Path` (string, optional)  
+    The remote path where the model is located stored. For example, in a Hugging Face repository, this would be the path to the model files.
+  - `PromptTemplate` (`Dictionary<string, string>`, optional)  
+    Contains:
+    - `system` (string, optional)  
+      The template for the system message.
+    - `user` (string, optional)
+      The template for the user's message.
+    - `assistant` (string, optional)  
+      The template for the assistant's response.
+    - `prompt` (string, optional)  
+      The template for the user-assistant interaction.
+  - `Publisher` (string, optional)  
+      The publisher of the model.
+- `token` (string, optional)  
+  Authentication token for protected models (GitHub or Hugging Face).
+- `progressToken` (object, optional)  
+  For AITK only. Token to track download progress.
+- `customDirPath` (string, optional)  
+  Custom download directory (used for CLI, not needed for AITK).
+- `bufferSize` (integer, optional)  
+  HTTP download buffer size in KB. No effect on NIM or Azure Foundry models.
+- `ignorePipeReport` (boolean, optional)  
+  If `true`, forces progress reporting via HTTP stream instead of pipe.
+  Defaults to `false` for AITK and `true` for Foundry Local.
+
+**Streaming Response:**
+
+During download, the server streams progress updates in the format:
+
+```
+("file name", percentage_complete)
+```
+
+**Final Response body:**
+
+- `Success` (boolean)  
+  Whether the download completed successfully.
+- `ErrorMessage` (string, optional)  
+  Error details if download failed.
+
+**Example:**
+
+- Request body
+
+```json
+{
+  "model":{
+    "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
+    "ProviderType": "AzureFoundryLocal",
+    "Name": "Phi-4-mini-instruct-generic-cpu",
+    "Publisher": "",
+    "promptTemplate" : {
+      "system": "<|system|>{Content}<|end|>",
+      "user": "<|user|>{Content}<|end|>", 
+      "assistant": "<|assistant|>{Content}<|end|>", 
+      "prompt": "<|user|>{Content}<|end|><|assistant|>"
+    }
+  }
+}
+```
+
+- Response stream
+
+  ```
+  ("genai_config.json", 0.01)
+  ("genai_config.json", 0.2)
+  ("model.onnx.data", 0.5)
+  ("model.onnx.data", 0.78)
+  ...
+  ("", 1)
+  ```
+
+- Final response
+  ```json
+  {
+    "Success": true,
+    "ErrorMessage": null
+  }
+  ```
+
+### GET /openai/status
+
+Retrieves server status information.
+
+> [!NOTE]
+> The port shown in the `Endpoints` array is **dynamically assigned** when the service starts. Do not hardcode a specific port number. Use this endpoint or run `foundry service status` to discover the current URL.
+
+**Response body:**
+
+- `Endpoints` (array of strings)  
+  The HTTP server binding endpoints.
+- `ModelDirPath` (string)  
+  Directory where local models are stored.
+- `PipeName` (string)  
+  The current NamedPipe server name.
+
+**Example:**
+
+- Response body
+  ```json
+  {
+    "Endpoints": ["http://localhost:5272"],
+    "ModelDirPath": "/path/to/models",
+    "PipeName": "inference_agent"
+  }
+  ```
+
+### POST /v1/chat/completions/tokenizer/encode/count
 
 Counts tokens for a given chat completion request without performing inference.
 
