@@ -626,8 +626,8 @@ The following REST API examples demonstrate how to use Grounding with Bing Searc
 Before running REST API calls, configure authentication:
 
 1. Set environment variables:
-   - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-   - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
+   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
+   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
    - `BING_PROJECT_CONNECTION_ID`: Your Grounding with Bing Search project connection ID.
 1. Obtain a bearer token:
    ```bash
@@ -636,11 +636,11 @@ Before running REST API calls, configure authentication:
 
    ```bash
    curl --request POST \
-     --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
+     --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
      -H "Authorization: Bearer $AGENT_TOKEN" \
      -H "Content-Type: application/json" \
      -d '{
-     "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+     "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
      "input": "How does Wikipedia explain Euler\u0027s identity?",
      "tool_choice": "required",
      "tools": [
@@ -673,7 +673,7 @@ This REST API request creates a response using Grounding with Bing Search. The r
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_ID`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_ID`.
 - Valid bearer token with appropriate permissions.
 
 ### Expected output
@@ -687,11 +687,11 @@ JSON response with:
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-  "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+  "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
   "input": "How does Wikipedia explain Euler\u0027s identity?",
   "tool_choice": "required",
   "tools": [
@@ -725,7 +725,7 @@ This REST API request creates a response using Grounding with Bing Custom Search
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
 - Valid bearer token with appropriate permissions.
 - Bing Custom Search instance already configured with target domains
 

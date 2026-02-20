@@ -607,11 +607,11 @@ The following examples show how to call an OpenAPI tool by using the REST API.
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   --header "Authorization: Bearer $AGENT_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
-    "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
     "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
     "tools": [
       {
@@ -674,11 +674,11 @@ curl --request POST \
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   --header "Authorization: Bearer $AGENT_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
-    "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
     "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
     "tools": [
       {
@@ -758,11 +758,11 @@ curl --request POST \
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/v1/responses" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   --header "Authorization: Bearer $AGENT_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
-    "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
     "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
     "tools": [
       {
@@ -837,7 +837,7 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`.
 - For API key auth: `WEATHER_APP_PROJECT_CONNECTION_ID`.
 - For managed identity auth: `MANAGED_IDENTITY_AUDIENCE`.
 - Inline OpenAPI specification in request body.
