@@ -121,6 +121,7 @@ If you encounter issues when viewing or requesting quotas, try these solutions:
 
 ::: moniker range="foundry-classic"
 
+- [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md)
 - [Azure OpenAI quotas and limits](../openai/quotas-limits.md)
 - [Manage Azure OpenAI Service quota](../openai/how-to/quota.md)
 - [Manage and increase quotas for hub resources](hub-quota.md)
@@ -131,6 +132,7 @@ If you encounter issues when viewing or requesting quotas, try these solutions:
 
 ::: moniker range="foundry"
 
+- [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md)
 - [Azure OpenAI quotas and limits](../openai/quotas-limits.md)
 - [Manage Azure OpenAI Service quota](../openai/how-to/quota.md)
 - [Plan to manage costs](./costs-plan-manage.md)
