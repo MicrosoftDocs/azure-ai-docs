@@ -32,6 +32,20 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 Please complete the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) to prepare the environment and setup the agent with Voice Live settings and run the first test with the Voice Live service to talk to your agent.
 
+## Connecting to a specific agent version
+
+Useful when: controlling production vs. dev/staging versions of agent in CI/CD lifecycle management
+
+xxx
+
+## Connecting to an agent on a different Foundry resource
+
+Agent is deployed on a different Foundry resource than the one used for Voice Live audio processing.
+
+Useful when: Separating environments, using features of Voice Live or Foundry agent service not supported in all regions, ...
+
+xxx
+
 ## Improving tool calling and latency wait times
 
 Voice Live provides a feature called `interim_response` to bridge wait times when tool calling is required or a high latency is experienced to generate an agent response.
@@ -44,4 +58,6 @@ The `voice-live-agents-quickstart.py` created with the quickstart shows the requ
 
 :::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="17-31,325-348" highlight="9-10,19-25,32":::
 
+## Reconnect to a previous agent conversation
 
+xxx
