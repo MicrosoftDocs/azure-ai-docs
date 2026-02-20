@@ -2,13 +2,13 @@
 title: Hybrid Search
 titleSuffix: Azure AI Search
 description: Describes concepts and architecture of hybrid query processing and document retrieval. Hybrid queries combine vector search and full-text search.
-author: robertklee
-ms.author: robertlee
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 02/19/2026
 ---
 
 # Hybrid search using vectors and full text in Azure AI Search
@@ -91,7 +91,7 @@ content-type: application/JSON
 
 Filters and facets target data structures within the index that are distinct from the inverted indexes used for full-text search and the vector indexes used for vector search. As such, when filters and faceted operations execute, the search engine can apply the operational result to the hybrid search results in the response.
 
-Notice how there's no `orderby` in the query. Explicit sort orders override relevanced-ranked results, so if you want similarity and BM25 relevance, omit sorting in your query.
+Notice how there's no `orderby` in the query. Explicit sort orders override relevance-ranked results, so if you want similarity and BM25 relevance, omit sorting in your query.
 
 A response from the query might look like the following JSON.
 

@@ -15,7 +15,7 @@ items:
   - name: Python
     href: /python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true
   - name: REST API
-    href: /rest/api/aifoundry/aiprojects/
+    href: ../../../reference/foundry-project.md
   - name: REST API (preview)
     href: ../../../reference/foundry-project-rest-preview.md
 

@@ -1,12 +1,12 @@
 ---
-title: OData language overview
+title: OData Language Overview
 titleSuffix: Azure AI Search
 description: OData language overview for filters, select, and order-by for Azure AI Search keyword search.
-author: bevloh
-ms.author: beloh
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 12/10/2024
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 

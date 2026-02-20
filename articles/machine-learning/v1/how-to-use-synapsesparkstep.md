@@ -23,6 +23,9 @@ ms.custom: UpdateFrequency5, synapse-azureml, sdkv1
 > [!WARNING]
 > The Azure Synapse Analytics integration with Azure Machine Learning, available in Python SDK v1, is deprecated. Users can still use Synapse workspace, registered with Azure Machine Learning, as a linked service. However, a new Synapse workspace can no longer be registered with Azure Machine Learning as a linked service. We recommend use of serverless Spark compute and attached Synapse Spark pools, available in CLI v2 and Python SDK v2. For more information, see [Configure Apache Spark jobs in Azure Machine Learning](../quickstart-spark-jobs.md).
 
+> [!NOTE]
+> **Retired packages**: The following SDK v1 packages used by this article are being retired: azureml-pipeline, azureml-pipeline-core, azureml-pipeline-steps, azureml-train-core, and azureml-pipeline-internal. Classes such as `SynapseSparkStep`, `PythonScriptStep`, and `Pipeline` are part of these retiring packages.
+
 In this article you learn how to use Apache Spark pools, powered by Azure Synapse Analytics, as the compute target for a data preparation step in an Azure Machine Learning pipeline. You learn how a single pipeline can use compute resources suited for the specific step - for example, data preparation or training. You'll also learn how data is prepared for the Spark step and how it passes to the next step.
 
 ## Prerequisites
@@ -95,6 +98,9 @@ The code first configures the `SynapseCompute`. The `linked_service` argument is
 After you create the configuration, create a machine learning `ComputeTarget` by passing in the `Workspace` and `ComputeTargetAttachConfiguration` values, and the name by which you'd like to refer to the compute within the machine learning workspace. The call to `ComputeTarget.attach()` is asynchronous, so the sample is blocked until the call completes.
 
 ## Create a `SynapseSparkStep` that uses the linked Apache Spark pool
+
+> [!NOTE]
+> For SDK v2/CLI v2 approaches to Spark jobs and pipelines, see [Configure Apache Spark jobs in Azure Machine Learning](../quickstart-spark-jobs.md). Serverless Spark compute and attached Synapse Spark pools are available in CLI v2 and Python SDK v2, providing an alternative to the v1-based `SynapseSparkStep` shown in this article.
 
 The sample notebook [Spark job on Apache spark pool](https://github.com/azure/machinelearningnotebooks/blob/master/how-to-use-azureml/azure-synapse/spark_job_on_synapse_spark_pool.ipynb) defines a simple machine learning pipeline. First, the notebook defines a data preparation step, powered by the `synapse_compute` defined in the previous step. Then, the notebook defines a training step powered by a compute target more appropriate for training. The sample notebook uses the Titanic survival database to show data input and output. It doesn't actually clean the data or make a predictive model. Since this sample doesn't really involve training, the training step uses an inexpensive, CPU-based compute resource.
 

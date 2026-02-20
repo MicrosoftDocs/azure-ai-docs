@@ -50,7 +50,9 @@ Java SDK samples are not yet available.
 - **Azure AI Owner** role on your Foundry resource (required for creating agent resources)
 - Environment variables configured: `FOUNDRY_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
 
-## Create an agent with file search
+## Code examples
+
+The following examples show how to upload a file, create a vector store, configure an agent with file search enabled, and query the agent.
 
 :::zone pivot="python"
 ## Create an agent with the file search tool
@@ -153,6 +155,7 @@ Cleaning up...
 - Reference: [Azure SDK for Python sample: file search](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/tools/sample_agent_file_search_in_stream.py)
 - Reference: [Agents REST API (preview)](../../../../reference/foundry-project-rest-preview.md)
 :::zone-end
+
 :::zone pivot="csharp"
 ## File search sample with agent
 
@@ -344,6 +347,7 @@ Response done with full message: Your previous question was about the documented
 'orange'.
 ```
 :::zone-end
+
 :::zone pivot="typescript"
 ## Sample file search with agent
 

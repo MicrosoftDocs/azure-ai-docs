@@ -3,10 +3,10 @@ manager: nitinme
 ms.service: azure-ai-services
 ms.custom:
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 02/13/2026
 ms.author: aahi
 author: aahill
 ---
 
 > [!NOTE]
-> The [Microsoft Foundry Agent Service](../../agents/overview.md) is now generally available, which provides more tools and better enterprise features. We recommend using the new service for the latest feature updates and improvements.
+> The Assistants API is deprecated and will be retired on August 26, 2026. Use the generally available [Microsoft Foundry Agents service](../../agents/overview.md?view=foundry&preserve-view=true). Follow the [migration guide](../../default/agents/how-to/migrate.md#migrate-classic-agents-to-new-agents) to update your workloads. [Learn more](../../default/agents/how-to/migrate.md).
