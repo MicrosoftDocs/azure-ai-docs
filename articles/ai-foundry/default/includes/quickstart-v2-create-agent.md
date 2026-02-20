@@ -46,4 +46,6 @@ Now create an agent and interact with it.
 
 ---
 
+The output confirms the agent was created. For SDK tabs, you see the agent name and ID printed to the console.
+
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]

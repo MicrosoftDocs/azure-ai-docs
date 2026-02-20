@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 09/16/2025
+ms.date: 02/18/2026
 ms.author: ssalgado
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 monikerRange: 'foundry-classic || foundry'
@@ -15,7 +15,12 @@ monikerRange: 'foundry-classic || foundry'
 
 # Intervention points
 
-Agentic AI expands both capability and attack surface. As soon as an agent can call external tools, write to databases, or trigger downstream processes, malfunctions or malicious attacks can lead to steering it off course, leaking sensitive data, or executing harmful actions. Relying solely on guardrails applied to models can leave these vectors exposed. To close this gap Microsoft Foundry allows guardrails to be applied directly to agents and allows the individual controls within those guardrails to be applied to four different intervention points:
+## Overview
+
+Agentic AI expands both capability and attack surface. As soon as an agent can call external tools, write to databases, or trigger downstream processes, malfunctions or malicious attacks can lead to steering it off course, leaking sensitive data, or executing harmful actions. Relying solely on guardrails applied to models can leave these vectors exposed. To close this gap Microsoft Foundry allows guardrails to be applied directly to agents and allows the individual controls within those guardrails to be applied to four different intervention points.
+
+
+## Intervention points
 
 | Intervention Point | Description | Example Control at this Intervention Point |
 |-------------------|-------------|-------------------------------------------|
@@ -24,5 +29,27 @@ Agentic AI expands both capability and attack surface. As soon as an agent can c
 | Tool response (Preview) | The content sent back by a tool, internal to an agent's orchestration and before the content is to the agent's memory or given back to the end user. | **Risk:** Indirect attack<br>**Action:** Annotate and block<br><br>When this control is specified, the full payload sent back from each tool to this agent is scanned for attempted indirect prompt injection attacks. If detected, the agent stops operating immediately, and prevents the malicious content from being saved by the agent and from maliciously steering the agent off-track. |
 | Output | The final content sent back to the end user in response to their query. | **Risk:** Protected Material for Text<br>**Action:** Annotate only<br><br>When this control is specified, the final content meant to be displayed to the user is scanned for certain types of copyrighted text. If detected, there is a flag in the annotation response for the API used to call this model or agent. |
 
-> [!IMPORTANT]
-> Only certain types of tools are subject to controls at the tool call and tool response intervention points. Currently, Azure AI Search, Azure Functions, OpenAPI, Sharepoint Grounding, Fabric Data Agent, Bing Grounding, Bing Custom Search, and Browser Automation support moderation. 
+> [!NOTE]
+> **Performance considerations**  
+> Guardrail processing at each intervention point adds approximately 50-100ms of latency. The actual latency varies based on content length and the number of active controls in your guardrail.
+
+## Configure controls at intervention points
+
+When creating a guardrail, you select which controls to enable and at which intervention points to apply them. For example, to protect against indirect attacks in tool responses:
+
+1. Create a guardrail in Foundry portal
+2. Add a control for "Indirect attack" risk
+3. Select "Tool response" as the intervention point
+4. Choose "Annotate and block" as the action
+
+For detailed steps, see [Create a guardrail](./how-to-create-guardrails.md).
+
+## Supported tools
+
+Tool call and tool response intervention points require moderation support from the tool itself. Currently, the following tools support moderation: Azure AI Search, Azure Functions, OpenAPI, Sharepoint Grounding, Fabric Data Agent, Bing Grounding, Bing Custom Search, and Browser Automation. If you configure controls at tool call or tool response intervention points but your agent uses tools not in this list, those controls won't take effect for those specific tools.
+
+## Related content
+
+- [Create a guardrail](./how-to-create-guardrails.md)
+- [Guardrails and controls overview](guardrails-overview.md)
+- [Foundry Agent Service overview](../../agents/overview.md) 
