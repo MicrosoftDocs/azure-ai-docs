@@ -7,6 +7,7 @@ ms.topic: reference
 ms.date: 02/19/2026
 author: mrbullwinkle    
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Microsoft Foundry
