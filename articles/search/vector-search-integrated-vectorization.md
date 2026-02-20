@@ -97,8 +97,8 @@ Data chunking (Text Split skill) is free and available on all Foundry Tools in a
 
 For query-only vectorization:
 
-1. [Add a vectorizer](vector-search-how-to-configure-vectorizer.md#define-a-vectorizer-and-vector-profile) to an index. It should be the same embedding model used to generate vectors in the index.
-1. [Assign the vectorizer](vector-search-how-to-configure-vectorizer.md#define-a-vectorizer-and-vector-profile) to a vector profile, and then assign a vector profile to the vector field.
+1. [Add a vectorizer](vector-search-how-to-configure-vectorizer.md#define-a-vectorizer-programmatically) to an index. It should be the same embedding model used to generate vectors in the index.
+1. [Assign the vectorizer](vector-search-how-to-configure-vectorizer.md#programmatically) to a vector profile, and then assign a vector profile to the vector field.
 1. [Formulate a vector query](vector-search-how-to-configure-vectorizer.md#test-a-vectorizer) that specifies the text string to vectorize.
 
 A more common scenario - data chunking and vectorization during indexing:
