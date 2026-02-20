@@ -19,7 +19,7 @@ PROJECT_ENDPOINT=<endpoint copied from welcome screen>
 AGENT_NAME="MyVoiceAgent"
 MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
 # Settings for Voice Live
-AGENT_NAME=<name-used-to-create-agent>
+AGENT_NAME=<name-used-to-create-agent> # See above
 AGENT_VERSION=<version-of-the-agent>
 CONVERSATION_ID=<specific conversation id to reconnect to>
 PROJECT_NAME=<your_project_name>
@@ -29,8 +29,8 @@ VOICELIVE_API_VERSION=2026-01-01-preview
 
 Replace the default values with your actual project name, agent ID, API version, and API key.
 
-|Variable name | Value |
-|--------------------------|-------------|
+| Variable name | Value |
+|---------------|-------|
 | `PROJECT_ENDPOINT` | The Foundry project endpoint copied from the project welcome screen. |
 | `AGENT_NAME` | The name of the agent to use. |
 | `AGENT_VERSION` | Optional: The version of the agent to use. |

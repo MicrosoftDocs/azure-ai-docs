@@ -339,7 +339,7 @@ class BasicVoiceAssistant:
             modalities=[Modality.TEXT, Modality.AUDIO],
             input_audio_format=InputAudioFormat.PCM16,
             output_audio_format=OutputAudioFormat.PCM16,
-            # interim_response=interim_response_config,
+            interim_response=interim_response_config,
             # Uncomment the following, if not stored with agent configuration on the service side
             # voice=AzureStandardVoice(name=self.voice),
             # turn_detection=AzureSemanticVadMultilingual(),

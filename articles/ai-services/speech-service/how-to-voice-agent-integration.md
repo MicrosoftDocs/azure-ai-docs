@@ -18,8 +18,6 @@ recommendations: false
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-__**DRAFT TO BE populated and updated from quickstart**__
-
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python quickstart](./includes/how-to/voice-live-agents/python.md)]
 ::: zone-end
