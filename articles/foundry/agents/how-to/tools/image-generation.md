@@ -1,6 +1,6 @@
 ---
 title: "Use the image generation tool in Foundry Agent Service (preview) (temp)"
-description: "Learn how to generate images from text prompts in Microsoft Foundry Agent Service by using the image generation tool with gpt-image-1. Configure agents, deploy models, and save output. (temp)"
+description: "Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output. (temp)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -29,6 +29,9 @@ The **image generation tool** in Microsoft Foundry Agent Service generates image
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+> [!NOTE]
+> The Java SDK does not currently support the Image Generation tool. If you need image generation in a Java application, use the REST API directly.
 
 ## Prerequisites
 

@@ -6,7 +6,7 @@ ms.author: sgilley
 ms.reviewer: dantaylo
 ms.date: 12/16/2025
 ms.service: azure-ai-foundry
-ms.topic: how-to
+ms.topic: quickstart
 ms.custom:
   - classic-and-new
   - build-2024

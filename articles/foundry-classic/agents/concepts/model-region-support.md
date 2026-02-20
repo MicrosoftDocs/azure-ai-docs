@@ -167,7 +167,11 @@ In addition to Azure OpenAI models, you can use models sold directly by Azure. T
 
 ## View all agent-supported models in the Foundry portal
 
-[!INCLUDE [agent-service-view-models-in portal](../includes/agent-service-view-models-in-portal.md)]
+To see a full list of the supported models in the Foundry portal:
+
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. Go to the **Model catalog**.
+1. Filter the models by **Capabilities** and select **Agent supported**.
 
 ## Verify model support
 

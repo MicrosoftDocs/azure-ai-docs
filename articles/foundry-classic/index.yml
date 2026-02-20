@@ -37,6 +37,7 @@ landingContent:
   - title: Microsoft Foundry Models
     linkLists:
       - linkListType: concept
+      \01`s+32`
         links:
           - text: Foundry Models sold directly by Azure
             url: foundry-models/concepts/models-sold-directly-by-azure.md

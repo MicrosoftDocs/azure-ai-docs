@@ -31,7 +31,7 @@ The selection of models that you see in Foundry depends on the [kind of project]
 > [!NOTE]
 > For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
 >
-<!-- CLASSIC-ONLY: > For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/model-region-support.md). -->
+> For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
 
 ## Anthropic
 

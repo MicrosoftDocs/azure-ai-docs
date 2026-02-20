@@ -11,4 +11,4 @@ ms.custom: include
 ---
 
 > [!TIP]
-> Code uses **Azure AI Projects 2.x (preview)** and is incompatible with Azure AI Projects 1.x. [See the Foundry (classic) documentation](../../foundry-classic/how-to/develop/sdk-overview.md#install-the-sdk)  for the Azure AI Projects 1.x GA version.
+> Code uses **Azure AI Projects 2.x (preview)** and is incompatible with Azure AI Projects 1.x. [See the Foundry (classic) documentation](../../foundry-classic/)  for the Azure AI Projects 1.x GA version.

@@ -23,11 +23,10 @@ zone_pivot_groups: models-sold-directly-by-azure
 
 # Foundry Models sold directly by Azure (temp)
 
-<!-- CLASSIC-ONLY: This article lists a selection of Microsoft Foundry Models sold directly by Azure along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). To see a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/model-region-support.md). -->
-
+This article lists a selection of Microsoft Foundry Models sold directly by Azure along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). To see a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
 Models sold directly by Azure include all Azure OpenAI models and specific, selected models from top providers. These models are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft. For models offered by partners outside of this list, see [Foundry Models from partners and community](models-from-partners.md).
 
-Use the tabs at the top of this page to switch between [Azure OpenAI models](https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai) and [other model collections](https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-direct-others) from providers like Cohere, DeepSeek, Meta, Mistral AI, and xAI.
+Use the tabs at the top of this page to switch between **Azure OpenAI models** and **other model collections** from providers like Cohere, DeepSeek, Meta, Mistral AI, and xAI.
 
 Foundry Models are available for standard deployment to a Foundry resource.
 
