@@ -40,7 +40,7 @@ To try out the Voice Live demo, follow these steps:
  
 1. Select **Start** to start speaking and select **End** to end the chat session.
 
-#### [Foundry (classic) portal](#tab/foundry-classic)
+<!-- #### [Foundry (classic) portal](#tab/foundry-classic)
 
 ## Prerequisites
 
@@ -70,4 +70,4 @@ To try out the Voice Live demo, follow these steps:
 
 1. Edit other settings as needed, such as the **Voice**, **Speaking rate**, and **Voice activity detection (VAD)**. The **Proactive engagement** toggle allows the agent to speak first in the conversation.
 
-1. Select **Start** to start speaking and select **End** to end the chat session.
+1. Select **Start** to start speaking and select **End** to end the chat session. -->
