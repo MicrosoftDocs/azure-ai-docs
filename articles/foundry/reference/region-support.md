@@ -70,10 +70,7 @@ Use the following table to investigate regional availability for specific featur
 | Azure OpenAI                   | Some models might not be available within the Foundry model catalog.                                                              | [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
 | Speech capabilities            | Azure Speech in Foundry Tools capabilities, including custom neural voice, vary in regional availability due to underlying hardware availability.                     | [Speech service supported regions](../../ai-services/speech-service/regions.md)                           |
 | Azure AI Content Safety        | To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability).       |
-
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| Foundry Agent Service         | Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models). |
--->
+| Foundry Agent Service         | Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Agent Service region availability](../agents/concepts/limits-quotas-regions.md#azure-openai-model-support). |
 
 ## Use AI to find the best region
 

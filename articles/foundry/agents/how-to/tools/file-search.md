@@ -36,6 +36,8 @@ In this article, you learn how to:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
 
+Java SDK samples are not yet available.
+
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md)

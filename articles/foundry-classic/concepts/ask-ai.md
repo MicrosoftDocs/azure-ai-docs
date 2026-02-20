@@ -24,6 +24,8 @@ You can ask AI to assist you in Microsoft Foundry. To start using AI to ask ques
 
 ## Prerequisites
 
+To use Ask AI, you need:
+
 - Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ## Capabilities
@@ -68,3 +70,7 @@ If you encounter harmful or inappropriate content in the system, select the thum
 ### How current is the information provided by the agent?
 
 The agent is updated daily to keep it up to date with the latest information. In most cases, the information the agent provides is up to date. However, there might be some delay between new Foundry announcements and updates to the agent.
+
+## Related content
+
+- [What is Microsoft Foundry?](../what-is-foundry.md)

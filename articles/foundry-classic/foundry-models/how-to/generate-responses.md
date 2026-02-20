@@ -215,7 +215,6 @@ A selection of Foundry Models are supported for use with the Responses API.
 ### List of supported models
 
 This section lists some of the Foundry Models that are supported for use with the Responses API. For the Azure OpenAI models that are supported, see [Available Azure OpenAI models](../../agents/concepts/model-region-support.md#available-models).
-
 [!INCLUDE [agent-service-models-support-list](../../agents/includes/agent-service-models-support-list.md)]
 
 ## Troubleshoot common errors
