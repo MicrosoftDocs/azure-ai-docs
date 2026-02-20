@@ -12,7 +12,7 @@ ms.date: 01/29/2026
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
-
+zone_pivot_groups: openai-quickstart-gpt-v
 
 ---
 
