@@ -771,8 +771,8 @@ my_endpoint = "my-endpoint" # This could also be called target
 my_api_keys = None # Leave blank for Authentication type = AAD
 
 my_connection = AzureAISearchConnection(name=my_connection_name,
-                                    endpoint=my_endpoint, 
-                                    api_key= my_api_keys)
+                                        endpoint=my_endpoint,
+                                        api_key=my_api_keys)
 
 # Create MLClient
 ml_client = MLClient(

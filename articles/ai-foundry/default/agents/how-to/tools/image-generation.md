@@ -83,38 +83,38 @@ with (
     AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
-  image_generation_model = os.environ["IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME"]
+    image_generation_model = os.environ["IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME"]
 
-  agent = project_client.agents.create_version(
-    agent_name="agent-image-generation",
-    definition=PromptAgentDefinition(
-      model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-      instructions="Generate images based on user prompts.",
-      tools=[ImageGenTool(model=image_generation_model, quality="low", size="1024x1024")],
-    ),
-    description="Agent for image generation.",
-  )
-  print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+    agent = project_client.agents.create_version(
+        agent_name="agent-image-generation",
+        definition=PromptAgentDefinition(
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+            instructions="Generate images based on user prompts.",
+            tools=[ImageGenTool(model=image_generation_model, quality="low", size="1024x1024")],
+        ),
+        description="Agent for image generation.",
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-  response = openai_client.responses.create(
-    input="Generate an image of the Microsoft logo.",
-    extra_headers={
-      "x-ms-oai-image-generation-deployment": image_generation_model,
-    },
-    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-  )
-  print(f"Response created: {response.id}")
+    response = openai_client.responses.create(
+        input="Generate an image of the Microsoft logo.",
+        extra_headers={
+            "x-ms-oai-image-generation-deployment": image_generation_model,
+        },
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+    )
+    print(f"Response created: {response.id}")
 
-  project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-  print("Agent deleted")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 
-  image_data = [output.result for output in response.output if output.type == "image_generation_call"]
-  if image_data and image_data[0]:
-    print("Downloading generated image...")
-    file_path = os.path.abspath("microsoft.png")
-    with open(file_path, "wb") as f:
-      f.write(base64.b64decode(image_data[0]))
-    print(f"Image saved to: {file_path}")
+    image_data = [output.result for output in response.output if output.type == "image_generation_call"]
+    if image_data and image_data[0]:
+        print("Downloading generated image...")
+        file_path = os.path.abspath("microsoft.png")
+        with open(file_path, "wb") as f:
+            f.write(base64.b64decode(image_data[0]))
+        print(f"Image saved to: {file_path}")
 ```
 :::zone-end
 

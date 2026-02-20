@@ -89,7 +89,9 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential
+    ) as project_client,
 ):
     print("Connected to project.")
     
@@ -131,7 +133,9 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential
+    ) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
     # Get connection ID from connection name
@@ -162,7 +166,7 @@ with (
     # Send initial request that will trigger the SharePoint tool
     stream_response = openai_client.responses.create(
         stream=True,
-      tool_choice="required",
+        tool_choice="required",
         input="Please summarize the last meeting notes stored in SharePoint.",
         extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )

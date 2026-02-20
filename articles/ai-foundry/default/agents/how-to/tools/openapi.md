@@ -195,29 +195,29 @@ with (
             "name": "TOOL_NAME",
             "spec": SPEC_NAME,  # Must include securitySchemes and security sections
             "auth": {
-                  "type": "project_connection",
-                  "security_scheme": {
-                      "project_connection_id": connection_id              
-                  }              
+                "type": "project_connection",
+                "security_scheme": {
+                    "project_connection_id": connection_id
+                }
             },
         }
     }
 
     # If you want to use Managed Identity authentication
     openapi_mi_auth_tool={
-      "type": "openapi",
-      "openapi":{
-          "name": "TOOL_NAME",
-          "description": "",
-          "spec": SPEC_NAME,
-          "auth": {
-              "type": "managed_identity",
-              "security_scheme": {
-                  "audience": ""  #audience to the service, such as https://ai.azure.com     
-              }              
-              },
-      }
-  }
+        "type": "openapi",
+        "openapi":{
+            "name": "TOOL_NAME",
+            "description": "",
+            "spec": SPEC_NAME,
+            "auth": {
+                "type": "managed_identity",
+                "security_scheme": {
+                    "audience": ""  #audience to the service, such as https://ai.azure.com
+                }
+            },
+        }
+    }
 
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
