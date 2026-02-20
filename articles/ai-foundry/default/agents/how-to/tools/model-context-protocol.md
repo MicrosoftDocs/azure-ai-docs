@@ -16,12 +16,7 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 #CustomerIntent: As a developer, I want to connect my Foundry agent to external MCP servers so that I can extend agent capabilities with third-party tools.
 ---
 
-# Connect agents to Model Context Protocol servers (preview)
-
-[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
-
-> [!NOTE]
-> When you use a [Network Secured Microsoft Foundry](../../../../agents/how-to/virtual-networks.md), you can't use private MCP servers deployed in the same virtual network. You can only use publicly accessible MCP servers.
+# Connect agents to Model Context Protocol servers
 
 Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers by using the MCP tool. This extends agent capabilities with external tools and data sources. By connecting to remote MCP server endpoints, your agents can access tools hosted by developers and organizations that MCP-compatible clients like Foundry Agent Service can use.
 
