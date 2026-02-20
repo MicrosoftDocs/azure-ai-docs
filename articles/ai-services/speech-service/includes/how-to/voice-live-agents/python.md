@@ -34,17 +34,32 @@ Please complete the [Quickstart: Create a Voice Agent with Foundry Agent Service
 
 ## Connecting to a specific agent version
 
-Useful when: controlling production vs. dev/staging versions of agent in CI/CD lifecycle management
+Voice Live supports connecting to a specific version of your agent, enabling controlled deployments where production uses a stable version while development tests newer iterations.
 
-xxx
+To connect to a specific agent version, set the `AGENT_VERSION` environment variable or pass the `agent_version` parameter when initializing the assistant:
+
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="254-265,487-489" highlight="2,10":::
+
+The `agent_version` value corresponds to the version string returned when you create or update an agent using the Foundry Agent SDK. If not specified, Voice Live connects to the latest version of the agent.
 
 ## Connecting to an agent on a different Foundry resource
 
-Agent is deployed on a different Foundry resource than the one used for Voice Live audio processing.
+You can configure Voice Live to connect to an agent hosted on a different Foundry resource than the one used for audio processing. This is useful when:
+- The agent is deployed in a region that has different feature availability
+- You want to separate development/staging environments from production
+- Your organization uses different resources for different workloads
 
-Useful when: Separating environments, using features of Voice Live or Foundry agent service not supported in all regions, ...
+To connect to an agent on a different resource, configure two additional environment variables:
 
-xxx
+| Variable | Description |
+|----------|-------------|
+| `FOUNDRY_RESOURCE_OVERRIDE` | The Foundry resource name hosting the agent project (for example, `my-agent-resource`) |
+| `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID` | The managed identity client ID of the Voice Live resource, required for cross-resource authentication |
+
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="256-258,263-270" highlight="3-4,10-12":::
+
+> [!IMPORTANT]
+> Cross-resource connections require proper role assignments. Ensure the Voice Live resource's managed identity has the `Azure AI User` role on the target agent resource.
 
 ## Improving tool calling and latency wait times
 
@@ -56,8 +71,23 @@ The feature supports the following two modes:
 
 The `voice-live-agents-quickstart.py` created with the quickstart shows the required code additions to configure this feature as follows:
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="17-31,325-348" highlight="9-10,19-25,32":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="17-31,325-348" highlight="9-10,20-26,33":::
 
 ## Reconnect to a previous agent conversation
 
-xxx
+Voice Live enables you to reconnect to a previous conversation by specifying the conversation (thread) ID. This preserves the conversation history and context, allowing users to continue where they left off.
+
+When a session connects successfully, Voice Live returns the thread ID in the `SESSION_UPDATED` event:
+
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="376-386" highlight="6":::
+
+The sample code automatically writes the thread ID to a conversation log file in the `logs/` folder (for example, `logs/2026-02-19_14-30-00_conversation.log`). You can retrieve the thread ID from this file after running a session.
+
+To reconnect to that conversation, pass the thread ID as the `CONVERSATION_ID` environment variable (or the `conversation_id` parameter):
+
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="255,267,490" highlight="1-3":::
+
+When a valid `conversation_id` is provided, the agent retrieves the previous conversation context and can reference earlier exchanges in its responses.
+
+> [!NOTE]
+> Conversation IDs are tied to the agent and project. Attempting to use a conversation ID with a different agent results in a new conversation being created.
