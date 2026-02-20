@@ -11,13 +11,10 @@ ms.author: pafarley
 author: PatrickFarley
 recommendations: false
 zone_pivot_groups: programming-languages-rest-js-cs
-monikerRange: 'foundry-classic || foundry'
 
 ---
 
 # Quickstart: Convert text to speech with Azure OpenAI in Microsoft Foundry Models
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 This quickstart shows you how to convert text to speech using Azure OpenAI voices.  
 

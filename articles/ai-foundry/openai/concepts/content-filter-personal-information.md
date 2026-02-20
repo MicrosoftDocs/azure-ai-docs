@@ -22,7 +22,7 @@ In the context of large language models (LLMs), PII detection involves analyzing
 For example, if a model generates "Contact me at john@example.com or call 555-0123", the PII filter can detect and flag the email address and phone number before the content reaches the user.
 
 > [!TIP]
-> Use PII filtering to meet compliance requirements (GDPR, HIPAA, CCPA), prevent data leaks in customer-facing applications, and audit sensitive information exposure in model outputs.
+> Use PII filtering to meet compliance requirements (HIPAA, CCPA), prevent data leaks in customer-facing applications, and audit sensitive information exposure in model outputs.
 
 
 ## PII types
