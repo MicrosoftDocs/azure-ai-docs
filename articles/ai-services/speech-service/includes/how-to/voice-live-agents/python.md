@@ -74,6 +74,18 @@ This configuration is resolved in `main()` and then applied when the assistant i
 > [!IMPORTANT]
 > Cross-resource connections require proper role assignments. Ensure the Voice Live resource's managed identity has the `Azure AI User` role on the target agent resource.
 
+## Add a proactive message at session start
+
+Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and then triggers a response.
+
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="275,376-407" highlight="1,14-15,18-23,28":::
+
+In this sample, proactive messaging is applied in three steps:
+
+- `self.greeting_sent = False` initializes one-time greeting state.
+- In the `SESSION_UPDATED` branch, `if not self.greeting_sent:` gates proactive execution to run once per session.
+- `conn.conversation.item.create(...)` adds the greeting instruction to conversation context, and `conn.response.create()` generates spoken output.
+
 ## Improving tool calling and latency wait times
 
 Voice Live provides a feature called `interim_response` to bridge wait times when tool calling is required or a high latency is experienced to generate an agent response.
@@ -129,15 +141,3 @@ When a valid `conversation_id` is provided, the agent retrieves the previous con
 
 > [!NOTE]
 > Conversation IDs are tied to the agent and project. Attempting to use a conversation ID with a different agent results in a new conversation being created.
-
-## Add a proactive message at session start
-
-Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and then triggers a response.
-
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="275,376-407" highlight="1,14-15,18-23,28":::
-
-In this sample, proactive messaging is applied in three steps:
-
-- `self.greeting_sent = False` initializes one-time greeting state.
-- In the `SESSION_UPDATED` branch, `if not self.greeting_sent:` gates proactive execution to run once per session.
-- `conn.conversation.item.create(...)` adds the greeting instruction to conversation context, and `conn.response.create()` generates spoken output.
