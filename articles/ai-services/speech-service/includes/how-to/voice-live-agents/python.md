@@ -92,6 +92,17 @@ In this sample, the interim response setup is applied inside `BasicVoiceAssistan
 - `RequestSession(...)` attaches that config through the `interim_response` field.
 - `conn.session.update(session=session_config)` sends the session configuration to Voice Live.
 
+## Use auto truncation for interrupted responses
+
+When users interrupt agent audio, conversation text can drift from what users actually heard. Auto truncation helps keep session context aligned with delivered audio, which improves follow-up response quality after barge-in and keeps voice conversation history logging more accurate.
+
+This sample currently shows interruption handling with `response.cancel()` during speech start, but it doesn't configure `auto_truncate` in `turn_detection`.
+
+> [!NOTE]
+> In Foundry Agent Service, thread messages and tracing agent threads are based on text content in the thread. Without auto truncation, those records can differ from the exact portion of audio the user actually heard before interruption.
+
+For setup details and supported options, see [Handle voice interruptions in chat history (preview)](../../../how-to-voice-live-auto-truncation.md).
+
 ## Reconnect to a previous agent conversation
 
 Voice Live enables you to reconnect to a previous conversation by specifying the conversation (thread) ID. This preserves the conversation history and context, allowing users to continue where they left off.
@@ -118,3 +129,15 @@ When a valid `conversation_id` is provided, the agent retrieves the previous con
 
 > [!NOTE]
 > Conversation IDs are tied to the agent and project. Attempting to use a conversation ID with a different agent results in a new conversation being created.
+
+## Add a proactive message at session start
+
+Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and then triggers a response.
+
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="275,376-407" highlight="1,14-15,18-23,28":::
+
+In this sample, proactive messaging is applied in three steps:
+
+- `self.greeting_sent = False` initializes one-time greeting state.
+- In the `SESSION_UPDATED` branch, `if not self.greeting_sent:` gates proactive execution to run once per session.
+- `conn.conversation.item.create(...)` adds the greeting instruction to conversation context, and `conn.response.create()` generates spoken output.
