@@ -33,6 +33,26 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 Please complete the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) to prepare the environment and setup the agent with Voice Live settings and run the first test with the Voice Live service to talk to your agent.
 
+## Agent integration concepts
+
+Use these concepts to understand how Voice Live and Foundry Agent Service work together in the Python sample.
+
+### Agent configuration contract
+
+Set `agent_config` in your session setup to identify the target agent and project. At minimum, include `agent_name` and `project_name`. Add `agent_version` when you want to pin behavior to a specific version.
+
+### Authentication model for agent mode
+
+Use Microsoft Entra ID credentials for agent mode. Agent invocation in this flow doesn't support key-based authentication, so configure `AzureCliCredential` (or another Entra token credential) for local development and deployment.
+
+### API version pinning
+
+Pin a supported `api_version` in the client to keep behavior predictable across preview updates. Use the same version consistently across quickstart and how-to samples to avoid schema drift.
+
+### Conversation and trace alignment
+
+Treat agent thread and trace records as text-turn history, not exact playback history. If your app allows interruption or truncation, enable truncation-aware handling so persisted history better matches what the user actually heard.
+
 ## Connecting to a specific agent version
 
 Voice Live supports connecting to a specific version of your agent, enabling controlled deployments where production uses a stable version while development tests newer iterations.
@@ -58,10 +78,8 @@ You can configure Voice Live to connect to an agent hosted on a different Foundr
 
 To connect to an agent on a different resource, configure two additional environment variables:
 
-| Variable | Description |
-|----------|-------------|
-| `FOUNDRY_RESOURCE_OVERRIDE` | The Foundry resource name hosting the agent project (for example, `my-agent-resource`) |
-| `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID` | The managed identity client ID of the Voice Live resource, required for cross-resource authentication |
+- `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
+- `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
 :::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="255-270,490-521,292-298" highlight="2-3,14-15,18-19,28-29,47,54":::
 
@@ -141,3 +159,23 @@ When a valid `conversation_id` is provided, the agent retrieves the previous con
 
 > [!NOTE]
 > Conversation IDs are tied to the agent and project. Attempting to use a conversation ID with a different agent results in a new conversation being created.
+
+## Log thread IDs for continuity and diagnostics
+
+The sample logs key session metadata, including `Thread ID`, to a timestamped conversation log file under `logs/`. This helps you:
+
+- Capture the exact thread identifier for reconnect scenarios.
+- Correlate user-reported behavior with session and agent metadata.
+- Track runs over time by preserving per-session log files.
+
+The following code creates the log filename and writes session metadata (including thread ID) when `SESSION_UPDATED` is received:
+
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="42-48,379-389,481-486" highlight="4,12,17,21":::
+
+In this sample, thread ID logging is applied in three places:
+
+- A timestamped conversation log file is created per run.
+- On `SESSION_UPDATED`, metadata including `event.session.agent.thread_id` is appended.
+- `write_conversation_log(...)` appends entries to the same file throughout the conversation lifecycle.
+
+Use this logged thread ID value with `CONVERSATION_ID` to resume the same agent thread in a later session.

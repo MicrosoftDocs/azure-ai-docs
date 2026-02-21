@@ -4,6 +4,7 @@ ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 11/06/2025
+ai-usage: ai-assisted
 ---
 
 > [!NOTE]
@@ -27,17 +28,17 @@ VOICELIVE_ENDPOINT=<your_endpoint>
 VOICELIVE_API_VERSION=2026-01-01-preview
 ```
 
-Replace the default values with your actual project name, agent ID, API version, and API key.
+Replace the default values with your actual project name, agent name, and endpoint values.
 
 | Variable name | Value |
-|---------------|-------|
+| ------------- | ----- |
 | `PROJECT_ENDPOINT` | The Foundry project endpoint copied from the project welcome screen. |
 | `AGENT_NAME` | The name of the agent to use. |
 | `AGENT_VERSION` | Optional: The version of the agent to use. |
 | `CONVERSATION_ID` | Optional: A specific conversation id to reconnect to. |
 | `PROJECT_NAME` | The name of your Microsoft Foundry project. Project name is the last element of the project endpoint value. |
 | `VOICELIVE_ENDPOINT` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. |
-| `FOUNDRY_RESOURCE_OVERRIDE` | Optional: The Foundry resource name of the resource hosting the agent project. E.g. | `my-resource-name` |
-| `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID` | Optional: The managed identity object ID of the Voice Live resource. |
+| `FOUNDRY_RESOURCE_OVERRIDE` | Optional: The Foundry resource name hosting the agent project (for example, `my-resource-name`). |
+| `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID` | Optional: The managed identity client ID of the Voice Live resource. |
 
 Learn more about [keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).

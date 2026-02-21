@@ -7,6 +7,7 @@ ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 2/20/2026
+ai-usage: ai-assisted
 ---
 
 In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for python.
@@ -101,6 +102,18 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 ## Talk with a voice agent
 
 The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method.
+
+The sample connects to Foundry Agent Service by passing `agent_config` in `connect(...)` using these fields:
+
+- `agent_name`: The agent name to invoke.
+- `project_name`: The Foundry project containing the agent.
+- `agent_version`: Optional pinned version for controlled rollouts. If omitted, the latest version is used.
+- `conversation_id`: Optional existing thread ID to continue prior conversation context.
+- `foundry_resource_override`: Optional resource name when the agent is hosted on a different Foundry resource.
+- `authentication_identity_client_id`: Optional managed identity client ID used with cross-resource agent connections.
+
+> [!NOTE]
+> Agent mode in Voice Live doesn't support key-based authentication for agent invocation. Use Microsoft Entra ID (for example, `AzureCliCredential`) for agent access. Voice Live resource configuration might still include API keys for non-agent scenarios.
 
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 

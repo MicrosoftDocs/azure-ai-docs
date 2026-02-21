@@ -8,6 +8,7 @@ ms.topic: reference
 ms.date: 1/30/2026
 author: PatrickFarley
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 # Voice Live `2026-01-01-preview` API Reference (preview)
@@ -2531,7 +2532,7 @@ Session configuration object used in `session.update` events.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
-| filler_response | [FillerResponseConfig](#fillerresponseconfig) | Optional. Configuration for filler response generation during latency or tool calls. |
+| interim-response | [InterimResponseConfig](#interimresponseconfig) | Optional. Configuration for interim response generation during latency or tool calls. |
 | reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](../../ai-foundry/openai/how-to/reasoning.md#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  |
 | avatar | [RealtimeAvatarConfig](#realtimeavatarconfig) | Optional. Avatar configuration |
 | output_audio_timestamp_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
@@ -2635,77 +2636,81 @@ Example:
 }
 ```
 
-### Filler Response Configuration
+### Interim response configuration
 
-Filler responses allow the system to generate placeholder audio responses during latency or while tools are being executed, improving user experience by avoiding silence.
+Interim responses allow the system to generate placeholder audio responses while tools are being executed, improving user experience by avoiding silence.
 
-#### FillerResponseConfig
+#### InterimResponseConfig
 
-Configuration for filler response generation. This is a union type that can be one of the following:
-- [BasicFillerResponseConfig](#basicfillerresponseconfig) - Static filler responses randomly selected from a list
-- [LlmFillerResponseConfig](#llmfillerresponseconfig) - LLM-generated context-aware filler responses
+Configuration for interim response generation. This is a union type that can be one of the following:
+- [StaticInterimResponseConfig](#staticinterimresponseconfig) - Pre-generated interim responses selected from a predefined list.
+- [LlmInterimResponseConfig](#llminterimresponseconfig) - LLM-generated interim responses.
 
-#### BasicFillerResponseConfig
+#### StaticInterimResponseConfig
 
-Configuration for basic/static filler response generation. Randomly selects from configured texts when any trigger condition is met.
+Configuration for static interim response generation. Randomly selects from configured texts when any trigger condition is met.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | string | Must be `"static_filler"` |
-| triggers | [FillerTrigger](#fillertrigger)[] | Optional. List of triggers that can fire the filler. Any trigger can activate the filler (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
-| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering filler response. Default is 2000ms. Minimum value is 0. |
-| texts | string[] | Optional. List of filler text options to randomly select from. |
+| type | string | Must be `"static-interim-response"`. |
+| triggers | [InterimResponseTrigger](#interimresponsetrigger)[] | Optional. List of triggers that can fire the interim response. Any trigger can activate the interim response (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
+| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering interim response. Default is 2000ms. Minimum value is 0. |
+| texts | string[] | Optional. List of interim response text options to randomly select from. |
 
 Example:
 ```json
 {
-  "filler_response": {
-    "type": "static_filler",
-    "triggers": ["latency", "tool"],
-    "latency_threshold_ms": 1500,
-    "texts": [
-      "Let me think about that...",
-      "One moment please...",
-      "Working on that for you..."
-    ]
+  "session": {
+    "interim-response": {
+      "type": "static-interim-response",
+      "triggers": ["latency", "tool"],
+      "latency_threshold_ms": 1500,
+      "texts": [
+        "Let me think about that...",
+        "One moment please...",
+        "Working on that for you..."
+      ]
+    }
   }
 }
 ```
 
-#### LlmFillerResponseConfig
+#### LlmInterimResponseConfig
 
-Configuration for LLM-based filler response generation. Uses LLM to generate context-aware filler responses when any trigger condition is met.
+Configuration for LLM-based interim response generation. Uses LLM to generate context-aware interim responses when any trigger condition is met.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | string | Must be `"llm_filler"` |
-| triggers | [FillerTrigger](#fillertrigger)[] | Optional. List of triggers that can fire the filler. Any trigger can activate the filler (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
-| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering filler response. Default is 2000ms. Minimum value is 0. |
-| model | string | Optional. The model to use for LLM-based filler generation. Default is `gpt-4.1-mini`. |
-| instructions | string | Optional. Custom instructions for generating filler responses. If not provided, a default prompt is used. |
-| max_completion_tokens | integer | Optional. Maximum number of tokens to generate for the filler response. Default is 50. Minimum value is 1. |
+| type | string | Must be `"llm-interim-response"`. |
+| triggers | [InterimResponseTrigger](#interimresponsetrigger)[] | Optional. List of triggers that can fire the interim response. Any trigger can activate the interim response (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
+| latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering interim response. Default is 2000ms. Minimum value is 0. |
+| model | string | Optional. The model to use for LLM-based interim response generation. Default is `gpt-4.1-mini`. |
+| instructions | string | Optional. Custom instructions for generating interim responses. If not provided, a default prompt is used. |
+| max_completion_tokens | integer | Optional. Maximum number of tokens to generate for the interim response. Default is 50. Minimum value is 1. |
 
 Example:
 ```json
 {
-  "filler_response": {
-    "type": "llm_filler",
-    "triggers": ["tool"],
-    "latency_threshold_ms": 2000,
-    "model": "gpt-4.1-mini",
-    "instructions": "Generate a brief, friendly acknowledgment that you're working on the user's request.",
-    "max_completion_tokens": 30
+  "session": {
+    "interim-response": {
+      "type": "llm-interim-response",
+      "triggers": ["tool"],
+      "latency_threshold_ms": 2000,
+      "model": "gpt-4.1-mini",
+      "instructions": "Generate a brief, friendly acknowledgment that you're working on the user's request.",
+      "max_completion_tokens": 30
+    }
   }
 }
 ```
 
-#### FillerTrigger
+#### InterimResponseTrigger
 
-Triggers that can activate filler response generation.
+Triggers that can activate interim response generation.
 
 **Allowed Values:**
-* `latency` - Trigger filler when response latency exceeds threshold
-* `tool` - Trigger filler when a tool call is being executed
+* `latency` - Trigger interim response when response latency exceeds threshold
+* `tool` - Trigger interim response when a tool call is being executed
 
 ### RealtimeConversationResponseItem
 
@@ -3076,7 +3081,7 @@ The definition of a function tool as used by the realtime endpoint.
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
-| filler_response | [FillerResponseConfig](#fillerresponseconfig) | Optional. Configuration for filler response generation during latency or tool calls. |
+| interim-response | [InterimResponseConfig](#interimresponseconfig) | Optional. Configuration for interim response generation during latency or tool calls. |
 | reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. <br><br>Defaults to `"auto"` |
 | metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
@@ -3104,7 +3109,7 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session. |
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`. |
-| filler_response | [FillerResponseConfig](#fillerresponseconfig) | Configuration for filler response generation during latency or tool calls. |
+| interim-response | [InterimResponseConfig](#interimresponseconfig) | Configuration for interim response generation during latency or tool calls. |
 
 ### RealtimeResponseStatusDetails
 
