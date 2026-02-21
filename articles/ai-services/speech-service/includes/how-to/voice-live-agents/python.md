@@ -59,7 +59,7 @@ Voice Live supports connecting to a specific version of your agent, enabling con
 
 To connect to a specific agent version, set the `AGENT_VERSION` environment variable or pass the `agent_version` parameter when initializing the assistant:
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="247-270,292-298,483-519" highlight="8,19,30,37,66":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="247-270,292-298,483-519" highlight="8,19,29,37,66":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -81,7 +81,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="255-270,490-521,292-298" highlight="2-3,14-15,18-19,28-29,47,54":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="255-270,490-521,292-298" highlight="2-3,14-15,18-19,28-29,47,48":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -96,7 +96,7 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and then triggers a response.
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="275,376-407" highlight="1,14-15,18-23,28":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="275,376-407" highlight="1,15-32":::
 
 In this sample, proactive messaging is applied in three steps:
 
@@ -170,7 +170,7 @@ The sample logs key session metadata, including `Thread ID`, to a timestamped co
 
 The following code creates the log filename and writes session metadata (including thread ID) when `SESSION_UPDATED` is received:
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="42-48,379-389,481-486" highlight="4,12,17,21":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="42-48,379-389,481-486" highlight="4,9-15":::
 
 In this sample, thread ID logging is applied in three places:
 
