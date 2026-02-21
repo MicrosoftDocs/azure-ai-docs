@@ -134,7 +134,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
 tbd
 -->
 
-#### [DALL-E](#tab/dalle-3)
+#### [DALL-E 3](#tab/dalle-3)
 
 
 1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text.
