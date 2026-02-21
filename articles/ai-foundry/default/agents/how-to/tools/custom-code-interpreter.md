@@ -77,7 +77,7 @@ az provider register -n Microsoft.App
 
 ### Get the sample code
 
-Clone the [sample code in the GitHub repo](https://github.com/azure-ai-foundry/foundry-samples) and navigate to the `samples/python/hosted-agents/code-interpreter-custom` folder in your terminal.
+Clone the [sample code in the GitHub repo](https://github.com/azure-ai-foundry/foundry-samples) and navigate to the `samples/python/prompt-agents/code-interpreter-custom` folder in your terminal.
 
 ### Provision the infrastructure
 

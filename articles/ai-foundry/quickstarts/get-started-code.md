@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.reviewer: dantaylo
 ms.date: 12/16/2025
 ms.service: azure-ai-foundry
-ms.topic: how-to
+ms.topic: quickstart
 monikerRange: 'foundry-classic || foundry'
 ms.custom:
   - build-2024

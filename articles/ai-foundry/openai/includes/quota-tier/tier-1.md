@@ -14,7 +14,7 @@ ms.date: 02/18/2026
 ### Tier 1
 
 | Model Name                     | Deployment Type   | Requests Per Minute (RPM)   | Tokens Per Minute (TPM) |
-|:-------------------------------|:------------------|:------------|:------------|
+|:-------------------------------|------------------:|------------:|------------:|
 | codex-mini                     | GlobalStandard    | 1,000       | 1,000,000   |
 | computer-use-preview           | GlobalStandard    | 4,500       | 450,000     |
 | gpt-4.1                        | DataZoneStandard  | 300         | 300,000     |
