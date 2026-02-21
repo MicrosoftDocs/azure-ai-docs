@@ -547,7 +547,6 @@ Image generation can take up to 60 seconds for complex prompts. If you experienc
 ## Related content
 
 * [What is Azure OpenAI?](../../foundry-models/concepts/models-sold-directly-by-azure.md)
-* [Quickstart: Generate images with Azure OpenAI](../dall-e-quickstart.md)
 * [Image API reference](/azure/ai-foundry/openai/reference#image-generation)
 * [Image API (preview) reference](/azure/ai-foundry/openai/reference-preview)
 - Learn about [image generation tokens](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#image-generation-models)
