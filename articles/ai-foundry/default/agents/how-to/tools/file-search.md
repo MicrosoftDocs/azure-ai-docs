@@ -45,7 +45,7 @@ Java SDK samples are not yet available.
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md)
 - The latest prerelease SDK package:
-  - **Python**: `pip install azure-ai-projects azure-identity python-dotenv --pre`
+  - **Python**: `pip install azure-ai-projects python-dotenv --pre`
   - **C#**: `dotnet add package Azure.AI.Projects.OpenAI --prerelease`
   - **TypeScript**: `npm install @azure/ai-projects @azure/identity dotenv`
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)

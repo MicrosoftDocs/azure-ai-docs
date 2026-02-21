@@ -74,7 +74,7 @@ Before you begin, make sure you have:
 For Python examples, install the required packages:
 
 ```bash
-pip install azure-ai-projects azure-identity python-dotenv
+pip install azure-ai-projects python-dotenv
 ```
 
 For the latest features, you might need the prerelease version:
@@ -532,7 +532,7 @@ This tool uses a Playwright workspace resource to run browser sessions. Review t
 
 - **Workspace not found**: Verify your `FOUNDRY_PROJECT_ENDPOINT` uses the correct format: `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`. Don't use the legacy Azure ML endpoint format.
 - **Unexpected keyword argument errors**: Ensure you're using the latest version of `azure-ai-projects`. Run `pip install azure-ai-projects --pre --upgrade` to update.
-- **Import errors**: Install all required packages: `pip install azure-ai-projects azure-identity python-dotenv`.
+- **Import errors**: Install all required packages: `pip install azure-ai-projects python-dotenv`.
 
 :::zone-end
 
