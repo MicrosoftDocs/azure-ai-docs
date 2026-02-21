@@ -16,9 +16,9 @@ ai-usage: ai-assisted
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 > [!IMPORTANT]
-> This guidance only applies to the new Foundry resource based projects, not hub-based projects. These steps aren't required for hub-based projects.
+> This guidance only applies to the new Foundry resource based projects, not hub-based projects.
 
-When you run evaluations by using user-provided datasets, you must connect a storage account to your Microsoft Foundry Resource. Use this storage account to store the datasets. However, providing this connection isn't enough. You must also give the project contributor access to the blob storage to allow read and write access to the storage account. These instructions walk you through how to create the storage account, connect it to your project, and give resource permission.
+When you run evaluations by using user-provided datasets, you can connect a storage account to your Microsoft Foundry Resource. Use this storage account to store the datasets. However, providing this connection isn't enough. You must also give the project contributor access to the blob storage to allow read and write access to the storage account. These instructions walk you through how to create the storage account, connect it to your project, and give resource permission.
 
 ## Prerequisites
 

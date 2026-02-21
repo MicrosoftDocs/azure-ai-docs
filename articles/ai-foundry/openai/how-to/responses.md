@@ -1425,6 +1425,7 @@ The responses API is currently available in the following regions:
 - `gpt-5.2-codex` (Version: `2026-01-14`)
 - `gpt-5.2` (Version: `2025-12-11`)
 - `gpt-5.2-chat` (Version: `2025-12-11`)
+- `gpt-5.2-chat` (Version: `2026-02-10`)
 - `gpt-5.1-codex-max` (Version: `2025-12-04`)
 - `gpt-5.1` (Version: `2025-11-13`)
 - `gpt-5.1-chat` (Version: `2025-11-13`)

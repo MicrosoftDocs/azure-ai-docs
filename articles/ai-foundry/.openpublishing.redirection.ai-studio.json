@@ -1583,6 +1583,11 @@
           "redirect_document_id": true
         },
         {
+          "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/use-blocklists.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/use-blocklists",
+          "redirect_document_id": true
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/default/guardrails/severity-levels.md",
           "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-severity-levels",
           "redirect_document_id": true

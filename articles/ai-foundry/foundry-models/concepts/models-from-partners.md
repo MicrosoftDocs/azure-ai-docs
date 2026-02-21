@@ -34,7 +34,7 @@ To learn more about attributes of Foundry Models from partners and community, se
 > [!NOTE]
 > For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
 >
-> For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/model-region-support.md).
+> For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../default/agents/concepts/limits-quotas-regions.md).
 
 ## Anthropic
 
