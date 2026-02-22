@@ -1,15 +1,15 @@
 ---
-title: OData filter reference
+title: OData Filter Reference
 titleSuffix: Azure AI Search
 description: OData language reference and full syntax used for creating filter expressions in Azure AI Search queries.
 manager: nitinme
-author: bevloh
-ms.author: beloh
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 07/18/2022
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 

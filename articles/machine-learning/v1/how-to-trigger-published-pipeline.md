@@ -24,6 +24,9 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
+> [!NOTE]
+> **Retired packages**: The pipeline scheduling APIs shown in this article rely on these retiring packages: azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps. For v2 alternatives, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
+
 In this article, you'll learn how to programmatically schedule a pipeline to run on Azure. You can create a schedule based on elapsed time or on file-system changes. You can use time-based schedules to accomplish routine tasks, such as monitoring for data drift. You can use change-based schedules to react to irregular or unpredictable changes, such as new data being uploaded or old data being edited. 
 
 After you learn how to create schedules, you'll learn how to retrieve and deactivate them. Finally, you'll learn how to use other Azure services, Azure Logic Apps and Azure Data Factory, to run pipelines. A logic app enables more complex triggering logic or behavior. Azure Data Factory pipelines allow you to call a machine learning pipeline as part of a larger data orchestration pipeline.
@@ -70,6 +73,9 @@ At the top of your Python file, import the `Schedule` and `ScheduleRecurrence` c
 
 from azureml.pipeline.core.schedule import ScheduleRecurrence, Schedule
 ```
+
+> [!NOTE]
+> The modules imported above (`Schedule`, `ScheduleRecurrence`, `Pipeline`, `PublishedPipeline`) come from retiring packages (azureml-pipeline-core, azureml-pipeline). Customers should migrate to SDK/CLI v2 pipeline jobs. For more information, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python) and [What are Azure Machine Learning pipelines?](/azure/machine-learning/concept-ml-pipelines).
 
 ### Create a time-based schedule
 
@@ -153,6 +159,9 @@ If you then run `Schedule.list(ws)` again, you should get an empty list.
 You can create more complex trigger rules or behavior by using [Logic Apps](/azure/logic-apps/logic-apps-overview).
 
 To use a logic app to trigger a Machine Learning pipeline, you need the REST endpoint for a published Machine Learning pipeline. [Create and publish your pipeline](./how-to-create-machine-learning-pipelines.md). Then find the REST endpoint of your `PublishedPipeline` by using the pipeline ID:
+
+> [!NOTE]
+> `PublishedPipeline` is part of SDK v1 and subject to the same retirement. The REST endpoint behavior may change or stop working after June 30, 2026. Users should consider invoking v2 pipeline jobs instead for long-term solutions. For more information, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
 
 ```python
 # You can find the pipeline ID in Azure Machine Learning studio
@@ -240,6 +249,9 @@ In an Azure Data Factory pipeline, the **Machine Learning Execute Pipeline** act
 ## Next steps
 
 In this article, you used the Azure Machine Learning SDK for Python to schedule a pipeline in two different ways. One schedule is triggered based on elapsed clock time. The other schedule is triggered if a file is modified on a specified `Datastore` or within a directory on that store. You saw how to use the portal to examine the pipeline and individual jobs. You learned how to disable a schedule so that the pipeline stops running. Finally, you created an Azure logic app to trigger a pipeline. 
+
+> [!NOTE]
+> For the recommended path forward using SDK v2 and v2 pipeline jobs, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
 
 These articles provide more information:
 

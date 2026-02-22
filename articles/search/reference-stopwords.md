@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/16/2022
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 
