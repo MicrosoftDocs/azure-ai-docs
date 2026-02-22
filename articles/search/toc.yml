@@ -420,7 +420,7 @@ items:
       items:
       - name: What is multimodal search?
         href: multimodal-search-overview.md
-      - name: Tutorial
+      - name: Tutorial (REST)
         href: tutorial-multimodal.md
     - name: Other query types
       href: search-query-overview.md

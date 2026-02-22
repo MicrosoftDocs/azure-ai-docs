@@ -23,11 +23,11 @@ In this tutorial, you'll build a multimodal indexer pipeline that performs these
 > + Vectorize text and images for similarity search
 > + Send cropped images to a knowledge store for retrieval by your app
 
-This tutorial includes multiple skillsets for showing different ways to extract, chunk, and vectorize multimodal content.
+This tutorial shows multiple skillsets side-by-side for illustrating different ways to extract, chunk, and vectorize multimodal content.
 
 ## Prerequisites
 
-+ [Azure AI Search](search-create-service-portal.md), on the basic pricing tier or higher if you want to use the sample data. [Configure a managed identity](search-how-to-managed-identities.md) for role-based access to models and data. If you plan to use Azure AI Vision multimodal, make sure Azure AI Search is in [region that's supported by Azure AI Vision multimodal](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
++ [Azure AI Search](search-create-service-portal.md), on the basic pricing tier or higher if you want to use the sample data. [Configure a managed identity](search-how-to-managed-identities.md) for role-based access to models and data.
 
 + [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data and for creating a [knowledge store](knowledge-store-concept-intro.md).
 
@@ -38,7 +38,7 @@ This tutorial includes multiple skillsets for showing different ways to extract,
 Multimodal indexing is implemented through skills that call AI models and APIs in an indexer pipeline. Model prerequisites vary depending on the [skills chosen for each task](#choose-skills-for-multimodal-indexing).
 
 > [!TIP]
-> To complete this tutorial on the free tier, use a smaller document with fewer images. This tutorial uses Foundry models only, but you can create custom skills to use other models. 
+> To complete this tutorial on the free tier, use a smaller document with fewer images. This tutorial uses Foundry models only, but you can [create custom skills](cognitive-search-custom-skill-interface.md) to use other models. 
 
 ### Configure access
 
@@ -109,7 +109,7 @@ The index, data source, and indexer definitions are the same for all scenarios, 
    + Document Extraction, Text Split skill
    + Document layout extracts
 
-1. Choose a skill or skill combination that vectorizes content. Choices include
+1. Choose a skill or skill combination that vectorizes content. Choices include:
 
    + GenAI Prompt, Azure OpenAI Embedding
    + Azure AI Vision Multimodal
@@ -126,13 +126,13 @@ Most of these skills have a dependency on a [deployed model](/azure/ai-foundry/f
 
 Model usage is billable, except for text extraction and text splitting.
 
-Model deployments can be in any region if the search service connects over the public endpoint or a private connection. However, two models are accessed over the internal network, which can introduce a regional dependency. 
+Model deployments can be in any supported region if the search service connects over the public endpoint, a private connection, or if the [billing connection is keyless](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection). Otherwise, if the connection is key-based, [attach a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) from the same region as Azure AI Search.
 
-+ [Azure AI Vision multimodal 4.0 region requirements](/azure/ai-services/computer-vision/overview-image-analysis#region-availability). Make sure Azure AI Search is deployed in a region that provides an Azure AI Vision multimodal 4.0 model.
++ [Azure AI Vision multimodal 4.0 supported regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
 
-+ [Document Intelligence 4.0 region requirements](cognitive-search-skill-document-intelligence-layout.md#supported-regions). Version 4.0 is in [every region supported by Microsoft Foundry Document Intelligence](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). Azure AI Search doesn't need to be in this region if you use keyless billing.
++ [Document Intelligence 4.0 supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions)
 
-*Billing for model usage is a separate connection*. If you use [key-based access to a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md), your model must be in the same region as Azure AI Search. To relax regional dependencies for billing, [set up a keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) and use roles for the connection.
++ [Foundry model supported regions](/azure/ai-foundry/agents/concepts/model-region-support.md#available-models)
 
 ## Set up your environment
 
@@ -173,7 +173,7 @@ For authenticated connections that occur during indexer and skillset processing,
 
 1. Save the file using a `.rest` or `.http` file extension. For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
-The same Foundry resource can provide Azure AI Vision, Document Intelligence, a chat completion model, and a text embedding model. Just make sure the region provides the models you need. If a Foundry model region is at capacity, you might need a resource to deploy the necessary models.
+The same Foundry resource can provide Azure AI Vision, Document Intelligence, a chat completion model, and a text embedding model. Just make sure the region supports the models you need. If a region is at capacity, you might need to create a new resource to deploy the necessary models.
 
 ## Set up a pipeline
 
