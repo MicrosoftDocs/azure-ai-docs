@@ -14,7 +14,7 @@ ms.date: 02/20/2026
 
 # Tutorial: Extract, chunk, and embed multimodal content
 
-In this tutorial, you will build a multimodal indexer pipeline that performs these tasks:
+In this tutorial, you'll build a multimodal indexer pipeline that performs these tasks:
 
 > [!div class="checklist"]
 >
@@ -22,11 +22,11 @@ In this tutorial, you will build a multimodal indexer pipeline that performs the
 > + Vectorize text and images for similarity search
 > + Send cropped images to a knowledge store for retrieval by your app
 
-The sample data is a 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with original text.
+The tutorial shows multiple skillsets, illustrating different combinations of Document Extraction and Text Split, or Document Layout for extraction and chunking. Vectorization is demonstrating using either Azure AI Vision multimodal embedding, or GenAI Prompt for image verbalization paired with Azure OpenAI embedding for text vectorization.
 
 ## Prerequisites
 
-+ [Azure AI Search](search-create-service-portal.md), any region, on the basic pricing tier or higher if you want to use the sample data. To complete this tutorial on the free tier, use a smaller a document with fewer images. We recommend [configuring a managed identity](search-how-to-managed-identities.md) for role-based access to models and data.
++ [Azure AI Search](search-create-service-portal.md), on the basic pricing tier or higher if you want to use the sample data. To complete this tutorial on the free tier, use a smaller document with fewer images. We recommend [configuring a managed identity](search-how-to-managed-identities.md) for role-based access to models and data. If you plan to use Azure AI Vision multimodal, make sure Azure AI Search is in [region that's supported by Azure AI Vision multimodal](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
 + [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data and for creating a [knowledge store](knowledge-store-concept-intro.md).
 
@@ -45,6 +45,8 @@ Multimodal indexing is implemented through skills that call AI models and APIs i
 [!INCLUDE [resource endpoint](includes/resource-endpoint.md)]
 
 ### Prepare data
+
+The sample data is a 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with original text.
 
 Azure Storage provides the sample data and hosts the knowledge store. A search service managed identity needs:
 
@@ -68,7 +70,7 @@ Follow these steps to set up the sample data.
   
    + **Storage Blob Data Contributor** and **Storage Table Data Contributor** for creating the knowledge store.
 
-While you have the Azure Storage pages open in in the Azure portal, get a connection string for the environment variable.
+While you have the Azure Storage pages open in the Azure portal, get a connection string for the environment variable.
 
 1. Under **Settings** > **Endpoints**, select the endpoint for Resource ID. It should look similar to the following example: `/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/rg-mydemo/providers/Microsoft.Storage/storageAccounts/mydemostorage/blobServices/default`.
 
@@ -100,15 +102,17 @@ While you have the Azure Storage pages open in in the Azure portal, get a connec
 
 The index, data source, and indexer definitions are the same for all scenarios, but the skillset can include a different skill combination depending on how you want to extract, chunk, and vectorize text and images.
 
-1. Choose a skill or skill combination that extracts and chunks content.
+1. Choose a skill or skill combination that extracts and chunks content. Choices include:
 
-1. Choose a skill or skill combination that vectorizes content:
+   + Document Extraction plus Text Split skill
+   + Document layout
 
-   + Use Azure AI Vision for text and image vectorization.
+1. Choose a skill or skill combination that vectorizes content. Choices include
 
-   + Or use GenAI Prompt to generate text descriptions of images, and then use Azure OpenAI Embedding to vectorize the raw and generated text.
+   + GenAI Prompt to generate text descriptions of images plus Azure OpenAI Embedding to vectorize the raw and generated text
+   + Azure AI Vision multimodal for text and image vectorization
 
-Skills depend on access to [deployed model](/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models) or a Microsoft Foundry resource. Here's a list of the models backing the skills used in this tutorial:
+Most of these skills have a dependency on a [deployed model](/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models) or a Microsoft Foundry resource. The following table identifies the models backing each skill, plus the resource and permissions that provide model access.
 
 | Model | Skill | Usage | Resource | Permissions |
 | -- | -- | -- | -- | -- |
@@ -118,17 +122,15 @@ Skills depend on access to [deployed model](/azure/ai-foundry/foundry-models/how
 | [GPT-5 or GPT-4](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure) | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services OpenAI User |
 | [Text-embedding-3 or text-embedding-ada-002](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#embeddings) | [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | [Microsoft Foundry](/azure/ai-services/multi-service-resource?pivots=azportal) | Cognitive Services User |
 
-Model usage is billable, except for text extraction using a built-in model and text splitting.
+Model usage is billable, except for text extraction and text splitting.
 
 Model deployments can be in any region if the search service connects over the public endpoint or a private connection. However, two models are accessed over the internal network, which can introduce a regional dependency. 
 
-Model connections can use keys or roles for authorization. If you use a key, [attach a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) and ensure your model meets the same-region requirements for Azure AI Search:
++ [Azure AI Vision multimodal 4.0 region requirements](/azure/ai-services/computer-vision/overview-image-analysis#region-availability). Make sure Azure AI Search is deployed in a region that provides an Azure AI Vision multimodal 4.0 model.
 
-+ [Azure AI Vision multimodal 4.0 regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability)
++ [Document Intelligence 4.0 region requirements](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
-+ [Document Layout 4.0 regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions)
-
-To relax regional dependencies, [set up a keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) and use roles for authorized access to your Foundry resource.
+*Billing for model usage is a separate connection*. If you use [key-based access to a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md), your model must be in the same region as Azure AI Search. To relax regional dependencies for billing, [set up a keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) and use roles for the connection.
 
 ## Set up your environment
 
@@ -171,13 +173,10 @@ For authenticated connections that occur during indexer and skillset processing,
 
 ## Set up a pipeline
 
-An indexer pipeline consists of four components: data source, index, skillset, and indexer. This section covers all four, but skill definitions are in separate sections for [extraction and chunking](#extract-and-chunk-text) and [vectorization](#vectorize-multimodal-content) so that you can focus on the specific behaviors each skill provides.
-
+An indexer pipeline consists of four components: data source, index, skillset, and indexer.
 + [Create a data source](#create-a-data-source)
 + [Create an index](#create-an-index)
-+ [Create a basic skillset definition](#stub-out-a-skillset-definition)
-+ [Add skills for extraction and chunking](#extract-and-chunk-text)
-+ [Add skills for vectorization](#vectorize-multimodal-content)
++ [Create a skillset for extraction, chunking, and vectorization](#stub-out-a-skillset-definition)
 + [Create (and run) an indexer](#run-the-indexer)
 
 ### Create a data source
@@ -246,28 +245,138 @@ Connection: close
 
 ### Create an index
 
-[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. 
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. The index is identical for all skillsets, with the following exceptions:
 
-This index sets `"dimensions": 1024` and the `vectorizers` to `"kind": "aiServicesVision"`. These values apply to Azure AI Vision vectorization.  
++ The `vectorizers` section should match the embedding model used in the skillset. Embedding is either Azure AI Vision or Azure OpenAI text embedding.
 
-To use chat completion and text embedding for your vectorization strategy, set `"dimensions": 3072` for text-embedding-3-large (or `"dimensions": 1,536` for text-embedding-3-small). For `vectorizers`:
++ The `content_embedding` field has a `dimensions` property for the number of dimensions in a vector field. The value corresponds to the number of dimensions created by the embedding model.
+
+#### [**Azure AI Vision multimodal**](#tab/index-vision-embedding)
+
+Vectorizer definition:
 
 ```json
 "vectorizers": [
     {
-      "name": "demo-vectorizer",
-      "kind": "azureOpenAI",    
-      "azureOpenAIParameters": {
-        "resourceUri": "{{openAIResourceUri}}",
-        "deploymentId": "text-embedding-3-large",
-        "searchApiKey": "{{openAIKey}}",
-        "modelName": "text-embedding-3-large"
+        "name": "demo-vectorizer",
+        "kind": "aiServicesVision",
+        "aiServicesVisionParameters": {
+            "resourceUri": "{{foundryUrl}}",
+            "authIdentity": null,
+            "modelVersion": "{{azureAiVisionModelVersion}}"
+        }
+    }
+]  
+```
+
+Vector field definition:
+
+```json
+{
+    "name": "content_embedding",
+    "type": "Collection(Edm.Single)",
+    "dimensions": 1024,
+    "searchable": true,
+    "retrievable": true,
+    "vectorSearchProfile": "hnsw"
+}
+```
+
+#### [**Azure OpenAI embedding (text)**](#tab/index-text-embedding)
+
+For text-embedding-3-large vectorizers:
+
+```json
+"vectorizers":[
+    {
+      "name":"demo-vectorizer",
+      "kind":"azureOpenAI",
+      "azureOpenAIParameters":{
+          "resourceUri": "{{textEmbeddingModelUri}}",
+          "apiKey": "{{textEmbeddingModelKey}}",
+          "deploymentId":"text-embedding-3-large",
+          "modelName":"text-embedding-3-large"
       }
     }
 ]
 ```
 
-For nested JSON, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON, so field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
+For text-embedding-3-large vector field:
+
+```json
+{
+    "name":"content_embedding",
+    "type":"Collection(Edm.Single)",
+    "dimensions":3072,
+    "searchable":true,
+    "retrievable":true,
+    "vectorSearchProfile":"hnsw"
+}
+```
+
+For text-embedding-3-small vectorizers:
+
+```json
+"vectorizers":[
+    {
+      "name":"demo-vectorizer",
+      "kind":"azureOpenAI",
+      "azureOpenAIParameters":{
+          "resourceUri": "{{textEmbeddingModelUri}}",
+          "apiKey": "{{textEmbeddingModelKey}}",
+          "deploymentId":"text-embedding-3-small",
+          "modelName":"text-embedding-3-small"
+      }
+    }
+]
+```
+
+For text-embedding-3-small vector field:
+
+```json
+{
+    "name":"content_embedding",
+    "type":"Collection(Edm.Single)",
+    "dimensions":1056,
+    "searchable":true,
+    "retrievable":true,
+    "vectorSearchProfile":"hnsw"
+}
+```
+
+For text-embedding-ada-002 vectorizers:
+
+```json
+"vectorizers":[
+    {
+      "name":"demo-vectorizer",
+      "kind":"azureOpenAI",
+      "azureOpenAIParameters":{
+          "resourceUri": "{{textEmbeddingModelUri}}",
+          "apiKey": "{{textEmbeddingModelKey}}",
+          "deploymentId":"text-embedding-ada-002",
+          "modelName":"text-embedding-ada-002"
+      }
+    }
+]
+```
+
+For text-embedding-ada-002 vector field:
+
+```json
+{
+    "name":"content_embedding",
+    "type":"Collection(Edm.Single)",
+    "dimensions":1536,
+    "searchable":true,
+    "retrievable":true,
+    "vectorSearchProfile":"hnsw"
+}
+```
+
+---
+
+For nested JSON like the `locations_metadata` field, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON, so field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
 
 ```http
 ### Create an index
@@ -414,165 +523,46 @@ Key points:
 
 + For more information on semantic ranking, see [Semantic ranking in Azure AI Search](semantic-search-overview.md)
 
-### Stub out a skillset definition
+### Create skillsets for extraction, chunking, and vectorization
 
 [Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that extract, chunk, and vectorize content prior to indexing.
 
-A framework for the request is provided in the following example. It has static elements and placeholders for elements added in later sections:
+There are four skillsets. Each one demonstrates an extraction and chunking strategy with a vectorization strategy. Besides differences in skillset composition, the`indexProjections` section differs for each combination. It corresponds to the outputs of each of the embedding skills.
 
-+ Skills based on the behaviors you want for content extraction, chunking, and vectorization.
-+ Index projections that correspond to skill output
-
-Skills and index projections are the only elements that vary. The `name`, `description`, `cognitiveServices`, and `knowledgeStore` are the same for every skillset.
-
-```http
-### Create a skillset
-POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
-  Content-Type: application/json
-  Authorization: Bearer {{token}}
-
-{
-  "name": "demo-multimodal-skillset",
-  "description": "A test skillset",
-    "skills": [ 
-      ADD SKILLS HERE - AT LEAST ONE SKILL IS REQUIRED
-  ],
-  "indexProjections": {
-      ADD INDEX PROJECTIONS HERE
-  },
-  "cognitiveServices": {
-    "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
-    "subdomainUrl": "{{foundryUrl}}",
-    "identity": null
-  },
-  "knowledgeStore": {
-    "storageConnectionString": "{{storageConnection}}",
-    "identity": null,
-    "projections": [
-      {
-        "files": [
-          {
-            "storageContainer": "{{imageProjectionContainer}}",
-            "source": "/document/normalized_images/*"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-## Extract and chunk text
-
-Recall that your skill choices for extraction and chunking include:
+Extraction and chunking strategies include:
 
 | Skill | Usage | 
-| -- | -- |
-| [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. | 
+| -- | -- | 
 | [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Text Split skill](cognitive-search-skill-textsplit.md) | Extract and chunk based on fixed size. <br>Text extraction is free. <br>[Image extraction is billable](https://azure.microsoft.com/pricing/details/search/). |
+| [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Extract and chunk based on document layout. |
 
-Choose either approach for the skills array of your skillset.
+Vectorization strategies include:
 
-### [**Document Layout**](#tab/doc-layout)
+| Skill | Usage |
+| -- | -- |
+| [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. |
+| [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. |
+| [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated text of image descriptions. | 
 
-```json
-    {
-      "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
-      "name": "document-cracking-skill",
-      "description": "Document Layout skill for document cracking",
-      "context": "/document",
-      "outputMode": "oneToMany",
-      "outputFormat": "text",
-      "extractionOptions": ["images", "locationMetadata"],
-      "chunkingProperties": {     
-          "unit": "characters",
-          "maximumLength": 2000, 
-          "overlapLength": 200
-      },
-      "inputs": [
-        {
-          "name": "file_data",
-          "source": "/document/file_data"
-        }
-      ],
-      "outputs": [
-        { 
-          "name": "text_sections", 
-          "targetName": "text_sections" 
-        }, 
-        { 
-          "name": "normalized_images", 
-          "targetName": "normalized_images" 
-        } 
-      ]
-    },
-```
+### [**Document extraction & multimodal embedding**](#tab/doc-extraction-vision)
 
-### [**Document Extraction and Text Split**](#tab/doc-extraction)
+TBD 
 
-```json
-    {
-      "@odata.type": "#Microsoft.Skills.Util.DocumentExtractionSkill",
-      "name": "document-extraction-skill",
-      "description": "Document extraction skill to extract text and images from documents",
-      "parsingMode": "default",
-      "dataToExtract": "contentAndMetadata",
-      "configuration": {
-          "imageAction": "generateNormalizedImages",
-          "normalizedImageMaxWidth": 2000,
-          "normalizedImageMaxHeight": 2000
-      },
-      "context": "/document",
-      "inputs": [
-        {
-          "name": "file_data",
-          "source": "/document/file_data"
-        }
-      ],
-      "outputs": [
-        {
-          "name": "content",
-          "targetName": "extracted_content"
-        },
-        {
-          "name": "normalized_images",
-          "targetName": "normalized_images"
-        }
-      ]
-    },
-    {
-      "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
-      "name": "split-skill",
-      "description": "Split skill to chunk documents",
-      "context": "/document",
-      "defaultLanguageCode": "en",
-      "textSplitMode": "pages",
-      "maximumPageLength": 2000,
-      "pageOverlapLength": 200,
-      "unit": "characters",
-      "inputs": [
-        {
-          "name": "text",
-          "source": "/document/extracted_content",
-          "inputs": []
-        }
-      ],
-      "outputs": [
-        {
-          "name": "textItems",
-          "targetName": "pages"
-        }
-      ]
-    },  
-```
+### [**Document extraction & text embedding**](#tab/doc-extraction-vision)
+
+TBD 
+
+### [**Document layout & multimodal embedding**](#tab/doc-extraction-vision)
+
+TBD 
+
+### [**Document layout & text embedding**](#tab/doc-extraction-vision)
+
+TBD 
 
 ---
 
-Key points:
 
-+ For extraction, text and images are extracted separately and sent to two nodes in the document enrichment tree.
-
-+ For chunking, properties are inline for Document Layout, or specified as properties for the Text Split skill.
 
 <!-- This skillset extracts text and images, verbalizes images, vectorizes text, and shapes the image metadata for projection into the index.
 
@@ -588,244 +578,13 @@ The content_embedding field contains 3072-dimensional embeddings for both page t
 
 content_path contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when imageAction is set to generateNormalizedImages, and can be mapped from the enriched document from the source field /document/normalized_images/*/imagePath. -->
 
-## Vectorize multimodal content
-
-Recall that your skill choices for vectorization include:
-
-| Skill | Usage |
-| -- | -- |
-| [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md) | Vectorize text and image content. |
-| [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)  | Generate text descriptions of image content. |
-| [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) | Vectorize text and generated image descriptions. | 
-
-Choose either approach for the skills array of your skillset.
-
-### [**Azure AI Vision**](#tab/vision)
-
-The [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) vectorizes textual and visual data using the same skill type, differentiated by input (text vs image).
-
-This skillset extracts text and images, vectorizes both, and shapes the image metadata for projection into the index.
-
-```json
-  { 
-    "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill", 
-    "name": "text-embedding-skill",
-    "description": "Vision Vectorization skill for text",
-    "context": "/document/pages/*", 
-    "modelVersion": "{{azureAiVisionModelVersion}}", 
-    "inputs": [ 
-      { 
-        "name": "text", 
-        "source": "/document/pages/*" 
-      } 
-    ], 
-    "outputs": [ 
-      { 
-        "name": "vector",
-        "targetName": "text_vector"
-      } 
-    ] 
-  },
-  { 
-    "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill", 
-    "name": "image-embedding-skill",
-    "description": "Vision Vectorization skill for images",
-    "context": "/document/normalized_images/*", 
-    "modelVersion": "{{azureAiVisionModelVersion}", 
-    "inputs": [ 
-      { 
-        "name": "image", 
-        "source": "/document/normalized_images/*" 
-      } 
-    ], 
-    "outputs": [ 
-      { 
-        "name": "vector",
-  "targetName": "image_vector"
-      } 
-    ] 
-  },  
-    {
-      "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
-      "name": "shaper-skill",
-      "description": "Shaper skill to reshape the data to fit the index schema",
-      "context": "/document/normalized_images/*",
-      "inputs": [
-        {
-          "name": "normalized_images",
-          "source": "/document/normalized_images/*",
-          "inputs": []
-        },
-        {
-          "name": "imagePath",
-          "source": "='{{imageProjectionContainer}}/'+$(/document/normalized_images/*/imagePath)",
-          "inputs": []
-        },
-        {
-          "name": "dataUri",
-          "source": "='data:image/jpeg;base64,'+$(/document/normalized_images/*/data)",
-          "inputs": []
-        },
-        {
-          "name": "location_metadata",
-          "sourceContext": "/document/normalized_images/*",
-          "inputs": [
-            {
-              "name": "page_number",
-              "source": "/document/normalized_images/*/pageNumber"
-            },
-            {
-              "name": "bounding_polygons",
-              "source": "/document/normalized_images/*/boundingPolygon"
-            }              
-          ]
-        }          
-      ],
-      "outputs": [
-        {
-          "name": "output",
-          "targetName": "new_normalized_images"
-        }
-      ]
-    }
-```
-
-### [**GenAI Prompt and Azure OpenAI Embedding**](#tab/gpt-text-embedding)
-
-This skillset vectorizes text, verbalizes images as text, and then vectorizes the text descriptions. It also shapes the image metadata for projection into the index.
-
-```json
-{
-    "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
-    "name": "text-embedding-skill",
-    "description": "Embedding skill for text",
-    "context": "/document/pages/*",
-    "inputs": [
-        {
-        "name": "text",
-        "source": "/document/pages/*"
-        }
-    ],
-    "outputs": [
-        {
-        "name": "embedding",
-        "targetName": "text_vector"
-        }
-    ],
-    "resourceUri": "{{openAIResourceUri}}",
-    "deploymentId": "text-embedding-3-large",
-    "searchApiKey": "{{openAIKey}}",
-    "dimensions": 3072,
-    "modelName": "text-embedding-3-large"
-  },
-  {
-    "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
-    "name": "genAI-prompt-skill",
-    "description": "GenAI Prompt skill for image verbalization",
-    "uri": "{{chatCompletionResourceUri}}",
-    "timeout": "PT1M",
-    "searchApiKey": "{{chatCompletionKey}}",
-    "context": "/document/normalized_images/*",
-    "inputs": [
-        {
-        "name": "systemMessage",
-        "source": "='You are tasked with generating concise, accurate descriptions of images, figures, diagrams, or charts in documents. The goal is to capture the key information and meaning conveyed by the image without including extraneous details like style, colors, visual aesthetics, or size.\n\nInstructions:\nContent Focus: Describe the core content and relationships depicted in the image.\n\nFor diagrams, specify the main elements and how they are connected or interact.\nFor charts, highlight key data points, trends, comparisons, or conclusions.\nFor figures or technical illustrations, identify the components and their significance.\nClarity & Precision: Use concise language to ensure clarity and technical accuracy. Avoid subjective or interpretive statements.\n\nAvoid Visual Descriptors: Exclude details about:\n\nColors, shading, and visual styles.\nImage size, layout, or decorative elements.\nFonts, borders, and stylistic embellishments.\nContext: If relevant, relate the image to the broader content of the technical document or the topic it supports.\n\nExample Descriptions:\nDiagram: \"A flowchart showing the four stages of a machine learning pipeline: data collection, preprocessing, model training, and evaluation, with arrows indicating the sequential flow of tasks.\"\n\nChart: \"A bar chart comparing the performance of four algorithms on three datasets, showing that Algorithm A consistently outperforms the others on Dataset 1.\"\n\nFigure: \"A labeled diagram illustrating the components of a transformer model, including the encoder, decoder, self-attention mechanism, and feedforward layers.\"'"
-        },
-        {
-        "name": "userMessage",
-        "source": "='Please describe this image.'"
-        },
-        {
-        "name": "image",
-        "source": "/document/normalized_images/*/data"
-        }
-        ],
-        "outputs": [
-            {
-            "name": "response",
-            "targetName": "verbalizedImage"
-            }
-        ]
-  },    
-  {
-    "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
-    "name": "verbalized-image-embedding-skill",
-    "description": "Embedding skill for verbalized images",
-    "context": "/document/normalized_images/*",
-    "inputs": [
-        {
-        "name": "text",
-        "source": "/document/normalized_images/*/verbalizedImage",
-        "inputs": []
-        }
-    ],
-    "outputs": [
-        {
-        "name": "embedding",
-        "targetName": "verbalizedImage_vector"
-    }
-  ],
-    "resourceUri": "{{openAIResourceUri}}",
-    "deploymentId": "text-embedding-3-large",
-    "searchApiKey": "{{openAIKey}}",
-    "dimensions": 3072,
-    "modelName": "text-embedding-3-large"
-    },
-    {
-      "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
-      "name": "shaper-skill",
-      "description": "Shaper skill to reshape the data to fit the index schema",
-      "context": "/document/normalized_images/*",
-      "inputs": [
-        {
-          "name": "normalized_images",
-          "source": "/document/normalized_images/*",
-          "inputs": []
-        },
-        {
-          "name": "imagePath",
-          "source": "='{{imageProjectionContainer}}/'+$(/document/normalized_images/*/imagePath)",
-          "inputs": []
-        },
-        {
-          "name": "location_metadata",
-          "sourceContext": "/document/normalized_images/*",
-          "inputs": [
-            {
-              "name": "page_number",
-              "source": "/document/normalized_images/*/pageNumber"
-            },
-            {
-              "name": "bounding_polygons",
-              "source": "/document/normalized_images/*/boundingPolygon"
-            }              
-          ]
-        }        
-      ],
-      "outputs": [
-        {
-          "name": "output",
-          "targetName": "new_normalized_images"
-        }
-      ]
-}
-```
-
-Index projections shapes the skill output for the index. This is the index projection for 
-
-```
-
-
-```
----
-
-Key points:
+<!-- Key points:
 
 + The `content_text` field is populated with text extracted using the Document Extraction Skill and chunked using the Split Skill
 
 + Within `indexProjections`, the `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
-+ The Azure AI Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
++ The Azure AI Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md). -->
 
 ## Run the indexer
 
@@ -862,7 +621,7 @@ POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
 
 ## Run queries
 
-You can start searching as soon as the first document is loaded.
+You can start searching as soon as the first document is loaded. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count. 
 
 ```http
 ### Query the index
@@ -876,7 +635,7 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
   }
 ```
 
-Send the request. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
+Send the request. The response should look like:
 
 ```json
 HTTP/1.1 200 OK
@@ -907,12 +666,15 @@ Connection: close
 ```
 100 documents are returned in the response.
 
+### Query for image-only content
+
+Use a filter to exclude all non-image content.
+
 For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Examples of simple search queries](search-query-simple-examples.md).
 
 The `$filter` parameter only works on fields that were marked filterable during index creation.
 
 ```http
-### Query for only images
 POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
@@ -924,8 +686,11 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
   }
 ```
 
+### Query for content related to "energy"
+
+Query for text or images with content related to energy, returning the content ID, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images).
+
 ```http
-### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
 POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
