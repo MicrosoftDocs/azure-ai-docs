@@ -92,7 +92,7 @@ The numerical score uses a Likert scale (integer 1 to 5), where a higher score i
 
 ```python
 {
-    "intent_resolution": 5.0,
+    "intent_resolution": 5,
     "intent_resolution_result": "pass",
     "intent_resolution_threshold": 3,
     "intent_resolution_reason": "The response provides the opening hours of the Eiffel Tower clearly and accurately, directly addressing the user's query. It includes specific times, which fully resolves the user's request for information about the opening hours.",
@@ -250,9 +250,9 @@ The numerical score is on a Likert scale (integer 1 to 5). A higher score is bet
                 "tool_name": "fetch_weather",
                 "total_calls_required": 1,
                 "correct_calls_made_by_agent": 1,
-                "correct_tool_percentage": 1.0,
+                "correct_tool_percentage": 100%,
                 "tool_call_errors": 0,
-                "tool_success_result": "pass"
+                "tool_call_success_result": "pass"
             }
         ],
         "excess_tool_calls": {

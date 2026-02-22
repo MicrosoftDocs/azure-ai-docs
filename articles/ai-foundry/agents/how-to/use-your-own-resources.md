@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/12/2026
+ms.date: 02/19/2026
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -69,19 +69,30 @@ If you want to continue using your hub-based project and connection string, you 
     * `Microsoft.Search`
     * `Microsoft.App`
     * `Microsoft.ContainerService`
-    * To use the [Grounding with Bing Search tool](../../default/agents/how-to/tools/bing-tools.md): `Microsoft.Bing`
 
-    ```console
-    az provider register --namespace 'Microsoft.KeyVault'
-    az provider register --namespace 'Microsoft.CognitiveServices'
-    az provider register --namespace 'Microsoft.Storage'
-    az provider register --namespace 'Microsoft.MachineLearningServices'
-    az provider register --namespace 'Microsoft.Search'
-    az provider register --namespace 'Microsoft.App'
-    az provider register --namespace 'Microsoft.ContainerService'
-    # only to use Grounding with Bing Search tool
-    az provider register --namespace 'Microsoft.Bing'
-    ```
+:::moniker range="foundry-classic"
+
+To use the [Grounding with Bing Search tool](../how-to/tools-classic/bing-grounding.md) the following provider must be registered: `Microsoft.Bing`
+
+:::moniker-end
+
+:::moniker range="foundry"
+
+To use the [Grounding with Bing Search tool](../../default/agents/how-to/tools/bing-tools.md) the following provider must be registered: `Microsoft.Bing`
+
+:::moniker-end
+
+```console
+az provider register --namespace 'Microsoft.KeyVault'
+az provider register --namespace 'Microsoft.CognitiveServices'
+az provider register --namespace 'Microsoft.Storage'
+az provider register --namespace 'Microsoft.MachineLearningServices'
+az provider register --namespace 'Microsoft.Search'
+az provider register --namespace 'Microsoft.App'
+az provider register --namespace 'Microsoft.ContainerService'
+# only to use Grounding with Bing Search tool
+az provider register --namespace 'Microsoft.Bing'
+```
 
 ## Choose basic or standard agent setup
 

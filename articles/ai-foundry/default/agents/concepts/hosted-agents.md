@@ -1081,7 +1081,7 @@ To debug runtime issues:
 
 ### Hosting pricing
 
-Billing for managed hosting runtime is enabled no earlier than February 1, 2026, during the preview. For updates on pricing, check the Foundry [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+Billing for managed hosting runtime is enabled no earlier than April 1, 2026, during the preview. For updates on pricing, check the Foundry [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
 
 ### Private networking support
 

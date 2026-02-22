@@ -1,15 +1,15 @@
 ---
-title: OData geo-spatial function reference
+title: OData Geo-Spatial Function Reference
 titleSuffix: Azure AI Search
 description: Syntax and reference documentation for using OData geo-spatial functions, geo.distance and geo.intersects, in Azure AI Search queries.
 manager: nitinme
-author: bevloh
-ms.author: beloh
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/16/2021
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 translation.priority.mt:
   - "de-de"
@@ -23,6 +23,7 @@ translation.priority.mt:
   - "zh-cn"
   - "zh-tw"
 ---
+
 # OData geo-spatial functions in Azure AI Search - `geo.distance` and `geo.intersects`
 
 Azure AI Search supports geo-spatial queries in [OData filter expressions](query-odata-filter-orderby-syntax.md) via the `geo.distance` and `geo.intersects` functions. The `geo.distance` function returns the distance in kilometers between two points, one being a field or range variable, and one being a constant passed as part of the filter. The `geo.intersects` function returns `true` if a given point is within a given polygon, where the point is a field or range variable and the polygon is specified as a constant passed as part of the filter.
