@@ -1,6 +1,6 @@
 ---
-title: "Integrate Microsoft Foundry with your applications (classic)"
-description: "Learn how to retrieve and use Microsoft Foundry endpoints for third-party integrations, including comparison with Azure OpenAI v1 endpoints. (classic)"
+title: "Integrate Microsoft Foundry with your applications (temp)"
+description: "Learn how to retrieve and use Microsoft Foundry endpoints for third-party integrations, including comparison with Azure OpenAI v1 endpoints. (temp)"
 ms.topic: how-to
 ms.date: 11/05/2025
 ms.service: azure-ai-foundry
@@ -14,12 +14,9 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to understand how to retrieve Microsoft Foundry endpoints and integrate them with third-party applications, similar to Azure OpenAI.
-ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Integrate Microsoft Foundry with your applications (Microsoft or third-party services) (classic)
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# Integrate Microsoft Foundry with your applications (Microsoft or third-party services) (temp)
 
 ## Overview
 

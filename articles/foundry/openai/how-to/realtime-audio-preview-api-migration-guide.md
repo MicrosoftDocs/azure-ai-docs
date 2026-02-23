@@ -1,6 +1,6 @@
 ---
-title: "Migration from Beta to GA version of Realtime API protocol (classic)"
-description: "Migration Guide from Beta to GA version of OpenAI GPT Realtime API protocol. (classic)"
+title: "Migration from Beta to GA version of Realtime API protocol (temp)"
+description: "Migration Guide from Beta to GA version of OpenAI GPT Realtime API protocol. (temp)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -12,12 +12,9 @@ recommendations: false
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
-ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Migration from Preview to GA version of Realtime API (classic)
-
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+# Migration from Preview to GA version of Realtime API (temp)
 
 You need to use Generally Available (GA) version of Azure OpenAI GPT Realtime API in your applications. The Beta version of the API used during the Preview phase of the Service is deprecated starting April 30, 2026.
 
