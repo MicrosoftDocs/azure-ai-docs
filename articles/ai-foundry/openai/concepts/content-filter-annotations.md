@@ -8,9 +8,10 @@ ms.topic: concept-article
 ms.date: 01/15/2025
 author: ssalgadodev
 ms.author: ssalgado
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 # Guardrail annotations
 
