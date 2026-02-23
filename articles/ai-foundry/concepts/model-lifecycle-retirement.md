@@ -123,7 +123,7 @@ The following tables list the timelines for models that are on track for retirem
 
 | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [Kimi-k2-thinking](https://ai.azure.com/explore/models/Kimi-k2-thinking/version/1/registry/azureml-moonshot/?cid=learnDocs) | February 23, 2026 | March 9, 2026 | March 29, 2026 | [Kimi-k2.5](https://ai.azure.com/explore/models/Kimi-k2.5/version/1/registry/azureml-moonshot/?cid=learnDocs) |
+| [Kimi-k2-thinking](https://ai.azure.com/explore/models/Kimi-k2-thinking/version/1/registry/azureml-moonshotai/?cid=learnDocs) | February 23, 2026 | March 9, 2026 | March 29, 2026 | [Kimi-k2.5](https://ai.azure.com/explore/models/Kimi-k2.5/version/1/registry/azureml-moonshotai/?cid=learnDocs) |
 
 ## Retired Foundry Models
 
