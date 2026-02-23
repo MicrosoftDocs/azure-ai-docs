@@ -119,6 +119,12 @@ The following tables list the timelines for models that are on track for retirem
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
 | [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml/?cid=learnDocs) | January 16, 2026 | January 27, 2026 | February 27, 2026 | Any DeepSeek model available in the Model catalog |
 
+#### Moonshot AI
+
+| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [Kimi-k2-thinking](https://ai.azure.com/explore/models/Kimi-k2-thinking/version/1/registry/azureml-moonshot/?cid=learnDocs) | February 23, 2026 | March 9, 2026 | March 29, 2026 | [Kimi-k2.5](https://ai.azure.com/explore/models/Kimi-k2.5/version/1/registry/azureml-moonshot/?cid=learnDocs) |
+
 ## Retired Foundry Models
 
 The following models were retired at 00:00:00 UTC on the specified dates and aren't available for new deployments or inference.
