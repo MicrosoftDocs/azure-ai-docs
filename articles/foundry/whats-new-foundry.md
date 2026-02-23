@@ -41,7 +41,7 @@ Available in both Foundry (new) and Foundry (classic):
 - [Agent service disaster recovery](how-to/agent-service-disaster-recovery.md)
 - [Agent service operator disaster recovery](how-to/agent-service-operator-disaster-recovery.md)
 - [Agent service platform disaster recovery](how-to/agent-service-platform-disaster-recovery.md)
-<!-- CLASSIC-ONLY: - [Integrate with other apps](how-to/integrate-with-other-apps.md) -->
+- [Integrate with other apps](how-to/integrate-with-other-apps.md)
 - [Create a custom photo avatar](../ai-services/speech-service/text-to-speech-avatar/custom-photo-avatar-create.md)
 - [Customize voice live](../ai-services/speech-service/voice-live-how-to-customize.md)
 - [Bring your own model](../ai-services/speech-service/how-to-bring-your-own-model.md)
