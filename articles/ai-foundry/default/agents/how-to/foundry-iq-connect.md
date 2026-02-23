@@ -39,10 +39,10 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 - An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
 - A [Microsoft Foundry project](../../../how-to/create-projects.md) with an [LLM deployment](../../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
 - [Authentication and permissions](#authentication-and-permissions) on your search service and project.
-- The latest preview Python SDK or the 2025-11-01-preview REST API version.
+- The latest preview Python SDK (version 2.0.0b4 or later) or the 2025-11-01-preview REST API version.
 
   ```bash
-  pip install azure-ai-projects azure-identity requests
+  pip install "azure-ai-projects>=2.0.0b4" requests
   ```
 
 ### Authentication and permissions
@@ -355,7 +355,7 @@ response = openai_client.responses.create(
         Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
         Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
     """,
-    extra_body = {"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body = {"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
 print(f"Response: {response.output_text}")
@@ -432,7 +432,7 @@ References:
 
 ```python
 # Delete the agent
-project_client.agents.delete_version(agent.name, agent.version)
+project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 print(f"Agent '{agent.name}' version '{agent.version}' deleted successfully.")
 
 # Delete the project connection (Azure Resource Manager)

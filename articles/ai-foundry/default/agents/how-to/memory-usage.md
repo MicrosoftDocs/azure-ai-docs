@@ -40,7 +40,7 @@ This article explains how to create, manage, and use memory stores. For conceptu
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - For Python examples:
   - Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true)
-  - Required packages: `pip install azure-ai-projects azure-identity`
+  - Required packages: `pip install "azure-ai-projects>=2.0.0b4"`
 - For REST API examples, Azure CLI authenticated to your subscription.
 
 ### Authorization and permissions
@@ -111,7 +111,7 @@ definition = MemoryStoreDefaultDefinition(
     options=options
 )
 
-memory_store = project_client.memory_stores.create(
+memory_store = project_client.beta.memory_stores.create(
     name=memory_store_name,
     definition=definition,
     description="Memory store for customer support agent",
@@ -167,7 +167,7 @@ Update memory store properties, such as `description` or `metadata`, to better m
 
 ```python
 # Update memory store properties
-updated_store = project_client.memory_stores.update(
+updated_store = project_client.beta.memory_stores.update(
     name=memory_store_name,
     description="Updated description"
 )
@@ -203,10 +203,10 @@ Retrieve a list of memory stores in your project to manage and monitor your memo
 
 ```python
 # List all memory stores
-stores_list = project_client.memory_stores.list()
+stores_list = list(project_client.beta.memory_stores.list())
 
-print(f"Found {len(stores_list.data)} memory stores")
-for store in stores_list.data:
+print(f"Found {len(stores_list)} memory stores")
+for store in stores_list:
     print(f"- {store.name} ({store.description})")
 ```
 
@@ -232,7 +232,7 @@ After you create a memory store, you can attach the memory search tool to a prom
 
 ```python
 # Continue from the previous Python snippets.
-from azure.ai.projects.models import MemorySearchTool, PromptAgentDefinition
+from azure.ai.projects.models import MemorySearchPreviewTool, PromptAgentDefinition
 
 # Set scope to associate the memories with
 # You can also use "{{$userId}}" to take the TID and OID of the request authentication header
@@ -241,7 +241,7 @@ scope = "user_123"
 openai_client = project_client.get_openai_client()
 
 # Create memory search tool
-tool = MemorySearchTool(
+tool = MemorySearchPreviewTool(
     memory_store_name=memory_store_name,
     scope=scope,
     update_delay=1,  # Wait 1 second of inactivity before updating memories
@@ -310,7 +310,7 @@ print(f"Created conversation (id: {conversation.id})")
 response = openai_client.responses.create(
     input="I prefer dark roast coffee",
     conversation=conversation.id,
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
 print(f"Response output: {response.output_text}")
@@ -327,7 +327,7 @@ print(f"Created new conversation (id: {new_conversation.id})")
 new_response = openai_client.responses.create(
     input="Please order my usual coffee",
     conversation=new_conversation.id,
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
 print(f"Response output: {new_response.output_text}")
@@ -378,16 +378,17 @@ You can update a memory store with content from multiple conversation turns, or 
 
 ```python
 # Continue from the previous Python snippets.
-from azure.ai.projects.models import ResponsesUserMessageItemParam
+from azure.ai.projects.models import EasyInputMessage
 
 # Set scope to associate the memories with
 scope = "user_123"
 
-user_message = ResponsesUserMessageItemParam(
+user_message = EasyInputMessage(
+    role="user",
     content="I prefer dark roast coffee and usually drink it in the morning"
 )
 
-update_poller = project_client.memory_stores.begin_update_memories(
+update_poller = project_client.beta.memory_stores.begin_update_memories(
     name=memory_store_name,
     scope=scope,
     items=[user_message],  # Pass conversation items that you want to add to memory
@@ -403,8 +404,8 @@ for operation in update_result.memory_operations:
     )
 
 # Extend the previous update with another update and more messages
-new_message = ResponsesUserMessageItemParam(content="I also like cappuccinos in the afternoon")
-new_update_poller = project_client.memory_stores.begin_update_memories(
+new_message = EasyInputMessage(role="user", content="I also like cappuccinos in the afternoon")
+new_update_poller = project_client.beta.memory_stores.begin_update_memories(
     name=memory_store_name,
     scope=scope,
     items=[new_message],
@@ -463,12 +464,12 @@ Search memories to retrieve relevant context for agent interactions. Specify the
 
 ```python
 # Continue from the previous Python snippets.
-from azure.ai.projects.models import MemorySearchOptions, ResponsesUserMessageItemParam
+from azure.ai.projects.models import MemorySearchOptions, EasyInputMessage
 
 # Search memories by a query
-query_message = ResponsesUserMessageItemParam(content="What are my coffee preferences?")
+query_message = EasyInputMessage(role="user", content="What are my coffee preferences?")
 
-search_response = project_client.memory_stores.search_memories(
+search_response = project_client.beta.memory_stores.search_memories(
     name=memory_store_name,
     scope=scope,
     items=[query_message],
@@ -537,7 +538,7 @@ Remove all memories associated with a particular user or group scope while prese
 
 ```python
 # Delete memories for a specific scope
-delete_scope_response = project_client.memory_stores.delete_scope(
+project_client.beta.memory_stores.delete_scope(
     name=memory_store_name,
     scope="user_123"
 )
@@ -571,7 +572,7 @@ Remove the entire memory store and all associated memories across all scopes. Th
 
 ```python
 # Delete the entire memory store
-delete_response = project_client.memory_stores.delete(memory_store_name)
+delete_response = project_client.beta.memory_stores.delete(memory_store_name)
 print(f"Deleted memory store: {delete_response.deleted}")
 ```
 
