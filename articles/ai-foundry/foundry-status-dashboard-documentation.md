@@ -6,7 +6,7 @@ ai-usage: ai-assisted
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: nisi
-ms.date: 01/06/2026
+ms.date: 02/23/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.custom: dev-focus
@@ -27,17 +27,31 @@ This dashboard is currently in **preview**, and it might not reflect all compone
 
 ## Check service status
 
-1. Open the [Microsoft Foundry Status Dashboard](https://status.ai.azure.com/).
-1. Review the overall status at the top of the page.
+1. Open the [Microsoft Foundry Status Dashboard](https://status.ai.azure.com/). The page displays an overall status indicator and a list of monitored components with uptime percentages.
+1. Review the overall status at the top of the page. An **All Systems Operational** indicator appears when no issues are active.
 1. Select a component to view details and recent status changes.
-1. Select **Incidents** to review incident history.
-1. Select **Subscribe to updates** to get notified about updates.
+1. Select **Incidents** to review incident history, including timelines and root cause summaries.
+1. Select **Subscribe to updates** to get notified about incidents and maintenance.
 
 ## Key features
 
 - **Live status indicators** for core Foundry services.
 - **Incident reports** with timelines, resolutions, and root cause summaries.
-- **Historical uptime** to help assess service reliability over time.
+- **Historical uptime** over the past 60 days to help assess service reliability over time.
+
+### Monitored components
+
+The dashboard currently tracks the following Foundry service components:
+
+- Models
+- Agent Service
+- Tools
+- IQ
+- Control Plane
+- Azure Machine Learning
+
+> [!NOTE]
+> During preview, the list of monitored components might change as coverage expands.
 
 ## Frequently asked questions
 
@@ -64,5 +78,5 @@ If you have questions, suggestions, or run into problems, contact Microsoft supp
 
 - [Foundry documentation](/azure/ai-foundry/)
 - [Feature availability across cloud regions](reference/region-support.md)
-- [Azure status history](https://status.azure.com/status)
+- [Azure status](https://azure.status.microsoft/status)
 - [Azure Service Health](https://azure.microsoft.com/status/)
