@@ -37,7 +37,7 @@ This dashboard is currently in **preview**, and it might not reflect all compone
 
 - **Live status indicators** for core Foundry services.
 - **Incident reports** with timelines, resolutions, and root cause summaries.
-- **Historical uptime** over the past 60 days to help assess service reliability over time.
+- **Historical uptime** over the past 90 days to help assess service reliability over time.
 
 ### Monitored components
 
