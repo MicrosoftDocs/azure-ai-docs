@@ -1,7 +1,7 @@
 ---
 title: Authentication and authorization in Microsoft Foundry
 ms.service: azure-ai-foundry
-ms.date: 02/02/2026
+ms.date: 02/23/2026
 ms.reviewer: meerakurup
 ms.author: jburchel
 author: jonburchel
@@ -15,7 +15,9 @@ monikerRange: 'foundry-classic || foundry'
 
 # Authentication and authorization in Microsoft Foundry
 
-Authentication and authorization in Microsoft Foundry define how principals prove identity and gain permission to perform control plane and data plane operations. Foundry supports API key and Microsoft Entra ID token-based authentication. Microsoft Entra ID enables conditional access, managed identities, granular role-based access control (RBAC) actions, and least privilege scenarios. API keys remain available for rapid prototyping and legacy integration but lack per-user traceability. This article explains the control plane and data plane model, compares API key and Microsoft Entra ID authentication, maps identities to roles, and describes common least privilege scenarios.
+Authentication and authorization in Microsoft Foundry control how principals prove identity and gain permission to perform operations. Foundry divides operations into control plane (resource management) and data plane (runtime usage), each with its own authentication and role-based access control (RBAC) surface.
+
+Foundry supports two authentication methods: Microsoft Entra ID and API keys. Microsoft Entra ID enables conditional access, managed identities, and granular RBAC. API keys remain available for rapid prototyping but lack per-user traceability. This article compares these methods, maps identities to roles, and describes common least privilege scenarios.
 
 > [!IMPORTANT]
 > Use Microsoft Entra ID for production workloads to enable conditional access, managed identities, and least privilege RBAC. API keys are convenient for quick evaluation but provide coarse-grained access.
@@ -27,6 +29,7 @@ Authentication and authorization in Microsoft Foundry define how principals prov
 - Understanding of [Azure RBAC concepts](/azure/role-based-access-control/overview).
 - To assign roles, you need the **Owner** role or **User Access Administrator** role at the appropriate scope.
 - (Optional) The [Azure CLI](/cli/azure/install-azure-cli) or [Azure SDK for Python](https://pypi.org/project/azure-identity/) installed for programmatic authentication.
+- (Optional) Python packages for code samples: `pip install azure-identity requests`
 
 ## Control plane and data plane
 
@@ -41,8 +44,7 @@ In Foundry, there's a clear distinction between control plane operations versus 
 For all Bicep, Terraform, and SDK samples, see the [foundry-samples repository on GitHub](https://github.com/azure-ai-foundry/foundry-samples) for Foundry.
 
 
-### Control plane and data plane diagram
-Within Foundry, there's a clear separation between control plane and data plane actions.
+The following lists and diagram illustrate the separation between control plane and data plane actions in detail.
 Control plane actions within Foundry include:
 * Foundry resource creation
 * Foundry project creation
@@ -217,13 +219,32 @@ For high-level guidance on setting up Entra ID authentication in Foundry, see [C
 1. Assign the needed built-in or custom role to each principal. You need the **Owner** or **User Access Administrator** role at the target scope to assign roles. Common role assignments:
    - **Azure AI User**: For developers who need to build and test with pre-deployed models.
    - **Azure AI Project Manager**: For team leads who need to create projects and manage deployments.
-   - **Azure AI Account Owner**: For administrators who need full resource management without data plane access.
+   - **Azure AI Account Owner**: For administrators who need full resource management and can conditionally assign Azure AI User for data plane access.
    - **Azure AI Owner**: For users who need both full resource management and data plane access.
+   Example CLI command to assign the Azure AI User role:
+
+   ```azurecli
+   az role assignment create \
+     --assignee <principal-id> \
+     --role "Azure AI User" \
+     --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<resource-name>
+   ```
+
+   To verify the role assignment, run `az role assignment list --assignee <principal-id> --scope <resource-scope>` and confirm the role appears in the output.
 1. (Optional) For a service principal, create an app registration, add a client secret or certificate, and note the tenant ID, client ID, and secret or certificate.
 1. (Optional) For a managed identity, enable the system-assigned identity on the calling service or attach a user-assigned identity, then assign a role to it on the Foundry resource.
 1. Remove key-based authentication after all callers use token authentication. Optionally disable local authentication in deployment templates.
 
 **Reference**: [Assign Azure roles](/azure/role-based-access-control/role-assignments-portal) | [Role-based access control for Foundry](rbac-foundry.md)
+
+## Troubleshoot common authentication errors
+
+| Error | Cause | Resolution |
+| --- | --- | --- |
+| 401 Unauthorized | Missing or expired token; invalid API key | Verify the token acquisition scope is `https://cognitiveservices.azure.com/.default`. Regenerate the API key if you use key-based auth. |
+| 403 Forbidden | Missing RBAC role assignment | Assign the appropriate built-in role (for example, Azure AI User) at the resource or project scope. |
+| AADSTS700016 | Application not found in tenant | Verify the app registration exists in the correct tenant and the client ID is correct. |
+| Custom subdomain required | Resource uses a regional endpoint instead of a custom subdomain | Configure a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains) on the Foundry resource. Token-based auth requires a custom subdomain. |
 
 ## Related content
 
