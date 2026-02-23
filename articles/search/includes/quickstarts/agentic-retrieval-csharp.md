@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 02/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -57,14 +57,14 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     code .
     ```
 
-1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder and add the following content. Replace the placeholder values with the endpoints you obtained in [Get endpoints](#get-endpoints).
+1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder, and then paste the following content. Replace the placeholder values with the endpoints you obtained in [Get endpoints](#get-endpoints).
 
     ```
     SEARCH_ENDPOINT = PUT-YOUR-SEARCH-SERVICE-URL-HERE
     AOAI_ENDPOINT = PUT-YOUR-AOAI-FOUNDRY-URL-HERE
     ```
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
 
     ```console
     az login

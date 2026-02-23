@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 02/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -18,7 +18,7 @@ A *knowledge base* orchestrates agentic retrieval by decomposing complex queries
 Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
 > [!TIP]
-> Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-agentic-retrieval-ts) on GitHub.
+> Source code for the TypeScript version of this quickstart isn't available yet. You can copy the code directly from this article.
 
 ## Prerequisites
 
@@ -38,13 +38,9 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-+ [Git](https://git-scm.com/downloads) to clone the sample repository.
-
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
 ## Set up the environment
-
-To set up the console application for this quickstart:
 
 1. Create a folder named `quickstart-agentic-retrieval` to contain the application.
 
@@ -83,11 +79,7 @@ To set up the console application for this quickstart:
 
 ## Run the code
 
-To create and run the agentic retrieval pipeline:
-
-1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder.
-
-1. Paste the following environment variables into the `.env` file.
+1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder, and then paste the following content. Replace the placeholder values with the endpoints you obtained in [Get endpoints](#get-endpoints).
 
     ```
     AZURE_SEARCH_ENDPOINT = https://<your-search-service-name>.search.windows.net
@@ -95,8 +87,6 @@ To create and run the agentic retrieval pipeline:
     AZURE_OPENAI_GPT_DEPLOYMENT = gpt-5-mini
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT = text-embedding-3-large
     ```
-
-1. Set `AZURE_SEARCH_ENDPOINT` and `AZURE_OPENAI_ENDPOINT` to the values you obtained in [Get endpoints](#get-endpoints).
 
 1. Create a file named `index.ts`, and then paste the following code into the file.
 
@@ -632,8 +622,6 @@ References:
 ```
 
 ## Understand the code
-
-[!INCLUDE [understand code note](../understand-code-note.md)]
 
 Now that you have the code, let's break down the key components:
 

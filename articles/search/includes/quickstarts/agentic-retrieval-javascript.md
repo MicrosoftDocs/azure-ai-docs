@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 02/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -16,6 +16,9 @@ In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview
 A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
 
 Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
+
+> [!TIP]
+> Source code for the JavaScript version of this quickstart isn't available yet. You can copy the code directly from this article.
 
 ## Prerequisites
 
@@ -35,13 +38,9 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-+ [Git](https://git-scm.com/downloads) to clone the sample repository.
-
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
 ## Set up the environment
-
-To set up the console application for this quickstart:
 
 1. Create a folder named `quickstart-agentic-retrieval` to contain the application.
 
@@ -74,11 +73,7 @@ To set up the console application for this quickstart:
 
 ## Run the code
 
-To create and run the agentic retrieval pipeline:
-
-1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder.
-
-1. Paste the following environment variables into the `.env` file.
+1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder, and then paste the following content. Replace the placeholder values with the endpoints you obtained in [Get endpoints](#get-endpoints).
 
     ```
     AZURE_SEARCH_ENDPOINT = https://<your-search-service-name>.search.windows.net
@@ -86,8 +81,6 @@ To create and run the agentic retrieval pipeline:
     AZURE_OPENAI_GPT_DEPLOYMENT = gpt-5-mini
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT = text-embedding-3-large
     ```
-
-1. Set `AZURE_SEARCH_ENDPOINT` and `AZURE_OPENAI_ENDPOINT` to the values you obtained in [Get endpoints](#get-endpoints).
 
 1. Create a file named `index.js`, and then paste the following code into the file.
 
@@ -571,8 +564,6 @@ References:
 
 ## Understand the code
 
-[!INCLUDE [understand code note](../understand-code-note.md)]
-
 Now that you have the code, let's break down the key components:
 
 1. [Create a search index](#create-a-search-index)
@@ -580,7 +571,7 @@ Now that you have the code, let's break down the key components:
 1. [Create a knowledge source](#create-a-knowledge-source)
 1. [Create a knowledge base](#create-a-knowledge-base)
 1. [Run the retrieval pipeline](#run-the-retrieval-pipeline)
-1. [Review the response, activity, and references](#review-the-response-activity-and-results)
+1. [Review the response, activity, and references](#review-the-response-activity-and-references)
 1. [Continue the conversation](#continue-the-conversation)
 
 ### Create a search index

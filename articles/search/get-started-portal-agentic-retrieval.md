@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: quickstart
-ms.date: 02/05/2026
+ms.date: 02/23/2026
 ---
 
 # Quickstart: Agentic retrieval in the Azure portal
@@ -55,7 +55,7 @@ Although agentic retrieval [programmatically supports several LLMs](agentic-retr
 
 ## Configure access
 
-Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](../../search-get-started-keys.md) instead.
+Before you begin, make sure you have permissions to access content and operations. This quickstart uses Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](search-security-api-keys.md) instead.
 
 To configure access for this quickstart:
 
@@ -63,11 +63,11 @@ To configure access for this quickstart:
 
 1. On your Azure AI Search service:
 
-    1. [Enable role-based access](../../search-security-enable-roles.md).
+    1. [Enable role-based access](search-security-enable-roles.md).
 
-    1. [Create a system-assigned managed identity](../../search-how-to-managed-identities.md#create-a-system-managed-identity).
+    1. [Create a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-    1. [Assign the following roles](../../search-security-rbac.md) to your user account: **Search Service Contributor**, **Search Index Data Contributor**, and **Search Index Data Reader**.
+    1. [Assign the following roles](search-security-rbac.md) to your user account: **Search Service Contributor**, **Search Index Data Contributor**, and **Search Index Data Reader**.
 
 1. On your Azure Blob Storage account, assign **Storage Blob Data Contributor** to the managed identity of your search service.
 

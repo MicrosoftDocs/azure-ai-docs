@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 02/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -67,7 +67,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 1. In the second code cell, replace the placeholder values for `search_endpoint` and `aoai_endpoint` with the URLs you obtained in [Get endpoints](#get-endpoints), and run the cell.
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
 
     ```azurecli
     az login
