@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 02/17/2026
+ms.date: 02/23/2026
 ms.author: mopeakande
 manager: nitinme
 author: msakande
@@ -103,6 +103,15 @@ The following tables list the timelines for models that are on track for retirem
 | [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere/?cid=learnDocs) | January 14, 2026 | February 14, 2026 | May 14, 2026 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs), [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) |
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | February 12, 2026 | March 12, 2026 | May 12, 2026 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere/?cid=learnDocs) |
 | [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | February 12, 2026 | March 12, 2026 | May 12, 2026 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere/?cid=learnDocs) |
+
+#### Meta
+
+| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | N/A |
+| [Meta-Llama-3.1-8B](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | N/A |
+| [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta/?cid=learnDocs), [Llama-4-Scout-17B-16E-Instruct](https://ai.azure.com/explore/models/Llama-4-Scout-17B-16E-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) |
+| [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta/?cid=learnDocs), [Llama-4-Scout-17B-16E-Instruct](https://ai.azure.com/explore/models/Llama-4-Scout-17B-16E-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) |
 
 #### Microsoft
 
