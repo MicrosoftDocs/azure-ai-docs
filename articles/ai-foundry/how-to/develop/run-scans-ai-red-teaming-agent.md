@@ -45,9 +45,19 @@ This article explains how to:
 
 ## Prerequisites
 
-- A Foundry project or hubs based project. To learn more, see [Create a project](../create-projects.md).
+::: moniker range="foundry-classic"
 
-[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
+- A Foundry project or hubs based project. To learn more, see [Create a project](../create-projects.md).
+- Optionally you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- [A Foundry project](../create-projects.md)
+- Optionally, you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
+  
+::: moniker-end
 
 ## Getting started
 

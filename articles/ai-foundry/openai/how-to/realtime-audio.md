@@ -6,42 +6,68 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 02/11/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
+zone_pivot_groups: openai-portal-js-python-ts
 ---
 
 # Use the GPT Realtime API for speech and audio
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. The GPT Realtime API is designed to handle real-time, low-latency conversational interactions. It's a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
+Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
+
+The GPT Realtime API is designed to handle real-time, low-latency conversational interactions. It's a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
 
 Most users of the Realtime API, including applications that use WebRTC or a telephony system, need to deliver and receive audio from an end-user in real time. The Realtime API isn't designed to connect directly to end user devices. It relies on client integrations to terminate end user audio streams. 
 
-You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. In most cases, we recommend using the WebRTC API for low-latency real-time audio streaming. For more information, see:
+## Connection methods
+
+You can use the Realtime API via WebRTC, session initiation protocol (SIP), or WebSocket to send audio input to the model and receive audio responses in real time. In most cases, we recommend using the WebRTC API for low-latency real-time audio streaming.
+
+| Connection method | Use case | Latency | Best for |
+|-------------------|----------|---------|----------|
+| **WebRTC** | Client-side applications | ~100ms | Web apps, mobile apps, browser-based experiences |
+| **WebSocket** | Server-to-server | ~200ms | Backend services, batch processing, custom middleware |
+| **SIP** | Telephony integration | Varies | Call centers, IVR systems, phone-based applications |
+
+For more information, see:
 - [Realtime API via WebRTC](./realtime-audio-webrtc.md)
 - [Realtime API via SIP](./realtime-audio-sip.md)
 - [Realtime API via WebSockets](./realtime-audio-websockets.md)
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
-- `gpt-4o-mini-realtime-preview` (`2024-12-17`)
-- `gpt-4o-realtime-preview` (`2024-12-17`)
-- `gpt-realtime` (`2025-08-28`)
-- `gpt-realtime-mini` (`2025-10-06`)
-- `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
+The GPT real-time models are available for global deployments.
+- `gpt-4o-realtime-preview` (version `2024-12-17`)
+- `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
+- `gpt-realtime` (version `2025-08-28`)
+- `gpt-realtime-mini` (version `2025-10-06`)
+- `gpt-realtime-mini-2025-12-15` (version `2025-12-15`)
 
-You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
+:::moniker range="foundry"
+For more information, see the [models and versions documentation](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#audio-models).
+:::moniker-end
 
-See the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) for more information.
+:::moniker range="foundry-classic"
 
-## Get started
+For more information, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
+:::moniker-end
+
+> [!NOTE]
+> Token limits vary by model:
+> - **Preview models** (gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview): Input 128,000 / Output 4,096 tokens
+> - **GA models** (gpt-realtime, gpt-realtime-mini): Input 28,672 / Output 4,096 tokens
+
+For the Realtime API, use API version `2025-04-01-preview` in the URL for preview models. For GA models, use the GA API version (without the `-preview` suffix) when possible. 
+
+
+## Prerequisites
 
 Before you can use GPT real-time audio, you need:
 
@@ -49,6 +75,7 @@ Before you can use GPT real-time audio, you need:
 :::moniker range="foundry"
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the [supported regions](#supported-models).
+- An API key or Microsoft Entra ID credentials for authentication. For production applications, we recommend using [Microsoft Entra ID](../how-to/managed-identity.md) for enhanced security.
 - A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article.
     - In the Microsoft Foundry portal, load your project. Select **Build** in the upper right menu, then select the **Models** tab on the left pane, and **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 :::moniker-end
@@ -57,13 +84,51 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Microsoft Foundry portal. 
+- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../concepts/foundry-models-overview.md) or from your project in Microsoft Foundry portal. 
 :::moniker-end
 
 Here are some of the ways you can get started with the GPT Realtime API for speech and audio:
 - For steps to deploy and use the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model, see [the real-time audio quickstart](../realtime-audio-quickstart.md).
 - Try the [WebRTC via HTML and JavaScript example](./realtime-audio-webrtc.md#step-3-optional-create-a-websocket-observercontroller) to get started with the Realtime API via WebRTC.
 - [The Azure-Samples/aisearch-openai-rag-audio repo](https://github.com/Azure-Samples/aisearch-openai-rag-audio) contains an example of how to implement RAG support in applications that use voice as their user interface, powered by the GPT realtime API for audio.
+
+## Quickstart
+
+Follow the instructions in this section to get started with the Realtime API via WebSockets. Use the Realtime API via WebSockets in server-to-server scenarios where low latency isn't a requirement.
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript quickstart](../includes/realtime-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+[!INCLUDE [Python quickstart](../includes/realtime-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](../includes/realtime-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Microsoft Foundry portal quickstart](../includes/realtime-portal.md)]
+
+::: zone-end
+
+## API support
+
+Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-08-28` to access the latest Realtime API features. We recommend you select the generally available API version (without '-preview' suffix) when possible.
+
+> [!CAUTION]
+> You need to use **different** endpoint formats for Preview and Generally Available (GA) models. All samples in this article use GA models and GA endpoint format, and don't use `api-version` parameter, which is required for Preview endpoint format only. See detailed information on the endpoint format [in this article](../how-to/realtime-audio-websockets.md#connection-and-authentication). 
+
+> [!NOTE]
+> The Realtime API has specific rate limits for audio tokens and concurrent sessions. Before deploying to production, review [Azure OpenAI quotas and limits](../quotas-limits.md) for your deployment type.
 
 ## Session configuration
 
@@ -169,9 +234,9 @@ One of the key [session-wide](#session-configuration) settings is `turn_detectio
 
 By default, server VAD (`server_vad`) is enabled, and the server automatically generates responses when it detects the end of speech in the input audio buffer. You can change the behavior by setting the `turn_detection` property in the session configuration.
 
-### Without server decision mode
+### Manual turn handling (push-to-talk)
 
-By default, the session is configured with the `turn_detection` type effectively set to `none`. Voice activity detection (VAD) is disabled, and the server doesn't automatically generate responses when it detects the end of speech in the input audio buffer.
+You can disable automatic voice activity detection by setting the `turn_detection` type to `none`. When VAD is disabled, the server doesn't automatically generate responses when it detects the end of speech in the input audio buffer.
 
 The session relies on caller-initiated [`input_audio_buffer.commit`](../realtime-audio-reference.md#realtimeclienteventinputaudiobuffercommit) and [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) events to progress conversations and produce output. This setting is useful for push-to-talk applications or situations that have external audio flow control (such as caller-side VAD component). These manual signals can still be used in `server_vad` mode to supplement VAD-initiated response generation.
 
@@ -513,6 +578,58 @@ Eventually, the server sends a [`response.done`](../realtime-audio-reference.md#
   }
 }
 ```
+
+## Troubleshooting
+
+This section provides guidance for common issues when using the Realtime API.
+
+### Authentication errors
+
+If you're using keyless authentication (Microsoft Entra ID) and receive authentication errors:
+
+- Verify the `AZURE_OPENAI_API_KEY` environment variable is **not set**. Keyless authentication fails if this variable exists.
+- Confirm you've run `az login` to authenticate with Azure CLI.
+- Check that your account has the `Cognitive Services OpenAI User` role assigned to the Azure OpenAI resource.
+
+
+### Connection errors
+
+| Error | Cause | Resolution |
+|-------|-------|------------|
+| WebSocket connection failed | Network or firewall blocking WebSocket connections | Ensure port 443 is open and check proxy settings. Verify your endpoint URL is correct. |
+| 401 Unauthorized | Invalid or expired API key, or incorrect Microsoft Entra ID configuration | Regenerate your API key in the Azure portal, or verify your managed identity configuration. |
+| 429 Too Many Requests | Rate limit exceeded | Implement exponential backoff retry logic. Check your [quota and limits](../quotas-limits.md). |
+| Connection timeout | Network latency or server unavailability | Retry the connection. If using WebSocket, consider switching to WebRTC for lower latency. |
+
+### Audio format issues
+
+The Realtime API expects audio in a specific format:
+- **Format**: PCM 16-bit (pcm16)
+- **Channels**: Mono (single channel)
+- **Sample rate**: 24kHz
+
+If you experience audio quality issues or errors:
+- Verify your audio is in the correct format before sending.
+- When using JSON transport, ensure audio chunks are base64-encoded.
+- Check that audio chunks aren't too large; send audio in small increments (recommended: 100ms chunks).
+
+### Rate limit exceeded
+
+If you receive rate limit errors:
+
+- The Realtime API has specific quotas separate from chat completions.
+- Check your current usage in the Azure portal under your Azure OpenAI resource.
+- Implement exponential backoff for retry logic in your application.
+
+For more information about quotas, see [Azure OpenAI quotas and limits](../quotas-limits.md).
+
+
+### Session timeout
+
+Realtime sessions have a maximum duration of **30 minutes**. To handle long interactions:
+- Monitor the `session.created` event's `expires_at` field.
+- Implement session renewal logic before timeout.
+- Save conversation context to restore state in a new session.
 
 ## Related content
 

@@ -1,7 +1,7 @@
 ---
 title: Use web search tool in Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: Learn how to use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Get code examples for Python, C#, JavaScript, and REST API.
+description: Use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Includes code examples.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -36,6 +36,8 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+
+Java SDK samples are not yet available.
 
 ## Prerequisites
 

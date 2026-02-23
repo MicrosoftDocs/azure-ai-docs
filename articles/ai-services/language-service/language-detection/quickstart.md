@@ -65,7 +65,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 | You get an error about missing environment variables. | Confirm `LANGUAGE_KEY` and `LANGUAGE_ENDPOINT` are set in your environment before you run the sample. |
 | The Foundry experience doesn't match the steps. | In the Foundry portal, use the version toggle to switch between Foundry (classic) and Foundry (new), then follow the matching tab in the Foundry section. |
 | The API returns `unknown` as the detected language. | The input text might be too short or ambiguous. Provide a longer text sample or set the **Country/region hint** to improve accuracy. |
-| The API returns an `InvalidCountryHint` error. | Confirm the country hint code is a valid ISO 3166-1 alpha-2 code (for example, `US`, `FR`, `JP`). |
+| The API returns an `InvalidCountryHint` error. | Confirm the country/region hint code is a valid ISO 3166-1 alpha-2 code (for example, `US`, `FR`, `JP`). |
 
 ## Clean up resources
 

@@ -10,4 +10,4 @@ ms.custom: include file
 ---
 
 > [!NOTE]
-> This capability is available only in the  Foundry (new) portal. Look for :::image type="icon" source="../media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Foundry (new).
+> This capability is available only in the  Foundry (new) portal. Look for :::image type="icon" source="../../media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Foundry (new).

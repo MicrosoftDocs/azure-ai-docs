@@ -37,22 +37,22 @@ Data zone deployments are available in the same Azure OpenAI resource as all oth
 <br>
 
 ### Standard deployment model availability
-|   **Region**   | **gpt-4.1**, **2025-04-14** | **gpt-4.1-mini**, **2025-04-14** | **o3-mini** | **gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-35-turbo**, **0125** | **text-embedding-3-large**, **1** | **text-embedding-3-small**, **1** | **text-embedding-ada-002**, **2** |
-|:---------------|:---------------------------:|:--------------------------------:|:-----------:|:--------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|:---------------------------------:|:---------------------------------:|:---------------------------------:|
-| usgovarizona   | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| usgovvirginia  | ✅ | ✅ | - | ✅ | ✅ | -  | ✅ | - | - | ✅ |
-| USGov DataZone |✅|✅|✅| ✅ | - | ✅  | - | - | - | - |
+|   **Region**   | **gpt-4.1**, **2025-04-14** | **gpt-4.1-mini**, **2025-04-14** | **o3-mini** | **gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **text-embedding-3-large**, **1** | **text-embedding-3-small**, **1** | **text-embedding-ada-002**, **2** |
+|:---------------|:---------------------------:|:--------------------------------:|:-----------:|:--------------------------:|:--------------------------:|:-------------------------------:|:---------------------------------:|:---------------------------------:|:---------------------------------:|
+| usgovarizona   | ✅ | ✅ | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| usgovvirginia  | ✅ | ✅ | - | ✅ | ✅ | -  | - | - | ✅ |
+| USGov DataZone |✅|✅|✅| ✅ | - | ✅  | - | - | - |
 
 To request quota increases for these models, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota). 
 
 <br>
 
 ### Provisioned deployment model availability
-|   **Region**  |  **o3-mini** |**gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-35-turbo**, **0125** |
-|:--------------|:------------:|:-------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|
-| usgovarizona   | - | ✅ | ✅ | - | ✅ |
-| usgovvirginia  | - | ✅ | ✅ | - | ✅ |
-| USGov DataZone | ✅| ✅| -  | ✅  | -  |
+|   **Region**  |  **o3-mini** |**gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** |
+|:--------------|:------------:|:-------------------------:|:--------------------------:|:-------------------------------:|
+| usgovarizona   | - | ✅ | ✅ | - |
+| usgovvirginia  | - | ✅ | ✅ | - |
+| USGov DataZone | ✅| ✅| -  | ✅  |
 
 <br>
 
@@ -72,8 +72,8 @@ In some cases, models are retired in Azure Government earlier or later than in t
 #### Early Model Retirements
 | Model                     | Version			      | Azure Government Status	  | Public Retirement date  |
 | --------------------------|-------------------|---------------------------|-------------------------|
-| `gpt-35-turbo`            | 1106				      | Retired                   | November 14, 2025       |
-| `gpt-4`                   | turbo-2024-04-09	| Retired                   | November 14, 2025       |
+| `gpt-4o`                  | 0513              | March 31, 2026 (for all types)           | October 1, 2026 (for DataZone and PTU) |
+| `gpt-4o-mini`             | 0718              | March 31, 2026 (for all types)           | October 1, 2026 (for DataZone and PTU) |
 
 #### Late Model Retirements
 | Model                     | Version			      | Azure Government Status	  | Public Retirement date  | Replacement Model   | Upgrade date       | Azure Government Retirement date |

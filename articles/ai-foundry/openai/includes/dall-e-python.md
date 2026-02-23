@@ -16,17 +16,21 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Py
 
 [Library source code](https://github.com/openai/openai-python/tree/main/src/openai) | [Package](https://github.com/openai/openai-python) | [Samples](https://github.com/openai/openai-python/tree/main/examples)
 
-## Prerequisites
+### Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - An Azure OpenAI resource created in a compatible region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
     - Access the Azure OpenAI resource endpoint and keys in the Azure portal.
-- Then, you need to deploy a `dalle3` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- A deployed image generation model:
+    - **DALL-E 3**: Deploy a `dalle3` model. Generally available.
+    - **GPT-image-1 series**: Deploy a `gpt-image-1` model. Requires [limited access registration](https://aka.ms/oai/access).
 
-## Setup
+For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-### Retrieve key and endpoint
+### Setup
+
+#### Retrieve key and endpoint
 
 To successfully call the Azure OpenAI APIs, you need the following information about your Azure OpenAI resource:
 
@@ -41,7 +45,7 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-## Install the Python SDK
+### Install the Python SDK
 
 
 Open a command prompt and browse to your project folder. Install the OpenAI Python SDK by using the following command:
@@ -56,11 +60,11 @@ pip install requests
 pip install pillow 
 ```
 
-## Generate images with DALL-E
+### Generate images
 
 Create a new python file, _quickstart.py_. Open it in your preferred editor or IDE.
 
-Replace the contents of _quickstart.py_ with the following code. 
+Replace the contents of _quickstart.py_ with the following code.
 
 ```python
 from openai import AzureOpenAI
@@ -119,21 +123,29 @@ python quickstart.py
 
 Wait a few moments to get the response.
 
-## Output
+### Output
 
 Azure OpenAI stores the output image in the _generated_image.png_ file in your specified directory. The script also displays the image in your default image viewer.
 
+A successful response includes:
+- A `created` timestamp
+- A `data` array with at least one image object
+- Either a `url` (temporary link valid for 24 hours) or `b64_json` (base64-encoded image data)
+
+#### Common errors
+
+| Error | Cause | Resolution |
+|-------|-------|------------|
+| `DeploymentNotFound` | The deployment name doesn't exist or is misspelled | Verify the deployment name in the Azure portal or Foundry portal |
+| `AuthenticationError` | Invalid or missing API key | Check that your `AZURE_OPENAI_API_KEY` environment variable is set correctly |
+| `RateLimitError` | Rate limit exceeded | Implement retry logic with exponential backoff |
+| `content_policy_violation` | Prompt or generated output blocked by content filter | Modify the prompt to comply with the content policy |
+
 The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
 
-## Clean up resources
+### Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 - [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
-
-## Next steps
-
-* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).
-* See the [API reference](../reference.md#image-generation)

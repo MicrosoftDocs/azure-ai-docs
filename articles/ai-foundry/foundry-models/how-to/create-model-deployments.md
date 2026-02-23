@@ -102,9 +102,9 @@ To add a model, first identify the model that you want to deploy. Query the avai
 
     ```output
     {
-      "name": "Phi-3.5-vision-instruct",
+      "name": "Phi-4-mini-instruct",
       "format": "Microsoft",
-      "version": "2",
+      "version": "1",
       "sku": "GlobalStandard",
       "capacity": 1
     }
@@ -114,15 +114,15 @@ To add a model, first identify the model that you want to deploy. Query the avai
 
 1. Identify the model you want to deploy. You need the properties `name`, `format`, `version`, and `sku`. The property `format` indicates the provider offering the model. Depending on the type of deployment, you might also need capacity.
 
-1. Add the model deployment to the resource. The following example adds `Phi-3.5-vision-instruct`:
+1. Add the model deployment to the resource. The following example adds `Phi-4-mini-instruct`:
 
     ```azurecli
     az cognitiveservices account deployment create \
         -n $accountName \
         -g $resourceGroupName \
-        --deployment-name Phi-3.5-vision-instruct \
-        --model-name Phi-3.5-vision-instruct \
-        --model-version 2 \
+        --deployment-name Phi-4-mini-instruct \
+        --model-name Phi-4-mini-instruct \
+        --model-version 1 \
         --model-format Microsoft \
         --sku-capacity 1 \
         --sku-name GlobalStandard
@@ -130,7 +130,19 @@ To add a model, first identify the model that you want to deploy. Query the avai
 
     Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservices/account/deployment)
 
-1. The model is ready to use.
+1. Verify the deployment completed successfully:
+
+    ```azurecli
+    az cognitiveservices account deployment show \
+        --deployment-name Phi-4-mini-instruct \
+        -n $accountName \
+        -g $resourceGroupName \
+    | jq '.properties.provisioningState'
+    ```
+
+    The output should display `"Succeeded"`. The model is ready to use after provisioning completes.
+
+    Reference: [az cognitiveservices account list-models](/cli/azure/cognitiveservices/account#az-cognitiveservices-account-deployment-show)
 
 You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability is useful if you want to test different configurations for a given model, including content filters.
 
@@ -147,7 +159,7 @@ You can consume deployed models using the [Endpoints for Foundry Models](../conc
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://learn.microsoft.com/rest/api/aifoundry/modelinference/).
+To make requests to the Foundry Models endpoint, append the route `models`. For example: `https://<resource>.services.ai.azure.com/models`. See the [Azure AI Model Inference API reference](/rest/api/aifoundry/modelinference/) for all supported operations.
 
 **Inference keys**
 
@@ -171,7 +183,7 @@ You can see all the deployments available using the CLI:
 
     ```azurecli
     az cognitiveservices account deployment show \
-        --deployment-name "Phi-3.5-vision-instruct" \
+        --deployment-name "Phi-4-mini-instruct" \
         -n $accountName \
         -g $resourceGroupName
     ```
@@ -182,7 +194,7 @@ You can see all the deployments available using the CLI:
 
     ```azurecli
     az cognitiveservices account deployment delete \
-        --deployment-name "Phi-3.5-vision-instruct" \
+        --deployment-name "Phi-4-mini-instruct" \
         -n $accountName \
         -g $resourceGroupName
     ```
@@ -205,9 +217,9 @@ You can see all the deployments available using the CLI:
 
 * The model name, provider, version, and SKU you want to deploy. You can use the Foundry portal or the Azure CLI to find this information. In this example, you deploy the following model:
 
-  * **Model name**: `Phi-3.5-vision-instruct`
+  * **Model name**: `Phi-4-mini-instruct`
   * **Provider**: `Microsoft`
-  * **Version**: `2`
+  * **Version**: `1`
   * **Deployment type**: Global standard
 
 ## Set up the environment
@@ -238,15 +250,28 @@ cd azureai-model-inference-bicep/infra
     ```azurecli
     RESOURCE_GROUP="<resource-group-name>"
     ACCOUNT_NAME="<azure-ai-model-inference-name>" 
-    MODEL_NAME="Phi-3.5-vision-instruct"
+    MODEL_NAME="Phi-4-mini-instruct"
     PROVIDER="Microsoft"
-    VERSION=2
+    VERSION=1
     
     az deployment group create \
         --resource-group $RESOURCE_GROUP \
         --template-file ai-services-deployment-template.bicep \
         --parameters accountName=$ACCOUNT_NAME modelName=$MODEL_NAME modelVersion=$VERSION modelPublisherFormat=$PROVIDER
     ```
+
+1. Verify the deployment completed successfully:
+
+    ```azurecli
+    az cognitiveservices account deployment show \
+        --deployment-name $MODEL_NAME \
+        -n $ACCOUNT_NAME \
+        -g $RESOURCE_GROUP \
+    | jq '.properties.provisioningState'
+    ```
+
+    The output should display `"Succeeded"`.
+
 
 
 ## Use the model
@@ -269,7 +294,6 @@ To make requests to the Foundry Models endpoint, append the route `models`. For 
 ```azurecli
 az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
 ```
-
 ::: zone-end
 
 ## Troubleshooting

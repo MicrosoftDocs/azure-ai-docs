@@ -45,4 +45,6 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 ---
 
+After running the code, you see a model-generated response in the console (for example, a short poem or answer to your prompt). This confirms your project endpoint, authentication, and model deployment are working correctly.
+
 [!INCLUDE [agent-v2-switch](agent-v2-switch.md)]

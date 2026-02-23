@@ -1,22 +1,31 @@
 ---
-title: Quotas and limits for the new Foundry Agent Service
+title: Quotas and limits for Microsoft Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: Learn the quotas and limits for the new Foundry Agent Service, including file sizes, vector stores, threads, messages, tools, and how to handle limit errors.
+description: Review default limits for Foundry Agent Service, including file sizes, vector stores, messages, tools, error handling, supported regions, and compatible models.
 manager: nitinme
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 02/02/2026
+ms.date: 02/12/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions
 monikerRange: 'foundry'
 ai-usage: ai-assisted
 ---
 
-# Quotas, limits, models, and regional support
+# Foundry Agent Service limits, quotas, and regional support
 
-This article describes the quotas, limits, and regional availability for Foundry Agent Service.
+Foundry Agent Service enforces quotas and limits on agent artifacts, file uploads, messages, and tool registrations. Understanding these limits helps you design applications that scale without hitting service boundaries. This article lists default limits, supported regions, compatible models, and guidance for handling limit errors.
+
+> [!NOTE]
+> Foundry Agent Service is generally available (GA). Some sub-features, such as [hosted agents](../concepts/hosted-agents.md), are in public preview and might have different constraints.
+
+## Prerequisites
+
+- An Azure subscription.
+- A [Microsoft Foundry project](../../../how-to/create-projects.md).
+- A deployed model compatible with Agent Service. Model and region availability can vary.
 
 ## Supported regions
 
@@ -42,47 +51,53 @@ Foundry Agent Service is available in the following Azure regions:
 - West US
 - West US 3
 
+> [!IMPORTANT]
+> Not all tools are available in every region. For example, file search isn't available in Italy North and Brazil South. For the full tool-by-region matrix, see [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model).
+
 ## Azure OpenAI model support
 
 Foundry Agent Service is compatible with current Azure OpenAI models. For a complete list of supported models and their availability by region, see [Foundry Models sold directly by Azure](../../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 ## Other model collections
 
-The following Foundry models are available for your agents to use.
+In addition to Azure OpenAI models, Agent Service supports models from the Foundry model catalog. These models are deployed and managed through Foundry and follow separate quotas. The following models are available for your agents to use.
 
 [!INCLUDE [agent-service-models-support-list](../../../agents/includes/agent-service-models-support-list.md)]
-<!--
-## Verify model support
 
-Model availability can change over time.
+> [!TIP]
+> Model availability can change over time. To verify what you can deploy for your project and region, use the Foundry portal model experience.
 
-- To verify what you can deploy for your project and region, use the Foundry portal model experience.
-- If you use provisioned throughput, make sure you have provisioned throughput units (PTUs) available in the target region. For background, see [Provisioned throughput](../../../openai/concepts/provisioned-throughput.md).
--->
+## Troubleshooting
 
-### Troubleshooting
+### A model or version isn't available in your region
 
-#### A model or version isn't available in your region
+- Confirm you selected the right tab for your deployment type (global standard vs. provisioned).
+- Try a different region that supports the model and version. See the [model and region support table](../../../default/agents/concepts/limits-quotas-regions.md).
+- If you're using gpt-5 models, [registration](https://aka.ms/openai/gpt-5/2025-08-07) is required. Access is granted according to Microsoft's eligibility criteria.
 
-- Confirm you selected the right tab for your deployment type.
-- Try a different region that supports the model and version.
-- If you're using gpt-5 models, make sure your subscription has access. Some models require registration.
+### A tool isn't available in your region
 
-#### File search isn't available
+- Not all tools are supported in every region. For example, file search isn't available in Italy North and Brazil South, and code interpreter isn't available in all regions.
+- Check the [tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model) table to confirm availability before you deploy.
+- If a tool isn't available, choose a supported region or use a different tool.
 
-- File search isn't available in Italy North and Brazil South. Choose a supported region, or use a different tool.
-
-#### Provisioned throughput deployment fails
+### Provisioned throughput deployment fails
 
 - Confirm you have enough PTUs available in the region.
 - Review [Provisioned throughput](../../../openai/concepts/provisioned-throughput.md) and [Spillover traffic management](../../../openai/how-to/spillover-traffic-management.md).
+
+### Agent receives rate-limit (429) errors
+
+- Implement exponential backoff with jitter in your application retry logic.
+- For sustained high-throughput workloads, consider provisioned throughput deployments.
+- Review [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md) for your deployment's tokens-per-minute and requests-per-minute caps.
 
 ## Quotas and limits
 
 Foundry Agent Service enforces limits in two places:
 
-- **Agent Service limits**. Limits for agent and thread artifacts, such as file uploads, vector store attachments, message counts, and tool registration.
-- **Model limits**. Quotas and rate limits for the model deployments your agents call.
+- **Agent Service limits.** Limits for agent and thread artifacts, such as file uploads, vector store attachments, message counts, and tool registration.
+- **Model limits.** Quotas and rate limits for the model deployments your agents call.
 
 If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](runtime-components.md). If you're using file search, see [Vector stores for file search](vector-stores.md).
 
@@ -100,9 +115,9 @@ The following table lists default limits enforced by the Agent Service. These li
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
 
-Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md) for model-specific rate limits.
+The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md) for model-specific rate limits.
 
-## Handle limit errors
+## Limit error reference
 
 When you exceed a limit, the Agent Service returns an error. Handle these errors gracefully in your application.
 
@@ -117,11 +132,12 @@ When you exceed a limit, the Agent Service returns an error. Handle these errors
 
 For example:
 
-- **File exceeds the maximum size**: Uploading the file fails. Split the content into smaller files or reduce file size before you upload.
-- **Vector store token limit**: Attaching a file to a vector store fails if the file exceeds the token limit. Reduce the file content or split it into multiple files.
-- **Thread message cap**: Adding messages can fail after a thread reaches the message limit. Create a new thread for a new conversation session, or archive and rotate threads as part of your application design.
-- **Message content size**: Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
-- **Tool registration cap**: Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
+- **File exceeds the maximum size.** Uploading the file fails. Split the content into smaller files or reduce file size before you upload.
+- **Vector store token limit.** Attaching a file to a vector store fails if the file exceeds the token limit. Reduce the file content or split it into multiple files.
+- **Thread message cap.** Adding messages can fail after a thread reaches the message limit. Create a new thread for a new conversation session, or archive and rotate threads as part of your application design.
+- **Message content size.** Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
+- **Tool registration cap.** Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
+- **Rate limit exceeded.** API calls to the model deployment are throttled. Implement exponential backoff with jitter.
 
 For file search scenarios, see [Vector stores for file search](vector-stores.md) for guidance on managing vector store growth.
 
@@ -129,11 +145,11 @@ For file search scenarios, see [Vector stores for file search](vector-stores.md)
 
 Use the following practices to reduce limit-related failures:
 
-- **Keep files small and focused**. Prefer multiple smaller documents over a single large document.
-- **Avoid very large messages**. Put long content in uploaded files and query it by using file search.
-- **Plan for long conversations**. Treat threads as session state and rotate to new threads when conversations become very long.
-- **Register only required tools**. Remove unused tools from agent definitions.
-- **Monitor usage trends**. Track agent activity using [Foundry Agent Service metrics](../../../agents/how-to/metrics.md) to identify growth before you hit limits.
+- **Keep files small and focused.** Prefer multiple smaller documents over a single large document.
+- **Avoid very large messages.** Put long content in uploaded files and query it by using file search.
+- **Plan for long conversations.** Treat threads as session state and rotate to new threads when conversations become very long.
+- **Register only required tools.** Remove unused tools from agent definitions.
+- **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../../agents/how-to/metrics.md) to identify growth before you hit limits.
 
 ## Quotas and limits for models
 
@@ -150,11 +166,14 @@ To view or request more model quota, see [Manage and increase quotas for resourc
 
 The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
 
-- **Model quotas**: You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../../how-to/quota.md).
-- **Agent Service limits**: The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints using the best practices described earlier.
+- **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../../how-to/quota.md).
+- **Agent Service limits.** The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints by using the best practices described earlier.
 
 ## Related content
 
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
-- [Monitor Foundry Agent Service](../../../agents/how-to/metrics.md)
+- [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
+- [Monitor Foundry Agent Service](../../../agents/how-to/metrics.md)
+- [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md)
+- [Manage and increase quotas for resources with Microsoft Foundry](../../../how-to/quota.md)

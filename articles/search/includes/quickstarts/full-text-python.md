@@ -20,7 +20,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 - An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
-- The latest version of [Python](https://www.python.org/downloads/).
+- [Python 3.8](https://www.python.org/downloads/) or later.
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions.
 
@@ -40,25 +40,32 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 1. Use Git to clone the sample repository.
 
-   ```console
-   git clone https://github.com/Azure-Samples/azure-search-python-samples
-   ```
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-python-samples
+    ```
 
-1. Open the `azure-search-python-samples/Quickstart-Keyword-Search` folder in Visual Studio Code.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-1. Open the `azure-search-quickstart.ipynb` file.
+    ```bash
+    cd azure-search-python-samples/Quickstart-Keyword-Search
+    code .
+    ```
 
-1. In the upper-right corner of the notebook, select **Select Kernel** > **Python Environments...** > **Create Python Environment**, and then follow the prompts to create a virtual environment.
+1. Open `azure-search-quickstart.ipynb`.
+
+1. Press **Ctrl+Shift+P**, select **Notebook: Select Notebook Kernel**, and follow the prompts to create a virtual environment.
+
+   When complete, you should see a `.venv` folder in the project directory.
 
 1. Run the first code cell to install the required packages.
 
-1. In the second code cell, replace the placeholder value for `search_endpoint` with the URL you obtained in [Get endpoint](#get-endpoint), and then run the cell.
+1. In the second code cell, replace the placeholder value for `search_endpoint` with the URL you obtained in [Get endpoint](#get-endpoint), and run the cell.
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
-    ```azurecli
-    az login
-    ```
+   ```azurecli
+   az login
+   ```
 
 ## Run the code
 
@@ -89,6 +96,8 @@ Description: This classic hotel is fully-refurbished and ideally located on the 
 ```
 
 ## Understand the code
+
+[!INCLUDE [understand code note](../understand-code-note.md)]
 
 Now that you've run the code, let's break down the key steps:
 
@@ -151,7 +160,7 @@ print(f' {result.name} created')
 
 Azure AI Search searches over content stored in the service. In this step, you load JSON documents that conform to the hotel index you created.
 
-In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. The notebook defines a documents payload as a list of dictionaries containing hotel data:
+In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. The notebook defines a documents payload as a list of dictionaries containing hotel data.
 
 ```python
 # Create a documents payload

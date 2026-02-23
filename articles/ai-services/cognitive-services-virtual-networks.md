@@ -6,7 +6,7 @@ author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 01/06/2026
+ms.date: 02/17/2026
 ms.author: aahi
 ms.custom:
   - devx-track-azurepowershell
@@ -44,7 +44,9 @@ Virtual networks are supported in [regions where Foundry Tools are available](ht
 > - Anomaly Detector
 > - Azure OpenAI
 > - Content Moderator
+> - Content Understanding
 > - Custom Vision
+> - Document Intelligence 
 > - Face
 > - Language Understanding (LUIS)
 > - Personalizer

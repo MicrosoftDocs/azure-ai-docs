@@ -16,6 +16,7 @@ _repo.*/
 *sec.endpointdlp
 
 # CoPilot instructions and prompts
+.agents/
 .github/copilot-instructions.md
 .github/prompts/*.md
 .github/prompts/*.zip
@@ -34,9 +35,12 @@ specs/
 .github/instructions/
 .github/prompts/
 .github/skills/
+.playwright-mcp/
 .vscode/settings.json
 .dockit/
 .env
 .env.example
+.venv/
+node_modules/
 requirements.txt
 .roo

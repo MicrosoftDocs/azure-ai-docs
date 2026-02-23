@@ -3,7 +3,7 @@ title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
 description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 01/21/2026
+ms.date: 02/10/2026
 ms.author: jburchel
 author: jonburchel
 ms.reviewer: dantaylo
@@ -41,11 +41,11 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 ## Prerequisites 
 
-- Azure subscription and CLI authentication (`az login`)
-- Azure CLI 2.67.0 or later (check with `az version`)
+- An Azure subscription. If you don't have one, [create one for free](https://azure.microsoft.com/free).
+- Azure CLI 2.67.0 or later, authenticated with `az login` (check with `az version`)
 - A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you don't have one: [Create a project](../../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../concepts/foundry-models-overview.md)). 
 - Python 3.10 or later
-- .NET SDK (for the C# sample)
+- .NET SDK 8.0 or later (for the C# sample)
 - SharePoint connection configured in your project ([SharePoint tool documentation](../agents/how-to/tools/sharepoint.md))
 
   > [!NOTE]
@@ -175,13 +175,13 @@ Start by running the agent so you see working functionality before diving into i
 
 1. Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
-1. Verify that your `requirements.txt` uses these published package versions (MCP support requires a prerelease of `azure-ai-agents`):
+1. Verify that your `requirements.txt` uses these published package versions:
 
    ```text
-   azure-ai-agents==1.2.0b6
-   azure-ai-projects==1.0.0
+   azure-ai-projects==2.0.0b3
    azure-identity
    python-dotenv
+   openai
    ```
 
 1. Install dependencies:
@@ -202,6 +202,8 @@ Start by running the agent so you see working functionality before diving into i
    dotnet restore
    ```
    ---
+
+   Verify the install succeeded. You should see `Successfully installed azure-ai-projects-...` (Python) or `Restore completed` (.NET) with no errors.
 
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)] 
 1. Configure `.env`.
@@ -228,8 +230,8 @@ MODEL_DEPLOYMENT_NAME=gpt-4o-mini
 # The Microsoft Learn MCP Server (optional)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 
-# SharePoint integration (optional - requires connection setup)
-SHAREPOINT_RESOURCE_NAME=<your-sharepoint-connection-name>
+# SharePoint integration (optional - requires connection name)
+SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
 ```
 
 # [C#](#tab/csharp)
@@ -239,14 +241,16 @@ SHAREPOINT_RESOURCE_NAME=<your-sharepoint-connection-name>
 PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
 MODEL_DEPLOYMENT_NAME=gpt-4o-mini
 
-# SharePoint integration (optional - requires full ARM resource ID)
-SHAREPOINT_CONNECTION_ID=/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>/connections/<connection-name>
+# SharePoint integration (optional - requires connection name)
+SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
 
 # The Microsoft Learn MCP Server (optional)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 ```
 
 ---
+
+   Confirm `.env` contains valid values by opening the file and verifying that `PROJECT_ENDPOINT` starts with `https://` and `MODEL_DEPLOYMENT_NAME` matches the name of a deployed model in your project.
 
 > [!TIP]
 > To get your **tenant ID**, run:
@@ -287,15 +291,15 @@ Successful run with SharePoint:
 
 ```text
 🤖 Creating Modern Workplace Assistant...
-✅ SharePoint connected: YourConnection
-✅ Agent created: asst_abc123
+✅ SharePoint tool configured successfully
+✅ Agent created successfully (name: Modern Workplace Assistant, version: 1)
 ```
 
 Graceful degradation without SharePoint:
 
 ```text
-⚠️  SharePoint connection not found: Connection 'YourConnection' not found
-✅ Agent created: asst_abc123
+📁 SharePoint integration skipped (SHAREPOINT_CONNECTION_NAME not set)
+✅ Agent created successfully (name: Modern Workplace Assistant, version: 1)
 ```
 
 Now that you have a working agent, the next sections explain how it works. You don't need to take any action while reading these sections—they're for explanation.
@@ -311,6 +315,8 @@ Now that you have a working agent, the next sections explain how it works. You d
    - `collaboration-standards.docx`
    - `data-governance-policy.docx`
 
+1. Verify that four documents appear in the library before proceeding.
+
 ### Sample structure
 
 ```text
@@ -321,9 +327,12 @@ Now that you have a working agent, the next sections explain how it works. You d
 └── data-governance-policy.docx  # Data classification, retention
 ```
 
-## Step 4: Understand the assistant implementation
+## Understand the assistant implementation
 
-This section explains the core code in `main.py` (Python) or `ModernWorkplaceAssistant/Program.cs` (C#). You already ran the agent. This section is conceptual and requires no changes. After reading it, you can:
+> [!NOTE]
+> This section is for reference only — no action needed. It explains the code you already ran.
+
+This section explains the core code in `main.py` (Python) or `ModernWorkplaceAssistant/Program.cs` (C#). You already ran the agent. After reading it, you can:
 - Add new internal and external data tools.
 - Extend dynamic instructions.
 - Introduce multi-agent orchestration.
@@ -429,13 +438,11 @@ When you run the agent, you see output similar to the following example. The out
 ```bash
 ✅ Connected to Foundry
 🚀 Foundry - Modern Workplace Assistant
-Tutorial 1: Building Enterprise Agents with Microsoft Foundry Project SDK
+Tutorial 1: Building Enterprise Agents with Microsoft Foundry SDK
 ======================================================================
 🤖 Creating Modern Workplace Assistant...
 📁 Configuring SharePoint integration...
-   Connection name: ContosoCorpPoliciesProcedures
-   🔍 Resolving connection name to ARM resource ID...
-   ✅ Resolved
+   Connection ID: /subscriptions/.../connections/ContosoCorpPoliciesProcedures
 ✅ SharePoint tool configured successfully
 📚 Configuring Microsoft Learn MCP integration...
    Server URL: https://learn.microsoft.com/api/mcp
@@ -444,13 +451,13 @@ Tutorial 1: Building Enterprise Agents with Microsoft Foundry Project SDK
    ✓ SharePoint tool added
    ✓ MCP tool added
    Total tools: 2
-✅ Agent created successfully
+✅ Agent created successfully (name: Modern Workplace Assistant, version: 1)
 
 ======================================================================
 🏢 MODERN WORKPLACE ASSISTANT - BUSINESS SCENARIO DEMONSTRATION
 ======================================================================
 This demonstration shows how AI agents solve real business problems
-using the Azure AI Agents SDK v2.
+using the Microsoft Foundry SDK.
 ======================================================================
 
 📊 SCENARIO 1/3: 📋 Company Policy Question (SharePoint Only)
@@ -459,7 +466,7 @@ using the Azure AI Agents SDK v2.
 🎯 BUSINESS CONTEXT: Employee needs to understand company-specific remote work requirements
 🎓 LEARNING POINT: SharePoint tool retrieves internal company policies
 --------------------------------------------------
-🤖 ASSISTANT RESPONSE:
+🤖 AGENT RESPONSE:
 ✅ SUCCESS: Contosoʹs remote work policy, effective January 2024, outlines the following key points:
 
 ### Overview
@@ -477,7 +484,7 @@ Contoso Corp supports flexible work arrangements, including remote work, to enha
 🎯 BUSINESS CONTEXT: IT administrator needs authoritative Microsoft technical guidance
 🎓 LEARNING POINT: MCP tool accesses Microsoft Learn for official documentation with links
 --------------------------------------------------
-🤖 ASSISTANT RESPONSE:
+🤖 AGENT RESPONSE:
 ✅ SUCCESS: To implement Azure AD Conditional Access policies correctly, follow these key steps outlined in the Microsoft Learn documentation:
 
 ### 1. Understanding Conditional Access
@@ -492,7 +499,7 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 🎯 BUSINESS CONTEXT: Need to map company policy to technical implementation with official guidance
 🎓 LEARNING POINT: Both tools work together: SharePoint for policy + MCP for implementation docs
 --------------------------------------------------
-🤖 ASSISTANT RESPONSE:
+🤖 AGENT RESPONSE:
 ✅ SUCCESS: To configure your Azure environment in compliance with Contoso Corpʹs remote work security policy, you need to focus on several key areas, including enabling Multi-Factor Authentication (MFA), utilizing Azure Security Center, and implementing proper access management. Below are specific steps and li...
    📏 Full response: 3436 characters
 📈 STATUS: completed
@@ -500,8 +507,8 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 
 ✅ DEMONSTRATION COMPLETED!
 🎓 Key Learning Outcomes:
-   • Microsoft Foundry Project SDK usage for enterprise AI
-   • Proper thread and message management
+   • Microsoft Foundry SDK usage for enterprise AI
+   • Conversation management via the Responses API
    • Real business value through AI assistance
    • Foundation for governance and monitoring (Tutorials 2-3)
 
@@ -512,7 +519,7 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 🔗 Next: Add evaluation metrics, monitoring, and production deployment
 ```
 
-## Step 5: Evaluate the assistant by using cloud evaluation
+## Step 4: Evaluate the assistant by using cloud evaluation
 
 The evaluation framework tests realistic business scenarios by using the **cloud evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
 
@@ -604,7 +611,7 @@ When you run the evaluation script, you see output similar to the following exam
 
 ```bash
 python evaluate.py
-Agent created (id: asst_abc123, name: Modern Workplace Assistant, version: 1)
+Agent created (name: Modern_Workplace_Assistant, version: 1)
 Evaluation created (id: eval_xyz789, name: Agent Evaluation)
 Evaluation run created (id: run_def456)
 Waiting for eval run to complete... current status: running
@@ -651,6 +658,18 @@ You can also view detailed results in the Foundry portal by selecting **Evaluati
 > [!TIP]
 > For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](../../how-to/continuous-evaluation-agents.md) for integration patterns.
 
+## Troubleshooting
+
+| Symptom | Cause | Resolution |
+|---------|-------|------------|
+| `DefaultAzureCredential` authentication error | Azure CLI session expired or not signed in | Run `az login` and retry |
+| `Model deployment not found` | Model name in `.env` doesn't match a deployment in your project | Open your project in the Foundry portal, check **Deployments**, and update `MODEL_DEPLOYMENT_NAME` in `.env` |
+| `SharePoint tool configured` but agent can't find documents | Documents not uploaded or connection name incorrect | Verify documents appear in the SharePoint library and that `SHAREPOINT_CONNECTION_NAME` matches the connection in your project |
+| MCP tool timeout or connection error | Microsoft Learn MCP server is unreachable | Verify `MCP_SERVER_URL` is set to `https://learn.microsoft.com/api/mcp` and that your network allows outbound HTTPS |
+| `403 Forbidden` on SharePoint | Insufficient permissions on the SharePoint site | Confirm your signed-in identity has at least **Read** access to the SharePoint document library |
+
+
+
 ## Summary
 
 You now have:
@@ -684,6 +703,15 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 - [Fine-tune models and generate evaluation insights for continuous improvement](../../openai/how-to/fine-tuning.md).
 - [Integrate Azure API Management gateway with continuous quality monitoring](../configuration/enable-ai-api-management-gateway-portal.md).
 - [Implement fleet governance, compliance controls, and cost optimization](/azure/cloud-adoption-framework/scenarios/ai/platform/governance).
+
+## Clean up resources
+
+When you no longer need them, delete the resources you created in this tutorial:
+
+1. **Delete the agent**: The agent is automatically deleted at the end of `main.py` (Python) or `Program.cs` (C#). If you interrupted the run, delete it manually from the **Agents** page in the Foundry portal.
+1. **Delete the evaluation run**: In the Foundry portal, go to **Evaluation**, select the evaluation run, and delete it.
+1. **Remove SharePoint sample documents**: If you uploaded the sample `.docx` files to a production SharePoint site, remove them from the document library.
+1. **(Optional) Delete the Foundry project**: If you created a project only for this tutorial, delete it from the Foundry portal to remove all associated resources.
 
 ## Related content
 

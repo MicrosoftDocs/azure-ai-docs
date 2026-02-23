@@ -41,7 +41,7 @@ The **Language playground** consists of four sections:
    | Section | Purpose |
    | --- | --- |
    | **Top banner** | Select the **Detect language** tile. |
-   | **Left pane** | Set **Configuration** options such as API version, model version, and country hint. |
+   | **Left pane** | Set **Configuration** options such as API version, model version, and country/region hint. |
    | **Center pane** | Enter text for processing and review results. |
    | **Right pane** | View **Details** for detected language and script. |
 
@@ -53,7 +53,7 @@ The **Language playground** consists of four sections:
    |--------------------|-----------------------------------------|
    |Select API version  | Select which version of the API to use.    |
    |Select model version| Select which version of the model to use.|
-   |Select country hint| Select the origin country/region of the input text. |
+   |Select country/region hint| Select the origin country/region of the input text. |
 
 1. Select the **Run** button to detect the language.
 
@@ -68,7 +68,7 @@ After the operation completes, the **Details** section displays the following fi
 
   :::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot showing language detection results with confidence scores and ISO codes displayed in the Details pane of the Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
 
-Verify that the detected language matches the language of your input text. If the result shows `unknown`, provide a longer text sample or set a **Country hint** for better accuracy.
+Verify that the detected language matches the language of your input text. If the result shows `unknown`, provide a longer text sample or set a **Country/region hint** for better accuracy.
 
 ### [Foundry (new)](#tab/foundry-new)
 

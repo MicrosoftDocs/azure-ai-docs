@@ -13,7 +13,7 @@ ms.date: 02/20/2025
 
 Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Models image generation REST APIs by using Python.
 
-## Prerequisites
+### Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
@@ -21,9 +21,9 @@ Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Mode
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
 - Then, you need to deploy a `gpt-image-1`-series or `dalle3` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-## Setup 
+### Setup 
 
-### Retrieve key and endpoint
+#### Retrieve key and endpoint
 
 To successfully call the Azure OpenAI APIs, you need the following information about your Azure OpenAI resource:
 
@@ -38,7 +38,7 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-## Create a new Python application
+### Create a new Python application
 
 Create a new Python file named _quickstart.py_. Open the new file in your preferred editor or IDE.
 
@@ -134,7 +134,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
 tbd
 -->
 
-#### [DALL-E](#tab/dall-e-3)
+#### [DALL-E 3](#tab/dalle-3)
 
 
 1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text.
@@ -181,7 +181,7 @@ tbd
 
 ---
 
-## Output
+### Output
 
 The output from a successful image generation API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
 
@@ -196,6 +196,21 @@ The output from a successful image generation API call looks like the following 
     ]
 } 
 ```
+
+A successful response includes:
+- A `created` timestamp (Unix epoch time)
+- A `data` array with at least one image object
+- Either a `url` (temporary link valid for 24 hours) or `b64_json` (base64-encoded image data)
+
+#### Common errors
+
+| Error | Cause | Resolution |
+|-------|-------|------------|
+| `DeploymentNotFound` | The deployment name doesn't exist or is misspelled | Verify the deployment name in the Azure portal or Foundry portal |
+| `401 Unauthorized` | Invalid or missing API key | Check that your `AZURE_OPENAI_API_KEY` environment variable is set correctly |
+| `429 Too Many Requests` | Rate limit exceeded | Implement retry logic with exponential backoff |
+| `content_policy_violation` | Prompt or generated output blocked by content filter | Modify the prompt to comply with the content policy |
+| `InvalidPayload` | Missing required parameters or invalid values | Check that `prompt`, `size`, and `n` are correctly specified |
 
 The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md). For examples of error responses, see the [Image generation how-to guide](../how-to/dall-e.md).
 
@@ -226,15 +241,9 @@ It's also possible that the generated image itself is filtered. In this case, th
 }
 ```
 
-## Clean up resources
+### Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 - [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
-
-## Next steps
-
-* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).
-* See the [API reference](../reference.md#image-generation)

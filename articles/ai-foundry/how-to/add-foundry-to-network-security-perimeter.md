@@ -22,7 +22,9 @@ Use a network security perimeter (NSP) to restrict data-plane access to your Mic
 
 This article gives only the Foundry-specific pointers you need. All procedural detail for creating perimeters, defining access rules, enabling logging, and using APIs lives in existing Azure networking documentation. Follow the links in each section for the authoritative steps.
 
+:::moniker range="foundry-classic"
 [!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)]
+:::moniker-end
 
 :::image type="content" source="../media/how-to/network/network-security-perimeter-diagram.png" alt-text="Diagram of the NSP for Foundry." lightbox="../media/how-to/network/network-security-perimeter-diagram.png":::
 
