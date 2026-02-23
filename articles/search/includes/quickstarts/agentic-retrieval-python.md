@@ -57,7 +57,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     code .
     ```
 
-1. Open `agentic-retrieval.ipynb`.
+1. Open `quickstart-agentic-retrieval.ipynb`.
 
 1. Press **Ctrl+Shift+P**, select **Notebook: Select Notebook Kernel**, and follow the prompts to create a virtual environment.
 
@@ -315,7 +315,7 @@ knowledge_base = KnowledgeBase(
         )
     ],
     output_mode=KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
-    answer_instructions="Provide a two sentence concise and informative answer based on the retrieved documents."
+    answer_instructions="Provide a 2 sentence concise and informative answer based on the retrieved documents."
 )
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
@@ -516,7 +516,7 @@ print("references_content:\n", references_content)
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following code from `agentic-retrieval.py` deleted the objects you created in this quickstart.
+Otherwise, the following code from `quickstart-agentic-retrieval.ipynb` deleted the objects you created in this quickstart.
 
 ### Delete the knowledge base
 

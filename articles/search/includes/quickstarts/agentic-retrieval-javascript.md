@@ -18,7 +18,7 @@ A *knowledge base* orchestrates agentic retrieval by decomposing complex queries
 Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
 > [!TIP]
-> Source code for the JavaScript version of this quickstart isn't available yet. You can copy the code directly from this article.
+> Source code for the JavaScript version of this quickstart isn't available. You can copy the code directly from this article.
 
 ## Prerequisites
 
@@ -46,28 +46,28 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 1. Open the folder in Visual Studio Code.
 
-1. Select **Terminal** > **New Terminal**, and then run the following commands to initialize the `package.json` file.
+1. Select **Terminal** > **New Terminal**, and then run the following commands to initialize `package.json`.
 
-    ```console
+    ```bash
     npm init -y
     npm pkg set type=module
     ```
 
 1. Install the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme).
 
-    ```console
+    ```bash
     npm install @azure/search-documents@12.3.0-beta.1
     ```
 
 1. For keyless authentication with Microsoft Entra ID, install the [Azure Identity client library for JavaScript](/javascript/api/overview/azure/identity-readme).
 
-    ```console
+    ```bash
     npm install @azure/identity
     ```
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
 
-    ```console
+    ```bash
     az login
     ```
 
@@ -402,7 +402,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 1. Build and run the application.
 
-    ```console
+    ```bash
     node --env-file=.env index.js
     ```
 
@@ -410,7 +410,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 The output of the application should be similar to the following:
 
-```console
+```output
 Waiting for indexing to complete...
 Expected documents: 194
 Current indexed count: 194

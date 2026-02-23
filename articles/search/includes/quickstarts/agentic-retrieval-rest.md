@@ -44,13 +44,13 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 1. Use Git to clone the sample repository.
 
-    ```console
+    ```bash
     git clone https://github.com/Azure-Samples/azure-search-rest-samples
     ```
 
 1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-    ```console
+    ```bash
     cd azure-search-rest-samples/Quickstart-agentic-retrieval
     code .
     ```

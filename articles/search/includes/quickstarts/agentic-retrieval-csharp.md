@@ -46,27 +46,36 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 1. Use Git to clone the sample repository.
 
-    ```console
+    ```bash
     git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
     ```
 
 1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-    ```console
+    ```bash
     cd azure-search-dotnet-samples/quickstart-agentic-retrieval
     code .
     ```
 
-1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder, and then paste the following content. Replace the placeholder values with the endpoints you obtained in [Get endpoints](#get-endpoints).
+1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
 
+1. Rename `sample.env` to `.env`.
+
+    ```bash
+    mv sample.env .env
     ```
-    SEARCH_ENDPOINT = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-    AOAI_ENDPOINT = PUT-YOUR-AOAI-FOUNDRY-URL-HERE
+
+1. Install the dependencies from `AgenticRetrievalQuickstart.csproj`.
+
+    ```bash
+    dotnet restore
     ```
+
+    When the restore completes, verify that no errors appear in the output.
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
 
-    ```console
+    ```bash
     az login
     ```
 
@@ -74,7 +83,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 Run the application to create an index, upload documents, configure knowledge sources and bases, and run agentic retrieval queries.
 
-```console
+```bash
 dotnet run
 ```
 
@@ -419,7 +428,7 @@ var retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
 messages.Add(new Dictionary<string, string>
 {
     { "role", "assistant" },
-    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
+    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
 });
 ```
 
@@ -438,7 +447,7 @@ The following code displays the response, activity, and references from the retr
 ```csharp
 // Print the response, activity, and references
 Console.WriteLine("Response:");
-Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
+Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
 
 Console.WriteLine("Activity:");
 foreach (var activity in retrievalResult.Value.Activity)
@@ -489,7 +498,7 @@ retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
 messages.Add(new Dictionary<string, string>
 {
     { "role", "assistant" },
-    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
+    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
 });
 ```
 
@@ -500,7 +509,7 @@ The following code displays the new response, activity, and references from the 
 ```csharp
 // Print the new response, activity, and references
 Console.WriteLine("Response:");
-Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
+Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
 
 Console.WriteLine("Activity:");
 foreach (var activity in retrievalResult.Value.Activity)
@@ -531,7 +540,7 @@ foreach (var reference in retrievalResult.Value.References)
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following code from `Program.cs` deleted the objects you created in this quickstart.
+Otherwise, the following code from `program.cs` deleted the objects you created in this quickstart.
 
 ### Delete the knowledge base
 
