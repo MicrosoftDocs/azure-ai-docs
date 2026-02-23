@@ -470,7 +470,7 @@ If the index was tied to knowledge uploaded as part of a thread, there are no re
 
 **Recovery steps:**
 
-1. If [soft delete](/azure/storage/common/storage-account-soft-delete) is enabled on the Storage account, recover the account within the retention period by using the Azure portal or Azure CLI.
+1. If [soft delete](/azure/storage/blobs/soft-delete-blob-overview) is enabled on the Storage account, recover the account within the retention period by using the Azure portal or Azure CLI.
 
    **Azure CLI:**
 
