@@ -527,19 +527,15 @@ Key points:
 
 [Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that extract, chunk, and vectorize content prior to indexing.
 
-There are four skillsets. Each one demonstrates an extraction and chunking strategy with a vectorization strategy. Besides differences in skillset composition, the`indexProjections` section differs for each combination. It corresponds to the outputs of each of the embedding skills.
-
-Extraction and chunking skills:
-
-+ [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Text Split skill](cognitive-search-skill-textsplit.md)
-+ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for both extraction and chunking
-
-Vectorization skills:
-
-+ [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md)
-+ [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) for textual descriptions of images and text embedding
+There are four skillset patterns. Each one demonstrates an extraction and chunking strategy, paired with a vectorization strategy. There are two key differences in each pattern: skillset composition and `indexProjections`. Projections vary based on the outputs of each embedding skill.
 
 ### [**Document extraction & multimodal embedding**](#tab/doc-extraction-vision)
+
+This pattern uses:
+
++ [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Text Split skill](cognitive-search-skill-textsplit.md) for extracting and chunking.
+
++ [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md) for text and image embeddings.
 
 ```rest
 ### Create a skillset
@@ -769,6 +765,12 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
 ```
 
 ### [**Document extraction & text embedding**](#tab/doc-extraction-text)
+
+This pattern uses:
+
++ [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Text Split skill](cognitive-search-skill-textsplit.md) for extraction and chunking.
+
++ [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) for textual descriptions of images and text embeddings.
 
 ```rest
 ### Create a skillset
@@ -1026,6 +1028,12 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
 
 ### [**Document layout & multimodal embedding**](#tab/doc-layout-vision)
 
+This pattern uses:
+
++ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extraction and chunking.
+
++ [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md) for text and image embeddings.
+
 ```rest
 ### Create a skillset
 ### Extraction/chunking: Document Intelligence Layout
@@ -1213,6 +1221,12 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
 ```
 
 ### [**Document layout & text embedding**](#tab/doc-layout-text)
+
+This pattern uses:
+
++ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extraction and chunking.
+
++ [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) for textual descriptions of images and text embeddings.
 
 ```rest
 ### Create a skillset
