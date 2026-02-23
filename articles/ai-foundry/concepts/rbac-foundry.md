@@ -67,8 +67,8 @@ In the Azure portal, open your Foundry project and go to **Access control (IAM)*
 
 To understand role-based access control in Microsoft Foundry, consider two questions for your enterprise. 
 
-1. What permissions do I want my team to have when building in Microsoft Foundry?
-1. At what scope do I want to assign permissions to my team?
+* What permissions do I want my team to have when building in Microsoft Foundry?
+* At what scope do I want to assign permissions to my team?
 
 To help answer these questions, here are descriptions of some terminology used throughout this article. 
 
@@ -140,10 +140,10 @@ In the Foundry portal, manage permissions by:
 ::: moniker range="foundry"
 In the Foundry portal, manage permissions by:
 
-* Open the **Admin** page in [Foundry](https://ai.azure.com/nextgen), then select **Operate** > **Admin**.
-* Select your project name.
-* Select **Add user** to manage project access. This action is available only if you have role-assignment permissions.
-* Apply the same flow for Foundry resource-level access.
+1. Open the **Admin** page in [Foundry](https://ai.azure.com/nextgen), then select **Operate** > **Admin**.
+1. Select your project name.
+1. Select **Add user** to manage project access. This action is available only if you have role-assignment permissions.
+1. Apply the same flow for Foundry resource-level access.
 
 ::: moniker-end
 
@@ -243,13 +243,11 @@ Microsoft Entra ID provides several ways to manage access to resources, applicat
 
 Complete the following steps to use Microsoft Entra ID groups with Foundry:
 
-Use this flow to apply group-based access:
-
-* Create a **Security** group in **Groups** in the Azure portal.
-* Add an owner and the user principals in your organization who need shared access.
-* Open the target resource and go to **Access control (IAM)**.
-* Assign the required role to **User, group, or service principal**, and select the new security group.
-* Select **Review + assign** so the role assignment applies to all members of the group.
+1. Create a **Security** group in **Groups** in the Azure portal.
+1. Add an owner and the user principals in your organization who need shared access.
+1. Open the target resource and go to **Access control (IAM)**.
+1. Assign the required role to **User, group, or service principal**, and select the new security group.
+1. Select **Review + assign** so the role assignment applies to all members of the group.
 
 Common examples:
 
