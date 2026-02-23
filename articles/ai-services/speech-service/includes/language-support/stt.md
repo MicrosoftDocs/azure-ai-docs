@@ -186,13 +186,13 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `as-IN` | Assamese (India) | Audio + human-labeled transcript |
 | `az-AZ` | Azerbaijani (Latin, Azerbaijan) | Plain text |
 | `bg-BG` | Bulgarian (Bulgaria) | Plain text |
-| `bn-IN` | Bengali (India) | Plain text |
+| `bn-IN` | Bengali (India) | Plain text, Phrase list |
 | `bs-BA` | Bosnian (Bosnia and Herzegovina) | Plain text |
 | `ca-ES` | Catalan | Plain text, Pronunciation |
 | `cs-CZ` | Czech (Czechia) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
 | `cy-GB` | Welsh (United Kingdom) | Plain text |
 | `da-DK` | Danish (Denmark) | Audio + human-labeled transcript, Plain text, Structured text, Output format, Pronunciation |
-| `de-AT` | German (Austria) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
+| `de-AT` | German (Austria) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
 | `de-CH` | German (Switzerland) | Audio + human-labeled transcript, Plain text, Pronunciation, Phrase list |
 | `de-DE` | German (Germany) | Audio + human-labeled transcript, Plain text, Structured text, Output format, Pronunciation, Phrase list |
 | `el-GR` | Greek (Greece) | Audio + human-labeled transcript, Plain text, Structured text |
@@ -292,8 +292,8 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `sv-SE` | Swedish (Sweden) | Audio + human-labeled transcript, Plain text, Structured text, Output format, Pronunciation, Phrase list |
 | `sw-KE` | Kiswahili (Kenya) | Plain text |
 | `sw-TZ` | Kiswahili (Tanzania) | Plain text |
-| `ta-IN` | Tamil (India) | Audio + human-labeled transcript, Plain text, Structured text |
-| `te-IN` | Telugu (India) | Audio + human-labeled transcript, Plain text, Structured text |
+| `ta-IN` | Tamil (India) | Audio + human-labeled transcript, Plain text, Structured text, Phrase list |
+| `te-IN` | Telugu (India) | Audio + human-labeled transcript, Plain text, Structured text, Phrase list |
 | `th-TH` | Thai (Thailand) | Audio + human-labeled transcript, Plain text, Structured text, Output format, Phrase list |
 | `tr-TR` | Turkish (Türkiye) | Audio + human-labeled transcript, Plain text, Structured text, Output format |
 | `uk-UA` | Ukrainian (Ukraine) | Audio + human-labeled transcript, Plain text |
