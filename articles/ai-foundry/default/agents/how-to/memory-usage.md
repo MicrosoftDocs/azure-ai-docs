@@ -266,13 +266,13 @@ print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.versi
 ```bash
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-API_VERSION="2025-11-15-preview"
 ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
-curl -X POST "${ENDPOINT}/agents/MyAgent/versions?api-version=${API_VERSION}" \
+curl -X POST "${ENDPOINT}/agents?api-version=v1" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
+    "name": "MyAgent",
     "definition": {
         "kind": "prompt",
         "model": "gpt-5.2",
@@ -338,24 +338,23 @@ print(f"Response output: {new_response.output_text}")
 ```bash
 # Configuration
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-API_VERSION="2025-11-15-preview"
 ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
-curl -X POST "${ENDPOINT}/openai/conversations?api-version=${API_VERSION}" \
+curl -X POST "${ENDPOINT}/openai/v1/conversations" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d '{}'
 
 # Copy the "id" field from the previous response.
-curl -X POST "${ENDPOINT}/openai/responses?api-version=${API_VERSION}" \
+curl -X POST "${ENDPOINT}/openai/v1/responses" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d '{
       "input": "I prefer dark roast coffee",
       "conversation": "{conversation-id}",
-      "agent": {
-        "name": "MyAgent",
-        "type": "agent_reference"
+      "agent_reference": {
+        "type": "agent_reference",
+        "name": "MyAgent"
       }
     }'
 ```

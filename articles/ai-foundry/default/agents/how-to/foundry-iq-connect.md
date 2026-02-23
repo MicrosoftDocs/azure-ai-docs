@@ -254,11 +254,12 @@ az account get-access-token --scope https://ai.azure.com/.default --query access
 Create the agent by sending a `POST` request to Foundry Agent Service:
 
 ```HTTP
-POST {project_endpoint}/agents/{agent_name}/versions?api-version=2025-11-15-preview
+POST {project_endpoint}/agents?api-version=v1
 Authorization: Bearer {foundry_access_token}
 Content-Type: application/json
 
 {
+  "name": "{agent_name}",
   "definition": {
     "model": "{deployed_llm}",
     "instructions": "\nYou are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.\nEvery answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`\nIf you cannot find the answer in the provided knowledge base you must respond with \"I don't know\".\n",
@@ -383,7 +384,7 @@ Send an empty `POST` request to create a conversation session:
 
 ```HTTP
 ### Create conversation
-POST {project_endpoint}/openai/conversations?api-version=2025-11-15-preview
+POST {project_endpoint}/openai/v1/conversations
 Authorization: Bearer {foundry_access_token}
 Content-Type: application/json
 
@@ -394,16 +395,16 @@ The response includes a conversation `id`, which you can use to send a query to 
 
 ```HTTP
 ### Send request to trigger the MCP tool
-POST {project_endpoint}/openai/responses?api-version=2025-11-15-preview
+POST {project_endpoint}/openai/v1/responses
 Authorization: Bearer {foundry_access_token}
 Content-Type: application/json
 
 {
     "conversation": "{conversation_id}",
     "input": "\nWhy do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?\nWhy is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?\n",
-    "agent": {
-        "name": "{agent_name}",
-        "type": "agent_reference"
+    "agent_reference": {
+        "type": "agent_reference",
+        "name": "{agent_name}"
     }
 }
 ```
@@ -458,7 +459,7 @@ print(f"Project connection '{project_connection_name}' deleted successfully.")
 
 ```HTTP
 ### Delete the agent
-DELETE {project_endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
+DELETE {project_endpoint}/agents/{agent_name}?api-version=v1
 Authorization: Bearer {foundry_access_token}
 
 ### Delete the project connection
