@@ -44,13 +44,13 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Brazil South​​ <sup>1</sup> ​| ✅ |  | ✅ | ✅ | ✅ | ✅ |
 | Canada Central​​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Canada East​​ ​<sup>1</sup> |  |  | ✅ |  | ✅ |  |
-| ​Central US​​ <sup> 2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| ​Central US​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | East US​ <sup>1, 2</sup> | ✅ | ✅ | ✅ |  | ✅ |  |
 | East US 2 <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |  |
 | North Central US​ <sup>1</sup> ​| ✅ |  | ✅ |  | ✅ | ✅ |
 | South Central US​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
-| West US​​ <sup>1</sup> | ✅ |  | ✅ |  | ✅ | ✅ |
+| West US​​ <sup>1, 2</sup> | ✅ |  | ✅ |  | ✅ | ✅ |
 | West US 2​ <sup>3</sup> ​| ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US 3​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West Central US​ ​<sup>1</sup>| ✅ |  | ✅ |  | ✅ |  |
