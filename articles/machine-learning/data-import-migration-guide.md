@@ -3,9 +3,9 @@ title: Migrate Data Import to Microsoft Fabric
 description: Migrate from Data Import and Data Connections in Azure Machine Learning to Microsoft Fabric Pipelines, Shortcuts, or mirroring.
 #customer intent: As a data engineer, I want to migrate external data into the Azure ecosystem using Fabric pipelines so that I can integrate with multiple data sources efficiently.
 author: s-polly
-ms.author: spolly
+ms.author: scottpolly
 ms.date: 02/23/2026
-ms.topic: concept
+ms.topic: concept-article
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.collection: ce-skilling-fresh-tier2, ce-skilling-ai-copilot
