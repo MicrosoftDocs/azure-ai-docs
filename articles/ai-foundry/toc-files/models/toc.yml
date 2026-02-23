@@ -140,24 +140,13 @@ items:
     href: ../../openai/faq.yml
   - name: Azure OpenAI in Azure Government
     href: ../../openai/azure-government.md 
-  - name: Quickstarts
-    items:
-      - name: Audio generation
-        href: ../../openai/audio-completions-quickstart.md
-      - name: Vision-enabled chats
-        href: ../../openai/gpt-v-quickstart.md
-      - name: Image generation
-        href: ../../openai/dall-e-quickstart.md
-      - name: Video generation
-        href: ../../openai/video-generation-quickstart.md
-      - name: Realtime API for speech and audio
-        href: ../../openai/realtime-audio-quickstart.md
-      - name: Speech to text with Whisper
-        href: ../../openai/whisper-quickstart.md
-      - name: Text to speech (preview)
-        href: ../../openai/text-to-speech-quickstart.md
+
   - name: Audio
     items:
+        - name: Audio generation
+          href: ../../openai/audio-completions-quickstart.md
+        - name: Speech to text with Whisper
+          href: ../../openai/whisper-quickstart.md
         - name: Realtime API for speech and audio
           href: ../../openai/how-to/realtime-audio.md
         - name: Realtime API via WebRTC
@@ -168,6 +157,9 @@ items:
           href: ../../openai/how-to/realtime-audio-websockets.md
         - name: Realtime API migration from Preview to GA
           href: ../../openai/how-to/realtime-audio-preview-api-migration-guide.md
+        - name: Text to speech (preview)
+          href: ../../openai/text-to-speech-quickstart.md
+
   - name: Batch
     items:
        - name: Getting started with batch

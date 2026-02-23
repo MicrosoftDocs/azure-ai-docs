@@ -5,14 +5,15 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 01/15/2025
+ms.date: 01/15/2026
 author: ssalgadodev
 ms.author: ssalgado
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
 # Guardrail annotations
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Microsoft Foundry Models provide annotations to help you understand the Guardrail (previously content filtering) results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content. 
 
