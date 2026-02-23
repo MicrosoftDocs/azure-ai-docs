@@ -504,6 +504,9 @@ curl --request POST \
 
 For a complete runnable example, see [sample_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_model_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
+> [!TIP]
+> To add another evaluation run,  you can use the same code.
+
 ## Agent target evaluation
 
 Send queries to a Foundry agent at runtime and evaluate the responses using the `azure_ai_target_completions` data source type with an `azure_ai_agent` target.
