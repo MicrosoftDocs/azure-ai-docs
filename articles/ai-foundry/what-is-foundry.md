@@ -99,6 +99,11 @@ A Foundry project is where you do most of your development work. You can work wi
 
 ::: moniker-end
 
+
+## Disable preview features
+
+Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For role-based control guidance, see [Disable preview features by using role-based access control](./concepts/disable-preview-features-with-rbac.md).
+
 ## Microsoft Foundry API and SDKs
 
 The [Microsoft Foundry API](/rest/api/aifoundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
