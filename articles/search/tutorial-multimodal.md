@@ -102,17 +102,17 @@ While you have the Azure Storage pages open in the Azure portal, get a connectio
 
 ## Choose skills for multimodal indexing
 
-The index, data source, and indexer definitions are the same for all scenarios, but the skillset can include a different skill combination depending on how you want to extract, chunk, and vectorize text and images.
+The index, data source, and indexer definitions are mostly the same for all scenarios, but the skillset can include a different skill combination depending on how you want to extract, chunk, and vectorize text and images.
 
-1. Choose a skill or skill combination that extracts and chunks content. Choices include:
+1. Choose skills for extraction and chunking:
 
-   + Document Extraction, Text Split skill
-   + Document layout extracts
+   + Document Extraction, Text Split
+   + Document Layout
 
-1. Choose a skill or skill combination that vectorizes content. Choices include:
+1. Choose skills for vectorization:
 
    + GenAI Prompt, Azure OpenAI Embedding
-   + Azure AI Vision Multimodal
+   + Azure AI Vision Multimodal Embedding
 
 Most of these skills have a dependency on a [deployed model](/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models) or a Microsoft Foundry resource. The following table identifies the models backing each skill, plus the resource and permissions that provide model access.
 
