@@ -31,7 +31,7 @@ This dashboard is currently in **preview**, and it might not reflect all compone
 1. Review the overall status at the top of the page. An **All Systems Operational** indicator appears when no issues are active.
 1. Select a component to view details and recent status changes.
 1. Select **Incidents** to review incident history, including timelines and root cause summaries.
-1. Select **Subscribe to updates** to get notified about incidents and maintenance.
+1. Select **Subscribe to updates** to get notified about incidents.
 
 ## Key features
 
