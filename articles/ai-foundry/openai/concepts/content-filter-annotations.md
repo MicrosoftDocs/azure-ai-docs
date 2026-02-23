@@ -11,7 +11,7 @@ ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 # Guardrail annotations
 
