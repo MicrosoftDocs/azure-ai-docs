@@ -159,7 +159,7 @@ wss://<resource>.openai.azure.com/openai/v1/realtime
 
 **Cause**: The required `type` field is missing from the session configuration.
 
-**Solution**: Add the `type` field to your session configuration with the value `"realtime"` for speech-to-speech or `"transcription"` for audio transcription. See [Step 4: Update session configuration](#step-4-update-session-configuration) for examples.
+**Solution**: Add the `type` field to your session configuration with the value `"realtime"` for speech-to-speech or `"transcription"` for audio transcription.
 
 ### WebRTC connection fails to establish
 
