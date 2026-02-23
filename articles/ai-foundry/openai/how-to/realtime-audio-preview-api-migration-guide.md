@@ -151,7 +151,7 @@ wss://<resource>.openai.azure.com/openai/v1/realtime
 
 **Cause**: Event names changed between Preview and GA versions.
 
-**Solution**: Update your event handler names according to the mapping in [Step 3: Update event names](#step-3-update-event-names). Ensure all occurrences are updated, including error handlers.
+**Solution**: Update your event handler names according to the new event names. Ensure all occurrences are updated, including error handlers.
 
 ### Session configuration rejected
 
@@ -167,7 +167,7 @@ wss://<resource>.openai.azure.com/openai/v1/realtime
 
 **Cause**: WebRTC endpoints changed in the GA version.
 
-**Solution**: Update both the ephemeral key endpoint and the connection URL as described in [Update WebRTC endpoints](#update-webrtc-endpoints).
+**Solution**: Update both the ephemeral key endpoint and the connection URL.
 
 ### .NET SDK compatibility error
 
@@ -205,6 +205,5 @@ Now that you've migrated to the GA version of the Realtime API, explore these re
 - [WebSocket implementation guide](realtime-audio-websockets.md) - Detailed WebSocket configuration
 - [WebRTC implementation guide](realtime-audio-webrtc.md) - Browser-based audio implementation
 - [SIP integration](realtime-audio-sip.md) - Enable phone call integration
-- [Monitor Azure OpenAI](../how-to/monitoring.md) - Track usage and performance
 - [Realtime API quickstart](../realtime-audio-quickstart.md) - Additional implementation examples
 - [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) - Cost and billing information
