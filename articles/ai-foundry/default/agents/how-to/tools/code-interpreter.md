@@ -38,7 +38,7 @@ When enabled, your agent can write and run Python code iteratively to solve data
 ## Prerequisites
 
 - Basic or standard agent environment. See [agent environment setup](../../../../agents/environment-setup.md) for details.
-- Latest prerelease SDK package installed (`azure-ai-projects>=2.0.0b1` for Python). See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for installation steps.
+- Latest prerelease SDK package installed (`azure-ai-projects>=2.0.0b4` for Python). See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for installation steps.
 - Azure AI model deployment configured in your project.
 - For file operations: CSV or other supported files to upload for analysis.
 

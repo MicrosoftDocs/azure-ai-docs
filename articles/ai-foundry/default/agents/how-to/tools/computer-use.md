@@ -42,7 +42,7 @@ This guide shows how to integrate the computer use tool into an application loop
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - The latest prerelease SDK package:
-  - **Python**: `azure-ai-projects>=2.0.0b1`, `azure-identity`, `python-dotenv`
+  - **Python**: `azure-ai-projects>=2.0.0b4`, `python-dotenv`
   - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
   - **TypeScript**: `@azure/ai-projects` v2-beta, `@azure/identity`
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.

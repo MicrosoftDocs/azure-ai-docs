@@ -42,7 +42,7 @@ Before you start, make sure you have:
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - A Foundry project and a deployed model.
 - The latest prerelease SDK package for your language:
-  - Python: `azure-ai-projects>=2.0.0b1`
+  - Python: `azure-ai-projects>=2.0.0b4`
   - .NET: `Azure.AI.Projects.OpenAI` (prerelease)
   - TypeScript: `@azure/ai-projects` (latest beta)
   

@@ -61,7 +61,7 @@ Set these environment variables for the samples:
 
 ## Code examples
 
-Before you start, install the `azure-ai-projects` package (version 2.0.0b1 or later). For package installation instructions, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+Before you start, install the `azure-ai-projects` package (version 2.0.0b4 or later). For package installation instructions, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
 
 :::zone pivot="python"
 ## Create an agent with the image generation tool
