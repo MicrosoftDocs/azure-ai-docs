@@ -53,7 +53,19 @@ Before following the steps in this article, make sure you have the following pre
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
 * Azure CLI installed. Required to create outbound rules from the managed network. 
 * The `Microsoft.Network`, `Microsoft.KeyVault`, `Microsoft.CognitiveServices`, `Microsoft.Storage`, `Microsoft.Search`, and `Microsoft.ContainerService` resource providers registered for your Azure subscription. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
-* Preview feature registration for the flag `AI.ManagedVnetPreview` in the Azure portal or through Azure CLI. It takes a few hours to approve your subscription.
+* Preview feature registration for the flag `AI.ManagedVnetPreview` in the Azure portal or through Azure CLI. Register the feature by running the following command:
+
+   ```azurecli
+   az feature register --namespace Microsoft.CognitiveServices --name AI.ManagedVnetPreview
+   ```
+
+   Check the registration status:
+
+   ```azurecli
+   az feature show --namespace Microsoft.CognitiveServices --name AI.ManagedVnetPreview --query "properties.state" -o tsv
+   ```
+
+   It takes a few hours to approve your subscription.
 * Permissions to deploy a managed network resource. Azure AI Account Owner on account scope is needed to create a Foundry account and project. Owner or Role Based Access Administrator is needed to assign RBAC to the required resources. Azure AI User on project scope is required to create and edit Agents. 
 * Sufficient quota for all resources in your target Azure region. If no parameters are passed in, this template creates a Foundry resource, Foundry project, Azure Cosmos DB for NoSQL, Azure AI Search, and Azure Storage account. 
 
@@ -82,13 +94,56 @@ To get started deploying a managed virtual network Foundry resource, follow the 
 1. Complete all of your parameters before deploying such as region, resource group, virtual network name, and others. If you're bringing your own Cosmos DB Storage, or Search, ensure the resourceIDs are included as well.
 1. Finally, deploy the template. Template deployment should take roughly 30 minutes. 
 
-For more details on the parameters required for managed virtual network deployment, see [Microsoft.MachineLearningServices/workspaces/managedNetwork](/azure/templates/microsoft.machinelearningservices/workspaces/managednetworks).
+For more details on the parameters required for managed virtual network deployment, see [Microsoft.MachineLearningServices/workspaces/managedNetworks](/azure/templates/microsoft.machinelearningservices/workspaces/managednetworks).
+
+## Verify managed virtual network deployment
+
+After the template deployment completes, verify that the managed virtual network is configured correctly.
+
+1. Confirm the Foundry resource exists and the managed network is enabled:
+
+   ```azurecli
+   az rest --method GET \
+     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.MachineLearningServices/workspaces/{workspace-name}?api-version=2024-10-01" \
+     --query "properties.managedNetwork"
+   ```
+
+   The response should show the `isolationMode` set to your chosen mode (`AllowInternetOutbound` or `AllowOnlyApprovedOutbound`).
+
+1. List the managed private endpoints to confirm they were created:
+
+   ```azurecli
+   az rest --method GET \
+     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.MachineLearningServices/workspaces/{workspace-name}/managedNetwork/outboundRules?api-version=2024-10-01" \
+     --query "value[].{name:name, type:properties.type, status:properties.status}"
+   ```
+
+1. Test Agent connectivity by creating and running a basic Agent in your Foundry project. If the Agent completes successfully, the managed network is functioning correctly.
 
 ## Manage outbound rules
 
-To update outbound rules from your managed virtual network after deployment, use the Azure CLI `az rest` command. Follow the instructions listed in the `outbound-rules-cli.md` file of the foundry-samples repository. 
+To update outbound rules from your managed virtual network after deployment, use the Azure CLI `az rest` command. Follow the instructions in the [outbound rules CLI](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network-preview/update-outbound-rules-cli/outbound-rule-cli.md) file in the foundry-samples repository.
 
-For more details on the parameters required for managed virtual network outbound rules, see [Microsoft.MachineLearningServices/workspaces/managedNetwork/outboundRules](/azure/templates/microsoft.machinelearningservices/workspaces/managednetworks/outboundrules).
+The following example creates a private endpoint outbound rule to an Azure Cosmos DB resource:
+
+```azurecli
+az rest --method PUT \
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.MachineLearningServices/workspaces/{workspace-name}/managedNetwork/outboundRules/{rule-name}?api-version=2024-10-01" \
+  --body '{
+    "properties": {
+      "type": "PrivateEndpoint",
+      "destination": {
+        "serviceResourceId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.DocumentDB/databaseAccounts/{cosmosdb-account-name}",
+        "subresourceTarget": "Sql",
+        "sparkEnabled": false
+      }
+    }
+  }'
+```
+
+Replace the placeholders with values for your environment. For other resource types, change the `serviceResourceId` and `subresourceTarget` values accordingly. Common subresource targets include `blob` for Azure Storage, `searchService` for Azure AI Search, and `vault` for Azure Key Vault.
+
+For more details on the parameters required for managed virtual network outbound rules, see [Microsoft.MachineLearningServices/workspaces/managedNetworks/outboundRules](/azure/templates/microsoft.machinelearningservices/workspaces/managednetworks/outboundrules).
 
 ## Select Azure Firewall version
 
@@ -180,4 +235,13 @@ To clean up your managed virtual network Foundry resource, delete the Foundry re
    - Remove any service endpoint configuration and use private endpoint only.
 1. With UseMicrosoftManagedNetwork=true, Subscription should be registered with Microsoft.CognitiveServices/AI.ManagedVnetPreview
    - Ensure your subscription is allowlisted for the managed virtual network preview feature. Complete this action in the Azure portal and wait for your subscription to be registered.  
+
+## Related content
+
+- [Configure a custom virtual network for Agents](../agents/how-to/virtual-networks.md)
+- [Configure a managed network for Azure AI Foundry hubs](configure-managed-network.md)
+- [Configure private link for Azure AI Foundry hubs](hub-configure-private-link.md)
+- [Create a secure Azure AI Foundry hub](create-secure-ai-hub.md)
+- [Troubleshoot secure project connectivity](troubleshoot-secure-connection-project.md)
+- [Access on-premises resources](access-on-premises-resources.md)
 
