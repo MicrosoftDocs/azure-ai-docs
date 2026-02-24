@@ -101,7 +101,7 @@ The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to 
 - `agentName`: The agent name to invoke.
 - `projectName`: The Foundry project containing the agent.
 - `agentVersion`: Optional pinned version for controlled rollouts. If omitted, the latest version is used.
-- `conversationId`: Optional existing thread ID to continue prior conversation context.
+- `conversationId`: Optional conversation ID to continue prior conversation context.
 - `foundryResourceOverride`: Optional resource name when the agent is hosted on a different Foundry resource.
 - `authenticationIdentityClientId`: Optional managed identity client ID used with cross-resource agent connections.
 
@@ -189,7 +189,6 @@ Further, a conversation log file is created in the `logs` folder with the name `
 
 ```text
 SessionID: sess_1m1zrSLJSPjJpzbEOyQpTL
-Thread ID: thread_abc123def456
 
 User Input:	Hello.
 Agent Audio Response:	Hello! I'm Tobi the agent. How can I assist you today?

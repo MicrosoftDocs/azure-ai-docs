@@ -60,7 +60,7 @@ Voice Live supports connecting to a specific version of your agent, enabling con
 
 To connect to a specific agent version, set the `AGENT_VERSION` environment variable or pass the `agentVersion` parameter when initializing the assistant:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="243-265,507-558" highlight="9,27,35-38":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="9,27,35-38":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -82,7 +82,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="243-265,507-558" highlight="14-18,29-30,37-38":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="14-18,29-30,37-38":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -97,7 +97,7 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and then triggers a response.
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="453-470" highlight="3-17":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="452-469" highlight="3-17":::
 
 In this sample, proactive messaging is applied in three steps:
 
@@ -138,22 +138,25 @@ For setup details and supported options, see [Handle voice interruptions in chat
 
 Voice Live enables you to reconnect to a previous conversation by specifying the conversation (thread) ID. This preserves the conversation history and context, allowing users to continue where they left off.
 
-When a session connects successfully, Voice Live returns the thread ID in the `SESSION_UPDATED` event:
+When a session connects successfully, Voice Live returns session metadata in the `SESSION_UPDATED` event. The sample extracts the session ID and logs it to the conversation file:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="362-380":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="362-379":::
 
-In this event handler, the thread ID is extracted from the event JSON using `extractField(event, "thread_id")` and written to the conversation log.
+In this event handler, the session ID is extracted from the event JSON using `extractField(event, "id")` and written to the conversation log.
 
-The sample code writes session details to a conversation log file in the `logs/` folder (for example, `logs/conversation_20260219_143000.log`). You can retrieve the thread ID from this file after running a session.
+> [!NOTE]
+> The Java SDK (beta.5) doesn't expose the agent `thread_id` in session events. To reconnect, use the conversation ID you provided when creating the session, or retrieve the thread ID through the Foundry Agent Service API.
 
-To reconnect to that conversation, pass the thread ID as the `CONVERSATION_ID` environment variable (or the `conversationId` parameter):
+The sample code writes session details to a conversation log file in the `logs/` folder (for example, `logs/conversation_20260219_143000.log`).
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="513,538-541":::
+To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable (or the `conversationId` parameter):
+
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="512,537-540":::
 
 In this sample, conversation reconnect is applied in three places:
 
-- In `main()`, `CONVERSATION_ID` is read from the environment (line 513).
-- The value is passed to the `BasicVoiceAssistant(...)` constructor (lines 538-541).
+- In `main()`, `CONVERSATION_ID` is read from the environment (line 512).
+- The value is passed to the `BasicVoiceAssistant(...)` constructor (lines 537-540).
 - In the constructor, the value is set on `AgentSessionConfig` via `config.setConversationId(conversationId)`.
 
 When a valid `conversationId` is provided, the agent retrieves the previous conversation context and can reference earlier exchanges in its responses.
@@ -161,22 +164,22 @@ When a valid `conversationId` is provided, the agent retrieves the previous conv
 > [!NOTE]
 > Conversation IDs are tied to the agent and project. Attempting to use a conversation ID with a different agent results in a new conversation being created.
 
-## Log thread IDs for continuity and diagnostics
+## Log session metadata for continuity and diagnostics
 
-The sample logs key session metadata, including thread ID, to a timestamped conversation log file under `logs/`. This helps you:
+The sample logs key session metadata, including the session ID, to a timestamped conversation log file under `logs/`. This helps you:
 
-- Capture the exact thread identifier for reconnect scenarios.
-- Correlate user-reported behavior with session and agent metadata.
+- Identify the session for debugging and support scenarios.
+- Correlate user-reported behavior with session metadata.
 - Track runs over time by preserving per-session log files.
 
 The following code creates the log filename and writes session metadata when `SESSION_UPDATED` is received:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="92-95,362-380,472-483" highlight="1-4,8-10,24-35":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="92-95,362-379,471-482" highlight="1-4,8-9,23-34":::
 
-In this sample, thread ID logging is applied in three places:
+In this sample, session metadata logging is applied in three places:
 
 - A timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 92–95).
-- On `SESSION_UPDATED`, the handler extracts the session ID and thread ID from the event JSON and writes them to the log (lines 363–367).
-- `writeLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 472–483).
+- On `SESSION_UPDATED`, the handler extracts the session ID from the event JSON and writes it to the log (lines 365–366).
+- `writeLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 471–482).
 
-Use the logged thread ID value with `CONVERSATION_ID` to resume the same agent thread in a later session.
+Use the session ID value alongside your conversation ID for diagnostics and reconnect scenarios.
