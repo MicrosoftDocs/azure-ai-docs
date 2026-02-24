@@ -55,16 +55,12 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
     ```bash
     pip install azure-identity
     pip install openai
-    pip install python-dotenv
     ```
 
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses. 
    
     ```python
-    import os
-    
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-    from dotenv import load_dotenv
     from openai import OpenAI
     
     project_endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME"
@@ -131,13 +127,11 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
 
 # [JavaScript](#tab/javascript)
 
-[JavaScript v1 examples](../../openai/supported-languages.md)
-
-1. Install the Azure Identity client library before you can use DefaultAzureCredential:
+1. Install the Azure Identity client library before you can use `DefaultAzureCredential`:
 
     ```bash
     npm install @azure/identity
-    npm install @openai
+    npm install openai
     ```
 
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses.  
@@ -172,9 +166,9 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
             max_output_tokens: 500,
           });
     
-        console.log(`Response: ${response2.output_text}`);
-        console.log(`Status:   ${response2.status}`);
-        console.log(`Output tokens: ${response2.usage?.output_tokens}`);
+        console.log(`Response: ${response.output_text}`);
+        console.log(`Status:   ${response.status}`);
+        console.log(`Output tokens: ${response.usage?.output_tokens}`);
     }
     
     main();
@@ -239,9 +233,9 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
                             .maxOutputTokens(500)
                             .build()
             );
-            System.out.printf("Response: %s%n", getOutputText(response2));
-            System.out.printf("Status:   %s%n", response2.status());
-            response2.usage().ifPresent(u ->
+            System.out.printf("Response: %s%n", getOutputText(response));
+            System.out.printf("Status:   %s%n", response.status());
+            response.usage().ifPresent(u ->
                     System.out.printf("Output tokens: %d%n", u.outputTokens()));
         }
     }
@@ -267,8 +261,8 @@ import (
 )
 
 func main() {
-
-    projectEndpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME"
+    projectEndpoint := "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME"
+    deploymentName := "MAI-DS-R1" // Replace with your deployment name, not the model ID
 
     ctx := context.Background()
 
@@ -285,10 +279,6 @@ func main() {
         option.WithAPIKey(token.Token),
     )
 
-    deploymentName = "MAI-DS-R1"
-
-    fmt.Printf("Example: Non-OpenAI model (%s)\n\n", deploymentName)
-    fmt.Println("Waiting for response (reasoning models can take 30-60s)...")
     resp, err := client.Responses.New(ctx, responses.ResponseNewParams{
         Model: deploymentName,
         Input: responses.ResponseNewParamsInputUnion{
@@ -297,11 +287,10 @@ func main() {
         MaxOutputTokens: openai.Int(500),
     })
 
-    fmt.Printf("Response: %s\n", resp2.OutputText())
-    fmt.Printf("Status:   %s\n", resp2.Status)
-    fmt.Printf("Output tokens: %d\n", resp2.Usage.OutputTokens)
+    fmt.Printf("Response: %s\n", resp.OutputText())
+    fmt.Printf("Status:   %s\n", resp.Status)
+    fmt.Printf("Output tokens: %d\n", resp.Usage.OutputTokens)
 }
-
 ```
 
 ---
@@ -332,7 +321,7 @@ This section lists some of the Foundry Models that are supported for use with th
 ## Troubleshoot common errors
 
 | Error | Cause | Resolution |
-|---|---|---|
+| --- | --- | --- |
 | 401 Unauthorized | Invalid or expired credential | Verify your `DefaultAzureCredential` has the **Cognitive Services OpenAI User** role assigned on the resource. |
 | 404 Not Found | Wrong endpoint or deployment name | Confirm your endpoint URL includes `/api/projects/YOUR_PROJECT_NAME` and the deployment name matches your Foundry portal. |
 | 400 Model not supported | Model doesn't support Responses API | Check the [supported models list](#supported-foundry-models) and verify your deployment uses a compatible model. |
