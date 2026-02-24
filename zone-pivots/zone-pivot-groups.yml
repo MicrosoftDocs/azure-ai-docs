@@ -1610,6 +1610,8 @@ groups:
     title: C#
   - id: programming-language-java
     title: Java
+  - id: programming-language-javascript
+    title: JavaScript
 - id: voice-live-howto-agents
 # Owner: eur
   title: Programming languages
@@ -1621,6 +1623,8 @@ groups:
     title: C#
   - id: programming-language-java
     title: Java
+  - id: programming-language-javascript
+    title: JavaScript
 - id: how-to-voice-live-proactive-messages
 # Owner: eur
   title: Programming languages

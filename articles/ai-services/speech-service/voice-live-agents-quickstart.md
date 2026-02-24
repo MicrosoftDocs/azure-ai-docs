@@ -34,6 +34,10 @@ recommendations: false
 [!INCLUDE [Java quickstart](./includes/quickstarts/voice-live-agents/java.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript quickstart](./includes/quickstarts/voice-live-agents/javascript.md)]
+::: zone-end
+
 ## Related content
 
 - Learn more about [How to build voice agents](./how-to-voice-agent-integration.md)

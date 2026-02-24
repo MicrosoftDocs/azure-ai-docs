@@ -30,6 +30,10 @@ recommendations: false
 [!INCLUDE [Java how-to](./includes/how-to/voice-live-agents/java.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript how-to](./includes/how-to/voice-live-agents/javascript.md)]
+::: zone-end
+
 ## Migration from the previous version
 
 The previous agent integration using Agent Service v1 (preview) used mostly the same integration code. However instead of `agent-name` the `agent-id` was used.

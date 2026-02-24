@@ -16,6 +16,11 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 [!INCLUDE [Introduction](intro.md)]
 
+Follow the quickstart below or get a fully working web app with browser-based voice UI:
+
+> [!div class="nextstepaction"]
+> [Voice Live universal assistant sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/voice-live-universal-assistant)
+
 ## Prerequisites
 
 > [!NOTE]
