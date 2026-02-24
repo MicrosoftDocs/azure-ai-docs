@@ -5,7 +5,7 @@ description: Learn how to migrate from the Assistants API and classic agents to 
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 02/17/2026
+ms.date: 02/23/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -25,7 +25,7 @@ Foundry Agent Service provides an upgraded developer experience for building int
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
 - A [Microsoft Foundry project](../../../how-to/create-projects.md).
-- The `azure-ai-projects` Python SDK (version 2.0.0b1 or later). Install with `pip install "azure-ai-projects>=2.0.0b1" --pre`.
+- The `azure-ai-projects` Python SDK (version 2.0.0b4 or later). Install with `pip install "azure-ai-projects>=2.0.0b4" --pre`.
 - The `azure-identity` package for authentication. Install with `pip install azure-identity` and sign in with `az login` or use `DefaultAzureCredential`.
 - Existing agents or assistants code that you want to migrate.
 
@@ -190,10 +190,9 @@ while run.status in ("queued", "in_progress"):
 conversation_id = "conv_11112222AAAABBBB"
 
 response = openai_client.responses.create(
-    model="gpt-4.1",
-    input=[{"role": "user", "content": "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9."}],
+    input="Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.",
     conversation=conversation_id,
-    extra_body={"agent_reference": {"type": "agent_reference", "name": "my-agent", "version": "1"}}
+    extra_body={"agent_reference": {"name": "my-agent", "type": "agent_reference"}}
 )
 ```
 
@@ -493,7 +492,7 @@ with project_client.get_openai_client() as openai_client:
     ) 
     response = openai_client.responses.create( 
         conversation=conversation.id,
-        extra_body={"agent": {"type": "agent_reference", "name": agent.name, "version": agent.version}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
         input="Please address the user as Jane Doe. The user has a premium account"
     ) 
 ```
