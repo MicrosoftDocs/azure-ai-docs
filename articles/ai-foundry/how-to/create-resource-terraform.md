@@ -25,19 +25,22 @@ Use Terraform to automate the creation of [Microsoft Foundry](https://ai.azure.c
 
 You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/overview-azapi-provider) or [AzureRM Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account) to manage Foundry resources. The AzAPI provider lets you access all Foundry control plane configurations including preview features. The AzureRM variant is limited to core management capabilities.
 
+Terraform state files can include sensitive values. Use a secure backend and access controls for team scenarios.
+
+[!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
+
+## Provider capabilities
+
 The following table shows which actions each provider supports:
 
 |Action|AzAPI Provider|AzureRM Provider|
-| --- | --- | --- |
-| Create a resource group | ✅ | ✅ |
-| Create a Foundry resource | ✅ | ✅ |
-| Configure deployments | ✅ | ✅ |
-| Configure projects | ✅ | ✅ |
-| Configure a connection to knowledge and tools | ✅ | - |
-| Configure a capability host (for advanced tool configurations like [Agent standard setup](../agents/concepts/capability-hosts.md)) | ✅ | - |
-
-
-[!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
+|---|---|---|
+|Create a resource group|✅|✅|
+|Create a Foundry resource|✅|✅|
+|Configure deployments|✅|✅|
+|Configure projects|✅|✅|
+|Configure a connection to knowledge and tools|✅|-|
+|Configure a capability host (for advanced tool configurations like [Agent standard setup](../agents/concepts/capability-hosts.md))|✅|-|
 
 ## Prerequisites
 
@@ -101,7 +104,12 @@ The following table shows which actions each provider supports:
 
 ## Verify your deployment
 
-Run `terraform state identities -json` to display the deployed resources. The last part of the `id` shows the resource names.
+Run the following commands to verify deployed resources:
+
+```terraform
+terraform state list
+terraform output
+```
 
 ## Customize security and compliance
 
