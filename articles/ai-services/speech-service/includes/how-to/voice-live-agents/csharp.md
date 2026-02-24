@@ -120,7 +120,7 @@ In this sample, the interim response setup is applied inside `SetupSessionAsync(
 
 - `ConfigureSessionAsync(options)` sends the base session configuration (audio formats) to Voice Live.
 - A raw `session.update` command with `interim_response` settings is sent via `SendCommandAsync` because `VoiceLiveSessionOptions` doesn't expose the `InterimResponse` property in this SDK version.
-- The `llm` type configuration defines when interim responses trigger and what style they use.
+- The `llm_interim_response` type configuration defines when interim responses trigger and what style they use.
 
 ## Use auto truncation for interrupted responses
 
