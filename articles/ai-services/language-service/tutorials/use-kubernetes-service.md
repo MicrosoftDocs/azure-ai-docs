@@ -10,6 +10,7 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-language
 ---
+
 # Deploy a key phrase extraction container to Azure Kubernetes Service
 
 Learn how to deploy a [key phrase extraction Docker container](../key-phrase-extraction/how-to/use-containers.md) image to Azure Kubernetes Service (AKS). This procedure shows how to create a Language resource, how to associate a container image, and how to exercise this orchestration of the two from a browser. Using containers can shift your attention away from managing infrastructure to instead focusing on application development. While this article uses the key phrase extraction container as an example, you can use this process for other containers offered by Azure Language in Foundry Tools
