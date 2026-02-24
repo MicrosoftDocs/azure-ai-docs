@@ -5,13 +5,14 @@ description: Learn about managing model deployment life cycle, updates, & retire
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 12/6/2025
+ms.date: 02/12/2026
 ms.custom: references_regions, build-2023, build-2023-dataai, devx-track-azurepowershell
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Working with models
@@ -19,6 +20,17 @@ monikerRange: 'foundry-classic || foundry'
 Azure OpenAI in Microsoft Foundry Models is powered by a diverse set of models with different capabilities and price points. [Model availability varies by region](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 You can get a list of models that are available for both inference and fine-tuning by your Azure OpenAI resource by using the [Models List API](/rest/api/azureopenai/models/list).
+
+This article shows you how to:
+
+- Configure automatic model updates.
+- View and update a deployment's version upgrade policy.
+- Update a deployed model version by using the Azure Resource Manager API.
+- Migrate provisioned deployments to a different model version or family.
+
+## Prerequisites
+
+- An Azure subscription with an Azure OpenAI models.
 
 ## Model updates
 
@@ -73,38 +85,38 @@ Review the Azure PowerShell [getting started guide](/powershell/azure/get-starte
 The steps below demonstrate checking the `VersionUpgradeOption` option property as well as updating it:
 
 ```powershell
-// Step 1: Get Deployment
+# Step 1: Get deployment
 $deployment = Get-AzCognitiveServicesAccountDeployment -ResourceGroupName {ResourceGroupName} -AccountName {AccountName} -Name {DeploymentName}
  
-// Step 2: Show Deployment VersionUpgradeOption
+# Step 2: Show VersionUpgradeOption
 $deployment.Properties.VersionUpgradeOption
  
-// VersionUpgradeOption can be null - one way to check is
+# VersionUpgradeOption can be null. One way to check is:
 $null -eq $deployment.Properties.VersionUpgradeOption
  
-// Step 3: Update Deployment VersionUpgradeOption
+# Step 3: Update VersionUpgradeOption
 $deployment.Properties.VersionUpgradeOption = "NoAutoUpgrade"
 New-AzCognitiveServicesAccountDeployment -ResourceGroupName {ResourceGroupName} -AccountName {AccountName} -Name {DeploymentName} -Properties $deployment.Properties -Sku $deployment.Sku
  
-// repeat step 1 and 2 to confirm the change.
-// If not sure about deployment name, use this command to show all deployments under an account
+# Repeat steps 1 and 2 to confirm the change.
+# If you aren't sure about the deployment name, list all deployments under an account:
 Get-AzCognitiveServicesAccountDeployment -ResourceGroupName {ResourceGroupName} -AccountName {AccountName}
 ```
 
 ```powershell
-// To update to a new model version
+# Update to a new model version
 
-// Step 1: Get Deployment
+# Step 1: Get deployment
 $deployment = Get-AzCognitiveServicesAccountDeployment -ResourceGroupName {ResourceGroupName} -AccountName {AccountName} -Name {DeploymentName}
 
-// Step 2: Show Deployment Model properties
+# Step 2: Show the current model version
 $deployment.Properties.Model.Version
 
-// Step 3: Update Deployed Model Version
+# Step 3: Update the model version
 $deployment.Properties.Model.Version = "0613"
 New-AzCognitiveServicesAccountDeployment -ResourceGroupName {ResourceGroupName} -AccountName {AccountName} -Name {DeploymentName} -Properties $deployment.Properties -Sku $deployment.Sku
 
-// repeat step 1 and 2 to confirm the change.
+# Repeat steps 1 and 2 to confirm the change.
 ```
 
 # [REST](#tab/rest)
@@ -119,7 +131,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 
 | Parameter | Type | Required? |  Description |
 |--|--|--|--|
-| ```acountname``` | string |  Required | The name of your Azure OpenAI Resource. |
+| ```accountName``` | string |  Required | The name of your Azure OpenAI resource. |
 | ```resourceGroupName``` | string |  Required | The name of the associated resource group for this model deployment. |
 | ```subscriptionId``` | string |  Required | Subscription ID for the associated subscription. |
 | ```api-version``` | string | Required |The API version to use for this operation. This follows the YYYY-MM-DD format. |
@@ -195,7 +207,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 
 | Parameter | Type | Required? |  Description |
 |--|--|--|--|
-| ```acountname``` | string |  Required | The name of your Azure OpenAI Resource. |
+| ```accountName``` | string |  Required | The name of your Azure OpenAI resource. |
 | ```deploymentName``` | string | Required | The deployment name you chose when you deployed an existing model or the name you would like a new model deployment to have.   |
 | ```resourceGroupName``` | string |  Required | The name of the associated resource group for this model deployment. |
 | ```subscriptionId``` | string |  Required | Subscription ID for the associated subscription. |
@@ -216,7 +228,7 @@ This is only a subset of the available request body parameters. For the full lis
 
 #### Example request
 
-```Bash
+```bash
 curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-35-turbo?api-version=2025-06-01 \
   -H "Content-Type: application/json" \
   -H 'Authorization: Bearer YOUR_AUTH_TOKEN' \
@@ -296,7 +308,7 @@ Selecting a deployment name opens the **Properties** for the model deployment. F
 #### In-place migration: model family change
 In-place migrations that target updating an existing provisioned deployment to a new model family are supported through REST API and Azure CLI. To perform an in-place migration targeting a model family change, use the example request below as a guide. In the request, you'll need to update the model name and model version for the target model you're migrating to. 
 
-```Bash
+```bash
 curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-4o-ptu-deployment?api-version=2024-10-01 \
   -H "Content-Type: application/json" \
   -H 'Authorization: Bearer YOUR_AUTH_TOKEN' \
@@ -305,7 +317,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 #### Example response
 
 ```json
- {
+{
   "id": "/subscriptions/{subscription-id}/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/gpt-4o-ptu-deployment",
   "type": "Microsoft.CognitiveServices/accounts/deployments",
   "name": "gpt-4o-ptu-deployment",
@@ -320,10 +332,10 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
       "version": "2024-07-18"
     },
     "versionUpgradeOption": "OnceCurrentVersionExpired",
-    "currentCapacity": 100
+    "currentCapacity": 100,
     "capabilities": {
       "area": "EUR",
-      "chatCompletion": "true"
+      "chatCompletion": "true",
       "jsonObjectResponse": "true",
       "maxContextToken": "128000",
       "maxOutputToken": "16834",
@@ -360,4 +372,11 @@ Multi-deployment migrations allow you to have greater control over the model mig
 - Transition traffic from the existing provisioned deployment to the newly created provisioned deployment with your target model version or model family until all traffic is offloaded from the original deployment. 
 - Once traffic is migrated over to the new deployment, validate that there are no inference requests being processed on the previous provisioned deployment by ensuring the Azure OpenAI Requests metric doesn't show any API calls made within 5-10 minutes of the inference traffic being migrated over to the new deployment. For more information on this metric, [see the Monitor Azure OpenAI documentation](https://aka.ms/aoai/docs/monitor-azure-openai).
 - Once you confirm that no inference calls have been made, delete the original provisioned deployment.
+
+## Troubleshooting
+
+### You get 401 or 403 responses from the Azure Resource Manager API
+
+- Confirm your access token is valid and unexpired.
+- Confirm you have permission to read and update deployments for the resource. 
 

@@ -92,6 +92,10 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 | **State** | Stateless only. | Stateless only. |
 | **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
 
+## Known limitations
+
+- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 50 seconds. If your MCP server takes longer than 50 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
+
 ## Related content
 
 * [Code samples for the Model Context Protocol tool](./model-context-protocol-samples.md)

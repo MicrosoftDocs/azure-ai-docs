@@ -31,7 +31,7 @@ When enabled, your agent can write and run Python code iteratively to solve data
 
 |Microsoft Foundry support|Python SDK|C# SDK|JavaScript SDK|Java SDK|REST API|Basic agent setup|Standard agent setup|
 |---|---|---|---|---|---|---|---|
-|✔️|✔️|✔️|-|-|-|✔️|✔️|
+|✔️|✔️|✔️|✔️|-|-|✔️|✔️|
 
 ✔️ indicates the feature is supported. `-` indicates the feature isn't currently available for that SDK or API.
 
@@ -223,6 +223,171 @@ The agent creates a Code Interpreter session, writes Python code to solve the eq
 
 :::zone-end
 
+:::zone pivot="typescript"
+## Sample of using agent with code interpreter tool in TypeScript SDK
+
+The following TypeScript sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data. For a JavaScript version, see the [JavaScript sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentCodeInterpreter.js) in the Azure SDK for JavaScript repository on GitHub.
+
+Set these environment variables:
+
+- `FOUNDRY_PROJECT_ENDPOINT`
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME`
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import * as fs from "fs";
+import * as path from "path";
+import { fileURLToPath } from "url";
+import "dotenv/config";
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName =
+  process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+
+// Helper to resolve asset file path
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export async function main(): Promise<void> {
+  // Create AI Project client
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = await project.getOpenAIClient();
+
+  // Load and upload CSV file
+  const assetFilePath = path.resolve(
+    __dirname,
+    "../assets/synthetic_500_quarterly_results.csv",
+  );
+  const fileStream = fs.createReadStream(assetFilePath);
+
+  console.log("Uploading CSV file...");
+  const uploadedFile = await openAIClient.files.create({
+    file: fileStream,
+    purpose: "assistants",
+  });
+  console.log(`File uploaded (id: ${uploadedFile.id})`);
+
+  // Create agent with Code Interpreter tool
+  console.log("Creating agent with Code Interpreter tool...");
+  const agent = await project.agents.createVersion("MyAgent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions: "You are a helpful assistant.",
+    tools: [
+      {
+        type: "code_interpreter",
+        container: {
+          type: "auto",
+          file_ids: [uploadedFile.id],
+        },
+      },
+    ],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Create a conversation
+  const conversation = await openAIClient.conversations.create();
+  console.log(`Created conversation (id: ${conversation.id})`);
+
+  // Request chart generation
+  console.log("\nRequesting chart generation...");
+  const response = await openAIClient.responses.create(
+    {
+      conversation: conversation.id,
+      input:
+        "Could you please create bar chart in TRANSPORTATION sector for the operating profit from the uploaded csv file and provide file to me?",
+    },
+    {
+      body: { agent: { name: agent.name, type: "agent_reference" } },
+    },
+  );
+  console.log(`Response completed (id: ${response.id})`);
+
+  // Extract file information from response annotations
+  let fileId = "";
+  let filename = "";
+  let containerId = "";
+
+  // Get the last message which should contain file citations
+  const lastMessage = response.output?.[response.output.length - 1];
+  if (lastMessage && lastMessage.type === "message") {
+    // Get the last content item
+    const textContent = lastMessage.content?.[lastMessage.content.length - 1];
+    if (textContent && textContent.type === "output_text" && textContent.annotations) {
+      // Get the last annotation (most recent file)
+      const fileCitation = textContent.annotations[textContent.annotations.length - 1];
+      if (fileCitation && fileCitation.type === "container_file_citation") {
+        fileId = fileCitation.file_id;
+        filename = fileCitation.filename;
+        containerId = fileCitation.container_id;
+        console.log(`Found generated file: ${filename} (ID: ${fileId})`);
+      }
+    }
+  }
+
+  // Download the generated file if available
+  if (fileId && filename) {
+    const safeFilename = path.basename(filename);
+    const fileContent = await openAIClient.containers.files.content.retrieve({
+      file_id: fileId,
+      container_id: containerId,
+    });
+
+    // Read the readable stream into a buffer
+    const chunks: Buffer[] = [];
+    for await (const chunk of fileContent.body) {
+      chunks.push(Buffer.from(chunk));
+    }
+    const buffer = Buffer.concat(chunks);
+
+    fs.writeFileSync(safeFilename, buffer);
+    console.log(`File ${safeFilename} downloaded successfully.`);
+    console.log(`File ready for download: ${safeFilename}`);
+  } else {
+    console.log("No file generated in response");
+  }
+
+  // Clean up resources
+  console.log("\nCleaning up...");
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+
+  console.log("\nCode Interpreter sample completed!");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+### Expected output
+
+The sample code produces output similar to the following example:
+
+```console
+Uploading CSV file...
+File uploaded (id: file-xxxxxxxxxxxxxxxxxxxx)
+Creating agent with Code Interpreter tool...
+Agent created (id: agent-xxxxxxxxxxxxxxxxxxxx, name: MyAgent, version: 1)
+Created conversation (id: conv-xxxxxxxxxxxxxxxxxxxx)
+
+Requesting chart generation...
+Response completed (id: resp-xxxxxxxxxxxxxxxxxxxx)
+Found generated file: transportation_operating_profit_bar_chart.png (ID: file-xxxxxxxxxxxxxxxxxxxx)
+File transportation_operating_profit_bar_chart.png downloaded successfully.
+File ready for download: transportation_operating_profit_bar_chart.png
+
+Cleaning up...
+Agent deleted
+
+Code Interpreter sample completed!
+```
+
+The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, analyzes the data to filter transportation sector records, generates a PNG bar chart showing operating profit by quarter, and downloads the chart to your local directory. The file annotations in the response provide the file ID and container information needed to retrieve the generated chart.
+
+:::zone-end
+
 ## Check regional and model availability
 
 Tool availability varies by region and model.
@@ -260,6 +425,12 @@ For the current list of supported regions and models for Code Interpreter, see [
 |`.xlsx`|`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`|
 |`.xml`|`application/xml` or `text/xml`|
 |`.zip`|`application/zip`|
+
+## Java SDK limitations
+
+The Code Interpreter tool is not currently supported in the Java SDK for Foundry agents. If you need Code Interpreter functionality in a Java application, use the REST API directly or consider using another supported SDK (Python, C#, or TypeScript/JavaScript).
+
+For the latest SDK support status, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 ## Troubleshooting
 

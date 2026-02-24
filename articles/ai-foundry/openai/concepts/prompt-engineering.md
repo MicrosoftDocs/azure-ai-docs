@@ -13,13 +13,17 @@ ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
 
 recommendations: false
+ai-usage: ai-assisted
 ---
 
 # Prompt engineering techniques
 
 These techniques aren't recommended for reasoning models like gpt-5 and o-series models.
 
-Prompt construction can be difficult. In practice, the prompt acts assist the model complete the desired task, but it's more of an art than a science, often requiring experience and intuition to craft a successful prompt. The goal of this article is to help get you started with this learning process. It attempts to capture general concepts and patterns that apply to all GPT models. However it's important to understand that each model behaves differently, so the learnings might not apply equally to all models.
+Prompt construction can be difficult. In practice, the prompt acts to help the model complete the desired task, but it's more of an art than a science, often requiring experience and intuition to craft a successful prompt. The goal of this article is to help get you started with this learning process. This article attempts to capture general concepts and patterns that apply to all GPT models. However, it's important to understand that each model behaves differently, so the learnings might not apply equally to all models.
+
+> [!NOTE]
+> For current API guidance and examples, see [Responses API](../how-to/responses.md) and [Azure OpenAI in Microsoft Foundry Models API reference](../latest.md).
 
 ## Basics
 

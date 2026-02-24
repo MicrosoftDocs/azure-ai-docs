@@ -1208,6 +1208,11 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/openai/gpt-v-quickstart.md",
+            "redirect_url": "/azure/ai-foundry/openai/how-to/gpt-with-vision",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/reference/reference-model-inference-api.md",
             "redirect_url": "/azure/ai-foundry/model-inference/reference/reference-model-inference-api",
             "redirect_document_id": false
@@ -1583,9 +1588,29 @@
           "redirect_document_id": true
         },
         {
+          "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/use-blocklists.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/use-blocklists",
+          "redirect_document_id": true
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/default/guardrails/severity-levels.md",
           "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-severity-levels",
           "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/video-generation-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/concepts/video-generation#quickstart",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/dall-e-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/dall-e#quickstart",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/realtime-audio-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/realtime-audio#quickstart",
+          "redirect_document_id": false
         }
     ]
 }

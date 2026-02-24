@@ -10,13 +10,12 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
 ms.date: 02/02/2026
 ms.custom: azure-ai-agents, references_regions, pilot-ai-workflow-jan-2026
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
 # Azure OpenAI models and regions for Foundry Agent Service
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Azure OpenAI models power agents in Microsoft Foundry Agent Service. This article helps you choose a supported model and region combination for your deployment. Choosing the right model and region affects your agent's capabilities, latency, and cost.
 
@@ -57,7 +56,6 @@ Foundry Agent Service supports the following Azure OpenAI models in the listed r
 
 Keep in mind that model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs.
 
-::: moniker range="foundry-classic"
 > [!NOTE]
 >
 > - [Hub-based projects](../../what-is-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.
@@ -66,17 +64,7 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 > - The [file search tool](../how-to/tools-classic/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
 > - The gpt-5 models can use only the [code interpreter](../how-to/tools-classic/code-interpreter.md) and [file search](../how-to/tools-classic/file-search.md) tools.
 > - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
-::: moniker-end
 
-::: moniker range="foundry"
-> [!NOTE]
->
-> - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
-> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
-> - The [file search tool](../../default/agents/how-to/tools/file-search.md?view=foundry&preserve-view=true) is currently unavailable in the Italy North and Brazil South regions.
-> - The gpt-5 models are available for the [code interpreter](../../default/agents/how-to/tools/code-interpreter.md?view=foundry&preserve-view=true) and [file search](../../default/agents/how-to/tools/file-search.md?view=foundry&preserve-view=true) tools.
-> - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
-::: moniker-end
 
 # [Global standard](#tab/global-standard)
 
@@ -181,7 +169,11 @@ In addition to Azure OpenAI models, you can use models sold directly by Azure. T
 
 ## View all agent-supported models in the Foundry portal
 
-[!INCLUDE [agent-service-view-models-in portal](../includes/agent-service-view-models-in-portal.md)]
+To see a full list of the supported models in the Foundry portal:
+
+1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. Go to the **Model catalog**.
+1. Filter the models by **Capabilities** and select **Agent supported**.
 
 ## Verify model support
 
