@@ -5,7 +5,7 @@ description: Learn how to generate text responses from Foundry Models, such as M
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 02/11/2026
+ms.date: 02/24/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand
@@ -33,6 +33,10 @@ To use the Responses API with deployed models in your application, you need:
 
 - A deployment of a Foundry Model, such as the `MAI-DS-R1` model used in this article. If you don't have a deployment already, see [Add and configure Foundry Models](create-model-deployments.md) to a model deployment to your resource.
 
+### Use the AI model starter kit
+
+The code snippets in this article are from the [AI model starter kit](https://aka.ms/ai-model-start). Use this starter kit for a quick way to get started with complete code to call Foundry Models, using the stable OpenAI SDKs and the GA OpenAI Responses API.
+
 ## Use the Responses API to generate text
 
 Use the code in this section to make Responses API calls for Foundry Models. In the code samples, you create the client to consume the model and then send it a basic request. 
@@ -54,26 +58,33 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
     ```bash
     pip install azure-identity
     pip install openai
-    pip install --pre azure-ai-projects>=2.0.0b1 
+    pip install python-dotenv
     ```
 
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses. 
    
     ```python
     import os
-    from azure.identity import DefaultAzureCredential
-    from azure.ai.projects import AIProjectClient
     
-    project_client = AIProjectClient(
-        endpoint="https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME",
-        credential=DefaultAzureCredential(),
-    )
+    from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+    from dotenv import load_dotenv
+    from openai import OpenAI
     
-    openai_client = project_client.get_openai_client()
-    
-    response = openai_client.responses.create(
+    project_endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME"
+    # Build the base URL: project_endpoint + /openai/v1 (no api-version needed)
+    base_url = project_endpoint.rstrip("/") + "/openai/v1"
+
+    # Use get_bearer_token_provider for automatic token refresh
+    credential = DefaultAzureCredential()
+    client = OpenAI(
+        base_url=base_url,
+        api_key=get_bearer_token_provider(credential, "https://ai.azure.com/.default"),
+    )   
+   
+    response = client.responses.create(
         model="MAI-DS-R1", # Replace with your deployment name, not the model ID 
-        input="What is the capital/major city of France?",
+        input="What are the top 3 benefits of cloud computing? Be concise.",
+        max_output_tokens=500,
     )
     
     print(response.model_dump_json(indent=2)) 
@@ -85,28 +96,40 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
 
     ```dotnetcli
     dotnet add package Azure.Identity
+    dotnet add package OpenAI
     ```
 
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses. 
 
     ```csharp
     using Azure.Identity;
-    using Azure.AI.Projects; 
-    using Azure.AI.Projects.OpenAI;
+    using OpenAI;
     using OpenAI.Responses;
 
-    #pragma warning disable OPENAI001
+    var deploymentName = "MAIDSR1"; // Replace with your deployment name, not the model ID 
+    var project_endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
 
-    const string deploymentName = "MAIDSR1"; // Replace with your deployment name, not the model ID 
-    const string endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
+    // Get EntraID token for keyless auth
+    var credential = new DefaultAzureCredential();
+    var token = await credential.GetTokenAsync(
+        new Azure.Core.TokenRequestContext(["https://ai.azure.com/.default"])
+    );
+
+    // Standard OpenAI client — no AzureOpenAI wrapper (no api-version needed with /v1 path)
+    var baseUrl = project_endpoint.TrimEnd('/') + "/openai/v1";
+    var client = new OpenAIClient(
+        new ApiKeyCredential(token.Token),
+        new OpenAIClientOptions { Endpoint = new Uri(baseUrl) });    
+
+    var responseClient = client.GetResponsesClient(deploymentName);
+    var result = await responseClient.CreateResponseAsync(new CreateResponseOptions(
+        [ResponseItem.CreateUserMessageItem("What are the top 3 benefits of cloud computing? Be concise.")])
+        { MaxOutputTokenCount = 500 }
+    );
+    Console.WriteLine($"Response: {result.Value.GetOutputText()}");
+    Console.WriteLine($"Status:   {result.Value.Status}");
+    Console.WriteLine($"Output tokens: {result.Value.Usage.OutputTokenCount}");
     
-    AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
-    
-    ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel(deploymentName);
-    
-    ResponseResult response = responseClient.CreateResponse("What is the capital/major city of France?");
-    
-    Console.WriteLine($"[ASSISTANT]: {response.GetOutputText()}");
     ```
 
 # [JavaScript](#tab/javascript)
@@ -117,26 +140,44 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
 
     ```bash
     npm install @azure/identity
+    npm install @openai
     ```
 
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses.  
 
     ```javascript
-    import { AIProjectClient } from "@azure/ai-projects";
+    import OpenAI from "openai";
     import { DefaultAzureCredential } from "@azure/identity";
     
-    const endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
-    const deploymentName = "MAI-DS-R1"; // Replace with your deployment name, not the model ID 
-    
+    async function getToken(): Promise<string> {
+      const credential = new DefaultAzureCredential();
+      const tokenResponse = await credential.getToken(
+        "https://ai.azure.com/.default"
+      );
+      return tokenResponse.token;
+    }
+
     async function main() {
-        const projectClient = new AIProjectClient(endpoint, new DefaultAzureCredential());
-        const openAIClient = await projectClient.getOpenAIClient();
-    
-        const response = await openAIClient.responses.create({
+        const projectEndpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
+        const deploymentName = "MAI-DS-R1"; // Replace with your deployment name, not the model ID 
+
+        const baseURL = projectEndpoint.replace(/\/+$/, "") + "/openai/v1";
+        const token = await getToken();
+
+        const client = new OpenAI({
+            baseURL,
+            apiKey: token,
+          });
+
+        const response = await client.responses.create({
             model: deploymentName,
-            input: "What is the capital/major city of France?"
-        });
-        console.log(response.output_text);
+            input: "What are the top 3 benefits of cloud computing? Be concise.",
+            max_output_tokens: 500,
+          });
+    
+        console.log(`Response: ${response2.output_text}`);
+        console.log(`Status:   ${response2.status}`);
+        console.log(`Output tokens: ${response2.usage?.output_tokens}`);
     }
     
     main();
@@ -151,11 +192,18 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
 1. Add the Azure Identity client library:
 
     ```xml
-    <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-identity</artifactId>
-        <version>1.18.0</version>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.openai</groupId>
+            <artifactId>openai-java</artifactId>
+            <version>4.22.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-identity</artifactId>
+            <version>1.15.4</version>
+        </dependency>
+    </dependencies>
     ```
 
     After setup, choose which type of credential from `azure.identity` to use. For example, use `DefaultAzureCredential` to authenticate the client. Authentication is easiest with `DefaultAzureCredential`, as it finds the best credential to use in its running environment.
@@ -163,10 +211,10 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
 1. Use the following code to configure the OpenAI client object in the project route, specify your deployment, and generate responses.  
 
     ```java
-    import com.azure.ai.agents;
-    import com.azure.core.util.Configuration;
+    import com.azure.core.credential.TokenRequestContext;
     import com.azure.identity.DefaultAzureCredentialBuilder;
-    import com.openai.models.responses.Response;
+    import com.openai.client.OpenAIClient;
+    import com.openai.client.okhttp.OpenAIOkHttpClient;
     import com.openai.models.responses.ResponseCreateParams;
     
     public class Sample {
@@ -174,33 +222,89 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
             String endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
             String deploymentName = "MAI-DS-R1"; // Replace with your deployment name, not the model ID
             
-            ResponsesClient responsesClient = new AgentsClientBuilder()
-                    .credential(new DefaultAzureCredentialBuilder().build())
-                    .endpoint(endpoint)
-                    .serviceVersion(AgentsServiceVersion.V2025_11_15_PREVIEW)
-                    .buildResponsesClient();
-    
-            ResponseCreateParams responseRequest = new ResponseCreateParams.Builder()
-                    .input("What is the capital/major city of France?")
-                    .model(deploymentName)
+            // Get EntraID token for keyless auth
+            var credential = new DefaultAzureCredentialBuilder().build();
+            var context = new TokenRequestContext().addScopes("https://ai.azure.com/.default");
+            String token = credential.getToken(context).block().getToken();
+
+            // Standard OpenAI client — no Azure wrapper
+            // Java SDK uses /openai/v1 path (no api-version needed; SDK manages versioning internally)
+            String baseUrl = endpoint.replaceAll("/+$", "") + "/openai/v1";
+            OpenAIClient client = OpenAIOkHttpClient.builder()
+                    .baseUrl(baseUrl)
+                    .apiKey(token)
                     .build();
-    
-            Response response = responsesClient.getResponseService().create(responseRequest);
+
+            var response = client.responses().create(
+                    ResponseCreateParams.builder()
+                            .model(deploymentName)
+                            .input("What are the top 3 benefits of cloud computing? Be concise.")
+                            .maxOutputTokens(500)
+                            .build()
+            );
+            System.out.printf("Response: %s%n", getOutputText(response2));
+            System.out.printf("Status:   %s%n", response2.status());
+            response2.usage().ifPresent(u ->
+                    System.out.printf("Output tokens: %d%n", u.outputTokens()));
         }
     }
    ```
 
 
-# [REST](#tab/rest)
+# [Go](#tab/go)
 
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME/openai/responses?api-version={{API_VERSION}} \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
--d '{
-    "model": "MAI-DS-R1",
-    "input": "What is the capital/major city of France?"
-}'
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "strings"
+
+    "github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
+    "github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/option"
+    "github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+
+    projectEndpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME"
+
+    ctx := context.Background()
+
+    // Get EntraID token for keyless auth
+    credential, err := azidentity.NewDefaultAzureCredential(nil)
+    token, err := credential.GetToken(ctx, policy.TokenRequestOptions{
+        Scopes: []string{"https://ai.azure.com/.default"},
+    })
+
+    // Standard OpenAI client — no Azure wrapper (no api-version needed with /v1 path)
+    baseURL := strings.TrimRight(projectEndpoint, "/") + "/openai/v1"
+    client := openai.NewClient(
+        option.WithBaseURL(baseURL),
+        option.WithAPIKey(token.Token),
+    )
+
+    deploymentName = "MAI-DS-R1"
+
+    fmt.Printf("Example: Non-OpenAI model (%s)\n\n", deploymentName)
+    fmt.Println("Waiting for response (reasoning models can take 30-60s)...")
+    resp, err := client.Responses.New(ctx, responses.ResponseNewParams{
+        Model: deploymentName,
+        Input: responses.ResponseNewParamsInputUnion{
+            OfString: openai.String("What are the top 3 benefits of cloud computing? Be concise."),
+        },
+        MaxOutputTokens: openai.Int(500),
+    })
+
+    fmt.Printf("Response: %s\n", resp2.OutputText())
+    fmt.Printf("Status:   %s\n", resp2.Status)
+    fmt.Printf("Output tokens: %d\n", resp2.Usage.OutputTokens)
+}
+
 ```
 
 ---
