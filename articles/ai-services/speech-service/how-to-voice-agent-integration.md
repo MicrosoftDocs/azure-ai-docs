@@ -34,13 +34,61 @@ recommendations: false
 [!INCLUDE [JavaScript how-to](./includes/how-to/voice-live-agents/javascript.md)]
 ::: zone-end
 
-## Migration from the previous version
+## Migration from Agent Service (classic)
 
-The previous agent integration using Agent Service v1 (preview) used mostly the same integration code. However instead of `agent-name` the `agent-id` was used.
+If you're using Voice Live with Agent Service (classic), you should migrate to the new Foundry Agent Service. For general Agent Service migration steps, see [Migrate from Agent Service (classic) to Foundry Agent Service](/azure/ai-foundry/agents/how-to/migrate?view=foundry).
 
-__**TBD, whether old agents can be accessed via the new Agent Service API?**__
+### Voice Live SDK changes
 
-__**Do we need to explain how to migrate from query params to strongly typed SDK code?**__
+The Voice Live SDK introduces typed configuration classes that replace the raw query parameters used in the classic integration:
+
+| Classic (v1) | New (v2) |
+|---|---|
+| `agent-id` query parameter | `agent_name` in `AgentConfig` / `AgentSessionConfig` |
+| `agent-project-name` query parameter | Project endpoint in client constructor |
+| `agent-access-token` query parameter | Handled automatically by SDK |
+| Manual `connect()` with query dict | Strongly-typed `AgentSessionConfig` passed to session options |
+
+### Minimum SDK versions
+
+| Language | Package | Minimum version |
+|---|---|---|
+| Python | `azure-ai-voicelive` | 1.0.0b5 |
+| C# | `Azure.AI.VoiceLive` | 1.1.0-beta.2 |
+| Java | `azure-ai-voicelive` | 1.0.0-beta.5 |
+| JavaScript | `@azure/ai-voicelive` | 1.0.0-beta.3 |
+
+### Before and after: Python connection setup
+
+**Classic (v1)** — raw query parameters in `connect()`:
+
+```python
+async with connect(
+    endpoint=self.endpoint,
+    credential=self.credential,
+    query={
+        "agent-id": self.agent_id,
+        "agent-project-name": self.foundry_project_name,
+        "agent-access-token": agent_access_token
+    },
+) as connection:
+```
+
+**New (v2)** — strongly-typed `AgentSessionConfig`:
+
+```python
+from azure.ai.voicelive import AgentConfig, AgentSessionConfig
+
+agent_config = AgentConfig(agent_name=agent_name)
+agent_session_config = AgentSessionConfig(agent_config=agent_config)
+
+session_options = VoiceLiveSessionOptions(
+    agent_session_config=agent_session_config,
+    # ... other options
+)
+```
+
+For complete code examples, see the [new agent quickstart](voice-live-agents-quickstart.md). The [classic quickstart](voice-live-agents-quickstart-classic.md) remains available until 8/31/2026.
 
 ## Related content
 

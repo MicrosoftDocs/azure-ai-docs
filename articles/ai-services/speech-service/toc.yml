@@ -308,8 +308,10 @@ items:
       items:
       - name: Voice Live with Foundry models
         href: voice-live-quickstart.md
-      - name: Voice Live with Foundry agents
+      - name: Voice Live with Foundry agents (new)
         href: voice-live-agents-quickstart.md
+      - name: Voice Live with Foundry agents (classic)
+        href: voice-live-agents-quickstart-classic.md
       - name: Function calling in Voice Live
         href: how-to-voice-live-function-calling.md
       - name: Bring your own model with Voice Live
