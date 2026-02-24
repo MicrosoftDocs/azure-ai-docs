@@ -148,7 +148,8 @@ To find your Foundry resource name from the Foundry portal:
 
 To find your base URL from the Foundry portal:
 
-1. From the home page of the Foundry portal, find the **Project endpoint** and copy the part of the URL that comes before `/api/projects/<your-project-name>`. Your base URL is of the form `https://<your-resource-name>.services.ai.azure.com`. Claude Code appends `/anthropic` to this URL automatically when you use `ANTHROPIC_FOUNDRY_RESOURCE`.
+1. Go to the home page of the Foundry portal
+1. Find the **Project endpoint** and copy the part of the URL that comes before `/api/projects/<your-project-name>`. Your base URL is of the form `https://<your-resource-name>.services.ai.azure.com`. Claude Code appends `/anthropic` to this URL automatically when you use `ANTHROPIC_FOUNDRY_RESOURCE`.
 
 
 Set environment variables to connect Claude Code to your Microsoft Foundry deployment:
@@ -204,7 +205,10 @@ To persist these variables across terminal sessions, add them to your shell prof
 
 ## Authenticate with Foundry
 
-Claude Code supports two authentication methods for Microsoft Foundry. Choose the method that best fits your security requirements.
+Claude Code supports two authentication methods for Microsoft Foundry:
+
+- **Microsoft Entra ID** (recommended): Uses your Azure CLI credentials. Best for enterprise environments, team access, and CI/CD pipelines where you want centralized identity management without managing secrets.
+- **API key**: Uses a project API key from the Foundry portal. Best for quick testing or environments where the Azure CLI isn't available.
 
 ### Option A: Microsoft Entra ID (recommended)
 
@@ -316,11 +320,10 @@ Verify that Claude Code is correctly configured to use Microsoft Foundry.
     The output should look similar to the following example. The exact format might vary depending on your Claude Code version.
   
     ```text
-    Claude Code v1.0.0
     ─────────────────────────────────────
-    Version: 2.1.47
+    Version: 2.1.52
     Session name: /rename to add a name
-    Session ID: your-session-ID
+    Session ID: <your-session-ID>
     cwd: C:\WINDOWS\system32
     API provider: Microsoft Foundry
     Microsoft Foundry Resource: <your-resource-name>
@@ -398,9 +401,7 @@ async with AzureAIAgentClient(async_credential=AzureCliCredential()) as client:
 - Adding Fabric connector for sales data
 ````
 
-## Start Claude Code with project context
-
-To get Claude Code to read your `CLAUDE.md` file and understand your project context, run the following commands in your terminal:
+After you create a `CLAUDE.md` file, start Claude Code in your project directory to load the context:
 
 ```bash
 # Start Claude Code in your project
@@ -526,6 +527,8 @@ $env:ANTHROPIC_MAX_TOKENS = "100000"
 
 ---
 
+For configuration options that control token usage and cost, such as model-specific token limits, see the [Claude Code configuration documentation](https://code.claude.com/docs/en/model-config).
+
 ## Clean up resources
 
 If you no longer need the Claude model deployments, delete them to free up deployment slots and quota in your resource. Claude models use Global Standard deployments with pay-per-token billing, so idle deployments don't incur charges. However, each deployment counts against your [deployment limit](../../foundry-models/quotas-limits.md) of 32 per resource.
@@ -556,7 +559,7 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 | ----- | -------- |
 | Authorization failed (HTTP 401/403) | Verify that `az login` completed successfully or that the API key is set correctly. Check that your account has access to the Foundry resource. |
 | Claude Code starts but can't find models | Verify `ANTHROPIC_FOUNDRY_RESOURCE` matches your resource name and that the `ANTHROPIC_DEFAULT_*_MODEL` values match your deployment names. |
-| Rate limit exceeded (HTTP 429) | Adjust `ANTHROPIC_MAX_TOKENS` or check your quotas in the Foundry portal under **Operate** > **Quotas**. |
+| Rate limit exceeded (HTTP 429) | Check your quotas in the Foundry portal under **Operate** > **Quotas**. Consider adjusting your token limits per the [Claude Code configuration documentation](https://code.claude.com/docs/en/model-config). |
 | VS Code extension not connecting | Ensure environment variables are set before launching VS Code. Try launching VS Code from the terminal after setting variables. |
 | WSL + VS Code extension issues | The extension might check for the API key on the Windows host instead of within WSL. Set the environment variable on both the Windows host and WSL, then launch a new terminal from WSL and run `code .` |
 | Region errors | Claude models are only available in East US 2 and Sweden Central. |
@@ -576,3 +579,4 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 - [Microsoft Dev Blogs | Claude Code + Microsoft Foundry: Enterprise AI Coding Agent Setup](https://devblogs.microsoft.com/all-things-azure/claude-code-microsoft-foundry-enterprise-ai-coding-agent-setup/)
 - [Claude in Microsoft Foundry (Anthropic docs)](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
 - [Claude Code Documentation (Anthropic docs)](https://docs.anthropic.com/en/docs/claude-code)
+- [Claude Code on Microsoft Foundry (Anthropic docs)](https://code.claude.com/docs/en/microsoft-foundry)
