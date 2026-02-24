@@ -56,7 +56,9 @@ After the tag is saved, verify behavior in both experiences.
 
 1. Open [Microsoft Foundry](https://ai.azure.com).
 1. Open your tagged project.
-1. Validate that preview-only UI features are hidden.
+1. Validate that preview-only UI features are hidden. 
+    * In the classic portal, the Preview features tool in the upper-right is disabled.
+    * In the new portal, you won't see any **PREVIEW** tags, as the features in preview will no longer be visible.  
 1. Toggle between new and classic experiences by using **New Foundry**, and validate the same behavior.
 
 Expected result: preview features are hidden in both new and classic Foundry portal experiences.
