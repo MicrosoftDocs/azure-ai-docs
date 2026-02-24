@@ -248,6 +248,9 @@ items:
           - name: Create connections to external data sources
             href: how-to-connection.md
             displayName: null
+          - name: Migrate data import to Microsoft Fabric
+            href: data-import-migration-guide.md
+            displayName: Microsoft Fabric, data import, migration
           - name: Import data
             href: how-to-import-data-assets.md
           - name: Schedule a data import
