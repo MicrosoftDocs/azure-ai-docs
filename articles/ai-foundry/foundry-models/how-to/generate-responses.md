@@ -35,7 +35,7 @@ To use the Responses API with deployed models in your application, you need:
 
 ### Use the AI model starter kit
 
-The code snippets in this article are from the [AI model starter kit](https://aka.ms/ai-model-start). Use this starter kit for a quick way to get started with complete code to call Foundry Models, using the stable OpenAI SDKs and the GA OpenAI Responses API.
+The code snippets in this article are from the [AI model starter kit](https://aka.ms/ai-model-start). Use this starter kit as a quick way to get started with complete cloud infrastructure and code needed to call Foundry Models, using a stable OpenAI library with the Responses API.
 
 ## Use the Responses API to generate text
 
