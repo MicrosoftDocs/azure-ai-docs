@@ -41,8 +41,6 @@ items:
   items:
   - name: Image generation
     href: ../../../openai/how-to/dall-e.md
-  - name: Image generation quickstart
-    href: ../../../openai/dall-e-quickstart.md
   - name: Video generation
     href: ../../../openai/concepts/video-generation.md
   - name: Vision-enabled chats
