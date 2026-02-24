@@ -41,9 +41,6 @@ The code snippets in this article are from the [AI model starter kit](https://ak
 
 Use the code in this section to make Responses API calls for Foundry Models. In the code samples, you create the client to consume the model and then send it a basic request. 
 
-> [!IMPORTANT]
-> Some of the SDK packages used in these samples are currently in preview. API surface and behavior might change before general availability.
-
 > [!TIP]
 > When you deploy a model in the Foundry portal, you assign it a deployment name. Use this deployment name (not the model catalog ID) in the `model` parameter of your API calls.
 
