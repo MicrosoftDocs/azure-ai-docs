@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: aashishb
-ms.date: 01/05/2026
+ms.date: 02/24/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom: dev-focus
