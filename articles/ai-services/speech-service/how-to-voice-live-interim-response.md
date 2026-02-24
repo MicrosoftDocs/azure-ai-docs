@@ -129,7 +129,7 @@ from azure.ai.voicelive.models import (
 
 interim_response_config = LlmInterimResponseConfig(
     triggers=[InterimResponseTrigger.TOOL, InterimResponseTrigger.LATENCY],
-    latency_threshold_ms=100,
+    latency_threshold_ms=200,
     instructions="Create friendly interim responses indicating wait time "
                  "due to ongoing processing, if any. Do not include in "
                  "all responses!"
@@ -165,7 +165,7 @@ await session.SendCommandAsync(
                     + "wait time due to ongoing processing, if any. "
                     + "Do not include in all responses!",
                 triggers = new[] { "tool", "latency" },
-                latency_threshold_ms = 100
+                latency_threshold_ms = 200
             }
         }
     }), cancellationToken);
@@ -182,7 +182,7 @@ LlmInterimResponseConfig interimResponseConfig = new LlmInterimResponseConfig()
         .setTriggers(Arrays.asList(
                 InterimResponseTrigger.TOOL,
                 InterimResponseTrigger.LATENCY))
-        .setLatencyThresholdMs(100)
+        .setLatencyThresholdMs(200)
         .setInstructions("Create friendly interim responses indicating "
                 + "wait time due to ongoing processing, if any. "
                 + "Do not include in all responses!");
@@ -205,7 +205,7 @@ await session.updateSession({
     interimResponse: {
         type: "llm_interim_response",
         triggers: ["tool", "latency"],
-        latencyThresholdInMs: 100,
+        latencyThresholdInMs: 200,
         instructions:
             "Create friendly interim responses indicating wait time " +
             "due to ongoing processing, if any. " +
