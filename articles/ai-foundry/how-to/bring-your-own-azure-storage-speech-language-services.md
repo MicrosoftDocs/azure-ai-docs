@@ -9,7 +9,7 @@ ms.reviewer: andyaviles
 ms.service: azure-ai-foundry
 ms.custom: ignite-2024, build-2025, dev-focus
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 02/24/2026
 ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
 ---
