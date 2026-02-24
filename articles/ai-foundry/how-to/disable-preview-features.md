@@ -39,17 +39,16 @@ Apply the preview-feature suppression tag at the scope your organization governs
 1. Sign in to [Azure portal](https://portal.azure.com).
 1. Go to the scope where you want to suppress preview features.
    - Use subscription scope for organization-wide governance.
-   - Use resource group scope for team or environment governance.
    - Use Foundry resource or project scope for granular control.
 
 1. Select **Tags**.
 1. Add the preview suppression tag key and value:
    - Key: `AZML_DISABLE_PREVIEW_FEATURE`
    - Value: `true`
-1. Select **Save**.
+1. Select **Apply**.
 1. Repeat for other scopes, as needed.
 
-:::image type="content" source="../media/disable-preview-fetures/disable-preview-tag.png" alt-text="Screenshot show disabling preview features in Azure portal for a resource group.":::
+:::image type="content" source="../media/disable-preview-features/disable-preview-tag.png" alt-text="Screenshot show disabling preview features in Azure portal for a subscription.":::
 
 ## Verify suppression in both portal experiences
 
