@@ -11,13 +11,13 @@ ms.custom:
   - ignite-2023
   - horz-security
 ms.topic: how-to
-ms.date: 01/22/2026
+ms.date: 02/24/2026
 ai-usage: ai-assisted
 ---
 
-# Secure your Azure AI Search deployment
+# Secure your Azure AI Search service
 
-This article provides actionable security best practices that you could add to protect your Azure AI Search deployment. These are customer-configurable security controls that you're responsible for implementing. For information about built-in security protections that Microsoft provides and manages automatically (network architecture, encryption, compliance certifications, etc.), see [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md).
+This article provides actionable security best practices that you could add to protect your Azure AI Search service. These are customer-configurable security controls that you're responsible for implementing. For information about built-in security protections that Microsoft provides and manages automatically (network architecture, encryption, compliance certifications, etc.), see [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md).
 
 As a solution architect, you should configure security controls across three key domains:
 
@@ -197,7 +197,8 @@ User permissions at the document level, also known as *row-level security*, cont
 Configure  fine-grained permissions at the document level, from data ingestion through query execution, essential for building secure AI agentic systems grounding data, Retrieval-Augmented Generation (RAG) applications, and enterprise search solutions that require authorization checks at the document level. For more information see [Document-level access control](search-document-level-access-overview.md).
 
 ### Use sensitivity labels (preview)
-  Configure to automatically detect Microsoft Purview sensitivity labels at the document level during indexing, applying label‑based access controls when queries are executed. For more information see [Sensitivity labels](https://learn.microsoft.com/en-us/azure/search/search-indexer-sensitivity-labels)
+
+Configure to automatically detect Microsoft Purview sensitivity labels at the document level during indexing, applying label‑based access controls when queries are executed. For more information, see [Sensitivity labels](search-indexer-sensitivity-labels.md).
 
 
 ## Configure data encryption

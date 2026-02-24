@@ -84,7 +84,7 @@ Data in transit is protected end-to-end between your client and the search servi
 
 By default, Azure AI Search deploys your search service on standard Azure infrastructure. This infrastructure encrypts data at rest and in transit, but it doesn't protect data while it's being actively processed in memory.
 
-For scenarios requiring hardware-based protection of data in use, Azure AI Search offers confidential computing. This compute type is only configurable during service creation and has feature and region limitations. For more information, see [(Optional) Enable confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
+For scenarios requiring hardware-based protection of data in use, Azure AI Search offers confidential computing. This compute type has limited regional availability, disables or restricts certain features, and increases the cost of running your search service. For more information, see [(Optional) Enable confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
 
 ### Data at rest
 

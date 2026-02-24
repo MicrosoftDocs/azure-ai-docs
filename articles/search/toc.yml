@@ -512,10 +512,10 @@ items:
 
 - name: Security
   items:
-  - name: Security in Azure AI Search
-    href: search-security-best-practices.md
-  - name: Data, privacy, and built-in protections
+  - name: Built-in security
     href: search-security-built-in.md
+  - name: Secure a search service
+    href: search-security-best-practices.md
   - name: Network access
     items:
     - name: Configure network access
