@@ -109,6 +109,6 @@ In Azure, Microsoft Entra ID always performs administration operations. Roles li
 
 [!INCLUDE [troubleshooting](../includes/configure-entra-id/troubleshooting.md)]
 
-## Next step
+<!-- CLASSIC-ONLY: ## Next step -->
 
 <!-- CLASSIC-ONLY: - [Azure OpenAI supported programming languages](../../openai/supported-languages.md) -->

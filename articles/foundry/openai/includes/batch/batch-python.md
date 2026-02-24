@@ -118,7 +118,7 @@ The `custom_id` is required to allow you to identify which individual batch requ
 
 For this article we'll create a file named `test.jsonl` and will copy the contents from standard input code block above to the file. You'll need to modify and add your global batch deployment name to each line of the file. Save this file in the same directory that you're executing your Jupyter Notebook.
 
-## Upload batch file
+<!-- CLASSIC-ONLY: ## Upload batch file -->
 
 <!-- CLASSIC-ONLY: Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md).  -->
 

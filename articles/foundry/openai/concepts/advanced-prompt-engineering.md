@@ -26,7 +26,7 @@ This article focuses on the **system message** (sometimes called a *system promp
 
 If you want broader prompt guidance (few-shot examples, ordering, and token efficiency), see [Prompt engineering techniques](prompt-engineering.md).
 
-## Prerequisites
+<!-- CLASSIC-ONLY: ## Prerequisites -->
 
 <!-- CLASSIC-ONLY: To use system messages, you need access to an Azure OpenAI resource with a chat completion model deployment. For setup instructions, see [Create and deploy an Azure OpenAI resource](../how-to/create-resource.md). -->
 

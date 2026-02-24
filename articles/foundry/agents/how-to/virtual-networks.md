@@ -270,6 +270,6 @@ These FQDNs are listed under **Managed Identity** in the [Integrate with Azure F
 
 **Solution**: If resources aren't reachable through private endpoints, verify that each private DNS zone is linked to your virtual network. Confirm conditional forwarders point to the Azure DNS virtual server IP address `168.63.129.16`. From a machine connected to the VNet, run `nslookup <resource-fqdn>` and verify that each name resolves to a private IP address.
 
-## Next steps
+<!-- CLASSIC-ONLY: ## Next steps -->
 
 <!-- CLASSIC-ONLY: You've now successfully configured a network-secure account and project. Use the [quickstart](../quickstart.md) to create your first agent. -->

@@ -147,7 +147,7 @@ This is currently not supported.
 
 Yes. Similar to other deployment types, you can create content filters and associate them with the Global Batch deployment type.
 
-### Can I request additional quota?
+<!-- CLASSIC-ONLY: ### Can I request additional quota? -->
 
 <!-- CLASSIC-ONLY: Yes, from the quota page in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota). -->
 

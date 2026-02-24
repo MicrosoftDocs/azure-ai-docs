@@ -317,7 +317,7 @@ Use the *stream* parameter to enable streaming responses. When set to `true`, th
 
 Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
-#### [DALL-E 3](#tab/dalle-3)
+<!-- CLASSIC-ONLY: #### [DALL-E 3](#tab/dalle-3) -->
 
 <!--
 | Parameter Name   | Description       | Values         |
