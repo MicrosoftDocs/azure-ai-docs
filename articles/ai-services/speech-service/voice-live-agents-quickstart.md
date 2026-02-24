@@ -27,7 +27,7 @@ recommendations: false
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
-<!-- [!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)] -->
+[!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
