@@ -22,7 +22,11 @@ You can query the deployment programmatically [Prediction API](/rest/api/languag
 
 First you need to get your resource key and endpoint:
 
-[!INCLUDE [Get keys and endpoint Azure portal](../../includes/key-endpoint-page-azure-portal.md)]
+1. Go to your resource overview page in the [Azure portal](https://portal.azure.com/#home)
+
+1. From the menu on the left side, select **Keys and Endpoint**. You use the endpoint and key for the API requests.
+
+    :::image type="content" source="../media/key-endpoint-page.png" alt-text="A screenshot showing the key and endpoint page in the Azure portal." lightbox="../media/key-endpoint-page.png":::
 
 ### Submit a custom text classification task
 
