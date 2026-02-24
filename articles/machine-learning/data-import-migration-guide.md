@@ -14,23 +14,23 @@ ai-usage: ai-assisted
 
 # Migrate Data Import to Microsoft Fabric
 
-Data Import (Preview) and Data Connections (Preview) are features in Azure Machine Learning that let you bring external data into your machine learning workflows. These features are scheduled for retirement `[TO VERIFY: retirement date]`. To continue accessing external data, migrate to Microsoft Fabric.
+Data Import (Preview) and Data Connections (Preview) are features in Azure Machine Learning that let you bring external data into your machine learning workflows. These features are scheduled for retirement on September 30, 2026. To continue importing external data, migrate to Microsoft Fabric.
 
-In this article, you learn about the recommended migration paths from Data Import and Data Connections to Microsoft Fabric, and how to connect your Fabric data back to Azure Machine Learning datastores.
+In this article, you learn about the recommended migration paths from Data Import and Data Connections to Microsoft Fabric, and how to connect your Fabric data back to Azure Machine Learning via datastores.
 
 ## Deprecation timeline
 
 > [!IMPORTANT]
-> Data Import (Preview) and Data Connections (Preview) are scheduled for retirement on `[TO VERIFY: date]`. Plan your migration before this date to avoid disruption to your data workflows.
+> Data Import (Preview) and Data Connections (Preview) are scheduled for retirement on September 30, 2026. Plan your migration before this date to avoid disruption to your data workflows.
 
 The following table summarizes what to expect during and after the migration period:
 
 | Milestone | Details |
 |-----------|---------|
-| Deprecation announced | `[TO VERIFY: date]` |
-| Feature retirement | `[TO VERIFY: date]` |
-| Existing import jobs | Stop running after retirement `[TO VERIFY]` |
-| Replacement | Microsoft Fabric Pipelines, Shortcuts, and mirroring |
+| Deprecation announced | March 31, 2026 |
+| Feature retirement | September 30, 2026 |
+| Existing data connections | Stop functioning after retirement. Scheduled refreshes will no longer run. |
+| Replacement | Microsoft Fabric |
 
 After retirement, existing Data Import schedules and Data Connections stop functioning. Migrate to Fabric before the retirement date to maintain uninterrupted access to your external data.
 
@@ -67,7 +67,7 @@ Use the following guidance to select your migration path:
 
 After your data is in Fabric, connect it to Azure Machine Learning by using one of these options:
 
-- **OneLake datastore** — Create an Azure Machine Learning OneLake datastore to reference data directly in Fabric. This option avoids an extra copy step and keeps your data in one location. For more information, see [OneLake connection YAML reference](reference-yaml-connection-onelake.md).
+- **OneLake datastore** — Create an Azure Machine Learning OneLake datastore to reference data directly in Fabric. This option avoids an extra copy step and keeps your data in one location. For more information, see [Create a OneLake datastore](how-to-datastore.md#create-a-onelake-datastore).
 
 - **Copy to Azure storage** — Create a Fabric pipeline to copy data to Azure Blob Storage or Azure Data Lake Storage Gen2, then create the corresponding Azure Machine Learning datastore to reference the copied data. This option is useful when your downstream tools require data in Azure storage. For more information, see [Create datastores](how-to-datastore.md).
 
