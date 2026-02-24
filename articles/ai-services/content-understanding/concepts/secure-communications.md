@@ -21,7 +21,7 @@ Content Understanding is part of Microsoft Foundry and provides the same securit
 
 As part of Foundry Tools, Content Understanding supports network-level isolation through [Azure Virtual Networks](/azure/virtual-network/virtual-networks-overview) (VNet) and private endpoints ([Azure Private Link](/azure/private-link/private-link-overview)) to enable secure, enterprise-grade deployments. 
 
-:::image type="content" source="../media/overview/virtual-network.jpg" alt-text="Virtual network diagram" lightbox="../media/overview/virtual-network.jpg":::
+:::image type="content" source="../media/overview/virtual-network.jpg" alt-text="Diagram showing virtual network architecture with Content Understanding, including network isolation, private endpoints, and secure access control layers.":::
 
 Content Understanding uses a layered security model that allows you to restrict access to specific networks. When network rules are enabled, only traffic from specific IP addresses, IP ranges, or a list of VNets/subnets are allowed to reach your Foundry resources. Any application accessing a Foundry resource must also be authorized through  [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) (including managed identities) or by using a valid API key.  
 
