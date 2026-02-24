@@ -19,13 +19,13 @@ Content Understanding is part of Microsoft Foundry and provides the same securit
 
 ## Virtual networks
 
-As part of Foundry Tools, Content Understanding supports network-level isolation through [Azure Virtual Networks](/azure/virtual-network/virtual-networks-overview) (VNet) and private endpoints ([Azure Private Link](/private-link/private-link-overview)) to enable secure, enterprise-grade deployments. 
+As part of Foundry Tools, Content Understanding supports network-level isolation through [Azure Virtual Networks](/azure/virtual-network/virtual-networks-overview) (VNet) and private endpoints ([Azure Private Link](/azure/private-link/private-link-overview)) to enable secure, enterprise-grade deployments. 
 
 :::image type="content" source="../media/overview/virtual-network.jpg" alt-text="Virtual network diagram" lightbox="../media/overview/virtual-network.jpg":::
 
 Content Understanding uses a layered security model that allows you to restrict access to specific networks. When network rules are enabled, only traffic from specific IP addresses, IP ranges, or a list of VNets/subnets are allowed to reach your Foundry resources. Any application accessing a Foundry resource must also be authorized through  [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) (including managed identities) or by using a valid API key.  
 
-Additionally, you can use [private endpoints](/private-link/private-endpoint-overview) for your Content Understanding Foundry resource to allow clients on a virtual network to securely access data over [Azure Private Link](/azure/private-link/private-link-overview). The private endpoint uses an IP address from the virtual network address space for your Content Understanding Foundry resource. Network traffic between the clients on the virtual network and the resource traverses the virtual network and a private link on the Microsoft Azure backbone network, which eliminates exposure from the public internet.
+Additionally, you can use [private endpoints](/azure/private-link/private-endpoint-overview) for your Content Understanding Foundry resource to allow clients on a virtual network to securely access data over [Azure Private Link](/azure/private-link/private-link-overview). The private endpoint uses an IP address from the virtual network address space for your Content Understanding Foundry resource. Network traffic between the clients on the virtual network and the resource traverses the virtual network and a private link on the Microsoft Azure backbone network, which eliminates exposure from the public internet.
 
 To use Content Understanding Studio from a virtual machine within a VNet, you need to allow outgoing connections to the required set of [service tags](/azure/virtual-network/service-tags-overview) for this virtual network. 
 
