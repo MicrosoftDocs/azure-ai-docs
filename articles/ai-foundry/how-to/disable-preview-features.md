@@ -39,7 +39,7 @@ Apply the preview-feature suppression tag at the scope your organization governs
 1. Sign in to [Azure portal](https://portal.azure.com).
 1. Go to the scope where you want to suppress preview features.
    - Use subscription scope for organization-wide governance.
-   - Use Foundry resource or project scope for granular control.
+   - Use Foundry resource scope for granular control.
 
 1. Select **Tags**.
 1. Add the preview suppression tag key and value:
