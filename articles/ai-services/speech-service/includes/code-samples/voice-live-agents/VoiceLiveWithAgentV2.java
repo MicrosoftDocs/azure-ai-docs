@@ -362,7 +362,9 @@ public class VoiceLiveWithAgentV2 {
             if (type == ServerEventType.SESSION_UPDATED) {
                 logger.info("Session updated and ready");
                 sessionReady = true;
-                writeLog("Session ready\n");
+                String sessionId = extractField(event, "id");
+                String threadId = extractField(event, "thread_id");
+                writeLog(String.format("SessionID: %s\nThread ID: %s\n", sessionId, threadId));
 
                 // Send a proactive greeting
                 if (!greetingSent) {

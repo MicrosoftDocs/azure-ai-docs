@@ -142,14 +142,14 @@ Press Ctrl+C to exit
 
 🎤 Listening...
 🤔 Processing...
-👤 You said:  User Input:       Hello.
+👤 You said:	Hello.
 🎤 Ready for next input...
-🤖 Agent responded:  Agent Audio Response:        Hello! I'm Tobi the agent. How can I assist you today?
+🤖 Agent responded:	Hello! I'm Tobi the agent. How can I assist you today?
 🎤 Listening...
 🤔 Processing...
-👤 You said:  User Input:       What are the opening hours of the Eiffel Tower?
+👤 You said:	What are the opening hours of the Eiffel Tower?
 🎤 Ready for next input...
-🤖 Agent responded:  Agent Audio Response:        The Eiffel Tower's opening hours can vary depending on the season and any special events or maintenance. Generally, the Eiffel Tower is open every day of the year, with the following typical hours:
+🤖 Agent responded:	The Eiffel Tower's opening hours can vary depending on the season and any special events or maintenance. Generally, the Eiffel Tower is open every day of the year, with the following typical hours:
 
 - Mid-June to early September: 9:00 AM to 12:45 AM (last elevator ride up at 12:00 AM)
 - Rest of the year: 9:30 AM to 11:45 PM (last elevator ride up at 11:00 PM)
@@ -185,11 +185,11 @@ The console output includes technical information about the connection to the Vo
 2026-02-10 18:40:26,074 INFO ✅ Response complete
 ```
 
-Further, a conversation log file is created in the `logs` folder with the name `conversation_YYYYMMDD_HHmmss.log`. This file contains the conversation transcript, including user inputs and agent responses.
+Further, a conversation log file is created in the `logs` folder with the name `conversation_YYYYMMDD_HHmmss.log`. This file contains session metadata and the conversation transcript, including user inputs and agent responses.
 
 ```text
 SessionID: sess_1m1zrSLJSPjJpzbEOyQpTL
-Agent Name: VoiceAgentQuickstartTest
+Thread ID: thread_abc123def456
 
 User Input:	Hello.
 Agent Audio Response:	Hello! I'm Tobi the agent. How can I assist you today?
