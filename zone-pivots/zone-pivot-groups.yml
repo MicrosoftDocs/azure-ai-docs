@@ -1608,6 +1608,8 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-java
+    title: Java
 - id: voice-live-howto-agents
 # Owner: eur
   title: Programming languages
@@ -1616,7 +1618,9 @@ groups:
   - id: programming-language-python
     title: Python
   - id: programming-language-csharp
-    title: C#    
+    title: C#
+  - id: programming-language-java
+    title: Java
 - id: how-to-voice-live-proactive-messages
 # Owner: eur
   title: Programming languages
