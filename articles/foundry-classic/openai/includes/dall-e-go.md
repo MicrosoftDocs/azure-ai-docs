@@ -13,19 +13,19 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Go
 
 [Library source code](https://github.com/Azure/azure-sdk-for-go/tree/main/sdk/ai/azopenai) | [Package](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai) | [Samples](https://github.com/Azure/azure-sdk-for-go/tree/main/sdk/ai/azopenai)
 
-## Prerequisites
+### Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - [Go 1.8+](https://go.dev/doc/install)
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-### Microsoft Entra ID prerequisites
+#### Microsoft Entra ID prerequisites
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-## Set up
+### Setup
  
 1. Create a new folder `dall-e-quickstart` and go to the quickstart folder with the following command:
 
@@ -39,11 +39,11 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     az login
     ```
 
-## Retrieve resource information
+### Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-## Run the quickstart
+### Run the quickstart
 
 The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `NewDefaultAzureCredential` implementation with `NewKeyCredential`. 
 
@@ -238,7 +238,7 @@ To run the sample:
 
 ---
 
-## Output
+### Output
 
 The URL of the generated image is printed to the console.
 
@@ -249,14 +249,10 @@ Image URL: <SAS URL>
 > [!NOTE]
 > The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../foundry-models/concepts/content-filter.md) article.
 
-## Clean up resources
+### Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 - [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
 
-## Next steps
-
-* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

@@ -5,11 +5,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 01/15/2026
+ms.date: 02/15/2026
 author: ssalgadodev
 ms.author: ssalgado
 ai-usage: ai-assisted
-
 ---
 
 # Document embedding in prompts (classic)

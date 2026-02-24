@@ -9,12 +9,12 @@ ms.topic: include
 ms.date: 09/08/2025
 ---
 
-## Prerequisites
+### Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-## Go to Microsoft Foundry portal
+### Go to Microsoft Foundry portal
 
 Browse to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
@@ -22,7 +22,7 @@ From the Foundry landing page, create or select a new project. Navigate to the *
 
 On the model's page, select **Open in playground**.
 
-## Try out video generation
+### Try out video generation
 
 Start exploring Sora video generation with a no-code approach through the **Video playground**. Enter your prompt into the text box and select **Generate**. Video generation typically takes **1 to 5 minutes** depending on your settings. When the AI-generated video is ready, it appears on the page.
 

@@ -11,6 +11,7 @@ ms.topic: concept-article
 ms.custom:
   - classic-and-new
   - build-2025
+ai-usage: ai-assisted
 
 ---
 
@@ -145,3 +146,9 @@ In the report, be sure to clarify that the role of RAI red teaming is to expose 
 Additionally, if the report contains problematic content and examples, consider including a content warning.
 
 The guidance in this document is not intended to be, and should not be construed as providing, legal advice. The jurisdiction in which you're operating may have various regulatory or legal requirements that apply to your AI system. Be aware that not all of these recommendations are appropriate for every scenario and, conversely, these recommendations may be insufficient for some scenarios.
+
+## Next steps
+
+<!-- CLASSIC-ONLY: - Review [content filters](../how-to/content-filters.md) and ensure your testing plan covers scenarios that might bypass them. -->
+- Use [prompt engineering](./prompt-engineering.md) techniques to reduce risk, then retest to validate improvements.
+- Read [Overview of responsible AI practices](/azure/ai-foundry/responsible-ai/openai/overview) to align testing with a broader RAI workflow.

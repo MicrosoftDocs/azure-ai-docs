@@ -5,12 +5,13 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 02/23/2026
 author: mrbullwinkle 
 ms.author: mbullwin
 recommendations: false
 ms.custom:
-- classic-and-new
+  - classic-and-new
+ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
@@ -51,7 +52,7 @@ A second approach to estimated system level throughput involves collecting token
   "body": {
     "id": "chatcmpl-7R1nGnsXO8n4oi9UPz2f3UHdgAYMn",
     "created": 1686676106,
-    "choices": [...],
+    "choices": [],
     "usage": {
       "completion_tokens": 557,
       "prompt_tokens": 33,
@@ -96,7 +97,7 @@ When you send a completion request to the Azure OpenAI endpoint, your input text
 At the time of the request, the requested generation size (`max_tokens` parameter) is used as an initial estimate of the generation size. The compute-time for generating the full size is reserved by the model as the request is processed. Once the generation is completed, the remaining quota is released. Ways to reduce the number of tokens:
 - Set the `max_tokens` parameter on each call as small as possible.
 - Include stop sequences to prevent generating extra content.
-- Generate fewer responses: The best_of & n parameters can greatly increase latency because they generate multiple outputs. For the fastest response, either don't specify these values or set them to 1.
+- Generate fewer responses: Using the `n` parameter can increase latency because it produces multiple outputs per request. For the fastest response, don't set `n` (or set it to `1`).
 
 In summary, reducing the number of tokens generated per request reduces the latency of each request.
 

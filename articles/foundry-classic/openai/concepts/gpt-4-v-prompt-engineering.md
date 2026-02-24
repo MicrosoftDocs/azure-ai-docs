@@ -116,6 +116,6 @@ Now that you understand image prompt engineering techniques, try them in practic
 ## Related content
 
 - [Vision-enabled chat model concepts](gpt-with-vision.md)
-- [Quickstart: Use GPT-4 Turbo with Vision](../gpt-v-quickstart.md)
+<!-- NEW-ONLY: - [Quickstart: Use GPT-4 Turbo with Vision](../gpt-v-quickstart.md) -->
 - [How to use GPT-4 Turbo with Vision](../how-to/gpt-with-vision.md)
 - [Prompt engineering techniques](prompt-engineering.md)

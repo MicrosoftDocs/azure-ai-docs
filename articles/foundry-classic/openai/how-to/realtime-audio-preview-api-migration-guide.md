@@ -48,7 +48,7 @@ Example of GA endpoint format:
 https://<your-resource>.openai.azure.com/openai/v1/
 ```
 
-See detailed information on the endpoint format in [this article](realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](../realtime-audio-quickstart.md).
+<!-- NEW-ONLY: See detailed information on the endpoint format in [this article](realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](../realtime-audio-quickstart.md). -->
 
 ## Ephemeral Keys and WebRTC URLs
 

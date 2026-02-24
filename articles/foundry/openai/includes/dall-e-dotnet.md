@@ -16,19 +16,19 @@ Use this guide to get started generating images with the Azure OpenAI SDK for C#
 
 [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/openai/Azure.AI.OpenAI) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.OpenAI/) | [Samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/openai/Azure.AI.OpenAI/tests/Samples)
 
-## Prerequisites
+### Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - The [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
 <!-- CLASSIC-ONLY: - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). -->
 
-### Microsoft Entra ID prerequisites
+#### Microsoft Entra ID prerequisites
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-## Set up
+### Set up
 
 1. Create a new folder `image-quickstart` and go to the quickstart folder with the following command:
 
@@ -42,7 +42,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     dotnet new console
     ```
 
-3. Install the [OpenAI .NET client library](https://www.nuget.org/packages/Azure.AI.OpenAI/) with the [dotnet add package](/dotnet/core/tools/dotnet-add-package) command:
+1. Install the [OpenAI .NET client library](https://www.nuget.org/packages/Azure.AI.OpenAI/) with the [dotnet add package](/dotnet/core/tools/dotnet-add-package) command:
 
     ```console
     dotnet add package Azure.AI.OpenAI --version 1.0.0-beta.6
@@ -60,11 +60,11 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     az login
     ```
 
-## Retrieve resource information
+### Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-## Run the quickstart
+### Run the quickstart
 
 The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with an `AzureKeyCredential` object. 
 
@@ -118,7 +118,7 @@ To run the quickstart, follow these steps:
     dotnet run
     ```
 
-## Output
+### Output
 
 The URL of the generated image is printed to the console.
 
@@ -129,14 +129,10 @@ The URL of the generated image is printed to the console.
 <!-- > [!NOTE] (callout removed - content was version-specific) -->
 <!-- CLASSIC-ONLY: > The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../foundry-models/concepts/content-filter.md) article. -->
 
-## Clean up resources
+### Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource. Before deleting the resource, you must first delete any deployed models.
 
 - [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
 
-## Next steps
-
-* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).
