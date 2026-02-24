@@ -237,7 +237,7 @@ For more information on model capabilities, and region availability see the [mod
 
 :::image type="content" source="./media/computer-use-preview.gif" alt-text="Animated gif of computer-use-preview model integrated with playwright." lightbox="./media/computer-use-preview.gif":::
 
-[Playwright integration demo code](./how-to/responses.md#computer-use).
+[Playwright integration demo code](./how-to/responses.md).
 
 ### Provisioned spillover (preview)
 

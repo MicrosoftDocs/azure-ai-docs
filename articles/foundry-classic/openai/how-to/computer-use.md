@@ -1186,5 +1186,5 @@ if __name__ == "__main__":
 ## See also
 
 * [Responses API](./responses.md)
-    * [Computer Use with playwright](./responses.md#computer-use)
+    * [Computer Use with playwright](./responses.md)
 * [Computer Use Assistant sample on GitHub](https://github.com/Azure-Samples/computer-use-model)
