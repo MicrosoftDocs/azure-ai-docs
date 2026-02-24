@@ -1,4 +1,4 @@
-﻿---
+---
 manager: nitinme
 author: haileytap
 ms.author: haileytapia

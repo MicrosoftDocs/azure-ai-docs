@@ -1,4 +1,4 @@
-﻿---
+---
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -18,7 +18,7 @@ A *knowledge base* orchestrates agentic retrieval by decomposing complex queries
 Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
 > [!TIP]
-> Source code for the JavaScript version of this quickstart isn't available. You can copy the code directly from this article.
+> Source code for the JavaScript version of this quickstart isn't available. You can copy code directly from this article.
 
 ## Prerequisites
 

@@ -1,4 +1,4 @@
-﻿---
+---
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -81,7 +81,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 ## Run the code
 
-Run the application to create an index, upload documents, configure knowledge sources and bases, and run agentic retrieval queries.
+Run the application to create an index, upload documents, configure a knowledge source and knowledge base, and run agentic retrieval queries.
 
 ```bash
 dotnet run --project AgenticRetrievalQuickstart.csproj
