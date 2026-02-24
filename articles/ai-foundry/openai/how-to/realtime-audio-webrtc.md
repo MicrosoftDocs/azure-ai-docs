@@ -45,6 +45,7 @@ You can access the GPT real-time models for global deployments in the [East US 2
 - `gpt-realtime` (version 2025-08-28)
 - `gpt-realtime-mini` (version 2025-10-06)
 - `gpt-realtime-mini-2025-12-15` (version 2025-12-15)
+- `gpt-realtime-1.5-2026-02-23` (version 2026-02-23)
 
 You should use API version `2025-08-28` in the URL for the Realtime API. The API version is included in the sessions URL.
 
@@ -65,7 +66,7 @@ Before you can use GPT real-time audio, you need:
 :::moniker range="foundry"
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the [supported regions](#supported-models).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article.
+- A deployment of a GPT realtime model in a supported region as described in the [supported models](#supported-models) section in this article.
     - In the Foundry portal, load your project. Select **Build** in the upper-right menu, then select the **Models** tab on the left pane, and select **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 :::moniker-end
 
@@ -73,7 +74,7 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in the Foundry portal.
+- A deployment of a GPT realtime model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in the Foundry portal.
 :::moniker-end
 
 ## Set up WebRTC
