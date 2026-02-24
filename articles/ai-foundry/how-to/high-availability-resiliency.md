@@ -221,10 +221,10 @@ Foundry builds on other services. Some services replicate to other regions. You 
 
 Use these development practices to enable fast recovery and restart in the secondary region:
 
-* Use Azure Resource Manager templates. Templates are infrastructure as code, and they let you quickly deploy services in both regions.
-* To avoid drift between the two regions, update your continuous integration and deployment pipelines to deploy to both regions.
-* Create role assignments for users in both regions.
-* Create network resources such as Azure virtual networks and private endpoints for both regions. Ensure users can access both network environments. For example, configure VPN and DNS for both virtual networks.
+1. Use Azure Resource Manager templates. Templates are infrastructure as code, and they let you quickly deploy services in both regions.
+1. To avoid drift between the two regions, update your continuous integration and deployment pipelines to deploy to both regions.
+1. Create role assignments for users in both regions.
+1. Create network resources such as Azure virtual networks and private endpoints for both regions. Ensure users can access both network environments. For example, configure VPN and DNS for both virtual networks.
 
 ## Design for high availability
 
@@ -261,6 +261,16 @@ Foundry doesn't sync or recover artifacts or metadata between projects. Dependin
 > [!NOTE]
 > Jobs that run during a service outage don't automatically transition to the secondary project. They also don't typically resume and finish successfully in the primary project after the outage. Resubmit these jobs in the secondary project or in the primary project after the outage.
 
+### Verify failover readiness
+
+Periodically validate that your secondary environment can handle production workloads. Perform these verification steps on a regular schedule (for example, quarterly):
+
+1. Confirm that the secondary region's Foundry project, deployed models, and connections are current and match the primary region's configuration.
+1. Run a representative agent or pipeline job in the secondary project to verify end-to-end functionality, including access to Azure Cosmos DB, Azure AI Search, and Azure Storage.
+1. Validate that all RBAC role assignments for managed identities, users, and service principals are in place in the secondary region.
+1. Test DNS resolution and network connectivity, including private endpoints and VPN paths, from client environments to the secondary region.
+1. Document any gaps and update your IaC templates or deployment pipelines to close them before the next review cycle.
+
 ## Recovery options
 
 ### Resource deletion
@@ -286,4 +296,9 @@ For recovery of other Foundry resources (accounts, projects) after deletion or p
 
 ## Related content
 
-[Azure service-level agreements](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1)
+- [Azure service-level agreements](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1)
+- [Azure Cosmos DB high availability](/azure/cosmos-db/high-availability)
+- [Azure AI Search service reliability](/azure/search/search-reliability)
+- [Azure Storage redundancy](/azure/storage/common/storage-redundancy)
+- [Azure Key Vault availability and redundancy](/azure/key-vault/general/disaster-recovery-guidance)
+- [Recover or purge deleted Foundry resources](/azure/ai-services/recover-purge-resources)
