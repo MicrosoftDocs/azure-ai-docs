@@ -161,13 +161,13 @@ Would you like me to help you find the official website or any other details abo
 👋 Voice assistant shut down. Goodbye!
 ```
 
-The program creates a log file named `<timestamp>_voicelive.log` in the `logs` folder using Java's `java.util.logging` framework.
+The program uses Java's `java.util.logging` framework for technical logs, which are written to the console (stderr) by default. You can configure a logging properties file to redirect output to a file if needed.
 
 ```java
 Logger logger = Logger.getLogger(VoiceLiveWithAgentV2.class.getName());
 ```
 
-The `voicelive.log` file contains information about the connection to the Voice Live API, including the request and response data. You can view the log file to see the details of the conversation.
+The console output includes technical information about the connection to the Voice Live API, audio processing, and session events:
 
 ```text
 2026-02-10 18:40:19,183 INFO Using Azure token credential
@@ -185,7 +185,7 @@ The `voicelive.log` file contains information about the connection to the Voice 
 2026-02-10 18:40:26,074 INFO ✅ Response complete
 ```
 
-Further, a session log file is created in the `logs` folder with the name `<timestamp>_conversation.log`. This file contains detailed information about the session, including the request and response data.
+Further, a conversation log file is created in the `logs` folder with the name `conversation_YYYYMMDD_HHmmss.log`. This file contains the conversation transcript, including user inputs and agent responses.
 
 ```text
 SessionID: sess_1m1zrSLJSPjJpzbEOyQpTL
@@ -207,8 +207,8 @@ Here are the key differences between the [technical log](#technical-log) and the
 | **Troubleshooting** | "What did the agent say?" | "Why did the connection fail?" |
 
 **Example**: If your agent wasn't responding, you'd check:
-- **voicelive.log** → "WebSocket connection failed" or "Audio stream error"
-- **conversation.log** → "Did the user actually say anything?"
+- **Console log** → "WebSocket connection failed" or "Audio stream error"
+- **conversation log** → "Did the user actually say anything?"
 
 Both logs are complementary - conversation logs for conversation analysis and testing, technical logs for system diagnostics!
 

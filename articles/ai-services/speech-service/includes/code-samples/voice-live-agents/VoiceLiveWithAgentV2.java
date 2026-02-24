@@ -137,7 +137,13 @@ public class VoiceLiveWithAgentV2 {
                     int bytesRead = captureLine.read(buffer, 0, buffer.length);
                     if (bytesRead > 0) {
                         byte[] audioChunk = Arrays.copyOf(buffer, bytesRead);
-                        session.sendInputAudio(BinaryData.fromBytes(audioChunk)).block();
+                        try {
+                            session.sendInputAudio(BinaryData.fromBytes(audioChunk)).block();
+                        } catch (Exception e) {
+                            if (capturing.get()) {
+                                logger.warning("Audio send failed: " + e.getMessage());
+                            }
+                        }
                     }
                 }
             }, "audio-capture");

@@ -60,7 +60,7 @@ Voice Live supports connecting to a specific version of your agent, enabling con
 
 To connect to a specific agent version, set the `AGENT_VERSION` environment variable or pass the `agentVersion` parameter when initializing the assistant:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="237-259,481-532" highlight="9,45,52":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="243-265,487-538" highlight="9,27,35-38":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -82,7 +82,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="237-259,481-532" highlight="14-18,48-49,53-54":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="243-265,487-538" highlight="14-18,29-30,37-38":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -97,12 +97,12 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and then triggers a response.
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="447-464" highlight="3-17":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="453-470" highlight="3-17":::
 
 In this sample, proactive messaging is applied in three steps:
 
-- `greetingSent` is an `AtomicBoolean` initialized to `false` to track one-time greeting state.
-- In the `SESSION_UPDATED` branch, `if (greetingSent.compareAndSet(false, true))` gates proactive execution to run once per session.
+- `greetingSent` is a `boolean` initialized to `false` to track one-time greeting state.
+- In the `SESSION_UPDATED` branch, `if (!greetingSent)` gates proactive execution to run once per session.
 - `sendEvent(new ClientEventConversationItemCreate()...)` adds the greeting instruction to conversation context, and `sendEvent(new ClientEventResponseCreate())` generates spoken output.
 
 ## Improving tool calling and latency wait times
@@ -115,7 +115,7 @@ The feature supports the following two modes:
 
 The voice assistant created with the quickstart shows the required code additions to configure this feature as follows:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="304-329" highlight="3-13,18":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="310-335" highlight="3-13,20":::
 
 In this sample, the interim response setup is applied inside `BasicVoiceAssistant.setupSession()`:
 
@@ -140,7 +140,7 @@ Voice Live enables you to reconnect to a previous conversation by specifying the
 
 When a session connects successfully, Voice Live returns session metadata in the `SESSION_UPDATED` event:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="357-368":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="362-378":::
 
 In this event handler, the session metadata is available when the session is ready.
 
@@ -148,12 +148,12 @@ The sample code writes session details to a conversation log file in the `logs/`
 
 To reconnect to that conversation, pass the thread ID as the `CONVERSATION_ID` environment variable (or the `conversationId` parameter):
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="487,512":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="493,518-521":::
 
 In this sample, conversation reconnect is applied in three places:
 
-- In `main()`, `CONVERSATION_ID` is read from the environment.
-- In the `BasicVoiceAssistant(...)` constructor, `conversationId` is passed in.
+- In `main()`, `CONVERSATION_ID` is read from the environment (line 493).
+- The value is passed to the `BasicVoiceAssistant(...)` constructor (lines 518-521).
 - In the constructor, the value is set on `AgentSessionConfig` via `config.setConversationId(conversationId)`.
 
 When a valid `conversationId` is provided, the agent retrieves the previous conversation context and can reference earlier exchanges in its responses.
@@ -171,12 +171,12 @@ The sample logs key session metadata, including thread ID, to a timestamped conv
 
 The following code creates the log filename and writes session metadata when `SESSION_UPDATED` is received:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="57-78,357-368" highlight="4,18-22":::
+:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="92-95,362-378,472-484" highlight="1-4,8-10,17-25":::
 
 In this sample, thread ID logging is applied in three places:
 
-- A timestamped conversation log file is created per run.
-- On `SESSION_UPDATED`, metadata from `event.toJsonString()` is written to the log.
-- `writeLog(...)` appends entries to the same file throughout the conversation lifecycle.
+- A timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 92–95).
+- On `SESSION_UPDATED`, the handler marks the session as ready and writes to the log (lines 363–365).
+- `writeLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 472–484).
 
 Use the logged thread ID value with `CONVERSATION_ID` to resume the same agent thread in a later session.
