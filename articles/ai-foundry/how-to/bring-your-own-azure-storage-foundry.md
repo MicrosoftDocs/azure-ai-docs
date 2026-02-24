@@ -34,7 +34,11 @@ Before connecting your storage, ensure you have:
 
 [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-1. An [Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) in the same subscription (Blob Storage supported).
+1. An [Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) in the same subscription (Blob Storage supported) with the following configuration:
+   - `allowSharedKeyAccess` set to `true`
+   - `minimumTlsVersion` set to `TLS1_2`
+   - `allowBlobPublicAccess` set to `false`
+   - `allowCrossTenantReplication` set to `false`
 1. Contributor or Owner permissions on both the Foundry resource and the storage account.
 1. Clarity on which features you plan to use (Agents, Evaluations, Datasets, Content Understanding, Speech, Language).
 1. (Optional) A plan for customer-managed keys (CMK) encryption on the storage account.
@@ -116,22 +120,29 @@ You create two capability hosts—one at the resource level and one at the proje
 1. Create a project-level capability host referencing the resource-level capability host.
 1. Verify Agents data now writes to the bound storage account.
 
-### Example (Azure CLI) *(illustrative)*
-```bash
-# Placeholder example; adjust for actual CLI verbs when published
-az ai-foundry capability-host create \
-  --resource-name MyFoundryResource \
-  --name agents-host \
-  --feature agents \
-  --connection-id /subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/MyFoundryResource/connections/myblobconnection
+### Example (REST API)
+
+Use the [Capability Hosts - Create Or Update](/rest/api/azureml/capability-hosts/create-or-update) REST API to create a capability host:
+
+```http
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-resource>/capabilityHosts/agents-host?api-version=2025-05-01-preview
+
+{
+  "properties": {
+    "capabilityHostKind": "Agents",
+    "storageConnections": [
+      "<connection-arm-resource-id>"
+    ]
+  }
+}
 ```
 
-### Example (PowerShell) *(illustrative)*
-```powershell
-New-AIFCapabilityHost -ResourceName MyFoundryResource -Name agents-host -Feature agents -ConnectionId "/subscriptions/<sub>/resourceGroups/<rg>/.../connections/myblobconnection"
-```
+Replace `<connection-arm-resource-id>` with the full ARM resource ID of your blob storage connection.
 
-### ARM template snippet *(illustrative)*
+> [!NOTE]
+> For Azure CLI and PowerShell, use the REST API through `az rest` or `Invoke-AzRestMethod` until dedicated cmdlets are available.
+
+### ARM template snippet
 ```json
 {
   "type": "Microsoft.CognitiveServices/accounts/capabilityHosts",
