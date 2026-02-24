@@ -88,7 +88,7 @@ session_options = VoiceLiveSessionOptions(
 )
 ```
 
-For complete code examples, see the [new agent quickstart](voice-live-agents-quickstart.md). The [classic quickstart](voice-live-agents-quickstart-classic.md) remains available until 8/31/2026.
+For complete code examples, see the [new agent quickstart](voice-live-agents-quickstart.md). The [classic quickstart](voice-live-agents-quickstart-classic.md) remains available.
 
 ## Related content
 
