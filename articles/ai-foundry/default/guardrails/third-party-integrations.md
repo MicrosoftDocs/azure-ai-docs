@@ -1,7 +1,6 @@
 ---
 title: Integrate third-party guardrails with Microsoft Foundry
 description: Learn how to connect external safety solutions to AI models and agents in Microsoft Foundry using third-party integrations.
-ms.topic: how-to
 ms.date: 02/24/2026
 ms.custom: ai-assisted
 ms.author: pafarley
@@ -187,4 +186,3 @@ openai.BadRequestError: Error code: 400 -
 ## Next steps
 
 - [Learn about Foundry Guardrails](/azure/ai-foundry/guardrails/guardrails-overview?view=foundry)
-- [Configure content filters](./content-filters.md)
