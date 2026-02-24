@@ -1,4 +1,4 @@
----
+﻿---
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -28,17 +28,17 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. You can use any `text-embedding` model, such as `text-embedding-3-large`.
 
-+ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models), such as `gpt-5-mini`.
 
 + [.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
 
 + [Visual Studio Code](https://code.visualstudio.com/download).
 
-+ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
-
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
+
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
@@ -65,15 +65,15 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     mv sample.env .env
     ```
 
-1. Install the dependencies from `AgenticRetrievalQuickstart.csproj`.
+1. Install the dependencies.
 
     ```bash
-    dotnet restore
+    dotnet restore AgenticRetrievalQuickstart.csproj
     ```
 
     When the restore completes, verify that no errors appear in the output.
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
     ```bash
     az login
@@ -84,7 +84,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 Run the application to create an index, upload documents, configure knowledge sources and bases, and run agentic retrieval queries.
 
 ```bash
-dotnet run
+dotnet run --project AgenticRetrievalQuickstart.csproj
 ```
 
 ### Output
@@ -96,91 +96,56 @@ Index 'earth-at-night' created or updated successfully.
 Documents uploaded to index 'earth-at-night' successfully.
 Knowledge source 'earth-knowledge-source' created or updated successfully.
 Knowledge base 'earth-knowledge-base' created or updated successfully.
+Running the query...Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
 Response:
-Suburban belts show larger December brightening because holiday displays concentrate in suburbs and outskirts where there is more yard space and many single‑family homes [ref_id:5], while urban cores—already having higher absolute light levels—tend to show smaller relative increases (central areas typically brighten ~20–30%) [ref_id:8][ref_id:5]. Phoenix’s nighttime street grid is sharply visible because the metropolitan area is laid out on a regular, continuously lit grid with bright commercial and industrial nodes along major corridors like Grand Avenue [ref_id:0][ref_id:3], whereas long interstate stretches between Midwestern cities cross sparsely populated or rural regions with far fewer continuous roadside lights and so appear comparatively dim [ref_id:8].
+Suburban belts brighten more (in relative terms) in December because holiday lighting is concentrated in yards and single-family suburbs where extra decorative lights add a large percentage increase over baseline residential lighting, whereas dense urban cores already have high absolute light levels so the same added holiday lights produce a smaller relative change [ref_id:6][ref_id:2]. The documents note suburbs and outskirts show the biggest holiday increases and central urban areas show smaller percent increases (20-30% in cores, larger in suburbs) linked to available yard space and prevalence of single-family homes [ref_id:6][ref_id:2]. Phoenix's street grid appears very sharp from space because the city's regular, closely spaced north-south/east-west street lighting and bright nodes at intersections and commercial strips produce a strong, high-contrast patterned signal (grid and major corridors like Grand Avenue), while long Midwestern interstates are comparatively dim because roadway lighting is more sparse and continuous between cities and navigable rivers/long highways lack the dense, closely spaced light sources that produce visible nodes and grid patterns at night [ref_id:3][ref_id:7]. In addition, the Black Marble processing accounts for atmospheric, lunar, snow/seasonal and stray-light effects and isolates artificial emissions, so concentrated urban lighting (as in Phoenix) stands out more in the corrected radiance product than dispersed or spaced sources like isolated stretches of interstate or sparsely lit rivers and plains [ref_id:1][ref_id:4][ref_id:7].
 Activity:
 Activity Type: KnowledgeBaseModelQueryPlanningActivityRecord
 {
-  "InputTokens": 1350,
-  "OutputTokens": 1314,
+  "InputTokens": 1489,
+  "OutputTokens": 326,
   "Id": 0,
-  "ElapsedMs": 14162,
+  "ElapsedMs": 4558,
   "Error": null
 }
 Activity Type: KnowledgeBaseSearchIndexActivityRecord
 {
   "SearchIndexArguments": {
-    "Search": "Causes of December brightening in satellite nightlights: why suburban belts show larger relative December brightening than urban cores (roles of holiday residential lighting, snow albedo, urban heat island, commercial lighting patterns)",
+    "Search": "December brightening suburban belts vs urban cores light pollution causes seasonal variation \"December brightening\" satellite night lights",
     "Filter": null,
-    "SourceDataFields": [],
+    "SourceDataFields": [
+      {
+        "Name": "page_chunk"
+      },
+      {
+        "Name": "id"
+      },
+      {
+        "Name": "page_number"
+      }
+    ],
     "SearchFields": [],
-    "SemanticConfigurationName": null
+    "SemanticConfigurationName": "semantic_config"
   },
   "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-11-05T21:56:26.747+00:00",
-  "Count": 19,
+  "QueryTime": "2026-02-24T14:59:41.536+00:00",
+  "Count": 21,
   "Id": 1,
-  "ElapsedMs": 537,
+  "ElapsedMs": 623,
   "Error": null
 }
-Activity Type: KnowledgeBaseSearchIndexActivityRecord
-{
-  "SearchIndexArguments": {
-    "Search": "Why is Phoenix\u0019s nighttime street grid so sharply visible from space? (effects of streetlight density, luminaire type/aiming, spacing, urban grid layout, traffic vs roadway lighting)",
-    "Filter": null,
-    "SourceDataFields": [],
-    "SearchFields": [],
-    "SemanticConfigurationName": null
-  },
-  "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-11-05T21:56:27.182+00:00",
-  "Count": 7,
-  "Id": 2,
-  "ElapsedMs": 434,
-  "Error": null
-}
-Activity Type: KnowledgeBaseSearchIndexActivityRecord
-{
-  "SearchIndexArguments": {
-    "Search": "How do satellite nightlight sensor characteristics (VIIRS DNB, DMSP-OLS) \u2014 spatial resolution, dynamic range, saturation, blooming \u2014 affect observed brightness and structure of urban cores, suburbs, and long interstate stretches?",
-    "Filter": null,
-    "SourceDataFields": [],
-    "SearchFields": [],
-    "SemanticConfigurationName": null
-  },
-  "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-11-05T21:56:27.786+00:00",
-  "Count": 23,
-  "Id": 3,
-  "ElapsedMs": 604,
-  "Error": null
-}
-Activity Type: KnowledgeBaseAgenticReasoningActivityRecord
-{
-  "ReasoningTokens": 70232,
-  "RetrievalReasoningEffort": {},
-  "Id": 4,
-  "ElapsedMs": null,
-  "Error": null
-}
-Activity Type: KnowledgeBaseModelAnswerSynthesisActivityRecord
-{
-  "InputTokens": 7467,
-  "OutputTokens": 1710,
-  "Id": 5,
-  "ElapsedMs": 26663,
-  "Error": null
-}
-Results:
+... // Trimmed for brevity
+References:
 Reference Type: KnowledgeBaseSearchIndexReference
 {
-  "DocKey": "earth_at_night_508_page_104_verbalized",
+  "DocKey": "earth_at_night_508_page_105_verbalized",
   "Id": "0",
   "ActivitySource": 2,
   "SourceData": {},
-  "RerankerScore": 2.6344998
+  "RerankerScore": 2.7294974
 }
 ... // Trimmed for brevity
+Continue the conversation with this query: How do I find lava at night?
 Response:
 ... // Trimmed for brevity
 Activity:

@@ -28,15 +28,15 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. You can use any `text-embedding` model, such as `text-embedding-3-large`.
 
-+ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models), such as `gpt-5-mini`.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-+ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
-
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
+
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
@@ -55,9 +55,9 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     code .
     ```
 
-1. In `agentic-retrieval.rest`, replace the placeholder values for `@search-url` and `@aoai-url` with the endpoints you obtained in [Get endpoints](#get-endpoints).
+1. In `agentic-retrieval.rest`, replace the placeholder values for `@search-url` and `@aoai-url` with the URLs you obtained in [Get endpoints](#get-endpoints).
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
     ```azurecli
     az login
@@ -73,7 +73,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 ## Run the code
 
-Send each request in succession, starting with `### Create an index`.
+Send each request sequentially, starting with `### Create an index`.
 
 Each request should return a `200 OK`, `201 Created`, or `204 No Content` status code. If you receive an error, check the request for typos and ensure that your token is valid.
 
@@ -88,7 +88,7 @@ Each request returns different JSON based on the operation. The key output is fr
       "content": [
         {
           "type": "text",
-          "text": "The retrieved documents do not provide an explanation for why suburban belts show larger December brightening than urban cores, so no reason for that seasonal contrast is given in these sources [ref_id:0][ref_id:1]. Phoenix’s street grid is sharply visible from orbit because the metropolitan area is laid out on a regular street‑block grid [ref_id:0][ref_id:1], with brightly lit linear corridors like Grand Avenue [ref_id:0][ref_id:1] and concentrated lights from industrial/commercial properties and shopping nodes at intersections [ref_id:0][ref_id:1], while dark areas such as the Phoenix Mountains, agricultural fields, and the Salt River channel increase contrast and make the grid stand out [ref_id:0][ref_id:1]."
+          "text": "Causes (mechanisms) — seasonal and lighting behavior: Residential suburban areas often show larger relative (percentage) December brightening because many homes turn on more outdoor and indoor lights in winter evenings (longer nights and holiday lighting) compared with their usual baseline, producing a bigger percent increase even if absolute downtown lighting remains higher [ref_id:1][ref_id:0]. Snow and increased surface reflectance in winter amplify light seen from orbit, increasing apparent brightness especially where lights are horizontal and near ground level (e.g., suburban streets and yards) [ref_id:0].\n\nResidential vs commercial/industrial lighting and activity patterns: Urban cores have high absolute lumen outputs from continuous commercial, industrial, and dense street lighting that change less seasonally, so percent brightening is smaller; suburbs have lower baseline light but larger seasonal/holiday additions, so their relative brightening is larger [ref_id:1][ref_id:0].\n\nWhy Phoenix’s nighttime street grid is sharply visible (causes and consequences): The Phoenix metropolitan area has a regular, dense grid of north–south/east–west streets and the diagonal Grand Avenue corridor with continuous street and commercial lighting whose spacing and lumen output produce linear, high-contrast features from low-Earth orbit; bright nodes occur at major intersections and commercial properties, making the grid and corridors stand out in satellite night images [ref_id:1][ref_id:0]. Darker pockets (Phoenix Mountains, Salt River channel, agricultural fields) increase contrast and make lit streets appear sharper [ref_id:1][ref_id:0].\n\nWhy long interstates between Midwestern cities appear comparatively dim: Rural interstate stretches often lack continuous high-intensity lighting (limited lamps, wider spacing, fewer ramps and commercial nodes), use lower-output or shielded fixtures, and have long unlit segments between cities, so linear continuity and contrast are much lower than a densely lit urban grid [ref_id:1][ref_id:0].\n\nSensor and dataset effects (consequences for observed brightness): Night-light datasets and orbital sensors (as used to capture images like the Phoenix photo) emphasize linear, continuous lighting patterns; sensor behaviors such as gain and saturation make very bright urban cores register high absolute values while limiting the apparent dynamic range, so relative changes (percentage brightening) in dimmer suburban areas can appear proportionally larger in some satellite products [ref_id:1][ref_id:0].\n\nOverall: larger December brightening in suburban belts is a percentage effect from seasonal/holiday increases, snow reflectance, and residential lighting behavior on a low baseline, whereas urban cores remain brighter in absolute terms but show smaller relative changes; Phoenix’s dense, continuous street-grid lighting and contrasting dark areas create sharp linear features from space, while long, sparsely lit interstates lack that continuity and contrast and therefore appear dimmer [ref_id:1][ref_id:0]."
         }
       ]
     }

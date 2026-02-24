@@ -1,4 +1,4 @@
----
+﻿---
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -28,11 +28,11 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. You can use any `text-embedding` model, such as `text-embedding-3-large`.
 
-+ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models), such as `gpt-5-mini`.
 
-+ The latest LTS version of [Node.js](https://nodejs.org/en/download/).
++ [Node.js 20 LTS](https://nodejs.org/en/download/) or later.
 
 + [Visual Studio Code](https://code.visualstudio.com/download).
 
@@ -65,7 +65,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     npm install @azure/identity
     ```
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
     ```bash
     az login
@@ -73,11 +73,11 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 ## Run the code
 
-1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder, and then paste the following content. Replace the placeholder values with the endpoints you obtained in [Get endpoints](#get-endpoints).
+1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder, and then paste the following content. Replace the placeholder values with the URLs you obtained in [Get endpoints](#get-endpoints).
 
     ```
     AZURE_SEARCH_ENDPOINT = https://<your-search-service-name>.search.windows.net
-    AZURE_OPENAI_ENDPOINT = https://<your-ai-foundry-resource-name>.openai.azure.com/
+    AZURE_OPENAI_ENDPOINT = https://<your-foundry-resource-name>.openai.azure.com/
     AZURE_OPENAI_GPT_DEPLOYMENT = gpt-5-mini
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT = text-embedding-3-large
     ```
@@ -458,58 +458,7 @@ Activity Type: searchIndex
     "semanticConfigurationName": "semantic_config"
   }
 }
-Activity Type: searchIndex
-{
-  "id": 2,
-  "type": "searchIndex",
-  "elapsedMs": 538,
-  "knowledgeSourceName": "earth-knowledge-source",
-  "queryTime": "2025-12-19T15:38:24.001Z",
-  "count": 0,
-  "searchIndexArguments": {
-    "search": "factors that make Phoenix nighttime street grid highly visible from space reasons highway/interstate lighting visibility differences Midwestern interstates dim",
-    "filter": null,
-    "sourceDataFields": [
-      {
-        "name": "page_chunk"
-      },
-      {
-        "name": "id"
-      },
-      {
-        "name": "page_number"
-      }
-    ],
-    "searchFields": [],
-    "semanticConfigurationName": "semantic_config"
-  }
-}
-Activity Type: searchIndex
-{
-  "id": 3,
-  "type": "searchIndex",
-  "elapsedMs": 465,
-  "knowledgeSourceName": "earth-knowledge-source",
-  "queryTime": "2025-12-19T15:38:24.467Z",
-  "count": 2,
-  "searchIndexArguments": {
-    "search": "satellite nighttime lights seasonal variations suburban brightening studies December holiday lighting residential vs commercial lighting patterns",
-    "filter": null,
-    "sourceDataFields": [
-      {
-        "name": "page_chunk"
-      },
-      {
-        "name": "id"
-      },
-      {
-        "name": "page_number"
-      }
-    ],
-    "searchFields": [],
-    "semanticConfigurationName": "semantic_config"
-  }
-}
+... // Trimmed for brevity
 Activity Type: agenticReasoning
 {
   "id": 4,
@@ -581,7 +530,7 @@ In Azure AI Search, an index is a structured collection of data. The following c
 The index schema contains fields for document identification and page content, embeddings, and numbers. The schema also includes configurations for semantic ranking and vector search, which uses your `text-embedding-3-large` deployment to vectorize text and match documents based on semantic similarity.
 
 ```javascript
-const index: SearchIndex = {
+const index = {
     name: 'earth_at_night',
     fields: [
         {
@@ -591,7 +540,7 @@ const index: SearchIndex = {
             filterable: true,
             sortable: true,
             facetable: true
-        } as SearchField,
+        },
         {
             name: "page_chunk",
             type: "Edm.String",
@@ -599,7 +548,7 @@ const index: SearchIndex = {
             filterable: false,
             sortable: false,
             facetable: false
-        } as SearchField,
+        },
         {
             name: "page_embedding_text_3_large",
             type: "Collection(Edm.Single)",
@@ -609,14 +558,14 @@ const index: SearchIndex = {
             facetable: false,
             vectorSearchDimensions: 3072,
             vectorSearchProfileName: "hnsw_text_3_large"
-        } as SearchField,
+        },
         {
             name: "page_number",
             type: "Edm.Int32",
             filterable: true,
             sortable: true,
             facetable: true
-        } as SearchField
+        }
     ],
     vectorSearch: {
         profiles: [
@@ -624,26 +573,26 @@ const index: SearchIndex = {
                 name: "hnsw_text_3_large",
                 algorithmConfigurationName: "alg",
                 vectorizerName: "azure_openai_text_3_large"
-            } as VectorSearchProfile
+            }
         ],
         algorithms: [
             {
                 name: "alg",
                 kind: "hnsw"
-            } as HnswAlgorithmConfiguration
+            }
         ],
         vectorizers: [
             {
                 vectorizerName: "azure_openai_text_3_large",
                 kind: "azureOpenAI",
                 parameters: {
-                    resourceUrl: process.env.AZURE_OPENAI_ENDPOINT!,
-                    deploymentId: process.env.AZURE_OPENAI_EMBEDDING_DEPLOYMENT!,
-                    modelName: process.env.AZURE_OPENAI_EMBEDDING_DEPLOYMENT!
-                } as AzureOpenAIParameters
-            } as AzureOpenAIVectorizer
+                    resourceUrl: process.env.AZURE_OPENAI_ENDPOINT,
+                    deploymentId: process.env.AZURE_OPENAI_EMBEDDING_DEPLOYMENT,
+                    modelName: process.env.AZURE_OPENAI_EMBEDDING_DEPLOYMENT
+                }
+            }
         ]
-    } as VectorSearch,
+    },
     semanticSearch: {
         defaultConfigurationName: "semantic_config",
         configurations: [
@@ -651,12 +600,12 @@ const index: SearchIndex = {
                 name: "semantic_config",
                 prioritizedFields: {
                     contentFields: [
-                        { name: "page_chunk" } as SemanticField
+                        { name: "page_chunk" }
                     ]
-                } as SemanticPrioritizedFields
-            } as SemanticConfiguration
+                }
+            }
         ]
-    } as SemanticSearch
+    }
 };
 
 const credential = new DefaultAzureCredential();

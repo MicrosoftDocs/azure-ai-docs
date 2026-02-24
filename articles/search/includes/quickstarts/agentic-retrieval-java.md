@@ -1,4 +1,4 @@
----
+﻿---
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -28,15 +28,15 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. You can use any `text-embedding` model, such as `text-embedding-3-large`.
 
-+ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models), such as `gpt-5-mini`.
 
 + [Java 11 or later](https://www.oracle.com/java/technologies/downloads/) and [Maven](https://maven.apache.org/download.cgi).
 
-+ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
-
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
+
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
@@ -69,7 +69,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     mvn clean dependency:copy-dependencies
     ```
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
     ```bash
     az login
@@ -111,26 +111,38 @@ Index 'earth-at-night' created or updated successfully.
 Documents uploaded to index 'earth-at-night' successfully.
 Knowledge source 'earth-knowledge-source' created or updated successfully.
 Knowledge base 'earth-knowledge-base' created or updated successfully.
-Running the query...Why do suburban belts display larger December brightening
-than urban cores even though absolute light levels are higher downtown? Why is
-the Phoenix nighttime street grid is so sharply visible from space, whereas
-large stretches of the interstate between midwestern cities remain
-comparatively dim?
+Running the query...Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
 Response:
-Suburban belts brighten more in December because households add seasonal
-decorative lighting and have more yard/roof space per home, so holiday displays
-increase residential light output by ~20–50% relative to non-holiday periods;
-central urban cores show smaller relative increases because they already have
-high baseline commercial and street lighting and less private outdoor display
-area [ref_id:2][ref_id:5]. ...
+December percent brightening is larger in suburban belts because many houses add seasonal residential/holiday lighting on yards and roofs, so a relatively dark suburban baseline can increase by 20-50% when those lights turn on, while dense urban cores already have high continuous lighting so the same added lights make a smaller percentage change [ref_id:2][ref_id:5][ref_id:8]. Phoenix's street grid appears sharply from space because the metropolitan layout is a regular, continuous north-south/east-west street and block grid with a major diagonal artery (Grand Avenue) and concentrated, continuous arterial and commercial lighting along intersections and corridors [ref_id:3][ref_id:0][ref_id:1]. ...
 Activity:
 Activity Type: KnowledgeBaseModelQueryPlanningActivityRecord
 {
   "id" : 0,
-  "elapsedMs" : 3800,
+  "elapsedMs" : 5229,
   "type" : "modelQueryPlanning",
   "inputTokens" : 1489,
-  "outputTokens" : 292
+  "outputTokens" : 383
+}
+Activity Type: KnowledgeBaseSearchIndexActivityRecord
+{
+  "id" : 1,
+  "elapsedMs" : 2670,
+  "knowledgeSourceName" : "earth-knowledge-source",
+  "queryTime" : "2026-02-24T15:28:36.776Z",
+  "count" : 3,
+  "type" : "searchIndex",
+  "searchIndexArguments" : {
+    "search" : "December brightening suburban belts vs urban cores light pollution causes seasonal variation reasons \"December brightening\"",
+    "sourceDataFields" : [ {
+      "name" : "page_chunk"
+    }, {
+      "name" : "id"
+    }, {
+      "name" : "page_number"
+    } ],
+    "searchFields" : [ ],
+    "semanticConfigurationName" : "semantic_config"
+  }
 }
 ... // Trimmed for brevity
 References:
@@ -138,9 +150,9 @@ Reference Type: KnowledgeBaseSearchIndexReference
 {
   "id" : "0",
   "activitySource" : 2,
-  "rerankerScore" : 2.6515143,
+  "rerankerScore" : 2.7486389,
   "type" : "searchIndex",
-  "docKey" : "earth_at_night_508_page_104_verbalized"
+  "docKey" : "earth_at_night_508_page_105_verbalized"
 }
 ... // Trimmed for brevity
 Continue the conversation with this query: How do I find lava at night?

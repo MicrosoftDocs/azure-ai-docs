@@ -28,17 +28,17 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. You can use any `text-embedding` model, such as `text-embedding-3-large`.
 
-+ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models), such as `gpt-5-mini`.
 
-+ The latest version of [Python](https://www.python.org/downloads/).
++ [Python 3.8](https://www.python.org/downloads/) or later.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
-
-+ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions.
 
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
+
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 [!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
@@ -57,17 +57,21 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     code .
     ```
 
+1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
+
+1. Rename `sample.env` to `.env`.
+
+    ```bash
+    mv sample.env .env
+    ```
+
 1. Open `quickstart-agentic-retrieval.ipynb`.
 
-1. Press **Ctrl+Shift+P**, select **Notebook: Select Notebook Kernel**, and follow the prompts to create a virtual environment.
+1. Press **Ctrl+Shift+P**, select **Notebook: Select Notebook Kernel**, and follow the prompts to create a virtual environment. Select **requirements.txt** for the dependencies.
 
    When complete, you should see a `.venv` folder in the project directory.
 
-1. Run the first code cell to install the required packages.
-
-1. In the second code cell, replace the placeholder values for `search_endpoint` and `aoai_endpoint` with the URLs you obtained in [Get endpoints](#get-endpoints), and run the cell.
-
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
     ```azurecli
     az login
@@ -75,7 +79,9 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 ## Run the code
 
-Run the remaining code cells sequentially to create an index, upload documents, configure knowledge sources and bases, and run agentic retrieval queries.
+1. Run the `Load connections` cell to install the required packages and load environment variables.
+
+1. Run the remaining cells sequentially to create an index, upload documents, configure a knowledge source and knowledge base, and run agentic retrieval queries.
 
 ### Output
 
@@ -110,28 +116,7 @@ activity_content:
       "search": "December brightening in satellite nighttime lights: why do suburban belts show larger relative increases in December than urban cores despite higher absolute downtown light levels?"
     }
   },
-  {
-    "id": 2,
-    "type": "searchIndex",
-    "elapsed_ms": 632,
-    "knowledge_source_name": "earth-knowledge-source",
-    "query_time": "2025-11-05T16:17:48.985Z",
-    "count": 10,
-    "search_index_arguments": {
-      "search": "Why is Phoenix's nighttime street grid so sharply visible from space? factors: street-light layout, lamp type, urban form, light scattering, and satellite sensor characteristics in Phoenix, Arizona."
-    }
-  },
-  {
-    "id": 3,
-    "type": "searchIndex",
-    "elapsed_ms": 420,
-    "knowledge_source_name": "earth-knowledge-source",
-    "query_time": "2025-11-05T16:17:49.406Z",
-    "count": 11,
-    "search_index_arguments": {
-      "search": "Why are long stretches of interstate highways between Midwestern cities comparatively dim in satellite nighttime images? factors: highway lighting design, lamp spacing and type, vehicle headlights vs fixed lighting, and detection limits of nighttime sensors"
-    }
-  },
+  ... // Trimmed for brevity
   {
     "id": 4,
     "type": "agenticReasoning",
