@@ -1,6 +1,6 @@
 ---
 title: "Manage and increase quotas for resources (classic)"
-description: "This article provides instructions on how to manage and increase quotas for resources with Microsoft Foundry. (classic)"
+description: "Learn how to view, manage, and request increases for model deployment quotas in Microsoft Foundry, including token-per-minute and provisioned throughput allocations. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 10/30/2025
+ms.date: 02/20/2026
 ms.reviewer: haakar
 reviewer: haakar
 ms.author: mopeakande
@@ -27,14 +27,17 @@ ROBOTS: NOINDEX, NOFOLLOW
 > [!TIP]
 > An alternate hub-focused quota article is available: [Manage and increase quotas for hub resources](hub-quota.md).
 
-Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Microsoft Foundry Models (Foundry projects).
+Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. Azure assigns quota per subscription, per region, and per model in units of tokens per minute (TPM). Different deployment types, such as Standard and Provisioned, have different quota mechanics. For full details on default limits and quota tiers, see [Azure OpenAI quotas and limits](../openai/quotas-limits.md).
 
-Azure uses limits and quotas to prevent budget overruns due to fraud and to honor Azure capacity constraints. It's also a good way for admins to control costs. Consider these limits as you scale for production workloads. 
+This article walks through the process of managing quota for your Microsoft Foundry Models deployed in a Foundry project, including how to view current allocations and request increases.
 
-In this article, you learn about: 
+## Prerequisites
 
-- Viewing your quotas and limits 
-- Requesting quota and limit increases 
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- A [Foundry project](../how-to/create-projects.md).
+- **Cognitive Services Usages Reader** role at the subscription level, to view quota allocations.
+- **Owner** or **Contributor** role on the subscription, to request quota increases.
+- **Cognitive Services Contributor** role combined with **Cognitive Services Usages Reader**, to edit quota allocations in the Foundry portal.
 
 ## Foundry shared quota 
 
@@ -67,8 +70,26 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
     - Use the **charts** along the side of the page to view more details about quota usage. The charts are interactive; hovering over a section of the chart displays more information, and selecting the chart filters the list of models. Selecting the chart legend filters the data displayed in the chart.
     - Use the **Provisioned Throughput** link to view information about provisioned models, including a **Capacity calculator** that you can use to estimate the number of PTUs needed for your workload.
 
+> [!NOTE]
+> After you edit a quota allocation or submit a request, allow up to 15 minutes for changes to propagate. Refresh the **Quota** page to verify the updated allocation.
+
+## Troubleshooting
+
+If you encounter issues when viewing or requesting quotas, try these solutions:
+
+| Issue | Solution |
+| ----- | -------- |
+| Quota page is empty or shows no allocations | Verify that you have **Cognitive Services Usages Reader** role at the subscription level. Check that you're viewing the correct subscription in the portal. |
+| **Request quota** button is disabled | Verify that you have **Owner** or **Contributor** role on the subscription. Some model and region combinations might not support quota increases. |
+| Quota change not reflected after approval | Quota changes can take up to 15 minutes to propagate. Refresh the **Quota** page. If the issue persists after 24 hours, contact [Azure support](https://azure.microsoft.com/support/options/). |
+| Can't find quota for a specific model | Check regional availability. Not all models are available in all regions. See [Region support](../reference/region-support.md). |
+
 ## Related content
 
+- [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md)
+- [Azure OpenAI quotas and limits](../openai/quotas-limits.md)
+- [Manage Azure OpenAI Service quota](../openai/how-to/quota.md)
+- [Manage and increase quotas for hub resources](hub-quota.md)
 - [Plan to manage costs](./costs-plan-manage.md)
 - [Create a project](../how-to/create-projects.md)
 

@@ -1,11 +1,11 @@
 ### YamlMime:Landing
 
 title: Microsoft Foundry Classic documentation
-summary: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
+summary: Use Microsoft Foundry (classic) for legacy hub-based project workflows and management of resources outside a project. For net-new implementations, use Microsoft Foundry (new) for the latest project experience and capabilities.
 
 metadata:
   title: Microsoft Foundry Classic documentation
-  description: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
+  description: Use Microsoft Foundry (classic) for legacy hub-based project workflows and management of resources outside a project. For net-new implementations, use Microsoft Foundry (new) for the latest project experience and capabilities.
   author: sdgilley
   ms.author: sgilley
   manager: mcleans
