@@ -18,7 +18,7 @@ Make sure you install the correct preview/prerelease version of the packages as 
 
     ```
     pip install --pre "azure-ai-projects>=2.0.0b4"
-    pip python-dotenv
+    pip install python-dotenv
     ```
 
 1. Sign in using the CLI `az login` command to authenticate before running your Python scripts.
