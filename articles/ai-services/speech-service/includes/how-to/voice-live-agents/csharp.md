@@ -135,7 +135,7 @@ For setup details and supported options, see [Handle voice interruptions in chat
 
 ## Reconnect to a previous agent conversation
 
-Voice Live enables you to reconnect to a previous conversation by specifying the conversation (thread) ID. This preserves the conversation history and context, allowing users to continue where they left off.
+Voice Live enables you to reconnect to a previous conversation by specifying the conversation ID. This preserves the conversation history and context, allowing users to continue where they left off.
 
 When a session connects successfully, Voice Live returns session metadata in the `SessionUpdateSessionUpdated` event. The sample extracts the session ID and logs it to the conversation file:
 
@@ -177,5 +177,7 @@ In this sample, session metadata logging is applied in three places:
 - A timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 188–189).
 - On `SessionUpdateSessionUpdated`, the handler extracts the session ID and writes it to the log (lines 315–316).
 - `WriteLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 433–445).
+
+Use the logged session metadata with `CONVERSATION_ID` to resume the same agent conversation in a later session.
 
 Use the session ID value alongside your conversation ID for diagnostics and reconnect scenarios.

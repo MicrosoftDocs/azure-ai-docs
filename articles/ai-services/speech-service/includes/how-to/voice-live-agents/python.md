@@ -165,7 +165,7 @@ When a valid `conversation_id` is provided, the agent retrieves the previous con
 The sample logs key session metadata, including the session ID, to a timestamped conversation log file under `logs/`. This helps you:
 
 - Identify the session for debugging and support scenarios.
-- Correlate user-reported behavior with session and agent metadata.
+- Correlate user-reported behavior with session metadata.
 - Track runs over time by preserving per-session log files.
 
 The following code creates the log filename and writes session metadata when `SESSION_UPDATED` is received:
@@ -178,4 +178,4 @@ In this sample, session metadata logging is applied in three places:
 - On `SESSION_UPDATED`, metadata including session ID, agent name, and voice configuration is appended.
 - `write_conversation_log(...)` appends entries to the same file throughout the conversation lifecycle.
 
-Use this logged thread ID value with `CONVERSATION_ID` to resume the same agent thread in a later session.
+Use the logged session metadata with `CONVERSATION_ID` to resume the same agent conversation in a later session.
