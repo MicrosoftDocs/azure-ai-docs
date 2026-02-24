@@ -32,7 +32,9 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models), such as `gpt-5-mini`.
 
-+ [Java 11 or later](https://www.oracle.com/java/technologies/downloads/) and [Maven](https://maven.apache.org/download.cgi).
++ [Java 11](https://www.oracle.com/java/technologies/downloads/) or later and [Maven](https://maven.apache.org/download.cgi).
+
++ [Visual Studio Code](https://code.visualstudio.com/download).
 
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
 

@@ -13,18 +13,17 @@ Before you begin, make sure you have permissions to access content and operation
 
 To configure access for this quickstart:
 
-1. [Enable role-based access](../../search-security-enable-roles.md) for your search service.
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. [Create a system-assigned managed identity](../../search-how-to-managed-identities.md#create-a-system-managed-identity) for your search service.
+1. On your Azure AI Search service:
 
-1. [Assign the roles](../../search-security-rbac.md) listed in the following table.
+    1. [Enable role-based access](../../search-security-enable-roles.md).
 
-   | Resource | Role | Assignee |
-   |----------|------|----------|
-   | Azure AI Search | Search Service Contributor | Your user account |
-   | Azure AI Search | Search Index Data Contributor | Your user account |
-   | Azure AI Search | Search Index Data Reader | Your user account |
-   | Microsoft Foundry resource (not project) | Cognitive Services User | Search service managed identity |
+    1. [Create a system-assigned managed identity](../../search-how-to-managed-identities.md#create-a-system-managed-identity).
+
+    1. [Assign the following roles](../../search-security-rbac.md) to your user account: **Search Service Contributor**, **Search Index Data Contributor**, and **Search Index Data Reader**.
+
+1. On your Microsoft Foundry resource, assign **Cognitive Services User** to the managed identity of your search service.
 
 > [!IMPORTANT]
 > Agentic retrieval has two token-based billing models:
