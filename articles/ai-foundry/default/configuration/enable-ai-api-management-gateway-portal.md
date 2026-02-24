@@ -8,7 +8,7 @@ ms.author: jburchel
 ms.reviewer: ankamene
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 02/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -24,18 +24,22 @@ This article shows you how to enable AI Gateway for a Microsoft Foundry resource
 - Permissions to create or reuse an Azure API Management (APIM) instance:
   - To create an APIM instance: **Contributor** or **Owner** on the target resource group (or subscription).
   - To manage an existing APIM instance: **API Management Service Contributor** (or **Owner**) on the APIM instance. For more information, see [How to use role-based access control in Azure API Management](/azure/api-management/api-management-role-based-access-control).
+
 - Access to the Foundry portal (**Admin console**) for the target Foundry resource.
   - For example: **Azure AI Account Owner** or **Azure AI Owner** on the Foundry resource. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
+
 - Decision on whether to create a dedicated APIM instance or reuse an existing one.
 
-## Requirements for using an existing API Management instance
+### Requirements for using an existing API Management instance
 
 When you select **Use existing APIM**, only API Management instances that meet all of the following requirements are listed:
 
-- The API Management instance must be in the **same Microsoft Entra tenant** and the same **subscription** as the Foundry resource.
-- You must have at least the **API Management Service Contributor** role (or Owner) on the API Management instance.
-- The API Management instance must be created in one of the **[v2 tiers](/azure/api-management/v2-service-tiers-overview)**. 
-- The API Management instance must not already be associated with another AI Gateway.
+> [!div class="checklist"]
+> * The API Management instance is in the **same Microsoft Entra tenant** as the Foundry resource.
+> * You have at least the **API Management Service Contributor** role (or Owner) on the API Management instance.
+> * The API Management instance is in a subscription that you can access from the Foundry portal.
+> * The API Management instance uses a **supported SKU** for AI Gateway.
+> * The API Management instance isn't already associated with another AI Gateway.
 
 If none of your API Management instances appear in the list, verify that the instance meets the requirements above and that you have the required permissions.
 
@@ -61,7 +65,10 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
     - **Use existing**: Select an instance that meets your organization's governance and networking requirements.
 
     > [!TIP]
-    > AI Gateway in Azure API Management service is free for the first 100,000 API requests. For more information about costs and pricing, see [API Management Pricing](https://azure.microsoft.com/pricing/details/api-management/).
+    > For production workloads or higher throughput requirements, consider using an existing APIM instance with a Standard v2 or Premium v2 tier. For more information, see [Azure API Management pricing tiers](/azure/api-management/v2-service-tiers-overview).
+
+    > [!NOTE]
+    > AI Gateway includes a free tier for Azure API Management. For current details about costs and free-tier eligibility, see [API Management Pricing](https://azure.microsoft.com/pricing/details/api-management/).
 
     :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png" alt-text="Screenshot of AI Gateway tab in the Admin console showing options to create or select an API Management instance." lightbox="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png":::
 
@@ -84,10 +91,14 @@ Follow these steps in the Foundry portal to enable AI Gateway for a resource.
 Confirm that traffic routes through AI Gateway:
 
 1. In the Azure portal, open the API Management instance connected to your Foundry resource.
-1. Select **Metrics** or **Logs** to confirm requests appear when you call a model deployment.
-1. If you configured token limits, verify they apply by testing a request that exceeds the limit.
 
-## Understand AI Gateway architecture
+1. Select **Monitoring** > **Metrics**. In the **Metric** dropdown, select **Requests**. Make a test call to a model deployment in the enabled project, then verify that the request count increments.
+
+1. To check detailed logs, select **Monitoring** > **Logs** and run a query against the **GatewayLogs** table. Look for entries with a `200` response code and an API name that matches your AI Gateway.
+
+1. If you configured token limits, verify they apply by testing a request that exceeds the limit. The API Management instance returns a `429 Too Many Requests` response when the limit is exceeded.
+
+## AI Gateway architecture
 
 AI Gateway sits between clients and Foundry building blocks, including models and tools. All requests flow through the APIM instance once associated. Limits apply at the project level, so each project can have its own TPM and quota settings.
 
@@ -102,7 +113,7 @@ AI Gateway enables:
 
 ## Governance scenarios
 
-Once you configured AI Gateway for your resource and project, you can:
+Once you configure AI Gateway for your resource and project, you can:
 
 * [Configure token limits for models](../control-plane/how-to-enforce-limits-models.md).
 * [Add custom agents to Control Plane](../control-plane/register-custom-agent.md).
