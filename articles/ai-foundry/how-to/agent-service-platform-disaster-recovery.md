@@ -7,7 +7,7 @@ monikerRange: 'foundry-classic || foundry'
 #customer intent: As a developer, I want to understand how to recreate projects in a standby region so that I can restore critical functionality during a regional outage.
 author: jonburchel
 ms.author: jburchel
-ms.date: 02/24/2026    
+ms.date: 02/24/2026
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
 ms.custom: arb-aiml, dev-focus
