@@ -75,4 +75,4 @@ Use the following checks when suppression doesn't behave as expected.
 
 - [Disable preview features with role-based access control](../concepts/disable-preview-features-with-rbac.md)
 - [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md)
-- [Use tags to organize your Azure resources](https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources)
+- [Use tags to organize your Azure resources](/azure-resource-manager/management/tag-resources)
