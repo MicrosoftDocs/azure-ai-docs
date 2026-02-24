@@ -6,7 +6,7 @@ author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/05/2026
+ms.date: 02/24/2026
 ms.reviewer: deeikele
 ms.custom: dev-focus
 #customer intent: As an admin, I want to enable self-service resource management while staying compliant with security and compliance requirements.
