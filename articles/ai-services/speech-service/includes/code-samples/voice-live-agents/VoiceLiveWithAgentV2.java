@@ -378,14 +378,12 @@ public class VoiceLiveWithAgentV2 {
                 }
 
             } else if (type == ServerEventType.CONVERSATION_ITEM_INPUT_AUDIO_TRANSCRIPTION_COMPLETED) {
-                String transcript = "";
-                try { transcript = event.toJsonString(); } catch (IOException ignored) { }
+                String transcript = extractField(event, "transcript");
                 System.out.println("👤 You said:\t" + transcript);
                 writeLog("User Input:\t" + transcript);
 
             } else if (type == ServerEventType.RESPONSE_AUDIO_TRANSCRIPT_DONE) {
-                String transcript = "";
-                try { transcript = event.toJsonString(); } catch (IOException ignored) { }
+                String transcript = extractField(event, "transcript");
                 System.out.println("🤖 Agent responded:\t" + transcript);
                 writeLog("Agent Audio Response:\t" + transcript);
 
@@ -480,6 +478,26 @@ public class VoiceLiveWithAgentV2 {
             } catch (IOException e) {
                 logger.warning("Failed to write conversation log: " + e.getMessage());
             }
+        }
+
+        /**
+         * Extracts a string field value from a SessionUpdate event's JSON representation.
+         */
+        private String extractField(SessionUpdate event, String fieldName) {
+            try {
+                String json = event.toJsonString();
+                // Simple extraction: find "fieldName":"value"
+                String key = "\"" + fieldName + "\":\"";
+                int start = json.indexOf(key);
+                if (start >= 0) {
+                    start += key.length();
+                    int end = json.indexOf("\"", start);
+                    if (end >= 0) {
+                        return json.substring(start, end);
+                    }
+                }
+            } catch (IOException ignored) { }
+            return "";
         }
     }
     // </voice_assistant>
