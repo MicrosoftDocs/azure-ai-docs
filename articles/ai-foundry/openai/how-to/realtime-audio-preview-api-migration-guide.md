@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 # Migration from Preview to GA version of Realtime API
 
-The Azure OpenAI GPT Realtime API has transitioned from Preview to Generally Available (GA). This migration guide helps you update existing applications to use the GA protocol. The GA version introduces changes to SDK usage, endpoint URLs, event names, and session configuration.
+The Azure OpenAI GPT Realtime API is now Generally Available (GA). This migration guide helps you update existing applications to use the GA protocol. The GA version introduces changes to SDK usage, endpoint URLs, event names, and session configuration.
 
 **What's changing**: SDK packages, endpoint URL format, event names, and session configuration structure.
 
@@ -199,7 +199,7 @@ Use this checklist to verify your migration is complete:
 
 ## Next steps
 
-Now that you've migrated to the GA version of the Realtime API, explore these resources to enhance your implementation:
+When you migrate to the GA version of the Realtime API, explore these resources to enhance your implementation:
 
 - [Realtime API reference](https://developers.openai.com/docs/api-reference/realtime) - Complete API documentation
 - [WebSocket implementation guide](realtime-audio-websockets.md) - Detailed WebSocket configuration
