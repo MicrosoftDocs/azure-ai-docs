@@ -195,7 +195,7 @@ sections:
       - question: |
           Does Azure AI Search send customer data to other services for processing?
         answer: |
-          Yes. Skills and vectorizers make [outbound calls from Azure AI Search](search-security-overview.md) to other Azure resources or external models that you specify for embedding or chat. Calls to those APIs typically contain raw content to be processed or queries that are vectorized by an embedding model. For Azure-to-Azure connections, the service sends requests over the internal network. If you add a custom skill or vectorizer, the indexer sends content to the URI provided in the custom skill over the public network unless you configure a [shared private link](search-indexer-howto-access-private.md).
+          Yes. Skills and vectorizers make [outbound calls from Azure AI Search](search-security-best-practices.md) to other Azure resources or external models that you specify for embedding or chat. Calls to those APIs typically contain raw content to be processed or queries that are vectorized by an embedding model. For Azure-to-Azure connections, the service sends requests over the internal network. If you add a custom skill or vectorizer, the indexer sends content to the URI provided in the custom skill over the public network unless you configure a [shared private link](search-indexer-howto-access-private.md).
 
       - question: |
           Does Azure AI Search process customer data in other regions?

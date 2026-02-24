@@ -429,4 +429,4 @@ The following table lists common issues when updating or rebuilding indexes and 
 + [Azure Cosmos DB for NoSQL indexer](search-how-to-index-cosmosdb-sql.md)
 + [Azure blob indexer](search-how-to-index-azure-blob-storage.md)
 + [Azure tables indexer](search-how-to-index-azure-tables.md)
-+ [Security in Azure AI Search](search-security-overview.md)
++ [Security in Azure AI Search](search-security-best-practices.md)

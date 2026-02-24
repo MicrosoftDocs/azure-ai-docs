@@ -358,6 +358,6 @@ It's not possible to use [customer-managed key encryption](search-security-manag
 
 ## Related content
 
-+ [Security in Azure AI Search](search-security-overview.md)
++ [Security in Azure AI Search](search-security-best-practices.md)
 + [Azure role-based access control in Azure AI Search](search-security-rbac.md)
 + [Manage using PowerShell](search-manage-powershell.md)
