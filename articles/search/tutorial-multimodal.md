@@ -19,7 +19,7 @@ In this tutorial, you'll build a multimodal indexer pipeline that performs these
 
 > [!div class="checklist"]
 >
-> + Extract and and chunk text and images
+> + Extract and chunk text and images
 > + Vectorize text and images for similarity search
 > + Send cropped images to a knowledge store for retrieval by your app
 
@@ -80,15 +80,7 @@ While you have the Azure Storage pages open in the Azure portal, get a connectio
 
    `ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/rg-mydemo/providers/Microsoft.Storage/storageAccounts/mydemostorage/blobServices/default`
 
-1. If your environment variables are in a JSON configuration file, the connection string for a system-assigned managed identity connection has the following syntax.
-
-      ```json
-      "credentials" : { 
-          "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-      }
-      ```
-
-1. For connections made using a user-assigned managed identity, use the same connection string but also provide an `identity` set to a predefined user-assigned managed identity. 
+1. For connections made using a user-assigned managed identity, use the same connection string and provide an `identity` property set to a predefined user-assigned managed identity.
 
       ```json
       "credentials" : { 
@@ -132,7 +124,10 @@ Model deployments can be in any supported region if the search service connects 
 
 + [Document Intelligence 4.0 supported regions](cognitive-search-skill-document-intelligence-layout.md#supported-regions)
 
-+ [Foundry model supported regions](/azure/ai-foundry/agents/concepts/model-region-support.md#available-models)
++ [Foundry model supported regions](/azure/ai-foundry/agents/concepts/model-region-support)
+
+<!-- + [Foundry model supported regions](/azure/ai-foundry/agents/concepts/model-region-support?view=foundry-classic&tabs=global-standard#available-models&preserve-view=true) -->
+
 
 ## Set up your environment
 
@@ -146,14 +141,16 @@ For authenticated connections that occur during indexer and skillset processing,
 
    ```http
     @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
-    @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
     @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
     @imageProjectionContainer=sustainable-ai-pdf-images
+    @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN HERE
    ```
 
    For `@storageConnection`, make sure your connection string doesn't have a trailing semicolon or quotation marks. See [Prepare your data](#prepare-data) for connection string syntax.
 
    For `@imageProjectionContainer`, provide a container name that's unique in blob storage. Azure AI Search creates this container during skills processing.
+
+   For help getting an access token, see [Connect to Azure AI Search](search-get-started-rbac.md). If you can't use roles, see [Connect with keys](search-security-api-keys.md)
 
 1. Add this variable if you're using the Document Layout skill or the Azure AI Vision skill (uses model version 2023-04-15):
 
@@ -224,7 +221,7 @@ Preference-Applied: odata.include-annotations="*"
 OData-Version: 4.0
 request-id: 4eb8bcc3-27b5-44af-834e-295ed078e8ed
 elapsed-time: 346
-Date: Sat, 26 Apr 2025 21:25:24 GMT
+Date: Sat, 26 Apr 2026 21:25:24 GMT
 Connection: close
 
 {
@@ -249,9 +246,9 @@ Connection: close
 
 ### Create an index
 
-[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. The index is identical for all skillsets, with the following exceptions:
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates an index on your search service. The index is identical for all skillsets, with the following exceptions:
 
-+ The `vectorizers` section should match the embedding model used in the skillset. Embedding is either Azure AI Vision or Azure OpenAI text embedding.
++ The `vectorizers` section should match the embedding model used in the skillset. Use either Azure AI Vision multimodal embedding or Azure OpenAI text embedding.
 
 + The `content_embedding` field has a `dimensions` property for the number of dimensions in a vector field. The value corresponds to the number of dimensions created by the embedding model.
 
@@ -380,7 +377,7 @@ For `text-embedding-ada-002` vector field:
 
 ---
 
-For nested JSON like the `locations_metadata` field, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON, so field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
+For nested JSON like the `location_metadata` field, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON, so field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
 
 ```http
 ### Create an index
@@ -428,19 +425,13 @@ POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
         {
             "name": "content_embedding",
             "type": "Collection(Edm.Single)",
-            "dimensions": 1024,
+            "dimensions": 3072,
             "searchable": true,
             "retrievable": true,
             "vectorSearchProfile": "hnsw"
         },
         {
             "name": "content_path",
-            "type": "Edm.String",
-            "searchable": false,
-            "retrievable": true
-        },
-        {
-            "name": "offset",
             "type": "Edm.String",
             "searchable": false,
             "retrievable": true
@@ -519,9 +510,9 @@ POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
 
 Key points:
 
-+ `content_embedding` is the only vector field and it stores vectors for both text and image content. It must be configured with appropriate dimensions, such as 1024, and a vector search profile.
++ `content_embedding` is the only vector field and it stores vectors for both text and image content. It must be configured with appropriate dimensions for the embedding model, such as `3072` for text-embedding-3-large, and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md).
++ `location_metadata` applies to image content extracted by [Document Layout](cognitive-search-skill-document-intelligence-layout.md). It captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. `location_metadata` only exists for images in this scenario.
 
 ### Create a skillset for extraction, chunking, and vectorization
 
@@ -529,11 +520,13 @@ Key points:
 
 There are four skillset patterns. Each one demonstrates an extraction and chunking strategy, paired with a vectorization strategy. There are two key differences in each pattern: skillset composition and `indexProjections`. Projections vary based on the outputs of each embedding skill.
 
+All four patterns include the [Shaper skill](cognitive-search-skill-shaper.md). Output from the Shaper skill creates the normalized path of images in the knowledge store and location metadata (page number and bounding polygons).
+
 ### [**Document extraction & multimodal embedding**](#tab/doc-extraction-vision)
 
 This pattern uses:
 
-+ [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Text Split skill](cognitive-search-skill-textsplit.md) for extracting and chunking.
++ [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Text Split skill](cognitive-search-skill-textsplit.md) for extraction and chunking.
 
 + [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md) for text and image embeddings.
 
@@ -841,82 +834,82 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
          ]
       },
       {
-      "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
-      "name": "#2",
-      "context": "/document/pages/*",
-      "resourceUri": "{{textEmbeddingModelUri}}",
-      "apiKey": "{{textEmbeddingModelKey}}",
-      "deploymentId":"{{textEmbeddingDeploymentId}}",
-      "modelName":"{{textEmbeddingModelName}}",
-      "dimensions": 3072,
-      "inputs": [
-        {
-          "name": "text",
-          "source": "/document/pages/*",
-          "inputs": []
-        }
-      ],
-      "outputs": [
-        {
-          "name": "embedding",
-          "targetName": "text_vector"
-        }
-      ]
+        "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
+        "name": "#2",
+        "context": "/document/pages/*",
+        "resourceUri": "{{textEmbeddingModelUri}}",
+        "apiKey": "{{textEmbeddingModelKey}}",
+        "deploymentId":"{{textEmbeddingDeploymentId}}",
+        "modelName":"{{textEmbeddingModelName}}",
+        "dimensions": 3072,
+        "inputs": [
+          {
+            "name": "text",
+            "source": "/document/pages/*",
+            "inputs": []
+          }
+        ],
+        "outputs": [
+          {
+            "name": "embedding",
+            "targetName": "text_vector"
+          }
+        ]
     },
-  {
-    "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
-    "name": "genAI-prompt-skill",
-    "description": "GenAI Prompt skill for image verbalization",
-    "uri": "{{chatCompletionModelUri}}",
-    "timeout": "PT1M",
-    "apiKey": "{{chatCompletionModelKey}}",
-    "context": "/document/normalized_images/*",
-    "responseFormat": { "type": "text" },
-    "inputs": [
-        {
-        "name": "systemMessage",
-        "source": "='You are tasked with generating concise, accurate descriptions of images, figures, diagrams, or charts in documents. The goal is to capture the key information and meaning conveyed by the image without including extraneous details like style, colors, visual aesthetics, or size.\n\nInstructions:\nContent Focus: Describe the core content and relationships depicted in the image.\n\nFor diagrams, specify the main elements and how they are connected or interact.\nFor charts, highlight key data points, trends, comparisons, or conclusions.\nFor figures or technical illustrations, identify the components and their significance.\nClarity & Precision: Use concise language to ensure clarity and technical accuracy. Avoid subjective or interpretive statements.\n\nAvoid Visual Descriptors: Exclude details about:\n\nColors, shading, and visual styles.\nImage size, layout, or decorative elements.\nFonts, borders, and stylistic embellishments.\nContext: If relevant, relate the image to the broader content of the technical document or the topic it supports.\n\nExample Descriptions:\nDiagram: \"A flowchart showing the four stages of a machine learning pipeline: data collection, preprocessing, model training, and evaluation, with arrows indicating the sequential flow of tasks.\"\n\nChart: \"A bar chart comparing the performance of four algorithms on three datasets, showing that Algorithm A consistently outperforms the others on Dataset 1.\"\n\nFigure: \"A labeled diagram illustrating the components of a transformer model, including the encoder, decoder, self-attention mechanism, and feedforward layers.\"'"
-        },
-        {
-        "name": "userMessage",
-        "source": "='Please describe this image.'"
-        },
-        {
-        "name": "image",
-        "source": "/document/normalized_images/*/data"
-        }
+    {
+      "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
+      "name": "genAI-prompt-skill",
+      "description": "GenAI Prompt skill for image verbalization",
+      "uri": "{{chatCompletionModelUri}}",
+      "timeout": "PT1M",
+      "apiKey": "{{chatCompletionModelKey}}",
+      "context": "/document/normalized_images/*",
+      "responseFormat": { "type": "text" },
+      "inputs": [
+          {
+          "name": "systemMessage",
+          "source": "='You are tasked with generating concise, accurate descriptions of images, figures, diagrams, or charts in documents. The goal is to capture the key information and meaning conveyed by the image without including extraneous details like style, colors, visual aesthetics, or size.\n\nInstructions:\nContent Focus: Describe the core content and relationships depicted in the image.\n\nFor diagrams, specify the main elements and how they are connected or interact.\nFor charts, highlight key data points, trends, comparisons, or conclusions.\nFor figures or technical illustrations, identify the components and their significance.\nClarity & Precision: Use concise language to ensure clarity and technical accuracy. Avoid subjective or interpretive statements.\n\nAvoid Visual Descriptors: Exclude details about:\n\nColors, shading, and visual styles.\nImage size, layout, or decorative elements.\nFonts, borders, and stylistic embellishments.\nContext: If relevant, relate the image to the broader content of the technical document or the topic it supports.\n\nExample Descriptions:\nDiagram: \"A flowchart showing the four stages of a machine learning pipeline: data collection, preprocessing, model training, and evaluation, with arrows indicating the sequential flow of tasks.\"\n\nChart: \"A bar chart comparing the performance of four algorithms on three datasets, showing that Algorithm A consistently outperforms the others on Dataset 1.\"\n\nFigure: \"A labeled diagram illustrating the components of a transformer model, including the encoder, decoder, self-attention mechanism, and feedforward layers.\"'"
+          },
+          {
+          "name": "userMessage",
+          "source": "='Please describe this image.'"
+          },
+          {
+          "name": "image",
+          "source": "/document/normalized_images/*/data"
+          }
+          ],
+          "outputs": [
+              {
+              "name": "response",
+              "targetName": "verbalizedImage"
+              }
+          ]
+      },    
+      {
+        "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
+        "name": "verbalized-image-embedding-skill",
+        "description": "Embedding skill for verbalized images",
+        "resourceUri": "{{textEmbeddingModelUri}}",
+        "apiKey": "{{textEmbeddingModelKey}}",
+        "deploymentId":"{{textEmbeddingDeploymentId}}",
+        "modelName":"{{textEmbeddingModelName}}",
+        "dimensions": 3072,
+        "context": "/document/normalized_images/*",
+        "inputs": [
+            {
+            "name": "text",
+            "source": "/document/normalized_images/*/verbalizedImage",
+            "inputs": []
+            }
         ],
         "outputs": [
             {
-            "name": "response",
-            "targetName": "verbalizedImage"
+            "name": "embedding",
+            "targetName": "verbalizedImage_vector"
             }
         ]
-  },    
-  {
-      "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
-      "name": "verbalized-image-embedding-skill",
-      "description": "Embedding skill for verbalized images",
-      "resourceUri": "{{textEmbeddingModelUri}}",
-      "apiKey": "{{textEmbeddingModelKey}}",
-      "deploymentId":"{{textEmbeddingDeploymentId}}",
-      "modelName":"{{textEmbeddingModelName}}",
-      "dimensions": 3072,
-      "context": "/document/normalized_images/*",
-      "inputs": [
-         {
-         "name": "text",
-         "source": "/document/normalized_images/*/verbalizedImage",
-         "inputs": []
-         }
-      ],
-      "outputs": [
-         {
-         "name": "embedding",
-         "targetName": "verbalizedImage_vector"
-         }
-      ]
-},
+    },
     {
       "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
       "name": "shaper-skill",
@@ -1477,7 +1470,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
 
 ## Run the indexer
 
-[Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads data, runs a skillset, and indexes the enriched data.
+[Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads data, runs a skillset, and indexes the enriched content.
 
 ```http
 ### Create and run an indexer
@@ -1522,7 +1515,7 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
   
   {
     "search": "*",
-    "select": "content_id, text_document_id, document_title, image_document_id, content_text, content_path, offset, location_metadata/page_number, location_metadata/bounding_polygons",
+    "select": "content_id, text_document_id, document_title, image_document_id, content_text, content_path, location_metadata/page_number, location_metadata/bounding_polygons",
     "count": true
   }
 ```
@@ -1556,6 +1549,7 @@ Connection: close
   "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview "
 }
 ```
+
 100 documents are returned in the response.
 
 ### Query for image-only content
@@ -1571,7 +1565,7 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
   
   {
     "search": "*",
-    "select": "image_document_id, content_path",
+    "select": "image_document_id, content_path, location_metadata/page_number, location_metadata/bounding_polygons",
     "count": true,
     "filter": "image_document_id ne null"
   }
@@ -1582,6 +1576,8 @@ Search documents containing image content don't have text content, so you can ex
 The `content_embedding` field contains 1-to-3 thousand dimensional embeddings for both page text and verbalized image descriptions. We exclude this field from the query.
 
 The `content_path` field contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`. 
+
+The Shaper skill adds the container name to the path and the location metadata.
 
 ### Query for content related to "energy"
 
@@ -1597,14 +1593,14 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
 
   {
     "search": "energy",
-    "count": true,
     "select": "content_id, document_title, content_text, content_path"
+    "count": true
   }
 ```
 
 ### Reset and rerun
 
-Indexers can be reset to clear the high-water mark, which allows a full rerun. The following POST requests are for reset, followed by rerun.
+Indexers can be reset to clear the high-water mark, which allows a full rebuild. The following POST requests are for reset, followed by rerun.
 
 ```http
 ### Reset the indexer
@@ -1631,7 +1627,7 @@ GET {{searchUrl}}/indexers/demo-multimodal-indexer/status?api-version=2025-11-01
 
 Recall that the skillset in this tutorial creates a [knowledge store](knowledge-store-concept-intro.md) for image content extracted from the PDF. After the indexer runs, the **sustainable-ai-pdf-images** container should have approximately 23 images. 
 
-You can't return these images in a search query. However, you can write application code that calls the Azure Storage APIs to retrieve the images if you need them for the user experience.
+You can't return these images in a search query. However, you can write application code that calls the Azure Storage APIs to retrieve the images if you need them for the user experience. The `content_path` field has the path to each image.
 
 To view the images in the Storage Browser:
 
