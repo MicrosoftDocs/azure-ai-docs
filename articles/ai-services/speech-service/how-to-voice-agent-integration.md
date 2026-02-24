@@ -45,5 +45,6 @@ __**Do we need to explain how to migrate from query params to strongly typed SDK
 ## Related content
 
 - Explore [How to add proactive messages](./how-to-voice-live-proactive-messages.md)
+- Explore [How to improve tool calling and latency wait times](./how-to-voice-live-interim-response.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
 - See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)

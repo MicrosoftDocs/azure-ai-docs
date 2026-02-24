@@ -113,7 +113,7 @@ The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to 
 > [!NOTE]
 > Agent mode in Voice Live doesn't support key-based authentication for agent invocation. Use Microsoft Entra ID (for example, `AzureCliCredential`) for agent access. Voice Live resource configuration might still include API keys for non-agent scenarios.
 
-1. Create the **src/main/java/VoiceLiveWithAgentV2.java** file with the following code:
+1. Create the **src/main/java/VoiceLiveWithAgent.java** file with the following code:
 
     :::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java":::
 
@@ -126,7 +126,7 @@ The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to 
 1. Build and run the voice assistant:
 
     ```shell
-    mvn compile exec:java -Dexec.mainClass="VoiceLiveWithAgentV2" -q
+    mvn compile exec:java -Dexec.mainClass="VoiceLiveWithAgent" -q
     ```
 
 1. You can start speaking with the agent and hear responses. You can interrupt the model by speaking. Enter "Ctrl+C" to quit the conversation.

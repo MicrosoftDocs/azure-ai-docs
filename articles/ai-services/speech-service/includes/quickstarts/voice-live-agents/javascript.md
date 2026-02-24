@@ -94,7 +94,7 @@ The sample connects to Foundry Agent Service by passing an `agent` config object
 > [!NOTE]
 > Agent mode in Voice Live doesn't support key-based authentication for agent invocation. Use Microsoft Entra ID (for example, `DefaultAzureCredential`) for agent access. Voice Live resource configuration might still include API keys for non-agent scenarios.
 
-1. Create the **voice-live-with-agent-v2.js** file with the following code:
+1. Create the **voice-live-with-agent.js** file with the following code:
 
     :::code language="javascript" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.js":::
 
@@ -107,7 +107,7 @@ The sample connects to Foundry Agent Service by passing an `agent` config object
 1. Run the voice assistant:
 
     ```shell
-    node voice-live-with-agent-v2.js
+    node voice-live-with-agent.js
     ```
 
 1. You can start speaking with the agent and hear responses. You can interrupt the model by speaking. Enter "Ctrl+C" to quit the conversation.
