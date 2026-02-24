@@ -59,7 +59,7 @@ Voice Live supports connecting to a specific version of your agent, enabling con
 
 To connect to a specific agent version, set the `AGENT_VERSION` environment variable or pass the `agent_version` parameter when initializing the assistant:
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="247-270,292-298,483-519" highlight="8,19,29,37,66":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="247-270,292-298,482-518" highlight="8,19,29,37,66":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -81,7 +81,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="255-270,490-521,292-298" highlight="2-3,14-15,18-19,28-29,47,48":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="255-270,489-520,292-298" highlight="2-3,14-15,18-19,28-29,47,48":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -135,19 +135,19 @@ For setup details and supported options, see [Handle voice interruptions in chat
 
 ## Reconnect to a previous agent conversation
 
-Voice Live enables you to reconnect to a previous conversation by specifying the conversation (thread) ID. This preserves the conversation history and context, allowing users to continue where they left off.
+Voice Live enables you to reconnect to a previous conversation by specifying the conversation ID. This preserves the conversation history and context, allowing users to continue where they left off.
 
-When a session connects successfully, Voice Live returns the thread ID in the `SESSION_UPDATED` event:
+When a session connects successfully, Voice Live returns session metadata in the `SESSION_UPDATED` event:
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="377-386" highlight="7":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="377-385":::
 
-In this event handler, the thread ID is available as `event.session.agent.thread_id` when the session is ready.
+In this event handler, session and agent metadata is logged when the session is ready.
 
-The sample code automatically writes the thread ID to a conversation log file in the `logs/` folder (for example, `logs/2026-02-19_14-30-00_conversation.log`). You can retrieve the thread ID from this file after running a session.
+The sample code automatically writes session details to a conversation log file in the `logs/` folder (for example, `logs/2026-02-19_14-30-00_conversation.log`). You can retrieve the session ID from this file after running a session.
 
-To reconnect to that conversation, pass the thread ID as the `CONVERSATION_ID` environment variable (or the `conversation_id` parameter):
+To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable (or the `conversation_id` parameter):
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="255,267,490":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="255,267,489":::
 
 In this sample, conversation reconnect is applied in three places:
 
@@ -160,22 +160,22 @@ When a valid `conversation_id` is provided, the agent retrieves the previous con
 > [!NOTE]
 > Conversation IDs are tied to the agent and project. Attempting to use a conversation ID with a different agent results in a new conversation being created.
 
-## Log thread IDs for continuity and diagnostics
+## Log session metadata for continuity and diagnostics
 
-The sample logs key session metadata, including `Thread ID`, to a timestamped conversation log file under `logs/`. This helps you:
+The sample logs key session metadata, including the session ID, to a timestamped conversation log file under `logs/`. This helps you:
 
-- Capture the exact thread identifier for reconnect scenarios.
+- Identify the session for debugging and support scenarios.
 - Correlate user-reported behavior with session and agent metadata.
 - Track runs over time by preserving per-session log files.
 
-The following code creates the log filename and writes session metadata (including thread ID) when `SESSION_UPDATED` is received:
+The following code creates the log filename and writes session metadata when `SESSION_UPDATED` is received:
 
-:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="42-48,379-389,481-486" highlight="4,9-15":::
+:::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="42-48,379-385,475-480" highlight="4,9-14":::
 
-In this sample, thread ID logging is applied in three places:
+In this sample, session metadata logging is applied in three places:
 
 - A timestamped conversation log file is created per run.
-- On `SESSION_UPDATED`, metadata including `event.session.agent.thread_id` is appended.
+- On `SESSION_UPDATED`, metadata including session ID, agent name, and voice configuration is appended.
 - `write_conversation_log(...)` appends entries to the same file throughout the conversation lifecycle.
 
 Use this logged thread ID value with `CONVERSATION_ID` to resume the same agent thread in a later session.

@@ -108,7 +108,7 @@ The sample connects to Foundry Agent Service by passing `agent_config` in `conne
 - `agent_name`: The agent name to invoke.
 - `project_name`: The Foundry project containing the agent.
 - `agent_version`: Optional pinned version for controlled rollouts. If omitted, the latest version is used.
-- `conversation_id`: Optional existing thread ID to continue prior conversation context.
+- `conversation_id`: Optional conversation ID to continue prior conversation context.
 - `foundry_resource_override`: Optional resource name when the agent is hosted on a different Foundry resource.
 - `authentication_identity_client_id`: Optional managed identity client ID used with cross-resource agent connections.
 
@@ -218,7 +218,6 @@ SessionID: sess_1m1zrSLJSPjJpzbEOyQpTL
 Agent Name: VoiceAgentQuickstartTest
 Agent Description: 
 Agent ID: None
-Thread ID: None
 Voice Name: en-US-Ava:DragonHDLatestNeural
 Voice Type: azure-standard
 Voice Temperature: 0.8

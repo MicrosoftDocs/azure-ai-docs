@@ -380,7 +380,6 @@ class BasicVoiceAssistant:
             await write_conversation_log("\n".join([
                 f"SessionID: {s.id}", f"Agent Name: {a.name}",
                 f"Agent Description: {a.description}", f"Agent ID: {a.agent_id}",
-                f"Thread ID: {a.thread_id}",
                 f"Voice Name: {v['name']}", f"Voice Type: {v['type']}",
                 f"Voice Temperature: {v['temperature']}", ""
             ]))

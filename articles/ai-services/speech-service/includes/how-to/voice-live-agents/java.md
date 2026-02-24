@@ -144,9 +144,6 @@ When a session connects successfully, Voice Live returns session metadata in the
 
 In this event handler, the session ID is extracted from the event JSON using `extractField(event, "id")` and written to the conversation log.
 
-> [!NOTE]
-> The Java SDK (beta.5) doesn't expose the agent `thread_id` in session events. To reconnect, use the conversation ID you provided when creating the session, or retrieve the thread ID through the Foundry Agent Service API.
-
 The sample code writes session details to a conversation log file in the `logs/` folder (for example, `logs/conversation_20260219_143000.log`).
 
 To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable (or the `conversationId` parameter):
