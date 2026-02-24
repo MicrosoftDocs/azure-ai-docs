@@ -5,7 +5,7 @@ description: Set up Claude Code CLI and VS Code extension to use Claude models i
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 02/24/2026
 ms.custom: dev-focus
 author: msakande
 ms.author: mopeakande
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # Claude Code with Microsoft Foundry
 
-Anthropic's [Claude Code](https://docs.anthropic.com/en/docs/claude-code) is an AI coding agent available as a CLI tool and VS Code extension. When you configure Claude Code with Microsoft Foundry, you run the coding agent on Azure infrastructure while keeping your data inside your compliance boundary. This configuration provides enterprise-grade security, private networking, role-based access control, and cost management. Claude Code is more than a chat with your code agent—it's an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools. It works in your terminal, IDE, browser, and as a desktop app.
+Anthropic's [Claude Code](https://docs.anthropic.com/en/docs/claude-code) is an AI coding agent available as a CLI tool and VS Code extension. When you configure Claude Code with Microsoft Foundry, you run the coding agent on Azure infrastructure while keeping your data inside your compliance boundary. This configuration provides enterprise-grade security, private networking, role-based access control, and cost management. Claude Code is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools. It works in your terminal, IDE, browser, and as a desktop app.
 
 In this article, you learn how to:
 
@@ -86,39 +86,48 @@ To use Model Router with Claude Code, first deploy the supported Claude models, 
 
 ## Install Claude Code CLI
 
-Install the Claude Code CLI and verify the installation.
+Install the Claude Code CLI to work with Claude Code directly in your terminal. Then, verify that `claude` is in your PATH by running `claude --version`.
 
-**Native install (recommended)**
+> [!NOTE]
+> Anthropic has deprecated the npm installation method. Use the native installer or Homebrew instead. If you already installed via npm, run `claude install` to migrate to the native method.
 
-Run the installer script, which downloads and configures the `claude` binary:
+
+### Native install (recommended)
+
+Native installations automatically update in the background to keep you on the latest version.
+
+# [Bash / WSL](#tab/bash)
+
+On macOS or Windows (Git Bash or WSL), run the installer script, which downloads and configures the `claude` binary:
 
 ```bash
 curl -fsSL https://claude.ai/install.sh | bash
 claude --version # verify installation
 ```
 
-On Windows, run this command from Git Bash or WSL.
+# [PowerShell](#tab/powershell)
 
-**Installation with Homebrew**
+```powershell
+irm https://claude.ai/install.ps1 | iex
+claude --version # verify installation
+```
+
+---
+
+### Installation with Homebrew
 
 If using macOS:
 
 ```bash
-brew install claude-code
+brew install --cask claude-code
 claude --version # verify installation
 ```
+Homebrew installations do not auto-update. Run `brew upgrade claude-code` periodically to get the latest features and security fixes.
 
-**Installation with npm (deprecated)**
 
-> [!NOTE]
-> Anthropic has deprecated the npm installation method. Use the native installer or Homebrew instead. If you already installed via npm, run `claude install` to migrate to the native method.
+### Troubleshoot install location
 
-```bash
-npm install -g @anthropic-ai/claude-code
-claude --version # verify installation
-```
-
-After installation, verify that `claude` is in your PATH by running `claude --version`. If the command isn't found, add the install location to your PATH:
+If the `claude --version` command isn't found, add the install location to your PATH as follows:
 
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
@@ -128,11 +137,19 @@ For more installation options, see [Claude Code documentation](https://docs.anth
 
 ## Configure Claude Code for Foundry
 
-Set environment variables to connect Claude Code to your Microsoft Foundry deployment.
+You use either your Foundry resource name or the base URL to configure Claude Code for Foundry. 
 
-> [!TIP]
-> Find your Foundry resource name in the Azure portal under your resource's **Overview** page, or in the Foundry portal URL: `https://ai.azure.com/resource/<your-resource-name>`.
-> Alternatively, use the base URL, which is of the form: `https://<your-resource-name>.services.ai.azure.com`. Find the Project endpoint on the home page of the Foundry portal, and copy the part of the URL that comes before `/api/projects/<your-project-name>`. Claude Code appends `/anthropic` to this URL automatically when you use `ANTHROPIC_FOUNDRY_RESOURCE`.
+To find your Foundry resource name from the Foundry portal,
+
+1. Go to the top left navigation and select the project name > **Project details**.
+1. Copy the value of "Parent resource" from the Project details page.
+
+To find your base URL from the Foundry portal,
+
+1. From the home page of the Foundry portal, find the **Project endpoint** and copy the part of the URL that comes before `/api/projects/<your-project-name>`. Your base URL is of the form: `https://<your-resource-name>.services.ai.azure.com`, and Claude Code appends `/anthropic` to this URL automatically when you use `ANTHROPIC_FOUNDRY_RESOURCE`.
+
+
+Set environment variables to connect Claude Code to your Microsoft Foundry deployment: 
 
 # [Bash / WSL](#tab/bash)
 
@@ -203,6 +220,12 @@ Microsoft Entra ID authentication uses your Azure CLI credentials automatically.
     ```bash
     az login
     ```
+
+    > [!TIP]
+    > If your Foundry resource is in a different tenant than your default Azure CLI tenant, specify the tenant ID:
+    > ```bash
+    > az login --tenant <tenant-id>
+    > ```
     
 1. Verify your sign-in targets the correct subscription:
 
@@ -210,14 +233,7 @@ Microsoft Entra ID authentication uses your Azure CLI credentials automatically.
     az account show
     ```
 
-1. If your Foundry resource is in a different tenant than your default Azure CLI tenant, specify the tenant ID:
-
-    ```bash
-    az login --tenant <tenant-id>
-    ```
-
 When you use Microsoft Foundry, the `/login` and `/logout` commands inside Claude Code are disabled. Authentication is handled through your Azure credentials.
-
 
 Claude Code detects your Azure CLI session and uses it for authentication without extra configuration.
 
