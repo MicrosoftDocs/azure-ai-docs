@@ -10,7 +10,12 @@ ai-usage: ai-assisted
 
 ### February 2026 release
 
-Voice Agent integration with Foundry Agent Service is available in preview. Build real-time voice agents with the new quickstart and how-to guidance. For more information, see [Get started with Voice Live and Foundry Agent Service](../../voice-live-agents-quickstart.md) and [How to build a voice agent](../../how-to-voice-agent-integration.md).
+Voice Agent integration with Foundry Agent Service is available in preview with SDK support for Python, Java, C#, and JavaScript. Build real-time voice agents with the new quickstart and how-to guidance. For more information, see [Get started with Voice Live and Foundry Agent Service](../../voice-live-agents-quickstart.md) and [How to build a voice agent](../../how-to-voice-agent-integration.md).
+
+New how-to guides are available:
+- [Improve tool calling and latency wait times with interim responses](../../how-to-voice-live-interim-response.md)
+- [Add proactive messages](../../how-to-voice-live-proactive-messages.md)
+- [Handle voice interruptions in chat history](../../how-to-voice-live-auto-truncation.md)
 
 ### January 2026 release
 
