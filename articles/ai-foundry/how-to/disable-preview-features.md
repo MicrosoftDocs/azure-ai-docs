@@ -48,7 +48,7 @@ Apply the preview-feature suppression tag at the scope your organization governs
 1. Select **Apply**.
 1. Repeat for other scopes, as needed.
 
-:::image type="content" source="../media/disable-preview-features/disable-preview-tag.png" alt-text="Screenshot show disabling preview features in Azure portal for a subscription.":::
+:::image type="content" source="../media/disable-preview-features/disable-preview-tag.png" alt-text="Screenshot show disabling preview features in Azure portal for a Foundry resource.":::
 
 ## Verify suppression in both portal experiences
 
