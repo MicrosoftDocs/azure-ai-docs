@@ -5,46 +5,34 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 02/23/2026
 ms.author: lajanuar
 ---
-|Requirement  |Description  |
-|---------|---------|
-|Regions     |  If you don't have a resource, you need to create a new one in a supported region.        |
-|Pricing tier     | pricing tier for your resource.       |
-|Managed identity     | Make sure that the resource's managed identity setting is enabled. Otherwise, read the next section. |
+| Requirement | Description |
+| --- | --- |
+| Regions | If you don't have a resource, you need to create a new one in a supported region. |
+| Pricing tier | pricing tier for your resource. |
+| Managed identity | Make sure that the resource's managed identity setting is enabled. Otherwise, read the next section. |
 
-To use this service, you'll need to [create an Azure storage account](/azure/storage/common/storage-account-create) if you don't have one already. 
+To use this service, you'll need to [create an Azure storage account](/azure/storage/common/storage-account-create) if you don't have one already.
 
-## Enable identity management for your resource
-
-# [Azure portal](#tab/azure-portal)
+## Enable identity management using Azure portal
 
 Your Language resource must have identity management, to enable it using [Azure portal](https://portal.azure.com/):
 
 1. Go to your Language resource
-2. From left hand menu, under **Resource Management** section, select **Identity**
-3. From **System assigned** tab, make sure to set **Status** to **On**
-
-# [Language Studio](#tab/language-studio)
-
-Your Language resource must have identity management, to enable it using [Language Studio](https://aka.ms/languageStudio):
-
-1. Select the settings icon in the top right corner of the screen
-2. Select **Resources**
-3. Select the check box **Managed Identity** for your Azure Language in Foundry Tools resource.
-
----
+1. From left hand menu, under **Resource Management** section, select **Identity**
+1. From **System assigned** tab, make sure to set **Status** to **On**
 
 ### Enable the custom feature for your resource
 
 Make sure to enable this service's custom feature from Azure portal.
 
 1. Go to your Language resource in [Azure portal](https://portal.azure.com/)
-2. From the left side menu, under **Resource Management** section, select **Features**
-3. Enable this service's custom feature
-4. Connect your storage account
-5. Select **Apply**
+1. From the left side menu, under **Resource Management** section, select **Features**
+1. Enable this service's custom feature
+1. Connect your storage account
+1. Select **Apply**
 
 > [!IMPORTANT]
 > Make sure that your **Language resource** has **storage blob data contributor** role assigned on the storage account you're connecting.
@@ -55,7 +43,7 @@ Make sure to enable this service's custom feature from Azure portal.
 
 ### Enable CORS for your storage account
 
-Make sure to allow (**GET, PUT, DELETE**) methods when enabling Cross-Origin Resource Sharing (CORS). 
+Make sure to allow (**GET, PUT, DELETE**) methods when enabling Cross-Origin Resource Sharing (CORS).
 Set allowed origins field to `https://language.cognitive.azure.com`. Allow all header by adding `*` to the allowed header values, and set the maximum age to `500`.
 
 :::image type="content" source="../../custom-named-entity-recognition/media/cors.png" alt-text="A screenshot showing how to use CORS for storage accounts." lightbox="../../custom-named-entity-recognition/media/cors.png":::
