@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/12/2026
+ms.date: 02/24/2026
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
@@ -377,15 +377,14 @@ You can update a memory store with content from multiple conversation turns, or 
 
 ```python
 # Continue from the previous Python snippets.
-from azure.ai.projects.models import EasyInputMessage
-
 # Set scope to associate the memories with
 scope = "user_123"
 
-user_message = EasyInputMessage(
-    role="user",
-    content="I prefer dark roast coffee and usually drink it in the morning"
-)
+user_message = {
+  "role": "user",
+  "content": "I prefer dark roast coffee and usually drink it in the morning",
+   "type": "message"
+}
 
 update_poller = project_client.beta.memory_stores.begin_update_memories(
     name=memory_store_name,
@@ -403,7 +402,11 @@ for operation in update_result.memory_operations:
     )
 
 # Extend the previous update with another update and more messages
-new_message = EasyInputMessage(role="user", content="I also like cappuccinos in the afternoon")
+new_message = {
+    "role":"user", 
+    "content":"I also like cappuccinos in the afternoon", 
+    "type":"message"}
+
 new_update_poller = project_client.beta.memory_stores.begin_update_memories(
     name=memory_store_name,
     scope=scope,
@@ -463,10 +466,10 @@ Search memories to retrieve relevant context for agent interactions. Specify the
 
 ```python
 # Continue from the previous Python snippets.
-from azure.ai.projects.models import MemorySearchOptions, EasyInputMessage
+from azure.ai.projects.models import MemorySearchOptions
 
 # Search memories by a query
-query_message = EasyInputMessage(role="user", content="What are my coffee preferences?")
+query_message = {"role": "user", "content": "What are my coffee preferences?", "type": "message"}
 
 search_response = project_client.beta.memory_stores.search_memories(
     name=memory_store_name,
