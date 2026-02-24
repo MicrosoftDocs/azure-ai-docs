@@ -125,7 +125,7 @@ To configure access for this solution:
 
    + `AZURE_OPENAI_ENDPOINT` is on the **Endpoints** page of your project's parent resource.
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
     ```azurecli
     az login
