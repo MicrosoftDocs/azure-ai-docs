@@ -19,9 +19,21 @@ Content Understanding is part of Microsoft Foundry and provides the same securit
 
 ## Virtual networks
 
-Foundry provides a layered security model. Content Understanding in Foundry Tools automatically encrypts your data when persisting it to the cloud. This encryption helps you meet your organizational security and compliance commitments.
+As part of Foundry Tools, Content Understanding supports network-level isolation through [Azure Virtual Networks](/azure/virtual-network/virtual-networks-overview) (VNet) and private endpoints ([Azure Private Link](/private-link/private-link-overview)) to enable secure, enterprise-grade deployments. 
+
+:::image type="content" source="../media/overview/virtual-network.jpg" alt-text="Virtual network diagram":::
+
+Content Understanding uses a layered security model that allows you to restrict access to specific networks. When network rules are enabled, only traffic from specific IP addresses, IP ranges, or a list of VNets/subnets are allowed to reach your Foundry resources. Any application accessing a Foundry resource must also be authorized through  [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) (including managed identities) or by using a valid API key.  
+
+Additionally, you can use [private endpoints](/private-link/private-endpoint-overview) for your Content Understanding Foundry resource to allow clients on a virtual network to securely access data over [Azure Private Link](/azure/private-link/private-link-overview). The private endpoint uses an IP address from the virtual network address space for your Content Understanding Foundry resource. Network traffic between the clients on the virtual network and the resource traverses the virtual network and a private link on the Microsoft Azure backbone network, which eliminates exposure from the public internet.
+
+To use Content Understanding Studio from a virtual machine within a VNet, you need to allow outgoing connections to the required set of [service tags](/azure/virtual-network/service-tags-overview) for this virtual network. 
+
+For more details on how to configure and leverage these networking controls, please refer to the guidance in [Configure Foundry Tools virtual networks](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal).  
 
 ### Foundry Tools encryption
+
+Content Understanding in Foundry Tools automatically encrypts your data when persisting it to the cloud. This encryption helps you meet your organizational security and compliance commitments.
 
 By default, your subscription uses Microsoft-managed encryption keys. Data is encrypted and decrypted using FIPS 140-2-compliant 256-bit AES encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default. You don't need to modify your code or applications to take advantage of encryption.
 
