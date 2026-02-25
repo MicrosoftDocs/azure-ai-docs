@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Data, privacy, and built-in protections in Azure AI Search
 
-Azure AI Search includes security protections that Microsoft manages automatically, requiring no customer configuration. Understanding what Microsoft handles helps you focus your security efforts on the controls and configurations for which you're responsible. 
+Azure AI Search includes security protections that Microsoft manages automatically, requiring no action from customers. Understanding what Microsoft handles helps you focus your security efforts on the controls and configurations for which you're responsible. 
 
 This article covers Microsoft's built-in protections, including network architecture, encryption (in transit, in use, and at rest), data residency, privacy guarantees, and compliance certifications. For security best practices that you should configure, see [Secure an Azure AI Search service](search-security-best-practices.md).
 
