@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
 ms.topic: tutorial
-ms.date: 02/20/2026
+ms.date: 02/25/2026
 # This is the primary instructional guidance for GenAI prompt, Document Layout, Azure AI Vision.
 ---
 
@@ -23,7 +23,7 @@ In this tutorial, you'll build a multimodal indexer pipeline that performs these
 > + Vectorize text and images for similarity search
 > + Send cropped images to a knowledge store for retrieval by your app
 
-This tutorial shows multiple skillsets side-by-side for illustrating different ways to extract, chunk, and vectorize multimodal content.
+This tutorial shows multiple skillsets side by side to illustrate different ways to extract, chunk, and vectorize multimodal content.
 
 ## Prerequisites
 
@@ -106,7 +106,7 @@ The index, data source, and indexer definitions are mostly the same for all scen
    + GenAI Prompt, Azure OpenAI Embedding
    + Azure AI Vision Multimodal Embedding
 
-Most of these skills have a dependency on a [deployed model](/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models) or a Microsoft Foundry resource. The following table identifies the models backing each skill, plus the resource and permissions that provide model access.
+Most of these skills depend on a [deployed model](/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models) or a Microsoft Foundry resource. The following table identifies the model backing each skill, plus the resource and permissions that provide model access.
 
 | Skill | Usage | Model | Resource | Permissions |
 | -- | -- | -- | -- | -- |
@@ -126,12 +126,9 @@ Model deployments can be in any supported region if the search service connects 
 
 + [Foundry model supported regions](/azure/ai-foundry/agents/concepts/model-region-support)
 
-<!-- + [Foundry model supported regions](/azure/ai-foundry/agents/concepts/model-region-support?view=foundry-classic&tabs=global-standard#available-models&preserve-view=true) -->
-
-
 ## Set up your environment
 
-For this tutorial, your local REST client connection to Azure AI Search requires an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Connect to a search service](search-get-started-rbac.md).
+For this tutorial, your local REST client connection to Azure AI Search requires an endpoint and an API key. You can get these values in the Azure portal. For other connection methods, see [Connect to a search service](search-get-started-rbac.md).
 
 For authenticated connections that occur during indexer and skillset processing, the search service uses the role assignments you previously defined.
 
@@ -150,7 +147,7 @@ For authenticated connections that occur during indexer and skillset processing,
 
    For `@imageProjectionContainer`, provide a container name that's unique in blob storage. Azure AI Search creates this container during skills processing.
 
-   For help getting an access token, see [Connect to Azure AI Search](search-get-started-rbac.md). If you can't use roles, see [Connect with keys](search-security-api-keys.md)
+   For help getting an access token, see [Connect to Azure AI Search](search-get-started-rbac.md). If you can't use roles, see [Connect with keys](search-security-api-keys.md).
 
 1. Add this variable if you're using the Document Layout skill or the Azure AI Vision skill (uses model version 2023-04-15):
 
@@ -246,273 +243,587 @@ Connection: close
 
 ### Create an index
 
-[Create Index (REST)](/rest/api/searchservice/indexes/create) creates an index on your search service. The index is identical for all skillsets, with the following exceptions:
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates an index on your search service. The index is similar across all skillsets, with the following exceptions:
 
 + The `vectorizers` section should match the embedding model used in the skillset. Use either Azure AI Vision multimodal embedding or Azure OpenAI text embedding.
 
 + The `content_embedding` field has a `dimensions` property for the number of dimensions in a vector field. The value corresponds to the number of dimensions created by the embedding model.
 
-#### [**Azure AI Vision multimodal**](#tab/index-vision-embedding)
++ Nested JSON field names must be identical to their source names. This is due to a limitation where Azure AI Search can't map subfields in a complex type. This means that an index that accepts extracted content from Text Split must have fields named "location_metadata", "bounding_polygons", and "page_number" because those names correspond to outputs from the Text Split skill. Similarly, an index that accepts extracted content from Document Layout must have fields named "locationMetadata", "boundingPolygons", and "pageNumber".
 
-Vectorizer definition:
+Here are the index definitions for each skill combination.
 
-```json
-"vectorizers": [
-    {
-        "name": "demo-vectorizer",
-        "kind": "aiServicesVision",
-        "aiServicesVisionParameters": {
-            "resourceUri": "{{foundryUrl}}",
-            "authIdentity": null,
-            "modelVersion": "{{azureAiVisionModelVersion}}"
-        }
-    }
-]  
-```
+### [**Document extraction & multimodal embedding**](#tab/doc-extraction-vision)
 
-Vector field definition:
+This pattern uses:
+
++ [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Text Split skill](cognitive-search-skill-textsplit.md) for extraction and chunking.
+
++ [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md) for text and image embeddings.
 
 ```json
 {
-    "name": "content_embedding",
-    "type": "Collection(Edm.Single)",
-    "dimensions": 1024,
-    "searchable": true,
-    "retrievable": true,
-    "vectorSearchProfile": "hnsw"
+   "name":"demo-multimodal-1-index",
+   "fields":[
+      {
+         "name":"content_id",
+         "type":"Edm.String",
+         "retrievable":true,
+         "key":true,
+         "analyzer":"keyword"
+      },
+      {
+         "name":"text_document_id",
+         "type":"Edm.String",
+         "searchable":false,
+         "filterable":true,
+         "retrievable":true,
+         "stored":true,
+         "sortable":false,
+         "facetable":false
+      },
+      {
+         "name":"document_title",
+         "type":"Edm.String",
+         "searchable":true
+      },
+      {
+         "name":"image_document_id",
+         "type":"Edm.String",
+         "filterable":true,
+         "retrievable":true
+      },
+      {
+         "name":"content_text",
+         "type":"Edm.String",
+         "searchable":true,
+         "retrievable":true
+      },
+      {
+         "name":"content_embedding",
+         "type":"Collection(Edm.Single)",
+         "dimensions":1024,
+         "searchable":true,
+         "retrievable":true,
+         "vectorSearchProfile":"hnsw"
+      },
+      {
+         "name":"content_path",
+         "type":"Edm.String",
+         "searchable":false,
+         "retrievable":true
+      },
+      {
+         "name":"offset",
+         "type":"Edm.String",
+         "searchable":false,
+         "retrievable":true
+      },
+      {
+         "name":"location_metadata",
+         "type":"Edm.ComplexType",
+         "fields":[
+            {
+               "name":"page_number",
+               "type":"Edm.Int32",
+               "searchable":false,
+               "retrievable":true
+            },
+            {
+               "name":"bounding_polygons",
+               "type":"Edm.String",
+               "searchable":false,
+               "retrievable":true,
+               "filterable":false,
+               "sortable":false,
+               "facetable":false
+            }
+         ]
+      }
+   ],
+   "vectorSearch":{
+      "profiles":[
+         {
+            "name":"hnsw",
+            "algorithm":"defaulthnsw",
+            "vectorizer":"demo-vectorizer"
+         }
+      ],
+      "algorithms":[
+         {
+            "name":"defaulthnsw",
+            "kind":"hnsw",
+            "hnswParameters":{
+               "m":4,
+               "efConstruction":400,
+               "metric":"cosine"
+            }
+         }
+      ],
+      "vectorizers":[
+         {
+            "name":"demo-vectorizer",
+            "kind":"aiServicesVision",
+            "aiServicesVisionParameters":{
+               "resourceUri":"{{foundryUrl}}",
+               "authIdentity":null,
+               "modelVersion":"{{azureAiVisionModelVersion}}"
+            }
+         }
+      ]
+   },
+   "semantic":{
+      "defaultConfiguration":"semanticconfig",
+      "configurations":[
+         {
+            "name":"semanticconfig",
+            "prioritizedFields":{
+               "titleField":{
+                  "fieldName":"document_title"
+               },
+               "prioritizedContentFields":[
+                  
+               ],
+               "prioritizedKeywordsFields":[
+                  
+               ]
+            }
+         }
+      ]
+   }
 }
 ```
 
-#### [**Azure OpenAI embedding (text)**](#tab/index-text-embedding)
+### [**Document extraction & text embedding**](#tab/doc-extraction-text)
 
-For `text-embedding-3-large` vectorizers:
+This pattern uses:
 
-```json
-"vectorizers":[
-    {
-      "name":"demo-vectorizer",
-      "kind":"azureOpenAI",
-      "azureOpenAIParameters":{
-          "resourceUri": "{{textEmbeddingModelUri}}",
-          "apiKey": "{{textEmbeddingModelKey}}",
-          "deploymentId":"text-embedding-3-large",
-          "modelName":"text-embedding-3-large"
-      }
-    }
-]
-```
++ [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Text Split skill](cognitive-search-skill-textsplit.md) for extraction and chunking.
 
-For `text-embedding-3-large` vector field:
++ [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) for textual descriptions of images and text embeddings.
 
 ```json
 {
-    "name":"content_embedding",
-    "type":"Collection(Edm.Single)",
-    "dimensions":3072,
-    "searchable":true,
-    "retrievable":true,
-    "vectorSearchProfile":"hnsw"
+   "name":"demo-multimodal-2-index",
+   "fields":[
+      {
+         "name":"content_id",
+         "type":"Edm.String",
+         "retrievable":true,
+         "key":true,
+         "analyzer":"keyword"
+      },
+      {
+         "name":"text_document_id",
+         "type":"Edm.String",
+         "searchable":false,
+         "filterable":true,
+         "retrievable":true,
+         "stored":true,
+         "sortable":false,
+         "facetable":false
+      },
+      {
+         "name":"document_title",
+         "type":"Edm.String",
+         "searchable":true
+      },
+      {
+         "name":"image_document_id",
+         "type":"Edm.String",
+         "filterable":true,
+         "retrievable":true
+      },
+      {
+         "name":"content_text",
+         "type":"Edm.String",
+         "searchable":true,
+         "retrievable":true
+      },
+      {
+         "name":"content_embedding",
+         "type":"Collection(Edm.Single)",
+         "dimensions":3072,
+         "searchable":true,
+         "retrievable":true,
+         "vectorSearchProfile":"hnsw"
+      },
+      {
+         "name":"content_path",
+         "type":"Edm.String",
+         "searchable":false,
+         "retrievable":true
+      },
+      {
+         "name":"offset",
+         "type":"Edm.String",
+         "searchable":false,
+         "retrievable":true
+      },
+      {
+         "name":"location_metadata",
+         "type":"Edm.ComplexType",
+         "fields":[
+            {
+               "name":"page_number",
+               "type":"Edm.Int32",
+               "searchable":false,
+               "retrievable":true
+            },
+            {
+               "name":"bounding_polygons",
+               "type":"Edm.String",
+               "searchable":false,
+               "retrievable":true,
+               "filterable":false,
+               "sortable":false,
+               "facetable":false
+            }
+         ]
+      }
+   ],
+   "vectorSearch":{
+      "profiles":[
+         {
+            "name":"hnsw",
+            "algorithm":"defaulthnsw",
+            "vectorizer":"demo-vectorizer"
+         }
+      ],
+      "algorithms":[
+         {
+            "name":"defaulthnsw",
+            "kind":"hnsw",
+            "hnswParameters":{
+               "m":4,
+               "efConstruction":400,
+               "metric":"cosine"
+            }
+         }
+      ],
+      "vectorizers":[
+         {
+            "name":"demo-vectorizer",
+            "kind":"azureOpenAI",
+            "azureOpenAIParameters":{
+               "resourceUri": "{{textEmbeddingModelUri}}",
+               "apiKey": "{{textEmbeddingModelKey}}",
+               "deploymentId":"{{textEmbeddingDeploymentId}}",
+               "modelName":"{{textEmbeddingModelName}}"
+            }
+         }
+      ]
+   },
+   "semantic":{
+      "defaultConfiguration":"semanticconfig",
+      "configurations":[
+         {
+            "name":"semanticconfig",
+            "prioritizedFields":{
+               "titleField":{
+                  "fieldName":"document_title"
+               },
+               "prioritizedContentFields":[
+                  
+               ],
+               "prioritizedKeywordsFields":[
+                  
+               ]
+            }
+         }
+      ]
+   }
 }
 ```
 
-For `text-embedding-3-small` vectorizers:
+### [**Document layout & multimodal embedding**](#tab/doc-layout-vision)
 
-```json
-"vectorizers":[
-    {
-      "name":"demo-vectorizer",
-      "kind":"azureOpenAI",
-      "azureOpenAIParameters":{
-          "resourceUri": "{{textEmbeddingModelUri}}",
-          "apiKey": "{{textEmbeddingModelKey}}",
-          "deploymentId":"text-embedding-3-small",
-          "modelName":"text-embedding-3-small"
-      }
-    }
-]
-```
+This pattern uses:
 
-For `text-embedding-3-small` vector field:
++ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extraction and chunking.
+
++ [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md) for text and image embeddings.
 
 ```json
 {
-    "name":"content_embedding",
-    "type":"Collection(Edm.Single)",
-    "dimensions":1056,
-    "searchable":true,
-    "retrievable":true,
-    "vectorSearchProfile":"hnsw"
+   "name":"demo-multimodal-3-index",
+   "fields":[
+      {
+         "name":"content_id",
+         "type":"Edm.String",
+         "retrievable":true,
+         "key":true,
+         "analyzer":"keyword"
+      },
+      {
+         "name":"text_document_id",
+         "type":"Edm.String",
+         "searchable":false,
+         "filterable":true,
+         "retrievable":true,
+         "stored":true,
+         "sortable":false,
+         "facetable":false
+      },
+      {
+         "name":"document_title",
+         "type":"Edm.String",
+         "searchable":true
+      },
+      {
+         "name":"image_document_id",
+         "type":"Edm.String",
+         "filterable":true,
+         "retrievable":true
+      },
+      {
+         "name":"content_text",
+         "type":"Edm.String",
+         "searchable":true,
+         "retrievable":true
+      },
+      {
+         "name":"content_embedding",
+         "type":"Collection(Edm.Single)",
+         "dimensions":1024,
+         "searchable":true,
+         "retrievable":true,
+         "vectorSearchProfile":"hnsw"
+      },
+      {
+         "name":"content_path",
+         "type":"Edm.String",
+         "searchable":false,
+         "retrievable":true
+      },
+      {
+         "name":"locationMetadata",
+         "type":"Edm.ComplexType",
+         "fields":[
+            {
+               "name":"pageNumber",
+               "type":"Edm.Int32",
+               "searchable":false,
+               "retrievable":true
+            },
+            {
+               "name":"boundingPolygons",
+               "type":"Edm.String",
+               "searchable":false,
+               "retrievable":true,
+               "filterable":false,
+               "sortable":false,
+               "facetable":false
+            }
+         ]
+      }
+   ],
+   "vectorSearch":{
+      "profiles":[
+         {
+            "name":"hnsw",
+            "algorithm":"defaulthnsw",
+            "vectorizer":"demo-vectorizer"
+         }
+      ],
+      "algorithms":[
+         {
+            "name":"defaulthnsw",
+            "kind":"hnsw",
+            "hnswParameters":{
+               "m":4,
+               "efConstruction":400,
+               "metric":"cosine"
+            }
+         }
+      ],
+      "vectorizers":[
+         {
+            "name":"demo-vectorizer",
+            "kind":"aiServicesVision",
+            "aiServicesVisionParameters":{
+               "resourceUri":"{{foundryUrl}}",
+               "authIdentity":null,
+               "modelVersion":"{{azureAiVisionModelVersion}}"
+            }
+         }
+      ]
+   },
+   "semantic":{
+      "defaultConfiguration":"semanticconfig",
+      "configurations":[
+         {
+            "name":"semanticconfig",
+            "prioritizedFields":{
+               "titleField":{
+                  "fieldName":"document_title"
+               },
+               "prioritizedContentFields":[
+                  
+               ],
+               "prioritizedKeywordsFields":[
+                  
+               ]
+            }
+         }
+      ]
+   }
 }
 ```
 
-For `text-embedding-ada-002` vectorizers:
+### [**Document layout & text embedding**](#tab/doc-layout-text)
 
-```json
-"vectorizers":[
-    {
-      "name":"demo-vectorizer",
-      "kind":"azureOpenAI",
-      "azureOpenAIParameters":{
-          "resourceUri": "{{textEmbeddingModelUri}}",
-          "apiKey": "{{textEmbeddingModelKey}}",
-          "deploymentId":"text-embedding-ada-002",
-          "modelName":"text-embedding-ada-002"
-      }
-    }
-]
-```
+This pattern uses:
 
-For `text-embedding-ada-002` vector field:
++ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) for extraction and chunking.
+
++ [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) for textual descriptions of images and text embeddings.
 
 ```json
 {
-    "name":"content_embedding",
-    "type":"Collection(Edm.Single)",
-    "dimensions":1536,
-    "searchable":true,
-    "retrievable":true,
-    "vectorSearchProfile":"hnsw"
+   "name":"demo-multimodal-4-index",
+   "fields":[
+      {
+         "name":"content_id",
+         "type":"Edm.String",
+         "retrievable":true,
+         "key":true,
+         "analyzer":"keyword"
+      },
+      {
+         "name":"text_document_id",
+         "type":"Edm.String",
+         "searchable":false,
+         "filterable":true,
+         "retrievable":true,
+         "stored":true,
+         "sortable":false,
+         "facetable":false
+      },
+      {
+         "name":"document_title",
+         "type":"Edm.String",
+         "searchable":true
+      },
+      {
+         "name":"image_document_id",
+         "type":"Edm.String",
+         "filterable":true,
+         "retrievable":true
+      },
+      {
+         "name":"content_text",
+         "type":"Edm.String",
+         "searchable":true,
+         "retrievable":true
+      },
+      {
+         "name":"content_embedding",
+         "type":"Collection(Edm.Single)",
+         "dimensions":3072,
+         "searchable":true,
+         "retrievable":true,
+         "vectorSearchProfile":"hnsw"
+      },
+      {
+         "name":"content_path",
+         "type":"Edm.String",
+         "searchable":false,
+         "retrievable":true
+      },
+      {
+         "name":"offset",
+         "type":"Edm.String",
+         "searchable":false,
+         "retrievable":true
+      },
+      {
+         "name":"locationMetadata",
+         "type":"Edm.ComplexType",
+         "fields":[
+            {
+               "name":"pageNumber",
+               "type":"Edm.Int32",
+               "searchable":false,
+               "retrievable":true
+            },
+            {
+               "name":"boundingPolygons",
+               "type":"Edm.String",
+               "searchable":false,
+               "retrievable":true,
+               "filterable":false,
+               "sortable":false,
+               "facetable":false
+            }
+         ]
+      }
+   ],
+   "vectorSearch":{
+      "profiles":[
+         {
+            "name":"hnsw",
+            "algorithm":"defaulthnsw",
+            "vectorizer":"demo-vectorizer"
+         }
+      ],
+      "algorithms":[
+         {
+            "name":"defaulthnsw",
+            "kind":"hnsw",
+            "hnswParameters":{
+               "m":4,
+               "efConstruction":400,
+               "metric":"cosine"
+            }
+         }
+      ],
+      "vectorizers":[
+         {
+            "name":"demo-vectorizer",
+            "kind":"azureOpenAI",
+            "azureOpenAIParameters":{
+               "resourceUri":"{{textEmbeddingModelUri}}",
+               "deploymentId":"text-embedding-3-large",
+               "apiKey":"{{textEmbeddingModelKey}}",
+               "modelName":"text-embedding-3-large"
+            }
+         }
+      ]
+   },
+   "semantic":{
+      "defaultConfiguration":"semanticconfig",
+      "configurations":[
+         {
+            "name":"semanticconfig",
+            "prioritizedFields":{
+               "titleField":{
+                  "fieldName":"document_title"
+               },
+               "prioritizedContentFields":[
+                  
+               ],
+               "prioritizedKeywordsFields":[
+                  
+               ]
+            }
+         }
+      ]
+   }
 }
 ```
 
 ---
 
-For nested JSON like the `location_metadata` field, the index fields must be identical to the source fields. Currently, Azure AI Search doesn't support field mappings to nested JSON, so field names and data types must match completely. The following index aligns to the JSON elements in the raw content.
-
-```http
-### Create an index
-POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
-  Content-Type: application/json
-  Authorization: Bearer {{token}}
-
-{
-    "name": "demo-multimodal-index",
-    "fields": [
-        {
-            "name": "content_id",
-            "type": "Edm.String",
-            "retrievable": true,
-            "key": true,
-            "analyzer": "keyword"
-        },
-        {
-            "name": "text_document_id",
-            "type": "Edm.String",
-            "searchable": false,
-            "filterable": true,
-            "retrievable": true,
-            "stored": true,
-            "sortable": false,
-            "facetable": false
-        },          
-        {
-            "name": "document_title",
-            "type": "Edm.String",
-            "searchable": true
-        },
-        {
-            "name": "image_document_id",
-            "type": "Edm.String",
-            "filterable": true,
-            "retrievable": true
-        },
-        {
-            "name": "content_text",
-            "type": "Edm.String",
-            "searchable": true,
-            "retrievable": true
-        },
-        {
-            "name": "content_embedding",
-            "type": "Collection(Edm.Single)",
-            "dimensions": 3072,
-            "searchable": true,
-            "retrievable": true,
-            "vectorSearchProfile": "hnsw"
-        },
-        {
-            "name": "content_path",
-            "type": "Edm.String",
-            "searchable": false,
-            "retrievable": true
-        },
-        {
-            "name": "location_metadata",
-            "type": "Edm.ComplexType",
-            "fields": [
-                {
-                "name": "page_number",
-                "type": "Edm.Int32",
-                "searchable": false,
-                "retrievable": true
-                },
-                {
-                "name": "bounding_polygons",
-                "type": "Edm.String",
-                "searchable": false,
-                "retrievable": true,
-                "filterable": false,
-                "sortable": false,
-                "facetable": false
-                }
-            ]
-        }         
-    ],
-    "vectorSearch": {
-        "profiles": [
-            {
-                "name": "hnsw",
-                "algorithm": "defaulthnsw",
-                "vectorizer": "demo-vectorizer"
-            }
-        ],
-        "algorithms": [
-            {
-                "name": "defaulthnsw",
-                "kind": "hnsw",
-                "hnswParameters": {
-                    "m": 4,
-                    "efConstruction": 400,
-                    "metric": "cosine"
-                }
-            }
-        ],
-        "vectorizers": [
-            {
-                "name": "demo-vectorizer",
-                "kind": "aiServicesVision",
-                "aiServicesVisionParameters": {
-                    "resourceUri": "{{foundryUrl}}",
-                    "authIdentity": null,
-                    "modelVersion": "{{azureAiVisionModelVersion}}"
-                }
-            }
-        ]     
-    },
-    "semantic": {
-        "defaultConfiguration": "semanticconfig",
-        "configurations": [
-            {
-                "name": "semanticconfig",
-                "prioritizedFields": {
-                    "titleField": {
-                        "fieldName": "document_title"
-                    },
-                    "prioritizedContentFields": [
-                    ],
-                    "prioritizedKeywordsFields": []
-                }
-            }
-        ]
-    }
-}
-```
-
 Key points:
 
 + `content_embedding` is the only vector field and it stores vectors for both text and image content. It must be configured with appropriate dimensions for the embedding model, such as `3072` for text-embedding-3-large, and a vector search profile.
 
-+ `location_metadata` applies to image content extracted by [Document Layout](cognitive-search-skill-document-intelligence-layout.md). It captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. `location_metadata` only exists for images in this scenario.
++ `content_path` is the path of each image in the knowledge store.
+
++ `location_metadata` or `locationMetadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. The field names vary based on how the information is extracted. 
+
++ For content extraction based on the Text Split skill: location metadata is supported only for PDF files. Furthermore, for Text Split skill, you must include a Shaper skill for capturing in-memory location metadata and representing it in the document tree. The Shaper skill is also responsible for adding the knowledge store container name to the `content_path`.
 
 ### Create a skillset for extraction, chunking, and vectorization
 
@@ -529,6 +840,8 @@ This pattern uses:
 + [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Text Split skill](cognitive-search-skill-textsplit.md) for extraction and chunking.
 
 + [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md) for text and image embeddings.
+
++ [Shaper skill](cognitive-search-skill-shaper.md) captures location metadata and the container name for the image file path in the knowledge store.
 
 ```rest
 ### Create a skillset
@@ -764,6 +1077,8 @@ This pattern uses:
 + [Document Extraction skill](cognitive-search-skill-document-extraction.md) and [Text Split skill](cognitive-search-skill-textsplit.md) for extraction and chunking.
 
 + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) for textual descriptions of images and text embeddings.
+
++ [Shaper skill](cognitive-search-skill-shaper.md) captures location metadata and the container name for the image file path in the knowledge store.
 
 ```rest
 ### Create a skillset
@@ -1077,12 +1392,12 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
          "@odata.type":"#Microsoft.Skills.Vision.VectorizeSkill",
          "name":"text-embedding-skill",
          "description":"Vision Vectorization skill for text",
-         "context":"/document/pages/*",
+         "context":"/document/text_section/*",
          "modelVersion":"{{azureAiVisionModelVersion}}",
          "inputs":[
             {
                "name":"text",
-               "source":"/document/pages/*"
+               "source":"/document/text_section/*/content"
             }
          ],
          "outputs":[
@@ -1110,33 +1425,6 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
                "targetName":"image_vector"
             }
          ]
-      },
-      {
-         "@odata.type":"#Microsoft.Skills.Util.ShaperSkill",
-         "name":"shaper-skill",
-         "context":"/document/normalized_images/*",
-         "inputs":[
-            {
-               "name":"normalized_images",
-               "source":"/document/normalized_images/*",
-               "inputs":[
-                  
-               ]
-            },
-            {
-               "name":"imagePath",
-               "source":"='my_container_name/'+$(/document/normalized_images/*/imagePath)",
-               "inputs":[
-                  
-               ]
-            }
-         ],
-         "outputs":[
-            {
-               "name":"output",
-               "targetName":"new_normalized_images"
-            }
-         ]
       }
    ],
    "cognitiveServices":{
@@ -1160,7 +1448,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
                   "source":"/document/text_sections/*/content"
                },
                {
-                  "name":"location_metadata",
+                  "name":"locationMetadata",
                   "source":"/document/text_sections/*/locationMetadata"
                },
                {
@@ -1180,14 +1468,14 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
                },
                {
                   "name":"content_path",
-                  "source":"/document/normalized_images/*/new_normalized_images/imagePath"
+                  "source":"/document/normalized_images/*/imagePath"
                },
                {
                   "name":"document_title",
                   "source":"/document/document_title"
                },
                {
-                  "name":"location_metadata",
+                  "name":"locationMetadata",
                   "source":"/document/normalized_images/*/locationMetadata"
                }
             ]
@@ -1271,11 +1559,11 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
          "@odata.type":"#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
          "name":"text-embedding-skill",
          "description":"Embedding skill for text",
-         "context":"/document/pages/*",
+         "context":"/document/text_sections/*",
          "inputs":[
             {
                "name":"text",
-               "source":"/document/pages/*"
+               "source":"/document/text_sections/*/content"
             }
          ],
          "outputs":[
@@ -1344,48 +1632,6 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
          "apiKey":"{{textEmbeddingModelKey}}",
          "dimensions":3072,
          "modelName":"text-embedding-3-large"
-      },
-      {
-         "@odata.type":"#Microsoft.Skills.Util.ShaperSkill",
-         "name":"shaper-skill",
-         "description":"Shaper skill to reshape the data to fit the index schema",
-         "context":"/document/normalized_images/*",
-         "inputs":[
-            {
-               "name":"normalized_images",
-               "source":"/document/normalized_images/*",
-               "inputs":[
-                  
-               ]
-            },
-            {
-               "name":"imagePath",
-               "source":"='{{imageProjectionContainer}}/'+$(/document/normalized_images/*/imagePath)",
-               "inputs":[
-                  
-               ]
-            },
-            {
-               "name":"location_metadata",
-               "sourceContext":"/document/normalized_images/*",
-               "inputs":[
-                  {
-                     "name":"page_number",
-                     "source":"/document/normalized_images/*/pageNumber"
-                  },
-                  {
-                     "name":"bounding_polygons",
-                     "source":"/document/normalized_images/*/boundingPolygon"
-                  }
-               ]
-            }
-         ],
-         "outputs":[
-            {
-               "name":"output",
-               "targetName":"new_normalized_images"
-            }
-         ]
       }
    ],
    "indexProjections":{
@@ -1404,7 +1650,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
                   "source":"/document/text_sections/*/content"
                },
                {
-                  "name":"location_metadata",
+                  "name":"locationMetadata",
                   "source":"/document/text_sections/*/locationMetadata"
                },
                {
@@ -1428,14 +1674,14 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
                },
                {
                   "name":"content_path",
-                  "source":"/document/normalized_images/*/new_normalized_images/imagePath"
+                  "source":"/document/normalized_images/*/imagePath"
                },
                {
                   "name":"document_title",
                   "source":"/document/document_title"
                },
                {
-                  "name":"location_metadata",
+                  "name":"locationMetadata",
                   "source":"/document/normalized_images/*/locationMetadata"
                }
             ]
@@ -1556,7 +1802,7 @@ Connection: close
 
 Use a filter to exclude all non-image content. The `$filter` parameter only works on fields that were marked filterable during index creation.
 
-For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Examples of simple search queries](search-query-simple-examples.md).
+For filters, you can also use logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case-sensitive. For more information and examples, see [Examples of simple search queries](search-query-simple-examples.md).
 
 ```http
 POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
@@ -1571,9 +1817,9 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
   }
 ```
 
-Search documents containing image content don't have text content, so you can exclude text fields.
+Search results containing image-only content don't have text content, so you can exclude text fields.
 
-The `content_embedding` field contains 1-to-3 thousand dimensional embeddings for both page text and verbalized image descriptions. We exclude this field from the query.
+The `content_embedding` field contains high-dimensional vectors (typically 1,000 to 3,000 dimensions) for both page text and verbalized image descriptions. Exclude this field from the query.
 
 The `content_path` field contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`. 
 
@@ -1583,7 +1829,7 @@ The Shaper skill adds the container name to the path and the location metadata.
 
 Query for text or images with content related to energy, returning the content ID, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images).
 
-This query is full text search only, but you can [query the vector field](vector-search-how-to-query.md) for similarity search.
+This query is full-text search only, but you can [query the vector field](vector-search-how-to-query.md) for similarity search.
 
 ```http
 POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
