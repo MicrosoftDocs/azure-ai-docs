@@ -8,7 +8,6 @@ manager: nitinme
 ms.date: 12/16/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.topic: how-to
 ms.custom:
   - build-2025
 zone_pivot_groups: selection-fabric-data-agent
@@ -39,7 +38,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * Developers and end users have at least `Azure AI User` RBAC role. 
 
-* Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with.
+* Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with. For Power BI semantic models, [`Build` permission](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-sharing#underlying-data-source-permissions) (which includes Read) is required. Read alone isn't sufficient because the agent generates model queries that require Build.
 
 * Your Fabric Data Agent and Foundry Agent need to be in the same tenant.
 
