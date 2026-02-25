@@ -285,6 +285,10 @@ To delete the resource group and all resources within, it:
 ## Next steps
 ::: moniker range="foundry-classic"
 - [Work with Agent Service in Visual Studio Code](./vs-code-agents.md)
-::: moniker-end
 - [Explore Foundry models](../../concepts/foundry-models-overview.md)
 - [Deploy models with Foundry](../../foundry-models/how-to/deploy-foundry-models.md)
+::: moniker-end
+::: moniker range="foundry"
+- [Explore Foundry models](../../concepts/foundry-models-overview.md)
+- [Deploy models with Foundry](../../foundry-models/how-to/deploy-foundry-models.md)
+::: moniker-end
