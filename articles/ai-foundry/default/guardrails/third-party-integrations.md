@@ -2,7 +2,7 @@
 title: Integrate third-party guardrails with Microsoft Foundry
 description: Learn how to connect external safety solutions to AI models and agents in Microsoft Foundry using third-party integrations.
 ms.date: 02/24/2026
-ms.custom: ai-assisted
+ms.custom: ai-assisted, references-regions
 ms.author: pafarley
 author: PatrickFarley
 ms.service: azure-ai-content-safety
@@ -18,7 +18,7 @@ Microsoft Foundry supports third-party safety and security integrations. You can
 
 Before you set up the integration, ensure you have:
 
-- **Azure subscription**: You need the Owner role on the subscription. The subscription must be allowlisted for the private preview of the external safety provider integration feature.
+- **Azure subscription**: You need the Owner role on the subscription.
 - **Key Vault**: Create at least one Key Vault with the Key Vault Administrator role assigned to you.
 - **Foundry project**: Create a project with the Azure AI User and Azure AI Account Owner roles assigned to you.
 - **Managed Identity**: Create at least one user-assigned Managed Identity and attach it to the Foundry resource in the Azure portal under **Resource Management** > **Identity**.
