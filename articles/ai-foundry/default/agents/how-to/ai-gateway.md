@@ -1,133 +1,174 @@
 ---
-title: Bring your own AI gateway to Azure AI Agent Service (preview)
+title: Connect an AI gateway to Foundry Agent Service (preview)
 titleSuffix: Microsoft Foundry
-description: "Learn how to connect and use models hosted behind your enterprise AI gateways."
+description: "Connect and use models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 11/10/2025
+ms.date: 02/17/2026
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
+ai-usage: ai-assisted
 ---
 
-# Bring your own AI gateway to Azure AI Agent Service (preview)
+# Connect an AI gateway to Foundry Agent Service (preview)
 
-The Azure AI Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability allows you to maintain control over your model endpoints while leveraging the power of Foundry's agent capabilities.
+Foundry Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
-> [!NOTE]
-> This feature is currently in preview. Consider the preview conditions before enabling this feature. 
+> [!IMPORTANT]
+> This feature is currently in preview. Preview features aren't meant for production use. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 This capability enables organizations to:
 
-- Maintain control over their model endpoints. Keep your model endpoints secure behind your existing enterprise infrastructure. 
-- Integrate securely with enterprise gateways. Leverage your existing gateway investments and security policies.
-- Build agents that leverage models without exposing them publicly.
-- Apply your organization's compliance and governance requirements to AI model access.
+- Maintain control over model endpoints behind existing enterprise infrastructure.
+- Integrate securely with enterprise gateways using existing security policies.
+- Build agents that use models without exposing them publicly.
+- Apply compliance and governance requirements to AI model access.
 
-View the diagram to understand the potential flows from the Agent service to your gateway and models behind it:
+:::image type="content" source="../media/gateway.png" alt-text="Diagram that shows the AI gateway architecture with flows from Agent Service to your gateway and models behind it." lightbox="../media/gateway.png":::
 
-:::image type="content" source="../media/gateway.png" alt-text="A diagram explaining the AI gateway feature and potential gateways to use." lightbox="../media/gateway.png":::
+In this article, you create a gateway connection to your AI model endpoint, deploy a prompt agent that routes requests through the gateway, and verify the end-to-end flow.
 
 ## Prerequisites
 
-- An Azure subscription with access to Microsoft Foundry. Create a Foundry resource in your subscription. 
-- Installed **Azure CLI** and **Agent SDK**.
-- Access credentials for your enterprise AI gateway (for example API Management or another non-Azure AI model gateway).
-- GitHub access for [Foundry samples](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md).
+- [Azure CLI](/cli/azure/install-azure-cli) version 2.67 or later.
+- [Python 3.10 or later](https://www.python.org/downloads/).
+- The `azure-ai-projects` SDK package (version 2.0.0b3 or later). For installation steps, see the [quickstart](../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+- Access credentials for your enterprise AI gateway (for example, an API Management subscription key or an API key for another non-Azure AI model gateway).
 
-## Connections for AI gateway
+### Required permissions
 
-Depending on the AI gateway you would like to use, there are two different connections you can create to your resource from Microsoft Foundry. For more details on these connections, see the samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
+You need the following role assignments:
 
-## API Management (APIM) connection 
-APIM connections are specialized model gateway connections designed for Azure API management scenarios. These connections provide intelligent defaults and follow APIM standard conventions while integrating with the broader model gateway ecosystem.
+| Resource | Required role |
+|----------|---------------|
+| Foundry project | **Azure AI User** or higher |
+| Resource group (for connection deployment) | **Contributor** |
 
-Connections provide:
+## Create a gateway connection
 
-- **APIM category**: Uses `"category": "ApiManagement"` for proper APIM-specific handling.
-- **Intelligent defaults**: Provides standard APIM endpoints when metadata is not specified.
-- **Convention-based**: Follows Azure API management naming and routing patterns.
-- **Flexible override**: Supports metadata overrides for custom APIM configurations.
-- **Enterprise ready**: Designed for production APIM gateway scenarios.
+Use the Azure CLI to create a connection to your AI gateway. Agent Service supports two connection types: **API Management (APIM)** connections and **Model Gateway** connections.
 
-### APIM specific behavior
+Choose the connection type that matches your gateway:
 
-- **Default endpoints**: When metadata is not provided, APIM connections use these defaults:
-  - List Deployments: `/deployments`
-  - Get Deployment: `/deployments/{deploymentName}`
-  - Provider: `AzureOpenAI`
+| Connection type | Use when | Category value |
+|----------------|----------|----------------|
+| **APIM** | You already use Azure API Management for model routing and want intelligent APIM defaults. | `ApiManagement` |
+| **Model Gateway** | You use OpenAI, MuleSoft, or a custom gateway and need static or dynamic model discovery. | `ModelGateway` |
 
-- **Configuration priority**:
-  1. Explicit metadata values (highest priority)
-  2. APIM standard defaults (fallback)
+For detailed connection specifications, see the [connection samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md).
 
-- **Authentication patterns**:
-  - **API Key**: Standard subscription key authentication
-  - **Microsoft Entra ID**: Enterprise identity integration is coming soon. 
+### Deploy the connection
 
-## Model gateway connection  
+1. Clone or download the [Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples) and locate the Bicep template for your connection type under `infrastructure/infrastructure-setup-bicep/01-connections/`. The directory contains separate Bicep files and parameter files for APIM and Model Gateway connections.
 
-Model gateway connections provide a unified interface for connecting to various AI model providers through the Azure Machine Learning workspace connection framework. These connections support both static model configuration (predefined models) and dynamic model discovery (runtime model detection). Model gateway connections provide:
+1. Deploy the connection by running `az deployment group create` with your resource group, the Bicep template file, and the corresponding parameters file. Replace the placeholder values in the parameters file with your gateway endpoint URL and credentials before deploying. For the full command reference, see [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create).
 
-- **Unified API**: Single connection interface for multiple AI providers (Azure AI, OpenAI, MuleSoft, etc.)
-- **Authentication**: Support for API key authentication with workspace credential management or OAuth2
-- **Discovery Patterns**: Choose between static model lists or dynamic discovery endpoints
-- **Provider Abstraction**: Consistent model format regardless of underlying provider
-- **Enterprise Integration**: Support for enterprise gateways like MuleSoft for multi-provider scenarios
+   > [!TIP]
+   > A successful deployment returns `provisioningState: Succeeded` in the command output.
 
-### Connection categories
+1. Verify the connection in the Foundry portal. Go to the [Foundry portal](https://ai.azure.com) and select your project. Navigate to **Connected resources** in your project settings. The new connection appears with an **Active** status and the gateway endpoint URL you specified.
 
-All ModelGateway connections use `"category": "ModelGateway"` to ensure proper routing through the model gateway service infrastructure.
+## Create a prompt agent with the gateway connection
 
-#### Discovery Methods
+After creating the connection, create and run a prompt agent that uses models behind your gateway. The key difference from a standard agent is the model deployment name format: `<connection-name>/<model-name>`.
 
-- **Static Discovery**: Models are predefined in the connection metadata using the models array. Best for:
-  - Dynamic discovery not possible
-  - Fixed model deployments
-  - Known model configurations
-  - Enterprise scenarios with approved model lists
+1. Set the following environment variables:
 
-- **Dynamic Discovery**: Models are discovered at runtime using API endpoints defined in modelDiscovery. Best for:
-  - Frequently changing model deployments
-  - Provider-managed model catalogs
-  - Development and testing scenarios
+    | Variable | Value | Example |
+    |----------|-------|---------|
+    | `FOUNDRY_PROJECT_ENDPOINT` | Your project endpoint URL | `https://<your-ai-services-account>.services.ai.azure.com/api/projects/<project-name>` |
+    | `FOUNDRY_MODEL_DEPLOYMENT_NAME` | `<connection-name>/<model-name>` | `my-apim-connection/gpt-4o` |
 
-## Authentication Types 
+1. Initialize an `AIProjectClient` with your endpoint and `DefaultAzureCredential`, then call `agents.create_version()` with a `PromptAgentDefinition`. Set the `model` parameter to the `FOUNDRY_MODEL_DEPLOYMENT_NAME` value.
 
-The supported authentication types are API key or OAuth 2.0, depending on the connection type. For API Keys, the actual API keys are stored securely and referenced through the credential system. 
+   A successful call returns an agent object with its `id`, `name`, and `version` fields populated.
 
-## Create a model gateway connection
+1. Get the OpenAI client with `project_client.get_openai_client()`, create a conversation with `conversations.create()`, and send a request with `responses.create()`. Pass the agent reference in `extra_body` as `{"agent": {"name": agent.name, "type": "agent_reference"}}`.
 
-You’ll use the Azure CLI to create a connection of type **model gateway**.
+   A successful response returns the model's reply text, confirming the agent is routing through your gateway.
 
-1. Navigate to the connection samples [on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md). Select your model gateway connection depending on your requirements.
+   > [!NOTE]
+   > If the response fails with a `model not found` error, verify the `FOUNDRY_MODEL_DEPLOYMENT_NAME` value uses the format `<connection-name>/<model-name>`.
 
-1. Run the `az deployment group create` command to create the connection. For example:
-    
-    ```bash
-    az deployment group create \
-      --resource-group <your-resource-group> \
-      --template-file [bicep-file-of-connection-type].bicep \
-      --parameters @[parameters-file-of-connection-type].json
-    ```
-1. View your successful connection creation by navigating to **Admin** in the Microsoft Foundry portal. 
-## Deploy a prompt agent using the SDK 
+1. Clean up by deleting the conversation and agent version when testing is complete.
 
-After creating the connection, deploy a prompt agent that uses the model gateway connection. 
+For a complete working example, see the [agent SDK samples on GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents). For API details, see [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient) and [PromptAgentDefinition](/python/api/azure-ai-projects/azure.ai.projects.models.promptagentdefinition).
 
-1. Navigate to the [Agents SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents) to run a sample agent with the BYO AI gateway feature. 
+## Verify the deployment
 
-1. Use the Agent SDK to deploy the agent. Update the env variable so that the model name is `[connection-name]/[model-name]`. For example: `AZURE_AI_MODEL_DEPLOYMENT_NAME=my-apim-deployment-api-v2/gpt-4o `
- 
-## Validation 
+After deploying your agent, confirm that the full pipeline works correctly:
 
-* Confirm the connection is active in Foundry. You should see the connection in the Foundry portal under **Operate** --> **Admin** --> **Projects** --> **Connected resources**. 
-* Test the deployed prompt agent by sending a sample prompt. 
+1. **Check connection status** — In the Foundry portal, navigate to **Connected resources** in your project settings. Verify the connection shows an **Active** status. If the status is **Inactive**, check the gateway endpoint URL and credentials.
+
+1. **Send a test prompt** — Use the SDK to create a conversation and send a request as described in the previous section. A successful response returns the model's reply text, confirming the agent can reach the model through your gateway.
+
+1. **Review gateway logs** — Confirm requests are routed correctly. For APIM, check **API Management analytics** in the Azure portal. For other gateways, review your gateway's request logging. You should see incoming requests from the Agent Service endpoint.
+
+> [!TIP]
+> If any step fails, see the [Troubleshoot common issues](#troubleshoot-common-issues) section for resolution steps.
+
+## Connection type details
+
+This section provides reference details about each connection type and their configuration options.
+
+### API Management (APIM) connection
+
+APIM connections provide intelligent defaults and follow APIM standard conventions:
+
+| Setting | Default value |
+|---------|---------------|
+| List Deployments endpoint | `/deployments` |
+| Get Deployment endpoint | `/deployments/{deploymentName}` |
+| Provider | `AzureOpenAI` |
+
+Configuration priority:
+
+1. Explicit metadata values (highest priority).
+1. APIM standard defaults (fallback).
+
+Authentication:
+
+- **API Key** — Standard subscription key authentication.
+- **Microsoft Entra ID** — Enterprise identity integration.
+
+### Model Gateway connection
+
+Model Gateway connections provide a unified interface for connecting to various AI model providers. These connections support both static and dynamic model discovery:
+
+- **Static discovery** — Models are predefined in the connection metadata. Best for fixed deployments and enterprise-approved model lists.
+- **Dynamic discovery** — Models are discovered at runtime using API endpoints. Best for frequently changing deployments and provider-managed catalogs.
+
+Supported authentication types are API key and OAuth 2.0. API keys are stored securely and referenced through the credential system.
+
+## Troubleshoot common issues
+
+| Issue | Resolution |
+|-------|------------|
+| Connection shows **Inactive** status | Verify the gateway endpoint URL is reachable and authentication credentials are valid. |
+| Agent returns `model not found` error | Confirm the `FOUNDRY_MODEL_DEPLOYMENT_NAME` value uses the correct format: `<connection-name>/<model-name>`. |
+| Timeout errors from the gateway | Check that your gateway endpoints are accessible from the Agent Service network. For private networks, see the network isolation guidance in the Limitations section. |
+| Authentication failures | For APIM, verify your subscription key. For Model Gateway, verify the API key or OAuth 2.0 configuration. |
 
 ## Limitations
 
 - This feature is in public preview.
-- You can only use this feature using the Azure CLI and SDK.
-- Supported by Prompt Agents in the Agent SDK.
-- Public networking is supported for either APIM or other self-hosted gateways. For a full network isolation set up, set up Foundry with Standard Secured Agents set-up with virtual network injection. If you are using APIM as your AI gateway and want full network isolation, deploy Foundry and APIM following [this GitHub template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview). If you're using your self-hosted gateway as your AI gateway and want full network isolation, ensure that your gateway's endpoints are accessible inside the virtual network injection used by the Agent service. 
-- The Agent tools supported with this feature are CodeInterpreter, Functions, File Search, OpenAPI, Foundry IQ, Sharepoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
-- This feature is different from the AI Gateway in Foundry feature where a new, unique APIM instance is deployed with your Foundry resource. For more on this feature, see [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).
+- You can only use this feature through the Azure CLI and SDK.
+- Only prompt agents in the Agent SDK support this feature.
+- Supported agent tools: Code Interpreter, Functions, File Search, OpenAPI, Foundry IQ, SharePoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
+- Public networking is supported for both APIM and self-hosted gateways.
+- For full network isolation:
+  - **APIM as your AI gateway**: Deploy Foundry and APIM together using [this GitHub template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview).
+  - **Self-hosted gateway**: Ensure your gateway endpoints are accessible inside the virtual network used by Agent Service.
+- This feature is different from the AI Gateway in Foundry feature, which deploys a new APIM instance with your Foundry resource. For more information, see [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).
+
+## Related content
+
+- [Foundry Agent Service overview](../../../agents/overview.md)
+- [Agent environment setup](../../../agents/environment-setup.md)
+- [Create a Foundry project](../../../how-to/create-projects.md)
+- [Agent SDK samples on GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents)
+- [APIM and model gateway integration guide](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
+- [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal)

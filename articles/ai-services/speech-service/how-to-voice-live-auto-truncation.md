@@ -22,9 +22,9 @@ In this case, the session context should be updated to reflect what the user act
   
 ## Prerequisites
 
-Before starting, we recommend you have:
+Before you start, complete the following:
 
-- Completed the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-quickstart.md).
+- Complete the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-quickstart.md).
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
 
@@ -37,7 +37,7 @@ Before starting, we recommend you have:
 > pip install azure-ai-voicelive --pre
 > ```
 >
-> This SDK is currently in preview. Features and APIs may change before general availability.
+> This SDK is currently in preview. Features and APIs might change before general availability.
 
 ::: zone-end
 
@@ -50,7 +50,7 @@ Before starting, we recommend you have:
 > dotnet add package Azure.AI.VoiceLive --prerelease
 > ```
 >
-> This SDK is currently in preview. Features and APIs may change before general availability.
+> This SDK is currently in preview. Features and APIs might change before general availability.
 
 ::: zone-end
 
@@ -67,7 +67,7 @@ Before starting, we recommend you have:
 > </dependency>
 > ```
 >
-> This SDK is currently in preview. Features and APIs may change before general availability.
+> This SDK is currently in preview. Features and APIs might change before general availability.
 
 ::: zone-end
 
@@ -80,13 +80,13 @@ Before starting, we recommend you have:
 > npm install @azure/ai-voicelive@1.0.0-beta.2
 > ```
 >
-> This SDK is currently in preview. Features and APIs may change before general availability.
+> This SDK is currently in preview. Features and APIs might change before general availability.
 
 ::: zone-end
 
 ## Parameters
 
-Two following Voice Live API parameters are used to handle this scenario:
+The following two Voice Live API parameters handle this scenario:
 
 ### `auto_truncate`
 
@@ -120,16 +120,16 @@ When truncation occurs, the service appends this string to the truncated respons
 > [!IMPORTANT]
 > When using this feature, update your system prompt to inform the LLM about this behavior and test carefully to avoid unexpected results.
 
-## Supported VAD Types
+## Supported VAD types
 
-| VAD Type                           | `auto_truncate` | `appended_text_after_truncation` |
+| VAD type                           | `auto_truncate` | `appended_text_after_truncation` |
 |:-----------------------------------|:---------------:|:--------------------------------:|
 | `azure_semantic_vad`               | ✅              | ✅                               |
 | `azure_semantic_vad_multilingual`  | ✅              | ✅                               |
 | `server_vad`                       | ✅              | ❌                               |
 | `semantic_vad` (OpenAI)            | ✅              | ❌                               |
 
-## Example Configuration
+## Example configuration
 
 ::: zone pivot="programming-language-python"
 ```python
@@ -237,7 +237,7 @@ The equivalent JSON payload for the session configuration:
 }
 ```
 
-### Using `appended_text_after_truncation` via JSON
+### Use `appended_text_after_truncation` via JSON
 
 To use the `appended_text_after_truncation` feature (which is not yet available in SDK typed classes), send the **entire** session configuration as a raw JSON payload. You don't need to call the SDK methods first—a single raw JSON `session.update` replaces any previous configuration:
 
@@ -343,7 +343,7 @@ await session.sendEvent({
 ```
 ::: zone-end
 
-## Handling the truncation event
+## Handle the truncation event
 
 When truncation occurs, the service sends a `conversation.item.truncated` event. You can handle this event in your event loop:
 
@@ -402,3 +402,4 @@ const subscription = session.subscribe({
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
 - See the [Voice Live API reference](./voice-live-api-reference.md)
 - Explore [How to add proactive messages](./how-to-voice-live-proactive-messages.md)
+- Explore [How to improve tool calling and latency wait times](./how-to-voice-live-interim-response.md)

@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # What is Vision Studio?
 
-[Vision Studio](https://portal.vision.cognitive.azure.com) is a set of UI-based tools that lets you explore, build, and integrate features from Azure Vision in Foundry Tools.
+[Vision Studio](https://portal.vision.cognitive.azure.com) is a set of UI-based tools that lets you explore, build, and integrate features from Azure Face service in Foundry Tools.
 
 Vision Studio lets you try several service features and sample their returned data in a quick, straightforward manner. Using Vision Studio, you can start experimenting with the services and learning what they offer without needing to write any code. Then, use the available client libraries and REST APIs to embed these services into your own applications.
 
@@ -44,11 +44,6 @@ To use Vision Studio, you need an Azure subscription and a resource for Foundry 
    * Image Analysis [4.0 quickstart](quickstarts-sdk/image-analysis-client-library-40.md?pivots=vision-studio) and [3.2 quickstart](quickstarts-sdk/image-analysis-client-library.md?pivots=vision-studio)
    * [Face quickstart](quickstarts-sdk/identity-client-library.md?pivots=vision-studio)
 
-## Preconfigured features
-
-Azure Vision offers multiple features that use prebuilt, preconfigured models for performing various tasks, such as: understanding how people move through a space, detecting faces in images, and extracting text from images. See the [Azure Vision overview](overview.md) for a list of features offered by the Vision service.
-
-Each of these features has one or more try-it-out experiences in Vision Studio that allow you to upload images and receive JSON and text responses. These experiences help you quickly test the features using a no-code approach.
 
 ## Clean up resources
 

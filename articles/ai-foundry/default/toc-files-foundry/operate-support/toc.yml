@@ -16,6 +16,8 @@ items:
   href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/ 
 - name: Model lifecycle and retirement
   href: ../../../concepts/model-lifecycle-retirement.md
+- name: Azure OpenAI model retirement
+  href: ../../../openai/concepts/model-retirements.md
 
 # Legal and Compliance
 - name: Code of conduct

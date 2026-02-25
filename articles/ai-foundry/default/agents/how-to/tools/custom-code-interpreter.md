@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/03/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: pilot-ai-workflow-jan-2026
@@ -28,9 +28,11 @@ For more information about MCP and how agents connect to MCP tools, see [Connect
 
 This article uses the Azure CLI and a runnable sample project.
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | - | - | - | ✔️ | - | ✔️ |
+| ✔️ | ✔️ (Preview) | - | - | - | ✔️ (GA) | - | ✔️ |
 
 For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
@@ -138,13 +140,13 @@ from azure.ai.projects.models import PromptAgentDefinition, MCPTool
 
 load_dotenv()
 
-project_client = AIProjectClient(
-    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-with project_client:
-    openai_client = project_client.get_openai_client()
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
 
     # Configure the custom code interpreter MCP tool
     custom_code_interpreter = MCPTool(
@@ -167,7 +169,7 @@ with project_client:
     # Test the agent with a simple calculation
     response = openai_client.responses.create(
         input="Calculate the factorial of 10 using Python.",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
     print(f"Response: {response.output_text}")
 
