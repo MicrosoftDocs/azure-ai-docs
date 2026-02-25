@@ -10,9 +10,9 @@ ms.date: 2/20/2026
 ai-usage: ai-assisted
 ---
 
-Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for Java.
 
-[!INCLUDE [Header](../../common/voice-live-csharp.md)] 
+[!INCLUDE [Header](../../common/voice-live-java.md)] 
 
 [!INCLUDE [Introduction](intro.md)]
 
@@ -27,7 +27,8 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 > This document refers to the [Microsoft Foundry (new)](../../../../../ai-foundry/what-is-foundry.md#microsoft-foundry-portals) portal and the latest Foundry Agent Service version.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
+- [Java Development Kit (JDK)](/java/azure/jdk/) version 11 or later.
+- [Apache Maven](https://maven.apache.org/download.cgi) installed.
 - The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../../../../ai-foundry/how-to/develop/install-cli-sdk.md).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
 - A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../ai-foundry/default/tutorials/quickstart-create-foundry-resources.md).
@@ -42,44 +43,47 @@ Follow the quickstart below or get a fully working web app with browser-based vo
     mkdir voice-live-quickstart && cd voice-live-quickstart
     ```
 
-1. Create a **.csproj** file with the following project configuration:
+1. Create a file named **pom.xml** with the following Maven configuration:
 
-    :::code language="xml" source="~/cognitive-services-quickstart-code/dotnet/Speech/VoiceLiveWithAgent.csproj":::
+    :::code language="xml" source="~/cognitive-services-quickstart-code/java/Speech/pom-agent.xml":::
 
-1. Restore NuGet packages:
+1. Create the Java source directory structure:
+
+    # [Windows](#tab/windows)
 
     ```shell
-    dotnet restore
+    mkdir src\main\java
+    ```
+
+    # [Linux](#tab/linux)
+
+    ```bash
+    mkdir -p src/main/java
+    ```
+
+    # [macOS](#tab/macos)
+
+    ```bash
+    mkdir -p src/main/java
+    ```
+
+    ---
+
+1. Download the Maven dependencies:
+
+    ```shell
+    mvn dependency:resolve
     ```
 
 ## Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-> [!NOTE]
-> The C# Foundry Agent SDK (`Azure.AI.Projects`) uses a connection string instead of an endpoint URL. Set `PROJECT_CONNECTION_STRING` to your project connection string (found in the Foundry portal under **Project settings** > **Connected resources**).
-
 ## Create an agent with Voice Live settings
 
-The agent creation script is a separate utility. Create a temporary console project to run it:
+1. Create a file **src/main/java/CreateAgentWithVoiceLive.java** with the following code:
 
-1. Create a separate folder for the agent creation utility:
-
-    ```shell
-    mkdir create-agent && cd create-agent
-    dotnet new console --framework net8.0
-    ```
-
-1. Add the required NuGet packages:
-
-    ```shell
-    dotnet add package Azure.AI.Projects --prerelease
-    dotnet add package Azure.Identity
-    ```
-
-1. Replace the contents of **Program.cs** with the following code:
-
-    :::code language="csharp" source="~/cognitive-services-quickstart-code/dotnet/Speech/CreateAgentWithVoiceLive.cs":::
+    :::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/CreateAgentWithVoiceLive.java":::
 
 1. Sign in to Azure with the following command:
 
@@ -90,34 +94,28 @@ The agent creation script is a separate utility. Create a temporary console proj
 1. Build and run the agent creation script:
 
     ```shell
-    dotnet run
-    ```
-
-1. Return to the quickstart folder:
-
-    ```shell
-    cd ..
+    mvn compile exec:java -Dexec.mainClass="CreateAgentWithVoiceLive" -q
     ```
 
 ## Talk with a voice agent
 
 The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method.
 
-The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to `StartSessionAsync(SessionTarget.FromAgent(...))` using these properties:
+The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to `startSession(...)` using these fields:
 
 - `agentName`: The agent name to invoke.
 - `projectName`: The Foundry project containing the agent.
-- `AgentVersion`: Optional pinned version for controlled rollouts. If omitted, the latest version is used.
-- `ConversationId`: Optional conversation ID to continue prior conversation context.
-- `FoundryResourceOverride`: Optional resource name when the agent is hosted on a different Foundry resource.
-- `AuthenticationIdentityClientId`: Optional managed identity client ID used with cross-resource agent connections.
+- `agentVersion`: Optional pinned version for controlled rollouts. If omitted, the latest version is used.
+- `conversationId`: Optional conversation ID to continue prior conversation context.
+- `foundryResourceOverride`: Optional resource name when the agent is hosted on a different Foundry resource.
+- `authenticationIdentityClientId`: Optional managed identity client ID used with cross-resource agent connections.
 
 > [!NOTE]
 > Agent mode in Voice Live doesn't support key-based authentication for agent invocation. Use Microsoft Entra ID (for example, `AzureCliCredential`) for agent access. Voice Live resource configuration might still include API keys for non-agent scenarios.
 
-1. Create the **VoiceLiveWithAgentV2.cs** file with the following code:
+1. Create the **src/main/java/VoiceLiveWithAgent.java** file with the following code:
 
-    :::code language="csharp" source="~/cognitive-services-quickstart-code/dotnet/Speech/VoiceLiveWithAgentV2.cs":::
+    :::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java":::
 
 1. Sign in to Azure with the following command:
 
@@ -128,7 +126,7 @@ The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to 
 1. Build and run the voice assistant:
 
     ```shell
-    dotnet run
+    mvn compile exec:java -Dexec.mainClass="VoiceLiveWithAgent" -q
     ```
 
 1. You can start speaking with the agent and hear responses. You can interrupt the model by speaking. Enter "Ctrl+C" to quit the conversation.
@@ -141,11 +139,11 @@ The output of the script is printed to the console. You see messages indicating 
 🎙️  Basic Foundry Voice Agent with Azure VoiceLive SDK (Agent Mode)
 =================================================================
 
-=================================================================
+============================================================
 🎤 VOICE ASSISTANT READY
 Start speaking to begin conversation
 Press Ctrl+C to exit
-=================================================================
+============================================================
 
 🎤 Listening...
 🤔 Processing...
@@ -168,7 +166,31 @@ Would you like me to help you find the official website or any other details abo
 👋 Voice assistant shut down. Goodbye!
 ```
 
-A conversation log file is created in the `logs` folder with the name `conversation_YYYYMMDD_HHmmss.log`. This file contains session metadata and the conversation transcript, including user inputs and agent responses.
+The program uses Java's `java.util.logging` framework for technical logs, which are written to the console (stderr) by default. You can configure a logging properties file to redirect output to a file if needed.
+
+```java
+Logger logger = Logger.getLogger(VoiceLiveWithAgentV2.class.getName());
+```
+
+The console output includes technical information about the connection to the Voice Live API, audio processing, and session events:
+
+```text
+2026-02-10 18:40:19,183 INFO Using Azure token credential
+2026-02-10 18:40:19,184 INFO Connecting to VoiceLive API with agent config...
+2026-02-10 18:40:21,847 INFO AudioProcessor initialized with 24kHz PCM16 mono audio
+2026-02-10 18:40:21,847 INFO Setting up voice conversation session...
+2026-02-10 18:40:21,848 INFO Session configuration sent
+2026-02-10 18:40:22,174 INFO Audio playback system ready
+2026-02-10 18:40:22,174 INFO Voice assistant ready! Start speaking...
+2026-02-10 18:40:22,384 INFO Session ready
+2026-02-10 18:40:22,386 INFO Sending proactive greeting request
+2026-02-10 18:40:22,419 INFO Started audio capture
+2026-02-10 18:40:22,722 INFO 🤖 Assistant response created
+2026-02-10 18:40:26,054 INFO 🤖 Assistant finished speaking
+2026-02-10 18:40:26,074 INFO ✅ Response complete
+```
+
+Further, a conversation log file is created in the `logs` folder with the name `conversation_YYYYMMDD_HHmmss.log`. This file contains session metadata and the conversation transcript, including user inputs and agent responses.
 
 ```text
 SessionID: sess_1m1zrSLJSPjJpzbEOyQpTL

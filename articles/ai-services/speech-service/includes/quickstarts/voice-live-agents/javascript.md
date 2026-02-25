@@ -10,9 +10,9 @@ ms.date: 2/20/2026
 ai-usage: ai-assisted
 ---
 
-Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for JavaScript.
 
-[!INCLUDE [Header](../../common/voice-live-csharp.md)] 
+[!INCLUDE [Header](../../common/voice-live-javascript.md)] 
 
 [!INCLUDE [Introduction](intro.md)]
 
@@ -21,13 +21,17 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 > [!div class="nextstepaction"]
 > [Voice Live universal assistant sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/voice-live-universal-assistant)
 
+> [!NOTE]
+> The JavaScript Voice Live SDK is designed for browser-based applications with built-in WebSocket and Web Audio support. This quickstart uses Node.js with `node-record-lpcm16` and `speaker` for a console experience.
+
 ## Prerequisites
 
 > [!NOTE]
 > This document refers to the [Microsoft Foundry (new)](../../../../../ai-foundry/what-is-foundry.md#microsoft-foundry-portals) portal and the latest Foundry Agent Service version.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
+- [Node.js](https://nodejs.org/) version 18 or later.
+- [SoX](https://sox.sourceforge.io/) installed on your system (required by `node-record-lpcm16` for microphone capture).
 - The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../../../../ai-foundry/how-to/develop/install-cli-sdk.md).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
 - A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../ai-foundry/default/tutorials/quickstart-create-foundry-resources.md).
@@ -42,44 +46,25 @@ Follow the quickstart below or get a fully working web app with browser-based vo
     mkdir voice-live-quickstart && cd voice-live-quickstart
     ```
 
-1. Create a **.csproj** file with the following project configuration:
+1. Create a **package.json** file with the following content:
 
-    :::code language="xml" source="~/cognitive-services-quickstart-code/dotnet/Speech/VoiceLiveWithAgent.csproj":::
+    :::code language="json" source="~/cognitive-services-quickstart-code/javascript/speech/package.json":::
 
-1. Restore NuGet packages:
+1. Install the dependencies:
 
     ```shell
-    dotnet restore
+    npm install
     ```
 
 ## Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-> [!NOTE]
-> The C# Foundry Agent SDK (`Azure.AI.Projects`) uses a connection string instead of an endpoint URL. Set `PROJECT_CONNECTION_STRING` to your project connection string (found in the Foundry portal under **Project settings** > **Connected resources**).
-
 ## Create an agent with Voice Live settings
 
-The agent creation script is a separate utility. Create a temporary console project to run it:
+1. Create a file **create-agent-with-voicelive.js** with the following code:
 
-1. Create a separate folder for the agent creation utility:
-
-    ```shell
-    mkdir create-agent && cd create-agent
-    dotnet new console --framework net8.0
-    ```
-
-1. Add the required NuGet packages:
-
-    ```shell
-    dotnet add package Azure.AI.Projects --prerelease
-    dotnet add package Azure.Identity
-    ```
-
-1. Replace the contents of **Program.cs** with the following code:
-
-    :::code language="csharp" source="~/cognitive-services-quickstart-code/dotnet/Speech/CreateAgentWithVoiceLive.cs":::
+    :::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/create-agent-with-voicelive.js":::
 
 1. Sign in to Azure with the following command:
 
@@ -87,37 +72,31 @@ The agent creation script is a separate utility. Create a temporary console proj
     az login
     ```
 
-1. Build and run the agent creation script:
+1. Run the agent creation script:
 
     ```shell
-    dotnet run
-    ```
-
-1. Return to the quickstart folder:
-
-    ```shell
-    cd ..
+    node create-agent-with-voicelive.js
     ```
 
 ## Talk with a voice agent
 
 The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method.
 
-The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to `StartSessionAsync(SessionTarget.FromAgent(...))` using these properties:
+The sample connects to Foundry Agent Service by passing an `agent` config object to `client.createSession(...)` using these fields:
 
 - `agentName`: The agent name to invoke.
 - `projectName`: The Foundry project containing the agent.
-- `AgentVersion`: Optional pinned version for controlled rollouts. If omitted, the latest version is used.
-- `ConversationId`: Optional conversation ID to continue prior conversation context.
-- `FoundryResourceOverride`: Optional resource name when the agent is hosted on a different Foundry resource.
-- `AuthenticationIdentityClientId`: Optional managed identity client ID used with cross-resource agent connections.
+- `agentVersion`: Optional pinned version for controlled rollouts. If omitted, the latest version is used.
+- `conversationId`: Optional conversation ID to continue prior conversation context.
+- `foundryResourceOverride`: Optional resource name when the agent is hosted on a different Foundry resource.
+- `authenticationIdentityClientId`: Optional managed identity client ID used with cross-resource agent connections.
 
 > [!NOTE]
-> Agent mode in Voice Live doesn't support key-based authentication for agent invocation. Use Microsoft Entra ID (for example, `AzureCliCredential`) for agent access. Voice Live resource configuration might still include API keys for non-agent scenarios.
+> Agent mode in Voice Live doesn't support key-based authentication for agent invocation. Use Microsoft Entra ID (for example, `DefaultAzureCredential`) for agent access. Voice Live resource configuration might still include API keys for non-agent scenarios.
 
-1. Create the **VoiceLiveWithAgentV2.cs** file with the following code:
+1. Create the **voice-live-with-agent.js** file with the following code:
 
-    :::code language="csharp" source="~/cognitive-services-quickstart-code/dotnet/Speech/VoiceLiveWithAgentV2.cs":::
+    :::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js":::
 
 1. Sign in to Azure with the following command:
 
@@ -125,10 +104,10 @@ The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to 
     az login
     ```
 
-1. Build and run the voice assistant:
+1. Run the voice assistant:
 
     ```shell
-    dotnet run
+    node voice-live-with-agent.js
     ```
 
 1. You can start speaking with the agent and hear responses. You can interrupt the model by speaking. Enter "Ctrl+C" to quit the conversation.
@@ -151,12 +130,12 @@ Press Ctrl+C to exit
 🤔 Processing...
 👤 You said:	Hello.
 🎤 Ready for next input...
-🤖 Agent responded:	Hello! I'm Tobi the agent. How can I assist you today?
+🤖 Agent responded with audio transcript:	Hello! I'm Tobi the agent. How can I assist you today?
 🎤 Listening...
 🤔 Processing...
 👤 You said:	What are the opening hours of the Eiffel Tower?
 🎤 Ready for next input...
-🤖 Agent responded:	The Eiffel Tower's opening hours can vary depending on the season and any special events or maintenance. Generally, the Eiffel Tower is open every day of the year, with the following typical hours:
+🤖 Agent responded with audio transcript:	The Eiffel Tower's opening hours can vary depending on the season and any special events or maintenance. Generally, the Eiffel Tower is open every day of the year, with the following typical hours:
 
 - Mid-June to early September: 9:00 AM to 12:45 AM (last elevator ride up at 12:00 AM)
 - Rest of the year: 9:30 AM to 11:45 PM (last elevator ride up at 11:00 PM)
@@ -172,6 +151,11 @@ A conversation log file is created in the `logs` folder with the name `conversat
 
 ```text
 SessionID: sess_1m1zrSLJSPjJpzbEOyQpTL
+Agent Name: VoiceAgentQuickstartTest
+Agent Description:
+Agent ID:
+Voice Name: en-US-Ava:DragonHDLatestNeural
+Voice Type: azure-standard
 
 User Input:	Hello.
 Agent Audio Response:	Hello! I'm Tobi the agent. How can I assist you today?
@@ -205,7 +189,7 @@ Both logs are complementary - conversation logs for conversation analysis and te
 - Network connectivity issues
 - Audio processing diagnostics
 
-**Format**: Structured logging with timestamps, log levels, and technical details
+**Format**: Console output with bracketed prefixes (for example, `[session]`, `[audio]`, `[init]`)
 
 **Use Cases**:
 - Debugging connection problems
