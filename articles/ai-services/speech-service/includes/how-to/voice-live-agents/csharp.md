@@ -10,7 +10,7 @@ ms.date: 2/20/2026
 ai-usage: ai-assisted
 ---
 
-In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#. This article extends the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) with more details on the features and integration options.
+In this article, you'll learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#. This article extends the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) with more details on features and integration options.
 
 [!INCLUDE [Header](../../common/voice-live-csharp.md)] 
 
@@ -40,17 +40,17 @@ These concepts help you understand how Voice Live and Foundry Agent Service work
 
 Set `AgentSessionConfig` in your session setup to identify the target agent and project. Include at minimum `agentName` and `projectName`. Add `AgentVersion` when you want to pin behavior to a specific version.
 
-### Authentication model for agent mode
+### Authentication for agent mode
 
 Use Microsoft Entra ID credentials for agent mode. Agent invocation doesn't support key-based authentication, so configure `AzureCliCredential` (or another Entra token credential) for local development and deployment.
 
 ### API version pinning
 
-Use a consistent SDK version (`Azure.AI.VoiceLive` 1.1.0-beta.2) in your project file. This keeps behavior predictable across preview updates and avoids schema drift across samples.
+Use a consistent SDK version (`Azure.AI.VoiceLive` 1.1.0-beta.2) in your project file. Consistent versioning keeps behavior predictable across preview updates and avoids schema drift.
 
 ### Conversation and trace alignment
 
-Treat agent thread and trace records as text-turn history, not exact playback history. If your app allows interruption or truncation, enable truncation-aware handling so persisted history better matches what users actually heard.
+Treat agent thread and trace records as text-turn history, not exact playback history. If your app allows interruption or truncation, enable truncation-aware handling. This ensures persisted history better matches what users actually heard.
 
 ## Connect to a specific agent version
 
@@ -64,22 +64,24 @@ The version configuration is applied in three places:
 
 - In `Main()`, read `AGENT_VERSION` from the environment.
 - Pass `agentVersion` to the `BasicVoiceAssistant(...)` constructor.
-- In the constructor, set the value on `AgentSessionConfig` via `config.AgentVersion`, then send it to Voice Live via `StartSessionAsync(SessionTarget.FromAgent(agentConfig))`.
+- In the constructor, set the value on `AgentSessionConfig` via `config.AgentVersion`. Send it to Voice Live via `StartSessionAsync(SessionTarget.FromAgent(agentConfig))`.
 
 The `agentVersion` value corresponds to the version string returned when you create or update an agent using the Foundry Agent SDK. If not specified, Voice Live connects to the latest agent version.
 
 ## Connect to an agent on a different Foundry resource
 
-Configure Voice Live to connect to an agent hosted on a different Foundry resource than the one used for audio processing. This is useful when:
+Configure Voice Live to connect to an agent hosted on a different Foundry resource than the one used for audio processing.
+
+This is useful in these scenarios:
 
 - The agent is deployed in a region with different feature availability.
-- You want to separate development and staging from production environments.
+- You want to separate development and staging from production.
 - Your organization uses different resources for different workloads.
 
 To connect to an agent on a different resource, configure two environment variables:
 
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
-- `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource. Required for cross-resource authentication.
+- `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
 :::code language="csharp" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.cs" range="190-217,455-513" highlight="14-18,29-30,37-38":::
 
@@ -87,30 +89,30 @@ The configuration is resolved in `Main()` and applied when the assistant is crea
 
 - Read `FOUNDRY_RESOURCE_OVERRIDE` and `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID` from environment variables.
 - Pass both values to the `BasicVoiceAssistant(...)` constructor.
-- In the constructor, set the values on `AgentSessionConfig` via `config.FoundryResourceOverride` and `config.AuthenticationIdentityClientId`. Send both in `StartSessionAsync(SessionTarget.FromAgent(agentConfig))`.
+- In the constructor, set both values on `AgentSessionConfig` via `config.FoundryResourceOverride` and `config.AuthenticationIdentityClientId`. Send them in `StartSessionAsync(SessionTarget.FromAgent(agentConfig))`.
 
 > [!IMPORTANT]
 > Cross-resource connections require proper role assignments. Ensure the Voice Live resource's managed identity has the `Azure AI User` role on the target agent resource.
 
 ## Add a proactive message at session start
 
-Voice Live can initiate conversations by sending a proactive message when the session is ready. In this sample, the assistant checks a one-time flag in the `SessionUpdateSessionUpdated` event handler, sends a greeting prompt, then triggers a response.
+Voice Live can initiate conversations by sending a proactive message when the session is ready. The assistant checks a one-time flag in the `SessionUpdateSessionUpdated` event handler, sends a greeting prompt, and then triggers a response.
 
 :::code language="csharp" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.cs" range="399-431" highlight="3-32":::
 
-Proactive messaging works in three steps:
+Proactive messaging is applied in three steps:
 
 - `_greetingSent` is a `bool` initialized to `false` to track one-time greeting state.
-- In the `SessionUpdateSessionUpdated` branch, `if (!_greetingSent)` runs proactive execution once per session.
-- `SendCommandAsync(...)` with a `conversation.item.create` payload adds the greeting instruction to conversation context. A `response.create` command generates spoken output.
+- In the `SessionUpdateSessionUpdated` branch, `if (!_greetingSent)` gates execution to run once per session.
+- `SendCommandAsync(...)` with a `conversation.item.create` payload adds the greeting to conversation context. A `response.create` command generates spoken output.
 
 ## Improve tool calling and latency wait times
 
-Voice Live offers `InterimResponse` to bridge wait times during tool calling or when generating agent responses with high latency.
+Voice Live offers `InterimResponse` to bridge wait times during tool calling or when generating responses with high latency.
 
 The feature supports two modes:
 
-- `LlmInterimResponseConfig`: LLM-generated interim response—best for dynamic and adaptive starts.
+- `LlmInterimResponseConfig`: LLM-generated interim response—best for dynamic starts.
 - `InterimResponseTrigger`: Pre-generated interim response—best for deterministic or branded messaging.
 
 The quickstart voice assistant shows the required code additions:
@@ -119,18 +121,18 @@ The quickstart voice assistant shows the required code additions:
 
 The interim response setup is applied inside `SetupSessionAsync()`:
 
-- `ConfigureSessionAsync(options)` sends the base session configuration (audio formats) to Voice Live.
+- `ConfigureSessionAsync(options)` sends the base session configuration to Voice Live.
 - A raw `session.update` command with `interim_response` settings is sent via `SendCommandAsync`. This is necessary because `VoiceLiveSessionOptions` doesn't expose the `InterimResponse` property in this SDK version.
-- The `llm_interim_response` type configuration defines when interim responses trigger and what style they use.
+- The `llm_interim_response` configuration defines when interim responses trigger and what style they use.
 
 ## Use auto truncation for interrupted responses
 
-When users interrupt agent audio, conversation text can drift from what users actually heard. Auto truncation keeps session context aligned with delivered audio, improving follow-up response quality after barge-in and keeping voice conversation logging more accurate.
+When users interrupt agent audio, conversation text can drift from what users actually heard. Auto truncation keeps session context aligned with delivered audio. This improves follow-up responses after barge-in and keeps conversation logging more accurate.
 
-The sample currently shows interruption handling with `CancelResponseAsync()` during speech start. However, it doesn't configure `auto_truncate` in `turn_detection`.
+The sample currently shows interruption handling with `CancelResponseAsync()` during speech start, but it doesn't configure `auto_truncate` in `turn_detection`.
 
 > [!NOTE]
-> In Foundry Agent Service, thread messages and tracing agent threads are based on text content. Without auto truncation, those records can differ from the exact portion of audio users actually heard before interruption.
+> In Foundry Agent Service, thread messages and trace records are based on text content. Without auto truncation, these records can differ from the exact portion of audio users heard before interruption.
 
 See [Handle voice interruptions in chat history (preview)](../../../how-to-voice-live-auto-truncation.md) for setup details and supported options.
 
@@ -138,15 +140,15 @@ See [Handle voice interruptions in chat history (preview)](../../../how-to-voice
 
 Voice Live lets you reconnect to a previous conversation by specifying the conversation ID. This preserves conversation history and context, allowing users to continue where they left off.
 
-When a session connects successfully, Voice Live returns session metadata in the `SessionUpdateSessionUpdated` event. The sample extracts the session ID and logs it to the conversation file:
+When a session connects successfully, Voice Live returns session metadata in the `SessionUpdateSessionUpdated` event. Extract the session ID and log it to the conversation file:
 
 :::code language="csharp" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.cs" range="307-327":::
 
 In this event handler, the session ID is extracted from `sessionUpdated.Session?.Id` and written to the conversation log.
 
-The sample code writes session details to a conversation log file in the `logs/` folder (for example, `logs/conversation_20260219_143000.log`).
+The sample writes session details to a conversation log file in the `logs/` folder (for example, `logs/conversation_20260219_143000.log`).
 
-To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable or the `conversationId` parameter:
+To reconnect, pass the conversation ID as the `CONVERSATION_ID` environment variable or the `conversationId` parameter:
 
 :::code language="csharp" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.cs" range="464,489-492":::
 
@@ -156,7 +158,7 @@ Conversation reconnect is applied in three places:
 - Pass the value to the `BasicVoiceAssistant(...)` constructor (lines 489-492).
 - In the constructor, set the value on `AgentSessionConfig` via `config.ConversationId`.
 
-When a valid `conversationId` is provided, the agent retrieves the previous conversation context and can reference earlier exchanges in its responses.
+When a valid `conversationId` is provided, the agent retrieves the previous conversation context and can reference earlier exchanges.
 
 > [!NOTE]
 > Conversation IDs are tied to the agent and project. Using a conversation ID with a different agent creates a new conversation.
@@ -165,7 +167,7 @@ When a valid `conversationId` is provided, the agent retrieves the previous conv
 
 The sample logs key session metadata, including the session ID, to a timestamped conversation log file under `logs/`. This helps you:
 
-- Identify the session for debugging and support scenarios.
+- Identify the session for debugging and support.
 - Correlate user-reported behavior with session metadata.
 - Track runs over time by preserving per-session log files.
 
@@ -177,6 +179,6 @@ Session metadata logging is applied in three places:
 
 - A timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 188–189).
 - On `SessionUpdateSessionUpdated`, the handler extracts the session ID and writes it to the log (lines 315–316).
-- `WriteLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 433–445).
+- `WriteLog(...)` appends entries throughout the conversation lifecycle (lines 433–445).
 
-Use the logged session metadata with `CONVERSATION_ID` to resume the same agent conversation in a later session. Use the session ID value alongside your conversation ID for diagnostics and reconnect scenarios.
+Use the logged session metadata with `CONVERSATION_ID` to resume the same agent conversation later. Use the session ID alongside your conversation ID for diagnostics and reconnect scenarios.
