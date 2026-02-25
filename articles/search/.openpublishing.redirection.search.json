@@ -649,26 +649,6 @@
             "source_path_from_root": "/articles/search/keyless-connections.md",
             "redirect_url": "/azure/search/search-security-rbac-client-code",
             "redirect_document_id": true
-        },
-                {
-            "source_path_from_root": "/articles/search/tutorial-document-extraction-multimodal-embeddings.md",
-            "redirect_url": "/azure/search/tutorial-multimodal",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/search/tutorial-document-extraction-image-verbalization.md",
-            "redirect_url": "/azure/search/tutorial-multimodal",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/search/tutorial-document-layout-multimodal-embeddings.md",
-            "redirect_url": "/azure/search/tutorial-multimodal",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/search/tutorial-document-layout-image-verbalization.md",
-            "redirect_url": "/azure/search/tutorial-multimodal",
-            "redirect_document_id": false
         }
     ]
   }
