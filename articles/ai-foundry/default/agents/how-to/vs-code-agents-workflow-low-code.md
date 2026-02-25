@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/18/2026
+ms.date: 02/25/2026
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -18,14 +18,14 @@ author: ms-johnalex
 
 Declarative agent workflows define predefined sequences of actions for your agents using configurations rather than explicit programming logic. In this article, you add [Foundry Agent workflows](../concepts/workflow.md) to an agent and test them by using the [Microsoft Foundry for Visual Studio Code (VS Code) extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
 
-After you [build an agent in Foundry Agent Service](../../../how-to/develop/vs-code-agents.md) by using the VS Code extension, you can add workflows to orchestrate multiple agents into predefined action sequences for complex automation scenarios.
+After you [build an agent in Foundry Agent Service](/azure/ai-foundry/quickstarts/get-started-code?view=foundry&tabs=portal#create-an-agent) in the portal, you can add workflows to orchestrate multiple agents into predefined action sequences for complex automation scenarios.
 
 > [!IMPORTANT]
 > Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and isn't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites
 
-- A Foundry project with at least one deployed agent. To create one, see [Build an agent with the VS Code extension](../../../how-to/develop/vs-code-agents.md).
+- A Foundry project with at least one deployed agent. To create one in the Foundry portal, see [Quickstart: Chat with an agent](/azure/ai-foundry/quickstarts/get-started-code?view=foundry&tabs=portal#create-an-agent).
 - At least one workflow created in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about workflows, see [Foundry Agent workflows](../concepts/workflow.md).
 - The [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
 - A [GitHub Copilot](https://github.com/features/copilot) subscription (required for converting YAML workflows to Agent Framework code).
@@ -83,4 +83,3 @@ To customize your YAML-based workflows, convert them to Agent Framework code wit
 ## Related content
 
 - [Foundry Agent workflows](../concepts/workflow.md)
-- [Build an agent with the VS Code extension](../../../how-to/develop/vs-code-agents.md)
