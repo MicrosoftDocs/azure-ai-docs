@@ -70,6 +70,6 @@ New model versions might result in a new model ID being published. For example, 
 
 - [Working with Azure OpenAI models](../../openai/how-to/working-with-models.md)
 - [Model deprecation and retirement for Microsoft Foundry Models](../../concepts/model-lifecycle-retirement.md)
-<!-- CLASSIC-ONLY: - [Azure OpenAI in Microsoft Foundry model deprecations and retirements](../../openai/concepts/model-retirements.md) -->
+- [Azure OpenAI in Microsoft Foundry model deprecations and retirements](../../openai/concepts/model-retirements.md)
 - [Deploy Foundry Models](../how-to/deploy-foundry-models.md)
 - [Deployment types in Foundry Models](deployment-types.md)

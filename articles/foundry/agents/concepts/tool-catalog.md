@@ -143,7 +143,7 @@ Foundry Tools contains three sections:
     
     |Tool  |Description  |
     |---------|---------|
-    | [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint. |
+    | [Model Context Protocol](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint. |
     | [OpenAPI 3.0 specified tool](../how-to/tools/openapi.md) | Connect your Foundry agents to external APIs using functions with an OpenAPI 3.0 specification. |
     | [Agent-to-Agent tool (preview)](../how-to/tools/agent-to-agent.md) | Connect your Foundry agents to other agents through A2A-compatible endpoints. |
 

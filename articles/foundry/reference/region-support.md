@@ -35,6 +35,7 @@ Foundry is currently available in the following Azure regions.
 - Canada Central
 - Canada East
 - Central India
+- Central US
 - East Asia
 - East US
 - East US 2

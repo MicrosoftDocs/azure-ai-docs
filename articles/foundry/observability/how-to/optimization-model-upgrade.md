@@ -3,7 +3,7 @@ title: "Upgrade or switch models with Ask AI (temp)"
 description: "Learn how to use Ask AI in the Microsoft Foundry portal to detect deprecated models, evaluate alternatives, upgrade deployments, and update agents to newer model versions. (temp)"
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/13/2026
+ms.date: 02/25/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt

@@ -50,6 +50,7 @@ The GPT real-time models are available for global deployments.
 - `gpt-realtime` (version `2025-08-28`)
 - `gpt-realtime-mini` (version `2025-10-06`)
 - `gpt-realtime-mini-2025-12-15` (version `2025-12-15`)
+- `gpt-realtime-1.5-2026-02-23` (`2026-02-23`)
 
 For more information, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 > [!NOTE]
@@ -65,9 +66,9 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../concepts/foundry-models-overview.md) or from your project in Microsoft Foundry portal. 
+- A deployment of a GPT realtime model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../concepts/foundry-models-overview.md) or from your project in Microsoft Foundry portal. 
 Here are some of the ways you can get started with the GPT Realtime API for speech and audio:
-<!-- NEW-ONLY: - For steps to deploy and use the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model, see [the real-time audio quickstart](../realtime-audio-quickstart.md). -->
+<!-- NEW-ONLY: - For steps to deploy and use a GPT realtime model, see [the real-time audio quickstart](../realtime-audio-quickstart.md). -->
 - Try the [WebRTC via HTML and JavaScript example](./realtime-audio-webrtc.md#step-3-optional-create-a-websocket-observercontroller) to get started with the Realtime API via WebRTC.
 - [The Azure-Samples/aisearch-openai-rag-audio repo](https://github.com/Azure-Samples/aisearch-openai-rag-audio) contains an example of how to implement RAG support in applications that use voice as their user interface, powered by the GPT realtime API for audio.
 
@@ -342,7 +343,7 @@ A user might want to interrupt the assistant's response or ask the assistant to 
 
 ## Image input
 
-The `gpt-realtime`, `gpt-realtime-mini`, and `gpt-realtime-mini-2025-12-15` models support image input as part of the conversation. The model can ground responses in what the user is currently seeing. You can send images to the model as part of a conversation item. The model can then generate responses that reference the images.
+The GPT realtime models support image input as part of the conversation. The model can ground responses in what the user is currently seeing. You can send images to the model as part of a conversation item. The model can then generate responses that reference the images.
 
 The following example json body adds an image to the conversation:
 

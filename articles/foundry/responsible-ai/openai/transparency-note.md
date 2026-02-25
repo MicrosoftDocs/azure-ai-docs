@@ -120,7 +120,7 @@ The following guidance is drawn from Microsoft research insights and [best pract
 
 #### [Audio / speech models](#tab/speech)
 
-The `gpt-4o-realtime-preview` model in Azure OpenAI service enables robust speech-to-speech and text-to-speech interactions. This model integrates advanced speech recognition and synthesis capabilities, allowing it to understand spoken input, generate accurate transcriptions, and produce fluent spoken output in a target language. With its ability to translate speech in real time, `gpt-4o-realtime-preview` facilitates dynamic conversations across languages. 
+The GPT realtime models in Azure OpenAI service enable robust speech-to-speech and text-to-speech interactions. These models integrate advanced speech recognition and synthesis capabilities, allowing them to understand spoken input, generate accurate transcriptions, and produce fluent spoken output in a target language. With their ability to translate speech in real time, GPT realtime models facilitate dynamic conversations across languages. 
 
 The Whisper model in Azure OpenAI service enables access to a model that performs robust speech recognition and translation tasks. The Whisper model is an Automatic Speech Recognition (ASR) model that was developed by [OpenAI](https://openai.com/research/whisper) and is capable of transcribing speech audio files into the language that was spoken as well as translated into English.
 
@@ -277,7 +277,7 @@ The Computer Use model is built upon a fine-tuned version of GPT-4o's vision cap
 
 #### [Audio / speech models](#tab/speech)
 
-The `gpt-4o-realtime-preview` model in Azure OpenAI service enables advanced speech-to-speech capabilities, providing real-time speech recognition, translation, and synthesis. GPT-4o allows for fluid communication by converting spoken input into coherent output in a target language. 
+The GPT realtime models in Azure OpenAI service enable advanced speech-to-speech capabilities, providing real-time speech recognition, translation, and synthesis. GPT-4o allows for fluid communication by converting spoken input into coherent output in a target language. 
  
 Azure OpenAI service offers these functionalities through the realtime API: 
 - Processing spoken input to generate spoken output 
@@ -492,7 +492,7 @@ When choosing a use case for Computer Use, users should factor in the following 
 
 ### Intended uses
 
-The `gpt-4o-realtime-preview` model can be used for a variety of natural language processing tasks in a similar fashion to existing GPT models. However, this model specifically targets speech and audio use cases. Examples of tasks that this model supports include, but are not limited to, the following:   
+The GPT realtime models can be used for a variety of natural language processing tasks in a similar fashion to existing GPT models. However, these models specifically target speech and audio use cases. Examples of tasks that these models support include, but are not limited to, the following:   
 - **Voice chat creation and interaction**: Users can create and voice chat with a conversational agent that responds with voice capabilities.  
 - **Language Translation**: Users can translate between languages during conversation in real time.  Subtitling can be supported with real-time input and output audio transcriptions. Language supportability is in line with existing gpt-4o model versions.  
 - **Question-answering**: Users can ask written and/or spoken questions and receive spoken answers from the model.
@@ -508,7 +508,7 @@ The Whisper model in Azure OpenAI service can be used for various speech recogni
 
 ### Considerations when choosing a use case
 
-We encourage customers to use the `gpt-4o-realtime-preview` and Whisper models in Azure OpenAI service in their innovative solutions or applications. Here are some considerations when choosing a use case:
+We encourage customers to use the GPT realtime models and Whisper models in Azure OpenAI service in their innovative solutions or applications. Here are some considerations when choosing a use case:
 - **Avoid scenarios in which the use or misuse of the system could have a consequential impact on life opportunities or legal status.** Examples include scenarios in which the AI system could affect an individual's legal status, legal rights, or their access to credit, education, employment, healthcare, housing, insurance, social welfare benefits, services, opportunities, or the terms on which these items are available. 
 - **Carefully consider all use cases in high-stakes domains or industries:** Examples include but are not limited to healthcare, education, finance, and legal.
 - **Whisper in Azure Speech service:** The OpenAI Whisper model is also available within Azure Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diarization, customization, or processing multiple audio files per request.
@@ -558,8 +558,8 @@ For greater detail on these limitations, see the [OpenAI o1 System Card](https:/
 
 ### GPT-4o limitations
 
-- The `gpt-4o-realtime-preview` audio translation capabilities may output non-English languages in a non-native accent. This may limit the effectiveness of language performance in audio outputs. Language supportability is in line with existing gpt-4o model versions.  
-- Users may experience that `gpt-4o-realtime-preview` is less robust in noisy environments and should account for noise sensitivity when developing applications.
+- The GPT realtime audio translation capabilities may output non-English languages in a non-native accent. This may limit the effectiveness of language performance in audio outputs. Language supportability is in line with existing gpt-4o model versions.  
+- Users may experience that GPT realtime models are less robust in noisy environments and should account for noise sensitivity when developing applications.
 
 For more best practices, see the [OpenAI 4o System Card](https://openai.com/index/gpt-4o-system-card/). 
 

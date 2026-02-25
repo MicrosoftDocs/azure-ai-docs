@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/04/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -24,9 +24,11 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
 
 ## Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 Java SDK samples are coming soon.
 
@@ -127,7 +129,7 @@ from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AzureAISearchAgentTool,
+    AzureAISearchTool,
     PromptAgentDefinition,
     AzureAISearchToolResource,
     AISearchIndexResource,
@@ -136,14 +138,13 @@ from azure.ai.projects.models import (
 
 load_dotenv()
 
-project_client = AIProjectClient(
-  endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-openai_client = project_client.get_openai_client()
-
-with project_client:
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
 
     azs_connection = project_client.connections.get(os.environ["AZURE_AI_SEARCH_CONNECTION_NAME"])
     connection_id = azs_connection.id
@@ -152,11 +153,11 @@ with project_client:
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-          model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="""You are a helpful assistant. You must always provide citations for
             answers using the tool and render them as: `[message_idx:search_idx†source]`.""",
             tools=[
-                AzureAISearchAgentTool(
+                AzureAISearchTool(
                     azure_ai_search=AzureAISearchToolResource(
                         indexes=[
                             AISearchIndexResource(
@@ -182,7 +183,7 @@ with project_client:
         stream=True,
         tool_choice="required",
         input=user_input,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:
@@ -437,14 +438,12 @@ The following example shows how to use the Azure AI Search tool with the REST AP
 Before running this sample, obtain a bearer token for authentication. Use the Azure CLI to get a token:
 
 ```bash
-az account get-access-token --resource https://cognitiveservices.azure.com
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
 ```
-
-Set `AGENT_TOKEN` to the token value and `API_VERSION` to the current API version (for example, `2025-01-01-preview`).
 
 ```bash
 curl --request POST \
-  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{
@@ -771,8 +770,8 @@ my_endpoint = "my-endpoint" # This could also be called target
 my_api_keys = None # Leave blank for Authentication type = AAD
 
 my_connection = AzureAISearchConnection(name=my_connection_name,
-                                    endpoint=my_endpoint, 
-                                    api_key= my_api_keys)
+                                        endpoint=my_endpoint,
+                                        api_key=my_api_keys)
 
 # Create MLClient
 ml_client = MLClient(

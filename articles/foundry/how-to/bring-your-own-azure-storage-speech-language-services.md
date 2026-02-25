@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024, build-2025, dev-focus
   - classic-and-new
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 02/24/2026
 ai-usage: ai-assisted
 ---
 
@@ -101,7 +101,7 @@ resource storage 'Microsoft.Storage/storageAccounts@2023-01-01' existing = {
   name: storageName
 }
 
-resource foundry 'Microsoft.CognitiveServices/accounts@2025-05-01-preview' = {
+resource foundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
   name: foundryName
   location: location
   kind: 'AIServices'
@@ -124,7 +124,7 @@ resource foundry 'Microsoft.CognitiveServices/accounts@2025-05-01-preview' = {
 ```json
 {
   "type": "Microsoft.CognitiveServices/accounts",
-  "apiVersion": "2025-05-01-preview",
+  "apiVersion": "2025-06-01",
   "name": "[parameters('foundryName')]",
   "location": "[parameters('location')]",
   "kind": "AIServices",
@@ -154,7 +154,7 @@ resource "azurerm_cognitive_account" "foundry" {
 
   # userOwnedStorage equivalent
   storage {
-    resource_id = azurerm_storage_account.speechlang.id
+    storage_account_id = azurerm_storage_account.speechlang.id
   }
 
   identity {

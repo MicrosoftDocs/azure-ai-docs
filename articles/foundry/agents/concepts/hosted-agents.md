@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service (preview) (temp)"
 description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability. (temp)"
 author: aahill
 ms.author: aahi
-ms.date: 02/03/2026
+ms.date: 02/19/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -120,13 +120,19 @@ The hosting adapter provides several key benefits for developers:
 
 **Seamless Foundry integration**: Your locally developed agents work with the Foundry Responses API, conversation management, and authentication flows.
 
+### Agent identity
+
+Hosted agents that haven't been published to an agent application resource run with the **project managed identity**. This identity is the system-assigned managed identity of your Foundry project and is shared across all unpublished agents in the project.
+
+When you [publish a hosted agent](#publish-hosted-agents-to-channels), Foundry provisions a **distinct agent identity** that's separate from the project managed identity. After publishing, you need to reconfigure permissions for any Azure resources that your agent accesses, because the project managed identity permissions don't automatically transfer to the new agent identity.
+
 ### Managed service capabilities
 
 Agent Service handles:
 
 - Provisioning and autoscaling of agents
 - Conversation orchestration and state management
-- Identity management
+- Identity management (project managed identity for unpublished agents, dedicated agent identity for published agents)
 - Integration with Foundry tools and models
 - Built-in observability and evaluation capabilities
 - Enterprise-grade security, compliance, and governance
@@ -146,6 +152,27 @@ Agent Service handles:
 
 - Python: `azure-ai-agentserver-core`, `azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`
 - .NET: `Azure.AI.AgentServer.Core`, `Azure.AI.AgentServer.AgentFramework`
+
+### Agent replica sizes
+
+Only the following CPU and memory pairs are currently supported for hosted agents. These values define the replica size; an agent can run multiple replicas.
+
+| CPU (cores) | Memory (GiB) |
+|-------------|--------------|
+| 0.25        | 0.5          |
+| 0.5         | 1            |
+| 0.75        | 1.5          |
+| 1           | 2            |
+| 1.25        | 2.5          |
+| 1.5         | 3            |
+| 1.75        | 3.5          |
+| 2           | 4            |
+| 2.25        | 4.5          |
+| 2.5         | 5            |
+| 2.75        | 5.5          |
+| 3           | 6            |
+| 3.25        | 6.5          |
+| 3.5         | 7            |
 
 ## Package code and test locally
 
@@ -345,7 +372,7 @@ Before creating a hosted agent, complete these steps **in order**:
 
 1. **Ensure your access**: Ensure that you have access to assign roles in Azure Container Registry. You need at least User Access Administrator or Owner permissions on the container registry.
 2. **Install the Azure AI Projects SDK**:  run the following command:
-    `pip install --pre "azure-ai-projects>=2.0.0b3"`
+    `pip install --pre "azure-ai-projects>=2.0.0b4"`
 3. **Create an Azure Container Registry**: [Create a private container registry](/azure/container-registry/container-registry-get-started-portal) 
 4. **Build your Docker image with the correct platform**: [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry)
 5. **Push your image to YOUR registry**: [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry) Replace the sample URLs (`YOUR_ACR_NAME, YOUR_IMAGE_NAME`, `YOUR_TAG`) with your actual values for your docker image and Azure Container Registry.
@@ -388,7 +415,7 @@ For detailed guidance on working with Docker images in Azure Container Registry,
 
 ### Configure Azure Container Registry permissions
 
-Before you create the agent, give your project's managed identity access to pull from the container registry that houses your image. This step ensures that all dependencies are available within the container.
+Before you create the agent, give your project's managed identity access to pull from the container registry that houses your image. Unpublished hosted agents run with this project managed identity, so the permissions you assign here apply at runtime.
 
 1. In the [Azure portal](https://portal.azure.com), go to your Foundry project resource.
 
@@ -436,17 +463,17 @@ az rest --method put `
 
 ### Create the hosted agent version
 
-Install version>=2.0.0b3 of the Azure AI Projects SDK. Python 3.10 or later is required.
+Install version>=2.0.0b4 of the Azure AI Projects SDK. Python 3.10 or later is required.
 
 ```bash
-pip install --pre "azure-ai-projects>=2.0.0b3"
+pip install --pre "azure-ai-projects>=2.0.0b4"
 ```
 
 Use the Azure AI Projects SDK to create and register your agent:
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import ImageBasedHostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
 from azure.identity import DefaultAzureCredential
 
 # Initialize the client
@@ -458,7 +485,7 @@ client = AIProjectClient(
 # Create the agent from a container image
 agent = client.agents.create_version(
     agent_name="my-agent",
-    definition=ImageBasedHostedAgentDefinition(
+    definition=HostedAgentDefinition(
         container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
         cpu="1",
         memory="2Gi",
@@ -787,12 +814,10 @@ Call a deployed Microsoft Foundry agent
 
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import AgentReference
 
 # Configuration
 PROJECT_ENDPOINT = "https://your-project.services.ai.azure.com/api/projects/your-project"
 AGENT_NAME = "your-agent-name"
-AGENT_VERSION = "1"  # Optional: specify version, or use latest
 
 # Initialize the client and retrieve the agent
 client = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
@@ -803,7 +828,7 @@ print(f"Agent retrieved: {agent.name} (version: {agent.versions.latest.version})
 openai_client = client.get_openai_client()
 response = openai_client.responses.create(
     input=[{"role": "user", "content": "Hello! What can you help me with?"}],
-    extra_body={"agent": AgentReference(name=agent.name, version=AGENT_VERSION).as_dict()}
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}}
 )
 
 print(f"Agent response: {response.output_text}")
@@ -841,7 +866,7 @@ Create a hosted agents version with tools definition by using the Foundry SDK.
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import ImageBasedHostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
 from azure.identity import DefaultAzureCredential
 
 # Initialize the client
@@ -854,7 +879,7 @@ client = AIProjectClient(
 agent = client.agents.create_version(
     agent_name="my-agent",
     description="Coding agent expert in assisting with github issues",
-    definition=ImageBasedHostedAgentDefinition(
+    definition=HostedAgentDefinition(
         container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
         cpu="1",
         memory="2Gi",
@@ -999,14 +1024,14 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 
 ## Publish hosted agents to channels
 
-Publishing transforms your hosted agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. After you publish your hosted agent, you can share it across multiple channels and platforms.
+Publishing transforms your hosted agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. Before publishing, hosted agents run with the project managed identity. After you publish your hosted agent, you can share it across multiple channels and platforms.
 
 ### Publishing process for hosted agents
 
 When you publish a hosted agent, Microsoft Foundry automatically:
 
 1. Creates an agent application resource with a dedicated invocation URL.
-1. Provisions a distinct agent identity that's separate from your project's shared identity.
+1. Provisions a distinct agent identity that's separate from the project managed identity that unpublished agents use.
 1. Registers the agent in the Microsoft Entra agent registry for discovery and governance.
 1. Enables stable endpoint access that remains consistent as you deploy new agent versions.
 
@@ -1024,7 +1049,7 @@ Unlike prompt-based agents that you can edit in the portal, hosted agents keep t
 
 ### Publishing considerations for hosted agents
 
-**Identity management**: Published hosted agents use their own agent identity. You need to reconfigure permissions for any Azure resources that your agent accesses. Permissions for the shared development identity don't automatically transfer.
+**Identity management**: Before publishing, hosted agents run with the project managed identity. After you publish to an agent application resource, Foundry provisions a dedicated agent identity. You need to reconfigure permissions for any Azure resources that your agent accesses, because the project managed identity permissions don't automatically transfer to the new agent identity.
 
 **Version control**: Publishing creates a deployment that references your current agent version. You can update the published agent by deploying new versions without changing the public endpoint.
 

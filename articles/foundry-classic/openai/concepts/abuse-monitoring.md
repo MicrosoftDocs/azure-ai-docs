@@ -12,10 +12,12 @@ ms.custom:
   - classic-and-new
 manager: nitinme
 
+ai-usage: ai-assisted
+
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Abuse Monitoring (classic)
+# Abuse monitoring (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

@@ -3,14 +3,14 @@ title: Migration alert from AI inference SDK to OpenAI SDK
 description: Include file
 author: msakande
 ms.author: mopeakande
+ms.reviewer: balapv
+reviewer: balapv
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 11/05/2025
+ms.date: 02/23/2026
 ms.custom: include
 ---
 
-> [!IMPORTANT]
-> If you're currently using an Azure AI Inference beta SDK with Microsoft Foundry Models or Azure OpenAI service, we strongly recommend that you transition to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1), which uses an OpenAI stable SDK.
->
-<!-- CLASSIC-ONLY: > For more information on how to migrate to the OpenAI/v1 API by using an SDK in your programming language of choice, see [Migrate from Azure AI Inference SDK to OpenAI SDK](../how-to/model-inference-to-openai-migration.md). -->
+<!-- > [!IMPORTANT] (callout removed - content was version-specific) -->
+<!-- CLASSIC-ONLY: > Azure AI Inference beta SDK is deprecated and will be retired on May 30, 2026. Switch to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1) with a stable OpenAI SDK. Follow the [migration guide](../how-to/model-inference-to-openai-migration.md) to switch to OpenAI/v1, using the SDK for your preferred programming language. -->

@@ -4,7 +4,7 @@ description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agen
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 02/18/2026
+ms.date: 02/20/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -29,9 +29,11 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -45,8 +47,8 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 - Ensure your Fabric data agent and Foundry project are in the same tenant.
 - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
 - Get these values before you run the samples:
-  - Your Foundry project endpoint: `AZURE_AI_PROJECT_ENDPOINT`.
-  - Your model deployment name: `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
+  - Your Foundry project endpoint: `FOUNDRY_PROJECT_ENDPOINT`.
+  - Your model deployment name: `FOUNDRY_MODEL_DEPLOYMENT_NAME`.
   - Your Fabric connection ID (project connection ID): `FABRIC_PROJECT_CONNECTION_ID`.
 - For the REST sample, also set:
   - `API_VERSION`.
@@ -104,7 +106,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
     print("Connected to project.")
     
@@ -135,7 +137,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    MicrosoftFabricAgentTool,
+    MicrosoftFabricPreviewTool,
     FabricDataAgentToolParameters,
     ToolProjectConnection,
 )
@@ -144,7 +146,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
     # Get connection ID from connection name
@@ -156,10 +158,10 @@ with (
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant.",
             tools=[
-                MicrosoftFabricAgentTool(
+                MicrosoftFabricPreviewTool(
                     fabric_dataagent_preview=FabricDataAgentToolParameters(
                         project_connections=[
                             ToolProjectConnection(project_connection_id=fabric_connection.id)
@@ -176,10 +178,13 @@ with (
     response = openai_client.responses.create(
         tool_choice="required",
         input=user_input,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     print(f"Response output: {response.output_text}")
+
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 
 ### What this code does
@@ -192,8 +197,7 @@ with (
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
-- Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.\n- Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
 
 ### Expected output
 
@@ -213,7 +217,7 @@ Before running the full sample, verify your Fabric connection exists:
 using Azure.AI.Projects;
 using Azure.Identity;
 
-var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var fabricConnectionName = System.Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_NAME");
 
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
@@ -245,8 +249,8 @@ To enable your agent to access the Fabric data agent, use `MicrosoftFabricAgentT
 
 ```csharp
 // Create an Agent client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 var fabricConnectionName = System.Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_NAME");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
@@ -293,7 +297,7 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
 - Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
 
 ### Expected output
@@ -312,7 +316,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const fabricConnectionName = process.env["FABRIC_PROJECT_CONNECTION_NAME"] || "<fabric connection name>";
 
 async function verifyConnection(): Promise<void> {
@@ -348,9 +352,9 @@ import { AIProjectClient } from "@azure/ai-projects";
 import * as readline from "readline";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName =
-  process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+  process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const fabricConnectionName =
   process.env["FABRIC_PROJECT_CONNECTION_NAME"] || "<fabric connection name>";
 
@@ -440,7 +444,7 @@ main().catch((err) => {
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
 - Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
 
 ### Expected output
@@ -458,11 +462,11 @@ The following example shows how to call the Foundry Agent REST API by using the 
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{
-  "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+  "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
   "input": "Tell me about sales records for the last quarter.",
   "tool_choice": "required",
   "tools": [
@@ -488,7 +492,7 @@ curl --request POST \
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
 
 ### Expected output
 

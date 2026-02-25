@@ -6,7 +6,7 @@ description: "Plan disaster recovery for Foundry Agent Service: limitations, rea
 #customer intent: As a developer, I want to automate the redeployment of agent definitions so that I can speed up disaster recovery processes.
 author: jonburchel
 ms.author: jburchel
-ms.date: 01/20/2026
+ms.date: 02/23/2026
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
 ai-usage: ai-assisted
@@ -36,8 +36,11 @@ Use this article as the starting point for disaster recovery (DR) planning for F
 This series focuses on DR for Foundry projects that use Agent Service in Standard deployment mode.
 
 - **Blast radius boundary**: In most workloads, a single Foundry project is the recovery unit.
-- **State**: Agent definitions, conversation threads (including user-uploaded files), and any file-based knowledge stored in the capability host dependencies.
+- **State**: Agent definitions, conversation threads (including user-uploaded files), and any file-based knowledge stored in the capability host dependencies (Azure Cosmos DB, Azure AI Search, and Azure Storage).
 - **Data plane APIs**: APIs used to create, update, and invoke agents and threads. For details, see [AI Agents REST API operation groups](/rest/api/aifoundry/aiagents/operation-groups).
+
+> [!NOTE]
+> This series doesn't cover the Basic deployment mode. Basic mode uses Microsoft-managed infrastructure with different DR characteristics. For details, see [Basic vs. Standard agent setup](/azure/ai-foundry/agents/concepts/standard-agent-setup).
 
 For general recovery design concepts (including setting recovery objectives such as RPO and RTO), see [Design for recovery](/azure/well-architected/reliability/principles#design-for-recovery).
 
@@ -48,8 +51,11 @@ Complete these actions before you rely on Agent Service in production:
 1. Choose a recovery strategy per project (for example, warm standby and reconstruction) and document your recovery objectives.
 1. Configure required baseline protections and recovery features on your dependencies. For guidance, see [High availability and resiliency for Foundry projects and agent services](high-availability-resiliency.md).
 1. Treat agent definitions as code. Store agent definitions, knowledge assets, and tool bindings in source control so you can redeploy them quickly.
-1. Automate redeployment of agents and any client updates needed for new agent IDs.
+1. Automate redeployment of agents and any client updates needed for new agent IDs. Use the [AI Agents REST API](/rest/api/aifoundry/aiagents/operation-groups) or the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme) to script agent creation. Store and version infrastructure as code (IaC) templates for your capability host dependencies.
 1. Practice recovery. Run periodic drills so operators can execute the recovery steps under time pressure.
+1. Set up monitoring and alerts. Configure [Azure Monitor](/azure/azure-monitor/overview) alerts for your capability host dependencies (Azure Cosmos DB, Azure AI Search, and Azure Storage) to detect availability degradation early.
+
+## Incident types and affected components
 
 Agent Service deployments can encounter incidents that affect availability and data integrity in these components:
 
@@ -62,7 +68,7 @@ Disasters stem from prolonged platform outages, or from human or automation erro
 
 Agent Service is stateful. Recovery focuses on preserving and restoring state stored in your project's Azure Cosmos DB, Azure AI Search, and Azure Storage account. This guide doesn't cover recovery for other Foundry features or for grounding stores or tools used by agents.
 
-## Built-in recovery capabilities
+## Recovery capability limitations
 
 The Agent Service has important limitations that shape your workload's disaster recovery (DR) design. Consider these factors when you set realistic recovery point objectives (RPOs) and recovery time objectives (RTOs).
 
@@ -75,10 +81,12 @@ The Agent Service has important limitations that shape your workload's disaster 
 
 Plan for scenarios where recovery isn't possible or where recovery restores only functionality (not state):
 
-- **Thread deletion**: There isn't a supported way to restore a deleted conversation thread.
-- **Project reconstruction**: If a project is deleted and you recreate it, you redeploy agents as new resources with new agent IDs. Thread history and user-uploaded files from the deleted project aren't recoverable.
-- **Cross-region failover**: In a regional outage, you typically restore service by recreating projects and redeploying agents in another region. Standby-region agents don't have access to prior threads, and any standby-region state is lost during failback.
-- **State migration**: There isn't a supported way to merge or migrate agent state between projects or between regions.
+| Scenario | Impact |
+| ---------- | -------- |
+| **Thread deletion** | There isn't a supported way to restore a deleted conversation thread. |
+| **Project reconstruction** | If you delete and recreate a project, you redeploy agents with new agent IDs. Thread history and user-uploaded files aren't recoverable. |
+| **Cross-region failover** | You restore service by recreating projects in another region. Standby-region agents don't have prior threads, and standby state is lost during failback. |
+| **State migration** | There isn't a supported way to merge or migrate agent state between projects or regions. |
 
 ### General implications for your recovery design
 
@@ -114,7 +122,7 @@ The Agent Service has a significant amount of state and interconnected resources
 
 Disaster recovery is only one part of your business continuity strategy. For agent-based flows, plan how you continue to deliver value when agents are inoperable or data is lost. Set realistic expectations with users and business partners. Fall back to planned contingencies as needed.
 
-For example, the Purview integration provides a compliance safety net for workloads that require eDiscovery. If agents and their threads are lost, you can still respond to eDiscovery requests by using Purview. This approach doesn't restore agent functionality or data, but it helps you meet compliance continuity needs.
+For example, the [Purview integration](/purview/ai-microsoft-purview) provides a compliance safety net for workloads that require eDiscovery. If agents and their threads are lost, you can still respond to eDiscovery requests by using Purview. This approach doesn't restore agent functionality or data, but it helps you meet compliance continuity needs.
 
 Likewise, if your agent provides customer support capabilities to reduce the amount of human time spent with individual customers, you can fall back to email or phone support operations when agents are unavailable. Planned graceful degradation in your workload should direct workload users to alternatives.
 

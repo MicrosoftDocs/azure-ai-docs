@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023, devx-track-azurecli, build-2024, ignite-2024, dev-focus
   - classic-and-new
 ms.topic: how-to
-ms.date: 01/06/2026
+ms.date: 02/24/2026
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
@@ -26,10 +26,10 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 When you use a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 
 
-> [!NOTE]
-> End-to-end network isolation isn't supported in the new Foundry portal experience. Use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation is enabled. For more on limitations with private networking in Foundry, see [limitations](#limitations).
-
 ## Prerequisites
+
+> [!IMPORTANT]
+> End-to-end network isolation isn't supported in the new Foundry portal experience. Use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation is enabled. For more on limitations with private networking in Foundry, see [limitations](#limitations).
 
 - An existing Azure virtual network and subnet to create the private endpoint in.
 - Azure permissions to create and approve private endpoint connections:
@@ -40,7 +40,7 @@ When you use a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you c
     > [!IMPORTANT]
     > Don't use the 172.17.0.0/16 IP address range for your virtual network. This range is the default subnet range used by the Docker bridge network on-premises.
 
-## Securely connect to Foundry
+## Choose a secure connection method
 
 To connect to Foundry secured by a virtual network, use one of these methods:
 
@@ -77,9 +77,6 @@ When creating a new project, use the following steps to create the project.
 
     - From **Basics**, select the same **Region** as your virtual network.
     - From the **Virtual Network** form, select the virtual network and subnet that you want to connect to.
-
-    > [!NOTE]
-    > The portal refers to the private endpoint target as an "account" or "resource". Choose your Foundry resource as the target.
 
 1. After you populate the forms with any other network configurations you require, use the **Review + create** tab to review your settings and select **Create** to create the private endpoint.
 
@@ -167,7 +164,7 @@ Grant networking access to trusted Azure services by creating a network rule exc
 
 - You must deploy the private endpoint in the same region and subscription as the virtual network.
 - Only private endpoints in an **Approved** state can send traffic to a private-link resource.
-- End-to-end network isolation in Foundry is not support in the new Foundry portal experience. End-to-end network isolation in Foundry is not supported for the new version of the Agent service. Use the classic Foundry portal experience with the current version of Agent service to securely access your Foundry projects when network isolation is enabled.
+- End-to-end network isolation in Foundry is not supported in the new Foundry portal experience. End-to-end network isolation in Foundry is not supported for the new version of the Agent service. Use the classic Foundry portal experience with the current version of Agent service to securely access your Foundry projects when network isolation is enabled.
 - When you use a network isolated Foundry, you cannot use private MCP servers deployed in the same virtual network. You can only use publicly accessible MCP servers.
 - Hosted Agents in Microsoft Foundry are not supported with end-to-end network isolation. 
 
@@ -188,6 +185,15 @@ Network-secured Standard Agents and evaluations support full network isolation a
 To secure egress (outbound) traffic through network injection, configure an Azure Firewall or another firewall. This configuration helps inspect and control outbound traffic before it leaves your virtual network.
 
 :::image type="content" source="../media/how-to/network/hub-spoke-network.png" alt-text="Diagram of the hub and spoke network isolation for Foundry projects and agents." lightbox="../media/how-to/network/hub-spoke-network.png":::
+
+## Troubleshoot private link issues
+
+If you experience connectivity problems after setting up a private endpoint, try these steps:
+
+- **Private endpoint stuck in Pending state**: Verify that you have **Contributor** or **Owner** permissions on the Foundry project resource. If you don't, ask the resource owner to approve the connection from the **Networking** > **Private endpoint connections** tab.
+- **DNS resolution returns a public IP address**: Confirm that a private DNS zone exists for the `privatelink` subdomain and is linked to your virtual network. Run `nslookup <your-foundry-endpoint-hostname>` from inside the virtual network to verify it resolves to the private IP.
+- **Connection times out on port 443**: Check that your network security group (NSG) rules allow outbound traffic to the private endpoint IP on port 443. Also verify that no firewall is blocking the connection.
+- **Custom DNS server not resolving**: If you use a custom DNS server, ensure it forwards queries for the `privatelink` subdomain to the Azure private DNS zone. See [DNS configuration](#dns-configuration) for details.
 
 ## Next steps
 

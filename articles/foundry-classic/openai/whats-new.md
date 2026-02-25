@@ -21,6 +21,14 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## February 2026
+
+### GPT-Realtime-1.5 and GPT-Audio-1.5 models released
+
+The `gpt-realtime-1.5-2026-02-23` and `gpt-audio-1.5-2026-02-23` models are now available.
+- These models were built upon last year’s GPT-Realtime and GPT-Audio with focused improvements in instruction following, multi-lingual support, and tool calling while preserving the low-latency, real-time interactions developers need for voice-first applications. 
+- Developers can try them out through the existing chat completion APIs in Microsoft Foundry. 
+
 ## December 2025
 
 ### GPT-image-1.5 model is now available

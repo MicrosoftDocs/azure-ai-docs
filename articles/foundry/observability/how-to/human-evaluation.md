@@ -2,7 +2,7 @@
 title: "Human Evaluation for Microsoft Foundry Agents (temp)"
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 02/25/2026
 description: "Learn how to set up human evaluation for your Microsoft Foundry agents, create templates, and analyze results to improve agent performance. (temp)"
 author: lgayhardt
 ms.author: lagayhar
