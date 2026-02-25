@@ -177,6 +177,13 @@ An indexer pipeline consists of four components: data source, index, skillset, a
 + [Create a skillset for extraction, chunking, and vectorization](#create-a-skillset-for-extraction-chunking-and-vectorization)
 + [Create (and run) an indexer](#run-the-indexer)
 
+### Download REST files
+
+The [azure-search-rest-samples](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/multimodal-tutorial) GitHub repository has .REST files that create the pipeline and query the index.
+
+> [!TIP]
+> See the [azure-ai-search-multimodal-sample](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample) GitHub repository for a Python example.
+
 ### Create a data source
 
 [Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
@@ -245,11 +252,11 @@ Connection: close
 
 [Create Index (REST)](/rest/api/searchservice/indexes/create) creates an index on your search service. The index is similar across all skillsets, with the following exceptions:
 
-+ The `vectorizers` section should match the embedding model used in the skillset. Use either Azure AI Vision multimodal embedding or Azure OpenAI text embedding.
++ The `vectorizers` section defines how query text is vectorized at search time. It must use the same embedding provider and model family used by the skillset (Azure AI Vision multimodal or Azure OpenAI text embedding) so query vectors and indexed vectors are compatible.
++
++ The `content_embedding` field `dimensions` value must exactly match the vector size produced by the embedding model (for example, `1024` for Azure AI Vision multimodal or `3072` for `text-embedding-3-large`). A mismatch can cause indexing or query failures.
 
-+ The `content_embedding` field has a `dimensions` property for the number of dimensions in a vector field. The value corresponds to the number of dimensions created by the embedding model.
-
-+ Nested JSON field names must be identical to their source names. This is due to a limitation where Azure AI Search can't map subfields in a complex type. This means that an index that accepts extracted content from Text Split must have fields named "location_metadata", "bounding_polygons", and "page_number" because those names correspond to outputs from the Text Split skill. Similarly, an index that accepts extracted content from Document Layout must have fields named "locationMetadata", "boundingPolygons", and "pageNumber".
++ For complex types, nested field names in the index must exactly match the enrichment output names (including casing). Azure AI Search can't map nested subfields to different names. Use `location_metadata`, `bounding_polygons`, and `page_number` for fields that accept Text Split outputs, and `locationMetadata`, `boundingPolygons`, and `pageNumber` for fields that accept Document Layout outputs.
 
 Here are the index definitions for each skill combination.
 
@@ -309,12 +316,6 @@ This pattern uses:
       },
       {
          "name":"content_path",
-         "type":"Edm.String",
-         "searchable":false,
-         "retrievable":true
-      },
-      {
-         "name":"offset",
          "type":"Edm.String",
          "searchable":false,
          "retrievable":true
@@ -450,12 +451,6 @@ This pattern uses:
       },
       {
          "name":"content_path",
-         "type":"Edm.String",
-         "searchable":false,
-         "retrievable":true
-      },
-      {
-         "name":"offset",
          "type":"Edm.String",
          "searchable":false,
          "retrievable":true
@@ -732,12 +727,6 @@ This pattern uses:
          "retrievable":true
       },
       {
-         "name":"offset",
-         "type":"Edm.String",
-         "searchable":false,
-         "retrievable":true
-      },
-      {
          "name":"locationMetadata",
          "type":"Edm.ComplexType",
          "fields":[
@@ -841,17 +830,9 @@ This pattern uses:
 
 + [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md) for text and image embeddings.
 
-+ [Shaper skill](cognitive-search-skill-shaper.md) captures location metadata and the container name for the image file path in the knowledge store.
++ [Shaper skill](cognitive-search-skill-shaper.md) captures location metadata and the container name for the image file path in the knowledge store. This capability is unique to PDF content and Document Extraction.
 
-```rest
-### Create a skillset
-### Extraction/chunking: Document Extraction, Text Split
-### Vectorization: Azure AI Vision multimodal (text and images)
-
-POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
-  Content-Type: application/json
-  Authorization: Bearer {{token}}
-
+```json
 {
    "name":"demo-multimodal-skillset",
    "description":"A test skillset",
@@ -982,11 +963,11 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
                "inputs":[
                   {
                      "name":"page_number",
-                     "source":"/document/normalized_images/*/pageNumber"
+                     "source":"/document/normalized_images/*/page_number"
                   },
                   {
                      "name":"bounding_polygons",
-                     "source":"/document/normalized_images/*/boundingPolygon"
+                     "source":"/document/normalized_images/*/bounding_polygon"
                   }
                ]
             }
@@ -1078,17 +1059,9 @@ This pattern uses:
 
 + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) for textual descriptions of images and text embeddings.
 
-+ [Shaper skill](cognitive-search-skill-shaper.md) captures location metadata and the container name for the image file path in the knowledge store.
++ [Shaper skill](cognitive-search-skill-shaper.md) captures location metadata and the container name for the image file path in the knowledge store. This capability is unique to PDF content and Document Extraction.
 
-```rest
-### Create a skillset
-### Extraction/chunking: Document Extraction, Text Split
-### Vectorization: GenAI Prompt (image verbalization), Azure OpenAI (text embedding)
-
-POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
-  Content-Type: application/json
-  Authorization: Bearer {{token}}
-
+```json
 {
    "name":"demo-multimodal-skillset",
    "description":"A test skillset",
@@ -1247,11 +1220,11 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
           "inputs": [
             {
               "name": "page_number",
-              "source": "/document/normalized_images/*/pageNumber"
+              "source": "/document/normalized_images/*/page_number"
             },
             {
               "name": "bounding_polygons",
-              "source": "/document/normalized_images/*/boundingPolygon"
+              "source": "/document/normalized_images/*/bounding_polygon"
             }              
           ]
         }        
@@ -1342,15 +1315,7 @@ This pattern uses:
 
 + [Azure AI Vision multimodal skill](cognitive-search-skill-vision-vectorize.md) for text and image embeddings.
 
-```rest
-### Create a skillset
-### Extraction/chunking: Document Intelligence Layout
-### Vectorization: Azure AI Vision multimodal (text and images)
-
-POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
-  Content-Type: application/json
-  Authorization: Bearer {{token}}
-
+```json
 {
    "name":"demo-multimodal-skillset",
    "description":"A test skillset",
@@ -1392,12 +1357,12 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
          "@odata.type":"#Microsoft.Skills.Vision.VectorizeSkill",
          "name":"text-embedding-skill",
          "description":"Vision Vectorization skill for text",
-         "context":"/document/text_section/*",
+         "context":"/document/text_sections/*",
          "modelVersion":"{{azureAiVisionModelVersion}}",
          "inputs":[
             {
                "name":"text",
-               "source":"/document/text_section/*/content"
+               "source":"/document/text_sections/*/content"
             }
          ],
          "outputs":[
@@ -1509,15 +1474,7 @@ This pattern uses:
 
 + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) for textual descriptions of images and text embeddings.
 
-```rest
-### Create a skillset
-### Extraction/chunking: Document Extraction, Text Split
-### Vectorization: GenAI Prompt (image verbalization), Azure OpenAI (text embedding)
-
-POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
-  Content-Type: application/json
-  Authorization: Bearer {{token}}
-
+```json
 {
    "name":"demo-multimodal-skillset",
    "description":"A test skillset",
@@ -1751,7 +1708,9 @@ POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
 
 You can start searching as soon as the first document is loaded. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count.
 
-The `content_embedding` field contains over a thousand dimensions. Use a `select` statement to exclude that field from the response by explicitly choosing all of the other fields.
+> [!TIP]
+> The `content_embedding` field contains over a thousand dimensions. Use a `select` statement to exclude that field from the response by explicitly choosing all of the other fields. Adjust the select statement to match the fields (`location_metadata` vs `locationMetadata`) in your index. Here's an example: `"select": "content_id, text_document_id, document_title, image_document_id, content_text,`
+>
 
 ```http
 ### Query the index
@@ -1761,7 +1720,6 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
   
   {
     "search": "*",
-    "select": "content_id, text_document_id, document_title, image_document_id, content_text, content_path, location_metadata/page_number, location_metadata/bounding_polygons",
     "count": true
   }
 ```
@@ -1811,7 +1769,6 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
   
   {
     "search": "*",
-    "select": "image_document_id, content_path, location_metadata/page_number, location_metadata/bounding_polygons",
     "count": true,
     "filter": "image_document_id ne null"
   }
@@ -1823,7 +1780,7 @@ The `content_embedding` field contains high-dimensional vectors (typically 1,000
 
 The `content_path` field contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`. 
 
-The Shaper skill adds the container name to the path and the location metadata.
+For PDF context extracted using the Text Split skill, the Shaper skill adds the container name to the path and the location metadata.
 
 ### Query for content related to "energy"
 
@@ -1839,7 +1796,6 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
 
   {
     "search": "energy",
-    "select": "content_id, document_title, content_text, content_path"
     "count": true
   }
 ```
