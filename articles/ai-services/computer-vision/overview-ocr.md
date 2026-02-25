@@ -35,14 +35,7 @@ Microsoft's **Read** OCR engine uses multiple advanced machine-learning models t
 
 Intelligent Document Processing (IDP) uses OCR as its foundational technology to extract structure, relationships, key-values, entities, and other document-centric insights with an advanced machine-learning based AI service  like [Document Intelligence](../../ai-services/document-intelligence/overview.md). Document Intelligence includes a document-optimized version of **Read** as its OCR engine while delegating to other models for higher-end insights. If you're extracting text from scanned and digital documents, use [Document Intelligence Read OCR](../document-intelligence/prebuilt/read.md).
 
-## How to use OCR
 
-Try out OCR by using Vision Studio. Then follow one of the links to the Read edition that best meets your requirements.
-
-> [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
-
-:::image type="content" source="Images/vision-studio-ocr-demo.png" alt-text="Screenshot: Read OCR demo in Vision Studio.":::
 
 ## OCR supported languages
 
