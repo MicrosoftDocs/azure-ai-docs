@@ -121,13 +121,19 @@ The hosting adapter provides several key benefits for developers:
 
 **Seamless Foundry integration**: Your locally developed agents work with the Foundry Responses API, conversation management, and authentication flows.
 
+### Agent identity
+
+Hosted agents that haven't been published to an agent application resource run with the **project managed identity**. This identity is the system-assigned managed identity of your Foundry project and is shared across all unpublished agents in the project.
+
+When you [publish a hosted agent](#publish-hosted-agents-to-channels), Foundry provisions a **distinct agent identity** that's separate from the project managed identity. After publishing, you need to reconfigure permissions for any Azure resources that your agent accesses, because the project managed identity permissions don't automatically transfer to the new agent identity.
+
 ### Managed service capabilities
 
 Agent Service handles:
 
 - Provisioning and autoscaling of agents
 - Conversation orchestration and state management
-- Identity management
+- Identity management (project managed identity for unpublished agents, dedicated agent identity for published agents)
 - Integration with Foundry tools and models
 - Built-in observability and evaluation capabilities
 - Enterprise-grade security, compliance, and governance
@@ -412,7 +418,7 @@ For detailed guidance on working with Docker images in Azure Container Registry,
 
 ### Configure Azure Container Registry permissions
 
-Before you create the agent, give your project's managed identity access to pull from the container registry that houses your image. This step ensures that all dependencies are available within the container.
+Before you create the agent, give your project's managed identity access to pull from the container registry that houses your image. Unpublished hosted agents run with this project managed identity, so the permissions you assign here apply at runtime.
 
 1. In the [Azure portal](https://portal.azure.com), go to your Foundry project resource.
 
@@ -1021,14 +1027,14 @@ For more information about evaluating agents, see [Evaluate your AI agents](../.
 
 ## Publish hosted agents to channels
 
-Publishing transforms your hosted agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. After you publish your hosted agent, you can share it across multiple channels and platforms.
+Publishing transforms your hosted agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. Before publishing, hosted agents run with the project managed identity. After you publish your hosted agent, you can share it across multiple channels and platforms.
 
 ### Publishing process for hosted agents
 
 When you publish a hosted agent, Microsoft Foundry automatically:
 
 1. Creates an agent application resource with a dedicated invocation URL.
-1. Provisions a distinct agent identity that's separate from your project's shared identity.
+1. Provisions a distinct agent identity that's separate from the project managed identity that unpublished agents use.
 1. Registers the agent in the Microsoft Entra agent registry for discovery and governance.
 1. Enables stable endpoint access that remains consistent as you deploy new agent versions.
 
@@ -1046,7 +1052,7 @@ Unlike prompt-based agents that you can edit in the portal, hosted agents keep t
 
 ### Publishing considerations for hosted agents
 
-**Identity management**: Published hosted agents use their own agent identity. You need to reconfigure permissions for any Azure resources that your agent accesses. Permissions for the shared development identity don't automatically transfer.
+**Identity management**: Before publishing, hosted agents run with the project managed identity. After you publish to an agent application resource, Foundry provisions a dedicated agent identity. You need to reconfigure permissions for any Azure resources that your agent accesses, because the project managed identity permissions don't automatically transfer to the new agent identity.
 
 **Version control**: Publishing creates a deployment that references your current agent version. You can update the published agent by deploying new versions without changing the public endpoint.
 
