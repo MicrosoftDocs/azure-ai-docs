@@ -12,7 +12,7 @@ zone_pivot_groups: how-to-voice-live-interim-response
 ai-usage: ai-assisted
 ---
 
-# How to improve tool calling and latency wait times (preview)
+# Improve tool calling and latency wait times (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -39,9 +39,9 @@ Triggers use OR logic—any matching trigger activates an interim response.
 
 ## Prerequisites
 
-Before starting, we recommend you have:
+Before you start, complete the following:
 
-- Completed the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-agents-quickstart.md) or the [Quickstart: Get started with Voice Live](./voice-live-quickstart.md).
+- Complete the [Quickstart: Create a Voice Live real-time voice agent](./voice-live-agents-quickstart.md) or the [Quickstart: Get started with Voice Live](./voice-live-quickstart.md).
 - A working Voice Live setup.
 - A working event loop handling Voice Live events.
 
@@ -336,7 +336,7 @@ await session.updateSession({
 
 ::: zone-end
 
-## Choosing the right approach
+## Choose the right approach
 
 | Requirement | LLM-generated | Static |
 |-------------|---------------|--------|
