@@ -2,13 +2,13 @@
 title: "Quickstart: Use a text blocklist"
 titleSuffix: Azure AI services
 description: Get started using a text blocklist to detect harmful content in text.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: devx-track-python, devx-track-dotnet
 ms.topic: quickstart
 ms.date: 09/16/2025
-ms.author: pafarley
+ms.author: ssalgado
 zone_pivot_groups: programming-languages-content-safety-3
 ai-usage: ai-assisted
 ---

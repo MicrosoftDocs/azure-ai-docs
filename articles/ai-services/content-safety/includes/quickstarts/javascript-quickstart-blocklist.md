@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Use a blocklist with JavaScript"
 description: In this quickstart, get started using the Azure AI Content Safety JavaScript SDK to create and use a text blocklist.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 07/16/2025
-ms.author: pafarley
+ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 

@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Use task adherence in the Foundry portal"
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 08/13/2025
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 
