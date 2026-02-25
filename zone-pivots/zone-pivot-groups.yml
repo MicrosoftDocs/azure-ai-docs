@@ -1610,6 +1610,34 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+- id: voice-live-quickstart-agents-classic
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+- id: voice-live-howto-agents
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
 - id: how-to-voice-live-proactive-messages
 # Owner: eur
   title: Programming languages
@@ -1632,6 +1660,19 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#  
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+- id: how-to-voice-live-interim-response
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
   - id: programming-language-java
     title: Java
   - id: programming-language-javascript
