@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 02/19/2026
+ms.date: 02/25/2026
 ms.author: mopeakande
 author: msakande
 monikerRange: 'foundry-classic || foundry'
@@ -17,12 +17,10 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 ## Black Forest Labs models sold directly by Azure
 
-The Black Forest Labs (BFL) collection of image generation models includes FLUX.2 [pro] for image generation and editing through both text and image prompts, FLUX.1 Kontext [pro] for in-context generation and editing, and FLUX1.1 [pro] for text-to-image generation.  
+The Black Forest Labs (BFL) collection of image generation models includes FLUX.2 [flex] and FLUX.2 [pro] for image generation and editing through both text and image prompts, FLUX.1 Kontext [pro] for in-context generation and editing, and FLUX1.1 [pro] for text-to-image generation.  [Registration is required for access to FLUX.2 [flex]](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu).
 
 You can run these models through the BFL service provider API and through the [images/generations and images/edits endpoints](../../openai/reference-preview.md). 
 
-> [!NOTE]
-> See the [GitHub sample for image generation with FLUX models in Microsoft Foundry](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/black-forest-labs/flux/README.md) and its associated [notebook](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/black-forest-labs/flux/AIFoundry_ImageGeneration_FLUX.ipynb) that showcases how to create high-quality images from textual prompts.
 
 ::: moniker range="foundry-classic"
 
@@ -48,11 +46,15 @@ You can run these models through the BFL service provider API and through the [i
 
 ::: moniker-end
 
-<sup>i,ii</sup> Support for **multiple reference images** are available for FLUX.2[pro] and FLUX.2[flex] by using the API, but *not* in the playground. See the following [Code samples for FLUX.2[pro]](#code-samples-for-flux2pro-and-flux2flex).
+<sup>i,ii</sup> Support for **multiple reference images** are available for FLUX.2 [pro] and FLUX.2 [flex] by using the API, but *not* in the playground. See the following [Code samples for FLUX.2 models](#code-samples-for-flux2-models).
 
-#### Code samples for FLUX.2[pro] and FLUX.2[flex]
+> [!NOTE]
+> See the [GitHub sample for image generation with FLUX models in Microsoft Foundry](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/black-forest-labs/flux/README.md) and its associated [notebook](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/black-forest-labs/flux/AIFoundry_ImageGeneration_FLUX.ipynb) that showcases how to create high-quality images from textual prompts.
 
-These code samples use FLUX.2[pro] for illustration. To interchange models, replace the API and model in the following code.
+
+#### Code samples for FLUX.2 models
+
+These code samples use FLUX.2 [pro] for illustration. To use FLUX.2 [flex], replace the API and model in the following code.
 
 **Image generation** 
 
