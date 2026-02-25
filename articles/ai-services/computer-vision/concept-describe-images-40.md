@@ -24,10 +24,6 @@ Image captioning is available in English only.
 >
 > If you need to use a Vision resource outside these regions to generate image captions, please use [Image Analysis 3.2](concept-describing-images.md) which is available in all Azure Vision regions.
 
-Try out the image captioning features quickly and easily in your browser using Vision Studio.
-
-> [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
 ## Gender-neutral captions
 
