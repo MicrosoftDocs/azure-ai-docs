@@ -960,7 +960,7 @@ The server `response.content_part.added` event is returned when a new content pa
 
 The server `response.content_part.done` event is returned when a content part is done streaming in an assistant message item.
 
-This event is also returned when a response is interrupted, incomplete, or canceled.
+This event is also returned when a response is interrupted, incomplete, or cancelled.
 
 #### Event Structure
 
@@ -1636,7 +1636,7 @@ The server `response.audio.delta` event is returned when the model-generated aud
 
 The server `response.audio.done` event is returned when the model-generated audio is done.
 
-This event is also returned when a response is interrupted, incomplete, or canceled.
+This event is also returned when a response is interrupted, incomplete, or cancelled.
 
 #### Event structure
 
@@ -1692,7 +1692,7 @@ The server `response.audio_transcript.delta` event is returned when the model-ge
 
 The server `response.audio_transcript.done` event is returned when the model-generated transcription of audio output is done streaming.
 
-This event is also returned when a response is interrupted, incomplete, or canceled.
+This event is also returned when a response is interrupted, incomplete, or cancelled.
 
 #### Event structure
 
@@ -1750,7 +1750,7 @@ The server `response.function_call_arguments.delta` event is returned when the m
 
 The server `response.function_call_arguments.done` event is returned when the model-generated function call arguments are done streaming.
 
-This event is also returned when a response is interrupted, incomplete, or canceled.
+This event is also returned when a response is interrupted, incomplete, or cancelled.
 
 #### Event structure
 
@@ -1778,7 +1778,7 @@ This event is also returned when a response is interrupted, incomplete, or cance
 
 ### mcp_list_tools.in_progress
 
-The server `mcp_list_tools.in_progress` event is returned when the service starts listing available tools from a mcp server.
+The server `mcp_list_tools.in_progress` event is returned when the service starts listing available tools from an MCP server.
 
 #### Event structure
 
@@ -1798,7 +1798,7 @@ The server `mcp_list_tools.in_progress` event is returned when the service start
 
 ### mcp_list_tools.completed
 
-The server `mcp_list_tools.completed` event is returned when the service completes listing available tools from a mcp server.
+The server `mcp_list_tools.completed` event is returned when the service completes listing available tools from an MCP server.
 
 #### Event structure
 
@@ -1818,7 +1818,7 @@ The server `mcp_list_tools.completed` event is returned when the service complet
 
 ### mcp_list_tools.failed
 
-The server `mcp_list_tools.failed` event is returned when the service fails to list available tools from a mcp server.
+The server `mcp_list_tools.failed` event is returned when the service fails to list available tools from an MCP server.
 
 #### Event structure
 
@@ -1838,7 +1838,7 @@ The server `mcp_list_tools.failed` event is returned when the service fails to l
 
 ### response.mcp_call_arguments.delta
 
-The server `response.mcp_call_arguments.delta` event is returned when the model-generated mcp tool call arguments are updated.
+The server `response.mcp_call_arguments.delta` event is returned when the model-generated MCP tool call arguments are updated.
 
 #### Event structure
 
@@ -1858,13 +1858,13 @@ The server `response.mcp_call_arguments.delta` event is returned when the model-
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call_arguments.delta`. |
 | response_id | string | The ID of the response. |
-| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 | delta | string | The arguments delta as a JSON string. |
 
 ### response.mcp_call_arguments.done
 
-The server `response.mcp_call_arguments.done` event is returned when the model-generated mcp tool call arguments are done streaming.
+The server `response.mcp_call_arguments.done` event is returned when the model-generated MCP tool call arguments are done streaming.
 
 #### Event structure
 
@@ -1884,7 +1884,7 @@ The server `response.mcp_call_arguments.done` event is returned when the model-g
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call_arguments.done`. |
 | response_id | string | The ID of the response. |
-| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 | arguments | string | The final arguments as a JSON string. |
 
@@ -1907,7 +1907,7 @@ The server `response.mcp_call.in_progress` event is returned when an MCP tool ca
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call.in_progress`. |
-| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 
 ### response.mcp_call.completed
@@ -1929,7 +1929,7 @@ The server `response.mcp_call.completed` event is returned when an MCP tool call
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call.completed`. |
-| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 
 ### response.mcp_call.failed
@@ -1951,7 +1951,7 @@ The server `response.mcp_call.failed` event is returned when an MCP tool call fa
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | The event type must be `response.mcp_call.failed`. |
-| item_id | string | The ID of the [mcp tool call item](#realtimeconversationmcpcallitem). |
+| item_id | string | The ID of the [MCP tool call item](#realtimeconversationmcpcallitem). |
 | output_index | integer | The index of the output item in the response. |
 
 ### response.foundry_agent_call_arguments.delta
@@ -2101,7 +2101,7 @@ The server `response.output_item.added` event is returned when a new item is cre
 
 The server `response.output_item.done` event is returned when an item is done streaming.
 
-This event is also returned when a response is interrupted, incomplete, or canceled.
+This event is also returned when a response is interrupted, incomplete, or cancelled.
 
 #### Event structure
 
@@ -2154,7 +2154,7 @@ The server `response.text.delta` event is returned when the model-generated text
 
 The server `response.text.done` event is returned when the model-generated text is done streaming. The text corresponds to the `text` content part of an assistant message item.
 
-This event is also returned when a response is interrupted, incomplete, or canceled.
+This event is also returned when a response is interrupted, incomplete, or cancelled.
 
 #### Event structure
 
@@ -2568,7 +2568,7 @@ Constrains effort on reasoning for reasoning models. Check model documentation f
 
 ### Tool Configuration
 
-We support two types of tools: function calling and MCP tools which allow you connect to a mcp server.
+We support two types of tools: function calling and MCP tools which allow you connect to an MCP server.
 
 #### RealtimeTool
 
@@ -2602,7 +2602,7 @@ MCP tool configuration.
 | allowed_tools | string[] | Optional. The list of allowed tool names. If not specified, all tools are allowed. |
 | headers | object | Optional. Additional headers to include in MCP requests. |
 | authorization | string | Optional. Authorization token for MCP requests. |
-| require_approval | string or dictionary | Optional. <br/>If set to a string, The value must be `never` or `always`. <br/>If set to a dictionary, it must be in format `{"never": ["<tool_name_1>", "<tool_name_2>"], "always": ["<tool_name_3>"]}`. <br/>Default value is `always`. <br/> When set to `always`, the tool execution requires approval, [mcp_approval_request](#realtimeconversationmcpapprovalrequestitem) will be sent to client when mcp argument done, and will only be executed when [mcp_approval_response](#realtimemcpapprovalresponseitem) with `approve=true` is received. <br/>When set to `never`, the tool will be executed automatically without approval. |
+| require_approval | string or dictionary | Optional. <br/>If set to a string, The value must be `never` or `always`. <br/>If set to a dictionary, it must be in format `{"never": ["<tool_name_1>", "<tool_name_2>"], "always": ["<tool_name_3>"]}`. <br/>Default value is `always`. <br/> When set to `always`, the tool execution requires approval, [mcp_approval_request](#realtimeconversationmcpapprovalrequestitem) will be sent to client when MCP argument done, and will only be executed when [mcp_approval_response](#realtimemcpapprovalresponseitem) with `approve=true` is received. <br/>When set to `never`, the tool will be executed automatically without approval. |
 
 #### FoundryAgentTool
 
