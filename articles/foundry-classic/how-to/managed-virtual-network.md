@@ -119,7 +119,7 @@ After the template deployment completes, verify that the managed virtual network
 
    ```azurecli
    az rest --method GET \
-<!-- NEW-ONLY:      --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules?api-version=2025-10-01-preview" \ -->
+     --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules?api-version=2025-10-01-preview" \
      --query "value[].{name:name, type:properties.type, status:properties.status}"
    ```
 
@@ -133,7 +133,7 @@ The following example creates a private endpoint outbound rule to an Azure Cosmo
 
 ```azurecli
 az rest --method PUT \
-<!-- NEW-ONLY:   --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2025-10-01-preview" \ -->
+  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account-name}/managedNetworks/default/outboundRules/{rule-name}?api-version=2025-10-01-preview" \
   --body '{
     "properties": {
       "type": "PrivateEndpoint",
