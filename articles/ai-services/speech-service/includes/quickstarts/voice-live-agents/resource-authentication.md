@@ -35,7 +35,7 @@ Replace the default values with your actual project name, agent name, and endpoi
 | `PROJECT_ENDPOINT` | The Foundry project endpoint copied from the project welcome screen. |
 | `AGENT_NAME` | The name of the agent to use. |
 | `AGENT_VERSION` | Optional: The version of the agent to use. |
-| `CONVERSATION_ID` | Optional: A specific conversation id to reconnect to. |
+| `CONVERSATION_ID` | Optional: A specific conversation ID to reconnect to. |
 | `PROJECT_NAME` | The name of your Microsoft Foundry project. Project name is the last element of the project endpoint value. |
 | `VOICELIVE_ENDPOINT` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. |
 | `FOUNDRY_RESOURCE_OVERRIDE` | Optional: The Foundry resource name hosting the agent project (for example, `my-resource-name`). |
