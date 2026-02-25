@@ -7,9 +7,10 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 7/31/2025
 ms.custom: references_regions
+ai-usage: ai-assisted
 ---
 
-In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) and [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview) in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) and [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview) in the Microsoft Foundry portal.
 
 [!INCLUDE [Introduction](intro.md)]
 

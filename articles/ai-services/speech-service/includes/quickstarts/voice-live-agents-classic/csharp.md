@@ -8,9 +8,10 @@ ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 11/06/2025
 ms.subservice: azure-ai-foundry-openai
+ai-usage: ai-assisted
 ---
 
-In this article, you learn how to use  Voice Live with [Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
 
 [!INCLUDE [Header](../../common/voice-live-csharp.md)]
 
@@ -34,7 +35,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Start a voice conversation
 
-Follow these steps to create a console application and install the Speech SDK.
+Follow these steps to create a console application and install the Voice Live SDK.
 
 1. Open a command prompt window in the folder where you want the new project. Run this command to create a console application with the .NET CLI.
 
@@ -44,7 +45,7 @@ Follow these steps to create a console application and install the Speech SDK.
 
    This command creates the *Program.cs* file in your project directory.
 
-1. Install the Voice Live SDK, Azure Identity, and NAudio, and other required packages in your new project with the .NET CLI.
+1. Install the required packages in your new project with the .NET CLI.
 
     ```dotnetcli
     dotnet add package Azure.AI.VoiceLive
@@ -77,9 +78,9 @@ Follow these steps to create a console application and install the Speech SDK.
     }
     ```
     
-    The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method
+    The sample code in this quickstart uses Microsoft Entra ID for authentication, as the current integration only supports this authentication method.
   
-    Learn more about [keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
+    For more information, see [Keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
 
 1. In the file `csharp.csproj` add the following information to connect the appsettings.json:
    ```text
@@ -1146,7 +1147,7 @@ Follow these steps to create a console application and install the Speech SDK.
 
 ## Output
 
-The output of the script is printed to the console. You see messages indicating the status of the connection, audio stream, and playback. The audio is played back through your speakers or headphones.
+The application prints output to the console showing connection status, audio stream events, and playback activity. Audio plays back through your speakers or headphones.
 
 ```console
 info: Azure.AI.VoiceLive.Samples.Program[0]
