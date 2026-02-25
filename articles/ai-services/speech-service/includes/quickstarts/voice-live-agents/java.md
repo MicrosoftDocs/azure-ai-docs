@@ -27,7 +27,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 > This document refers to the [Microsoft Foundry (new)](../../../../../ai-foundry/what-is-foundry.md#microsoft-foundry-portals) portal and the latest Foundry Agent Service version.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- [Java Development Kit (JDK)](https://learn.microsoft.com/java/azure/jdk/) version 11 or later.
+- [Java Development Kit (JDK)](/java/azure/jdk/) version 11 or later.
 - [Apache Maven](https://maven.apache.org/download.cgi) installed.
 - The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../../../../ai-foundry/how-to/develop/install-cli-sdk.md).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
