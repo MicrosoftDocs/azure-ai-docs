@@ -8,6 +8,7 @@ manager: nitinme
 ms.date: 12/16/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
+ms.topic: how-to
 ms.custom:
   - build-2025
 zone_pivot_groups: selection-fabric-data-agent
