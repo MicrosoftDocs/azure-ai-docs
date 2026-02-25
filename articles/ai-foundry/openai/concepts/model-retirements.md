@@ -10,6 +10,7 @@ ms.custom:
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin 
+monikerRange: 'foundry-classic || foundry'
 recommendations: false
 ---
 
