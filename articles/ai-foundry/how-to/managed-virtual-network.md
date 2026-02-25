@@ -1,7 +1,7 @@
 ---
 title: Configure managed virtual network for Microsoft Foundry projects (preview)
 ms.service: azure-ai-foundry
-ms.date: 02/24/2026
+ms.date: 02/25/2026
 ms.reviewer: meerakurup
 ms.author: jburchel
 author: jonburchel
@@ -80,7 +80,9 @@ Consider the following limitations before enabling managed network isolation for
 1. Support for managed virtual network is only in the following regions: **East US, East US2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, West Central US, Australia East, Sweden Central, Canada East, South Africa North, West Europe, West US, West US 3, South India, and UK South.**
 1. If you require private access to on-premises resources for your Foundry resource, use [Application Gateway](access-on-premises-resources.md) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA.
 1. Supports only Standard BYO resources Agents v1 and the Foundry classic experience. Basic Agents don't require network isolation.
-1. End-to-end network isolation for Agent MCP tools with managed virtual network is currently not supported. Please use public MCP tools with managed network isolation Foundry. 
+1. End-to-end network isolation for Agent MCP tools with managed virtual network is currently not supported. Use public MCP tools with managed network isolation Foundry.
+1. You can't bring your own Azure Firewall to the managed virtual network. A managed firewall is automatically created for your Foundry account when you use **Allow Only Approved Outbound** mode.
+1. You can't reuse the same managed firewall for multiple Foundry accounts. Each Foundry account creates its own managed firewall when you use **Allow Only Approved Outbound** mode.
 
 
 ## Deploy managed virtual network isolation mode
