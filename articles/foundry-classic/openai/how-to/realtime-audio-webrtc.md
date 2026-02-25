@@ -1183,6 +1183,6 @@ The associated browser changes are shown here.
 
 ## Related content
 
-<!-- NEW-ONLY: * Try the [real-time audio quickstart](../realtime-audio-quickstart.md) -->
+* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

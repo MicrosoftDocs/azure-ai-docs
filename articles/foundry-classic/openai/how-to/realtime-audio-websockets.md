@@ -139,12 +139,12 @@ Events can be sent and received in parallel and applications should generally ha
 - Each caller-initiated [`response.create`](../realtime-audio-reference.md#realtimeclienteventresponsecreate) can override some of the output [`response`](../realtime-audio-reference.md#realtimeresponse) behavior, if desired.
 - Server-created `item` and the `content_part` in messages can be populated asynchronously and in parallel. For example, receiving audio, text, and function information concurrently in a round robin fashion.
 
-<!-- NEW-ONLY: ## Try the quickstart -->
+## Try the quickstart
 
-<!-- NEW-ONLY: Now that you've done the above steps, you can follow the instructions in the [Realtime API quickstart](../realtime-audio-quickstart.md) to get started with the Realtime API via WebSockets. -->
+Now that you've done the above steps, you can follow the instructions in the [Realtime API quickstart](../how-to/realtime-audio.md#quickstart) to get started with the Realtime API via WebSockets.
 
 ## Related content
 
-<!-- NEW-ONLY: * Try the [real-time audio quickstart](../realtime-audio-quickstart.md) -->
+* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

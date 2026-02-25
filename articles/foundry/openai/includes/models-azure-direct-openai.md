@@ -12,7 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 > [!NOTE]
 > Foundry Models sold directly by Azure also include select models from top model providers, such as:
 >
-> - Black Forest Labs: `FLUX.2-pro`, `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
+> - Black Forest Labs: `FLUX.2-flex`, `FLUX.2-pro`, `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
 > - Cohere: `Cohere-command-a`, `embed-v-4-0`, `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast`
 > - DeepSeek: `DeepSeek-V3.2`, `DeepSeek-V3.2-Speciale`, `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
 > - Moonshot AI: `Kimi-K2.5`, `Kimi-K2-Thinking`

@@ -287,7 +287,7 @@ curl --location --request DELETE 'https://management.azure.com/subscriptions/{su
 
 #### [Foundry](#tab/foundry)
 
-<!-- CLASSIC-ONLY: [!INCLUDE [use-blocklists](../../../ai-foundry/includes/use-blocklists.md)] -->
+[!INCLUDE [use-blocklists](../../../ai-foundry/includes/use-blocklists.md)]
 
 ---
 

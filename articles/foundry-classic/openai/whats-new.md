@@ -105,13 +105,13 @@ Personally identifiable information (PII) detection is now available as a built-
 
 ### Sora video-to-video support 
 
-The Sora model from OpenAI now supports video-to-video generation. You can provide a short video as input to generate a new, longer video that incorporates the input video. See the [quickstart](./video-generation-quickstart.md) to get started.
+The Sora model from OpenAI now supports video-to-video generation. You can provide a short video as input to generate a new, longer video that incorporates the input video. See the [quickstart](./concepts/video-generation.md#quickstart) to get started.
 
 ## August 2025
 
 ### Sora image-to-video support
 
-The Sora model from OpenAI now supports image-to-video generation. You can provide an image as input to the model to generate a video that incorporates the content of the image. You can also specify the frame of the video in which the image should appear: it doesn't need to be the beginning. See the [quickstart](./video-generation-quickstart.md) to get started.
+The Sora model from OpenAI now supports image-to-video generation. You can provide an image as input to the model to generate a video that incorporates the content of the image. You can also specify the frame of the video in which the image should appear: it doesn't need to be the beginning. See the [quickstart](./concepts/video-generation.md#quickstart) to get started.
 
 This Sora model is now available in the Sweden Central region and East US 2.
 
@@ -277,7 +277,7 @@ For more information, see our [reasoning model guide](./how-to/reasoning.md).
 
 The `gpt-4o-mini-audio-preview` (`2024-12-17`) model is the latest audio completions model. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
-<!-- NEW-ONLY: The `gpt-4o-mini-realtime-preview` (`2024-12-17`) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./realtime-audio-quickstart.md). -->
+The `gpt-4o-mini-realtime-preview` (`2024-12-17`) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./how-to/realtime-audio.md#quickstart).
 
 For more information about available models, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 
@@ -293,8 +293,8 @@ The `gpt-4o-audio-preview` model is now available for global deployments in [Eas
 
 The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
-<!-- > [!NOTE] (callout removed - content was version-specific) -->
-<!-- NEW-ONLY: > The [Realtime API](./realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. -->
+> [!NOTE]
+> The [Realtime API](./how-to/realtime-audio.md#quickstart) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.
 
 ### GPT Realtime API 2024-12-17
 
@@ -304,7 +304,7 @@ The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global d
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
 - Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
 
-<!-- NEW-ONLY: For more information, see the [GPT real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md). -->
+For more information, see the [GPT real-time audio quickstart](how-to/realtime-audio.md#quickstart) and the [how-to guide](./how-to/realtime-audio.md).
 
 ## December 2024
 

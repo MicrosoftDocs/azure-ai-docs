@@ -28,7 +28,7 @@ The Azure OpenAI GPT Realtime API is now Generally Available (GA). This migratio
 > The Preview version of the API is deprecated starting April 30, 2026. Migrate to the GA version before this date to avoid service disruption.
 
 > [!NOTE]
-> If you're building a new application, refer to the [Realtime API quickstart](../realtime-audio-quickstart.md) instead. This guide is only for migrating existing Preview applications to GA.
+> If you're building a new application, refer to the [Realtime API quickstart](../how-to/realtime-audio.md#quickstart) instead. This guide is only for migrating existing Preview applications to GA.
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ Example of GA endpoint format:
 https://<your-resource>.openai.azure.com/openai/v1/
 ```
 
-See detailed information on the endpoint format in [this article](realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](../realtime-audio-quickstart.md).
+See detailed information on the endpoint format in [this article](realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](../how-to/realtime-audio.md#quickstart).
 
 ## Update WebRTC endpoints
 
@@ -205,5 +205,5 @@ When you migrate to the GA version of the Realtime API, explore these resources 
 - [WebSocket implementation guide](realtime-audio-websockets.md) - Detailed WebSocket configuration
 - [WebRTC implementation guide](realtime-audio-webrtc.md) - Browser-based audio implementation
 - [SIP integration](realtime-audio-sip.md) - Enable phone call integration
-- [Realtime API quickstart](../realtime-audio-quickstart.md) - Additional implementation examples
+- [Realtime API quickstart](../how-to/realtime-audio.md#quickstart) - Additional implementation examples
 - [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) - Cost and billing information
