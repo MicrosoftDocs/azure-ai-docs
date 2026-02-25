@@ -74,7 +74,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
-    :::code language="txt" source="..\..\code-samples\voice-live-agents\requirements":::
+    :::code language="txt" source="..\..\code-samples\voice-live-agents\requirements.txt":::
 
 1. Install the packages:
 
