@@ -59,7 +59,7 @@ items:
   - name: Voice live with Foundry models quickstart
     href: ../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Voice live with Foundry agents quickstart
-    href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    href: ../../../ai-services/speech-service/voice-live-agents-quickstart-classic.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Real-time speech to text
     href: ../../../ai-services/speech-service/get-started-speech-to-text.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Fast transcription
