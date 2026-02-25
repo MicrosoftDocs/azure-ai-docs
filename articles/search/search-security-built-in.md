@@ -1,5 +1,5 @@
 ---
-title: Data, Privacy, and Built-In Protections
+title: Data, Privacy, and Built-in Protections
 titleSuffix: Azure AI Search
 description: Learn about Microsoft-managed security, data residency, encryption, and compliance features built into Azure AI Search.
 manager: nitinme
@@ -7,8 +7,6 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 02/24/2026
 ai-usage: ai-assisted
@@ -16,9 +14,9 @@ ai-usage: ai-assisted
 
 # Data, privacy, and built-in protections in Azure AI Search
 
-This article describes the security features that Microsoft provides and manages automatically in Azure AI Search. These protections are built into the service and require no customer configuration. Understanding what Microsoft handles helps you focus your security efforts on the controls that you're responsible for configuring.
+Azure AI Search includes security protections that Microsoft manages automatically, requiring no customer configuration. Understanding what Microsoft handles helps you focus your security efforts on the controls and configurations for which you're responsible. 
 
-This article covers Microsoft's built-in protections, including network architecture, encryption (in transit, in use, and at rest), data residency, privacy guarantees, and compliance certifications. For actionable security best practices that you should configure, see [Secure your Azure AI Search deployment](search-security-best-practices.md).
+This article covers Microsoft's built-in protections, including network architecture, encryption (in transit, in use, and at rest), data residency, privacy guarantees, and compliance certifications. For security best practices that you should configure, see [Secure an Azure AI Search service](search-security-best-practices.md).
 
 ## What Microsoft manages automatically
 
@@ -36,7 +34,7 @@ Azure AI Search provides comprehensive built-in security protections across netw
 
 ## Network security architecture
 
-Azure AI Search uses Microsoft's secure network infrastructure to protect all traffic to and from your search service.
+Azure AI Search uses Microsoft's secure network infrastructure to protect traffic to, from, and within your search servic
 
 ### Internal traffic protection
 
@@ -48,7 +46,7 @@ Internal traffic includes:
 
 + **Built-in skills processing**: Same-region requests directed to an internally hosted Microsoft Foundry resource used exclusively for [built-in skills processing](cognitive-search-predefined-skills.md) by Azure AI Search.
 
-+ **Semantic ranking**: Requests made to the various models that support [semantic ranking](semantic-search-overview.md#availability-and-pricing).
++ **Semantic ranking**: Requests made to the models that support [semantic ranking](semantic-search-overview.md#availability-and-pricing).
 
 ### Transport Layer Security (TLS)
 
@@ -68,7 +66,7 @@ This same-region optimization ensures high performance and low latency while mai
 
 ## Data encryption
 
-Azure AI Search automatically encrypts all customer data at multiple layers, eliminating the need for customer action or configuration.
+Azure AI Search automatically encrypts all customer data at multiple layers.
 
 ### Data in transit
 
@@ -135,11 +133,11 @@ Resource logs don't capture:
 + Personal information about users
 + Document contents in detail (only metadata about documents being indexed)
 
-For more information about setting up logs, see [Monitor Azure AI Search](monitor-azure-cognitive-search.md) and [Monitor query requests](search-monitor-queries.md).
+For information about setting up logs, see [Monitor Azure AI Search](monitor-azure-cognitive-search.md) and [Monitor query requests](search-monitor-queries.md).
 
 ## Compliance and certifications
 
-Azure AI Search undergoes regular third-party audits and maintains certifications against global, regional, government, and industry-specific standards, including [ISO 27001](/azure/compliance/offerings/offering-iso-27001), [ISO 27018](/azure/compliance/offerings/offering-iso-27018), [ISO 27701](/azure/compliance/offerings/offering-iso-27701), [SOC 2](/azure/compliance/offerings/offering-soc-2), [FedRAMP](/azure/compliance/offerings/offering-fedramp), [HIPAA](/azure/compliance/offerings/offering-hipaa-us),  and [GDPR](/compliance/regulatory/gdpr).
+Azure AI Search undergoes regular third-party audits and maintains certifications against global, regional, government, and industry-specific standards, including [ISO 27001](/azure/compliance/offerings/offering-iso-27001), [ISO 27018](/azure/compliance/offerings/offering-iso-27018), [ISO 27701](/azure/compliance/offerings/offering-iso-27701), [SOC 2](/azure/compliance/offerings/offering-soc-2), [FedRAMP](/azure/compliance/offerings/offering-fedramp), [HIPAA](/azure/compliance/offerings/offering-hipaa-us), and [GDPR](/compliance/regulatory/gdpr).
 
 For complete certification lists, audit reports, and compliance documentation, see:
 
@@ -147,16 +145,16 @@ For complete certification lists, audit reports, and compliance documentation, s
 + [Microsoft Azure Compliance Offerings white paper](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3/)
 + [Microsoft Trust Center](https://www.microsoft.com/trust-center/compliance/compliance-overview)
 
-## Shared responsibility
+### Shared responsibility model
 
 Azure AI Search operates under the [shared responsibility model](/azure/security/fundamentals/shared-responsibility). Microsoft secures the infrastructure and built-in platform features described in this article. You're responsible for configuring security controls for your specific deployment.
 
 + **Microsoft manages** physical security, network infrastructure, platform security, default encryption (in transit, in use, and at rest), compliance certifications, and infrastructure updates.
 
-+ **You configure** network access controls, authentication and authorization, outbound connections, document-level permissions, monitoring and alerting, and optional encryption (CMK and confidential computing).
++ **You configure** network access controls, authentication and authorization, outbound connections, document-level permissions, monitoring and alerting, and optional CMK and confidential computing.
 
 ## Related content
 
-+ [Secure your Azure AI Search deployment](search-security-best-practices.md)
++ [Secure an Azure AI Search service](search-security-best-practices.md)
 + [Azure security fundamentals](/azure/security/fundamentals/)
-+ [Microsoft Defender for Cloud](/azure/security-center/)
++ [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility)
