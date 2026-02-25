@@ -37,8 +37,8 @@ The following OpenAI models support audio generation:
 
 For information about region availability, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
-> [!NOTE]
-> The [Realtime API](../realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.
+<!-- > [!NOTE] (callout removed - content was version-specific) -->
+<!-- NEW-ONLY: > The [Realtime API](../realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. -->
 
 ## Input requirements
 
@@ -47,7 +47,6 @@ The following voices are supported for audio out: Alloy, Ash, Ballad, Coral, Ech
 The following audio output formats are supported: wav, mp3, flac, opus, pcm16, and aac.
 
 The maximum audio file size is 20 MB.
-
 
 ## API support
 

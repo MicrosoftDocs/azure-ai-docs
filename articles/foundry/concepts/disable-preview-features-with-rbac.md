@@ -16,8 +16,6 @@ ai-usage: ai-assisted
 
 # Disable preview features in Microsoft Foundry by using role-based access control (temp)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
-
 In Microsoft Foundry projects, some features are in preview. You can block access to these features by excluding specific data actions from a custom role, and then assigning that role to users.
 
 This article lists the data actions for each preview feature so you can block features individually. Because you can't modify built-in roles in Foundry projects, you need to create a custom role.

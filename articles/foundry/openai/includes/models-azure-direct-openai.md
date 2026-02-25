@@ -509,7 +509,7 @@ For Assistants, you need a combination of a supported model and a supported regi
 | westus           | ✅                       | ✅                       | ✅                            | -               | ✅                        | -                       |✅                            | -                   | -                      | ✅                       | ✅                       | -                          |
 | westus3          | ✅                       | ✅                       | ✅                            | -               | ✅                        | -                       | ✅                            | -                   | -                      | -                      | ✅                       | -                          |
 
-## Model retirement
+<!-- CLASSIC-ONLY: ## Model retirement -->
 
 <!-- CLASSIC-ONLY: For the latest information on model retirements, refer to the [model retirement guide](../concepts/model-retirements.md). -->
 

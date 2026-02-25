@@ -271,7 +271,7 @@ data: [DONE]
 
 All offsets are character positions with 0 at the beginning of the prompt.
 
-## Next steps
+<!-- CLASSIC-ONLY: ## Next steps -->
 
 <!-- CLASSIC-ONLY: - [Configure content filters](../how-to/content-filters.md) - Set up Asynchronous Filter in Foundry portal -->
 <!-- CLASSIC-ONLY: - [Guardrail annotations reference](content-filter-annotations.md) - Detailed annotation schemas and severity levels -->

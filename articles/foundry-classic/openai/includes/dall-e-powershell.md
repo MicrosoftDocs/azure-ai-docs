@@ -12,24 +12,23 @@ ai-usage: ai-assisted
 
 Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Models image generation APIs with PowerShell.
 
-## Prerequisites
+### Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - For this task, <a href="https://aka.ms/installpowershell" target="_blank">the latest version of PowerShell 7</a> is recommended because the examples use new features not available in Windows PowerShell 5.1.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-### Microsoft Entra ID prerequisites
+#### Microsoft Entra ID prerequisites
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-## Retrieve resource information
+### Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-## Generate images
-
+### Generate images
 1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
 
     ```powershell
@@ -112,20 +111,16 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
    The script loops until the generated image is ready.
 
-## Output
+### Output
 
 PowerShell requests the image from Azure OpenAI and stores the output image in the _generated_image.png_ file in your specified directory. For convenience, the full path for the file is returned at the end of the script.
 
 The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../../foundry-models/concepts/content-filter.md).
 
-## Clean up resources
+### Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 - [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure PowerShell](../../../ai-services/multi-service-resource.md?pivots=azpowershell#clean-up-resources)
 
-## Next steps
-
-* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-- Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

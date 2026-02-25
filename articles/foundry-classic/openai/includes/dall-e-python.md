@@ -16,7 +16,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Py
 
 [Library source code](https://github.com/openai/openai-python/tree/main/src/openai) | [Package](https://github.com/openai/openai-python) | [Samples](https://github.com/openai/openai-python/tree/main/examples)
 
-## Prerequisites
+### Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
@@ -28,9 +28,9 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Py
 
 For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-## Setup
+### Setup
 
-### Retrieve key and endpoint
+#### Retrieve key and endpoint
 
 To successfully call the Azure OpenAI APIs, you need the following information about your Azure OpenAI resource:
 
@@ -45,7 +45,7 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
-## Install the Python SDK
+### Install the Python SDK
 
 Open a command prompt and browse to your project folder. Install the OpenAI Python SDK by using the following command:
 
@@ -59,7 +59,7 @@ pip install requests
 pip install pillow 
 ```
 
-## Generate images
+### Generate images
 
 Create a new python file, _quickstart.py_. Open it in your preferred editor or IDE.
 
@@ -122,7 +122,7 @@ python quickstart.py
 
 Wait a few moments to get the response.
 
-## Output
+### Output
 
 Azure OpenAI stores the output image in the _generated_image.png_ file in your specified directory. The script also displays the image in your default image viewer.
 
@@ -131,7 +131,7 @@ A successful response includes:
 - A `data` array with at least one image object
 - Either a `url` (temporary link valid for 24 hours) or `b64_json` (base64-encoded image data)
 
-### Common errors
+#### Common errors
 
 | Error | Cause | Resolution |
 |-------|-------|------------|
@@ -142,15 +142,9 @@ A successful response includes:
 
 The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../../foundry-models/concepts/content-filter.md).
 
-## Clean up resources
+### Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
 - [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
-
-## Next steps
-
-* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).
-* See the [API reference](../reference.md#image-generation)

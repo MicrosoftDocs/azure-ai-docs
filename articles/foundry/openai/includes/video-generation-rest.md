@@ -9,23 +9,12 @@ ms.date: 01/29/2026
 ai-usage: ai-assisted
 ---
 
-## Prerequisites
+### Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](/azure/ai-foundry/openai/concepts/models#video-generation-models).
 <!-- CLASSIC-ONLY: - Then, you need to deploy a `sora` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). -->
-
-## Limitations and quotas
-
-Sora video generation is currently in preview. Keep the following limitations in mind:
-
-- **Region availability**: Sora is available only in **East US 2** and **Sweden Central** (Global Standard deployments).
-- **Supported resolutions**: 480×480, 720×720, 1080×1080, 1280×720, 1920×1080 (width × height).
-- **Video duration**: 5 to 20 seconds (`n_seconds` parameter).
-- **Variants**: Generate 1 to 4 video variants per request (`n_variants` parameter).
-<!-- CLASSIC-ONLY: - **Rate limits**: Subject to your deployment's tokens-per-minute (TPM) quota. See [Quotas and limits](../quotas-limits.md) for details. -->
-- **Content filtering**: Prompts are subject to content moderation. Requests with harmful content are rejected.
 
 ## Microsoft Entra ID prerequisites
 
@@ -33,7 +22,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-## Set up
+### Setup
 
 1. Create a new folder `video-generation-quickstart` and go to the quickstart folder with the following command:
 
@@ -87,11 +76,11 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     The [requests](https://requests.readthedocs.io/) library handles HTTP calls to the REST API.
 
-## Retrieve resource information
+### Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-## Generate video with Sora
+### Generate video with Sora
 
 You can generate a video with the Sora model by creating a video generation job, polling for its status, and retrieving the generated video. The following code shows how to do this via the REST API using Python.
 

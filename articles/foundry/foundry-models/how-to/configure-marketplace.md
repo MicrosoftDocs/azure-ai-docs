@@ -31,7 +31,7 @@ Certain Microsoft Foundry Models are offered directly by the model provider thro
 
 [!INCLUDE [marketplace-rbac](../../foundry-models/includes/configure-marketplace/rbac.md)]
 
-## Country/region availability
+<!-- CLASSIC-ONLY: ## Country/region availability -->
 
 <!-- CLASSIC-ONLY: Users can access models from partners and community with pay-as-you-go billing only if their Azure subscription belongs to a billing account in a country/region or region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](../../how-to/deploy-models-serverless-availability.md). -->
 

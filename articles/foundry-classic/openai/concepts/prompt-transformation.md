@@ -104,4 +104,4 @@ Output Content:
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Image generation quickstart](../dall-e-quickstart.md)
+<!-- NEW-ONLY: > [Image generation quickstart](../dall-e-quickstart.md) -->

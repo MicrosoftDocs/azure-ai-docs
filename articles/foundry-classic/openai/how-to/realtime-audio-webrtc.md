@@ -1182,6 +1182,6 @@ The associated browser changes are shown here.
 
 ## Related content
 
-* Try the [real-time audio quickstart](../realtime-audio-quickstart.md)
+<!-- NEW-ONLY: * Try the [real-time audio quickstart](../realtime-audio-quickstart.md) -->
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

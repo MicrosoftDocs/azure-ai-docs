@@ -94,7 +94,7 @@ To run inference on the deployed model, see the following examples:
 
 - To use the **Chat completions API with models sold by partners**, such as the Llama model deployed in this article, see [Model support for chat completions](../../openai/api-version-lifecycle.md#model-support).
 
-## Regional availability and quota limits of a model
+<!-- CLASSIC-ONLY: ## Regional availability and quota limits of a model -->
 
 <!-- CLASSIC-ONLY: For Foundry Models, the default quota varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI in Microsoft Foundry Models quotas and limits](../../openai/quotas-limits.md) and [Microsoft Foundry Models quotas and limits](../quotas-limits.md). -->
 

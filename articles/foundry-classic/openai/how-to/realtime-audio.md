@@ -13,6 +13,7 @@ ms.custom:
   - classic-and-new
 recommendations: false
 ai-usage: ai-assisted
+zone_pivot_groups: openai-portal-js-python-ts
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
@@ -20,9 +21,13 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. The GPT Realtime API is designed to handle real-time, low-latency conversational interactions. It's a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
+Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
+
+The GPT Realtime API is designed to handle real-time, low-latency conversational interactions. It's a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.
 
 Most users of the Realtime API, including applications that use WebRTC or a telephony system, need to deliver and receive audio from an end-user in real time. The Realtime API isn't designed to connect directly to end user devices. It relies on client integrations to terminate end user audio streams. 
+
+## Connection methods
 
 You can use the Realtime API via WebRTC, session initiation protocol (SIP), or WebSocket to send audio input to the model and receive audio responses in real time. In most cases, we recommend using the WebRTC API for low-latency real-time audio streaming.
 
@@ -39,13 +44,14 @@ For more information, see:
 
 ## Supported models
 
-The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability).
-- `gpt-4o-mini-realtime-preview` (`2024-12-17`)
-- `gpt-4o-realtime-preview` (`2024-12-17` and `2025-06-03`)
-- `gpt-realtime` (`2025-08-28`)
-- `gpt-realtime-mini` (`2025-10-06`)
-- `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
+The GPT real-time models are available for global deployments.
+- `gpt-4o-realtime-preview` (version `2024-12-17`)
+- `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
+- `gpt-realtime` (version `2025-08-28`)
+- `gpt-realtime-mini` (version `2025-10-06`)
+- `gpt-realtime-mini-2025-12-15` (version `2025-12-15`)
 
+For more information, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 > [!NOTE]
 > Token limits vary by model:
 > - **Preview models** (gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview): Input 128,000 / Output 4,096 tokens
@@ -53,9 +59,7 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 
 For the Realtime API, use API version `2025-04-01-preview` in the URL for preview models. For GA models, use the GA API version (without the `-preview` suffix) when possible. 
 
-See the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) for more information.
-
-## Get started
+## Prerequisites
 
 Before you can use GPT real-time audio, you need:
 
@@ -63,9 +67,47 @@ Before you can use GPT real-time audio, you need:
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
 - A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../concepts/foundry-models-overview.md) or from your project in Microsoft Foundry portal. 
 Here are some of the ways you can get started with the GPT Realtime API for speech and audio:
-- For steps to deploy and use the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model, see [the real-time audio quickstart](../realtime-audio-quickstart.md).
+<!-- NEW-ONLY: - For steps to deploy and use the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model, see [the real-time audio quickstart](../realtime-audio-quickstart.md). -->
 - Try the [WebRTC via HTML and JavaScript example](./realtime-audio-webrtc.md#step-3-optional-create-a-websocket-observercontroller) to get started with the Realtime API via WebRTC.
 - [The Azure-Samples/aisearch-openai-rag-audio repo](https://github.com/Azure-Samples/aisearch-openai-rag-audio) contains an example of how to implement RAG support in applications that use voice as their user interface, powered by the GPT realtime API for audio.
+
+## Quickstart
+
+Follow the instructions in this section to get started with the Realtime API via WebSockets. Use the Realtime API via WebSockets in server-to-server scenarios where low latency isn't a requirement.
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript quickstart](../includes/realtime-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+[!INCLUDE [Python quickstart](../includes/realtime-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](../includes/realtime-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Microsoft Foundry portal quickstart](../includes/realtime-portal.md)]
+
+::: zone-end
+
+## API support
+
+Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-08-28` to access the latest Realtime API features. We recommend you select the generally available API version (without '-preview' suffix) when possible.
+
+> [!CAUTION]
+> You need to use **different** endpoint formats for Preview and Generally Available (GA) models. All samples in this article use GA models and GA endpoint format, and don't use `api-version` parameter, which is required for Preview endpoint format only. See detailed information on the endpoint format [in this article](../how-to/realtime-audio-websockets.md#connection-and-authentication). 
+
+> [!NOTE]
+> The Realtime API has specific rate limits for audio tokens and concurrent sessions. Before deploying to production, review [Azure OpenAI quotas and limits](../quotas-limits.md) for your deployment type.
 
 ## Session configuration
 
@@ -516,6 +558,14 @@ Eventually, the server sends a [`response.done`](../realtime-audio-reference.md#
 
 This section provides guidance for common issues when using the Realtime API.
 
+### Authentication errors
+
+If you're using keyless authentication (Microsoft Entra ID) and receive authentication errors:
+
+- Verify the `AZURE_OPENAI_API_KEY` environment variable is **not set**. Keyless authentication fails if this variable exists.
+- Confirm you've run `az login` to authenticate with Azure CLI.
+- Check that your account has the `Cognitive Services OpenAI User` role assigned to the Azure OpenAI resource.
+
 ### Connection errors
 
 | Error | Cause | Resolution |
@@ -537,6 +587,16 @@ If you experience audio quality issues or errors:
 - When using JSON transport, ensure audio chunks are base64-encoded.
 - Check that audio chunks aren't too large; send audio in small increments (recommended: 100ms chunks).
 
+### Rate limit exceeded
+
+If you receive rate limit errors:
+
+- The Realtime API has specific quotas separate from chat completions.
+- Check your current usage in the Azure portal under your Azure OpenAI resource.
+- Implement exponential backoff for retry logic in your application.
+
+For more information about quotas, see [Azure OpenAI quotas and limits](../quotas-limits.md).
+
 ### Session timeout
 
 Realtime sessions have a maximum duration of **30 minutes**. To handle long interactions:
@@ -546,6 +606,6 @@ Realtime sessions have a maximum duration of **30 minutes**. To handle long inte
 
 ## Related content
 
-* Try the [real-time audio quickstart](../realtime-audio-quickstart.md)
+<!-- NEW-ONLY: * Try the [real-time audio quickstart](../realtime-audio-quickstart.md) -->
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

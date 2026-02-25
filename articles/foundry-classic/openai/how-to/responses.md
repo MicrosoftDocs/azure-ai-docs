@@ -1373,7 +1373,7 @@ if image_data:
 
 For examples of how to use reasoning models with the responses API see the [reasoning models guide](./reasoning.md#reasoning-summary).
 
-## Computer use
+<!-- NEW-ONLY: ## Computer use -->
 
 <!-- NEW-ONLY: Computer use with Playwright has moved to the [dedicated computer use model guide](computer-use.md#playwright-integration) -->
 

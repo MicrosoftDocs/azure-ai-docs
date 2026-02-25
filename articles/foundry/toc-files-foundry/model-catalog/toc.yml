@@ -44,7 +44,7 @@ items:
   - name: Image generation quickstart
     href: ../../openai/dall-e-quickstart.md
   - name: Video generation
-    href: ../../openai/video-generation-quickstart.md
+    href: ../../openai/concepts/video-generation.md
   - name: Vision-enabled chats
     href: ../../openai/how-to/gpt-with-vision.md
   - name: Image prompt engineering techniques

@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.date: 01/29/2026
 manager: nitinme
 ai-usage: ai-assisted
+zone_pivot_groups: openai-quickstart-gpt-v
 
 ms.custom:
   - classic-and-new
@@ -27,15 +28,49 @@ The vision-enabled models can answer general questions about what's present in t
 > [!TIP]
 > To use vision-enabled models, you call the Chat Completion API on a supported model that you have deployed. If you're not familiar with the Chat Completion API, see the [Vision-enabled chat how-to guide](/azure/ai-foundry/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
 
-## Prerequisites
+## Quickstart 
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
-- An Azure OpenAI resource with a vision-enabled model deployed (GPT-4o, GPT-4.5, GPT-5, or o-series). See [Create and deploy an Azure OpenAI Service resource](/azure/ai-services/openai/how-to/create-resource).
-- For Python: The `openai` Python package version 1.0 or later. Install with `pip install openai`.
+Get started using images in your chats with Azure OpenAI in Microsoft Foundry Models.
 
-## Call the Chat Completion APIs
+::: zone pivot="ai-foundry-portal"
 
-The following command shows the most basic way to use a vision-enabled chat model with code. If this is your first time using these models programmatically, we recommend starting with our [Chat with images quickstart](../gpt-v-quickstart.md). 
+[!INCLUDE [Foundry portal quickstart](../includes/gpt-v-studio.md)]
+
+::: zone-end
+
+::: zone pivot="rest-api"
+
+[!INCLUDE [REST API quickstart](../includes/gpt-v-rest.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+[!INCLUDE [Python quickstart](../includes/gpt-v-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript quickstart](../includes/gpt-v-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](../includes/gpt-v-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-dotnet"
+
+[!INCLUDE [.NET quickstart](../includes/gpt-v-dotnet.md)]
+
+::: zone-end
+
+## API details
+
+The following commands show how to call the Chat Completion API with vision-enabled models. For more details, see the [API reference](https://aka.ms/gpt-v-api-ref).
 
 #### [REST](#tab/rest)
 
@@ -173,7 +208,7 @@ The following is a sample request body. The format is the same as the chat compl
 > ...
 > ```
 
-## Configure image detail level
+### Configure image detail level
 
 You can optionally define a `"detail"` parameter in the `"image_url"` field. Choose one of three values, `low`, `high`, or `auto`, to adjust the way the model interprets and processes images. 
 - `auto` setting: The default setting. The model decides between low or high based on the size of the image input.
@@ -192,9 +227,7 @@ You set the value using the format shown in this example:
 }
 ```
 
-For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md)
-
-## Output
+### Output
 
 When you send an image to a vision-enabled model, the API returns a chat completion response with the model's analysis. The response includes content filter results specific to Azure OpenAI.
 
@@ -268,6 +301,12 @@ Every response includes a `"finish_reason"` field. It has the following possible
 - `length`: Incomplete model output due to the `max_tokens` input parameter or model's token limit.
 - `content_filter`: Omitted content due to a flag from our content filters.
 
+## Pricing information
+
+Extra usage fees might apply when using chat completion models with vision functionality.
+
+For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md)
+
 ## Troubleshooting
 
 | Issue | Resolution |
@@ -279,6 +318,5 @@ Every response includes a `"finish_reason"` field. It has the following possible
 ## Related content
 
 * [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
-* [Vision-enabled chats quickstart](../gpt-v-quickstart.md)
 * [Vision chats frequently asked questions](../faq.yml#gpt-4-turbo-with-vision)
 * [Chat completions API reference](https://aka.ms/gpt-v-api-ref)
