@@ -6,6 +6,6 @@ items:
   href: ../../../quickstarts/get-started-code.md
 
 - name: "Tutorial: Idea to prototype"
-href: ../../tutorials/developer-journey-idea-to-prototype.md
+  href: ../../tutorials/developer-journey-idea-to-prototype.md
 - name: Ask AI
   href: ../../../concepts/ask-ai.md
