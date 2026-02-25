@@ -5,7 +5,7 @@ description: Get started with Microsoft Foundry SDK building AI applications.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 02/24/2026
+ms.date: 02/25/2026
 ms.service: azure-ai-foundry
 ms.topic: quickstart
 monikerRange: 'foundry-classic || foundry'
