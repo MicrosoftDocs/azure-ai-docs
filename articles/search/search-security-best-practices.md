@@ -36,9 +36,9 @@ Before you configure network security, understand the three network traffic patt
 
 Use one of the following approaches to restrict inbound access to your search service. These approaches are listed from least secure to most secure:
 
-+ [Create IP firewall rules](#Create-IP-firewall-rules)
-+ [Create a private endpoint](#Create-a-private-endpoint)
-+ [Join a network security perimeter](#Join-a-network-security-perimeter)
++ [Create IP firewall rules](#create-ip-firewall-rules)
++ [Create a private endpoint](#create-a-private-endpoint)
++ [Join a network security perimeter](#join-a-network-security-perimeter)
 
 ### Create IP firewall rules
 
