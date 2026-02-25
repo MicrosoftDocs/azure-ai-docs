@@ -88,9 +88,9 @@ Here's a capabilities overview for all three services.
 | Ease of use              | Requires labeling and training to build a custom model, can directly use layout and prebuilt models  | Simple schema definition without  any labeling required to get started. Label to improve.          | Optimize results with prompt engineering                     |
 | Scale for use            | Managed                                            | Managed with connected Gen AI deployment                                            | Manually scale components as needed               |
 | Latency                  | Low                                                | Medium                                             | Depends on PTUs deployed                          |
-| Multi-file inputs        | No                                                 | Yes, support in Pro Mode (preview)    | No                                                |
+| Multi-file inputs        | No                                                 | Yes, support in Pro Mode (`2025-05-01-preview`)    | No                                                |
 | Knowledge base           | No                                                 | Yes  (preview)                                              | Complex and requires engineering                  |
-| Reasoning                | No                                                 | Yes, support in Pro Mode (preview) | Complex and requires engineering                  |
+| Reasoning                | No                                                 | Yes, support in Pro Mode (`2025-05-01-preview`) | Complex and requires engineering                  |
 
 ---
 
@@ -211,7 +211,7 @@ Aggregate content from diverse formats, cross-reference details, validate consis
 :::image type="content" source="media/overview/receipt-mixed.png" alt-text="Scan of a sample receipt form." lightbox="media/overview/receipt-mixed.png":::
 
 **Recommendation**:
-* Content Understanding: With pro mode (preview), Content Understanding can accept multiple input documents in the same request, reason over the content and reference data and generate the required output schema.  
+* Content Understanding: With pro mode (`2025-05-01-preview`), Content Understanding can accept multiple input documents in the same request, reason over the content and reference data and generate the required output schema.  
 * Build a custom solution: This scenario requires an agentic solution where the different input files need to be parsed and collectively reasoned over. The solution requires complex processing to determine document types and expected values and generate a unified output.
 
 

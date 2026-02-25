@@ -1,0 +1,216 @@
+---
+manager: nitinme
+author: PatrickFarley
+ms.author: pafarley
+reviewer: patrickfarley
+ms.reviewer: pafarley
+ms.service: azure-ai-speech
+ms.topic: include
+ms.date: 2/20/2026
+ai-usage: ai-assisted
+---
+
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for JavaScript.
+
+[!INCLUDE [Header](../../common/voice-live-javascript.md)] 
+
+[!INCLUDE [Introduction](intro.md)]
+
+Follow the quickstart below or get a fully working web app with browser-based voice UI:
+
+> [!div class="nextstepaction"]
+> [Voice Live universal assistant sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/voice-live-universal-assistant)
+
+> [!NOTE]
+> The JavaScript Voice Live SDK is designed for browser-based applications with built-in WebSocket and Web Audio support. This quickstart uses Node.js with `node-record-lpcm16` and `speaker` for a console experience.
+
+## Prerequisites
+
+> [!NOTE]
+> This document refers to the [Microsoft Foundry (new)](../../../../../ai-foundry/what-is-foundry.md#microsoft-foundry-portals) portal and the latest Foundry Agent Service version.
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- [Node.js](https://nodejs.org/) version 18 or later.
+- [SoX](https://sox.sourceforge.io/) installed on your system (required by `node-record-lpcm16` for microphone capture).
+- The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../../../../ai-foundry/how-to/develop/install-cli-sdk.md).
+- A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
+- A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../ai-foundry/default/tutorials/quickstart-create-foundry-resources.md).
+<!-- - A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](../../../../../ai-foundry/quickstarts/get-started-code.md). -->
+- Assign the `Azure AI User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+## Prepare the environment
+
+1. Create a new folder `voice-live-quickstart` and go to the quickstart folder with the following command:
+
+    ```shell
+    mkdir voice-live-quickstart && cd voice-live-quickstart
+    ```
+
+1. Create a **package.json** file with the following content:
+
+    :::code language="json" source="~/cognitive-services-quickstart-code/javascript/speech/package.json":::
+
+1. Install the dependencies:
+
+    ```shell
+    npm install
+    ```
+
+## Retrieve resource information
+
+[!INCLUDE [resource authentication](resource-authentication.md)]
+
+## Create an agent with Voice Live settings
+
+1. Create a file **create-agent-with-voicelive.js** with the following code:
+
+    :::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/create-agent-with-voicelive.js":::
+
+1. Sign in to Azure with the following command:
+
+    ```shell
+    az login
+    ```
+
+1. Run the agent creation script:
+
+    ```shell
+    node create-agent-with-voicelive.js
+    ```
+
+## Talk with a voice agent
+
+The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method.
+
+The sample connects to Foundry Agent Service by passing an `agent` config object to `client.createSession(...)` using these fields:
+
+- `agentName`: The agent name to invoke.
+- `projectName`: The Foundry project containing the agent.
+- `agentVersion`: Optional pinned version for controlled rollouts. If omitted, the latest version is used.
+- `conversationId`: Optional conversation ID to continue prior conversation context.
+- `foundryResourceOverride`: Optional resource name when the agent is hosted on a different Foundry resource.
+- `authenticationIdentityClientId`: Optional managed identity client ID used with cross-resource agent connections.
+
+> [!NOTE]
+> Agent mode in Voice Live doesn't support key-based authentication for agent invocation. Use Microsoft Entra ID (for example, `DefaultAzureCredential`) for agent access. Voice Live resource configuration might still include API keys for non-agent scenarios.
+
+1. Create the **voice-live-with-agent.js** file with the following code:
+
+    :::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js":::
+
+1. Sign in to Azure with the following command:
+
+    ```shell
+    az login
+    ```
+
+1. Run the voice assistant:
+
+    ```shell
+    node voice-live-with-agent.js
+    ```
+
+1. You can start speaking with the agent and hear responses. You can interrupt the model by speaking. Enter "Ctrl+C" to quit the conversation.
+
+## Output
+
+The output of the script is printed to the console. You see messages indicating the status of the connection, audio stream, and playback. The audio is played back through your speakers or headphones.
+
+```text
+🎙️  Basic Foundry Voice Agent with Azure VoiceLive SDK (Agent Mode)
+=================================================================
+
+=================================================================
+🎤 VOICE ASSISTANT READY
+Start speaking to begin conversation
+Press Ctrl+C to exit
+=================================================================
+
+🎤 Listening...
+🤔 Processing...
+👤 You said:	Hello.
+🎤 Ready for next input...
+🤖 Agent responded with audio transcript:	Hello! I'm Tobi the agent. How can I assist you today?
+🎤 Listening...
+🤔 Processing...
+👤 You said:	What are the opening hours of the Eiffel Tower?
+🎤 Ready for next input...
+🤖 Agent responded with audio transcript:	The Eiffel Tower's opening hours can vary depending on the season and any special events or maintenance. Generally, the Eiffel Tower is open every day of the year, with the following typical hours:
+
+- Mid-June to early September: 9:00 AM to 12:45 AM (last elevator ride up at 12:00 AM)
+- Rest of the year: 9:30 AM to 11:45 PM (last elevator ride up at 11:00 PM)
+
+These times can sometimes change, so it's always best to check the official Eiffel Tower website or contact them directly for the most up-to-date information before your visit.
+
+Would you like me to help you find the official website or any other details about visiting the Eiffel Tower?
+
+👋 Voice assistant shut down. Goodbye!
+```
+
+A conversation log file is created in the `logs` folder with the name `conversation_YYYYMMDD_HHmmss.log`. This file contains session metadata and the conversation transcript, including user inputs and agent responses.
+
+```text
+SessionID: sess_1m1zrSLJSPjJpzbEOyQpTL
+Agent Name: VoiceAgentQuickstartTest
+Agent Description:
+Agent ID:
+Voice Name: en-US-Ava:DragonHDLatestNeural
+Voice Type: azure-standard
+
+User Input:	Hello.
+Agent Audio Response:	Hello! I'm Tobi the agent. How can I assist you today?
+User Input:	What are the opening hours of the Eiffel Tower?
+Agent Audio Response:	The Eiffel Tower's opening hours can vary depending on the season...
+```
+
+Here are the key differences between the [technical log](#technical-log) and the [conversation log](#conversation-log):
+
+| Aspect | Conversation Log | Technical Log |
+|--------|-------------|---------------|
+| **Audience** | Business users, content reviewers | Developers, IT operations |
+| **Content** | What was said in conversations | How the system is working |
+| **Level** | Application/conversation level | System/infrastructure level |
+| **Troubleshooting** | "What did the agent say?" | "Why did the connection fail?" |
+
+**Example**: If your agent wasn't responding, you'd check:
+- **Console log** → "WebSocket connection failed" or "Audio stream error"
+- **conversation log** → "Did the user actually say anything?"
+
+Both logs are complementary - conversation logs for conversation analysis and testing, technical logs for system diagnostics!
+
+### Technical log
+**Purpose**: Technical debugging and system monitoring
+
+**Contents**:
+- WebSocket connection events
+- Audio stream status
+- Error messages and stack traces
+- System-level events (session.created, response.done, etc.)
+- Network connectivity issues
+- Audio processing diagnostics
+
+**Format**: Console output with bracketed prefixes (for example, `[session]`, `[audio]`, `[init]`)
+
+**Use Cases**:
+- Debugging connection problems
+- Monitoring system performance
+- Troubleshooting audio issues
+- Developer/operations analysis
+
+### Conversation log
+**Purpose**: Conversation transcript and user experience tracking
+
+**Contents**:
+- Agent and project identification
+- Session configuration details
+- **User transcripts**: "Tell me a story", "Stop"
+- **Agent responses**: Full story text and follow-up responses
+- Conversation flow and interactions
+
+**Format**: Plain text, human-readable conversation format
+
+**Use Cases**:
+- Analyzing conversation quality
+- Reviewing what was actually said
+- Understanding user interactions and agent responses
+- Business/content analysis

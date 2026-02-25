@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/04/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: references_regions, dev-focus, pilot-ai-workflow-jan-2026
@@ -28,9 +28,11 @@ This guide shows how to integrate the computer use tool into an application loop
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | - | - | ✔️ | ✔️ |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | - | ✔️ | ✔️ |
 
 > [!NOTE]
 > The Java SDK and REST API do not currently support the Computer Use tool. Use the Python, C#, or TypeScript/JavaScript SDKs.
@@ -40,7 +42,7 @@ This guide shows how to integrate the computer use tool into an application loop
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - The latest prerelease SDK package:
-  - **Python**: `azure-ai-projects>=2.0.0b1`, `azure-identity`, `python-dotenv`
+  - **Python**: `azure-ai-projects>=2.0.0b4`, `python-dotenv`
   - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
   - **TypeScript**: `@azure/ai-projects` v2-beta, `@azure/identity`
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
@@ -116,7 +118,7 @@ import os
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import AgentReference, PromptAgentDefinition, ComputerUsePreviewTool
+from azure.ai.projects.models import PromptAgentDefinition, ComputerUsePreviewTool
 
 # Import shared helper functions
 from computer_use_util import (
@@ -192,7 +194,7 @@ with project_client:
                 ],
             }
         ],
-        extra_body={"agent": AgentReference(name=agent.name).as_dict()},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
         truncation="auto",
     )
 
@@ -248,7 +250,7 @@ while True:
                 },
             }
         ],
-        extra_body={"agent": AgentReference(name=agent.name).as_dict()},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
         truncation="auto",
     )
 

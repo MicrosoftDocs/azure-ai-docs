@@ -62,7 +62,7 @@ You can read an overview of translation and custom translation, learn some tips,
 
 1. Type _Contoso MT models_ for **Workspace name** and select **Next**.
 
-1. Select "Global" for **Select resource region** from the dropdown list.
+1. Select the **region** where your resource is deployed.
 
 1. Copy/paste your Translator Services key.
 

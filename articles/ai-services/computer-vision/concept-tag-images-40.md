@@ -15,10 +15,6 @@ ms.author: pafarley
 
 Image Analysis can return content tags for thousands of recognizable objects, living beings, scenery, and actions that appear in images. Tagging isn't limited to the main subject, such as a person in the foreground, but also includes the setting (indoor or outdoor), furniture, tools, plants, animals, accessories, gadgets, and so on. Tags aren't organized as a taxonomy and don't have inheritance hierarchies. When tags are ambiguous or not common knowledge, the API response provides hints to clarify the meaning of the tag in the context of a known setting.
 
-Try out the image tagging feature quickly and easily in your browser by using Azure Vision Studio.
-
-> [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
 ## Image tagging example
 

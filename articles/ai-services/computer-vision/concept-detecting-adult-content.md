@@ -15,10 +15,6 @@ ms.author: pafarley
 
 Azure Vision in Foundry Tools can detect adult material in images so that developers can restrict the display of these images in their software. Content flags are applied with a score between zero and one so developers can interpret the results according to their own preferences.
 
-Try out the adult content detection features quickly and easily in your browser using Vision Studio.
-
-> [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
 > [!TIP]
 > Azure AI Content Safety is the latest offering in AI content moderation. For more information, see the [Azure AI Content Safety overview](/azure/ai-services/content-safety/overview).
