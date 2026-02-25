@@ -370,7 +370,6 @@
             "redirect_url": "/azure/search/search-what-is-data-import",
             "redirect_document_id": true
         },
-
         {
             "source_path_from_root": "/articles/search/search-get-started-management-api.md",
             "redirect_url": "/rest/api/searchmanagement/",
