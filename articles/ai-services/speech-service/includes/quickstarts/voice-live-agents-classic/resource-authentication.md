@@ -16,7 +16,7 @@ In the `.env` file, add the following environment variables for authentication:
 ```plaintext
 AZURE_VOICELIVE_ENDPOINT=<your_endpoint>
 AZURE_VOICELIVE_PROJECT_NAME=<your_project_name>
-AZURE_VOICELIVE_AGENT_ID=<your_agent_id>
+AZURE_VOICELIVE_AGENT_ID=<your_agent_ID>
 AZURE_VOICELIVE_API_VERSION=2025-10-01
 ```
 
@@ -40,7 +40,7 @@ In the `.env` file, add the following environment variables for authentication:
 ```plaintext
 AZURE_VOICELIVE_ENDPOINT=<your_endpoint>
 AZURE_VOICELIVE_PROJECT_NAME=<your_project_name>
-AZURE_VOICELIVE_AGENT_ID=<your_agent_id>
+AZURE_VOICELIVE_AGENT_ID=<your_agent_ID>
 AZURE_VOICELIVE_API_VERSION=2025-10-01
 AZURE_VOICELIVE_API_KEY=<your_api_key> # Only required if using API key authentication
 ```
