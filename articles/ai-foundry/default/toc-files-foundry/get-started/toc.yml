@@ -4,8 +4,6 @@ items:
  
 - name: "Quickstart: Chat with an agent"
   href: ../../../quickstarts/get-started-code.md
-- name: "Quickstart: Talk to a voice agent"
-  href: ../../../../ai-services/speech-service/voice-live-agents-quickstart.md
 - name: "Tutorial: Idea to prototype"
   href: ../../tutorials/developer-journey-idea-to-prototype.md
 - name: Ask AI
