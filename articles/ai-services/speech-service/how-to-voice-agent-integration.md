@@ -34,9 +34,9 @@ recommendations: false
 [!INCLUDE [JavaScript how-to](./includes/how-to/voice-live-agents/javascript.md)]
 ::: zone-end
 
-## Migration from Agent Service (classic)
+## Migrate from Agent Service (classic)
 
-If you're using Voice Live with Agent Service (classic), you should migrate to the new Foundry Agent Service. For general Agent Service migration steps, see [Migrate from Agent Service (classic) to Foundry Agent Service](/azure/ai-foundry/agents/how-to/migrate?view=foundry).
+If you're using Voice Live with Agent Service (classic), we recommend you migrate to the new Foundry Agent Service. For general Agent Service migration steps, see [Migrate from Agent Service (classic) to Foundry Agent Service](/azure/ai-foundry/agents/how-to/migrate?view=foundry).
 
 ### Voice Live SDK changes
 
