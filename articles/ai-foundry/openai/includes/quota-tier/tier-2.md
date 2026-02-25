@@ -51,6 +51,7 @@ ms.date: 02/18/2026
 | gpt-5.2                        | GlobalStandard    | 20,000      | 2,000,000   |
 | gpt-5.2-chat                   | GlobalStandard    | 20,000      | 2,000,000   |
 | gpt-5.2-codex                  | GlobalStandard    | 20,000      | 2,000,000   |
+| gpt-5.3-codex                  | GlobalStandard    | 20,000      | 2,000,000   |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 18          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 27          | -           |

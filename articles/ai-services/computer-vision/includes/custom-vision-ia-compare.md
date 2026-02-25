@@ -16,7 +16,7 @@ ms.author: pafarley
 |Tasks |Image classification</br>Object detection |Image classification</br>Object detection |
 |Base model |CNN  |Transformer model |
 |Labeling|[Customvision.ai](https://www.customvision.ai/) |AML Studio |
-|Web Portal |[Customvision.ai](https://www.customvision.ai/) |[Vision Studio](https://portal.vision.cognitive.azure.com/gallery/featured) |
+|Web Portal |[Customvision.ai](https://www.customvision.ai/) |N/A |
 |Libraries |REST, SDK |REST, Python Sample |
 |Minimum training data needed |15 images per category |2-5 images per category |
 |Training data storage |Uploaded to service |Customer’s blob storage account |

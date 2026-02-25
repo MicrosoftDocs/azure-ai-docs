@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/04/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026
@@ -33,9 +33,11 @@ In this article, you learn how to:
 
 ## Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 Java SDK samples are not yet available.
 
@@ -43,7 +45,7 @@ Java SDK samples are not yet available.
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md)
 - The latest prerelease SDK package:
-  - **Python**: `pip install azure-ai-projects azure-identity python-dotenv --pre`
+  - **Python**: `pip install azure-ai-projects python-dotenv --pre`
   - **C#**: `dotnet add package Azure.AI.Projects.OpenAI --prerelease`
   - **TypeScript**: `npm install @azure/ai-projects @azure/identity dotenv`
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
@@ -98,7 +100,7 @@ with (
   agent = project_client.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-      model=os.environ["MODEL_DEPLOYMENT_NAME"],
+      model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
       instructions=(
         "You are a helpful agent that can search through product information. "
         "Use file search to answer questions from the uploaded files."
@@ -120,7 +122,7 @@ with (
   response = openai_client.responses.create(
     conversation=conversation.id,
     input="Tell me about Contoso products",
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
   )
   print(response.output_text)
 
@@ -164,7 +166,7 @@ In this example, you create a local file, upload it to Azure, and use it in the 
 ```csharp
 // Create project client and read the environment variables, which is used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 // Create a toy example file and upload it using OpenAI mechanism.
@@ -268,7 +270,7 @@ class FileSearchStreamingDemo
     {
         // Create project client and read the environment variables, which will be used in the next steps.
         var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-        var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
         AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
         // Create a toy example file and upload it using OpenAI mechanism.
@@ -362,7 +364,7 @@ import { fileURLToPath } from "url";
 import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 
 export async function main(): Promise<void> {
   // Load the file to be indexed for search
@@ -446,11 +448,17 @@ main().catch((err) => {
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. Then poll the store's status until all files are out of the `in_progress` state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
+Set the following environment variable before running the examples:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
+
 ### Upload a file
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/files?api-version=$API_VERSION \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/files \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -F purpose="assistants" \
   -F file="@c:\\path_to_file\\sample_file_for_upload.txt"
@@ -460,7 +468,7 @@ curl --request POST \
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/vector_stores?api-version=$API_VERSION \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/vector_stores \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -469,42 +477,41 @@ curl --request POST \
   }'
 ```
 
-## Create an agent version and enable file search
+## Create an agent with the file search tool
 
 ```bash
-curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
   -d '{
-  "description": "Test agent version description",
-  "definition": {
-    "kind": "prompt",
-    "model": "{{model}}",
-    "tools": [
-      {
-        "type": "file_search",
-        "vector_store_ids": ["{{vectorStore.id}}"],
-        "max_num_results": 20
-      }
-    ],
-    "instructions": "You are a customer support chatbot. Use file search results from the vector store to answer questions based on the uploaded files."
-  }
-}'
+    "name": "<AGENT_NAME>-file-search",
+    "description": "Agent with file search",
+    "definition": {
+      "kind": "prompt",
+      "model": "<MODEL_DEPLOYMENT>",
+      "tools": [
+        {
+          "type": "file_search",
+          "vector_store_ids": ["{{vectorStore.id}}"],
+          "max_num_results": 20
+        }
+      ],
+      "instructions": "You are a customer support chatbot. Use file search results from the vector store to answer questions based on the uploaded files."
+    }
+  }'
 ```
 
 ## Create response with file search
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
   "agent": {
     "type": "agent_reference",
-    "name": "{{agentVersion.name}}",
-    "version": "{{agentVersion.version}}"
+    "name": "<AGENT_NAME>-file-search"
   },
   "metadata": {
     "test_response": "file_search_enabled",
@@ -528,34 +535,28 @@ The response returns streaming output containing the agent's answer based on inf
 
 ### Clean up
 
-Delete the agent version.
+Delete the agent.
 
 ```bash
-curl --request DELETE \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions/$AGENTVERSION_VERSION?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{}'
+curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-file-search?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 Delete the vector store.
 
 ```bash
 curl --request DELETE \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/vector_stores/$VECTORSTORE_ID?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{}'
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/vector_stores/$VECTORSTORE_ID \
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
 Delete the file.
 
 ```bash
 curl --request DELETE \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/files/$FILE_ID?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{}'
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/files/$FILE_ID \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
 ```
 
 ### References

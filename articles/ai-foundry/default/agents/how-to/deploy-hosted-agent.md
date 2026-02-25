@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Deploy your containerized agent code to Foundry Agent Service using the Azure Developer CLI or Python SDK.
 author: aahill
 ms.author: aahi
-ms.date: 01/26/2026
+ms.date: 02/19/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -165,10 +165,10 @@ Use the SDK for programmatic deployments or CI/CD integration.
 
 * A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
 * User Access Administrator or Owner permissions on the container registry
-* Azure AI Projects SDK version 2.0.0b3 or later
+* Azure AI Projects SDK version 2.0.0b4 or later
 
     ```bash
-    pip install --pre "azure-ai-projects>=2.0.0b3" azure-identity
+    pip install --pre "azure-ai-projects>=2.0.0b4" azure-identity
     ```
 
 ### Build and push your container image
@@ -241,7 +241,7 @@ az rest --method put `
 ```python
 import os
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import ImageBasedHostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
 from azure.identity import DefaultAzureCredential
 
 endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
@@ -253,7 +253,7 @@ client = AIProjectClient(
 
 agent = client.agents.create_version(
     agent_name="my-agent",
-    definition=ImageBasedHostedAgentDefinition(
+    definition=HostedAgentDefinition(
         container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
         cpu="1",
         memory="2Gi",
@@ -284,7 +284,7 @@ Include tools when creating the agent:
 ```python
 agent = client.agents.create_version(
     agent_name="my-agent",
-    definition=ImageBasedHostedAgentDefinition(
+    definition=HostedAgentDefinition(
         container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
         cpu="1",
         memory="2Gi",
