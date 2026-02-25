@@ -8,9 +8,10 @@ ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 11/06/2025
 ms.subservice: azure-ai-foundry-openai
+ai-usage: ai-assisted
 ---
 
-In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for python. 
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for Python.
 
 [!INCLUDE [Header](../../common/voice-live-python.md)] 
 
@@ -91,7 +92,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Start a conversation
 
-The sample code in this quickstart uses Microsoft Entra ID for authentication as the current integration only supports this authentication method.
+The sample code in this quickstart uses Microsoft Entra ID for authentication, as the current integration only supports this authentication method.
 
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 
@@ -709,11 +710,11 @@ The sample code in this quickstart uses Microsoft Entra ID for authentication as
     python voice-live-agents-quickstart.py
     ```
 
-1. You can start speaking with the agent and hear responses. You can interrupt the model by speaking. Enter "Ctrl+C" to quit the conversation.
+1. Start speaking with the agent and hear responses. To interrupt the agent, speak while it's talking. Enter **Ctrl+C** to quit the conversation.
 
 ## Output
 
-The output of the script is printed to the console. You see messages indicating the status of the connection, audio stream, and playback. The audio is played back through your speakers or headphones.
+The application prints output to the console showing connection status, audio stream events, and playback activity. Audio plays back through your speakers or headphones.
 
 ```text
 ≡ƒÄÖ∩╕Å  Basic Voice Assistant with Azure VoiceLive SDK
@@ -746,7 +747,7 @@ Would you like me to help you find the official website or any other details abo
 ≡ƒæï Voice assistant shut down. Goodbye!
 ```
 
-The script that you ran creates a log file named `<timestamp>_voicelive.log` in the `logs` folder.
+The script creates a log file named `<timestamp>_voicelive.log` in the `logs` folder.
 
 ```python
 logging.basicConfig(
@@ -757,7 +758,7 @@ logging.basicConfig(
 )
 ```
 
-The `voicelive.log` file contains information about the connection to the Voice Live API, including the request and response data. You can view the log file to see the details of the conversation.
+The `voicelive.log` file contains information about the connection to the Voice Live API, including the request and response data.
 
 ```text
 2025-10-28 10:26:12,768:__main__:INFO:Using Azure token credential
@@ -802,7 +803,7 @@ No body was attached to the request
 2025-10-28 10:27:09,759:__main__:INFO:Audio processor cleaned up
 ```
 
-Further a session log file is created in the `logs` folder with the name `<timestamp>_conversation.log`. This file contains detailed information about the session, including the request and response data.
+A session log file is also created in the `logs` folder with the name `<timestamp>_conversation.log`. This file contains detailed information about the session, including the request and response data.
 
 ```text
 SessionID: sess_Oics8h0KxxxxPne71S1k
@@ -823,7 +824,7 @@ These times can sometimes change, so it's always best to check the official Eiff
 Would you like me to help you find the official website or any other details about visiting the Eiffel Tower?
 ```
 
-Here are the key differences between the [technical log](#technical-log) and the [conversation log](#conversation-log):
+The following table describes the key differences between the [technical log](#technical-log) and the [conversation log](#conversation-log):
 
 | Aspect | Conversation Log | Technical Log |
 |--------|-------------|---------------|
@@ -836,7 +837,7 @@ Here are the key differences between the [technical log](#technical-log) and the
 - **voicelive.log** ΓåÆ "WebSocket connection failed" or "Audio stream error"
 - **conversation.log** ΓåÆ "Did the user actually say anything?"
 
-Both logs are complementary - conversation logs for conversation analysis and testing, technical logs for system diagnostics!
+Both logs are complementary: conversation logs for conversation analysis and testing, technical logs for system diagnostics.
 
 ### Technical log
 **Purpose**: Technical debugging and system monitoring
@@ -885,7 +886,7 @@ To use the quickstart with a hub-based project, you need to retrieve the connect
 
 For hub-based projects, use the connection string instead of the project name to connect your agent.
 
-Further you must obtain a separate authentication token from scope 'https://ml.azure.com/.default'.
+You must also obtain a separate authentication token from scope `https://ml.azure.com/.default`.
 
 Make the following changes to the quickstart code:
 

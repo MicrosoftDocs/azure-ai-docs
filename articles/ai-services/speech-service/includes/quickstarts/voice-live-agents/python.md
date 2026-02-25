@@ -10,7 +10,7 @@ ms.date: 2/20/2026
 ai-usage: ai-assisted
 ---
 
-In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for python.
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for Python.
 
 [!INCLUDE [Header](../../common/voice-live-python.md)] 
 
@@ -74,7 +74,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
-    :::code language="txt" source="..\..\code-samples\voice-live-agents\requirements":::
+    :::code language="txt" source="..\..\code-samples\voice-live-agents\requirements.txt":::
 
 1. Install the packages:
 
