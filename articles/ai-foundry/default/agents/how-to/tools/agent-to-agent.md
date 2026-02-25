@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -31,11 +31,11 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 
 ## Usage support
 
-The following table shows SDK and setup support. A checkmark (✔️) indicates support; a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support. ✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 > [!NOTE]
 > The Java SDK does not currently support A2A tools with the new agent APIs (`azure-ai-projects` package). A2A integration is available through Python, C#, TypeScript, and REST API only.
@@ -130,7 +130,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    A2ATool,
+    A2APreviewTool,
 )
 
 load_dotenv()
@@ -146,7 +146,7 @@ with (
         os.environ["A2A_PROJECT_CONNECTION_NAME"],
     )
 
-    tool = A2ATool(
+    tool = A2APreviewTool(
         project_connection_id=a2a_connection.id,
     )
 
@@ -166,7 +166,7 @@ with (
         stream=True,
         tool_choice="required",
         input=user_input,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:
