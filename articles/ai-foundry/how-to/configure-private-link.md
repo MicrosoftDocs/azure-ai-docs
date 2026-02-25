@@ -181,7 +181,7 @@ Network-secured Standard Agents and evaluations support full network isolation a
 
 To secure egress (outbound) traffic through network injection, configure an Azure Firewall or another firewall. This configuration helps inspect and control outbound traffic before it leaves your virtual network.
 
-:::image type="content" source="../media/how-to/network/hub-spoke-network.png" alt-text="Diagram of the hub and spoke network isolation for Foundry projects and agents." lightbox="../media/how-to/network/hub-spoke-network.png":::
+:::image type="content" source="../media/how-to/network/network-diagram-agents.png" alt-text="Diagram of the firewall configuration for egress traffic from Foundry projects and agents." lightbox="../media/how-to/network/network-diagram-agents.png":::
 
 ## Troubleshoot private link issues
 
