@@ -70,7 +70,7 @@ By default, a search service accepts authenticated and authorized requests over 
 + [Configure firewall rules](service-configure-firewall.md) to restrict network access by IP address.
 + [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the import wizards won't run.
 
-To learn about inbound and outbound calls in Azure AI Search, see [Secure an Azure AI Search service](search-security-best-practices.md).
+To learn about inbound and outbound calls in Azure AI Search, see [Understand network traffic patterns](search-security-best-practices.md#understand-network-traffic-patterns).
 
 ## Check capacity and understand billing
 

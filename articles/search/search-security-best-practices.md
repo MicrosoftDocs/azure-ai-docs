@@ -278,7 +278,7 @@ Use this checklist to ensure you've configured appropriate security controls:
 
 - [ ] Configured document-level access control (if required)
 - [ ] Configured sensitivity labels (if applicable)
-- [ ] Implemented customer-managed key encryption (if required)
+- [ ] Implemented CMK encryption (if required)
 - [ ] Evaluated confidential computing requirements (if applicable)
 
 **Monitoring and compliance**:
