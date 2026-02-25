@@ -15,7 +15,7 @@ Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-fou
 
 [!INCLUDE [Introduction](intro.md)]
 
-#### [Foundry (new) portal](#tab/foundry-new)
+<!-- #### [Foundry (new) portal](#tab/foundry-new) -->
 
 ## Prerequisites
 
@@ -36,11 +36,11 @@ To try out the Voice Live demo, follow these steps:
 
 1. Select the agent you created previously to go to the **Agent playground**.
 
-1. Switch the **Enable Voice Live for this agent** toggle **On**. Your agent now connects to Voice Live.
+1. Switch the **Voice mode** toggle **On**. Your agent now connects to Voice Live.
 
-1. Expand the right pane, which contains the Voice Live settings. Optionally choose a voice, adjust the VAD settings, set the voice temperature and speed, and other settings to configure voice behavior.
+1. Expand the right pane, which contains the Voice Live settings. Optionally choose a voice, adjust the VAD settings, set the voice temperature and speed, and change other settings to configure voice behavior.
  
-1. Select **Start** to start speaking and select **End** to end the chat session.
+1. Select **Start session** to start the voice conversation, and select **End** to end the chat session.
 
 <!-- #### [Foundry (classic) portal](#tab/foundry-classic)
 
@@ -72,4 +72,8 @@ To try out the Voice Live demo, follow these steps:
 
 1. Edit other settings as needed, such as the **Voice**, **Speaking rate**, and **Voice activity detection (VAD)**.
 
-1. Select **Start** to start speaking and select **End** to end the chat session. -->
+1. Select **Start** to start speaking and select **End** to end the chat session. 
+
+---
+
+-->

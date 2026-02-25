@@ -4,7 +4,8 @@ items:
   href: ../../guardrails/guardrails-overview.md
 - name: How to configure Guardrails and controls
   href: ../../guardrails/how-to-create-guardrails.md
-
+- name: Third party Guardrail integrations
+  href: ../../guardrails/third-party-integrations.md
 # Content Filtering and Risk Detection
 - name: Content filters
   items:
