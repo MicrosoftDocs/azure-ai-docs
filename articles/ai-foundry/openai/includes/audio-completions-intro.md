@@ -38,7 +38,7 @@ The following OpenAI models support audio generation:
 For information about region availability, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 > [!NOTE]
-> The [Realtime API](../realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.
+> The [Realtime API](../how-to/realtime-audio.md#quickstart) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.
 
 ## Input requirements
 

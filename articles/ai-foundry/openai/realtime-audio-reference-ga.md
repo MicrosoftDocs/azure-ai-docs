@@ -1717,5 +1717,5 @@ Server:
 
 ## Related content
 
-* Get started with the [Realtime API quickstart](./realtime-audio-quickstart.md).
+* Get started with the [Realtime API quickstart](./how-to/realtime-audio.md#quickstart).
 * Learn more about [How to use the Realtime API](./how-to/realtime-audio.md).
