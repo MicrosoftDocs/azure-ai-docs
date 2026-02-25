@@ -48,7 +48,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a **package.json** file with the following content:
 
-    :::code language="json" source="..\..\code-samples\voice-live-agents\package.json":::
+    :::code language="json" source="~/cognitive-services-quickstart-code/javascript/speech/package.json":::
 
 1. Install the dependencies:
 
@@ -64,7 +64,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file **create-agent-with-voicelive.js** with the following code:
 
-    :::code language="javascript" source="..\..\code-samples\voice-live-agents\create-agent-with-voicelive.js":::
+    :::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/create-agent-with-voicelive.js":::
 
 1. Sign in to Azure with the following command:
 
@@ -96,7 +96,7 @@ The sample connects to Foundry Agent Service by passing an `agent` config object
 
 1. Create the **voice-live-with-agent.js** file with the following code:
 
-    :::code language="javascript" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.js":::
+    :::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js":::
 
 1. Sign in to Azure with the following command:
 

@@ -60,7 +60,7 @@ Pin your agent to a specific version to enable controlled deployments. This lets
 
 Set the `AGENT_VERSION` environment variable or pass the `agentVersion` parameter when initializing the assistant:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="9,27,35-38":::
+:::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="9,27,35-38":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -82,7 +82,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="14-18,29-30,37-38":::
+:::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="14-18,29-30,37-38":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -97,7 +97,7 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 Send a proactive message to initiate conversations as soon as the session is ready. This sample checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and triggers a response.
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="452-469" highlight="3-17":::
+:::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java" range="452-469" highlight="3-17":::
 
 In this sample, proactive messaging is applied in three steps:
 
@@ -115,7 +115,7 @@ This feature supports two modes:
 
 The voice assistant created with the quickstart shows the required code additions to configure this feature as follows:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="310-335" highlight="3-13,20":::
+:::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java" range="310-335" highlight="3-13,20":::
 
 In this sample, the interim response setup is applied inside `BasicVoiceAssistant.setupSession()`:
 
@@ -140,7 +140,7 @@ Reconnect to a previous conversation by specifying the conversation ID. This pre
 
 When a session connects successfully, Voice Live returns session metadata in the `SESSION_UPDATED` event. The sample extracts the session ID and logs it to the conversation file:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="362-379":::
+:::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java" range="362-379":::
 
 In this event handler, the session ID is extracted from the event JSON using `extractField(event, "id")` and written to the conversation log.
 
@@ -148,7 +148,7 @@ The sample code writes session details to a conversation log file in the `logs/`
 
 To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable (or the `conversationId` parameter):
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="512,537-540":::
+:::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java" range="512,537-540":::
 
 In this sample, conversation reconnect is applied in three places:
 
@@ -171,7 +171,7 @@ Log key session metadata, including the session ID, to a timestamped conversatio
 
 The following code creates the log filename and writes session metadata when `SESSION_UPDATED` is received:
 
-:::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="92-95,362-379,471-482" highlight="1-4,8-9,23-34":::
+:::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java" range="92-95,362-379,471-482" highlight="1-4,8-9,23-34":::
 
 In this sample, session metadata logging is applied in three places:
 
