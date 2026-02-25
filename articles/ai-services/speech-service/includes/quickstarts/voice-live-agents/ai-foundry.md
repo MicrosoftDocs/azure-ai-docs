@@ -7,9 +7,11 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 2/20/2026
 ms.custom: references_regions
+ai-usage: ai-assisted
+
 ---
 
-In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) and [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview) in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) and [Azure Speech in Foundry Tools](/azure/ai-services/speech-service/overview) in the Microsoft Foundry portal.
 
 [!INCLUDE [Introduction](intro.md)]
 
@@ -34,7 +36,7 @@ To try out the Voice Live demo, follow these steps:
 
 1. Select the agent you created previously to go to the **Agent playground**.
 
-1. Switch the **Enable Voice Live for this agent** toggle **On**. Now your agent is connected Voice Live.
+1. Switch the **Enable Voice Live for this agent** toggle **On**. Your agent now connects to Voice Live.
 
 1. Expand the right pane, which contains the Voice Live settings. Optionally choose a voice, adjust the VAD settings, set the voice temperature and speed, and other settings to configure voice behavior. The **Proactive engagement** toggle allows the agent to speak first in the conversation.
  

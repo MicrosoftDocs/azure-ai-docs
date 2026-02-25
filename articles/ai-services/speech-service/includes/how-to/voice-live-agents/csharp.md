@@ -96,7 +96,7 @@ The configuration is resolved in `Main()` and applied when the assistant is crea
 
 ## Add a proactive message at session start
 
-Voice Live can initiate conversations by sending a proactive message when the session is ready. The assistant checks a one-time flag in the `SessionUpdateSessionUpdated` event handler, sends a greeting prompt, and then triggers a response.
+Send a proactive message to initiate conversations when the session is ready. The assistant checks a one-time flag in the `SessionUpdateSessionUpdated` event handler, sends a greeting prompt, and triggers a response.
 
 :::code language="csharp" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.cs" range="399-431" highlight="3-32":::
 
@@ -138,7 +138,7 @@ See [Handle voice interruptions in chat history (preview)](../../../how-to-voice
 
 ## Reconnect to a previous agent conversation
 
-Voice Live lets you reconnect to a previous conversation by specifying the conversation ID. This preserves conversation history and context, allowing users to continue where they left off.
+Reconnect to a previous conversation by specifying the conversation ID. This preserves history and context, allowing users to continue where they left off.
 
 When a session connects successfully, Voice Live returns session metadata in the `SessionUpdateSessionUpdated` event. Extract the session ID and log it to the conversation file:
 

@@ -10,7 +10,7 @@ ms.date: 2/20/2026
 ai-usage: ai-assisted
 ---
 
-In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for python.
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for Python.
 
 [!INCLUDE [Header](../../common/voice-live-python.md)] 
 

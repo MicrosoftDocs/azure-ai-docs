@@ -10,7 +10,7 @@ ms.date: 2/20/2026
 ai-usage: ai-assisted
 ---
 
-In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for python. This article extends the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) with more details on the features and integration options.
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for Python. This article builds on the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) with advanced features and integration options.
 
 [!INCLUDE [Header](../../common/voice-live-python.md)] 
 
@@ -31,7 +31,7 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 ## Prepare the environment and create the agent
 
-Please complete the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) to prepare the environment and setup the agent with Voice Live settings and run the first test with the Voice Live service to talk to your agent.
+Complete the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) to set up your environment, configure the agent with Voice Live settings, and test your first conversation.
 
 ## Agent integration concepts
 
@@ -53,11 +53,11 @@ Pin a supported `api_version` in the client to keep behavior predictable across 
 
 Treat agent thread and trace records as text-turn history, not exact playback history. If your app allows interruption or truncation, enable truncation-aware handling so persisted history better matches what the user actually heard.
 
-## Connecting to a specific agent version
+## Connect to a specific agent version
 
-Voice Live supports connecting to a specific version of your agent, enabling controlled deployments where production uses a stable version while development tests newer iterations.
+Pin your agent to a specific version to enable controlled deployments. This lets production use stable versions while development tests newer iterations.
 
-To connect to a specific agent version, set the `AGENT_VERSION` environment variable or pass the `agent_version` parameter when initializing the assistant:
+Set the `AGENT_VERSION` environment variable or pass the `agent_version` parameter when initializing the assistant:
 
 :::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="247-270,292-298,482-518" highlight="8,19,29,37,66":::
 
@@ -69,9 +69,9 @@ In this sample, the version configuration is applied in three places:
 
 The `agent_version` value corresponds to the version string returned when you create or update an agent using the Foundry Agent SDK. If not specified, Voice Live connects to the latest version of the agent.
 
-## Connecting to an agent on a different Foundry resource
+## Connect to an agent on a different Foundry resource
 
-You can configure Voice Live to connect to an agent hosted on a different Foundry resource than the one used for audio processing. This is useful when:
+Configure Voice Live to connect to an agent on a different Foundry resource for audio processing. This is useful when:
 - The agent is deployed in a region that has different feature availability
 - You want to separate development/staging environments from production
 - Your organization uses different resources for different workloads
@@ -94,7 +94,7 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 ## Add a proactive message at session start
 
-Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and then triggers a response.
+Send a proactive message to initiate conversations as soon as the session is ready. This sample checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and triggers a response.
 
 :::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="275,376-407" highlight="1,15-32":::
 
@@ -104,11 +104,11 @@ In this sample, proactive messaging is applied in three steps:
 - In the `SESSION_UPDATED` branch, `if not self.greeting_sent:` gates proactive execution to run once per session.
 - `conn.conversation.item.create(...)` adds the greeting instruction to conversation context, and `conn.response.create()` generates spoken output.
 
-## Improving tool calling and latency wait times
+## Improve tool calling and latency wait times
 
-Voice Live provides a feature called `interim_response` to bridge wait times when tool calling is required or a high latency is experienced to generate an agent response.
+Use Voice Live's `interim_response` feature to bridge wait times during tool calling or when generating agent responses with high latency.
 
-The feature supports the following two modes:
+This feature supports two modes:
 - LlmInterimResponseConfig: LLM-generated interim response - best for dynamic and adaptive starts
 - InterimResponseTrigger: Pre-generated interim response - best for deterministic or branded messaging
 
@@ -135,9 +135,9 @@ For setup details and supported options, see [Handle voice interruptions in chat
 
 ## Reconnect to a previous agent conversation
 
-Voice Live enables you to reconnect to a previous conversation by specifying the conversation ID. This preserves the conversation history and context, allowing users to continue where they left off.
+Reconnect to a previous conversation by specifying the conversation ID. This preserves history and context, allowing users to continue where they left off.
 
-When a session connects successfully, Voice Live returns session metadata in the `SESSION_UPDATED` event:
+Voice Live returns session metadata in the `SESSION_UPDATED` event when a session connects successfully:
 
 :::code language="python" source="..\..\code-samples\voice-live-agents\voice-live-with-agent-v2.py" range="377-385":::
 
@@ -162,7 +162,7 @@ When a valid `conversation_id` is provided, the agent retrieves the previous con
 
 ## Log session metadata for continuity and diagnostics
 
-The sample logs key session metadata, including the session ID, to a timestamped conversation log file under `logs/`. This helps you:
+Log key session metadata, including the session ID, to a timestamped conversation log file under `logs/`. This helps you:
 
 - Identify the session for debugging and support scenarios.
 - Correlate user-reported behavior with session metadata.

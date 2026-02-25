@@ -10,7 +10,7 @@ ms.date: 2/20/2026
 ai-usage: ai-assisted
 ---
 
-In this article, you learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for Java. This article extends the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) with more details on the features and integration options.
+Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for Java. This article builds on the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) with advanced features and integration options.
 
 [!INCLUDE [Header](../../common/voice-live-java.md)] 
 
@@ -32,7 +32,7 @@ In this article, you learn how to use Voice Live with [Microsoft Foundry Agent S
 
 ## Prepare the environment and create the agent
 
-Complete the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) to prepare the environment, set up the agent with Voice Live settings, and run the first test with the Voice Live service to talk to your agent.
+Complete the [Quickstart: Create a Voice Agent with Foundry Agent Service and Voice Live](../../../voice-live-agents-quickstart.md) to set up your environment, configure the agent with Voice Live settings, and test your first conversation.
 
 ## Agent integration concepts
 
@@ -54,11 +54,11 @@ Use a consistent SDK version (`azure-ai-voicelive:1.0.0-beta.5`) in the Maven PO
 
 Treat agent thread and trace records as text-turn history, not exact playback history. If your app allows interruption or truncation, enable truncation-aware handling so persisted history better matches what the user actually heard.
 
-## Connecting to a specific agent version
+## Connect to a specific agent version
 
-Voice Live supports connecting to a specific version of your agent, enabling controlled deployments where production uses a stable version while development tests newer iterations.
+Pin your agent to a specific version to enable controlled deployments. This lets production use stable versions while development tests newer iterations.
 
-To connect to a specific agent version, set the `AGENT_VERSION` environment variable or pass the `agentVersion` parameter when initializing the assistant:
+Set the `AGENT_VERSION` environment variable or pass the `agentVersion` parameter when initializing the assistant:
 
 :::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="9,27,35-38":::
 
@@ -70,9 +70,9 @@ In this sample, the version configuration is applied in three places:
 
 The `agentVersion` value corresponds to the version string returned when you create or update an agent using the Foundry Agent SDK. If not specified, Voice Live connects to the latest version of the agent.
 
-## Connecting to an agent on a different Foundry resource
+## Connect to an agent on a different Foundry resource
 
-You can configure Voice Live to connect to an agent hosted on a different Foundry resource than the one used for audio processing. This is useful when:
+Configure Voice Live to connect to an agent on a different Foundry resource for audio processing. This is useful when:
 - The agent is deployed in a region that has different feature availability
 - You want to separate development/staging environments from production
 - Your organization uses different resources for different workloads
@@ -95,7 +95,7 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 ## Add a proactive message at session start
 
-Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and then triggers a response.
+Send a proactive message to initiate conversations as soon as the session is ready. This sample checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and triggers a response.
 
 :::code language="java" source="..\..\code-samples\voice-live-agents\VoiceLiveWithAgentV2.java" range="452-469" highlight="3-17":::
 
@@ -105,11 +105,11 @@ In this sample, proactive messaging is applied in three steps:
 - In the `SESSION_UPDATED` branch, `if (!greetingSent)` gates proactive execution to run once per session.
 - `sendEvent(new ClientEventConversationItemCreate()...)` adds the greeting instruction to conversation context, and `sendEvent(new ClientEventResponseCreate())` generates spoken output.
 
-## Improving tool calling and latency wait times
+## Improve tool calling and latency wait times
 
-Voice Live provides a feature called `interimResponse` to bridge wait times when tool calling is required or a high latency is experienced to generate an agent response.
+Use Voice Live's `interimResponse` feature to bridge wait times during tool calling or when generating agent responses with high latency.
 
-The feature supports the following two modes:
+This feature supports two modes:
 - `LlmInterimResponseConfig`: LLM-generated interim response - best for dynamic and adaptive starts
 - `InterimResponseTrigger`: Pre-generated interim response - best for deterministic or branded messaging
 
@@ -136,7 +136,7 @@ For setup details and supported options, see [Handle voice interruptions in chat
 
 ## Reconnect to a previous agent conversation
 
-Voice Live enables you to reconnect to a previous conversation by specifying the conversation ID. This preserves the conversation history and context, allowing users to continue where they left off.
+Reconnect to a previous conversation by specifying the conversation ID. This preserves history and context, allowing users to continue where they left off.
 
 When a session connects successfully, Voice Live returns session metadata in the `SESSION_UPDATED` event. The sample extracts the session ID and logs it to the conversation file:
 
@@ -163,7 +163,7 @@ When a valid `conversationId` is provided, the agent retrieves the previous conv
 
 ## Log session metadata for continuity and diagnostics
 
-The sample logs key session metadata, including the session ID, to a timestamped conversation log file under `logs/`. This helps you:
+Log key session metadata, including the session ID, to a timestamped conversation log file under `logs/`. This helps you:
 
 - Identify the session for debugging and support scenarios.
 - Correlate user-reported behavior with session metadata.

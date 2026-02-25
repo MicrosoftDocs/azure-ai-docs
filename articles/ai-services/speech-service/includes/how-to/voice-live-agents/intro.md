@@ -4,16 +4,18 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 2/20/2026
 ms.author: pafarley
+ai-usage: ai-assisted
+
 ---
 
-You can create and run an application to use Voice Live with agents for real-time voice conversations.
+Create and run applications to use Voice Live with agents for real-time conversations.
 
-Agents offer several advantages over direct API calls:
+Agents provide several advantages:
 
-- Manage prompts and configuration centrally in the agent itself, not in session code.
-- Encapsulate complex logic and conversational behaviors for easier updates.
-- Reduce manual configuration by using the agent ID to connect automatically.
-- Support multiple variations and business logic without changing client code.
+- Use centralized configuration in the agent itself instead of session code.
+- Handle complex logic and conversational behaviors for easier updates.
+- Connect automatically by using your agent ID.
+- Support multiple variations without changing client code.
 
 To use Voice Live without Foundry agents, see the [Voice Live API quickstart](/azure/ai-services/speech-service/voice-live-quickstart).
 
