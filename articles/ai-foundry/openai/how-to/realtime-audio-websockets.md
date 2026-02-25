@@ -156,10 +156,10 @@ Events can be sent and received in parallel and applications should generally ha
 
 ## Try the quickstart
 
-Now that you've done the above steps, you can follow the instructions in the [Realtime API quickstart](../realtime-audio-quickstart.md) to get started with the Realtime API via WebSockets.
+Now that you've done the above steps, you can follow the instructions in the [Realtime API quickstart](../how-to/realtime-audio.md#quickstart) to get started with the Realtime API via WebSockets.
 
 ## Related content
 
-* Try the [real-time audio quickstart](../realtime-audio-quickstart.md)
+* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

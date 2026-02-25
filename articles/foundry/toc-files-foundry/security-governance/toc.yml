@@ -4,6 +4,8 @@ items:
   # Access Control
   - name: Authentication and authorization
     href: ../../concepts/authentication-authorization-foundry.md
+  - name: Hide preview features with Azure tags
+    href: ../../how-to/disable-preview-features.md
   - name: Disable preview features with role-based access control
     href: ../../concepts/disable-preview-features-with-rbac.md
   - name: Role-based access control

@@ -3,7 +3,7 @@ title: "Evaluation Cluster Analysis (temp)"
 description: "Learn how to run and interact with an evaluation cluster analysis. (temp)" 
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 02/25/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt

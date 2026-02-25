@@ -31,7 +31,7 @@ To check if a specific connector has a trigger capability, view its documentatio
 
 ## Set up
 
-1. In the [Azure portal](https://portal.azure.com/#browse/Microsoft.Logic%2Fworkflows), go the page for Logic Apps.
+1. In the [Azure portal](https://portal.azure.com/#browse/Microsoft.Logic%2Fworkflows), go to the page for Logic Apps.
 1. Create a Logic Apps resource. Provide all required information, and select the **Consumption - multi-tenant** type.
 
 ### Assign proper RBAC permissions
@@ -123,11 +123,23 @@ The **Create Run** connector creates a new [run](../concepts/threads-runs-messag
 
 To configure the **Create Run** connector, select it and provide the following information:
 
-* **The ID Of The Thread To Create A Message For** (required): The ID of the thread that you created. Select the function icon to select the **id** parameter from your previous **Create Thread** connector output.
+* **The ID of the Thread to Create a message for** (required): The ID of the thread that you created. Select the function icon to select the **id** parameter from your previous **Create Thread** connector output.
 
   :::image type="content" source="../media\triggers\create-run.png" alt-text="Screenshot of the Create Run connector." lightbox="../media\triggers\create-run.png":::
 
 * **Assistant_id** (required): The ID of the agent that you created.
+
+> [!TIP]
+> You can retrieve the **Assistant ID** by using the **List Agents** connector earlier in your workflow.  
+>  
+> 1. Add the **List Agents** action before the **Create Run** action.  
+> 2. The output of **List Agents** contains all agents in your Foundry project, including their `id` values.  
+> 3. In the **Assistant_id** field, select the **Dynamic content** icon and choose the `id` property from the **List Agents** output.  
+>  
+> Alternatively, you can find the Assistant ID in the Microsoft Foundry portal by:
+> 1. Opening your Foundry project.
+> 2. Selecting your agent.
+> 3. Copying the agent **ID** from the agent details page.
 
 * **Messages** (optional): The message that you want the AI agent to respond to. Add the role as **user** for the message. It can be the event payload from the trigger; for example, a form response field. It can also be a constant message; for example, always triggering with the phrase "*what is the latest AI news this week?*"
 

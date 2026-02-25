@@ -4,7 +4,7 @@ description: "Learn how to run evaluators on a single row of data and a larger t
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: minthigpen
-ms.date: 11/25/2025
+ms.date: 02/25/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:

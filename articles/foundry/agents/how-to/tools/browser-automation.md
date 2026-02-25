@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/04/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -32,9 +32,11 @@ By using [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-worksp
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 > [!NOTE]
 > The Java SDK does not currently support the Browser Automation tool. If you need browser automation in a Java application, use the REST API directly.
@@ -71,7 +73,7 @@ Before you begin, make sure you have:
 For Python examples, install the required packages:
 
 ```bash
-pip install azure-ai-projects azure-identity python-dotenv
+pip install azure-ai-projects python-dotenv
 ```
 
 For the latest features, you might need the prerelease version:
@@ -141,31 +143,29 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    BrowserAutomationAgentTool,
+    BrowserAutomationPreviewTool,
     BrowserAutomationToolParameters,
     BrowserAutomationToolConnectionParameters,
 )
 
 load_dotenv()
 
-project_client = AIProjectClient(
-    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-openai_client = project_client.get_openai_client()
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
 
-connection_id = os.environ["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"]
-
-tool = BrowserAutomationAgentTool(
-    browser_automation_preview=BrowserAutomationToolParameters(
-        connection=BrowserAutomationToolConnectionParameters(
-            project_connection_id=connection_id,
+    tool = BrowserAutomationPreviewTool(
+        browser_automation_preview=BrowserAutomationToolParameters(
+            connection=BrowserAutomationToolConnectionParameters(
+                project_connection_id=os.environ["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"],
+            )
         )
     )
-)
 
-with project_client:
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
@@ -188,7 +188,7 @@ with project_client:
             Enter the value 'MSFT', to get information about the Microsoft stock price.
             At the top of the resulting page you will see a default chart of Microsoft stock price.
             Click on 'YTD' at the top of that chart, and report the percent value that shows up just below it.""",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:
@@ -200,7 +200,7 @@ with project_client:
             print(f"\nFollow-up response done!")
         elif event.type == "response.output_item.done":
             item = event.item
-            if item.type == "browser_automation_preview_call":  # TODO: support browser_automation_preview_call schema
+            if item.type == "browser_automation_preview_call":
                 arguments_str = getattr(item, "arguments", "{}")
 
                 # Parse the arguments string into a dictionary
@@ -212,6 +212,10 @@ with project_client:
         elif event.type == "response.completed":
             print(f"\nFollow-up completed!")
             print(f"Full response: {event.response.output_text}")
+
+    print("\nCleaning up...")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 
 ### What this code does
@@ -331,7 +335,7 @@ The following cURL sample demonstrates how to create an agent with Browser Autom
 
 ```bash
 curl --request POST \
-  --url "${FOUNDRY_PROJECT_ENDPOINT}/openai/responses?api-version=${API_VERSION}" \
+  --url "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
   --header "Authorization: Bearer ${AGENT_TOKEN}" \
   --header "Content-Type: application/json" \
   --header "User-Agent: insomnia/11.6.1" \
@@ -527,7 +531,7 @@ This tool uses a Playwright workspace resource to run browser sessions. Review t
 
 - **Workspace not found**: Verify your `FOUNDRY_PROJECT_ENDPOINT` uses the correct format: `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`. Don't use the legacy Azure ML endpoint format.
 - **Unexpected keyword argument errors**: Ensure you're using the latest version of `azure-ai-projects`. Run `pip install azure-ai-projects --pre --upgrade` to update.
-- **Import errors**: Install all required packages: `pip install azure-ai-projects azure-identity python-dotenv`.
+- **Import errors**: Install all required packages: `pip install azure-ai-projects python-dotenv`.
 
 :::zone-end
 

@@ -13,6 +13,7 @@ ms.custom:
   - ignite-2023
   - references_regions
   - build-2025
+ai-usage: ai-assisted
 
 ROBOTS: NOINDEX, NOFOLLOW
 ---
@@ -129,10 +130,10 @@ The following section provides you with a quick guide to the default quotas and 
 | Maximum training job time (job fails if exceeded) | 720 hours. |
 | Maximum training job size `(tokens in training file) x (# of epochs)` | 2 billion. |
 | Maximum size of all files per upload (Azure OpenAI on your data) | 16 MB. |
-| Maximum number or inputs in array with `/embeddings` | 2,048. |
+| Maximum number of inputs in array with `/embeddings` | 2,048. |
 | Maximum number of `/chat/completions` messages | 2,048. |
 | Maximum number of `/chat/completions` functions | 128. |
-| Maximum number of `/chat completions` tools | 128. |
+| Maximum number of `/chat/completions` tools | 128. |
 | Maximum number of provisioned throughput units per deployment | 100,000. |
 | Maximum files per assistant or thread | 10,000 when using the API or the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).|
 | Maximum file size for assistants and fine-tuning | 512 MB via the API<br/><br/>200 MB via the [Foundry portal](https://ai.azure.com/?cid=learnDocs). |
@@ -179,7 +180,7 @@ Azure OpenAI usage tiers are designed to provide consistent performance for most
 - Latency can vary and, in some cases, may be more than two times higher than when operating within your usage tier.
 - This variability is most noticeable for customers with high sustained usage or bursty traffic patterns.
 
-### Recommended actions If you exceed your usage tier
+### Recommended actions if you exceed your usage tier
 If you encounter 429 errors or notice increased latency variability, here’s what you should do:
 
 - Request a quota increase: visit the Azure portal to request a higher quota for your subscription.
@@ -233,6 +234,11 @@ To view quota capacity by region for a specific model or version, you can query 
 > Currently, both the Foundry portal and the capacity API return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
 
 See the [API reference](/rest/api/aiservices/accountmanagement/model-capacities/list).
+
+Before you run the example:
+
+- Install dependencies: `pip install azure-identity requests`
+- Sign in with an Azure identity that can read model capacities for the subscription.
 
 ```python
 import requests

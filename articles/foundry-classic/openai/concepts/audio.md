@@ -22,9 +22,9 @@ For information about the available audio models per region in Azure OpenAI, see
 > [!IMPORTANT]
 > The content filtering system isn't applied to prompts and completions processed by audio models in Azure OpenAI, such as Whisper.
 
-<!-- NEW-ONLY: ## GPT-4o audio Realtime API -->
+## GPT-4o audio Realtime API
 
-<!-- NEW-ONLY: GPT real-time audio supports real-time, low-latency conversational interactions for scenarios that require responsive bidirectional audio exchange. For more information on how to use GPT real-time audio, see the [GPT real-time audio quickstart](../realtime-audio-quickstart.md) and [how to use GPT-4o audio](../how-to/realtime-audio.md). -->
+GPT real-time audio supports real-time, low-latency conversational interactions for scenarios that require responsive bidirectional audio exchange. For more information on how to use GPT real-time audio, see the [GPT real-time audio quickstart](../how-to/realtime-audio.md#quickstart) and [how to use GPT-4o audio](../how-to/realtime-audio.md).
 
 ## GPT-4o audio completions
 
@@ -42,4 +42,4 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 - [Audio models](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models)
 - [Whisper quickstart](../whisper-quickstart.md)
 - [Audio generation quickstart](../audio-completions-quickstart.md)
-<!-- NEW-ONLY: - [GPT real-time audio quickstart](../realtime-audio-quickstart.md) -->
+- [GPT real-time audio quickstart](../how-to/realtime-audio.md#quickstart)

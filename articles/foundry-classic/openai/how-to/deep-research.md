@@ -387,5 +387,5 @@ Enabling web search and MCP servers introduces security risks. Follow these best
 > [!div class="nextstepaction"]
 > [Use the Azure OpenAI Responses API](responses.md)
 
-> [!div class="nextstepaction"]
+<!-- > [!div class="nextstepaction"] (callout removed - content was version-specific) -->
 <!-- NEW-ONLY: > [Web search (preview)](web-search.md) -->

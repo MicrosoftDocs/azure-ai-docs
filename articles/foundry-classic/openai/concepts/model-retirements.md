@@ -5,11 +5,13 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 01/30/2026
-ms.custom: 
+ms.custom:
+  - classic-and-new
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin 
 recommendations: false
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Azure OpenAI in Microsoft Foundry model deprecations and retirements (classic)

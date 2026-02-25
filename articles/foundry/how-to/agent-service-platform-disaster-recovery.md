@@ -6,7 +6,7 @@ description: "Recover Foundry Agent Service projects from Azure platform and reg
 #customer intent: As a developer, I want to understand how to recreate projects in a standby region so that I can restore critical functionality during a regional outage.
 author: jonburchel
 ms.author: jburchel
-ms.date: 02/02/2026    
+ms.date: 02/24/2026
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
 ms.custom:
@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # Foundry Agent Service platform outage recovery (temp)
 
-This article covers recovery from Azure platform incidents that take an entire region or a regional dependency offline. Examples of these incidents include prolonged regional outages or loss of a stateful dependency.
+In this article, you learn how to recover your Foundry Agent Service projects from Azure platform incidents that take an entire region or a regional dependency offline. Examples of these incidents include prolonged regional outages or loss of a stateful dependency.
 
 The recommended approach to [design for recovery](/azure/well-architected/reliability/principles#design-for-recovery) in your workload is a warm standby, failover, and failback plan for mass outages combined with per-service recovery capabilities for localized outages.
 
@@ -240,9 +240,8 @@ Remember that an unplanned failover is a temporary state, and you must fail back
 
 - Recovery point: State is preserved up to about 10 minutes before the Storage failback. Expect some data loss.
 
-## Next step
+## Next steps
 
-Account for human-based failures in your recovery design.
-
-> [!div class="nextstepaction"]
-> [Resource and data loss recovery strategies](agent-service-operator-disaster-recovery.md)
+- [Resource and data loss recovery strategies](agent-service-operator-disaster-recovery.md) - Account for human-caused and automation-caused failures in your recovery design.
+- [Foundry Agent Service disaster recovery overview](./agent-service-disaster-recovery.md) - Review prerequisites, platform limitations, and baseline configuration.
+- [High availability and resiliency guidance](high-availability-resiliency.md) - Design your workload for continuous availability.

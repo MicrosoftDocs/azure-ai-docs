@@ -665,7 +665,7 @@ Get a container for a specific version of an agent.
 ### Agent containers - list agent version container operations
 
 ```HTTP
-<!-- NEW-ONLY: GET {endpoint}/agents/{agent_name}/versions/{agent_version}/containers/default/operations?api-version=v1 -->
+GET {endpoint}/agents/{agent_name}/versions/{agent_version}/containers/default/operations?api-version=v1
 ```
 
 List container operations for a specific version of an agent.

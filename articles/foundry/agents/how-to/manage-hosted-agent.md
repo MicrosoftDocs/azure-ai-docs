@@ -3,7 +3,7 @@ title: "Manage hosted agent lifecycle (temp)"
 description: "Start, stop, update, and delete hosted agent deployments using the Azure CLI or Python SDK. (temp)"
 author: aahill
 ms.author: aahi
-ms.date: 01/26/2026
+ms.date: 02/19/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -217,7 +217,6 @@ Test your running agent using the SDK:
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import AgentReference
 
 endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
 agent_name = os.environ["AZURE_AI_AGENT_NAME"]
@@ -231,7 +230,7 @@ with (
     
     response = openai_client.responses.create(
         input=[{"role": "user", "content": "Hello! What can you help me with?"}],
-        extra_body={"agent": AgentReference(name=agent.name, version="1").as_dict()}
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}}
     )
     
     print(f"Response: {response.output_text}")
@@ -260,7 +259,7 @@ You can also test agents in the agent playground UI in the Foundry portal.
 
 - **Forgetting ACR permissions**: The project's managed identity needs explicit pull access to the container registry
 - **Incorrect platform version for docker images**: Always specify `--platform linux/amd64` when doing docker build yourself 
-- **Wrong SDK version**: Hosted agents require `azure-ai-projects>=2.0.0b3`
+- **Wrong SDK version**: Hosted agents require `azure-ai-projects>=2.0.0b4`
 - **Missing capability host**: Create an account-level capability host before deploying. See [Deploy a hosted agent](deploy-hosted-agent.md#create-an-account-level-capability-host)
 - **Publishing identity mismatch**: After publishing, the agent uses a different identity. Reassign RBAC permissions
 

@@ -810,6 +810,6 @@ Sora video generation is currently in preview. Keep the following limitations in
 ---
 
 ## Related content
-- [Image generation quickstart](../dall-e-quickstart.md)
+- [Image generation quickstart](../how-to/dall-e.md)
 * Learn more about Azure OpenAI [deployment types](../../foundry-models/concepts/deployment-types.md).
 <!-- CLASSIC-ONLY: * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md). -->

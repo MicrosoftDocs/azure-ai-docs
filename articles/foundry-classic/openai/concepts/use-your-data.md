@@ -424,7 +424,7 @@ You can deploy to a standalone Teams app directly from [Foundry portal](https://
     > [!IMPORTANT]
     > Your Teams app is intended for use within the same tenant of your Azure account used during setup, as it is securely configured by default for single-tenant usage. Using this app with a Teams account not associated with the Azure tenant used during setup will result in an error.
 
-The README file in your Teams app has additional details and tips. Also, see [Tutorial - Build Custom Copilot using Teams](/microsoftteams/platform/teams-ai-library-tutorial) for guided steps.
+The README file in your Teams app has additional details and tips. Also, see [Tutorial - Build Custom Copilot using Teams](/microsoftteams/platform/teams-ai-library/) for guided steps.
 
 #### [Web app](#tab/web-app)
 

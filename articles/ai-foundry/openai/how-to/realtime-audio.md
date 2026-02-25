@@ -89,7 +89,7 @@ Before you can use GPT real-time audio, you need:
 :::moniker-end
 
 Here are some of the ways you can get started with the GPT Realtime API for speech and audio:
-- For steps to deploy and use a GPT realtime model, see [the real-time audio quickstart](../realtime-audio-quickstart.md).
+- For steps to deploy and use a GPT realtime model, see [the real-time audio quickstart](../how-to/realtime-audio.md#quickstart).
 - Try the [WebRTC via HTML and JavaScript example](./realtime-audio-webrtc.md#step-3-optional-create-a-websocket-observercontroller) to get started with the Realtime API via WebRTC.
 - [The Azure-Samples/aisearch-openai-rag-audio repo](https://github.com/Azure-Samples/aisearch-openai-rag-audio) contains an example of how to implement RAG support in applications that use voice as their user interface, powered by the GPT realtime API for audio.
 
@@ -634,6 +634,6 @@ Realtime sessions have a maximum duration of **30 minutes**. To handle long inte
 
 ## Related content
 
-* Try the [real-time audio quickstart](../realtime-audio-quickstart.md)
+* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

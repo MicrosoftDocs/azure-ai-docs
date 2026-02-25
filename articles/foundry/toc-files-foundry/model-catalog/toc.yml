@@ -41,8 +41,6 @@ items:
   items:
   - name: Image generation
     href: ../../openai/how-to/dall-e.md
-  - name: Image generation quickstart
-    href: ../../openai/dall-e-quickstart.md
   - name: Video generation
     href: ../../openai/concepts/video-generation.md
   - name: Vision-enabled chats
@@ -56,7 +54,7 @@ items:
   - name: Realtime API for speech and audio
     href: ../../openai/how-to/realtime-audio.md
   - name: Realtime API for speech and audio quickstart
-    href: ../../openai/realtime-audio-quickstart.md
+    href: ../../openai/how-to/realtime-audio.md#quickstart
   - name: Realtime API via WebRTC
     href: ../../openai/how-to/realtime-audio-webrtc.md
   - name: Realtime API via WebSockets

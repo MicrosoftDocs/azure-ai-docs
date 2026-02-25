@@ -3,7 +3,7 @@ title: "AI Red Teaming Agent (classic)"
 description: "This article provides conceptual overview of the AI Red Teaming Agent. (classic)"
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 02/25/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt

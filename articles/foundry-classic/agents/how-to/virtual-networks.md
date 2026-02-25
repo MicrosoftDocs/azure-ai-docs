@@ -119,7 +119,6 @@ After the template deployment finishes, verify that all resources are configured
 - **Region availability**:
   - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#available-models).
 - **Azure Blob Storage**: Using Azure Blob Storage files with the File Search tool isn't supported.
-- **Private MCP Server**: Using private MCP servers deployed in the same virtual network isn't supported. Only publicly accessible MCP servers are supported.
 - **Grounding with Bing Search**: Only the following regions are supported:
   - West Europe
   - Canada East
