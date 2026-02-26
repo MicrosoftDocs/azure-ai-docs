@@ -1,17 +1,19 @@
 items:
 - name: Azure Face documentation
   href: face-index.yml
-- name: Face overview
-  href: overview-identity.md
-- name: Quotas and limits
-  href: identity-quotas-limits.md
-- name: Pricing
-  href: https://azure.microsoft.com/pricing/details/cognitive-services/face-api
-- name: Vision Studio
-  href: overview-vision-studio.md
-- name: Face quickstart
-  href: quickstarts-sdk/identity-client-library.md
-
+- name: Overview
+  expanded: true
+  items:
+  - name: What is Azure Face?
+    href: overview-identity.md
+  - name: Quotas and limits
+    href: identity-quotas-limits.md
+  - name: Pricing
+    href: https://azure.microsoft.com/pricing/details/cognitive-services/face-api
+  - name: Vision Studio
+    href: overview-vision-studio.md
+  - name: Face quickstart
+    href: quickstarts-sdk/identity-client-library.md
 - name: Concepts
   items:
   - name: Face detection, attributes, and input data
