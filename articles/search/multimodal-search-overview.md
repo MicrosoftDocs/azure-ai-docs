@@ -118,8 +118,5 @@ To help you get started with multimodal search in Azure AI Search, here's a coll
 | Content | Description |
 |--|--|
 | [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md) | Create and test a multimodal index in the Azure portal using the wizard and Search Explorer. |
-| [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md) | Extract text and images, verbalize diagrams, and embed the resulting descriptions and text into a searchable index. |
-| [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md) | Use a vision-text model to embed both text and images directly, enabling visual-similarity search over scanned PDFs. |
-| [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md) | Apply layout-aware chunking and diagram verbalization, capture location metadata, and store cropped images for precise citations and page highlights. |
-| [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md) | Combine layout-aware chunking with unified embeddings for hybrid semantic and keyword search that returns exact hit locations. |
+| [Multimodal tutorial](tutorial-multimodal.md) | Extract text and images, chunk data, and vectorize the chunks for similarity search and other retrieval patterns. |
 | [Sample app: Multimodal RAG GitHub repository](https://aka.ms/azs-multimodal-sample-app-repo) | An end-to-end, code-ready RAG application with multimodal capabilities that surfaces both text snippets and image annotations. Ideal for jump-starting enterprise copilots. |
