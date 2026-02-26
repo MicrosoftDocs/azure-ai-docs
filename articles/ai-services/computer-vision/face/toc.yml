@@ -11,7 +11,7 @@ items:
   - name: Pricing
     href: https://azure.microsoft.com/pricing/details/cognitive-services/face-api
   - name: What's new
-    href: whats-new-face.md
+    href: ../whats-new-face.md
   - name: Vision Studio
     href: ../overview-vision-studio.md
   - name: Face quickstart
@@ -71,7 +71,7 @@ items:
 - name: Scenario deep-dives
   items:
   - name: Verify a user
-    href: use-case-identity-verification.md
+    href: ../use-case-identity-verification.md
 - name: Samples
   href: https://aka.ms/FaceSamples
 - name: Responsible use of AI
@@ -130,7 +130,7 @@ items:
     - name: Compliance and certification
       href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
   - name: Support and help options
-    href: ../../cognitive-services-support-options.md?context=/azure/ai-services/computer-vision/context/context
+    href: ../../../cognitive-services-support-options.md?context=/azure/ai-services/computer-vision/face/context/context
   - name: Training modules
     href: /training/paths/explore-computer-vision-microsoft-azure/
   - name: Azure updates
