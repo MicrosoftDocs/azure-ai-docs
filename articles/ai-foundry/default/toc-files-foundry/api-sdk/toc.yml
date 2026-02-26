@@ -57,7 +57,7 @@ items:
           - name: 2025-04-01-preview - Authoring 
             href: ../../../openai/authoring-reference-preview.md
           - name: 2025-04-01-preview - Inference 
-            href: ../../openai/reference-preview.md
+            href: ../../../openai/reference-preview.md
   
   - name: REST API (resource creation & deployment)
     href: /rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP
