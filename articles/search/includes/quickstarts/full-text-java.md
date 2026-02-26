@@ -71,16 +71,28 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 Compile and run the application.
 
+### [Windows](#tab/windows)
+
 ```bash
 javac -d target/classes -cp "target/dependency/*" src/main/java/azure/search/sample/*.java
 java -cp "target/classes;target/dependency/*" azure.search.sample.App
 ```
 
-On macOS or Linux, use `:` instead of `;` as the classpath separator.
+### [macOS](#tab/macos)
 
 ```bash
+javac -d target/classes -cp "target/dependency/*" src/main/java/azure/search/sample/*.java
 java -cp "target/classes:target/dependency/*" azure.search.sample.App
 ```
+
+### [Linux](#tab/linux)
+
+```bash
+javac -d target/classes -cp "target/dependency/*" src/main/java/azure/search/sample/*.java
+java -cp "target/classes:target/dependency/*" azure.search.sample.App
+```
+
+---
 
 ### Output
 

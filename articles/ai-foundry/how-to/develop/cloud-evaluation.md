@@ -83,6 +83,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 - A [Foundry project](../../how-to/create-projects.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-5-mini`).
 - **Azure AI User** role on the Foundry project.
+- Optionally, you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
 
 > [!NOTE]
 > Some evaluation features have regional restrictions. See [supported regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
@@ -749,6 +750,9 @@ curl --request POST \
 ---
 
 For a complete runnable example, see [sample_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_model_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
+
+> [!TIP]
+> To add another evaluation run,  you can use the same code.
 
 ## Agent target evaluation
 

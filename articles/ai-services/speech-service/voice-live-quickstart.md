@@ -16,6 +16,11 @@ ms.subservice: azure-ai-foundry-openai
 
 # Quickstart: Create a Voice Live real-time voice agent
 
+Follow the quickstart below or get a fully working web app with browser-based voice UI:
+
+> [!div class="nextstepaction"]
+> [Voice Live universal assistant sample](https://github.com/microsoft-foundry/voicelive-samples/tree/main/voice-live-universal-assistant)
+
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-api/ai-foundry.md)]
 ::: zone-end

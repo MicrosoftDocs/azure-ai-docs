@@ -51,7 +51,7 @@ The current multi-lingual model supports the following languages:
 - Spanish (Mexico) [es-MX]
 - Spanish (Spain) [es-ES]
 
-To use **Automatic multilingual configuration using multilingual model** no extra configuration is required. If you do add the `language` string to the session`session.update` message, make sure to leave it empty.
+To use **Automatic multilingual configuration using multilingual model** no extra configuration is required. If you do add the `language` string to the `session.update` message, make sure to leave it empty.
 
 ```json
 {
@@ -141,14 +141,14 @@ The following languages are supported by `gpt-realtime` and `gpt-realtime-mini`:
 - Vietnamese
 - Welsh
 
-Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription, you can provide the transcription models with a language hint to improve transcription quality. In this case you need to add the `language`string to the session`session.update` message.
+Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription, you can provide the transcription models with a single language hint as ISO-639-1 locale to improve transcription quality. In this case you need to add the `language` string to the session`session.update` message.
 
 ```json
 {
     "session": {
         "input_audio_transcription": {
             "model": "gpt-4o-transcribe",
-            "language": "English, German, French"
+            "language": "en"
         }
 }
 ```

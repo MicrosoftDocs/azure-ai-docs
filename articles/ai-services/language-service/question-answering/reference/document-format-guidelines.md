@@ -43,7 +43,7 @@ To follow is an example of a manual with an index page, and hierarchical content
 
 ### Brochures, guidelines, papers, and other files
 
-Many other types of documents can also be processed to generate question answer pairs, provided they have a clear structure and layout. These documents include: Brochures, guidelines, reports, white papers, scientific papers, policies, books, etc. See an example [here](https://qnamakerstore.blob.core.windows.net/qnamakerdata/docs/Manage%20Azure%20Blob%20Storage.docx).
+Many other types of documents can also be processed to generate question answer pairs, provided they have a clear structure and layout. These documents include: Brochures, guidelines, reports, white papers, scientific papers, policies, books, etc.
 
 To follow is an example of a semi-structured doc, without an index:
 

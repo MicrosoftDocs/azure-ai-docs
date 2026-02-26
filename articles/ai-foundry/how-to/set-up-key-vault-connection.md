@@ -5,7 +5,7 @@ monikerRange: 'foundry-classic || foundry'
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
-ms.date: 02/02/2026
+ms.date: 02/24/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom: dev-focus
@@ -103,6 +103,24 @@ az deployment group create \
   --parameters aiFoundryName=<foundry-resource-name> keyVaultName=<keyvault-name>
 ```
 
+### Verify the deployment
+
+After deployment completes:
+
+1. Navigate to your Foundry resource in the Azure portal.
+1. Select **Management center** in the lower left pane.
+1. Select **Connected resources** and confirm the Azure Key Vault connection appears in the list.
+1. Select the connection to view its properties and verify the Key Vault resource ID.
+
+To verify that the RBAC role assignment is in effect, run the following command:
+
+```azurecli
+az role assignment list \
+  --scope /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.KeyVault/vaults/<keyvault-name> \
+  --query "[?roleDefinitionName=='Key Vault Secrets Officer']" \
+  --output table
+```
+
 ### Reference
 
 - [Microsoft.CognitiveServices/accounts/connections](/azure/templates/microsoft.cognitiveservices/accounts/connections)
@@ -176,7 +194,32 @@ For cleanup, if you automate resource deletion by using templates, follow the cr
 1. Delete all Foundry projects.
 1. Delete the Foundry resource.
 
-## Related content
+## Troubleshooting
 
+### RBAC role assignment delays
+
+After you assign the Key Vault Secrets Officer role, it can take up to 30 minutes for permissions to propagate. If you get permission errors immediately after role assignment, wait and retry.
+
+### Connection not appearing
+
+If the Key Vault connection doesn't appear in **Connected resources**:
+
+1. Verify the deployment completed successfully.
+1. Refresh the portal page.
+1. Check that no other connections exist at the resource or project level. The service blocks Key Vault connection creation when other connections exist.
+
+### Deployment errors
+
+If deployment fails:
+
+- Confirm you have Contributor or Owner role on the resource group.
+- Verify the Key Vault name is correct and the vault exists in your subscription.
+- Check that the Foundry resource name matches exactly.
+
+## Next steps
+
+- Create other connections (storage, endpoints, AI services) that use this Key Vault for secret storage
+- [Add connections to your project](connections-add.md)
+- [Azure Key Vault best practices](/azure/key-vault/general/best-practices)
 - [Azure Key Vault documentation](/azure/key-vault/)
 - [Foundry documentation](/azure/ai-foundry/)

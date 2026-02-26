@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 02/25/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -43,7 +43,7 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 
 [!INCLUDE [uses-fdp-only](../../includes/uses-fdp-only.md)]
 
-[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
+Optionally you can [use your own storage account](../../concepts/evaluation-regions-limits-virtual-network.md#bring-your-own-storage) to run evaluations.
 
 ::: moniker-end
 
@@ -222,7 +222,7 @@ print(f"Red Team scan status: {get_red_team_response.status}")
 curl --request GET \  --header 'authorization: Bearer {{ai_token}}'  --url https://{{account}}.services.ai.azure.com/api/projects/{{project}}/redteams/runs/{{scan_id}}
 ```
 
-- Replace `"{{scan_id}"` with the ID returned by the POST API.
+- Replace `"{{scan_id}}"` with the ID returned by the POST API.
 
 ---
 

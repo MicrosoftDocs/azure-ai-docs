@@ -1,7 +1,7 @@
 ---
 title: Use the image generation tool in Foundry Agent Service (preview)
 titleSuffix: Microsoft Foundry
-description: Learn how to generate images from text prompts in Microsoft Foundry Agent Service by using the image generation tool with gpt-image-1. Configure agents, deploy models, and save output.
+description: Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -9,7 +9,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
-ms.date: 02/04/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-image-generation
@@ -27,9 +27,14 @@ The **image generation tool** in Microsoft Foundry Agent Service generates image
 
 ## Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
+
+> [!NOTE]
+> The Java SDK does not currently support the Image Generation tool. If you need image generation in a Java application, use the REST API directly.
 
 ## Prerequisites
 
@@ -56,7 +61,7 @@ Set these environment variables for the samples:
 
 ## Code examples
 
-Before you start, install the `azure-ai-projects` package (version 2.0.0b1 or later). For package installation instructions, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+Before you start, install the `azure-ai-projects` package (version 2.0.0b4 or later). For package installation instructions, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
 
 :::zone pivot="python"
 ## Create an agent with the image generation tool
@@ -71,46 +76,45 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, ImageGenTool
 
-project_client = AIProjectClient(
-  endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-  credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-with project_client:
-  openai_client = project_client.get_openai_client()
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    image_generation_model = os.environ["IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME"]
 
-  agent = project_client.agents.create_version(
-    agent_name="agent-image-generation",
-    definition=PromptAgentDefinition(
-      model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-      instructions="Generate images based on user prompts.",
-      tools=[ImageGenTool(quality="low", size="1024x1024")],
-    ),
-    description="Agent for image generation.",
-  )
-  print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+    agent = project_client.agents.create_version(
+        agent_name="agent-image-generation",
+        definition=PromptAgentDefinition(
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+            instructions="Generate images based on user prompts.",
+            tools=[ImageGenTool(model=image_generation_model, quality="low", size="1024x1024")],
+        ),
+        description="Agent for image generation.",
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-  response = openai_client.responses.create(
-    input="Generate an image of the Microsoft logo.",
-    extra_headers={
-      "x-ms-oai-image-generation-deployment": os.environ["IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME"],
-    },
-    extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
-  )
-  print(f"Response created: {response.id}")
+    response = openai_client.responses.create(
+        input="Generate an image of the Microsoft logo.",
+        extra_headers={
+            "x-ms-oai-image-generation-deployment": image_generation_model,
+        },
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+    )
+    print(f"Response created: {response.id}")
 
-  image_items = [item for item in (response.output or []) if item.type == "image_generation_call"]
-  if image_items and getattr(image_items[0], "result", None):
-    print("Downloading generated image...")
-    file_path = os.path.abspath("microsoft.png")
-    with open(file_path, "wb") as f:
-      f.write(base64.b64decode(image_items[0].result))
-    print(f"Image downloaded and saved to: {file_path}")
-  else:
-    print("No image data found in the response.")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 
-  project_client.agents.delete_version(agent.name, agent.version)
-  print("Agent deleted")
+    image_data = [output.result for output in response.output if output.type == "image_generation_call"]
+    if image_data and image_data[0]:
+        print("Downloading generated image...")
+        file_path = os.path.abspath("microsoft.png")
+        with open(file_path, "wb") as f:
+            f.write(base64.b64decode(image_data[0]))
+        print(f"Image saved to: {file_path}")
 ```
 :::zone-end
 
@@ -214,56 +218,49 @@ Agent deleted
 The following example creates an agent that uses the image generation tool.
 
 ```bash
-curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
   -d '{
-  "description": "Test agent for image generation capabilities",
-  "definition": {
-  "kind": "prompt",
-  "model": "{{model}}",
-  "tools": [
-    {
-      "type": "image_generation"
+    "name": "image-gen-agent",
+    "description": "Test agent for image generation capabilities",
+    "definition": {
+      "kind": "prompt",
+      "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
+      "tools": [
+        {
+          "type": "image_generation"
+        }
+      ],
+      "instructions": "You are a creative assistant that generates images when requested. Please respond to image generation requests clearly and concisely."
     }
-  ],
-    "instructions": "You are a creative assistant that generates images when requested. Please respond to image generation requests clearly and concisely."
-  }
-}'
+  }'
 ```
 
 ## Create a response
 
 ```bash
-curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
   -H "x-ms-oai-image-generation-deployment: $IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME" \
   -d '{
-  "agent": {
-    "type": "agent_reference",
-    "name": "{{agentVersion.name}}",
-    "version": "{{agentVersion.version}}"
-  },
-  "metadata": {
-    "test_response": "image_generation_enabled",
-    "test_scenario": "basic_imagegen"
-  },
-  "input": [{
-    "type": "message",
-    "role": "user",
-    "content": [
-      {
-        "type": "input_text",
-        "text": "Please generate small image of a sunset over a mountain lake."
-      }
-    ]
-  }],
-  "background": true,
-  "stream": false
-}'
+    "agent": {
+      "type": "agent_reference",
+      "name": "image-gen-agent"
+    },
+    "input": [{
+      "type": "message",
+      "role": "user",
+      "content": [
+        {
+          "type": "input_text",
+          "text": "Please generate small image of a sunset over a mountain lake."
+        }
+      ]
+    }],
+    "stream": false
+  }'
 ```
 :::zone-end
 
@@ -406,7 +403,7 @@ Use the Responses API if you want to:
 
 Effective prompts produce better images. Describe the subject, visual style, and composition you want. Use action words like "draw," "create," or "edit" to guide the model's output.
 
-Content filtering can block image generation if the service detects unsafe content in your prompt. For more information, see [Content filter](../../../../openai/concepts/content-filter.md).
+Content filtering can block image generation if the service detects unsafe content in your prompt. For more information, see [Content filter](../../../../foundry-models/concepts/content-filter.md).
 
 > [!TIP] 
 > For a thorough look at how you can tweak your text prompts to generate different kinds of images, see [Image prompt engineering techniques](../../../../openai/concepts/gpt-4-v-prompt-engineering.md). 
@@ -429,7 +426,7 @@ If you see only text output and no `image_generation_call` item, the request mig
 | Image generation fails | Missing deployment | Verify both the orchestrator model (for example, `gpt-4o`) and `gpt-image-1` deployments exist in the same Foundry project. |
 | Image generation fails | Missing or incorrect header | Verify the header `x-ms-oai-image-generation-deployment` is present on the Responses request and matches your image generation deployment name. |
 | Agent uses wrong deployment | Environment variable misconfiguration | Confirm `FOUNDRY_MODEL_DEPLOYMENT_NAME` is set to your orchestrator deployment name, not the image generation deployment. |
-| Prompt doesn't produce an image | Content filtering blocked the request | Check content filtering logs. See [Content filter](../../../../openai/concepts/content-filter.md) for guidelines on acceptable prompts. |
+| Prompt doesn't produce an image | Content filtering blocked the request | Check content filtering logs. See [Content filter](../../../../foundry-models/concepts/content-filter.md) for guidelines on acceptable prompts. |
 | Tool not available | Regional or model limitation | Confirm the image generation tool is available in your region and with your orchestrator model. See [Best practices for using tools](../../concepts/tool-best-practice.md). |
 | Generated image has low quality | Prompt lacks detail | Provide more specific and detailed prompts describing the desired image style, composition, and elements. |
 | Image generation times out | Large or complex image request | Simplify the prompt or increase timeout settings. Consider breaking complex requests into multiple simpler ones. |
@@ -440,4 +437,4 @@ If you see only text output and no `image_generation_call` item, the request mig
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Image generation in Azure OpenAI](../../../../openai/how-to/dall-e.md)
 - [Responses API in Azure OpenAI](../../../../openai/how-to/responses.md)
-- [Content filter](../../../../openai/concepts/content-filter.md)
+- [Content filter](../../../../foundry-models/concepts/content-filter.md)

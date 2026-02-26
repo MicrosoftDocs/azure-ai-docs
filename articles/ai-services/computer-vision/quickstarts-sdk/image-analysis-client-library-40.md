@@ -49,8 +49,3 @@ Get started with the Image Analysis 4.0 REST API or client SDK to set up a basic
 
 ::: zone-end
 
-::: zone pivot="vision-studio"
-
-[!INCLUDE [Vision Studio quickstart](../includes/image-analysis-studio-quickstart.md)]
-
-::: zone-end

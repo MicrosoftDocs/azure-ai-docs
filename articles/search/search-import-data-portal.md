@@ -226,7 +226,7 @@ Both wizards follow a similar high-level workflow:
 
 1. Run the wizard to create objects, optionally vectorize data, load data into an index, set a schedule, and configure other options.
 
-The workflow is a one-way pipeline. You can't use the wizard to edit any of the objects that were created, but you can use other portal tools, such as the index designer, indexer designer, or JSON editors, to make allowed updates.
+The workflow is a one-way pipeline. You can't use the wizard to edit any of the objects that were created, but you can use other portal tools, such as the index designer or JSON editors, to make allowed updates.
 
 ### Starting the wizards
 

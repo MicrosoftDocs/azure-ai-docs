@@ -17,10 +17,7 @@ Image Analysis can return content tags for thousands of recognizable objects, li
 
 After you upload an image or specify an image URL, the Analyze Image API can output tags based on the objects, living beings, and actions identified in the image. Tagging is not limited to the main subject, such as a person in the foreground, but also includes the setting (indoor or outdoor), furniture, tools, plants, animals, accessories, gadgets, and so on.
 
-Try out the image tagging features quickly and easily in your browser using Vision Studio.
 
-> [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
 ## Image tagging example
 

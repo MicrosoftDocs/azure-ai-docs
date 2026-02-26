@@ -20,6 +20,9 @@ ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
+> [!NOTE]
+> **Retired packages**: The following SDK v1 pipeline packages are being retired: azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps. For v2 pipelines, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
+
 This article provides code for importing data, transforming data, and moving data between steps in an Azure Machine Learning pipeline. For an overview of how data works in Azure Machine Learning, see [Access data in Azure storage services](how-to-access-data.md). For information about the benefits and structure of Azure Machine Learning pipelines, see [What are Azure Machine Learning pipelines?](../concept-ml-pipelines.md).
 
 This article shows how to:
@@ -73,6 +76,9 @@ cats_dogs_dataset = Dataset.File.from_files(path=datastore_path)
 For more information about creating datasets with different options and from different sources, registering them and reviewing them in the Azure Machine Learning UI, understanding how data size interacts with compute capacity, and versioning them, see [Create Azure Machine Learning datasets](how-to-create-register-datasets.md). 
 
 ### Pass datasets to your script
+
+> [!NOTE]
+> The `PythonScriptStep`, `Pipeline`, `DatasetConsumptionConfig` classes are v1 APIs that rely on the retiring pipeline packages (azureml-pipeline, azureml-pipeline-core, azureml-pipeline-steps, azureml-train-core, azureml-pipeline-internal) and should not be used for new development. See the [v2 pipelines documentation](/azure/machine-learning/how-to-create-component-pipeline-python) for the recommended path forward.
 
 To pass the dataset's path to your script, use the `Dataset` object's `as_named_input()` method. You can either pass the resulting `DatasetConsumptionConfig` object to your script as an argument or, by using the `inputs` argument to your pipeline script, you can retrieve the dataset by using `Run.get_context().input_datasets[]`.
 
@@ -161,6 +167,9 @@ ds = Dataset.get_by_name(workspace=ws, name='mnist_opendataset')
 > The preceding snippets show the form of the calls. They aren't part of a Microsoft sample. You need to replace the arguments with values from your own project.
 
 ## Use `OutputFileDatasetConfig` for intermediate data
+
+> [!NOTE]
+> The `OutputFileDatasetConfig` class and related pipeline classes (`Pipeline`, `PythonScriptStep`) are v1 APIs that rely on the retiring pipeline packages (azureml-pipeline, azureml-pipeline-core, azureml-pipeline-steps, azureml-train-core, azureml-pipeline-internal) and should not be used for new development. See the [v2 pipelines documentation](/azure/machine-learning/how-to-create-component-pipeline-python) for the recommended path forward.
 
 Although `Dataset` objects represent only persistent data, [`OutputFileDatasetConfig`](/python/api/azureml-core/azureml.data.outputfiledatasetconfig) objects can be used for temporary data output from pipeline steps and for persistent output data. `OutputFileDatasetConfig` supports writing data to blob storage, fileshare, Azure Data Lake Storage Gen1, or Data Lake Storage Gen2. It supports both mount mode and upload mode. In mount mode, files written to the mounted directory are permanently stored when the file is closed. In upload mode, files written to the output directory are uploaded at the end of the job. If the job fails or is canceled, the output directory isn't uploaded.
 
@@ -266,6 +275,9 @@ Azure doesn't automatically delete intermediate data that's written with `Output
 For more information, see [Plan to manage costs for Azure Machine Learning](../concept-plan-manage-cost.md).
 
 ## Next steps
+
+> [!NOTE]
+> This article applies only to SDK v1. For v2 pipelines and components, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
 
 * [Create an Azure Machine Learning dataset](how-to-create-register-datasets.md)
 * [Create and run machine learning pipelines with Azure Machine Learning SDK](how-to-create-machine-learning-pipelines.md)
