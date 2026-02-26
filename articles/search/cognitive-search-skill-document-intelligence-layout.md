@@ -22,10 +22,7 @@ For transactions that exceed 20 documents per indexer per day, this skill requir
 This article is the reference documentation for the Document Layout skill. For usage information, see [How to chunk and vectorize by document layout](search-how-to-semantic-chunking.md).
 
 > [!TIP]
-> It's common to use this skill on content that has structure and images, such as PDFs. The following tutorials demonstrate image verbalization with two different data chunking techniques:
->
-> - [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
-> - [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)
+> It's common to use this skill on content that has structure and images, such as PDFs. The [Multimodal tutorial](tutorial-multimodal.md) demonstrates image verbalization with two different data chunking strategies.
 
 ## Limitations
 

@@ -417,7 +417,7 @@ If your Azure resource is behind a firewall, make sure there's an inbound rule t
 
 ## See also
 
-+ [Security overview](search-security-overview.md)
++ [Data, privacy, and built-in protections](search-security-built-in.md)
 + [AI enrichment overview](cognitive-search-concept-intro.md)
 + [Indexers overview](search-indexer-overview.md)
 + [Authenticate with Microsoft Entra ID](/azure/architecture/framework/security/design-identity-authentication)
