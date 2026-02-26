@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about keyword recognition and how to use it with the Speech service.
 ---
@@ -87,7 +87,7 @@ Running keyword verification and speech to text in parallel yields the following
 
 ### Keyword verification responses and latency considerations
 
-For each request to the service, keyword verification returns one of two responses: accepted or rejected. The processing latency varies depending on the length of the keyword and the length of the audio segment expected to contain the keyword. Processing latency doesn't include network cost between the client and Speech services.
+For each request to the service, keyword verification returns one of two responses: accepted or rejected. The processing latency varies depending on the length of the keyword and the length of the audio segment expected to contain the keyword. Processing latency doesn't include network cost between the client and the Speech service.
 
 | Keyword verification response | Description |
 | ----------------------------- | ----------- |
@@ -108,7 +108,7 @@ You don't need to explicitly specify any configuration parameters. All necessary
 
 ## Speech SDK integration and scenarios
 
-The Speech SDK enables easy use of personalized on-device keyword recognition models generated with custom keyword and keyword verification. To ensure that your product needs can be met, the SDK supports the following two scenarios:
+The Speech SDK enables easy use of personalized on-device keyword recognition models generated with custom keyword and keyword verification. To ensure that your product needs can be met, the SDK supports the following scenario:
 
 The offline keyword recognition scenario is best suited for products without network connectivity that use a customized on-device keyword model from custom keyword. 
 - [C# on Windows UWP sample](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/csharp/uwp/keyword-recognizer)

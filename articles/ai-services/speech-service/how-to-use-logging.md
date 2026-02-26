@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 zone_pivot_groups: programming-languages-set-two-objective-c
 ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-python
 #Customer intent: As a developer, I want to learn how to enable logging in the Speech SDK so that I can get additional information and diagnostics from the Speech SDK's core components.
@@ -50,7 +50,7 @@ speechConfig.SetProperty(common.SpeechLogFilename, "LogfilePathAndName")
 You can create a recognizer from the configuration object. This enables logging for all recognizers.
 
 > [!NOTE]
-> If you create a `SpeechSynthesizer` from the configuration object, it will not enable logging. If logging is enabled though, you will also receive diagnostics from the `SpeechSynthesizer`.
+> If you create a `SpeechSynthesizer` from the configuration object, it doesn't enable logging. If logging is enabled though, you also receive diagnostics from the `SpeechSynthesizer`.
 
 JavaScript is an exception where the logging is enabled via SDK diagnostics as shown in the following code snippet:
 

@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: concept-article
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 ---

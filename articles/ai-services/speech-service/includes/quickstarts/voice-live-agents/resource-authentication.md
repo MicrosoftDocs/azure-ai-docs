@@ -3,7 +3,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 11/06/2025
+ms.date: 02/25/2026
 ---
 
 #### [Microsoft Entra ID](#tab/keyless)
@@ -59,3 +59,4 @@ Learn more about [finding API keys](/azure/ai-services/cognitive-services-enviro
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ---
+

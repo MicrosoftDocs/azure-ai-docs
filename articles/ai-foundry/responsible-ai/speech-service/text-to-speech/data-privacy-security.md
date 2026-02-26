@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 02/02/2021
+ms.date: 02/25/2026
 ---
 
 # Data, privacy, and security for text to speech
@@ -55,19 +55,19 @@ You are also responsible for obtaining any licenses, permissions, or other right
 
 #### Prebuilt neural voice
 
-The diagram below illustrates how your data is processed for synthesis with prebuilt neural voice. The input is text, and the output is audio. Please note that neither input text nor output audio content will be stored in Microsoft logs.
+The following diagram illustrates how your data is processed for synthesis with prebuilt neural voice. The input is text, and the output is audio. Neither input text nor output audio content is stored in Microsoft logs.
 
 :::image type="content" source="media\prebuilt-voices-data-processing.png" alt-text="diagram of prebuilt neural voice data processing.":::
 
 ### Custom neural voice
 
-The diagram below illustrates how your data is processed for custom neural voice. This diagram covers three different types of processing: how Microsoft verifies recorded acknowledgment statement files of voice talent prior to custom neural voice model training, how Microsoft creates a custom neural voice model with your training data, and how text to speech processes your text input to generate audio content.
+The following diagram illustrates how your data is processed for custom neural voice. This diagram covers three different types of processing: how Microsoft verifies recorded acknowledgment statement files of voice talent prior to custom neural voice model training, how Microsoft creates a custom neural voice model with your training data, and how text to speech processes your text input to generate audio content.
 
 :::image type="content" source="media\data-privacy-image.png" alt-text="How custom neural voice processes data":::
 
 ### Text to speech avatar
 
-The diagram below illustrates how your data is processed for synthesis with prebuilt text to speech avatar. There are three components in an avatar content generation workflow: text analyzer, the TTS audio synthesizer, and TTS avatar video synthesizer. To generate avatar video, text is first input into the text analyzer, which provides the output in the form of phoneme sequence. Then, the TTS audio synthesizer predicts the acoustic features of the input text and synthesize the voice. These two parts are provided by text to speech voice models. Next, the Neural text to speech Avatar model predicts the image of lip sync with the acoustic features, so that the synthetic video is generated.
+The following diagram illustrates how your data is processed for synthesis with prebuilt text to speech avatar. There are three components in an avatar content generation workflow: text analyzer, the TTS audio synthesizer, and TTS avatar video synthesizer. To generate avatar video, text is first input into the text analyzer, which provides the output in the form of phoneme sequence. Then, the TTS audio synthesizer predicts the acoustic features of the input text and synthesize the voice. These two parts are provided by text to speech voice models. Next, the Neural text to speech Avatar model predicts the image of lip sync with the acoustic features, so that the synthetic video is generated.
 
 :::image type="content" source="media\text-to-speech-avatar-data-process.png" alt-text="A diagram of the text to speech avatar data flow.":::
 

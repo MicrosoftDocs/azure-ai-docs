@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.reviewer: jhakulin
 zone_pivot_groups: programming-languages-set-three
 #Customer intent: As a developer, I want to learn how to configure OpenSSL for Linux so that I can use the Speech SDK on my Linux system.
@@ -59,7 +59,7 @@ When the Speech SDK connects to the Speech service, it checks the Transport Laye
 If a destination posing as the Speech service reports a revoked certificate in a retrieved CRL, the SDK terminates the connection and reports an error via a `Canceled` event. The authenticity of a reported certificate can't be checked without an updated CRL. Therefore, the Speech SDK also treats a failure to download a CRL from an Azure CA location as an error.
 
 > [!WARNING]
-> If your solution uses proxy or firewall it should be configured to allow access to all certificate revocation list URLs used by Azure. Note that many of these URLs are outside of `microsoft.com` domain, so allowing access to `*.microsoft.com` is not enough. See [this document](/azure/security/fundamentals/tls-certificate-changes) for details. In exceptional cases you may ignore CRL failures (see [the correspondent section](#bypassing-or-ignoring-crl-failures)), but such configuration is strongly not recommended, especially for production scenarios.
+> If your solution uses a proxy or firewall, it should be configured to allow access to all certificate revocation list URLs used by Azure. Note that many of these URLs are outside of the `microsoft.com` domain, so allowing access to `*.microsoft.com` isn't enough. See [this document](/azure/security/fundamentals/tls-certificate-changes) for details. In exceptional cases you can ignore CRL failures (see [the corresponding section](#bypassing-or-ignoring-crl-failures)), but this configuration is strongly discouraged, especially for production scenarios.
 
 ### Large CRL files
 

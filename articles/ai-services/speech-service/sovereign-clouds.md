@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn how to use Speech service in sovereign clouds.
 ---
@@ -17,7 +17,7 @@ ms.reviewer: jagoerge
 
 ## Azure Government (United States)
 
-Available to US government entities and their partners only. See more information about Azure Government [here](/azure/azure-government/documentation-government-welcome) and [here.](/azure/azure-government/compare-azure-government-global-azure)
+Available to US government entities and their partners only. For more information about Azure Government, see [Azure Government documentation](/azure/azure-government/documentation-government-welcome) and [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure).
 
 - **Azure portal:**
   - [https://portal.azure.us/](https://portal.azure.us/)
@@ -25,7 +25,7 @@ Available to US government entities and their partners only. See more informatio
   - US Gov Arizona
   - US Gov Virginia
 - **Available pricing tiers:**
-  - Free (F0) and Standard (S0). See more details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)
+  - Free (F0) and Standard (S0). For more details, see [Speech Services pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 - **Supported features:**
   - [Speech Studio](https://speech.azure.us/)
   - Speech to text
@@ -52,7 +52,7 @@ Available to US government entities and their partners only. See more informatio
     - Video translation
     - LLM speech
 - **Supported languages:**
-  - Same as public clouds. See the list of supported languages [here](language-support.md)
+  - Same as public clouds. For the list of supported languages, see [Language support](language-support.md).
 
 ### Endpoint information
 
@@ -115,7 +115,7 @@ Replace `usGovEndpoint` with the endpoint from the Azure portal.
 
 ## Microsoft Azure operated by 21Vianet
 
-Available to organizations with a business presence in China. See more information about Microsoft Azure operated by 21Vianet [here](/azure/china/overview-operations). 
+Available to organizations with a business presence in China. For more information about Microsoft Azure operated by 21Vianet, see [Azure China overview](/azure/china/overview-operations).
 
 - **Azure portal:**
   - [https://portal.azure.cn/](https://portal.azure.cn/)
@@ -124,7 +124,7 @@ Available to organizations with a business presence in China. See more informati
   - China North 2
   - China North 3
 - **Available pricing tiers:**
-  - Free (F0) and Standard (S0). See more details [here](https://www.azure.cn/pricing/details/cognitive-services/index.html)
+  - Free (F0) and Standard (S0). For more details, see [Azure China pricing](https://www.azure.cn/pricing/details/cognitive-services/index.html).
 - **Supported features:**
   - [Speech Studio](https://speech.azure.cn/)
   - Speech to text
@@ -150,7 +150,7 @@ Available to organizations with a business presence in China. See more informati
     - Video translation
     - LLM speech
 - **Supported languages:**
-  - Same as public clouds. See the list of supported languages [here](language-support.md)
+  - Same as public clouds. For the list of supported languages, see [Language support](language-support.md).
 
 ### Endpoint information
 

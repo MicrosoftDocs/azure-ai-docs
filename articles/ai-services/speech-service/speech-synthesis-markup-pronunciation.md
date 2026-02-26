@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about Speech Synthesis Markup Language (SSML) elements and improve pronunciation.
 ---
@@ -17,7 +17,7 @@ You can use Speech Synthesis Markup Language (SSML) with text to speech to speci
 
 Refer to the following sections for details about how to use SSML elements to improve pronunciation. For more information about SSML syntax, see [SSML document structure and events](speech-synthesis-markup-structure.md).
 
-## phoneme element
+## Phoneme element
 
 The `phoneme` element is used for phonetic pronunciation in SSML documents. Always provide human-readable speech as a fallback.
 
@@ -33,7 +33,7 @@ Usage of the `phoneme` element's attributes are described in the following table
 | `alphabet` | The phonetic alphabet to use when you synthesize the pronunciation of the string in the `ph` attribute. The string that specifies the alphabet must be specified in lowercase letters. The following options are the possible alphabets that you can specify:<ul><li>`ipa` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md)</li><li>`sapi` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md)</li><li>`ups` &ndash; See [Universal Phone Set](https://documentation.help/Microsoft-Speech-Platform-SDK-11/17509a49-cae7-41f5-b61d-07beaae872ea.htm)</li><li>`x-sampa` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md#map-x-sampa-to-ipa)</li></ul><br>The alphabet applies only to the `phoneme` in the element. | Optional |
 | `ph` | A string containing phones that specify the pronunciation of the word in the `phoneme` element. **Each locale supports a specific phone set**. See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md). If the specified string contains unrecognized phones, text to speech service will return http 400 error for invalid SSML.<br/><br/>For `ipa`, to stress one syllable by placing stress symbol before this syllable, you need to mark all syllables for the word. Or else, the syllable before this stress symbol is stressed. For `sapi`, if you want to stress one syllable, you need to place the stress symbol after this syllable, whether or not all syllables of the word are marked.| Required |
 
-### phoneme examples
+### Phoneme examples
 
 The supported values for attributes of the `phoneme` element were [described previously](#phoneme-element). In the first two examples, the values of `ph="tə.ˈmeɪ.toʊ"` or `ph="təmeɪˈtoʊ"` are specified to stress the syllable `meɪ`.
 
@@ -213,7 +213,7 @@ You can use the `x-microsoft-sapi` as the value for the `alphabet` attribute wit
 </lexicon>
 ```
 
-## say-as element
+## Say-as element
 
 The `say-as` element indicates the content type, such as number or date, of the element's text. This element provides guidance to the speech synthesis engine about how to pronounce the text.
 
@@ -246,7 +246,7 @@ The following content types are supported for the `interpret-as` and `format` at
 | `address`| None | The text is spoken as an address. The speech synthesis engine pronounces:<br /><br />`I'm at <say-as interpret-as="address">150th CT NE, Redmond, WA</say-as>`<br /><br />As "I'm at 150th Court Northeast Redmond Washington."|
 | `name`   | None | The text is spoken as a person's name. The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="name">ED</say-as>`<br /><br />As [æd]. <br />In Chinese names, some characters pronounce differently when they appear in a family name. For example, the speech synthesis engine says 仇 in <br /><br />`<say-as interpret-as="name">仇先生</say-as>`<br /><br /> As [qiú] instead of [chóu]. |
 
-### say-as examples
+### Say-as examples
 
 The supported values for attributes of the `say-as` element were [described previously](#say-as-element).
 
@@ -263,7 +263,7 @@ The speech synthesis engine speaks the following example as "Your first request 
 </speak>
 ```
 
-## sub element
+## Sub element
 
 Use the `sub` element to indicate that the alias attribute's text value should be pronounced instead of the element's enclosed text. In this way, the SSML contains both a spoken and written form. 
 
@@ -273,7 +273,7 @@ Usage of the `sub` element's attributes are described in the following table.
 | ---------- | ---------- | ---------- |
 | `alias` | The text value that should be pronounced instead of the element's enclosed text. | Required |
 
-### sub examples
+### Sub examples
 
 The supported values for attributes of the `sub` element were [described previously](#sub-element).
 
