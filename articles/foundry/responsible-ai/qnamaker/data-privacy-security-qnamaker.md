@@ -1,7 +1,7 @@
 ---
-title: Data and privacy for QnA Maker
+title: "Data and privacy for QnA Maker"
 titleSuffix: Foundry Tools
-description: This document details issues for data, privacy, and security for QnA Maker.
+description: "This document details issues for data, privacy, and security for QnA Maker."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -12,7 +12,6 @@ ms.date: 02/25/2021
 ---
 
 # Data and privacy for QnA Maker
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides some high level details regarding how data is processed by QnA Maker. Its important to remember that you are responsible for your use and the implementation of this technology, including complying with all applicable laws and regulations that apply to you. For example, it's your responsibility to:

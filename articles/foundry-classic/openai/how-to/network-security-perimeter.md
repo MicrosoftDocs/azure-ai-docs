@@ -1,6 +1,6 @@
 ---
-title: Add an Azure OpenAI network security perimeter
-description: Use this article to learn about adding Azure OpenAI to your network security perimeter.
+title: "Add an Azure OpenAI network security perimeter (classic)"
+description: "Use this article to learn about adding Azure OpenAI to your network security perimeter. (classic)"
 ms.date: 11/20/2025
 ms.topic: how-to
 author: aahill
@@ -9,7 +9,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ---
 
-# Add an Azure OpenAI service to a network security perimeter (preview)
+# Add an Azure OpenAI service to a network security perimeter (preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -33,7 +33,6 @@ You can add an Azure OpenAI service to a network security perimeter in the Azure
 * For an Azure OpenAI service within a network security perimeter, the resource must use a system or user-assigned managed identity and have a role assignment that permits read-access to data sources.
 
 * Consider securing with a network security perimeter when configuring Azure Blob Storage for Azure OpenAI. Azure OpenAI now supports using Azure Blob Storage for Azure OpenAI Batch input and output files. Secure communications with Blob Storage and Azure OpenAI by placing both resources in the same perimeter. For more on the Azure OpenAI Batch and Blob Storage scenario, see [Configuring Azure Blob Storage for Azure OpenAI](batch-blob-storage.md).
-
 
 ## Prerequisites
 
@@ -65,7 +64,6 @@ You can add Azure OpenAI to a network security perimeter so that all requests oc
 
 3. Select **Add** > **Associate resources with an existing profile**.
 
-
     :::image type="content" source="../media/network-security-perimeter/add-associated-resources.png" alt-text="A screenshot showing the button to add associated resources." lightbox="../media/network-security-perimeter/add-associated-resources.png":::
 
 4. Select the profile you created when you created the network security perimeter for a profile.
@@ -73,13 +71,10 @@ You can add Azure OpenAI to a network security perimeter so that all requests oc
 
     :::image type="content" source="../media/network-security-perimeter/associate-with-profile.png" alt-text="A screenshot showing the screen for associating resources with a profile." lightbox="../media/network-security-perimeter/associate-with-profile.png":::
 
-
-
 6. Select Associate in the bottom left-hand section of the screen to create the association.
 
 ### Network security perimeter access modes
 Network security perimeter supports two different access modes for associated resources:
-
 
 |Mode |Description  |
 |---------|---------|
@@ -102,7 +97,6 @@ The `publicNetworkAccess` setting determines the Azure OpenAI services associati
 
     :::image type="content" source="../media/network-security-perimeter/change-access-mode.png" alt-text="A screenshot showing the button to change the access mode." lightbox="../media/network-security-perimeter/change-access-mode.png":::
 
-
 5. Select the desired access mode and select Apply.
 
     :::image type="content" source="../media/network-security-perimeter/apply-access-mode.png" alt-text="A screenshot showing the button to apply the access mode." lightbox="../media/network-security-perimeter/apply-access-mode.png":::
@@ -112,7 +106,6 @@ The `publicNetworkAccess` setting determines the Azure OpenAI services associati
 2. Select **Diagnostic settings** in the left-hand menu.
 
     :::image type="content" source="../media/network-security-perimeter/diagnostic-settings.png" alt-text="A screenshot showing the button for navigating to the diagnostic settings." lightbox="../media/network-security-perimeter/diagnostic-settings.png":::
-
 
 3. Select **Add diagnostic setting**.
 4. Enter any name such as "diagnostic" for Diagnostic setting name.
@@ -161,7 +154,6 @@ To add an inbound access rule in the Azure portal:
 
     :::image type="content" source="../media/network-security-perimeter/profiles-selector.png" alt-text="A screenshot showing the button to navigate to the profiles screen." lightbox="../media/network-security-perimeter/profiles-selector.png":::
 
-
 3. Select the profile you're using with your network security perimeter.
 
     :::image type="content" source="../media/network-security-perimeter/selected-profile.png" alt-text="A screenshot showing a selected profile." lightbox="../media/network-security-perimeter/selected-profile.png":::
@@ -186,7 +178,6 @@ To add an inbound access rule in the Azure portal:
 
     :::image type="content" source="../media/network-security-perimeter/add-rule-2.png" alt-text="A screenshot showing the add button." lightbox="../media/network-security-perimeter/add-rule-2.png":::
 
-
 ### Add an outbound access rule
 
 Recall that in public preview, Azure OpenAI can only connect to Azure Storage or Azure Cosmos DB within the security perimeter. If you want to use other data sources, you need an outbound access rule to support that connection.
@@ -199,7 +190,6 @@ To add an outbound access rule in the Azure portal:
 2. Select **Profiles** in the left-hand menu.
 
     :::image type="content" source="../media/network-security-perimeter/profiles-selector.png" alt-text="A screenshot showing the profile navigation button." lightbox="../media/network-security-perimeter/profiles-selector.png":::
-
 
 3. Select the profile you're using with your network security perimeter.
 

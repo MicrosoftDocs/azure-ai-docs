@@ -1,7 +1,7 @@
 ---
-title: Characteristics and limitations for summarization
+title: "Characteristics and limitations for summarization"
 titleSuffix: Foundry Tools
-description: System characteristics and limitations for summarization 
+description: "System characteristics and limitations for summarization"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 04/09/2022
 ---
 
 # Characteristics and limitations for Summarization
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Large-scale, natural language models are trained with publicly available text data which typically contain societal biases. Such data can potentially behave in ways that are unfair, unreliable, or offensive. This behavior, in turn, may cause harms of varying severities. These types of harms aren't mutually exclusive. A single model can exhibit more than one type of harm, potentially relating to multiple groups of people. For example:

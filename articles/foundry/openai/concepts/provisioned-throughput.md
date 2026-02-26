@@ -1,6 +1,6 @@
 ---
-title: "What Is Provisioned Throughput for Foundry Models? (temp)"
-description: "Learn how provisioned throughput enables efficient deployment of Azure OpenAI and Foundry Models with stable latency and allocated capacity. Get started today. (temp)"
+title: "What Is Provisioned Throughput for Foundry Models?"
+description: "Learn how provisioned throughput enables efficient deployment of Azure OpenAI and Foundry Models with stable latency and allocated capacity. Get started today."
 #customer intent: As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
@@ -19,8 +19,7 @@ recommendations: false
 #CustomerIntent As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
 ---
 
-# What is provisioned throughput for Foundry Models? (temp)
-
+# What is provisioned throughput for Foundry Models?
 The Microsoft Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Foundry then allocates the necessary model processing capacity and ensures it's ready for you. Use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../foundry-classic/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek within Foundry Models, with more model families onboarding over time.
 
 Provisioned throughput provides:

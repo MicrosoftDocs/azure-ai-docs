@@ -1,6 +1,6 @@
 ---
-title: "See Evaluation Results in Microsoft Foundry portal (temp)"
-description: "See and analyze AI model evaluation results in Microsoft Foundry portal. Learn to view performance metrics, compare results, and interpret evaluation data for model optimization. (temp)"
+title: "See Evaluation Results in Microsoft Foundry portal"
+description: "See and analyze AI model evaluation results in Microsoft Foundry portal. Learn to view performance metrics, compare results, and interpret evaluation data for model optimization."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
@@ -15,8 +15,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# See evaluation results in the Microsoft Foundry portal (temp)
-
+# See evaluation results in the Microsoft Foundry portal
 In this article, you learn to:
 
 - Locate and open evaluation runs.

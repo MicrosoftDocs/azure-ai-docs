@@ -1,6 +1,6 @@
 ---
-title: "How to run an evaluation in GitHub Action (temp)" 
-description: "How to run evaluation in GitHub Action to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production. (temp)"
+title: "How to run an evaluation in GitHub Action" 
+description: "How to run evaluation in GitHub Action to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production."
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/12/2026
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# How to run an evaluation in GitHub Action (preview) (temp)
-
+# How to run an evaluation in GitHub Action (preview)
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 This [GitHub Action](https://github.com/microsoft/ai-agent-evals) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It's designed to streamline the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.

@@ -1,6 +1,6 @@
 ---
-title: "Prompt caching with Azure OpenAI in Microsoft Foundry Models (temp)"
-description: "Learn how to use prompt caching with Azure OpenAI (temp)"
+title: "Prompt caching with Azure OpenAI in Microsoft Foundry Models"
+description: "Learn how to use prompt caching with Azure OpenAI"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,8 +15,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Prompt caching (temp)
-
+# Prompt caching
 Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the service is able to retain a temporary cache of processed input token computations to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at a [discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-foundry/openai/concepts/provisioned-throughput) for Provisioned deployment types. 
 
 Azure AI Foundry Model prompt caches are cleared within 24 hours. Prompt caches aren't shared between Azure subscriptions.

@@ -1,6 +1,6 @@
 ---
-title: Evaluate your AI agents
-description: Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors.
+title: "Evaluate your AI agents"
+description: "Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors."
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.date: 02/06/2026
@@ -12,12 +12,11 @@ ai-usage: ai-assisted
 ---
 
 # Evaluate your AI agents (preview)
-
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.
 
-In this article, you learn how to run an agent-targeted evaluation against a [Foundry agent](../../../agents/overview.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
+In this article, you learn how to run an agent-targeted evaluation against a [Foundry agent](../../agents/overview.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
 
 - Set up the SDK client for evaluation.
 - Choose evaluators for quality, safety, and agent behavior.
@@ -25,18 +24,18 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 - Interpret results and integrate them into your workflow.
 
 > [!TIP]
-> For general-purpose evaluation of generative AI models and applications, including custom evaluators, different data sources, and additional SDK options, see [Run evaluations from the SDK](../../../how-to/develop/cloud-evaluation.md).
+> For general-purpose evaluation of generative AI models and applications, including custom evaluators, different data sources, and additional SDK options, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
 
 [!INCLUDE [evaluation-preview-foundry](../../includes/evaluation-preview-foundry.md)]
 
 ## Prerequisites
 
-- A [Foundry project](../../../how-to/create-projects.md) with an [agent](../../../agents/overview.md).
+- A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
 - **Azure AI User** role on the Foundry project.
 
 > [!NOTE]
-> Some evaluation features have regional restrictions. See [supported regions](../../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
+> Some evaluation features have regional restrictions. See [supported regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#foundry-project-configuration-and-region-support) for details.
 
 ## Set up the client
 
@@ -73,12 +72,12 @@ Evaluators are functions that assess your agent's responses. Some evaluators use
 
 For more built-in evaluators, see:
 
-- [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md) - Tool Call Accuracy, Intent Resolution, Response Completeness
-- [Quality evaluators](../../../concepts/evaluation-evaluators/general-purpose-evaluators.md) - Fluency, Relevance, Groundedness
-- [Text similarity evaluators](../../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) - F1 Score, BLEU, ROUGE
-- [Safety evaluators](../../../concepts/evaluation-evaluators/risk-safety-evaluators.md) - Hate, Self-Harm, Sexual Content
+- [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) - Tool Call Accuracy, Intent Resolution, Response Completeness
+- [Quality evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) - Fluency, Relevance, Groundedness
+- [Text similarity evaluators](../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) - F1 Score, BLEU, ROUGE
+- [Safety evaluators](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) - Hate, Self-Harm, Sexual Content
 
-To build your own evaluators, see [Custom evaluators](../../../concepts/evaluation-evaluators/custom-evaluators.md).
+To build your own evaluators, see [Custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
 ## Create a test dataset
 
@@ -109,7 +108,7 @@ First, configure your evaluators. Each evaluator needs a data mapping that tells
 - `{{sample.output_items}}` references the full agent response, including tool calls.
 - `{{sample.output_text}}` references just the response message text.
 
-AI-assisted evaluators, like Task Adherence and Coherence, require a model deployment in `initialization_parameters`. Some evaluators might require additional fields, like `ground_truth` or tool definitions. For more information, see the [evaluator documentation](../../../concepts/evaluation-evaluators/general-purpose-evaluators.md).
+AI-assisted evaluators, like Task Adherence and Coherence, require a model deployment in `initialization_parameters`. Some evaluators might require additional fields, like `ground_truth` or tool definitions. For more information, see the [evaluator documentation](../../concepts/evaluation-evaluators/general-purpose-evaluators.md).
 
 ```python
 testing_criteria = [
@@ -290,7 +289,7 @@ Each evaluation run returns output items per row in your test dataset, providing
 
 ## Integrate into your workflow
 
-- **CI/CD pipeline**: Use evaluation as a quality gate in your deployment pipeline. For detailed integration, see [Run evaluations with GitHub Actions](../../../how-to/evaluation-github-action.md).
+- **CI/CD pipeline**: Use evaluation as a quality gate in your deployment pipeline. For detailed integration, see [Run evaluations with GitHub Actions](../../how-to/evaluation-github-action.md).
 - **Production monitoring**: Monitor your agent in production by using continuous evaluation. For setup instructions, see [Set up continuous evaluation](how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
 
 ## Optimize and compare versions
@@ -299,13 +298,13 @@ Use evaluation to iterate and improve your agent:
 
 1. Run evaluation to identify weak areas. Use [cluster analysis](cluster-analysis.md) to find patterns and errors.
 1. Adjust agent instructions or tools based on findings.
-1. Reevaluate and [compare runs](../../../how-to/evaluate-results.md#compare-the-evaluation-results) to measure improvement.
+1. Reevaluate and [compare runs](../../how-to/evaluate-results.md#compare-the-evaluation-results) to measure improvement.
 1. Repeat until quality thresholds are met.
 
 ## Related content
 
 - [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md)
-- [Run AI red teaming](../../../how-to/develop/run-ai-red-teaming-cloud.md)
+- [Run AI red teaming](../../how-to/develop/run-ai-red-teaming-cloud.md)
 - [Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
-- [Agent evaluators reference](../../../concepts/evaluation-evaluators/agent-evaluators.md)
-- [REST API reference](../../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
+- [Agent evaluators reference](../../concepts/evaluation-evaluators/agent-evaluators.md)
+- [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)

@@ -1,6 +1,6 @@
 ---
-title: "Sora video generation overview (preview) (temp)"
-description: "Learn about Sora, an AI model for generating realistic and imaginative video scenes from text instructions, including safety, limitations, and supported features. (temp)"
+title: "Sora video generation overview (preview)"
+description: "Learn about Sora, an AI model for generating realistic and imaginative video scenes from text instructions, including safety, limitations, and supported features."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Video generation with Sora (preview) (temp)
-
+# Video generation with Sora (preview)
 Sora is an AI model from OpenAI that creates realistic and imaginative video scenes from text instructions and/or input images or video. The model can generate a wide range of video content, including realistic scenes, animations, and special effects. It supports several video resolutions and durations.
 
 ## Capabilities

@@ -1,7 +1,6 @@
 ---
-title: Agent tracing in Microsoft Foundry (preview)
-titleSuffix: Microsoft Foundry
-description: Learn how agent tracing in Microsoft Foundry captures inputs, outputs, and tool usage with OpenTelemetry. Debug agent runs, identify latency issues, and improve reliability.
+title: "Agent tracing in Microsoft Foundry (preview)"
+description: "Learn how agent tracing in Microsoft Foundry captures inputs, outputs, and tool usage with OpenTelemetry. Debug agent runs, identify latency issues, and improve reliability."
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -12,8 +11,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ms.topic: concept-article
 ---
 # Agent tracing overview (preview)
-
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Microsoft Foundry provides an observability platform for monitoring and tracing AI agents. It captures key details during an agent run, such as inputs, outputs, tool usage, retries, latencies, and costs. Understanding the reasoning behind your agent's executions is important for troubleshooting and debugging. However, understanding complex agents presents challenges for several reasons:
 
@@ -122,4 +120,4 @@ If traces aren't appearing in the Foundry portal or Application Insights:
 - [How to set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md)
 - [Tracing integrations](../how-to/trace-agent-framework.md)
 - [Monitor AI agents with the Agent Monitoring Dashboard](../how-to/how-to-monitor-agents-dashboard.md)
-- [Observability in generative AI](../../../concepts/observability.md)
+- [Observability in generative AI](../../concepts/observability.md)

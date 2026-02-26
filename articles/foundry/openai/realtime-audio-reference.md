@@ -1,6 +1,6 @@
 ---
-title: "Audio events reference (temp)"
-description: "Learn how to use events with the Realtime API and Voice Live API. (temp)"
+title: "Audio events reference"
+description: "Learn how to use events with the Realtime API and Voice Live API."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -14,8 +14,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Audio events reference (temp)
-
+# Audio events reference
 Realtime events are used to communicate between the client and server in real-time audio applications. The events are sent as JSON objects over various endpoints, such as WebSockets or WebRTC. The events are used to manage the conversation, audio buffers, and responses in real-time.
 
 You can use audio client and server events with these APIs:

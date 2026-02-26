@@ -1,6 +1,6 @@
 ---
-title: "Add a new connection to your project (temp)"
-description: "Learn how to add a new connection to your Foundry project. (temp)"
+title: "Add a new connection to your project"
+description: "Learn how to add a new connection to your Foundry project."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Add a new connection to your project (temp)
-
+# Add a new connection to your project
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you learn how to add a new connection in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).

@@ -68,7 +68,7 @@ These prebuilt analyzers don't require a large language model or embedding model
 
 ## Try out prebuilt analyzers
 
-1. Go to [!INCLUDE [foundry-link](../../../ai-foundry/default/includes/foundry-link.md)] and select your project or create a new one.
+1. Go to [!INCLUDE [foundry-link](../../../foundry/includes/foundry-link.md)] and select your project or create a new one.
 1. Select **Build** in the upper right menu, then select **Models** on the left pane. This lets you access your own deployed models and any prebuilt models provided by Foundry Tools.
 1. Select the **AI Services** tab, and find 
 **Azure Content Understanding - Read** or 

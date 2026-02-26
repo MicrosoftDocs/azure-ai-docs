@@ -1,6 +1,6 @@
 ---
-title: "Data, privacy, and security for use of Anthropic Claude models in Microsoft Foundry (preview) (temp)"
-description: "This document details issues for data, privacy, and security for Anthropic Claude models in Microsoft Foundry in Public Preview. (temp)"
+title: "Data, privacy, and security for use of Anthropic Claude models in Microsoft Foundry (preview)"
+description: "This document details issues for data, privacy, and security for Anthropic Claude models in Microsoft Foundry in Public Preview."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Data, privacy, and security for Claude models in Microsoft Foundry (preview) (temp)
-
+# Data, privacy, and security for Claude models in Microsoft Foundry (preview)
 This article describes how the data that you provide is processed, used, and stored when you use Anthropic Claude models from the Microsoft Marketplace in Microsoft Foundry. Claude in Foundry processes data differently from models sold directly by Azure. When you transact for Claude in Foundry, you will agree to Anthropic's terms of use and Anthropic (not Microsoft) is the processor of the data. 
 
 As detailed in the following sections, to the extent Microsoft plays a role in processing data in connection with Claude on Foundry, it will do so pursuant to its own terms.

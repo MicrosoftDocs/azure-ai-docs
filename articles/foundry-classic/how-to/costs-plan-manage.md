@@ -1,7 +1,6 @@
 ---
-title: Plan and manage costs for Microsoft Foundry hubs
-titleSuffix: Microsoft Foundry
-description: Learn how to plan for and manage costs for Microsoft Foundry hubs by using cost analysis in the Azure portal.
+title: "Plan and manage costs for Microsoft Foundry hubs (classic)"
+description: "Learn how to plan for and manage costs for Microsoft Foundry hubs by using cost analysis in the Azure portal. (classic)"
 ms.author: mopeakande
 manager: nitinme
 author: msakande 
@@ -18,7 +17,7 @@ ms.custom:
   - build-2025
 ---
 
-# Plan and manage costs for Microsoft Foundry hubs
+# Plan and manage costs for Microsoft Foundry hubs (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -50,7 +49,6 @@ Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculato
     :::image type="content" source="../media/cost-management/pricing-calculator-estimate.png" alt-text="Screenshot of total estimate in the Azure pricing calculator." lightbox="../media/cost-management/pricing-calculator-estimate.png":::
 
 As you add new resources to your project, return to this calculator and add the same resource here to update your cost estimates.
-
 
 ### Costs that typically accrue with Foundry hubs
 
@@ -192,7 +190,6 @@ Azure Marketplace offers serverless API deployments. Model publishers might appl
     | `paygo-finetuned-model-inference-input-tokens`  | Fine-tuned model | Costs associated with the tokens used as input for inference of a fine tuned model. |
     | `paygo-finetuned-model-inference-output-tokens` | Fine-tuned model | Costs associated with the tokens generated as output for the inference of a fine tuned model. |
 
-
 ## Create budgets
 
 To manage costs, create [budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) and set up [alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that automatically notify stakeholders of spending anomalies and overspending risks. Alerts are based on spending compared to budget and cost thresholds. Create budgets and alerts for Azure subscriptions and resource groups, so they're useful as part of an overall cost monitoring strategy. 
@@ -202,7 +199,6 @@ Create budgets with filters for specific resources or services in Azure if you w
 ## Export cost data
 
 You can also [export your cost data](/azure/cost-management-billing/costs/tutorial-export-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to a storage account. Exporting data is helpful when you or others need to do more data analysis for costs. For example, finance teams can analyze the data using Excel or Power BI. You can export your costs on a daily, weekly, or monthly schedule and set a custom date range. Exporting cost data is the recommended way to retrieve cost datasets.
-
 
 ## Understand the full billing model for Foundry Tools
 

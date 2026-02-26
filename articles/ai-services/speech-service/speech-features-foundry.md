@@ -14,6 +14,6 @@ ai-usage: ai-assisted
 
 # Azure Speech features in Microsoft Foundry (new)
 
-[!INCLUDE [foundry-link](../../ai-foundry/default/includes/foundry-link.md)] lets you try out a number of features of Azure Speech in Foundry Tools using a simple web interface. Authentication, resource management, and model deployment are all handled in the Foundry portal.
+[!INCLUDE [foundry-link](../../foundry/includes/foundry-link.md)] lets you try out a number of features of Azure Speech in Foundry Tools using a simple web interface. Authentication, resource management, and model deployment are all handled in the Foundry portal.
 
-[!INCLUDE [speech-features-foundry](../../ai-foundry/default/includes/speech-features-foundry.md)]
+[!INCLUDE [speech-features-foundry](../../foundry/includes/speech-features-foundry.md)]

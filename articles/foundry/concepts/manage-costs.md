@@ -1,6 +1,6 @@
 ---
-title: "Plan and Manage Costs (temp)"
-description: "Manage Microsoft Foundry costs by estimating expenses, monitoring usage, and setting up alerts for spending anomalies with Microsoft Cost Management. (temp)"
+title: "Plan and Manage Costs"
+description: "Manage Microsoft Foundry costs by estimating expenses, monitoring usage, and setting up alerts for spending anomalies with Microsoft Cost Management."
 #customer intent: As an IT admin or developer, I want to estimate and manage costs for Microsoft Foundry so that I can optimize my organization's budget and understand how billing works for different model types.
 author: sdgilley
 ms.author: sgilley
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ---
 
-# Plan and manage costs for Microsoft Foundry (temp)
-
+# Plan and manage costs for Microsoft Foundry
 This article shows you how to estimate expenses before deployment, track spending in real time, and set up alerts to avoid budget surprises.
 
 ## Prerequisites

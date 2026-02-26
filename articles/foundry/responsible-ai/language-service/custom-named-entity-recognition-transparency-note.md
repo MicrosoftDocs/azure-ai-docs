@@ -1,7 +1,7 @@
 ---
-title: Transparency note for custom NER
+title: "Transparency note for custom NER"
 titleSuffix: Foundry Tools
-description: Transparency note for custom named entity recognition
+description: "Transparency note for custom named entity recognition"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/29/2021
 ---
 
 # Use cases for custom named entity recognition
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI Graders for generative AI (temp)"
-description: "Learn about Azure OpenAI Graders for evaluating AI model outputs, including label grading, string checking, text similarity, and custom grading. (temp)"
+title: "Azure OpenAI Graders for generative AI"
+description: "Learn about Azure OpenAI Graders for evaluating AI model outputs, including label grading, string checking, text similarity, and custom grading."
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
@@ -14,8 +14,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure OpenAI graders (temp)
-
+# Azure OpenAI graders
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 Azure OpenAI graders are a new set of evaluation tools in the Microsoft Foundry SDK that evaluate the performance of AI models and their outputs. These graders include:

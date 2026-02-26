@@ -1,6 +1,6 @@
 ---
-title: "Deploy a fine-tuned model (temp)"
-description: "Learn how to deploy your fine-tuned model with Azure OpenAI in Microsoft Foundry Models by using Python, the REST APIs, or Microsoft Foundry portal. (temp)"
+title: "Deploy a fine-tuned model"
+description: "Learn how to deploy your fine-tuned model with Azure OpenAI in Microsoft Foundry Models by using Python, the REST APIs, or Microsoft Foundry portal."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,8 +13,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ---
 
-# Deploy a fine-tuned model for inferencing (temp)
-
+# Deploy a fine-tuned model for inferencing
 Once your model is fine-tuned, you can deploy the model and use it in your own application.
 
 When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Microsoft Foundry at no cost until you're ready to use them.

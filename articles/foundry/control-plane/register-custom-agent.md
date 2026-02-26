@@ -1,6 +1,6 @@
 ---
-title: Register and Manage Custom Agents in Microsoft Foundry Control Plane
-description: Learn how to register a custom agent in Microsoft Foundry Control Plane for management and observability.
+title: "Register and Manage Custom Agents in Microsoft Foundry Control Plane"
+description: "Learn how to register a custom agent in Microsoft Foundry Control Plane for management and observability."
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
@@ -13,7 +13,6 @@ ai-usage: ai-assisted
 ---
 
 # Register and manage custom agents
-
 Microsoft Foundry Control Plane provides centralized management and observability for agents running across different platforms and infrastructures. You can register custom agents that run in Azure compute services or other cloud environments to gain visibility into their operations and control their behavior.
 
 This article shows you how to register a custom agent in Foundry Control Plane. You learn how to configure your agent for registration, set up data collection, and use the management capabilities of Foundry Control Plane.
@@ -54,7 +53,7 @@ Verify that your agent meets the requirements for registration:
 
 Before you register the custom agent that you added to a Foundry project, make sure that you configured the project correctly:
 
-1. [!INCLUDE [foundry-sign-in](../../default/includes/foundry-sign-in.md)]
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 
 1. Ensure that an AI gateway is configured in your project:
 
@@ -219,7 +218,7 @@ In this example, the trace doesn't include any details beyond the HTTP post. The
 
 If you build your agent by using custom code, instrument your solution to emit traces according to the OpenTelemetry standard and send them to Application Insights. Instrumentation gives Foundry access to detailed information about what your agent is doing.
 
-Send traces to the Application Insights resource of your project by using its instrumentation key. To get the instrumentation key associated with your project, follow the instructions at [Enable tracing in your project](../../how-to/develop/trace-application.md#enable-tracing-in-your-project).
+Send traces to the Application Insights resource of your project by using its instrumentation key. To get the instrumentation key associated with your project, follow the instructions at [Enable tracing in your project](../../foundry-classic/how-to/develop/trace-application.md#enable-tracing-in-your-project).
 
 In this example, you configure an agent developed with LangGraph to emit traces in the OpenTelemetry standard. The tracer captures all agent operations, including tool calls and model interactions. The tracer then sends the operations to Application Insights for monitoring.
 

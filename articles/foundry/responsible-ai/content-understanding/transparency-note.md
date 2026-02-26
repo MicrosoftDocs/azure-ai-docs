@@ -1,7 +1,7 @@
 ---
-title: Transparency Note and use cases for Content Understanding
+title: "Transparency Note and use cases for Content Understanding"
 titleSuffix: Foundry Tools
-description: This article explains Content Understanding Responsible AI basics, use cases, terms, and provides guidelines for responsible usage.
+description: "This article explains Content Understanding Responsible AI basics, use cases, terms, and provides guidelines for responsible usage."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 07/29/2025
 ---
 
 # Transparency note: Azure Content Understanding in Foundry Tools
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

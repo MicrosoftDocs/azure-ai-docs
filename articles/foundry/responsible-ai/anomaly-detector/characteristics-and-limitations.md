@@ -1,7 +1,7 @@
 ---
-title: Characteristics and limitations for using Anomaly Detector and Metrics Advisor
+title: "Characteristics and limitations for using Anomaly Detector and Metrics Advisor"
 titleSuffix: Foundry Tools
-description: Characteristics and limitations of using Anomaly Detector and Metrics Advisor
+description: "Characteristics and limitations of using Anomaly Detector and Metrics Advisor"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 02/21/2024
 ---
 
 # Characteristics and limitations of Anomaly Detector
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 In this section, we'll review what accuracy means for Anomaly Detector and how to assess it for your context.

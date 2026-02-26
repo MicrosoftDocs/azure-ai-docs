@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models v1 API (temp)"
-description: "Learn how to use the Azure OpenAI v1 API, which simplifies authentication, removes api-version parameters, and supports cross-provider model calls. (temp)"
+title: "Azure OpenAI in Microsoft Foundry Models v1 API"
+description: "Learn how to use the Azure OpenAI v1 API, which simplifies authentication, removes api-version parameters, and supports cross-provider model calls."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,8 +16,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Azure OpenAI in Microsoft Foundry Models v1 API (temp)
-
+# Azure OpenAI in Microsoft Foundry Models v1 API
 This article shows you how to use the v1 Azure OpenAI API. The v1 API simplifies authentication, removes the need for dated `api-version` parameters, and supports cross-provider model calls.
 
 > [!NOTE]

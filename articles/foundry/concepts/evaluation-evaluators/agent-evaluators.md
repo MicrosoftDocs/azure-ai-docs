@@ -1,6 +1,6 @@
 ---
-title: "Agent Evaluators for Generative AI (temp)"
-description: "Learn how to evaluate Azure AI agents using intent resolution, tool call accuracy, and task adherence evaluators. (temp)"
+title: "Agent Evaluators for Generative AI"
+description: "Learn how to evaluate Azure AI agents using intent resolution, tool call accuracy, and task adherence evaluators."
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
@@ -14,8 +14,7 @@ ms.custom:
   - build-2025
 ---
 
-# Agent evaluators (preview) (temp)
-
+# Agent evaluators (preview)
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 AI agents are powerful productivity assistants that can create workflows for business needs. However, observability can be a challenge due to their complex interaction patterns. Agent evaluators provide systematic observability into agentic workflows by measuring quality, safety, and performance.

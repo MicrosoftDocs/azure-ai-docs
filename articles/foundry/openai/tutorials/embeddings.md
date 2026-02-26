@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models embeddings tutorial (temp)"
-description: "Learn how to use Azure OpenAI's embeddings API for document search with the BillSum dataset (temp)"
+title: "Azure OpenAI in Microsoft Foundry Models embeddings tutorial"
+description: "Learn how to use Azure OpenAI's embeddings API for document search with the BillSum dataset"
 manager: nitinme
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
@@ -15,8 +15,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Tutorial: Explore Azure OpenAI in Microsoft Foundry Models embeddings and document search (temp)
-
+# Tutorial: Explore Azure OpenAI in Microsoft Foundry Models embeddings and document search
 This tutorial will walk you through using the Azure OpenAI [embeddings](../../../foundry-classic/openai/concepts/understand-embeddings.md) API to perform **document search** where you'll query a knowledge base to find the most relevant document.
 
 In this tutorial, you learn how to:

@@ -1,7 +1,6 @@
 ---
-title: Create and manage prompt flow compute sessions
-titleSuffix: Microsoft Foundry
-description: In this article, learn how to create and manage compute sessions to run prompt flows in Microsoft Foundry portal.
+title: "Create and manage prompt flow compute sessions (classic)"
+description: "In this article, learn how to create and manage compute sessions to run prompt flows in Microsoft Foundry portal. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -20,7 +19,7 @@ ms.update-cycle: 180-days
 
 ---
 
-# Create and manage prompt flow compute sessions in Microsoft Foundry portal
+# Create and manage prompt flow compute sessions in Microsoft Foundry portal (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -155,6 +154,6 @@ If you previously created a compute instance runtime, switch it to a compute ses
 
 ## Related resources
 
-- [Learn more about prompt flow](./prompt-flow.md)
+- [Learn more about prompt flow](../concepts/prompt-flow.md)
 - [Develop a flow](./flow-develop.md)
 - [Develop an evaluation flow](./flow-develop-evaluation.md)

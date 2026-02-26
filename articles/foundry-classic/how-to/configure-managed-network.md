@@ -1,7 +1,6 @@
 ---
-title: How to configure a managed network for a hub
-titleSuffix: Microsoft Foundry
-description: Learn how to configure a managed network for Microsoft Foundry hubs. A managed network secures your computing resources.
+title: "How to configure a managed network for a hub (classic)"
+description: "Learn how to configure a managed network for Microsoft Foundry hubs. A managed network secures your computing resources. (classic)"
 ms.service: azure-ai-foundry
 ms.custom: 
   - ignite-2023
@@ -20,7 +19,9 @@ ai.usage: ai-assisted
 #Customer intent: As an administrator, I want to configure a managed network for Microsoft Foundry hubs so that my computing resources are protected.
 ---
 
-# How to set up a managed network for Microsoft Foundry hubs
+# How to set up a managed network for Microsoft Foundry hubs (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!include [hub](../includes/uses-hub-only.md)]
 
@@ -928,7 +929,6 @@ Azure services currently support private endpoints for the following services:
 * Azure SQL Server
 * Azure Storage (all subresource types)
 * Application Insights (through [PrivateLinkScopes](/azure/azure-monitor/logs/private-link-configure#create-azure-monitor-private-link-scope-ampls))
-
 
 When you create a private endpoint, you specify the _resource type_ and _subresource_ that the endpoint connects to. Some resources have multiple types and subresources. For more information, see [what is a private endpoint](/azure/private-link/private-endpoint-overview).
 

@@ -1,7 +1,6 @@
 ---
-title: Customer-managed keys for hub projects
-titleSuffix: Microsoft Foundry
-description: Use customer-managed keys (CMK) with hub-based projects in Microsoft Foundry.
+title: "Customer-managed keys for hub projects (classic)"
+description: "Use customer-managed keys (CMK) with hub-based projects in Microsoft Foundry. (classic)"
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
@@ -14,7 +13,9 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Customer-managed keys for hub projects
+# Customer-managed keys for hub projects (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 

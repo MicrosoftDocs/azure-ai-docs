@@ -1,6 +1,6 @@
 ---
-title: "Retrieval augmented generation (RAG) and indexes in Microsoft Foundry (temp)"
-description: "Learn how retrieval augmented generation (RAG) uses indexes and grounding data to improve response accuracy in generative AI apps. (temp)"
+title: "Retrieval augmented generation (RAG) and indexes in Microsoft Foundry"
+description: "Learn how retrieval augmented generation (RAG) uses indexes and grounding data to improve response accuracy in generative AI apps."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
@@ -15,8 +15,7 @@ ai-usage: ai-assisted
 author: sdgilley
 ---
 
-# Retrieval augmented generation (RAG) and indexes (temp)
-
+# Retrieval augmented generation (RAG) and indexes
 Retrieval augmented generation (RAG) is a pattern that combines search with large language models (LLMs) so responses are grounded in your data. This article explains how RAG works in Microsoft Foundry, what role indexes play, and how agentic retrieval changes classic RAG patterns.
 
 LLMs are trained on public data available at training time. If you need answers based on your private data, or on frequently changing information, RAG helps you:

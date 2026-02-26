@@ -1,7 +1,6 @@
 ---
-title: Explore Microsoft Foundry Models
-titleSuffix: Microsoft Foundry
-description: This article introduces Microsoft Foundry Models and the model catalog in Microsoft Foundry portal.
+title: "Explore Microsoft Foundry Models (classic)"
+description: "This article introduces Microsoft Foundry Models and the model catalog in Microsoft Foundry portal. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -15,7 +14,7 @@ manager: nitinme
 author: ssalgadodev
 ---
 
-# Explore Microsoft Foundry Models
+# Explore Microsoft Foundry Models (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -138,7 +137,6 @@ To view a list of supported models for serverless API deployment or Managed Comp
 
 :::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter.png":::  
 
-
 <!-- docutune:enable -->
 
 :::image type="content" source="../media/explore/platform-service-cycle.png" alt-text="Diagram that shows models as a service and the service cycle of managed computes." lightbox="../media/explore/platform-service-cycle.png":::
@@ -183,7 +181,6 @@ The *prompt flow* feature in Azure Machine Learning offers a great experience fo
 The [Azure AI Content Safety](../../ai-services/content-safety/overview.md) service is available for use with managed compute to screen for various categories of harmful content, such as sexual content, violence, hate, and self-harm. You can also use the service to screen for advanced threats such as jailbreak risk detection and protected material text detection.
 
 You can refer to [this notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/inference/text-generation/llama-safe-online-deployment.ipynb) for reference integration with Azure AI Content Safety for Llama 2. Or you can use the Content Safety (Text) tool in prompt flow to pass responses from the model to Azure AI Content Safety for screening. You're billed separately for such use, as described in [Azure AI Content Safety pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/).
-
 
 ## Serverless API deployment billing
 

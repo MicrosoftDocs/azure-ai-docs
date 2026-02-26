@@ -1,7 +1,6 @@
 ---
-title: 'Troubleshooting for Azure OpenAI fine-tuning'
-titleSuffix: Azure OpenAI
-description: Learn how to troubleshoot Azure OpenAI in Microsoft Foundry Models fine-tuning.
+title: "Troubleshooting for Azure OpenAI fine-tuning (classic)"
+description: "Learn how to troubleshoot Azure OpenAI in Microsoft Foundry Models fine-tuning. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -12,7 +11,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ---
 
-# Troubleshooting for Azure OpenAI fine-tuning
+# Troubleshooting for Azure OpenAI fine-tuning (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -57,7 +56,7 @@ Remove the image. For now, we can't fine-tune models with images containing thes
 
 **How to upload large files**
 
-Your training files might get quite large. You can upload files up to 8 GB in multiple parts using the [Uploads API](/rest/api/azureopenai/upload-file?view=rest-azureopenai-2024-10-21&preserve-view=true) as opposed to the Files API, which only allows file uploads of up to 512 MB.
+Your training files might get quite large. You can upload files up to 8 GB in multiple parts using the [Uploads API](/rest/api/azureopenai/upload-file?view=rest-azureopenai-2024-10-21) as opposed to the Files API, which only allows file uploads of up to 512 MB.
 
 **Reducing training cost**
 

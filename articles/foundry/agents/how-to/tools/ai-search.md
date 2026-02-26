@@ -1,7 +1,6 @@
 ---
-title: Connect an Azure AI Search index to Foundry agents
-titleSuffix: Microsoft Foundry
-description: Connect Azure AI Search indexes to Foundry agents for grounding responses with citations. Includes Python, C#, TypeScript, and REST samples.
+title: "Connect an Azure AI Search index to Foundry agents"
+description: "Connect Azure AI Search indexes to Foundry agents for grounding responses with citations. Includes Python, C#, TypeScript, and REST samples."
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -17,11 +16,10 @@ zone_pivot_groups: selection-ai-search-tool
 ---
 
 # Connect an Azure AI Search index to Foundry agents
-
 > [!TIP]
 > For a managed knowledge base experience, see [Foundry IQ](../foundry-iq-connect.md). For tool optimization, see [best practices](../../concepts/tool-best-practice.md).
 
-Ground your Foundry agent's responses in your proprietary content by connecting it to an Azure AI Search index. The [Azure AI Search](../../../../../search/search-what-is-azure-search.md) tool retrieves indexed documents and generates answers with inline citations, enabling accurate, source-backed responses.
+Ground your Foundry agent's responses in your proprietary content by connecting it to an Azure AI Search index. The [Azure AI Search](../../../../search/search-what-is-azure-search.md) tool retrieves indexed documents and generates answers with inline citations, enabling accurate, source-backed responses.
 
 ## Usage support
 
@@ -37,8 +35,8 @@ Java SDK samples are coming soon.
 
 *Estimated setup time: 15-30 minutes if you have an existing search index*
 
-- A [basic or standard agent environment](../../../../agents/environment-setup.md).
-- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for details.
+- A [basic or standard agent environment](../../../agents/environment-setup.md).
+- The latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
   - **Python**: `pip install azure-ai-projects --pre`
   - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
   - **JavaScript/TypeScript**: `npm install @azure/ai-projects`
@@ -46,7 +44,7 @@ Java SDK samples are coming soon.
   - Project endpoint
   - Model deployment name
   - Authentication configured (for example, `DefaultAzureCredential`)
-- An [Azure AI Search index configured for vector search](../../../../../search/search-get-started-portal-import-vectors.md) with:
+- An [Azure AI Search index configured for vector search](../../../../search/search-get-started-portal-import-vectors.md) with:
   - One or more `Edm.String` fields that are searchable and retrievable
   - One or more `Collection(Edm.Single)` vector fields that are searchable
   - At least one retrievable text field that contains the content you want the agent to cite
@@ -79,7 +77,7 @@ Java SDK samples are coming soon.
 ## Code example
 
 > [!NOTE]
-> - You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code).
+> - You need the latest prerelease package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 > - If you're using the REST or TypeScript sample, the connection ID is in the format `/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{connectionName}}`.
 > - If you're using the Python or C# sample, you can provide the connection name and retrieve the connection ID with the SDK.
 
@@ -683,13 +681,13 @@ Select the tab for your desired authentication method.
     1. From the left pane, select **Overview**.
     1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
 
-       :::image type="content" source="../../../../agents/media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../../../agents/media/tools/ai-search/connection-endpoint.png":::
+       :::image type="content" source="../../../agents/media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../../agents/media/tools/ai-search/connection-endpoint.png":::
 
 1. To get the API key:
     1. From the left pane, select **Settings** > **Keys**.
     1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
 
-      :::image type="content" source="../../../../agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../agents/media/tools/ai-search/azure-portal.png":::
+      :::image type="content" source="../../../agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../agents/media/tools/ai-search/azure-portal.png":::
 
     1. Make a note of one of the keys under **Manage admin keys**.
 
@@ -700,13 +698,13 @@ Select the tab for your desired authentication method.
     1. From the left pane, select **Overview**.
     1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
 
-       :::image type="content" source="../../../../agents/media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../../../agents/media/tools/ai-search/connection-endpoint.png":::
+       :::image type="content" source="../../../agents/media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../../agents/media/tools/ai-search/connection-endpoint.png":::
 
 1. To enable RBAC:
     1. From the left pane, select **Settings** > **Keys**.
     1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
 
-      :::image type="content" source="../../../../agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../agents/media/tools/ai-search/azure-portal.png":::
+      :::image type="content" source="../../../agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../agents/media/tools/ai-search/azure-portal.png":::
 
 1. To assign the necessary roles:
     1. From the left pane, select **Access control (IAM)**.
@@ -726,7 +724,7 @@ Use one of the following options.
 
 **Create the following connection.yml file:**
 
-You can use a YAML configuration file for both key-based and keyless authentication. Replace the `name`, `endpoint`, and `api_key` (optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../../machine-learning/reference-yaml-connection-ai-search.md). 
+You can use a YAML configuration file for both key-based and keyless authentication. Replace the `name`, `endpoint`, and `api_key` (optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search.md). 
 
 Here's a key-based example:
 
@@ -828,7 +826,7 @@ Console.WriteLine(connection.Id);
 | --- | --- | --- |
 | Response has no citations | Agent instructions don't request citations | Update your agent instructions to explicitly request citations in responses. |
 | Response has no citations (streaming) | Annotations not captured | Confirm you receive `url_citation` annotations when streaming. Check your stream processing logic. |
-| Tool can't access the index (401/403) | Missing RBAC roles (keyless auth) | Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to the Foundry project's managed identity. See [Azure RBAC in Foundry](../../../../concepts/rbac-foundry.md). |
+| Tool can't access the index (401/403) | Missing RBAC roles (keyless auth) | Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to the Foundry project's managed identity. See [Azure RBAC in Foundry](../../../concepts/rbac-foundry.md). |
 | Tool can't access the index (401/403) | Invalid or disabled API key | Confirm the API key is correct and enabled in the Azure AI Search resource. |
 | Tool returns "index not found" | Index name mismatch | Confirm `AI_SEARCH_INDEX_NAME` matches the exact index name in your Azure AI Search resource (case-sensitive). |
 | Tool returns "index not found" | Wrong connection endpoint | Confirm the project connection points to the Azure AI Search resource that contains the index. |
@@ -839,5 +837,5 @@ Console.WriteLine(connection.Id);
 
 - [Connect a Foundry IQ knowledge base to Foundry Agent Service](../foundry-iq-connect.md)
 - [Tool best practices](../../concepts/tool-best-practice.md)
-- [Create a vector search index in Azure AI Search](../../../../../search/search-get-started-portal-import-vectors.md)
-- [Quickstart: Build an agent with Foundry](../../../../quickstarts/get-started-code.md)
+- [Create a vector search index in Azure AI Search](../../../../search/search-get-started-portal-import-vectors.md)
+- [Quickstart: Build an agent with Foundry](../../../quickstarts/get-started-code.md)

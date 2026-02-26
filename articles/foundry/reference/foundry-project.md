@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry REST Reference (temp)"
-description: "Learn how to use the Microsoft Foundry REST Reference (temp)"
+title: "Microsoft Foundry REST Reference"
+description: "Learn how to use the Microsoft Foundry REST Reference"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: reference
@@ -11,8 +11,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Microsoft Foundry (temp)
-
+# Microsoft Foundry
 **API Version:** v1
 
 ## Authentication

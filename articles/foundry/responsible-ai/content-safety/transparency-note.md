@@ -1,7 +1,7 @@
 ---
-title: Transparency Note and use cases for AI Content Safety
+title: "Transparency Note and use cases for AI Content Safety"
 titleSuffix: Foundry Tools
-description: This article explains Azure AI Content Safety responsible AI basics, use cases, and terms.
+description: "This article explains Azure AI Content Safety responsible AI basics, use cases, and terms."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 05/15/2023
 ---
 
 # Transparency note: Azure AI Content Safety
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency note?

@@ -1,7 +1,6 @@
 ---
-title: Trace and Observe AI Agents in Microsoft Foundry
-titleSuffix: Microsoft Foundry
-description: Trace and Observe AI Agents in Microsoft Foundry using OpenTelemetry. Learn to see execution traces, debug performance, and monitor AI agent behavior step-by-step.
+title: "Trace and Observe AI Agents in Microsoft Foundry (classic)"
+description: "Trace and Observe AI Agents in Microsoft Foundry using OpenTelemetry. Learn to see execution traces, debug performance, and monitor AI agent behavior step-by-step. (classic)"
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -12,7 +11,7 @@ ms.topic: how-to
 ms.custom: references_regions
 ---
 
-# Trace and observe AI agents in Microsoft Foundry (preview)
+# Trace and observe AI agents in Microsoft Foundry (preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -237,7 +236,6 @@ To log user feedback, follow this format:
 
 The user feedback evaluation event is captured only if the user provides a reaction to the GenAI model response. When possible, parent this event to the GenAI span describing such response.
 
-
 The user feedback event body has the following structure:
 
 | Body Field | Type | Description | Examples | Requirement Level |
@@ -369,11 +367,9 @@ USER_LOCATION = {
     "2": "SF",
 }
 
-
 @dataclass
 class UserContext:
     user_id: str
-
 
 @tool
 def get_weather(city: str) -> str:
@@ -402,12 +398,10 @@ from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 from dataclasses import dataclass
 
-
 @dataclass
 class WeatherResponse:
     conditions: str
     punny_response: str
-
 
 checkpointer = InMemorySaver()
 
@@ -442,7 +436,6 @@ def main():
         context=context,
     )
     print(r2.get("structured_response"))
-
 
 if __name__ == "__main__":
     main()
@@ -502,13 +495,11 @@ def play_song_on_spotify(song: str):
     # Integrate with Spotify API here.
     return f"Successfully played {song} on Spotify!"
 
-
 @tool
 def play_song_on_apple(song: str):
     """Play a song on Apple Music"""
     # Integrate with Apple Music API here.
     return f"Successfully played {song} on Apple Music!"
-
 
 tools = [play_song_on_apple, play_song_on_spotify]
 ```
@@ -547,12 +538,10 @@ def should_continue(state: MessagesState):
     last_message = messages[-1]
     return "continue" if getattr(last_message, "tool_calls", None) else "end"
 
-
 def call_model(state: MessagesState):
     messages = state["messages"]
     response = model.invoke(messages)
     return {"messages": [response]}
-
 
 workflow = StateGraph(MessagesState)
 workflow.add_node("agent", call_model)

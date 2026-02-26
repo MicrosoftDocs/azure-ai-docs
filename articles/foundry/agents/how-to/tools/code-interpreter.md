@@ -1,7 +1,6 @@
 ---
-title: Use Code Interpreter with Microsoft Foundry agents
-titleSuffix: Microsoft Foundry
-description: Create agents that run Python code in a sandboxed environment using Code Interpreter in Microsoft Foundry. Upload files, analyze data, and download generated charts.
+title: "Use Code Interpreter with Microsoft Foundry agents"
+description: "Create agents that run Python code in a sandboxed environment using Code Interpreter in Microsoft Foundry. Upload files, analyze data, and download generated charts."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -17,7 +16,6 @@ ai-usage: ai-assisted
 ---
 
 # Code Interpreter tool for Microsoft Foundry agents
-
 Code Interpreter enables a Microsoft Foundry agent to run Python code in a sandboxed execution environment. Use this tool for data analysis, chart generation, and iterative problem-solving tasks that benefit from code execution.
 
 In this article, you create an agent that uses Code Interpreter, upload a CSV file for analysis, and download a generated chart.
@@ -37,8 +35,8 @@ When enabled, your agent can write and run Python code iteratively to solve data
 
 ## Prerequisites
 
-- Basic or standard agent environment. See [agent environment setup](../../../../agents/environment-setup.md) for details.
-- Latest prerelease SDK package installed (`azure-ai-projects>=2.0.0b4` for Python). See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for installation steps.
+- Basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md) for details.
+- Latest prerelease SDK package installed (`azure-ai-projects>=2.0.0b4` for Python). See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
 - Azure AI model deployment configured in your project.
 - For file operations: CSV or other supported files to upload for analysis.
 
@@ -50,7 +48,7 @@ When enabled, your agent can write and run Python code iteratively to solve data
 The following samples demonstrate how to create an agent with Code Interpreter enabled, upload a file for analysis, and download the generated output.
 
 > [!NOTE]
-> You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+> You need the latest prerelease package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 :::zone pivot="python"
 ## Sample of using agent with code interpreter tool in Python SDK

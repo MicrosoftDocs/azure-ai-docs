@@ -1,7 +1,7 @@
 ---
-title: Characteristics and limitations for custom NER
+title: "Characteristics and limitations for custom NER"
 titleSuffix: Foundry Tools
-description: Characteristics and limitations for using custom named entity recognition
+description: "Characteristics and limitations for using custom named entity recognition"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/29/2021
 ---
 
 # Characteristics and limitations for using custom named entity recognition
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Performance of custom named entity recognition (NER) models varies based on the scenario and input data. The following sections help you understand key concepts about performance and evaluation of custom NER models.

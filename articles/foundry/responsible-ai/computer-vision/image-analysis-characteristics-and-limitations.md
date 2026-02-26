@@ -1,8 +1,7 @@
 ---
-title: Characteristics and limitations for Image Analysis
+title: "Characteristics and limitations for Image Analysis"
 titleSuffix: Foundry Tools
-description: Characteristics, accuracy, and limitations when using Image Analysis service.
-
+description: "Characteristics, accuracy, and limitations when using Image Analysis service."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -12,7 +11,6 @@ ms.date: 10/15/2025
 ---
 
 # Characteristics and limitations for using Image Analysis
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Image Analysis service is part of Foundry Tools and provides pre-built AI features that are fundamental building blocks of image processing applications. In this section, you will learn about what accuracy means for Image Analysis, and how to assess accuracy for your specific use case and application.

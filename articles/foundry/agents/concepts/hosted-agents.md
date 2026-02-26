@@ -1,7 +1,6 @@
 ---
-title: Hosted agents in Foundry Agent Service (preview)
-description: Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability.
-titleSuffix: Microsoft Foundry
+title: "Hosted agents in Foundry Agent Service (preview)"
+description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
 ms.date: 02/19/2026
@@ -14,7 +13,6 @@ ai-usage: ai-assisted
 ---
 
 # What are hosted agents?
-
 When you build agentic applications by using open-source frameworks, you typically manage containerization, web server setup, security integration, memory persistence, infrastructure scaling, data transmission, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
 > [!IMPORTANT]
@@ -24,7 +22,7 @@ Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foun
 
 ## Prerequisites
 
-- A [Microsoft Foundry project](../../../how-to/create-projects.md)
+- A [Microsoft Foundry project](../../how-to/create-projects.md)
 - Basic understanding of [containerization and Docker](/azure/container-instances/container-instances-overview)
 - Familiarity with [Azure Container Registry](/azure/container-registry/container-registry-intro)
 - Knowledge of your preferred agent framework (LangGraph, Microsoft Agent Framework, or custom code)
@@ -51,7 +49,7 @@ If you want to jump to a task, see:
 
 Hosted agents are currently in preview.
 
-- **Private networking support**: You can't create hosted agents by using the standard setup for network isolation within network-isolated Foundry resources. For details, see [Configure virtual networks](../../../agents/how-to/virtual-networks.md).
+- **Private networking support**: You can't create hosted agents by using the standard setup for network isolation within network-isolated Foundry resources. For details, see [Configure virtual networks](../../agents/how-to/virtual-networks.md).
 - **Preview limits**: For the full list of preview limits, see [Limitations during preview](#limitations-during-preview).
 - **Pricing**: For updates on pricing, see the Foundry [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
 
@@ -89,7 +87,7 @@ Hosted Agents are supported in the following regions:
 
 Treat a hosted agent like production application code.
 
-- **Don't put secrets in container images or environment variables**. Use managed identities and connections, and store secrets in a managed secret store. For guidance, see [Set up a Key Vault connection](../../../how-to/set-up-key-vault-connection.md).
+- **Don't put secrets in container images or environment variables**. Use managed identities and connections, and store secrets in a managed secret store. For guidance, see [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md).
 - **Be careful with non-Microsoft tools and servers**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. Review data sharing, retention, and location policies for any non-Microsoft service you connect.
 
 ## Understand key concepts
@@ -206,7 +204,6 @@ from azure.identity import DefaultAzureCredential
 PROJECT_ENDPOINT = os.getenv("PROJECT_ENDPOINT")  # e.g., "https://<resource>.services.ai.azure.com/api/projects/<project>"
 MODEL_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME", "gpt-4.1")  # Your model deployment name
 
-
 @ai_function
 def get_local_date_time(iana_timezone: str) -> str:
     """
@@ -227,7 +224,6 @@ def get_local_date_time(iana_timezone: str) -> str:
         return f"The current date and time in {iana_timezone} is {current_time.strftime('%A, %B %d, %Y at %I:%M %p %Z')}"
     except Exception as e:
         return f"Error: Unable to get time for timezone '{iana_timezone}'. {str(e)}"
-
 
 # Create the agent with a local Python tool
 agent = ChatAgent(
@@ -269,7 +265,7 @@ This local testing approach lets you:
 
 ### Create a hosted agent using VS Code Foundry extension
 
-You can use the [Foundry extension for Visual Studio Code](../../agents/how-to/vs-code-agents-workflow-pro-code.md?view=foundry&preserve-view=true) to create hosted agents.
+You can use the [Foundry extension for Visual Studio Code](../../agents/how-to/vs-code-agents-workflow-pro-code.md) to create hosted agents.
 
 ### Create a hosted agent by using the Azure Developer CLI
 
@@ -335,7 +331,7 @@ To get started:
     
 To learn more about how you can do non-versioned updates, along with starting, stopping, and deleting your hosted agent deployments and versions, see the [management section](#manage-hosted-agents) of this article. 
 
-Make sure you have RBAC enabled so that `azd` can provision the services and models for you. For Foundry role guidance, see [Role-based access control in Foundry portal](../../../concepts/rbac-foundry.md). For Azure built-in roles, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
+Make sure you have RBAC enabled so that `azd` can provision the services and models for you. For Foundry role guidance, see [Role-based access control in Foundry portal](../../concepts/rbac-foundry.md). For Azure built-in roles, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
 
 ### Roles and permissions
 
@@ -345,7 +341,7 @@ Make sure you have RBAC enabled so that `azd` can provision the services and mod
 
 * If you have everything configured in the project to deploy a hosted agent, you need **Reader** on the Foundry account and **Azure AI User** on the project. 
 
-Refer to [this article](../../../concepts/authentication-authorization-foundry.md#built-in-roles-overview) to learn more about built-in roles in Foundry.
+Refer to [this article](../../concepts/authentication-authorization-foundry.md#built-in-roles-overview) to learn more about built-in roles in Foundry.
 
 ### Resource cleanup
 
@@ -844,7 +840,7 @@ Agent retrieved: your-agent-name (version: 1)
 Agent response: Hello! I'm your hosted agent. I can help you with...
 ```
 
-For more information, see [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true).
+For more information, see [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview).
 
 ### Use tools with hosted agents
 
@@ -918,7 +914,7 @@ Hosted agents support exposing OpenTelemetry traces, metrics, and logs from unde
 
 If you use the `azd ai agent` CLI extension, Application Insights is automatically provisioned and connected to your Foundry project for you. Your project's managed identity is granted the Azure AI User role on the Foundry resource so that traces are exported to Application Insights.
 
-If you use the Foundry SDK, you need to perform these steps independently. For more information, see [Enable tracing in your project](../../../how-to/develop/trace-application.md#enable-tracing-in-your-project).
+If you use the Foundry SDK, you need to perform these steps independently. For more information, see [Enable tracing in your project](../../../foundry-classic/how-to/develop/trace-application.md#enable-tracing-in-your-project).
 
 The hosting adapter provides:
 
@@ -1023,7 +1019,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 
 **Use iterative evaluation**: Regularly evaluate agent versions during development to catch problems early and measure improvements.
 
-For more information about evaluating agents, see [Evaluate your AI agents](../../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../../concepts/evaluation-evaluators/agent-evaluators.md).
+For more information about evaluating agents, see [Evaluate your AI agents](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
 
 ## Publish hosted agents to channels
 
@@ -1110,7 +1106,7 @@ Billing for managed hosting runtime is enabled no earlier than April 1, 2026, du
 
 ### Private networking support
 
-Currently, you can't create hosted agents by using the standard setup within network-isolated Foundry resources. For more information, see [Configure virtual networks](../../../agents/how-to/virtual-networks.md).
+Currently, you can't create hosted agents by using the standard setup within network-isolated Foundry resources. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md).
 
 ## Related content
 

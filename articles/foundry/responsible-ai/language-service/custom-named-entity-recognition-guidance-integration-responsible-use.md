@@ -1,7 +1,7 @@
 ---
-title: Guidance for integration and responsible use with custom NER
+title: "Guidance for integration and responsible use with custom NER"
 titleSuffix: Foundry Tools
-description: Guidance for integration and responsible use with custom named entity recognition
+description: "Guidance for integration and responsible use with custom named entity recognition"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/29/2021
 ---
 
 # Guidance for integration and responsible use with custom named entity recognition
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft works to help customers responsibly develop and deploy solutions by using custom named entity recognition. Our principled approach upholds personal agency and dignity by considering the AI system's:

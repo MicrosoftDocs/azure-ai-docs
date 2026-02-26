@@ -1,6 +1,6 @@
 ---
-title: "Use the GPT Realtime API via SIP (temp)"
-description: "Learn how to use the GPT Realtime API for speech and audio via SIP. (temp)"
+title: "Use the GPT Realtime API via SIP"
+description: "Learn how to use the GPT Realtime API for speech and audio via SIP."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Use the GPT Realtime API via SIP (temp)
-
+# Use the GPT Realtime API via SIP
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 

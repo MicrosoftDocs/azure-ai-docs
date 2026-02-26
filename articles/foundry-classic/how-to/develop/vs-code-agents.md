@@ -1,7 +1,6 @@
 ---
-title: Create and manage Foundry Classic agents in Visual Studio Code
-titleSuffix: Microsoft Foundry
-description: Create, configure, test, and deploy Foundry Classic agents directly in Visual Studio Code by using the Foundry Agent Service extension and designer.
+title: "Create and manage Foundry Classic agents in Visual Studio Code (classic)"
+description: "Create, configure, test, and deploy Foundry Classic agents directly in Visual Studio Code by using the Foundry Agent Service extension and designer. (classic)"
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -12,23 +11,24 @@ ms.date: 02/19/2026
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
-monikerRange: foundry-classic
 #CustomerIntent: As a developer, I want to create and manage Foundry Classic agents in Visual Studio Code so that I can build, test, and deploy agents without leaving my IDE.
 ---
 
-# Create and manage Foundry Classic agents in Visual Studio Code (preview)
+# Create and manage Foundry Classic agents in Visual Studio Code (preview) (classic)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 
-[Foundry Agent Service](../../agents/overview.md?view=foundry-classic&preserve-view=true) lets you build, configure, and deploy agents without leaving Visual Studio Code (VS Code). In this article, you create an agent by using the designer, add tools, test the agent in the playground, generate sample code, and clean up resources when you're done.
+[Foundry Agent Service](../../agents/overview.md) lets you build, configure, and deploy agents without leaving Visual Studio Code (VS Code). In this article, you create an agent by using the designer, add tools, test the agent in the playground, generate sample code, and clean up resources when you're done.
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account).
-- Access to [Foundry Agent Service](../../agents/overview.md?view=foundry-classic&preserve-view=true).
+- Access to [Foundry Agent Service](../../agents/overview.md).
 - [Visual Studio Code](https://code.visualstudio.com/) installed.
 - The [Microsoft Foundry for VS Code extension](./get-started-projects-vs-code.md) installed and signed in.
 - A [deployed model](./get-started-projects-vs-code.md#deploy-a-model-from-the-model-catalog) in your project.
@@ -58,7 +58,6 @@ After you choose a save location, the agent .yaml file and the designer view ope
    - Add a description for your agent.
    - Set system instructions.
    - Configure tools for agent use.
-
 
 1. To save the .yaml file, select **File** > **Save** on the VS Code menu bar.
 
@@ -239,4 +238,4 @@ If you don't need the resources you created, delete them to avoid ongoing charge
 
  - [Work with Agent Service and MCP server tools in Visual Studio Code (preview)](./vs-code-agents-mcp.md) to add MCP tools to your agents.
 - [Agent tools overview](../../agents/how-to/tools-classic/overview.md) for details on file search, code interpreter, and other available tools.
-- [Foundry Agent Service overview](../../agents/overview.md?view=foundry-classic&preserve-view=true) for a deeper look at agent concepts and capabilities.
+- [Foundry Agent Service overview](../../agents/overview.md) for a deeper look at agent concepts and capabilities.

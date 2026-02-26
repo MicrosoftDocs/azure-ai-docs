@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models performance & latency (temp)"
-description: "Learn about performance and latency with Azure OpenAI (temp)"
+title: "Azure OpenAI in Microsoft Foundry Models performance & latency"
+description: "Learn about performance and latency with Azure OpenAI"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -14,8 +14,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Performance and latency (temp)
-
+# Performance and latency
 This article provides you with background around how latency and throughput works with Azure OpenAI and how to optimize your environment to improve performance.
 
 ## Understanding throughput vs latency

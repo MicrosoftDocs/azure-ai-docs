@@ -1,6 +1,6 @@
 ---
-title: "Known issues - Microsoft Foundry (temp)"
-description: "Find known issues, workarounds, and solutions for Microsoft Foundry, including Speech, Translator, and portal services. Review before submitting a support request. (temp)"
+title: "Known issues - Microsoft Foundry"
+description: "Find known issues, workarounds, and solutions for Microsoft Foundry, including Speech, Translator, and portal services. Review before submitting a support request."
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.topic: troubleshooting-known-issue
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Known issues - Microsoft Foundry (temp)
-
+# Known issues - Microsoft Foundry
 This article lists known issues and workarounds for Foundry. Review these issues before you submit a support request.
 
 * Check the [Azure status page](https://status.azure.com/status) for service-level outages.

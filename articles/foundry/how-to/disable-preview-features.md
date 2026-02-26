@@ -1,6 +1,6 @@
 ---
-title: "Hide preview features with Azure tags in Foundry portals (temp)"
-description: "Learn how to hide preview features in Microsoft Foundry portals by applying an Azure tag at the correct scope, and understand behavior across classic and new experiences. (temp)"
+title: "Hide preview features with Azure tags in Foundry portals"
+description: "Learn how to hide preview features in Microsoft Foundry portals by applying an Azure tag at the correct scope, and understand behavior across classic and new experiences."
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne
@@ -14,8 +14,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Hide preview features with Azure tags (temp)
-
+# Hide preview features with Azure tags
 Hide preview features in both Foundry portal experiences (new and classic) by applying a tag at the appropriate scope in Azure portal. This approach helps teams focus on generally available capabilities in production environments.
 
 This control is separate from role-based access control (RBAC). Use tags to hide preview portal surfaces, and use RBAC when you need to block specific operations or permissions. For RBAC guidance, see [Disable preview features with role-based access control](../concepts/disable-preview-features-with-rbac.md).

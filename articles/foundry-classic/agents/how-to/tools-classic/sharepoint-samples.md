@@ -1,7 +1,6 @@
 ---
-title: 'How to use the SharePoint tool'
-titleSuffix: Microsoft Foundry
-description: Find examples on how to ground agents with SharePoint.
+title: "How to use the SharePoint tool (classic)"
+description: "Find examples on how to ground agents with SharePoint. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,12 +13,14 @@ ms.custom: azure-ai-agents-code
 zone_pivot_groups: selection-agent-sharepoint
 ---
 
-# How to use the SharePoint tool
+# How to use the SharePoint tool (classic)
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-> 🔍 [View the new SharePoint tool documentation](../../../default/agents/how-to/tools/sharepoint.md?view=foundry&preserve-view=true).
+> 🔍 [View the new SharePoint tool documentation](../../../../foundry/agents/how-to/tools/sharepoint.md).
 
 > [!NOTE]
 > This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
@@ -42,13 +43,11 @@ Use this article to find step-by-step instructions and code samples for using th
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 
-
 * The name of your SharePoint connection name. Find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
     
     :::image type="content" source="../../media/tools/sharepoint-connection.png" alt-text="A screenshot showing the SharePoint connection name. " lightbox="../../media/tools/sharepoint-connection.png":::
 
     Save this endpoint to an environment variable named `SHAREPOINT_RESOURCE_NAME`.
-
 
 * The names of your model's deployment name. Find it in **Models + Endpoints** in the left navigation menu. 
 

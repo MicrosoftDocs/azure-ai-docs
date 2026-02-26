@@ -1,7 +1,7 @@
 ---
-title: Guidance for integration and responsible use with custom text classification
+title: "Guidance for integration and responsible use with custom text classification"
 titleSuffix: Foundry Tools
-description: Guidance for integration and responsible use with custom text classification.
+description: "Guidance for integration and responsible use with custom text classification."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 04/26/2023
 ---
 
 # Guidance for integration and responsible use with custom text classification
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft works to help customers responsibly develop and deploy solutions by using custom text classification. Our principled approach upholds personal agency and dignity by considering the AI system's:

@@ -1,6 +1,6 @@
 ---
-title: "Use a screen reader with Microsoft Foundry (temp)"
-description: "This quickstart guides you in how to get oriented and navigate Microsoft Foundry with a screen reader. (temp)"
+title: "Use a screen reader with Microsoft Foundry"
+description: "This quickstart guides you in how to get oriented and navigate Microsoft Foundry with a screen reader."
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: ailsaleen
@@ -15,8 +15,7 @@ ms.custom:
   - build-2025
 ---
 
-# Use a screen reader with Microsoft Foundry (temp)
-
+# Use a screen reader with Microsoft Foundry
 This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA, or Apple's VoiceOver. In this quickstart, you learn about the basic structure of Microsoft Foundry and how to navigate around efficiently. 
 
 ## Get oriented in Foundry portal 

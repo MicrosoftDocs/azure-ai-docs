@@ -1,7 +1,6 @@
 ---
-title: 'How to configure guardrails and controls in Microsoft Foundry'
-titleSuffix: Microsoft Foundry
-description: Create, configure, and manage guardrails and controls for model deployments and agents in Microsoft Foundry using the portal or REST API.
+title: "How to configure guardrails and controls in Microsoft Foundry"
+description: "Create, configure, and manage guardrails and controls for model deployments and agents in Microsoft Foundry using the portal or REST API."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -14,7 +13,6 @@ ms.custom: azure-ai-guardrails
 ---
 
 # How to configure guardrails and controls in Microsoft Foundry
-
 Learn to create, configure, and manage guardrails for your model deployments and agents in Microsoft Foundry using the Foundry portal or the REST API.
 
 For background on guardrails concepts, risks, and intervention points, see [Guardrails and controls overview](guardrails-overview.md).
@@ -22,7 +20,7 @@ For background on guardrails concepts, risks, and intervention points, see [Guar
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../how-to/create-projects.md).
+- A [Microsoft Foundry project](../how-to/create-projects.md).
 - At least one model deployment in your project.
 - **Azure AI Account Owner** role or higher on the Azure AI resource.
 
@@ -57,7 +55,7 @@ To delete a control:
 2. Select **Delete**.
 
 > [!NOTE]
-> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about [modified content filtering](../../openai/concepts/content-filter-configurability.md).
+> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about [modified content filtering](../../foundry-classic/openai/how-to/content-filters.md).
 
 ## Edit controls in a guardrail
 
@@ -162,7 +160,6 @@ Use the [RAI Policies - Create Or Update](/rest/api/aiservices/accountmanagement
 
 Set the `raiPolicyName` property on a deployment to assign a guardrail. Use the [Deployments - Create Or Update](/rest/api/aiservices/accountmanagement/deployments/create-or-update) operation and include the guardrail name in the deployment properties.
 
-
 ## Work with annotations
 
 Foundry provides annotations to help you understand the guardrail results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
@@ -187,7 +184,6 @@ Optional model annotations can be set to annotate mode (returns information when
 | Protected material code | - detected (true or false)<br>- filtered (true or false)<br>- Example citation of public GitHub repository where code snippet was found<br>- The license of the repository |
 | Personally identifiable information (PII) | - detected (true or false)<br>- filtered (true or false)<br>- redacted (true or false) |
 | Groundedness | - detected (true or false)<br>- filtered (true or false, with details)<br>- (Annotate mode only) details:(completion_end_offset, completion_start_offset) |
-
 
 > [!IMPORTANT]
 > When displaying code in your application, we strongly recommend that the application also displays the example citation from the annotations. Compliance with the cited license may also be required for Customer Copyright Commitment coverage.
@@ -388,7 +384,7 @@ main();
 }
 ```
 
-For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](../../openai/reference.md). Annotations are returned for all scenarios when using any preview API version starting from 2023-06-01-preview, as well as the GA API version 2024-02-01.
+For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](../openai/reference.md). Annotations are returned for all scenarios when using any preview API version starting from 2023-06-01-preview, as well as the GA API version 2024-02-01.
 
 ## Document embedding in prompts
 
@@ -516,8 +512,7 @@ Follow these practices when configuring guardrails:
 - **Measure after changes**: After implementing or updating guardrails, repeat your measurement process to verify effectiveness.
 - **Monitor performance impact**: Guardrail processing adds approximately 50-100ms latency per intervention point. For high-throughput scenarios, start with essential controls only and monitor latency metrics.
 
-For full Responsible AI guidance, see the [Responsible AI Overview](../../responsible-ai/openai/overview.md).
-
+For full Responsible AI guidance, see the [Responsible AI Overview](../responsible-ai/openai/overview.md).
 
 ## Troubleshooting
 
@@ -533,6 +528,6 @@ For full Responsible AI guidance, see the [Responsible AI Overview](../../respon
 
 - [Guardrails and controls overview](guardrails-overview.md)
 - [Intervention points and controls](intervention-points.md)
-- [Content filtering](../../openai/concepts/content-filter.md)
-- [Configure content filters for Azure OpenAI](../../openai/how-to/content-filters.md)
+- [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md)
+- [Configure content filters for Azure OpenAI](../../foundry-classic/openai/how-to/content-filters.md)
 

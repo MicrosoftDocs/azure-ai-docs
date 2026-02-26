@@ -1,7 +1,7 @@
 ---
-title: Transparency note - Key Phrase Extraction feature of Azure Language in Foundry Tools
+title: "Transparency note - Key Phrase Extraction feature of Azure Language in Foundry Tools"
 titleSuffix: Foundry Tools
-description: Azure Language in Foundry Tools key phrase extraction allows you to quickly identify the main concepts in text. For example, in the text "The food was delicious and there were wonderful staff", Key Phrase Extraction will return the main talking points "food" and "wonderful staff".
+description: "Azure Language in Foundry Tools key phrase extraction allows you to quickly identify the main concepts in text. For example, in the text 'The food was delicious and there were wonderful staff', Key Phrase Extraction will return the main talking points 'food' and 'wonderful staff'."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/29/2021
 ---
 
 # Transparency note for Key Phrase Extraction
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a transparency note?

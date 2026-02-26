@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry docs: What's new for November 2025 (temp)"
-description: "Discover key changes and updates in Microsoft Foundry documentation for November 2025. (temp)"
+title: "Microsoft Foundry docs: What's new for November 2025"
+description: "Discover key changes and updates in Microsoft Foundry documentation for November 2025."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
@@ -12,8 +12,7 @@ ms.custom:
 ms.date: 12/12/2025
 ---
 
-# What's new in Microsoft Foundry documentation? (temp)
-
+# What's new in Microsoft Foundry documentation?
 Welcome! This article highlights key changes and updates in Microsoft Foundry documentation for December 2025.
 
 This month marks a significant update to our documentation structure. With the introduction of the new Microsoft Foundry portal,

@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI in Microsoft Foundry Models getting started with customizing a large language model (LLM)
-titleSuffix: Azure OpenAI
-description: Learn more about the concepts behind customizing an LLM with Azure OpenAI.
+title: "Azure OpenAI in Microsoft Foundry Models getting started with customizing a large language model (LLM) (classic)"
+description: "Learn more about the concepts behind customizing an LLM with Azure OpenAI. (classic)"
 ms.topic: concept-article
 ms.date: 12/6/2025
 ms.service: azure-ai-foundry
@@ -12,7 +11,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Getting started with customizing a large language model (LLM)
+# Getting started with customizing a large language model (LLM) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

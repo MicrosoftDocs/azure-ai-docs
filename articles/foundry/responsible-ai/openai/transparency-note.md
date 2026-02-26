@@ -1,6 +1,6 @@
 ---
-title: "Transparency Note for Azure OpenAI in Microsoft Foundry Models (temp)"
-description: "Transparency Note for Azure OpenAI (temp)"
+title: "Transparency Note for Azure OpenAI in Microsoft Foundry Models"
+description: "Transparency Note for Azure OpenAI"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Transparency note for Azure OpenAI (temp)
-
+# Transparency note for Azure OpenAI
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a transparency note?

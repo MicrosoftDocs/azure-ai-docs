@@ -1,6 +1,6 @@
 ---
-title: Trigger a Microsoft Foundry Agent Using Logic Apps
-description: Use this article to learn how to trigger an AI agent when an event occurs. 
+title: "Trigger a Microsoft Foundry Agent Using Logic Apps (classic)"
+description: "Use this article to learn how to trigger an AI agent when an event occurs. (classic)" 
 ms.date: 01/06/2026
 ms.topic: how-to
 author: aahill
@@ -9,7 +9,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ---
 
-# Trigger an agent by using Logic Apps (preview)
+# Trigger an agent by using Logic Apps (preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

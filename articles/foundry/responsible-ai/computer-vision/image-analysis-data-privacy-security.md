@@ -1,7 +1,7 @@
 ---
-title: Data and privacy for Image Analysis
+title: "Data and privacy for Image Analysis"
 titleSuffix: Foundry Tools
-description: This document details issues for data, privacy, and security for Image Analysis.
+description: "This document details issues for data, privacy, and security for Image Analysis."
 ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
@@ -11,8 +11,7 @@ ms.topic: concept-article
 ms.date: 10/15/2025
 ---
 
-# Data and privacy for Image Analysis 
-
+# Data and privacy for Image Analysis
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Use the GPT Realtime API via WebRTC (temp)"
-description: "Learn how to use the GPT Realtime API for speech and audio via WebRTC. (temp)"
+title: "Use the GPT Realtime API via WebRTC"
+description: "Learn how to use the GPT Realtime API for speech and audio via WebRTC."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Use the GPT Realtime API via WebRTC (temp)
-
+# Use the GPT Realtime API via WebRTC
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
 You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.

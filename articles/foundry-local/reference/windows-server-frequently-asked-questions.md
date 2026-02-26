@@ -1,5 +1,5 @@
 ---
-title: Foundry Local on Windows Server 2025 - Frequently asked questions
+title: "Foundry Local on Windows Server 2025 - Frequently asked questions"
 description: "Foundry Local FAQ: Learn about its supported Windows Server versions, GPU compatibility, and how it handles inference requests in GPU-P environments."
 #customer intent: As a developer, I want to know if Foundry Local is a Windows component, app, or service so that I can plan its deployment.
 author: jonburchel
@@ -13,7 +13,6 @@ ai-usage: ai-assisted
 ---
 
 # Foundry Local on Windows Server 2025
-
 Foundry Local on Windows Server 2025 lets you run selected Microsoft Foundry model capabilities entirely on a single Windows Server machine you operate.
 
 ## Prerequisites
@@ -70,7 +69,7 @@ Reference: [Foundry Local CLI reference](reference-cli.md)
 
 - **What are the concurrency limitations of Foundry Local on server?**
 
-  Foundry Local isn't optimized to serve multiple users as a shared on-premises endpoint and doesn't support concurrent inference requests. It processes requests sequentially. You must manage parallel execution across multiple endpoints at the application level. As concurrent requests increase, throughput drops and latency increases. There's no continuous batching in the Local runtime, so request coalescing doesn't happen under load. For multiple users or spiky traffic, move to [Microsoft Foundry](../../index.yml).
+  Foundry Local isn't optimized to serve multiple users as a shared on-premises endpoint and doesn't support concurrent inference requests. It processes requests sequentially. You must manage parallel execution across multiple endpoints at the application level. As concurrent requests increase, throughput drops and latency increases. There's no continuous batching in the Local runtime, so request coalescing doesn't happen under load. For multiple users or spiky traffic, move to [Microsoft Foundry](../../foundry-classic/index.yml).
 
 - **How is the Foundry Local SDK different from the Foundry Local service?**
 

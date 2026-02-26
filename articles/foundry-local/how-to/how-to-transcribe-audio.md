@@ -1,7 +1,7 @@
 ---
-title: Transcribe audio files with Foundry Local
+title: "Transcribe audio files with Foundry Local"
 titleSuffix: Foundry Local
-description: This article provides instructions on how to transcribe audio using Foundry Local.
+description: "This article provides instructions on how to transcribe audio using Foundry Local."
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 ---
     
 # Transcribe recorded audio files with Foundry Local
-
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 Use Foundry Local's native audio transcription API to convert a local audio file into text. In this article, you create a C# console application that downloads a Whisper model, loads it, and streams transcription output.

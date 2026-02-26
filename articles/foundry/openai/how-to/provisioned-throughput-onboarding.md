@@ -1,6 +1,6 @@
 ---
-title: "Provisioned throughput unit (PTU) costs and billing (temp)"
-description: "Learn about provisioned throughput unit (PTU) costs, hourly billing, Azure reservations, and capacity planning in Microsoft Foundry. (temp)"
+title: "Provisioned throughput unit (PTU) costs and billing"
+description: "Learn about provisioned throughput unit (PTU) costs, hourly billing, Azure reservations, and capacity planning in Microsoft Foundry."
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -18,8 +18,7 @@ recommendations: false
 #customerIntent: As a developer, I want to understand PTU costs and billing so I can plan and manage my Microsoft Foundry provisioned throughput deployments efficiently.
 ---
 
-# Provisioned throughput unit (PTU) costs and billing (temp)
-
+# Provisioned throughput unit (PTU) costs and billing
 Use this article to learn about costs associated with provisioned throughput units (PTUs). For an overview of the provisioned throughput offering, see [What is provisioned throughput?](../concepts/provisioned-throughput.md). When you're ready to sign up for the provisioned throughput offering, see the [getting started guide](./provisioned-get-started.md).
 
 > [!NOTE]

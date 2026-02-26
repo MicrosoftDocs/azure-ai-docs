@@ -1,17 +1,15 @@
 ---
-title: Microsoft Foundry Project REST Reference (preview)
-description: Learn how to use Microsoft Foundry Project REST API (preview)
+title: "Microsoft Foundry Project REST Reference (preview)"
+description: "Learn how to use Microsoft Foundry Project REST API (preview)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.date: 11/17/2025
 author: mrbullwinkle    
 ms.author: mbullwin
-monikerRange: 'foundry'
 ---
 
 # Microsoft Foundry Project REST reference
-
 API Version: 2025-11-15-preview
 
 ## Agents - create agent
@@ -19,7 +17,6 @@ API Version: 2025-11-15-preview
 ```HTTP
 POST {endpoint}/agents?api-version=2025-11-15-preview
 ```
-
 
 Creates the agent.
 
@@ -72,7 +69,6 @@ Creates the agent.
 GET {endpoint}/agents?api-version=2025-11-15-preview
 ```
 
-
 Returns the list of all agents.
 
 ### URI Parameters
@@ -117,7 +113,6 @@ Returns the list of all agents.
 GET {endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
 ```
 
-
 Retrieves the agent.
 
 ### URI Parameters
@@ -157,7 +152,6 @@ Retrieves the agent.
 ```HTTP
 POST {endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
 ```
-
 
 Updates the agent by adding a new version if there are any changes to the agent definition.
 If no changes, returns the existing agent version.
@@ -211,7 +205,6 @@ If no changes, returns the existing agent version.
 DELETE {endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
 ```
 
-
 Deletes an agent.
 
 ### URI Parameters
@@ -251,7 +244,6 @@ Deletes an agent.
 ```HTTP
 POST {endpoint}/agents/{agent_name}/import?api-version=2025-11-15-preview
 ```
-
 
 Updates the agent from a manifest by adding a new version if there are any changes to the agent definition.
 If no changes, returns the existing agent version.
@@ -304,7 +296,6 @@ If no changes, returns the existing agent version.
 GET {endpoint}/agents/{agent_name}/operations?api-version=2025-11-15-preview
 ```
 
-
 List container operations for an agent.
 
 ### URI Parameters
@@ -349,7 +340,6 @@ List container operations for an agent.
 GET {endpoint}/agents/{agent_name}/operations/{operation_id}?api-version=2025-11-15-preview
 ```
 
-
 Get the status of a container operation for an agent.
 
 ### URI Parameters
@@ -390,7 +380,6 @@ Get the status of a container operation for an agent.
 ```HTTP
 POST {endpoint}/agents/{agent_name}/versions?api-version=2025-11-15-preview
 ```
-
 
 Create a new agent version.
 
@@ -443,7 +432,6 @@ Create a new agent version.
 GET {endpoint}/agents/{agent_name}/versions?api-version=2025-11-15-preview
 ```
 
-
 Returns the list of versions of an agent.
 
 ### URI Parameters
@@ -488,7 +476,6 @@ Returns the list of versions of an agent.
 GET {endpoint}/agents/{agent_name}/versions/{agent_version}?api-version=2025-11-15-preview
 ```
 
-
 Retrieves a specific version of an agent.
 
 ### URI Parameters
@@ -529,7 +516,6 @@ Retrieves a specific version of an agent.
 ```HTTP
 DELETE {endpoint}/agents/{agent_name}/versions/{agent_version}?api-version=2025-11-15-preview
 ```
-
 
 Deletes a specific version of an agent.
 
@@ -572,7 +558,6 @@ Deletes a specific version of an agent.
 GET {endpoint}/agents/{agent_name}/versions/{agent_version}/containers/default?api-version=2025-11-15-preview
 ```
 
-
 Get a container for a specific version of an agent.
 
 ### URI Parameters
@@ -613,7 +598,6 @@ Get a container for a specific version of an agent.
 ```HTTP
 GET {endpoint}/agents/{agent_name}/versions/{agent_version}/containers/default/operations?api-version=2025-11-15-preview
 ```
-
 
 List container operations for a specific version of an agent.
 
@@ -660,7 +644,6 @@ List container operations for a specific version of an agent.
 POST {endpoint}/agents/{agent_name}/versions/{agent_version}/containers/default:delete?api-version=2025-11-15-preview
 ```
 
-
 Delete a container for a specific version of an agent. If the container doesn't exist, the operation will be no-op.
 The operation is a long-running operation. Following the design guidelines for long-running operations in Azure REST APIs.
 https://github.com/microsoft/api-guidelines/blob/vNext/azure/ConsiderationsForServiceDesign.md#action-operations
@@ -703,7 +686,6 @@ https://github.com/microsoft/api-guidelines/blob/vNext/azure/ConsiderationsForSe
 ```HTTP
 POST {endpoint}/agents/{agent_name}/versions/{agent_version}/containers/default:start?api-version=2025-11-15-preview
 ```
-
 
 Start a container for a specific version of an agent. If the container is already running, the operation will be no-op.
 The operation is a long-running operation. Following the design guidelines for long-running operations in Azure REST APIs.
@@ -756,7 +738,6 @@ https://github.com/microsoft/api-guidelines/blob/vNext/azure/ConsiderationsForSe
 POST {endpoint}/agents/{agent_name}/versions/{agent_version}/containers/default:stop?api-version=2025-11-15-preview
 ```
 
-
 Stop a container for a specific version of an agent. If the container is not running, or already stopped, the operation will be no-op.
 The operation is a long-running operation. Following the design guidelines for long-running operations in Azure REST APIs.
 https://github.com/microsoft/api-guidelines/blob/vNext/azure/ConsiderationsForServiceDesign.md#action-operations
@@ -799,7 +780,6 @@ https://github.com/microsoft/api-guidelines/blob/vNext/azure/ConsiderationsForSe
 ```HTTP
 POST {endpoint}/agents/{agent_name}/versions/{agent_version}/containers/default:update?api-version=2025-11-15-preview
 ```
-
 
 Update a container for a specific version of an agent. If the container is not running, the operation will be no-op.
 The operation is a long-running operation. Following the design guidelines for long-running operations in Azure REST APIs.
@@ -852,7 +832,6 @@ https://github.com/microsoft/api-guidelines/blob/vNext/azure/ConsiderationsForSe
 POST {endpoint}/agents/{agent_name}/versions:import?api-version=2025-11-15-preview
 ```
 
-
 Create a new agent version from a manifest.
 
 ### URI Parameters
@@ -902,7 +881,6 @@ Create a new agent version from a manifest.
 ```HTTP
 POST {endpoint}/agents:import?api-version=2025-11-15-preview
 ```
-
 
 Creates an agent from a manifest.
 
@@ -954,7 +932,6 @@ Creates an agent from a manifest.
 GET {endpoint}/connections?api-version=2025-11-15-preview
 ```
 
-
 List all connections in the project, without populating connection credentials
 
 ### URI Parameters
@@ -997,7 +974,6 @@ List all connections in the project, without populating connection credentials
 GET {endpoint}/connections/{name}?api-version=2025-11-15-preview
 ```
 
-
 Get a connection by name, without populating connection credentials
 
 ### URI Parameters
@@ -1038,7 +1014,6 @@ Get a connection by name, without populating connection credentials
 ```HTTP
 POST {endpoint}/connections/{name}/getConnectionWithCredentials?api-version=2025-11-15-preview
 ```
-
 
 Get a connection by name, with its connection credentials
 
@@ -1081,7 +1056,6 @@ Get a connection by name, with its connection credentials
 GET {endpoint}/datasets?api-version=2025-11-15-preview
 ```
 
-
 List the latest version of each DatasetVersion
 
 ### URI Parameters
@@ -1120,7 +1094,6 @@ List the latest version of each DatasetVersion
 ```HTTP
 GET {endpoint}/datasets/{name}/versions?api-version=2025-11-15-preview
 ```
-
 
 List all versions of the given DatasetVersion
 
@@ -1161,7 +1134,6 @@ List all versions of the given DatasetVersion
 ```HTTP
 GET {endpoint}/datasets/{name}/versions/{version}?api-version=2025-11-15-preview
 ```
-
 
 Get the specific version of the DatasetVersion. The service returns 404 Not Found error if the DatasetVersion does not exist.
 
@@ -1204,7 +1176,6 @@ Get the specific version of the DatasetVersion. The service returns 404 Not Foun
 DELETE {endpoint}/datasets/{name}/versions/{version}?api-version=2025-11-15-preview
 ```
 
-
 Delete the specific version of the DatasetVersion. The service returns 204 No Content if the DatasetVersion was deleted successfully or if the DatasetVersion does not exist.
 
 ### URI Parameters
@@ -1241,7 +1212,6 @@ Delete the specific version of the DatasetVersion. The service returns 204 No Co
 ```HTTP
 PATCH {endpoint}/datasets/{name}/versions/{version}?api-version=2025-11-15-preview
 ```
-
 
 Create a new or update an existing DatasetVersion with the given version id
 
@@ -1301,7 +1271,6 @@ Create a new or update an existing DatasetVersion with the given version id
 POST {endpoint}/datasets/{name}/versions/{version}/credentials?api-version=2025-11-15-preview
 ```
 
-
 Get the SAS credential to access the storage account associated with a Dataset version.
 
 ### URI Parameters
@@ -1342,7 +1311,6 @@ Get the SAS credential to access the storage account associated with a Dataset v
 ```HTTP
 POST {endpoint}/datasets/{name}/versions/{version}/startPendingUpload?api-version=2025-11-15-preview
 ```
-
 
 Start a new or get an existing pending upload of a dataset for a specific version.
 
@@ -1394,7 +1362,6 @@ Start a new or get an existing pending upload of a dataset for a specific versio
 GET {endpoint}/deployments?api-version=2025-11-15-preview
 ```
 
-
 List all deployed models in the project
 
 ### URI Parameters
@@ -1438,7 +1405,6 @@ List all deployed models in the project
 GET {endpoint}/deployments/{name}?api-version=2025-11-15-preview
 ```
 
-
 Get a deployed model.
 
 ### URI Parameters
@@ -1479,7 +1445,6 @@ Get a deployed model.
 ```HTTP
 GET {endpoint}/evaluationrules?api-version=2025-11-15-preview
 ```
-
 
 List all evaluation rules.
 
@@ -1524,7 +1489,6 @@ List all evaluation rules.
 GET {endpoint}/evaluationrules/{id}?api-version=2025-11-15-preview
 ```
 
-
 Get an evaluation rule.
 
 ### URI Parameters
@@ -1566,7 +1530,6 @@ Get an evaluation rule.
 DELETE {endpoint}/evaluationrules/{id}?api-version=2025-11-15-preview
 ```
 
-
 Delete an evaluation rule.
 
 ### URI Parameters
@@ -1603,7 +1566,6 @@ Delete an evaluation rule.
 ```HTTP
 PUT {endpoint}/evaluationrules/{id}?api-version=2025-11-15-preview
 ```
-
 
 Create or update an evaluation rule.
 
@@ -1669,7 +1631,6 @@ Create or update an evaluation rule.
 GET {endpoint}/evaluationtaxonomies?api-version=2025-11-15-preview
 ```
 
-
 List evaluation taxonomies
 
 ### URI Parameters
@@ -1712,7 +1673,6 @@ List evaluation taxonomies
 GET {endpoint}/evaluationtaxonomies/{name}?api-version=2025-11-15-preview
 ```
 
-
 Get an evaluation run by name.
 
 ### URI Parameters
@@ -1754,7 +1714,6 @@ Get an evaluation run by name.
 DELETE {endpoint}/evaluationtaxonomies/{name}?api-version=2025-11-15-preview
 ```
 
-
 Delete an evaluation taxonomy by name.
 
 ### URI Parameters
@@ -1791,7 +1750,6 @@ Delete an evaluation taxonomy by name.
 ```HTTP
 PUT {endpoint}/evaluationtaxonomies/{name}?api-version=2025-11-15-preview
 ```
-
 
 Create an evaluation taxonomy.
 
@@ -1853,7 +1811,6 @@ Create an evaluation taxonomy.
 PATCH {endpoint}/evaluationtaxonomies/{name}?api-version=2025-11-15-preview
 ```
 
-
 Update an evaluation taxonomy.
 
 ### URI Parameters
@@ -1906,7 +1863,6 @@ Update an evaluation taxonomy.
 GET {endpoint}/evaluators?api-version=2025-11-15-preview
 ```
 
-
 List the latest version of each evaluator
 
 ### URI Parameters
@@ -1947,7 +1903,6 @@ List the latest version of each evaluator
 ```HTTP
 GET {endpoint}/evaluators/{name}/versions?api-version=2025-11-15-preview
 ```
-
 
 List all versions of the given evaluator
 
@@ -1990,7 +1945,6 @@ List all versions of the given evaluator
 ```HTTP
 POST {endpoint}/evaluators/{name}/versions?api-version=2025-11-15-preview
 ```
-
 
 Create a new EvaluatorVersion with auto incremented version id
 
@@ -2049,7 +2003,6 @@ Create a new EvaluatorVersion with auto incremented version id
 GET {endpoint}/evaluators/{name}/versions/{version}?api-version=2025-11-15-preview
 ```
 
-
 Get the specific version of the EvaluatorVersion. The service returns 404 Not Found error if the EvaluatorVersion does not exist.
 
 ### URI Parameters
@@ -2091,7 +2044,6 @@ Get the specific version of the EvaluatorVersion. The service returns 404 Not Fo
 DELETE {endpoint}/evaluators/{name}/versions/{version}?api-version=2025-11-15-preview
 ```
 
-
 Delete the specific version of the EvaluatorVersion. The service returns 204 No Content if the EvaluatorVersion was deleted successfully or if the EvaluatorVersion does not exist.
 
 ### URI Parameters
@@ -2128,7 +2080,6 @@ Delete the specific version of the EvaluatorVersion. The service returns 204 No 
 ```HTTP
 PATCH {endpoint}/evaluators/{name}/versions/{version}?api-version=2025-11-15-preview
 ```
-
 
 Update an existing EvaluatorVersion with the given version id
 
@@ -2182,7 +2133,6 @@ Update an existing EvaluatorVersion with the given version id
 GET {endpoint}/indexes?api-version=2025-11-15-preview
 ```
 
-
 List the latest version of each Index
 
 ### URI Parameters
@@ -2221,7 +2171,6 @@ List the latest version of each Index
 ```HTTP
 GET {endpoint}/indexes/{name}/versions?api-version=2025-11-15-preview
 ```
-
 
 List all versions of the given Index
 
@@ -2262,7 +2211,6 @@ List all versions of the given Index
 ```HTTP
 GET {endpoint}/indexes/{name}/versions/{version}?api-version=2025-11-15-preview
 ```
-
 
 Get the specific version of the Index. The service returns 404 Not Found error if the Index does not exist.
 
@@ -2305,7 +2253,6 @@ Get the specific version of the Index. The service returns 404 Not Found error i
 DELETE {endpoint}/indexes/{name}/versions/{version}?api-version=2025-11-15-preview
 ```
 
-
 Delete the specific version of the Index. The service returns 204 No Content if the Index was deleted successfully or if the Index does not exist.
 
 ### URI Parameters
@@ -2342,7 +2289,6 @@ Delete the specific version of the Index. The service returns 204 No Content if 
 ```HTTP
 PATCH {endpoint}/indexes/{name}/versions/{version}?api-version=2025-11-15-preview
 ```
-
 
 Create a new or update an existing Index with the given version id
 
@@ -2402,7 +2348,6 @@ Create a new or update an existing Index with the given version id
 POST {endpoint}/insights?api-version=2025-11-15-preview
 ```
 
-
 Generate Insights
 
 ### URI Parameters
@@ -2460,7 +2405,6 @@ Generate Insights
 GET {endpoint}/insights?api-version=2025-11-15-preview
 ```
 
-
 List all insights in reverse chronological order (newest first).
 
 ### URI Parameters
@@ -2506,7 +2450,6 @@ List all insights in reverse chronological order (newest first).
 GET {endpoint}/insights/{id}?api-version=2025-11-15-preview
 ```
 
-
 Get a specific insight by Id.
 
 ### URI Parameters
@@ -2548,7 +2491,6 @@ Get a specific insight by Id.
 ```HTTP
 POST {endpoint}/memory_stores?api-version=2025-11-15-preview
 ```
-
 
 Create a memory store.
 
@@ -2600,7 +2542,6 @@ Create a memory store.
 GET {endpoint}/memory_stores?api-version=2025-11-15-preview
 ```
 
-
 List all memory stores.
 
 ### URI Parameters
@@ -2643,7 +2584,6 @@ List all memory stores.
 ```HTTP
 POST {endpoint}/memory_stores/{name}?api-version=2025-11-15-preview
 ```
-
 
 Update a memory store.
 
@@ -2693,7 +2633,6 @@ Update a memory store.
 GET {endpoint}/memory_stores/{name}?api-version=2025-11-15-preview
 ```
 
-
 Retrieve a memory store.
 
 ### URI Parameters
@@ -2733,7 +2672,6 @@ Retrieve a memory store.
 ```HTTP
 DELETE {endpoint}/memory_stores/{name}?api-version=2025-11-15-preview
 ```
-
 
 Delete a memory store.
 
@@ -2775,7 +2713,6 @@ Delete a memory store.
 GET {endpoint}/memory_stores/{name}/updates/{update_id}?api-version=2025-11-15-preview
 ```
 
-
 Get memory store update result.
 
 ### URI Parameters
@@ -2816,7 +2753,6 @@ Get memory store update result.
 ```HTTP
 POST {endpoint}/memory_stores/{name}:delete_scope?api-version=2025-11-15-preview
 ```
-
 
 Delete all memories associated with a specific scope from a memory store.
 
@@ -2864,7 +2800,6 @@ Delete all memories associated with a specific scope from a memory store.
 ```HTTP
 POST {endpoint}/memory_stores/{name}:search_memories?api-version=2025-11-15-preview
 ```
-
 
 Search for relevant memories from a memory store based on conversation context.
 
@@ -2917,7 +2852,6 @@ Search for relevant memories from a memory store based on conversation context.
 POST {endpoint}/memory_stores/{name}:update_memories?api-version=2025-11-15-preview
 ```
 
-
 Update memory store with conversation memories.
 
 ### URI Parameters
@@ -2968,7 +2902,6 @@ Update memory store with conversation memories.
 POST {endpoint}/openai/conversations?api-version=2025-11-15-preview
 ```
 
-
 Create a conversation.
 
 ### URI Parameters
@@ -3016,7 +2949,6 @@ Create a conversation.
 GET {endpoint}/openai/conversations?api-version=2025-11-15-preview
 ```
 
-
 Returns the list of all conversations.
 
 ### URI Parameters
@@ -3061,7 +2993,6 @@ Returns the list of all conversations.
 ```HTTP
 POST {endpoint}/openai/conversations/{conversation_id}?api-version=2025-11-15-preview
 ```
-
 
 Update a conversation.
 
@@ -3110,7 +3041,6 @@ Update a conversation.
 GET {endpoint}/openai/conversations/{conversation_id}?api-version=2025-11-15-preview
 ```
 
-
 Retrieves a conversation.
 
 ### URI Parameters
@@ -3151,7 +3081,6 @@ Retrieves a conversation.
 DELETE {endpoint}/openai/conversations/{conversation_id}?api-version=2025-11-15-preview
 ```
 
-
 Deletes a conversation.
 
 ### URI Parameters
@@ -3191,7 +3120,6 @@ Deletes a conversation.
 ```HTTP
 POST {endpoint}/openai/conversations/{conversation_id}/items?api-version=2025-11-15-preview
 ```
-
 
 Create items in a conversation with the given ID.
 
@@ -3241,7 +3169,6 @@ Create items in a conversation with the given ID.
 GET {endpoint}/openai/conversations/{conversation_id}/items?api-version=2025-11-15-preview
 ```
 
-
 List all items for a conversation with the given ID.
 
 ### URI Parameters
@@ -3287,7 +3214,6 @@ List all items for a conversation with the given ID.
 GET {endpoint}/openai/conversations/{conversation_id}/items/{item_id}?api-version=2025-11-15-preview
 ```
 
-
 Get a single item from a conversation with the given IDs.
 
 ### URI Parameters
@@ -3328,7 +3254,6 @@ Get a single item from a conversation with the given IDs.
 ```HTTP
 DELETE {endpoint}/openai/conversations/{conversation_id}/items/{item_id}?api-version=2025-11-15-preview
 ```
-
 
 Delete an item from a conversation with the given IDs.
 
@@ -3652,7 +3577,6 @@ POST {endpoint}/openai/evals/{eval_id}/runs?api-version=2025-11-15-preview
 
 Create evaluation run
 
-
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -3923,7 +3847,6 @@ Get an evaluation run output item by ID.
 POST {endpoint}/openai/fine-tuning/jobs?api-version=2025-11-15-preview
 ```
 
-
 Creates a fine-tuning job which begins the process of creating a new model from a given dataset.
 
 Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.
@@ -3985,7 +3908,6 @@ Response includes details of the enqueued job including job status and the name 
 GET {endpoint}/openai/fine-tuning/jobs?api-version=2025-11-15-preview
 ```
 
-
 List your organization's fine-tuning jobs
 
 ### URI Parameters
@@ -4026,7 +3948,6 @@ List your organization's fine-tuning jobs
 ```HTTP
 GET {endpoint}/openai/fine-tuning/jobs/{fine_tuning_job_id}?api-version=2025-11-15-preview
 ```
-
 
 Get info about a fine-tuning job.
 
@@ -4070,7 +3991,6 @@ Get info about a fine-tuning job.
 POST {endpoint}/openai/fine-tuning/jobs/{fine_tuning_job_id}/cancel?api-version=2025-11-15-preview
 ```
 
-
 Immediately cancel a fine-tune job.
 
 ### URI Parameters
@@ -4110,7 +4030,6 @@ Immediately cancel a fine-tune job.
 ```HTTP
 GET {endpoint}/openai/fine-tuning/jobs/{fine_tuning_job_id}/checkpoints?api-version=2025-11-15-preview
 ```
-
 
 List checkpoints for a fine-tuning job.
 
@@ -4154,7 +4073,6 @@ List checkpoints for a fine-tuning job.
 GET {endpoint}/openai/fine-tuning/jobs/{fine_tuning_job_id}/events?api-version=2025-11-15-preview
 ```
 
-
 Get fine-grained status updates for a fine-tuning job.
 
 ### URI Parameters
@@ -4197,7 +4115,6 @@ Get fine-grained status updates for a fine-tuning job.
 POST {endpoint}/openai/fine-tuning/jobs/{fine_tuning_job_id}/pause?api-version=2025-11-15-preview
 ```
 
-
 Pause a running fine-tune job.
 
 ### URI Parameters
@@ -4238,7 +4155,6 @@ Pause a running fine-tune job.
 POST {endpoint}/openai/fine-tuning/jobs/{fine_tuning_job_id}/resume?api-version=2025-11-15-preview
 ```
 
-
 Resume a paused fine-tune job.
 
 ### URI Parameters
@@ -4278,7 +4194,6 @@ Resume a paused fine-tune job.
 ```HTTP
 POST {endpoint}/openai/responses?api-version=2025-11-15-preview
 ```
-
 
 Creates a model response. Creates a model response (streaming response).
 
@@ -4353,7 +4268,6 @@ Creates a model response. Creates a model response (streaming response).
 GET {endpoint}/openai/responses?api-version=2025-11-15-preview
 ```
 
-
 Returns the list of all responses.
 
 ### URI Parameters
@@ -4400,7 +4314,6 @@ Returns the list of all responses.
 GET {endpoint}/openai/responses/{response_id}?api-version=2025-11-15-preview
 ```
 
-
 Retrieves a model response with the given ID. Retrieves a model response with the given ID (streaming response).
 
 ### URI Parameters
@@ -4446,7 +4359,6 @@ Retrieves a model response with the given ID. Retrieves a model response with th
 DELETE {endpoint}/openai/responses/{response_id}?api-version=2025-11-15-preview
 ```
 
-
 Deletes a model response.
 
 ### URI Parameters
@@ -4487,7 +4399,6 @@ Deletes a model response.
 POST {endpoint}/openai/responses/{response_id}/cancel?api-version=2025-11-15-preview
 ```
 
-
 Cancels a model response.
 
 ### URI Parameters
@@ -4527,7 +4438,6 @@ Cancels a model response.
 ```HTTP
 GET {endpoint}/openai/responses/{response_id}/input_items?api-version=2025-11-15-preview
 ```
-
 
 Returns a list of input items for a given response.
 
@@ -4573,7 +4483,6 @@ Returns a list of input items for a given response.
 GET {endpoint}/redTeams/runs?api-version=2025-11-15-preview
 ```
 
-
 List a redteam by name.
 
 ### URI Parameters
@@ -4613,7 +4522,6 @@ List a redteam by name.
 ```HTTP
 GET {endpoint}/redTeams/runs/{name}?api-version=2025-11-15-preview
 ```
-
 
 Get a redteam by name.
 
@@ -4655,7 +4563,6 @@ Get a redteam by name.
 ```HTTP
 POST {endpoint}/redTeams/runs:run?api-version=2025-11-15-preview
 ```
-
 
 Creates a redteam run.
 
@@ -4714,7 +4621,6 @@ Creates a redteam run.
 GET {endpoint}/schedules?api-version=2025-11-15-preview
 ```
 
-
 List all schedules.
 
 ### URI Parameters
@@ -4755,7 +4661,6 @@ List all schedules.
 DELETE {endpoint}/schedules/{id}?api-version=2025-11-15-preview
 ```
 
-
 Delete a schedule.
 
 ### URI Parameters
@@ -4792,7 +4697,6 @@ Delete a schedule.
 ```HTTP
 GET {endpoint}/schedules/{id}?api-version=2025-11-15-preview
 ```
-
 
 Get a schedule by id.
 
@@ -4834,7 +4738,6 @@ Get a schedule by id.
 ```HTTP
 PUT {endpoint}/schedules/{id}?api-version=2025-11-15-preview
 ```
-
 
 Create or update a schedule by id.
 
@@ -4903,7 +4806,6 @@ Create or update a schedule by id.
 GET {endpoint}/schedules/{id}/runs?api-version=2025-11-15-preview
 ```
 
-
 List all schedule runs.
 
 ### URI Parameters
@@ -4944,7 +4846,6 @@ List all schedule runs.
 ```HTTP
 GET {endpoint}/schedules/{scheduleId}/runs/{runId}?api-version=2025-11-15-preview
 ```
-
 
 Get a schedule run by id.
 
@@ -5096,7 +4997,6 @@ Status of the container of a specific version of an agent.
 
 ### AgentDefinition
 
-
 ### Discriminator for AgentDefinition
 
 This component uses the property `kind` to discriminate between different types:
@@ -5237,7 +5137,6 @@ Identifier of a saved asset.
 
 **Type**: string
 
-
 ### AttackStrategy
 
 Strategies for attacks.
@@ -5302,7 +5201,6 @@ Universally Unique Identifier
 **Type**: string
 
 **Format**: uuid
-
 
 ### AzureAIAgentTarget
 
@@ -5529,7 +5427,6 @@ Azure OpenAI model configuration. The API version would be selected by the servi
 ### BaseCredentials
 
 A base class for connection credentials
-
 
 ### Discriminator for BaseCredentials
 
@@ -5923,7 +5820,6 @@ Enum to determine the type of data.
 
 DatasetVersion Definition
 
-
 ### Discriminator for DatasetVersion
 
 This component uses the property `type` to discriminate between different types:
@@ -5946,7 +5842,6 @@ This component uses the property `type` to discriminate between different types:
 ### DatasetVersionUpdate
 
 DatasetVersion Definition
-
 
 ### Discriminator for DatasetVersionUpdate
 
@@ -6035,7 +5930,6 @@ The result of a delete response operation.
 ### Deployment
 
 Model Deployment Definition
-
 
 ### Discriminator for Deployment
 
@@ -6151,7 +6045,6 @@ A schema representing an evaluation run.
 ### EvalRunDataSource
 
 Base class for run data sources with discriminator support.
-
 
 ### Discriminator for EvalRunDataSource
 
@@ -6299,7 +6192,6 @@ Evaluation rule model.
 
 Evaluation action model.
 
-
 ### Discriminator for EvaluationRuleAction
 
 This component uses the property `type` to discriminate between different types:
@@ -6403,7 +6295,6 @@ Evaluation Taxonomy Definition
 
 Input configuration for the evaluation taxonomy.
 
-
 ### Discriminator for EvaluationTaxonomyInput
 
 This component uses the property `type` to discriminate between different types:
@@ -6429,7 +6320,6 @@ Type of the evaluation taxonomy input.
 ### EvaluationTaxonomyInputUpdate
 
 Input configuration for the evaluation taxonomy.
-
 
 ### Discriminator for EvaluationTaxonomyInputUpdate
 
@@ -6469,7 +6359,6 @@ The category of the evaluator
 ### EvaluatorDefinition
 
 Base evaluator configuration with discriminator
-
 
 ### Discriminator for EvaluatorDefinition
 
@@ -6635,7 +6524,6 @@ FileDatasetVersion Definition
 
 The hosted agent definition.
 
-
 ### Discriminator for HostedAgentDefinition
 
 This component uses the property `kind` to discriminate between different types:
@@ -6683,7 +6571,6 @@ The image-based deployment definition for a hosted agent.
 
 Index resource Definition
 
-
 ### Discriminator for Index
 
 This component uses the property `type` to discriminate between different types:
@@ -6711,7 +6598,6 @@ This component uses the property `type` to discriminate between different types:
 ### IndexUpdate
 
 Index resource Definition
-
 
 ### Discriminator for IndexUpdate
 
@@ -6773,7 +6659,6 @@ Configuration of the model used in the insight generation.
 
 The request of the insights report.
 
-
 ### Discriminator for InsightRequest
 
 This component uses the property `type` to discriminate between different types:
@@ -6792,7 +6677,6 @@ This component uses the property `type` to discriminate between different types:
 
 The result of the insights.
 
-
 ### Discriminator for InsightResult
 
 This component uses the property `type` to discriminate between different types:
@@ -6810,7 +6694,6 @@ This component uses the property `type` to discriminate between different types:
 ### InsightSample
 
 A sample from the analysis.
-
 
 ### Discriminator for InsightSample
 
@@ -6879,7 +6762,6 @@ Metadata about the insights.
 
 Represents the set of parameters used to control item generation operations.
 
-
 ### Discriminator for ItemGenerationParams
 
 This component uses the property `type` to discriminate between different types:
@@ -6910,7 +6792,6 @@ Managed Azure AI Search Index Definition
 ### MemoryItem
 
 A single memory item stored in the memory store, containing content and metadata.
-
 
 ### Discriminator for MemoryItem
 
@@ -7039,7 +6920,6 @@ Default memory store configurations.
 ### MemoryStoreDefinition
 
 Base definition for memory store configurations.
-
 
 ### Discriminator for MemoryStoreDefinition
 
@@ -7262,7 +7142,6 @@ One-time trigger.
 
 ### OpenAI.Annotation
 
-
 ### Discriminator for OpenAI.Annotation
 
 This component uses the property `type` to discriminate between different types:
@@ -7338,7 +7217,6 @@ A function tool that can be used to generate a response.
 
 ### OpenAI.CodeInterpreterOutput
 
-
 ### Discriminator for OpenAI.CodeInterpreterOutput
 
 This component uses the property `type` to discriminate between different types:
@@ -7402,7 +7280,6 @@ of the files to run the code on.
 
 A tool call to run code.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | code | string | The code to run, or null if not available. | Yes |  |
@@ -7413,7 +7290,6 @@ A tool call to run code.
 ### OpenAI.CodeInterpreterToolCallItemResource
 
 A tool call to run code.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -7443,7 +7319,6 @@ Combine multiple filters using `and` or `or`.
 | type | enum | Type of operation: `and` or `or`.<br>Possible values: `and`, `or` | Yes |  |
 
 ### OpenAI.ComputerAction
-
 
 ### Discriminator for OpenAI.ComputerAction
 
@@ -7563,7 +7438,6 @@ A wait action.
 A tool call to a computer use tool. See the
 [computer use guide](https://platform.openai.com/docs/guides/tools-computer-use) for more information.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | action | [OpenAI.ComputerAction](#openaicomputeraction) |  | Yes |  |
@@ -7576,7 +7450,6 @@ A tool call to a computer use tool. See the
 A tool call to a computer use tool. See the
 [computer use guide](https://platform.openai.com/docs/guides/tools-computer-use) for more information.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | action | [OpenAI.ComputerAction](#openaicomputeraction) |  | Yes |  |
@@ -7586,7 +7459,6 @@ A tool call to a computer use tool. See the
 | type | enum | <br>Possible values: `computer_call` | Yes |  |
 
 ### OpenAI.ComputerToolCallOutputItemOutput
-
 
 ### Discriminator for OpenAI.ComputerToolCallOutputItemOutput
 
@@ -7622,7 +7494,6 @@ A computer screenshot image used with the computer use tool.
 
 The output of a computer tool call.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | acknowledged_safety_checks | array | The safety checks reported by the API that have been acknowledged by the<br>developer. | No |  |
@@ -7633,7 +7504,6 @@ The output of a computer tool call.
 ### OpenAI.ComputerToolCallOutputItemResource
 
 The output of a computer tool call.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -7862,7 +7732,6 @@ Deprecated in favor of LogsDataSourceConfig.
 
 ### OpenAI.CreateFineTuningJobRequest
 
-
 **Valid models:**
 
 ```
@@ -7888,7 +7757,6 @@ gpt-4o-mini
 | validation_file | string | The ID of an uploaded file that contains validation data.<br><br>If you provide this file, the data is used to generate validation<br>metrics periodically during fine-tuning. These metrics can be viewed in<br>the fine-tuning results file.<br>The same data should not be present in both train and validation files.<br><br>Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.<br><br>See the [fine-tuning guide](https://platform.openai.com/docs/guides/model-optimization) for more details. | No |  |
 
 ### OpenAI.CreateFineTuningJobRequestIntegration
-
 
 ### Discriminator for OpenAI.CreateFineTuningJobRequestIntegration
 
@@ -8233,7 +8101,6 @@ A tool that searches for relevant content from uploaded files.
 The results of a file search tool call. See the
 [file search guide](https://platform.openai.com/docs/guides/tools-file-search) for more information.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | queries | array | The queries used to search for files. | Yes |  |
@@ -8244,7 +8111,6 @@ The results of a file search tool call. See the
 
 The results of a file search tool call. See the
 [file search guide](https://platform.openai.com/docs/guides/tools-file-search) for more information.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -8347,7 +8213,6 @@ Configuration for the supervised fine-tuning method.
 | hyperparameters | [OpenAI.FineTuneSupervisedHyperparameters](#openaifinetunesupervisedhyperparameters) | The hyperparameters used for the fine-tuning job. | No |  |
 
 ### OpenAI.FineTuningIntegration
-
 
 ### Discriminator for OpenAI.FineTuningIntegration
 
@@ -8466,7 +8331,6 @@ Defines a function in your own code the model can choose to call.
 A tool call to run a function. See the
 [function calling guide](https://platform.openai.com/docs/guides/function-calling) for more information.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | arguments | string | A JSON string of the arguments to pass to the function. | Yes |  |
@@ -8478,7 +8342,6 @@ A tool call to run a function. See the
 
 A tool call to run a function. See the
 [function calling guide](https://platform.openai.com/docs/guides/function-calling) for more information.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -8492,7 +8355,6 @@ A tool call to run a function. See the
 
 The output of a function tool call.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | call_id | string | The unique ID of the function tool call generated by the model. | Yes |  |
@@ -8502,7 +8364,6 @@ The output of a function tool call.
 ### OpenAI.FunctionToolCallOutputItemResource
 
 The output of a function tool call.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -8625,7 +8486,6 @@ A tool that generates images using a model like `gpt-image-1`.
 
 An image generation request made by the model.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | result | string | The generated image encoded in base64. | Yes |  |
@@ -8634,7 +8494,6 @@ An image generation request made by the model.
 ### OpenAI.ImageGenToolCallItemResource
 
 An image generation request made by the model.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -8666,7 +8525,6 @@ supported values are:
 | **Values** | `code_interpreter_call.outputs`<br>`computer_call_output.output.image_url`<br>`file_search_call.results`<br>`message.input_image.image_url`<br>`message.output_text.logprobs`<br>`reasoning.encrypted_content`<br>`web_search_call.results`<br>`web_search_call.action.sources`<br>`memory_search_call.results` |
 
 ### OpenAI.ItemContent
-
 
 ### Discriminator for OpenAI.ItemContent
 
@@ -8771,7 +8629,6 @@ Multi-modal input and output contents.
 
 Content item used to generate a response.
 
-
 ### Discriminator for OpenAI.ItemParam
 
 This component uses the property `type` to discriminate between different types:
@@ -8813,7 +8670,6 @@ An internal identifier for an item to reference.
 ### OpenAI.ItemResource
 
 Content item used to generate a response.
-
 
 ### Discriminator for OpenAI.ItemResource
 
@@ -8908,7 +8764,6 @@ A tool that allows the model to execute shell commands in a local environment.
 
 A tool call to run a command on the local shell.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | action | [OpenAI.LocalShellExecAction](#openailocalshellexecaction) | Execute a shell command on the server. | Yes |  |
@@ -8918,7 +8773,6 @@ A tool call to run a command on the local shell.
 ### OpenAI.LocalShellToolCallItemResource
 
 A tool call to run a command on the local shell.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -8931,7 +8785,6 @@ A tool call to run a command on the local shell.
 
 The output of a local shell tool call.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | output | string | A JSON string of the output of the local shell tool call. | Yes |  |
@@ -8941,7 +8794,6 @@ The output of a local shell tool call.
 
 The output of a local shell tool call.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | output | string | A JSON string of the output of the local shell tool call. | Yes |  |
@@ -8949,7 +8801,6 @@ The output of a local shell tool call.
 | type | enum | <br>Possible values: `local_shell_call_output` | Yes |  |
 
 ### OpenAI.Location
-
 
 ### Discriminator for OpenAI.Location
 
@@ -8985,7 +8836,6 @@ The log probability of a token.
 
 A request for human approval of a tool invocation.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | arguments | string | A JSON string of arguments for the tool. | Yes |  |
@@ -8996,7 +8846,6 @@ A request for human approval of a tool invocation.
 ### OpenAI.MCPApprovalRequestItemResource
 
 A request for human approval of a tool invocation.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -9009,7 +8858,6 @@ A request for human approval of a tool invocation.
 
 A response to an MCP approval request.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | approval_request_id | string | The ID of the approval request being answered. | Yes |  |
@@ -9021,7 +8869,6 @@ A response to an MCP approval request.
 
 A response to an MCP approval request.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | approval_request_id | string | The ID of the approval request being answered. | Yes |  |
@@ -9032,7 +8879,6 @@ A response to an MCP approval request.
 ### OpenAI.MCPCallItemParam
 
 An invocation of a tool on an MCP server.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -9047,7 +8893,6 @@ An invocation of a tool on an MCP server.
 
 An invocation of a tool on an MCP server.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | arguments | string | A JSON string of the arguments passed to the tool. | Yes |  |
@@ -9061,7 +8906,6 @@ An invocation of a tool on an MCP server.
 
 A list of tools available on an MCP server.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | error | string | Error message if the server could not list tools. | No |  |
@@ -9072,7 +8916,6 @@ A list of tools available on an MCP server.
 ### OpenAI.MCPListToolsItemResource
 
 A list of tools available on an MCP server.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -9118,7 +8961,6 @@ Keys are strings with a maximum length of 64 characters. Values are strings
 with a maximum length of 512 characters.
 
 **Type**: object
-
 
 ### OpenAI.Prompt
 
@@ -9177,7 +9019,6 @@ a response. Be sure to include these items in your `input` to the Responses API
 for subsequent turns of a conversation if you are manually
 [managing conversation state](https://platform.openai.com/docs/guides/conversation-state).
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | encrypted_content | string | The encrypted content of the reasoning item - populated when a response is<br>generated with `reasoning.encrypted_content` in the `include` parameter. | No |  |
@@ -9191,7 +9032,6 @@ a response. Be sure to include these items in your `input` to the Responses API
 for subsequent turns of a conversation if you are manually
 [managing conversation state](https://platform.openai.com/docs/guides/conversation-state).
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | encrypted_content | string | The encrypted content of the reasoning item - populated when a response is<br>generated with `reasoning.encrypted_content` in the `include` parameter. | No |  |
@@ -9199,7 +9039,6 @@ for subsequent turns of a conversation if you are manually
 | type | enum | <br>Possible values: `reasoning` | Yes |  |
 
 ### OpenAI.ReasoningItemSummaryPart
-
 
 ### Discriminator for OpenAI.ReasoningItemSummaryPart
 
@@ -9547,7 +9386,6 @@ Emitted when a file search is currently searching.
 
 ### OpenAI.ResponseFormat
 
-
 ### Discriminator for OpenAI.ResponseFormat
 
 This component uses the property `type` to discriminate between different types:
@@ -9851,7 +9689,6 @@ Response input types like images or files.
 
 **Type**: object
 
-
 ### OpenAI.ResponseQueuedEvent
 
 Emitted when a response is queued and waiting to be processed.
@@ -10019,7 +9856,6 @@ Emitted when refusal text is finalized.
 
 ### OpenAI.ResponseStreamEvent
 
-
 ### Discriminator for OpenAI.ResponseStreamEvent
 
 This component uses the property `type` to discriminate between different types:
@@ -10113,7 +9949,6 @@ Emitted when text content is finalized.
 
 ### OpenAI.ResponseTextFormatConfiguration
 
-
 ### Discriminator for OpenAI.ResponseTextFormatConfiguration
 
 This component uses the property `type` to discriminate between different types:
@@ -10160,7 +9995,6 @@ An object specifying the format that the model must output.
 Configuring `{ "type": "json_schema" }` enables Structured Outputs,
 which ensures the model will match your supplied JSON schema. Learn more in the
 
-
 The default format is `{ "type": "text" }` with no additional options.
 
 **Not recommended for gpt-4o and newer models:**
@@ -10175,7 +10009,6 @@ is preferred for models that support it.
 
 Configuring `{ "type": "json_schema" }` enables Structured Outputs,
 which ensures the model will match your supplied JSON schema. Learn more in the
-
 
 The default format is `{ "type": "text" }` with no additional options.
 
@@ -10272,7 +10105,6 @@ A message resource item with the `developer` role.
 
 A response message item, representing a role and content, as provided as client request parameters.
 
-
 ### Discriminator for OpenAI.ResponsesMessageItemParam
 
 This component uses the property `role` to discriminate between different types:
@@ -10292,7 +10124,6 @@ This component uses the property `role` to discriminate between different types:
 ### OpenAI.ResponsesMessageItemResource
 
 A response message resource item, representing a role and content, as provided on service responses.
-
 
 ### Discriminator for OpenAI.ResponsesMessageItemResource
 
@@ -10386,7 +10217,6 @@ An object specifying the format that the model must output.
 Configuring `{ "type": "json_schema" }` enables Structured Outputs,
 which ensures the model will match your supplied JSON schema. Learn more in the
 
-
 The default format is `{ "type": "text" }` with no additional options.
 
 *Not recommended for gpt-4o and newer models:**
@@ -10394,7 +10224,6 @@ The default format is `{ "type": "text" }` with no additional options.
 Setting to `{ "type": "json_object" }` enables the older JSON mode, which
 ensures the message the model generates is valid JSON. Using `json_schema`
 is preferred for models that support it.
-
 
 ### Discriminator for OpenAI.TextResponseFormatConfiguration
 
@@ -10408,7 +10237,6 @@ This component uses the property `type` to discriminate between different types:
 | type | string |  | Yes |  |
 
 ### OpenAI.Tool
-
 
 ### Discriminator for OpenAI.Tool
 
@@ -10441,7 +10269,6 @@ This component uses the property `type` to discriminate between different types:
 | type | [OpenAI.ToolType](#openaitooltype) | A tool that can be used to generate a response. | Yes |  |
 
 ### OpenAI.ToolChoiceObject
-
 
 ### Discriminator for OpenAI.ToolChoiceObject
 
@@ -10579,9 +10406,7 @@ length of 512 characters, booleans, or numbers.
 
 **Type**: object
 
-
 ### OpenAI.WebSearchAction
-
 
 ### Discriminator for OpenAI.WebSearchAction
 
@@ -10656,7 +10481,6 @@ Note: web_search is not yet available via Azure OpenAI.
 The results of a web search tool call. See the
 [web search guide](https://platform.openai.com/docs/guides/tools-web-search) for more information.
 
-
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | action | object |  | Yes |  |
@@ -10667,7 +10491,6 @@ The results of a web search tool call. See the
 
 The results of a web search tool call. See the
 [web search guide](https://platform.openai.com/docs/guides/tools-web-search) for more information.
-
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -10682,13 +10505,11 @@ The results of a web search tool call. See the
 
 **Format**: int64
 
-
 ### OpenAI.numeric
 
 **Type**: number
 
 **Format**: double
-
 
 ### OpenApiAgentTool
 
@@ -10716,7 +10537,6 @@ Security details for OpenApi anonymous authentication
 ### OpenApiAuthDetails
 
 authentication details for OpenApiFunctionDefinition
-
 
 ### Discriminator for OpenApiAuthDetails
 
@@ -10967,7 +10787,6 @@ Configuration for Responsible AI (RAI) content filtering and safety features.
 
 Recurrence schedule model.
 
-
 ### Discriminator for RecurrenceSchedule
 
 This component uses the property `type` to discriminate between different types:
@@ -11120,7 +10939,6 @@ Schedule run model.
 
 Schedule task model.
 
-
 ### Discriminator for ScheduleTask
 
 This component uses the property `type` to discriminate between different types:
@@ -11222,7 +11040,6 @@ A structured output that can be produced by the agent.
 
 Base class for targets with discriminator support.
 
-
 ### Discriminator for Target
 
 This component uses the property `type` to discriminate between different types:
@@ -11258,7 +11075,6 @@ Represents a data source for target-based completion evaluation configuration.
 
 Abstract class for target configuration.
 
-
 ### Discriminator for TargetConfig
 
 This component uses the property `type` to discriminate between different types:
@@ -11274,7 +11090,6 @@ This component uses the property `type` to discriminate between different types:
 ### TargetUpdate
 
 Base class for targets with discriminator support.
-
 
 ### Discriminator for TargetUpdate
 
@@ -11367,7 +11182,6 @@ Treatment Effect Type.
 ### Trigger
 
 Base model for Trigger of the schedule.
-
 
 ### Discriminator for Trigger
 
@@ -11462,5 +11276,4 @@ The workflow agent definition.
 **Type**: integer
 
 **Format**: int64
-
 

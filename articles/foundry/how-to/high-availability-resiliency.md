@@ -1,6 +1,6 @@
 ---
-title: "High availability and resiliency for Microsoft Foundry projects and Agent Services (temp)"
-description: "Learn how to plan for high availability and resiliency for Microsoft Foundry projects and Agent Service. (temp)"
+title: "High availability and resiliency for Microsoft Foundry projects and Agent Services"
+description: "Learn how to plan for high availability and resiliency for Microsoft Foundry projects and Agent Service."
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.author: jburchel 
@@ -13,8 +13,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# High availability and resiliency for Microsoft Foundry projects and Agent Services (temp)
-
+# High availability and resiliency for Microsoft Foundry projects and Agent Services
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Plan ahead to maintain business continuity and prepare for disaster recovery with [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs).

@@ -1,6 +1,6 @@
 ---
-title: "Prepare your development environment (temp)"
-description: "Set up your development environment with language runtimes, Azure CLI, and tools for Microsoft Foundry development. (temp)"
+title: "Prepare your development environment"
+description: "Set up your development environment with language runtimes, Azure CLI, and tools for Microsoft Foundry development."
 keywords: foundry sdk, azure cli, development environment, visual studio code
 author: sdgilley
 ms.author: sgilley
@@ -18,8 +18,7 @@ zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: As a developer, I want to install the Microsoft Foundry SDK in my development environment
 ---
 
-# Prepare your development environment (temp)
-
+# Prepare your development environment
 Set up your development environment to use the Microsoft Foundry SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
 
 In this article, you install language runtimes, Azure CLI, Azure Developer CLI, the Foundry VS Code extension, and Git.

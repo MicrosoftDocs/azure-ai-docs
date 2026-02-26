@@ -1,6 +1,6 @@
 ---
-title: "Customize a model with fine-tuning (temp)"
-description: "Learn how to fine-tune and customize Foundry models by using Python, REST APIs, or the Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets. (temp)"
+title: "Customize a model with fine-tuning"
+description: "Learn how to fine-tune and customize Foundry models by using Python, REST APIs, or the Microsoft Foundry portal. Improve model performance with LoRA adaptation and custom datasets."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -15,8 +15,7 @@ zone_pivot_groups: openai-fine-tuning
 ai-usage: ai-assisted
 ---
 
-# Customize a model with fine-tuning (temp)
-
+# Customize a model with fine-tuning
 Learn how to fine-tune models in Microsoft Foundry for your datasets and use cases. Fine-tuning enables:
 
 - Higher-quality results than what you can get just from [prompt engineering](../concepts/prompt-engineering.md).

@@ -1,6 +1,6 @@
 ---
-title: "Groundedness Detection Filter (temp)"  
-description: "Learn how to use groundedness detection in Azure OpenAI in Microsoft Foundry Models to validate LLM responses against source documents for RAG scenarios. (temp)"  
+title: "Groundedness Detection Filter"  
+description: "Learn how to use groundedness detection in Azure OpenAI in Microsoft Foundry Models to validate LLM responses against source documents for RAG scenarios."  
 author: ssalgadodev
 ms.author: ssalgado
 ms.date: 02/18/2026
@@ -13,6 +13,5 @@ ms.custom:
   - classic-and-new
 ---
 
-# Groundedness detection filter (temp)
-
+# Groundedness detection filter
 [!INCLUDE [groundedness-detection-overview](../../../ai-services/content-safety/includes/groundedness-detection-overview.md)]

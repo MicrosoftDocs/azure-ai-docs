@@ -1,7 +1,6 @@
 ---
-title: Troubleshoot private endpoint connection
-titleSuffix: Microsoft Foundry
-description: 'Learn how to troubleshoot connectivity problems to a project that is configured with a private endpoint.'
+title: "Troubleshoot private endpoint connection (classic)"
+description: "Learn how to troubleshoot connectivity problems to a project that is configured with a private endpoint. (classic)"
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -16,7 +15,9 @@ author: jonburchel
 ai-usage: ai-assisted
 ---
 
-# Troubleshoot connection to a project with a private endpoint
+# Troubleshoot connection to a project with a private endpoint (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 

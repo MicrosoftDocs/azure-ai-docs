@@ -1,7 +1,6 @@
 ---
-title: Use Grounding with Bing Search tools with the agents API
-titleSuffix: Microsoft Foundry
-description: Learn how to use Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools to ground agent responses with web data.
+title: "Use Grounding with Bing Search tools with the agents API"
+description: "Learn how to use Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools to ground agent responses with web data."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -18,7 +17,6 @@ zone_pivot_groups: selection-bing-grounding-new
 ---
 
 # Grounding agents with Bing Search tools
-
 Traditional language models work with a knowledge cutoff. They can't access new information beyond a fixed point in time. By using Grounding with Bing Search and Grounding with Bing Custom Search (preview), your agents can incorporate real-time public web data when generating responses. By using these tools, you can ask questions such as "what is the top AI news today".
 
 The grounding process involves several key steps:
@@ -54,7 +52,7 @@ Before you begin, make sure you have:
 - An Azure subscription with the right permissions.
 - Azure RBAC roles:
   - **Contributor** or **Owner** role at the subscription or resource group level to create Bing resources and get resource keys.
-  - **Azure AI Project Manager** role to create project connections in Foundry. For more information, see [Role-based access control for Microsoft Foundry](../../../../concepts/rbac-foundry.md?view=foundry&preserve-view=true).
+  - **Azure AI Project Manager** role to create project connections in Foundry. For more information, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
 - A Foundry project created with a configured endpoint.
 - An AI model deployed in your project.
 - SDK installed for your preferred language:
@@ -83,7 +81,7 @@ If you already have a project connection ID for the Bing resource you want to us
 
 1. Add the appropriate connection to your project.
 
-   For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
+   For step-by-step instructions, see [Add a new connection to your project](../../../how-to/connections-add.md).
    >[!IMPORTANT]
    > - You need the **Contributor** or **Owner** role at the subscription or resource group level to create Bing resources and get resource keys.
    > - To find the resource keys, go to your Grounding with Bing resource in the [Azure portal](https://portal.azure.com) > **Resource Management** > **Keys**.
@@ -114,7 +112,7 @@ If you already have a project connection ID for the Bing resource you want to us
 ## Code examples
 
 > [!NOTE]
-> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for details.
+> - You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 > - For SDK samples, use the project connection name. For REST samples, use the project connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
@@ -1099,7 +1097,7 @@ Developers and end users don't have access to raw content returned from Groundin
 
 According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/bing/apis/grounding-legal-enterprise#use-and-display-requirements#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find this information in the API response, in the `arguments` parameter. To render the webpage, replace the endpoint of Bing search query URLs with `www.bing.com` and your Bing search query URL would look like `https://www.bing.com/search?q={search query}`.
 
-:::image type="content" source="../../../../agents/media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../../../agents/media/tools/bing/website-citations.png":::
+:::image type="content" source="../../../agents/media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../../agents/media/tools/bing/website-citations.png":::
 
 ## Grounding with Bing Custom Search configuration
 

@@ -1,7 +1,6 @@
 ---
-title: 'How to use Azure OpenAI Assistants file search'
-titleSuffix: Azure OpenAI
-description: Learn how to use Assistants file search.
+title: "How to use Azure OpenAI Assistants file search (classic)"
+description: "Learn how to use Assistants file search. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,7 +12,7 @@ ms.author: aahi
 recommendations: false
 ---
 
-# Azure OpenAI Assistants file search tool (Preview)
+# Azure OpenAI Assistants file search tool (Preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -211,7 +210,6 @@ class EventHandler(AssistantEventHandler):
         print(message_content.value)
         print("\n".join(citations))
 
-
 # Then, we use the stream SDK helper
 # with the EventHandler class to create the Run
 # and stream the response.
@@ -352,5 +350,4 @@ for file_batch in chunked(all_files, 100):
         vector_store_id=vector_store.id, file_ids=[file.id for file in file_batch]
     )
 ```
-
 

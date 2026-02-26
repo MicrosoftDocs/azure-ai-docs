@@ -1,7 +1,6 @@
 ---
-title: Create and manage connections (Hubs)
-titleSuffix: Microsoft Foundry
-description: Learn how to use connections in Microsoft Foundry hubs.
+title: "Create and manage connections (Hubs) (classic)"
+description: "Learn how to use connections in Microsoft Foundry hubs. (classic)"
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -16,7 +15,9 @@ ms.custom:
   - dev-focus
 ---
 
-# Create and manage connections in Microsoft Foundry hubs
+# Create and manage connections in Microsoft Foundry hubs (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 > [!TIP]
 > For more information, see [Add a new connection to your project (Foundry projects)](connections-add.md).

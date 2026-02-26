@@ -1,6 +1,6 @@
 ---
-title: "Web search with the Responses API (temp)"
-description: "Learn how to use Web search with the Responses API (temp)"
+title: "Web search with the Responses API"
+description: "Learn how to use Web search with the Responses API"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Web search (preview) (temp)
-
+# Web search (preview)
 Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. Web search is available via the `web_search_preview` tool in the **Responses API**.
 
 > [!NOTE]

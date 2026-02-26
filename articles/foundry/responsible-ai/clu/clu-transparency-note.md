@@ -1,7 +1,7 @@
 ---
-title: Transparency Note for CLU
+title: "Transparency Note for CLU"
 titleSuffix: Foundry Tools
-description: Transparency Note for conversational language understanding
+description: "Transparency Note for conversational language understanding"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/15/2021
 ---
 
 # Use cases for conversational language understanding
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

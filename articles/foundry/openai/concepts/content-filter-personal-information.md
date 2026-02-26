@@ -1,6 +1,6 @@
 ---
-title: "Personally Identifiable Information (PII) Filter (temp)"
-description: "Learn about the Personally Identifiable Information (PII) filter for identifying and flagging known personal information in large language model outputs. (temp)"
+title: "Personally Identifiable Information (PII) Filter"
+description: "Learn about the Personally Identifiable Information (PII) filter for identifying and flagging known personal information in large language model outputs."
 author: ssalgadodev
 ms.author: ssalgado
 ms.date: 02/18/2026
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Personally identifiable information (PII) filter (temp)
-
+# Personally identifiable information (PII) filter
 Personally identifiable information (PII) refers to any information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information.
 
 PII detection is used to help prevent PII from being exposed or shared, protecting users from identity theft, financial fraud, or other types of privacy violations.

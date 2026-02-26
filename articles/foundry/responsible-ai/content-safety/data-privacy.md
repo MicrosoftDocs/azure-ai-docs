@@ -1,7 +1,7 @@
 ---
-title: Data, privacy, and security for AI Content Safety
+title: "Data, privacy, and security for AI Content Safety"
 titleSuffix: Foundry Tools
-description: This document details issues for data, privacy, and security for Azure AI Content Safety.
+description: "This document details issues for data, privacy, and security for Azure AI Content Safety."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -12,7 +12,6 @@ ms.date: 05/15/2023
 
 
 # Data, privacy, and security for Azure AI Content Safety
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides details regarding how your data is processed, used, and stored by Azure AI Content Safety.

@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI in Microsoft Foundry Models model versions
-titleSuffix: Azure OpenAI
-description: Learn about model versions in Azure OpenAI. 
+title: "Azure OpenAI in Microsoft Foundry Models model versions (classic)"
+description: "Learn about model versions in Azure OpenAI. (classic)" 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article 
@@ -12,7 +11,7 @@ ms.author: mbullwin #chrhoder
 recommendations: false
 ---
 
-# Azure OpenAI in Microsoft Foundry Models model versions
+# Azure OpenAI in Microsoft Foundry Models model versions (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -50,7 +49,6 @@ Yes, even in cases where the latest model version is not yet available in a regi
 upgrade deployments during the scheduled upgrade window. Our engineering team will begin rollout of the new model version starting on the announced 
 upgrade date. For example, if `gpt-35-turbo-0125` is not yet available in Japan East, we will deploy `gpt-35-turbo-0125` to Japan East to upgrade older model 
 versions as part of the default model version upgrade process. 
-
 
 ## Next Steps
 

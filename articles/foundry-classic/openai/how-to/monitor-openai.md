@@ -1,6 +1,6 @@
 ---
-title: Monitor Azure OpenAI in Microsoft Foundry Models
-description: Start here to learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure OpenAI.
+title: "Monitor Azure OpenAI in Microsoft Foundry Models (classic)"
+description: "Start here to learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure OpenAI. (classic)"
 ms.date: 11/6/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: concept-article
@@ -10,7 +10,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ---
 
-# Monitor Azure OpenAI
+# Monitor Azure OpenAI (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -26,8 +26,6 @@ Azure OpenAI provides out-of-box dashboards for each of your Azure OpenAI resour
 To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com) and then select the overview pane for one of your Azure OpenAI resources. To see the Foundry metrics dashboard from the Azure portal, select the overview pane and **Go to Microsoft Foundry portal**. Under tools, select the metrics dashboard.   
 
 :::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-box dashboards for an Azure OpenAI resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
-
-
 
 The dashboards are grouped into four categories: **HTTP Requests**, **Tokens-Based Usage**, **PTU Utilization**, and **Fine-tuning**.
 
@@ -51,7 +49,7 @@ For more information about the resource types for Azure OpenAI, see [Azure OpenA
 
 [!INCLUDE [horz-monitor-platform-metrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-platform-metrics.md)]
 
-Azure OpenAI has commonality with a subset of Foundry Tools. For a list of available metrics for Azure OpenAI, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md#metrics).
+Azure OpenAI has commonality with a subset of Foundry Tools. For a list of available metrics for Azure OpenAI, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md#supported-metrics-for-microsoftcognitiveservicesaccounts).
 
 <!-- ## OPTIONAL [TODO-replace-with-service-name] metrics
 If your service uses any non-Azure Monitor based metrics, add the following include and more information.
@@ -59,7 +57,7 @@ If your service uses any non-Azure Monitor based metrics, add the following incl
 
 [!INCLUDE [horz-monitor-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-logs.md)]
 
-For the available resource log categories, their associated Log Analytics tables, and the log schemas for Azure OpenAI, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md#resource-logs).
+For the available resource log categories, their associated Log Analytics tables, and the log schemas for Azure OpenAI, see [Azure OpenAI monitoring data reference](../monitor-openai-reference.md#supported-resource-logs-for-microsoftcognitiveservicesaccounts).
 
 <!-- OPTIONAL. If your service doesn't collect Azure Monitor resource logs, use the following include [!INCLUDE [horz-monitor-no-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-no-resource-logs.md)] -->
 

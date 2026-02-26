@@ -1,7 +1,6 @@
 ---
-title: Connect OpenAPI tools to Microsoft Foundry agents
-titleSuffix: Microsoft Foundry
-description: Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs.
+title: "Connect OpenAPI tools to Microsoft Foundry agents"
+description: "Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,7 +15,6 @@ zone_pivot_groups: selection-openapi-function-new
 ---
 
 # Connect agents to OpenAPI tools
-
 Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifications. Agents that connect to OpenAPI tools can call external services, retrieve real-time data, and extend their capabilities beyond built-in functions.
 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication methods: `anonymous`, `API key`, and `managed identity`. For help choosing an authentication method, see [Choose an authentication method](#choose-an-authentication-method).
@@ -40,7 +38,7 @@ Before you begin, make sure you have:
 - Azure RBAC role: Contributor or Owner on the Foundry project.
 - A Foundry project created with an endpoint configured.
 - An AI model deployed in your project.
-- A [basic or standard agent environment](../../../../agents/environment-setup.md).
+- A [basic or standard agent environment](../../../agents/environment-setup.md).
 - SDK installed for your preferred language:
   - Python: `azure-ai-projects` (latest prerelease version)
   - C#: `Azure.AI.Projects.OpenAI`
@@ -61,7 +59,7 @@ Before you begin, make sure you have:
   - Use descriptive names to help models efficiently decide which function to use.
   - Supported content type: "application/json", "application/json-patch+json"
 - For managed identity authentication: Reader role or higher on target service resources.
-- For API key/token authentication: a project connection configured with your API key or token. See [Add a new connection to your project](../../../../how-to/connections-add.md).
+- For API key/token authentication: a project connection configured with your API key or token. See [Add a new connection to your project](../../../how-to/connections-add.md).
 
 > [!NOTE]
 > The `FOUNDRY_PROJECT_ENDPOINT` value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
@@ -75,7 +73,7 @@ Before you begin, make sure you have:
 ## Code example
 
 > [!NOTE]
-> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for details.
+> - You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 > - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 > [!IMPORTANT]
@@ -1258,7 +1256,7 @@ By using API key authentication, you can authenticate your OpenAPI spec by using
 1. Remove any parameter in the OpenAPI spec that needs API key, because API key is stored and passed through a connection, as described later in this article.
 1. Create a connection to store your API key.
   1. Go to the [Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and open your project.
-  1. Create or select a connection that stores the secret. See [Add a new connection to your project](../../../../how-to/connections-add.md).
+  1. Create or select a connection that stores the secret. See [Add a new connection to your project](../../../how-to/connections-add.md).
 
         >[!NOTE]
         > If you regenerate the API key at a later date, you need to update the connection with the new key.
@@ -1316,7 +1314,7 @@ You need to:
 
 1. Create a **Custom keys** connection in your Foundry project:
    1. Go to the [Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and open your project.
-   1. Create or select a connection that stores the secret. See [Add a new connection to your project](../../../../how-to/connections-add.md).
+   1. Create or select a connection that stores the secret. See [Add a new connection to your project](../../../how-to/connections-add.md).
    1. Enter the following values:
       - **key**: `Authorization` (must match the `name` field in your `securitySchemes`)
       - **value**: `Bearer <token>` (replace `<token>` with your actual token)
@@ -1334,14 +1332,14 @@ To set up authentication by using Managed Identity:
 
 1. Make sure your Foundry resource has system assigned managed identity enabled.
 
-   :::image type="content" source="../../../../agents/media/tools/managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../../../agents/media/tools/managed-identity-portal.png":::
+   :::image type="content" source="../../../agents/media/tools/managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../../agents/media/tools/managed-identity-portal.png":::
 
 1. Create a resource for the service you want to connect to through OpenAPI spec.
 1. Assign proper access to the resource.
    1. Select **Access Control** for your resource.
    1. Select **Add** and then **add role assignment** at the top of the screen.
 
-      :::image type="content" source="../../../../agents/media/tools/role-assignment-portal.png" alt-text="A screenshot showing the role assignment selector in the Azure portal." lightbox="../../../../agents/media/tools/role-assignment-portal.png":::
+      :::image type="content" source="../../../agents/media/tools/role-assignment-portal.png" alt-text="A screenshot showing the role assignment selector in the Azure portal." lightbox="../../../agents/media/tools/role-assignment-portal.png":::
         
    1. Select the proper role assignment needed, usually it requires at least the *READER* role. Then select **Next**.
    1. Select **Managed identity** and then select **select members**.
@@ -1375,6 +1373,6 @@ The following table helps you choose the right authentication method for your Op
 
 ## Related content
 
-- [Add a new connection to your project](../../../../how-to/connections-add.md)
-- [Set up your environment for Foundry Agent Service](../../../../agents/environment-setup.md)
-- [Agents REST API (preview)](../../../../reference/foundry-project-rest-preview.md)
+- [Add a new connection to your project](../../../how-to/connections-add.md)
+- [Set up your environment for Foundry Agent Service](../../../agents/environment-setup.md)
+- [Agents REST API (preview)](../../../reference/foundry-project-rest-preview.md)

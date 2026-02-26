@@ -1,7 +1,6 @@
 ---
-title: 'Azure OpenAI Provisioned 2024 Updates'
-titleSuffix: Azure OpenAI
-description: Learn about the improvements to Provisioned Throughput including model-independent quota, hourly/reservation payment models, and global and data zone deployments.
+title: "Azure OpenAI Provisioned 2024 Updates (classic)"
+description: "Learn about the improvements to Provisioned Throughput including model-independent quota, hourly/reservation payment models, and global and data zone deployments. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -16,7 +15,7 @@ reviewer: rsethur
 recommendations: false
 ---
 
-# Azure OpenAI provisioned Managed offering updates 
+# Azure OpenAI provisioned Managed offering updates (classic) 
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -25,7 +24,6 @@ Microsoft launched improvements to its Provisioned Throughput offering that addr
 This article is intended for existing users of the provisioned throughput offering. New customers should refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md).
 
 ## What changed?
-
 
 > [!IMPORTANT]
 > The changes in this article describe changes made to provisioned managed offering in August and December 2024. These changes don't apply to the older *"Provisioned Classic (PTU-C)"* offering. They only affect the Provisioned (also known as the Provisioned Managed) offering.
@@ -128,9 +126,6 @@ In addition to the updates for the hourly payment model, in December 2024 new [A
 |gpt-4o| 2024-05-13, 2024-08-06|
 |gpt-4o-mini| 2024-07-18|
 
-
-
-
 ### Hourly reservation payment model
 
 - The payment model is aligned with Azure standards for other products.
@@ -147,7 +142,6 @@ In addition to the updates for the hourly payment model, in December 2024 new [A
 > More latest models are available in provisioned offering with Hourly/Reservation payment model. Check the list [**here**](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) for the availabilityModels that aren't in the above [**list**](./provisioned-migration.md#supported-models-on-commitment-payment-model) aren't deployable on Azure OpenAI resources that have active commitments. To deploy models newer models, you must either:
 > - Create deployments on Azure OpenAI resources without commitments.
 > - Migrate an existing resource off its commitments.
-
 
 ## Payment model framework
 
@@ -170,7 +164,6 @@ Steps 1 and 2 are the same in all cases. The difference is whether a commitment 
 * It's possible to deploy more PTUs than you discount. (for example creating a short-term deployment to try a new model is enabled by deploying without purchasing a discount) 
 * The discount method (commitment or reservation) applies the discounted price to a fixed number of PTUs and has a scope that defines which deployments are counted against the discount.
 
-
     |Discount type  |Available Scopes (within a region)  |
     |---------|---------|
     |Commitment     |  Azure OpenAI resource        |
@@ -189,7 +182,6 @@ Steps 1 and 2 are the same in all cases. The difference is whether a commitment 
 
 Customers using Azure OpenAI Provisioned offer prior to August 2024 can use either or both payment models simultaneously within a subscription. The payment model used for each deployment is determined based on its Azure OpenAI resource: 
 
-
 **Resource has an active Commitment** 
 
 * The commitment discounts all deployments on the resource up to the number of PTUs on the commitment. Any excess PTUs is billed hourly unless the excess PTUs aren't in the scope of an active reservation. If the excess PTUs exist in the scope of an active reservation, will be discounted as a group, up to the number of PTUs on the reservation and any excess spill still leftover will be billed hourly. 
@@ -197,7 +189,6 @@ Customers using Azure OpenAI Provisioned offer prior to August 2024 can use eith
 **Resource does not have an active commitment** 
 
 * The deployments under the resource are eligible to be discounted by an Azure reservation. For these deployments to be discounted, they must exist within the scope of an active reservation. All deployments within the scope of the reservation (including possibly deployments on other resources in the same or other subscriptions) will be discounted as a group up to the number of PTUs on the reservation. Any excess PTUs will be billed hourly. 
-
 
 ### Changes to the existing payment mode
 

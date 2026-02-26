@@ -1,7 +1,6 @@
 ---
-title: Automate browser tasks with Foundry agents
-titleSuffix: Microsoft Foundry
-description: Automate web browsing tasks with the Browser Automation tool in Microsoft Foundry agents. Create isolated Playwright sessions for navigation and form filling.
+title: "Automate browser tasks with Foundry agents"
+description: "Automate web browsing tasks with the Browser Automation tool in Microsoft Foundry agents. Create isolated Playwright sessions for navigation and form filling."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -17,8 +16,7 @@ zone_pivot_groups: selection-browser-tool
 ---
 
 # Automate browser tasks with the Browser Automation tool (preview)
-
-[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 This article explains how to configure and use the Browser Automation tool with Foundry agents to automate web browsing workflows.
 
@@ -128,7 +126,7 @@ After the connection is created, you can view the **Project connection ID** on t
 After you run a sample, verify the tool was called by using tracing in Microsoft Foundry. For guidance on validating tool invocation, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md). If you use streaming, you can also look for `browser_automation_preview_call` events.
 
 > [!NOTE]
-> - You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+> - You need the latest prerelease package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 > - This article assumes you already created the Playwright workspace connection. See the prerequisites section.
 
 :::zone pivot="python"
@@ -547,8 +545,7 @@ Browser automation can take longer than typical requests.
 
 - Delete the agent version you created for testing.
 - Revoke or rotate the Playwright access token if you no longer need it.
-- Remove the project connection if it’s no longer required. For more information, see [Add a connection in Microsoft Foundry](../../../../how-to/connections-add.md).
-
+- Remove the project connection if it’s no longer required. For more information, see [Add a connection in Microsoft Foundry](../../../how-to/connections-add.md).
 
 ## Example scenarios
 
@@ -558,13 +555,13 @@ Browser automation can take longer than typical requests.
 
 ## Transparency note
 
-Review the [transparency note](../../../../responsible-ai/agents/transparency-note.md#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
+Review the [transparency note](../../../responsible-ai/agents/transparency-note.md#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
 
-Review the [responsible AI considerations](../../../../responsible-ai/agents/transparency-note.md#considerations-when-choosing-a-use-case) when using this tool.
+Review the [responsible AI considerations](../../../responsible-ai/agents/transparency-note.md#considerations-when-choosing-a-use-case) when using this tool.
 
 ## Related content
 
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Computer use tool for agents](computer-use.md)
-- [Add a connection in Microsoft Foundry](../../../../how-to/connections-add.md)
-- [Quickstart: Create your first agent](../../../../quickstarts/get-started-code.md)
+- [Add a connection in Microsoft Foundry](../../../how-to/connections-add.md)
+- [Quickstart: Create your first agent](../../../quickstarts/get-started-code.md)

@@ -1,7 +1,6 @@
 ---
-title: Content filtering for Microsoft Foundry Models
-titleSuffix: Microsoft Foundry
-description: Learn how Microsoft Foundry Models filter harmful content in prompts and completions, including configuration and API scenarios.
+title: "Content filtering for Microsoft Foundry Models (classic)"
+description: "Learn how Microsoft Foundry Models filter harmful content in prompts and completions, including configuration and API scenarios. (classic)"
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: yinchang
@@ -16,8 +15,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer building applications with Microsoft Foundry Models, I want to understand how the content filtering system works, including the risk categories, severity levels, and API response behaviors so that I can properly handle content moderation in my application and ensure compliance with safety requirements.
 ---
 
-
-# Content filtering for Microsoft Foundry Models
+# Content filtering for Microsoft Foundry Models (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -30,17 +28,14 @@ The following sections provide information about the content filtering categorie
 
 In addition to the content filtering system, Azure OpenAI performs monitoring to detect content and behaviors that suggest use of the service in a manner that might violate applicable product terms. For more information about understanding and mitigating risks associated with your application, see the [Transparency Note for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=text). For more information about how data is processed for content filtering and abuse monitoring, see [Data, privacy, and security for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy#preventing-abuse-and-harmful-content-generation).  
 
-
 > [!NOTE]
 > We don't store prompts or completions for the purposes of content filtering. We don't use prompts or completions to train, retrain, or improve the content filtering system without user consent. For more information, see [Data, privacy, and security](/azure/ai-foundry/responsible-ai/openai/data-privacy).
-
 
 ## Content filter types
 
 The content filtering system integrated in the Foundry Models service in Foundry Tools contains: 
 * Neural multiclass classification models that detect and filter harmful content. These models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 * Other optional classification models that detect jailbreak risk and known content for text and code. These models are binary classifiers that flag whether user or model behavior qualifies as a jailbreak attack or match to known text or source code. The use of these models is optional, but use of protected material code model might be required for Customer Copyright Commitment coverage.
-
 
 |Category|Description|
 |--------|-----------|
@@ -104,7 +99,6 @@ You can also enable the following special output filters:
 - **Personally identifiable information (PII)**: The PII filter detects whether the text responses of large language models (LLMs) contain personally identifiable information (PII). PII refers to any information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information.
 
 [!INCLUDE [create-content-filter](../../includes/create-content-filter.md)]
-
 
 ## Configurability
 
@@ -334,7 +328,6 @@ If the content filtering system is down or otherwise unable to complete the oper
     ]
 }
 ```
-
 
 ## Best practices
 

@@ -1,6 +1,6 @@
 ---
-title: "Use the GPT Realtime API for speech and audio with Azure OpenAI (temp)"
-description: "Learn how to use the GPT Realtime API for speech and audio with Azure OpenAI. (temp)"
+title: "Use the GPT Realtime API for speech and audio with Azure OpenAI"
+description: "Learn how to use the GPT Realtime API for speech and audio with Azure OpenAI."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: openai-portal-js-python-ts
 ---
 
-# Use the GPT Realtime API for speech and audio (temp)
-
+# Use the GPT Realtime API for speech and audio
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
 The GPT Realtime API is designed to handle real-time, low-latency conversational interactions. It's a great fit for use cases involving live interactions between a user and a model, such as customer support agents, voice assistants, and real-time translators.

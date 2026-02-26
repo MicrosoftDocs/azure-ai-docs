@@ -1,7 +1,7 @@
 ---
-title: Guidance for integration and responsible use with Image Analysis
+title: "Guidance for integration and responsible use with Image Analysis"
 titleSuffix: Foundry Tools
-description: Guidance for how to deploy Image Analysis responsibly, based on the knowledge and understanding from the team that created this product.
+description: "Guidance for how to deploy Image Analysis responsibly, based on the knowledge and understanding from the team that created this product."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 10/15/2025
 ---
 
 # Guidance for integration and responsible use with Image Analysis
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft works to help customers responsibly develop and deploy solutions that use Azure Vision in Foundry Tools. We're taking a principled approach to upholding personal agency and dignity by considering the AI systems' fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations are in line with our commitment to developing Responsible AI.

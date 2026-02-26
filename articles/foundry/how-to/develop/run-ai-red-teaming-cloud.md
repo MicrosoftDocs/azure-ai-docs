@@ -1,6 +1,6 @@
 ---
-title: "Run AI Red Teaming Agent in the cloud (Microsoft Foundry SDK) (temp)"
-description: "This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Microsoft Foundry SDK. (temp)"
+title: "Run AI Red Teaming Agent in the cloud (Microsoft Foundry SDK)"
+description: "This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Microsoft Foundry SDK."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to run AI Red Teaming Agent scans in the cloud using the Microsoft Foundry SDK so I can perform comprehensive pre-deployment safety analysis at scale.
 ---
 
-# Run AI Red Teaming Agent in the cloud (preview) (temp)
-
+# Run AI Red Teaming Agent in the cloud (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-agent.md) during prototyping and development to help identify safety risks, running them in the cloud allows for the following scenarios:

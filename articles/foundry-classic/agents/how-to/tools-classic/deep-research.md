@@ -1,7 +1,6 @@
 ---
-title: "Deep research tool"
-titleSuffix: Microsoft Foundry
-description: Learn how to use the deep research tool with agents.
+title: "Deep research tool (classic)"
+description: "Learn how to use the deep research tool with agents. (classic)"
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
@@ -12,11 +11,13 @@ ms.topic: how-to
 ms.custom: references_regions
 ---
 
-# Deep Research tool (preview)
+# Deep Research tool (preview) (classic)
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > * The **parent** Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
-> * This tool is only available in `2025-05-15-preview` API. We highly recommend that you migrate to use the `2025-11-15-preview` API. This enables you to use the `o3-deep-research` model with [web search](../../../default/agents/how-to/tools/web-search.md) or MCP tool.
+> * This tool is only available in `2025-05-15-preview` API. We highly recommend that you migrate to use the `2025-11-15-preview` API. This enables you to use the `o3-deep-research` model with [web search](../../../../foundry/agents/how-to/tools/web-search.md) or MCP tool.
 
 The Deep Research tool in the Foundry Agent Service enables you to integrate a web-based research capability into your systems. The Deep Research capability is a specialized AI capability designed to perform in-depth, multi-step research using data from the public web.  
 

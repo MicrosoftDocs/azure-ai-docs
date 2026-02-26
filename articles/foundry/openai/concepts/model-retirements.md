@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Model Retirements (temp)"
-description: "Learn about model deprecations and retirements in Azure OpenAI. (temp)"
+title: "Azure OpenAI in Microsoft Foundry Model Retirements"
+description: "Learn about model deprecations and retirements in Azure OpenAI."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
@@ -13,8 +13,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Azure OpenAI in Microsoft Foundry model deprecations and retirements (temp)
-
+# Azure OpenAI in Microsoft Foundry model deprecations and retirements
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Azure OpenAI models are continually refreshed with newer and more capable models. As part of this process, we deprecate and retire older models. This article provides information about models that are currently available, deprecated, and retired.

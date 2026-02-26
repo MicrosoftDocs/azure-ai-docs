@@ -1,6 +1,6 @@
 ---
-title: "Ask AI for help (temp)"
-description: "Learn how to ask AI for help, getting your questions answered and tasks supported. (temp)"
+title: "Ask AI for help"
+description: "Learn how to ask AI for help, getting your questions answered and tasks supported."
 ms.service: azure-ai-foundry
 ms.date: 01/06/2026
 ms.author: sgilley
@@ -13,8 +13,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Ask AI for help (preview) (temp)
-
+# Ask AI for help (preview)
 You can ask AI to assist you in Foundry. To start using AI to ask questions or complete tasks, select its icon located in the top right bar of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time. You can also ask the agent to run tasks for you.
 
 :::image type="content" source="media/ask-foundry-agent/ask-ai.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry portal.":::

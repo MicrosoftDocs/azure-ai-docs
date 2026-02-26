@@ -1,7 +1,6 @@
 ---
-title: 'How to use Grounding with Bing Search in Foundry Agent Service'
-titleSuffix: Microsoft Foundry
-description: Learn how to ground Azure AI Agents using Bing Search results.
+title: "How to use Grounding with Bing Search in Foundry Agent Service (classic)"
+description: "Learn how to ground Azure AI Agents using Bing Search results. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,16 +12,15 @@ ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 
+# Grounding with Bing Search (classic) 
 
-# Grounding with Bing Search 
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > - This document refers to the classic version of the agents API. 
-> - We recommend customers to start with new [Web Search tool (preview)](../../../default/agents/how-to/tools/web-search.md) with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more [here](../../../default/agents/how-to/tools/web-overview.md)
+> - We recommend customers to start with new [Web Search tool (preview)](../../../../foundry/agents/how-to/tools/web-search.md) with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more [here](../../../../foundry/agents/how-to/tools/web-overview.md)
 > 
-> 🔍 [View the new Grounding with Bing Search documentation](../../../default/agents/how-to/tools/bing-tools.md).
-
-
+> 🔍 [View the new Grounding with Bing Search documentation](../../../../foundry/agents/how-to/tools/bing-tools.md).
 
 **Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be used or not. If so, it uses Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
 
@@ -66,7 +64,7 @@ Transactions with your Grounding with Bing resource are counted by the number of
 ## Setup  
 
 > [!NOTE]
-> 1. Grounding with Bing Search works with [all Azure OpenAI models](../../concepts\model-region-support.md) that Agent Service supports, except `gpt-4o-mini, 2024-07-18` and gpt-5 models. 
+> 1. Grounding with Bing Search works with [all Azure OpenAI models](../../concepts/model-region-support.md) that Agent Service supports, except `gpt-4o-mini, 2024-07-18` and gpt-5 models. 
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
@@ -108,7 +106,6 @@ print(f"Last run step detail: {run_steps_data}")
 ```
 
 :::image type="content" source="../../media\tools\bing\website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../media\tools\bing\website-citations.png":::
-
 
 ## Next steps
 

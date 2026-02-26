@@ -14,7 +14,6 @@ ai-usage: ai-assisted
 ---
 
 # Tool best practices for Microsoft Foundry Agent Service
-
 When you build agents in Microsoft Foundry Agent Service, tools extend what your agent can do—retrieving information, calling APIs, and connecting to external services. This article helps you configure tools effectively, control when the model calls them, and keep your data secure.
 
 > [!TIP]
@@ -31,7 +30,7 @@ When you build agents in Microsoft Foundry Agent Service, tools extend what your
 ## Configure and validate tool usage
 
 - Configure tools and connections in the Foundry tool catalog. See [Discover and manage tools in the Foundry tool catalog (preview)](tool-catalog.md).
-- Review run traces to confirm when your agent calls tools and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](../../../how-to/develop/trace-application.md).
+- Review run traces to confirm when your agent calls tools and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](../../../foundry-classic/how-to/develop/trace-application.md).
 
 ## Improve tool-calling reliability
 
@@ -43,7 +42,7 @@ Use `tool_choice` for the most deterministic control over tool calling.
 - `required`: The model must call one or more tools.
 - `none`: The model doesn't call tools.
 
-For details, see `tool_choice` in [Foundry project REST (preview)](../../../reference/foundry-project-rest-preview.md).
+For details, see `tool_choice` in [Foundry project REST (preview)](../../reference/foundry-project-rest-preview.md).
 
 ### Write effective tool instructions
 
@@ -69,7 +68,7 @@ Region and model determine which tools are available to your agent.
 > [!NOTE]
 > In the tables below: **Yes** means fully supported, **No** means not supported, and **Limited** means partial support that varies by tool configuration. Check individual tool documentation for details.
 
-The following table shows tool availability by [region](../../../openai/how-to/responses.md#region-availability).
+The following table shows tool availability by [region](../../openai/how-to/responses.md#region-availability).
 
 > [!NOTE]
 > This region availability table only accounts for service availability. You need to make sure the model you want to use is also available in the same region.
@@ -152,7 +151,7 @@ Use these checks to resolve common issues:
 
 **How do I validate whether a tool was called?**
 
-Review run traces to confirm whether your agent called a tool and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](../../../how-to/develop/trace-application.md).
+Review run traces to confirm whether your agent called a tool and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](../../../foundry-classic/how-to/develop/trace-application.md).
 
 **How do I make tool usage more reliable?**
 

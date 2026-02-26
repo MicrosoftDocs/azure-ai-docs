@@ -1,7 +1,7 @@
 ---
-title: Characteristics and limitations of question answering
+title: "Characteristics and limitations of question answering"
 titleSuffix: Foundry Tools
-description: Characteristics and limitations of question answering
+description: "Characteristics and limitations of question answering"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/29/2021
 ---
 
 # Characteristics and limitations of question answering
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Depending on your scenario and the input data, you might experience different levels of performance from question answering. A common way to evaluate the quality of responses is to create a set of commonly asked queries in your scenario, and check whether the question answering response matches the expected response. The [batch testing tool](/azure/ai-services/qnamaker/reference-tsv-format-batch-testing) will help you in evaluating your query set. The following sections discuss key concepts and best practices to improve the performance.

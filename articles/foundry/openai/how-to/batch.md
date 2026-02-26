@@ -1,6 +1,6 @@
 ---
-title: "How to use global batch processing with Azure OpenAI in Microsoft Foundry Models (temp)"
-description: "Learn how to use global batch with Azure OpenAI (temp)"
+title: "How to use global batch processing with Azure OpenAI in Microsoft Foundry Models"
+description: "Learn how to use global batch with Azure OpenAI"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -16,8 +16,7 @@ zone_pivot_groups: openai-fine-tuning-batch
 ai-usage: ai-assisted
 ---
 
-# Getting started with Azure OpenAI batch deployments (temp)
-
+# Getting started with Azure OpenAI batch deployments
 The Azure OpenAI Batch API is designed to handle large-scale and high-volume processing tasks efficiently. Process asynchronous groups of requests with separate quota, with 24-hour target turnaround, at [50% less cost than global standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than send one request at a time you send a large number of requests in a single file. Global batch requests have a separate enqueued token quota avoiding any disruption of your online workloads.  
 
 Key use cases include:

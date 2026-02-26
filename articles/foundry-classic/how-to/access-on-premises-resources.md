@@ -1,7 +1,6 @@
 ---
-title: How to access on-premises resources
-titleSuffix: Microsoft Foundry
-description: Learn how to configure a Microsoft Foundry managed network to securely allow access to your on-premises resources.
+title: "How to access on-premises resources (classic)"
+description: "Learn how to configure a Microsoft Foundry managed network to securely allow access to your on-premises resources. (classic)"
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom:
@@ -16,7 +15,9 @@ ai-usage: ai-assisted
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Microsoft Foundry.
 ---
 
-# Access on-premises resources from your Microsoft Foundry managed network
+# Access on-premises resources from your Microsoft Foundry managed network (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [hub-only](../includes/uses-hub-only.md)]
 
@@ -66,7 +67,7 @@ This command creates or updates a managed outbound rule and starts creating the 
 
 ### References
 
-* [az ml workspace outbound-rule set](/cli/azure/ml/workspace/outbound-rule?view=azure-cli-latest&preserve-view=true#az-ml-workspace-outbound-rule-set)
+* [az ml workspace outbound-rule set](/cli/azure/ml/workspace/outbound-rule?view=azure-cli-latest#az-ml-workspace-outbound-rule-set)
 
 ### Python
 

@@ -1,7 +1,6 @@
 ---
-title: Code Samples for the Model Context Protocol Tool (Preview)
-titleSuffix: Microsoft Foundry
-description: Find code samples to connect Foundry Agent Service with MCP servers.
+title: "Code Samples for the Model Context Protocol Tool (Preview) (classic)"
+description: "Find code samples to connect Foundry Agent Service with MCP servers. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,12 +13,14 @@ zone_pivot_groups: selection-mcp-code
 ms.custom: azure-ai-agents-code
 ---
 
-# How to use the Model Context Protocol (MCP) tool (preview)
+# How to use the Model Context Protocol (MCP) tool (preview) (classic)
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-> 🔍 [View the new MCP tool documentation](../../../default/agents/how-to/tools/model-context-protocol.md?view=foundry&preserve-view=true).
+> 🔍 [View the new MCP tool documentation](../../../../foundry/agents/how-to/tools/model-context-protocol.md).
 
 This article provides code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
 
@@ -37,7 +38,7 @@ This article provides code samples for connecting Foundry Agent Service with Mod
 :::zone-end
 
 > [!NOTE]
-> **MCP server authentication**: Many MCP servers require authentication through custom headers, such as API keys, Bearer tokens, or OAuth credentials. Use the `UpdateHeader` method (C#) or `update_headers` method (Python) to pass authentication headers to your MCP server. For more information about authentication and security considerations, see the [How it works](./model-context-protocol.md?view=foundry&preserve-view=true#how-it-works) section in the **Connect to Model Context Protocol servers** documentation.
+> **MCP server authentication**: Many MCP servers require authentication through custom headers, such as API keys, Bearer tokens, or OAuth credentials. Use the `UpdateHeader` method (C#) or `update_headers` method (Python) to pass authentication headers to your MCP server. For more information about authentication and security considerations, see the [How it works](./model-context-protocol.md#how-it-works) section in the **Connect to Model Context Protocol servers** documentation.
 
 ## Code samples
 
@@ -183,7 +184,6 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 ## Create an Agent with the MCP Tool
 
 The following code sample begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client. It then creates an agent, adds a message to a thread, and runs the agent.
-
 
 ```python
 # Import necessary libraries

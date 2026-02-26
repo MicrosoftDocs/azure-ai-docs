@@ -1,7 +1,7 @@
 ---
-title: Disclosure design patterns for text to speech avatar
+title: "Disclosure design patterns for text to speech avatar"
 titleSuffix: Foundry Tools
-description: Design patterns and best practices for avatar disclosure.
+description: "Design patterns and best practices for avatar disclosure."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 11/16/2023
 ---
 
 # Disclosure design patterns for text to speech avatar
-
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 ## Overview

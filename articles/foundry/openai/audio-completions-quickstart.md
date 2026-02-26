@@ -1,6 +1,6 @@
 ---
-title: "Quickstart - Get started with Azure OpenAI audio generation (temp)"
-description: "Get started with audio generation using Azure OpenAI. (temp)"
+title: "Quickstart - Get started with Azure OpenAI audio generation"
+description: "Get started with audio generation using Azure OpenAI."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -16,8 +16,7 @@ recommendations: false
 
 ---
 
-# Quickstart: Get started with Azure OpenAI audio generation (temp)
-
+# Quickstart: Get started with Azure OpenAI audio generation
 ::: zone pivot="ai-foundry-portal"
 
 [!INCLUDE [Foundry](includes/audio-completions-foundry.md)]

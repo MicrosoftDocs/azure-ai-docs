@@ -1,7 +1,6 @@
 ---
-title: Generate Synthetic and Simulated Data for Evaluation
-titleSuffix: Microsoft Foundry
-description: This article provides instructions on how to generate synthetic data to run simulations to evaluate the performance and safety of your generative AI application.
+title: "Generate Synthetic and Simulated Data for Evaluation (classic)"
+description: "This article provides instructions on how to generate synthetic data to run simulations to evaluate the performance and safety of your generative AI application. (classic)"
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -16,7 +15,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# Generate synthetic and simulated data for evaluation (preview)
+# Generate synthetic and simulated data for evaluation (preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -173,7 +172,6 @@ from typing import List, Dict, Any, Optional
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-
 def call_to_your_ai_application(query: str) -> str:
     # logic to call your application
     # use a try except block to catch any errors
@@ -205,7 +203,6 @@ def call_to_your_ai_application(query: str) -> str:
     message = completion.to_dict()["choices"][0]["message"]
     # change this to return the response from your application
     return message["content"]
-
 
 async def callback(
     messages: List[Dict],

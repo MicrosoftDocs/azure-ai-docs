@@ -1,6 +1,6 @@
 ---
-title: "Monitor Foundry Agent Service with Azure Monitor (temp)"
-description: "Learn how to use Azure Monitor to view, analyze, and alert on platform metrics for Foundry Agent Service, including Log Analytics export and KQL queries. (temp)"
+title: "Monitor Foundry Agent Service with Azure Monitor"
+description: "Learn how to use Azure Monitor to view, analyze, and alert on platform metrics for Foundry Agent Service, including Log Analytics export and KQL queries."
 ms.date: 02/03/2026
 ms.custom:
   - horz-monitor, subject-monitoring, pilot-ai-workflow-jan-2026
@@ -13,8 +13,7 @@ ms.topic: how-to
 ai-usage: ai-assisted
 ---
 
-# Monitor Foundry Agent Service with Azure Monitor (temp)
-
+# Monitor Foundry Agent Service with Azure Monitor
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
 Monitoring is available for agents in a [standard agent setup](../concepts/standard-agent-setup.md).

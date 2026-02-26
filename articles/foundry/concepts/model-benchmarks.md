@@ -1,6 +1,6 @@
 ---
-title: "Model benchmarks and leaderboards in Microsoft Foundry (temp)"
-description: "Compare AI models using quality, safety, cost, and performance benchmarks on the model leaderboards (preview) in Microsoft Foundry portal. (temp)"
+title: "Model benchmarks and leaderboards in Microsoft Foundry"
+description: "Compare AI models using quality, safety, cost, and performance benchmarks on the model leaderboards (preview) in Microsoft Foundry portal."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer or data scientist, I want to understand model leaderboards and benchmarking capabilities in Microsoft Foundry portal so I can compare and select the best models for my AI solutions.
 ---
 
-# Model leaderboards in Microsoft Foundry portal (preview) (temp)
-
+# Model leaderboards in Microsoft Foundry portal (preview)
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Model leaderboards (preview) in Foundry portal help you compare models in the Foundry [model catalog](../../foundry-classic/concepts/foundry-models-overview.md) using industry-standard model benchmarks.

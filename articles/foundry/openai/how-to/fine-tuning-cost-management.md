@@ -1,6 +1,6 @@
 ---
-title: "Fine-tuning cost management (temp)"
-description: "Learn about the training and hosting costs associated with fine-tuning (temp)"
+title: "Fine-tuning cost management"
+description: "Learn about the training and hosting costs associated with fine-tuning"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -14,8 +14,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Cost management for fine-tuning (temp)
-
+# Cost management for fine-tuning
 Fine-tuning involves two cost components: a one-time training cost and ongoing hosting and inference costs. This guide explains how to estimate and manage both.
 
 > [!IMPORTANT]

@@ -1,7 +1,6 @@
 ---
-title: Tune prompts using variants
-titleSuffix: Microsoft Foundry
-description: Learn how to tune prompts using variants in Prompt flow with Microsoft Foundry.
+title: "Tune prompts using variants (classic)"
+description: "Learn how to tune prompts using variants in Prompt flow with Microsoft Foundry. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,7 +16,9 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Tune prompts using variants in Microsoft Foundry portal
+# Tune prompts using variants in Microsoft Foundry portal (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -50,7 +51,6 @@ Benefits of using variants include:
 - **Save time and effort**: Even slight modifications to a prompt can yield different results. It's crucial to track and compare the performance of each prompt version. With variants, you can easily manage the historical versions of your LLM nodes, facilitating updates based on any variant without the risk of forgetting previous iterations. Variants save you time and effort in managing prompt tuning history.
 - **Boost productivity**: Variants streamline the optimization process for LLM nodes, making it simpler to create and manage multiple variations. You can achieve improved results in less time, thereby increasing your overall productivity.
 - **Facilitate easy comparison**: You can effortlessly compare the results obtained from different variants side by side, enabling you to make data-driven decisions regarding the variant that generates the best outcomes.
-
 
 ## How to tune prompts using variants?
 
@@ -94,7 +94,6 @@ For **classify_with_llm** node, based on variant_0:
 
 - Create variant_1 where the temperature is changed from 1 to 0.
 - Create variant_2 where temperature is 0 and you can use the following prompt including few-shots examples.
-
 
 ```
 Your task is to classify a given url into one of the following types:

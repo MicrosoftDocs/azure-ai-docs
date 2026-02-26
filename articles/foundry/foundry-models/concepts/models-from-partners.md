@@ -1,6 +1,6 @@
 ---
-title: "Foundry Models from partners and community (temp)"
-description: "Learn about Microsoft Foundry Models from partners and community, including their capabilities, supported input and output types, and language support for AI applications. (temp)"
+title: "Foundry Models from partners and community"
+description: "Learn about Microsoft Foundry Models from partners and community, including their capabilities, supported input and output types, and language support for AI applications."
 author: msakande
 ms.author: mopeakande
 manager: nitinme
@@ -21,8 +21,7 @@ zone_pivot_groups: azure-ai-model-categories
 #CustomerIntent: As a developer or AI practitioner, I want to explore and understand the available Microsoft Foundry Models from partners and community, including their specific capabilities, supported input and output types, and language support, so that I can select the most appropriate model for my AI application requirements.
 ---
 
-# Foundry Models from partners and community (temp)
-
+# Foundry Models from partners and community
 This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
 The selection of models that you see in Foundry depends on the [kind of project](../../what-is-foundry.md#choosing-a-project) you use.

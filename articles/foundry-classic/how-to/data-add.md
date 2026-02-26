@@ -1,7 +1,6 @@
 ---
-title: How to add and manage data in your Microsoft Foundry hub-based project
-titleSuffix: Microsoft Foundry
-description: Learn how to add and manage data in your Microsoft Foundry hub-based project.
+title: "How to add and manage data in your Microsoft Foundry hub-based project (classic)"
+description: "Learn how to add and manage data in your Microsoft Foundry hub-based project. (classic)"
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom:
@@ -17,7 +16,7 @@ author: jonburchel
 ai-usage: ai-assisted
 ---
 
-# How to add and manage data in your Microsoft Foundry hub-based project
+# How to add and manage data in your Microsoft Foundry hub-based project (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -33,7 +32,6 @@ Data can help when you need these capabilities:
 > - **Auditability:** Because the data version is immutable, you can track the asset versions, who updated a version, and the date of each version update.
 > - **Lineage:** For any given data, you can view which jobs or prompt flow pipelines consume the data.
 > - **Ease-of-use:** A Foundry data resembles web browser bookmarks (favorites). Instead of remembering long storage paths that *reference* your frequently-used data on Azure Storage, you can create a data *version* and then access that version of the asset with a friendly name.
-
 
 ## Prerequisites
 

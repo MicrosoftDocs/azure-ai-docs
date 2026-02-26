@@ -1,6 +1,6 @@
 ---
-title: "Planning red teaming for large language models (LLMs) and their applications (temp)"
-description: "Learn about how red teaming and adversarial testing are an essential practice in the responsible development of systems and features using large language models (LLMs) (temp)"
+title: "Planning red teaming for large language models (LLMs) and their applications"
+description: "Learn about how red teaming and adversarial testing are an essential practice in the responsible development of systems and features using large language models (LLMs)"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -15,8 +15,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Planning red teaming for large language models (LLMs) and their applications (temp)
-
+# Planning red teaming for large language models (LLMs) and their applications
 This guide offers some potential strategies for planning how to set up and manage red teaming for responsible AI (RAI) risks throughout the large language model (LLM) product life cycle.
 
 ## What is red teaming?

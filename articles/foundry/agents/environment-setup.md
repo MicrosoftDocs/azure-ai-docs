@@ -1,6 +1,6 @@
 ---
-title: "Set up your environment for Foundry Agent Service (temp)"
-description: "Use this guide to set up your agent environment (temp)"
+title: "Set up your environment for Foundry Agent Service"
+description: "Use this guide to set up your agent environment"
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -15,8 +15,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Set up your environment (temp)
-
+# Set up your environment
 In this article, you deploy the infrastructure needed to create agents with Foundry Agent Service. After completing this setup, you can create and configure agents using either the SDK of your choice or the Foundry portal.
 
 Creating your first agent is a two-step process:

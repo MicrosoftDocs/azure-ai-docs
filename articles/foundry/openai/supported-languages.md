@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models supported programming languages (temp)"
-description: "Programming language support for Azure OpenAI. (temp)"
+title: "Azure OpenAI in Microsoft Foundry Models supported programming languages"
+description: "Programming language support for Azure OpenAI."
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: openai-supported-languages
 ---
 
-# Azure OpenAI supported programming languages (temp)
-
+# Azure OpenAI supported programming languages
 ## Prerequisites
 
 - An Azue OpenAI model deployed

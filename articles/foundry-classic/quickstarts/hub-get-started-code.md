@@ -1,7 +1,6 @@
 ---
-title: "Quickstart: Get started with Microsoft Foundry (Hub projects)"
-titleSuffix: Microsoft Foundry
-description: Set up SDK, deploy a model, and build a simple chat app for hub-based projects.
+title: "Quickstart: Get started with Microsoft Foundry (Hub projects) (classic)"
+description: "Set up SDK, deploy a model, and build a simple chat app for hub-based projects. (classic)"
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
@@ -14,7 +13,9 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Quickstart: Get started with Microsoft Foundry (Hub projects)
+# Quickstart: Get started with Microsoft Foundry (Hub projects) (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 > [!TIP]
 > An alternate Foundry project quickstart is available: [Quickstart: Get started with Microsoft Foundry (Foundry projects)](get-started-code.md).

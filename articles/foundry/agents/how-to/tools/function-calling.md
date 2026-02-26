@@ -1,7 +1,6 @@
 ---
-title: Use function calling with Microsoft Foundry agents
-titleSuffix: Microsoft Foundry
-description: Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, TypeScript, or REST and return outputs to the agent.
+title: "Use function calling with Microsoft Foundry agents"
+description: "Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, TypeScript, or REST and return outputs to the agent."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,7 +15,6 @@ zone_pivot_groups: selection-function-calling-new
 ---
 
 # Use function calling with Microsoft Foundry agents
-
 Microsoft Foundry agents support function calling, which lets you extend agents with custom capabilities. Define a function with its name, parameters, and description, and the agent can request your app to call it. Your app executes the function and returns the output. The agent then uses the result to continue the conversation with accurate, real-time data from your systems.
 
 > [!IMPORTANT]
@@ -33,20 +31,20 @@ You can run agents with function tools in the Microsoft Foundry portal. However,
 | ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 > [!NOTE]
-> The Java SDK does not currently support function calling with the new agent APIs (`azure-ai-projects` package). Java support is available for the classic agent APIs only. For Java function calling examples with classic agents, see the [classic agent documentation](../../../../agents/how-to/tools-classic/function-calling.md).
+> The Java SDK does not currently support function calling with the new agent APIs (`azure-ai-projects` package). Java support is available for the classic agent APIs only. For Java function calling examples with classic agents, see the [classic agent documentation](../../../../foundry-classic/agents/how-to/tools-classic/function-calling.md).
 
 ## Prerequisites
 
 Before you start, make sure you have:
 
-- A [basic or standard agent environment](../../../../agents/environment-setup.md).
+- A [basic or standard agent environment](../../../agents/environment-setup.md).
 - A Foundry project and a deployed model.
 - The latest prerelease SDK package for your language:
   - Python: `azure-ai-projects>=2.0.0b4`
   - .NET: `Azure.AI.Projects.OpenAI` (prerelease)
   - TypeScript: `@azure/ai-projects` (latest beta)
   
-  For installation and authentication steps, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+  For installation and authentication steps, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 ### Environment variables
 
@@ -93,7 +91,7 @@ Function calling follows this pattern:
 1. **Get the final response** — The agent uses your function output to complete its response.
 
 > [!NOTE]
-> You need the latest prerelease package. For more information, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code).
+> You need the latest prerelease package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 :::zone pivot="python"
 
@@ -110,11 +108,9 @@ from openai.types.responses.response_input_param import FunctionCallOutput, Resp
 
 load_dotenv()
 
-
 def get_horoscope(sign: str) -> str:
     """Generate a horoscope for the given astrological sign."""
     return f"{sign}: Next Tuesday you will befriend a baby otter."
-
 
 endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
@@ -719,4 +715,4 @@ curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/conversations/<CONVERSATION_
 
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Connect OpenAPI tools to Microsoft Foundry agents](openapi.md)
-- [Microsoft Foundry Quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)
+- [Microsoft Foundry Quickstart](../../../quickstarts/get-started-code.md)

@@ -1,6 +1,6 @@
 ---
-title: "Set up private networking for Foundry Agent Service (temp)"
-description: "Set up private networking for Foundry Agent Service using Bicep or Terraform. Deploy a virtual network with private endpoints, DNS zones, and deny-by-default network rules. (temp)"
+title: "Set up private networking for Foundry Agent Service"
+description: "Set up private networking for Foundry Agent Service using Bicep or Terraform. Deploy a virtual network with private endpoints, DNS zones, and deny-by-default network rules."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,8 +16,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Set up private networking for Foundry Agent Service (temp)
-
+# Set up private networking for Foundry Agent Service
 Foundry Agent Service offers a **Standard Setup with private networking** environment, where you bring your own (BYO) private virtual network. This setup creates an isolated network environment that enables secure access to data while maintaining full control over your network infrastructure.
 
 By default, the Standard Setup with private networking ensures:

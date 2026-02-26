@@ -1,7 +1,7 @@
 ---
-title: Transparency note - Named Entity Recognition feature of Azure Language in Foundry Tools
+title: "Transparency note - Named Entity Recognition feature of Azure Language in Foundry Tools"
 titleSuffix: Foundry Tools
-description: Azure Language in Foundry Tools supports named entity recognition to identify and categorize information in your text. The Personally Identifiable Information (PII) feature is part of NER and it can identify and redact sensitive entities in text that are associated with an individual person such as phone number, email address, mailing address, passport number.
+description: "Azure Language in Foundry Tools supports named entity recognition to identify and categorize information in your text. The Personally Identifiable Information (PII) feature is part of NER and it can identify and redact sensitive entities in text that are associated with an individual person such as phone number, email address, mailing address, passport number."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 11/10/2021
 ---
 
 # Transparency note for Named Entity Recognition including Personally Identifiable Information (PII)
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a transparency note?

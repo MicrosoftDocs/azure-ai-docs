@@ -1,7 +1,6 @@
 ---
-title: Use the image generation tool in Foundry Agent Service (preview)
-titleSuffix: Microsoft Foundry
-description: Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output.
+title: "Use the image generation tool in Foundry Agent Service (preview)"
+description: "Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,11 +15,10 @@ zone_pivot_groups: selection-image-generation
 ---
 
 # Use the image generation tool (preview)
-
-[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!IMPORTANT] 
-> - The image generation tool requires the `gpt-image-1` model. See the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md?tabs=image) for limitations and responsible AI considerations.
+> - The image generation tool requires the `gpt-image-1` model. See the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md?tabs=image) for limitations and responsible AI considerations.
 > - You also need a compatible orchestrator model (`gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, or `gpt-5` series) deployed in the same Foundry project.
 
 The **image generation tool** in Microsoft Foundry Agent Service generates images from text prompts in conversations and multistep workflows. Use it to create AI-generated visuals and return base64-encoded output that you can save to a file.
@@ -40,7 +38,7 @@ The **image generation tool** in Microsoft Foundry Agent Service generates image
 
 - An Azure account with an active subscription.
 - A Foundry project.
-- A basic or standard agent environment. See [agent environment setup](../../../../agents/environment-setup.md).
+- A basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md).
 - Permissions to create and manage agent versions in the project.
 - Two model deployments in the same Foundry project:
   - A compatible Azure OpenAI model deployment for the agent (for example, `gpt-4o`).
@@ -61,7 +59,7 @@ Set these environment variables for the samples:
 
 ## Code examples
 
-Before you start, install the `azure-ai-projects` package (version 2.0.0b4 or later). For package installation instructions, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+Before you start, install the `azure-ai-projects` package (version 2.0.0b4 or later). For package installation instructions, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 :::zone pivot="python"
 ## Create an agent with the image generation tool
@@ -403,10 +401,10 @@ Use the Responses API if you want to:
 
 Effective prompts produce better images. Describe the subject, visual style, and composition you want. Use action words like "draw," "create," or "edit" to guide the model's output.
 
-Content filtering can block image generation if the service detects unsafe content in your prompt. For more information, see [Content filter](../../../../foundry-models/concepts/content-filter.md).
+Content filtering can block image generation if the service detects unsafe content in your prompt. For more information, see [Content filter](../../../../foundry-classic/foundry-models/concepts/content-filter.md).
 
 > [!TIP] 
-> For a thorough look at how you can tweak your text prompts to generate different kinds of images, see [Image prompt engineering techniques](../../../../openai/concepts/gpt-4-v-prompt-engineering.md). 
+> For a thorough look at how you can tweak your text prompts to generate different kinds of images, see [Image prompt engineering techniques](../../../openai/concepts/gpt-4-v-prompt-engineering.md). 
 
 ## Verify tool execution
 
@@ -426,7 +424,7 @@ If you see only text output and no `image_generation_call` item, the request mig
 | Image generation fails | Missing deployment | Verify both the orchestrator model (for example, `gpt-4o`) and `gpt-image-1` deployments exist in the same Foundry project. |
 | Image generation fails | Missing or incorrect header | Verify the header `x-ms-oai-image-generation-deployment` is present on the Responses request and matches your image generation deployment name. |
 | Agent uses wrong deployment | Environment variable misconfiguration | Confirm `FOUNDRY_MODEL_DEPLOYMENT_NAME` is set to your orchestrator deployment name, not the image generation deployment. |
-| Prompt doesn't produce an image | Content filtering blocked the request | Check content filtering logs. See [Content filter](../../../../foundry-models/concepts/content-filter.md) for guidelines on acceptable prompts. |
+| Prompt doesn't produce an image | Content filtering blocked the request | Check content filtering logs. See [Content filter](../../../../foundry-classic/foundry-models/concepts/content-filter.md) for guidelines on acceptable prompts. |
 | Tool not available | Regional or model limitation | Confirm the image generation tool is available in your region and with your orchestrator model. See [Best practices for using tools](../../concepts/tool-best-practice.md). |
 | Generated image has low quality | Prompt lacks detail | Provide more specific and detailed prompts describing the desired image style, composition, and elements. |
 | Image generation times out | Large or complex image request | Simplify the prompt or increase timeout settings. Consider breaking complex requests into multiple simpler ones. |
@@ -435,6 +433,6 @@ If you see only text output and no `image_generation_call` item, the request mig
 ## Related content
 
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
-- [Image generation in Azure OpenAI](../../../../openai/how-to/dall-e.md)
-- [Responses API in Azure OpenAI](../../../../openai/how-to/responses.md)
-- [Content filter](../../../../foundry-models/concepts/content-filter.md)
+- [Image generation in Azure OpenAI](../../../openai/how-to/dall-e.md)
+- [Responses API in Azure OpenAI](../../../openai/how-to/responses.md)
+- [Content filter](../../../../foundry-classic/foundry-models/concepts/content-filter.md)
