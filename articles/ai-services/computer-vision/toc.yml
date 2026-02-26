@@ -22,7 +22,8 @@ items:
     href: use-case-alt-text.md
   - name: Verify a user
     href: use-case-identity-verification.md
-- name: Image Analysis
+
+- name: Image Analysis (legacy)
   items:
   - name: Image Analysis overview
     href: overview-image-analysis.md
