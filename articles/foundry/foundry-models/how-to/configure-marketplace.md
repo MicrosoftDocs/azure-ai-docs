@@ -33,7 +33,7 @@ Certain Microsoft Foundry Models are offered directly by the model provider thro
 
 ## Country/region availability
 
-Users can access models from partners and community with pay-as-you-go billing only if their Azure subscription belongs to a billing account in a country/region or region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](/azure/foundry-classic/how-to/deploy-models-serverless-availability).
+Users can access models from partners and community with pay-as-you-go billing only if their Azure subscription belongs to a billing account in a country/region or region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md).
 
 ## Troubleshooting
 
@@ -41,13 +41,13 @@ Use the following troubleshooting guide to find and solve errors when deploying 
 
 | Error | Description |
 |-------|-------------|
-| Offer not available in your country/region | The model provider didn't make the specific model SKU available in the country/region where you registered your subscription. Each model provider decides which countries/regions are available, and availability can vary by model SKU. Deploy the model to a subscription with billing in a supported country/region. See [Region availability for models](/azure/foundry-classic/how-to/deploy-models-serverless-availability). |
-| Marketplace purchase eligibility check failed | The model provider didn't make the specific model SKU available in your country/region, or the model isn't available in the region where you deployed the Foundry resource. See [Region availability for models](/azure/foundry-classic/how-to/deploy-models-serverless-availability). |
+| Offer not available in your country/region | The model provider didn't make the specific model SKU available in the country/region where you registered your subscription. Each model provider decides which countries/regions are available, and availability can vary by model SKU. Deploy the model to a subscription with billing in a supported country/region. See [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md). |
+| Marketplace purchase eligibility check failed | The model provider didn't make the specific model SKU available in your country/region, or the model isn't available in the region where you deployed the Foundry resource. See [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md). |
 | Unable to create a model deployment | Azure Marketplace rejected the request to create a model subscription. This rejection can happen for multiple reasons, including subscribing to the model offering too often or from multiple subscriptions at the same time. Contact [support](https://go.microsoft.com/fwlink/?linkid=2101400&clcid=0x409) and include your subscription ID. |
 | CSP subscription not supported | Cloud Solution Provider (CSP) subscriptions can't purchase third-party model offerings. Consider using models offered as a first-party consumption service. |
 
 ## Related content
 
 - [Deploy Foundry Models](deploy-foundry-models.md)
-- [Region availability for models](/azure/foundry-classic/how-to/deploy-models-serverless-availability)
+- [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md)
 - [Models from partners and community](../concepts/models-from-partners.md)

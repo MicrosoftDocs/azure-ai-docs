@@ -120,13 +120,13 @@ There are many use cases where you're performing some bulk task where you only c
 
 ### Content filtering
 
-Azure OpenAI includes a [content filtering system](/azure/foundry-classic/openai/how-to/content-filters) that works alongside the core models. This system works by running both the prompt and completion through an ensemble of classification models aimed at detecting and preventing the output of harmful content.
+Azure OpenAI includes a [content filtering system](../../../foundry-classic/openai/how-to/content-filters.md) that works alongside the core models. This system works by running both the prompt and completion through an ensemble of classification models aimed at detecting and preventing the output of harmful content.
 
 The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
 The addition of content filtering comes with an increase in safety, but also latency. There are many applications where this tradeoff in performance is necessary, however there are certain lower risk use cases where disabling the content filters to improve performance might be worth exploring.
 
-Learn more about requesting modifications to the default, [content filtering policies](/azure/foundry-classic/openai/how-to/content-filters).
+Learn more about requesting modifications to the default, [content filtering policies](../../../foundry-classic/openai/how-to/content-filters.md).
 
 ### Separation of workloads
 Mixing different workloads on the same endpoint can negatively affect latency. This is because (1) they're batched together during inference and short calls can be waiting for longer completions and (2) mixing the calls can reduce your cache hit rate as they're both competing for the same space. When possible, it's recommended to have separate deployments for each workload.
@@ -142,12 +142,12 @@ We recommend measuring your overall throughput on a deployment with two measures
 -	Calls per minute: The number of API inference calls you're making per minute. This can be measured in Azure-monitor using the Azure OpenAI Requests metric and splitting by the ModelDeploymentName
 -	Total Tokens per minute: The total number of tokens being processed per minute by your deployment. This includes prompt & generated tokens. This is often further split into measuring both for a deeper understanding of deployment performance. This can be measured in Azure-Monitor using the Processed Inference tokens metric. 
 
-You can learn more about [Monitoring Azure OpenAI](/azure/foundry-classic/openai/how-to/monitor-openai).
+You can learn more about [Monitoring Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md).
 
 ## How to measure per-call latency
 The time it takes for each call depends on how long it takes to read the model, generate the output, and apply content filters. The way you measure the time will vary if you're using streaming or not. We suggest a different set of measures for each case. 
 
-You can learn more about [Monitoring Azure OpenAI](/azure/foundry-classic/openai/how-to/monitor-openai).
+You can learn more about [Monitoring Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md).
 
 ### Non-Streaming:
 -	 End-to-end Request Time: The total time taken to generate the entire response for non-streaming requests, as measured by the API gateway. This number increases as prompt and generation size increases.
@@ -167,4 +167,4 @@ Time from the first token to the last token, divided by the number of generated 
 
 * **Streaming**: Enabling streaming can be useful in managing user expectations in certain situations by allowing the user to see the model response as it is being generated rather than having to wait until the last token is ready.
 
-* **Content Filtering** improves safety, but it also impacts latency. Evaluate if any of your workloads would benefit from [modified content filtering policies](/azure/foundry-classic/openai/how-to/content-filters).
+* **Content Filtering** improves safety, but it also impacts latency. Evaluate if any of your workloads would benefit from [modified content filtering policies](../../../foundry-classic/openai/how-to/content-filters.md).

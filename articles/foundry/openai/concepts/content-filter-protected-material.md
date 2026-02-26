@@ -60,5 +60,5 @@ For integration problems:
 
 - [Quickstart: Detect protected material in text](../../../ai-services/content-safety/quickstart-protected-material.md)
 - [Quickstart: Detect protected material in code](../../../ai-services/content-safety/quickstart-protected-material-code.md)
-- [Configure content filtering in Azure OpenAI](/azure/foundry-classic/openai/how-to/content-filters)
+- [Configure content filtering in Azure OpenAI](../../../foundry-classic/openai/how-to/content-filters.md)
 - [Content Safety concepts](../../../ai-services/content-safety/concepts/harm-categories.md)

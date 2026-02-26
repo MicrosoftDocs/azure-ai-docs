@@ -92,5 +92,5 @@ After you complete all the necessary configurations, you can provide a name for 
 Learn more about evaluating your generative AI applications:
 
 - [View the evaluation results](./evaluate-results.md)
-- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](/azure/foundry-classic/openai/how-to/evaluations)
+- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../foundry-classic/openai/how-to/evaluations.md)
 - [Transparency note for Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md)

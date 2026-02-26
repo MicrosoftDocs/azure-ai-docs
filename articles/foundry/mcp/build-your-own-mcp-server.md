@@ -21,7 +21,7 @@ This approach enables you to securely integrate internal APIs and services into 
 
 ## Prerequisites
 
-- A Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Agent Service](/azure/foundry-classic/agents/quickstart).
+- A Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Agent Service](../../foundry-classic/agents/quickstart.md).
 - An Azure subscription and permissions to create resources. At minimum, you typically need the Contributor role on the target resource group.
 - [Python](https://www.python.org/downloads/) version 3.11 or higher installed on your local development machine.
 - [Azure Functions Core Tools](/azure/azure-functions/functions-run-local?pivots=programming-language-python#install-the-azure-functions-core-tools) version 4.0.7030 or higher.

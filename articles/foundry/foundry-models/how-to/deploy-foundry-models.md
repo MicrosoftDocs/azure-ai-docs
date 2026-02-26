@@ -107,7 +107,7 @@ When you reach your quota limit, you can only create new deployments of that mod
 - Request more quota by submitting a [quota increase form](https://aka.ms/oai/stuquotarequest).
 - Adjust the allocated quota on other model deployments in the Foundry portal, to free up tokens for new deployments.
 
-For more information about quota, see [Microsoft Foundry Models quotas and limits](../quotas-limits.md) and [Manage Azure OpenAI quota](/azure/foundry-classic/openai/how-to/quota?tabs=rest).
+For more information about quota, see [Microsoft Foundry Models quotas and limits](../quotas-limits.md) and [Manage Azure OpenAI quota](../../../foundry-classic/openai/how-to/quota.md?tabs=rest).
 
 ## Troubleshooting
 

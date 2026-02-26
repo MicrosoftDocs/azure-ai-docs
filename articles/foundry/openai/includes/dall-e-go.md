@@ -17,7 +17,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Go
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - [Go 1.8+](https://go.dev/doc/install)
-- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](/azure/foundry-classic/openai/how-to/create-resource).
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 
 #### Microsoft Entra ID prerequisites
 
@@ -247,7 +247,7 @@ Image generated, HEAD request on URL returned 200
 Image URL: <SAS URL>
 ```
 > [!NOTE]
-> The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](/azure/foundry-classic/foundry-models/concepts/content-filter) article.
+> The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../../foundry-classic/foundry-models/concepts/content-filter.md) article.
 
 ### Clean up resources
 

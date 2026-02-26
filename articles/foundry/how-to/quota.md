@@ -78,6 +78,6 @@ If you encounter issues when viewing or requesting quotas, try these solutions:
 
 - [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md)
 - [Azure OpenAI quotas and limits](../openai/quotas-limits.md)
-- [Manage Azure OpenAI Service quota](/azure/foundry-classic/openai/how-to/quota)
-- [Plan to manage costs](/azure/foundry-classic/how-to/costs-plan-manage)
+- [Manage Azure OpenAI Service quota](../../foundry-classic/openai/how-to/quota.md)
+- [Plan to manage costs](../../foundry-classic/how-to/costs-plan-manage.md)
 - [Create a project](../how-to/create-projects.md)

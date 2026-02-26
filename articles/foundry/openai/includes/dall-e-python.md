@@ -26,7 +26,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Py
     - **DALL-E 3**: Deploy a `dalle3` model. Generally available.
     - **GPT-image-1 series**: Deploy a `gpt-image-1` model. Requires [limited access registration](https://aka.ms/oai/access).
 
-For more information, see [Create a resource and deploy a model with Azure OpenAI](/azure/foundry-classic/openai/how-to/create-resource).
+For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 
 ### Setup
 
@@ -140,7 +140,7 @@ A successful response includes:
 | `RateLimitError` | Rate limit exceeded | Implement retry logic with exponential backoff |
 | `content_policy_violation` | Prompt or generated output blocked by content filter | Modify the prompt to comply with the content policy |
 
-The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](/azure/foundry-classic/foundry-models/concepts/content-filter).
+The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../../../foundry-classic/foundry-models/concepts/content-filter.md).
 
 ### Clean up resources
 

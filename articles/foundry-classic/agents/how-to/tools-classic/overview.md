@@ -19,12 +19,11 @@ ms.custom: azure-ai-agents
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-<!-- > 🔍 [View the new tool catalog documentation](/azure/foundry/agents/concepts/tool-catalog). -->
 
 To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent Service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
 
 > [!NOTE]
-> The new Microsoft Foundry portal and agents API provide additional tools. See the [tool catalog article](/azure/foundry/agents/concepts/tool-catalog) for more information.  
+> The new Microsoft Foundry portal and agents API provide additional tools. See the [tool catalog article](../../../../foundry/agents/concepts/tool-catalog.md) for more information.  
 
 ## Knowledge tools
 

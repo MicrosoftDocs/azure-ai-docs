@@ -14,7 +14,7 @@ Once you're satisfied with the experience, you can deploy a web app directly fro
 
 :::image type="content" source="../media/use-your-data/deploy-model.png" alt-text="A screenshot showing the model deployment button in the portal." lightbox="../media/use-your-data/deploy-model.png":::
 
-This gives you the option to either deploy to a standalone web application, or a copilot in Copilot Studio (preview) if you're [using your own data](/azure/foundry-classic/openai/concepts/use-your-data#deploy-to-a-copilot-preview-teams-app-preview-or-web-app) on the model. 
+This gives you the option to either deploy to a standalone web application, or a copilot in Copilot Studio (preview) if you're [using your own data](../../../foundry-classic/openai/concepts/use-your-data.md#deploy-to-a-copilot-preview-teams-app-preview-or-web-app) on the model. 
 
 As an example, if you choose to deploy a web app:
 
@@ -25,5 +25,5 @@ Select your subscription, resource group, location, and pricing plan for the pub
 update an existing app, select **Publish to an existing web app** and choose the name of your previous 
 app from the dropdown menu.
 
-If you choose to deploy a web app, see the [important considerations](/azure/foundry-classic/openai/how-to/use-web-app#important-considerations) for using it.
+If you choose to deploy a web app, see the [important considerations](../../../foundry-classic/openai/how-to/use-web-app.md#important-considerations) for using it.
 

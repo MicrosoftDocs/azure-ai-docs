@@ -158,13 +158,13 @@ For current model quotas and limits, see:
 - [Azure OpenAI quotas and limits](../../openai/quotas-limits.md).
 - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md).
 
-To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](/azure/foundry-classic/openai/how-to/quota).
+To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../../../foundry-classic/openai/how-to/quota.md).
 
 ## Request a limit increase
 
 The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
 
-- **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](/azure/foundry-classic/openai/how-to/quota).
+- **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../../foundry-classic/openai/how-to/quota.md).
 - **Agent Service limits.** The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints by using the best practices described earlier.
 
 ## Related content
@@ -174,4 +174,4 @@ The limits in this article are default values for Foundry Agent Service. If your
 - [Vector stores for file search](vector-stores.md)
 - [Monitor Foundry Agent Service](../../agents/how-to/metrics.md)
 - [Azure OpenAI quotas and limits](../../openai/quotas-limits.md)
-- [Manage and increase quotas for resources with Microsoft Foundry](/azure/foundry-classic/openai/how-to/quota)
+- [Manage and increase quotas for resources with Microsoft Foundry](../../../foundry-classic/openai/how-to/quota.md)

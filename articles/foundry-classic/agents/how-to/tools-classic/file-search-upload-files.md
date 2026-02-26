@@ -20,7 +20,6 @@ ms.custom: azure-ai-agents-code
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-<!-- > 🔍 [View the new file search documentation](/azure/foundry/agents/how-to/tools/file-search). -->
 
 Use this article to find step-by-step instructions and code samples for uploading files using the file search tool.
 

@@ -32,7 +32,7 @@ Monitoring is available for agents in a [standard agent setup](../concepts/stand
 > [!NOTE]
 > If you're using a Foundry project, use Foundry monitoring instead of Azure Monitor metrics.
 >
-> See [Monitor AI Agents with the Agent Monitoring Dashboard (preview)](/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard).
+> See [Monitor AI Agents with the Agent Monitoring Dashboard (preview)](../../../foundry/observability/how-to/how-to-monitor-agents-dashboard.md).
 
 ## Prerequisites
 
@@ -182,6 +182,6 @@ For application-layer observability, see [Monitor your generative AI application
 
 ## Next steps
 
-- If you're using a Foundry project, see [Monitor AI Agents with the Agent Monitoring Dashboard (preview)](/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard).
+- If you're using a Foundry project, see [Monitor AI Agents with the Agent Monitoring Dashboard (preview)](../../../foundry/observability/how-to/how-to-monitor-agents-dashboard.md).
 - For end-to-end debugging, see [Trace and observe AI agents in Foundry (preview)](../../how-to/develop/trace-agents-sdk.md).
 - For metric definitions, see [Monitoring data reference](../reference/monitor-service.md).

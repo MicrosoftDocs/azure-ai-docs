@@ -27,7 +27,7 @@ The term *red teaming* has historically described systematic adversarial attacks
 
 Red teaming is a best practice in the responsible development of systems and features using LLMs. While not a replacement for systematic measurement and mitigation work, red teamers help to uncover and identify harms and, in turn, enable measurement strategies to validate the effectiveness of mitigations.
 
-While Microsoft has conducted red teaming exercises and implemented safety systems (including [content filters](/azure/foundry-classic/openai/how-to/content-filters) and other [mitigation strategies](./prompt-engineering.md)) for its Azure OpenAI in Microsoft Foundry Models (see this [Overview of responsible AI practices](/azure/ai-foundry/responsible-ai/openai/overview)), the context of each LLM application will be unique and you also should conduct red teaming to:
+While Microsoft has conducted red teaming exercises and implemented safety systems (including [content filters](../../../foundry-classic/openai/how-to/content-filters.md) and other [mitigation strategies](./prompt-engineering.md)) for its Azure OpenAI in Microsoft Foundry Models (see this [Overview of responsible AI practices](/azure/ai-foundry/responsible-ai/openai/overview)), the context of each LLM application will be unique and you also should conduct red teaming to:
 
 - Test the LLM base model and determine whether there are gaps in the existing safety systems, given the context of your application.
 
@@ -149,6 +149,6 @@ The guidance in this document is not intended to be, and should not be construed
 
 ## Next steps
 
-- Review [content filters](/azure/foundry-classic/openai/how-to/content-filters) and ensure your testing plan covers scenarios that might bypass them.
+- Review [content filters](../../../foundry-classic/openai/how-to/content-filters.md) and ensure your testing plan covers scenarios that might bypass them.
 - Use [prompt engineering](./prompt-engineering.md) techniques to reduce risk, then retest to validate improvements.
 - Read [Overview of responsible AI practices](/azure/ai-foundry/responsible-ai/openai/overview) to align testing with a broader RAI workflow.

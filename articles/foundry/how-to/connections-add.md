@@ -115,4 +115,4 @@ For more on how to set private endpoints to your connected resources, see the fo
 
 ## Related content
 
-- [How to create vector indexes](/azure/foundry-classic/how-to/index-add)
+- [How to create vector indexes](../../foundry-classic/how-to/index-add.md)

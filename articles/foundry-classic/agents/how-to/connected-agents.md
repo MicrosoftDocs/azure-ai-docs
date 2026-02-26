@@ -18,7 +18,7 @@ zone_pivot_groups: selection-connected-agents
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 > [!NOTE]
-> This tool is only available in `2025-05-15-preview` API. We highly recommend you to migrate to use the `2025-11-15-preview` API version [workflows](/azure/foundry/agents/concepts/workflow) for multi-agent orchestration.
+> This tool is only available in `2025-05-15-preview` API. We highly recommend you to migrate to use the `2025-11-15-preview` API version [workflows](../../../foundry/agents/concepts/workflow.md) for multi-agent orchestration.
 
 Connected agents in Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
 
@@ -338,10 +338,10 @@ After testing your connected agents, you can publish them to Azure for productio
 * **Routing continues to work**: After publishing, the main agent automatically routes to the published connected agents using their Agent IDs in the `ConnectedAgentToolDefinition`. No code changes are needed.
 * **Identity management**: Published connected agents receive their own Agent Identity. Reconfigure permissions for any Azure resources that your connected agents access, as the shared development identity permissions don't transfer.
 
-For complete publishing instructions, including how to publish agents through the portal or REST API, authentication configuration, and consuming published agents, see [Publish and share agents in Microsoft Foundry](/azure/foundry/agents/how-to/publish-agent).
+For complete publishing instructions, including how to publish agents through the portal or REST API, authentication configuration, and consuming published agents, see [Publish and share agents in Microsoft Foundry](../../../foundry/agents/how-to/publish-agent.md).
 
 ## Related content
 
-* [Publish and share agents in Microsoft Foundry](/azure/foundry/agents/how-to/publish-agent)
-* [Agent identity concepts](/azure/foundry/agents/concepts/agent-identity)
+* [Publish and share agents in Microsoft Foundry](../../../foundry/agents/how-to/publish-agent.md)
+* [Agent identity concepts](../../../foundry/agents/concepts/agent-identity.md)
 * [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)

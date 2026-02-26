@@ -114,5 +114,5 @@ You can modify the [reasoning effort](../openai/how-to/reasoning.md) parameter t
 ## Related content
 
 - [Models available in Foundry Models](./concepts/models-sold-directly-by-azure.md)
-- [Manage and increase quotas for Foundry resources](/azure/foundry-classic/openai/how-to/quota)
+- [Manage and increase quotas for Foundry resources](../../foundry-classic/openai/how-to/quota.md)
 - [Quotas and limits in Azure OpenAI](../openai/quotas-limits.md)

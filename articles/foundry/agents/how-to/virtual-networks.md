@@ -29,7 +29,7 @@ By default, the Standard Setup with private networking ensures:
 If you don't have an existing virtual network, the Standard Setup with private networking template simplifies deployment by automatically provisioning the necessary network infrastructure.
 
 > [!TIP]
-> See the [FAQ article](/azure/foundry-classic/faq#virtual-networking) for common questions when working with virtual networks.
+> See the [FAQ article](../../../foundry-classic/faq.yml#virtual-networking) for common questions when working with virtual networks.
 
 > [!NOTE]
 > End-to-end network isolation isn't supported in the new Foundry portal experience. Use the classic Foundry portal experience, the SDK, or the CLI to securely access your Foundry projects when network isolation is enabled.
@@ -117,7 +117,7 @@ After the template deployment finishes, verify that all resources are configured
     - Additionally, expect traffic to a `10.x.x.x` private IP (for non-class A scenarios) or `100.x.x.x` private IP (for class A scenario) as necessary traffic to Agent Infra services. Allow this traffic if you're integrating with a Firewall.
 - **All Foundry workspace resources must be deployed in the same region as the virtual network (VNet)**. This includes Azure Cosmos DB, Storage Account, Azure AI Search, Foundry Account, Project, Managed Identity, Azure OpenAI, or another Foundry resource used for model deployments.
 - **Region availability**:
-  - For supported regions for model deployments, see: [Azure OpenAI model region support](/azure/foundry-classic/agents/concepts/model-region-support#available-models).
+  - For supported regions for model deployments, see: [Azure OpenAI model region support](../../../foundry-classic/agents/concepts/model-region-support.md#available-models).
 - **Azure Blob Storage**: Using Azure Blob Storage files with the File Search tool isn't supported.
 - **Grounding with Bing Search**: Only the following regions are supported:
   - West Europe

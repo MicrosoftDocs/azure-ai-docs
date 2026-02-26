@@ -36,7 +36,7 @@ This article shows you how to:
 
 Azure OpenAI supports automatic updates for select model deployments. On models where automatic update support is available, a model version upgrade policy drop-down is available.
 
-You can learn more about Azure OpenAI model versions and how they work in the [Azure OpenAI model versions](/azure/foundry-classic/openai/concepts/model-versions) article.
+You can learn more about Azure OpenAI model versions and how they work in the [Azure OpenAI model versions](../../../foundry-classic/openai/concepts/model-versions.md) article.
 
 > [!NOTE]
 > Automatic model updates are only supported for Standard deployment types. For more information on how to manage model updates and migrations on provisioned deployment types, refer to the section on [managing models on provisioned deployment types](./working-with-models.md#managing-models-on-provisioned-deployment-types)
@@ -224,7 +224,7 @@ This is only a subset of the available request body parameters. For the full lis
 |Parameter|Type| Description |
 |--|--|--|
 |versionUpgradeOption | String | Deployment model version upgrade options:<br>`OnceNewDefaultVersionAvailable`<br>`OnceCurrentVersionExpired`<br>`NoAutoUpgrade`|
-|capacity|integer|This represents the amount of [quota](/azure/foundry-classic/openai/how-to/quota) you're assigning to this deployment. A value of 1 equals 1,000 Tokens per Minute (TPM)|
+|capacity|integer|This represents the amount of [quota](../../../foundry-classic/openai/how-to/quota.md) you're assigning to this deployment. A value of 1 equals 1,000 Tokens per Minute (TPM)|
 
 #### Example request
 

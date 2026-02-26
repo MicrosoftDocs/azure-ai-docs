@@ -56,7 +56,7 @@ To delete a control:
 2. Select **Delete**.
 
 > [!NOTE]
-> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about [modified content filtering](/azure/foundry-classic/openai/concepts/content-filter-configurability).
+> Some controls can only be deleted by Managed Customers who are approved for modified content filtering. Learn more about [modified content filtering](../../foundry-classic/openai/concepts/content-filter-configurability.md).
 
 ## Edit controls in a guardrail
 
@@ -385,7 +385,7 @@ main();
 }
 ```
 
-For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](/azure/foundry-classic/openai/reference). Annotations are returned for all scenarios when using any preview API version starting from 2023-06-01-preview, as well as the GA API version 2024-02-01.
+For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](../../foundry-classic/openai/reference.md). Annotations are returned for all scenarios when using any preview API version starting from 2023-06-01-preview, as well as the GA API version 2024-02-01.
 
 ## Document embedding in prompts
 
@@ -529,6 +529,6 @@ For full Responsible AI guidance, see the [Responsible AI Overview](../responsib
 
 - [Guardrails and controls overview](guardrails-overview.md)
 - [Intervention points and controls](intervention-points.md)
-- [Content filtering](/azure/foundry-classic/foundry-models/concepts/content-filter)
-- [Configure content filters for Azure OpenAI](/azure/foundry-classic/openai/how-to/content-filters)
+- [Content filtering](../../foundry-classic/foundry-models/concepts/content-filter.md)
+- [Configure content filters for Azure OpenAI](../../foundry-classic/openai/how-to/content-filters.md)
 

@@ -273,4 +273,4 @@ You can also test agents in the agent playground UI in the Foundry portal.
 - [What are hosted agents?](../concepts/hosted-agents.md)
 - [Deploy a hosted agent](deploy-hosted-agent.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
-- [Evaluate your AI agents locally](/azure/foundry-classic/how-to/develop/agent-evaluate-sdk)
+- [Evaluate your AI agents locally](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md)

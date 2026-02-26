@@ -63,7 +63,7 @@ sections:
           * **Stateful entities**: Conversations and responses created during usage. 
           * **Files and vector stores**: Data uploaded during Foundry Agent Service setup or as part of a response generation.  
 
-          To learn how conversations and responses work, see [Agent runtime components](/azure/foundry/agents/concepts/runtime-components). 
+          To learn how conversations and responses work, see [Agent runtime components](../../foundry/agents/concepts/runtime-components.md). 
       - question: |
           Where is this data stored?
         answer: |
@@ -79,7 +79,7 @@ sections:
         answer: |
           Data persists unless you explicitly delete it. To delete agent data, use the API or SDK to delete threads, files, or vector stores.
 
-          For concepts and terminology (for example, conversation and response), see [Agent runtime components](/azure/foundry/agents/concepts/runtime-components).
+          For concepts and terminology (for example, conversation and response), see [Agent runtime components](../../foundry/agents/concepts/runtime-components.md).
       - question: | 
           Does Foundry Agent Service support CMK encryption?
         answer: |

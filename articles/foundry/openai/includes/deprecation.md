@@ -10,4 +10,4 @@ ms.date: 03/13/2024
 ---
 
 > [!NOTE]
-> The OpenAI Python library version `0.28.1` is deprecated. We recommend using `1.x`. Consult our [migration guide](/azure/foundry-classic/openai/how-to/migration) for information on moving from `0.28.1` to `1.x`.
+> The OpenAI Python library version `0.28.1` is deprecated. We recommend using `1.x`. Consult our [migration guide](../../../foundry-classic/openai/how-to/migration.md) for information on moving from `0.28.1` to `1.x`.

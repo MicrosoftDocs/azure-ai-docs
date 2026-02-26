@@ -226,5 +226,5 @@ For API error codes and troubleshooting, see the [Azure OpenAI REST API referenc
 
 - [Model router concepts](../concepts/model-router.md) - Learn how routing modes work
 - [Quotas and limits](../quotas-limits.md) - Rate limits for model router
-- [Create an agent](/azure/foundry-classic/agents/quickstart) - Use model router with Foundry agents
+- [Create an agent](../../../foundry-classic/agents/quickstart.md) - Use model router with Foundry agents
 

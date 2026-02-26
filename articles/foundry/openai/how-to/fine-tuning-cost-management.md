@@ -195,6 +195,6 @@ Always refer to the [pricing page](https://azure.microsoft.com/pricing/details/c
 
 ## Next steps
 
-- Get started with the [Foundry Models fine-tuning tutorial](/azure/foundry-classic/openai/tutorials/fine-tune).
+- Get started with the [Foundry Models fine-tuning tutorial](../../../foundry-classic/openai/tutorials/fine-tune.md).
 - Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 - Learn more about [Foundry Models quotas and limits](../quotas-limits.md).

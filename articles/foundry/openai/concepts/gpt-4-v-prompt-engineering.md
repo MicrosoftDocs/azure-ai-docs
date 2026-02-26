@@ -19,7 +19,7 @@ ms.custom:
 To unlock the full potential of vision-enabled chat models, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
 
 > [!NOTE]
-> These prompt engineering techniques apply to vision-enabled models including GPT-4 Turbo with Vision, GPT-4o, and GPT-4o-mini. To deploy a vision-enabled model, see [Deploy models](/azure/foundry-classic/how-to/deploy-models-managed).
+> These prompt engineering techniques apply to vision-enabled models including GPT-4 Turbo with Vision, GPT-4o, and GPT-4o-mini. To deploy a vision-enabled model, see [Deploy models](../../../foundry-classic/how-to/deploy-models-managed.md).
 
 ## Fundamentals of writing an image prompt
 
@@ -112,7 +112,7 @@ Now that you understand image prompt engineering techniques, try them in practic
 
 ## Related content
 
-- [Vision-enabled chat model concepts](/azure/foundry-classic/openai/concepts/gpt-with-vision)
+- [Vision-enabled chat model concepts](../../../foundry-classic/openai/concepts/gpt-with-vision.md)
 - [Quickstart: Use GPT-4 Turbo with Vision](../how-to/gpt-with-vision.md)
 - [How to use GPT-4 Turbo with Vision](../how-to/gpt-with-vision.md)
 - [Prompt engineering techniques](prompt-engineering.md)

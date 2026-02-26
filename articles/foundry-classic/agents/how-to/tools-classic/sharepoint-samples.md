@@ -20,7 +20,6 @@ zone_pivot_groups: selection-agent-sharepoint
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-<!-- > 🔍 [View the new SharePoint tool documentation](/azure/foundry/agents/how-to/tools/sharepoint). -->
 
 > [!NOTE]
 > This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 

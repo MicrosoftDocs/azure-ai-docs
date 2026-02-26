@@ -36,7 +36,7 @@ Use this lifecycle as a practical checklist while you build and ship an agent.
 1. **Debug with tracing**: Use tracing to confirm tool calls, latency, and end-to-end behavior. For details, see [Agent tracing overview](../../observability/concepts/trace-agent-concept.md).
 1. **Evaluate quality and safety**: Run repeatable evaluations to catch regressions before publishing. For conceptual guidance, see [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
 1. **Publish and integrate**: Publish a stable endpoint and integrate it into your application. For steps, see [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md).
-1. **Monitor and iterate**: Monitor performance and quality in production, then update and republish as needed. For guidance, see [Monitor quality and safety](/azure/foundry-classic/how-to/monitor-quality-safety).
+1. **Monitor and iterate**: Monitor performance and quality in production, then update and republish as needed. For guidance, see [Monitor quality and safety](../../../foundry-classic/how-to/monitor-quality-safety.md).
 
 ## Agent types in Microsoft Foundry
 
@@ -105,7 +105,7 @@ For more information, see [Agent tracing overview](../../observability/concepts/
 Before you publish your agent (and after any meaningful change), run evaluations to catch regressions and measure quality consistently across versions.
 
 - For the key evaluation dimensions for agents, see [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
-- For a code-first workflow you can automate, see [Evaluate your AI agents locally](/azure/foundry-classic/how-to/develop/agent-evaluate-sdk).
+- For a code-first workflow you can automate, see [Evaluate your AI agents locally](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md).
 
 ### Monitor after publishing
 
@@ -115,7 +115,7 @@ After you publish an agent application, treat it like production software:
 - Review traces when behavior changes.
 - Update and republish when you fix issues or make improvements.
 
-For guidance, see [Monitor quality and safety](/azure/foundry-classic/how-to/monitor-quality-safety).
+For guidance, see [Monitor quality and safety](../../../foundry-classic/how-to/monitor-quality-safety.md).
 
 ### Plan for identity and permissions
 
@@ -159,7 +159,7 @@ After you create an agent or workflow version that you're happy with, [publish i
 **Publish and monitor agents:**
 
 - [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
-- [Monitor quality and safety](/azure/foundry-classic/how-to/monitor-quality-safety)
+- [Monitor quality and safety](../../../foundry-classic/how-to/monitor-quality-safety.md)
 
 **Debug and evaluate:**
 

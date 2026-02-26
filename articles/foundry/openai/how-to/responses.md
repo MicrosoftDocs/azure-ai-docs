@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # Use the Azure OpenAI Responses API (temp)
 
-Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. The Responses API also supports the `computer-use-preview` model that powers [Computer use](/azure/foundry-classic/openai/how-to/computer-use).
+Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
 
 ## Prerequisites
 
@@ -1372,7 +1372,7 @@ For examples of how to use reasoning models with the responses API see the [reas
 
 ## Computer use
 
-Computer use with Playwright has moved to the [dedicated computer use model guide](/azure/foundry-classic/openai/how-to/computer-use#playwright-integration)
+Computer use with Playwright has moved to the [dedicated computer use model guide](../../../foundry-classic/openai/how-to/computer-use.md#playwright-integration)
 
 ## Responses API
 
@@ -1469,4 +1469,4 @@ Not every model is available in the regions supported by the responses API. Chec
 
 - [API version lifecycle](../api-version-lifecycle.md)
 - [Azure OpenAI REST API reference](../latest.md)
-- [Computer use](/azure/foundry-classic/openai/how-to/computer-use)
+- [Computer use](../../../foundry-classic/openai/how-to/computer-use.md)

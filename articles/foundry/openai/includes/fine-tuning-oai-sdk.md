@@ -17,11 +17,11 @@ ms.custom:
 
 - Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](/azure/foundry-classic/openai/how-to/create-resource).
+- You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 - You need the following Python libraries: `os`, `json`, `requests`, `openai`.
 - You need the OpenAI Python library.
 - Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them.
-- If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](/azure/foundry-classic/openai/how-to/role-based-access-control).  
+- If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../../../foundry-classic/openai/how-to/role-based-access-control.md).  
 
 ### Supported models
 
@@ -50,7 +50,7 @@ The training and validation data that you use *must* be formatted as a JSON Line
 
 In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). Each file must be less than 512 MB in size.
 
-If you want a step-by-step walkthrough of fine-tuning `gpt-4o-mini-2024-07-18`, see the [Azure OpenAI fine-tuning tutorial](/azure/foundry-classic/openai/tutorials/fine-tune).
+If you want a step-by-step walkthrough of fine-tuning `gpt-4o-mini-2024-07-18`, see the [Azure OpenAI fine-tuning tutorial](../../../foundry-classic/openai/tutorials/fine-tune.md).
 
 ### Example file format
 
@@ -303,7 +303,7 @@ Look for your loss to decrease over time, and your accuracy to increase. If your
 
 When you're satisfied with the metrics from your fine-tuning job, or you just want to move on to inference, you must deploy the model.
 
-If you're deploying for further validation, consider deploying for [testing](/azure/foundry-classic/openai/how-to/fine-tune-test?tabs=python) by using a Developer deployment.
+If you're deploying for further validation, consider deploying for [testing](../../../foundry-classic/openai/how-to/fine-tune-test.md?tabs=python) by using a Developer deployment.
 
 Unlike with the previous SDK commands, you must use the control plane API for the deployment. This task requires separate authorization, a different API path, and a different API version.
 

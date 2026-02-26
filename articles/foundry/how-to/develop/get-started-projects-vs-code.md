@@ -134,7 +134,7 @@ The selected project now displays **Default** after the project name.
 
 ## Work with models
 
-The Foundry extension lets you discover, deploy, and interact with models from the [Foundry model catalog](/azure/foundry-classic/concepts/foundry-models-overview) directly in VS Code.
+The Foundry extension lets you discover, deploy, and interact with models from the [Foundry model catalog](../../../foundry-classic/concepts/foundry-models-overview.md) directly in VS Code.
 
 ### Browse the model catalog
 
@@ -277,5 +277,5 @@ To delete the resource group and all resources within, it:
 1. Select **Delete resource group** and confirm the deletion.
 
 ## Next steps
-- [Explore Foundry models](/azure/foundry-classic/concepts/foundry-models-overview)
+- [Explore Foundry models](../../../foundry-classic/concepts/foundry-models-overview.md)
 - [Deploy models with Foundry](../../foundry-models/how-to/deploy-foundry-models.md)

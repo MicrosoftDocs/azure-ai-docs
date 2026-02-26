@@ -33,7 +33,7 @@ The processing flow works as follows:
 1. Azure OpenAI content filtering evaluates the prompt and, when applicable, the generated output.
 1. If filtering blocks the request, the service returns a response indicating the filtered category and severity.
 
-For more information about content filtering, see [Content filtering](/azure/foundry-classic/foundry-models/concepts/content-filter).
+For more information about content filtering, see [Content filtering](../../../foundry-classic/foundry-models/concepts/content-filter.md).
 
 > [!TIP]
 > Learn more about image generation prompting in OpenAI's [Image generation documentation](https://platform.openai.com/docs/guides/image-generation?image-generation-model=gpt-image-1).
@@ -53,7 +53,7 @@ The following table shows an example prompt and the difference in generated imag
 
 Prompt transformation is essential for responsible and high-quality generations. Not only does prompt transformation improve the safety of your generated image, but it also enriches your prompt in a more descriptive manner, leading to higher quality and descriptive imagery.
 
-Default prompt transformation includes safety-oriented guidance intended to reduce requests for disallowed content, such as copyrighted or trademarked characters, public figures, and content in categories such as sexual, hate and unfairness, violence, and self-harm. For enforcement behavior details, see [Content filtering](/azure/foundry-classic/foundry-models/concepts/content-filter).
+Default prompt transformation includes safety-oriented guidance intended to reduce requests for disallowed content, such as copyrighted or trademarked characters, public figures, and content in categories such as sexual, hate and unfairness, violence, and self-harm. For enforcement behavior details, see [Content filtering](../../../foundry-classic/foundry-models/concepts/content-filter.md).
 
 ## Use prompt transformation
 

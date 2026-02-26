@@ -46,7 +46,7 @@ For details on setting up production monitoring, see [Monitor agents dashboard](
 
 Distributed tracing captures the execution flow of AI applications, providing visibility into LLM calls, tool invocations, agent decisions, and inter-service dependencies. Built on OpenTelemetry standards and integrated with Application Insights, tracing enables debugging complex agent behaviors, identifying performance bottlenecks, and understanding multi-step reasoning chains. Microsoft Foundry supports tracing for popular frameworks including LangChain, Semantic Kernel, and the OpenAI Agents SDK.
 
-For guidance on implementing tracing, see [Trace your application](/azure/foundry-classic/how-to/develop/trace-application) and [Trace with Agents SDK](/azure/foundry-classic/how-to/develop/trace-agents-sdk).
+For guidance on implementing tracing, see [Trace your application](../../foundry-classic/how-to/develop/trace-application.md) and [Trace with Agents SDK](../../foundry-classic/how-to/develop/trace-agents-sdk.md).
 
 ## What are evaluators?
 

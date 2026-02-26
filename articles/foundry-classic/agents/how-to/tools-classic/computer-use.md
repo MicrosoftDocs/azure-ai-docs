@@ -19,7 +19,6 @@ ms.custom: references_regions
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-<!-- > 🔍 [View the new Computer Use documentation](/azure/foundry/agents/how-to/tools/computer-use). -->
 
 > [!WARNING]
 > The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).

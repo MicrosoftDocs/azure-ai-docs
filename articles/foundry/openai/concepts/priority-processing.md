@@ -115,7 +115,7 @@ To view the volume of requests processed by standard processing versus priority 
 
 :::image type="content" source="../media/priority-processing/azure-monitor-priority-processsing-utilization.png" alt-text="Screenshot of the priority processing utilization on the resource's metrics page in the Azure portal." lightbox="../media/priority-processing/azure-monitor-priority-processsing-utilization.png":::
 
-For more information about monitoring your deployments, see [Monitor Azure OpenAI](/azure/foundry-classic/openai/how-to/monitor-openai).
+For more information about monitoring your deployments, see [Monitor Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md).
 
 ## Monitor costs
 
@@ -202,5 +202,5 @@ If priority processing performance degrades and a customer's traffic ramps up to
 - [Provisioned throughput](provisioned-throughput.md)
 - [Spillover traffic management](../how-to/spillover-traffic-management.md)
 - [Deployment types](../../foundry-models/concepts/deployment-types.md)
-- [Monitoring Azure OpenAI](/azure/foundry-classic/openai/how-to/monitor-openai)
+- [Monitoring Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md)
 - [Understanding costs associated with PTU](../how-to/provisioned-throughput-onboarding.md)

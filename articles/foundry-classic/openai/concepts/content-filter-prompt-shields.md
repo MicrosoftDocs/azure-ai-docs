@@ -41,7 +41,7 @@ There's no direct cost for spotlighting, but it increases document tokens due to
 
 ### Enable Spotlighting
 
-Spotlighting is turned off by default. You can enable it when [configuring guardrail controls](/azure/foundry/guardrails/how-to-create-guardrails) in the Foundry portal or through the REST API by enabling the **Spotlighting** toggle when configuring document attack controls.
+Spotlighting is turned off by default. You can enable it when [configuring guardrail controls](../../../foundry/guardrails/how-to-create-guardrails.md) in the Foundry portal or through the REST API by enabling the **Spotlighting** toggle when configuring document attack controls.
 
 > [!NOTE]
 > An occasional known side effect of spotlighting is the model response mentioning that the document content was base-64 encoded, even when neither the user nor the system prompt asked about encodings.
@@ -58,7 +58,7 @@ Spotlighting is turned off by default. You can enable it when [configuring guard
 6. For Spotlighting, enable the **Spotlighting** toggle when configuring document attack controls.
 7. Assign the guardrail to your model deployments or agents.
 
-For detailed configuration steps, see [Configure guardrails and controls](/azure/foundry/guardrails/how-to-create-guardrails).
+For detailed configuration steps, see [Configure guardrails and controls](../../../foundry/guardrails/how-to-create-guardrails.md).
 
 ### Using the REST API
 
@@ -106,8 +106,8 @@ api-key: {key}
 
 ## Related guardrail resources
 
-- [Guardrails and controls overview](/azure/foundry/guardrails/guardrails-overview)
-- [Configure guardrails and controls](/azure/foundry/guardrails/how-to-create-guardrails)
+- [Guardrails and controls overview](../../../foundry/guardrails/guardrails-overview.md)
+- [Configure guardrails and controls](../../../foundry/guardrails/how-to-create-guardrails.md)
 - [Guardrail annotations](content-filter-annotations.md)
 - [Harm categories and severity levels](content-filter-severity-levels.md)
 - [Content filtering](../../foundry-models/concepts/content-filter.md)

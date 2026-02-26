@@ -300,6 +300,6 @@ When using conversation array format, `query` and `response` follow the OpenAI m
 ## Related content
 
 - [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators)
-- [How to run agent evaluation](/azure/foundry-classic/how-to/develop/agent-evaluate-sdk)
+- [How to run agent evaluation](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md)
 - [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

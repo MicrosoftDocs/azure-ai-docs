@@ -64,7 +64,7 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the [supported regions](#supported-models).
-- An API key or Microsoft Entra ID credentials for authentication. For production applications, we recommend using [Microsoft Entra ID](/azure/foundry-classic/openai/how-to/managed-identity) for enhanced security.
+- An API key or Microsoft Entra ID credentials for authentication. For production applications, we recommend using [Microsoft Entra ID](../../../foundry-classic/openai/how-to/managed-identity.md) for enhanced security.
 - A deployment of a GPT realtime model in a supported region as described in the [supported models](#supported-models) section in this article.
     - In the Microsoft Foundry portal, load your project. Select **Build** in the upper right menu, then select the **Models** tab on the left pane, and **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 

@@ -156,8 +156,8 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](/azure/foundry-classic/how-to/deploy-models-managed)  | 131,072 | 131,072 | May 31, 2024 |
-| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](/azure/foundry-classic/how-to/deploy-models-managed) and [Foundry Local](../../foundry-local/get-started.md#optional-run-the-latest-gpt-oss-20b-model) | 131,072 | 131,072 | May 31, 2024 |
+| `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
+| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md) and [Foundry Local](../../foundry-local/get-started.md#optional-run-the-latest-gpt-oss-20b-model) | 131,072 | 131,072 | May 31, 2024 |
 
 <sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires a [Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry) to deploy the model.
 
@@ -271,7 +271,7 @@ GPT-4o integrates text and images in a single model, which enables it to handle 
 
 These models can be used only with the Chat Completions API.
 
-See [Model versions](/azure/foundry-classic/openai/concepts/model-versions) to learn about how Azure OpenAI handles model version upgrades. See [Working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
+See [Model versions](../../../foundry-classic/openai/concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades. See [Working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |  --- |  :--- |:--- |:---: |

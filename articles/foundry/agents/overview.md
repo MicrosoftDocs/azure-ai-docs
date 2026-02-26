@@ -50,7 +50,7 @@ By abstracting away infrastructure complexity and enforcing trust and safety by 
 
 Agent Service capabilities can vary based on the Foundry experience you're using and the model and region you choose.
 
-- For service limits, quotas, and throttling considerations, see [Quotas and limits for Agent Service](/azure/foundry-classic/agents/quotas-limits).
+- For service limits, quotas, and throttling considerations, see [Quotas and limits for Agent Service](../../foundry-classic/agents/quotas-limits.md).
 - For model and region support, see [models that inform agents](concepts\model-region-support.md).
 
 If you're building your first agent, start with the quickstart links in [Get started with Foundry Agent Service](#get-started-with-foundry-agent-service) to make sure you're on the right API path for your Foundry experience.
@@ -129,16 +129,16 @@ Agent Service provides a production-ready foundation for deploying intelligent a
 | **Visibility into conversations** | Full access to structured [conversations](../agents/concepts/runtime-components.md#what-is-a-conversation), including both user-to-agent and agent-to-agent messages. Ideal for UIs, debugging, and training. |
 | **Multiple-agent coordination** | Built-in support for agent-to-agent messaging. |
 | **Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration is required. |
-| **Trust and safety** | Integrated [content filters](/azure/foundry-classic/openai/how-to/content-filters) to help prevent misuse and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA). All outputs are policy governed. |
+| **Trust and safety** | Integrated [content filters](../../foundry-classic/openai/how-to/content-filters.md) to help prevent misuse and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA). All outputs are policy governed. |
 | **Enterprise integration** | Ability to bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-conversation-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](how-to\virtual-networks.md) to meet compliance needs. |
-| **Observability and debugging** | [Full traceability](/azure/foundry-classic/how-to/develop/trace-agents-sdk) of conversations, tool invocations, and message traces; [Application Insights integration](./how-to/metrics.md) for usage data. |
+| **Observability and debugging** | [Full traceability](../../foundry-classic/how-to/develop/trace-agents-sdk.md) of conversations, tool invocations, and message traces; [Application Insights integration](./how-to/metrics.md) for usage data. |
 | **Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional access. |
 
 ## Security, privacy, and compliance
 
 Agent Service is designed for enterprise workloads where you need strong controls over identity, networking, data handling, and safety.
 
-- **Safety controls**: Use integrated [content filters](/azure/foundry-classic/openai/how-to/content-filters) to help reduce unsafe outputs and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA).
+- **Safety controls**: Use integrated [content filters](../../foundry-classic/openai/how-to/content-filters.md) to help reduce unsafe outputs and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA).
 - **Network isolation and data residency controls**: Use [virtual networks](how-to\virtual-networks.md) and bring-your-own resources to meet your requirements.
 - **Bring your own resources**: Use your own Azure resources (for example, storage, Azure AI Search, and Azure Cosmos DB for conversation state) to meet compliance and operational needs. See [Use your own resources](how-to/use-your-own-resources.md).
 - **Responsible AI guidance**: For a broader set of recommendations and governance resources, see [Responsible AI for Microsoft Foundry](../responsible-use-of-ai-overview.md).
@@ -178,16 +178,16 @@ To understand and manage cost drivers, see [Plan and manage costs](../concepts/m
 If you're blocked getting started, check these common issues:
 
 - **Model isn't available in your region**: See [models that inform agents](concepts\model-region-support.md).
-- **Requests are throttled or fail due to quota**: See [Quotas and limits for Agent Service](/azure/foundry-classic/agents/quotas-limits).
+- **Requests are throttled or fail due to quota**: See [Quotas and limits for Agent Service](../../foundry-classic/agents/quotas-limits.md).
 - **You can't access resources or deployments**: Confirm your role assignments and follow [environment setup](environment-setup.md).
-- **You need to debug tool calls or agent behavior**: Start with [trace agents with the SDK](/azure/foundry-classic/how-to/develop/trace-agents-sdk) and [metrics](how-to/metrics.md).
+- **You need to debug tool calls or agent behavior**: Start with [trace agents with the SDK](../../foundry-classic/how-to/develop/trace-agents-sdk.md) and [metrics](how-to/metrics.md).
 
 ## Related content
 
-- [Quickstart: Create your first agent](/azure/foundry-classic/agents/quickstart)
-- [Models that inform agents](/azure/foundry-classic/agents/concepts/model-region-support)
+- [Quickstart: Create your first agent](../../foundry-classic/agents/quickstart.md)
+- [Models that inform agents](../../foundry-classic/agents/concepts/model-region-support.md)
 - [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md)
-- [Content filters for safety](/azure/foundry-classic/openai/how-to/content-filters)
-- [Trace agents with the SDK](/azure/foundry-classic/how-to/develop/trace-agents-sdk)
+- [Content filters for safety](../../foundry-classic/openai/how-to/content-filters.md)
+- [Trace agents with the SDK](../../foundry-classic/how-to/develop/trace-agents-sdk.md)
 - [Use your own resources](how-to/use-your-own-resources.md)
-- [Quotas and limits for Agent Service](/azure/foundry-classic/agents/quotas-limits)
+- [Quotas and limits for Agent Service](../../foundry-classic/agents/quotas-limits.md)

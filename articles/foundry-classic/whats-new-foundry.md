@@ -25,15 +25,15 @@ we now maintain two corresponding versions of the documentation to support each 
 ## New articles
 
 Available in Foundry (new) only:
-- [Developer journey: Idea to prototype](/azure/foundry/tutorials/developer-journey-idea-to-prototype)
-- [Publish agents in Microsoft Foundry](/azure/foundry/agents/how-to/publish-agent)
-- [Agent memory concepts](/azure/foundry/agents/concepts/what-is-memory)
-- [Build your own MCP server](/azure/foundry/mcp/build-your-own-mcp-server)
-- [Manage agent identities with Microsoft Entra ID](/azure/foundry/agents/concepts/agent-identity)
-- [Optimization model upgrade](/azure/foundry/observability/how-to/optimization-model-upgrade)
-- [Cluster analysis](/azure/foundry/observability/how-to/cluster-analysis)
-- [Optimization dashboard](/azure/foundry/observability/how-to/optimization-dashboard)
-- [Human evaluation](/azure/foundry/observability/how-to/human-evaluation)
+- [Developer journey: Idea to prototype](../foundry/tutorials/developer-journey-idea-to-prototype.md)
+- [Publish agents in Microsoft Foundry](../foundry/agents/how-to/publish-agent.md)
+- [Agent memory concepts](../foundry/agents/concepts/what-is-memory.md)
+- [Build your own MCP server](../foundry/mcp/build-your-own-mcp-server.md)
+- [Manage agent identities with Microsoft Entra ID](../foundry/agents/concepts/agent-identity.md)
+- [Optimization model upgrade](../foundry/observability/how-to/optimization-model-upgrade.md)
+- [Cluster analysis](../foundry/observability/how-to/cluster-analysis.md)
+- [Optimization dashboard](../foundry/observability/how-to/optimization-dashboard.md)
+- [Human evaluation](../foundry/observability/how-to/human-evaluation.md)
 - [Azure Language tools and agents](../ai-services/language-service/concepts/foundry-tools-agents.md)
 - [Azure Language CLU Multi-turn conversations](../ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations.md)<br>
 
@@ -53,7 +53,7 @@ Available in both Foundry (new) and Foundry (classic):
 - [Classification in Content Understanding Studio](../ai-services/content-understanding/how-to/classification-content-understanding-studio.md)
 - [Foundry playgrounds](concepts/concept-playgrounds.md)
 - [Use Claude in Foundry Models](foundry-models/how-to/use-foundry-models-claude.md)
-- [Monitor and manage agents with Foundry control plane](/azure/foundry/control-plane/overview)  
+- [Monitor and manage agents with Foundry control plane](../foundry/control-plane/overview.md)  
 
 ### Updated articles
 

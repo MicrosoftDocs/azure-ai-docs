@@ -134,8 +134,8 @@ If safety policies are active, you'll receive a content filtering response indic
 
 ## Next steps
 
-- [Configure custom safety policies](/azure/foundry-classic/openai/how-to/content-filters)
-- [Content filtering concepts](/azure/foundry-classic/foundry-models/concepts/content-filter)
-- [Content credentials](/azure/foundry-classic/openai/concepts/content-credentials)
+- [Configure custom safety policies](../../../foundry-classic/openai/how-to/content-filters.md)
+- [Content filtering concepts](../../../foundry-classic/foundry-models/concepts/content-filter.md)
+- [Content credentials](../../../foundry-classic/openai/concepts/content-credentials.md)
 - [Prompt transformation for image generation](prompt-transformation.md)
 

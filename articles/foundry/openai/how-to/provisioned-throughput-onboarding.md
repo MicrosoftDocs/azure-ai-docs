@@ -43,7 +43,7 @@ Recommended order of operations to avoid unwanted charges:
 1. The admin uses these details to either purchase a new reservation matching the deployment details, or verify that an existing reservation matches, to receive the discounted rate.
 
 > [!NOTE]
-> Foundry provisioned customers onboarded prior to the August self-service update use a purchase model called the Commitment model. These customers can continue to use this older purchase model alongside the Hourly/reservation purchase model. The Commitment model is not available for new customers or [certain new models](/azure/foundry-classic/openai/concepts/provisioned-migration#supported-models-on-commitment-payment-model) introduced after August 2024. For details on the Commitment purchase model and options for coexistence and migration, see the [Foundry Provisioned August Update](/azure/foundry-classic/openai/concepts/provisioned-migration).
+> Foundry provisioned customers onboarded prior to the August self-service update use a purchase model called the Commitment model. These customers can continue to use this older purchase model alongside the Hourly/reservation purchase model. The Commitment model is not available for new customers or [certain new models](../../../foundry-classic/openai/concepts/provisioned-migration.md#supported-models-on-commitment-payment-model) introduced after August 2024. For details on the Commitment purchase model and options for coexistence and migration, see the [Foundry Provisioned August Update](../../../foundry-classic/openai/concepts/provisioned-migration.md).
 
 ## Model independent quota
 
@@ -228,4 +228,4 @@ After a reservation is created, monitor it via the Azure Reservation portal or A
 - [Provisioned Throughput reservation documentation](https://aka.ms/oai/docs/ptum-reservations)
 - [Performance and latency](./latency.md)
 - [Deployment types](../../foundry-models/concepts/deployment-types.md)
-- [Azure OpenAI provisioned Managed offering updates](/azure/foundry-classic/openai/concepts/provisioned-migration)
+- [Azure OpenAI provisioned Managed offering updates](../../../foundry-classic/openai/concepts/provisioned-migration.md)

@@ -19,7 +19,6 @@ ms.custom: azure-ai-agents, references_regions
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-<!-- > 🔍 [View the new file search documentation](/azure/foundry/agents/how-to/tools/file-search). -->
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 

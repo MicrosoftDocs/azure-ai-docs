@@ -102,7 +102,7 @@ For **Global** deployment types, prompts and responses might be processed in any
 Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
 
 > [!NOTE]
-> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [business continuity and disaster recovery guide](/azure/foundry-classic/openai/how-to/business-continuity-disaster-recovery).
+> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [business continuity and disaster recovery guide](../../../foundry-classic/openai/how-to/business-continuity-disaster-recovery.md).
 
 ## Global Standard
 
@@ -180,7 +180,7 @@ Regional Provisioned deployments allow you to specify the amount of throughput y
 
 - SKU name in code: `DeveloperTier`
 
-The Developer deployment type is designed for fine-tuned model evaluation only. It provides cost-efficient testing of custom models but doesn't include data residency guarantees or an SLA. Developer deployments have a fixed 24-hour lifetime and are automatically deleted after expiration. To learn more about using the Developer deployment type, see the [fine-tuning guide](/azure/foundry-classic/openai/how-to/fine-tune-test).
+The Developer deployment type is designed for fine-tuned model evaluation only. It provides cost-efficient testing of custom models but doesn't include data residency guarantees or an SLA. Developer deployments have a fixed 24-hour lifetime and are automatically deleted after expiration. To learn more about using the Developer deployment type, see the [fine-tuning guide](../../../foundry-classic/openai/how-to/fine-tune-test.md).
 
 ## Troubleshooting deployment issues
 
@@ -224,12 +224,12 @@ Use the following policy to disable access to a specific Foundry deployment type
 ## Related content
 
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
-- [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](/azure/foundry-classic/openai/how-to/create-resource)
+- [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../../foundry-classic/openai/how-to/create-resource.md)
 - [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md)
 - [Model region availability by deployment type](models-sold-directly-by-azure.md)
 - [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 - [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 - [Global Batch processing](../../openai/how-to/batch.md)
 - [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
-- [Data privacy and security for Foundry Models](/azure/foundry-classic/how-to/concept-data-privacy)
-- [Business continuity and disaster recovery](/azure/foundry-classic/openai/how-to/business-continuity-disaster-recovery)
+- [Data privacy and security for Foundry Models](../../../foundry-classic/how-to/concept-data-privacy.md)
+- [Business continuity and disaster recovery](../../../foundry-classic/openai/how-to/business-continuity-disaster-recovery.md)

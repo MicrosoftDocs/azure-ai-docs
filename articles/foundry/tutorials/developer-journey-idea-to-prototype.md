@@ -40,7 +40,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 - An Azure subscription. If you don't have one, [create one for free](https://azure.microsoft.com/free).
 - Azure CLI 2.67.0 or later, authenticated with `az login` (check with `az version`)
-- A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you don't have one: [Create a project](../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](/azure/foundry-classic/concepts/foundry-models-overview)). 
+- A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you don't have one: [Create a project](../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../foundry-classic/concepts/foundry-models-overview.md)). 
 - Python 3.10 or later
 - .NET SDK 8.0 or later (for the C# sample)
 - SharePoint connection configured in your project ([SharePoint tool documentation](../agents/how-to/tools/sharepoint.md))
@@ -651,7 +651,7 @@ Cloud evaluations provide structured results that you can view in the Foundry po
 You can also view detailed results in the Foundry portal by selecting **Evaluation** from your project and selecting the evaluation run. The portal provides visualizations, filtering, and export options.
 
 > [!TIP]
-> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](/azure/foundry-classic/how-to/continuous-evaluation-agents) for integration patterns.
+> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](../../foundry-classic/how-to/continuous-evaluation-agents.md) for integration patterns.
 
 ## Troubleshooting
 
@@ -678,7 +678,7 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 
 ### Suggested additional enhancements
 - Add more data sources ([Azure AI Search](../agents/how-to/tools/ai-search.md), [other sources](../how-to/connections-add.md)).
-- Implement advanced evaluation methods ([AI-assisted evaluation](/azure/foundry-classic/how-to/develop/evaluate-sdk)).
+- Implement advanced evaluation methods ([AI-assisted evaluation](../../foundry-classic/how-to/develop/evaluate-sdk.md)).
 - Create [custom tools](../agents/how-to/private-tool-catalog.md) for business-specific operations.
 - Add [conversation memory and personalization](/azure/cosmos-db/gen-ai/azure-agent-service).
 
@@ -686,8 +686,8 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 
 - [Implement safety assessment with red-team testing](../how-to/develop/run-scans-ai-red-teaming-agent.md).
 - [Create comprehensive evaluation datasets with quality metrics](../fine-tuning/data-generation.md).
-- [Apply organization-wide governance policies and model comparison](/azure/foundry-classic/how-to/built-in-policy-model-deployment).
-- [Configure fleet monitoring, CI/CD integration, and production deployment endpoints](/azure/foundry-classic/concepts/deployments-overview).
+- [Apply organization-wide governance policies and model comparison](../../foundry-classic/how-to/built-in-policy-model-deployment.md).
+- [Configure fleet monitoring, CI/CD integration, and production deployment endpoints](../../foundry-classic/concepts/deployments-overview.md).
 
 ### Stage 3: Production to adoption
 
@@ -710,4 +710,4 @@ When you no longer need them, delete the resources you created in this tutorial:
 - [Foundry Agent Service overview](../agents/overview.md)
 - [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md)
 - [MCP tool integration](../agents/how-to/tools/model-context-protocol.md)
-- [Multi-agent patterns](/azure/foundry-classic/agents/how-to/connected-agents)
+- [Multi-agent patterns](../../foundry-classic/agents/how-to/connected-agents.md)
