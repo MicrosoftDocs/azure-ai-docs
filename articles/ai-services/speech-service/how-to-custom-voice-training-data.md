@@ -28,7 +28,7 @@ This table lists data types and how each is used for professional voice fine-tun
 
 | Data type | Description | When to use | Extra processing required | Processed as |
 | --------- | ----------- | ----------- | ------------------------------ | ---------------- |
-| [Individual utterances + matching transcript](#individual-utterances--matching-transcript) | A collection (.zip) of audio files (.wav) as individual utterances. Each audio file should be 15 seconds or less in length, paired with a formatted transcript (.txt). | Professional recordings with matching transcripts | Ready for fine-tuning. | Segmented |
+| [Individual utterances + matching transcript](#individual-utterances-and-matching-transcript) | A collection (.zip) of audio files (.wav) as individual utterances. Each audio file should be 15 seconds or less in length, paired with a formatted transcript (.txt). | Professional recordings with matching transcripts | Ready for fine-tuning. | Segmented |
 | [Long audio + transcript](#long-audio--transcript) | A collection (.zip) of long, unsegmented audio files (.wav or .mp3, longer than 20 seconds, at most 1,000 audio files), paired with a collection (.zip) of transcripts that contains all spoken words. | You have audio files and matching transcripts, but they aren't segmented into utterances. | Segmentation (using batch transcription).<br>Audio format transformation wherever required. | Segmented, Contextual |
 | [Audio only](#audio-only) | A collection (.zip) of audio files (.wav or .mp3, at most 1,000 audio files) without a transcript. | You only have audio files available, without transcripts. | Segmentation + transcript generation (using batch transcription).<br>Audio format transformation wherever required.| Segmented, Contextual |
 

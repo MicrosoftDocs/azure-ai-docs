@@ -81,7 +81,7 @@ You can suppress the header line in the output file by setting the `has header f
 spx recognize --nodefaults @my.defaults --file audio.wav --output recognized text --output file has header false
 ```
 
-See [Configure the Speech CLI datastore](spx-data-store-configuration.md#nodefaults) for more information about `--nodefaults`.
+See [Configure the Speech CLI datastore](spx-data-store-configuration.md#override-default-settings) for more information about `--nodefaults`.
 
 ## Next step
 
