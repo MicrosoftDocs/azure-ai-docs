@@ -1,7 +1,7 @@
 ---
-title: "Manage Compliance and Security in Microsoft Foundry (temp)"
+title: Manage Compliance and Security in Microsoft Foundry
 ms.reviewer: gregharen
-description: "Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM. (temp)"
+description: Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM.
 author: s-polly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
@@ -13,11 +13,11 @@ ms.custom: dev-focus
 #customer intent: As a developer, I want to ensure compliance and security of my assets within Microsoft Foundry so that I avoid any security and compliance issues.
 ---
 
-# Manage compliance and security in Microsoft Foundry (temp)
+# Manage compliance and security in Microsoft Foundry
 
 Learn how Microsoft Foundry Control Plane helps you manage compliance, enforce guardrail controls, and integrate security tooling such as Microsoft Defender for Cloud across subscriptions.
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use the compliance workspace tabs to reach the right surface quickly.
 
@@ -168,7 +168,7 @@ By enabling Microsoft Purview on your Azure subscription, you can access, proces
 
 This capability helps your organization manage and monitor AI-generated data in alignment with enterprise policies and regulatory requirements. Keep these considerations in mind:
 
-- Microsoft Purview Data Security Policies for Foundry Services interactions are supported for API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [AzureUserSecurityContext](../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Microsoft Purview appear only in Microsoft Purview Audit and AI interactions with classifications within DSPM for the AI activity explorer.
+- Microsoft Purview Data Security Policies for Foundry Services interactions are supported for API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [AzureUserSecurityContext](../../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Microsoft Purview appear only in Microsoft Purview Audit and AI interactions with classifications within DSPM for the AI activity explorer.
 
 - Microsoft Purview Audit is included as part of the Microsoft Purview license for Foundry services. For setup of data security policies in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
 

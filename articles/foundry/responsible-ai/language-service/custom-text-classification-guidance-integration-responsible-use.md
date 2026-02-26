@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use with custom text classification (temp)"
+title: Guidance for integration and responsible use with custom text classification
 titleSuffix: Foundry Tools
-description: "Guidance for integration and responsible use with custom text classification. (temp)"
+description: Guidance for integration and responsible use with custom text classification.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: best-practice
 ms.date: 04/26/2023
 ---
 
-# Guidance for integration and responsible use with custom text classification (temp)
+# Guidance for integration and responsible use with custom text classification
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

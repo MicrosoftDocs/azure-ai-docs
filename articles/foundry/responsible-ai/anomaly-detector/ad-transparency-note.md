@@ -1,7 +1,7 @@
 ---
-title: "Anomaly Detector Transparency Note (temp)"
+title: Anomaly Detector Transparency Note
 titleSuffix: Foundry Tools
-description: "Understanding the use cases of Anomaly Detector (temp)"
+description: Understanding the use cases of Anomaly Detector
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -11,7 +11,7 @@ ms.date: 02/21/2024
 recommendations: false
 ---
 
-# Transparency note: Anomaly Detector (temp)
+# Transparency note: Anomaly Detector
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

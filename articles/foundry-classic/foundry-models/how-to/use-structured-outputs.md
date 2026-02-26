@@ -1,6 +1,7 @@
 ---
-title: "How to use structured outputs for chat models (classic)"
-description: "Learn how to use structure outputs with chat completions with Microsoft Foundry Models (classic)"
+title: How to use structured outputs for chat models
+titleSuffix: Microsoft Foundry
+description: Learn how to use structure outputs with chat completions with Microsoft Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -13,7 +14,7 @@ ms.custom: references_regions
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-# How to use structured outputs for chat models (classic)
+# How to use structured outputs for chat models
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -24,20 +25,24 @@ zone_pivot_groups: azure-ai-inference-samples
 [!INCLUDE [python](../../foundry-models/includes/use-structured-outputs/python.md)]
 ::: zone-end
 
+
 ::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [javascript](../../foundry-models/includes/use-structured-outputs/javascript.md)]
 ::: zone-end
+
 
 ::: zone pivot="programming-language-java"
 
 [!INCLUDE [java](../../foundry-models/includes/use-structured-outputs/java.md)]
 ::: zone-end
 
+
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [csharp](../../foundry-models/includes/use-structured-outputs/csharp.md)]
 ::: zone-end
+
 
 ::: zone pivot="programming-language-rest"
 

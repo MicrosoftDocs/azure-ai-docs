@@ -1,6 +1,7 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models audio (classic)"
-description: "Learn about the audio capabilities of Azure OpenAI. (classic)"
+title: Azure OpenAI in Microsoft Foundry Models audio
+titleSuffix: Azure OpenAI
+description: Learn about the audio capabilities of Azure OpenAI.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
@@ -11,9 +12,10 @@ ms.custom: template-concept
 manager: nitinme
 ---
 
-# Audio capabilities in Azure OpenAI in Microsoft Foundry Models (classic)
+# Audio capabilities in Azure OpenAI in Microsoft Foundry Models
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 
 Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs, and support speech recognition, translation, and text to speech.
 

@@ -1,6 +1,7 @@
 ---
-title: "Control AI model deployment with built-in policies (classic)"
-description: "Learn how to use built-in Azure policies to control what managed Foundry Tools (serverless API deployment) and Model-as-a-Platform (MaaP) AI models can be deployed in Microsoft Foundry portal. (classic)"
+title: Control AI model deployment with built-in policies
+titleSuffix: Microsoft Foundry
+description: "Learn how to use built-in Azure policies to control what managed Foundry Tools (serverless API deployment) and Model-as-a-Platform (MaaP) AI models can be deployed in Microsoft Foundry portal."
 ms.author: jburchel 
 author: jonburchel 
 ms.service: azure-ai-foundry
@@ -14,7 +15,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Control AI model deployment with built-in policies in Microsoft Foundry portal (classic)
+# Control AI model deployment with built-in policies in Microsoft Foundry portal
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -121,10 +122,12 @@ Use the following Bicep template to assign the policy to a resource group. This 
 
         1. Go to the [Foundry model catalog](../concepts/foundry-models-overview.md).
 
+
         1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model. The provided names are also *Collections* in model catalog. For example, the publisher for "Meta-Llama-3.1-70B-Instruct" model is Meta. 
         
             > [!IMPORTANT]
             > The model ID value must be an exact match for the model. If the model ID isn't an exact match, the model isn't allowed.
+
 
 1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
 

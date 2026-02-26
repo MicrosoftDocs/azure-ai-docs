@@ -1,6 +1,7 @@
 ---
-title: "Add an A2A agent endpoint to Foundry Agent Service (temp)"
-description: "Add an Agent2Agent (A2A) endpoint to Foundry Agent Service for cross-agent communication. Configure connections, authentication, and SDK integration. (temp)"
+title: Add an A2A agent endpoint to Foundry Agent Service
+titleSuffix: Microsoft Foundry
+description: Add an Agent2Agent (A2A) endpoint to Foundry Agent Service for cross-agent communication. Configure connections, authentication, and SDK integration.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,9 +15,9 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-to-agent
 ---
 
-# Add an A2A agent endpoint to Foundry Agent Service (preview) (temp)
+# Add an A2A agent endpoint to Foundry Agent Service (preview)
 
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!NOTE]
 > For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
@@ -117,7 +118,7 @@ If this code runs without errors, your credentials and A2A connection are config
 ## Code example
 
 > [!NOTE]
-> You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for details.
 
 :::zone pivot="python"
 ## Create an agent with the A2A tool
@@ -599,4 +600,4 @@ The A2A tool allows you to pass custom headers, such as authentication keys or s
 - [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md)
 - [Build a workflow in Microsoft Foundry](../../concepts/workflow.md)
 - [Best practices for tools](../../concepts/tool-best-practice.md)
-- [Foundry project REST API (preview)](../../../reference/foundry-project-rest-preview.md)
+- [Foundry project REST API (preview)](../../../../reference/foundry-project-rest-preview.md)

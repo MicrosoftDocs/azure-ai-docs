@@ -1,6 +1,7 @@
 ---
-title: "How to migrate to OpenAI Python v1.x (classic)"
-description: "Learn about migrating to the latest release of the OpenAI Python library with Azure OpenAI. (classic)"
+title: How to migrate to OpenAI Python v1.x
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
+description: Learn about migrating to the latest release of the OpenAI Python library with Azure OpenAI.
 author: mrbullwinkle 
 ms.author: mbullwin 
 ms.service: azure-ai-foundry
@@ -11,7 +12,7 @@ ms.date: 11/26/2025
 manager: nitinme
 ---
 
-# Migrating to the OpenAI Python API library 1.x (classic)
+# Migrating to the OpenAI Python API library 1.x
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -267,7 +268,7 @@ print(completion.model_dump_json(indent=2))
 
 ## Use your data
 
-For the full configuration steps that are required to make these code examples work, consult the [use your data quickstart](../../quickstarts/get-started-code.md).
+For the full configuration steps that are required to make these code examples work, consult the [use your data quickstart](../use-your-data-quickstart.md).
 
 # [OpenAI Python 1.x](#tab/python-new)
 
@@ -312,6 +313,7 @@ completion = client.chat.completions.create(
 
 print(completion.model_dump_json(indent=2))
 ```
+
 
 # [OpenAI Python 0.28.1](#tab/python)
 
@@ -384,6 +386,7 @@ import json
 import httpx
 import openai
 
+
 class CustomHTTPTransport(httpx.HTTPTransport):
     def handle_request(
         self,
@@ -440,6 +443,7 @@ class CustomHTTPTransport(httpx.HTTPTransport):
             )
         return super().handle_request(request)
 
+
 client = openai.AzureOpenAI(
     azure_endpoint="<azure_endpoint>",
     api_key="<api_key>",
@@ -461,6 +465,7 @@ import asyncio
 import json
 import httpx
 import openai
+
 
 class AsyncCustomHTTPTransport(httpx.AsyncHTTPTransport):
     async def handle_async_request(
@@ -517,6 +522,7 @@ class AsyncCustomHTTPTransport(httpx.AsyncHTTPTransport):
                 request=request,
             )
         return await super().handle_async_request(request)
+
 
 async def dall_e():
     client = openai.AsyncAzureOpenAI(

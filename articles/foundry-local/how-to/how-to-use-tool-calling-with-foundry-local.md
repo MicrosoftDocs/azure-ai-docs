@@ -1,7 +1,7 @@
 ---
-title: "Use tool calling with Foundry Local (temp)"
+title: Use tool calling with Foundry Local
 titleSuffix: Foundry Local
-description: "Learn how to write applications with Foundry Local that make use of tool calling (temp)"
+description: Learn how to write applications with Foundry Local that make use of tool calling
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: how-to
@@ -12,7 +12,7 @@ reviewer: metang
 ms.date: 11/17/2025
 ---
 
-# How to use tool calling with Foundry Local (temp)
+# How to use tool calling with Foundry Local
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 

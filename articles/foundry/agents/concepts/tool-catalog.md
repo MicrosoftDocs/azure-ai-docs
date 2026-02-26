@@ -1,6 +1,6 @@
 ---
-title: "Foundry tool catalog (preview): discover and manage tools (temp)"
-description: "Learn how to use the Foundry tool catalog to discover, configure, and manage tools for agents, including MCP servers and custom tools. (temp)"
+title: "Foundry tool catalog (preview): discover and manage tools"
+description: "Learn how to use the Foundry tool catalog to discover, configure, and manage tools for agents, including MCP servers and custom tools."
 author: aahill
 ms.author: aahi
 ms.date: 01/20/2026
@@ -12,11 +12,11 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Discover and manage tools in the Foundry tool catalog (preview) (temp)
+# Discover and manage tools in the Foundry tool catalog (preview)
 
 Foundry Tools is the place to discover and manage tools you use with agents and workflows in Microsoft Foundry.
 
-[!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
+[!INCLUDE [preview-feature](../../../openai/includes/preview-feature.md)]
 
 You can use Foundry Tools to:
 
@@ -86,6 +86,7 @@ Foundry Tools includes three types of tool catalog entries:
 
 **Custom**: These MCP servers are converted from Azure Logic App Connectors. Foundry developers need additional [configuration](https://aka.ms/FoundryCustomTool) to convert to remote MCP servers.
 
+
 ### Filter and search
 
 Foundry Tools provides the following filters to help you find the right tools for your agents:
@@ -117,7 +118,7 @@ Before you delete a tool, check which agents or workflows use it. Deleting a too
 :::image type="content" source="../media/tool-catalog/tool-view.png" alt-text="A screenshot showing the tools list in the Foundry portal."lightbox="../media/tool-catalog/tool-view.png" :::
 -->
 
-To explore tools while you build, use the Agents playground. For more information, see [Microsoft Foundry Playgrounds](../../concepts/concept-playgrounds.md).
+To explore tools while you build, use the Agents playground. For more information, see [Microsoft Foundry Playgrounds](../../../concepts/concept-playgrounds.md).
 
 Foundry Tools contains three sections:
 
@@ -136,6 +137,7 @@ Foundry Tools contains three sections:
     | [Microsoft Fabric (preview)](../how-to/tools/fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
     | [SharePoint (preview)](../how-to/tools/sharepoint.md) | Integrate your agents with Microsoft SharePoint to chat with your private documents securely. |
     |[Web Search (preview)](../how-to/tools/web-search.md)     | Enable models to retrieve and ground responses with real-time information from the public web before generating output. |
+
 
 - **Catalog**: Available from the public or organizational Foundry Tool Catalog, including remote and local MCP servers and Azure Logic Apps connectors, which may require setup before use.
 

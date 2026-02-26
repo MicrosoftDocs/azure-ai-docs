@@ -1,6 +1,7 @@
 ---
-title: "Local Evaluation with the Azure AI Evaluation SDK (classic)"
-description: "Learn how to run evaluators on a single row of data and a larger test dataset to evaluate a generative AI application with the Azure AI Evaluation SDK. (classic)"
+title: Local Evaluation with the Azure AI Evaluation SDK
+titleSuffix: Microsoft Foundry
+description: Learn how to run evaluators on a single row of data and a larger test dataset to evaluate a generative AI application with the Azure AI Evaluation SDK.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: minthigpen
@@ -16,7 +17,7 @@ ms.custom:
 # customer intent: As a developer, I want to evaluate my generative AI application locally using the Azure AI Evaluation SDK so I can measure quality and safety metrics with built-in or custom evaluators.
 ai-usage: ai-assisted
 ---
-# Evaluate your generative AI application locally with the Azure AI Evaluation SDK (preview) (classic)
+# Evaluate your generative AI application locally with the Azure AI Evaluation SDK (preview)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

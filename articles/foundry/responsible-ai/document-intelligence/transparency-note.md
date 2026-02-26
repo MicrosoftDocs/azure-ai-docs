@@ -1,7 +1,7 @@
 ---
-title: "Transparency note for Document Intelligence (temp)"
+title: Transparency note for Document Intelligence
 titleSuffix: Foundry Tools
-description: "This document details some example use cases and tips for using Document Intelligence. (temp)"
+description: This document details some example use cases and tips for using Document Intelligence.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 10/15/2025
 ---
 
-# Transparency note and use cases for Document Intelligence (temp)
+# Transparency note and use cases for Document Intelligence
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

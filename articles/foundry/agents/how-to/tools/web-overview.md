@@ -1,6 +1,7 @@
 ---
-title: "Overview of web grounding capabilities in Foundry (temp)"
-description: "Learn how to choose the right web grounding tool for your Microsoft Foundry agents. Compare Web Search, Grounding with Bing Search, and Bing Custom Search. (temp)"
+title: Overview of web grounding capabilities in Foundry
+titleSuffix: Microsoft Foundry
+description: Learn how to choose the right web grounding tool for your Microsoft Foundry agents. Compare Web Search, Grounding with Bing Search, and Bing Custom Search.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -15,7 +16,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer building AI agents, I want to understand the differences between web grounding tools so that I can choose the right one for my scenario.
 ---
 
-# Web grounding tools overview (temp)
+# Web grounding tools overview
 
 Web grounding tools in Microsoft Foundry Agent Service connect your agents to real-time public web data, overcoming the knowledge cutoff that limits large language models. For example, you can ask questions such as "what is the top AI news today" and receive current, cited answers.
 
@@ -32,12 +33,12 @@ The grounding process involves several key steps:
 
 Before using any web grounding tool, ensure you have:
 
-- A [basic or standard agent environment](../../../agents/environment-setup.md).
-- The latest prerelease SDK package for your language (Python: `azure-ai-projects`, C#: `Azure.AI.Projects.OpenAI`, JavaScript: `@azure/ai-projects`). See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
+- A [basic or standard agent environment](../../../../agents/environment-setup.md).
+- The latest prerelease SDK package for your language (Python: `azure-ai-projects`, C#: `Azure.AI.Projects.OpenAI`, JavaScript: `@azure/ai-projects`). See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for installation steps.
 - An Azure OpenAI model deployment in your Foundry project.
 
 > [!NOTE]
-> Web Search requires no extra roles beyond your Foundry project access. Grounding with Bing Search and Grounding with Bing Custom Search require **Contributor** or **Owner** role to create Bing resources, and **Azure AI Project Manager** role to create project connections. For details, see [agent environment setup](../../../agents/environment-setup.md).
+> Web Search requires no extra roles beyond your Foundry project access. Grounding with Bing Search and Grounding with Bing Custom Search require **Contributor** or **Owner** role to create Bing resources, and **Azure AI Project Manager** role to create project connections. For details, see [agent environment setup](../../../../agents/environment-setup.md).
 
 >[!IMPORTANT]
 > - Web Search (preview) uses Grounding with Bing Search and Grounding with Bing Custom Search are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:~:text=First-Party%20Consumption%20Services) with [terms for online services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS). They're governed by the [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). 

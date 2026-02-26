@@ -1,6 +1,6 @@
 ---
-title: "Manage agents at scale in Microsoft Foundry Control Plane (temp)"
-description: "Learn how to view your agent inventory, monitor agent health, and perform lifecycle operations by using Microsoft Foundry Control Plane. (temp)"
+title: Manage agents at scale in Microsoft Foundry Control Plane
+description: Learn how to view your agent inventory, monitor agent health, and perform lifecycle operations by using Microsoft Foundry Control Plane.
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
@@ -12,7 +12,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Manage agents in Foundry Control Plane (temp)
+# Manage agents in Foundry Control Plane
 
 Microsoft Foundry Control Plane provides centralized management and observability for agents running across various platforms and infrastructures. Use Control Plane to gain a unified view of agents across your subscription, monitor their health, control their lifecycle, and troubleshoot issues from a single pane of glass.
 
@@ -46,7 +46,7 @@ The following information appears:
 | **Estimated cost** | The estimated cost of the agent executions in the last month, based on the number of tokens consumed. This column requires [observability configured](#observability-of-agents). | Foundry |
 | **Token usage** | The estimated tokens consumed by the runs in the last month. This column requires [observability configured](#observability-of-agents). | Foundry |
 | **Runs** | The number of executions in the last month. This column requires [observability configured](#observability-of-agents). | All |
-| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of GenAIOps evaluation](../concepts/observability.md#the-three-stages-of-ai-application-lifecycle-evaluation). | Foundry |
+| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of GenAIOps evaluation](../../concepts/observability.md#the-three-stages-of-ai-application-lifecycle-evaluation). | Foundry |
 | **Entra ID** | The Microsoft Entra Agent ID application and object ID associated with the agent. An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate. See [Agent identity concepts in Microsoft Foundry](../agents/concepts/agent-identity.md). | Foundry |
 
 ### Permissions model
@@ -70,7 +70,7 @@ Foundry Control Plane automatically discovers agents in the following platforms:
 
 > [!div class="checklist"]
 >
-> * Foundry agents, including [prompt-based agents](../agents/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted agents](../agents/concepts/hosted-agents.md)
+> * Foundry agents, including [prompt-based agents](../../agents/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted agents](../agents/concepts/hosted-agents.md)
 > * [Azure SRE Agent](/azure/sre-agent/)
 > * [Azure Logic Apps agent loops](/azure/logic-apps/agent-workflows-concepts)
 > * [Custom agents](register-custom-agent.md)

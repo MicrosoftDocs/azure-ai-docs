@@ -1,6 +1,7 @@
 ---
-title: "Use the computer use tool for agents (temp)"
-description: "Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, and TypeScript SDK samples for Foundry Agent Service. (temp)"
+title: Use the computer use tool for agents
+titleSuffix: Microsoft Foundry
+description: Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, and TypeScript SDK samples for Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,12 +15,12 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-computer-use
 ---
 
-# Use the computer use tool for agents (Preview) (temp)
+# Use the computer use tool for agents (Preview)
 
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!WARNING]
-> The computer use tool comes with significant security and privacy risks, including prompt injection attacks. For more information about intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> The computer use tool comes with significant security and privacy risks, including prompt injection attacks. For more information about intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
 Create agents that interpret screenshots and automate UI interactions like clicking, typing, and scrolling. The computer use tool uses the `computer-use-preview` model to propose actions based on visual content, enabling agents to interact with desktop and browser applications through their user interfaces.
 
@@ -39,7 +40,7 @@ This guide shows how to integrate the computer use tool into an application loop
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-- A [basic or standard agent environment](../../../agents/environment-setup.md).
+- A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - The latest prerelease SDK package:
   - **Python**: `azure-ai-projects>=2.0.0b4`, `python-dotenv`
   - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
@@ -99,12 +100,13 @@ To request access, see the [application form](https://aka.ms/oai/cuaaccess).
 
 After Microsoft grants access, you need to create a deployment for the model. 
 
+
 ## Code samples
 
 > [!WARNING] 
-> Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-To run this code, you need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
+To run this code, you need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 
 :::zone pivot="python"
 ### Screenshot initialization for computer use tool execution
@@ -201,7 +203,7 @@ with project_client:
 
 ### Perform multiple iterations
 
-Make sure you review each iteration and action. The following code sample shows a basic API request. After you send the initial API request, perform a loop where your application code carries out the specified action. Send a screenshot with each turn so the model can evaluate the updated state of the environment. For an example integration for a similar API, see the [Azure OpenAI documentation](../../../../foundry-classic/openai/how-to/computer-use.md#playwright-integration).
+Make sure you review each iteration and action. The following code sample shows a basic API request. After you send the initial API request, perform a loop where your application code carries out the specified action. Send a screenshot with each turn so the model can evaluate the updated state of the environment. For an example integration for a similar API, see the [Azure OpenAI documentation](../../../../openai/how-to/computer-use.md#playwright-integration).
 
 ```python
 
@@ -705,7 +707,7 @@ The following table lists some of the differences between the computer use tool 
 
 ## Regional support 
 
-To use the computer use tool, you need a [computer use model](../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions:
+To use the computer use tool, you need a [computer use model](../../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The computer use model is available in the following regions:
 
 | Region | Status |
 |--------|--------|
@@ -737,7 +739,7 @@ If you don't use this parameter, make sure to include all the items returned in 
 > [!WARNING] 
 > Computer use carries substantial security and privacy risks and user responsibility. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages, desktops, or other operating environments that the AI encounters might cause it to execute commands you or others don't intend. These risks could compromise the security of your or other users’ browsers, computers, and any accounts to which AI has access, including personal, financial, or enterprise systems.
 > 
-> Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
+> Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
 The API has safety checks to help protect against prompt injection and model mistakes. These checks include: 
 
@@ -831,6 +833,6 @@ In all cases where `pending_safety_checks` are returned, hand over actions to th
 
 - [Tool best practices for agents](../../concepts/tool-best-practice.md)
 - [Browser automation tool](browser-automation.md)
-- [Set up your agent environment](../../../agents/environment-setup.md)
-- [Get started with Foundry agents](../../../quickstarts/get-started-code.md)
-- [Computer use risks and limitations](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview)
+- [Set up your agent environment](../../../../agents/environment-setup.md)
+- [Get started with Foundry agents](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)
+- [Computer use risks and limitations](../../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview)

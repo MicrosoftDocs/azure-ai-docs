@@ -1,6 +1,7 @@
 ---
-title: "Synthetic data generation in Microsoft Foundry portal (classic)"
-description: "Learn how to generate a synthetic dataset in Microsoft Foundry portal. (classic)"
+title: Synthetic data generation in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: Learn how to generate a synthetic dataset in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -13,7 +14,7 @@ author: ssalgadodev
 ms.custom: references_regions
 ---
 
-# Synthetic data generation in Microsoft Foundry portal (classic)
+# Synthetic data generation in Microsoft Foundry portal
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -40,4 +41,6 @@ To see how to generate synthetic data, you can use the [sample notebook](https:/
 - [What is Foundry?](../what-is-foundry.md)
 - [Deploy Meta Llama 3.1 models with Foundry](./models-inference-examples.md)
 - [Foundry FAQ](../faq.yml)
+
+
 

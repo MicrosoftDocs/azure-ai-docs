@@ -1,6 +1,7 @@
 ---
-title: "Configure Claude Code for Microsoft Foundry (temp)"
-description: "Set up Claude Code CLI and VS Code extension to use Claude models in Microsoft Foundry with enterprise security, authentication, and CI/CD integration. (temp)"
+title: Configure Claude Code for Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Set up Claude Code CLI and VS Code extension to use Claude models in Microsoft Foundry with enterprise security, authentication, and CI/CD integration.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -10,11 +11,12 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: ambadal
 reviewer: AmarBadal
+monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 #CustomerIntent: As a developer, I want to configure Claude Code, Anthropic's agentic coding tool, to use Microsoft Foundry so I can use enterprise-managed Claude models for AI-assisted coding with proper security and compliance.
 ---
 
-# Configure Claude Code for Microsoft Foundry (temp)
+# Configure Claude Code for Microsoft Foundry
 
 Anthropic's [Claude Code](https://docs.anthropic.com/en/docs/claude-code) is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools. It's available as a CLI tool and VS Code extension. When you configure Claude Code with Microsoft Foundry, you run the coding agent on Azure infrastructure while keeping your data inside your compliance boundary. This configuration provides enterprise-grade security, private networking, role-based access control, and cost management.
 
@@ -32,7 +34,7 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
 - Access to [Microsoft Foundry](https://ai.azure.com/) with Contributor permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../../../foundry-classic/how-to/deploy-models-serverless-availability.md#region-availability) for Claude models. Claude models are currently available in **East US 2** and **Sweden Central** only.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../../how-to/deploy-models-serverless-availability.md#region-availability) for Claude models. Claude models are currently available in **East US 2** and **Sweden Central** only.
 - **Contributor** or **Owner** role on your Foundry resource group. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 - Access to [Azure Marketplace](../../foundry-models/how-to/configure-marketplace.md) to deploy Foundry Models from partners.
 - For Windows, use Git Bash (included with [Git for Windows](https://gitforwindows.org/)) or install WSL2 (recommended for full Linux compatibility). See [Install WSL](/windows/wsl/install).
@@ -91,6 +93,7 @@ Install the Claude Code CLI to work with Claude Code directly in your terminal. 
 > [!NOTE]
 > Anthropic has deprecated the npm installation method. Use the native installer or Homebrew instead. If you already installed via npm, run `claude install` to migrate to the native method.
 
+
 ### Native install (recommended)
 
 Native installations automatically update in the background to keep you on the latest version.
@@ -123,6 +126,7 @@ claude --version # verify installation
 ```
 Homebrew installations don't auto-update. Run `brew upgrade claude-code` periodically to get the latest features and security fixes.
 
+
 ### Troubleshoot install location
 
 If the `claude --version` command isn't found, add the install location to your PATH as follows:
@@ -146,6 +150,7 @@ To find your base URL from the Foundry portal:
 
 1. Go to the home page of the Foundry portal
 1. Find the **Project endpoint** and copy the part of the URL that comes before `/api/projects/<your-project-name>`. Your base URL is of the form `https://<your-resource-name>.services.ai.azure.com`. Claude Code appends `/anthropic` to this URL automatically when you use `ANTHROPIC_FOUNDRY_RESOURCE`.
+
 
 Set environment variables to connect Claude Code to your Microsoft Foundry deployment:
 
@@ -196,6 +201,7 @@ The following table describes each variable:
 | `ANTHROPIC_DEFAULT_OPUS_MODEL` | The deployment name for the Claude Opus model (complex reasoning). |
 
 To persist these variables across terminal sessions, add them to your shell profile (such as `~/.bashrc` or `~/.zshrc`).
+
 
 ## Authenticate with Foundry
 
@@ -563,12 +569,13 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 | Deployment creation fails in the Foundry portal | Verify you have **Contributor** or **Owner** role on the resource group, and your subscription has [Azure Marketplace access](../../foundry-models/how-to/configure-marketplace.md) enabled. |
 | Claude Code prompts for Anthropic login | Verify `CLAUDE_CODE_USE_FOUNDRY=1` is set. Without this variable, Claude Code uses the default Anthropic API. |
 
+
 ## Related content
 
 - [Deploy and use Claude models in Microsoft Foundry](use-foundry-models-claude.md)
 - [Data, privacy, and security for Claude models](../../responsible-ai/claude-models/data-privacy.md)
 - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)
-- [Monitor model usage and costs](../../../foundry-classic/how-to/costs-plan-manage.md)
+- [Monitor model usage and costs](../../how-to/costs-plan-manage.md)
 - [Microsoft Dev Blogs | Claude Code + Microsoft Foundry: Enterprise AI Coding Agent Setup](https://devblogs.microsoft.com/all-things-azure/claude-code-microsoft-foundry-enterprise-ai-coding-agent-setup/)
 - [Claude in Microsoft Foundry (Anthropic docs)](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
 - [Claude Code Documentation (Anthropic docs)](https://docs.anthropic.com/en/docs/claude-code)

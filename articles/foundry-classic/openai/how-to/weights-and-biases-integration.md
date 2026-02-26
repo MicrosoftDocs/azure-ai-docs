@@ -1,6 +1,7 @@
 ---
-title: "Integrate Azure OpenAI with Weights & Biases (classic)"
-description: "Learn how to integrate Weights & Biases and Azure OpenAI fine-tuning. (classic)"
+title: 'Integrate Azure OpenAI with Weights & Biases'
+titleSuffix: Azure OpenAI
+description: Learn how to integrate Weights & Biases and Azure OpenAI fine-tuning.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -12,7 +13,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ---
 
-# Integrate Azure OpenAI fine-tuning with Weights & Biases (preview) (classic)
+# Integrate Azure OpenAI fine-tuning with Weights & Biases (preview)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

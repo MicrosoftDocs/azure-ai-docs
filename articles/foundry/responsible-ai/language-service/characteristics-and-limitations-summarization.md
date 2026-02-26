@@ -1,7 +1,7 @@
 ---
-title: "Characteristics and limitations for summarization (temp)"
+title: Characteristics and limitations for summarization
 titleSuffix: Foundry Tools
-description: "System characteristics and limitations for summarization (temp)"
+description: System characteristics and limitations for summarization 
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 04/09/2022
 ---
 
-# Characteristics and limitations for Summarization (temp)
+# Characteristics and limitations for Summarization
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

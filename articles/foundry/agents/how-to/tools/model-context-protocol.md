@@ -1,6 +1,7 @@
 ---
-title: "Connect to MCP Server Endpoints for agents (temp)"
-description: "Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data. (temp)"
+title: Connect to MCP Server Endpoints for agents
+titleSuffix: Microsoft Foundry
+description: Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,7 +16,7 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 #CustomerIntent: As a developer, I want to connect my Foundry agent to external MCP servers so that I can extend agent capabilities with third-party tools.
 ---
 
-# Connect agents to Model Context Protocol servers (temp)
+# Connect agents to Model Context Protocol servers
 
 Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers by using the MCP tool. This extends agent capabilities with external tools and data sources. By connecting to remote MCP server endpoints, your agents can access tools hosted by developers and organizations that MCP-compatible clients like Foundry Agent Service can use.
 
@@ -47,7 +48,7 @@ Before you begin, ensure you have:
 
 - An Azure subscription with an active Microsoft Foundry project.
 - Azure role-based access control (RBAC): Contributor or Owner role on the Foundry project.
-- The latest prerelease SDK package for your language. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
+- The latest prerelease SDK package for your language. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for installation details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
@@ -90,7 +91,7 @@ When you use MCP servers, follow these practices:
 
 ## Create an agent in Python with the MCP tool
 
-Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true) for details.
 
 :::zone pivot="python"
 
@@ -852,7 +853,7 @@ If your MCP server doesn't require authentication, omit `project_connection_id` 
 > For REST API, you need to first retrieve the connection ID from the connection name using the Connections API, then pass the ID to the MCP tool configuration.
 
 > [!TIP]
-> For details on the MCP tool schema and approval items, see [OpenAI.MCPTool](../../../reference/foundry-project-rest-preview.md#openaimcptool) and the MCP approval item types in the REST reference.
+> For details on the MCP tool schema and approval items, see [OpenAI.MCPTool](../../../../reference/foundry-project-rest-preview.md#openaimcptool) and the MCP approval item types in the REST reference.
 
 ### 1. Create an MCP agent
 
@@ -994,9 +995,9 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 
 ## Related content
 
-- [Get started with agents using code](../../../quickstarts/get-started-code.md)
+- [Get started with agents using code](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)
 - [MCP server authentication](../mcp-authentication.md)
 - [Build and register a Model Context Protocol (MCP) server](../../../mcp/build-your-own-mcp-server.md)
-- [MCP tool REST reference](../../../reference/foundry-project-rest-preview.md#openaimcptool)
+- [MCP tool REST reference](../../../../reference/foundry-project-rest-preview.md#openaimcptool)
 - [Security Best Practices for MCP](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
 - [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667)

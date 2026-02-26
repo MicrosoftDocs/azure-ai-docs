@@ -1,7 +1,7 @@
 ---
-title: "Limited Access features of Azure Vision in Foundry Tools (temp)"
+title: Limited Access features of Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
-description: "Learn about Azure Vision in Foundry Tools features that are in limited access. (temp)"
+description: Learn about Azure Vision in Foundry Tools features that are in limited access.
 ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
@@ -11,7 +11,7 @@ ms.topic: concept-article
 ms.date: 10/15/2025
 ---
 
-# Limited Access features of Azure Vision in Foundry Tools (temp)
+# Limited Access features of Azure Vision in Foundry Tools
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

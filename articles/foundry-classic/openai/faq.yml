@@ -308,7 +308,7 @@ sections:
       - question: |
           What data sources does Azure OpenAI on your data support?
         answer:
-          Azure OpenAI on your data supports ingestion from Azure AI Search, Azure Blob Storage, and uploading local files. You can learn more about Azure OpenAI on your data from the [conceptual article](./concepts/use-your-data.md) and [quickstart](../quickstarts/get-started-code.md).
+          Azure OpenAI on your data supports ingestion from Azure AI Search, Azure Blob Storage, and uploading local files. You can learn more about Azure OpenAI on your data from the [conceptual article](./concepts/use-your-data.md) and [quickstart](./use-your-data-quickstart.md).
       - question: |
           How much does it cost to use Azure OpenAI on your data?
         answer:
@@ -328,7 +328,7 @@ sections:
       - question: |
           Is responsible AI supported by Azure OpenAI on your data?
         answer:
-          Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of Azure OpenAI and works with the [models](../foundry-models/concepts/models-sold-directly-by-azure.md) available in Azure OpenAI. The [content filtering](../foundry-models/concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview) for extra guidance on using Azure OpenAI on your data responsibly. 
+          Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of Azure OpenAI and works with the [models](../foundry-models/concepts/models-sold-directly-by-azure.md) available in Azure OpenAI. The [content filtering](./concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview) for extra guidance on using Azure OpenAI on your data responsibly. 
       - question: |
           Is there a token limit on the system message? 
         answer: 

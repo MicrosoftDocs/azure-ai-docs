@@ -1,6 +1,7 @@
 ---
-title: "How to use image and audio in chat completions with Microsoft Foundry Models (classic)"
-description: "Learn how to process audio and images with chat completions models with Microsoft Foundry Models (classic)"
+title: How to use image and audio in chat completions with Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to process audio and images with chat completions models with Microsoft Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -13,7 +14,7 @@ ms.custom: generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-# How to use image and audio in chat completions with Microsoft Foundry Models (classic)
+# How to use image and audio in chat completions with Microsoft Foundry Models
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -24,20 +25,24 @@ zone_pivot_groups: azure-ai-inference-samples
 [!INCLUDE [python](../../foundry-models/includes/use-chat-multi-modal/python.md)]
 ::: zone-end
 
+
 ::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [javascript](../../foundry-models/includes/use-chat-multi-modal/javascript.md)]
 ::: zone-end
+
 
 ::: zone pivot="programming-language-java"
 
 [!INCLUDE [java](../../foundry-models/includes/use-chat-multi-modal/java.md)]
 ::: zone-end
 
+
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [csharp](../../foundry-models/includes/use-chat-multi-modal/csharp.md)]
 ::: zone-end
+
 
 ::: zone pivot="programming-language-rest"
 

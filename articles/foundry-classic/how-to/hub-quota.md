@@ -1,6 +1,7 @@
 ---
-title: "Manage and increase quotas for hub resources (classic)"
-description: "Manage and increase quotas for hub-level resources in Microsoft Foundry. Scale your deployments with detailed steps for quota requests and governance. (classic)"
+title: Manage and increase quotas for hub resources
+titleSuffix: Foundry
+description: Manage and increase quotas for hub-level resources in Microsoft Foundry. Scale your deployments with detailed steps for quota requests and governance.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -18,9 +19,7 @@ manager: nitinme
 ai-usage: ai-assisted
 # Hub-focused copy of quota article. Project (fdp) version remains in quota.md
 ---
-# Manage and increase quotas for hub resources (classic)
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# Manage and increase quotas for hub resources
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
@@ -38,6 +37,7 @@ To view and manage quotas, you need:
   - **Owner** or **Contributor** role on the subscription to request quota increases
   - **Reader** role to view current quota allocations
 - For managing compute quotas, make sure you have the required permissions on the Azure Machine Learning workspace that's associated with your hub.
+
 
 ## Special considerations 
 

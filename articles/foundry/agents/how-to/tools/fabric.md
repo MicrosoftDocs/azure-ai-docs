@@ -1,6 +1,7 @@
 ---
-title: "Use the Microsoft Fabric data agent with Foundry agents (temp)"
-description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service so your agent can analyze enterprise data by using identity passthrough. (temp)"
+title: Use the Microsoft Fabric data agent with Foundry agents
+titleSuffix: Microsoft Foundry
+description: Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service so your agent can analyze enterprise data by using identity passthrough.
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
@@ -16,9 +17,9 @@ zone_pivot_groups: selection-fabric-tool
 ai-usage: ai-assisted
 ---
 
-# Use the Microsoft Fabric data agent (preview) (temp)
+# Use the Microsoft Fabric data agent (preview)
 
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
 
 > [!NOTE]
 > See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
@@ -42,7 +43,7 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 > - To help your agent invoke the Fabric tool reliably, include clear tool guidance in your agent instructions (for example, "For customer and product sales data, use the Fabric tool"). You can also force tool use with `tool_choice`.
 
 - Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910).
-- Assign developers and end users at least the `Azure AI User` Azure RBAC role. For more information, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+- Assign developers and end users at least the `Azure AI User` Azure RBAC role. For more information, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md).
 - Give developers and end users at least `READ` access to the Fabric data agent and the underlying data sources it connects to.
 - Ensure your Fabric data agent and Foundry project are in the same tenant.
 - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
@@ -86,7 +87,7 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 ## Code example
 
 > [!NOTE]
-> - To run this code, you need the latest prerelease package. For more information, see [Get ready to code](../../../quickstarts/get-started-code.md).
+> - To run this code, you need the latest prerelease package. For more information, see [Get ready to code](../../../../quickstarts/get-started-code.md#get-ready-to-code).
 > - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
@@ -525,4 +526,4 @@ curl --request POST \
 > [Agent identity](../../concepts/agent-identity.md)
 
 > [!div class="nextstepaction"]
-> [Get started with the SDK](../../../quickstarts/get-started-code.md)
+> [Get started with the SDK](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)

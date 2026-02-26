@@ -1,6 +1,6 @@
 ---
-title: "Document Embedding in Prompts (classic)"
-description: "Learn how to embed documents in prompts for Azure OpenAI, including JSON escaping and indirect attack detection. (classic)"
+title: Document Embedding in Prompts
+description: Learn how to embed documents in prompts for Azure OpenAI, including JSON escaping and indirect attack detection.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -11,9 +11,10 @@ ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
-# Document embedding in prompts (classic)
+# Document embedding in prompts
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 
 Microsoft Foundry's Guardrails and controls perform better when it can differentiate between the various elements of your prompt, like system input, user input, and the AI assistant's output. For enhanced detection capabilities, prompts should be formatted according to the following recommended methods.
 

@@ -1,7 +1,7 @@
 ---
-title: "Transparency note - Language Detection feature of Azure Language in Foundry Tools (temp)"
+title: Transparency note - Language Detection feature of Azure Language in Foundry Tools
 titleSuffix: Foundry Tools
-description: "The language detection feature of Azure Language in Foundry Tools detects the language an input text is written in and reports a single language code for every document submitted on the request in a wide range of languages, variants, dialects, and some regional/cultural languages. The language code is paired with a confidence score. (temp)"
+description: The language detection feature of Azure Language in Foundry Tools detects the language an input text is written in and reports a single language code for every document submitted on the request in a wide range of languages, variants, dialects, and some regional/cultural languages. The language code is paired with a confidence score.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 01/31/2024
 ---
 
-# Transparency note for Language Detection (temp)
+# Transparency note for Language Detection
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

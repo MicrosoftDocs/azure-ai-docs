@@ -1,6 +1,7 @@
 ---
-title: "Text to speech with Azure OpenAI in Microsoft Foundry Models (classic)"
-description: "Convert text to speech using Azure OpenAI voices. (classic)"
+title: 'Text to speech with Azure OpenAI in Microsoft Foundry Models'
+titleSuffix: Azure OpenAI
+description: Convert text to speech using Azure OpenAI voices.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,9 +14,7 @@ zone_pivot_groups: programming-languages-rest-js-cs
 
 ---
 
-# Quickstart: Convert text to speech with Azure OpenAI in Microsoft Foundry Models (classic)
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# Quickstart: Convert text to speech with Azure OpenAI in Microsoft Foundry Models
 
 This quickstart shows you how to convert text to speech using Azure OpenAI voices.  
 

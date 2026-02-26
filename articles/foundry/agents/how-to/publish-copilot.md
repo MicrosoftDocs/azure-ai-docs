@@ -1,6 +1,6 @@
 ---
-title: "Publish agents to Microsoft 365 Copilot and Microsoft Teams (temp)"
-description: "Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Microsoft Teams by creating an agent application and packaging it for distribution. (temp)"
+title: Publish agents to Microsoft 365 Copilot and Microsoft Teams
+description: Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Microsoft Teams by creating an agent application and packaging it for distribution.
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -12,7 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Publish agents to Microsoft 365 Copilot and Microsoft Teams (temp)
+# Publish agents to Microsoft 365 Copilot and Microsoft Teams
 
 Publishing creates an agent application with a stable endpoint. Once created, the agent application can then be published to Microsoft 365 Copilot and Teams or invoked using the Responses API protocol.
 
@@ -21,11 +21,11 @@ Use this article to publish an agent to Microsoft 365 Copilot and Teams so peopl
 ## Prerequisites 
 
 - Access to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs)
-- A [Foundry project](../../how-to/create-projects.md) with an agent version you tested and want to publish
+- A [Foundry project](../../../how-to/create-projects.md) with an agent version you tested and want to publish
 - The following role assignments:
   - **Azure AI Project Manager** role on the Foundry project scope to publish agents
   - **Azure AI User** role on the Agent Application scope to invoke or chat with published agents
-  - For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
+  - For details, see [Role-based access control in the Foundry portal](../../../concepts/rbac-foundry.md).
 - An Azure subscription where you can create Azure Bot Service resources and Microsoft Entra ID app registrations
 
 ## Before you begin
@@ -159,6 +159,7 @@ To confirm your agent is published correctly:
 1. In the Azure portal, verify the Azure Bot Service resource exists and is running.
 1. For organization scope, check the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested) for approval status.
 
+
 ## Limitations
 > [!NOTE]
 > All of these limitations are temporary with fixes in progress.
@@ -201,5 +202,5 @@ The agent appears under Your agents in the agent store for Microsoft 365 Copilot
 
 ## Related content
 
-- [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md)
-- [Microsoft Foundry Playgrounds](../../concepts/concept-playgrounds.md)
+- [Role-based access control in the Foundry portal](../../../concepts/rbac-foundry.md)
+- [Microsoft Foundry Playgrounds](../../../concepts/concept-playgrounds.md)

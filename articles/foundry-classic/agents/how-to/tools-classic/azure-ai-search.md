@@ -1,6 +1,7 @@
 ---
-title: "How to use an existing AI Search index with the Azure AI Search tool (classic)"
-description: "Learn how to use Agents Azure AI Search tool. (classic)"
+title: 'How to use an existing AI Search index with the Azure AI Search tool'
+titleSuffix: Microsoft Foundry
+description: Learn how to use Agents Azure AI Search tool.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,14 +14,14 @@ ms.reviewer: aahi
 ms.custom: azure-ai-agents
 ---
 
-# Azure AI Search tool (classic)
+# Azure AI Search tool
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Azure AI Search tool documentation](../../../../foundry/agents/how-to/tools/ai-search.md).
+> 🔍 [View the new Azure AI Search tool documentation](../../../default/agents/how-to/tools/ai-search.md).
+
 
 The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 
@@ -133,7 +134,7 @@ Select the tab for your desired usage method.
 
 **Create the following connections.yml file:**
 
-You can use a YAML configuration file for both key-based and keyless authentication. Replace the ```name```, ```endpoint```, and ```api_key``` (optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search.md). 
+You can use a YAML configuration file for both key-based and keyless authentication. Replace the ```name```, ```endpoint```, and ```api_key``` (optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../machine-learning\reference-yaml-connection-ai-search.md). 
 
 Here's a key-based example:
 

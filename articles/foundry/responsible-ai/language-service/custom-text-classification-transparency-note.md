@@ -1,7 +1,7 @@
 ---
-title: "Use cases for custom text classification (temp)"
+title: Use cases for custom text classification
 titleSuffix: Foundry Tools
-description: "Learn about use cases for custom text classification. (temp)"
+description: Learn about use cases for custom text classification.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 04/26/2023
 ---
 
-# Use cases for custom text classification (temp)
+# Use cases for custom text classification
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

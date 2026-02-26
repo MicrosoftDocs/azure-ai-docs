@@ -1,7 +1,7 @@
 ---
-title: "Data, privacy, and security for Azure Language in Foundry Tools (temp)"
+title: Data, privacy, and security for Azure Language in Foundry Tools
 titleSuffix: Foundry Tools
-description: "This document details issues for data and privacy for Azure Language in Foundry Tools. (temp)"
+description: This document details issues for data and privacy for Azure Language in Foundry Tools.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 08/15/2022
 ---
 
-# Data, privacy, and security for Azure Language in Foundry Tools (temp)
+# Data, privacy, and security for Azure Language in Foundry Tools
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

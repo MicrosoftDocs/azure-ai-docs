@@ -1,6 +1,7 @@
 ---
-title: "How to use Azure OpenAI in Microsoft Foundry Models evaluation (classic)"
-description: "Learn how to use evaluations with Azure OpenAI (classic)"
+title: 'How to use Azure OpenAI in Microsoft Foundry Models evaluation'
+titleSuffix: Azure OpenAI
+description: Learn how to use evaluations with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,7 +14,7 @@ zone_pivot_groups: openai-fine-tuning
 recommendations: false
 ---
 
-# Azure OpenAI Evaluation (Preview) (classic)
+# Azure OpenAI Evaluation (Preview)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

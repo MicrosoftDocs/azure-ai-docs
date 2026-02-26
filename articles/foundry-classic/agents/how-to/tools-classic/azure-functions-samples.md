@@ -1,6 +1,7 @@
 ---
-title: "How to use Azure Functions with Azure Storage Queues (classic)"
-description: "Learn how to use Azure Functions with Azure Storage Queues to extend Azure AI Agents with custom tools. (classic)"
+title: How to use Azure Functions with Azure Storage Queues
+titleSuffix: Microsoft Foundry
+description: Learn how to use Azure Functions with Azure Storage Queues to extend Azure AI Agents with custom tools.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,9 +14,10 @@ ms.custom: azure-ai-agents
 zone_pivot_groups: selection-azure-functions-samples
 ---
 
-# How to use queue-based Azure Functions with Microsoft Foundry agents (classic)
+# How to use queue-based Azure Functions with Microsoft Foundry agents
 
 [!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 This article shows how to use a queue-based integrated tool approach to enable Microsoft Foundry agents to access code deployed to Azure Functions. In this approach, agents access tool code asynchronously in Azure Functions by means of separate input and output message queues in Azure Queue storage. 
 
@@ -150,6 +152,7 @@ print(f"Run finished with status: {run.status}")
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 ```
+
 
 ## Get the result of the run
 
@@ -305,6 +308,7 @@ In the sample below we create a client and an agent that has the AI tools defini
 :::code language="TypeScript" source="~/azure-functions-ai-services-agent-javascript/app/src/functions/httpPrompt.ts" id="ListMessages" :::
 
 For any issues with the TypeScript code, create an issue on the [sample code repository](https://github.com/Azure-Samples/azure-functions-ai-services-agent-javascript/issues)
+
 
 ::: zone-end
 -->

@@ -1,6 +1,7 @@
 ---
-title: "Audio events reference GA (classic)"
-description: "Learn how to use events with the Realtime API and Voice Live API (GA version). (classic)"
+title: Audio events reference GA
+titleSuffix: Azure OpenAI
+description: Learn how to use events with the Realtime API and Voice Live API (GA version).
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -8,16 +9,19 @@ ms.topic: article
 ms.date: 01/26/2026
 author: PatrickFarley
 ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
 recommendations: false
 ---
 
-# Realtime client events reference (classic)
+# Realtime client events reference
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 Realtime events are used to communicate between the client and server in real-time audio applications. The events are sent as JSON objects over various endpoints, such as WebSockets or WebRTC. The events are used to manage the conversation, audio buffers, and responses in real-time.
 
+
 You send Realtime client events to update session configuration, stream and manage input audio, manage conversation history items, and create or cancel model responses.
+
 
 ## Client events
 
@@ -393,6 +397,7 @@ This event should be preceded by a `response.cancel` client event to stop genera
 |-------|------|-------------|
 | type | string | The event type must be `output_audio_buffer.clear`. |
 | event_id | string | The unique ID of the client event used for error handling. |
+
 
 ## Server events
 
@@ -1603,6 +1608,7 @@ When a response is created, the server reserves some tokens for output tokens. T
 
 Use this section to document objects referenced by the events.
 
+
 ### Session object
 
 A session object specifies the configuration for a Realtime session or a transcription session.
@@ -1706,6 +1712,8 @@ Server:
 - For `input_audio_buffer.append`, you can send up to 15 MiB of audio per event.
 - For `input_audio_buffer.append`, the server doesn't send a confirmation response.
 - For `output_audio_buffer.clear`, the event is only applicable for WebRTC/SIP, and you should send `response.cancel` first to stop generating the current response.
+
+
 
 ## Related content
 

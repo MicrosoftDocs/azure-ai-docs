@@ -1,6 +1,7 @@
 ---
-title: "MedImageParse: Medical Image Segmentation Models (classic)"
-description: "Learn how to use MedImageParse and MedImageParse 3D healthcare AI models for medical image segmentation with Microsoft Foundry. (classic)"
+title: "MedImageParse: Medical Image Segmentation Models"
+titleSuffix: Microsoft Foundry
+description: Learn how to use MedImageParse and MedImageParse 3D healthcare AI models for medical image segmentation with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -16,7 +17,7 @@ ai-usage: ai-assisted
 
 ---
 
-# How to use MedImageParse healthcare AI models for segmentation of medical images (classic)
+# How to use MedImageParse healthcare AI models for segmentation of medical images
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -27,6 +28,7 @@ MedImageParse and MedImageParse 3D are healthcare AI models for medical image se
 1. Deploy the model to a self-hosted managed compute.
 1. Grant permissions to the endpoint.
 1. Send test data to the model, receive results, and interpret them.
+
 
 # [MedImageParse](#tab/medimageparse)
 
@@ -324,6 +326,7 @@ The response is a list of objects. Each object contains the segmentation result 
 | -------------- | ------ | --------------------------------------------------------------------------- |
 | `nifti_file` | string | JSON-formatted string containing the base64-encoded NIfTI segmentation mask |
 
+
 ---
 
 ### Response example
@@ -345,6 +348,7 @@ The response is a list of objects. Each object contains the segmentation result 
 ```
 
 # [MedImageParse 3D](#tab/medimageparse-3d)
+
 
 ```json
 [

@@ -1,6 +1,7 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models fine-tuning gpt-4o-mini (classic)"
-description: "Learn how to use Azure OpenAI's latest fine-tuning capabilities with gpt-4o-mini-2024-07-18 (classic)"
+title: Azure OpenAI in Microsoft Foundry Models fine-tuning gpt-4o-mini
+titleSuffix: Azure OpenAI
+description: Learn how to use Azure OpenAI's latest fine-tuning capabilities with gpt-4o-mini-2024-07-18
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -12,7 +13,7 @@ recommendations: false
 ms.custom: "devx-track-python,ai-learning-hub"
 ---
 
-# Azure OpenAI GPT-4o-mini fine-tuning tutorial (classic)
+# Azure OpenAI GPT-4o-mini fine-tuning tutorial
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -64,6 +65,7 @@ Create and assign persistent environment variables for your key and endpoint.
 ```CMD
 setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE"
 ```
+
 
 # [PowerShell](#tab/powershell)
 

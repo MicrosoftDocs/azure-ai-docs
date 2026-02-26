@@ -1,6 +1,7 @@
 ---
-title: "Configure tracing for AI agent frameworks (temp)"
-description: "Debug issues and monitor AI agent performance in production by configuring OpenTelemetry tracing for LangChain, LangGraph, Semantic Kernel, and OpenAI Agents SDK. (temp)"
+title: Configure tracing for AI agent frameworks
+titleSuffix: Microsoft Foundry
+description: Debug issues and monitor AI agent performance in production by configuring OpenTelemetry tracing for LangChain, LangGraph, Semantic Kernel, and OpenAI Agents SDK.
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -13,9 +14,9 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 <!-- CustomerIntent: As a developer building AI agents, I want to configure tracing for my agent framework so that I can debug issues and monitor performance in production. -->
 
-# Configure tracing for AI agent frameworks (preview) (temp)
+# Configure tracing for AI agent frameworks (preview)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 When AI agents behave unexpectedly in production, tracing gives you the visibility to quickly identify the root cause. Tracing captures detailed telemetry—including LLM calls, tool invocations, and agent decision flows—so you can debug issues, monitor latency, and understand agent behavior across requests.
 
@@ -29,7 +30,7 @@ Microsoft Foundry provides tracing integrations for popular agent frameworks tha
 
 ## Prerequisites
 
-- A [Foundry project](../../how-to/create-projects.md) with [tracing connected](trace-agent-setup.md) to Application Insights.
+- A [Foundry project](../../../how-to/create-projects.md) with [tracing connected](trace-agent-setup.md) to Application Insights.
 - Contributor or higher role on the Application Insights resource for trace ingestion.
 - Access to the connected Application Insights resource for viewing traces. For log-based queries, you might also need access to the associated Log Analytics workspace.
 - Python 3.10 or later (required for all code samples in this article).
@@ -172,9 +173,11 @@ USER_LOCATION = {
     "2": "SF",
 }
 
+
 @dataclass
 class UserContext:
     user_id: str
+
 
 @tool
 def get_weather(city: str) -> str:
@@ -203,10 +206,12 @@ from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 from dataclasses import dataclass
 
+
 @dataclass
 class WeatherResponse:
     conditions: str
     punny_response: str
+
 
 checkpointer = InMemorySaver()
 
@@ -241,6 +246,7 @@ def main():
         context=context,
     )
     print(r2.get("structured_response"))
+
 
 if __name__ == "__main__":
     main()
@@ -314,11 +320,13 @@ def play_song_on_spotify(song: str):
     # Integrate with Spotify API here.
     return f"Successfully played {song} on Spotify!"
 
+
 @tool
 def play_song_on_apple(song: str):
     """Play a song on Apple Music"""
     # Integrate with Apple Music API here.
     return f"Successfully played {song} on Apple Music!"
+
 
 tools = [play_song_on_apple, play_song_on_spotify]
 ```
@@ -357,10 +365,12 @@ def should_continue(state: MessagesState):
     last_message = messages[-1]
     return "continue" if getattr(last_message, "tool_calls", None) else "end"
 
+
 def call_model(state: MessagesState):
     messages = state["messages"]
     response = model.invoke(messages)
     return {"messages": [response]}
+
 
 workflow = StateGraph(MessagesState)
 workflow.add_node("agent", call_model)
@@ -537,4 +547,4 @@ Traces typically appear within 2–5 minutes after agent execution. If traces st
 - Learn core concepts and architecture in the [Agent tracing overview](../concepts/trace-agent-concept.md).
 - If you haven't enabled tracing yet, see [Set up tracing in Microsoft Foundry](trace-agent-setup.md).
 - Visualize agent health and performance metrics with the [Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md).
-- Explore the broader observability capabilities in [Observability in generative AI](../../concepts/observability.md).
+- Explore the broader observability capabilities in [Observability in generative AI](../../../concepts/observability.md).

@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use of QnA Maker (temp)"
+title: Guidance for integration and responsible use of QnA Maker
 titleSuffix: Foundry Tools
-description: "Guidance for integration and responsible use of QnA Maker (temp)"
+description: Guidance for integration and responsible use of QnA Maker
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,7 @@ ms.subservice: azure-ai-qna-maker
 ms.date: 02/25/2021
 ---
 
-# Guidance for integration and responsible use of QnA Maker (temp)
+# Guidance for integration and responsible use of QnA Maker
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

@@ -1,7 +1,7 @@
 ---
-title: "Transparency note for LUIS (temp)"
+title: Transparency note for LUIS
 titleSuffix: Foundry Tools
-description: "Transparency Note for Language Understanding (temp)"
+description: Transparency Note for Language Understanding
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,7 @@ ms.subservice: azure-ai-luis
 ms.date: 02/08/2024
 ---
 
-# Use cases for Language Understanding (temp)
+# Use cases for Language Understanding
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

@@ -1,7 +1,7 @@
 ---
-title: "Characteristics and limitations for LUIS (temp)"
+title: Characteristics and limitations for LUIS
 titleSuffix: Foundry Tools
-description: "Characteristics and limitations for Language Understanding (temp)"
+description: Characteristics and limitations for Language Understanding
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,7 @@ ms.subservice: azure-ai-luis
 ms.date: 02/08/2024
 ---
 
-# Characteristics and limitations for using Language Understanding (temp)
+# Characteristics and limitations for using Language Understanding
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

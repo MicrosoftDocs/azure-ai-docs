@@ -1,6 +1,7 @@
 ---
-title: "Quotas and limits for Foundry Agent Service (classic)"
-description: "Learn the quotas and limits for Foundry Agent Service, including file sizes, vector stores, threads, messages, tools, and how to handle limit errors. (classic)"
+title: Quotas and limits for Foundry Agent Service
+titleSuffix: Microsoft Foundry
+description: Learn the quotas and limits for Foundry Agent Service, including file sizes, vector stores, threads, messages, tools, and how to handle limit errors.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -12,7 +13,7 @@ ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Foundry Agent Service quotas and limits (classic)
+# Foundry Agent Service quotas and limits
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -25,7 +26,7 @@ Foundry Agent Service enforces limits in two places:
 - **Agent Service limits**. Limits for agent and thread artifacts, such as file uploads, vector store attachments, message counts, and tool registration.
 - **Model limits**. Quotas and rate limits for the model deployments your agents call.
 
-If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md). If you're using file search, see [Vector stores for file search](../../foundry/agents/concepts/vector-stores.md).
+If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md). If you're using file search, see [Vector stores for file search](../default/agents/concepts/vector-stores.md?view=foundry&preserve-view=true).
 
 ## Default quotas and limits for the service
 
@@ -64,7 +65,7 @@ For example:
 - **Message content size**: Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
 - **Tool registration cap**: Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
 
-For file search scenarios, see [Vector stores for file search](../../foundry/agents/concepts/vector-stores.md) for guidance on managing vector store growth.
+For file search scenarios, see [Vector stores for file search](../default/agents/concepts/vector-stores.md?view=foundry&preserve-view=true) for guidance on managing vector store growth.
 
 ## Best practices to stay within limits
 
@@ -99,4 +100,4 @@ The limits in this article are default values for Foundry Agent Service. If your
 - [Supported models in Foundry Agent Service](concepts/model-region-support.md)
 - [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md)
 - [Monitor Foundry Agent Service](how-to/metrics.md)
-- [Vector stores for file search](../../foundry/agents/concepts/vector-stores.md)
+- [Vector stores for file search](../default/agents/concepts/vector-stores.md?view=foundry&preserve-view=true)

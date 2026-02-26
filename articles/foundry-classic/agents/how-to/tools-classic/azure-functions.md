@@ -1,6 +1,7 @@
 ---
-title: "Use Azure Functions with Foundry Agent Service (classic)"
-description: "Learn how to build custom tools with code hosted in Azure Functions and integrate them with Microsoft Foundry agents. (classic)"
+title: 'Use Azure Functions with Foundry Agent Service'
+titleSuffix: Microsoft Foundry
+description: Learn how to build custom tools with code hosted in Azure Functions and integrate them with Microsoft Foundry agents.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -12,9 +13,10 @@ ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 
-# Use Azure Functions with Foundry Agent Service (classic)
+# Use Azure Functions with Foundry Agent Service
 
 [!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+
 
 [Azure Functions](/azure/azure-functions/functions-overview) is a serverless compute service that you can use to extend your Foundry Agent Service agents with custom tools built using code. This approach is especially useful when you need your agent to integrate with systems within your enterprise.
 
@@ -153,6 +155,7 @@ Post-provision scripts also create a `local.settings.json` file, which Functions
 1. In the command palette (F1), type `Azurite: Start`, which enables debugging with local storage for the Functions runtime.
 1. Press **Run/Debug (F5)** to run in the debugger. Select **Debug anyway** if prompted about local emulator not running.
 1. Send POST `prompt` endpoints respectively using your HTTP test tool. If you have the [RestClient](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension installed, you can execute requests directly from the [`test.http`](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python/blob/main/app/test.http) project file.
+
 
 ### Deploy to Azure
 

@@ -1,6 +1,7 @@
 ---
-title: "How to use Risks & Safety monitoring in Microsoft Foundry (classic)"
-description: "Learn how to check statistics and insights from your Azure OpenAI content filtering activity. (classic)"
+title: How to use Risks & Safety monitoring in Microsoft Foundry
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
+description: Learn how to check statistics and insights from your Azure OpenAI content filtering activity.
 author: PatrickFarley 
 ms.author: pafarley 
 ms.service: azure-ai-foundry
@@ -10,7 +11,7 @@ ms.date: 01/30/2026
 manager: nitinme
 ---
 
-# Use Risks & Safety monitoring in Microsoft Foundry (preview) (classic) 
+# Use Risks & Safety monitoring in Microsoft Foundry (preview) 
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -47,6 +48,7 @@ Adjust your content filter configuration to further align with business needs an
 
 The **Potentially abusive user detection** pane shows information about users whose behavior has resulted in blocked content. The goal is to help you get a view of the sources of harmful content so you can take responsive actions to ensure the model is being used in a responsible way. 
 
+
 To use Potentially abusive user detection, you need:
 - A content filter configuration applied to your deployment.
 - You must be sending user ID information in your Chat Completion requests (see the _user_ parameter of the [Completions API](/azure/ai-foundry/openai/reference#completions), for example).
@@ -68,6 +70,7 @@ In order to protect the data privacy of user information and manage the permissi
 1. Grant access to the connected Azure Data Explorer database to the users who need to view the analysis results:
     1. Go to the Azure Data Explorer resource you’ve connected, choose **access control** and add a **reader** role of the Azure Data Explorer cluster for the users who need to access the results. 
     1. Choose **databases** and choose the specific database that's connected to store user-level abuse analysis results. Choose **permissions** and add the **reader** role of the database for the users who need to access the results. 
+
 
 ### Report description 
 

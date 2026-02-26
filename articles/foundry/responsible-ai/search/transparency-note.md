@@ -1,7 +1,7 @@
 ---
-title: "Azure AI Search transparency note (temp)"
+title: Azure AI Search transparency note
 titleSuffix: Azure AI Search
-description: "Azure AI Search basics, use cases, and terms (temp)"
+description: Azure AI Search basics, use cases, and terms
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 05/16/2025
 ---
 
-# Transparency note: Azure AI Search (temp)
+# Transparency note: Azure AI Search
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

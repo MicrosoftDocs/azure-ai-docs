@@ -1,7 +1,7 @@
 ---
-title: "What is Foundry Local? (temp)"
+title: What is Foundry Local?
 titleSuffix: Foundry Local
-description: "Foundry Local is an on-device AI inference solution that lets you run AI models locally through a CLI, SDK, or REST API. (temp)"
+description: Foundry Local is an on-device AI inference solution that lets you run AI models locally through a CLI, SDK, or REST API.
 keywords: Foundry Tools, cognitive
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 #customer intent: As a developer, I want to understand what Microsoft Foundry Local is so that I can use it to build AI applications.
 ---
 
-# What is Foundry Local? (temp)
+# What is Foundry Local?
 
 [!INCLUDE [foundry-local-preview](./includes/foundry-local-preview.md)]
 
@@ -53,7 +53,7 @@ Reference: [Foundry Local CLI reference](reference/reference-cli.md)
 
 - **Cost efficiency**: Use existing hardware to eliminate recurring cloud costs and make AI more accessible.
 
-- **Seamless integration**: Integrate with your apps through the SDK, API endpoints, or CLI. For multi-user or high-throughput workloads, move to [Microsoft Foundry](../foundry-classic/index.yml).
+- **Seamless integration**: Integrate with your apps through the SDK, API endpoints, or CLI. For multi-user or high-throughput workloads, move to [Microsoft Foundry](../index.yml).
 
 ## Use cases
 

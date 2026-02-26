@@ -1,6 +1,7 @@
 ---
-title: "Securing Azure OpenAI inside a virtual network with private endpoints (classic)"
-description: "How to secure your Azure OpenAI resource inside a virtual network with private endpoints (classic)"
+title: 'Securing Azure OpenAI inside a virtual network with private endpoints'
+titleSuffix: Azure OpenAI
+description: How to secure your Azure OpenAI resource inside a virtual network with private endpoints
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -11,7 +12,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Configure Azure OpenAI networking (classic)
+# Configure Azure OpenAI networking
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

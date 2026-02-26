@@ -1,7 +1,7 @@
 ---
-title: "Data and privacy for QnA Maker (temp)"
+title: Data and privacy for QnA Maker
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for QnA Maker. (temp)"
+description: This document details issues for data, privacy, and security for QnA Maker.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,7 @@ ms.subservice: azure-ai-qna-maker
 ms.date: 02/25/2021
 ---
 
-# Data and privacy for QnA Maker (temp)
+# Data and privacy for QnA Maker
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

@@ -1,6 +1,7 @@
 ---
-title: "Work with Foundry Classic agents and MCP server tools in Visual Studio Code (classic)"
-description: "Add Model Context Protocol (MCP) server tools to your Foundry Classic agents by using the Microsoft Foundry for Visual Studio Code extension. (classic)"
+title: Work with Foundry Classic agents and MCP server tools in Visual Studio Code
+titleSuffix: Microsoft Foundry
+description: Add Model Context Protocol (MCP) server tools to your Foundry Classic agents by using the Microsoft Foundry for Visual Studio Code extension.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification:
@@ -11,11 +12,10 @@ ms.date: 02/19/2026
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
+monikerRange: foundry-classic 
 ---
 
-# Work with Foundry Classic agents and MCP server tools in Visual Studio Code (preview) (classic)
-
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+# Work with Foundry Classic agents and MCP server tools in Visual Studio Code (preview)
 
 In this article, you add and use [Model Context Protocol (MCP)](../../agents/how-to/tools-classic/model-context-protocol.md) server tools with agents in Foundry Agent Service. You use the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) to configure and test MCP tool-calling agents.
 
@@ -59,6 +59,7 @@ To add an MCP server tool to your agent, follow these steps:
     1. **Server URL**: The URL of the MCP server; for example, `https://gitmcp.io/Azure/azure-rest-api-specs`.
 
     1. **Server Label**: A unique identifier of this MCP server to the agent; for example, `fetch_rest_api_docs`.
+
 
 1. In the **Allowed tools** dropdown list, choose which tools the MCP server can use.
 

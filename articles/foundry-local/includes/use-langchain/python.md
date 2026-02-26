@@ -40,7 +40,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded (temp)
+# By using an alias, the most suitable model will be downloaded
 # to your end-user's device.
 # TIP: You can find a list of available models by running the
 # following command: `foundry model list`.

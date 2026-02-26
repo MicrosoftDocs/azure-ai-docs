@@ -1,7 +1,7 @@
 ---
-title: "Integrate Open WebUI with Foundry Local (temp)"
+title: Integrate Open WebUI with Foundry Local
 titleSuffix: Foundry Local
-description: "Learn how to create a chat application using Foundry Local and Open WebUI (temp)"
+description: Learn how to create a chat application using Foundry Local and Open WebUI
 keywords: Foundry Tools, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 #customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
-# Integrate Open WebUI with Foundry Local (temp)
+# Integrate Open WebUI with Foundry Local
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 

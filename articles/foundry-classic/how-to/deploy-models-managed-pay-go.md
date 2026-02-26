@@ -1,6 +1,7 @@
 ---
-title: "Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing (classic)" 
-description: "Learn how to deploy protected AI models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing. (classic)"
+title: Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing 
+titleSuffix: Microsoft Foundry
+description: Learn how to deploy protected AI models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -14,11 +15,12 @@ author: msakande
 #CustomerIntent: As a developer or data scientist, I want to deploy protected AI models from partners and community to Microsoft Foundry managed compute with pay-as-you-go billing so that I can use these specialized models in my applications.
 ---
 
-# Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing (classic) 
+# Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing 
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 Microsoft Foundry Models include a comprehensive catalog of models organized into two categories—models sold directly by Azure, and [models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). The models from partners and community, which you can deploy on managed compute, are either open or protected models. In this article, you learn how to use protected models from partners and community, offered through Azure Marketplace, for deployment on managed compute with pay-as-you-go billing. 
+
 
 ## Prerequisites
 
@@ -29,6 +31,7 @@ Microsoft Foundry Models include a comprehensive catalog of models organized int
 - [Azure Marketplace purchases enabled](/azure/cost-management-billing/manage/enable-marketplace-purchases) for your Azure subscription.
 
 - Azure role-based access controls (Azure RBAC) grant access to operations in Foundry portal. To perform the steps in this article, your user account must be assigned a *custom role* with the following permissions. User accounts assigned the *Owner* or *Contributor* role for the Azure subscription can also create deployments. For more information on permissions, see [Role-based access control in Foundry portal](/azure/ai-foundry/concepts/rbac-foundry).
+
 
 - On the Azure subscription— **to subscribe the workspace/project to the Azure Marketplace offering**:
 
@@ -151,6 +154,7 @@ Some special things to note about NIMs are:
 
 - **SaaS subscriptions scope to a Foundry project**. Because multiple models are associated with a single Azure Marketplace offer, you only need to subscribe once to the NIM offer within a project, then you're able to deploy all the NIMs offered by NVIDIA in the Foundry model catalog. If you want to deploy NIMs in a different project with no existing SaaS subscription, you need to resubscribe to the offer.  
 
+
 | Model | Task |
 |--|--|
 | [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
@@ -191,11 +195,13 @@ The following NVIDIA NIMs of **chat completions** task type in the model catalog
 1. Create a _Serverless Connection_ to the project by using the NIM endpoint and key. The target URL for the NIM endpoint in the connection should be `https://<endpoint-name>.region.inference.ml.azure.com/v1/`. 
 1. Set the _model parameter_ in the request body to be of the form, `https://<endpoint>.region.inference.ml.azure.com/v1/@<parameter value per table below>` while creating and running agents.
 
+
 | NVIDIA NIM                                         | `model` parameter value           |
 |----------------------------------------------------|----------------------------------|
 | Llama-3.3-70B-Instruct-NIM-microservice            | meta/llama-3.3-70b-instruct      |
 | Llama-3.1-8B-Instruct-NIM-microservice             | meta/llama-3.1-8b-instruct       |
 | Mistral-7B-Instruct-v0.3-NIM-microservice          | mistralai/mistral-7b-instruct-v0.3 |
+
 
 #### Security scanning
 

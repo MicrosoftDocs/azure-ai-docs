@@ -1,6 +1,7 @@
 ---
-title: "Develop an evaluation flow (classic)"
-description: "Learn how to customize or create your own evaluation flow tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Microsoft Foundry. (classic)"
+title: Develop an evaluation flow
+titleSuffix: Microsoft Foundry
+description: Learn how to customize or create your own evaluation flow tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -16,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Develop an evaluation flow in Microsoft Foundry portal (classic)
+# Develop an evaluation flow in Microsoft Foundry portal
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -78,7 +79,9 @@ Therefore, to run an evaluation, you need to indicate the sources of these requi
 
 To remind what inputs are needed to calculate metrics, you can add a description for each required input. The descriptions are displayed when mapping the sources in batch run submission.
 
+
 To add descriptions for each input, select **Show description** in the input section when developing your evaluation method. And you can select "Hide description" to hide the description.
+
 
 Then this description is displayed to when using this evaluation method in batch run submission.
 
@@ -92,9 +95,12 @@ In prompt flow, the flow processes each sample dataset one at a time and generat
 
 To record the score for each data sample, calculate the score for each output, and log the score **as a flow output** by setting it in the output section. This authoring experience is the same as defining a standard flow output.
 
+
 We calculate this score in `line_process` node, which you can create and edit from scratch when creating by type. You can also replace this python node with an LLM node to use LLM to calculate the score.
 
+
 When this evaluation method is used to evaluate another flow, the instance-level score can be viewed in the **Overview** > **Output** tab.
+
 
 #### Metrics logging and aggregation node
 
@@ -105,6 +111,7 @@ In this way, you can calculate and process all the scores of each flow output an
 You can log metrics in an aggregation node using **Prompt flow_sdk.log_metrics()**. The metrics should be numerical (float/int). String type metrics logging isn't supported.
 
 We calculate this score in the `aggregate` node, which you can create and edit from scratch when creating by type. You can also replace this Python node with an LLM node to use the LLM to calculate the score. See the following example for using the `log_metric` API in an evaluation flow:
+
 
 ```python
 from typing import List
@@ -129,6 +136,7 @@ def calculate_accuracy(grades: List[str], variant_ids: List[str]):
 ```
 
 As you called this function in the Python node, you don't need to assign it anywhere else, and you can view the metrics later. When this evaluation method is used in a batch run, the instance-level score can be viewed in the **Overview->Metrics** tab.
+
 
 ## Next steps
 

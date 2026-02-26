@@ -1,7 +1,7 @@
 ---
-title: "Text to speech transparency note (temp)"
+title: Text to speech transparency note
 titleSuffix: Foundry Tools
-description: "This Transparency Note discusses Text to speech and the key considerations for making use of this technology responsibly. (temp)"
+description: This Transparency Note discusses Text to speech and the key considerations for making use of this technology responsibly.
 author: PatrickFarley
 manager: nitinme
 ms.author: pafarley
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 11/14/2023
 ---
 
-# Transparency note: text to speech (temp) 
+# Transparency note: text to speech 
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 

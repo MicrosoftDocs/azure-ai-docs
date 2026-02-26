@@ -1,6 +1,6 @@
 ---
-title: "Publish agents in Microsoft Foundry (temp)"
-description: "Learn how to publish agents in Microsoft Foundry, configure authentication and permissions, and use a stable endpoint to invoke your agent. (temp)"
+title: Publish agents in Microsoft Foundry
+description: Learn how to publish agents in Microsoft Foundry, configure authentication and permissions, and use a stable endpoint to invoke your agent.
 #customer intent: As a developer, I want to publish an agent in Microsoft Foundry so that I can provide a stable endpoint for external consumption.
 author: sdgilley
 ms.author: sgilley
@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026
 ---
 
-# Publish and share agents in Microsoft Foundry (temp)
+# Publish and share agents in Microsoft Foundry
 
 Publishing promotes an agent from a development asset inside your Foundry project into a managed Azure resource that external consumers can call through a stable endpoint. Think of it as the step that moves your agent from "works in my project" to "ready for others to use."
 
@@ -49,14 +49,15 @@ Because the identity changes, **permissions don't transfer automatically**. When
 
 ## Prerequisites
 
-- A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
-- [Azure AI Project Manager role](../../concepts/rbac-foundry.md) on the Foundry project scope to publish agents
-- [Azure AI User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
+- A [Foundry project](../../../how-to/create-projects.md) with at least one agent version created
+- [Azure AI Project Manager role](../../../concepts/rbac-foundry.md) on the Foundry project scope to publish agents
+- [Azure AI User role](../../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
-- Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md)
+- Install the required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md)
 
 [!INCLUDE [code-preview](../../includes/code-preview.md)]
+
 
 ## Understand Agent Applications and deployments
 
@@ -109,7 +110,7 @@ For applications this endpoint is exposed at:
 
 You can configure inbound end-user authentication on the application. The following options are available:
 
-- **Default (RBAC)**: The caller must have the **Azure AI User** role (or a custom role with the `/applications/invoke/action` permission) on the Agent Application resource. Choose this option if you want to invoke your agent application using the Responses API protocol. For more information about Foundry RBAC roles, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
+- **Default (RBAC)**: The caller must have the **Azure AI User** role (or a custom role with the `/applications/invoke/action` permission) on the Agent Application resource. Choose this option if you want to invoke your agent application using the Responses API protocol. For more information about Foundry RBAC roles, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
 - **Channels (Azure Bot Service)**: When you publish to M365/Teams or to A365 as a digital worker, channels is the authentication that is used. This is selected automatically in the UI through the M365/Teams publish flow.
 <!--
 - Channels (Azure Bot Service): Requests from a linked Azure Bot Service instance are permitted. This is used for M365 and Agent365 integration, and for scenarios where an upstream service interacts with the application through Activity Protocol. 
@@ -145,6 +146,7 @@ This section shows you how to publish an agent using the Foundry portal interfac
 
       - Share the published endpoint with external consumers or integrate it into your existing application.
       - Share and chat with your application in channels like Teams/M365 Copilot.
+
 
 ### REST API
 To publish an agent version, you must create an application and deployment that reference your agent version.
@@ -384,12 +386,14 @@ To publish your agent as a digital worker, see [Publish an agent as a digital wo
 
 ## Limitations
 
+
 Agents published as Agent Applications have the following limitations:
 
 | Limitation | Description |
 | --- | --- |
 | Microsoft Entra Agent Registry visibility | There's a bug where published agents don't appear in the Entra Agent Registry (EAR). |
 | No UI or CLI management | There isn’t a dedicated UI/CLI for advanced management operations. Use the REST API for management operations not available in the Foundry portal publishing flow. |
+
 
 ## Troubleshooting
 
@@ -458,8 +462,8 @@ Use the following tables when you construct REST API requests or need to underst
 > [Manage agents at scale](../../control-plane/how-to-manage-agents.md)
 
 > [!div class="nextstepaction"]
-> [Prepare your development environment](../../how-to/develop/install-cli-sdk.md)
+> [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md)
 
 > [!div class="nextstepaction"]
-> [Get started with the SDK](../../quickstarts/get-started-code.md)
+> [Get started with the SDK](../../../quickstarts/get-started-code.md)
 

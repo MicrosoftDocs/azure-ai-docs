@@ -1,6 +1,7 @@
 ---
-title: "How to build with prompt flow (classic)"
-description: "This article provides instructions on how to build with prompt flow. (classic)"
+title: How to build with prompt flow
+titleSuffix: Microsoft Foundry
+description: This article provides instructions on how to build with prompt flow.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,7 +18,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Develop a prompt flow (classic)
+# Develop a prompt flow
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 

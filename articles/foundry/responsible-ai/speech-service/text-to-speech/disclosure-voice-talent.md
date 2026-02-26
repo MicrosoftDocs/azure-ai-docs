@@ -1,6 +1,6 @@
 ---
-title: "Disclosure for voice and avatar talent (temp)"
-description: "Disclosure for voice and avatar talent which covers background as well as best patterns and practices for deployment of this technology. (temp)"
+title: Disclosure for voice and avatar talent
+description: Disclosure for voice and avatar talent which covers background as well as best patterns and practices for deployment of this technology.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -9,7 +9,7 @@ ms.topic: concept-article
 ms.date: 02/19/2022
 ---
 
-# Disclosure for voice and avatar talent (temp)
+# Disclosure for voice and avatar talent
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 

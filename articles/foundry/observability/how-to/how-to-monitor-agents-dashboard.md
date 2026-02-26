@@ -1,6 +1,6 @@
 ---
-title: "Monitor agents with the Agent Monitoring Dashboard (temp)"
-description: "Learn how to monitor operational metrics, token usage, latency, and evaluation results for AI agents in Microsoft Foundry by using the Agent Monitoring Dashboard and Application Insights. (temp)"
+title: Monitor agents with the Agent Monitoring Dashboard
+description: Learn how to monitor operational metrics, token usage, latency, and evaluation results for AI agents in Microsoft Foundry by using the Agent Monitoring Dashboard and Application Insights.
 #customer intent: As an AI operations manager, I want to monitor the performance of my AI agents in real time so that I can ensure optimal functionality and compliance.
 author: lgayhardt
 ms.author: lagayhar
@@ -12,9 +12,9 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Monitor agents with the Agent Monitoring Dashboard (preview) (temp)
+# Monitor agents with the Agent Monitoring Dashboard (preview)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 Use the Agent Monitoring Dashboard in Microsoft Foundry to track operational metrics and evaluation results for your agents. This dashboard helps you understand token usage, latency, success rates, and evaluation outcomes for production traffic.
 
@@ -22,7 +22,7 @@ This article covers two approaches: viewing metrics in the Foundry portal and se
 
 ## Prerequisites
 
-- A [Foundry project](../../how-to/create-projects.md) with at least one [agent](../../agents/overview.md).
+- A [Foundry project](../../../how-to/create-projects.md) with at least one [agent](../../../agents/overview.md).
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your project.
 - Azure role-based access control (RBAC) access to the Application Insights resource. For log-based views, you also need access to the associated Log Analytics workspace. To verify access, open the Application Insights resource in the Azure portal, select **Access control (IAM)**, and confirm your account has an appropriate role. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
 
@@ -135,7 +135,7 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.ai
 
 ### Create a continuous evaluation rule
 
-Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [Built in evaluators](../../concepts/built-in-evaluators.md).
+Define the evaluation and the rule that runs when a response completes. To learn more about supported evaluators, see [Built in evaluators](../../../concepts/built-in-evaluators.md).
 
 ```python
 from azure.ai.projects.models import (
@@ -214,6 +214,6 @@ To view the full sample code, see:
 ## Related content
 
 - [Agent tracing overview](../concepts/trace-agent-concept.md)
-- [Run AI Red Teaming Agent in the cloud](../../how-to/develop/run-ai-red-teaming-cloud.md)
+- [Run AI Red Teaming Agent in the cloud](../../../how-to/develop/run-ai-red-teaming-cloud.md)
 - [Set up tracing in Microsoft Foundry](trace-agent-setup.md)
 - [Tracing integrations](trace-agent-framework.md)

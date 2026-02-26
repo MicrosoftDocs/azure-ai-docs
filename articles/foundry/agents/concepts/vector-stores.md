@@ -1,6 +1,7 @@
 ---
-title: "Vector stores for file search in Microsoft Foundry Agent Service (temp)"
-description: "Learn how vector stores enable file search for agents, including ingestion (chunking and embeddings), readiness, limits, and expiration policies. (temp)"
+title: Vector stores for file search in Microsoft Foundry Agent Service
+titleSuffix: Microsoft Foundry
+description: "Learn how vector stores enable file search for agents, including ingestion (chunking and embeddings), readiness, limits, and expiration policies."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -12,7 +13,7 @@ ms.author: aahi
 ai-usage: ai-assisted
 ---
 
-# Vector stores for file search (temp)
+# Vector stores for file search
 
 Vector store objects give the [file search](../how-to/tools/file-search.md) tool the ability to search your files. When you add a file to a vector store, the service parses, chunks, embeds, and indexes it so the tool can run both keyword and semantic search.
 
@@ -24,11 +25,11 @@ For a list of limits for vector search (such as maximum allowable file sizes), s
 
 ## Prerequisites
 
-- A [Microsoft Foundry project](../../how-to/create-projects.md).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md).
 - An agent or conversation that uses the [file search](../how-to/tools/file-search.md) tool.
-- If you use standard agent setup, connect Azure Blob Storage and Azure AI Search during setup so your files remain in your storage. See [Agent environment setup](../../agents/environment-setup.md).
-- Roles and permissions vary by task (for example, creating projects, assigning roles for standard setup, or creating and editing agents). See the required permissions table in [Agent environment setup](../../agents/environment-setup.md).
-- Feature availability can vary by region. For current coverage, see [Microsoft Foundry feature availability across cloud regions](../../reference/region-support.md).
+- If you use standard agent setup, connect Azure Blob Storage and Azure AI Search during setup so your files remain in your storage. See [Agent environment setup](../../../agents/environment-setup.md).
+- Roles and permissions vary by task (for example, creating projects, assigning roles for standard setup, or creating and editing agents). See the required permissions table in [Agent environment setup](../../../agents/environment-setup.md).
+- Feature availability can vary by region. For current coverage, see [Microsoft Foundry feature availability across cloud regions](../../../reference/region-support.md).
 
 ## Key limits and defaults
 
@@ -71,7 +72,7 @@ Where files and search resources live depends on your agent setup:
 - **Basic agent setup**: File search uses Microsoft-managed storage and search resources.
 - **Standard agent setup**: File search uses the Azure Blob Storage and Azure AI Search resources you connect during setup, so your files remain in your storage.
 
-To set up your environment, see [Agent environment setup](../../agents/environment-setup.md). For more detail, see [Dependency on agent setup](../how-to/tools/file-search.md#file-search-behavior-by-agent-setup-type).
+To set up your environment, see [Agent environment setup](../../../agents/environment-setup.md). For more detail, see [Dependency on agent setup](../how-to/tools/file-search.md#file-search-behavior-by-agent-setup-type).
 
 ## Ensure vector store readiness before creating responses
 
@@ -117,6 +118,8 @@ You can remove files from a vector store in two different ways:
 ### Manage lifecycle with expiration policies
 
 Expiration policies help you manage vector store lifecycle. You can set these policies when creating or updating the vector store object.
+
+
 
 ### Conversation vector stores have default expiration policies
 

@@ -1,6 +1,7 @@
 ---
-title: "Deploy CXRReportGen Healthcare AI Model in Foundry (classic)"
-description: "Learn how to deploy and use the CXRReportGen healthcare AI model with Microsoft Foundry to generate grounded findings from chest X-ray studies. Follow step-by-step instructions to deploy, configure, and invoke the model endpoint. (classic)"
+title: Deploy CXRReportGen Healthcare AI Model in Foundry
+titleSuffix: Microsoft Foundry
+description: Learn how to deploy and use the CXRReportGen healthcare AI model with Microsoft Foundry to generate grounded findings from chest X-ray studies. Follow step-by-step instructions to deploy, configure, and invoke the model endpoint.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -16,7 +17,7 @@ ai-usage: ai-assisted
 
 ---
 
-# How to use CXRReportGen healthcare AI model to generate grounded findings (classic)
+# How to use CXRReportGen healthcare AI model to generate grounded findings
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -50,6 +51,7 @@ CXRReportGen generates a list of findings from a chest X-ray study and also perf
 For a complete working example, see this interactive Python notebook:
 
 * [Deploying and Using CXRReportGen](https://aka.ms/healthcare-ai-examples-cxr-deploy): Learn how to deploy the CXRReportGen model and integrate it into your workflow. This notebook also covers bounding-box parsing and visualization techniques.
+
 
 ## Deploy the model to a managed compute
 
@@ -180,6 +182,7 @@ The `input_data` object has the following fields:
 | `columns`       | `list[string]`       | Y    |  `"frontal_image"`, `"lateral_image"`, `"prior_image"`,`"indication"`, `"technique"`,  `"comparison"`, `"prior_report"`  | An object with strings mapping data to inputs you pass to the model.|
 | `index`   | `integer` | Y | 0 - 10 | Count of inputs you pass to the model. You're limited by how much GPU RAM you have on the VM where CxrReportGen is hosted, and by how much data you can pass in a single POST request—which depends on the size of your images. Therefore, keep this number under 10. Check model logs if you're getting errors when passing multiple inputs. |
 | `data`   | `list[list[string]]` | Y | "" | The list contains the list of items you pass to the model. The length of the list is defined by the index parameter. Each item is a list of several strings. The order and meaning are defined by the `columns` parameter. The text strings contain text. The image strings are the image bytes encoded using base64 and decoded as utf-8 string |
+
 
 ### Request example
 

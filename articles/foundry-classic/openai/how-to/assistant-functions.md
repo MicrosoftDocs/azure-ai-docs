@@ -1,6 +1,7 @@
 ---
-title: "How to use Azure OpenAI Assistants function calling (classic)"
-description: "Learn how to use Assistants function calling (classic)"
+title: 'How to use Azure OpenAI Assistants function calling'
+titleSuffix: Azure OpenAI
+description: Learn how to use Assistants function calling
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,7 +14,7 @@ recommendations: false
 
 ---
 
-# Azure OpenAI Assistants function calling (classic)
+# Azure OpenAI Assistants function calling
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -135,6 +136,7 @@ When you initiate a **Run** with a user Message that triggers the function, the 
 ## Submitting function outputs
 
 You can then complete the **Run** by submitting the tool output from the function(s) you call. Pass the `tool_call_id` referenced in the `required_action` object to match output to each function call.
+
 
 # [Python](#tab/python)
 

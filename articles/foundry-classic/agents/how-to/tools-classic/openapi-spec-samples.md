@@ -1,6 +1,7 @@
 ---
-title: "OpenAPI spec code samples (classic)"
-description: "Find code samples to use OpenAPI tools with agents. (classic)"
+title: "OpenAPI spec code samples"
+titleSuffix: Microsoft Foundry
+description: Find code samples to use OpenAPI tools with agents.
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
@@ -14,14 +15,12 @@ ms.custom:
 zone_pivot_groups: selection-openapi-function
 ---
 
-# How to use the OpenAPI spec tool (classic)
-
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+# How to use the OpenAPI spec tool
 
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-> 🔍 [View the new OpenAPI tool documentation](../../../../foundry/agents/how-to/tools/openapi.md).
+> 🔍 [View the new OpenAPI tool documentation](../../../default/agents/how-to/tools/openapi.md?view=foundry&preserve-view=true).
 
 Use this article to find step-by-step instructions and code samples for using OpenAPI based tools.
 
@@ -129,6 +128,7 @@ Create the thread and add the initial user message.
     print(f"Created message, ID: {message.id}")
 ```
 
+
 ## Create a run and check the output
 Create the run, check the output, and examine what tools were called during the run.
 
@@ -159,6 +159,7 @@ Create the run, check the output, and examine what tools were called during the 
         print()
 ```
 
+
 ## Cleanup
 After the interaction is complete, the script cleans up by deleting the created agent resource by using `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread by using `agents_client.messages.list()` for review or logging.
 
@@ -175,7 +176,9 @@ After the interaction is complete, the script cleans up by deleting the created 
 
 :::zone-end
 
+
 :::zone pivot="javascript"
+
 
 ## Create a project client
 
@@ -614,6 +617,7 @@ curl --request GET \
 ## Example code
 
 The following example code uses an example OpenAPI function in a file named `weather_openapi.json`. You can find the function definition on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json). 
+
 
 ```java
 package com.example.agents;

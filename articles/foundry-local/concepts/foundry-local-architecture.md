@@ -1,7 +1,7 @@
 ---
-title: "Foundry Local architecture (temp)"
+title: Foundry Local architecture
 titleSuffix: Foundry Local
-description: "Learn about the architecture and components of Foundry Local (temp)"
+description: Learn about the architecture and components of Foundry Local
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -14,7 +14,7 @@ ms.date: 01/05/2026
 ai-usage: ai-assisted
 ---
 
-# Foundry Local architecture (temp)
+# Foundry Local architecture
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 

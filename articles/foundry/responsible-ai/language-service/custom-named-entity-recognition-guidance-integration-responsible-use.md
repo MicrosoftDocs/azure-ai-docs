@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use with custom NER (temp)"
+title: Guidance for integration and responsible use with custom NER
 titleSuffix: Foundry Tools
-description: "Guidance for integration and responsible use with custom named entity recognition (temp)"
+description: Guidance for integration and responsible use with custom named entity recognition
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: best-practice
 ms.date: 09/29/2021
 ---
 
-# Guidance for integration and responsible use with custom named entity recognition (temp)
+# Guidance for integration and responsible use with custom named entity recognition
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

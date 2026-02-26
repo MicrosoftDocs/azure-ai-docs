@@ -1,6 +1,7 @@
 ---
-title: "How to configure content filters for models in Microsoft Foundry (classic)"
-description: "Learn to use and configure the content filters that come with Microsoft Foundry, including getting approval for gated modifications. (classic)"
+title: 'How to configure content filters for models in Microsoft Foundry'
+titleSuffix: Microsoft Foundry
+description: Learn to use and configure the content filters that come with Microsoft Foundry, including getting approval for gated modifications.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -17,7 +18,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer working with Microsoft Foundry Models, I want to configure custom content filters for my model deployments so that I can implement appropriate safety guardrails, control harmful content detection at specific severity levels, and ensure my AI applications comply with responsible AI standards and organizational policies.
 ---
 
-# How to configure content filters for models in Microsoft Foundry (classic)
+# How to configure content filters for models in Microsoft Foundry
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -36,5 +37,5 @@ ai-usage: ai-assisted
 ::: zone-end
 
 ## Related content
-- [Content filtering for Microsoft Foundry Models](../../foundry-models/concepts/content-filter.md)
+- [Content filtering for Microsoft Foundry Models](../concepts/content-filter.md)
 - [Introduction to red teaming large language models (LLMs)](../../openai/concepts/red-teaming.md)

@@ -1,6 +1,7 @@
 ---
-title: "Test a fine-tuned model (classic)"
-description: "Learn how to test your fine-tuned model with Azure OpenAI in Microsoft Foundry Models by using Python, the REST APIs, or Microsoft Foundry portal. (classic)"
+title: "Test a fine-tuned model"
+titleSuffix: Azure OpenAI
+description: Learn how to test your fine-tuned model with Azure OpenAI in Microsoft Foundry Models by using Python, the REST APIs, or Microsoft Foundry portal.
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
@@ -11,7 +12,7 @@ ms.topic: how-to
 ms.custom: build-2025
 ---
 
-# Deploy a fine-tuned model for testing (classic)
+# Deploy a fine-tuned model for testing
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -89,6 +90,7 @@ print(r.json())
 
 The following example shows how to use the REST API to create a model deployment for your customized model. The REST API generates a name for the deployment of your customized model.
 
+
 ```bash
 curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2025-07-01-preview" \
   -H "Authorization: Bearer <TOKEN>" \
@@ -113,6 +115,7 @@ curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resource
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
 | fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+
 
 ### Deploy a model with Azure CLI
 
@@ -192,7 +195,7 @@ Developer deployments will auto-delete on their own regardless of activity. Each
 
 To delete a deployment manually, you can use the Foundry portal or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
 
-To use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP) send an HTTP `DELETE` to the deployment resource. Like with creating deployments, you must include the following parameters:
+To use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP&preserve-view=true) send an HTTP `DELETE` to the deployment resource. Like with creating deployments, you must include the following parameters:
 
 - Azure subscription ID
 - Azure resource group name
@@ -205,6 +208,7 @@ Below is the REST API example to delete a deployment:
 curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2025-07-01-preview" \
   -H "Authorization: Bearer <TOKEN>"
 ```
+
 
 ## Next steps
 

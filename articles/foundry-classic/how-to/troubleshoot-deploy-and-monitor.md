@@ -1,6 +1,7 @@
 ---
-title: "How to troubleshoot your deployments and monitors in Microsoft Foundry portal (classic)"
-description: "Learn how to troubleshoot and monitor model deployments in Microsoft Foundry portal to quickly resolve errors and optimize performance. (classic)"
+title: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: Learn how to troubleshoot and monitor model deployments in Microsoft Foundry portal to quickly resolve errors and optimize performance.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -20,9 +21,7 @@ author: msakande
 #CustomerIntent: As a developer or data scientist, I want to troubleshoot and monitor model deployments in Microsoft Foundry so that I can quickly resolve errors, optimize performance, and ensure my AI solutions run smoothly.
 ---
 
-# How to troubleshoot your deployments and monitors in Microsoft Foundry portal (classic)
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# How to troubleshoot your deployments and monitors in Microsoft Foundry portal
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -31,6 +30,7 @@ This article provides instructions on how to troubleshoot your deployments and m
 ## Deployment issues
 
 For general deployment error code reference, see [Troubleshooting online endpoints deployment and scoring](/azure/machine-learning/how-to-troubleshoot-online-endpoints) in the Azure Machine Learning documentation. Much of the information there also applies to Foundry deployments.
+
 
 ### Error: Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Foundry Models resources
 

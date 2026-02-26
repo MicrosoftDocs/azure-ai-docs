@@ -1,6 +1,7 @@
 ---
-title: "Intervention points concepts (temp)"
-description: "Learn about Agentic AI intervention points. (temp)"
+title: "Intervention points concepts"
+titleSuffix: Foundry Tools
+description: Learn about Agentic AI intervention points.
 services: ai-services
 author: PatrickFarley
 manager: nitinme
@@ -9,13 +10,15 @@ ms.topic: quickstart
 ms.date: 02/18/2026
 ms.author: ssalgado
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
+monikerRange: 'foundry-classic || foundry'
 ---
 
-# Intervention points (temp)
+# Intervention points
 
 ## Overview
 
 Agentic AI expands both capability and attack surface. As soon as an agent can call external tools, write to databases, or trigger downstream processes, malfunctions or malicious attacks can lead to steering it off course, leaking sensitive data, or executing harmful actions. Relying solely on guardrails applied to models can leave these vectors exposed. To close this gap Microsoft Foundry allows guardrails to be applied directly to agents and allows the individual controls within those guardrails to be applied to four different intervention points.
+
 
 ## Intervention points
 
@@ -49,4 +52,4 @@ Tool call and tool response intervention points require moderation support from 
 
 - [Create a guardrail](./how-to-create-guardrails.md)
 - [Guardrails and controls overview](guardrails-overview.md)
-- [Foundry Agent Service overview](../agents/overview.md) 
+- [Foundry Agent Service overview](../../agents/overview.md) 

@@ -1,6 +1,7 @@
 ---
-title: "Configure your AI Project for Microsoft Foundry Models (classic)"
-description: "Learn how to upgrade your AI project to use models deployed in Microsoft Foundry Models in Microsoft Foundry Service. (classic)"
+title: Configure your AI Project for Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to upgrade your AI project to use models deployed in Microsoft Foundry Models in Microsoft Foundry Service.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -13,7 +14,7 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ---
 
-# Configure your AI project to use Microsoft Foundry Models (classic)
+# Configure your AI project to use Microsoft Foundry Models
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -27,7 +28,7 @@ Additionally, deploying models to Foundry Models brings the extra benefits of:
 
 > [!div class="checklist"]
 > * [Routing capability](../concepts/endpoints.md)
-> * [Custom content filters](../../foundry-models/concepts/content-filter.md)
+> * [Custom content filters](../concepts/content-filter.md)
 > * Global capacity deployment type
 > * [Key-less authentication with Microsoft Entra ID](./configure-entra-id.md)
 
@@ -45,6 +46,7 @@ To complete this tutorial, you need:
 
     > [!TIP]
     > When your AI hub is provisioned, a Foundry resource is created with it and the two resources are connected. To see which resource is connected to your project, go to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) > **Management center** > **Connected resources**, and find the connections of type **Foundry Tools**. 
+
 
 ## Configure the project to use Foundry Models
 
@@ -70,6 +72,7 @@ To configure the project to use the Foundry Models capability in Foundry, follow
     > Each Foundry resource has a single **Azure AI model inference endpoint** that can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. To learn how the endpoint works, see [Azure OpenAI inference endpoint](../concepts/endpoints.md).
 
 1. Take note of the endpoint URL and credentials.
+
 
 ### Create the model deployment in Foundry Models
 
@@ -103,6 +106,7 @@ For each model you want to deploy under Foundry Models, follow these steps:
 
     :::image type="content" source="../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
 
+
 ### Upgrade your code with the new endpoint
 
 Once your Foundry resource is configured, you can start consuming it from your code. You need the endpoint URL and key for it, which can be found in the **Overview** section:
@@ -124,6 +128,7 @@ Generate your first chat completion:
 
 Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. To learn how Foundry Models routes deployments, see [Routing](../concepts/endpoints.md).
 
+
 ## Move from serverless API deployments to Foundry Models
 
 Although you configured the project to use Foundry Models, existing model deployments continue to exist within the project as serverless API deployments. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that references previous model deployments. To start moving the model deployments, we recommend the following workflow:
@@ -133,6 +138,7 @@ Although you configured the project to use Foundry Models, existing model deploy
 1. Upgrade your code to use the new endpoint.
 
 1. Clean up the project by removing the serverless API deployment.
+
 
 ### Upgrade your code with the new endpoint
 
@@ -145,6 +151,7 @@ The following table summarizes the changes you have to introduce:
 | Endpoint    | `https://<endpoint-name>.<region>.inference.ai.azure.com` | `https://<ai-resource>.services.ai.azure.com/models` |
 | Credentials | One per model/endpoint. | One per Foundry resource. You can use Microsoft Entra ID too. |
 | Model parameter | None. | Required. Use the name of the model deployment. |
+
 
 ### Clean-up existing serverless API deployments from your project
 

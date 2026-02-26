@@ -1,7 +1,7 @@
 ---
-title: "Data and privacy for Custom Vision (temp)"
+title: Data and privacy for Custom Vision
 titleSuffix: Foundry Tools
-description: "Data and privacy for Custom Vision (temp)"
+description: Data and privacy for Custom Vision
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 07/07/2021
 ---
 
-# Data and privacy for Custom Vision (temp)
+# Data and privacy for Custom Vision
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

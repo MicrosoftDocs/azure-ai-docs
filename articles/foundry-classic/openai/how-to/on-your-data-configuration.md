@@ -1,6 +1,7 @@
 ---
-title: "Network and access configuration for Azure OpenAI On Your Data (classic)"
-description: "Use this article to learn about configuring Azure OpenAI when using your data for text generation. (classic)"
+title: 'Network and access configuration for Azure OpenAI On Your Data'
+titleSuffix: Azure OpenAI
+description: Use this article to learn about configuring Azure OpenAI when using your data for text generation.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -11,7 +12,7 @@ ms.date: 02/06/2026
 recommendations: false
 ---
 
-# Network and access configuration for Azure OpenAI On Your Data (classic)
+# Network and access configuration for Azure OpenAI On Your Data
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -95,6 +96,7 @@ For more information about security, see [Authenticate requests](/azure/ai-servi
 * `my_group_ids` is the field name that you selected for **Permitted groups** during [fields mapping](../concepts/use-your-data.md#index-field-mapping).
 * `group_id1, group_id2` are groups attributed to the logged in user. The client application can retrieve and cache users' groups using the [Microsoft Graph API](/graph/api/user-list-transitivememberof).
 
+
 ## Resource configuration
 
 Use the following sections to configure your resources for optimal secure usage. Even if you plan to only secure part of your resources, you still need to follow all the steps. 
@@ -121,6 +123,7 @@ The virtual network has three subnets.
 1. The third subnet is empty, and used for Web App outbound virtual network integration.
 
 :::image type="content" source="../media/use-your-data/virtual-network.png" alt-text="A diagram showing the virtual network architecture." lightbox="../media/use-your-data/virtual-network.png":::
+
 
 ## Configure Azure OpenAI
 
@@ -163,6 +166,7 @@ You can disable public network access of your Azure OpenAI resource in the Azure
 
 To allow access to your Azure OpenAI from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#use-private-endpoints) that connect to your Azure OpenAI resource.
 
+
 ## Configure Azure AI Search
 
 You can use basic pricing tier and higher for the search resource. It's not necessary, but if you use the S2 pricing tier, [advanced options](#create-shared-private-link) are available.
@@ -185,6 +189,7 @@ For more information, see the [Azure AI Search RBAC article](/azure/search/searc
 You can disable public network access of your Azure AI Search resource in the Azure portal. 
 
 To allow access to your Azure AI Search resource from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/azure/search/service-create-private-endpoint) that connect to your Azure AI Search resource.
+
 
 ### Enable trusted service
 
@@ -239,6 +244,8 @@ You can disable public network access of your Storage Account in the Azure porta
 
 To allow access to your Storage Account from your client machines, like using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/azure/storage/common/storage-private-endpoints) that connect to your blob storage.
 
+
+
 ## Role assignments
 
 So far you have already setup each resource work independently. Next you need to allow the services to authorize each other.
@@ -252,6 +259,7 @@ So far you have already setup each resource work independently. Next you need to
 | `Storage Blob Data Reader` | Azure AI Search | Storage Account | Reads document blobs and chunk blobs. |
 | `Reader` | Foundry Project | Azure Storage Private Endpoints (Blob & File) | Read search indexes created in blob storage within a Foundry Project. |
 | `Cognitive Services OpenAI User` | Web app | Azure OpenAI | Inference. |
+
 
 In the above table, the `Assignee` means the system assigned managed identity of that resource.
 

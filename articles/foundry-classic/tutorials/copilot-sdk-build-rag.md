@@ -1,6 +1,7 @@
 ---
-title: "Part 2: Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK (classic)"
-description:  "Learn how to build a RAG-based chat app using the Microsoft Foundry SDK. This tutorial is part 2 of a 3-part tutorial series. (classic)"
+title: "Part 2: Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK"
+titleSuffix: Microsoft Foundry
+description:  Learn how to build a RAG-based chat app using the Microsoft Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
 ms.service: azure-ai-foundry
 ms.topic: tutorial
 ms.date: 12/16/2025
@@ -16,7 +17,7 @@ ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 
-# Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK (classic)
+# Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 

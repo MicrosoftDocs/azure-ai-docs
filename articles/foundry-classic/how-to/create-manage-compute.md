@@ -1,6 +1,7 @@
 ---
-title: "Create and manage compute instances (classic)"
-description: "Learn how to create and manage compute instances in Foundry portal to use prompt flow, create indexes, and access Visual Studio Code. (classic)"
+title: Create and manage compute instances
+titleSuffix: Microsoft Foundry
+description: Learn how to create and manage compute instances in Foundry portal to use prompt flow, create indexes, and access Visual Studio Code.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -16,7 +17,7 @@ author: sdgilley
 ai-usage: ai-assisted
 ---
 
-# Create and manage compute instances (classic)
+# Create and manage compute instances
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -29,6 +30,7 @@ In this article, you learn how to create and manage a compute instance in Foundr
 ## Prerequisites
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+
 
 ## Create a compute instance
 
