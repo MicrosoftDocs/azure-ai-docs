@@ -420,16 +420,10 @@ items:
       items:
       - name: What is multimodal search?
         href: multimodal-search-overview.md
-      - name: Tutorials
-        items:
-        - name: Vectorize images and text
-          href: tutorial-document-extraction-multimodal-embeddings.md
-        - name: Vectorize from a structured document layout
-          href: tutorial-document-layout-multimodal-embeddings.md
-        - name: Verbalize images using generative AI
-          href: tutorial-document-extraction-image-verbalization.md
-        - name: Verbalize images from a structured document layout
-          href: tutorial-document-layout-image-verbalization.md
+      - name: Tutorial (REST)
+        href: tutorial-multimodal.md
+      - name: Multimodal samples (REST)
+        href: https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/multimodal-tutorial
     - name: Other query types
       href: search-query-overview.md
   - name: Relevance and ranking
