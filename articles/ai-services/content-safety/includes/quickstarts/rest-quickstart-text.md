@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Analyze text content"
 description: In this quickstart, get started using Azure AI Content Safety to analyze text content for objectionable material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: include
 ms.date: 04/11/2023
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 ## Prerequisites

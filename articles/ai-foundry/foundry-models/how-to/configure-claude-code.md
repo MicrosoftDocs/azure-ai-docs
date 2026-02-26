@@ -11,7 +11,7 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: ambadal
 reviewer: AmarBadal
-monikerRange: 'foundry'
+monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 #CustomerIntent: As a developer, I want to configure Claude Code, Anthropic's agentic coding tool, to use Microsoft Foundry so I can use enterprise-managed Claude models for AI-assisted coding with proper security and compliance.
 ---
