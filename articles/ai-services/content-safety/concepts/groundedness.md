@@ -2,12 +2,12 @@
 title: "Groundedness detection in Azure AI Content Safety"
 titleSuffix: Azure AI services
 description: Learn about groundedness in large language model (LLM) responses, and how to detect outputs that deviate from source material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: concept-article
 ms.date: 11/21/2025
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 #  Groundedness detection
