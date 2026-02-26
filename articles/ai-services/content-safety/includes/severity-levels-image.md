@@ -1,12 +1,12 @@
 ---
 title: "Severity level tables - image"
 description: Content safety severity level definition tables, for image content, four-level
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: include
 ms.date: 12/18/2023
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 
