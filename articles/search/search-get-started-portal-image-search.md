@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 01/16/2026
+ms.date: 02/26/2026
 ms.custom:
   - references_regions
 ---

@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 01/16/2026
+ms.date: 02/26/2026
 ---
 
 # Quickstart: Vector search in the Azure portal
