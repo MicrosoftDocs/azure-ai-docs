@@ -931,7 +931,7 @@ If an agent evaluator returns an error for unsupported tools:
 ## Related content
 
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
-- [Evaluate your AI agents continuously](../continuous-evaluation-agents.md)
+- [Evaluate your AI agents continuously](../../../foundry-classic/how-to/continuous-evaluation-agents.md)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)

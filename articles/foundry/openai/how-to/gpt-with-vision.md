@@ -315,5 +315,5 @@ For details on how the image parameters impact tokens used and pricing please se
 ## Related content
 
 * [Learn more about Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
-* [Vision chats frequently asked questions](../../../foundry-classic/faq.yml#gpt-4-turbo-with-vision)
+* [Vision chats frequently asked questions](../../../foundry-classic/openai/faq.yml#gpt-4-turbo-with-vision)
 * [Chat completions API reference](https://aka.ms/gpt-v-api-ref)

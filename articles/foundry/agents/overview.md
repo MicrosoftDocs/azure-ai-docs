@@ -44,14 +44,14 @@ By abstracting away infrastructure complexity and enforcing trust and safety by 
 
 - An Azure subscription with permission to create and manage Foundry resources.
 - A Foundry project. If you haven't created one yet, start with [environment setup](environment-setup.md).
-- A deployed model that your agent can use. Model and region availability can vary; see [models that inform agents](concepts\model-region-support.md).
+- A deployed model that your agent can use. Model and region availability can vary; see [models that inform agents](../../foundry-classic/agents/concepts/model-region-support.md).
 
 ## Availability, regions, and limits
 
 Agent Service capabilities can vary based on the Foundry experience you're using and the model and region you choose.
 
 - For service limits, quotas, and throttling considerations, see [Quotas and limits for Agent Service](../../foundry-classic/agents/quotas-limits.md).
-- For model and region support, see [models that inform agents](concepts\model-region-support.md).
+- For model and region support, see [models that inform agents](../../foundry-classic/agents/concepts/model-region-support.md).
 
 If you're building your first agent, start with the quickstart links in [Get started with Foundry Agent Service](#get-started-with-foundry-agent-service) to make sure you're on the right API path for your Foundry experience.
 
@@ -177,7 +177,7 @@ To understand and manage cost drivers, see [Plan and manage costs](../concepts/m
 
 If you're blocked getting started, check these common issues:
 
-- **Model isn't available in your region**: See [models that inform agents](concepts\model-region-support.md).
+- **Model isn't available in your region**: See [models that inform agents](../../foundry-classic/agents/concepts/model-region-support.md).
 - **Requests are throttled or fail due to quota**: See [Quotas and limits for Agent Service](../../foundry-classic/agents/quotas-limits.md).
 - **You can't access resources or deployments**: Confirm your role assignments and follow [environment setup](environment-setup.md).
 - **You need to debug tool calls or agent behavior**: Start with [trace agents with the SDK](../../foundry-classic/how-to/develop/trace-agents-sdk.md) and [metrics](how-to/metrics.md).

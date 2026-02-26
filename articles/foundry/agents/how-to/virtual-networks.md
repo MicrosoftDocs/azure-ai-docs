@@ -29,7 +29,7 @@ By default, the Standard Setup with private networking ensures:
 If you don't have an existing virtual network, the Standard Setup with private networking template simplifies deployment by automatically provisioning the necessary network infrastructure.
 
 > [!TIP]
-> See the [FAQ article](../../../foundry-classic/faq.yml#virtual-networking) for common questions when working with virtual networks.
+> See the [FAQ article](../faq.yml#virtual-networking) for common questions when working with virtual networks.
 
 > [!NOTE]
 > End-to-end network isolation isn't supported in the new Foundry portal experience. Use the classic Foundry portal experience, the SDK, or the CLI to securely access your Foundry projects when network isolation is enabled.
@@ -271,4 +271,4 @@ These FQDNs are listed under **Managed Identity** in the [Integrate with Azure F
 
 ## Next steps
 
-You've now successfully configured a network-secure account and project. Use the [quickstart](../quickstart.md) to create your first agent.
+You've now successfully configured a network-secure account and project. Use the [quickstart](../quickstarts/quickstart-hosted-agent.md) to create your first agent.

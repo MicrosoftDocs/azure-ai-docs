@@ -10,7 +10,7 @@ ms.date: 09/15/2025
 ai-usage: ai-assisted
 ---
 
-[Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../reference.md) |
+[Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../../../foundry-classic/openai/reference.md) |
 
 ## Azure OpenAI API version support
 

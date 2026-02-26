@@ -220,7 +220,7 @@ You can monitor the costs of model router, which is the sum of the costs incurre
 
 ### Error codes
 
-For API error codes and troubleshooting, see the [Azure OpenAI REST API reference](../reference.md).
+For API error codes and troubleshooting, see the [Azure OpenAI REST API reference](../../../foundry-classic/openai/reference.md).
 
 ## Next steps
 
