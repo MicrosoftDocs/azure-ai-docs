@@ -1,3 +1,4 @@
+$schema: https://learn.microsoft.com/schemas/toc/v1/toc.schema.json
 items:
 - name: Azure Face documentation
   href: face-index.yml
