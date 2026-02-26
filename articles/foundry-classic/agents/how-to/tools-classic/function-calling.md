@@ -21,6 +21,7 @@ ai-usage: ai-assisted
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
+> 🔍 [View the new function calling documentation](../../../../foundry/agents/how-to/tools/function-calling.md).
 
 By using Azure AI Agents function calling, you can extend agent capabilities by defining custom functions. When an agent determines that a function needs to be called, it returns metadata with the function name and arguments. Your application code executes the function and returns results. This guide shows you how to implement function calling in Python, C#, JavaScript, Java, and REST API to create powerful AI workflows.
 

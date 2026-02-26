@@ -19,6 +19,7 @@ ms.custom: azure-ai-agents
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
+> 🔍 [View the new OpenAPI tool documentation](../../../../foundry/agents/how-to/tools/openapi.md).
 
 You can now connect your Azure AI Agent to an external API by using an OpenAPI 3.0 specified tool, enabling scalable interoperability with various applications. By using managed identities (Microsoft Entra ID) for authentication, you can securely enable your custom tools to authenticate access and connections. This approach is ideal for integrating with existing infrastructure or web services.
 

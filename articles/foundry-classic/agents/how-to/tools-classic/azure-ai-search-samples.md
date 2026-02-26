@@ -21,6 +21,7 @@ zone_pivot_groups: selection-azure-ai-search
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
+> 🔍 [View the new Azure AI Search tool documentation](../../../../foundry/agents/how-to/tools/ai-search.md).
 
 This article explains how to use an existing search index with the [Azure AI Search](/azure/search/search-what-is-azure-search) tool.
 

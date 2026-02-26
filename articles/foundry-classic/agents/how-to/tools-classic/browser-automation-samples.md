@@ -20,6 +20,7 @@ ai-usage: ai-assisted
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
+> 🔍 [View the new Browser Automation documentation](../../../../foundry/agents/how-to/tools/browser-automation.md).
 
 Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service. Note that Browser Automation is currently a preview feature.
 
