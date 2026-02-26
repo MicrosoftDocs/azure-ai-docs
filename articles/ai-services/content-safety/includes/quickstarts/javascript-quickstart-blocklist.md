@@ -11,7 +11,7 @@ ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/ai-content-safety?view=azure-node-latest) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentsafety/ai-content-safety-rest) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/js/1.0.0) |
+[Reference documentation](/javascript/api/@azure-rest/ai-content-safety?view=azure-node-latest) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentsafety/ai-content-safety-rest) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/js/1.0.0) |
 
 ## Prerequisites
 

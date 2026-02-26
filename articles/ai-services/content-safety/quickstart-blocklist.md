@@ -75,8 +75,8 @@ Get started using Azure AI Content Safety to create a custom text blocklist and 
 
 If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
-- [Azure portal](https://learn.microsoft.com/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-portal)
-- [Azure CLI](https://learn.microsoft.com/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-cli)
+- [Azure portal](/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-portal)
+- [Azure CLI](/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-cli)
 
 
 ## Next step
