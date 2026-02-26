@@ -101,7 +101,7 @@ The following code examples demonstrate how to:
 - [Chat completions API reference](../../openai/latest.md#create-chat-completion)
 - [Azure Identity library overview](/dotnet/api/overview/azure/identity-readme)
 
-<!-- CLASSIC-ONLY: Reasoning might generate longer responses and consume a larger number of tokens. DeepSeek-R1 supports up to 5,000 requests per minute and 5,000,000 tokens per minute. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits). -->
+Reasoning might generate longer responses and consume a larger number of tokens. DeepSeek-R1 supports up to 5,000 requests per minute and 5,000,000 tokens per minute. See the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ## About reasoning models
 
@@ -207,8 +207,8 @@ If you encounter issues while following this tutorial, use the following guidanc
 ### Rate limiting (429 errors)
 
 - **Implement retry logic.** Reasoning models generate longer responses that consume more tokens. Use exponential backoff to handle 429 (Too Many Requests) errors.
-<!-- CLASSIC-ONLY: - **Monitor token usage.** DeepSeek-R1 reasoning content (within `<think>` tags) counts toward your token limit. See [quotas and limits](../quotas-limits.md) for the current rate limits. -->
-<!-- CLASSIC-ONLY: - **Request quota increases.** If you consistently hit rate limits, [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits). -->
+- **Monitor token usage.** DeepSeek-R1 reasoning content (within `<think>` tags) counts toward your token limit. See [quotas and limits](../quotas-limits.md) for the current rate limits.
+- **Request quota increases.** If you consistently hit rate limits, [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ### Package installation issues
 
@@ -230,7 +230,7 @@ In this tutorial, you accomplished the following:
 ## Related content
 
 - [Azure OpenAI in Microsoft Foundry Models v1 API](../../openai/api-version-lifecycle.md)
-<!-- CLASSIC-ONLY: - [Use chat reasoning models](../how-to/use-chat-reasoning.md) -->
-<!-- CLASSIC-ONLY: - [Azure OpenAI supported programming languages](../../openai/supported-languages.md) -->
-<!-- CLASSIC-ONLY: - [Microsoft Foundry Models quotas and limits](../quotas-limits.md) -->
+- [Use chat reasoning models](/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning)
+- [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
+- [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 

@@ -8,9 +8,9 @@ ms.date: 08/29/2025
 ms.topic: include
 ---
 
-<!-- CLASSIC-ONLY: The content filtering system integrated into Microsoft Foundry runs alongside Foundry Models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels (safe, low, medium, and high). It offers optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. For more information about content categories, severity levels, and the behavior of the content filtering system, see [the following article](../../../foundry-models/concepts/content-filter.md). -->
+The content filtering system integrated into Microsoft Foundry runs alongside Foundry Models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels (safe, low, medium, and high). It offers optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. For more information about content categories, severity levels, and the behavior of the content filtering system, see [the following article](/azure/foundry-classic/foundry-models/concepts/content-filter).
 
-<!-- CLASSIC-ONLY: The [default content filtering](../../concepts/default-safety-policies.md) configuration filters content at the medium severity threshold for all four harmful categories for both prompts and completions. Content detected at medium or high severity level is filtered out, while content detected at low or safe severity level isn't filtered. -->
+The [default content filtering](/azure/foundry-classic/foundry-models/concepts/default-safety-policies) configuration filters content at the medium severity threshold for all four harmful categories for both prompts and completions. Content detected at medium or high severity level is filtered out, while content detected at low or safe severity level isn't filtered.
 
 You can configure content filters at the resource level and associate them with one or more deployments.
 

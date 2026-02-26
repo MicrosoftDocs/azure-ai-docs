@@ -79,7 +79,7 @@ Foundry Models supports features that aren't available in GitHub Models:
 
 * **[Model catalog](https://ai.azure.com/explore/models)** — Browse, compare, and evaluate models from Azure, partners, and the open-source community.
 * **[Keyless authentication](configure-entra-id.md)** — Use Microsoft Entra ID for token-based authentication without managing API keys.
-<!-- CLASSIC-ONLY: * **[Content filtering](../../foundry-models/concepts/content-filter.md)** — Configure content safety filters for your deployments. -->
+* **[Content filtering](/azure/foundry-classic/foundry-models/concepts/content-filter)** — Configure content safety filters for your deployments.
 * **Rate limiting** — Set custom rate limits for specific models in your resource.
 * **[Deployment types](../concepts/deployment-types.md)** — Choose from multiple deployment SKUs such as pay-per-token, provisioned, and batch.
 

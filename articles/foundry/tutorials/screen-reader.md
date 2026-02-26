@@ -65,4 +65,4 @@ Microsoft wants to provide the best possible experience for all customers. If yo
 ## Related content
 
 * Learn how to build generative AI applications in the [Foundry](../what-is-foundry.md).
-<!-- CLASSIC-ONLY: * Get answers to frequently asked questions in the [Azure AI FAQ article](../faq.yml). -->
+* Get answers to frequently asked questions in the [Azure AI FAQ article](/azure/foundry-classic/faq).

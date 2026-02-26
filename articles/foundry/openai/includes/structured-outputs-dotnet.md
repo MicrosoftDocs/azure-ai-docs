@@ -22,7 +22,7 @@ dotnet add package Azure.Identity
 
 # [Microsoft Entra ID](#tab/dotnet-entra-id)
 
-<!-- CLASSIC-ONLY: If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md). -->
+If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication](/azure/foundry-classic/openai/how-to/managed-identity).
 
 ```csharp
 using Azure.Identity;

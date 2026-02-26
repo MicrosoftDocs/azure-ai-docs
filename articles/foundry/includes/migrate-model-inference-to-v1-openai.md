@@ -12,5 +12,5 @@ ms.date: 02/23/2026
 ms.custom: include
 ---
 
-<!-- > [!IMPORTANT] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY: > Azure AI Inference beta SDK is deprecated and will be retired on May 30, 2026. Switch to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1) with a stable OpenAI SDK. Follow the [migration guide](../how-to/model-inference-to-openai-migration.md) to switch to OpenAI/v1, using the SDK for your preferred programming language. -->
+> [!IMPORTANT]
+> Azure AI Inference beta SDK is deprecated and will be retired on May 30, 2026. Switch to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1) with a stable OpenAI SDK. Follow the [migration guide](/azure/foundry-classic/how-to/model-inference-to-openai-migration) to switch to OpenAI/v1, using the SDK for your preferred programming language.

@@ -13,7 +13,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-<!-- CLASSIC-ONLY: * An AI project connected to your Foundry Tools resource. You can follow the steps at [Configure Microsoft Foundry Models service in my project](../../how-to/configure-project-connection.md) in Foundry. -->
+* An AI project connected to your Foundry Tools resource. You can follow the steps at [Configure Microsoft Foundry Models service in my project](/azure/foundry-classic/foundry-models/how-to/configure-project-connection) in Foundry.
 
 ## Create a custom content filter
 

@@ -98,5 +98,5 @@ For more information, see [Configure guardrails and controls](../../guardrails/h
 
 - [Guardrails and controls overview](../../guardrails/guardrails-overview.md)
 - [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md)
-<!-- CLASSIC-ONLY: - [Guardrail annotations](content-filter-annotations.md) -->
-<!-- CLASSIC-ONLY: - [Content filtering](../../foundry-models/concepts/content-filter.md) -->
+- [Guardrail annotations](/azure/foundry-classic/openai/concepts/content-filter-annotations)
+- [Content filtering](/azure/foundry-classic/foundry-models/concepts/content-filter)

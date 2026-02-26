@@ -32,7 +32,7 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
 - Access to [Microsoft Foundry](https://ai.azure.com/) with Contributor permissions to create and manage resources.
-<!-- CLASSIC-ONLY: - A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](../../how-to/deploy-models-serverless-availability.md#region-availability) for Claude models. Claude models are currently available in **East US 2** and **Sweden Central** only. -->
+- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the [supported regions](/azure/foundry-classic/how-to/deploy-models-serverless-availability#region-availability) for Claude models. Claude models are currently available in **East US 2** and **Sweden Central** only.
 - **Contributor** or **Owner** role on your Foundry resource group. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 - Access to [Azure Marketplace](../../foundry-models/how-to/configure-marketplace.md) to deploy Foundry Models from partners.
 - For Windows, use Git Bash (included with [Git for Windows](https://gitforwindows.org/)) or install WSL2 (recommended for full Linux compatibility). See [Install WSL](/windows/wsl/install).
@@ -525,7 +525,7 @@ For configuration options that control token usage and cost, such as model-speci
 
 ## Clean up resources
 
-<!-- CLASSIC-ONLY: If you no longer need the Claude model deployments, delete them to free up deployment slots and quota in your resource. Claude models use Global Standard deployments with pay-per-token billing, so idle deployments don't incur charges. However, each deployment counts against your [deployment limit](../../foundry-models/quotas-limits.md) of 32 per resource. -->
+If you no longer need the Claude model deployments, delete them to free up deployment slots and quota in your resource. Claude models use Global Standard deployments with pay-per-token billing, so idle deployments don't incur charges. However, each deployment counts against your [deployment limit](../../foundry-models/quotas-limits.md) of 32 per resource.
 
 ### Delete deployments in the Foundry portal
 
@@ -567,8 +567,8 @@ Replace `<deployment-name>` with the model deployment name (such as `claude-sonn
 
 - [Deploy and use Claude models in Microsoft Foundry](use-foundry-models-claude.md)
 - [Data, privacy, and security for Claude models](../../responsible-ai/claude-models/data-privacy.md)
-<!-- CLASSIC-ONLY: - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md) -->
-<!-- CLASSIC-ONLY: - [Monitor model usage and costs](../../how-to/costs-plan-manage.md) -->
+- [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md)
+- [Monitor model usage and costs](/azure/foundry-classic/how-to/costs-plan-manage)
 - [Microsoft Dev Blogs | Claude Code + Microsoft Foundry: Enterprise AI Coding Agent Setup](https://devblogs.microsoft.com/all-things-azure/claude-code-microsoft-foundry-enterprise-ai-coding-agent-setup/)
 - [Claude in Microsoft Foundry (Anthropic docs)](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
 - [Claude Code Documentation (Anthropic docs)](https://docs.anthropic.com/en/docs/claude-code)

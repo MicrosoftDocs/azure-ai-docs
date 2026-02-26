@@ -324,7 +324,7 @@ To delete a workflow you no longer need:
 
 ## Related content
 
-<!-- CLASSIC-ONLY: - [Foundry Agent Service FAQ](../../agents/faq.yml) -->
+- [Foundry Agent Service FAQ](../../agents/faq.yml)
 - [Tool best practices for Foundry agents](tool-best-practice.md)
 - [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
 - [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)

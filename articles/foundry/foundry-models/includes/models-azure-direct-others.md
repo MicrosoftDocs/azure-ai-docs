@@ -16,19 +16,20 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 ## Black Forest Labs models sold directly by Azure
 
-The Black Forest Labs (BFL) collection of image generation models includes FLUX.2 [flex] and FLUX.2 [pro] for image generation and editing through both text and image prompts, FLUX.1 Kontext [pro] for in-context generation and editing, and FLUX1.1 [pro] for text-to-image generation.  **[Registration is required for access to FLUX.2 [flex]](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu)**.
+The Black Forest Labs (BFL) collection of image generation models includes FLUX.2 [flex] and FLUX.2 [pro] for image generation and editing through both text and image prompts, FLUX.1 Kontext [pro] for in-context generation and editing, and FLUX1.1 [pro] for text-to-image generation.
 
-<!-- CLASSIC-ONLY: You can run these models through the BFL service provider API and through the [images/generations and images/edits endpoints](../../openai/reference-preview.md).  -->
+You can run these models through the BFL service provider API and through the [images/generations and images/edits endpoints](/azure/foundry-classic/openai/reference-preview). 
+
+> [!NOTE]
+> [Registration is required for access to FLUX.2 [flex]](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu).
 
 | Model  | Type & API endpoint| Capabilities | Deployment type (region availability) | 
 | ------ | ------------------ | ------------ | ------------------------------------- |
 | `FLUX.2-flex` | **Image generation** <br> - [BFL service provider API](https://docs.bfl.ai/flux_2/flux2_text_to_image): `<resource-name>/providers/blackforestlabs/v1/flux-2-flex` | - **Input:** text and image (32,000 tokens and up to 10 images<sup>i</sup>) <br /> - **Output:** One Image <br /> - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Fine-grained control; multi-reference support for up to 10 images <br /> - **Additional parameters:** <br> `guidance`: Controls how closely the output follows the prompt. Minimum: 1.5, maximum: 10, default: 4.5. Higher = closer prompt adherence. <br> `steps`: Number of inference steps. Maximum: 50, default: 50.  Higher = more detail, slower. | - Global standard (all regions) |
 | `FLUX.2-pro` | **Image generation** <br> - [BFL service provider API](https://docs.bfl.ai/flux_2/flux2_text_to_image): `<resource-name>/providers/blackforestlabs/v1/flux-2-pro` | - **Input:** text and image (32,000 tokens and up to 8 images<sup>ii</sup>)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG)  <br /> - **Key features:** Multi-reference support for up to 8 images; more grounded in real-world knowledge; greater output flexibility; enhanced performance <br /> - **Additional parameters:** *(In provider-specific API only)* Supports all parameters.  | - Global standard (all regions) |
+| `FLUX.1-Kontext-pro` | **Image generation** <br> - [Image API](/azure/foundry-classic/openai/reference-preview): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> and <br> `https://<resource-name>/openai/deployments/{deployment-id}/images/edits` <br> <br> - [BFL service provider API](https://docs.bfl.ai/kontext/kontext_text_to_image): ` <resource-name>/providers/blackforestlabs/v1/flux-kontext-pro?api-version=preview `  | - **Input:** text and image (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Character consistency, advanced editing <br /> - **Additional parameters:** *(In provider-specific API only)* `seed`, `aspect ratio`, `input_image`, `prompt_unsampling`, `safety_tolerance`, `output_format`  |- Global standard (all regions) |
+| `FLUX-1.1-pro` | **Image generation** <br> - [Image API](/azure/foundry-classic/openai/reference-preview): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> <br> - [BFL service provider API](https://docs.bfl.ai/flux_models/flux_1_1_pro): ` <resource-name>/providers/blackforestlabs/v1/flux-pro-1.1?api-version=preview ` | - **Input:** text (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Fast inference speed, strong prompt adherence, competitive pricing, scalable generation <br /> - **Additional parameters:** *(In provider-specific API only)* `width`, `height`, `prompt_unsampling`, `seed`, `safety_tolerance`, `output_format` | - Global standard (all regions) |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| `FLUX.1-Kontext-pro` | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> and <br> `https://<resource-name>/openai/deployments/{deployment-id}/images/edits` <br> <br> - [BFL service provider API](https://docs.bfl.ai/kontext/kontext_text_to_image): ` <resource-name>/providers/blackforestlabs/v1/flux-kontext-pro?api-version=preview `  | - **Input:** text and image (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Character consistency, advanced editing <br /> - **Additional parameters:** *(In provider-specific API only)* `seed`, `aspect ratio`, `input_image`, `prompt_unsampling`, `safety_tolerance`, `output_format`  |- Global standard (all regions) |
-| `FLUX-1.1-pro` | **Image generation** <br> - [Image API](../../openai/reference-preview.md): `https://<resource-name>/openai/deployments/{deployment-id}/images/generations` <br> <br> - [BFL service provider API](https://docs.bfl.ai/flux_models/flux_1_1_pro): ` <resource-name>/providers/blackforestlabs/v1/flux-pro-1.1?api-version=preview ` | - **Input:** text (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) <br /> - **Key features:** Fast inference speed, strong prompt adherence, competitive pricing, scalable generation <br /> - **Additional parameters:** *(In provider-specific API only)* `width`, `height`, `prompt_unsampling`, `seed`, `safety_tolerance`, `output_format` | - Global standard (all regions) |
--->
 <sup>i,ii</sup> Support for **multiple reference images** are available for FLUX.2 [pro] and FLUX.2 [flex] by using the API, but *not* in the playground. See the following [Code samples for FLUX.2 models](#code-samples-for-flux2-models).
 
 > [!NOTE]
@@ -97,15 +98,13 @@ The DeepSeek family of models includes several reasoning models, which excel at 
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
+| `DeepSeek-V3.2-Speciale` | chat-completion <br /> [(with reasoning content)](/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
+| `DeepSeek-V3.2` | chat-completion <br /> [(with reasoning content)](/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
+| `DeepSeek-V3.1` | chat-completion <br /> [(with reasoning content)](/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
+| `DeepSeek-R1-0528` | chat-completion <br /> [(with reasoning content)](/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) <br> - Global provisioned (all regions)|
 | `DeepSeek-V3-0324` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) <br> - Global provisioned (all regions) |
+| `DeepSeek-R1` | chat-completion <br /> [(with reasoning content)](/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) <br> - Global provisioned (all regions) |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| `DeepSeek-V3.2-Speciale` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
-| `DeepSeek-V3.2` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
-| `DeepSeek-V3.1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
-| `DeepSeek-R1-0528` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) <br> - Global provisioned (all regions)|
-| `DeepSeek-R1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) <br> - Global provisioned (all regions) |
--->
 See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=DeepSeek/?cid=learnDocs).
 
 ## Meta models sold directly by Azure
@@ -130,10 +129,8 @@ Microsoft models include various model groups such as Model Router, MAI models, 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
 | [model-router](https://ai.azure.com/resource/models/model-router/version/2025-11-18/registry/azureml-routers/?cid=learnDocs)<sup>1</sup> | chat-completion | More details in [Model router overview](/azure/ai-foundry/openai/how-to/model-router). <br> - **Input:** text, image <br /> - **Output:** text (max output tokens varies<sup>2</sup>) <br> **Context window:** 200,000<sup>3</sup> <br /> - **Languages:** `en` |- Global standard (East US 2, Sweden Central) <br> - Data Zone standard<sup>4</sup> (East US 2, Sweden Central) |
+| `MAI-DS-R1` | chat-completion <br /> [(with reasoning content)](/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |- Global standard (all regions) |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| `MAI-DS-R1` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |- Global standard (all regions) |
--->
 <sup>1</sup> **Model router version** `2025-11-18`. Earlier versions (`2025-08-07` and `2025-05-19`) are also available. 
 
 <sup>2</sup> **Max output tokens** varies for underlying models in the model router. For example, 32,768 (`GPT-4.1 series`), 100,000 (`o4-mini`), 128,000 (`gpt-5 reasoning models`), and 16,384 (`gpt-5-chat`).
@@ -158,11 +155,9 @@ Moonshot AI models include Kimi K2.5 and Kimi K2 Thinking. Kimi K2.5 is a multim
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
+| `Kimi-K2.5` | chat-completion <br /> [(with reasoning content)](/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning) | - **Input:** text and image (262,144 tokens) <br /> - **Output:** text (262,144 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text | - Global standard (all regions) |
+| `Kimi-K2-Thinking` | chat-completion <br /> [(with reasoning content)](/azure/foundry-classic/foundry-models/how-to/use-chat-reasoning) | - **Input:** text (262,144 tokens) <br /> - **Output:** text (262,144 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text | - Global standard (all regions) |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| `Kimi-K2.5` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text and image (262,144 tokens) <br /> - **Output:** text (262,144 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text | - Global standard (all regions) |
-| `Kimi-K2-Thinking` | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (262,144 tokens) <br /> - **Output:** text (262,144 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text | - Global standard (all regions) |
--->
 See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Moonshot+ai/?cid=learnDocs).
 
 ## xAI models sold directly by Azure
@@ -213,7 +208,7 @@ All deployments perform the same inference operations, but the billing, scale, a
 
 - [Foundry Models from partners and community](../concepts/models-from-partners.md)
 - [Model deprecation and retirement for Foundry Models](../../concepts/model-lifecycle-retirement.md)
-<!-- CLASSIC-ONLY: - [Deployment overview for Foundry Models](../../concepts/deployments-overview.md) -->
+- [Deployment overview for Foundry Models](/azure/foundry-classic/concepts/deployments-overview)
 - [Add and configure models to Foundry Models](../how-to/create-model-deployments.md)
 - [Deployment types in Foundry Models](../concepts/deployment-types.md)
 

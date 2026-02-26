@@ -17,7 +17,7 @@ ms.custom:
 
 # Tutorial: Explore Azure OpenAI in Microsoft Foundry Models embeddings and document search (temp)
 
-<!-- CLASSIC-ONLY: This tutorial will walk you through using the Azure OpenAI [embeddings](../concepts/understand-embeddings.md) API to perform **document search** where you'll query a knowledge base to find the most relevant document. -->
+This tutorial will walk you through using the Azure OpenAI [embeddings](/azure/foundry-classic/openai/concepts/understand-embeddings) API to perform **document search** where you'll query a knowledge base to find the most relevant document.
 
 In this tutorial, you learn how to:
 
@@ -25,7 +25,7 @@ In this tutorial, you learn how to:
 > * Download a sample dataset and prepare it for analysis.
 > * Create environment variables for your resources endpoint and API key.
 > * Use one of the following models: text-embedding-ada-002 (Version 2), text-embedding-3-large, text-embedding-3-small  models.
-<!-- CLASSIC-ONLY: > * Use [cosine similarity](../concepts/understand-embeddings.md) to rank search results. -->
+> * Use [cosine similarity](/azure/foundry-classic/openai/concepts/understand-embeddings) to rank search results.
 
 [!INCLUDE [Python](../includes/embeddings-python.md)]
 

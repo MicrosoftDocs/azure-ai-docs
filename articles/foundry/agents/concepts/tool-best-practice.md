@@ -31,7 +31,7 @@ When you build agents in Microsoft Foundry Agent Service, tools extend what your
 ## Configure and validate tool usage
 
 - Configure tools and connections in the Foundry tool catalog. See [Discover and manage tools in the Foundry tool catalog (preview)](tool-catalog.md).
-<!-- CLASSIC-ONLY: - Review run traces to confirm when your agent calls tools and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](../../how-to/develop/trace-application.md). -->
+- Review run traces to confirm when your agent calls tools and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](/azure/foundry-classic/how-to/develop/trace-application).
 
 ## Improve tool-calling reliability
 
@@ -152,7 +152,7 @@ Use these checks to resolve common issues:
 
 **How do I validate whether a tool was called?**
 
-<!-- CLASSIC-ONLY: Review run traces to confirm whether your agent called a tool and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](../../how-to/develop/trace-application.md). -->
+Review run traces to confirm whether your agent called a tool and to inspect tool inputs and outputs. For end-to-end tracing setup, see [Trace your application](/azure/foundry-classic/how-to/develop/trace-application).
 
 **How do I make tool usage more reliable?**
 

@@ -25,15 +25,15 @@ we now maintain two corresponding versions of the documentation to support each 
 ## New articles
 
 Available in Foundry (new) only:
-<!-- NEW-ONLY: - [Developer journey: Idea to prototype](default/tutorials/developer-journey-idea-to-prototype.md) -->
-<!-- NEW-ONLY: - [Publish agents in Microsoft Foundry](default/agents/how-to/publish-agent.md) -->
-<!-- NEW-ONLY: - [Agent memory concepts](default/agents/concepts/what-is-memory.md) -->
-<!-- NEW-ONLY: - [Build your own MCP server](default/mcp/build-your-own-mcp-server.md) -->
-<!-- NEW-ONLY: - [Manage agent identities with Microsoft Entra ID](default/agents/concepts/agent-identity.md) -->
-<!-- NEW-ONLY: - [Optimization model upgrade](default/observability/how-to/optimization-model-upgrade.md) -->
-<!-- NEW-ONLY: - [Cluster analysis](default/observability/how-to/cluster-analysis.md) -->
-<!-- NEW-ONLY: - [Optimization dashboard](default/observability/how-to/optimization-dashboard.md) -->
-<!-- NEW-ONLY: - [Human evaluation](default/observability/how-to/human-evaluation.md) -->
+- [Developer journey: Idea to prototype](/azure/foundry/tutorials/developer-journey-idea-to-prototype)
+- [Publish agents in Microsoft Foundry](/azure/foundry/agents/how-to/publish-agent)
+- [Agent memory concepts](/azure/foundry/agents/concepts/what-is-memory)
+- [Build your own MCP server](/azure/foundry/mcp/build-your-own-mcp-server)
+- [Manage agent identities with Microsoft Entra ID](/azure/foundry/agents/concepts/agent-identity)
+- [Optimization model upgrade](/azure/foundry/observability/how-to/optimization-model-upgrade)
+- [Cluster analysis](/azure/foundry/observability/how-to/cluster-analysis)
+- [Optimization dashboard](/azure/foundry/observability/how-to/optimization-dashboard)
+- [Human evaluation](/azure/foundry/observability/how-to/human-evaluation)
 - [Azure Language tools and agents](../ai-services/language-service/concepts/foundry-tools-agents.md)
 - [Azure Language CLU Multi-turn conversations](../ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations.md)<br>
 
@@ -53,7 +53,7 @@ Available in both Foundry (new) and Foundry (classic):
 - [Classification in Content Understanding Studio](../ai-services/content-understanding/how-to/classification-content-understanding-studio.md)
 - [Foundry playgrounds](concepts/concept-playgrounds.md)
 - [Use Claude in Foundry Models](foundry-models/how-to/use-foundry-models-claude.md)
-<!-- NEW-ONLY: - [Monitor and manage agents with Foundry control plane](default/control-plane/overview.md)   -->
+- [Monitor and manage agents with Foundry control plane](/azure/foundry/control-plane/overview)  
 
 ### Updated articles
 

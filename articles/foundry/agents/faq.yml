@@ -23,7 +23,7 @@ summary: |
   For getting started, see:
   - [What is Foundry Agent Service?](overview.md)
   - [Set up your environment](environment-setup.md)
-  <!-- CLASSIC-ONLY: - [Quotas and limits](quotas-limits.md) -->
+  - [Quotas and limits](/azure/foundry-classic/agents/quotas-limits)
 sections:
   - name: Setup and access
     questions:
@@ -52,7 +52,7 @@ sections:
         answer: |
           Start with [Set up your environment](environment-setup.md), then create your first agent.
 
-          <!-- CLASSIC-ONLY: - Classic experience: [Quickstart: Create a new agent](quickstart.md) -->
+          - Classic experience: [Quickstart: Create a new agent](/azure/foundry-classic/agents/quickstart)
           - New Foundry experience: [Quickstart: Get started with agents in code](../quickstarts/get-started-code.md)
   - name: General
     questions:
@@ -103,19 +103,19 @@ sections:
           * File search is billed based on the vector storage that you use. 
 
           For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
-# CLASSIC-ONLY:       - question: |
-# CLASSIC-ONLY:           Is there any additional pricing or quota for using Foundry Agent Service? 
-# CLASSIC-ONLY:         answer: |
-# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: No. All [quotas](quotas-limits.md) apply to using models with Foundry Agent Service. -->
+      - question: |
+          Is there any additional pricing or quota for using Foundry Agent Service? 
+        answer: |
+          No. All [quotas](/azure/foundry-classic/agents/quotas-limits) apply to using models with Foundry Agent Service.
   - name: Tools and integrations
     questions:
-# CLASSIC-ONLY:       - question: |
-# CLASSIC-ONLY:           Where can I learn about tools like Code Interpreter and File Search?
-# CLASSIC-ONLY:         answer: |
-# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: Start with [Tools overview](how-to/tools-classic/overview.md), then see the tool-specific guidance: -->
+      - question: |
+          Where can I learn about tools like Code Interpreter and File Search?
+        answer: |
+          Start with [Tools overview](/azure/foundry-classic/agents/how-to/tools-classic/overview), then see the tool-specific guidance:
 
-# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: - [Use Code Interpreter](how-to/tools-classic/code-interpreter.md) -->
-# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: - [Use File Search](how-to/tools-classic/file-search.md) -->
+          - [Use Code Interpreter](/azure/foundry-classic/agents/how-to/tools-classic/code-interpreter)
+          - [Use File Search](/azure/foundry-classic/agents/how-to/tools-classic/file-search)
       - question: |
           How do I bring my own storage, Azure Cosmos DB, or Azure AI Search for agent data?
         answer: |
@@ -125,10 +125,10 @@ sections:
           - How-to: [Use your own resources](how-to/use-your-own-resources.md)
   - name: Monitoring and operations
     questions:
-# CLASSIC-ONLY:       - question: |
-# CLASSIC-ONLY:           How do I monitor Foundry Agent Service?
-# CLASSIC-ONLY:         answer: |
-# CLASSIC-ONLY:           <!-- CLASSIC-ONLY: To understand usage and monitoring options, see [Metrics](how-to/metrics.md) and [Monitor the service](reference/monitor-service.md). -->
+      - question: |
+          How do I monitor Foundry Agent Service?
+        answer: |
+          To understand usage and monitoring options, see [Metrics](how-to/metrics.md) and [Monitor the service](/azure/foundry-classic/agents/reference/monitor-service).
       - question: |
           What should I do for business continuity and disaster recovery (BCDR)?
         answer: |
@@ -201,6 +201,6 @@ additionalContent: |
   ## Next steps
   - [What is Foundry Agent Service?](overview.md)
   - [Set up your environment](environment-setup.md)
-  <!-- CLASSIC-ONLY: - [Quickstart: Create a new agent (classic)](quickstart.md) -->
-  <!-- CLASSIC-ONLY: - [Tools overview](how-to/tools-classic/overview.md) -->
+  - [Quickstart: Create a new agent (classic)](/azure/foundry-classic/agents/quickstart)
+  - [Tools overview](/azure/foundry-classic/agents/how-to/tools-classic/overview)
   - [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md)

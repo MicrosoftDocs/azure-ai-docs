@@ -21,7 +21,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Ja
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
-<!-- CLASSIC-ONLY: - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). -->
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](/azure/foundry-classic/openai/how-to/create-resource).
 
 #### Microsoft Entra ID prerequisites
 
@@ -247,8 +247,8 @@ Image generation result URL: <SAS URL>
 Image generation result URL: <SAS URL>
 ```
 
-<!-- > [!NOTE] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY: > The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../foundry-models/concepts/content-filter.md) article. -->
+> [!NOTE]
+> The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](/azure/foundry-classic/foundry-models/concepts/content-filter) article.
 
 ### Clean up resources
 

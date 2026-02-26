@@ -20,7 +20,7 @@ ms.custom:
 - You need a Foundry project resource. To create one, sign in to the [Foundry portal](https://ai.azure.com).
 - You need the following Python libraries: `os`, `json`, `requests`, `azure-ai-projects`, `azure-identity`.
 - Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them.
-<!-- CLASSIC-ONLY: - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md). -->
+- If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](/azure/foundry-classic/openai/how-to/role-based-access-control).
 
 ### Supported models
 
@@ -49,7 +49,7 @@ The training and validation data that you use *must* be formatted as a JSON Line
 
 In addition to the JSONL format, training and validation data files must be encoded in UTF-8 and include a byte-order mark (BOM). Each file must be less than 512 MB in size.
 
-<!-- CLASSIC-ONLY: If you want a step-by-step walkthrough of fine-tuning `gpt-4o-mini-2024-07-18`, see the [Microsoft Foundry fine-tuning tutorial](../tutorials/fine-tune.md). -->
+If you want a step-by-step walkthrough of fine-tuning `gpt-4o-mini-2024-07-18`, see the [Microsoft Foundry fine-tuning tutorial](/azure/foundry-classic/openai/tutorials/fine-tune).
 
 ### Example file format
 
@@ -263,7 +263,7 @@ Look for your loss to decrease over time, and your accuracy to increase. If your
 
 When you're satisfied with the metrics from your fine-tuning job, or you just want to move on to inference, you must deploy the model.
 
-<!-- CLASSIC-ONLY: If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=python) by using a Developer deployment. -->
+If you're deploying for further validation, consider deploying for [testing](/azure/foundry-classic/openai/how-to/fine-tune-test?tabs=python) by using a Developer deployment.
 
 Unlike with the previous SDK commands, you must use the control plane API for the deployment. This task requires separate authorization, a different API path, and a different API version.
 

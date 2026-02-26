@@ -81,12 +81,10 @@ If the model refuses too often or allows harmful content, adjust your safety sys
 | Issue | Likely cause | What to try |
 | --- | --- | --- |
 | The model refuses too often. | The message is too broad or too strict. | Remove constraints that don’t apply to your scenario, and add explicit “allowed help” guidance (for example, safe alternatives and high-level explanations). |
+| Unsafe content still appears. | The message is too narrow, or user prompts override behavior. | Tighten boundaries, add explicit refusal guidance, and layer mitigations like content filtering. See [Content filtering overview](/azure/foundry-classic/foundry-models/concepts/content-filter). |
 | Responses are inconsistent across runs. | Conflicting instructions or unclear priorities. | Remove conflicts, prioritize rules, and keep the message shorter. See [Common pitfalls](advanced-prompt-engineering.md#common-pitfalls). |
 | The model invents facts when summarizing or answering from sources. | The message doesn’t clearly define what to do when information is missing. | Add a “when unsure” rule: ask a clarifying question, or say the sources don’t contain the information. |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| Unsafe content still appears. | The message is too narrow, or user prompts override behavior. | Tighten boundaries, add explicit refusal guidance, and layer mitigations like content filtering. See [Content filtering overview](../../foundry-models/concepts/content-filter.md). |
--->
 ## Disability-related content guidance
 
 Content harms related to disability in generative AI refer to biased, inaccurate, or exclusionary outputs that misrepresent, marginalize, or exclude people with disabilities. Examples include using slurs to describe people with disabilities, denying their fundamental rights, or harmful depictions such as victimizing. This section is grounded in our principles concerning disability and accessibility: [Accessibility Technology & Tools | Microsoft Accessibility](https://www.microsoft.com/accessibility).
@@ -173,7 +171,7 @@ Safety system messages aren’t a complete safety solution:
 - They can reduce usefulness if they’re too strict.
 - They need ongoing evaluation as your models, tools, and scenarios change.
 
-<!-- CLASSIC-ONLY: To reduce risk, combine system messages with other mitigations such as content filtering. See [Content filtering overview](../../foundry-models/concepts/content-filter.md) and the [Azure AI Content Safety quickstart](/azure/ai-services/content-safety/quickstart-text) for layered protection. -->
+To reduce risk, combine system messages with other mitigations such as content filtering. See [Content filtering overview](/azure/foundry-classic/foundry-models/concepts/content-filter) and the [Azure AI Content Safety quickstart](/azure/ai-services/content-safety/quickstart-text) for layered protection.
 
 ## Evaluation
 
@@ -183,5 +181,5 @@ We recommend you adjust your safety system message approach based on an iterativ
 
 - Read [Safety system messages](system-message.md) for authoring guidance and best practices.
 - Use [System message design](advanced-prompt-engineering.md) to avoid common prompt pitfalls.
-<!-- CLASSIC-ONLY: - Layer mitigations with [Content filtering overview](../../foundry-models/concepts/content-filter.md). -->
+- Layer mitigations with [Content filtering overview](/azure/foundry-classic/foundry-models/concepts/content-filter).
 - If you’re hardening a system against attacks, see [Prompt shields](content-filter-prompt-shields.md).

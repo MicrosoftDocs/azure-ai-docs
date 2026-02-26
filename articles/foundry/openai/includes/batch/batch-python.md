@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 * Python 3.8 or later version
 * The following Python library: `openai`
 * [Jupyter Notebooks](https://jupyter.org/)
-<!-- CLASSIC-ONLY: * An Azure OpenAI resource with a model of the deployment type `Global-Batch` deployed. You can refer to the [resource creation and model deployment guide](../../how-to/create-resource.md) for help with this process. -->
+* An Azure OpenAI resource with a model of the deployment type `Global-Batch` deployed. You can refer to the [resource creation and model deployment guide](/azure/foundry-classic/openai/how-to/create-resource) for help with this process.
 
 The steps in this article are intended to be run sequentially in [Jupyter Notebooks](https://jupyter.org/). For this reason we'll only instantiate the Azure OpenAI client once at the beginning of the examples. If you want to run a step out-of-order you'll often need to set up an Azure OpenAI client as part of that call.
 
@@ -118,9 +118,9 @@ The `custom_id` is required to allow you to identify which individual batch requ
 
 For this article we'll create a file named `test.jsonl` and will copy the contents from standard input code block above to the file. You'll need to modify and add your global batch deployment name to each line of the file. Save this file in the same directory that you're executing your Jupyter Notebook.
 
-<!-- CLASSIC-ONLY: ## Upload batch file -->
+## Upload batch file
 
-<!-- CLASSIC-ONLY: Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md).  -->
+Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](/azure/foundry-classic/openai/how-to/batch-blob-storage). 
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
@@ -183,7 +183,7 @@ file_id = file.id
 
 ---
 
-<!-- CLASSIC-ONLY: By uncommenting and adding `extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}}` you're setting our upload file to expire in 14 days. There's a max limit of 500 input batch files per resource when no expiration is set. By setting a value for expiration the number of input batch files per resource is increased to 10,000 files per resource. To remove batch input file limits use [Batch with Azure Blob Storage](../../how-to/batch-blob-storage.md). -->
+By uncommenting and adding `extra_body={"expires_after":{"seconds": 1209600, "anchor": "created_at"}}` you're setting our upload file to expire in 14 days. There's a max limit of 500 input batch files per resource when no expiration is set. By setting a value for expiration the number of input batch files per resource is increased to 10,000 files per resource. To remove batch input file limits use [Batch with Azure Blob Storage](/azure/foundry-classic/openai/how-to/batch-blob-storage).
 
 **Output:**
 

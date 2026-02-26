@@ -71,13 +71,11 @@ For content risks (Hate, Sexual, Self-harm, Violence), each control uses a sever
 
 | Severity level | Behavior |
 |---------------|----------|
+| **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](/azure/foundry-classic/foundry-models/how-to/configure-content-filters) |
 | **Low** | Flags content at low severity and above. Most restrictive. |
 | **Medium** | Flags content at medium severity and above. |
 | **High** | Flags only the most severe content. Least restrictive. |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](../foundry-models/how-to/configure-content-filters.md) |
--->
 For a detailed breakdown of what each severity level detects, see [Content filtering categories](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#risk-categories).
 
 ### Intervention point applicability
@@ -185,5 +183,5 @@ Default guardrail assignment for agents follows these rules:
 
 - [Configure guardrails and controls](how-to-create-guardrails.md)
 - [Learn about intervention points and controls](intervention-points.md)
-<!-- CLASSIC-ONLY: - [Understand content filtering in Azure OpenAI](../foundry-models/concepts/content-filter.md) -->
-<!-- CLASSIC-ONLY: - [Configure content filters for Azure OpenAI](../openai/how-to/content-filters.md) -->
+- [Understand content filtering in Azure OpenAI](/azure/foundry-classic/foundry-models/concepts/content-filter)
+- [Configure content filters for Azure OpenAI](/azure/foundry-classic/openai/how-to/content-filters)

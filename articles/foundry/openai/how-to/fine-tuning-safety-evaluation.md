@@ -56,6 +56,6 @@ As with data evaluation, the model is evaluated automatically within your fine-t
 ## Next steps
 
 - To request modified content safety thresholds for fine-tuning, submit the [request form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu).
-<!-- CLASSIC-ONLY: - Explore the fine-tuning capabilities in the [Foundry fine-tuning tutorial](../tutorials/fine-tune.md). -->
+- Explore the fine-tuning capabilities in the [Foundry fine-tuning tutorial](/azure/foundry-classic/openai/tutorials/fine-tune).
 - Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
-<!-- CLASSIC-ONLY: - Learn more about [Foundry quotas](../quotas-limits.md). -->
+- Learn more about [Foundry quotas](../quotas-limits.md).

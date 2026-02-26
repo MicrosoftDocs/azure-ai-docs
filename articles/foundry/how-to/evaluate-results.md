@@ -93,10 +93,10 @@ To learn more, see [Built in evaluators](../concepts/built-in-evaluators.md).
 
 ## Related content
 
-<!-- CLASSIC-ONLY: - Improve low metrics with prompt iteration or [fine-tuning](../concepts/fine-tuning-overview.md). -->
+- Improve low metrics with prompt iteration or [fine-tuning](/azure/foundry-classic/concepts/fine-tuning-overview).
 - [Run evaluations in the cloud with the Microsoft Foundry SDK](./develop/cloud-evaluation.md).
 
 Learn how to evaluate your generative AI applications:
 
 - [Evaluate your generative AI apps with the Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md).
-<!-- CLASSIC-ONLY: - [Create evaluations with OpenAI evaluation graders in Azure OpenAI Hub](../openai/how-to/evaluations.md). -->
+- [Create evaluations with OpenAI evaluation graders in Azure OpenAI Hub](/azure/foundry-classic/openai/how-to/evaluations).

@@ -16,7 +16,7 @@ ms.subservice: azure-ai-foundry-openai
 
 [!INCLUDE [horz-monitor-ref-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-intro.md)]
 
-<!-- CLASSIC-ONLY: See [Monitor Azure OpenAI](./how-to/monitor-openai.md) for details on the data you can collect for Azure OpenAI in Microsoft Foundry Models and how to use it. -->
+See [Monitor Azure OpenAI](/azure/foundry-classic/openai/how-to/monitor-openai) for details on the data you can collect for Azure OpenAI in Microsoft Foundry Models and how to use it.
 
 [!INCLUDE [horz-monitor-ref-metrics-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-intro.md)]
 
@@ -92,5 +92,5 @@ The following table lists the metrics available for the Microsoft.CognitiveServi
 
 ## Related content
 
-<!-- CLASSIC-ONLY: - See [Monitor Azure OpenAI](./how-to/monitor-openai.md) for a description of monitoring Azure OpenAI. -->
+- See [Monitor Azure OpenAI](/azure/foundry-classic/openai/how-to/monitor-openai) for a description of monitoring Azure OpenAI.
 - See [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for details on monitoring Azure resources.

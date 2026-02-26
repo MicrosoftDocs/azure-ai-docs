@@ -25,8 +25,8 @@ To use monitoring capabilities for model deployments in Foundry Models, you need
 
 * A [Microsoft Foundry resource](../../quickstarts/get-started-code.md).
 
-<!-- > [!TIP] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY:     > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this article, [migrate your serverless API endpoints to Foundry Models](./quickstart-ai-project.md). -->
+    > [!TIP]
+    > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this article, [migrate your serverless API endpoints to Foundry Models](/azure/foundry-classic/foundry-models/how-to/quickstart-ai-project).
 
 * At least one model deployment.
 

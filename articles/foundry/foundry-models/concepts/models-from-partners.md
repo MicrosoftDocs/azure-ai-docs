@@ -26,7 +26,7 @@ zone_pivot_groups: azure-ai-model-categories
 This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
 The selection of models that you see in Foundry depends on the [kind of project](../../what-is-foundry.md#choosing-a-project) you use.
-<!-- CLASSIC-ONLY: To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community). -->
+To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](/azure/foundry-classic/concepts/foundry-models-overview#models-from-partners-and-community).
 
 > [!NOTE]
 > For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
@@ -134,10 +134,10 @@ See [Stability AI models in the Foundry portal](https://ai.azure.com/explore/mod
 
 ## Related content
 
-<!-- CLASSIC-ONLY: - [Deployment overview for Foundry Models](../../concepts/deployments-overview.md) -->
+- [Deployment overview for Foundry Models](/azure/foundry-classic/concepts/deployments-overview)
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Deployment types in Foundry Models](deployment-types.md)
 - [Azure Marketplace requirements for Foundry Models from partners](../how-to/configure-marketplace.md)
-<!-- CLASSIC-ONLY: - [Region availability for Foundry Models](../../how-to/deploy-models-serverless-availability.md) -->
-<!-- CLASSIC-ONLY: - [Explore Foundry Models](../../concepts/foundry-models-overview.md) -->
+- [Region availability for Foundry Models](/azure/foundry-classic/how-to/deploy-models-serverless-availability)
+- [Explore Foundry Models](/azure/foundry-classic/concepts/foundry-models-overview)
 

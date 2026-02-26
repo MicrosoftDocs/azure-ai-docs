@@ -18,7 +18,7 @@ ms.custom: azure-ai-agents
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-<!-- NEW-ONLY: > 🔍 [View the new SharePoint tool documentation](../../../default/agents/how-to/tools/sharepoint.md). -->
+<!-- > 🔍 [View the new SharePoint tool documentation](/azure/foundry/agents/how-to/tools/sharepoint). -->
 
 > [!NOTE]
 > This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 

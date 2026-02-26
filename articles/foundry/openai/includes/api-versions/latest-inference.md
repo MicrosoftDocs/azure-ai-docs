@@ -160,6 +160,7 @@ Get a vector representation of a given input that can be easily consumed by mach
 | data | array |  | Yes |  |
 | usage | object |  | Yes |  |
 
+
 ### Properties for usage
 
 #### prompt_tokens
@@ -173,6 +174,7 @@ Get a vector representation of a given input that can be easily consumed by mach
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
 | total_tokens | integer |  |  |
+
 
 **Status Code:** 200
 
@@ -936,24 +938,33 @@ Status Code: 200
 
 ### errorResponse
 
+
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | error | [error](#error) |  | No |  |
 
+
 ### errorBase
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | code | string |  | No |  |
 | message | string |  | No |  |
 
+
 ### error
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | param | string |  | No |  |
 | type | string |  | No |  |
 | inner_error | [innerError](#innererror) | Inner error with additional details. | No |  |
+
 
 ### innerError
 
@@ -963,6 +974,7 @@ Inner error with additional details.
 |------|------|-------------|----------|---------|
 | code | [innerErrorCode](#innererrorcode) | Error codes for the inner error object. | No |  |
 | content_filter_results | [contentFilterPromptResults](#contentfilterpromptresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id. | No |  |
+
 
 ### innerErrorCode
 
@@ -982,19 +994,26 @@ Error codes for the inner error object.
 |-------|-------------|
 | ResponsibleAIPolicyViolation | The prompt violated one of more content filter rules. |
 
+
 ### dalleErrorResponse
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | error | [dalleError](#dalleerror) |  | No |  |
 
+
 ### dalleError
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | param | string |  | No |  |
 | type | string |  | No |  |
 | inner_error | [dalleInnerError](#dalleinnererror) | Inner error with additional details. | No |  |
+
 
 ### dalleInnerError
 
@@ -1006,31 +1025,44 @@ Inner error with additional details.
 | content_filter_results | [dalleFilterResults](#dallefilterresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id. | No |  |
 | revised_prompt | string | The prompt that was used to generate the image, if there was any revision to the prompt. | No |  |
 
+
 ### contentFilterResultBase
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | filtered | boolean |  | Yes |  |
 
+
 ### contentFilterSeverityResult
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | filtered | boolean |  | Yes |  |
 | severity | string |  | No |  |
 
+
 ### contentFilterDetectedResult
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | filtered | boolean |  | Yes |  |
 | detected | boolean |  | No |  |
 
+
 ### contentFilterDetectedWithCitationResult
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | citation | object |  | No |  |
+
 
 ### Properties for citation
 
@@ -1046,6 +1078,7 @@ Inner error with additional details.
 |------|------|-------------|--------|
 | license | string |  |  |
 
+
 ### contentFilterResultsBase
 
 Information about the content filtering results.
@@ -1058,6 +1091,7 @@ Information about the content filtering results.
 | self_harm | [contentFilterSeverityResult](#contentfilterseverityresult) |  | No |  |
 | profanity | [contentFilterDetectedResult](#contentfilterdetectedresult) |  | No |  |
 | error | [errorBase](#errorbase) |  | No |  |
+
 
 ### contentFilterPromptResults
 
@@ -1072,6 +1106,7 @@ Information about the content filtering category (hate, sexual, violence, self_h
 | profanity | [contentFilterDetectedResult](#contentfilterdetectedresult) |  | No |  |
 | error | [errorBase](#errorbase) |  | No |  |
 | jailbreak | [contentFilterDetectedResult](#contentfilterdetectedresult) |  | No |  |
+
 
 ### contentFilterChoiceResults
 
@@ -1088,6 +1123,7 @@ Information about the content filtering category (hate, sexual, violence, self_h
 | protected_material_text | [contentFilterDetectedResult](#contentfilterdetectedresult) |  | No |  |
 | protected_material_code | [contentFilterDetectedWithCitationResult](#contentfilterdetectedwithcitationresult) |  | No |  |
 
+
 ### promptFilterResult
 
 Content filtering results for a single prompt in the request.
@@ -1097,11 +1133,13 @@ Content filtering results for a single prompt in the request.
 | prompt_index | integer |  | No |  |
 | content_filter_results | [contentFilterPromptResults](#contentfilterpromptresults) | Information about the content filtering category (hate, sexual, violence, self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that determines the intensity and risk level of harmful content) and if it has been filtered or not. Information about jailbreak content and profanity, if it has been detected, and if it has been filtered or not. And information about customer blocklist, if it has been filtered and its id. | No |  |
 
+
 ### promptFilterResults
 
 Content filtering results for zero or more prompts in the request. In a streaming request, results for different prompts may arrive at different times or in different orders.
 
 No properties defined for this component.
+
 
 ### dalleContentFilterResults
 
@@ -1113,6 +1151,7 @@ Information about the content filtering results.
 | violence | [contentFilterSeverityResult](#contentfilterseverityresult) |  | No |  |
 | hate | [contentFilterSeverityResult](#contentfilterseverityresult) |  | No |  |
 | self_harm | [contentFilterSeverityResult](#contentfilterseverityresult) |  | No |  |
+
 
 ### dalleFilterResults
 
@@ -1127,7 +1166,10 @@ Information about the content filtering category (hate, sexual, violence, self_h
 | profanity | [contentFilterDetectedResult](#contentfilterdetectedresult) |  | No |  |
 | jailbreak | [contentFilterDetectedResult](#contentfilterdetectedresult) |  | No |  |
 
+
 ### chatCompletionsRequestCommon
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1142,7 +1184,10 @@ Information about the content filtering category (hate, sexual, violence, self_h
 | logit_bias | object | Modify the likelihood of specified tokens appearing in the completion. Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | No |  |
 | user | string | A unique identifier representing your end-user, which can help Azure OpenAI to monitor and detect abuse. | No |  |
 
+
 ### createCompletionRequest
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1163,9 +1208,11 @@ Information about the content filtering category (hate, sexual, violence, self_h
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both.<br> | No | 1 |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse.<br> | No |  |
 
+
 ### createCompletionResponse
 
 Represents a completion response from the API. Note: both the streamed and nonstreamed response objects share the same shape (unlike the chat endpoint).
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1178,7 +1225,10 @@ Represents a completion response from the API. Note: both the streamed and nonst
 | object | enum | The object type, which is always "text_completion"<br>Possible values: text_completion | Yes |  |
 | usage | [completionUsage](#completionusage) | Usage statistics for the completion request. | No |  |
 
+
 ### createChatCompletionRequest
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1205,7 +1255,10 @@ Represents a completion response from the API. Note: both the streamed and nonst
 | function_call | string or [chatCompletionFunctionCallOption](#chatcompletionfunctioncalloption) | Deprecated in favor of `tool_choice`.<br><br>Controls which (if any) function is called by the model.<br>`none` means the model won't call a function and instead generates a message.<br>`auto` means the model can pick between generating a message or calling a function.<br>Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.<br><br>`none` is the default when no functions are present. `auto` is the default if functions are present.<br> | No |  |
 | functions | array | Deprecated in favor of `tools`.<br><br>A list of functions the model may generate JSON inputs for.<br> | No |  |
 
+
 ### chatCompletionFunctions
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1213,19 +1266,27 @@ Represents a completion response from the API. Note: both the streamed and nonst
 | name | string | The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | Yes |  |
 | parameters | [FunctionParameters](#functionparameters) | The parameters the functions accepts, described as a JSON Schema object. [See the guide](/azure/ai-foundry/openai/how-to/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. <br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
 
+
 ### chatCompletionFunctionCallOption
 
 Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | name | string | The name of the function to call. | Yes |  |
 
+
 ### chatCompletionRequestMessage
+
+
 
 This component can be one of the following:
 
+
 ### chatCompletionRequestSystemMessage
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1233,7 +1294,10 @@ This component can be one of the following:
 | role | enum | The role of the messages author, in this case `system`.<br>Possible values: system | Yes |  |
 | name | string | An optional name for the participant. Provides the model information to differentiate between participants of the same role. | No |  |
 
+
 ### chatCompletionRequestUserMessage
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1241,7 +1305,10 @@ This component can be one of the following:
 | role | enum | The role of the messages author, in this case `user`.<br>Possible values: user | Yes |  |
 | name | string | An optional name for the participant. Provides the model information to differentiate between participants of the same role. | No |  |
 
+
 ### chatCompletionRequestAssistantMessage
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1251,6 +1318,7 @@ This component can be one of the following:
 | name | string | An optional name for the participant. Provides the model information to differentiate between participants of the same role. | No |  |
 | tool_calls | [chatCompletionMessageToolCalls](#chatcompletionmessagetoolcalls) | The tool calls generated by the model, such as function calls. | No |  |
 | function_call | object | Deprecated and replaced by `tool_calls`. The name and arguments of a function that should be called, as generated by the model. | No |  |
+
 
 ### Properties for function_call
 
@@ -1266,7 +1334,10 @@ This component can be one of the following:
 |------|------|-------------|--------|
 | name | string | The name of the function to call. |  |
 
+
 ### chatCompletionRequestToolMessage
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1274,7 +1345,10 @@ This component can be one of the following:
 | content | string or array | The contents of the tool message. | Yes |  |
 | tool_call_id | string | Tool call that this message is responding to. | Yes |  |
 
+
 ### chatCompletionRequestFunctionMessage
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1282,35 +1356,54 @@ This component can be one of the following:
 | content | string | The contents of the function message. | Yes |  |
 | name | string | The name of the function to call. | Yes |  |
 
+
 ### chatCompletionRequestSystemMessageContentPart
 
+
+
 This component can be one of the following:
+
 
 ### chatCompletionRequestUserMessageContentPart
 
+
+
 This component can be one of the following:
+
 
 ### chatCompletionRequestAssistantMessageContentPart
 
+
+
 This component can be one of the following:
+
 
 ### chatCompletionRequestToolMessageContentPart
 
+
+
 This component can be one of the following:
 
+
 ### chatCompletionRequestMessageContentPartText
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | enum | The type of the content part.<br>Possible values: text | Yes |  |
 | text | string | The text content. | Yes |  |
 
+
 ### chatCompletionRequestMessageContentPartImage
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | enum | The type of the content part.<br>Possible values: image_url | Yes |  |
 | image_url | object |  | Yes |  |
+
 
 ### Properties for image_url
 
@@ -1326,12 +1419,16 @@ This component can be one of the following:
 |------|------|-------------|--------|
 | detail | string | Specifies the detail level of the image. Learn more in the [Vision guide](/azure/ai-foundry/openai/how-to/gpt-with-vision?tabs=rest%2Csystem-assigned%2Cresource#detail-parameter-settings-in-image-processing-low-high-auto). | auto |
 
+
 ### chatCompletionRequestMessageContentPartRefusal
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | enum | The type of the content part.<br>Possible values: refusal | Yes |  |
 | refusal | string | The refusal message generated by the model. | Yes |  |
+
 
 ### azureChatExtensionConfiguration
 
@@ -1342,6 +1439,7 @@ This component can be one of the following:
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | [azureChatExtensionType](#azurechatextensiontype) |   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat<br>  completions request that should use Azure OpenAI chat extensions to augment the response behavior.<br>  The use of this configuration is compatible only with Azure OpenAI. | Yes |  |
+
 
 ### azureChatExtensionType
 
@@ -1364,6 +1462,7 @@ This component can be one of the following:
 | azure_search | Represents the use of Azure Search as an Azure OpenAI chat extension. |
 | azure_cosmos_db | Represents the use of Azure Cosmos DB as an Azure OpenAI chat extension. |
 
+
 ### azureSearchChatExtensionConfiguration
 
 A specific representation of configurable options for Azure Search when using it as an Azure OpenAI chat
@@ -1373,6 +1472,7 @@ extension.
 |------|------|-------------|----------|---------|
 | type | [azureChatExtensionType](#azurechatextensiontype) |   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat<br>  completions request that should use Azure OpenAI chat extensions to augment the response behavior.<br>  The use of this configuration is compatible only with Azure OpenAI. | Yes |  |
 | parameters | [azureSearchChatExtensionParameters](#azuresearchchatextensionparameters) | Parameters for Azure Search when used as an Azure OpenAI chat extension. | No |  |
+
 
 ### azureSearchChatExtensionParameters
 
@@ -1393,6 +1493,7 @@ Parameters for Azure Search when used as an Azure OpenAI chat extension.
 | filter | string | Search filter. | No |  |
 | embedding_dependency | [onYourDataEndpointVectorizationSource](#onyourdataendpointvectorizationsource) or [onYourDataDeploymentNameVectorizationSource](#onyourdatadeploymentnamevectorizationsource) |  | No |  |
 
+
 ### azureSearchIndexFieldMappingOptions
 
 Optional settings to control how fields are processed when using a configured Azure Search resource.
@@ -1405,6 +1506,7 @@ Optional settings to control how fields are processed when using a configured Az
 | content_fields | array | The names of index fields that should be treated as content. | No |  |
 | content_fields_separator | string | The separator pattern that content fields should use. | No |  |
 | vector_fields | array | The names of fields that represent vector data. | No |  |
+
 
 ### azureSearchQueryType
 
@@ -1428,6 +1530,7 @@ The type of Azure Search retrieval query that should be executed when using it a
 | vector_simple_hybrid | Represents a combination of the simple query strategy with vector data. |
 | vector_semantic_hybrid | Represents a combination of semantic search and vector data querying. |
 
+
 ### azureCosmosDBChatExtensionConfiguration
 
 A specific representation of configurable options for Azure Cosmos DB when using it as an Azure OpenAI chat
@@ -1437,6 +1540,7 @@ extension.
 |------|------|-------------|----------|---------|
 | type | [azureChatExtensionType](#azurechatextensiontype) |   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat<br>  completions request that should use Azure OpenAI chat extensions to augment the response behavior.<br>  The use of this configuration is compatible only with Azure OpenAI. | Yes |  |
 | parameters | [azureCosmosDBChatExtensionParameters](#azurecosmosdbchatextensionparameters) | Parameters to use when configuring Azure OpenAI On Your Data chat extensions when using Azure Cosmos DB for<br>MongoDB vCore. | No |  |
+
 
 ### azureCosmosDBChatExtensionParameters
 
@@ -1456,6 +1560,7 @@ MongoDB vCore.
 | fields_mapping | [azureCosmosDBFieldMappingOptions](#azurecosmosdbfieldmappingoptions) | Optional settings to control how fields are processed when using a configured Azure Cosmos DB resource. | Yes |  |
 | embedding_dependency | [onYourDataEndpointVectorizationSource](#onyourdataendpointvectorizationsource) or [onYourDataDeploymentNameVectorizationSource](#onyourdatadeploymentnamevectorizationsource) |  | Yes |  |
 
+
 ### azureCosmosDBFieldMappingOptions
 
 Optional settings to control how fields are processed when using a configured Azure Cosmos DB resource.
@@ -1469,6 +1574,7 @@ Optional settings to control how fields are processed when using a configured Az
 | content_fields_separator | string | The separator pattern that content fields should use. | No |  |
 | vector_fields | array | The names of fields that represent vector data. | Yes |  |
 
+
 ### onYourDataAuthenticationOptions
 
 The authentication options for Azure OpenAI On Your Data.
@@ -1476,6 +1582,7 @@ The authentication options for Azure OpenAI On Your Data.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | [onYourDataAuthenticationType](#onyourdataauthenticationtype) | The authentication types supported with Azure OpenAI On Your Data. | Yes |  |
+
 
 ### onYourDataAuthenticationType
 
@@ -1498,6 +1605,7 @@ The authentication types supported with Azure OpenAI On Your Data.
 | system_assigned_managed_identity | Authentication via system-assigned managed identity. |
 | user_assigned_managed_identity | Authentication via user-assigned managed identity. |
 
+
 ### onYourDataApiKeyAuthenticationOptions
 
 The authentication options for Azure OpenAI On Your Data when using an API key.
@@ -1506,6 +1614,7 @@ The authentication options for Azure OpenAI On Your Data when using an API key.
 |------|------|-------------|----------|---------|
 | type | [onYourDataAuthenticationType](#onyourdataauthenticationtype) | The authentication types supported with Azure OpenAI On Your Data. | Yes |  |
 | key | string | The API key to use for authentication. | No |  |
+
 
 ### onYourDataConnectionStringAuthenticationOptions
 
@@ -1516,6 +1625,7 @@ The authentication options for Azure OpenAI On Your Data when using a connection
 | type | [onYourDataAuthenticationType](#onyourdataauthenticationtype) | The authentication types supported with Azure OpenAI On Your Data. | Yes |  |
 | connection_string | string | The connection string to use for authentication. | No |  |
 
+
 ### onYourDataSystemAssignedManagedIdentityAuthenticationOptions
 
 The authentication options for Azure OpenAI On Your Data when using a system-assigned managed identity.
@@ -1523,6 +1633,7 @@ The authentication options for Azure OpenAI On Your Data when using a system-ass
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | [onYourDataAuthenticationType](#onyourdataauthenticationtype) | The authentication types supported with Azure OpenAI On Your Data. | Yes |  |
+
 
 ### onYourDataUserAssignedManagedIdentityAuthenticationOptions
 
@@ -1533,6 +1644,7 @@ The authentication options for Azure OpenAI On Your Data when using a user-assig
 | type | [onYourDataAuthenticationType](#onyourdataauthenticationtype) | The authentication types supported with Azure OpenAI On Your Data. | Yes |  |
 | managed_identity_resource_id | string | The resource ID of the user-assigned managed identity to use for authentication. | No |  |
 
+
 ### onYourDataVectorizationSource
 
 An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search.
@@ -1540,6 +1652,7 @@ An abstract representation of a vectorization source for Azure OpenAI On Your Da
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | [onYourDataVectorizationSourceType](#onyourdatavectorizationsourcetype) | Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with<br>vector search. | Yes |  |
+
 
 ### onYourDataVectorizationSourceType
 
@@ -1561,6 +1674,7 @@ vector search.
 | endpoint | Represents vectorization performed by public service calls to an Azure OpenAI embedding model. |
 | deployment_name | Represents an Ada model deployment name to use. This model deployment must be in the same Azure OpenAI resource, but<br>On Your Data will use this model deployment via an internal call rather than a public one, which enables vector<br>search even in private networks. |
 
+
 ### onYourDataDeploymentNameVectorizationSource
 
 The details of a vectorization source, used by Azure OpenAI On Your Data when applying vector search, that is based
@@ -1570,6 +1684,7 @@ on an internal embeddings model deployment name in the same Azure OpenAI resourc
 |------|------|-------------|----------|---------|
 | type | [onYourDataVectorizationSourceType](#onyourdatavectorizationsourcetype) | Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with<br>vector search. | Yes |  |
 | deployment_name | string | Specifies the name of the model deployment to use for vectorization. This model deployment must be in the same Azure OpenAI resource, but On Your Data will use this model deployment via an internal call rather than a public one, which enables vector search even in private networks. | No |  |
+
 
 ### onYourDataEndpointVectorizationSource
 
@@ -1582,6 +1697,7 @@ on a public Azure OpenAI endpoint call for embeddings.
 | authentication | [onYourDataApiKeyAuthenticationOptions](#onyourdataapikeyauthenticationoptions) | The authentication options for Azure OpenAI On Your Data when using an API key. | No |  |
 | endpoint | string | Specifies the endpoint to use for vectorization. This endpoint must be in the same Azure OpenAI resource, but On Your Data will use this endpoint via an internal call rather than a public one, which enables vector search even in private networks. | No |  |
 
+
 ### azureChatExtensionsMessageContext
 
   A representation of the additional context information available when Azure OpenAI chat extensions are involved
@@ -1592,6 +1708,7 @@ on a public Azure OpenAI endpoint call for embeddings.
 |------|------|-------------|----------|---------|
 | citations | array | The data source retrieval result, used to generate the assistant message in the response. | No |  |
 | intent | string | The detected intent from the chat history, used to pass to the next turn to carry over the context. | No |  |
+
 
 ### citation
 
@@ -1605,13 +1722,17 @@ citation information for a chat completions response message.
 | filepath | string | The file path of the citation. | No |  |
 | chunk_id | string | The chunk ID of the citation. | No |  |
 
+
 ### chatCompletionMessageToolCall
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | id | string | The ID of the tool call. | Yes |  |
 | type | [toolCallType](#toolcalltype) | The type of the tool call, in this case `function`. | Yes |  |
 | function | object | The function that the model called. | Yes |  |
+
 
 ### Properties for function
 
@@ -1626,6 +1747,7 @@ citation information for a chat completions response message.
 | Name | Type | Description | Default |
 |------|------|-------------|--------|
 | arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may generate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
+
 
 ### toolCallType
 
@@ -1645,20 +1767,27 @@ The type of the tool call, in this case `function`.
 |-------|-------------|
 | function | The tool call type is function. |
 
+
 ### chatCompletionRequestMessageTool
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | tool_call_id | string | Tool call that this message is responding to. | No |  |
 | content | string | The contents of the message. | No |  |
 
+
 ### chatCompletionRequestMessageFunction
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | role | enum | The role of the messages author, in this case `function`.<br>Possible values: function | No |  |
 | name | string | The contents of the message. | No |  |
 | content | string | The contents of the message. | No |  |
+
 
 ### createChatCompletionResponse
 
@@ -1675,6 +1804,7 @@ Represents a chat completion response returned by model, based on the provided i
 | object | enum | The object type, which is always `chat.completion`.<br>Possible values: chat.completion | Yes |  |
 | usage | [completionUsage](#completionusage) | Usage statistics for the completion request. | No |  |
 
+
 ### createChatCompletionStreamResponse
 
 Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
@@ -1688,6 +1818,7 @@ Represents a streamed chunk of a chat completion response returned by model, bas
 | system_fingerprint | string | This fingerprint represents the backend configuration that the model runs with.<br>Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.<br> | No |  |
 | object | enum | The object type, which is always `chat.completion.chunk`.<br>Possible values: chat.completion.chunk | Yes |  |
 
+
 ### chatCompletionStreamResponseDelta
 
 A chat completion delta generated by streamed model responses.
@@ -1699,6 +1830,7 @@ A chat completion delta generated by streamed model responses.
 | tool_calls | array |  | No |  |
 | role | enum | The role of the author of this message.<br>Possible values: system, user, assistant, tool | No |  |
 | refusal | string | The refusal message generated by the model. | No |  |
+
 
 ### Properties for function_call
 
@@ -1714,7 +1846,10 @@ A chat completion delta generated by streamed model responses.
 |------|------|-------------|--------|
 | name | string | The name of the function to call. |  |
 
+
 ### chatCompletionMessageToolCallChunk
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1722,6 +1857,7 @@ A chat completion delta generated by streamed model responses.
 | id | string | The ID of the tool call. | No |  |
 | type | enum | The type of the tool. Currently, only `function` is supported.<br>Possible values: function | No |  |
 | function | object |  | No |  |
+
 
 ### Properties for function
 
@@ -1737,13 +1873,16 @@ A chat completion delta generated by streamed model responses.
 |------|------|-------------|--------|
 | arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may generate parameters not defined by your function schema. Validate the arguments in your code before calling your function. |  |
 
+
 ### chatCompletionStreamOptions
 
 Options for streaming response. Only set this when you set `stream: true`.
 
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. All other chunks will also include a `usage` field, but with a null value.<br> | No |  |
+
 
 ### chatCompletionChoiceLogProbs
 
@@ -1754,7 +1893,10 @@ Log probability information for the choice.
 | content | array | A list of message content tokens with log probability information. | Yes |  |
 | refusal | array | A list of message refusal tokens with log probability information. | No |  |
 
+
 ### chatCompletionTokenLogprob
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1762,6 +1904,7 @@ Log probability information for the choice.
 | logprob | number | The log probability of this token. | Yes |  |
 | bytes | array | A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there's no bytes representation for the token. | Yes |  |
 | top_logprobs | array | List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned. | Yes |  |
+
 
 ### chatCompletionResponseMessage
 
@@ -1775,6 +1918,7 @@ A chat completion message generated by the model.
 | tool_calls | array | The tool calls generated by the model, such as function calls. | No |  |
 | function_call | [chatCompletionFunctionCall](#chatcompletionfunctioncall) | Deprecated and replaced by `tool_calls`. The name and arguments of a function that should be called, as generated by the model. | No |  |
 | context | [azureChatExtensionsMessageContext](#azurechatextensionsmessagecontext) |   A representation of the additional context information available when Azure OpenAI chat extensions are involved<br>  in the generation of a corresponding chat completions response. This context information is only populated when<br>  using an Azure OpenAI request configured to use a matching extension. | No |  |
+
 
 ### chatCompletionResponseMessageRole
 
@@ -1790,11 +1934,13 @@ The role of the author of the response message.
 
 - assistant
 
+
 ### chatCompletionToolChoiceOption
 
 Controls which (if any) tool is called by the model. `none` means the model won't call any tool and instead generates a message. `auto` means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools. Specifying a particular tool via `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool. `none` is the default when no tools are present. `auto` is the default if tools are present.
 
 This component can be one of the following:
+
 
 ### chatCompletionNamedToolChoice
 
@@ -1805,6 +1951,7 @@ Specifies a tool the model should use. Use to force the model to call a specific
 | type | enum | The type of the tool. Currently, only `function` is supported.<br>Possible values: function | Yes |  |
 | function | object |  | Yes |  |
 
+
 ### Properties for function
 
 #### name
@@ -1813,17 +1960,20 @@ Specifies a tool the model should use. Use to force the model to call a specific
 |------|------|-------------|--------|
 | name | string | The name of the function to call. |  |
 
+
 ### ParallelToolCalls
 
 Whether to enable parallel function calling during tool use.
 
 No properties defined for this component.
 
+
 ### chatCompletionMessageToolCalls
 
 The tool calls generated by the model, such as function calls.
 
 No properties defined for this component.
+
 
 ### chatCompletionFunctionCall
 
@@ -1833,6 +1983,7 @@ Deprecated and replaced by `tool_calls`. The name and arguments of a function th
 |------|------|-------------|----------|---------|
 | name | string | The name of the function to call. | Yes |  |
 | arguments | string | The arguments to call the function with, as generated by the model in JSON format. Note that the model doesn't always generate valid JSON, and may generate parameters not defined by your function schema. Validate the arguments in your code before calling your function. | Yes |  |
+
 
 ### completionUsage
 
@@ -1845,6 +1996,7 @@ Usage statistics for the completion request.
 | total_tokens | integer | Total number of tokens used in the request (prompt + completion). | Yes |  |
 | completion_tokens_details | object | Breakdown of tokens used in a completion. | No |  |
 
+
 ### Properties for completion_tokens_details
 
 #### reasoning_tokens
@@ -1853,12 +2005,16 @@ Usage statistics for the completion request.
 |------|------|-------------|--------|
 | reasoning_tokens | integer | Tokens generated by the model for reasoning. |  |
 
+
 ### chatCompletionTool
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | enum | The type of the tool. Currently, only `function` is supported.<br>Possible values: function | Yes |  |
 | function | [FunctionObject](#functionobject) |  | Yes |  |
+
 
 ### FunctionParameters
 
@@ -1868,7 +2024,10 @@ Omitting `parameters` defines a function with an empty parameter list.
 
 No properties defined for this component.
 
+
 ### FunctionObject
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -1877,17 +2036,24 @@ No properties defined for this component.
 | parameters | [FunctionParameters](#functionparameters) | The parameters the functions accepts, described as a JSON Schema object. [See the guide](/azure/ai-foundry/openai/how-to/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. <br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
 | strict | boolean | Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. | No | False |
 
+
 ### ResponseFormatText
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | enum | The type of response format being defined: `text`<br>Possible values: text | Yes |  |
 
+
 ### ResponseFormatJsonObject
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | enum | The type of response format being defined: `json_object`<br>Possible values: json_object | Yes |  |
+
 
 ### ResponseFormatJsonSchemaSchema
 
@@ -1895,12 +2061,16 @@ The schema for the response format, described as a JSON Schema object.
 
 No properties defined for this component.
 
+
 ### ResponseFormatJsonSchema
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | type | enum | The type of response format being defined: `json_schema`<br>Possible values: json_schema | Yes |  |
 | json_schema | object |  | Yes |  |
+
 
 ### Properties for json_schema
 
@@ -1928,12 +2098,16 @@ No properties defined for this component.
 |------|------|-------------|--------|
 | strict | boolean | Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. | False |
 
+
 ### chatCompletionChoiceCommon
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | index | integer |  | No |  |
 | finish_reason | string |  | No |  |
+
 
 ### createTranslationRequest
 
@@ -1946,6 +2120,7 @@ Translation request.
 | response_format | [audioResponseFormat](#audioresponseformat) | Defines the format of the output. | No |  |
 | temperature | number | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit. | No | 0 |
 
+
 ### audioResponse
 
 Translation or transcription response when response_format was json
@@ -1953,6 +2128,7 @@ Translation or transcription response when response_format was json
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | text | string | Translated or transcribed text. | Yes |  |
+
 
 ### audioVerboseResponse
 
@@ -1965,6 +2141,7 @@ Translation or transcription response when response_format was verbose_json
 | language | string | Language. | No |  |
 | duration | number | Duration. | No |  |
 | segments | array |  | No |  |
+
 
 ### audioResponseFormat
 
@@ -1984,6 +2161,7 @@ Defines the format of the output.
 - verbose_json
 - vtt
 
+
 ### createTranscriptionRequest
 
 Transcription request.
@@ -1995,6 +2173,7 @@ Transcription request.
 | response_format | [audioResponseFormat](#audioresponseformat) | Defines the format of the output. | No |  |
 | temperature | number | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit. | No | 0 |
 | language | string | The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency. | No |  |
+
 
 ### audioSegment
 
@@ -2012,6 +2191,7 @@ Transcription or translation segment.
 | avg_logprob | number | Average log probability. | No |  |
 | compression_ratio | number | Compression ratio. | No |  |
 | no_speech_prob | number | Probability of `no speech`. | No |  |
+
 
 ### imageQuality
 
@@ -2032,6 +2212,7 @@ The quality of the image that will be generated.
 | standard | Standard quality creates images with standard quality. |
 | hd | HD quality creates images with finer details and greater consistency across the image. |
 
+
 ### imagesResponseFormat
 
 The format in which the generated images are returned.
@@ -2050,6 +2231,7 @@ The format in which the generated images are returned.
 |-------|-------------|
 | url | The URL that provides temporary access to download the generated images. |
 | b64_json | The generated images are returned as base64 encoded string. |
+
 
 ### imageSize
 
@@ -2071,6 +2253,7 @@ The size of the generated images.
 | 1024x1792 | The desired size of the generated image is 1024x1792 pixels. |
 | 1024x1024 | The desired size of the generated image is 1024x1024 pixels. |
 
+
 ### imageStyle
 
 The style of the generated images.
@@ -2090,7 +2273,10 @@ The style of the generated images.
 | vivid | Vivid creates images that are hyper-realistic and dramatic. |
 | natural | Natural creates images that are more natural and less hyper-realistic. |
 
+
 ### imageGenerationsRequest
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
@@ -2102,12 +2288,16 @@ The style of the generated images.
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | standard |
 | style | [imageStyle](#imagestyle) | The style of the generated images. | No | vivid |
 
+
 ### generateImagesResponse
+
+
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | created | integer | The unix timestamp when the operation was created. | Yes |  |
 | data | array | The result data of the operation, if successful | Yes |  |
+
 
 ### imageResult
 
@@ -2129,6 +2319,6 @@ Completions extensions aren't part of the latest GA version of the Azure OpenAI 
 
 The Chat message object isn't part of the latest GA version of the Azure OpenAI data plane inference spec.
 
-<!-- CLASSIC-ONLY: ### Text to speech (Preview) -->
+### Text to speech (Preview)
 
-<!-- CLASSIC-ONLY: Is not currently part of the latest Azure OpenAI GA version of the Azure OpenAI data plane inference spec. Refer to the latest [preview](../../reference-preview.md) version for this capability. -->
+Is not currently part of the latest Azure OpenAI GA version of the Azure OpenAI data plane inference spec. Refer to the latest [preview](../../reference-preview.md) version for this capability.

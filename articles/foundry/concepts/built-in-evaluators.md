@@ -121,5 +121,5 @@ For comprehensive quality assessment, combine multiple evaluators:
 - [Agent evaluators](./evaluation-evaluators/agent-evaluators.md)
 - [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-graders.md)
 - [Custom evaluators](./evaluation-evaluators/custom-evaluators.md)
-<!-- CLASSIC-ONLY: - [Evaluate with the Foundry SDK](../how-to/develop/evaluate-sdk.md) -->
+- [Evaluate with the Foundry SDK](/azure/foundry-classic/how-to/develop/evaluate-sdk)
 - [Evaluate generative AI apps in Foundry](../how-to/evaluate-generative-ai-app.md)

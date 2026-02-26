@@ -298,7 +298,7 @@ az cognitiveservices account deployment create
 
 ---
 
-<!-- CLASSIC-ONLY: [!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)] -->
+[!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
 
 ## Use your deployed fine-tuned model
 
@@ -344,7 +344,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completion
 
 ## [CLI](#tab/cli)
 
-<!-- CLASSIC-ONLY: Azure CLI is only for control plane operations such as resource creation and [model deployment](/cli/azure/cognitiveservices/account/deployment). For inference operations, use the [REST API](/azure/ai-foundry/openai/reference-preview-latest), or the [language based SDKs](../supported-languages.md). -->
+Azure CLI is only for control plane operations such as resource creation and [model deployment](/cli/azure/cognitiveservices/account/deployment). For inference operations, use the [REST API](/azure/ai-foundry/openai/reference-preview-latest), or the [language based SDKs](../supported-languages.md).
 
 ---
 

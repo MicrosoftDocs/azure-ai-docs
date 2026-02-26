@@ -20,7 +20,7 @@ zone_pivot_groups: selection-agent-sharepoint
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-<!-- NEW-ONLY: > 🔍 [View the new SharePoint tool documentation](../../../default/agents/how-to/tools/sharepoint.md). -->
+<!-- > 🔍 [View the new SharePoint tool documentation](/azure/foundry/agents/how-to/tools/sharepoint). -->
 
 > [!NOTE]
 > This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
@@ -225,6 +225,6 @@ curl --request GET \
 
 ## Related content
 
-<!-- NEW-ONLY: - [Use the Microsoft SharePoint tool](sharepoint.md) -->
+- [Use the Microsoft SharePoint tool](sharepoint.md)
 - [Call Azure Logic apps as functions using Azure OpenAI Assistants](/azure/ai-foundry/openai/how-to/assistants-logic-apps)
 - [Workflows with AI agents and models in Azure Logic Apps](/azure/logic-apps/agent-workflows-concepts)

@@ -25,7 +25,7 @@ Foundry Agent Service enforces limits in two places:
 - **Agent Service limits**. Limits for agent and thread artifacts, such as file uploads, vector store attachments, message counts, and tool registration.
 - **Model limits**. Quotas and rate limits for the model deployments your agents call.
 
-<!-- NEW-ONLY: If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md). If you're using file search, see [Vector stores for file search](../default/agents/concepts/vector-stores.md). -->
+If you're using threads and messages, see [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md). If you're using file search, see [Vector stores for file search](/azure/foundry/agents/concepts/vector-stores).
 
 ## Default quotas and limits for the service
 
@@ -64,7 +64,7 @@ For example:
 - **Message content size**: Creating a message can fail if the `text` content is too large. Send smaller messages, or move large content into files and use file search.
 - **Tool registration cap**: Creating or updating an agent can fail if you register too many tools. Register only the tools you need, and prefer fewer, reusable tools.
 
-<!-- NEW-ONLY: For file search scenarios, see [Vector stores for file search](../default/agents/concepts/vector-stores.md) for guidance on managing vector store growth. -->
+For file search scenarios, see [Vector stores for file search](/azure/foundry/agents/concepts/vector-stores) for guidance on managing vector store growth.
 
 ## Best practices to stay within limits
 
@@ -99,4 +99,4 @@ The limits in this article are default values for Foundry Agent Service. If your
 - [Supported models in Foundry Agent Service](concepts/model-region-support.md)
 - [Threads, runs, and messages in Foundry Agent Service](concepts/threads-runs-messages.md)
 - [Monitor Foundry Agent Service](how-to/metrics.md)
-<!-- NEW-ONLY: - [Vector stores for file search](../default/agents/concepts/vector-stores.md) -->
+- [Vector stores for file search](/azure/foundry/agents/concepts/vector-stores)

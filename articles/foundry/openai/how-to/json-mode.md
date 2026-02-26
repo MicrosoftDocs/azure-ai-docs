@@ -25,8 +25,8 @@ JSON mode guarantees valid JSON output, but it doesn't guarantee the output matc
 > [!NOTE]
 > While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generate valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
 
-<!-- >[!NOTE] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY: > Currently Structured outputs are not supported on [bring your own data](../concepts/use-your-data.md) scenario. -->
+>[!NOTE]
+> Currently Structured outputs are not supported on [bring your own data](/azure/foundry-classic/openai/concepts/use-your-data) scenario.
 
 ## JSON mode support
 

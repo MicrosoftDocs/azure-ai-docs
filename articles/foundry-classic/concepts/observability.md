@@ -43,7 +43,7 @@ For a complete list of built-in evaluators, see [Built-in evaluators reference](
 
 Production monitoring ensures your deployed AI applications maintain quality and performance in real-world conditions. Integrated with Azure Monitor Application Insights, Microsoft Foundry delivers real-time dashboards tracking operational metrics, token consumption, latency, error rates, and quality scores. Teams can set up alerts when outputs fail quality thresholds or produce harmful content, enabling rapid issue resolution.
 
-<!-- NEW-ONLY: For details on setting up production monitoring, see [Monitor agents dashboard](../default/observability/how-to/how-to-monitor-agents-dashboard.md). -->
+For details on setting up production monitoring, see [Monitor agents dashboard](/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard).
 
 ### Tracing
 

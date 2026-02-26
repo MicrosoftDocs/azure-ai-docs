@@ -88,7 +88,7 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 
 - Implement exponential backoff with jitter in your application retry logic.
 - For sustained high-throughput workloads, consider provisioned throughput deployments.
-<!-- CLASSIC-ONLY: - Review [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for your deployment's tokens-per-minute and requests-per-minute caps. -->
+- Review [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for your deployment's tokens-per-minute and requests-per-minute caps.
 
 ## Quotas and limits
 
@@ -113,7 +113,7 @@ The following table lists default limits enforced by the Agent Service. These li
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
 
-<!-- CLASSIC-ONLY: The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits. -->
+The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits.
 
 ## Limit error reference
 
@@ -155,16 +155,16 @@ Agents follow the quotas and rate limits for the model deployments they use.
 
 For current model quotas and limits, see:
 
-<!-- CLASSIC-ONLY: - [Azure OpenAI quotas and limits](../../openai/quotas-limits.md). -->
-<!-- CLASSIC-ONLY: - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md). -->
+- [Azure OpenAI quotas and limits](../../openai/quotas-limits.md).
+- [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md).
 
-<!-- CLASSIC-ONLY: To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../../how-to/quota.md). -->
+To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](/azure/foundry-classic/openai/how-to/quota).
 
 ## Request a limit increase
 
 The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
 
-<!-- CLASSIC-ONLY: - **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../how-to/quota.md). -->
+- **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](/azure/foundry-classic/openai/how-to/quota).
 - **Agent Service limits.** The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints by using the best practices described earlier.
 
 ## Related content
@@ -173,5 +173,5 @@ The limits in this article are default values for Foundry Agent Service. If your
 - [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
 - [Monitor Foundry Agent Service](../../agents/how-to/metrics.md)
-<!-- CLASSIC-ONLY: - [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) -->
-<!-- CLASSIC-ONLY: - [Manage and increase quotas for resources with Microsoft Foundry](../../how-to/quota.md) -->
+- [Azure OpenAI quotas and limits](../../openai/quotas-limits.md)
+- [Manage and increase quotas for resources with Microsoft Foundry](/azure/foundry-classic/openai/how-to/quota)

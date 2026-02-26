@@ -106,6 +106,6 @@ After you upgrade your model and verify agent performance, consider monitoring o
 
 - [What is Ask AI?](../../concepts/ask-ai.md)
 - [Optimize cost and performance with Ask AI](../../control-plane/how-to-optimize-cost-performance.md)
-<!-- CLASSIC-ONLY: - [Model versions in Foundry Models](../../foundry-models/concepts/model-versions.md) -->
+- [Model versions in Foundry Models](../../foundry-models/concepts/model-versions.md)
 - [Evaluate your generative AI app](../../how-to/evaluate-generative-ai-app.md)
 - [Compare evaluation results](../../how-to/evaluate-results.md)

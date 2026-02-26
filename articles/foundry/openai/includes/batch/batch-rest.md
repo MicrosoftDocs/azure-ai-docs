@@ -14,7 +14,7 @@ ms.custom:
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-<!-- CLASSIC-ONLY: * An Azure OpenAI resource with a model of the deployment type `Global-Batch` deployed. You can refer to the [resource creation and model deployment guide](../../how-to/create-resource.md) for help with this process. -->
+* An Azure OpenAI resource with a model of the deployment type `Global-Batch` deployed. You can refer to the [resource creation and model deployment guide](/azure/foundry-classic/openai/how-to/create-resource) for help with this process.
 
 ## Preparing your batch file
 
@@ -108,7 +108,7 @@ For this article we'll create a file named `test.jsonl` and will copy the conten
 
 ## Upload batch file
 
-<!-- CLASSIC-ONLY: Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). -->
+Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](/azure/foundry-classic/openai/how-to/batch-blob-storage).
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
@@ -125,7 +125,7 @@ curl -X POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/files \
 
 The above code assumes a particular file path for your test.jsonl file. Adjust this file path as necessary for your local system. 
 
-<!-- CLASSIC-ONLY: By adding the optional `"expires_after.seconds=1209600"` and `"expires_after.anchor=created_at"` parameters  you're setting your upload file to expire in 14 days. There's a max limit of 500 batch input files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. You can set to a number between 1209600-2592000. This is equivalent to 14-30 days. To remove batch input file limits use [Batch with Azure Blob Storage](../../how-to/batch-blob-storage.md). -->
+By adding the optional `"expires_after.seconds=1209600"` and `"expires_after.anchor=created_at"` parameters  you're setting your upload file to expire in 14 days. There's a max limit of 500 batch input files per resource when no expiration is set. By setting a value for expiration the number of batch files per resource is increased to 10,000 files per resource. You can set to a number between 1209600-2592000. This is equivalent to 14-30 days. To remove batch input file limits use [Batch with Azure Blob Storage](/azure/foundry-classic/openai/how-to/batch-blob-storage).
 
 **Output:**
 

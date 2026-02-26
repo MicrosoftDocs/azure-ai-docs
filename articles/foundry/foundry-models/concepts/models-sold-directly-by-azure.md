@@ -30,7 +30,7 @@ Use the tabs at the top of this page to switch between **Azure OpenAI models** a
 
 Foundry Models are available for standard deployment to a Foundry resource.
 
-<!-- CLASSIC-ONLY: To learn more about attributes of Foundry Models sold directly by Azure, see [Explore Foundry Models](../../concepts/foundry-models-overview.md#models-sold-directly-by-azure). -->
+To learn more about attributes of Foundry Models sold directly by Azure, see [Explore Foundry Models](/azure/foundry-classic/concepts/foundry-models-overview#models-sold-directly-by-azure).
 
 ::: zone pivot="azure-openai"
 

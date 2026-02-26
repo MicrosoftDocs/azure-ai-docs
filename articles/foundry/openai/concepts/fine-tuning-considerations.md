@@ -82,4 +82,4 @@ Fine-tuning large language models can be a powerful technique to adapt them to s
 
 - Watch the [Azure AI Show episode: "To fine-tune or not to fine-tune, that is the question"](https://www.youtube.com/watch?v=0Jo-z-MFxJs)
 - Learn more about [Foundry fine-tuning](../how-to/fine-tuning.md)
-<!-- CLASSIC-ONLY: - Explore our [fine-tuning tutorial](../tutorials/fine-tune.md) -->
+- Explore our [fine-tuning tutorial](/azure/foundry-classic/openai/tutorials/fine-tune)

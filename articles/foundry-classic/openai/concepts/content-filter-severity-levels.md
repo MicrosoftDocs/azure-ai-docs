@@ -22,7 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 Microsoft Foundry guardrails ensure that AI-generated outputs align with ethical guidelines and safety standards. The content filtering system classifies harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
 
-<!-- NEW-ONLY: For an overview of how guardrails work, see [Guardrails and controls overview](../../default/guardrails/guardrails-overview.md). -->
+For an overview of how guardrails work, see [Guardrails and controls overview](/azure/foundry/guardrails/guardrails-overview).
 
 The content safety system uses neural multiclass classification models to detect and filter harmful content for both text and image. Content detected at the "safe" severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 
@@ -62,7 +62,7 @@ When you configure a guardrail control for a harm category, you set a severity t
 | **Medium** | Flags content at medium severity and higher. |
 | **High** | Flags only the most severe content. Most restrictive setting. |
 
-<!-- NEW-ONLY: Content at the "safe" level is always annotated but never blocked, regardless of threshold setting. To configure these thresholds, see [How to configure guardrails and controls](../../default/guardrails/how-to-create-guardrails.md). -->
+Content at the "safe" level is always annotated but never blocked, regardless of threshold setting. To configure these thresholds, see [How to configure guardrails and controls](/azure/foundry/guardrails/how-to-create-guardrails).
 
 ### Detailed severity definitions for text
 
@@ -95,11 +95,11 @@ If you're seeing too many false positives or negatives:
 - Consider whether the content type (educational, medical, creative) requires a custom content policy
 - For supported use cases, request a custom content filter configuration
 
-<!-- NEW-ONLY: For more information, see [Configure guardrails and controls](../../default/guardrails/how-to-create-guardrails.md). -->
+For more information, see [Configure guardrails and controls](/azure/foundry/guardrails/how-to-create-guardrails).
 
 ## Next steps
 
-<!-- NEW-ONLY: - [Guardrails and controls overview](../../default/guardrails/guardrails-overview.md) -->
-<!-- NEW-ONLY: - [Configure guardrails and controls](../../default/guardrails/how-to-create-guardrails.md) -->
+- [Guardrails and controls overview](/azure/foundry/guardrails/guardrails-overview)
+- [Configure guardrails and controls](/azure/foundry/guardrails/how-to-create-guardrails)
 - [Guardrail annotations](content-filter-annotations.md)
 - [Content filtering](../../foundry-models/concepts/content-filter.md)

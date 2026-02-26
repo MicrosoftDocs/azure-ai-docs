@@ -146,4 +146,4 @@ Now that you've done the above steps, you can follow the instructions in the [Re
 
 * Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
 * See the [Realtime API reference](../realtime-audio-reference.md)
-<!-- CLASSIC-ONLY: * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md) -->
+* Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

@@ -132,7 +132,7 @@ The AI Red Teaming Agent currently supported red teaming Foundry agents with Azu
 | Connected Agent tool calls              | Not Supported |
 | Computer Use tool calls                  | Not Supported |
 
-<!-- CLASSIC-ONLY: For a comprehensive list of tools, see [Tools](../agents/how-to/tools-classic/overview.md). -->
+For a comprehensive list of tools, see [Tools](/azure/foundry-classic/agents/how-to/tools-classic/overview).
 
 ## Supported attack strategies
 

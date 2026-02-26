@@ -101,8 +101,8 @@ For **Global** deployment types, prompts and responses might be processed in any
 
 Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
 
-<!-- > [!NOTE] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY: > With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [business continuity and disaster recovery guide](../../openai/how-to/business-continuity-disaster-recovery.md). -->
+> [!NOTE]
+> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [business continuity and disaster recovery guide](/azure/foundry-classic/openai/how-to/business-continuity-disaster-recovery).
 
 ## Global Standard
 
@@ -110,7 +110,7 @@ Learn more in the "Model region availability by deployment type" section of [Fou
 
 Global Standard deployments use Azure's global infrastructure to dynamically route traffic to available datacenters. This deployment type provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
-<!-- CLASSIC-ONLY: Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../quotas-limits.md). For applications that require lower latency variance at large workload usage, consider provisioned throughput. -->
+Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](../quotas-limits.md). For applications that require lower latency variance at large workload usage, consider provisioned throughput.
 
 Global Standard supports priority processing (preview) for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
@@ -146,7 +146,7 @@ Common use cases:
 
 Data Zone Standard deployments dynamically route traffic to datacenters within the Microsoft-defined data zone (US or EU). This deployment type provides higher default quotas than geography-based deployment types while keeping data within the specified zone.
 
-<!-- CLASSIC-ONLY: Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits.md). For workloads that require low latency variance at large volume, consider provisioned deployment types. -->
+Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](../quotas-limits.md). For workloads that require low latency variance at large volume, consider provisioned deployment types.
 
 Data Zone Standard supports priority processing (preview) for faster response times on a pay-as-you-go basis. To learn more, see [Priority processing for Foundry models (preview)](../../openai/concepts/priority-processing.md).
 
@@ -180,7 +180,7 @@ Regional Provisioned deployments allow you to specify the amount of throughput y
 
 - SKU name in code: `DeveloperTier`
 
-<!-- CLASSIC-ONLY: The Developer deployment type is designed for fine-tuned model evaluation only. It provides cost-efficient testing of custom models but doesn't include data residency guarantees or an SLA. Developer deployments have a fixed 24-hour lifetime and are automatically deleted after expiration. To learn more about using the Developer deployment type, see the [fine-tuning guide](../../openai/how-to/fine-tune-test.md). -->
+The Developer deployment type is designed for fine-tuned model evaluation only. It provides cost-efficient testing of custom models but doesn't include data residency guarantees or an SLA. Developer deployments have a fixed 24-hour lifetime and are automatically deleted after expiration. To learn more about using the Developer deployment type, see the [fine-tuning guide](/azure/foundry-classic/openai/how-to/fine-tune-test).
 
 ## Troubleshooting deployment issues
 
@@ -193,7 +193,7 @@ Common issues when creating or using deployments:
 | Region unavailable | Model not deployed in selected region | Select a region from the model's availability list |
 | Provisioned capacity unavailable | No PTU capacity in region | Try a different region or use Global Provisioned for broader availability |
 
-<!-- CLASSIC-ONLY: For quota limits by deployment type, see [Foundry Models quotas and limits](../quotas-limits.md). -->
+For quota limits by deployment type, see [Foundry Models quotas and limits](../quotas-limits.md).
 
 ## Restrict deployment types with Azure Policy
 
@@ -224,12 +224,12 @@ Use the following policy to disable access to a specific Foundry deployment type
 ## Related content
 
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
-<!-- CLASSIC-ONLY: - [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../openai/how-to/create-resource.md) -->
+- [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](/azure/foundry-classic/openai/how-to/create-resource)
 - [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md)
 - [Model region availability by deployment type](models-sold-directly-by-azure.md)
-<!-- CLASSIC-ONLY: - [Microsoft Foundry Models quotas and limits](../quotas-limits.md) -->
+- [Microsoft Foundry Models quotas and limits](../quotas-limits.md)
 - [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 - [Global Batch processing](../../openai/how-to/batch.md)
 - [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
-<!-- CLASSIC-ONLY: - [Data privacy and security for Foundry Models](../../how-to/concept-data-privacy.md) -->
-<!-- CLASSIC-ONLY: - [Business continuity and disaster recovery](../../openai/how-to/business-continuity-disaster-recovery.md) -->
+- [Data privacy and security for Foundry Models](/azure/foundry-classic/how-to/concept-data-privacy)
+- [Business continuity and disaster recovery](/azure/foundry-classic/openai/how-to/business-continuity-disaster-recovery)

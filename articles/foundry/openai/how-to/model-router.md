@@ -218,13 +218,13 @@ You can monitor the costs of model router, which is the sum of the costs incurre
 | High latency | Router overhead plus underlying model processing | Use Cost mode for latency-sensitive workloads; smaller models respond faster |
 | Claude model not routing | Claude models require separate deployment | Deploy Claude models from model catalog before enabling in subset |
 
-<!-- CLASSIC-ONLY: ### Error codes -->
+### Error codes
 
-<!-- CLASSIC-ONLY: For API error codes and troubleshooting, see the [Azure OpenAI REST API reference](../reference.md). -->
+For API error codes and troubleshooting, see the [Azure OpenAI REST API reference](../reference.md).
 
 ## Next steps
 
 - [Model router concepts](../concepts/model-router.md) - Learn how routing modes work
-<!-- CLASSIC-ONLY: - [Quotas and limits](../quotas-limits.md) - Rate limits for model router -->
-<!-- CLASSIC-ONLY: - [Create an agent](../../agents/quickstart.md) - Use model router with Foundry agents -->
+- [Quotas and limits](../quotas-limits.md) - Rate limits for model router
+- [Create an agent](/azure/foundry-classic/agents/quickstart) - Use model router with Foundry agents
 

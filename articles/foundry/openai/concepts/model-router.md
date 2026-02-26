@@ -91,7 +91,7 @@ Also see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concept
 | `model-router` <br> `(2025-11-18)` | DataZoneStandard | 150           | 150,000       | 300                         | 300,000                      |
 | `model-router` <br> `(2025-11-18)` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
 
-<!-- CLASSIC-ONLY: Also see [Quotas and limits](../quotas-limits.md) for rate limit information. -->
+Also see [Quotas and limits](../quotas-limits.md) for rate limit information.
 
 To overcome the limits on context window and parameters, use the Model subset feature to select your models for routing that support your desired properties.
 
@@ -103,7 +103,7 @@ To overcome the limits on context window and parameters, use the Model subset fe
 > - Truncate the prompt into more relevant parts
 > - Use document embeddings and have the chat model retrieve relevant sections. For more information, see [What is Azure AI Search?](../../../search/search-what-is-azure-search.md)
 
-<!-- CLASSIC-ONLY: Model router accepts image inputs for [Vision enabled chats](../how-to/gpt-with-vision.md) (all of the underlying models can accept image input), but the routing decision is based on the text input only. -->
+Model router accepts image inputs for [Vision enabled chats](../how-to/gpt-with-vision.md) (all of the underlying models can accept image input), but the routing decision is based on the text input only.
 
 Model router doesn't process audio input.
 

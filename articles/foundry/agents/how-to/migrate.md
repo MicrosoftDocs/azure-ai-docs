@@ -507,10 +507,8 @@ After you migrate your code, confirm that everything works correctly:
 | `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project_client.get_openai_client()` to obtain the OpenAI client, then call `openai_client.conversations.create()`. |
 | `create_agent()` is deprecated | Earlier SDK versions used `create_agent()`. | Replace with `create_version()` and pass a `PromptAgentDefinition` object as the `definition` parameter. |
 | Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |
+| `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](/azure/foundry-classic/how-to/deploy-models-serverless-availability). |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../../how-to/deploy-models-serverless-availability.md). |
--->
 ## Related content
 
 - [Agent runtime components](../concepts/runtime-components.md)

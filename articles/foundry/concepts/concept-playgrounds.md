@@ -26,8 +26,8 @@ Microsoft Foundry playgrounds provide an on-demand, instant chat environment for
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free).
-<!-- CLASSIC-ONLY: - A [Microsoft Foundry resource](../how-to/create-azure-ai-resource.md). -->
-<!-- CLASSIC-ONLY: - At least one [deployed model](../how-to/deploy-models-managed.md) in your Foundry resource. -->
+- A [Microsoft Foundry resource](/azure/foundry-classic/how-to/create-azure-ai-resource).
+- At least one [deployed model](/azure/foundry-classic/how-to/deploy-models-managed) in your Foundry resource.
 
 ## Highlights of the Foundry playgrounds experience
 
@@ -297,6 +297,6 @@ By using the images playground, you can explore and validate the following aspec
 ## Related content
 
 - [Understanding the agent development lifecycle](../agents/concepts/development-lifecycle.md)
-<!-- CLASSIC-ONLY: - [Deploy models in Microsoft Foundry](../how-to/deploy-models-managed.md) -->
+- [Deploy models in Microsoft Foundry](/azure/foundry-classic/how-to/deploy-models-managed)
 - [Azure AI Content Safety overview](/azure/ai-services/content-safety/overview)
 - [Basic Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)

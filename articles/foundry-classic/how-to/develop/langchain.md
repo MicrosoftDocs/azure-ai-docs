@@ -71,7 +71,7 @@ To run this tutorial, you need:
 <!-- ::: moniker-end -->
 
 <!-- ::: moniker range="foundry"
-<!-- NEW-ONLY: [!INCLUDE [set-endpoint](../../includes/set-endpoint.md)] -->
+[!INCLUDE [set-endpoint](/azure/foundry/includes/set-endpoint)]
 ::: moniker-end -->
 
 Create a client to connect to the chat model by using the `AzureAIChatCompletionsModel` class.

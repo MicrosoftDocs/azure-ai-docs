@@ -20,13 +20,13 @@ ai-usage: ai-assisted
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-<!-- NEW-ONLY: > 🔍 [View the new Browser Automation documentation](../../../default/agents/how-to/tools/browser-automation.md). -->
+<!-- > 🔍 [View the new Browser Automation documentation](/azure/foundry/agents/how-to/tools/browser-automation). -->
 
 Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service. Note that Browser Automation is currently a preview feature.
 
 ## Prerequisites
 
-<!-- NEW-ONLY: * The requirements in the [Browser Automation overview](./browser-automation.md#setup). -->
+* The requirements in the [Browser Automation overview](./browser-automation.md#setup).
 * Your Microsoft Foundry Project endpoint.
     
   [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
@@ -171,4 +171,4 @@ To visualize what happens, review the Browser Automation tool-call details that 
 - The sample prints each tool call and its step-by-step progress. For example, it shows `last_step_result`, `current_state`, and `next_step`.
 - The tool captures a screenshot after actions during execution and includes the updated browser state in the tool output. Review the printed `current_state` for each step to see what the model sees at that point.
 
-<!-- NEW-ONLY: For more information, see the [How it works](./browser-automation.md#how-it-works) section in the **Browser Automation** overview article. -->
+For more information, see the [How it works](./browser-automation.md#how-it-works) section in the **Browser Automation** overview article.

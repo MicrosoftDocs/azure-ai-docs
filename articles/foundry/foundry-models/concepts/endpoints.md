@@ -45,7 +45,7 @@ For more information about creating deployments, see [Add and configure model de
 
 The **Azure OpenAI API** exposes the full capabilities of OpenAI models and supports more features like assistants, threads, files, and batch inference. You might also access non-OpenAI models through this route.
 
-<!-- CLASSIC-ONLY: Azure OpenAI endpoints, usually of the form `https://<resource-name>.openai.azure.com`, work at the deployment level and each deployment has its own associated URL. However, you can use the same authentication mechanism to consume the deployments. For more information, see the reference page for [Azure OpenAI API](../../openai/reference.md). -->
+Azure OpenAI endpoints, usually of the form `https://<resource-name>.openai.azure.com`, work at the deployment level and each deployment has its own associated URL. However, you can use the same authentication mechanism to consume the deployments. For more information, see the reference page for [Azure OpenAI API](/azure/foundry-classic/openai/reference).
 
 :::image type="content" source="../media/endpoint/endpoint-openai.png" alt-text="An illustration showing how Azure OpenAI deployments contain a single URL for each deployment." lightbox="../media/endpoint/endpoint-openai.png":::
 
@@ -69,6 +69,6 @@ To use keyless authentication, [configure your resource and grant access to user
 
 - [Foundry Models and capabilities](./models-sold-directly-by-azure.md)
 - [Deployment types in Foundry Models](deployment-types.md)
-<!-- CLASSIC-ONLY: - [Model and region availability for Foundry Models](../../how-to/deploy-models-serverless-availability.md) -->
+- [Model and region availability for Foundry Models](/azure/foundry-classic/how-to/deploy-models-serverless-availability)
 - [What is Azure OpenAI in Foundry Models?](models-sold-directly-by-azure.md)
 

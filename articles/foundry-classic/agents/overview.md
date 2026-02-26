@@ -129,6 +129,7 @@ Agent Service provides a production-ready foundation for deploying intelligent a
 
 | Capability | Agent Service |
 | --- | --- |
+| **Visibility into conversations** | Full access to structured [conversations](/azure/foundry/agents/concepts/runtime-components#what-is-a-conversation), including both user-to-agent and agent-to-agent messages. Ideal for UIs, debugging, and training. |
 | **Multiple-agent coordination** | Built-in support for agent-to-agent messaging. |
 | **Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration is required. |
 | **Trust and safety** | Integrated [content filters](../openai/how-to/content-filters.md) to help prevent misuse and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA). All outputs are policy governed. |
@@ -136,9 +137,6 @@ Agent Service provides a production-ready foundation for deploying intelligent a
 | **Observability and debugging** | [Full traceability](../how-to/develop/trace-agents-sdk.md) of conversations, tool invocations, and message traces; [Application Insights integration](./how-to/metrics.md) for usage data. |
 | **Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional access. |
 
-<!-- NEW-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| **Visibility into conversations** | Full access to structured [conversations](../default/agents/concepts/runtime-components.md#what-is-a-conversation), including both user-to-agent and agent-to-agent messages. Ideal for UIs, debugging, and training. |
--->
 ## Security, privacy, and compliance
 
 Agent Service is designed for enterprise workloads where you need strong controls over identity, networking, data handling, and safety.
