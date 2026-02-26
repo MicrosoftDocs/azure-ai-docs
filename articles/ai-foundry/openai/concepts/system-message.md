@@ -37,7 +37,8 @@ A safety system message is a system message that adds explicit boundaries and re
 
 Safety system messages complement your safety stack and can be used alongside model selection and training, grounding, Azure AI Content Safety classifiers, and UX/UI mitigations. Learn more about [Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
 
-![Diagram that shows how a system message and a user prompt influence the model response, with a safety stack applying guardrails.](../media/concepts/system-message-flow.svg)
+![Flow diagram showing a system message and user prompt entering a model, with a safety stack including content filters, grounding, and model training applying guardrails before the response is generated.](../media/concepts/system-message-flow.svg)
+
 
 ## Key components of a system message
 
@@ -69,7 +70,28 @@ Here are some examples of lines you can include:
 - To complete this task, you can [insert tools that the model can use and instructions to use]  
 - Do not perform actions that are not related to [task or topic name].  
 ```
+Here's a complete example of a safety system message for a customer service assistant:
 
+```text
+## Role and task
+You are a helpful customer service assistant for Contoso Electronics. Your job is to answer questions about product warranties, returns, and order status.
+
+## Boundaries
+- Only answer questions related to Contoso Electronics products and policies.
+- If you don't know the answer, say "I don't have that information. Please contact support@contoso.com."
+- Do not provide legal, medical, or financial advice.
+- Do not discuss competitors or make comparisons.
+
+## Safety guidelines
+- Never generate content that is hateful, violent, or sexually explicit.
+- Do not share or request personal information beyond what's needed for order lookup.
+- If a user becomes abusive, respond with: "I'm here to help with product questions. How can I assist you today?"
+
+## Response format
+- Keep responses concise and friendly.
+- Use bullet points for multiple items.
+- Always end with an offer to help further.
+```
 - **Provide specific examples** to demonstrate the intended behavior of the model. Consider the following: 
     - **Describe difficult use cases** where the prompt is ambiguous or complicated, to give the model an example of how to approach such cases. 
   - **Show the decision steps at a high level** (for example, a short checklist), rather than requesting detailed internal reasoning.
@@ -122,7 +144,7 @@ System messages are not a complete safety solution:
 - They can be bypassed or degraded by adversarial prompting.
 - They can reduce usefulness if they’re too broad or too strict.
 - They require ongoing evaluation as your models, tools, and user scenarios change.
-
+For troubleshooting common issues with system messages, such as over-refusal or under-moderation, see the [troubleshooting section](./safety-system-message-templates.md#troubleshooting) in the templates guide.
 ## Recommended system messages 
 
 These best practices can help you better understand the process of developing robust system messages for your scenario.  
@@ -135,5 +157,5 @@ Finally, remember that system messages, or metaprompts, are not "one size fits a
 
 - [Azure OpenAI in Microsoft Foundry Models](/azure/ai-foundry/openai/concepts/prompt-engineering)
 - [System message design with Azure OpenAI](/azure/ai-foundry/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions) 
-- [Announcing Safety System Messages in Foundry portal](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-safety-system-messages-in-azure-ai-studio-and-azure/ba-p/4146991) - Microsoft Community Hub 
-- [Safety system message templates ](./safety-system-message-templates.md)
+- [Announcing Safety System Messages](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/announcing-safety-system-messages-in-azure-ai-studio-and-azure-openai-studio/4146991) - Microsoft Foundry Blog
+- [Safety system message templates](./safety-system-message-templates.md)

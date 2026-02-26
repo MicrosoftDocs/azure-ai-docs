@@ -4,20 +4,6 @@ items:
   displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
 - name: What are Foundry Tools?
   href: ../../../ai-services/what-are-ai-services.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
-- name: Content Safety
-  items: 
-  - name: What is Azure AI Content Safety service?
-    href: ../../../ai-services/content-safety/overview.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
-  - name: Prompt Shields quickstart
-    href: ../../../ai-services/content-safety/quickstart-jailbreak.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
-  - name: Groundedness detection (preview) quickstart
-    href: ../../../ai-services/content-safety/quickstart-groundedness.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
-  - name: Protected material detection for text quickstart
-    href: ../../../ai-services/content-safety/quickstart-protected-material.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
-  - name: Custom categories (preview) quickstart
-    href: ../../../ai-services/content-safety/quickstart-custom-categories.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
-  - name: Text moderation quickstart
-    href: ../../../ai-services/content-safety/quickstart-text.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
 - name:  Content Understanding
   items:
   - name: What is Azure Content Understanding?
@@ -73,7 +59,7 @@ items:
   - name: Voice live with Foundry models quickstart
     href: ../../../ai-services/speech-service/voice-live-quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Voice live with Foundry agents quickstart
-    href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
+    href: ../../../ai-services/speech-service/voice-live-agents-quickstart-classic.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Real-time speech to text
     href: ../../../ai-services/speech-service/get-started-speech-to-text.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json&view=foundry-classic&preserve-view=true
   - name: Fast transcription

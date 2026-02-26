@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 01/30/2026
 ms.author: lajanuar
 monikerRange: ">=doc-intel-3.0.0"
 ---
@@ -190,7 +190,7 @@ Extract text, selection marks, text styles, table structures, and bounding regio
 >
 > * For this example, you'll need a **document file from a URI**. You can use our [sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf) for this quickstart.
 > * We've added the file URI value to the `Uri fileUri` variable at the top of the script.
-> * To extract the layout from a given file at a URI, use the `StartAnalyzeDocumentFromUri` method and pass `prebuilt-layout` as the model ID. The returned value is an `AnalyzeResult` object containing data from the submitted document.
+> * To extract the layout from a given file at a URI, use the `AnalyzeDocumentAsync` method and pass `prebuilt-layout` as the model ID. The returned value is an `AnalyzeResult` object containing data from the submitted document.
 
 :::moniker range="doc-intel-4.0.0"
 
@@ -625,7 +625,7 @@ Analyze and extract common fields from specific document types using a prebuilt 
 >
 > * Analyze an invoice using the prebuilt-invoice model. You can use our [sample invoice document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf) for this quickstart.
 > * We've added the file URI value to the `Uri invoiceUri` variable at the top of the Program.cs file.
-> * To analyze a given file at a URI, use the `StartAnalyzeDocumentFromUri` method and pass `prebuilt-invoice` as the model ID. The returned value is an `AnalyzeResult` object containing data from the submitted document.
+> * To analyze a given file at a URI, use the `AnalyzeDocumentAsync` method and pass `prebuilt-invoice` as the model ID. The returned value is an `AnalyzeResult` object containing data from the submitted document.
 > * For simplicity, all the key-value pairs that the service returns are not shown here. To see the list of all supported fields and corresponding types, see our [Invoice](../../prebuilt/invoice.md#field-extraction) concept page.
 
 :::moniker range="doc-intel-4.0.0"
@@ -644,9 +644,14 @@ AzureKeyCredential credential = new AzureKeyCredential(key);
 DocumentIntelligenceClient client = new DocumentIntelligenceClient(new Uri(endpoint), credential);
 
 //sample invoice document
-Uri uriSource = new Uri("https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf");
+Uri invoiceUri = new Uri("https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf");
 
-Operation<AnalyzeResult> operation = await client.AnalyzeDocumentAsync(WaitUntil.Completed, "prebuilt-invoice", uriSource);
+AnalyzeDocumentContent content = new AnalyzeDocumentContent()
+{
+    UrlSource = invoiceUri
+};
+
+Operation<AnalyzeResult> operation = await client.AnalyzeDocumentAsync(WaitUntil.Completed, "prebuilt-invoice", content);
 
 AnalyzeResult result = operation.Value;
 

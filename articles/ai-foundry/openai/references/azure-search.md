@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: reference
-ms.date: 02/27/2025
+ms.date: 02/06/2026
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -16,6 +16,8 @@ ms.custom: devx-track-python
 # Data source - Azure AI Search
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
+[!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
 The configurable options of Azure AI Search when using Azure OpenAI On Your Data. This data source is supported in API version `2024-02-01`.
 
@@ -40,7 +42,7 @@ The configurable options of Azure AI Search when using Azure OpenAI On Your Data
 | `semantic_configuration` | string | False | The semantic configuration for the query. Required when `query_type` is `semantic` or `vector_semantic_hybrid`.| 
 | `strictness` | integer | False | The configured strictness of the search relevance filtering. The higher of strictness, the higher of the precision but lower recall of the answer. Default is `3`.| 
 | `top_n_documents` | integer | False | The configured top number of documents to feature for the configured query. Default is `5`. |
-| `max_search_queries` | integer | False | The max number of rewritten queries should be send to search provider for one user message. If not specified, the system will decide the number of queries to send. |
+| `max_search_queries` | integer | False | The max number of rewritten queries should be sent to search provider for one user message. If not specified, the system will decide the number of queries to send. |
 | `allow_partial_result` | integer | False | If specified as true, the system will allow partial search results to be used and the request fails if all the queries fail. If not specified, or specified as false, the request will fail if any search query fails. |
 | `include_contexts` | array | False | The included properties of the output context. If not specified, the default value is `citations` and `intent`. Values can be `citations`,`intent`, `all_retrieved_documents`.|
 

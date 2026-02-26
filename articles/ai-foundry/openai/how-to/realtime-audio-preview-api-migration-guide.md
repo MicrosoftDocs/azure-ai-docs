@@ -1,12 +1,12 @@
 ---
-title: 'Migration from Beta to GA version of Realtime API protocol'
+title: 'Migration from Preview to GA version of Realtime API'
 titleSuffix: Azure OpenAI
-description: Migration Guide from Beta to GA version of OpenAI GPT Realtime API protocol.
+description: Step-by-step guide for migrating from Preview (Beta) to Generally Available version of OpenAI GPT Realtime API protocol.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 02/23/2026
 author: alexeyo26
 ms.author: alexeyo
 recommendations: false
@@ -16,7 +16,29 @@ ai-usage: ai-assisted
 
 # Migration from Preview to GA version of Realtime API
 
-You need to use Generally Available (GA) version of Azure OpenAI GPT Realtime API in your applications. The Beta version of the API used during the Preview phase of the Service is deprecated starting April 30, 2026.
+The Azure OpenAI GPT Realtime API is now Generally Available (GA). This migration guide helps you update existing applications to use the GA protocol. The GA version introduces changes to SDK usage, endpoint URLs, event names, and session configuration.
+
+**What's changing**: SDK packages, endpoint URL format, event names, and session configuration structure.
+
+**What's not changing**: Core functionality, audio format support, and model capabilities.
+
+**Time to migrate**: Most migrations take 30-60 minutes.
+
+> [!IMPORTANT]
+> The Preview version of the API is deprecated starting April 30, 2026. Migrate to the GA version before this date to avoid service disruption.
+
+> [!NOTE]
+> If you're building a new application, refer to the [Realtime API quickstart](../how-to/realtime-audio.md#quickstart) instead. This guide is only for migrating existing Preview applications to GA.
+
+## Prerequisites
+
+Before you begin the migration, verify you have:
+
+- An existing Azure OpenAI resource with a Realtime API deployment that uses the Preview (Beta) protocol
+- Access to the Azure portal with permissions to manage Azure OpenAI resources
+- Ability to update SDK dependencies in your development environment
+- A test environment where you can validate changes before deploying to production
+- Understanding of your current implementation (WebSocket or WebRTC)
 
 ## SDK Support
 
@@ -45,17 +67,19 @@ Example of GA endpoint format:
 https://<your-resource>.openai.azure.com/openai/v1/
 ```
 
-See detailed information on the endpoint format in [this article](realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](../realtime-audio-quickstart.md).
+See detailed information on the endpoint format in [this article](realtime-audio-websockets.md#connection-and-authentication). See example of GA endpoint format usage in [Quick start on GPT Realtime API for speech and audio](../how-to/realtime-audio.md#quickstart).
 
-## Ephemeral Keys and WebRTC URLs
+## Update WebRTC endpoints
+
+If you're using WebRTC for browser-based realtime audio, you need to update two endpoints to the GA versions.
 
 Ephemeral keys for WebRTC requests are now created with a `POST /openai/v1/realtime/client_secrets` request on your Azure OpenAI endpoint (see details in [Step-by-step guide](realtime-audio-webrtc.md#step-1-set-up-service-to-procure-ephemeral-token)).
 
 The URL for initializing the WebRTC connection in the browser is now `/openai/v1/realtime/calls` (see details in [Step-by-step guide](realtime-audio-webrtc.md#step-2-set-up-your-browser-application)).
 
-## Custom Clients
+## Protocol changes for custom clients
 
-If you implement the protocol in your own client, this section shows the detailed changes of the protocol.
+If you implement the Realtime API protocol in your own client instead of using the official SDKs, review these detailed protocol changes.
 
 ### OpenAI-Beta header
 
@@ -70,7 +94,7 @@ Both realtime speech-to-speech and transcription sessions now use the same `sess
 
 See the following code snippet example:
 
-```python
+```javascript
 ws.on("open", function open() {
     ws.send(
         JSON.stringify({
@@ -78,7 +102,7 @@ ws.on("open", function open() {
             session: {
                 type: "realtime",
                 model: "gpt-realtime",
-                <...>
+                // ... additional configuration
 ```
 The `session.update` event changed format, and some properties are now in different locations. See the [API reference](https://platform.openai.com/docs/api-reference/realtime) for details.
 
@@ -100,3 +124,86 @@ The types of the message content for assistant responses changed like this:
 ### New events
 
 The `conversation.item.added` and `conversation.item.done` events were added to better handle long-running operations such as MCP tool listing.
+
+## Troubleshooting
+
+This section covers common issues encountered during migration and their solutions.
+
+### WebSocket connection returns 401 Unauthorized
+
+**Symptom**: Connection fails with authentication error after updating to GA endpoint.
+
+**Cause**: The `api-version` query parameter is no longer supported in GA endpoint URLs.
+
+**Solution**: Remove `api-version` from your endpoint URL. Change from:
+```
+wss://<resource>.openai.azure.com/openai/realtime?api-version=2025-04-01-preview
+```
+
+to:
+```
+wss://<resource>.openai.azure.com/openai/v1/realtime
+```
+
+### Event handlers not triggering
+
+**Symptom**: Audio or text responses aren't being processed after migration.
+
+**Cause**: Event names changed between Preview and GA versions.
+
+**Solution**: Update your event handler names according to the new event names. Ensure all occurrences are updated, including error handlers.
+
+### Session configuration rejected
+
+**Symptom**: Server returns an error when sending the `session.update` event.
+
+**Cause**: The required `type` field is missing from the session configuration.
+
+**Solution**: Add the `type` field to your session configuration with the value `"realtime"` for speech-to-speech or `"transcription"` for audio transcription.
+
+### WebRTC connection fails to establish
+
+**Symptom**: Browser-based WebRTC connection doesn't establish after migration.
+
+**Cause**: WebRTC endpoints changed in the GA version.
+
+**Solution**: Update both the ephemeral key endpoint and the connection URL.
+
+### .NET SDK compatibility error
+
+**Symptom**: .NET application throws errors when attempting to use GA protocol.
+
+**Cause**: GA protocol requires OpenAI .NET SDK version later than 2.8.0.
+
+**Solution**: Update your .NET SDK package to version 2.1.0 or later using:
+```bash
+dotnet add package OpenAI --version 2.1.0
+```
+
+## Verification checklist
+
+Use this checklist to verify your migration is complete:
+
+> [!div class="checklist"]
+> * SDK updated to GA-compatible version (Python ≥1.54.0, JavaScript ≥4.77.0, .NET >2.8.0)
+> * Endpoint URLs changed to `/openai/v1/realtime` format
+> * `api-version` query parameter removed from endpoint URLs
+> * Event names updated (`response.text.delta` → `response.output_text.delta`, etc.)
+> * `type` field added to `session.update` event configuration
+> * `OpenAI-Beta` header removed from custom client implementations
+> * WebRTC endpoints updated (if applicable)
+> * Application tested successfully in a non-production environment
+> * Audio input and output verified to work correctly
+> * No deprecation warnings appear in application logs
+> * Performance metrics meet or exceed baseline expectations
+
+## Next steps
+
+When you migrate to the GA version of the Realtime API, explore these resources to enhance your implementation:
+
+- [Realtime API reference](https://developers.openai.com/docs/api-reference/realtime) - Complete API documentation
+- [WebSocket implementation guide](realtime-audio-websockets.md) - Detailed WebSocket configuration
+- [WebRTC implementation guide](realtime-audio-webrtc.md) - Browser-based audio implementation
+- [SIP integration](realtime-audio-sip.md) - Enable phone call integration
+- [Realtime API quickstart](../how-to/realtime-audio.md#quickstart) - Additional implementation examples
+- [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) - Cost and billing information

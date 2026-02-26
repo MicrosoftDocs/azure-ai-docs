@@ -102,11 +102,11 @@ Chit-chat is supported for several predefined personalities:
 
 |Personality |Custom question answering dataset file |
 |---------|-----|
-|Professional |[qna_chitchat_professional.tsv](https://qnamakerstore.blob.core.windows.net/qnamakerdata/editorial/qna_chitchat_professional.tsv) |
-|Friendly |[qna_chitchat_friendly.tsv](https://qnamakerstore.blob.core.windows.net/qnamakerdata/editorial/qna_chitchat_friendly.tsv) |
-|Witty |[qna_chitchat_witty.tsv](https://qnamakerstore.blob.core.windows.net/qnamakerdata/editorial/qna_chitchat_witty.tsv) |
-|Caring |[qna_chitchat_caring.tsv](https://qnamakerstore.blob.core.windows.net/qnamakerdata/editorial/qna_chitchat_caring.tsv) |
-|Enthusiastic |[qna_chitchat_enthusiastic.tsv](https://qnamakerstore.blob.core.windows.net/qnamakerdata/editorial/qna_chitchat_enthusiastic.tsv) |
+|Professional | qna_chitchat_professional.tsv |
+|Friendly | qna_chitchat_friendly.tsv |
+|Witty | qna_chitchat_witty.tsv |
+|Caring | qna_chitchat_caring.tsv |
+|Enthusiastic | qna_chitchat_enthusiastic.tsv |
 
 The responses range from formal to informal and irreverent. You should select the personality that is closest aligned with the tone you want for your bot. You can view the datasets, and choose one that serves as a base for your bot, and then customize the responses.
 

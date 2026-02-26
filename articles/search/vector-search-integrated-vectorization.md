@@ -35,7 +35,7 @@ For integrated data chunking and vector conversions, you're taking a dependency 
 
 + [A skillset](cognitive-search-working-with-skillsets.md) configured for:
 
-  + A chunking strategy: [Text Split skill](cognitive-search-skill-textsplit.md), [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), [Continent Understanding skill](cognitive-search-skill-content-understanding.md), or one of the [document parsing modes](vector-search-how-to-chunk-documents.md#common-chunking-techniques). 
+  + A chunking strategy: [Text Split skill](cognitive-search-skill-textsplit.md), [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md), or one of the [document parsing modes](vector-search-how-to-chunk-documents.md#common-chunking-techniques). 
   
   + An embedding skill, used to generate vector arrays, which can be any of the following:
 
@@ -97,8 +97,8 @@ Data chunking (Text Split skill) is free and available on all Foundry Tools in a
 
 For query-only vectorization:
 
-1. [Add a vectorizer](vector-search-how-to-configure-vectorizer.md#define-a-vectorizer-and-vector-profile) to an index. It should be the same embedding model used to generate vectors in the index.
-1. [Assign the vectorizer](vector-search-how-to-configure-vectorizer.md#define-a-vectorizer-and-vector-profile) to a vector profile, and then assign a vector profile to the vector field.
+1. [Add a vectorizer](vector-search-how-to-configure-vectorizer.md#define-a-vectorizer-programmatically) to an index. It should be the same embedding model used to generate vectors in the index.
+1. [Assign the vectorizer](vector-search-how-to-configure-vectorizer.md#define-a-vectorizer-programmatically) to a vector profile, and then assign a vector profile to the vector field.
 1. [Formulate a vector query](vector-search-how-to-configure-vectorizer.md#test-a-vectorizer) that specifies the text string to vectorize.
 
 A more common scenario - data chunking and vectorization during indexing:

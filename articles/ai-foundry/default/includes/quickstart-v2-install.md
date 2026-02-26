@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 11/06/2025
+ms.date: 02/23/2026
 ms.custom: include
 ---
 
@@ -17,8 +17,8 @@ Make sure you install the correct preview/prerelease version of the packages as 
 1. Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** (preview).
 
     ```
-    pip install azure-ai-projects --pre
-    pip install openai azure-identity python-dotenv
+    pip install --pre "azure-ai-projects>=2.0.0b4"
+    pip install python-dotenv
     ```
 
 1. Sign in using the CLI `az login` command to authenticate before running your Python scripts.

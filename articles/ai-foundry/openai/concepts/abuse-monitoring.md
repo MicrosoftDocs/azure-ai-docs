@@ -12,9 +12,11 @@ ms.custom: template-concept, ignite-2024
 manager: nitinme
 monikerRange: 'foundry-classic || foundry'
 
+ai-usage: ai-assisted
+
 ---
 
-# Abuse Monitoring
+# Abuse monitoring
 
 Azure Direct Models detect and mitigate instances of recurring content and/or behaviors that suggest use of the service in a manner that might violate the [Code of Conduct](https://aka.ms/AI-CoC). Details on how data is handled can be found on the [Data, Privacy, and Security](/azure/ai-foundry/responsible-ai/openai/data-privacy) page. 
 
@@ -40,6 +42,6 @@ Some customers may want to use Azure Direct Models for a use case that involves 
 
 ## Next steps
 
-- Learn more about the [underlying models that power Azure OpenAI](../concepts/models.md).
+- Learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 - Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
 - Learn more about how data is processed in content filtering and abuse monitoring: [Data, privacy, and security for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy#preventing-abuse-and-harmful-content-generation).

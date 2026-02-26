@@ -41,7 +41,7 @@ Use a REST client to complete this tutorial and the [latest preview REST API](/r
 
 + [Azure AI Search](search-create-service-portal.md), any region. Basic tier or higher is required for managed identity support.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a [Python client](https://code.visualstudio.com/docs/languages/python) and [Jupyter package](https://pypi.org/project/jupyter/).
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Prepare sample data
 

@@ -372,4 +372,4 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
 
 - Try the [Voice Live quickstart](./voice-live-quickstart.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)

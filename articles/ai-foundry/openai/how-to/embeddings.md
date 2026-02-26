@@ -7,23 +7,34 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 02/10/2026
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Learn how to generate embeddings
 
 An embedding is a special format of data representation that can be easily utilized by machine learning models and algorithms. The embedding is an information dense representation of the semantic meaning of a piece of text. Each embedding is a vector of floating point numbers, such that the distance between two embeddings in the vector space is correlated with semantic similarity between two inputs in the original format. For example, if two texts are similar, then their vector representations should also be similar. Embeddings power vector similarity search in Azure Databases such as [Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/vector-search), [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search), [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search) or [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector).
 
+## Prerequisites
+
+- An Azure OpenAI embedding model deployed.
+- The following values from your resource:
+	- Endpoint, for example, `https://YOUR-RESOURCE-NAME.openai.azure.com/`.
+	- API key.
+	- Model deployment name.
+
+For more language-specific setup guidance, see [Azure OpenAI supported programming languages](../supported-languages.md).
+
 ## How to get embeddings
 
 To obtain an embedding vector for a piece of text, make a request to the embeddings endpoint as shown in the following code snippets:
 
 > [!NOTE]
-> The Azure OpenAI embeddings API does not currently support Microsoft Entra ID with the v1 API.
+> The Azure OpenAI embeddings API does not currently support Microsoft Entra ID with the v1 API. Use API key authentication for the examples in this article.
 
 # [C#](#tab/csharp)
 
@@ -154,6 +165,7 @@ $text = 'Your text string goes here'
 
 $body = [ordered]@{
     input = $text
+	model = $openai.name
 } | ConvertTo-Json
 
 $url = "$($openai.api_base)/openai/v1/embeddings"
@@ -168,7 +180,7 @@ return $response.data.embedding
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
   -H 'Content-Type: application/json' \
   -H 'api-key: YOUR_API_KEY' \
-  -d '{"input": "Sample Document goes here"}'
+	-d '{"model": "YOUR-DEPLOYMENT-NAME", "input": "Sample Document goes here"}'
 ```
 
 ---
@@ -181,6 +193,12 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
 - If sending an array of inputs in a single embedding request the max array size is 2048.
 - When sending an array of inputs in a single request, remember that the number of tokens per minute in your requests must remain below the quota limit that was assigned at model deployment. By default, the latest generation 3 embeddings models are subject to a 350 K TPM per region limit.  
 
+## Troubleshooting
+
+- If you get a `401` or `403` error, confirm the API key is valid for the resource.
+- If you get a `404` error, confirm the endpoint includes the `/openai/v1/` path and you used the correct base URL.
+- If you get a `400` error, confirm `model` is set to your deployment name and the request body is valid JSON.
+
 
 ## Limitations & risks
 
@@ -189,7 +207,7 @@ Our embedding models may be unreliable or pose social risks in certain cases, an
 ## Next steps
 
 * Learn more about using Azure OpenAI and embeddings to perform document search with our [embeddings tutorial](../tutorials/embeddings.md).
-* Learn more about the [underlying models that power Azure OpenAI](../concepts/models.md).
+* Learn more about the [underlying models that power Azure OpenAI](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * Store your embeddings and perform vector (similarity) search using your choice of service:
   * [Azure AI Search](/azure/search/vector-search-overview)
   * [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search)

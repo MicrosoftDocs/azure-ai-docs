@@ -9,17 +9,35 @@ ms.date: 11/10/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Web search (preview)
 
 Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. Web search is available via the `web_search_preview` tool in the **Responses API**.
 
+> [!NOTE]
+> Some SDKs may expose both `web_search_preview` and `web_search` tool types.
+> Only `web_search_preview` is currently supported for Web search in the Azure OpenAI Responses API.
+> The `web_search` tool type is not supported at this time and should not be used.
+
 > [!IMPORTANT]
-> * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
+> * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When Customer uses Grounding with Bing Search and/or Grounding with Bing Custom Search, Customer Data will flow outside Customer’s compliance and Geo boundary.
 > * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs; learn more about [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
-> * [Learn more](/azure/ai-foundry/openai/how-to/web-search?view=foundry-classic#manage-web-search-preview-tool) about how Azure admins can manage access to the use of Web Search (preview).
+> * [Learn more](#manage-web-search-preview-tool) about how Azure admins can manage access to the use of Web search (preview).
+
+## Prerequisites
+
+- An Azure OpenAI model deployed.
+- An authentication method:
+  - API key, or
+  - Microsoft Entra ID.
+- For Python examples:
+  - Install the `openai` package.
+  - Install `azure-identity` for Microsoft Entra ID authentication.
+- For REST examples:
+  - Set `AZURE_OPENAI_API_KEY` (API key flow) or `AZURE_OPENAI_AUTH_TOKEN` (Microsoft Entra ID flow).
 
 ## Options to use web search
 
@@ -48,7 +66,7 @@ Deep Research can run for several minutes and is best for background-style workl
 You use web search by declaring the tool in your request. The model may decide whether to call the tool based on the user’s prompt and your configuration.
 
 > [!NOTE]
-> Web Search in Responses API with work with gpt-4 models and later
+> Web Search in the Responses API works with GPT-4 models and later.
 
 ### Use web search with a non-reasoning model
 
@@ -101,17 +119,16 @@ print(response.output_text)
 **Python - Entra ID**
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="latest"
+  api_key=token_provider,
 )
 
 response = client.responses.create(   
@@ -174,9 +191,9 @@ A successful response that used web search typically contains two parts:
 
 ### Control results by user location
 
-You can refine search results by specifying a country code.
+You can refine search results by specifying a country/region code.
 
-- `country`: a two-letter [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1) (for example, US).
+- `country`: a two-letter [ISO country/region code](https://en.wikipedia.org/wiki/ISO_3166-1) (for example, US).
 
 **REST API - Entra ID**
 
@@ -251,17 +268,16 @@ print(response.output_text)
 **Python - Entra ID**
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="latest"
+  api_key=token_provider,
 )
 
 response = client.responses.create(   
@@ -345,18 +361,18 @@ print(response.output_text)
 **Python - Entra ID**
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="latest"
+  api_key=token_provider,
 )
+
 
 response = client.responses.create(   
   model="o3-deep-research", # Replace with your model deployment name
@@ -401,3 +417,9 @@ az feature unregister --name OpenAI.BlockedTools.web_search --namespace Microsof
 ```
 
 This command enables Bing web search functionality for all accounts in the subscription.
+
+## Troubleshooting
+
+- **No citations returned**: Confirm your request includes `tools: [{"type": "web_search_preview"}]`. If the model doesn't call the tool, prompt more explicitly to browse the web or ask for citations.
+- **Tool is blocked**: Ask your subscription admin to verify the subscription feature setting for blocked tools. See [Manage web search preview tool](#manage-web-search-preview-tool).
+- **Authentication errors**: For API keys, verify you set `AZURE_OPENAI_API_KEY`. For Microsoft Entra ID, verify your token scope is `https://cognitiveservices.azure.com/.default`.

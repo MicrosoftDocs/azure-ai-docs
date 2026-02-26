@@ -6,12 +6,13 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 02/23/2026
 author: mrbullwinkle 
 ms.author: mbullwin
 recommendations: false
 ms.custom:
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Performance and latency
@@ -49,7 +50,7 @@ A second approach to estimated system level throughput involves collecting token
   "body": {
     "id": "chatcmpl-7R1nGnsXO8n4oi9UPz2f3UHdgAYMn",
     "created": 1686676106,
-    "choices": [...],
+    "choices": [],
     "usage": {
       "completion_tokens": 557,
       "prompt_tokens": 33,
@@ -86,7 +87,7 @@ There are several factors that you can control to improve per-call latency of yo
 
 ### Model selection
 
-Latency varies based on what model you're using. For an identical request, expect that different models have different latencies for the chat completions call. If your use case requires the lowest latency models with the fastest response times, we recommend the latest [GPT-4o mini model](../concepts/models.md).
+Latency varies based on what model you're using. For an identical request, expect that different models have different latencies for the chat completions call. If your use case requires the lowest latency models with the fastest response times, we recommend the latest [GPT-4o mini model](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 ### Generation size and Max tokens
 
@@ -95,7 +96,7 @@ When you send a completion request to the Azure OpenAI endpoint, your input text
 At the time of the request, the requested generation size (`max_tokens` parameter) is used as an initial estimate of the generation size. The compute-time for generating the full size is reserved by the model as the request is processed. Once the generation is completed, the remaining quota is released. Ways to reduce the number of tokens:
 - Set the `max_tokens` parameter on each call as small as possible.
 - Include stop sequences to prevent generating extra content.
-- Generate fewer responses: The best_of & n parameters can greatly increase latency because they generate multiple outputs. For the fastest response, either don't specify these values or set them to 1.
+- Generate fewer responses: Using the `n` parameter can increase latency because it produces multiple outputs per request. For the fastest response, don't set `n` (or set it to `1`).
 
 In summary, reducing the number of tokens generated per request reduces the latency of each request.
 
@@ -165,7 +166,7 @@ Time from the first token to the last token, divided by the number of generated 
 
 ## Summary
 
-* **Model latency**: If model latency is important to you, we recommend trying out the [GPT-4o mini model](../concepts/models.md).
+* **Model latency**: If model latency is important to you, we recommend trying out the [GPT-4o mini model](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 * **Lower max tokens**: OpenAI has found that even in cases where the total number of tokens generated is similar the request with the higher value set for the max token parameter will have more latency.
 

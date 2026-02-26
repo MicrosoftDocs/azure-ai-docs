@@ -6,13 +6,18 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 01/19/2026
+ms.date: 02/23/2026
 ms.custom: include
 ---
 
 
-In this quickstart, you use [!INCLUDE [foundry-link](../includes/foundry-link.md)] to interact with a Foundry model, create, and chat with an agent.
+In this quickstart you'll get started using models and agents in Foundry.
 
+> [!div class="checklist"]
+> **You will:**
+> - Generate a response from a model
+> - Create an agent with a defined prompt
+> - Have a multi-turn conversation with the agent
 
 ## Prerequisites
 

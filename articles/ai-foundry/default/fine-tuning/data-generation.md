@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2025
 ms.topic: how-to
-ms.date: 01/29/2026
+ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: williamliang
@@ -46,19 +46,7 @@ This article covers:
 - A Foundry project. For more information, see [create a project with Foundry](../../how-to/create-projects.md)
 - A minimum role assignment of `Azure AI User` or optionally `Azure AI Project Manager` on the Foundry resource. For more information, see [Manage access with role-based access control (RBAC)](../../concepts/rbac-foundry.md)
 
-- Use one of the **supported regions** for synthetic data generation:
-  - `eastus2`
-  - `eastus`
-  - `westus`
-  - `northcentralus`
-  - `southcentralus`
-  - `swedencentral`
-  - `germanywestcentral`
-  - `francecentral`
-  - `uksouth`
-  - `uaenorth`
-  - `japaneast`
-  - `australiaeast`
+- Use one of the **supported regions** for synthetic data generation: `eastus2`, `eastus`, `westus`, `northcentralus`, `southcentralus`, `swedencentral`, `germanywestcentral`, `francecentral`, `uksouth`, `uaenorth`, `japaneast`, `australiaeast`
 
 ## Generate synthetic data for fine-tuning
 
@@ -70,7 +58,7 @@ The preview includes two generator types:
 
 | Generator | Use case | Configurable parameter |
 |-----------|----------|-----------------------|
-| Simple Q&A | Turn a domain document into fine-tuning question–answer pairs | <b>Question type (Long answer / Short answer)</b>: Long answer elicits analytical reasoning in the model response; short answer focuses on factual brevity. |
+| Simple Q&A | Turn a domain document into fine-tuning question–answer pairs | **Question type (Long answer / Short answer)**: Long answer elicits analytical reasoning in the model response; short answer focuses on factual brevity. |
 | Tool use | Simulate multi-turn conversations with tool calls over your API surface | None |
 
 
@@ -80,8 +68,8 @@ Our generators require a single reference file as the basis for generating new, 
 
 Supported formats:
 
-* <b>Simple Q&A</b>: A PDF, Markdown, or plain text document less than 20MB containing the subject knowledge you want the model to learn from.
-* <b>Tool use</b>: A valid 3.0.x or 3.1.x OpenAPI Specification (Swagger) file in JSON less than 20MB that describes the APIs you want the model to learn to call as tools.
+* **Simple Q&A**: A PDF, Markdown, or plain text document less than 20MB containing the subject knowledge you want the model to learn from.
+* **Tool use**: A valid 3.0.x or 3.1.x OpenAPI Specification (Swagger) file in JSON less than 20MB that describes the APIs you want the model to learn to call as tools.
 
 
 > [!TIP]
@@ -89,33 +77,31 @@ Supported formats:
 
 In this preview, only one reference file is supported. If you have multiple documents, please combine them into a single file before uploading.
 
-
-
 ### Generate synthetic data in the portal
 
-1. Navigate to Foundry (new) Synthetic Data Generation from the left menu under Data
-:::image type="content" source="../media/data-generation/generate-data.png" alt-text="A screenshot showing an example of the generate data button in Foundry." lightbox="../media/data-generation/generate-data.png":::
-3. Select **Generate data** button 
-4. Use the synthetic data generation wizard to create a new data generation job:
-:::image type="content" source="../media/data-generation/upload-data.png" alt-text="A screenshot showing an example of the upload data button in Foundry." lightbox="../media/data-generation/upload-data.png":::
-   1. Select a **task type**: Simple Q&A or Tool use
-   2. Define the generation parameters if applicable
-   3. Upload your reference file
-   4. Select the number of samples to generate for your dataset (between 50 and 1000)
-   5. Select the model you want to use for data generation. If a model you selected is not deployed, a new deployment will be made for you automatically.
-   1. Select if you want to perform 80/20 train-validation split on the generated dataset automatically
-   1. (Optional) Provide a custom identifiable name to append to the end of the data generation job ID
-   1. Submit your generation job by clicking the "Generate" button in the wizard
-1. Review generated data by selecting it after the job is complete. A preview panel will open on the right side of the screen to show you sample outputs and cost metrics.
+1. In the Foundry portal, select **Data** > **Synthetic Data Generation** from the left menu.
+   :::image type="content" source="../media/data-generation/generate-data.png" alt-text="A screenshot showing an example of the generate data button in Foundry." lightbox="../media/data-generation/generate-data.png":::
+1. Select the **Generate data** button.
+1. Use the synthetic data generation wizard to create a new data generation job:
+   :::image type="content" source="../media/data-generation/upload-data.png" alt-text="A screenshot showing an example of the upload data button in Foundry." lightbox="../media/data-generation/upload-data.png":::
+   1. Select a **task type**: Simple Q&A or Tool use.
+   1. Define the generation parameters, if applicable.
+   1. Upload your reference file.
+   1. Select the number of samples to generate for your dataset (between 50 and 1,000).
+   1. Select the model to use for data generation. If the model you select isn't deployed, a new deployment is created automatically.
+   1. Select whether to perform an 80/20 train-validation split on the generated dataset automatically.
+   1. (Optional) Provide a custom name to append to the data generation job ID.
+   1. Select **Generate** to submit the job.
+1. Review generated data by selecting the completed job. A preview panel opens on the right side of the screen showing sample outputs and cost metrics.
 
-> [!IMPROTANT]
-> If you don't have an available generator model, you need to ask your admin to deploy one or you need to be assigned as `Azure AI owner` role to deploy models.
+> [!IMPORTANT]
+> If you don't have an available generator model, ask your admin to deploy one, or you need to be assigned the `Azure AI Owner` role to deploy models.
 
 ### Use your generated synthetic data for fine-tuning
 
-After your synthetic data generation job is complete, you can use the generated dataset for fine-tuning your models. The generated data is formatted as JSONL files compatible with Foundry fine-tuning workflows. 
+Once the data generation job completes, the resulting dataset is ready for fine-tuning. The output is formatted as JSONL files compatible with Foundry fine-tuning workflows.
 
-You can download this dataset for post-processing or use it directly in fine-tuning by clicking the "Use this dataset" button in the right preview panel.
+You can download the dataset for post-processing or use it directly in fine-tuning by selecting the **Use this dataset** button in the right preview panel.
 
 
 An example of JSONL training data generated by the Simple Q&A generator from a tax statute:

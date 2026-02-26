@@ -4,7 +4,7 @@ description: Learn about the latest news and features updates for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
-ms.date: 09/10/2025
+ms.date: 12/30/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: whats-new
@@ -18,6 +18,14 @@ ms.custom:
 # What's new in Azure OpenAI in Azure AI Foundry Models
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
+
+## February 2026
+
+### GPT-Realtime-1.5 and GPT-Audio-1.5 models released
+
+The `gpt-realtime-1.5-2026-02-23` and `gpt-audio-1.5-2026-02-23` models are now available.
+- These models were built upon last year’s GPT-Realtime and GPT-Audio with focused improvements in instruction following, multi-lingual support, and tool calling while preserving the low-latency, real-time interactions developers need for voice-first applications. 
+- Developers can try them out through the existing chat completion APIs in Microsoft Foundry. 
 
 ## December 2025
 
@@ -98,13 +106,13 @@ Personally identifiable information (PII) detection is now available as a built-
 
 ### Sora video-to-video support 
 
-The Sora model from OpenAI now supports video-to-video generation. You can provide a short video as input to generate a new, longer video that incorporates the input video. See the [quickstart](./video-generation-quickstart.md) to get started.
+The Sora model from OpenAI now supports video-to-video generation. You can provide a short video as input to generate a new, longer video that incorporates the input video. See the [quickstart](./concepts/video-generation.md#quickstart) to get started.
 
 ## August 2025
 
 ### Sora image-to-video support
 
-The Sora model from OpenAI now supports image-to-video generation. You can provide an image as input to the model to generate a video that incorporates the content of the image. You can also specify the frame of the video in which the image should appear: it doesn't need to be the beginning. See the [quickstart](./video-generation-quickstart.md) to get started.
+The Sora model from OpenAI now supports image-to-video generation. You can provide an image as input to the model to generate a video that incorporates the content of the image. You can also specify the frame of the video in which the image should appear: it doesn't need to be the beginning. See the [quickstart](./concepts/video-generation.md#quickstart) to get started.
 
 This Sora model is now available in the Sweden Central region and East US 2.
 
@@ -145,7 +153,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 ### GPT-5 models available
 
 - `gpt-5`, `gpt-5-mini`, `gpt-5-nano` To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md).
-- `gpt-5-chat` is now available. To learn more, see the [models page](./concepts/models.md)
+- `gpt-5-chat` is now available. To learn more, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md)
 
 - `gpt-5` is now available for [Provisioned Throughput Units (PTU)](./how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
 
@@ -219,7 +227,7 @@ Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to
 
 ### GPT-4.1 released
 
-GPT 4.1 and GPT 4.1-nano are now available. These are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](./concepts/models.md#gpt-41-series).
+GPT 4.1 and GPT 4.1-nano are now available. These are the latest models from Azure OpenAI. GPT 4.1 has a 1 million token context limit. For more information, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-41-series).
 
 ### gpt-4o audio models released
 
@@ -229,7 +237,7 @@ New audio models powered by GPT-4o are now available.
 
 - The `gpt-4o-mini-tts` text to speech model is released. Use the `gpt-4o-mini-tts` model for text to speech generation via the `/audio` API.
 
-For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-models).
+For more information about available models, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 
 ## March 2025
 
@@ -241,7 +249,7 @@ The [Responses API](./how-to/responses.md) is a new stateful API from Azure Open
 
 Request access: [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess)
 
-For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#computer-use-preview).
+For more information on model capabilities, and region availability see the [models documentation](../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview).
 
 :::image type="content" source="./media/computer-use-preview.gif" alt-text="Animated gif of computer-use-preview model integrated with playwright." lightbox="./media/computer-use-preview.gif":::
 
@@ -261,7 +269,7 @@ In addition to the deployment-level content filtering configuration, we now also
 
 The latest GPT model that excels at diverse text and image tasks is now available on Azure OpenAI.
 
-For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md).
+For more information on model capabilities, and region availability see the [models documentation](../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 ### Stored completions API
 
@@ -277,9 +285,9 @@ For more information, see our [reasoning model guide](./how-to/reasoning.md).
 
 The `gpt-4o-mini-audio-preview` (`2024-12-17`) model is the latest audio completions model. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
-The `gpt-4o-mini-realtime-preview` (`2024-12-17`) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./realtime-audio-quickstart.md).
+The `gpt-4o-mini-realtime-preview` (`2024-12-17`) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./how-to/realtime-audio.md#quickstart).
 
-For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-models).
+For more information about available models, see the [models and versions documentation](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 
 ## January 2025
 
@@ -289,22 +297,22 @@ For more information about available models, see the [models and versions docume
 
 ### GPT-4o audio completions
 
-The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability). Use the `gpt-4o-audio-preview` model for audio generation.
+The `gpt-4o-audio-preview` model is now available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability). Use the `gpt-4o-audio-preview` model for audio generation.
 
 The `gpt-4o-audio-preview` model introduces the audio modality into the existing `/chat/completions` API. The audio model expands the potential for AI applications in text and voice-based interactions and audio analysis. Modalities supported in `gpt-4o-audio-preview` model include:  text, audio, and text + audio. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
 > [!NOTE]
-> The [Realtime API](./realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.
+> The [Realtime API](./how-to/realtime-audio.md#quickstart) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.
 
 ### GPT Realtime API 2024-12-17
 
-The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability). Use the `gpt-4o-realtime-preview` version 2024-12-17 model instead of the `gpt-4o-realtime-preview` version 2024-10-01-preview model for real-time audio interactions.
+The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability). Use the `gpt-4o-realtime-preview` version 2024-12-17 model instead of the `gpt-4o-realtime-preview` version 2024-10-01-preview model for real-time audio interactions.
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
 - Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
 
-For more information, see the [GPT real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
+For more information, see the [GPT real-time audio quickstart](how-to/realtime-audio.md#quickstart) and the [how-to guide](./how-to/realtime-audio.md).
 
 ## December 2024
 
@@ -326,7 +334,7 @@ To learn more about the advanced `o1` series models see, [getting started with o
 
 [Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO doesn't require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI, starting with the `gpt-4o-2024-08-06` model.
 
-For fine-tuning model region availability, see the [models page](./concepts/models.md#fine-tuning-models).
+For fine-tuning model region availability, see the [models page](../foundry-models/concepts/models-sold-directly-by-azure.md#fine-tuning-models).
 
 ### Stored completions & distillation
 
@@ -352,4 +360,4 @@ For more information, see the [deployment types guide](https://aka.ms/aoai/docs/
 
 ## Next steps
 
-Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).

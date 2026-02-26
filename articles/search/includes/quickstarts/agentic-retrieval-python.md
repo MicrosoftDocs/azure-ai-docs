@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 02/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -15,10 +15,10 @@ In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview
 
 A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
 
-Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
+Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
 > [!TIP]
-> Want to get started right away? See the [azure-search-python-samples](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Agentic-Retrieval) GitHub repository.
+> Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Agentic-Retrieval) on GitHub.
 
 ## Prerequisites
 
@@ -28,25 +28,50 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. You can use any `text-embedding` model, such as `text-embedding-3-large`.
+
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models), such as `gpt-5-mini`.
+
++ [Python 3.8](https://www.python.org/downloads/) or later.
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions.
+
++ [Git](https://git-scm.com/downloads) to clone the sample repository.
+
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) and the latest version of [Python](https://www.python.org/downloads/).
+[!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
-[!INCLUDE [Setup](./agentic-retrieval-setup.md)]
+## Set up the environment
 
-## Connect from your local system
+1. Use Git to clone the sample repository.
 
-You configured role-based access to interact with Azure AI Search and Azure OpenAI in Foundry Models. Use the Azure CLI to sign in to the same subscription and tenant for both resources. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-python-samples
+    ```
 
-To connect from your local system:
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-1. Create a folder named `quickstart-agentic-retrieval`.
+    ```bash
+    cd azure-search-python-samples/Quickstart-Agentic-Retrieval
+    code .
+    ```
 
-1. Open the folder in Visual Studio Code.
+1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
 
-1. Select **Terminal** > **New Terminal**.
+1. Rename `sample.env` to `.env`.
 
-1. Run the following command to sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Foundry project.
+    ```bash
+    mv sample.env .env
+    ```
+
+1. Open `quickstart-agentic-retrieval.ipynb`.
+
+1. Press **Ctrl+Shift+P**, select **Notebook: Select Notebook Kernel**, and follow the prompts to create a virtual environment. Select **requirements.txt** for the dependencies.
+
+   When complete, you should see a `.venv` folder in the project directory.
+
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
     ```azurecli
     az login
@@ -54,299 +79,13 @@ To connect from your local system:
 
 ## Run the code
 
-To create and run the agentic retrieval pipeline:
+1. Run the `Load connections` cell to install the required packages and load environment variables.
 
-1. Run the following command to install the required packages.
-
-    ```console
-    pip install azure-identity requests azure-search-documents --pre
-    ```
-
-1. Create a file named `agentic-retrieval.py` in the `quickstart-agentic-retrieval` folder.
-
-1. Paste the following code into the file.
-
-    ```python
-    from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-    from azure.search.documents.indexes.models import SearchIndex, SearchField, VectorSearch, VectorSearchProfile, HnswAlgorithmConfiguration, AzureOpenAIVectorizer, AzureOpenAIVectorizerParameters, SemanticSearch, SemanticConfiguration, SemanticPrioritizedFields, SemanticField, SearchIndexKnowledgeSource, SearchIndexKnowledgeSourceParameters, SearchIndexFieldReference, KnowledgeBase, KnowledgeBaseAzureOpenAIModel, KnowledgeSourceReference, KnowledgeRetrievalOutputMode, KnowledgeRetrievalLowReasoningEffort
-    from azure.search.documents.indexes import SearchIndexClient
-    from azure.search.documents import SearchIndexingBufferedSender
-    from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
-    from azure.search.documents.knowledgebases.models import KnowledgeBaseRetrievalRequest, KnowledgeBaseMessage, KnowledgeBaseMessageTextContent, SearchIndexKnowledgeSourceParams
-    import requests
-    import json
-    
-    # Define variables
-    search_endpoint = "PUT-YOUR-SEARCH-SERVICE-URL-HERE"
-    aoai_endpoint = "PUT-YOUR-AOAI-FOUNDRY-URL-HERE"
-    aoai_embedding_model = "text-embedding-3-large"
-    aoai_embedding_deployment = "text-embedding-3-large"
-    aoai_gpt_model = "gpt-5-mini"
-    aoai_gpt_deployment = "gpt-5-mini"
-    index_name = "earth-at-night"
-    knowledge_source_name = "earth-knowledge-source"
-    knowledge_base_name = "earth-knowledge-base"
-    search_api_version = "2025-11-01-preview"
-    
-    credential = DefaultAzureCredential()
-    token_provider = get_bearer_token_provider(credential, "https://search.azure.com/.default")
-    
-    # Create an index
-    azure_openai_token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
-
-    index = SearchIndex(
-        name=index_name,
-        fields=[
-            SearchField(name="id", type="Edm.String", key=True, filterable=True, sortable=True, facetable=True),
-            SearchField(name="page_chunk", type="Edm.String", filterable=False, sortable=False, facetable=False),
-            SearchField(name="page_embedding_text_3_large", type="Collection(Edm.Single)", stored=False, vector_search_dimensions=3072, vector_search_profile_name="hnsw_text_3_large"),
-            SearchField(name="page_number", type="Edm.Int32", filterable=True, sortable=True, facetable=True)
-        ],
-        vector_search=VectorSearch(
-            profiles=[VectorSearchProfile(name="hnsw_text_3_large", algorithm_configuration_name="alg", vectorizer_name="azure_openai_text_3_large")],
-            algorithms=[HnswAlgorithmConfiguration(name="alg")],
-            vectorizers=[
-                AzureOpenAIVectorizer(
-                    vectorizer_name="azure_openai_text_3_large",
-                    parameters=AzureOpenAIVectorizerParameters(
-                        resource_url=aoai_endpoint,
-                        deployment_name=aoai_embedding_deployment,
-                        model_name=aoai_embedding_model
-                    )
-                )
-            ]
-        ),
-        semantic_search=SemanticSearch(
-            default_configuration_name="semantic_config",
-            configurations=[
-                SemanticConfiguration(
-                    name="semantic_config",
-                    prioritized_fields=SemanticPrioritizedFields(
-                        content_fields=[
-                            SemanticField(field_name="page_chunk")
-                        ]
-                    )
-                )
-            ]
-        )
-    )
-    
-    index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-    index_client.create_or_update_index(index)
-    print(f"Index '{index_name}' created or updated successfully.")
-    
-    # Upload documents
-    url = "https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json"
-    documents = requests.get(url).json()
-    
-    with SearchIndexingBufferedSender(endpoint=search_endpoint, index_name=index_name, credential=credential) as client:
-        client.upload_documents(documents=documents)
-    
-    print(f"Documents uploaded to index '{index_name}' successfully.")
-    
-    # Create a knowledge source
-    ks = SearchIndexKnowledgeSource(
-        name=knowledge_source_name,
-        description="Knowledge source for Earth at night data",
-        search_index_parameters=SearchIndexKnowledgeSourceParameters(
-            search_index_name=index_name,
-            source_data_fields=[SearchIndexFieldReference(name="id"), SearchIndexFieldReference(name="page_number")]
-        ),
-    )
-    
-    index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-    index_client.create_or_update_knowledge_source(knowledge_source=ks)
-    print(f"Knowledge source '{knowledge_source_name}' created or updated successfully.")
-    
-    # Create a knowledge base
-    aoai_params = AzureOpenAIVectorizerParameters(
-        resource_url=aoai_endpoint,
-        deployment_name=aoai_gpt_deployment,
-        model_name=aoai_gpt_model,
-    )
-    
-    knowledge_base = KnowledgeBase(
-        name=knowledge_base_name,
-        models=[KnowledgeBaseAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
-        knowledge_sources=[
-            KnowledgeSourceReference(
-                name=knowledge_source_name
-            )
-        ],
-        output_mode=KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
-        answer_instructions="Provide a two sentence concise and informative answer based on the retrieved documents."
-    )
-    
-    index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-    index_client.create_or_update_knowledge_base(knowledge_base)
-    print(f"Knowledge base '{knowledge_base_name}' created or updated successfully.")
-    
-    # Set up messages
-    instructions = """
-    A Q&A agent that can answer questions about the Earth at night.
-    If you don't have the answer, respond with "I don't know".
-    """
-    
-    messages = [
-        {
-            "role": "system",
-            "content": instructions
-        }
-    ]
-    
-    # Run agentic retrieval
-    agent_client = KnowledgeBaseRetrievalClient(endpoint=search_endpoint, knowledge_base_name=knowledge_base_name, credential=credential)
-    query_1 = """
-        Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
-        Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
-        """
-    
-    messages.append({
-        "role": "user",
-        "content": query_1
-    })
-    
-    req = KnowledgeBaseRetrievalRequest(
-        messages=[
-            KnowledgeBaseMessage(
-                role=m["role"],
-                content=[KnowledgeBaseMessageTextContent(text=m["content"])]
-            ) for m in messages if m["role"] != "system"
-        ],
-        knowledge_source_params=[
-            SearchIndexKnowledgeSourceParams(
-                knowledge_source_name=knowledge_source_name,
-                include_references=True,
-                include_reference_source_data=True,
-                always_query_source=True
-            )
-        ],
-        include_activity=True,
-        retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort
-    )
-    
-    result = agent_client.retrieve(retrieval_request=req)
-    print(f"Retrieved content from '{knowledge_base_name}' successfully.")
-    
-    # Display the response, activity, and references
-    response_contents = []
-    activity_contents = []
-    references_contents = []
-    
-    response_parts = []
-    for resp in result.response:
-        for content in resp.content:
-            response_parts.append(content.text)
-    response_content = "\n\n".join(response_parts) if response_parts else "No response found on 'result'"
-    
-    response_contents.append(response_content)
-    
-    # Print the three string values
-    print("response_content:\n", response_content, "\n")
-
-    messages.append({
-        "role": "assistant",
-        "content": response_content
-    })
-    
-    if result.activity:
-        activity_content = json.dumps([a.as_dict() for a in result.activity], indent=2)
-    else:
-        activity_content = "No activity found on 'result'"
-        
-    activity_contents.append(activity_content)
-    print("activity_content:\n", activity_content, "\n")
-    
-    if result.references:
-        references_content = json.dumps([r.as_dict() for r in result.references], indent=2)
-    else:
-        references_content = "No references found on 'result'"
-        
-    references_contents.append(references_content)
-    print("references_content:\n", references_content)
-    
-    # Continue the conversation
-    query_2 = "How do I find lava at night?"
-    messages.append({
-        "role": "user",
-        "content": query_2
-    })
-    
-    req = KnowledgeBaseRetrievalRequest(
-        messages=[
-            KnowledgeBaseMessage(
-                role=m["role"],
-                content=[KnowledgeBaseMessageTextContent(text=m["content"])]
-            ) for m in messages if m["role"] != "system"
-        ],
-        knowledge_source_params=[
-            SearchIndexKnowledgeSourceParams(
-                knowledge_source_name=knowledge_source_name,
-                include_references=True,
-                include_reference_source_data=True,
-                always_query_source=True
-            )
-        ],
-        include_activity=True,
-        retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort
-    )
-    
-    result = agent_client.retrieve(retrieval_request=req)
-    print(f"Retrieved content from '{knowledge_base_name}' successfully.")
-    
-    # Display the new retrieval response, activity, and references
-    response_parts = []
-    for resp in result.response:
-        for content in resp.content:
-            response_parts.append(content.text)
-    response_content = "\n\n".join(response_parts) if response_parts else "No response found on 'result'"
-    
-    response_contents.append(response_content)
-    
-    # Print the three string values
-    print("response_content:\n", response_content, "\n")
-    
-    if result.activity:
-        activity_content = json.dumps([a.as_dict() for a in result.activity], indent=2)
-    else:
-        activity_content = "No activity found on 'result'"
-        
-    activity_contents.append(activity_content)
-    print("activity_content:\n", activity_content, "\n")
-    
-    if result.references:
-        references_content = json.dumps([r.as_dict() for r in result.references], indent=2)
-    else:
-        references_content = "No references found on 'result'"
-        
-    references_contents.append(references_content)
-    print("references_content:\n", references_content)
-    
-    # Clean up resources
-    index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-    index_client.delete_knowledge_base(knowledge_base_name)
-    print(f"Knowledge base '{knowledge_base_name}' deleted successfully.")
-    
-    index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-    index_client.delete_knowledge_source(knowledge_source=knowledge_source_name)
-    print(f"Knowledge source '{knowledge_source_name}' deleted successfully.")
-    
-    index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-    index_client.delete_index(index_name)
-    print(f"Index '{index_name}' deleted successfully.")
-    ```
-
-1. Set `search_endpoint` and `aoai_endpoint` to the values you obtained in [Get endpoints](#get-endpoints).
-
-1. Run the following command to execute the code.
-
-    ```console
-    python agentic-retrieval.py
-    ```
+1. Run the remaining cells sequentially to create an index, upload documents, configure a knowledge source and knowledge base, and run agentic retrieval queries.
 
 ### Output
 
-The output of the code should look similar to the following:
+Each code cell prints its output to the notebook. The following example is the output after running all cells:
 
 ```
 Documents uploaded to index 'earth-at-night' successfully.
@@ -377,28 +116,7 @@ activity_content:
       "search": "December brightening in satellite nighttime lights: why do suburban belts show larger relative increases in December than urban cores despite higher absolute downtown light levels?"
     }
   },
-  {
-    "id": 2,
-    "type": "searchIndex",
-    "elapsed_ms": 632,
-    "knowledge_source_name": "earth-knowledge-source",
-    "query_time": "2025-11-05T16:17:48.985Z",
-    "count": 10,
-    "search_index_arguments": {
-      "search": "Why is Phoenix's nighttime street grid so sharply visible from space? factors: street-light layout, lamp type, urban form, light scattering, and satellite sensor characteristics in Phoenix, Arizona."
-    }
-  },
-  {
-    "id": 3,
-    "type": "searchIndex",
-    "elapsed_ms": 420,
-    "knowledge_source_name": "earth-knowledge-source",
-    "query_time": "2025-11-05T16:17:49.406Z",
-    "count": 11,
-    "search_index_arguments": {
-      "search": "Why are long stretches of interstate highways between Midwestern cities comparatively dim in satellite nighttime images? factors: highway lighting design, lamp spacing and type, vehicle headlights vs fixed lighting, and detection limits of nighttime sensors"
-    }
-  },
+  ... // Trimmed for brevity
   {
     "id": 4,
     "type": "agenticReasoning",
@@ -451,6 +169,8 @@ Index 'earth-at-night' deleted successfully.
 ```
 
 ## Understand the code
+
+[!INCLUDE [understand code note](../understand-code-note.md)]
 
 Now that you've run the code, let's break down the key steps:
 
@@ -580,7 +300,7 @@ knowledge_base = KnowledgeBase(
         )
     ],
     output_mode=KnowledgeRetrievalOutputMode.ANSWER_SYNTHESIS,
-    answer_instructions="Provide a two sentence concise and informative answer based on the retrieved documents."
+    answer_instructions="Provide a 2 sentence concise and informative answer based on the retrieved documents."
 )
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
@@ -779,11 +499,9 @@ print("references_content:\n", references_content)
 
 ## Clean up resources
 
-When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
+[!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Microsoft Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
-
-Otherwise, the following code from `agentic-retrieval.py` deleted the objects you created in this quickstart.
+Otherwise, the following code from `quickstart-agentic-retrieval.ipynb` deleted the objects you created in this quickstart.
 
 ### Delete the knowledge base
 

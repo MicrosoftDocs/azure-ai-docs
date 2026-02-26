@@ -20,6 +20,27 @@ ai-usage: ai-assisted
 
 This guide outlines key decisions for rolling out Microsoft Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
 
+## Prerequisites
+
+Before you begin rollout planning, confirm that you have:
+
+- A target Azure subscription and resource group strategy for development, test, and production environments.
+- Microsoft Entra ID groups (or equivalent identity groups) defined for admins, project managers, and project users.
+- An initial region plan based on model and feature availability. For details, see [Feature availability across cloud regions](../reference/region-support.md).
+- Agreement on security requirements for networking, encryption, and data isolation in your organization.
+
+## Baseline rollout checklist
+
+Use this checklist before your first production rollout:
+
+1. Define environment boundaries across development, testing, and production.
+1. Assign ownership for each Foundry resource and project scope.
+1. Define RBAC assignments for admins, project managers, and project users.
+1. Define networking approach for each environment (public access, private endpoint, or hybrid).
+1. Decide whether customer-managed keys are required by policy.
+1. Define cost and monitoring ownership for each business group.
+1. Identify required shared connections and project-scoped connections.
+
 ## Example organization
 
 Contoso is a global enterprise exploring GenAI adoption across five business groups, each with distinct needs and technical maturity.
@@ -48,9 +69,14 @@ Foundry is built on the Azure platform, so you can customize security controls t
 
 - **Networking**: Deploy Foundry into a Virtual Network to isolate traffic and control access by using Network Security Groups (NSGs). [Learn more about networking security.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
+  For private connectivity scenarios, use private endpoints and validate DNS and endpoint approval status. For implementation details and limitations, see [How to configure a private link for Foundry](../how-to/configure-private-link.md).
+
+  > [!IMPORTANT]
+  > End-to-end network isolation isn't fully supported in the new Foundry portal experience. For network-isolated deployments, use the guidance for the classic experience, SDK, or CLI in [How to configure a private link for Foundry](../how-to/configure-private-link.md).
+
 - **Customer-Managed Keys (CMK)**: Azure supports CMK for encrypting data at rest. Foundry supports CMK optionally for customers with strict compliance needs. [Learn more about CMK](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
-- **Authentication and Authorization**: Foundry supports both **API key-based access** for simple integration and **Azure RBAC** for fine-grained control. Azure enforces a clear separation between the **control plane** (resource management) and the **data plane** (model and data access). Start with built-in roles, and define custom roles as needed. [Learn more about authentication.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+- **Authentication and Authorization**: Foundry supports both **API key-based access** for simple integration and **Azure RBAC** for fine-grained control. API keys can simplify setup, but they don't provide the same role-based granularity as Microsoft Entra ID with RBAC. Azure enforces a clear separation between the **control plane** (resource management) and the **data plane** (model and data access). Start with built-in roles, and define custom roles as needed. [Learn more about authentication.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
 - **Templates**: Use ARM templates or Bicep to automate secure deployments. Explore the [sample templates](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
@@ -76,6 +102,16 @@ Effective access management is foundational to a secure and scalable Foundry set
     - Account owner: Manage top-level configurations such as security and shared resource connections.
     - Project Managers: Create and manage Foundry projects and their contributors.
     - Project Users: contribute to existing projects.
+
+  Use this starter role-to-scope mapping for rollout planning:
+
+  | Persona | Starter role | Recommended scope |
+  |---|---|---|
+  | Admins | Owner or Azure AI Account Owner | Subscription or Foundry resource |
+  | Project Managers | Azure AI Project Manager | Foundry resource |
+  | Project Users | Azure AI User | Foundry project |
+
+  Adjust assignments based on least-privilege requirements and enterprise policies.
 - **Determine access scope**
   - Choose the appropriate scope for access assignments:
     - Subscription level: broadest access, typically suitable for central IT or platform teams or smaller organizations.
@@ -86,6 +122,8 @@ Effective access management is foundational to a secure and scalable Foundry set
     - Managed identities or API key: suitable for automated services and shared access across users.
     - User identities: Preferred when user-level accountability or auditability is required.
   - Use Microsoft Entra ID groups to simplify access management and ensure consistency across environments.
+
+  For least-privilege onboarding, start with the **Azure AI User** role for developers and project managed identities, then add elevated roles only where required. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
 
 ## Establish connectivity with other Azure services
 
@@ -111,11 +149,24 @@ Effective governance in Foundry ensures secure, compliant, and cost-efficient op
   Azure Policy enforces rules across Azure resources. In Foundry, use policies to restrict which models or model families specific business groups can access.
   *Example*: Contoso’s **Finance & Risk** group is restricted from using preview or noncompliant models by applying a policy at their business group’s subscription level.
 - **Cost Management by Business Group**
-  By deploying Foundry per business group, Contoso can track and manage costs independently. Use Microsoft Cost Management to view detailed usage and spending per Foundry deployment or project.
+  By deploying Foundry per business group, Contoso can track and manage costs independently. Use the Azure pricing calculator for predeployment estimates and Microsoft Cost Management for ongoing actual usage and trend tracking. Treat Foundry costs as one part of the total solution cost.
 - **Usage Tracking with Azure Monitor**
   Azure Monitor provides metrics and dashboards to track usage patterns, performance, and health of Foundry resources.
 - **Verbose Logging with Azure Log Analytics**
   Azure Log Analytics enables deep inspection of logs for operational insights. For example, log request usage, token usage, and latency to support auditing and optimization.
+
+## Validate rollout decisions
+
+After you define your rollout plan, validate the following outcomes:
+
+- Identity and access: Role assignments map to approved personas and scopes.
+- Networking: Connectivity path and isolation model are documented for each environment.
+- Networking verification: Private endpoint connection status is **Approved**, and DNS resolves Foundry endpoints to private IP addresses from inside the virtual network.
+- Data protection: Encryption approach (Microsoft-managed keys or customer-managed keys) is documented and approved.
+- Operations: Cost and monitoring owners are assigned per business group.
+- Operations verification: Cost views and dashboards are defined in Microsoft Cost Management and monitoring is connected to Application Insights for each production project.
+- Model operations: Deployment strategy (standard or provisioned) is documented per use case.
+- Region readiness: Required models and services are confirmed in target regions before rollout.
 
 ## Configure and optimize model deployments
 

@@ -18,7 +18,7 @@ Use this article to get started using the Azure OpenAI .NET SDK to deploy and us
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [The .NET 8.0 SDK](https://dotnet.microsoft.com/download)
-- An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled chat model deployed. See [Model availability](../concepts/models.md) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
+- An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled chat model deployed. See [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
 
 ### Microsoft Entra ID prerequisites
 

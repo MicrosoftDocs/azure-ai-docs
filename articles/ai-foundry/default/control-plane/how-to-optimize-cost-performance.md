@@ -1,42 +1,48 @@
 ---
-title: How to Optimize Cost and Performance in Microsoft Foundry
+title: Optimize model cost and performance
 titleSuffix: Foundry
-description: Learn how to use the Ask AI agent to analyze and optimize model cost and performance directly from Microsoft Foundry.
+description: Use Ask AI in Microsoft Foundry to detect cost spikes, switch to cost-efficient models, evaluate quality, and track performance improvements.
 ms.service: azure-ai-foundry
-ms.custom:
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 02/17/2026
 ms.reviewer: hanch
 ms.author: scottpolly
 author: bhcglx
 monikerRange: 'foundry'
+ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
 # Optimize model cost and performance
 
-When your model or agent costs start increasing, use the **Ask AI agent** — the built-in chat assistant — to quickly diagnose issues, take action, and verify improvements. You can access the Ask AI agent from the top navigation bar in the Foundry portal.
+When your model or agent costs start increasing, use **Ask AI** (preview) to quickly diagnose issues, take action, and verify improvements. Ask AI is a built-in chat assistant that you can access from the toolbar in the Microsoft Foundry portal. For more information about Ask AI capabilities and limitations, see [Ask AI for help (preview)](../../concepts/ask-ai.md).
 
-This article walks you through a recommended workflow, from identifying cost spikes to switching models and validating performance improvements — all within the Foundry portal.
+In this article, you identify cost spikes, switch to a cost-efficient model, and validate performance improvements by using the Foundry portal.
 
-> [!TIP]
-> The **Operate** > **Overview** page includes pre-built prompts specific to agent optimization and performance. Select one of these prompts to start a conversation with the Ask AI agent, or open the Ask AI agent from the top navigation bar and type your own question.
+> [!NOTE]
+> When you ask Ask AI to perform tasks that modify your Azure resources, such as deploying a model or changing a deployment, Ask AI proposes actions for you to review and approve before it runs them. You can configure approval settings by selecting the settings icon in the Ask AI prompt chat. For more information, see [Ask AI for help (preview)](../../concepts/ask-ai.md).
 
 ## Prerequisites
 
 [!INCLUDE [control-plane-prereqs](../includes/control-plane-prereqs.md)]
 
-- At least one deployed or published agent with cost data. For meaningful trend analysis, you need a minimum of 7 days of usage data.
+- The following permissions:
+  - Read access to the project and subscription that you want to view data for.
+  - [Log Analytics Reader](/azure/role-based-access-control/built-in-roles/monitor#log-analytics-reader) role or higher on the Application Insights resource that's associated with your agent.
+  - [Cost Management Reader](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) role.
 
-- You have access to the **Ask AI agent** (the chat assistant).
+- Application Insights configured for your Foundry project. For more information, see [Configure monitoring](monitoring-across-fleet.md#configure-monitoring).
+- At least one deployed or published agent with cost data. For meaningful trend analysis, you need a minimum of seven days of usage data.
 
-- An evaluation dataset configured for your project. To set one up, see [Create and manage evaluation datasets](../../how-to/develop/evaluate-sdk.md).
+- The Ask AI agent enabled in your Foundry project. The Ask AI agent is available in preview on the toolbar of the Foundry portal. If you don't see it, verify that your project is in a [supported region](overview.md) and that your administrator hasn't disabled the feature.
+
+- An evaluation dataset that represents your agent's typical workload. Use this dataset to compare model performance after switching models. To create an evaluation dataset, see [Evaluate your generative AI application with the Azure AI Evaluation SDK](../../how-to/develop/evaluate-sdk.md).
 
 ## Detect cost increases
 
-Start by opening the Ask AI agent from the top navigation bar, or go to **Operate** > **Overview** to use one of the pre-built prompts. Ask the assistant to provide a summary of your metrics and cost data from the **Foundry Control Plane** dashboard.
+Start by opening the Ask AI agent from the toolbar. Or, go to **Operate** > **Overview** to use one of the prebuilt prompts that are specific to agent optimization and performance.
 
-You can select a predefined prompt on the **Operate** overview page, or type your own question, such as:
+Ask the assistant to provide a summary of your metrics and cost data from the Foundry Control Plane dashboard. You can select a predefined prompt on the **Overview** pane or type your own question, such as:
 
 - "Summarize my recent cost trend."
 
@@ -44,59 +50,102 @@ You can select a predefined prompt on the **Operate** overview page, or type you
 
 The Ask AI agent generates a summary that highlights key cost drivers, such as high token usage, longer completion length, or frequent evaluation runs. The summary includes annotated links to the dashboard charts for deeper inspection.
 
+
 ## Investigate high-cost agents
 
-After reviewing the summary, you can explore detailed insights for specific agents by asking:
+After you review the summary, you can explore detailed insights for specific agents by asking:
 
 - "Show me cost and performance details for [agent name]."
 
 - "Break down cost by model or deployment for this agent."
 
-You can also select **Assets** in the left pane. Select **View Agent details** to view the **Assets** page, where you can compare your agents with cost and token usage, and see which agent costs the most.
-
+You can also select **Assets** on the left pane. Then, select **View Agent details** to view the **Assets** pane. There, you can compare your agents with cost and token usage, and see which agent costs the most.
 
 ## Switch to a cost-efficient model
 
-When you identify a model as a cost driver, ask the Ask AI agent:
+When you identify a model as a cost driver, use Ask AI to find a more cost-efficient alternative.
 
-- "Recommend a cheaper model with similar performance."
+1. In Ask AI, enter a prompt such as "Recommend a cheaper model with similar performance" or "Compare cost and quality for models similar to \[current model\]."
 
-- "Switch this agent's deployment to a more cost-efficient model."
+1. Review the response. Ask AI recommends alternative models from the model catalog with performance and cost comparisons. Review the recommendations and select a model that meets your requirements.
 
-The Ask AI agent:
+1. Deploy the new model. Ask AI can initiate the deployment for you directly in the chat or provide a link to the deployment page. You can also deploy manually. For detailed deployment steps, see [Deploy models as serverless API deployments](../../how-to/deploy-models-serverless.md) or [Deploy models with managed compute](../../how-to/deploy-models-managed.md).
 
-1. Recommends alternative models available in the **Model Catalog**.
+1. After deployment completes, verify that the new model appears in your agent's deployment list with a **Succeeded** status.
 
-1. Provides performance and cost comparisons.
+> [!TIP]
+> If Ask AI is unavailable, browse the [Foundry model catalog](../../concepts/foundry-models-overview.md) to compare models manually.
 
-1. Upon confirmation, provides a link to the model deployment page.
+## Evaluate model cost and quality differences
 
-Follow the instructions in the model deployment page, or continue to chat with the Ask AI agent to complete the model deployment step.
+After you switch models, compare the old and new models by running an evaluation.
 
-## Evaluate model differences
+1. In Ask AI, enter a prompt such as "I want to evaluate and compare the old and new model."
 
-After switching models, you can ask the Ask AI agent to run an evaluation that compares the old and new models:
+1. Follow the guidance that Ask AI provides. To create evaluation runs, go to the evaluation section of your project.
 
-- "Evaluate performance and cost difference between the old and new model."
+1. Create two evaluation runs: one for the original model and one for the new model.
 
-The Ask AI agent provides guidance on how to create an evaluation and gives you a link to the evaluation creation wizard. You can follow the instructions step by step to create two evaluation runs on the two models.
+1. Wait for both evaluation runs to finish. Go to **Operate** > **Overview** or the evaluation history in your project to compare results side by side.
 
-View the results after both evaluation runs complete.
+1. Look for differences in quality scores, latency, and cost per token. In the evaluation history, verify that both runs show a completed status with scores for each metric.
 
+   Key metrics to compare:
 
-## Update your agent
+   - **Groundedness** — how well responses are grounded in source data
+   - **Relevance** — how relevant responses are to the query
+   - **Coherence** — how logically consistent responses are
+   - **Latency** — response time for the model
+   - **Cost per token** — the cost efficiency of the model
 
-When you confirm the new model performs better than the current model, go to **Agent Playground** to update the model and save a new version.
+   Focus on metrics that align with your agent's quality requirements.
 
-## Track improvements
+## Update your agent's model deployment
 
-Later, return to the Ask AI agent and ask:
+When you confirm that the new model meets your cost and performance requirements, update the agent to use it.
 
-- "Show me the summary on the latest data for cost."
+1. In the Foundry portal, go to **Build** > **Agents**.
 
-The Ask AI agent retrieves the latest metrics from your continuous evaluation and summarizes improvements in cost and performance trends. This feature helps you continuously monitor ROI and efficiency.
+1. Select the agent that you want to update.
+
+1. Change the model to the new deployment.
+
+1. Test the agent to verify that it responds correctly with the new model.
+
+1. On the agent details page, select **Save** to create a new version. Verify that the version number incremented and the model name reflect the new deployment.
+
+After you verify that the new model works correctly, consider deleting the old model deployment to avoid ongoing costs. For more information, see [Deploy models as serverless API deployments](../../how-to/deploy-models-serverless.md).
+
+## Track cost and performance improvements
+
+To verify improvements after the model switch, check the latest cost data.
+
+1. Open Ask AI from the toolbar.
+
+1. Enter a prompt such as "Show me the summary on the latest data for cost."
+
+1. Review the summary. Ask AI surfaces the cost and performance data that's available on the **Operate** > **Overview** and **Monitor** pages, including any [continuous evaluation](../../concepts/observability.md) metrics shown there. The summary highlights cost trend changes compared to the previous period.
+
+Use this workflow regularly to monitor efficiency and return on investment.
+
+## Troubleshoot common issues
+
+| Issue | Cause | Resolution |
+|-------|-------|------------|
+| No cost data appears in the summary | Application Insights isn't configured for the project. | [Configure monitoring](monitoring-across-fleet.md#configure-monitoring) for your Foundry project. |
+| Ask AI doesn't respond to prompts | The feature might be temporarily unavailable, or the prompt might be too vague. | Try a more specific prompt or use the **Operate** > **Overview** pane directly. |
+| Ask AI asks for approval before acting | Ask AI proposes actions for review before modifying Azure resources. | Review the proposed action and select **Approve** to proceed. To configure pre-approval settings, select the settings icon in the Ask AI prompt chat. |
+| No alternative models recommended | The current model might already be the most cost-efficient option, or the model catalog doesn't have comparable alternatives. | Browse the [Foundry model catalog](../../concepts/foundry-models-overview.md) manually. |
+| Evaluation runs don't complete | The evaluation dataset might be misconfigured or too large. | Verify your evaluation dataset configuration. See [Evaluate your generative AI application with the Azure AI Evaluation SDK](../../how-to/develop/evaluate-sdk.md). |
+| Cost data appears stale or delayed | Azure billing data can take up to 24-48 hours to update. Application Insights telemetry might also have a short delay. | Wait for the billing cycle to complete and check again. For near real-time data, rely on Application Insights metrics in the **Operate** > **Overview** pane. |
+| Model switch causes quality regression | The new model might not perform as well on your specific workload. | Roll back to the previous model deployment and run more targeted evaluations before switching again. |
 
 ## Related content
 
-- [Evaluate model performance](../../how-to/develop/evaluate-sdk.md)
-- [Explore models in the Model Catalog](../../how-to/model-catalog-overview.md)
+- [Ask AI for help (preview)](../../concepts/ask-ai.md)
+- [Monitor agent health and performance across your fleet](monitoring-across-fleet.md)
+- [Manage agents in Foundry Control Plane](how-to-manage-agents.md)
+- [Enforce token limits on models](how-to-enforce-limits-models.md)
+- [What is Foundry Control Plane?](overview.md)
+- [Evaluate your generative AI application with the Azure AI Evaluation SDK](../../how-to/develop/evaluate-sdk.md)
+- [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md)

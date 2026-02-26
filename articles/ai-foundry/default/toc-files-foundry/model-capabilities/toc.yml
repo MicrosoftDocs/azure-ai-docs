@@ -86,7 +86,7 @@ items:
 - name: Vision and video
   items:
   - name: Vision-enabled chats
-    href: ../../../openai/gpt-v-quickstart.md
+    href: ../../../openai/how-to/gpt-with-vision.md
   - name: Image prompt engineering techniques
     href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
   - name: Image prompt transformation

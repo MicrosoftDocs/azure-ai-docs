@@ -52,6 +52,7 @@ Use these definitions to keep the terminology consistent:
 > [!NOTE]
 > If you're interested in bringing your official, remote MCP server(s) to all Foundry customers, fill out this [form](https://forms.office.com/r/EEvMNceMRU).
 
+<!-- The verbiage in the following section is required. Do not remove or modify. -->
 ## Considerations for using non-Microsoft services and servers 
 
 Your use of connected non-Microsoft services and servers ("non-Microsoft services") is subject to the terms between you and the service provider. Non-Microsoft services are non-Microsoft products under your agreement governing use of Microsoft online services. When you connect to non-Microsoft services, some of your data (such as prompt content) is sent to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
@@ -144,7 +145,7 @@ Foundry Tools contains three sections:
     
     |Tool  |Description  |
     |---------|---------|
-    | [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint. |
+    | [Model Context Protocol](../how-to/tools/model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint. |
     | [OpenAPI 3.0 specified tool](../how-to/tools/openapi.md) | Connect your Foundry agents to external APIs using functions with an OpenAPI 3.0 specification. |
     | [Agent-to-Agent tool (preview)](../how-to/tools/agent-to-agent.md) | Connect your Foundry agents to other agents through A2A-compatible endpoints. |
 

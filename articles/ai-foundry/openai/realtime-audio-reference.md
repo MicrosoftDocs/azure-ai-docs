@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 Realtime events are used to communicate between the client and server in real-time audio applications. The events are sent as JSON objects over various endpoints, such as WebSockets or WebRTC. The events are used to manage the conversation, audio buffers, and responses in real-time.
 
 You can use audio client and server events with these APIs:
-- [Azure OpenAI Realtime API](./realtime-audio-quickstart.md)
+- [Azure OpenAI Realtime API](./how-to/realtime-audio.md#quickstart)
 - [Azure AI Voice Live API](../../ai-services/speech-service/voice-live.md)
 
 Unless otherwise specified, the events described in this document are applicable to both APIs.
@@ -1694,5 +1694,5 @@ Currently, only 'function' tools are supported.
 
 ## Related content
 
-* Get started with the [Realtime API quickstart](./realtime-audio-quickstart.md).
+* Get started with the [Realtime API quickstart](./how-to/realtime-audio.md#quickstart).
 * Learn more about [How to use the Realtime API](./how-to/realtime-audio.md).

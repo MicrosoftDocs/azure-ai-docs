@@ -23,6 +23,7 @@ You can extend the capabilities of your Foundry agent by connecting it to tools 
 
 MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
 
+<!-- The verbiage in the following section is required. Do not remove or modify. -->
 ## Considerations for using non-Microsoft services and servers
 
 Your use of connected non-Microsoft services is subject to the terms between you and the service provider. When you connect to a non-Microsoft service, some of your data (such as prompt content) is passed to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
@@ -90,6 +91,10 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 | **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
 | **State** | Stateless only. | Stateless only. |
 | **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
+
+## Known limitations
+
+- **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 50 seconds. If your MCP server takes longer than 50 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
 
 ## Related content
 

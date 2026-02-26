@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 02/03/2025
+ms.date: 02/05/2026
 ms.reviewer: paulsh
 ms.custom: devplatv2, devx-track-python
 monikerRange: 'azureml-api-2 || azureml-api-1'
@@ -22,7 +22,7 @@ Azure Machine Learning's v2 REST APIs, Azure CLI extension, and Python SDK intro
 > [!IMPORTANT]
 > The designations "v1" and "v2" refer to the API, SDK, and CLI extension used by clients to interact with the service, and not the Azure Machine Learning service itself. There is no upgrade process for the service or your existing workspaces, only for your client code. Your Azure Machine Learning workspaces can be used with both the v1 and v2 APIs. However, new features will only be available through the v2 APIs.
 >
-> Support for the CLI v1 will end on September 30, 2025 and support for the Python SDK v1 will end on June 30, 2026.
+> Support for CLI v1 ended on September 30, 2025. SDK v1 is deprecated as of March 31, 2025, and support for it ends on June 30, 2026. Your existing workflows using CLI v1 and SDK v1 will continue to operate after the end-of-support dates. However, they could be exposed to security risks or breaking changes in the event of architectural changes in the product. We recommend that you transition to CLI v2 as soon as possible and SDK v2 before the end-of-support date.
 >
 > For more information on v2, see [what is v2](concept-v2.md?view=azureml-api-2&preserve-view=true). For a mapping of differences between v1 and v2 SDKs, with links to articles with example code, see [Mapping of Python SDK v1 to v2](#mapping-of-python-sdk-v1-to-v2).
 
@@ -33,7 +33,7 @@ Azure Machine Learning's v2 REST APIs, Azure CLI extension, and Python SDK intro
 
 ## Should I use v2?
 
-You should use v2 if you're starting a new machine learning project or workflow. You should use v2 if you want to use the new features offered in v2. The features include:
+You should use v2 if you're starting a new machine learning project or workflow. With CLI v1 no longer supported and SDK v1 approaching end-of-support, v2 is the recommended path forward. You should also use v2 if you want to use the new features offered in v2. The features include:
 * Managed Inferencing
 * Reusable components in pipelines
 * Improved scheduling of pipelines

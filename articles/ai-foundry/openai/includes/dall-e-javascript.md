@@ -15,20 +15,20 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Ja
 
 [Reference documentation](https://platform.openai.com/docs/api-reference/images/create) | [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
-## Prerequisites
+### Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
-### Microsoft Entra ID prerequisites
+#### Microsoft Entra ID prerequisites
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
-## Set up
+### Setup
  
 1. Create a new folder `image-quickstart` and go to the quickstart folder with the following command:
 
@@ -54,14 +54,14 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     npm install @azure/identity
     ```
 
-## Retrieve resource information
+### Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
-## Generate images with DALL-E
+### Generate images with DALL-E
 
 #### [Microsoft Entra ID](#tab/keyless)
 
@@ -192,7 +192,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ---
 
-## Output
+### Output
 
 The URL of the generated image is printed to the console.
 
@@ -205,14 +205,11 @@ Image generation result URL: <SAS URL>
 > [!NOTE]
 > The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../concepts/content-filter.md) article.
 
-## Clean up resources
+### Clean up resources
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource. Before deleting the resource, you must first delete any deployed models.
 
 - [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
 
-## Next steps
 
-* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai).

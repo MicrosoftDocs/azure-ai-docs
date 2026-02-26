@@ -248,6 +248,9 @@ items:
           - name: Create connections to external data sources
             href: how-to-connection.md
             displayName: null
+          - name: Migrate data import to Microsoft Fabric
+            href: data-import-migration-guide.md
+            displayName: Microsoft Fabric, data import, migration
           - name: Import data
             href: how-to-import-data-assets.md
           - name: Schedule a data import
@@ -1439,6 +1442,8 @@ items:
             href: reference-yaml-data.md
           - name: MLTable
             href: reference-yaml-mltable.md
+          - name: Deployment template
+            href: reference-yaml-deployment-template.md
           - name: Model
             href: reference-yaml-model.md
           - name: Schedule
@@ -1523,8 +1528,6 @@ items:
                 href: reference-yaml-deployment-kubernetes-online.md
               - name: Batch
                 href: reference-yaml-deployment-batch.md
-              - name: Deployment template
-                href: reference-yaml-deployment-template.md
           - name: Component
             items:
               - name: Spark

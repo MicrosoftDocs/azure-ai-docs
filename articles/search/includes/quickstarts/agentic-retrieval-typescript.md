@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 02/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -15,7 +15,10 @@ In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview
 
 A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
 
-Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
+Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
+
+> [!TIP]
+> Source code for the TypeScript version of this quickstart isn't available. You can copy code directly from this article.
 
 ## Prerequisites
 
@@ -25,67 +28,65 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. You can use any `text-embedding` model, such as `text-embedding-3-large`.
+
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models), such as `gpt-5-mini`.
+
++ [Node.js 20 LTS](https://nodejs.org/en/download/) or later.
+
++ [Visual Studio Code](https://code.visualstudio.com/download).
+
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) and the latest LTS version of [Node.js](https://nodejs.org/en/download/).
-
-[!INCLUDE [Setup](./agentic-retrieval-setup.md)]
+[!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
 ## Set up the environment
-
-To set up the console application for this quickstart:
 
 1. Create a folder named `quickstart-agentic-retrieval` to contain the application.
 
 1. Open the folder in Visual Studio Code.
 
-1. Select **Terminal** > **New Terminal**, and then run the following commands to initialize the `package.json` file.
+1. Select **Terminal** > **New Terminal**, and then run the following commands to initialize `package.json`.
 
-    ```console
+    ```bash
     npm init -y
     npm pkg set type=module
     ```
 
 1. Install TypeScript as a development dependency.
 
-    ```console
+    ```bash
     npm install --save-dev typescript @types/node
     ```
 
 1. Install the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme).
 
-    ```console
+    ```bash
     npm install @azure/search-documents@12.3.0-beta.1
     ```
 
 1. For keyless authentication with Microsoft Entra ID, install the [Azure Identity client library for JavaScript](/javascript/api/overview/azure/identity-readme).
 
-    ```console
+    ```bash
     npm install @azure/identity
     ```
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
-    ```console
+    ```bash
     az login
     ```
 
 ## Run the code
 
-To create and run the agentic retrieval pipeline:
-
-1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder.
-
-1. Paste the following environment variables into the `.env` file.
+1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder, and then paste the following content. Replace the placeholder values with the URLs you obtained in [Get endpoints](#get-endpoints).
 
     ```
     AZURE_SEARCH_ENDPOINT = https://<your-search-service-name>.search.windows.net
-    AZURE_OPENAI_ENDPOINT = https://<your-ai-foundry-resource-name>.openai.azure.com/
+    AZURE_OPENAI_ENDPOINT = https://<your-foundry-resource-name>.openai.azure.com/
     AZURE_OPENAI_GPT_DEPLOYMENT = gpt-5-mini
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT = text-embedding-3-large
     ```
-
-1. Set `AZURE_SEARCH_ENDPOINT` and `AZURE_OPENAI_ENDPOINT` to the values you obtained in [Get endpoints](#get-endpoints).
 
 1. Create a file named `index.ts`, and then paste the following code into the file.
 
@@ -454,13 +455,13 @@ To create and run the agentic retrieval pipeline:
 
 1. Transpile the code from TypeScript to JavaScript.
 
-    ```console
+    ```bash
     npx tsc
     ```
 
 1. Build and run the application.
 
-    ```console
+    ```bash
     node --env-file ./.env dist/index.js
     ```
 
@@ -468,7 +469,7 @@ To create and run the agentic retrieval pipeline:
 
 The output of the application should be similar to the following:
 
-```console
+```output
 Waiting for indexing to complete...
 Expected documents: 194
 Current indexed count: 194
@@ -516,58 +517,7 @@ Activity Type: searchIndex
     "semanticConfigurationName": "semantic_config"
   }
 }
-Activity Type: searchIndex
-{
-  "id": 2,
-  "type": "searchIndex",
-  "elapsedMs": 538,
-  "knowledgeSourceName": "earth-knowledge-source",
-  "queryTime": "2025-12-19T15:38:24.001Z",
-  "count": 0,
-  "searchIndexArguments": {
-    "search": "factors that make Phoenix nighttime street grid highly visible from space reasons highway/interstate lighting visibility differences Midwestern interstates dim",
-    "filter": null,
-    "sourceDataFields": [
-      {
-        "name": "page_chunk"
-      },
-      {
-        "name": "id"
-      },
-      {
-        "name": "page_number"
-      }
-    ],
-    "searchFields": [],
-    "semanticConfigurationName": "semantic_config"
-  }
-}
-Activity Type: searchIndex
-{
-  "id": 3,
-  "type": "searchIndex",
-  "elapsedMs": 465,
-  "knowledgeSourceName": "earth-knowledge-source",
-  "queryTime": "2025-12-19T15:38:24.467Z",
-  "count": 2,
-  "searchIndexArguments": {
-    "search": "satellite nighttime lights seasonal variations suburban brightening studies December holiday lighting residential vs commercial lighting patterns",
-    "filter": null,
-    "sourceDataFields": [
-      {
-        "name": "page_chunk"
-      },
-      {
-        "name": "id"
-      },
-      {
-        "name": "page_number"
-      }
-    ],
-    "searchFields": [],
-    "semanticConfigurationName": "semantic_config"
-  }
-}
+... // Trimmed for brevity
 Activity Type: agenticReasoning
 {
   "id": 4,
@@ -773,7 +723,7 @@ console.log(`✓ All ${documents.length} documents indexed successfully!`);
 
 A knowledge source is a reusable reference to source data. The following code defines a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
-`source_data_fields` specifies which index fields are included in citation references. This example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
+`sourceDataFields` specifies which index fields are included in citation references. This example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
 ```typescript
 await searchIndexClient.createKnowledgeSource({
@@ -998,9 +948,7 @@ console.log("\n✅ Quickstart completed successfully!");
 
 ## Clean up resources
 
-When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
-
-In the [Azure portal](https://portal.azure.com/), you can manage your Azure AI Search and Microsoft Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+[!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
 Otherwise, the following code from `index.ts` deleted the objects you created in this quickstart.
 

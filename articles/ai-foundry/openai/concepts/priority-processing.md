@@ -1,22 +1,23 @@
 ---
-title: Priority processing for Microsoft Foundry Models (preview)
+title: Enable priority processing for Microsoft Foundry Models (preview)
 titleSuffix: Microsoft Foundry
 description: Learn how to enable priority processing for Microsoft Foundry models to achieve low latency and high availability for time-sensitive workloads.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 12/01/2025
+ms.date: 02/10/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: seramasu
 reviewer: rsethur
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
+ms.custom: ignite-2025, pilot-ai-workflow-jan-2026 
 #customerIntent: As a developer or data scientist working with latency-sensitive AI applications, I want to understand and implement priority processing for Microsoft Foundry models so that I can achieve predictable low latency and high availability for time-critical workloads without requiring long-term commitments or provisioned capacity.
 ---
 
-# Priority processing for Microsoft Foundry models (preview)
+# Enable priority processing for Microsoft Foundry models (preview)
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -25,12 +26,16 @@ ai-usage: ai-assisted
 >
 > This preview is provided without a service-level agreement and isn't recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-Priority processing provides low-latency performance with the flexibility of pay-as-you-go. It operates on a pay-as-you-go token model, offering rapid response times without long-term contract commitments. This article covers the following topics:
+Priority processing provides low-latency performance with the flexibility of pay-as-you-go. It operates on a pay-as-you-go token model, offering rapid response times without long-term contract commitments. In this article, you enable priority processing on a model deployment, verify which service tier processed your requests, and monitor associated costs.
 
-- An overview of priority processing
-- How to enable priority processing
-- How to verify what service tier was used to process requests
-- How to monitor costs
+## Prerequisites
+
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A Microsoft Foundry project with a model of the deployment type `GlobalStandard` or `DataZoneStandard` deployed.
+- Acceptance into the priority processing preview. [Register here](https://aka.ms/priority-register-interest) to be notified when priority processing becomes more broadly available.
+- API version `2025-10-01-preview` or later.
+
+## Overview
 
 ### Benefits
 
@@ -74,6 +79,9 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 ---
 
+> [!NOTE]
+> Model and region availability might expand during the preview period. Check this page for updates.
+
 ### Known issues
 
 Priority processing currently has these limitations, and fixes are underway:
@@ -83,12 +91,6 @@ Priority processing currently has these limitations, and fixes are underway:
 - **No support for PTU spillover:** The service doesn't yet support PTU spillover to a priority-processing–enabled deployment. If you need spillover behavior, implement your own logic, such as by using Azure API Management.
 
 - **Incorrect service_tier value when using streaming in the Responses API:** When streaming responses through the Responses API, the `service_tier` field might incorrectly return "priority", even if capacity constraints or ramp limits caused the request to be served by the standard tier. In this case, the expected value for `service_tier` is "default".
-
-## Prerequisites
-
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure OpenAI resource with a model of the deployment type `GlobalStandard` or `DataZoneStandard` deployed. 
-
 
 ## Enable priority processing at the deployment level
 
@@ -115,10 +117,6 @@ In the [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] portal,
 
 Once a model deployment is configured to use priority processing, you can start sending requests to the model.
 
-## Verify service tier used to process request
-
-When you set the `service_tier` parameter in the request, the response includes the service tier value of the processing mode used to serve the request (`priority` or `default`). This response value might be different from the parameter value that you set in the request. 
-
 ## View usage metrics
 
 You can view the utilization measure for your resource in the Azure Monitor section in the Azure portal. 
@@ -140,7 +138,7 @@ For more information about monitoring your deployments, see [Monitor Azure OpenA
 You can see a breakdown of costs for priority and standard requests in the Azure portal's cost analysis page by filtering on deployment name and billing tags as follows:
 
 1. Go to the cost analysis page in the [Azure portal](https://portal.azure.com).
-1. [optional] Filter by resource.
+1. (Optional) Filter by resource.
 1. To filter by deployment name: Add a filter for billing **Tag** > select **deployment** as the value, then choose your deployment name.
 
 :::image type="content" source="../media/priority-processing/cost-analysis-priority-processing.png" alt-text="Screenshot of the priority processing utilization on the resource's cost analysis page in the Azure portal." lightbox="../media/priority-processing/cost-analysis-priority-processing.png":::
@@ -149,7 +147,7 @@ For information about pricing for priority processing, see the [Azure OpenAI Ser
 
 ## Enable priority processing at the request level
 
-Enabling priority processing at the request level is **optional**. Both the chat completions API and responses API have an optional attribute `service_tier` that specifies the processing type to use when serving a request as follows: 
+Enabling priority processing at the request level is **optional**. Both the chat completions API and responses API have an optional attribute `service_tier` that specifies the processing type to use when serving a request. The following example shows how to set `service_tier` to `priority` in a responses request.
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
@@ -201,6 +199,15 @@ If priority processing performance degrades and a customer's traffic ramps up to
 > [!TIP]
 > If you routinely encounter ramp rate limits, consider purchasing PTU instead of or in addition to priority processing. 
 
+
+## Troubleshooting
+
+| Issue | Cause | Resolution |
+| ------- | ------- | ------------ |
+| HTTP 400 error on long prompts | gpt-4.1 doesn't support requests exceeding 128,000 tokens in priority processing. | Keep total request tokens under 128,000. Split long prompts into smaller requests. |
+| Requests downgraded to standard tier | Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. | Increase traffic gradually. Consider purchasing PTU for steady-state capacity. |
+| PTU spillover not working | Priority processing doesn't yet support PTU spillover to a priority-processing–enabled deployment. | Implement custom spillover logic, such as by using Azure API Management. |
+| `service_tier` returns incorrect value during streaming | When streaming via the Responses API, `service_tier` might report `"priority"` even when the request was served by the standard tier. | Check billing records to confirm which tier actually processed the request. |
 
 ## API support
 

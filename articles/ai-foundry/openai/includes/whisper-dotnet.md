@@ -11,7 +11,7 @@ ms.date: 11/21/2025
 ## Prerequisites
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure OpenAI resource with a speech to text model deployed in a [supported region](../concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource with a speech to text model deployed in a [supported region](../../foundry-models/concepts/models-sold-directly-by-azure.md?tabs=standard-audio). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - [The .NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download)
 
 ### Microsoft Entra ID prerequisites
@@ -113,6 +113,13 @@ To run the quickstart, follow these steps:
     ```dotnetcli
     dotnet run
     ```
+
+## Verify the output
+
+The transcription returns a response with a `Text` property containing the complete transcription of your audio file. You should see output similar to the example below. If you encounter errors:
+- Verify your deployment name matches exactly
+- Check that your audio file path is correct
+- Ensure your API key and endpoint are valid
 
 ## Output
 

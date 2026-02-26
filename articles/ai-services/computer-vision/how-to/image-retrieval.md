@@ -28,15 +28,6 @@ The `2024-02-01` API includes a multi-lingual model (model version `2023-04-15`)
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="Create a Computer Vision resource"  target="_blank">create a Computer Vision resource </a> in the Azure portal to get your key and endpoint. Be sure to create it in one of the supported geographic regions: see [Region availability](../overview-image-analysis.md#region-availability).
    * After it deploys, select **Go to resource**. Copy the key and endpoint to a temporary location to use later on.
 
-## Try out Multimodal embeddings
-
-You can try out the Multimodal embeddings feature quickly and easily in your browser using Vision Studio.
-
-> [!IMPORTANT]
-> The Vision Studio experience is limited to 500 images. To use a larger image set, create your own search application using the APIs in this guide.
-
-> [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/gallery/imageanalysis)
 
 ## Call the Vectorize Image API
 

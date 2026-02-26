@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/31/2025
+ai-usage: ai-assisted
 ---
 
 
@@ -57,7 +58,7 @@ ChatClient client = new(
    }
 );
 
-ChatCompletion completion = client.CompleteChat("Tell me about the bitter lesson.'");
+ChatCompletion completion = client.CompleteChat("Tell me about the bitter lesson.");
 
 Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 ```
@@ -82,7 +83,7 @@ ChatClient client = new(
    }
 );
 
-ChatCompletion completion = client.CompleteChat("Tell me about the bitter lesson.'");
+ChatCompletion completion = client.CompleteChat("Tell me about the bitter lesson.");
 
 Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 

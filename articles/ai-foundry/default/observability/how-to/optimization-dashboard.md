@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Discover how to use Ask AI in Microsoft Foundry to interpret your monitoring dashboard and gain actionable insights for better decision-making.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 02/25/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -22,11 +22,8 @@ This article describes the integrated user experience and system behavior for ge
 
 ## Prerequisites
 
-Before you begin:
-
-- You have access to the **Microsoft Foundry portal**.
-- You have one or more published agents.
-- You have access to **Ask AI** (the chat assistant).
+- A [Foundry project](../../../how-to/create-projects.md) with one or more [published agents](../../../agents/overview.md).
+- Access to **Ask AI** (the chat assistant) in the Foundry portal.
 
 ## Start a chat with Ask AI
 

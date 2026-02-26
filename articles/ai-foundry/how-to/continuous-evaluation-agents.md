@@ -78,7 +78,7 @@ for message in project_client.agents.messages.list(thread_id=thread.id).text_mes
 
 ### Select evaluators
 
-Next, you want to define the set of evaluators you'd like to run continuously. To learn more about supported evaluators, see [What are evaluators?](../concepts/observability.md#what-are-evaluators)
+Next, you want to define the set of evaluators you'd like to run continuously. To learn more about supported evaluators, see [Built in evaluators](../concepts/built-in-evaluators.md).
 
 ```python
 from azure.ai.projects.models import EvaluatorIds

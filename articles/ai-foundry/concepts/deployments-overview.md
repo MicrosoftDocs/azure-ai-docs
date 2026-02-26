@@ -5,7 +5,7 @@ description: Learn about deployment options for Microsoft Foundry Models includi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 09/22/2025
+ms.date: 01/30/2026
 ms.author: mopeakande
 author: msakande
 manager: nitinme
@@ -31,7 +31,7 @@ Models that support multiple deployment options default to Foundry resources for
 
 ### Standard deployment in Foundry resources
 
-Foundry resources (formerly referred to as Azure AI Services resources), is **the preferred deployment option** in Foundry. It offers the widest range of capabilities, including regional, data zone, or global processing, and it offers standard and [provisioned throughput (PTU)](../../ai-services/openai/concepts/provisioned-throughput.md) options. Flagship models in Foundry Models support this deployment option.
+Foundry resources is **the preferred deployment option** in Foundry. It offers the widest range of capabilities, including regional, data zone, or global processing, and it offers standard and [provisioned throughput (PTU)](../openai/concepts/provisioned-throughput.md) options. Flagship models in Foundry Models support this deployment option.
 
 This deployment option is available in:
 
@@ -45,13 +45,13 @@ To get started with standard deployment in Foundry resources, see [How-to: Deplo
 
 ### Serverless API endpoint
 
-This deployment option is available **only in** [Azure AI hub resources](ai-resources.md). It allows you to create dedicated endpoints to host the model, accessible through an API. Foundry Models support serverless API endpoints with pay-as-you-go billing, and you can create only regional deployments for serverless API endpoints.
+This deployment option is available **only in** [AI Hub resources](ai-resources.md). It allows you to create dedicated endpoints to host the model, accessible through an API. Foundry Models support serverless API endpoints with pay-as-you-go billing, and you can create only regional deployments for serverless API endpoints.
 
 To get started with deployment to a serverless API endpoint, see [Deploy models as serverless API deployments](../how-to/deploy-models-serverless.md).
 
 ### Managed compute
 
-This deployment option is available **only in** [Azure AI hub resources](ai-resources.md). It allows you to create a dedicated endpoint to host the model in a **dedicated compute**. You need to have compute quota in your subscription to host the model, and you're billed per compute uptime. 
+This deployment option is available **only in** [AI Hub resources](ai-resources.md). It allows you to create a dedicated endpoint to host the model in a **dedicated compute**. You need to have compute quota in your subscription to host the model, and you're billed per compute uptime. 
 
 Managed compute deployment is required for model collections that include:
 
@@ -69,7 +69,7 @@ Use [Standard deployments in Foundry resources](#standard-deployment-in-foundry-
 
 | Capability                    | Standard deployment in Foundry resources | Serverless API Endpoint | Managed compute |
 |-------------------------------|--------------------------------------------------|------------------------|-----------------|
-| Which models can be deployed? | [Foundry Models](../../ai-foundry/foundry-models/concepts/models.md) | [Foundry Models with pay-as-you-go billing](../how-to/model-catalog-overview.md) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
+| Which models can be deployed? | [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) <br> [Foundry Models from partners and community](../foundry-models/concepts/models-from-partners.md) | [Foundry Models with pay-as-you-go billing](../how-to/deploy-models-serverless-availability.md) | [Open and custom models](../how-to/deploy-models-managed.md) |
 | Deployment resource           | Foundry resource                         | AI project (in AI hub resource) | AI project (in AI hub resource) |
 | Requires AI Hubs              | No                                               | Yes                   | Yes            |
 | Data processing options       | Regional <br /> Data-zone  <br /> Global         | Regional              | Regional       |
@@ -77,7 +77,7 @@ Use [Standard deployments in Foundry resources](#standard-deployment-in-foundry-
 | Content filtering             | Yes                                              | Yes                   | No             |
 | Custom content filtering      | Yes                                              | No                    | No             |
 | Key-less authentication       | Yes                                              | No                    | No             |
-| Billing bases                 | Token usage & [provisioned throughput units](../../ai-services/openai/concepts/provisioned-throughput.md) | Token usage<sup>2</sup> | Compute core hours<sup>3</sup> |
+| Billing bases                 | Token usage & [provisioned throughput units](../openai/concepts/provisioned-throughput.md) | Token usage<sup>2</sup> | Compute core hours<sup>3</sup> |
 
 <sup>2</sup> A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in serverless deployment. After you delete the endpoint, no further charges accrue.
 
@@ -86,8 +86,7 @@ Use [Standard deployments in Foundry resources](#standard-deployment-in-foundry-
 
 ## Related content
 
-* [Configure your AI project to use Foundry Models](../../ai-foundry/foundry-models/how-to/quickstart-ai-project.md)
 * [Deployment types in Foundry Models](../foundry-models/concepts/deployment-types.md)
-* [Deploy Azure OpenAI models with Foundry](../how-to/deploy-models-openai.md)
-* [Deploy open models with Foundry](../how-to/deploy-models-managed.md)
-* [Explore Foundry Models](../how-to/model-catalog-overview.md)
+* [Deploy Microsoft Foundry Models in the Foundry portal](../foundry-models/how-to/deploy-foundry-models.md)
+* [Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing](../how-to/deploy-models-managed-pay-go.md)
+* [Explore Foundry Models](foundry-models-overview.md)

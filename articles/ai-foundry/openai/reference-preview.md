@@ -32,4 +32,4 @@ If you're looking for documentation on the latest GA API release, refer to the [
 ## Next steps
 
 Learn about [Models, and fine-tuning with the REST API](/rest/api/azureopenai/fine-tuning).
-Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).

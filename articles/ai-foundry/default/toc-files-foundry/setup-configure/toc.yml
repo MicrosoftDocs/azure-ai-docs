@@ -5,7 +5,7 @@ items:
 
 # Resource Management
 - name: Manage Foundry resources
-  items:
+  items: 
   - name: Create your first resource
     href: ../../../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
   - name: Create resources using Bicep template

@@ -10,13 +10,14 @@ ms.topic: include
 ms.date: 03/26/2025
 manager: nitinme
 keywords: ChatGPT
+ai-usage: ai-assisted
 
 ---
 
 This guide doesn't go in-depth into the mechanics behind the message structure for Chat Completions. If you aren't familiar with interacting with Chat Completions models programmatically, we recommend reading our [how-to guide on the Chat Completion API first](../how-to/chatgpt.md).  
 
 > [!NOTE]
-> All of the examples in this section of the guide were tested against a base GPT-4 model in English. Some techniques may produce different results with newer models like gpt-4o, and gpt 4.5. If you are reading a localized version of this article in another language, these responses represent a localized translation of the English results. To learn more about potential limitations depending on what language you are using to prompt a model, please consult our [Responsible AI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note#limitations).  
+> All of the examples in this section of the guide were tested against a base GPT-4 model in English. Some techniques may produce different results with newer models like `gpt-4.1`, and `gpt-4.5`. If you're reading a localized version of this article in another language, these responses represent a localized translation of the English results. To learn more about potential limitations depending on what language you're using to prompt a model, consult our [Responsible AI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note#limitations).  
 
 
 
@@ -28,7 +29,7 @@ When using the Chat Completions API, a series of messages between the User and A
 
 | System message |Few-shot examples |
 |----------------|------------------|
-| Assistant is an intelligent chatbot designed to help users answer their tax related questions.<br> Instructions <br> - Only answer questions related to taxes. <br> - If you're unsure of an answer, you can say "I don't know" or "I'm not sure" and recommend users go to the IRS website for more information.| **User** - "When do I need to file my taxes by?"<br>**Assistant** - "In 2023, you'll need to file your taxes by April 18th. The date falls after the usual April 15th deadline because April 15th falls on a Saturday in 2023. For more details, see https://www.irs.gov/filing/individuals/when-to-file " <br><br>**User** - "How can I check the status of my tax refund?"<br>**Assistant** - "You can check the status of your tax refund by visiting https://www.irs.gov/refunds " |
+| Assistant is an intelligent chatbot designed to help users answer their tax related questions.<br> Instructions <br> - Only answer questions related to taxes. <br> - If you're unsure of an answer, you can say "I don't know" or "I'm not sure" and recommend users go to the IRS website for more information.| **User** - "When do I need to file my taxes by?"<br>**Assistant** - "In 2023, you'll need to file your taxes by April 18th. The date falls after the usual April 15th deadline because April 15th falls on a Saturday in 2023. For more information, see https://www.irs.gov/filing/individuals/when-to-file " <br><br>**User** - "How can I check the status of my tax refund?"<br>**Assistant** - "You can check the status of your tax refund by visiting https://www.irs.gov/refunds " |
 
 The table above describes the basic prompt structure, but for a detailed explanation of the exact prompt format you'll need to refer to the [Chat Completion guide](../how-to/chatgpt.md). 
 
@@ -45,7 +46,7 @@ While the Chat Completion API is optimized to work with multi-turn conversations
 The sequence information appears in the prompt matters. This is because GPT style models are built in a certain way that defines how they process the input. Our research suggests that telling the model the task you want it to do at the beginning of the prompt, before sharing additional contextual information or examples, can help produce higher-quality outputs.
 
 > [!NOTE]
-> Although following this technique is still generally recommended, in contrast to previous model versions (GPT-3 and prior), our testing showed that the model response with ChatGPT and GPT-4 models was the same regardless of whether the technique is utilized. In the case of the below example, we see that adding the statement “Several sources … eruption” at the beginning or the end of the prompt did not cause any change in the final model response.
+> Although following this technique is still generally recommended, in contrast to previous model versions (GPT-3 and prior), our testing showed that the model response with ChatGPT and GPT-4 models was the same regardless of whether the technique is utilized. In this example, we see that adding the statement “Several sources … eruption” at the beginning or the end of the prompt didn't cause any change in the final model response.
 
 | System message |User     | Assistant  |
 |----------------|---------|------------|
@@ -67,7 +68,7 @@ In the above prompt, the text *One possible search query is:* primes the model t
 
 ## Add clear syntax
 
-Using clear syntax for your prompt—including punctuation, headings, and section markers—helps communicate intent and often makes outputs easier to parse.
+Use clear syntax for your prompt to communicate intent and make outputs easier to parse.
 
 In the example below, separators (`---` in this case) have been added between different sources of information or steps. This allows the use of `---` as a stopping condition for generation. In addition, section headings or special variables are presented in uppercase to differentiate them.
 
@@ -100,7 +101,7 @@ One simple way to use an affordance is to stop generation once the affordance ca
 ## Chain of thought prompting
 
 > [!IMPORTANT]
-> This technique is only applicable non-reasoning models. Attempting to extract model reasoning through methods other than the reasoning summary parameter are not supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
+> This technique is only applicable non-reasoning models. Attempting to extract model reasoning through methods other than the reasoning summary parameter aren't supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
 
 
 This is a variation on the **break the task down** technique. Instead of splitting a task into smaller steps, in this approach, the model response is instructed to proceed step-by-step and present all the steps involved. Doing so reduces the possibility of inaccuracy of outcomes and makes assessing the model response easier.
@@ -117,7 +118,7 @@ If you instruct the model to cite the source material when it makes statements, 
 
 Similarly, if you ask the model to extract factual statements from a paragraph, it might extract compound statements such as ‘X is doing Y AND Z’ (which can be harder to verify). This can be avoided by specifying an output structure such as (entity1, relationship, entity2).
 
-The examples below show the use of citations and directing the model response to fit a defined structure.
+This example shows the use of citations and directing the model response to fit a defined structure.
 
 | System message | User     | Assistant  |
 |----------------|---------|-------------|
@@ -125,7 +126,7 @@ The examples below show the use of citations and directing the model response to
 
 | System message | User     | Assistant  |
 |----------------|---------|-------------|
-| You're an AI assistant that helps people find information.| Cluster the following news headlines into topic categories based on patterns seen within the text. Also mention reasoning behind how these categories were defined. <br>Output format:<br>{<br>"TOPIC_NAME": "",<br>"HEADLINES": [],<br>"REASONING": ""<br>}<br><br>Input news headlines:<br>1. "From books to presentations in 10s with AR + ML"<br>2. "Demo from 1993 of 32-year-old Yann LeCun showing off the World's first Convolutional Network for Text Recognition"<br>3. "First Order Motion Model applied to animate paintings"<br>4. "Robinhood and other brokers literally blocking purchase of $GME, $NOK, $BB, $AMC; allow sells"<br>5. "United Airlines stock down over 5% premarket trading"<br>Output:<br>|<br>{<br>"ARTIFICIAL_INTELLIGENCE": {<br>"HEADLINES": [<br>"From books to presentations in 10s with AR + ML",<br>"Demo from 1993 of 32-year-old Yann LeCun showing off the World's first Convolutional Network for Text Recognition",<br>"First Order Motion Model applied to animate paintings"<br>],<br>"REASONING": "These headlines are related to artificial intelligence, machine learning, and their applications in various fields."<br>},<br>"FINANCIAL_MARKETS": {<br>"HEADLINES": [<br>"Robinhood and other brokers literally blocking purchase of $GME, $NOK, $BB, $AMC; allow sells",<br>"United Airlines stock down over 5% premarket trading",<br>"Bitcoin was nearly $20,000 a year ago today"<br>],<br>"REASONING": "These headlines are related to financial markets, stocks, cryptocurrencies, and trading platforms."<br>}<br>}<br>
+| You're an AI assistant that helps people find information.| Cluster the following news headlines into topic categories based on patterns seen within the text. Also mention reasoning behind how these categories were defined. <br>Output format:<br>{<br>"TOPIC_NAME": "",<br>"HEADLINES": [],<br>"REASONING": ""<br>}<br><br>Input news headlines:<br>1. "From books to presentations in 10s with AR + ML"<br>2. "Demo from 1993 of 32-year-old `Yann LeCun` showing off the World's first Convolutional Network for Text Recognition"<br>3. "First Order Motion Model applied to animate paintings"<br>4. "Robinhood and other brokers literally blocking purchase of $GME, $NOK, $BB, $AMC; allow sells"<br>5. "United Airlines stock down over 5% premarket trading"<br>Output:<br>|<br>{<br>"ARTIFICIAL_INTELLIGENCE": {<br>"HEADLINES": [<br>"From books to presentations in 10s with AR + ML,"<br>"Demo from 1993 of 32-year-old `Yann LeCun` showing off the World's first Convolutional Network for Text Recognition,"<br>"First Order Motion Model applied to animate paintings"<br>],<br>"REASONING": "These headlines are related to artificial intelligence, machine learning, and their applications in various fields."<br>},<br>"FINANCIAL_MARKETS": {<br>"HEADLINES": [<br>"Robinhood and other brokers literally blocking purchase of $GME, $NOK, $BB, $AMC; allow sells,"<br>"United Airlines stock down over 5% premarket trading",<br>"Bitcoin was nearly $20,000 a year ago today"<br>],<br>"REASONING": "These headlines are related to financial markets, stocks, cryptocurrencies, and trading platforms."<br>}<br>}<br>
 
 ## Temperature and Top_p parameters
 
@@ -135,7 +136,7 @@ Top_probability is another parameter and is similar to Temperature in that it al
 ## Provide grounding context
 
 One of the most effective ways to provide reliable answers is to give the model data to draw its responses from (grounding data). If your use case relies on up-to-date, reliable information and isn't purely a creative scenario, we strongly recommend providing grounding data. In general, the closer you can get your source material to the final form of the answer you want, the less work the model needs to do, which means there's less opportunity for error.
-Here's an example where the system is provided a [recent blog describing the launch of GPT-4 in Azure OpenAI in Microsoft Foundry Models](https://azure.microsoft.com/blog/introducing-gpt4-in-azure-openai-service/), and asked to name some of its early customers.
+Here's an example where the system is provided a blog describing the [launch of GPT-4 in Azure OpenAI in Microsoft Foundry Models](https://azure.microsoft.com/blog/introducing-gpt4-in-azure-openai-service/), and asked to name some of its early customers.
 
 | System message | User     | Assistant  |
 |----------------|---------|-------------|

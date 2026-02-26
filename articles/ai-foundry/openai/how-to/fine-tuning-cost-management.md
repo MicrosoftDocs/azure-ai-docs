@@ -6,9 +6,9 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/26/2025
-author: mrbullwinkle
-ms.author: mbullwin
+ms.date: 02/11/2026
+author: ssalgadodev
+ms.author: ssalgado
 show_latex: true
 ms.custom: ignite2025
 monikerRange: 'foundry-classic || foundry'
@@ -16,16 +16,16 @@ monikerRange: 'foundry-classic || foundry'
 
 # Cost management for fine-tuning
 
-Fine-tuning can be intimidating: unlike base models, where you're just paying for input and output tokens for inferencing, fine-tuning requires training your custom models and dealing with hosting. This guide is intended to help you better understand the costs associated with fine-tuning and how to manage them.
+Fine-tuning involves two cost components: a one-time training cost and ongoing hosting and inference costs. This guide explains how to estimate and manage both.
 
 > [!IMPORTANT]
 > The numbers in this article are for example purposes only. You should always refer to the official [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service) for pricing details to use in the formulas provided in this article.
 
 ## Upfront investment - training your model
 
-This is the one-time, fixed cost associated with teaching a base model your specific requirements using your training data. Below, we explain how training costs can be calculated.
+This is the one-time, fixed cost associated with teaching a base model your specific requirements using your training data. The following sections explain how training costs are calculated.
 
-For all training jobs, you have the option to use **global standard** (10-30% discount from regional standard training) or **developer** (50% discount from global). Neither Global nor Developer training guarantee data residency; developer training will run on pre-emptible spot capacity so may take longer to complete. Developer tier jobs may be paused by the system but will automatically resume; users do not incur charges for jobs in paused states.
+For all training jobs, you have the option to use **global standard** (10-30% discount from regional standard training) or **developer** (50% discount from global). Neither Global nor Developer training guarantee data residency; developer training will run on pre-emptible spot capacity so may take longer to complete. Developer tier jobs may be paused by the system but automatically resume; you don't incur charges for jobs in paused states.
 
 ### The calculation formula
 
@@ -39,10 +39,10 @@ $$
 
 In general, smaller models and more recent models have lower prices per token than larger, older models. To estimate the number of tokens in your file, you can use the [tiktoken library](https://github.com/openai/tiktoken) – or, for a less precise estimate, one word is roughly equivalent to four tokens.
 
-We offer both regional and global training for SFT; if you don't need data residency, global training allows you to train at a discounted rate.
+Both regional and global training are available for SFT. If you don't need data residency, global training allows you to train at a discounted rate.
 
 > [!IMPORTANT]
-> We don't charge you for time spent in queue, failed jobs, jobs canceled prior to training beginning, or data safety checks. Training token price is different from inferencing input/ output token price. Please refer the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service)
+> You aren't charged for time spent in queue, failed jobs, jobs canceled prior to training beginning, or data safety checks. Training token price is different from inferencing input/output token price. For pricing details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service).
 
 #### Example: Supervised fine-tuning (SFT)
 
@@ -64,7 +64,7 @@ $$
 
 ### Reinforcement fine-tuning (RFT)
 
-The cost is determined by the time spent on training the model for Reinforcement fine tuning technique.
+The cost is determined by the time spent on training the model for the reinforcement fine-tuning technique.
 
 **The formula is:**
 
@@ -76,15 +76,16 @@ $$
 - **Hourly Training cost**: $100 per hour of core training time for `o4-mini-2025-04-16`. Refer to the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service) for actual pricing details.
 - **Model grading**: Tokens used to grade outputs during training are billed separately at data zone rates once training is complete.
 
-#### Example: Training model with graders (without Model grader – Score_model)
+#### Example: Training model with graders (without model grader – Score_model)
 
-Let's project the cost to train a customer service chatbot.
+This example projects the cost to train a customer service chatbot.
 
-- Submit fine-tuning job: Time when the fine-tuning job was submitted: 02:00 hrs
-- Data preprocessing completed: It took 30 minutes for data preprocessing to be completed which includes data safety checks. This time isn't used for billing.
-- Training started: Training starts at 02:30 hours
-- Training completed: Training is completed at 06:30 hours
-- Model creation: A deployable model checkpoint is created after training completion, which included post-training model safety steps. This time isn't used for billing.
+| Step | Time | Billable |
+|------|------|----------|
+| Submit fine-tuning job | 02:00 | No |
+| Data preprocessing (includes safety checks) | 02:00–02:30 | No |
+| Training | 02:30–06:30 | Yes (4 hours) |
+| Model creation (includes safety steps) | After 06:30 | No |
 
 **Final Calculation**:  
 
@@ -92,20 +93,19 @@ $$
 \text{Total time taken for training} \times \text{Hourly training cost} = 4 \times 100 = \$200
 $$
 
-Your one-time investment to create this `o4-mini` custom fine tuned model would be **$400.00**.
+Your one-time investment to create this `o4-mini` custom fine-tuned model would be **$400.00**.
 
-#### Example: Training a model with Model ‘Score_model’ grader (o3-mini being used as grader)
+#### Example: Training a model with model 'Score_model' grader (o3-mini being used as grader)
 
-Let's project the cost to train a customer service chatbot.
+This example projects the cost to train a customer service chatbot.
 
-- Submit fine tuning job: Time when FT job has started say 02:00 hrs
-- Data preprocessing completed: It took 30 minutes for data preprocessing to be completed which includes data safety checks. This time isn't used for billing.
-- Training started: Training starts at 02:30 hours
-- Training completed: Training is completed at 06:30 hours
-- Model grader pricing:
-  - Total Input tokens used for grading – 5 million tokens
-  - Total Output tokens used for grading – 4.9 million tokens
-- Model creation: A deployable model checkpoint is created after training completion, which included post-training model safety steps. This time isn't used for billing.
+| Step | Time | Billable |
+|------|------|----------|
+| Submit fine-tuning job | 02:00 | No |
+| Data preprocessing (includes safety checks) | 02:00–02:30 | No |
+| Training | 02:30–06:30 | Yes (4 hours) |
+| Model grader (5M input tokens, 4.9M output tokens) | During training | Yes (billed separately) |
+| Model creation (includes safety steps) | After 06:30 | No |
 
 **Final Calculation**:  
 
@@ -125,31 +125,31 @@ $$
 \text{Total training costs} = \$427.06
 $$
 
-Your one-time investment to create this o4-mini custom fine tuned model would be **$427.06**
+Your one-time investment to create this o4-mini custom fine-tuned model would be **$427.06**.
 
 ### Managing costs and spending limits when using RFT
 
-To control your spending, we recommend:
+To control your spending, consider the following strategies:
 
-- Start with shorter runs to understand how your configuration affects time – Use configuration `reasoning effort` – Low, smaller validation data sets
-- Use a reasonable number of validation examples and `eval_samples`. Avoid validating more often than you need.
-- Choose the smallest grader model that meets your quality requirements.
-- Adjust `compute_multiplier` to balance convergence speed and cost.
-- Monitor your run in the Foundry portal or via the API. You can pause or cancel at any time.
+| Strategy | Description |
+|----------|-------------|
+| Start small | Use shorter runs with `reasoning_effort` set to Low and smaller validation datasets to understand how your configuration affects time. |
+| Limit validation | Use a reasonable number of validation examples and `eval_samples`. Avoid validating more often than you need. |
+| Choose smallest grader | Select the smallest grader model that meets your quality requirements. |
+| Adjust compute | Tune `compute_multiplier` to balance convergence speed and cost. |
+| Monitor and cancel | Monitor your run in the Foundry portal or via the API. You can pause or cancel at any time. |
 
-As RFT jobs can lead to high training costs, we're capping the pricing for per training job billing to **$5000** which means this will be the maximum amount that a job can cost before we end the job. The training will be paused and a deployable checkpoint will be created. Users can validate the training job, metrics, logs and then decide to resume the job to complete further. If the user decides to resume the job, billing will continue for the job and subsequently no further price limits would be placed on the training job.
+RFT jobs can lead to high training costs, so per-job billing is capped at **$5,000**. When a job reaches this limit, training pauses and a deployable checkpoint is created. You can validate the training job, metrics, and logs, then decide whether to resume. If you resume, billing continues with no further price limits.
 
 ### Job failures and cancellations
 
-You aren't billed for work lost due to our error. However, if you cancel a run, you'll be charged for the work completed up to that point.
+You aren't billed for work lost due to a service error. However, if you cancel a run, you'll be charged for the work completed up to that point.
   
 **Example**: the run trains for 2 hours, writes a checkpoint, trains for 1 more hour, but then fails. Only the 2 hours of training up to the checkpoint are billable.
 
 ## Ongoing operational costs – using your model
 
-After your model is trained, you can deploy it any number of times using the following deployment types:
-
-We have three options for hosting:
+After your model is trained, you can deploy it using one of the following hosting options:
 
 - **Standard**: pay per-token at the same rate as base model Standard deployments with an additional $1.70/hour hosting fee. Offers regional data residency guarantees.
 - **Global Standard**: pay per-token at the same rate as base model Global Standard deployments with an additional hosting fee. Doesn't offer data residency guarantees. Offers higher throughput than Standard deployments.
@@ -160,10 +160,10 @@ The right deployment type for your use case depends on weighing your AI requirem
 
 | Deployment Type             | Availability | Latency | Token Rate         | Hourly Rate     |
 |----------------------------|------------------|-------------|--------------------|-----------------|
-| Standard                   | [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)            | -        | Same as base model | $1.70/hour      |
-| Global Standard            | [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)            | -       | Same as base model | $1.70/hour      |
+| Standard                   | [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)            | Best effort        | Same as base model | $1.70/hour      |
+| Global Standard            | [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)            | Best effort       | Same as base model | $1.70/hour      |
 | Regional Provisioned Throughput | [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)       | [PTU](/azure/ai-foundry/openai/concepts/provisioned-throughput?tabs=global-ptum#when-to-use-provisioned-throughput) | None         | PTU/hour        |
-| Developer Tier             | None             | -        | Same as Global Standard | None      |
+| Developer Tier             | None             | Best effort        | Same as Global Standard | None      |
 
 Full pricing information for all models is available on the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service).
 
@@ -173,7 +173,7 @@ Full pricing information for all models is available on the [Azure OpenAI pricin
 - Input Cost: $1.10 per 1M tokens
 - Output Cost: $4.40 per 1M tokens
 
-#### Example: Monthly Usage of a Fine-Tuned Chatbot
+#### Example: Monthly usage of a fine-tuned chatbot
 
 Let's assume your chatbot handles 10,000 customer conversations in its first month:
 
@@ -192,3 +192,10 @@ $$
 $$
 
 Always refer to the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service) for pricing information. The numbers in this article are for example purposes only.
+
+
+## Next steps
+
+- Get started with the [Foundry Models fine-tuning tutorial](../tutorials/fine-tune.md).
+- Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
+- Learn more about [Foundry Models quotas and limits](../quotas-limits.md).

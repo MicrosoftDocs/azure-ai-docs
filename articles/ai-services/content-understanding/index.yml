@@ -30,14 +30,14 @@ highlightedContent:
 
 conceptualContent:
   items:
-    - title: Microsoft Foundry (classic)
+    - title: Content Understanding Studio
       links:
-        - itemType: how-to-guide
-          text: "Create Content Understanding Standard and Pro tasks in the Foundry (classic) portal"
-          url: how-to/content-understanding-foundry-classic.md
+        - itemType: quickstart
+          text: "Try out Content Understanding Studio"
+          url: /azure/ai-services/content-understanding/quickstart/content-understanding-studio
         - itemType: concept
-          text: Analyzer templates
-          url: concepts/analyzer-templates.md
+          text: CU Studio and Microsoft Foundry
+          url: /azure/ai-services/content-understanding/foundry-vs-content-understanding-studio
     - title: Analyzers
       links:
         - itemType: quickstart
@@ -57,14 +57,6 @@ conceptualContent:
         - itemType: overview
           text: Overview
           url: concepts/classifier.md
-    - title: Face and person directories (preview)
-      links:
-        - itemType: overview
-          text: Overview
-          url: face/overview.md
-        - itemType: how-to-guide
-          text: Build a person directory (preview)
-          url: tutorial/build-person-directory.md
     - title: Modalities
       links:
         - itemType: concept
@@ -82,10 +74,31 @@ conceptualContent:
     - title: Tutorials
       links:
         - itemType: how-to-guide
+          text: Create a custom analyzer with Content Understanding Studio
+          url: how-to/customize-analyzer-content-understanding-studio.md
+        - itemType: how-to-guide
           text: Create a custom analyzer
           url: tutorial/create-custom-analyzer.md
         - itemType: how-to-guide
-          text: Build a person directory (preview)
+          text: Classifier tutorial - Split and route
+          url: how-to/classification-content-understanding-studio.md
+        - itemType: how-to-guide
+          text: Migration from CU Preview to GA
+          url: how-to/migration-preview-to-ga.md
+        - itemType: how-to-guide
+          text: Copy and back up analyzers
+          url: how-to/copy-analyzers.md
+        - itemType: how-to-guide
+          text: Build a retrieval-augmented generation solution
+          url: tutorial/build-rag-solution.md
+        - itemType: how-to-guide
+          text: Build a robotic process automation solution
+          url: tutorial/robotic-process-automation.md
+        - itemType: how-to-guide
+          text: Create a Microsoft Foundry resource
+          url: how-to/create-multi-service-resource.md
+        - itemType: how-to-guide
+          text: Build a face-data person directory (preview)
           url: tutorial/build-person-directory.md
     - title: Resources
       links:

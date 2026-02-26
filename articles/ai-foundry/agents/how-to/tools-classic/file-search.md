@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 02/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions
@@ -41,6 +41,7 @@ File search augments agents with knowledge from outside its model, such as propr
 > The file search tool is currently unavailable in the following regions:
 >    * Italy north
 >    * Brazil south
+>    * West Europe
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|---------|
@@ -207,3 +208,7 @@ When a vector store expires, the runs on that thread fail. To fix this issue, yo
 | `.sh` | `application/x-sh` |
 | `.ts` | `application/typescript` |
 
+## Limitations
+
++ Uploading files and creating vector store will fail if you have Azure Policy for your Azure Search Resource Indexes that denies non-CMK indexes for __Encryption__ value. In this case, you need to bring your indexes from the Azure AI Search resource upfront and then reference them in your Agent.
+You can't create indexes from Foundry with Encryption type = Customer-managed keys.

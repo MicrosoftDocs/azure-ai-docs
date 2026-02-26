@@ -46,6 +46,8 @@ productDirectory:
           text: Quickstart - Create Foundry resources (new)
         - url: ./quickstarts/get-started-code.md?view=foundry
           text: Quickstart - Chat with an agent (new)
+        - url: ../ai-services/speech-service/voice-live-agents-quickstart.md
+          text: Quickstart - Talk to a voice agent (new)
         - url: ./quickstarts/get-started-code.md?view=foundry-classic
           text: Quickstart for Foundry (classic)
         - url: /azure/developer/ai/intelligent-app-templates
@@ -56,7 +58,7 @@ productDirectory:
       links:
         - url: foundry-models/concepts/models.md
           text: Foundry Models sold directly by Azure
-        - url: ../ai-services/openai/concepts/models.md
+        - url: ../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md
           text: Azure OpenAI in Foundry Models
         - url: foundry-models/concepts/deployment-types.md
           text: Deployment types

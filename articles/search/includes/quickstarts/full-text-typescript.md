@@ -4,88 +4,101 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 02/02/2026
 ---
 
-[!INCLUDE [Full text introduction](full-text-intro.md)]
+In this quickstart, you use the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme) (compatible with TypeScript) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md), also known as keyword search.
+
+Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results. This quickstart uses fictional hotel data from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-json-documents) GitHub repository to populate the index.
 
 > [!TIP]
-> You can download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-keyword-search) to start with a finished project or follow these steps to create your own.
+> Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-keyword-search) on GitHub.
 
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure AI Search service. [Create a service](../../search-create-service-portal.md) if you don't have one. For this quickstart, you can use a free service.
 
-## Microsoft Entra ID prerequisites
+- An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
-For the recommended keyless authentication with Microsoft Entra ID, you must:
+- [Node.js 20 LTS](https://nodejs.org/en/download/) or later to run the compiled code.
 
-- Install the [Azure CLI](/cli/azure/install-azure-cli).
+- [TypeScript](https://www.typescriptlang.org/download/) to compile TypeScript to JavaScript.
 
-- Assign the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
+- [Visual Studio Code](https://code.visualstudio.com/download).
 
-## Get service information
+- [Git](https://git-scm.com/downloads) to clone the sample repository.
+
+- The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+
+## Configure access
 
 [!INCLUDE [resource authentication](../resource-authentication.md)]
 
-## Set up
+## Get endpoint
 
-1. Create a new folder `full-text-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+[!INCLUDE [resource endpoint](../resource-endpoint.md)]
 
-    ```shell
-    mkdir full-text-quickstart && cd full-text-quickstart
+## Set up the environment
+
+1. Use Git to clone the sample repository.
+
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-javascript-samples
     ```
 
-1. Create the `package.json` with the following command:
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-    ```shell
-    npm init -y
+    ```bash
+    cd azure-search-javascript-samples/quickstart-keyword-search
+    code .
     ```
 
-1. Update the `package.json` to ECMAScript with the following command: 
+1. In `sample.env`, replace the placeholder value for `SEARCH_API_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-    ```shell
+1. Rename `sample.env` to `.env`.
+
+    ```bash
+    mv sample.env .env
+    ```
+
+1. Install the dependencies.
+
+    ```bash
+    npm install
+    npm install typescript @types/node --save-dev
     npm pkg set type=module
     ```
 
-1. Install the Azure AI Search client library ([Azure.Search.Documents](/javascript/api/overview/azure/search-documents-readme)) for JavaScript with:
+    When the installation completes, you should see a `node_modules` folder in the project directory.
 
-    ```console
-    npm install @azure/search-documents
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
+
+   ```azurecli
+   az login
+   ```
+
+## Run the code
+
+The sample code uses JavaScript by default. To run the code with TypeScript:
+
+1. Create a file named `tsconfig.json`, and then paste the following code into it.
+
+    ```json
+    {
+      "compilerOptions": {
+        "module": "NodeNext",
+        "target": "ES2022",
+        "moduleResolution": "NodeNext",
+        "skipLibCheck": true,
+        "strict": true,
+        "resolveJsonModule": true
+      },
+      "include": ["*.ts"],
+      "exclude": ["node_modules"]
+    }
     ```
 
-1. For the **recommended** passwordless authentication, install the Azure Identity client library with:
-
-    ```console
-    npm install @azure/identity
-    ```
-
-
-## Create, load, and query a search index
-
-In the prior [set up](#set-up) section, you installed the Azure AI Search client library and other dependencies. 
-
-In this section, you add code to create a search index, load it with documents, and run queries. You run the program to see the results in the console. For a detailed explanation of the code, see the [Explaining the code](#explaining-the-code) section.
-
-The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can replace the `DefaultAzureCredential` object with a `AzureKeyCredential` object. 
-
-#### [Microsoft Entra ID](#tab/keyless)
-
-```javascript
-const searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-const credential = new DefaultAzureCredential();
-```
-
-#### [API key](#tab/api-key)
-
-```javascript
-const searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-const credential = new AzureKeyCredential(apiKey);
-```
----
-
-1. Create a new file named *index.ts* and paste the following code into *index.ts*:
+1. Rename the `index.js` file to `index.ts`, and then replace the contents with the following code. This code converts the CommonJS syntax to ES module imports, which are required for TypeScript compilation.
 
     ```typescript
     // Import from the @azure/search-documents library
@@ -93,7 +106,6 @@ const credential = new AzureKeyCredential(apiKey);
         SearchIndexClient,
         SearchClient,
         SearchFieldDataType,
-        AzureKeyCredential,
         odata,
         SearchIndex
     } from "@azure/search-documents";
@@ -102,11 +114,10 @@ const credential = new AzureKeyCredential(apiKey);
     import { DefaultAzureCredential } from "@azure/identity";
     
     // Importing the hotels sample data
-    import hotelData from './hotels.json' assert { type: "json" };
+    import hotelData from './hotels.json' with { type: "json" };
     
     // Load the .env file if it exists
-    import * as dotenv from "dotenv";
-    dotenv.config();
+    import "dotenv/config";
     
     // Defining the index definition
     const indexDefinition: SearchIndex = {
@@ -231,14 +242,14 @@ const credential = new AzureKeyCredential(apiKey);
     };
     
     async function main() {
-        
-    	// Your search service endpoint
-    	const searchServiceEndpoint = "https://<Put your search service NAME here>.search.windows.net/";
-    	
+    
+    	// Your search service endpoint (from .env file)
+    	const searchServiceEndpoint = process.env.SEARCH_API_ENDPOINT || "";
+    
     	// Use the recommended keyless credential instead of the AzureKeyCredential credential.
     	const credential = new DefaultAzureCredential();
     	//const credential = new AzureKeyCredential(Your search service admin key);
-    	
+    
     	// Create a SearchIndexClient to send create/delete index commands
     	const searchIndexClient: SearchIndexClient = new SearchIndexClient(
     		searchServiceEndpoint,
@@ -261,7 +272,7 @@ const credential = new AzureKeyCredential(apiKey);
         console.log(`Index operations succeeded: ${JSON.stringify(indexDocumentsResult.results[0].succeeded)} `);
     
         // waiting one second for indexing to complete (for demo purposes only)
-        sleep(1000);
+        await sleep(1000);
     
         console.log('Querying the index...');
         console.log();
@@ -351,145 +362,124 @@ const credential = new AzureKeyCredential(apiKey);
     });
     ```
 
-1. Create a file named *hotels.json* and paste the following code into *hotels.json*:
-
-    ```json
-    {
-        "value": [
-            {
-                "HotelId": "1",
-                "HotelName": "Stay-Kay City Hotel",
-                "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-                "Category": "Boutique",
-                "Tags": ["view", "air conditioning", "concierge"],
-                "ParkingIncluded": false,
-                "LastRenovationDate": "2022-01-18T00:00:00Z",
-                "Rating": 3.6,
-                "Address": {
-                    "StreetAddress": "677 5th Ave",
-                    "City": "New York",
-                    "StateProvince": "NY",
-                    "PostalCode": "10022"
-                }
-            },
-            {
-                "HotelId": "2",
-                "HotelName": "Old Century Hotel",
-                "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
-                "Category": "Boutique",
-                "Tags": ["pool", "free wifi", "concierge"],
-                "ParkingIncluded": "false",
-                "LastRenovationDate": "2019-02-18T00:00:00Z",
-                "Rating": 3.6,
-                "Address": {
-                    "StreetAddress": "140 University Town Center Dr",
-                    "City": "Sarasota",
-                    "StateProvince": "FL",
-                    "PostalCode": "34243"
-                }
-            },
-            {
-                "HotelId": "3",
-                "HotelName": "Gastronomic Landscape Hotel",
-                "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-                "Category": "Suite",
-                "Tags": ["restaurant, "bar", "continental breakfast"],
-                "ParkingIncluded": "true",
-                "LastRenovationDate": "2015-09-20T00:00:00Z",
-                "Rating": 4.8,
-                "Address": {
-                    "StreetAddress": "3393 Peachtree Rd",
-                    "City": "Atlanta",
-                    "StateProvince": "GA",
-                    "PostalCode": "30326"
-                }
-            },
-            {
-                "HotelId": "4",
-                "HotelName": "Sublime Palace Hotel",
-                "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
-                "Category": "Boutique",
-                "Tags": ["concierge", "view", "air conditioning"],
-                "ParkingIncluded": true,
-                "LastRenovationDate": "2020-02-06T00:00:00Z",
-                "Rating": 4.6,
-                "Address": {
-                    "StreetAddress": "7400 San Pedro Ave",
-                    "City": "San Antonio",
-                    "StateProvince": "TX",
-                    "PostalCode": "78216"
-                }
-            }
-        ]
-    }
-    ```
-
-1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
-
-    ```json
-    {
-        "compilerOptions": {
-          "module": "NodeNext",
-          "target": "ES2022", // Supports top-level await
-          "moduleResolution": "NodeNext",
-          "skipLibCheck": true, // Avoid type errors from node_modules
-          "strict": true // Enable strict type-checking options
-        },
-        "include": ["*.ts"]
-    }
-    ```
-
 1. Transpile from TypeScript to JavaScript.
 
-    ```shell
-    tsc
-    ```
-    
-1. Sign in to Azure with the following command:
-
-    ```shell
-    az login
+    ```bash
+    npx tsc
     ```
 
-1. Run the JavaScript code with the following command:
+1. Run the application.
 
-    ```shell
+    ```bash
     node index.js
     ```
 
-## Explaining the code
+### Output
 
-### Create index
+The output should be similar to the following:
 
-Create a file *hotels_quickstart_index.json*. This file defines how Azure AI Search works with the documents you load in the next step. Each field is identified by a `name` and has a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
+```
+Checking if index exists...
+Deleting index...
+Creating index...
+Index named hotels-quickstart has been created.
+Uploading documents...
+Index operations succeeded: true 
+Querying the index...
 
-We want to import *hotels_quickstart_index.json* so the main function can access the index definition.
+Query #1 - search everything:
+{"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Rating":4.8}
+{"HotelId":"2","HotelName":"Old Century Hotel","Rating":3.6}
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
+{"HotelId":"1","HotelName":"Stay-Kay City Hotel","Rating":3.6}
+Result count: 4
+
+Query #2 - search with filter, orderBy, and select:
+{"HotelId":"2","HotelName":"Old Century Hotel","Rating":3.6}
+
+Query #3 - limit searchFields:
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
+
+Query #4 - limit searchFields and use facets:
+{"HotelId":"3","HotelName":"Gastronomic Landscape Hotel","Rating":4.8}
+{"HotelId":"2","HotelName":"Old Century Hotel","Rating":3.6}
+{"HotelId":"4","HotelName":"Sublime Palace Hotel","Rating":4.6}
+{"HotelId":"1","HotelName":"Stay-Kay City Hotel","Rating":3.6}
+
+Query #5 - Lookup document:
+HotelId: 3; HotelName: Gastronomic Landscape Hotel
+```
+
+## Understand the code
+
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
+Now that you've run the code, let's break down the key steps:
+
+1. [Create a search client](#create-a-search-client)
+1. [Create a search index](#create-a-search-index)
+1. [Upload documents to the index](#upload-documents-to-the-index)
+1. [Query the index](#query-the-index)
+
+### Create a search client
+
+In `index.ts`, you create two clients:
+
+- [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) creates the index.
+- [SearchClient](/javascript/api/@azure/search-documents/searchclient) loads and queries an existing index.
+
+Both clients require the service endpoint and a credential for authentication. In this quickstart, you use [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential) for keyless authentication with Microsoft Entra ID.
 
 ```typescript
-import indexDefinition from './hotels_quickstart_index.json';
+const credential = new DefaultAzureCredential();
+const searchIndexClient: SearchIndexClient = new SearchIndexClient(
+    searchServiceEndpoint,
+    credential
+);
+```
 
-interface HotelIndexDefinition {
-    name: string;
-    fields: SimpleField[] | ComplexField[];
-    suggesters: SearchSuggester[];
+### Create a search index
+
+This quickstart builds a hotels index that you load with hotel data and execute queries against. In this step, you define the fields in the index.
+
+The `indexDefinition` object defines how Azure AI Search works with the documents you load in the next step. Each field is identified by a `name` and has a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `Address`, are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create).
+
+```typescript
+const indexDefinition: SearchIndex = {
+    "name": "hotels-quickstart",
+    "fields": [
+        {
+            "name": "HotelId",
+            "type": "Edm.String" as SearchFieldDataType,
+            "key": true,
+            "filterable": true
+        },
+        {
+            "name": "HotelName",
+            "type": "Edm.String" as SearchFieldDataType,
+            "searchable": true,
+            "filterable": false,
+            "sortable": true,
+            "facetable": false
+        },
+        // REDACTED FOR BREVITY
+    ],
+    "suggesters": [
+        {
+            "name": "sg",
+            "searchMode": "analyzingInfixMatching",
+            "sourceFields": ["HotelName"]
+        }
+    ]
 };
-const hotelIndexDefinition: HotelIndexDefinition = indexDefinition as HotelIndexDefinition;
 ```
 
-Within the main function, we then create a `SearchIndexClient`, which is used to create and manage indexes for Azure AI Search. 
-
-```javascript
-const indexClient = new SearchIndexClient(endpoint, new AzureKeyCredential(apiKey));
-```
-
-Next, we want to delete the index if it already exists. This operation is a common practice for test/demo code.
-
-We do this by defining a simple function that tries to delete the index.
+This quickstart deletes the index if it already exists, which is a common practice for test/demo code.
 
 ```typescript
-async function deleteIndexIfExists(indexClient: SearchIndexClient, indexName: string): Promise<void> {
+async function deleteIndexIfExists(searchIndexClient: SearchIndexClient, indexName: string) {
     try {
-        await indexClient.deleteIndex(indexName);
+        await searchIndexClient.deleteIndex(indexName);
         console.log('Deleting index...');
     } catch {
         console.log('Index does not exist yet.');
@@ -497,101 +487,41 @@ async function deleteIndexIfExists(indexClient: SearchIndexClient, indexName: st
 }
 ```
 
-To run the function, we extract the index name from the index definition and pass the `indexName` along with the `indexClient` to the `deleteIndexIfExists()` function.
+After that, the index is created with the `createIndex()` method.
 
 ```typescript
-// Getting the name of the index from the index definition
-const indexName: string = hotelIndexDefinition.name;
-
-console.log('Checking if index exists...');
-await deleteIndexIfExists(indexClient, indexName);
+let index: SearchIndex = await searchIndexClient.createIndex(indexDefinition);
 ```
 
-After that, we're ready to create the index with the `createIndex()` method.
+### Upload documents to the index
+
+In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this quickstart, you programmatically push the documents to the index.
+
+Document inputs might be rows in a database, blobs in Azure Blob Storage, or JSON documents on disk, as in this quickstart. The hotel data is imported at the top of the file.
 
 ```typescript
-console.log('Creating index...');
-let index = await indexClient.createIndex(hotelIndexDefinition);
-
-console.log(`Index named ${index.name} has been created.`);
-``` 
-
-### Load documents 
-
-In Azure AI Search, documents are data structures that are both inputs to indexing and outputs from queries. You can push such data to the index or use an [indexer](/azure/search/search-indexer-overview). In this case, we'll programmatically push the documents to the index.
-
-Document inputs might be rows in a database, blobs in Blob storage, or, as in this sample, JSON documents on disk. You can either download [hotels.json](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/main/quickstart/hotels.json) or create your own *hotels.json* file with the following content:
-
-
-Similar to what we did with the indexDefinition, we also need to import `hotels.json` at the top of *index.ts* so that the data can be accessed in our main function.
-
-```typescript
-import hotelData from './hotels.json';
-
-interface Hotel {
-    HotelId: string;
-    HotelName: string;
-    Description: string;
-    Category: string;
-    Tags: string[];
-    ParkingIncluded: string | boolean;
-    LastRenovationDate: string;
-    Rating: number;
-    Address: {
-        StreetAddress: string;
-        City: string;
-        StateProvince: string;
-        PostalCode: string;
-    };
-};
-
-const hotels: Hotel[] = hotelData["value"];
+import hotelData from './hotels.json' with { type: "json" };
 ```
 
-To index data into the search index, we now need to create a `SearchClient`. While the `SearchIndexClient` is used to create and manage an index, the `SearchClient` is used to upload documents and query the index.
+To index data into the search index, you create a [SearchClient](/javascript/api/@azure/search-documents/searchclient). While `SearchIndexClient` creates and manages an index, `SearchClient` uploads documents and queries the index.
 
-There are two ways to create a `SearchClient`. The first option is to create a `SearchClient` from scratch:
-
-```typescript
- const searchClient = new SearchClient<Hotel>(endpoint, indexName, new AzureKeyCredential(apiKey));
-```
-
-Alternatively, you can use the `getSearchClient()` method of the `SearchIndexClient` to create the `SearchClient`:
+This quickstart obtains `SearchClient` from `SearchIndexClient` using [getSearchClient](/javascript/api/@azure/search-documents/searchindexclient#@azure-search-documents-searchindexclient-getsearchclient), which reuses the same credentials.
 
 ```typescript
-const searchClient = indexClient.getSearchClient<Hotel>(indexName);
+const searchClient: SearchClient<any> = searchIndexClient.getSearchClient(indexName);
 ```
 
-Now that the client is defined, upload the documents into the search index. In this case, we use the `mergeOrUploadDocuments()` method, which uploads the documents or merges them with an existing document if a document with the same key already exists. Then check that the operation succeeded because at least the first document exists.
+The `mergeOrUploadDocuments()` method uploads the documents or merges them with an existing document if a document with the same key already exists.
 
 ```typescript
-console.log("Uploading documents...");
-const indexDocumentsResult = await searchClient.mergeOrUploadDocuments(hotels);
-
-console.log(`Index operations succeeded: ${JSON.stringify(indexDocumentsResult.results[0].succeeded)}`);
+let indexDocumentsResult = await searchClient.mergeOrUploadDocuments(hotelData['value']);
 ```
 
-Run the program again with `tsc && node index.ts`. You should see a slightly different set of messages from those you saw in Step 1. This time, the index *does* exist, and you should see a message about deleting it before the app creates the new index and posts data to it. 
+### Query the index
 
-Before we run the queries in the next step, define a function to have the program wait for one second. This is done just for test/demo purposes to ensure the indexing finishes and that the documents are available in the index for our queries.
+With an index created and documents uploaded, you're ready to send queries to the index. This section sends five different queries to the search index to demonstrate different pieces of query functionality available to you.
 
-```typescript
-function sleep(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
-```
-
-To have the program wait for one second, call the `sleep` function:
-
-```typescript
-sleep(1000);
-```
-
-### Search an index
-
-With an index created and documents uploaded, you're ready to send queries to the index. In this section, we send five different queries to the search index to demonstrate different pieces of query functionality available to you.
-
-The queries are written in a `sendQueries()` function that we call in the main function as follows:
+The queries are written in a `sendQueries()` function that is called in the main function.
 
 ```typescript
 await sendQueries(searchClient);
@@ -601,52 +531,38 @@ Queries are sent using the `search()` method of `searchClient`. The first parame
 
 #### Query example 1
 
-The first query searches `*`, which is equivalent to searching everything and selects three of the fields in the index. It's a best practice to only `select` the fields you need because pulling back unnecessary data can add latency to your queries.
+The first query searches `*`, which is equivalent to searching everything, and selects three of the fields in the index. It's a best practice to only `select` the fields you need because pulling back unnecessary data can add latency to your queries.
 
-The `searchOptions` for this query also has `includeTotalCount` set to `true`, which will return the number of matching results found.
+The `searchOptions` for this query also has `includeTotalCount` set to `true`, which returns the number of matching results found.
 
 ```typescript
-async function sendQueries(
-    searchClient: SearchClient<Hotel>
-): Promise<void> {
+console.log('Query #1 - search everything:');
+let searchOptions: any = {
+    includeTotalCount: true,
+    select: ["HotelId", "HotelName", "Rating"]
+};
 
-    // Query 1
-    console.log('Query #1 - search everything:');
-    const selectFields: SearchFieldArray<Hotel> = [
-        "HotelId",
-        "HotelName",
-        "Rating",
-    ];
-    const searchOptions1 = { 
-        includeTotalCount: true, 
-        select: selectFields 
-    };
-
-    let searchResults = await searchClient.search("*", searchOptions1);
-    for await (const result of searchResults.results) {
-        console.log(`${JSON.stringify(result.document)}`);
-    }
-    console.log(`Result count: ${searchResults.count}`);
-
-    // remaining queries go here
+let searchResults = await searchClient.search("*", searchOptions);
+for await (const result of searchResults.results) {
+    console.log(`${JSON.stringify(result.document)}`);
 }
+console.log(`Result count: ${searchResults.count}`);
 ```
-
-The remaining queries outlined below should also be added to the `sendQueries()` function. They're separated here for readability.
 
 #### Query example 2
 
-In the next query, we specify the search term `"wifi"` and also include a filter to only return results where the state is equal to `'FL'`. Results are also ordered by the Hotel's `Rating`.
+In the next query, the search term `"wifi"` is specified with a filter to only return results where the state is equal to `'FL'`. Results are also ordered by the Hotel's `Rating`.
 
 ```typescript
 console.log('Query #2 - search with filter, orderBy, and select:');
 let state = 'FL';
-const searchOptions2 = {
+searchOptions = {
     filter: odata`Address/StateProvince eq ${state}`,
     orderBy: ["Rating desc"],
-    select: selectFields
+    select: ["HotelId", "HotelName", "Rating"]
 };
-searchResults = await searchClient.search("wifi", searchOptions2);
+
+searchResults = await searchClient.search("wifi", searchOptions);
 for await (const result of searchResults.results) {
     console.log(`${JSON.stringify(result.document)}`);
 }
@@ -654,16 +570,16 @@ for await (const result of searchResults.results) {
 
 #### Query example 3
 
-Next, the search is limited to a single searchable field using the `searchFields` parameter. This approach is a great option to make your query more efficient if you know you're only interested in matches in certain fields. 
+The search is limited to a single searchable field using the `searchFields` parameter. This approach is a great option to make your query more efficient if you know you're only interested in matches in certain fields.
 
 ```typescript
 console.log('Query #3 - limit searchFields:');
-const searchOptions3 = {
-    select: selectFields,
-    searchFields: ["HotelName"] as const
+searchOptions = {
+    select: ["HotelId", "HotelName", "Rating"],
+    searchFields: ["HotelName"]
 };
 
-searchResults = await searchClient.search("Sublime Palace", searchOptions3);
+searchResults = await searchClient.search("sublime palace", searchOptions);
 for await (const result of searchResults.results) {
     console.log(`${JSON.stringify(result.document)}`);
 }
@@ -671,17 +587,17 @@ for await (const result of searchResults.results) {
 
 #### Query example 4
 
-Another common option to include in a query is `facets`. Facets allow you to provide self-directed drilldown from the results in your UI. The facets results can be turned into checkboxes in the result pane. 
+Another common option to include in a query is `facets`. Facets allow you to provide self-directed drilldown from the results in your UI. The facets results can be turned into checkboxes in the result pane.
 
 ```typescript
 console.log('Query #4 - limit searchFields and use facets:');
-const searchOptions4 = {
+searchOptions = {
     facets: ["Category"],
-    select: selectFields,
-    searchFields: ["HotelName"] as const
+    select: ["HotelId", "HotelName", "Rating"],
+    searchFields: ["HotelName"]
 };
 
-searchResults = await searchClient.search("*", searchOptions4);
+searchResults = await searchClient.search("*", searchOptions);
 for await (const result of searchResults.results) {
     console.log(`${JSON.stringify(result.document)}`);
 }
@@ -689,16 +605,16 @@ for await (const result of searchResults.results) {
 
 #### Query example 5
 
-The final query uses the `getDocument()` method of the `searchClient`. This allows you to efficiently retrieve a document by its key. 
+The final query uses the `getDocument()` method of the `searchClient`. This allows you to efficiently retrieve a document by its key.
 
 ```typescript
 console.log('Query #5 - Lookup document:');
-let documentResult = await searchClient.getDocument('3')
-console.log(`HotelId: ${documentResult.HotelId}; HotelName: ${documentResult.HotelName}`)
+let documentResult = await searchClient.getDocument('3');
+console.log(`HotelId: ${documentResult.HotelId}; HotelName: ${documentResult.HotelName}`);
 ```
 
 #### Summary of queries
 
-The previous queries show multiple ways of matching terms in a query: full-text search, filters, and autocomplete.
+The previous queries show multiple ways of matching terms in a query: full-text search, filters, and document lookup.
 
-Full text search and filters are performed using the `searchClient.search` method. A search query can be passed in the `searchText` string, while a filter expression can be passed in the `filter` property of the `SearchOptions` class. To filter without searching, just pass "*" for the `searchText` parameter of the `search` method. To search without filtering, leave the `filter` property unset, or don't pass in a `SearchOptions` instance at all.
+The `searchClient.search` method performs full-text search and filters. You can pass a search query in the `searchText` string, while you pass a filter expression in the `filter` property of the `SearchOptions` class. To filter without searching, just pass `"*"` for the `searchText` parameter of the `search` method. To search without filtering, leave the `filter` property unset, or don't pass in a `SearchOptions` instance at all.

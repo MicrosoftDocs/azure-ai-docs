@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 02/17/2026
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -26,7 +26,7 @@ The Assistants API supports function calling, which allows you to describe the s
 
 ### Supported models
 
-The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are supported.
+The [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are supported.
 
 To use all features of function calling including parallel functions, you need to use a model that was released after November 6th 2023.
 

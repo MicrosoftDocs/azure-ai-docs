@@ -27,7 +27,7 @@ The power of artificial intelligence (AI) is driving a revolutionary transformat
 
 :::image type="content" source="../../media/how-to/healthcare-ai/connect-modalities.gif" alt-text="Animation showing healthcare AI models connecting different data modalities including imaging, genomics, and clinical records for discovery, development, and delivery.":::
 
-The Foundry model catalog, available in [Microsoft Foundry](../model-catalog-overview.md) and [Azure Machine Learning studio](../../../machine-learning/concept-model-catalog.md), provides healthcare foundation models that let you analyze various medical data types with AI. These AI models expand well beyond medical text comprehension into multimodal reasoning about medical data. They can integrate and analyze data from diverse sources that come in various modalities. For example, medical imaging, genomics, clinical records, and other structured and unstructured data sources. The models also span several healthcare fields, including dermatology, ophthalmology, radiology, pathology, and more.
+The Foundry model catalog, available in [Microsoft Foundry](../../concepts/foundry-models-overview.md) and [Azure Machine Learning studio](../../../machine-learning/concept-model-catalog.md), provides healthcare foundation models that let you analyze various medical data types with AI. These AI models expand well beyond medical text comprehension into multimodal reasoning about medical data. They can integrate and analyze data from diverse sources that come in various modalities. For example, medical imaging, genomics, clinical records, and other structured and unstructured data sources. The models also span several healthcare fields, including dermatology, ophthalmology, radiology, pathology, and more.
 
 ## Microsoft first-party models
 
@@ -48,6 +48,6 @@ The model catalog also provides a curated collection of healthcare models from M
 
 ## Related content
 
-- [Model catalog and collections in Foundry portal](../model-catalog-overview.md)
+- [Model catalog and collections in Foundry portal](../../concepts/foundry-models-overview.md)
 - [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md)
 - [Overview: Deploy models, flows, and web apps with Foundry](../../concepts/deployments-overview.md)

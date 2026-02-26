@@ -58,6 +58,12 @@ You can access batch transcription through:
     spx help batch transcription
     ```
 
+### Diarization
+
+Diarization is the process of distinguishing and separating different speakers in an audio recording. This feature is particularly useful for transcribing conversations, meetings, or any multi-speaker audio content. The Speech service can identify up to 35 different speakers in an audio recording (if the service recognizes more than 35 speakers, it throws an error).
+
+See the [Diarization quickstart](./get-started-stt-diarization.md) to get started.
+
 ## Custom speech
 
 By using [custom speech](./custom-speech-overview.md), you can evaluate and improve the accuracy of speech recognition for your applications and products. Use a custom speech model for [real-time speech to text](speech-to-text.md), [speech translation](speech-translation.md), and [batch transcription](batch-transcription.md).

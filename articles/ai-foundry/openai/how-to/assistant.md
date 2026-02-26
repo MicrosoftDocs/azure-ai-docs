@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 02/17/2026
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -19,8 +19,7 @@ recommendations: false
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-> [!NOTE]
-> The [Microsoft Foundry Agent Service](../../agents/overview.md) is now Generally Available and includes additional tools and capabilities that extend beyond what Assistants provides. 
+[!INCLUDE [agent-service](../includes/agent-service.md)]
 
 Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions. In this article, we provide an in-depth walkthrough of getting started with the Assistants API.
 
@@ -28,7 +27,7 @@ Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to
 
 ### Region, model, and API support
 
-The [models page](../concepts/models.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported. Assistants can be used in version `2024-02-15-preview` and later of the Azure OpenAI inference [preview API](../reference-preview.md#api-specs). A full list of previous API versions can be found on [GitHub](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview).
+The [models page](../../foundry-models/concepts/models-sold-directly-by-azure.md#assistants-preview) contains the most up-to-date information on regions/models where Assistants are currently supported. Assistants can be used in version `2024-02-15-preview` and later of the Azure OpenAI inference [preview API](../reference-preview.md#api-specs). A full list of previous API versions can be found on [GitHub](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview).
 
 ### Supported file types
 

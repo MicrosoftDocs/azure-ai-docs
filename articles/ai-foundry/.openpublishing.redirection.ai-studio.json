@@ -535,6 +535,16 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/openai/use-your-data-quickstart.md",
+            "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code?view=foundry",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/openai/how-to/azure-developer-cli.md",
+            "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code?view=foundry",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/how-to/use-blocklists.md",
             "redirect_url": "/azure/ai-foundry/foundry-models/how-to/use-blocklists",
             "redirect_document_id": false
@@ -1158,6 +1168,16 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/concepts/content-filtering.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/content-filter",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/openai/concepts/content-filter-configurability.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/content-filter",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/ai-services/concepts/quotas-limits.md",
             "redirect_url": "/azure/ai-foundry/model-inference/quotas-limits",
             "redirect_document_id": false
@@ -1185,6 +1205,11 @@
           {
             "source_path_from_root": "/articles/ai-studio/quickstarts/multimodal-vision.md",
             "redirect_url": "/azure/ai-foundry/openai/gpt-v-quickstart",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/openai/gpt-v-quickstart.md",
+            "redirect_url": "/azure/ai-foundry/openai/how-to/gpt-with-vision",
             "redirect_document_id": false
           },
           {
@@ -1556,6 +1581,36 @@
           "source_path_from_root": "/articles/ai-foundry/default/agents/how-to/how-to-monitor-agents-dashboard.md",
           "redirect_url": "/azure/ai-foundry/observability/how-to/how-to-monitor-agents-dashboard",
           "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/concepts/content-filter.md",
+          "redirect_url": "/azure/ai-foundry/foundry-models/concepts/content-filter",
+          "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/use-blocklists.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/use-blocklists",
+          "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/default/guardrails/severity-levels.md",
+          "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter-severity-levels",
+          "redirect_document_id": true
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/video-generation-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/concepts/video-generation#quickstart",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/dall-e-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/dall-e#quickstart",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/realtime-audio-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/realtime-audio#quickstart",
+          "redirect_document_id": false
         }
     ]
 }

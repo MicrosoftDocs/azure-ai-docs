@@ -33,4 +33,4 @@ reviewer: santiagxf
 
 ## Next steps
 
-* [Develop applications using Microsoft Foundry Models](../../model-inference/supported-languages.md)
+* [Develop applications using Microsoft Foundry Models](../supported-languages.md)

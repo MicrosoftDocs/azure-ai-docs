@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 ## Prerequisites
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An Azure OpenAI resource with a speech to text model deployed in a [supported region](../concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource with a speech to text model deployed in a [supported region](../../foundry-models/concepts/models-sold-directly-by-azure.md?tabs=standard-audio). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - [Python 3.8 or later](https://www.python.org)
 - The [Azure CLI](/cli/azure/install-azure-cli).
 - A sample audio file. You can get sample audio, such as *wikipediaOcelot.wav*, from the [Azure Speech in Foundry Tools SDK repository at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/sampledata/audiofiles).
@@ -189,6 +189,13 @@ python quickstart.py
 
 > [!IMPORTANT]
 > For production, store and access your credentials using a secure method, such as [Azure Key Vault](/azure/key-vault/general/overview). For more information, see [credential security](../../../ai-services/security-features.md).
+
+## Verify the output
+
+The response contains a `text` field with the complete transcription of your audio file. You should see output similar to the example below. If you encounter errors:
+- Verify your deployment name matches exactly
+- Check that your audio file path is correct
+- Ensure your API key and endpoint are valid
 
 ## Output
 

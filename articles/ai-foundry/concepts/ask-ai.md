@@ -21,11 +21,11 @@ ai-usage: ai-assisted
 
 You can ask AI to assist you in Microsoft Foundry. To start using AI to ask questions, select the AI icon in the upper right of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time.
 
-:::image type="content" source="../media/ask-foundry-agent/ask-foundry.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry (classic) portal.":::
-
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 ## Prerequisites
+
+To use Ask AI, you need:
 
 - Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
@@ -44,6 +44,8 @@ You can ask AI to assist you in Microsoft Foundry. To start using AI to ask ques
 
 Use the agent to make the most of the Foundry experience but keep its scope and limitations in mind when asking questions.
 
+
+
 ::: moniker-end
 
 
@@ -51,11 +53,13 @@ Use the agent to make the most of the Foundry experience but keep its scope and 
 
 You can ask AI to assist you in Foundry. To start using AI to ask questions or complete tasks, select its icon located in the top right bar of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time. You can also ask the agent to run tasks for you.
 
-:::image type="content" source="../default/media/ask-foundry-agent/ask-ai.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry portal.":::
+:::image type="content" source="media/ask-foundry-agent/ask-ai.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry portal.":::
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 ## Prerequisites
+
+To use Ask AI, you need:
 
 - Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
@@ -76,6 +80,7 @@ You can ask AI to assist you in Foundry. To start using AI to ask questions or c
 - **Limited Scope**: It's restricted to answering questions related to the Foundry documentation and model catalog. It can't provide support for unrelated Azure services or external systems.
 - **Call External APIs**: This AI experience can only call for a specific subset of Foundry APIs. It can't access the web or APIs external to Microsoft.
 - **Bypass Permissions**: This AI experience can execute actions on your behalf. It requires you to have the right permissions for those actions. This agent can't perform an action that you wouldn't be able to do yourself.
+- **No conversation history across sessions**: Ask AI doesn't retain context from previous sessions. Each time you open the chat, it starts a new conversation.
 
 Use the agent to make the most of the Foundry experience but keep its scope and limitations in mind when asking questions.
 
@@ -83,19 +88,21 @@ Use the agent to make the most of the Foundry experience but keep its scope and 
 
 When you ask the Ask AI agent to perform tasks that require accessing or modifying your Azure resources, the agent proposes actions for you to review and approve before execution. This approval flow ensures you maintain oversight over what actions are performed on your behalf.
 
-:::image type="content" source="../default/media/ask-foundry-agent/ask-ai-approval-flow.png" alt-text="Screenshot shows the Ask AI chat on the right side of Foundry portal. The Ask AI agent is responding a user query by proposing to run an action for the user to approve.":::
+:::image type="content" source="media/ask-foundry-agent/ask-ai-approval-flow.png" alt-text="Screenshot shows the Ask AI chat on the right side of Foundry portal. The Ask AI agent is responding a user query by proposing to run an action for the user to approve.":::
 
 The actions come from the tools available under the [Foundry Model Context Protocol (MCP) Server](../default/mcp/available-tools.md).
 
 To make this approval flow easier, you can **change the approval settings** to pre-approve some actions depending on their scope. Access the approval settings by selecting the settings icon in the Ask AI prompt chat box. By default, this experience is set to pre-approve **System access** actions. You can change these settings anytime, and they persist beyond your session.
 
-:::image type="content" source="../default/media/ask-foundry-agent/ask-ai-approval-settings.png" alt-text="Screenshot shows the Ask AI prompt chat box, showing the location of the approval settings.":::
+:::image type="content" source="media/ask-foundry-agent/ask-ai-approval-settings.png" alt-text="Screenshot shows the Ask AI prompt chat box, showing the location of the approval settings.":::
 
 ## Best practices and security guidance
 
 The Ask AI experience relies on the [Foundry Model Context Protocol (MCP) Server](../default/mcp/get-started.md). By using this server, it implements the [same best practices and security guidance](../default/mcp/security-best-practices.md).
 
 > [!IMPORTANT]
+> Ask AI is a preview feature and is available in the Foundry portal across all supported regions. Because it's in preview, it isn't covered by a service-level agreement (SLA) and isn't recommended for production workloads.
+>
 > By using this preview feature, you acknowledge and consent to any cross-region processing that may occur. As an example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, don't use Ask AI (preview) or restrict its use to scenarios that remain within your selected region.
 
 ::: moniker-end
@@ -127,3 +134,12 @@ If you encounter harmful or inappropriate content in the system, select the thum
 ### How current is the information provided by the agent?
 
 The agent is updated daily to keep it up to date with the latest information. In most cases, the information the agent provides is up to date. However, there might be some delay between new Foundry announcements and updates to the agent.
+
+## Related content
+
+:::moniker range="foundry"
+- [Get started with the Foundry MCP Server](../default/mcp/get-started.md)
+- [Available MCP Server tools](../default/mcp/available-tools.md)
+- [MCP Server security best practices](../default/mcp/security-best-practices.md)
+::: moniker-end
+- [What is Microsoft Foundry?](../what-is-foundry.md)

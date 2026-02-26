@@ -22,8 +22,8 @@ Here are the most recent versions of the REST APIs:
 
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
-| Data plane | [`2025-09-01`](/rest/api/searchservice/search-service-api-versions#2025-09-01) | Stable |
-| Data plane | [`2025-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-11-01-preview&preserve-view=true) | Preview |
+| Data plane | [`2025-09-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) | Stable |
+| Data plane | [`2025-11-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) | Preview |
 | Control plane | [`2025-05-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | Stable |
 | Control plane | [`2025-02-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | Preview |
 
@@ -48,7 +48,7 @@ Azure AI Search breaks backward compatibility as a last resort. Upgrade is neces
 
 ## How to upgrade
 
-1. If you're upgrading a data plane version, review the [release notes](/rest/api/searchservice/search-service-api-versions) for the new API version.
+1. If you're upgrading a data plane version, review [what's been released](whats-new.md) in the new API version.
 
 1. Update the `api-version` parameter, specified in the request header, to a newer version.
 
@@ -100,7 +100,7 @@ Upgrade guidance assumes upgrade from the most recent previous version. If your 
 
 ### Upgrade to 2025-11-01-preview
 
-[`2025-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-11-01-preview) introduces the following breaking changes to agentic retrieval as implemented in the `2025-08-01-preview`:
+[`2025-11-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) introduces the following breaking changes to agentic retrieval as implemented in the `2025-08-01-preview`:
 
 + Replaces `agents` with `knowledgebases`. Several properties related to knowledge sources moved out of the knowledge base definition and to the retrieve action.
 + Knowledge source properties are refactored, implementing a new `ingestionParameters` object for knowledge sources that generate an indexer pipeline.
@@ -111,13 +111,13 @@ For all other existing APIs, there are no behavior changes. You can swap in the 
 
 ### Upgrade to 2025-09-01
 
-[`2025-09-01`](/rest/api/searchservice/search-service-api-versions#2025-09-01) is the latest stable REST API version and it adds general availability for the OneLake indexer, Document Layout skill, and other APIs.
+[`2025-09-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) is the latest stable REST API version and it adds general availability for the OneLake indexer, Document Layout skill, and other APIs.
 
 There are no breaking changes if you're upgrading from `2024-07-01` and not using any preview features. To use the new stable release, change the API version and test your code.
 
 ### Upgrade to 2025-08-01-preview
 
-[`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview) introduces the following breaking changes to knowledge agents created using `2025-05-01-preview`:
+[`2025-08-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) introduces the following breaking changes to knowledge agents created using `2025-05-01-preview`:
 
 + Replaces `targetIndexes` with `knowledgeSources`.
 + Removes `defaultMaxDocsForReranker` without replacement.
@@ -126,15 +126,15 @@ Otherwise, there are no behavior changes on existing APIs. You can swap in the n
 
 ### Upgrade to 2025-05-01-preview
 
-[`2025-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-05-01-preview) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
+[`2025-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
 
 ### Upgrade to 2025-03-01-preview
 
-[`2025-03-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-03-01-preview) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
+[`2025-03-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-03-01-preview&preserve-view=true) provides new features, but there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
 
 ### Upgrade to 2024-11-01-preview
 
-[`2024-11-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-11-01-preview) query rewrite, Document Layout skill, keyless billing for skills processing, Markdown parsing mode, and rescoring options for compressed vectors.
+[`2024-11-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-11-01-preview&preserve-view=true) query rewrite, Document Layout skill, keyless billing for skills processing, Markdown parsing mode, and rescoring options for compressed vectors.
 
 If you're upgrading from `2024-09-01-preview`, you can swap in the new API version and your code runs the same as before.
 
@@ -147,13 +147,13 @@ Backwards compatibility is preserved due to an internal API mapping, but we reco
 
 ### Upgrade to 2024-09-01-preview
 
-[`2024-09-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-09-01-preview) adds Matryoshka Representation Learning (MRL) compression for text-embedding-3 models, targeted vector filtering for hybrid queries, vector subscore details for debugging, and token chunking for [Text Split skill](cognitive-search-skill-textsplit.md).
+[`2024-09-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-09-01-preview&preserve-view=true) adds Matryoshka Representation Learning (MRL) compression for text-embedding-3 models, targeted vector filtering for hybrid queries, vector subscore details for debugging, and token chunking for [Text Split skill](cognitive-search-skill-textsplit.md).
 
 If you're upgrading from `2024-05-01-preview`, you can swap in the new API version and your code runs the same as before.
 
 ### Upgrade to 2024-07-01
 
-[`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) is a general release. The former preview features are now generally available: integrated chunking and vectorization (Text Split skill, AzureOpenAIEmbedding skill), query vectorizer based on AzureOpenAIEmbedding, vector compression (scalar quantization, binary quantization, stored property, narrow data types).
+[`2024-07-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-07-01&preserve-view=true) is a general release. The former preview features are now generally available: integrated chunking and vectorization (Text Split skill, AzureOpenAIEmbedding skill), query vectorizer based on AzureOpenAIEmbedding, vector compression (scalar quantization, binary quantization, stored property, narrow data types).
 
 There are no breaking changes if you upgrade from `2024-05-01-preview` to stable. To use the new stable release, change the API version and test your code.
 
@@ -161,7 +161,7 @@ There are breaking changes if you upgrade directly from `2023-11-01`. Follow the
 
 ### Upgrade to 2024-05-01-preview
 
-[`2024-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) adds an indexer for Microsoft OneLake, binary vectors, and more embedding models.
+[`2024-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-05-01-preview&preserve-view=true) adds an indexer for Microsoft OneLake, binary vectors, and more embedding models.
 
 If you're upgrading from `2024-03-01-preview`, the AzureOpenAIEmbedding skill now requires a model name and dimensions property.
 
@@ -171,7 +171,7 @@ If you're upgrading from `2024-03-01-preview`, the AzureOpenAIEmbedding skill no
 
 ### Upgrade to 2024-03-01-preview
 
-[`2024-03-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-03-01-preview) adds narrow data types, scalar quantization, and vector storage options.
+[`2024-03-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-03-01-preview&preserve-view=true) adds narrow data types, scalar quantization, and vector storage options.
 
 If you're upgrading from `2023-10-01-preview`, there are no breaking changes. However, there's one behavior difference: for `2023-11-01` and newer previews, the `vectorFilterMode` default changed from postfilter to prefilter for [filter expressions](vector-search-filters.md).
 
@@ -181,7 +181,7 @@ If you're upgrading from `2023-10-01-preview`, there are no breaking changes. Ho
 
 ### Upgrade to 2023-11-01
 
-[`2023-11-01`](/rest/api/searchservice/search-service-api-versions#2023-11-01) is a general release. The former preview features are now generally available: semantic ranker and vector support.
+[`2023-11-01`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-11-01&preserve-view=true) is a general release. The former preview features are now generally available: semantic ranker and vector support.
 
 There are no breaking changes from `2023-10-01-preview`, but there are multiple breaking changes from `2023-07-01-preview` to `2023-11-01`. For more information, see [Upgrade from 2023-07-01-preview](#upgrade-from-2023-07-01-preview).
 
@@ -189,7 +189,7 @@ To use the new stable release, change the API version and test your code.
 
 ### Upgrade to 2023-10-01-preview
 
-[`2023-10-01-preview`](/rest/api/searchservice/search-service-api-versions#2023-10-01-preview) was the first preview version to add [built-in data chunking and vectorization during indexing](vector-search-integrated-vectorization.md) and [built-in query vectorization](vector-search-how-to-configure-vectorizer.md). It also supports vector indexing and queries from the previous version.
+[`2023-10-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2023-10-01-preview&preserve-view=true) was the first preview version to add [built-in data chunking and vectorization during indexing](vector-search-integrated-vectorization.md) and [built-in query vectorization](vector-search-how-to-configure-vectorizer.md). It also supports vector indexing and queries from the previous version.
 
 If you're upgrading from the previous version, the next section has the steps.
 

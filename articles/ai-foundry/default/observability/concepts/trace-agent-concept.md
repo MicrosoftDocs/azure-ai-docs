@@ -1,7 +1,7 @@
 ---
 title: Agent tracing in Microsoft Foundry (preview)
 titleSuffix: Microsoft Foundry
-description: Learn how agent tracing in Microsoft Foundry captures inputs, outputs, and tool usage so you can debug agent runs and improve reliability.
+description: Learn how agent tracing in Microsoft Foundry captures inputs, outputs, and tool usage with OpenTelemetry. Debug agent runs, identify latency issues, and improve reliability.
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -15,7 +15,7 @@ ms.topic: concept-article
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-Microsoft Foundry provides an observability platform for monitoring and tracing AI agents. It can capture key details during an agent run, such as inputs, outputs, tool usage, retries, latencies, and costs. Understanding the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
+Microsoft Foundry provides an observability platform for monitoring and tracing AI agents. It captures key details during an agent run, such as inputs, outputs, tool usage, retries, latencies, and costs. Understanding the reasoning behind your agent's executions is important for troubleshooting and debugging. However, understanding complex agents presents challenges for several reasons:
 
 - There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
 - The sequence of steps might vary based on user input.
@@ -24,12 +24,15 @@ Microsoft Foundry provides an observability platform for monitoring and tracing 
 
 Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
 
-## Before you begin
+## Prerequisites
 
 To use tracing end-to-end, you need:
 
 - A Foundry project with tracing enabled. To set it up, see [How to set up tracing in Microsoft Foundry](../how-to/trace-agent-setup.md).
 - Access to the Azure Application Insights resource connected to your project. For background, see [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview).
+
+> [!NOTE]
+> Tracing stores telemetry data in Azure Application Insights, which may incur costs based on data volume and retention settings. For pricing details, see [Application Insights pricing](/azure/azure-monitor/cost-usage#application-insights-billing).
 
 ## OpenTelemetry in Foundry
 
@@ -74,6 +77,8 @@ These enhancements are integrated into:
 
 To learn more, see [tracing integrations](../how-to/trace-agent-framework.md).
 
+The following table describes the semantic conventions for multi-agent observability. Spans capture discrete operations, child spans show nested operations within a parent span, attributes provide metadata, and events mark significant occurrences during execution.
+
 | Type         | Context/Parent Span   | Name/Attribute/Event           | Purpose |
 |--------------|----------------------|-------------------------------|---------------|
 | Span         | —                    | execute_task                  | Captures task planning and event propagation, providing insights into how tasks are decomposed and distributed. |
@@ -89,9 +94,9 @@ To learn more, see [tracing integrations](../how-to/trace-agent-framework.md).
 
 ## Best practices
 
-- Use consistent span attributes.
-- Correlate evaluation run IDs for quality + performance analysis.
-- Redact sensitive content; avoid storing secrets in attributes.
+- **Use consistent span attributes**: Apply the same attribute names and formats across all agents and tools to simplify querying and analysis.
+- **Correlate evaluation run IDs**: Link trace data with evaluation runs to analyze both quality and performance in a unified view.
+- **Redact sensitive content**: Remove or mask personal data, secrets, and credentials from prompts, tool arguments, and span attributes before they reach telemetry.
 
 ## Security and privacy
 
@@ -100,6 +105,17 @@ Tracing can capture sensitive information (for example, user inputs, model outpu
 - Don't store secrets, credentials, or tokens in prompts, tool arguments, or span attributes.
 - Redact or minimize personal data and other sensitive content before it appears in telemetry.
 - Treat trace data as production telemetry and apply the same access controls and retention policies you use for logs and metrics.
+
+## Troubleshooting
+
+If traces aren't appearing in the Foundry portal or Application Insights:
+
+- Verify that your Foundry project is connected to an Application Insights resource.
+- Check that your account has the required permissions to query telemetry.
+- Ensure your agent code includes the necessary instrumentation. For framework-specific setup, see [Tracing integrations](../how-to/trace-agent-framework.md).
+
+> [!TIP]
+> Tracing is available in all regions where Foundry is supported. Trace data retention and sampling follow your Application Insights configuration. For details, see [Data retention and archive in Azure Monitor Logs](/azure/azure-monitor/logs/data-retention-configure).
 
 ## Related content
 

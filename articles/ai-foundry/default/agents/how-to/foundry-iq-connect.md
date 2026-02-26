@@ -39,7 +39,11 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 - An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
 - A [Microsoft Foundry project](../../../how-to/create-projects.md) with an [LLM deployment](../../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
 - [Authentication and permissions](#authentication-and-permissions) on your search service and project.
-- The latest preview Python SDK or the 2025-11-01-preview REST API version.
+- The latest preview Python SDK (version 2.0.0b4 or later) or the 2025-11-01-preview REST API version.
+
+  ```bash
+  pip install "azure-ai-projects>=2.0.0b4" requests
+  ```
 
 ### Authentication and permissions
 
@@ -79,9 +83,15 @@ Use the following values in the code samples.
 | Agent name (`agent_name`) | Choose a name for the agent version you create. | `hr-assistant` |
 | Model deployment name (`deployed_LLM`) | Find it in your Microsoft Foundry project model deployments. | `gpt-4.1-mini` |
 
+> [!TIP]
+> We recommend you store the project endpoint, search endpoint, and knowledge base name in a `.env` file for local development.
+
 ## Create a project connection
 
 Create a `RemoteTool` connection on your Microsoft Foundry project. This connection uses the project's managed identity to target the MCP endpoint of the knowledge base, allowing the agent to securely communicate with Azure AI Search for retrieval operations.
+
+> [!NOTE]
+> The `RemoteTool` category and `ProjectManagedIdentity` authentication type are specific to Microsoft Foundry project connections.
 
 ### [Python](#tab/python)
 
@@ -244,11 +254,12 @@ az account get-access-token --scope https://ai.azure.com/.default --query access
 Create the agent by sending a `POST` request to Foundry Agent Service:
 
 ```HTTP
-POST {project_endpoint}/agents/{agent_name}/versions?api-version=2025-11-15-preview
+POST {project_endpoint}/agents?api-version=v1
 Authorization: Bearer {foundry_access_token}
 Content-Type: application/json
 
 {
+  "name": "{agent_name}",
   "definition": {
     "model": "{deployed_llm}",
     "instructions": "\nYou are a helpful assistant that must use the knowledge base to answer all the questions from user. You must never answer from your own knowledge under any circumstances.\nEvery answer must always provide annotations for using the MCP knowledge base tool and render them as: `【message_idx:search_idx†source_name】`\nIf you cannot find the answer in the provided knowledge base you must respond with \"I don't know\".\n",
@@ -345,25 +356,26 @@ response = openai_client.responses.create(
         Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
         Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
     """,
-    extra_body = {"agent": {"name": agent.name, "type": "agent_reference"}},
+    extra_body = {"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 
 print(f"Response: {response.output_text}")
 ```
 
-The output should be similar to the following:
+The output should be similar to the following (truncated for brevity):
 
 ```
-Response: Suburban belts display larger December brightening than urban cores, even though absolute light levels are higher downtown, primarily because holiday lights increase most dramatically in the suburbs and outskirts of major cities. This is due to more yard space and a prevalence of single-family homes in suburban areas, which results in greater use of decorative holiday lighting. By contrast, central urban areas experience a smaller increase in lighting during the holidays, typically 20 to 30 percent brightening, because of their different building structures and possibly less outdoor space for such decorations. This pattern holds true across the United States as part of the nationally shared tradition of increased holiday lighting in December (Sources: earth_at_night_508_page_174, earth_at_night_508_page_176, earth_at_night_508_page_175).
+Response: Suburban belts display larger December brightening than urban cores, even 
+though absolute light levels are higher downtown, primarily because holiday lights 
+increase most dramatically in the suburbs and outskirts of major cities. This is due 
+to more yard space and a prevalence of single-family homes in suburban areas...
 
-The Phoenix nighttime street grid is sharply visible from space due to the city's layout along a regular grid of city blocks and streets with extensive street lighting. The major street grid is oriented mostly north-south, with notable diagonal thoroughfares like Grand Avenue that are also brightly lit. The illuminated grid reflects the widespread suburban and residential development fueled by automobile use in the 20th century, which led to optimal access routes to new real estate on the city's borders. Large shopping centers, strip malls, gas stations, and other commercial properties at major intersections also contribute to the brightness. Additionally, parts of the Phoenix metropolitan area remain dark where there are parks, recreational land, and agricultural fields, providing contrast that highlights the lit urban grid (Sources: earth_at_night_508_page_104, earth_at_night_508_page_105).
-
-In contrast, large stretches of the interstate between Midwestern cities remain comparatively dim because although the transportation corridors are well-established, many rural and agricultural areas lack widespread nighttime lighting. The interstate highways are visible but do not have the same continuous bright lighting found in the dense urban grids and commercial suburban zones. The transportation network is extensive, but many roadways running through less populated regions have limited illumination, which renders them less visible in nighttime satellite imagery (Sources: earth_at_night_508_page_124, earth_at_night_508_page_125).
+The Phoenix nighttime street grid is sharply visible from space due to the city's 
+layout along a regular grid of city blocks and streets with extensive street lighting...
 
 References:
-- earth_at_night_508_page_174, earth_at_night_508_page_176, earth_at_night_508_page_175 (Holiday lighting and suburban December brightening)
-- earth_at_night_508_page_104, earth_at_night_508_page_105 (Phoenix urban grid visibility)
-- earth_at_night_508_page_124, earth_at_night_508_page_125 (Interstate lighting and Midwestern dim stretches)
+- earth_at_night_508_page_174, earth_at_night_508_page_176 (Holiday lighting)
+- earth_at_night_508_page_104, earth_at_night_508_page_105 (Phoenix grid visibility)
 ```
 
 ### [REST](#tab/rest)
@@ -372,7 +384,7 @@ Send an empty `POST` request to create a conversation session:
 
 ```HTTP
 ### Create conversation
-POST {project_endpoint}/openai/conversations?api-version=2025-11-15-preview
+POST {project_endpoint}/openai/v1/conversations
 Authorization: Bearer {foundry_access_token}
 Content-Type: application/json
 
@@ -383,33 +395,34 @@ The response includes a conversation `id`, which you can use to send a query to 
 
 ```HTTP
 ### Send request to trigger the MCP tool
-POST {project_endpoint}/openai/responses?api-version=2025-11-15-preview
+POST {project_endpoint}/openai/v1/responses
 Authorization: Bearer {foundry_access_token}
 Content-Type: application/json
 
 {
     "conversation": "{conversation_id}",
     "input": "\nWhy do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?\nWhy is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?\n",
-    "agent": {
-        "name": "{agent_name}",
-        "type": "agent_reference"
+    "agent_reference": {
+        "type": "agent_reference",
+        "name": "{agent_name}"
     }
 }
 ```
 
-The response includes metadata about the agent execution, tool calls, and the generated output. The most relevant part of the response is the `text` in the `content` field, which should be similar to the following:
+The response includes metadata about the agent execution, tool calls, and the generated output. The most relevant part of the response is the `text` in the `content` field, which should be similar to the following (truncated for brevity):
 
 ```
-Suburban belts display larger December brightening in nighttime lights than urban cores, even though absolute light levels are higher downtown, primarily because suburban areas have more yard space and a prevalence of single-family homes where holiday lighting decorations are more commonly used. In contrast, central urban areas see a smaller increase in lighting during the holidays\u2014typically a 20 to 30 percent brightening\u2014as the density and types of dwellings (e.g., apartment buildings) often limit outdoor decorative lighting. This phenomenon was observed across the United States and reflects cultural practices of increased holiday lighting during Christmas and New Year\u0027s, particularly in suburban and residential neighborhoods that allow for more extensive displays [source: earth_at_night_508_page_174_verbalized, earth_at_night_508_page_176_verbalized].
+Suburban belts display larger December brightening in nighttime lights than urban 
+cores, primarily because suburban areas have more yard space and single-family homes 
+where holiday lighting decorations are more commonly used...
 
-Regarding the visibility of the Phoenix nighttime street grid from space, the sharply visible grid reflects the regular, planned layout of city blocks and streets in the Phoenix metropolitan area, common to many cities in the central and western United States. The urban grid is illuminated by street lighting, large shopping centers, strip malls, gas stations, and industrial and commercial properties concentrated along major streets and avenues such as Grand Avenue. These well-lit thoroughfares and nodes stand out distinctly from the surrounding areas, showcasing the street pattern clearly. Large stretches of interstate highways between midwestern cities, by contrast, are comparably dim because these highways connect cities but do not have the same density of lighting or concentrated commercial/residential developments lining them as urban street grids do at night. This leads to the interstate appearing as a dimmer corridor rather than a sharply lit grid [source: earth_at_night_508_page_104_verbalized, earth_at_night_508_page_105_verbalized, earth_at_night_508_page_124_verbalized].
+The Phoenix nighttime street grid is sharply visible due to the regular, planned 
+layout of city blocks with extensive street lighting, shopping centers, and 
+commercial properties along major streets...
 
 References:
-- earth_at_night_508_page_174_verbalized
-- earth_at_night_508_page_176_verbalized
-- earth_at_night_508_page_104_verbalized
-- earth_at_night_508_page_105_verbalized
-- earth_at_night_508_page_124_verbalized
+- earth_at_night_508_page_174_verbalized, earth_at_night_508_page_176_verbalized
+- earth_at_night_508_page_104_verbalized, earth_at_night_508_page_105_verbalized
 ```
 
 ---
@@ -420,7 +433,7 @@ References:
 
 ```python
 # Delete the agent
-project_client.agents.delete_version(agent.name, agent.version)
+project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 print(f"Agent '{agent.name}' version '{agent.version}' deleted successfully.")
 
 # Delete the project connection (Azure Resource Manager)
@@ -446,7 +459,7 @@ print(f"Project connection '{project_connection_name}' deleted successfully.")
 
 ```HTTP
 ### Delete the agent
-DELETE {project_endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
+DELETE {project_endpoint}/agents/{agent_name}?api-version=v1
 Authorization: Bearer {foundry_access_token}
 
 ### Delete the project connection

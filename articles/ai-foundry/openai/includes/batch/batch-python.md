@@ -9,6 +9,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -161,6 +162,7 @@ file_id = file.id
 
 ```python
 import os
+from datetime import datetime
 from openai import OpenAI
     
 client = OpenAI(

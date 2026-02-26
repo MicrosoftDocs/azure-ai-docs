@@ -34,7 +34,7 @@ When you deploy models in Foundry, the following types of data are processed to 
 
 ## Generation of inferencing outputs with managed compute
 
-Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Foundry portal](model-catalog-overview.md).
+Deploying models to managed compute deploys model weights to dedicated virtual machines and exposes a REST API for real-time inference. To learn more about deploying models from the model catalog to managed compute, see [Model catalog and collections in Foundry portal](../concepts/foundry-models-overview.md).
 
 You manage the infrastructure for these managed compute resources. Azure data, privacy, and security commitments apply. To learn more about Azure compliance offerings applicable to Foundry, see the [Azure Compliance Offerings page](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 
@@ -61,7 +61,7 @@ Prompts and outputs are processed within the geography specified during deployme
 
 ## Fine-tuning a model for serverless API deployment 
 
-If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections.md#connections-to-datastores) to fine-tune the model. Then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
+If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](./connections-add.md) to fine-tune the model. Then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
 
 * It's available exclusively for your use.
 * You can use double [encryption at rest](../openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.
@@ -75,4 +75,4 @@ If you download a model from the model catalog, you choose where to deploy the m
 
 ## Related content
 
-* [Model catalog and collections](model-catalog-overview.md)
+* [Model catalog and collections](../concepts/foundry-models-overview.md)

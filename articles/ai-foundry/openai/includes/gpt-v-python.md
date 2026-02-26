@@ -21,7 +21,7 @@ Use this article to get started using the Azure OpenAI Python SDK to deploy and 
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
-- An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled chat model deployed. See [Model availability](../concepts/models.md) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
+- An Azure OpenAI in Microsoft Foundry Models resource with a vision-enabled chat model deployed. See [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
 
 ### Microsoft Entra ID prerequisites
 
@@ -105,6 +105,19 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     python quickstart.py
     ```
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+
+<!--
+## Troubleshooting
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `AuthenticationError` | Invalid or missing API key | Verify `AZURE_OPENAI_API_KEY` environment variable is set correctly. |
+| `NotFoundError` | Incorrect endpoint or deployment | Check `AZURE_OPENAI_ENDPOINT` and `deployment_name` match your Azure resource. |
+| `RateLimitError` | Quota exceeded | Wait and retry, or request a quota increase in Azure portal. |
+| Truncated response | `max_tokens` too low | Increase the `max_tokens` value in your request. |
+| `BadRequestError` with content filter | Image triggered content filter | GPT-4 Turbo with Vision has mandatory content filtering that can't be disabled. |
+
+-->
 
 ## Clean up resources
 

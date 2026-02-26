@@ -469,13 +469,8 @@ To query your multimodal index:
 
 ## Clean up resources
 
-This quickstart uses billable Azure resources. If you no longer need the resources, delete them from your subscription to avoid charges.
+[!INCLUDE [clean up resources (paid)](includes/resource-cleanup-paid.md)]
 
 ## Next steps
 
-This quickstart introduced you to the **Import data (new)** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
-
-+ [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
-+ [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
-+ [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md)
-+ [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)
+This quickstart introduced you to the **Import data (new)** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the [Multimodal tutorial](tutorial-multimodal.md).
