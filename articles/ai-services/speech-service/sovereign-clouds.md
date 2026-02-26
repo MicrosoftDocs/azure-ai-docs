@@ -15,6 +15,8 @@ ms.reviewer: jagoerge
 
 # Speech service in sovereign clouds
 
+Azure sovereign clouds are isolated in-country/region platforms with independent authentication, storage, and compliance requirements. Sovereign clouds are often used within geographical boundaries where there's a strict data residency requirement.
+
 ## Azure Government (United States)
 
 Available to US government entities and their partners only. For more information about Azure Government, see [Azure Government documentation](/azure/azure-government/documentation-government-welcome) and [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure).
