@@ -1,4 +1,3 @@
-$schema: https://learn.microsoft.com/schemas/toc/v1/toc.schema.json
 items:
 - name: Azure Face documentation
   href: ../face-index.yml
@@ -11,6 +10,8 @@ items:
     href: ../identity-quotas-limits.md
   - name: Pricing
     href: https://azure.microsoft.com/pricing/details/cognitive-services/face-api
+  - name: What's new
+    href: whats-new-face.md
   - name: Vision Studio
     href: ../overview-vision-studio.md
   - name: Face quickstart
@@ -67,9 +68,12 @@ items:
     href: ../Tutorials/build-enrollment-app.md
   - name: Face liveness quick link (preview)
     href: ../Tutorials/liveness-quick-link.md
+- name: Scenario deep-dives
+  items:
+  - name: Verify a user
+    href: use-case-identity-verification.md
 - name: Samples
-  href: ../https://aka.ms/FaceSamples
-
+  href: https://aka.ms/FaceSamples
 - name: Responsible use of AI
   items:
   - name: Transparency notes
@@ -90,4 +94,17 @@ items:
     href: ../../../ai-foundry/responsible-ai/computer-vision/limited-access-identity.md
   - name: Shared responsibility for face liveness detection
     href: ../liveness-detection-shared-responsibility.md
-
+- name: Resources
+  items: 
+  - name: Enterprise readiness
+    items:
+    - name: Region support
+      href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
+    - name: Compliance and certification
+      href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
+  - name: Support and help options
+    href: ../cognitive-services-support-options.md?context=/azure/ai-services/computer-vision/context/context
+  - name: Training modules
+    href: /training/paths/explore-computer-vision-microsoft-azure/
+  - name: Azure updates
+    href: https://azure.microsoft.com/updates/?product=cognitive-services

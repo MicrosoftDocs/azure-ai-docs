@@ -18,9 +18,6 @@ items:
   items:
   - name: Generate alt text for images
     href: use-case-alt-text.md
-  - name: Verify a user
-    href: use-case-identity-verification.md
-
 - name: Image Analysis (legacy)
   items:
   - name: Image Analysis overview
