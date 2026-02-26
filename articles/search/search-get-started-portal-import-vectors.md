@@ -500,7 +500,9 @@ The final step is to review your configuration and create the necessary objects 
 
 To finish the wizard:
 
-1. On the **Review your configuration** page, specify a prefix for the objects that the wizard creates. A common prefix helps you stay organized.
+1. On the **Review and create** page, specify a prefix for the objects that the wizard creates. A common prefix helps you stay organized.
+
+   :::image type="content" source="media/search-get-started-portal-import-vectors/review-create.png" alt-text="Screenshot of the wizard page for reviewing and completing the configuration." border="true" lightbox="media/search-get-started-portal-import-vectors/review-create.png":::
 
 1. Select **Create**.
 
