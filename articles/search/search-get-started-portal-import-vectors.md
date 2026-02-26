@@ -340,10 +340,6 @@ In this step, you connect Azure AI Search to your chosen [data source](#supporte
 
 1. Select **Next**.
 
-### [Logic Apps](#tab/logic-apps)
-
-The current preview adds support for Logic Apps connectors. For a list of supported connectors and operations, see [Use a Logic Apps connector for indexer-based indexing](search-how-to-index-logic-apps.md).
-
 ---
 
 ### Vectorize your text
