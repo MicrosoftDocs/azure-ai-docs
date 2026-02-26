@@ -8,7 +8,7 @@ items:
   - name: Python
     href: /python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true
   - name: REST API
-    href: /rest/api/aifoundry/aiprojects/
+    href: ../../reference/foundry-project.md
 - name: Azure AI Agents
   items:
     - name: C#
@@ -129,5 +129,7 @@ items:
     href: /rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP
   - name: Azure OpenAI monitoring data reference
     href: ../../openai/monitor-openai-reference.md
-  - name: Audio events reference
+  - name: Audio events reference (preview)
     href: ../../openai/realtime-audio-reference.md
+  - name: Audio events reference (GA)
+    href: ../../openai/realtime-audio-reference-ga.md

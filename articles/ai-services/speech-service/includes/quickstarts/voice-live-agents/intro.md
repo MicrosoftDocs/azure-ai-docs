@@ -2,7 +2,7 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/31/2025
+ms.date: 2/20/2026
 ms.author: pafarley
 ---
 
@@ -16,4 +16,7 @@ You can create and run an application to use Voice Live with agents for real-tim
 
 - This separation also supports better maintainability and scalability for scenarios where multiple conversational experiences or business logic variations are needed.
 
-To instead use the Voice Live API without agents, see the [Voice Live API quickstart](/azure/ai-services/speech-service/voice-live-quickstart).
+To use the Voice Live API without Foundry agents, see the [Voice Live API quickstart](/azure/ai-services/speech-service/voice-live-quickstart).
+
+> [!TIP]
+> To use Voice Live, you don't need to deploy an **audio** model with your Microsoft Foundry resource. Voice Live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [Voice Live overview documentation](../../../voice-live.md).

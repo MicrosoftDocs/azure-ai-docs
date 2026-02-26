@@ -5,6 +5,8 @@ items:
   href: ../../../how-to/develop/install-cli-sdk.md
 - name: Work in VS Code
   href: ../../../how-to/develop/get-started-projects-vs-code.md
+- name: Configure Claude Code with Microsoft Foundry
+  href: ../../../foundry-models/how-to/configure-claude-code.md
 
 # Getting Started with Development
 - name: Start with an AI template
@@ -15,10 +17,6 @@ items:
 # Agent Tools
 - name: Agent development tools
   items:
-  - name: Use the Visual Studio Code extension for agent development
-    href: ../../../how-to/develop/vs-code-agents.md
-  - name: Use MCP Tools in the Visual Studio Code extension
-    href: ../../../how-to/develop/vs-code-agents-mcp.md
   - name: Use declarative agent workflows in the Visual Studio Code extension
     href: ../../agents/how-to/vs-code-agents-workflow-low-code.md
   - name: Use hosted agent workflows in the Visual Studio Code extension

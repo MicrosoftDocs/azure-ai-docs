@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
-ms.date: 11/18/2025
+ms.date: 02/25/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:

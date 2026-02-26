@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 02/25/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -222,7 +222,7 @@ print(f"Red Team scan status: {get_red_team_response.status}")
 curl --request GET \  --header 'authorization: Bearer {{ai_token}}'  --url https://{{account}}.services.ai.azure.com/api/projects/{{project}}/redteams/runs/{{scan_id}}
 ```
 
-- Replace `"{{scan_id}"` with the ID returned by the POST API.
+- Replace `"{{scan_id}}"` with the ID returned by the POST API.
 
 ---
 

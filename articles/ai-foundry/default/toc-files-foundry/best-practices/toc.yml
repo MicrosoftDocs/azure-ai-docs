@@ -8,6 +8,8 @@ items:
   href: ../../../openai/concepts/prompt-engineering.md
 - name: Performance & latency
   href: ../../../openai/how-to/latency.md
+- name: Integrate with your applications
+  href: ../../../how-to/integrate-with-other-apps.md
 
 # Security Best Practices
 - name: Red teaming large language models (LLMs)

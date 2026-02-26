@@ -97,8 +97,10 @@ The Foundry extension organizes your workspace into three main sections.
 | **Tools** | Model Catalog, Model Playground, Agent Playgrounds (remote and local), Local Visualizer, and Deploy Hosted Agents. | Deploy new models, test prompts, and interact with agents. |
 | **Help and Feedback** | Documentation, GitHub repository, Microsoft Privacy Statement, and community links. | Get help or provide feedback. |
 
+::: moniker range="foundry-classic"
 > [!NOTE]
 > To learn more about working with agents in the Foundry extension, see [Work with Agent Service in Visual Studio Code](./vs-code-agents.md).
+::: moniker-end
 
 ## Create a project
 
@@ -281,7 +283,12 @@ To delete the resource group and all resources within, it:
 1. Select **Delete resource group** and confirm the deletion.
 
 ## Next steps
-
+::: moniker range="foundry-classic"
 - [Work with Agent Service in Visual Studio Code](./vs-code-agents.md)
 - [Explore Foundry models](../../concepts/foundry-models-overview.md)
 - [Deploy models with Foundry](../../foundry-models/how-to/deploy-foundry-models.md)
+::: moniker-end
+::: moniker range="foundry"
+- [Explore Foundry models](../../concepts/foundry-models-overview.md)
+- [Deploy models with Foundry](../../foundry-models/how-to/deploy-foundry-models.md)
+::: moniker-end

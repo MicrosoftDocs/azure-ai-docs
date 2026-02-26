@@ -46,7 +46,7 @@ Before you can use GPT real-time audio, you need:
 :::moniker range="foundry"
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource. Create the resource in one of the [supported regions](#supported-models). For setup steps, see [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article.
+- A deployment of a GPT realtime model in a supported region as described in the [supported models](#supported-models) section in this article.
   - In the Foundry portal, load your project. Select **Build** in the upper-right menu, then select the **Models** tab on the left pane, and select **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 - **Required libraries**:
   - Python: `pip install websockets azure-identity`
@@ -57,7 +57,7 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in the Foundry portal.
+- A deployment of a GPT realtime model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in the Foundry portal.
 - **Required libraries**:
   - Python: `pip install websockets azure-identity`
   - JavaScript/Node.js: `npm install ws @azure/identity`
@@ -71,6 +71,7 @@ The GPT real-time models are available for global deployments in the [East US 2 
 - `gpt-realtime` (`2025-08-28`)
 - `gpt-realtime-mini` (`2025-10-06`)
 - `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
+- `gpt-realtime-1.5-2026-02-23` (`2026-02-23`)
 
 For more information about supported models, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 
@@ -155,10 +156,10 @@ Events can be sent and received in parallel and applications should generally ha
 
 ## Try the quickstart
 
-Now that you've done the above steps, you can follow the instructions in the [Realtime API quickstart](../realtime-audio-quickstart.md) to get started with the Realtime API via WebSockets.
+Now that you've done the above steps, you can follow the instructions in the [Realtime API quickstart](../how-to/realtime-audio.md#quickstart) to get started with the Realtime API via WebSockets.
 
 ## Related content
 
-* Try the [real-time audio quickstart](../realtime-audio-quickstart.md)
+* Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
 * See the [Realtime API reference](../realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)
