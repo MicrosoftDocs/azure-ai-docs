@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models REST API authoring preview reference (classic)"
-description: "Learn how to use Azure OpenAI's latest authoring preview REST API. In this article, you learn about authorization options,  how to structure a request and receive a response. (classic)"
+title: "Azure OpenAI in Microsoft Foundry Models REST API preview reference (temp)"
+description: "Learn how to use Azure OpenAI's latest preview REST API. In this article, you learn about authorization options,  how to structure a request and receive a response. (temp)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -11,10 +11,9 @@ ms.author: mbullwin
 recommendations: false
 ms.custom:
 - classic-and-new
-ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Azure OpenAI in Microsoft Foundry Models authoring REST API preview reference (classic)
+# Azure OpenAI in Microsoft Foundry Models REST API preview reference (temp)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -22,13 +21,13 @@ This article provides details on the inference REST API endpoints for Azure Open
 
 [!INCLUDE [API surfaces](./includes/api-surface.md)]
 
-## Data plane authoring
+## Data plane inference
 
-The rest of the article covers the preview release of the Azure OpenAI data plane inference specification, `2025-04-01-preview`.
+The rest of the article covers the `2025-04-01-preview` preview release of the Azure OpenAI data plane inference specification.
 
 If you're looking for documentation on the latest GA API release, refer to the [latest GA data plane inference API](./latest.md)
 
-[!INCLUDE [API surfaces](./includes/api-versions/latest-authoring.md)]
+[!INCLUDE [API surfaces](./includes/api-versions/latest-inference-preview.md)]
 
 ## Next steps
 

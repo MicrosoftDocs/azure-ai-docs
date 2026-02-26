@@ -162,8 +162,7 @@ Grant networking access to trusted Azure services by creating a network rule exc
 - You must deploy the private endpoint in the same region and subscription as the virtual network.
 - Only private endpoints in an **Approved** state can send traffic to a private-link resource.
 - End-to-end network isolation in Foundry is not supported in the new Foundry portal experience. End-to-end network isolation in Foundry is not supported for the new version of the Agent service. Use the classic Foundry portal experience with the current version of Agent service to securely access your Foundry projects when network isolation is enabled.
-- When you use a network isolated Foundry, you cannot use private MCP servers (that have public access disabled). You can only use publicly accessible MCP servers.
-- Hosted Agents in Microsoft Foundry are not supported with end-to-end network isolation. 
+- Hosted Agents in Microsoft Foundry are not supported with end-to-end network isolation.
 
 For Agent Service network isolation scenarios (including network injection, end-to-end isolation, and limitations), see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). 
 
