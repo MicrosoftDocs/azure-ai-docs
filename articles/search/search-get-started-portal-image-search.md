@@ -90,7 +90,7 @@ Configure the [required roles](#required-roles) and [conditional roles](#conditi
 
 Azure AI Search and Azure Storage are required for all multimodal search scenarios.
 
-### [**Azure AI Search**](#tab/search-perms)
+### [**Azure AI Search**](#tab/search)
 
 Azure AI Search provides the multimodal pipeline. Configure access for yourself and your search service to read data, run the pipeline, and interact with other Azure resources.
 
@@ -108,7 +108,7 @@ On your Azure AI Search service:
 
    + **Search Index Data Reader**
 
-### [**Azure Storage**](#tab/storage-perms)
+### [**Azure Storage**](#tab/storage)
 
 Azure Storage is both the data source for your documents and the destination for extracted images. Your search service requires access to the storage containers you create in the next section.
 
@@ -122,15 +122,15 @@ On your Azure Storage account:
 
 The following tabs cover all wizard-compatible resources for multimodal search. Select only the tabs that apply to your chosen [extraction method](#supported-extraction-methods) and [embedding method](#supported-embedding-methods).
 
-### [**Azure AI multi-service**](#tab/multi-service-perms)
+### [**Azure AI multi-service**](#tab/multi-service)
 
-A multi-service account provides access to multiple Azure AI services, including [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview) for content extraction and [Azure Vision](/azure/ai-services/computer-vision/overview) for content embedding. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
+A multi-service account provides access to multiple services, including [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview) for content extraction and [Azure Vision](/azure/ai-services/computer-vision/overview) for content embedding. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
 On your multi-service account:
 
 + Assign **Cognitive Services User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-### [**Microsoft Foundry**](#tab/foundry-perms)
+### [**Microsoft Foundry**](#tab/foundry)
 
 > [!NOTE]
 > If you're using a hub-based project, skip this step. Hub-based projects support API keys instead of managed identities for authentication.
@@ -141,7 +141,7 @@ On the parent resource of your Microsoft Foundry project:
 
 + Assign **Azure AI Project Manager** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-### [**Azure OpenAI**](#tab/openai-perms)
+### [**Azure OpenAI**](#tab/openai)
 
 Azure OpenAI provides LLMs for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
 
@@ -222,9 +222,9 @@ The default method calls the [Document Extraction skill](cognitive-search-skill-
 
 To use the Document Extraction skill:
 
-1. On the **Content extraction** page, select **Default**.
+1. On the **Content extraction** page, leave **Default** selected.
 
-   :::image type="content" source="media/search-get-started-portal-images/extract-your-content-doc-extraction.png" alt-text="Screenshot of the wizard page with the default method selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-your-content-doc-extraction.png":::
+   :::image type="content" source="media/search-get-started-portal-images/extract-content-default.png" alt-text="Screenshot of the wizard page with the default method selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-content-default.png":::
 
 1. Select **Next**.
 
@@ -234,9 +234,9 @@ Your multi-service account provides access to [Azure Document Intelligence](/azu
 
 To use the Document Layout skill:
 
-1. On the **Content extraction** page, select **AI Document Intelligence**.
+1. On the **Content extraction** page, select **Azure Document Intelligence in Foundry Tools**.
 
-   :::image type="content" source="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png" alt-text="Screenshot of the wizard page with Azure Document Intelligence selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png":::
+   :::image type="content" source="media/search-get-started-portal-images/extract-content-doc-intelligence.png" alt-text="Screenshot of the wizard page with Azure Document Intelligence selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-content-doc-intelligence.png":::
 
 1. Select your Azure subscription and multi-service account.
 
@@ -244,7 +244,7 @@ To use the Document Layout skill:
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
-   :::image type="content" source="media/search-get-started-portal-images/doc-intelligence-options.png" alt-text="Screenshot of the wizard page with configuration options for Azure Document Intelligence selected." border="true" lightbox="media/search-get-started-portal-images/doc-intelligence-options.png":::
+   :::image type="content" source="media/search-get-started-portal-images/extract-content-doc-intelligence-options.png" alt-text="Screenshot of the wizard page with configuration options for Azure Document Intelligence selected." border="true" lightbox="media/search-get-started-portal-images/extract-content-doc-intelligence-options.png":::
 
 1. Select **Next**.
 
@@ -270,7 +270,7 @@ To use the skills for image verbalization:
 
 1. On the **Image Verbalization** tab:
 
-   1. For the kind, select your LLM provider: **Azure OpenAI** or **Azure AI Foundry**.
+   1. For the kind, select your LLM provider: **Azure OpenAI** or **Microsoft Foundry**.
 
    1. Select your Azure subscription, resource, and LLM deployment.
 
@@ -282,7 +282,7 @@ To use the skills for image verbalization:
 
 1. On the **Text Vectorization** tab:
 
-   1. For the kind, select your model provider: **Azure OpenAI**, **Azure AI Foundry**, or **AI Vision vectorization**.
+   1. For the kind, select your model provider: **Azure OpenAI**, **Microsoft Foundry**, or **Azure Vision in Foundry Tools**.
 
    1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
@@ -306,7 +306,7 @@ To use the skills for multimodal embeddings:
 
    :::image type="content" source="media/search-get-started-portal-images/multimodal-embedding-tile.png" alt-text="Screenshot of the Multimodal Embedding tile in the wizard." border="true" lightbox="media/search-get-started-portal-images/multimodal-embedding-tile.png":::
 
-1. For the kind, select your model provider: **Azure AI Foundry** or **AI Vision vectorization**.
+1. For the kind, select your model provider: **Microsoft Foundry** or **Azure Vision in Foundry Tools**.
 
 1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
@@ -396,6 +396,8 @@ To finish the wizard:
    :::image type="content" source="media/search-get-started-portal-images/review-create.png" alt-text="Screenshot of the wizard page for reviewing and completing the configuration." border="true" lightbox="media/search-get-started-portal-images/review-create.png":::
 
 1. Select **Create**.
+
+### Wizard-created objects
 
 When the wizard completes the configuration, it creates the following objects:
 

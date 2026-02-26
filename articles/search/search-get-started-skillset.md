@@ -117,7 +117,7 @@ To add the skills:
 
    :::image type="content" source="media/search-get-started-skillset/extract-text.png" alt-text="Screenshot of the Extract text from images options in the Azure portal." lightbox="media/search-get-started-skillset/extract-text.png":::
 
-1. Leave the **Use a free AI service (limited enrichments)** checkbox selected.
+1. Leave the **Use a Foundry Tools resource (limited enrichments)** checkbox selected.
 
    The sample data consists of 14 files, so the free allotment of 20 transactions on Foundry Tools is sufficient.
 

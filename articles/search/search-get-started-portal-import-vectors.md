@@ -27,6 +27,8 @@ This quickstart uses text-based PDFs and simple images from the [azure-search-sa
 
 + An [Azure AI Search service](search-create-service-portal.md). We recommend the Basic tier or higher.
 
++ [Role-based access](#role-based-access) and a managed identity enabled on the search service.
+
 + A [supported data source](#supported-data-sources).
 
 + A [supported embedding model](#supported-embedding-models).
@@ -40,7 +42,7 @@ The wizard [supports several Azure data sources](search-import-data-portal.md#su
 | Supported data source | Description |
 |--|--|
 | [Azure Blob Storage](/azure/storage/common/storage-account-create) | This data source works with blobs and tables. You must use a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold. |
-| [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) | This is an Azure Storage account with a hierarchical namespace enabled. To confirm that you have Data Lake Storage, check the **Properties** tab on the **Overview** page.<br><br> :::image type="content" source="media/search-get-started-portal-import-vectors/data-lake-storage.png" alt-text="Screenshot of an Azure Data Lake Storage account in the Azure portal." border="true" lightbox="media/search-get-started-portal-import-vectors/data-lake-storage.png"::: |
+| [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) | This is an Azure Storage account with a hierarchical namespace enabled. To confirm that you have Data Lake Storage, check the **Properties** tab on the **Overview** page. |
 | [Microsoft OneLake](search-how-to-index-onelake-files.md) | This data source connects to OneLake files and shortcuts. |
 
 ### Supported embedding models
@@ -99,7 +101,7 @@ If you're starting with the free service, you're limited to three indexes, data 
 
 In this section, you use a [supported data source](#supported-data-sources) to prepare sample data. Before you proceed, make sure you completed the prerequisites for [role-based access](#role-based-access).
 
-### [Azure Blob Storage](#tab/sample-data-storage)
+### [Azure Blob Storage](#tab/blob-storage)
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
 
@@ -123,9 +125,9 @@ In this section, you use a [supported data source](#supported-data-sources) to p
 
    1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account. If you're using [native soft delete](search-how-to-index-azure-blob-changed-deleted.md#native-blob-soft-delete), the next step isn't required.
 
-   1. [Add custom metadata](search-how-to-index-azure-blob-changed-deleted.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-how-to-index-azure-blob-changed-deleted.md).
+   1. [Add custom metadata](search-how-to-index-azure-blob-changed-deleted.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-how-to-index-azure-blob-changed-deleted.md).
 
-### [ADLS Gen2](#tab/sample-data-adlsgen2)
+### [ADLS Gen2](#tab/adls-gen2)
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
 
@@ -149,9 +151,9 @@ In this section, you use a [supported data source](#supported-data-sources) to p
 
    1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account.
 
-   1. [Add custom metadata](search-how-to-index-azure-blob-changed-deleted.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-how-to-index-azure-blob-changed-deleted.md).
+   1. [Add custom metadata](search-how-to-index-azure-blob-changed-deleted.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-how-to-index-azure-blob-changed-deleted.md).
 
-### [OneLake](#tab/sample-data-onelake)
+### [Microsoft OneLake](#tab/onelake)
 
 1. Sign in to [Power BI](https://powerbi.com/) and [create a workspace](/fabric/data-engineering/tutorial-lakehouse-get-started).
 
@@ -188,7 +190,7 @@ In this section, you use a [supported data source](#supported-data-sources) to p
 
 In this section, you deploy a [supported embedding model](#supported-embedding-models) for later use in this quickstart. Before you proceed, make sure you completed the prerequisites for [role-based access](#role-based-access).
 
-### [Azure OpenAI](#tab/model-aoai)
+### [Azure OpenAI](#tab/aoai)
 
 The wizard supports several embedding models. Internally, the wizard calls the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) to connect to Azure OpenAI.
 
@@ -212,7 +214,7 @@ The wizard supports several embedding models. Internally, the wizard calls the [
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
-### [Microsoft Foundry](#tab/model-catalog)
+### [Microsoft Foundry](#tab/foundry)
 
 The wizard supports several embedding models in the Foundry model catalog. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the model catalog.
 
@@ -238,7 +240,7 @@ To complete these steps, you must have a [Foundry project](/azure/ai-foundry/how
 
    1. Deploy a [supported embedding model](#supported-embedding-models).
 
-### [Azure Vision](#tab/model-vision)
+### [Azure Vision](#tab/vision)
 
 The wizard supports text and image retrieval through the Azure Vision multimodal embeddings APIs, which are built into your Azure AI multi-service account. Internally, the wizard calls the [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to make the connection.
 
@@ -284,7 +286,7 @@ The wizard walks you through several configuration steps. This section covers ea
 
 In this step, you connect Azure AI Search to your chosen [data source](#supported-data-sources) for content ingestion and indexing.
 
-### [Azure Blob Storage](#tab/connect-data-storage)
+### [Azure Blob Storage](#tab/blob-storage)
 
 1. On the **Connect to your data** page, select your Azure subscription.
 
@@ -306,7 +308,7 @@ In this step, you connect Azure AI Search to your chosen [data source](#supporte
 
 1. Select **Next**.
 
-### [ADLS Gen2](#tab/connect-data-adlsgen2)
+### [ADLS Gen2](#tab/adls-gen2)
 
 1. On the **Connect to your data** page, select your Azure subscription.
 
@@ -328,7 +330,7 @@ In this step, you connect Azure AI Search to your chosen [data source](#supporte
 
 1. Select **Next**.
 
-### [OneLake](#tab/connect-data-onelake)
+### [Microsoft OneLake](#tab/onelake)
 
 1. On the **Connect to your data** page, select **Lakehouse URL** for the connection type.
 
@@ -338,7 +340,7 @@ In this step, you connect Azure AI Search to your chosen [data source](#supporte
 
 1. Select **Next**.
 
-### [Logic Apps](#tab/connect-logic-apps)
+### [Logic Apps](#tab/logic-apps)
 
 The current preview adds support for Logic Apps connectors. For a list of supported connectors and operations, see [Use a Logic Apps connector for indexer-based indexing](search-how-to-index-logic-apps.md).
 
@@ -356,7 +358,7 @@ During this step, the wizard uses your chosen [embedding model](#supported-embed
 "unit": "characters"
 ```
 
-### [Azure OpenAI](#tab/vectorize-text-aoai)
+### [Azure OpenAI](#tab/aoai)
 
 1. On the **Vectorize your text** page, select **Azure OpenAI** for the kind.
 
@@ -372,9 +374,9 @@ During this step, the wizard uses your chosen [embedding model](#supported-embed
 
 1. Select **Next**.
 
-### [Microsoft Foundry](#tab/vectorize-text-catalog)
+### [Microsoft Foundry](#tab/foundry)
 
-1. On the **Vectorize your text** page, select **Azure AI Foundry** for the kind.
+1. On the **Vectorize your text** page, select **Microsoft Foundry** for the kind.
 
 1. Select your Azure subscription.
 
@@ -384,13 +386,13 @@ During this step, the wizard uses your chosen [embedding model](#supported-embed
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
-   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-text-catalog.png" alt-text="Screenshot of the Vectorize your text page with the Microsoft Foundry model catalog in the wizard." lightbox="media/search-get-started-portal-import-vectors/vectorize-text-catalog.png":::
+   :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-text-foundry.png" alt-text="Screenshot of the Vectorize your text page with the Microsoft Foundry model catalog in the wizard." lightbox="media/search-get-started-portal-import-vectors/vectorize-text-foundry.png":::
 
 1. Select **Next**.
 
-### [Azure Vision](#tab/vectorize-text-vision)
+### [Azure Vision](#tab/vision)
 
-1. On the **Vectorize your text** page, select **AI Vision vectorization** for the kind.
+1. On the **Vectorize your text** page, select **Azure Vision in Foundry Tools** for the kind.
 
 1. Select your Azure subscription and multi-service account.
 
@@ -418,7 +420,7 @@ However, if your content includes useful images, you can apply AI in one or both
 
 1. On the **Vectorize and enrich your images** page, select the **Vectorize images** checkbox.
 
-1. For the kind, select your model provider: **Azure AI Foundry** or **AI Vision vectorization**.
+1. For the kind, select your model provider: **Microsoft Foundry** or **Azure Vision in Foundry Tools**.
 
 1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
@@ -501,6 +503,8 @@ To finish the wizard:
 1. On the **Review your configuration** page, specify a prefix for the objects that the wizard creates. A common prefix helps you stay organized.
 
 1. Select **Create**.
+
+### Wizard-created objects
 
 When the wizard completes the configuration, it creates the following objects:
 
