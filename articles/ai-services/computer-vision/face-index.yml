@@ -84,20 +84,20 @@ conceptualContent:
 
 tools:
   title: Software development kits (SDKs)
-  summary: Get started with the Image Analysis SDK in your favorite programming language.
+  summary: Get started with the Azure Face SDK in your preferred programming language.
   items:
   - title: C#
     imageSrc: media/index/logo-csharp.svg
-    url: https://aka.ms/azsdk/image-analysis/ref-docs/csharp
+    url: https://aka.ms/azsdk-csharp-face-pkg
   - title: Node.js
     imageSrc: media/index/logo_nodejs.svg
-    url: https://aka.ms/azsdk/image-analysis/ref-docs/js
+    url: https://www.npmjs.com/package/@azure-rest/ai-vision-face
   - title: Python
     imageSrc: media/index/logo_python.svg
-    url: https://aka.ms/azsdk/image-analysis/ref-docs/python
+    url: https://aka.ms/azsdk-python-face-pkg
   - title: Java
     imageSrc: /media/logos/logo_java.svg
-    url: https://aka.ms/azsdk/image-analysis/ref-docs/java
+    url: https://central.sonatype.com/artifact/com.azure/azure-ai-vision-face
 
 
 additionalContent:
