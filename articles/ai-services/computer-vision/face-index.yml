@@ -1,11 +1,11 @@
 ### YamlMime:Hub
 
 title: Azure Face in Foundry Tools documentation # < 60 chars
-summary: The cloud-based Azure Face service The Azure AI Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many scenarios, such as identification, touchless access control, and automatic face blurring for privacy. # < 160 chars
+summary: The cloud-based Azure Face service The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many scenarios, such as identification, touchless access control, and automatic face blurring for privacy. # < 160 chars
 
 metadata:
   title: Azure Face documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs
-  description: The cloud-based Azure Face service The Azure AI Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many scenarios, such as identification, touchless access control, and automatic face blurring for privacy.
+  description: The cloud-based Azure Face service The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many scenarios, such as identification, touchless access control, and automatic face blurring for privacy.
   ms.service: azure-ai-vision
   ms.topic: hub-page
   author: PatrickFarley

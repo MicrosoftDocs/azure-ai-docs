@@ -1,7 +1,7 @@
 ---
 title: How to specify a recognition model - Face
 titleSuffix: Foundry Tools
-description: This article shows you how to choose which recognition model to use with your Azure AI Face application.
+description: This article shows you how to choose which recognition model to use with your Azure Face application.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -20,7 +20,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 [!INCLUDE [Gate notice](../includes/identity-gate-notice.md)]
 
-This guide shows you how to specify a face recognition model for face detection, identification and similarity search using the Azure AI Face service.
+This guide shows you how to specify a face recognition model for face detection, identification and similarity search using the Azure Face service.
 
 The Face service uses machine learning models to perform operations on visible human faces in images. We continue to improve the accuracy of our models based on customer feedback and advances in research, and we deliver these improvements as model updates. Developers can specify which version of the face recognition model they'd like to use, choosing the model that best fits their use case.
 
@@ -34,7 +34,7 @@ You should be familiar with the concepts of AI face detection and identification
 
 ## Model compatibility
 
-The Azure AI Face service has four recognition models available. The models `recognition_01` (published 2017), `recognition_02` (published 2019), and `recognition_03` (published 2020) are continually supported to ensure backwards compatibility for customers using **FaceList**s or **PersonGroup**s created with these models. A **FaceList** or **PersonGroup** always uses the recognition model it was created with, and new faces become associated with this model when they're added. This can't be changed after creation and customers need to use the corresponding recognition model with the corresponding **FaceList** or **PersonGroup**.
+The Azure Face service has four recognition models available. The models `recognition_01` (published 2017), `recognition_02` (published 2019), and `recognition_03` (published 2020) are continually supported to ensure backwards compatibility for customers using **FaceList**s or **PersonGroup**s created with these models. A **FaceList** or **PersonGroup** always uses the recognition model it was created with, and new faces become associated with this model when they're added. This can't be changed after creation and customers need to use the corresponding recognition model with the corresponding **FaceList** or **PersonGroup**.
 
 You can move to later recognition models at your own convenience; however, you'll need to create new FaceLists and PersonGroups with the recognition model of your choice.
 
