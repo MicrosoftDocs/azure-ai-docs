@@ -94,6 +94,33 @@ items:
     href: ../../../ai-foundry/responsible-ai/computer-vision/limited-access-identity.md
   - name: Shared responsibility for face liveness detection
     href: ../liveness-detection-shared-responsibility.md
+- name: Reference
+  items:
+  - name: Server-side
+    items:
+    - name: Face REST API
+      href: ../identity-api-reference.md
+    - name: Face API error codes
+      href: ../reference-face-error-codes.md
+    - name: .NET
+      href: https://aka.ms/azsdk-csharp-face-ref
+    - name: Java
+      href: https://aka.ms/azsdk-java-face-ref
+    - name: Node.js
+      href: https://aka.ms/azsdk-javascript-face-ref
+    - name: Python
+      href: https://aka.ms/azsdk-python-face-ref
+  - name: Client-side
+    items:
+    - name: Kotlin (Android)
+      href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
+    - name: Swift (iOS)
+      href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
+    - name: JavaScript (Web)
+      href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
+    - name: Understand the liveness versions
+      href: ../sdk/understand-the-liveness-sdk-versions.md
+
 - name: Resources
   items: 
   - name: Enterprise readiness
@@ -103,7 +130,7 @@ items:
     - name: Compliance and certification
       href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
   - name: Support and help options
-    href: ../cognitive-services-support-options.md?context=/azure/ai-services/computer-vision/context/context
+    href: ../../cognitive-services-support-options.md?context=/azure/ai-services/computer-vision/context/context
   - name: Training modules
     href: /training/paths/explore-computer-vision-microsoft-azure/
   - name: Azure updates

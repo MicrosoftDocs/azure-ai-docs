@@ -178,32 +178,6 @@ items:
       href: /cli/azure/cognitiveservices#az_cognitiveservices_list
     - name: Azure PowerShell
       href: /powershell/module/az.cognitiveservices/
-  - name: Reference
-    items:
-    - name: Server-side
-      items:
-      - name: Face REST API
-        href: identity-api-reference.md
-      - name: Face API error codes
-        href: reference-face-error-codes.md
-      - name: .NET
-        href: https://aka.ms/azsdk-csharp-face-ref
-      - name: Java
-        href: https://aka.ms/azsdk-java-face-ref
-      - name: Node.js
-        href: https://aka.ms/azsdk-javascript-face-ref
-      - name: Python
-        href: https://aka.ms/azsdk-python-face-ref
-    - name: Client-side
-      items:
-      - name: Kotlin (Android)
-        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
-      - name: Swift (iOS)
-        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
-      - name: JavaScript (Web)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
-      - name: Understand the liveness versions
-        href: sdk/understand-the-liveness-sdk-versions.md
 - name: Optical character recognition (OCR) (legacy)
   items:
   - name: OCR overview
