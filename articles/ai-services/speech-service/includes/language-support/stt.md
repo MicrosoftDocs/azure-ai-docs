@@ -165,24 +165,24 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | ----- | ----- | ----- |
 | `af-ZA` | Afrikaans (South Africa) | Plain text |
 | `am-ET` | Amharic (Ethiopia) | Plain text |
-| `ar-AE` | Arabic (United Arab Emirates) | Audio + human-labeled transcript, Plain text |
-| `ar-BH` | Arabic (Bahrain) | Audio + human-labeled transcript, Plain text |
-| `ar-DZ` | Arabic (Algeria) | Audio + human-labeled transcript, Plain text |
-| `ar-EG` | Arabic (Egypt) | Audio + human-labeled transcript, Plain text, Structured text |
-| `ar-IL` | Arabic (Israel) | Audio + human-labeled transcript, Plain text |
-| `ar-IQ` | Arabic (Iraq) | Audio + human-labeled transcript, Plain text |
-| `ar-JO` | Arabic (Jordan) | Audio + human-labeled transcript, Plain text |
-| `ar-KW` | Arabic (Kuwait) | Audio + human-labeled transcript, Plain text |
-| `ar-LB` | Arabic (Lebanon) | Audio + human-labeled transcript, Plain text |
-| `ar-LY` | Arabic (Libya) | Audio + human-labeled transcript, Plain text |
-| `ar-MA` | Arabic (Morocco) | Audio + human-labeled transcript, Plain text |
-| `ar-OM` | Arabic (Oman) | Audio + human-labeled transcript, Plain text |
-| `ar-PS` | Arabic (Palestinian Authority) | Audio + human-labeled transcript, Plain text |
-| `ar-QA` | Arabic (Qatar) | Audio + human-labeled transcript, Plain text |
+| `ar-AE` | Arabic (United Arab Emirates) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-BH` | Arabic (Bahrain) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-DZ` | Arabic (Algeria) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-EG` | Arabic (Egypt) | Audio + human-labeled transcript, Plain text, Structured text, Phrase list |
+| `ar-IL` | Arabic (Israel) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-IQ` | Arabic (Iraq) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-JO` | Arabic (Jordan) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-KW` | Arabic (Kuwait) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-LB` | Arabic (Lebanon) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-LY` | Arabic (Libya) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-MA` | Arabic (Morocco) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-OM` | Arabic (Oman) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-PS` | Arabic (Palestinian Authority) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-QA` | Arabic (Qatar) | Audio + human-labeled transcript, Plain text, Phrase list |
 | `ar-SA` | Arabic (Saudi Arabia) | Audio + human-labeled transcript, Plain text, Structured text, Phrase list |
-| `ar-SY` | Arabic (Syria) | Audio + human-labeled transcript, Plain text |
-| `ar-TN` | Arabic (Tunisia) | Audio + human-labeled transcript, Plain text |
-| `ar-YE` | Arabic (Yemen) | Audio + human-labeled transcript, Plain text |
+| `ar-SY` | Arabic (Syria) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-TN` | Arabic (Tunisia) | Audio + human-labeled transcript, Plain text, Phrase list |
+| `ar-YE` | Arabic (Yemen) | Audio + human-labeled transcript, Plain text, Phrase list |
 | `as-IN` | Assamese (India) | Audio + human-labeled transcript |
 | `az-AZ` | Azerbaijani (Latin, Azerbaijan) | Plain text |
 | `bg-BG` | Bulgarian (Bulgaria) | Plain text |
@@ -199,40 +199,40 @@ To improve the accuracy of speech-to-text recognition, you can customize some la
 | `en-AU` | English (Australia) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
 | `en-CA` | English (Canada) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
 | `en-GB` | English (United Kingdom) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
-| `en-GH` | English (Ghana) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Pronunciation |
-| `en-HK` | English (Hong Kong SAR) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation |
+| `en-GH` | English (Ghana) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Pronunciation, Phrase list |
+| `en-HK` | English (Hong Kong SAR) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
 | `en-IE` | English (Ireland) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
 | `en-IN` | English (India) | Audio + human-labeled transcript, Plain text, Structured text, Output format, Pronunciation, Phrase list |
-| `en-KE` | English (Kenya) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Pronunciation |
-| `en-NG` | English (Nigeria) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation |
-| `en-NZ` | English (New Zealand) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation |
-| `en-PH` | English (Philippines) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation |
-| `en-SG` | English (Singapore) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation |
-| `en-TZ` | English (Tanzania) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Pronunciation |
+| `en-KE` | English (Kenya) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Pronunciation, Phrase list |
+| `en-NG` | English (Nigeria) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
+| `en-NZ` | English (New Zealand) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
+| `en-PH` | English (Philippines) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
+| `en-SG` | English (Singapore) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
+| `en-TZ` | English (Tanzania) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Pronunciation, Phrase list |
 | `en-US` | English (United States) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Output format, Pronunciation, Phrase list |
 | `en-ZA` | English (South Africa) | Audio + human-labeled transcript, Audio, Plain text, Structured text, Pronunciation, Phrase list |
-| `es-AR` | Spanish (Argentina) | Plain text, Structured text, Pronunciation |
-| `es-BO` | Spanish (Bolivia) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-CL` | Spanish (Chile) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-CO` | Spanish (Colombia) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-CR` | Spanish (Costa Rica) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-CU` | Spanish (Cuba) | Plain text, Structured text, Pronunciation |
-| `es-DO` | Spanish (Dominican Republic) | Plain text, Structured text, Pronunciation |
-| `es-EC` | Spanish (Ecuador) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-ES` | Spanish (Spain) | Audio + human-labeled transcript, Plain text, Structured text, Output format, Pronunciation, Phrase list |
-| `es-GQ` | Spanish (Equatorial Guinea) | Audio + human-labeled transcript, Plain text, Structured text |
-| `es-GT` | Spanish (Guatemala) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-HN` | Spanish (Honduras) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
+| `es-AR` | Spanish (Argentina) | Plain text, Structured text, Pronunciation, Phrase list |
+| `es-BO` | Spanish (Bolivia) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-CL` | Spanish (Chile) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-CO` | Spanish (Colombia) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-CR` | Spanish (Costa Rica) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-CU` | Spanish (Cuba) | Plain text, Structured text, Pronunciation, Phrase list |
+| `es-DO` | Spanish (Dominican Republic) | Plain text, Structured text, Pronunciation, Phrase list |
+| `es-EC` | Spanish (Ecuador) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-ES` | Spanish (Spain) | Audio + human-labeled transcript, Plain text, Structured text, Output format, Pronunciation, Phrase list, Phrase list |
+| `es-GQ` | Spanish (Equatorial Guinea) | Audio + human-labeled transcript, Plain text, Structured text, Phrase list |
+| `es-GT` | Spanish (Guatemala) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-HN` | Spanish (Honduras) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
 | `es-MX` | Spanish (Mexico) | Audio + human-labeled transcript, Plain text, Structured text, Output format, Pronunciation, Phrase list |
-| `es-NI` | Spanish (Nicaragua) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-PA` | Spanish (Panama) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-PE` | Spanish (Peru) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-PR` | Spanish (Puerto Rico) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-PY` | Spanish (Paraguay) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-SV` | Spanish (El Salvador) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
+| `es-NI` | Spanish (Nicaragua) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-PA` | Spanish (Panama) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-PE` | Spanish (Peru) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-PR` | Spanish (Puerto Rico) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-PY` | Spanish (Paraguay) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-SV` | Spanish (El Salvador) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
 | `es-US` | Spanish (United States) | Plain text, Structured text, Pronunciation, Phrase list |
-| `es-UY` | Spanish (Uruguay) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
-| `es-VE` | Spanish (Venezuela) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation |
+| `es-UY` | Spanish (Uruguay) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
+| `es-VE` | Spanish (Venezuela) | Audio + human-labeled transcript, Plain text, Structured text, Pronunciation, Phrase list |
 | `et-EE` | Estonian (Estonia) | Plain text, Pronunciation |
 | `eu-ES` | Basque | Plain text |
 | `fa-IR` | Persian (Iran) | Plain text |
