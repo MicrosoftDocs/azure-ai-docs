@@ -329,8 +329,6 @@ Set the *background* parameter to `transparent` and *output_format* to `PNG` on 
 | Response format  | Format for the returned images. Default is `url`.   | `url`, `b64_json`|
 -->
 
-Not available.
-
 #### Size
 
 Specify the size of the generated images. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for DALL-E 3 models. Square images are faster to generate.
@@ -454,7 +452,7 @@ DALL-E models don't support the Image Edit API.
 
 Your prompts should describe the content you want to see in the image and the visual style of the image.
 
-<!-- CLASSIC-ONLY: When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../../foundry-models/concepts/content-filter.md). -->
+When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../../../foundry-classic/foundry-models/concepts/content-filter.md).
 
 > [!TIP]
 > For a thorough look at how you can tweak your text prompts to generate different kinds of images, see the [Image prompt engineering guide](/azure/ai-foundry/openai/concepts/gpt-4-v-prompt-engineering).

@@ -41,7 +41,7 @@ There's no direct cost for spotlighting, but it increases document tokens due to
 
 ### Enable Spotlighting
 
-<!-- NEW-ONLY: Spotlighting is turned off by default. You can enable it when [configuring guardrail controls](../../default/guardrails/how-to-create-guardrails.md) in the Foundry portal or through the REST API by enabling the **Spotlighting** toggle when configuring document attack controls. -->
+Spotlighting is turned off by default. You can enable it when [configuring guardrail controls](../../../foundry/guardrails/how-to-create-guardrails.md) in the Foundry portal or through the REST API by enabling the **Spotlighting** toggle when configuring document attack controls.
 
 > [!NOTE]
 > An occasional known side effect of spotlighting is the model response mentioning that the document content was base-64 encoded, even when neither the user nor the system prompt asked about encodings.
@@ -58,7 +58,7 @@ There's no direct cost for spotlighting, but it increases document tokens due to
 6. For Spotlighting, enable the **Spotlighting** toggle when configuring document attack controls.
 7. Assign the guardrail to your model deployments or agents.
 
-<!-- NEW-ONLY: For detailed configuration steps, see [Configure guardrails and controls](../../default/guardrails/how-to-create-guardrails.md). -->
+For detailed configuration steps, see [Configure guardrails and controls](../../../foundry/guardrails/how-to-create-guardrails.md).
 
 ### Using the REST API
 
@@ -106,8 +106,8 @@ api-key: {key}
 
 ## Related guardrail resources
 
-<!-- NEW-ONLY: - [Guardrails and controls overview](../../default/guardrails/guardrails-overview.md) -->
-<!-- NEW-ONLY: - [Configure guardrails and controls](../../default/guardrails/how-to-create-guardrails.md) -->
+- [Guardrails and controls overview](../../../foundry/guardrails/guardrails-overview.md)
+- [Configure guardrails and controls](../../../foundry/guardrails/how-to-create-guardrails.md)
 - [Guardrail annotations](content-filter-annotations.md)
 - [Harm categories and severity levels](content-filter-severity-levels.md)
 - [Content filtering](../../foundry-models/concepts/content-filter.md)

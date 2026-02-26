@@ -27,7 +27,7 @@ In this article, learn how to install and use the [Microsoft Foundry](../../what
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - [Visual Studio Code](https://code.visualstudio.com/Download) installed.
-<!-- CLASSIC-ONLY: - Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this article](#deploy-a-model-from-the-model-catalog). If you already reached your quota limit, you need to have a [deployed chat model](../../foundry-models/how-to/deploy-foundry-models.md). -->
+- Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this article](#deploy-a-model-from-the-model-catalog). If you already reached your quota limit, you need to have a [deployed chat model](../../foundry-models/how-to/deploy-foundry-models.md).
 - Appropriate RBAC permissions to create and manage Foundry resources. For more information, see [Role-based access control for Foundry](../../concepts/rbac-foundry.md).
 
 ## Install the extension
@@ -96,9 +96,6 @@ The Foundry extension organizes your workspace into three main sections.
 | **Tools** | Model Catalog, Model Playground, Agent Playgrounds (remote and local), Local Visualizer, and Deploy Hosted Agents. | Deploy new models, test prompts, and interact with agents. |
 | **Help and Feedback** | Documentation, GitHub repository, Microsoft Privacy Statement, and community links. | Get help or provide feedback. |
 
-> [!NOTE]
-> To learn more about working with agents in the Foundry extension, see [Work with Agent Service in Visual Studio Code](./vs-code-agents.md).
-
 ## Create a project
 
 Create a new Foundry project directly from the extension to organize your models and resources.
@@ -137,7 +134,7 @@ The selected project now displays **Default** after the project name.
 
 ## Work with models
 
-<!-- CLASSIC-ONLY: The Foundry extension lets you discover, deploy, and interact with models from the [Foundry model catalog](../../concepts/foundry-models-overview.md) directly in VS Code. -->
+The Foundry extension lets you discover, deploy, and interact with models from the [Foundry model catalog](../../../foundry-classic/concepts/foundry-models-overview.md) directly in VS Code.
 
 ### Browse the model catalog
 
@@ -256,10 +253,8 @@ If you run into problems while using the Foundry extension, check the following 
 | ----- | ---------- |
 | Extension doesn't appear after installation | Restart VS Code and verify the extension is enabled in the **Extensions** view. |
 | Sign-in fails or subscriptions don't load | Verify your Azure account has the correct permissions. Try signing out and signing in again from the **Azure Resources** view. |
-
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
 | Model deployment fails with a quota error | Check your [subscription quota](../quota.md) and either request an increase or delete unused deployments. |
--->
+
 ## Clean up resources
 
 The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
@@ -282,7 +277,5 @@ To delete the resource group and all resources within, it:
 1. Select **Delete resource group** and confirm the deletion.
 
 ## Next steps
-
-- [Work with Agent Service in Visual Studio Code](./vs-code-agents.md)
-<!-- CLASSIC-ONLY: - [Explore Foundry models](../../concepts/foundry-models-overview.md) -->
+- [Explore Foundry models](../../../foundry-classic/concepts/foundry-models-overview.md)
 - [Deploy models with Foundry](../../foundry-models/how-to/deploy-foundry-models.md)

@@ -267,5 +267,5 @@ print(json.dumps(model_capacity, indent=2))
 
 ## Related content
 
-<!-- CLASSIC-ONLY: - Explore how to [manage quota](./how-to/quota.md) for your Azure OpenAI deployments. -->
+- Explore how to [manage quota](../../foundry-classic/openai/how-to/quota.md) for your Azure OpenAI deployments.
 - Learn more about the [underlying models that power Azure OpenAI](../foundry-models/concepts/models-sold-directly-by-azure.md).

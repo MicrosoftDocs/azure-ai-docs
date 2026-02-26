@@ -68,7 +68,7 @@ An index can also store fields that improve citation quality (for example, docum
 
 Foundry can connect your project to an Azure AI Search service and index for retrieval. Depending on the feature and API surface you're using, this connection information might be represented as a project connection or an *index asset ID*.
 
-<!-- NEW-ONLY: For example, the Foundry Project REST API preview includes an `index_asset_id` field for Azure AI Search index resources. See [Foundry Project REST API preview](../../ai-foundry/default/reference/foundry-project-rest-preview.md). -->
+For example, the Foundry Project REST API preview includes an `index_asset_id` field for Azure AI Search index resources. See [Foundry Project REST API preview](../../foundry/reference/foundry-project-rest-preview.md).
 
 Azure AI Search is a recommended index store for RAG scenarios. Azure AI Search supports retrieval over vector and textual data stored in search indexes, and it can also query other targets if you use agentic retrieval. See [What is Azure AI Search?](/azure/search/search-what-is-azure-search).
 

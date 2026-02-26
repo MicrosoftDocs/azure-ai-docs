@@ -19,9 +19,11 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * The resource group where you deployed the Foundry resource
 
+
 ## Configure Microsoft Entra ID for inference
 
 To configure Microsoft Entra ID for inference, follow these steps:
+
 
 1. Sign in to your Azure subscription.
 
@@ -95,6 +97,7 @@ To configure Microsoft Entra ID for inference, follow these steps:
 
     The output should show the **Cognitive Services User** role assigned to your principal.
 
+
 ## Use Microsoft Entra ID in your code
 
 After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. The following example shows how to use a chat completions model:
@@ -112,4 +115,4 @@ Use PowerShell with the Azure CLI to disable local authentication for an individ
 Set-AzCognitiveServicesAccount -ResourceGroupName "my-resource-group" -Name "my-resource-name" -DisableLocalAuth $true
 ```
 
-<!-- CLASSIC-ONLY: For more information about how to use the Azure CLI to disable or reenable local authentication and verify authentication status, see [Disable local authentication in Foundry Tools](../../../../ai-services/disable-local-auth.md). -->
+For more information about how to use the Azure CLI to disable or reenable local authentication and verify authentication status, see [Disable local authentication in Foundry Tools](../../../../ai-services/disable-local-auth.md).

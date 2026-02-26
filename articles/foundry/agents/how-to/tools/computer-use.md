@@ -201,7 +201,7 @@ with project_client:
 
 ### Perform multiple iterations
 
-<!-- CLASSIC-ONLY: Make sure you review each iteration and action. The following code sample shows a basic API request. After you send the initial API request, perform a loop where your application code carries out the specified action. Send a screenshot with each turn so the model can evaluate the updated state of the environment. For an example integration for a similar API, see the [Azure OpenAI documentation](../../../openai/how-to/computer-use.md#playwright-integration). -->
+Make sure you review each iteration and action. The following code sample shows a basic API request. After you send the initial API request, perform a loop where your application code carries out the specified action. Send a screenshot with each turn so the model can evaluate the updated state of the environment. For an example integration for a similar API, see the [Azure OpenAI documentation](../../../../foundry-classic/openai/how-to/computer-use.md#playwright-integration).
 
 ```python
 

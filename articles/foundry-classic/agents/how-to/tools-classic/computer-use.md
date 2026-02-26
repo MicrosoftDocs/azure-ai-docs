@@ -19,7 +19,7 @@ ms.custom: references_regions
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-<!-- NEW-ONLY: > 🔍 [View the new Computer Use documentation](../../../default/agents/how-to/tools/computer-use.md). -->
+> 🔍 [View the new Computer Use documentation](../../../../foundry/agents/how-to/tools/computer-use.md).
 
 > [!WARNING]
 > The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
@@ -46,7 +46,7 @@ Once access has been granted, you will need to create a deployment for the model
 
 ## Differences between Browser Automation and Computer Use
 
-<!-- NEW-ONLY: The following table lists some of the differences between the Computer Use Tool and [Browser Automation](./browser-automation.md) Tool. -->
+The following table lists some of the differences between the Computer Use Tool and [Browser Automation](./browser-automation.md) Tool.
 
 | Feature                        | Browser Automation          | Computer Use Tool          |
 |--------------------------------|-----------------------------|----------------------------|

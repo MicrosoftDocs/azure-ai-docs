@@ -21,7 +21,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Ja
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - The current version of the [Java Development Kit (JDK)](https://www.microsoft.com/openjdk)
 - Install [Apache Maven](https://maven.apache.org/install.html).
-<!-- CLASSIC-ONLY: - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). -->
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 
 #### Microsoft Entra ID prerequisites
 
@@ -261,8 +261,8 @@ Image location URL that provides temporary access to download the generated imag
 Completed getImages.
 ```
 
-<!-- > [!NOTE] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY: > The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../foundry-models/concepts/content-filter.md) article. -->
+> [!NOTE]
+> The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../../foundry-classic/foundry-models/concepts/content-filter.md) article.
 
 ### Clean up resources
 

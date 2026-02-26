@@ -79,7 +79,7 @@ Consider the following limitations before enabling managed network isolation for
 1. You can't disable managed virtual network isolation after enabling it. There's no upgrade path from custom virtual network set-up to managed virtual network. A Foundry resource redeployment is required. Deleting your Foundry resource deletes the managed virtual network.
 1. You must create outbound rules from the managed network through Azure CLI. For the end-to-end secured Agent service set-up with a managed virtual network, the template creates the managed private endpoint to the associated Storage account. Private endpoints aren't created to Cosmos DB or AI Search. For information on how to create the managed private endpoints, see the [outbound rules CLI](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/18-managed-virtual-network-preview/update-outbound-rules-cli/outbound-rule-cli.md) file.
 1. Support for managed virtual network is only in the following regions: **East US, East US2, Japan East, France Central, UAE North, Brazil South, Spain Central, Germany West Central, Italy North, South Central US, West Central US, Australia East, Sweden Central, Canada East, South Africa North, West Europe, West US, West US 3, South India, and UK South.**
-<!-- CLASSIC-ONLY: 1. If you require private access to on-premises resources for your Foundry resource, use [Application Gateway](access-on-premises-resources.md) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA. -->
+1. If you require private access to on-premises resources for your Foundry resource, use [Application Gateway](../../foundry-classic/how-to/access-on-premises-resources.md) to configure on-premises access. The same set-up with a private endpoint to Application Gateway and setting up backend pools is supported. Both L4 and L7 traffic are now supported with the Application Gateway in GA.
 1. Supports only Standard BYO resources Agents v1 and the Foundry classic experience. Basic Agents don't require network isolation.
 1. End-to-end network isolation for Agent MCP tools with managed virtual network is currently not supported. Use public MCP tools with managed network isolation Foundry.
 1. You can't bring your own Azure Firewall to the managed virtual network. A managed firewall is automatically created for your Foundry account when you use **Allow Only Approved Outbound** mode.
@@ -240,9 +240,9 @@ To clean up your managed virtual network Foundry resource, delete the Foundry re
 ## Related content
 
 - [Configure a custom virtual network for Agents](../agents/how-to/virtual-networks.md)
-<!-- CLASSIC-ONLY: - [Configure a managed network for Azure AI Foundry hubs](configure-managed-network.md) -->
-<!-- CLASSIC-ONLY: - [Configure private link for Azure AI Foundry hubs](hub-configure-private-link.md) -->
-<!-- CLASSIC-ONLY: - [Create a secure Azure AI Foundry hub](create-secure-ai-hub.md) -->
-<!-- CLASSIC-ONLY: - [Troubleshoot secure project connectivity](troubleshoot-secure-connection-project.md) -->
-<!-- CLASSIC-ONLY: - [Access on-premises resources](access-on-premises-resources.md) -->
+- [Configure a managed network for Azure AI Foundry hubs](../../foundry-classic/how-to/configure-managed-network.md)
+- [Configure private link for Azure AI Foundry hubs](../../foundry-classic/how-to/hub-configure-private-link.md)
+- [Create a secure Azure AI Foundry hub](../../foundry-classic/how-to/create-secure-ai-hub.md)
+- [Troubleshoot secure project connectivity](../../foundry-classic/how-to/troubleshoot-secure-connection-project.md)
+- [Access on-premises resources](../../foundry-classic/how-to/access-on-premises-resources.md)
 

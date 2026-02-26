@@ -12,9 +12,6 @@ ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
 #CustomerIntent: As a developer, I want to create and manage Foundry Classic agents in Visual Studio Code so that I can build, test, and deploy agents without leaving my IDE.
-ms.custom:
-  - classic-and-new
-ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Create and manage Foundry Classic agents in Visual Studio Code (preview) (classic)

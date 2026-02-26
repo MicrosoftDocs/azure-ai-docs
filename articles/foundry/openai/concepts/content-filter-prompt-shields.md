@@ -122,6 +122,6 @@ api-key: {key}
 
 - [Guardrails and controls overview](../../guardrails/guardrails-overview.md)
 - [Configure guardrails and controls](../../guardrails/how-to-create-guardrails.md)
-<!-- CLASSIC-ONLY: - [Guardrail annotations](content-filter-annotations.md) -->
+- [Guardrail annotations](../../../foundry-classic/openai/concepts/content-filter-annotations.md)
 - [Harm categories and severity levels](content-filter-severity-levels.md)
-<!-- CLASSIC-ONLY: - [Content filtering](../../foundry-models/concepts/content-filter.md) -->
+- [Content filtering](../../../foundry-classic/foundry-models/concepts/content-filter.md)

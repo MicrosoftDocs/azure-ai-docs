@@ -29,15 +29,15 @@ This article shows you how to enable AI Gateway for a Microsoft Foundry resource
 
 - Decision on whether to create a dedicated APIM instance or reuse an existing one.
 
-### Requirements for using an existing API Management instance
+## Requirements for using an existing API Management instance
 
 When you select **Use existing APIM**, only API Management instances that meet all of the following requirements are listed:
 
 > [!div class="checklist"]
-> * The API Management instance is in the **same Microsoft Entra tenant** as the Foundry resource.
+> * The API Management instance is in the **same Microsoft Entra tenant** and the same **subscription** as the Foundry resource.
 > * You have at least the **API Management Service Contributor** role (or Owner) on the API Management instance.
 > * The API Management instance is in a subscription that you can access from the Foundry portal.
-> * The API Management instance uses a **supported SKU** for AI Gateway.
+> * The API Management instance must be created in one of the **[v2 tiers](/azure/api-management/v2-service-tiers-overview)**.
 > * The API Management instance isn't already associated with another AI Gateway.
 
 If none of your API Management instances appear in the list, verify that the instance meets the requirements above and that you have the required permissions.

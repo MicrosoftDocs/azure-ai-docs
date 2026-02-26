@@ -101,7 +101,6 @@ The Foundry extension organizes your workspace into three main sections.
 
 > [!NOTE]
 > To learn more about working with agents in the Foundry extension, see [Work with Agent Service in Visual Studio Code](./vs-code-agents.md).
-
 ## Create a project
 
 Create a new Foundry project directly from the extension to organize your models and resources.
@@ -283,7 +282,6 @@ To delete the resource group and all resources within, it:
 1. Select **Delete resource group** and confirm the deletion.
 
 ## Next steps
-
 - [Work with Agent Service in Visual Studio Code](./vs-code-agents.md)
 - [Explore Foundry models](../../concepts/foundry-models-overview.md)
 - [Deploy models with Foundry](../../foundry-models/how-to/deploy-foundry-models.md)

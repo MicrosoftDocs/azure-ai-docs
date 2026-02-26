@@ -147,9 +147,9 @@ This is currently not supported.
 
 Yes. Similar to other deployment types, you can create content filters and associate them with the Global Batch deployment type.
 
-<!-- CLASSIC-ONLY: ### Can I request additional quota? -->
+### Can I request additional quota?
 
-<!-- CLASSIC-ONLY: Yes, from the quota page in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota). -->
+Yes, from the quota page in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota).
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 
@@ -229,9 +229,9 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 
 - UTF-8-BOM encoded `jsonl` files aren't supported. JSON lines files should be encoded using UTF-8. Use of Byte-Order-Mark (BOM) encoded files isn't officially supported by the JSON RFC spec, and Azure OpenAI will currently treat BOM encoded files as invalid. A UTF-8-BOM encoded file will currently return the generic error message: "Validation failed: A valid model deployment name couldn't be extracted from the input file. Please ensure that each row in the input file has a valid deployment name specified in the 'model' field, and that the deployment name is consistent across all rows."
 
-<!-- CLASSIC-ONLY: - When using [your own storage for batch input data](batch-blob-storage.md), once the batch job is submitted, if the input blob is modified the scoring job will be failed by the service. -->
+- When using [your own storage for batch input data](../../../foundry-classic/openai/how-to/batch-blob-storage.md), once the batch job is submitted, if the input blob is modified the scoring job will be failed by the service.
 
 ## See also
 
 * Learn more about Azure OpenAI [deployment types](../../foundry-models/concepts/deployment-types.md)
-<!-- CLASSIC-ONLY: * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md) -->
+* Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

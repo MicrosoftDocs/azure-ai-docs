@@ -19,9 +19,9 @@ ms.custom: azure-ai-agents-code
 
 > [!NOTE]
 > - This document refers to the classic version of the agents API. 
-<!-- NEW-ONLY: > - We recommend customers to start with new [Web Search tool (preview)](../../../default/agents/how-to/tools/web-search.md) with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more [here](../../../default/agents/how-to/tools/web-overview.md) -->
+> - We recommend customers to start with new [Web Search tool (preview)](../../../../foundry/agents/how-to/tools/web-search.md) with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more [here](../../../../foundry/agents/how-to/tools/web-overview.md)
 > 
-<!-- NEW-ONLY: > 🔍 [View the new Grounding with Bing Search documentation](../../../default/agents/how-to/tools/bing-tools.md). -->
+> 🔍 [View the new Grounding with Bing Search documentation](../../../../foundry/agents/how-to/tools/bing-tools.md).
 
 Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
 

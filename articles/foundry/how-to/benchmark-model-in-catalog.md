@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 # Compare models using the model leaderboard (preview) (temp)
 
-<!-- CLASSIC-ONLY: This article shows you how to streamline model selection in the Foundry [model catalog](../concepts/foundry-models-overview.md) by using the model leaderboards (preview) and side-by-side comparison features in Foundry portal. Evaluate model benchmark scores across quality, safety, cost, and throughput to choose the best model for your scenario. -->
+This article shows you how to streamline model selection in the Foundry [model catalog](../../foundry-classic/concepts/foundry-models-overview.md) by using the model leaderboards (preview) and side-by-side comparison features in Foundry portal. Evaluate model benchmark scores across quality, safety, cost, and throughput to choose the best model for your scenario.
 
 After reading this article, you can identify the best model for your scenario by comparing benchmark scores, viewing trade-off charts, and evaluating models side by side.
 
@@ -45,7 +45,7 @@ Use the model catalog to access the leaderboard and identify top-performing mode
 
 1. If you're not already in your project, select it.
 
-<!-- CLASSIC-ONLY: 1. Select **Discover** from the top navigation bar to browse the [model catalog](../concepts/foundry-models-overview.md). The overview page shows a snapshot of the model leaderboard at the top. -->
+1. Select **Discover** from the top navigation bar to browse the [model catalog](../../foundry-classic/concepts/foundry-models-overview.md). The overview page shows a snapshot of the model leaderboard at the top.
 
 1. Sort on different metrics — [quality](../concepts/model-benchmarks.md#quality-benchmarks-of-language-models), [safety](../concepts/model-benchmarks.md#safety-benchmarks-of-language-models), [estimated cost](../concepts/model-benchmarks.md#cost-benchmarks-of-language-models), and [throughput](../concepts/model-benchmarks.md#performance-benchmarks-of-language-models) — to view the top models for each criterion. Select any model to go to its detail page, or select **Go to leaderboard** to view the full list. The model detail page shows the model's overview, benchmarks, and deployment options.
 

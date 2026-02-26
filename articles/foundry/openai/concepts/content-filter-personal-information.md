@@ -48,6 +48,6 @@ The filtering mode can be set for each PII category individually.
 
 ## Next steps
 
-<!-- CLASSIC-ONLY: - [Content filtering overview](../../foundry-models/concepts/content-filter.md) -->
-<!-- CLASSIC-ONLY: - [Configure content filters](../how-to/content-filters.md) -->
+- [Content filtering overview](../../../foundry-classic/foundry-models/concepts/content-filter.md)
+- [Configure content filters](../../../foundry-classic/openai/how-to/content-filters.md)
 - [PII entity categories](/azure/ai-services/language-service/personally-identifiable-information/concepts/entity-categories)

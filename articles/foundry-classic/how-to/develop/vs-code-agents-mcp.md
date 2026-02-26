@@ -11,9 +11,6 @@ ms.date: 02/19/2026
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
-ms.custom:
-  - classic-and-new
-ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Work with Foundry Classic agents and MCP server tools in Visual Studio Code (preview) (classic)

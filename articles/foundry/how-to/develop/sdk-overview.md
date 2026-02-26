@@ -279,9 +279,9 @@ Console.WriteLine(response.GetOutputText());
 ### What you can do with the Foundry SDK
 
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
-<!-- CLASSIC-ONLY: - [Use the Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context) -->
+- [Use the Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
 - [Run cloud evaluations](cloud-evaluation.md)
-<!-- CLASSIC-ONLY: - [Enable app tracing](./trace-application.md) -->
+- [Enable app tracing](../../../foundry-classic/how-to/develop/trace-application.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai&pivots=programming-language-python)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more
 

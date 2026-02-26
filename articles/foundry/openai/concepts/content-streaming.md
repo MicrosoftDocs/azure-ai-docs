@@ -62,7 +62,7 @@ Customers must understand that while the feature improves latency, it's a trade-
 > 
 > This applies to both Default and Asynchronous Filter modes. See [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for details.
 
-<!-- CLASSIC-ONLY: To enable Asynchronous Filter in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), follow the [Content filter how-to guide](../how-to/content-filters.md) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section. -->
+To enable Asynchronous Filter in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), follow the [Content filter how-to guide](../../../foundry-classic/openai/how-to/content-filters.md) to create a new content filtering configuration, and select **Asynchronous Filter** in the Streaming section.
 
 > [!NOTE]
 > Asynchronous Filter is available in API version **2024-02-01 and later**. Use the OpenAI Python SDK v1.0+ or Azure OpenAI SDK with compatible API versions.
@@ -246,7 +246,7 @@ data: [DONE]
 1. Verify you're using API version 2024-02-01 or later
 2. Check your content filtering configuration in Foundry portal
 3. Ensure annotations are enabled for your selected filters
-<!-- CLASSIC-ONLY: 4. Review [Guardrail annotations documentation](content-filter-annotations.md) for configuration steps -->
+4. Review [Guardrail annotations documentation](../../../foundry-classic/openai/concepts/content-filter-annotations.md) for configuration steps
 
 ### Delayed filtering signals in Asynchronous Filter mode
 
@@ -271,8 +271,8 @@ data: [DONE]
 
 All offsets are character positions with 0 at the beginning of the prompt.
 
-<!-- CLASSIC-ONLY: ## Next steps -->
+## Next steps
 
-<!-- CLASSIC-ONLY: - [Configure content filters](../how-to/content-filters.md) - Set up Asynchronous Filter in Foundry portal -->
-<!-- CLASSIC-ONLY: - [Guardrail annotations reference](content-filter-annotations.md) - Detailed annotation schemas and severity levels -->
-<!-- CLASSIC-ONLY: - [Content filtering](../../foundry-models/concepts/content-filter.md) - Understanding content safety features -->
+- [Configure content filters](../../../foundry-classic/openai/how-to/content-filters.md) - Set up Asynchronous Filter in Foundry portal
+- [Guardrail annotations reference](../../../foundry-classic/openai/concepts/content-filter-annotations.md) - Detailed annotation schemas and severity levels
+- [Content filtering](../../../foundry-classic/foundry-models/concepts/content-filter.md) - Understanding content safety features

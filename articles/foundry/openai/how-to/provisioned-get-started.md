@@ -28,7 +28,7 @@ The following guide walks you through key steps in creating a provisioned deploy
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Azure Contributor or Cognitive Services Contributor role
-<!-- CLASSIC-ONLY: - A [Foundry resource](./create-resource.md) in a region with available PTU quota -->
+- A [Foundry resource](../../../foundry-classic/openai/how-to/create-resource.md) in a region with available PTU quota
 - Azure CLI - [Install the Azure CLI](/cli/azure/install-azure-cli) (required only for CLI-based deployment)
 
 ## Verify PTU quota availability
@@ -85,7 +85,7 @@ az cognitiveservices account deployment create \
 --sku-name ProvisionedManaged
 ```
 
-<!-- CLASSIC-ONLY: REST, ARM template, Bicep, and Terraform can also be used to create deployments. See the section on automating deployments in the [Managing Quota](quota.md?tabs=rest#automate-deployment) how-to guide and replace the `sku.name` with `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged` rather than `Standard`. -->
+REST, ARM template, Bicep, and Terraform can also be used to create deployments. See the section on automating deployments in the [Managing Quota](../../../foundry-classic/openai/how-to/quota.md?tabs=rest#automate-deployment) how-to guide and replace the `sku.name` with `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged` rather than `Standard`.
 
 ## Optionally purchase a reservation 
 

@@ -601,7 +601,7 @@ The following table lists common errors when you work with Claude models in Foun
 ## Related content
 
 - [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../../responsible-ai/claude-models/data-privacy.md)
-<!-- CLASSIC-ONLY: - [Monitor model usage and costs](../../how-to/costs-plan-manage.md) -->
+- [Monitor model usage and costs](../../../foundry-classic/how-to/costs-plan-manage.md)
 - [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
-<!-- CLASSIC-ONLY: - [Explore Microsoft Foundry Models](../../concepts/foundry-models-overview.md) -->
+- [Explore Microsoft Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md)
 - [Claude Docs: Claude in Microsoft Foundry](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)

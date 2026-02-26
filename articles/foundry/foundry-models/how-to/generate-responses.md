@@ -315,8 +315,8 @@ This section lists some of the Foundry Models that are supported for use with th
 
 ## Related content
 
-<!-- CLASSIC-ONLY: - [Migrate from Azure AI Inference SDK to OpenAI SDK](../../how-to/model-inference-to-openai-migration.md) -->
-<!-- CLASSIC-ONLY: - [Azure OpenAI supported programming languages](../../openai/supported-languages.md) -->
+- [Migrate from Azure AI Inference SDK to OpenAI SDK](../../../foundry-classic/how-to/model-inference-to-openai-migration.md)
+- [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
 - [Model support for v1 Azure OpenAI API](../../openai/api-version-lifecycle.md#model-support)
 

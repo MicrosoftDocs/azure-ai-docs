@@ -41,6 +41,8 @@ procedureSection:
           api_key=os.getenv("OPENAI_API_KEY")
       )
 
+
+
       ```
 
       </td>
@@ -60,6 +62,8 @@ procedureSection:
       </tr>
       </table>
 
+
+
       ### Microsoft Entra ID authentication
 
       <table>
@@ -76,6 +80,13 @@ procedureSection:
       client = OpenAI(
           api_key=os.getenv("OPENAI_API_KEY")
       )
+
+
+
+
+
+
+
 
       ```
 
@@ -175,6 +186,7 @@ procedureSection:
           input=inputs,
           model="text-embedding-3-large"
       )
+
 
       ```
 

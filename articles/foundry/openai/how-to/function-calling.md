@@ -774,8 +774,8 @@ Here are a few tips to help you use functions safely and securely:
 
 To learn more about our recommendations on how to use Azure OpenAI models responsibly, see the [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
 
-<!-- > [!IMPORTANT] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY: > The `functions` and `function_call` parameters have been deprecated with the release of the [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json) version of the API. The replacement for `functions` is the [`tools`](../reference.md#chat-completions) parameter. The replacement for `function_call` is the [`tool_choice`](../reference.md#chat-completions) parameter. -->
+> [!IMPORTANT]
+> The `functions` and `function_call` parameters have been deprecated with the release of the [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json) version of the API. The replacement for `functions` is the [`tools`](../../../foundry-classic/openai/reference.md#chat-completions) parameter. The replacement for `function_call` is the [`tool_choice`](../../../foundry-classic/openai/reference.md#chat-completions) parameter.
 
 ## Function calling support
 

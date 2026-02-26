@@ -65,7 +65,7 @@ Foundry enforces a clear separation between management and development operation
 
 ## Computing infrastructure
 
-<!-- CLASSIC-ONLY: - **Model Hosting Architecture** is provided by standard deployment in Foundry resources.   For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md). -->
+- **Model Hosting Architecture** is provided by standard deployment in Foundry resources.   For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../../foundry-classic/how-to/concept-data-privacy.md).
 
 - **Workload Execution:** Agents, Evaluations, and Batch jobs run as managed container compute, fully managed by Microsoft. 
 

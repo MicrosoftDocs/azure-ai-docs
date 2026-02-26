@@ -64,7 +64,7 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the [supported regions](#supported-models).
-<!-- CLASSIC-ONLY: - An API key or Microsoft Entra ID credentials for authentication. For production applications, we recommend using [Microsoft Entra ID](../how-to/managed-identity.md) for enhanced security. -->
+- An API key or Microsoft Entra ID credentials for authentication. For production applications, we recommend using [Microsoft Entra ID](../../../foundry-classic/openai/how-to/managed-identity.md) for enhanced security.
 - A deployment of a GPT realtime model in a supported region as described in the [supported models](#supported-models) section in this article.
     - In the Microsoft Foundry portal, load your project. Select **Build** in the upper right menu, then select the **Models** tab on the left pane, and **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 
@@ -108,8 +108,8 @@ Support for the Realtime API was first added in API version `2024-10-01-preview`
 > [!CAUTION]
 > You need to use **different** endpoint formats for Preview and Generally Available (GA) models. All samples in this article use GA models and GA endpoint format, and don't use `api-version` parameter, which is required for Preview endpoint format only. See detailed information on the endpoint format [in this article](../how-to/realtime-audio-websockets.md#connection-and-authentication). 
 
-<!-- > [!NOTE] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY: > The Realtime API has specific rate limits for audio tokens and concurrent sessions. Before deploying to production, review [Azure OpenAI quotas and limits](../quotas-limits.md) for your deployment type. -->
+> [!NOTE]
+> The Realtime API has specific rate limits for audio tokens and concurrent sessions. Before deploying to production, review [Azure OpenAI quotas and limits](../quotas-limits.md) for your deployment type.
 
 ## Session configuration
 
@@ -574,11 +574,9 @@ If you're using keyless authentication (Microsoft Entra ID) and receive authenti
 |-------|-------|------------|
 | WebSocket connection failed | Network or firewall blocking WebSocket connections | Ensure port 443 is open and check proxy settings. Verify your endpoint URL is correct. |
 | 401 Unauthorized | Invalid or expired API key, or incorrect Microsoft Entra ID configuration | Regenerate your API key in the Azure portal, or verify your managed identity configuration. |
+| 429 Too Many Requests | Rate limit exceeded | Implement exponential backoff retry logic. Check your [quota and limits](../quotas-limits.md). |
 | Connection timeout | Network latency or server unavailability | Retry the connection. If using WebSocket, consider switching to WebRTC for lower latency. |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| 429 Too Many Requests | Rate limit exceeded | Implement exponential backoff retry logic. Check your [quota and limits](../quotas-limits.md). |
--->
 ### Audio format issues
 
 The Realtime API expects audio in a specific format:
@@ -599,7 +597,7 @@ If you receive rate limit errors:
 - Check your current usage in the Azure portal under your Azure OpenAI resource.
 - Implement exponential backoff for retry logic in your application.
 
-<!-- CLASSIC-ONLY: For more information about quotas, see [Azure OpenAI quotas and limits](../quotas-limits.md). -->
+For more information about quotas, see [Azure OpenAI quotas and limits](../quotas-limits.md).
 
 ### Session timeout
 
@@ -612,4 +610,4 @@ Realtime sessions have a maximum duration of **30 minutes**. To handle long inte
 
 * Try the [real-time audio quickstart](../how-to/realtime-audio.md#quickstart)
 * See the [Realtime API reference](../realtime-audio-reference.md)
-<!-- CLASSIC-ONLY: * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md) -->
+* Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

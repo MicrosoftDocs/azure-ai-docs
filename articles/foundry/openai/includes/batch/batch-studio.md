@@ -108,7 +108,7 @@ For this article, we'll create a file named `test.jsonl` and will copy the conte
 
 ## Create batch job
 
-<!-- CLASSIC-ONLY: Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md).  -->
+Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Microsoft Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../../../foundry-classic/openai/how-to/batch-blob-storage.md). 
 
 1. [!INCLUDE [classic-sign-in](../../../includes/foundry-sign-in.md)]
 2. In the upper-right select **Build**

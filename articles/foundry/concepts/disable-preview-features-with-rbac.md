@@ -240,7 +240,7 @@ To block only specific Content Safety operations instead of all operations, sear
 
 - [Role-based access control for Microsoft Foundry](rbac-foundry.md)
 - [Authentication and authorization in Microsoft Foundry](authentication-authorization-foundry.md)
-<!-- CLASSIC-ONLY: - [Role-based access control for Microsoft Foundry (hubs and projects)](hub-rbac-foundry.md) -->
+- [Role-based access control for Microsoft Foundry (hubs and projects)](../../foundry-classic/concepts/hub-rbac-foundry.md)
 - [Create or update Azure custom roles using the Azure portal](/azure/role-based-access-control/custom-roles-portal)
 - [Create or update Azure custom roles using Azure CLI](/azure/role-based-access-control/custom-roles-cli)
 - [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal)

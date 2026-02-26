@@ -16,6 +16,7 @@ Use this article to get started using the Azure OpenAI Python SDK to deploy and 
 
 [Library source code](https://github.com/openai/openai-python?azure-portal=true) | [Package (PyPi)](https://pypi.org/project/openai?azure-portal=true) |
 
+
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
@@ -36,6 +37,7 @@ Install the OpenAI Python client library with:
 pip install openai
 ```
 
+
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-python/releases) to track the latest updates to the library.
 
@@ -43,9 +45,11 @@ pip install openai
 
 [!INCLUDE [environment-variables](environment-variables.md)]
 
+
 ## Create a new Python application
 
 Create a new Python file named _quickstart.py_. Open the new file in your preferred editor or IDE.
+
 
 1. Replace the contents of _quickstart.py_ with the following code. 
     
@@ -87,12 +91,14 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     print(response)
     ```
 
+
+
 1. Make the following changes:
     1. Make sure the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables are set.
     1. Enter the name of your model deployment in the `deployment_name` variable.
     1. Change the value of the `"url"` field to the publicly accessible URL of your image.
-<!-- > [!TIP] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY:         > You can also use a base 64 encoded image data instead of a URL. For more information, see the [Vision chats how-to guide](../how-to/gpt-with-vision.md#use-a-local-image). -->
+        > [!TIP]
+        > You can also use a base 64 encoded image data instead of a URL. For more information, see the [Vision chats how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
 1. Run the application with the `python` command:
 
     ```console
@@ -119,4 +125,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 - [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
 - [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
+
 

@@ -18,7 +18,7 @@ ms.author: aashcraft
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-<!-- NEW-ONLY: > 🔍 [View the new Computer Use documentation](../../../default/agents/how-to/tools/computer-use.md). -->
+> 🔍 [View the new Computer Use documentation](../../../../foundry/agents/how-to/tools/computer-use.md).
 
 Use this article to learn how to use the Computer Use tool with the Azure AI Projects SDK.
 
