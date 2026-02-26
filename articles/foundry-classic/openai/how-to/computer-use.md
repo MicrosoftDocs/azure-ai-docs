@@ -1,7 +1,6 @@
 ---
-title: 'Computer Use (preview) in Azure OpenAI'
-titleSuffix: Azure OpenAI
-description: Learn about Computer Use in Azure OpenAI, which allows AI to interact with computer applications.
+title: "Computer Use (preview) in Azure OpenAI (classic)"
+description: "Learn about Computer Use in Azure OpenAI, which allows AI to interact with computer applications. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -11,7 +10,7 @@ author: aahill
 ms.author: aahi
 ---
 
-# Computer Use (preview) in Azure OpenAI
+# Computer Use (preview) in Azure OpenAI (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -242,7 +241,6 @@ response_2 = client.responses.create(
 )
 ```
 
-
 ## [REST API](#tab/rest-api)
 
 ```bash
@@ -394,7 +392,6 @@ from playwright.async_api import async_playwright, TimeoutError
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
-
 
 # Configuration
 
@@ -834,7 +831,6 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
-
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
@@ -951,7 +947,6 @@ async def take_screenshot(page):
         print(f"Using cached screenshot from previous successful capture")
         if last_successful_screenshot:
             return last_successful_screenshot
-
 
 async def process_model_response(client, response, page, max_iterations=ITERATIONS):
     """Process the model's response and execute actions."""
@@ -1188,9 +1183,8 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-
 ## See also
 
 * [Responses API](./responses.md)
-    * [Computer Use with playwright](./responses.md#computer-use)
+    * [Computer Use with playwright](./responses.md)
 * [Computer Use Assistant sample on GitHub](https://github.com/Azure-Samples/computer-use-model)

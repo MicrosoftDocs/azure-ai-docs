@@ -1,7 +1,6 @@
 ---
-title: 'How to create Assistants with Azure OpenAI in Microsoft Foundry Models'
-titleSuffix: Azure OpenAI
-description: Learn how to create helpful AI Assistants with tools like Code Interpreter.
+title: "How to create Assistants with Azure OpenAI in Microsoft Foundry Models (classic)"
+description: "Learn how to create helpful AI Assistants with tools like Code Interpreter. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,7 +14,7 @@ recommendations: false
 
 ---
 
-# Getting started with Azure OpenAI Assistants (Preview)
+# Getting started with Azure OpenAI Assistants (Preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -859,7 +858,7 @@ image.show()
 
 ## Message annotations
 
-Assistant message annotations are different from the [content filtering annotations](../concepts/content-filter.md) that are present in completion and chat completion API responses. Assistant annotations can occur within the content array of the object. Annotations provide information around how you should annotate the text in the responses to the user.
+Assistant message annotations are different from the [content filtering annotations](../../foundry-models/concepts/content-filter.md) that are present in completion and chat completion API responses. Assistant annotations can occur within the content array of the object. Annotations provide information around how you should annotate the text in the responses to the user.
 
 When annotations are present in the Message content array, you'll see illegible model-generated substrings in the text that you need to replace with the correct annotations. These strings might look something like `【13†source】` or `sandbox:/mnt/data/file.csv`. Here’s a Python code snippet from OpenAI that replaces these strings with the information present in the annotations.
 

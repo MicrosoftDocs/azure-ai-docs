@@ -1,7 +1,6 @@
 ---
-title: Configure a connection to use Microsoft Foundry Models in your AI project
-titleSuffix: Microsoft Foundry
-description: Learn how to configure a connection to use Microsoft Foundry Models in your project.
+title: "Configure a connection to use Microsoft Foundry Models in your AI project (classic)"
+description: "Learn how to configure a connection to use Microsoft Foundry Models in your project. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -15,7 +14,7 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ---
 
-# Configure a connection to use Microsoft Foundry Models in your AI project
+# Configure a connection to use Microsoft Foundry Models in your AI project (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

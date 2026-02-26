@@ -1,7 +1,6 @@
 ---
-title: Region availability for models in serverless APIs
-titleSuffix: Microsoft Foundry
-description: Learn about the regions where each model is available for deployment in serverless APIs via Microsoft Foundry.
+title: "Region availability for models in serverless APIs (classic)"
+description: "Learn about the regions where each model is available for deployment in serverless APIs via Microsoft Foundry. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -17,7 +16,7 @@ ms.custom:
  - references_regions
 ---
 
-# Region availability for models in serverless APIs
+# Region availability for models in serverless APIs (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -31,9 +30,7 @@ Certain models in the model catalog can be deployed as a serverless API. This ki
 
 Pay-as-you-go billing is available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available (see "offer availability region" in the table in the next section). If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable (see "Hub/Project Region" columns in the following tables).
 
-
 [!INCLUDE [region-availability-maas](../includes/region-availability-maas.md)]
-
 
 ## Alternatives to region availability
 
@@ -45,5 +42,4 @@ Read [Consume serverless APIs from a different hub or project](deploy-models-ser
 
 - [Model Catalog and Collections](../concepts/foundry-models-overview.md)
 - [Deploy models as serverless API](deploy-models-serverless.md)
-
 

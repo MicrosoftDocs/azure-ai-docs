@@ -1,7 +1,6 @@
 ---
-title: 'Business Continuity and Disaster Recovery (BCDR) with Azure OpenAI in Microsoft Foundry Models'
-titleSuffix: Azure OpenAI
-description: Considerations for implementing Business Continuity and Disaster Recovery (BCDR) with Azure OpenAI 
+title: "Business Continuity and Disaster Recovery (BCDR) with Azure OpenAI in Microsoft Foundry Models (classic)"
+description: "Considerations for implementing Business Continuity and Disaster Recovery (BCDR) with Azure OpenAI (classic)" 
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,7 +12,7 @@ recommendations: false
 
 ---
 
-# Business Continuity and Disaster Recovery (BCDR) considerations with Azure OpenAI in Microsoft Foundry Models
+# Business Continuity and Disaster Recovery (BCDR) considerations with Azure OpenAI in Microsoft Foundry Models (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -74,7 +73,6 @@ To support service reliability, the Agents service relies on customer-provisione
 
 We recommend customers provision and maintain their Cosmos DB account and ensure appropriate backup and recovery policies are configured. This ensures seamless continuity if the primary region becomes unavailable.
 
-
 ## Supporting Infrastructure
 
 The infrastructure that supports the Azure OpenAI architecture needs to be considered in designs. The infrastructure components involved in the architecture vary depending on if the applications consume the Azure OpenAI over the Internet or over a private network. The architecture discussed in this article assumes the organization has implemented a [Generative AI Gateway](/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/). Organizations with a mature Azure footprint and hybrid connectivity should consume the service through a private network while organizations without hybrid connectivity, or with applications in another cloud such as GCP or AWS, will consume the service through the Microsoft public backbone.
@@ -88,7 +86,6 @@ Organizations consuming the service through the Microsoft public backbone should
 1. A public global server load balancer should be used to load balance across the multiple Generative AI Gateway instances in either an active/active or active/passive manner. [Azure FrontDoor](/azure/traffic-manager/traffic-manager-routing-methods) can be used to fulfill this role depending on the organization’s requirements.
 
 :::image type="content" source="../how-to/media/disaster-recovery/recovery.png" alt-text="Failover architectural diagram." lightbox="../how-to/media/disaster-recovery/recovery.png":::
-
 
 ### Designing for consumption through the private networking
 

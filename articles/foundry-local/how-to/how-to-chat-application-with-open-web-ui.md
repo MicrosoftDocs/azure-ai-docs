@@ -1,7 +1,7 @@
 ---
-title: Integrate Open WebUI with Foundry Local
+title: "Integrate Open WebUI with Foundry Local"
 titleSuffix: Foundry Local
-description: Learn how to create a chat application using Foundry Local and Open WebUI
+description: "Learn how to create a chat application using Foundry Local and Open WebUI"
 keywords: Foundry Tools, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
@@ -19,7 +19,6 @@ ai-usage: ai-assisted
 ---
 
 # Integrate Open WebUI with Foundry Local
-
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 This article shows you how to create a chat application by using Foundry Local and Open WebUI. When you finish, you have a working chat interface that runs entirely on your local device.

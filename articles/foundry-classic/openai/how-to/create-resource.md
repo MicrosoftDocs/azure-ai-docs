@@ -1,7 +1,6 @@
 ---
-title: 'How-to: Create and deploy an Azure OpenAI in Microsoft Foundry Models resource'
-titleSuffix: Azure OpenAI
-description: Learn how to get started with Azure OpenAI and create your first resource and deploy your first model in the Azure CLI or the Azure portal.
+title: "How-to: Create and deploy an Azure OpenAI in Microsoft Foundry Models resource (classic)"
+description: "Learn how to get started with Azure OpenAI and create your first resource and deploy your first model in the Azure CLI or the Azure portal. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -14,7 +13,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Create and deploy an Azure OpenAI in Microsoft Foundry Models resource
+# Create and deploy an Azure OpenAI in Microsoft Foundry Models resource (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

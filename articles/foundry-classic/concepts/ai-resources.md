@@ -1,7 +1,6 @@
 ---
-title: Hubs and hub-based project overview
-titleSuffix: Microsoft Foundry
-description: This article introduces concepts about Microsoft Foundry hubs for your Microsoft Foundry projects.
+title: "Hubs and hub-based project overview (classic)"
+description: "This article introduces concepts about Microsoft Foundry hubs for your Microsoft Foundry projects. (classic)"
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
@@ -20,7 +19,9 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Hub resources overview
+# Hub resources overview (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 

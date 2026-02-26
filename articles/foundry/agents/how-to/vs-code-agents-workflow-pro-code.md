@@ -1,7 +1,6 @@
 ---
-title: Create hosted agent workflows in Visual Studio Code
-titleSuffix: Microsoft Foundry
-description: Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension.
+title: "Create hosted agent workflows in Visual Studio Code"
+description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension."
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -17,10 +16,9 @@ zone_pivot_groups: ai-foundry-vsc-extension-languages
 ---
 
 # Create hosted agent workflows in Visual Studio Code (preview)
-
 Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
 
-Before you start, [build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents?view=foundry&preserve-view=true) by using the extension. You can then add hosted workflows to that agent.
+Before you start, [build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents) by using the extension. You can then add hosted workflows to that agent.
 
 This article covers creating a workflow project, running it locally, visualizing the execution, and deploying it to your Foundry workspace.
 
@@ -112,7 +110,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 
 ### Authenticate your hosted agent
 
-The hosted agent sample authenticates using [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&preserve-view=true). Configure your development environment to provide credentials via one of the supported sources, for example:
+The hosted agent sample authenticates using [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python). Configure your development environment to provide credentials via one of the supported sources, for example:
 
 - Azure CLI (`az login`)
 - Visual Studio Code account sign-in
@@ -315,7 +313,6 @@ In `workflow.py`, update the port number in the observability configuration:
 > [!TIP]
 > To enable more debugging information, add the `enable_sensitive_data=True` parameter to the `setup_observability` function.
 
-
 ::: zone-end
 
 ::: zone pivot="csharp"
@@ -359,5 +356,5 @@ After testing your hosted agent locally, deploy it to your Foundry workspace so 
 ## Related content
 
 - [Hosted agent concepts](../concepts/hosted-agents.md)
-- [Build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents?view=foundry&preserve-view=true)
+- [Build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents)
 - [Publish and share agents in Microsoft Foundry](./publish-agent.md)

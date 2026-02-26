@@ -1,7 +1,6 @@
 ---
-title: Securely use playground chat
-titleSuffix: Microsoft Foundry
-description: Learn how to securely use the Microsoft Foundry portal playground chat on your own data. 
+title: "Securely use playground chat (classic)"
+description: "Learn how to securely use the Microsoft Foundry portal playground chat on your own data. (classic)" 
 ms.service: azure-ai-foundry
 ms.custom:
   - hub-only
@@ -15,7 +14,9 @@ ai-usage: ai-assisted
 # Customer intent: As an administrator, I want to make sure that my data is handled securely when used in the playground chat.
 ---
 
-# Use your data securely with the Microsoft Foundry portal playground
+# Use your data securely with the Microsoft Foundry portal playground (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 

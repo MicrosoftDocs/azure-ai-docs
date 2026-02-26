@@ -1,7 +1,6 @@
 ---
-title: Healthcare AI foundation models
-titleSuffix: Microsoft Foundry
-description: "Explore healthcare AI foundation models in Microsoft Foundry for medical imaging, genomics, and clinical data analysis. Deploy multimodal AI models to build healthcare solutions."
+title: "Healthcare AI foundation models (classic)"
+description: "Explore healthcare AI foundation models in Microsoft Foundry for medical imaging, genomics, and clinical data analysis. Deploy multimodal AI models to build healthcare solutions. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
@@ -15,7 +14,7 @@ author: msakande
 #Customer intent: As a Data Scientist I want to learn what offerings are available within Health and Life Sciences AI Model offerings so that I can use them as the basis for my own AI solutions
 ---
 
-# Foundation models for healthcare AI
+# Foundation models for healthcare AI (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

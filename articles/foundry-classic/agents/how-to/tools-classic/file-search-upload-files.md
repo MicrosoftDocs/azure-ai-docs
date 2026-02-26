@@ -1,7 +1,6 @@
 ---
-title: 'How to upload files using the file search tool'
-titleSuffix: Microsoft Foundry
-description: Find code samples and instructions for uploading files to Foundry Agent Service.
+title: "How to upload files using the file search tool (classic)"
+description: "Find code samples and instructions for uploading files to Foundry Agent Service. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,12 +13,14 @@ zone_pivot_groups: selection-bing-grounding-code
 ms.custom: azure-ai-agents-code
 ---
 
-# How to upload files using the file search tool
+# How to upload files using the file search tool (classic)
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new file search documentation](../../../default/agents/how-to/tools/file-search.md?view=foundry&preserve-view=true).
+<!-- NEW-ONLY: > 🔍 [View the new file search documentation](../../../default/agents/how-to/tools/file-search.md). -->
 
 Use this article to find step-by-step instructions and code samples for uploading files using the file search tool.
 
@@ -526,7 +527,6 @@ curl --request POST \
     "tool_resources": {"file_search": {"vector_store_ids": ["vs_1234abcd"]}}
   }'
 ```
-
 
 ## Create a thread
 

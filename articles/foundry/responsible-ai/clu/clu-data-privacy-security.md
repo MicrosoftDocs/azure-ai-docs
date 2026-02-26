@@ -1,7 +1,7 @@
 ---
-title: Data and privacy for conversational language understanding
+title: "Data and privacy for conversational language understanding"
 titleSuffix: Foundry Tools
-description: This article explains issues for data, privacy, and security for conversational language understanding.
+description: "This article explains issues for data, privacy, and security for conversational language understanding."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,6 @@ ms.topic: concept-article
 ms.date: 09/15/2021
 ---
 # Data and privacy for conversational language understanding
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides high-level information about how data is processed by conversational language understanding (CLU). You're responsible for your use and implementation of this technology, which includes complying with all laws and regulations that apply to you. For example, it's your responsibility to:

@@ -415,7 +415,7 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 #### Connect to a remote SharePoint knowledge source
 
-[!INCLUDE [foundry-iq-limitation](../ai-foundry/default/includes/foundry-iq-limitation.md)]
+[!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
 
 Optionally, if your knowledge base includes a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
 

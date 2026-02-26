@@ -1,7 +1,6 @@
 ---
-title: Embedding tool for flows in Microsoft Foundry portal
-titleSuffix: Microsoft Foundry
-description: This article introduces you to the Embedding tool for flows in Microsoft Foundry portal.
+title: "Embedding tool for flows in Microsoft Foundry portal (classic)"
+description: "This article introduces you to the Embedding tool for flows in Microsoft Foundry portal. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,7 +16,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Embedding tool for flows in Microsoft Foundry portal
+# Embedding tool for flows in Microsoft Foundry portal (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

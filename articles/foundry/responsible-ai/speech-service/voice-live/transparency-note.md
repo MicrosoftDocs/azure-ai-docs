@@ -1,7 +1,7 @@
 ---
-title: Use cases for Voice live
+title: "Use cases for Voice live"
 titleSuffix: Foundry Tools
-description: This Transparency Note discusses Voice live and the key considerations for making use of this technology responsibly.
+description: "This Transparency Note discusses Voice live and the key considerations for making use of this technology responsibly."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/29/2025
 ---
 
 # Use cases for Voice live
-
 [!INCLUDE [Non-English translation disclaimer](../../includes/non-english-translation.md)]
 
 ## What is a Transparency Note? 

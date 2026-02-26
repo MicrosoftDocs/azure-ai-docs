@@ -1,8 +1,7 @@
 ---
-title: Set Up Tracing for AI Agents in Microsoft Foundry
+title: "Set Up Tracing for AI Agents in Microsoft Foundry"
 ms.service: azure-ai-foundry
-titleSuffix: Microsoft Foundry
-description: Learn how to set up tracing in Microsoft Foundry to debug AI agent runs and monitor behavior by sending telemetry to Application Insights with OpenTelemetry.
+description: "Learn how to set up tracing in Microsoft Foundry to debug AI agent runs and monitor behavior by sending telemetry to Application Insights with OpenTelemetry."
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -13,14 +12,13 @@ ms.custom: pilot-ai-workflow-jan-2026
 ---
 
 # Set up tracing in Microsoft Foundry (preview)
-
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use tracing (preview) to debug your AI agents and monitor their behavior in production. Tracing captures detailed telemetry—including latency, exceptions, prompt content, and retrieval operations—so you can identify and fix issues faster.
 
 ## Prerequisites
 
-- A [Foundry project](../../../how-to/create-projects.md).
+- A [Foundry project](../../how-to/create-projects.md).
 - An [Azure Monitor Application Insights resource](/azure/azure-monitor/app/app-insights-overview) to store traces (create a new one or connect an existing one).
 - Access to the Application Insights resource connected to your project.
 
@@ -44,7 +42,7 @@ After you connect the resource, your project is ready to use tracing.
 >
 > - For log-based queries, start by assigning the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader).
 > - To learn how to assign roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
-> - To manage access at scale, use [Microsoft Entra groups](../../../concepts/rbac-foundry.md#use-microsoft-entra-groups-with-foundry).
+> - To manage access at scale, use [Microsoft Entra groups](../../concepts/rbac-foundry.md#use-microsoft-entra-groups-with-foundry).
 
 ## Instrument AI agents
 
@@ -93,7 +91,6 @@ Select a trace to step through each span, identify issues, and observe how your 
 Your traces are sent to Azure Monitor Application Insights, so you can view them there.
 
 For more information on how to send traces to Azure Monitor and create an Azure Monitor resource, see [Azure Monitor OpenTelemetry documentation](/azure/azure-monitor/app/opentelemetry-enable).
-
 
 ### View conversation results
 
@@ -148,4 +145,4 @@ Now that tracing is set up, explore these resources to deepen your understanding
 - [Agent tracing overview](../concepts/trace-agent-concept.md)
 - [Tracing integrations](trace-agent-framework.md)
 - [Monitor AI agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
-- [Observability in generative AI](../../../concepts/observability.md)
+- [Observability in generative AI](../../concepts/observability.md)

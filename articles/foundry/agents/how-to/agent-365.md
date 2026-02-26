@@ -1,6 +1,6 @@
 ---
-title: Publish a Microsoft Foundry agent to Agent 365
-description: Publish a Microsoft Foundry hosted agent to Agent 365 by using the FoundryA365 sample, approve it, and optionally connect it to Microsoft Teams.
+title: "Publish a Microsoft Foundry agent to Agent 365"
+description: "Publish a Microsoft Foundry hosted agent to Agent 365 by using the FoundryA365 sample, approve it, and optionally connect it to Microsoft Teams."
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -12,8 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Publish an agent as a digital worker in Agent 365 
-
+# Publish an agent as a digital worker in Agent 365
 Use this article to publish a Microsoft Foundry hosted agent as a digital worker in Microsoft Agent 365 (A365).
 
 The sample uses the Azure Developer CLI to create the required Azure resources and publish an agent application. It also guides you through admin approval, configuration, and creating instances of your digital worker.
@@ -104,7 +103,6 @@ When the sample completes successfully (for example, the `azd` commands finish w
     
   :::image type="content" source="../media/create-instance.png" alt-text="Screenshot of creating an agent instance of a digital worker in Microsoft Teams." lightbox="../media/create-instance.png":::
 
-
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
@@ -114,7 +112,6 @@ When the sample completes successfully (for example, the `azd` commands finish w
 | Container build or push fails | Docker isn't running | Start Docker, and then run `azd provision --verbose` again. |
 | You can't find the agent to approve | Approval step not completed or you don't have the required tenant permissions | Verify tenant admin permissions and confirm the deployment completed successfully. |
 | You can't find your blueprint in the Teams Developer Portal list | Portal only shows the first 100 blueprints | Open any blueprint and replace the blueprint ID in the URL with your blueprint ID from `azd env get-values`. |
-
 
 For more information about agent applications, identity, and publishing behavior in Foundry, see [Publish and share agents in Microsoft Foundry](publish-agent.md).
 

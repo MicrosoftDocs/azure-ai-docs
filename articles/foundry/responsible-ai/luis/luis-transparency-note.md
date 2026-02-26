@@ -1,7 +1,7 @@
 ---
-title: Transparency note for LUIS
+title: "Transparency note for LUIS"
 titleSuffix: Foundry Tools
-description: Transparency Note for Language Understanding
+description: "Transparency Note for Language Understanding"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -12,7 +12,6 @@ ms.date: 02/08/2024
 ---
 
 # Use cases for Language Understanding
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

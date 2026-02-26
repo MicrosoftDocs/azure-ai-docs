@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI on your Azure Search data Python & REST API reference
-titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI on your Azure Search data Python & REST API.
+title: "Azure OpenAI on your Azure Search data Python & REST API reference (classic)"
+description: "Learn how to use Azure OpenAI on your Azure Search data Python & REST API. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,7 +12,7 @@ recommendations: false
 ms.custom: devx-track-python
 ---
 
-# Data source - Azure AI Search
+# Data source - Azure AI Search (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -101,7 +100,6 @@ The details of the vectorization source, used by Azure OpenAI On Your Data when 
 | `authentication`| [ApiKeyAuthenticationOptions](#api-key-authentication-options)|True | Specifies the authentication options to use when retrieving embeddings from the specified endpoint.|
 | `type`|string|True| Must be `endpoint`.|
 | `dimensions`|integer|False| The number of dimensions the embeddings should have. Only supported in `text-embedding-3` and later models. This is supported in the api version 2024-10-21. |
-
 
 ## Fields mapping options
 

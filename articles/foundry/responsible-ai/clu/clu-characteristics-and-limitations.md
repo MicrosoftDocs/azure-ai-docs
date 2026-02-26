@@ -1,7 +1,7 @@
 ---
-title: Characteristics and limitations for CLU
+title: "Characteristics and limitations for CLU"
 titleSuffix: Foundry Tools
-description: Characteristics and limitations for using conversational language understanding.
+description: "Characteristics and limitations for using conversational language understanding."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/15/2021
 ---
 
 # Characteristics and limitations for using conversational language understanding
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Performance with conversational language understanding (CLU) varies based on the scenario, input data, and enabled features. The following sections are designed to help the reader understand key concepts about performance as they apply to CLU.

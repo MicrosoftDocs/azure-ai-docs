@@ -1,7 +1,6 @@
 ---
-title: Use Azure Policies with hubs and projects
-titleSuffix: Microsoft Foundry
-description: Learn how to use Azure Policy with Microsoft Foundry to make sure your hubs and projects are compliant with your requirements.
+title: "Use Azure Policies with hubs and projects (classic)"
+description: "Learn how to use Azure Policy with Microsoft Foundry to make sure your hubs and projects are compliant with your requirements. (classic)"
 ms.author: jburchel 
 author: jonburchel 
 ms.date: 01/06/2026
@@ -14,7 +13,9 @@ ai-usage: ai-assisted
 # Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and govern Microsoft Foundry Services so that I can ensure compliance with my organization's requirements.
 ---
 
-# Audit and manage Microsoft Foundry hubs and projects
+# Audit and manage Microsoft Foundry hubs and projects (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
@@ -275,7 +276,6 @@ Reference: [Azure Policy definition structure](/azure/governance/policy/concepts
 ```
 
 Reference: [Azure Policy definition structure](/azure/governance/policy/concepts/definition-structure-basics)
-
 
 ## Related content
 

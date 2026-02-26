@@ -1,7 +1,6 @@
 ---
-title: Default Guardrails & controls policies for Microsoft Foundry Models
-titleSuffix: Microsoft Foundry
-description: Learn how Microsoft Foundry Models applies default safety policies and content filtering to help ensure responsible AI usage.
+title: "Default Guardrails & controls policies for Microsoft Foundry Models (classic)"
+description: "Learn how Microsoft Foundry Models applies default safety policies and content filtering to help ensure responsible AI usage. (classic)"
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: yinchang
@@ -15,13 +14,13 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer or AI practitioner, I want to understand the default safety policies and content filtering configurations applied to Microsoft Foundry Models so that I can ensure my AI applications comply with responsible AI practices and understand what safety measures are in place by default.
 ---
 
-# Default Guardrails and controls policies for Microsoft Foundry Models
+# Default Guardrails and controls policies for Microsoft Foundry Models (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Microsoft Foundry Models applies default safety to all models, excluding audio models such as Whisper in Azure OpenAI in Foundry Models. These configurations provide you with a responsible experience by default.
 
-Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read about [risk categories and severity levels](content-filter.md).
+Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read about [risk categories and severity levels](../../foundry-models/concepts/content-filter.md).
 
 This article describes the default safety configuration.
 
@@ -71,7 +70,6 @@ Vision models can take both text and images at the same time as part of the inpu
 | User prompt injection attack (Jailbreak)          | Prompts                | N/A                 |
 | Protected Material – Art and Studio Characters    | Prompts                | N/A                 |
 | Profanity                                         | Prompts                | N/A                 |
-
 
 In addition to the previous safety configurations, Azure OpenAI DALL-E also comes with [prompt transformation](../../openai/concepts/prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
 

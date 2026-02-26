@@ -1,7 +1,6 @@
 ---
-title: Consume serverless APIs from a different project or hub
-titleSuffix: Microsoft Foundry
-description: Learn how to consume serverless APIs from a different project or hub.
+title: "Consume serverless APIs from a different project or hub (classic)"
+description: "Learn how to consume serverless APIs from a different project or hub. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -17,7 +16,7 @@ ms.custom:
   - ignite-2024
 ---
 
-# Consume serverless APIs from a different Microsoft Foundry project or hub
+# Consume serverless APIs from a different Microsoft Foundry project or hub (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -240,7 +239,6 @@ Follow these steps to create a connection:
     1. Select **Start compute session** from the top navigation bar, to start a prompt flow automatic runtime.
 
     1. Select the **Chat** option. You can now send messages and get responses.
-
 
 ## Related content
 

@@ -1,7 +1,6 @@
 ---
-title: Use Foundry Agent Service with function calling
-titleSuffix: Microsoft Foundry
-description: Learn how to implement function calling with Microsoft Foundry Agents. Define functions, handle requests, and execute custom code for AI-powered workflows.
+title: "Use Foundry Agent Service with function calling (classic)"
+description: "Learn how to implement function calling with Microsoft Foundry Agents. Define functions, handle requests, and execute custom code for AI-powered workflows. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,12 +14,14 @@ ms.custom: azure-ai-agents
 ai-usage: ai-assisted
 ---
 
-# Azure AI Agents function calling
+# Azure AI Agents function calling (classic)
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-> 🔍 [View the new function calling documentation](../../../default/agents/how-to/tools/function-calling.md?view=foundry&preserve-view=true).
+<!-- NEW-ONLY: > 🔍 [View the new function calling documentation](../../../default/agents/how-to/tools/function-calling.md). -->
 
 By using Azure AI Agents function calling, you can extend agent capabilities by defining custom functions. When an agent determines that a function needs to be called, it returns metadata with the function name and arguments. Your application code executes the function and returns results. This guide shows you how to implement function calling in Python, C#, JavaScript, Java, and REST API to create powerful AI workflows.
 
@@ -128,11 +129,9 @@ import json
 import datetime
 from typing import Any, Callable, Set, Dict, List, Optional
 
-
 # Start by defining a function for your agent to call. 
 # When you create a function for an agent to call, you describe its structure 
 # with any required parameters in a docstring.
-
 
 def fetch_weather(location: str) -> str:
     """
@@ -704,7 +703,6 @@ The following REST API examples demonstrate how to implement an agent with funct
 ### Define a function for your agent to call
 
 Start by defining a function for your agent to call. When you create a function for an agent to call, describe its structure with any required parameters in a docstring. See the other SDK languages for example functions.
-
 
 ### Create an agent
 

@@ -1,7 +1,7 @@
 ---
-title: Guidance for integration and responsible use with conversational language understanding
+title: "Guidance for integration and responsible use with conversational language understanding"
 titleSuffix: Foundry Tools
-description: Guidance for how to deploy conversational language understanding responsibly, based on the knowledge and understanding from the team that created this product.
+description: "Guidance for how to deploy conversational language understanding responsibly, based on the knowledge and understanding from the team that created this product."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/15/2021
 ---
 
 # Guidance for integration and responsible use with conversational language understanding
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft works to help customers responsibly develop and deploy solutions by using conversational language understanding (CLU). Our principled approach upholds personal agency and dignity by considering the AI system's:

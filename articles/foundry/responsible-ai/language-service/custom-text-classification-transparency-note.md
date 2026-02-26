@@ -1,7 +1,7 @@
 ---
-title: Use cases for custom text classification
+title: "Use cases for custom text classification"
 titleSuffix: Foundry Tools
-description: Learn about use cases for custom text classification.
+description: "Learn about use cases for custom text classification."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 04/26/2023
 ---
 
 # Use cases for custom text classification
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

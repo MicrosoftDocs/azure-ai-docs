@@ -1,7 +1,6 @@
 ---
-title: 'Guardrails and controls overview in Microsoft Foundry'
-titleSuffix: Microsoft Foundry
-description: Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions.
+title: "Guardrails and controls overview in Microsoft Foundry"
+description: "Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
@@ -14,7 +13,6 @@ ms.custom: azure-ai-guardrails
 ---
 
 # Guardrails and controls overview in Microsoft Foundry
-
 Microsoft Foundry provides safety and security guardrails that you can apply to core models and agents. Agent guardrails are in preview. Guardrails consist of a set of controls. The controls define a risk to be detected, intervention points to scan for the risk, and the response action to take in the model or agent when the risk is detected. 
 
 A **guardrail** is a named collection of **controls**. Variations in API configurations and application design might affect completions and thus filtering behavior.
@@ -31,17 +29,16 @@ For more information about intervention points, see [Intervention points and con
 > [!NOTE]
 > Guardrails leverage classification models from [Azure AI Content Safety](https://azure.microsoft.com/products/cognitive-services/ai-content-safety) to detect harmful content across supported risk categories.
 
-
 > [!IMPORTANT]
-> The guardrail system applies to all [Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio models such as Whisper. For more information, see [Audio models](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
+> The guardrail system applies to all [Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), except for prompts and completions processed by audio models such as Whisper. For more information, see [Audio models](../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models). The guardrail system currently applies only to agents developed in the [Foundry Agent Service](/azure/ai-foundry/agents/overview), not to other agents registered in the Foundry Control Plane.
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../how-to/create-projects.md).
+- A [Microsoft Foundry project](../how-to/create-projects.md).
 - At least one model deployment in your project.
 - Azure AI Account Owner role.
-  - [!INCLUDE [rbac-create](../../includes/rbac-create.md)]
+  - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 
 ## Guardrails for agents vs models
 
@@ -73,11 +70,13 @@ For content risks (Hate, Sexual, Self-harm, Violence), each control uses a sever
 
 | Severity level | Behavior |
 |---------------|----------|
-| **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](../../foundry-models/how-to/configure-content-filters.md) |
 | **Low** | Flags content at low severity and above. Most restrictive. |
 | **Medium** | Flags content at medium severity and above. |
 | **High** | Flags only the most severe content. Least restrictive. |
 
+<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
+| **Off** | Detection is disabled for this risk. Only available for approved customers, see [content filters](../foundry-models/how-to/configure-content-filters.md) |
+-->
 For a detailed breakdown of what each severity level detects, see [Content filtering categories](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#risk-categories).
 
 ### Intervention point applicability
@@ -185,5 +184,5 @@ Default guardrail assignment for agents follows these rules:
 
 - [Configure guardrails and controls](how-to-create-guardrails.md)
 - [Learn about intervention points and controls](intervention-points.md)
-- [Understand content filtering in Azure OpenAI](../../openai/concepts/content-filter.md)
-- [Configure content filters for Azure OpenAI](../../openai/how-to/content-filters.md)
+<!-- CLASSIC-ONLY: - [Understand content filtering in Azure OpenAI](../foundry-models/concepts/content-filter.md) -->
+<!-- CLASSIC-ONLY: - [Configure content filters for Azure OpenAI](../openai/how-to/content-filters.md) -->

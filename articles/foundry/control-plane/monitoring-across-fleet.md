@@ -1,6 +1,6 @@
 ---
-title: Monitor AI agent fleet health and performance - Microsoft Foundry
-description: Track agent health, compliance, performance trends, and cost efficiency across your AI fleet by using Microsoft Foundry Control Plane monitoring.
+title: "Monitor AI agent fleet health and performance - Microsoft Foundry"
+description: "Track agent health, compliance, performance trends, and cost efficiency across your AI fleet by using Microsoft Foundry Control Plane monitoring."
 author: sonalim-0
 ms.author: scottpolly
 ms.reviewer: sonalimalik
@@ -13,7 +13,6 @@ ai-usage: ai-assisted
 ---
 
 # Monitor agent health and performance across your fleet
-
 As your organization scales from isolated copilots to autonomous multi-agent fleets, maintaining visibility and control becomes critical. Microsoft Foundry Control Plane provides a unified command center where you can monitor all agents, models, and tools across your enterprise from build to production.
 
 Fleet monitoring serves multiple roles:
@@ -44,7 +43,7 @@ Foundry Control Plane supports:
 
 > [!div class="checklist"]
 >
-> - Foundry agents, including [prompt-based agents](../../agents/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted agents](../agents/concepts/hosted-agents.md).
+> - Foundry agents, including [prompt-based agents](../agents/overview.md), [workflows](../agents/concepts/workflow.md), and [hosted agents](../agents/concepts/hosted-agents.md).
 > - [Azure SRE Agent](/azure/sre-agent/).
 > - [Azure Logic Apps agent loops](/azure/logic-apps/agent-workflows-concepts).
 > - [Custom agents](register-custom-agent.md) registered manually.

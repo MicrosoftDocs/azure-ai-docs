@@ -1,7 +1,6 @@
 ---
-title: Deploy MedImageInsight for Medical Image Embeddings
-titleSuffix: Microsoft Foundry
-description: Deploy MedImageInsight to generate medical image embeddings for X-Ray, CT, MRI, and more. Get step-by-step deployment guidance and API examples.
+title: "Deploy MedImageInsight for Medical Image Embeddings (classic)"
+description: "Deploy MedImageInsight to generate medical image embeddings for X-Ray, CT, MRI, and more. Get step-by-step deployment guidance and API examples. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -17,7 +16,7 @@ ai-usage: ai-assisted
 #customer intent: As a data scientist, I want to deploy the MedImageInsight healthcare AI model so that I can generate embeddings for medical images.
 ---
 
-# How to use MedImageInsight healthcare AI model for medical image embedding generation
+# How to use MedImageInsight healthcare AI model for medical image embedding generation (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -66,13 +65,11 @@ For complete working examples, see these interactive Python notebooks:
     
     * [Scalable MedImageInsight Endpoint Usage](https://aka.ms/healthcare-ai-examples-mi2-advanced-call): Generate embeddings of medical images at scale using the MedImageInsight API while handling potential network issues gracefully.
 
-
 ## Deploy the model to a managed compute
 
 Deployment to a self-hosted managed inference solution lets you customize and control all the details about how the model's served. The deployment process creates an online endpoint with a unique scoring URI and authentication keys. This endpoint lets you send inference requests to your model. You configure the compute resources (such as GPU-enabled VMs) and set deployment parameters like instance count and request timeout values.
 
 To deploy the model programmatically or from its model card in Microsoft Foundry, see [How to deploy and infer with a managed compute deployment](../deploy-models-managed.md). After deployment's complete, note your endpoint name and deployment name for use in the inference code.
-
 
 ## Send inference requests to the embedding model
 
@@ -249,7 +246,6 @@ The deployed model API supports images encoded in PNG format.
 When the model receives the images, it preprocesses them by compressing and resizing them to `512x512` pixels.
 
 The preferred compression format is lossless PNG that contains either an 8-bit monochromatic or RGB image. For optimization purposes, you can perform resizing on the client side to reduce network traffic.
-
 
 ## Learn more about the model
 

@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI on your Elasticsearch data Python & REST API reference
-titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI on your Elasticsearch data Python & REST API.
+title: "Azure OpenAI on your Elasticsearch data Python & REST API reference (classic)"
+description: "Learn how to use Azure OpenAI on your Elasticsearch data Python & REST API. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,7 +12,7 @@ recommendations: false
 ms.custom: devx-track-python
 ---
 
-# Data source - Elasticsearch (preview)
+# Data source - Elasticsearch (preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -100,7 +99,6 @@ The details of the vectorization source, used by Azure OpenAI On Your Data when 
 |--- | --- | --- | --- |
 | `model_id`|string|True| Specifies the model ID to use for vectorization. This model ID must be defined in Elasticsearch.|
 | `type`|string|True| Must be `model_id`.|
-
 
 ## Fields mapping options
 

@@ -1,6 +1,6 @@
 ---
-title: Azure OpenAI in Microsoft Foundry Models dynamic quota
-description: Learn how to use Azure OpenAI dynamic quota
+title: "Azure OpenAI in Microsoft Foundry Models dynamic quota (classic)"
+description: "Learn how to use Azure OpenAI dynamic quota (classic)"
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -10,8 +10,7 @@ ms.date: 11/26/2025
 ms.author: mbullwin
 ---
 
-
-# Azure OpenAI Dynamic quota (Preview)
+# Azure OpenAI Dynamic quota (Preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -57,7 +56,7 @@ To use dynamic quota, you must:
 
 To activate dynamic quota for your deployment, you can go to the advanced properties in the resource configuration, and switch it on.
 
-Alternatively, you can enable it programmatically with Azure CLI's [`az rest`](/cli/azure/reference-index?view=azure-cli-latest#az-rest&preserve-view=true):
+Alternatively, you can enable it programmatically with Azure CLI's [`az rest`](/cli/azure/reference-index?view=azure-cli-latest#az-rest):
 
 Replace the `{subscriptionId}`, `{resourceGroupName}`, `{accountName}`, and `{deploymentName}` with the relevant values for your resource. In this case, `accountName` is equal to Azure OpenAI resource name.
 
@@ -74,5 +73,4 @@ dynamic quota is less likely to be engaged for your deployment if it runs in hea
 
 * Learn more about how [quota works](./quota.md).
 * Learn more about [monitoring Azure OpenAI](./monitor-openai.md).
-
 

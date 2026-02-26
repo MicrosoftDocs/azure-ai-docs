@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI models and regions for Foundry Agent Service
-titleSuffix: Microsoft Foundry
-description: Find supported Azure OpenAI models and regions for Microsoft Foundry Agent Service. Compare gpt-5, gpt-4o, and gpt-4 availability across global and regional deployments.
+title: "Azure OpenAI models and regions for Foundry Agent Service (classic)"
+description: "Find supported Azure OpenAI models and regions for Microsoft Foundry Agent Service. Compare gpt-5, gpt-4o, and gpt-4 availability across global and regional deployments. (classic)"
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -13,7 +12,7 @@ ms.custom: azure-ai-agents, references_regions, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Azure OpenAI models and regions for Foundry Agent Service
+# Azure OpenAI models and regions for Foundry Agent Service (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -64,7 +63,6 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 > - The [file search tool](../how-to/tools-classic/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
 > - The gpt-5 models can use only the [code interpreter](../how-to/tools-classic/code-interpreter.md) and [file search](../how-to/tools-classic/file-search.md) tools.
 > - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
-
 
 # [Global standard](#tab/global-standard)
 

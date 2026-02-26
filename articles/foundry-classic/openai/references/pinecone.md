@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI on your Pinecone data Python & REST API reference
-titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI on your Pinecone data Python & REST API.
+title: "Azure OpenAI on your Pinecone data Python & REST API reference (classic)"
+description: "Learn how to use Azure OpenAI on your Pinecone data Python & REST API. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,7 +12,7 @@ recommendations: false
 ms.custom: devx-track-python
 ---
 
-# Data source - Pinecone (preview)
+# Data source - Pinecone (preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -49,7 +48,6 @@ The authentication options for Azure OpenAI On Your Data when using an API key.
 | `key`|string|True|The API key to use for authentication.|
 | `type`|string|True| Must be `api_key`.|
 
-
 ## Deployment name vectorization source
 
 The details of the vectorization source, used by Azure OpenAI On Your Data when applying vector search. This vectorization source is based on an internal embeddings model deployment name in the same Azure OpenAI resource. This vectorization source enables you to use vector search without Azure OpenAI api-key and without Azure OpenAI public network access.
@@ -58,7 +56,6 @@ The details of the vectorization source, used by Azure OpenAI On Your Data when 
 |--- | --- | --- | --- |
 | `deployment_name`|string|True|The embedding model deployment name within the same Azure OpenAI resource. |
 | `type`|string|True| Must be `deployment_name`.|
-
 
 ## Fields mapping options
 

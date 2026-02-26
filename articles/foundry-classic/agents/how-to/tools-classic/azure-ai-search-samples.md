@@ -1,7 +1,6 @@
 ---
-title: 'How to use Azure AI Search in Foundry Agent Service'
-titleSuffix: Microsoft Foundry
-description: Learn how to ground Azure AI Agents with content indexed in Azure AI Search.
+title: "How to use Azure AI Search in Foundry Agent Service (classic)"
+description: "Learn how to ground Azure AI Agents with content indexed in Azure AI Search. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,13 +14,14 @@ ms.custom: azure-ai-agents
 zone_pivot_groups: selection-azure-ai-search
 ---
 
-# How to use an existing index with the Azure AI Search tool
+# How to use an existing index with the Azure AI Search tool (classic)
 
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Azure AI Search tool documentation](../../../default/agents/how-to/tools/ai-search.md).
+<!-- NEW-ONLY: > 🔍 [View the new Azure AI Search tool documentation](../../../default/agents/how-to/tools/ai-search.md). -->
 
 This article explains how to use an existing search index with the [Azure AI Search](/azure/search/search-what-is-azure-search) tool.
 
@@ -392,7 +392,6 @@ const agent = await client.agents.createAgent("gpt-4o-mini", {
 });
 console.log(`Created agent, agent ID : ${agent.id}`);
 ```
-
 
 ## Ask the agent questions about data in the index
 

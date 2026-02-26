@@ -1,7 +1,6 @@
 ---
-title: Enable Tracing and Collect Feedback for a Flow Deployment
-titleSuffix: Microsoft Foundry
-description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in the Microsoft Foundry portal.
+title: "Enable Tracing and Collect Feedback for a Flow Deployment (classic)"
+description: "This article provides instructions on how to enable tracing and collect feedback for a flow deployment in the Microsoft Foundry portal. (classic)"
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -15,7 +14,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Enable tracing and collect feedback for a flow deployment
+# Enable tracing and collect feedback for a flow deployment (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -156,7 +155,6 @@ try:
         feedback_body = str.encode(json.dumps(feedback))
         feedback_req = urllib.request.Request(feedback_url, feedback_body, headers)
         urllib.request.urlopen(feedback_req)
-
 
 except urllib.error.HTTPError as error:
     print("The request failed with status code: " + str(error.code))

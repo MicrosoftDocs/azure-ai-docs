@@ -1,7 +1,6 @@
 ---
-title: Choose an Azure resource type for Foundry
-titleSuffix: Microsoft Foundry
-description: Learn about the supported Azure resource types in Microsoft Foundry portal.
+title: "Choose an Azure resource type for Foundry (classic)"
+description: "Learn about the supported Azure resource types in Microsoft Foundry portal. (classic)"
 reviewer: deeikele
 ms.reviewer: deeikele
 author: sdgilley
@@ -16,7 +15,7 @@ ms.custom:
   - dev-focus
 ---
 
-# Choose an Azure resource type for Foundry
+# Choose an Azure resource type for Foundry (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 

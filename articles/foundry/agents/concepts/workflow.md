@@ -1,7 +1,6 @@
 ---
-title: Build a workflow in Microsoft Foundry
-titleSuffix: Microsoft Foundry
-description: Build workflows in Microsoft Foundry to orchestrate AI agents with visual logic, branching, and Power Fx formulas. Create intelligent automation without writing code.
+title: "Build a workflow in Microsoft Foundry"
+description: "Build workflows in Microsoft Foundry to orchestrate AI agents with visual logic, branching, and Power Fx formulas. Create intelligent automation without writing code."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -19,16 +18,15 @@ ai-usage: ai-assisted
 ---
 
 # Build a workflow in Microsoft Foundry
-
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
 Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
-- A project in Microsoft Foundry. For more information, see [Create projects](../../../how-to/create-projects.md).
-- Access to create and run workflows in your Foundry project. For more information, see [Azure role-based access control (RBAC) in Foundry](../../../concepts/rbac-foundry.md).
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- A project in Microsoft Foundry. For more information, see [Create projects](../../how-to/create-projects.md).
+- Access to create and run workflows in your Foundry project. For more information, see [Azure role-based access control (RBAC) in Foundry](../../concepts/rbac-foundry.md).
 
 ## Decide when to use workflows
 
@@ -308,7 +306,7 @@ This example shows how to add an if/else flow and build a condition with system 
 
 | Issue | Solution |
 |-------|----------|
-| **Workflows** option not visible or can't create/edit workflows | Confirm you have the **Contributor** role or higher on your project. See [Azure role-based access control (RBAC) in Foundry](../../../concepts/rbac-foundry.md). |
+| **Workflows** option not visible or can't create/edit workflows | Confirm you have the **Contributor** role or higher on your project. See [Azure role-based access control (RBAC) in Foundry](../../concepts/rbac-foundry.md). |
 | Changes don't appear after editing | Select **Save** in the visualizer. Foundry doesn't save changes automatically. |
 | Workflow run produces unexpected output | Verify each agent node has an agent assigned. Check that saved outputs (JSON schema) are valid. |
 | Power Fx formula error: "Name isn't valid" | Add the correct scope prefix. Use `System.` for system variables and `Local.` for local variables. |
@@ -323,10 +321,9 @@ To delete a workflow you no longer need:
 1. Select the **Version** dropdown list to the left of the **Save** button.
 1. Select **Delete** for the version you want to remove.
 
-
 ## Related content
 
-- [Foundry Agent Service FAQ](../../../agents/faq.yml)
+<!-- CLASSIC-ONLY: - [Foundry Agent Service FAQ](../../agents/faq.yml) -->
 - [Tool best practices for Foundry agents](tool-best-practice.md)
 - [Work with Declarative (Low-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-low-code.md)
 - [Work with Hosted (Pro-code) Agent workflows in Visual Studio Code](../how-to/vs-code-agents-workflow-pro-code.md)

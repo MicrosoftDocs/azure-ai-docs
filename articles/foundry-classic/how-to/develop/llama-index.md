@@ -1,7 +1,6 @@
 ---
-title: Develop application with LlamaIndex and Microsoft Foundry
-titleSuffix: Microsoft Foundry
-description: This article explains how to use LlamaIndex with models deployed in Microsoft Foundry portal to build advance intelligent applications.
+title: "Develop application with LlamaIndex and Microsoft Foundry (classic)"
+description: "This article explains how to use LlamaIndex with models deployed in Microsoft Foundry portal to build advance intelligent applications. (classic)"
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
@@ -14,7 +13,7 @@ ms.author: sgilley
 author: sdgilley
 ---
 
-# Develop applications with LlamaIndex and Microsoft Foundry
+# Develop applications with LlamaIndex and Microsoft Foundry (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -24,9 +23,7 @@ In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/
 You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] with LlamaIndex in two ways:
 <!-- ::: moniker-end
 
-::: moniker range="foundry"
-You can use models deployed to [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] with LlamaIndex in two ways:
-::: moniker-end -->
+-->
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
 
@@ -50,11 +47,7 @@ To run this tutorial, you need:
     * **Azure AI Developer** to use the model in a hub-based project
 <!-- :::moniker-end
 
-:::moniker range="foundry"
-* Required role: 
-    * **Owner** or **Contributor** on the Foundry resource to deploy models
-    * **Azure AI User** to use the model in a Foundry project
-:::moniker-end -->
+-->
 
 * A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-3` in code examples; you can substitute your own deployed model name.
 * To use embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
@@ -80,14 +73,11 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-
 <!-- ::: moniker range="foundry-classic" -->
 [!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
 <!-- ::: moniker-end
 
-::: moniker range="foundry"
-[!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
-::: moniker-end -->
+-->
 
 After you configure the environment, create a client to connect to the endpoint.
 
@@ -103,7 +93,6 @@ llm = AzureAICompletionsModel(
 
 > [!TIP]
 > If your model deployment is hosted in Azure OpenAI in Foundry Models or Foundry Tools resource, configure the client as indicated at [Azure OpenAI models and Foundry Models service](#azure-openai-models-and-foundry-models-service).
-
 
 If your endpoint serves more than one model, like with the [Foundry Models service](../../foundry-models/concepts/models-sold-directly-by-azure.md) or [GitHub Models](https://github.com/marketplace/models), you need to specify the `model_name` parameter:
 

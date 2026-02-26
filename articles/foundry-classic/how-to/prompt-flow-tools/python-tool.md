@@ -1,7 +1,6 @@
 ---
-title: Python tool for flows in Microsoft Foundry portal
-titleSuffix: Microsoft Foundry
-description: This article introduces you to the Python tool for flows in Microsoft Foundry portal.
+title: "Python tool for flows in Microsoft Foundry portal (classic)"
+description: "This article introduces you to the Python tool for flows in Microsoft Foundry portal. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom: 
@@ -19,7 +18,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Python tool for flows in Microsoft Foundry portal
+# Python tool for flows in Microsoft Foundry portal (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

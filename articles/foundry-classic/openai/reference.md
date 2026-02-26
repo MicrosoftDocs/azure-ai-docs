@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI in Microsoft Foundry Models REST API reference
-titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI's REST API. In this article, you learn about authorization options,  how to structure a request and receive a response.
+title: "Azure OpenAI in Microsoft Foundry Models REST API reference (classic)"
+description: "Learn how to use Azure OpenAI's REST API. In this article, you learn about authorization options,  how to structure a request and receive a response. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -14,7 +13,7 @@ ms.custom:
   - ignite-2023
 ---
 
-# Azure OpenAI in Microsoft Foundry Models REST API reference
+# Azure OpenAI in Microsoft Foundry Models REST API reference (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 

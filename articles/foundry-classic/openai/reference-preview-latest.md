@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference
-titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI's latest v1 preview REST API. In this article, you learn about authorization options,  how to structure a request and receive a response.
+title: "Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference (classic)"
+description: "Learn how to use Azure OpenAI's latest v1 preview REST API. In this article, you learn about authorization options,  how to structure a request and receive a response. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,7 +12,7 @@ recommendations: false
 ms.custom:
 ---
 
-# Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference
+# Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 

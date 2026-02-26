@@ -1,7 +1,6 @@
 ---
-title: Use the Browser Automation Tool in Foundry Agent Service
-titleSuffix: Microsoft Foundry
-description: Learn how to use the Browser Automation tool in Foundry Agent Service to automate website tasks with AI agents. Follow the steps and run the sample.
+title: "Use the Browser Automation Tool in Foundry Agent Service (classic)"
+description: "Learn how to use the Browser Automation tool in Foundry Agent Service to automate website tasks with AI agents. Follow the steps and run the sample. (classic)"
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,18 +13,20 @@ ms.custom: azure-ai-agents
 ai-usage: ai-assisted
 ---
 
-# How to use the Browser Automation tool (preview)
+# How to use the Browser Automation tool (preview) (classic)
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Browser Automation documentation](../../../default/agents/how-to/tools/browser-automation.md?view=foundry&preserve-view=true).
+<!-- NEW-ONLY: > 🔍 [View the new Browser Automation documentation](../../../default/agents/how-to/tools/browser-automation.md). -->
 
 Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service. Note that Browser Automation is currently a preview feature.
 
 ## Prerequisites
 
-* The requirements in the [Browser Automation overview](./browser-automation.md#setup).
+<!-- NEW-ONLY: * The requirements in the [Browser Automation overview](./browser-automation.md#setup). -->
 * Your Microsoft Foundry Project endpoint.
     
   [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
@@ -89,7 +90,6 @@ with project_client:
             """,
         tools=browser_automation.definitions,
     )
-
 
     print(f"Created agent, ID: {agent.id}")
 
@@ -171,4 +171,4 @@ To visualize what happens, review the Browser Automation tool-call details that 
 - The sample prints each tool call and its step-by-step progress. For example, it shows `last_step_result`, `current_state`, and `next_step`.
 - The tool captures a screenshot after actions during execution and includes the updated browser state in the tool output. Review the printed `current_state` for each step to see what the model sees at that point.
 
-For more information, see the [How it works](./browser-automation.md#how-it-works) section in the **Browser Automation** overview article.
+<!-- NEW-ONLY: For more information, see the [How it works](./browser-automation.md#how-it-works) section in the **Browser Automation** overview article. -->

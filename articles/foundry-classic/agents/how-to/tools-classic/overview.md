@@ -1,7 +1,6 @@
 ---
-title: 'What are tools in Foundry Agent Service'
-titleSuffix: Microsoft Foundry
-description: Learn how to use the various tools available in the Foundry Agent Service.
+title: "What are tools in Foundry Agent Service (classic)"
+description: "Learn how to use the various tools available in the Foundry Agent Service. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,18 +12,19 @@ ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 
-# What are tools in Foundry Agent Service?
+# What are tools in Foundry Agent Service? (classic)
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new tool catalog documentation](../../../default/agents/concepts/tool-catalog.md?view=foundry&preserve-view=true).
+<!-- NEW-ONLY: > 🔍 [View the new tool catalog documentation](../../../default/agents/concepts/tool-catalog.md). -->
 
 To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent Service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
 
-> [!NOTE]
-> The new Microsoft Foundry portal and agents API provide additional tools. See the [tool catalog article](../../../default/agents/concepts/tool-catalog.md) for more information.  
-
+<!-- > [!NOTE] (callout removed - content was version-specific) -->
+<!-- NEW-ONLY: > The new Microsoft Foundry portal and agents API provide additional tools. See the [tool catalog article](../../../default/agents/concepts/tool-catalog.md) for more information. -->
 
 ## Knowledge tools
 
@@ -101,17 +101,19 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 |---------|---------|
 |[Azure AI Search](azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
 |[Azure Functions](azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
-|[Browser Automation](browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
 |[Code Interpreter](code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
 |[Deep Research (preview)](./deep-research.md) | Use OpenAI's advanced agentic research capability for analysis and reasoning. | 
 |[File Search](file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
-|[Function calling](function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
 | [Grounding with Bing Custom Search (preview)](bing-custom-search.md) | Enhance your Agent response with selected web domains |
-| [Model Context Protocol (preview)](./model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
-| [Microsoft Fabric (preview)](fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [OpenAPI 3.0 Specified tool ](openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
 
+<!-- NEW-ONLY: Table row(s) removed. To restore, update links and uncomment:
+|[Browser Automation](browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
+|[Function calling](function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
+| [Model Context Protocol (preview)](./model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
+| [Microsoft Fabric (preview)](fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
+-->
 ## Non-Microsoft tools
 
 The following tools are authored by third-party partners. Use the links below to view the documentation and code samples. 

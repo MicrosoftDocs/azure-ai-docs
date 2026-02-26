@@ -1,7 +1,6 @@
 ---
-title: Fine-tune models with Microsoft Foundry
-titleSuffix: Microsoft Foundry
-description: This article explains what fine-tuning is and under what circumstances you should consider doing it.
+title: "Fine-tune models with Microsoft Foundry (classic)"
+description: "This article explains what fine-tuning is and under what circumstances you should consider doing it. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -16,7 +15,7 @@ author: ssalgadodev
 #customer intent: As a developer, I want to learn what it means to fine-tune a model.
 ---
 
-# Fine-tune models with Microsoft Foundry
+# Fine-tune models with Microsoft Foundry (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -106,7 +105,6 @@ Now that you know when to use fine-tuning for your use case, you can go to Micro
 **To fine-tune an OpenAI model** you can use an Azure OpenAI Resource, a Foundry resource or default project, or a hub/project. GPT 4.1, 4.1-mini, 4.1-nano and GPT 4o, 4omini are available in all regions with Global Training. For regional availability, see [Regional Availability and Limits for Azure OpenAI Fine Tuning](../foundry-models/concepts/models-sold-directly-by-azure.md). See [Create a project for Foundry](../how-to/create-projects.md) for instructions on creating a new project.
 
 **To fine-tune a model using Managed Compute** you must have a hub/project and available VM quota for training and inferencing. See [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md) for more details on how to use managed compute fine tuning, and [How to Create a Hub-based project](../how-to/create-projects.md) to create your project.
-
 
 ## Related content
 

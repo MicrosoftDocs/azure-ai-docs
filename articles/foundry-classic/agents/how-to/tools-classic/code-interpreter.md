@@ -1,7 +1,6 @@
 ---
-title: 'How to use Foundry Agent Service Code Interpreter'
-titleSuffix: Microsoft Foundry
-description: Learn how to use Foundry Agent Service Code Interpreter
+title: "How to use Foundry Agent Service Code Interpreter (classic)"
+description: "Learn how to use Foundry Agent Service Code Interpreter (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,12 +12,14 @@ ms.author: aashcraft
 ms.custom: azure-ai-agents
 zone_pivot_groups: selection-code-interpreter
 ---
-# Foundry Agent Service Code Interpreter
+# Foundry Agent Service Code Interpreter (classic)
+
+[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Code Interpreter documentation](../../../default/agents/how-to/tools/code-interpreter.md?view=foundry&preserve-view=true).
+<!-- NEW-ONLY: > 🔍 [View the new Code Interpreter documentation](../../../default/agents/how-to/tools/code-interpreter.md). -->
 
 Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
 
@@ -28,7 +29,6 @@ Code Interpreter allows the agents to write and run Python code in a sandboxed e
 ## Prerequisites
 
 - A [basic or standard agent environment](../../environment-setup.md).
-
 
 ## Code samples
 <!--
@@ -61,7 +61,6 @@ print(f"Uploaded file, file ID: {file.id}")
 
 code_interpreter = CodeInterpreterTool(file_ids=[file.id])
 ```
-
 
 ::: zone-end
 

@@ -1,7 +1,6 @@
 ---
-title: Migrate to the new Foundry Agent Service
-titleSuffix: Microsoft Foundry
-description: Learn how to migrate from the Assistants API and classic agents to the new Foundry Agent Service, including threads to conversations, runs to responses, and updated SDK patterns.
+title: "Migrate to the new Foundry Agent Service"
+description: "Learn how to migrate from the Assistants API and classic agents to the new Foundry Agent Service, including threads to conversations, runs to responses, and updated SDK patterns."
 author: aahill
 ms.author: aahi
 manager: nitinme
@@ -15,7 +14,6 @@ ai-usage: ai-assisted
 ---
 
 # Migrate to the new agents developer experience
-
 > [!TIP]
 > A [migration tool](https://aka.ms/agent/migrate/tool) is available to help automate migration from the Assistants API to Agents.
 
@@ -24,7 +22,7 @@ Foundry Agent Service provides an upgraded developer experience for building int
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
-- A [Microsoft Foundry project](../../../how-to/create-projects.md).
+- A [Microsoft Foundry project](../../how-to/create-projects.md).
 - The `azure-ai-projects` Python SDK (version 2.0.0b4 or later). Install with `pip install "azure-ai-projects>=2.0.0b4" --pre`.
 - The `azure-identity` package for authentication. Install with `pip install azure-identity` and sign in with `az login` or use `DefaultAzureCredential`.
 - Existing agents or assistants code that you want to migrate.
@@ -69,7 +67,6 @@ The new agents provide the following benefits:
 - **Stateful context.** Automatically retains context across calls.
 - **Superset of Responses API.** Builds on the Responses API and adds more capabilities.
 - **Single or multi-agent workflows.** Easily chain agents for complex workflows.
-
 
 ## Key changes
 
@@ -125,7 +122,6 @@ The JSON responses show the structural differences between thread objects and co
   "tool_resources": {} 
 } 
 ```
-
 
 **Current - conversations**
 
@@ -195,7 +191,6 @@ response = openai_client.responses.create(
     extra_body={"agent_reference": {"name": "my-agent", "type": "agent_reference"}}
 )
 ```
-
 
 ### Responses
 
@@ -344,7 +339,6 @@ agent = client.agents.create_agent(
     tools=code_interpreter.definitions,  # Attach the tool 
 ) 
 ```
-
 
 **Current**
 
@@ -512,8 +506,10 @@ After you migrate your code, confirm that everything works correctly:
 | `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project_client.get_openai_client()` to obtain the OpenAI client, then call `openai_client.conversations.create()`. |
 | `create_agent()` is deprecated | Earlier SDK versions used `create_agent()`. | Replace with `create_version()` and pass a `PromptAgentDefinition` object as the `definition` parameter. |
 | Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |
-| `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../../../how-to/deploy-models-serverless-availability.md). |
 
+<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
+| `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../../how-to/deploy-models-serverless-availability.md). |
+-->
 ## Related content
 
 - [Agent runtime components](../concepts/runtime-components.md)
