@@ -14,7 +14,7 @@ ms.date: 02/18/2026
 ### Tier 5
 
 | Model Name                     | Deployment Type   | Requests Per Minute (RPM)   | Tokens Per Minute (TPM) |
-|:-------------------------------|:------------------|:------------|:------------|
+|:-------------------------------|------------------:|------------:|------------:|
 | codex-mini                     | GlobalStandard    | 10,000      | 10,000,000  |
 | computer-use-preview           | GlobalStandard    | 300,000     | 30,000,000  |
 | gpt-4.1                        | DataZoneStandard  | 10,000      | 10,000,000  |
@@ -51,6 +51,7 @@ ms.date: 02/18/2026
 | gpt-5.2                        | GlobalStandard    | 100,000     | 10,000,000  |
 | gpt-5.2-chat                   | GlobalStandard    | 50,000      | 5,000,000   |
 | gpt-5.2-codex                  | GlobalStandard    | 100,000     | 10,000,000  |
+| gpt-5.3-codex                  | GlobalStandard    | 100,000     | 10,000,000  |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 60          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 120         | -           |

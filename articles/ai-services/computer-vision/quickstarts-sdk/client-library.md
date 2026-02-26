@@ -45,8 +45,4 @@ Get started with Azure Vision in Foundry Tools Read REST API or client libraries
 
 ::: zone-end
 
-::: zone pivot="vision-studio"
 
-[!INCLUDE [Vision Studio quickstart](../includes/ocr-studio-quickstart.md)]
-
-::: zone-end

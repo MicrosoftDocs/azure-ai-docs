@@ -1,15 +1,15 @@
 ---
-title: Lucene query syntax
+title: Lucene Query Syntax
 titleSuffix: Azure AI Search
 description: Reference for the full Lucene query syntax, as used in Azure AI Search for wildcard, fuzzy search, RegEx, and other advanced query constructs.
 manager: nitinme
-author: bevloh
-ms.author: beloh
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 12/11/2024
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 

@@ -13,7 +13,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-# How to use block lists in Microsoft Foundry models
+# How to use blocklists in Microsoft Foundry models
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
@@ -46,8 +46,10 @@ In this article, you learn how to:
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- Once you have your Azure subscription, create an Azure OpenAI resource in the Azure portal to get your token, key, and endpoint. Enter a unique name for your resource, select the subscription you entered on the application form, select a resource group, supported region, and supported pricing tier. Then select **Create**.
-    - The resource takes a few minutes to deploy. After it finishes, select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
+- Once you have your Azure subscription, create a Foundry services resource. For more information, see [Create a Foundry Services resource](../../../ai-services/multi-service-resource.md?context=/azure/ai-services/model-inference/context/context).
+* A model deployment. For more information, see [Add and configure models to Foundry services](../../foundry-models/how-to/create-model-deployments.md).
+    > [!NOTE]
+    > Blocklist (preview) support is limited to Azure OpenAI models.
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.50 or later
 - [cURL](https://curl.haxx.se/) installed
 

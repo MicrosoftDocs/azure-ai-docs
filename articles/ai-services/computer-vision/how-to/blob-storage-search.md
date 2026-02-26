@@ -66,4 +66,3 @@ This allows Vision Studio to access images in your blob storage container to ext
 ## Upload images in Vision Studio
 
 In the **Search photos with image retrieval** section in Vision Studio, select the storage account that you configured with the CORS rule. Select the container in which your images are stored. If you don't have a container, you can create one and upload the images from your local device. If you have updated the CORS rules on the storage account, refresh the Blob container or Video files on container sections.
-

@@ -21,10 +21,7 @@ You can use this functionality to process the relationships between the objects 
 
 There's no formal relationship between the tagging taxonomy and the object detection taxonomy. At a conceptual level, the object detection function only finds objects and living things, while the tag function can also include contextual terms like *indoor*, which can't be localized with bounding boxes.
 
-Try out the capabilities of object detection quickly and easily in your browser by using Azure Vision Studio.
 
-> [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
 ## Object detection example
 

@@ -219,7 +219,7 @@ To move from the preview of Agent service to Agent service in general availabili
 
     This snippet authenticates to your Foundry project using the Azure Identity library and creates a project client instance. The `endpoint` is your Foundry project endpoint; the `DefaultAzureCredential` uses your Azure credentials for authentication.
 
-    Reference: [AIProjectClient](/rest/api/aifoundry/), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [SDK migration guide](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/AGENTS_MIGRATION_GUIDE.md)
+    Reference: [AIProjectClient](/rest/api/aifoundry/), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [SDK migration guide](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects)
 
 1. Update your script to reflect any class structure changes between the preview and stable SDK packages.
 

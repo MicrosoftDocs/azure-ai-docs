@@ -40,7 +40,7 @@ To use Azure Content Understanding, create your Foundry Tool resource in a suppo
 
 > [!NOTE]
 >
-> [Pro mode (preview)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
+> [Pro mode (`2025-05-01-preview`)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
 
 ## Language support
 
@@ -205,4 +205,4 @@ To use Azure Content Understanding in Foundry Tools with the preview API, create
 
 > [!NOTE]
 >
-> [Pro mode (preview)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
+> [Pro mode (`2025-05-01-preview`)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.

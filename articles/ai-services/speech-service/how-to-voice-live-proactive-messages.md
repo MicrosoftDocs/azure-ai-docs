@@ -772,3 +772,4 @@ async function sendLlmGeneratedGreeting(session) {
 - Try the Voice Live **Playground in [Foundry portal](./voice-live-quickstart.md?pivots=ai-foundry-portal)** to experiment with proactive engagement
 - Learn more about [How to use the Voice live API](./voice-live-how-to.md)
 - See the [Voice live API reference](./voice-live-api-reference.md)
+- Explore [How to improve tool calling and latency wait times](./how-to-voice-live-interim-response.md)

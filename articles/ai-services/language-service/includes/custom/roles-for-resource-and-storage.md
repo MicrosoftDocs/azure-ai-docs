@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/18/2025
+ms.date: 02/23/2026
 ms.author: lajanuar
 ---
 Use the following steps to set the required roles for your Language resource and storage account.
@@ -19,7 +19,7 @@ Use the following steps to set the required roles for your Language resource and
 2. Select **Access Control (IAM)** in the left pane.
 3. Select **Add** to **Add Role Assignments**, and choose the appropriate role for your account.
 
-    You should have the **owner** or **contributor** role assigned on your Language resource.
+    * You should have the **owner** or **contributor** role assigned on your Language resource.
 
 4. Within **Assign access to**, select **User, group, or service principal**
 5. Select **Select members**

@@ -624,15 +624,20 @@ items:
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-    - name: Recognized entities
+    - name: Recognized entity categories
       items:
-      - name: Entity types for text (extended format)  🆕
-        href: personally-identifiable-information/concepts/entity-categories.md
-      - name: Entities for text (list format) 🆕
-        href: personally-identifiable-information/concepts/entity-categories-list.md
-      - name: Entity categories for conversation
-        href: personally-identifiable-information/concepts/conversations-entity-categories.md
-
+      - name: PII in text
+        items:
+        - name: Extended format
+          href: personally-identifiable-information/concepts/entity-categories.md
+        - name: List format
+          href: personally-identifiable-information/concepts/entity-categories-list.md
+      - name: PII in conversations
+        items:
+        - name: Extended format
+          href: personally-identifiable-information/concepts/conversations-entity-categories.md
+        - name: List format
+          href: personally-identifiable-information/concepts/conversations-entities-list.md
   - name: Sentiment analysis and opinion mining
     items:
       - name: Overview
