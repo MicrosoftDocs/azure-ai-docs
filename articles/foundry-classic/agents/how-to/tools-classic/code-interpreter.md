@@ -14,8 +14,6 @@ zone_pivot_groups: selection-code-interpreter
 ---
 # Foundry Agent Service Code Interpreter (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >

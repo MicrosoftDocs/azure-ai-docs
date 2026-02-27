@@ -13,8 +13,7 @@ ms.custom:
 - classic-and-new
 ---
 
-# Azure OpenAI in Microsoft Foundry Models authoring REST API preview reference (temp)
-
+# Azure OpenAI in Microsoft Foundry Models authoring REST API preview reference
 This article provides details on the inference REST API endpoints for Azure OpenAI.
 
 [!INCLUDE [API surfaces](./includes/api-surface.md)]

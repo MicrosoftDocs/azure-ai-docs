@@ -16,8 +16,6 @@ zone_pivot_groups: selection-azure-ai-search
 
 # How to use an existing index with the Azure AI Search tool (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >

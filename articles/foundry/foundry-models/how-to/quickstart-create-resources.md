@@ -15,8 +15,7 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ---
 
-# Create and configure all the resources for Microsoft Foundry Models (temp)
-
+# Create and configure all the resources for Microsoft Foundry Models
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/create-resources/portal.md)]
 ::: zone-end

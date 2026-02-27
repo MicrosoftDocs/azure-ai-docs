@@ -13,8 +13,7 @@ ms.custom:
 - classic-and-new
 ---
 
-# Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference (temp)
-
+# Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference
 This article provides details on the inference REST API endpoints for Azure OpenAI.
 
 ## Data plane inference

@@ -15,8 +15,6 @@ ms.custom: azure-ai-agents
 
 # Grounding with Bing Custom Search (preview) (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >

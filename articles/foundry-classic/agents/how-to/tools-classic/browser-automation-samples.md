@@ -15,8 +15,6 @@ ai-usage: ai-assisted
 
 # How to use the Browser Automation tool (preview) (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >

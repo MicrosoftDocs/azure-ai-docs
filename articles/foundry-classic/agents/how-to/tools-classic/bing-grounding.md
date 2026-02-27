@@ -14,8 +14,6 @@ ms.custom: azure-ai-agents
 
 # Grounding with Bing Search (classic) 
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > - This document refers to the classic version of the agents API. 
 > - We recommend customers to start with new [Web Search tool (preview)](../../../../foundry/agents/how-to/tools/web-search.md) with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more [here](../../../../foundry/agents/how-to/tools/web-overview.md)

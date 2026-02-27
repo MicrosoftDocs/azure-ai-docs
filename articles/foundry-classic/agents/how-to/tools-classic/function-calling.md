@@ -16,8 +16,6 @@ ai-usage: ai-assisted
 
 # Azure AI Agents function calling (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
