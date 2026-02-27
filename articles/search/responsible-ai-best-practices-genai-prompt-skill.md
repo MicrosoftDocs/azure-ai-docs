@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: concept-article
-ms.date: 07/28/2025
+ms.date: 02/27/2026
 ms.update-cycle: 180-days
 ---
 

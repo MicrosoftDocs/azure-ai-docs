@@ -169,7 +169,7 @@ Outbound requests for AI enrichment and vectorization require special considerat
 | Operation | Configuration |
 | --------- | ------------- |
 | Indexers connecting to data sources | [Secure access to external data](search-indexer-securing-resources.md). |
-| Custom skills calling external code | Secure connections to [Azure Functions, web apps, or other hosts](cognitive-search-custom-skill-interface.md#set-the-endpoint-and-time-out-interval). |
+| Custom skills calling external code | Secure connections to [Azure Functions, web apps, or other hosts](cognitive-search-custom-skill-interface.md#set-the-endpoint-and-timeout-interval). |
 | Vectorization during indexing | Connect to [Azure OpenAI](vector-search-integrated-vectorization.md#secure-connections-to-vectorizers-and-models) or custom embedding models. |
 | Azure Key Vault | Connect to Azure Key Vault for [customer-managed encryption keys](search-security-manage-encryption-keys.md). |
 
