@@ -221,6 +221,7 @@ This section lists Foundry Models that support the provisioned throughput capabi
 | **Azure DeepSeek** | DeepSeek-R1      | ✅                 |                       |                      |                   |
 |                    | DeepSeek-V3-0324 | ✅                 |                       |                      |                   |
 |                    | DeepSeek-R1-0528 | ✅                 |                       |                      |                   |
+| **Meta Llama**     | Llama-3.3-70B-Instruct | ✅                 |                       |                      |                   |
 
 ### Region availability for provisioned throughput capability
 
