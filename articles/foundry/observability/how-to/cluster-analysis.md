@@ -1,6 +1,6 @@
 ---
-title: "Evaluation Cluster Analysis (temp)" 
-description: "Learn how to run and interact with an evaluation cluster analysis. (temp)" 
+title: "Evaluation Cluster Analysis" 
+description: "Learn how to run and interact with an evaluation cluster analysis." 
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 02/25/2026
@@ -10,8 +10,7 @@ author: lgayhardt
 ai-usage: ai-assisted 
 ---
 
-# Evaluation cluster analysis (preview) (temp)
-
+# Evaluation cluster analysis (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 After you run one or more evaluation runs, you can generate an evaluation cluster analysis to understand your evaluation results. This analysis provides an intuitive way to identify the top patterns and errors in your evaluation runs, along with recommended next steps to improve evaluator scores.

@@ -1,6 +1,6 @@
 ---
-title: "Foundry tool catalog (preview): discover and manage tools (temp)"
-description: "Learn how to use the Foundry tool catalog to discover, configure, and manage tools for agents, including MCP servers and custom tools. (temp)"
+title: "Foundry tool catalog (preview): discover and manage tools"
+description: "Learn how to use the Foundry tool catalog to discover, configure, and manage tools for agents, including MCP servers and custom tools."
 author: aahill
 ms.author: aahi
 ms.date: 01/20/2026
@@ -12,8 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Discover and manage tools in the Foundry tool catalog (preview) (temp)
-
+# Discover and manage tools in the Foundry tool catalog (preview)
 Foundry Tools is the place to discover and manage tools you use with agents and workflows in Microsoft Foundry.
 
 [!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]

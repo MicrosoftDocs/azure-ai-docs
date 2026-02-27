@@ -1,6 +1,6 @@
 ---
-title: "Foundry Local on Windows Server 2025 - Frequently asked questions (temp)"
-description: "Foundry Local FAQ: Learn about its supported Windows Server versions, GPU compatibility, and how it handles inference requests in GPU-P environments. (temp)"
+title: "Foundry Local on Windows Server 2025 - Frequently asked questions"
+description: "Foundry Local FAQ: Learn about its supported Windows Server versions, GPU compatibility, and how it handles inference requests in GPU-P environments."
 #customer intent: As a developer, I want to know if Foundry Local is a Windows component, app, or service so that I can plan its deployment.
 author: jonburchel
 ms.author: jburchel
@@ -12,8 +12,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Foundry Local on Windows Server 2025 (temp)
-
+# Foundry Local on Windows Server 2025
 Foundry Local on Windows Server 2025 lets you run selected Microsoft Foundry model capabilities entirely on a single Windows Server machine you operate.
 
 ## Prerequisites

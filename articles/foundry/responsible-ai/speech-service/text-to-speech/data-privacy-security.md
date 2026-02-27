@@ -1,7 +1,7 @@
 ---
-title: "Data, privacy, and security for text to speech (temp)"
+title: "Data, privacy, and security for text to speech"
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for text to speech in Speech Service. (temp)"
+description: "This document details issues for data, privacy, and security for text to speech in Speech Service."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 02/02/2021
 ---
 
-# Data, privacy, and security for text to speech (temp)
-
+# Data, privacy, and security for text to speech
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 This article provides details regarding how data provided by you is processed, used, and stored by Azure Speech in Foundry Tools text to speech. As an important reminder, you are responsible for your use and the implementation of this technology and are required to obtain all necessary permissions, including, if applicable, from voice and avatar talent (and, if applicable, users of your personal voice integration(s)) for the processing of their voice, image, likeness and/or other data to develop synthetic voices and/or avatars.

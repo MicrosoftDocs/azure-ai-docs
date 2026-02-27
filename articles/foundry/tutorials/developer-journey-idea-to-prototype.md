@@ -1,6 +1,6 @@
 ---
-title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent (temp)"
-description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry. (temp)"
+title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
+description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
 ms.date: 02/10/2026
@@ -11,8 +11,7 @@ ai-usage: ai-assisted
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.
 ---
 
-# Tutorial: Idea to prototype - Build and evaluate an enterprise agent (temp)
-
+# Tutorial: Idea to prototype - Build and evaluate an enterprise agent
 This tutorial covers the first stage of the Microsoft Foundry developer journey: from an initial idea to a working prototype. You build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Microsoft Foundry SDK.
 
 **Business scenario**: Create an AI assistant that helps employees by combining:

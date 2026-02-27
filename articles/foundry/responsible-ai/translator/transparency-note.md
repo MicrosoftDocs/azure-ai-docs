@@ -1,7 +1,7 @@
 ---
-title: "Azure Translator in Foundry Tools Transparency Note (temp)"
+title: "Azure Translator in Foundry Tools Transparency Note"
 titleSuffix: Foundry Tools
-description: "Azure Translator in Foundry Tools Responsible AI Basics, use cases, terms (temp)"
+description: "Azure Translator in Foundry Tools Responsible AI Basics, use cases, terms"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 05/12/2024
 ---
 
-# Azure Translator in Foundry Tools Transparency Note (temp)
-
+# Azure Translator in Foundry Tools Transparency Note
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 An artificial intelligence (AI) system includes not only the technology but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, what its capabilities and limitations are, and how to achieve the best performance. Microsoft Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system or share them with the people who will use or be affected by your system.  

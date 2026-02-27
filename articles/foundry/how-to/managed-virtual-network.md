@@ -1,19 +1,18 @@
 ---
-title: "Configure managed virtual network for Microsoft Foundry projects (preview) (temp)"
+title: "Configure managed virtual network for Microsoft Foundry projects (preview)"
 ms.service: azure-ai-foundry
 ms.date: 02/25/2026
 ms.reviewer: meerakurup
 ms.author: jburchel
 author: jonburchel
-description: "Secure your Microsoft Foundry projects with managed virtual networks. Learn to enable outbound isolation and private endpoints for enhanced data protection. (temp)"
+description: "Secure your Microsoft Foundry projects with managed virtual networks. Learn to enable outbound isolation and private endpoints for enhanced data protection."
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
 ---
 
-# Configure managed virtual network for Microsoft Foundry projects (temp)
-
+# Configure managed virtual network for Microsoft Foundry projects
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 This article explains how to set up a managed virtual network for your Foundry resource. Managed virtual network streamlines and automates network isolation for your Foundry resource by provisioning a Microsoft‑managed virtual network that secures the Agents service underlying compute within your Foundry projects. When enabled, Agents outbound network traffic is secured by this managed network boundary, and the isolation mode you choose governs all the traffic. You can create the required private endpoints to dependent Azure services and apply the necessary network rules, giving you a secure default without requiring you to build or maintain your own virtual network. This managed network restricts what your Agents can access, helping prevent data exfiltration while still allowing connectivity to approved Azure resources. 

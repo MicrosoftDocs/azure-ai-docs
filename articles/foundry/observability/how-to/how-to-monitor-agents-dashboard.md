@@ -1,6 +1,6 @@
 ---
-title: "Monitor agents with the Agent Monitoring Dashboard (temp)"
-description: "Learn how to monitor operational metrics, token usage, latency, and evaluation results for AI agents in Microsoft Foundry by using the Agent Monitoring Dashboard and Application Insights. (temp)"
+title: "Monitor agents with the Agent Monitoring Dashboard"
+description: "Learn how to monitor operational metrics, token usage, latency, and evaluation results for AI agents in Microsoft Foundry by using the Agent Monitoring Dashboard and Application Insights."
 #customer intent: As an AI operations manager, I want to monitor the performance of my AI agents in real time so that I can ensure optimal functionality and compliance.
 author: lgayhardt
 ms.author: lagayhar
@@ -12,8 +12,7 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Monitor agents with the Agent Monitoring Dashboard (preview) (temp)
-
+# Monitor agents with the Agent Monitoring Dashboard (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use the Agent Monitoring Dashboard in Microsoft Foundry to track operational metrics and evaluation results for your agents. This dashboard helps you understand token usage, latency, success rates, and evaluation outcomes for production traffic.

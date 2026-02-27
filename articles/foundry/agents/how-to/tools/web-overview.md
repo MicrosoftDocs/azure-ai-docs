@@ -1,6 +1,6 @@
 ---
-title: "Overview of web grounding capabilities in Foundry (temp)"
-description: "Learn how to choose the right web grounding tool for your Microsoft Foundry agents. Compare Web Search, Grounding with Bing Search, and Bing Custom Search. (temp)"
+title: "Overview of web grounding capabilities in Foundry"
+description: "Learn how to choose the right web grounding tool for your Microsoft Foundry agents. Compare Web Search, Grounding with Bing Search, and Bing Custom Search."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -15,8 +15,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer building AI agents, I want to understand the differences between web grounding tools so that I can choose the right one for my scenario.
 ---
 
-# Web grounding tools overview (temp)
-
+# Web grounding tools overview
 Web grounding tools in Microsoft Foundry Agent Service connect your agents to real-time public web data, overcoming the knowledge cutoff that limits large language models. For example, you can ask questions such as "what is the top AI news today" and receive current, cited answers.
 
 ## How web grounding works

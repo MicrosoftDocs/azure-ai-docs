@@ -1,6 +1,6 @@
 ---
-title: "Guardrails and controls overview in Microsoft Foundry (temp)"
-description: "Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions. (temp)"
+title: "Guardrails and controls overview in Microsoft Foundry"
+description: "Learn about safety and security guardrails that can be applied to models and agents in Microsoft Foundry, including risks, intervention points, and response actions."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
@@ -12,8 +12,7 @@ ms.custom: azure-ai-guardrails
 # customer intent: As a developer, I want to understand how guardrails work in Microsoft Foundry so that I can implement appropriate safety measures for my models and agents.
 ---
 
-# Guardrails and controls overview in Microsoft Foundry (temp)
-
+# Guardrails and controls overview in Microsoft Foundry
 Microsoft Foundry provides safety and security guardrails that you can apply to core models and agents. Agent guardrails are in preview. Guardrails consist of a set of controls. The controls define a risk to be detected, intervention points to scan for the risk, and the response action to take in the model or agent when the risk is detected. 
 
 A **guardrail** is a named collection of **controls**. Variations in API configurations and application design might affect completions and thus filtering behavior.

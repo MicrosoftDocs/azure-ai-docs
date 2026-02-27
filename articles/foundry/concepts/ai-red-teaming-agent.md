@@ -1,6 +1,6 @@
 ---
-title: "AI Red Teaming Agent (temp)"
-description: "This article provides conceptual overview of the AI Red Teaming Agent. (temp)"
+title: "AI Red Teaming Agent"
+description: "This article provides conceptual overview of the AI Red Teaming Agent."
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 02/25/2026
@@ -11,8 +11,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# AI Red Teaming Agent (preview) (temp)
-
+# AI Red Teaming Agent (preview)
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 The AI Red Teaming Agent is a powerful tool designed to help organizations proactively find safety risks associated with generative AI systems during design and development of generative AI models and applications.

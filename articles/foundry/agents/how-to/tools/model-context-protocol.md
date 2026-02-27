@@ -1,6 +1,6 @@
 ---
-title: "Connect to MCP Server Endpoints for agents (temp)"
-description: "Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data. (temp)"
+title: "Connect to MCP Server Endpoints for agents"
+description: "Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,8 +15,7 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 #CustomerIntent: As a developer, I want to connect my Foundry agent to external MCP servers so that I can extend agent capabilities with third-party tools.
 ---
 
-# Connect agents to Model Context Protocol servers (temp)
-
+# Connect agents to Model Context Protocol servers
 Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers by using the MCP tool. This extends agent capabilities with external tools and data sources. By connecting to remote MCP server endpoints, your agents can access tools hosted by developers and organizations that MCP-compatible clients like Foundry Agent Service can use.
 
 MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.

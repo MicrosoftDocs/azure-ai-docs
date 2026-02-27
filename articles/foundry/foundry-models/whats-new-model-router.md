@@ -1,6 +1,6 @@
 ---
-title: "What's new in model router in Microsoft Foundry Models? (temp)"
-description: "Learn about the latest news and features updates for Azure model router. (temp)"
+title: "What's new in model router in Microsoft Foundry Models?"
+description: "Learn about the latest news and features updates for Azure model router."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# What's new in model router in Microsoft Foundry Models? (temp)
-
+# What's new in model router in Microsoft Foundry Models?
 This article provides a summary of the latest releases and major documentation updates for Azure model router, including new supported models, routing features, and deployment options.
 
 ## November 2025

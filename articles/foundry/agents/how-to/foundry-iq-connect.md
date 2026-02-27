@@ -1,6 +1,6 @@
 ---
-title: "Connect Agents to Foundry IQ Knowledge Bases (temp)"
-description: "Connect Foundry Agent Service to a Foundry IQ knowledge base (Azure AI Search) for grounded retrieval and citation-backed responses. (temp)"
+title: "Connect Agents to Foundry IQ Knowledge Bases"
+description: "Connect Foundry Agent Service to a Foundry IQ knowledge base (Azure AI Search) for grounded retrieval and citation-backed responses."
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
@@ -12,8 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Connect a Foundry IQ knowledge base to Foundry Agent Service (temp)
-
+# Connect a Foundry IQ knowledge base to Foundry Agent Service
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to connect a knowledge base in Foundry IQ to an agent in Foundry Agent Service. The connection uses the [Model Context Protocol (MCP)](./tools/model-context-protocol.md) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:

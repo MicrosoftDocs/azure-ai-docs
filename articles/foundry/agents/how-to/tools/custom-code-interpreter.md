@@ -1,6 +1,6 @@
 ---
-title: "Configure a custom code interpreter for agents (temp)"
-description: "Configure a custom MCP-based code interpreter for Microsoft Foundry agents using Azure Container Apps Dynamic Sessions. Customize Python packages and compute resources. (temp)"
+title: "Configure a custom code interpreter for agents"
+description: "Configure a custom MCP-based code interpreter for Microsoft Foundry agents using Azure Container Apps Dynamic Sessions. Customize Python packages and compute resources."
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,8 +13,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Custom code interpreter tool for agents (preview) (temp)
-
+# Custom code interpreter tool for agents (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 A custom code interpreter gives you full control over the runtime environment for agent-generated Python code. You can configure custom Python packages, compute resources, and [Azure Container Apps environment](/azure/container-apps/environment) settings. The code interpreter container exposes a Model Context Protocol (MCP) server.

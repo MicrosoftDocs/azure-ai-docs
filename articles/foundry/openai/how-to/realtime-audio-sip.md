@@ -1,6 +1,6 @@
 ---
-title: "Use the GPT Realtime API via SIP (temp)"
-description: "Learn how to use the GPT Realtime API for speech and audio via SIP. (temp)"
+title: "Use the GPT Realtime API via SIP"
+description: "Learn how to use the GPT Realtime API for speech and audio via SIP."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai

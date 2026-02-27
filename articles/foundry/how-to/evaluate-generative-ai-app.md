@@ -1,6 +1,6 @@
 ---
-title: "Evaluate Generative AI Models and Apps with Microsoft Foundry (temp)"
-description: "Evaluate your generative AI models and applications by using Microsoft Foundry. (temp)"
+title: "Evaluate Generative AI Models and Apps with Microsoft Foundry"
+description: "Evaluate your generative AI models and applications by using Microsoft Foundry."
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.custom:
@@ -14,8 +14,7 @@ author: lgayhardt
 # customer intent: As a developer, I want to evaluate my generative AI models and applications using Microsoft Foundry so I can assess their performance and safety with comprehensive metrics.
 ---
 
-# Evaluate generative AI models and applications by using Microsoft Foundry (temp)
-
+# Evaluate generative AI models and applications by using Microsoft Foundry
 To thoroughly assess the performance of your generative AI models and applications on a substantial dataset, initiate an evaluation process. During this evaluation, the model or application is tested with the given dataset, and its performance is measured using mathematical metrics and AI-assisted metrics. This evaluation run provides comprehensive insights into the application's capabilities and limitations.
 
 Use the evaluation functionality in the Microsoft Foundry portal, a platform that offers tools and features for assessing the performance and safety of generative AI models. In the Foundry portal, log, view, and analyze detailed evaluation metrics.

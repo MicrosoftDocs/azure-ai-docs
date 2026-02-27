@@ -1,11 +1,11 @@
 ---
-title: "Authentication and authorization in Microsoft Foundry (temp)"
+title: "Authentication and authorization in Microsoft Foundry"
 ms.service: azure-ai-foundry
 ms.date: 02/23/2026
 ms.reviewer: meerakurup
 ms.author: jburchel
 author: jonburchel
-description: "Learn how to authenticate and authorize access in Microsoft Foundry using Microsoft Entra ID and API keys. Explore RBAC, identity types, and best practices. (temp)"
+description: "Learn how to authenticate and authorize access in Microsoft Foundry using Microsoft Entra ID and API keys. Explore RBAC, identity types, and best practices."
 #customer intent: As an IT admin, I want to understand how to configure authentication and authorization in Microsoft Foundry so that I can secure access to resources and operations.
 ms.topic: concept-article
 ms.custom:
@@ -14,8 +14,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Authentication and authorization in Microsoft Foundry (temp)
-
+# Authentication and authorization in Microsoft Foundry
 Authentication and authorization in Microsoft Foundry control how principals prove identity and gain permission to perform operations. Foundry divides operations into control plane (resource management) and data plane (runtime usage), each with its own authentication and role-based access control (RBAC) surface.
 
 Foundry supports two authentication methods: Microsoft Entra ID and API keys. Microsoft Entra ID enables conditional access, managed identities, and granular RBAC. API keys remain available for rapid prototyping but lack per-user traceability. This article compares these methods, maps identities to roles, and describes common least privilege scenarios.

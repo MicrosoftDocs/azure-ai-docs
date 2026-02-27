@@ -1,7 +1,7 @@
 ---
-title: "Transparency note - Sentiment Analysis feature of Azure Language in Foundry Tools (temp)"
+title: "Transparency note - Sentiment Analysis feature of Azure Language in Foundry Tools"
 titleSuffix: Foundry Tools
-description: "The Sentiment Analysis feature of Azure Language in Foundry Tools evaluates text and returns sentiment scores and labels for each sentence. This is useful for detecting positive, neutral and negative sentiment in social media, customer reviews, discussion forums and other product and service scenarios. (temp)"
+description: "The Sentiment Analysis feature of Azure Language in Foundry Tools evaluates text and returns sentiment scores and labels for each sentence. This is useful for detecting positive, neutral and negative sentiment in social media, customer reviews, discussion forums and other product and service scenarios."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 08/12/2022
 ---
 
-# Transparency note for Sentiment Analysis (temp)
-
+# Transparency note for Sentiment Analysis
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a transparency note?

@@ -1,6 +1,6 @@
 ---
-title: "Deploy a hosted agent (temp)"
-description: "Deploy your containerized agent code to Foundry Agent Service using the Azure Developer CLI or Python SDK. (temp)"
+title: "Deploy a hosted agent"
+description: "Deploy your containerized agent code to Foundry Agent Service using the Azure Developer CLI or Python SDK."
 author: aahill
 ms.author: aahi
 ms.date: 02/19/2026
@@ -12,8 +12,7 @@ ms.custom: references_regions
 ai-usage: ai-assisted
 ---
 
-# Deploy a hosted agent (temp)
-
+# Deploy a hosted agent
 This article shows you how to deploy a containerized agent to Foundry Agent Service. Use hosted agents when you need to run custom agent code built with frameworks like LangGraph, Microsoft Agent Framework, or your own implementation.
 
 ## Prerequisites

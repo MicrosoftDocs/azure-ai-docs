@@ -1,6 +1,6 @@
 ---
-title: "Role-based access control for Microsoft Foundry (temp)"
-description: "This article introduces role-based access control in Microsoft Foundry portal. (temp)"
+title: "Role-based access control for Microsoft Foundry"
+description: "This article introduces role-based access control in Microsoft Foundry portal."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
@@ -15,8 +15,7 @@ author: sdgilley
 ai-usage: ai-assisted
 ---
 
-# Role-based access control for Microsoft Foundry (temp)
-
+# Role-based access control for Microsoft Foundry
 In this article, you learn core role-based access control (RBAC) concepts for Microsoft Foundry, including scopes, built-in roles, and common enterprise assignment patterns.  
 
 > [!TIP]

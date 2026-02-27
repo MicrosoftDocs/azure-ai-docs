@@ -1,6 +1,6 @@
 ---
-title: "What is Memory? (temp)"
-description: "Learn what memory is in Microsoft Foundry Agent Service (preview), how it works, and how to use long-term memories safely. (temp)"
+title: "What is Memory?"
+description: "Learn what memory is in Microsoft Foundry Agent Service (preview), how it works, and how to use long-term memories safely."
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
@@ -12,8 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Memory in Microsoft Foundry Agent Service (preview) (temp)
-
+# Memory in Microsoft Foundry Agent Service (preview)
 > [!IMPORTANT]
 > Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 

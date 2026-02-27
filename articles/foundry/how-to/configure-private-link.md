@@ -1,7 +1,7 @@
 ---
 
-title: "How to configure a private link for Microsoft Foundry projects (temp)"
-description: "Learn how to configure a private link for Microsoft Foundry projects. A private link is used to secure communication with the Microsoft Foundry. (temp)"
+title: "How to configure a private link for Microsoft Foundry projects"
+description: "Learn how to configure a private link for Microsoft Foundry projects. A private link is used to secure communication with the Microsoft Foundry."
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom:
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 ---
 
-# How to configure a private link for Microsoft Foundry (Foundry projects) (temp)
-
+# How to configure a private link for Microsoft Foundry (Foundry projects)
 > [!TIP]
 > An alternate hub-focused version of this article is available: [How to configure a private link for a Microsoft Foundry hub](../../foundry-classic/how-to/hub-configure-private-link.md).
 

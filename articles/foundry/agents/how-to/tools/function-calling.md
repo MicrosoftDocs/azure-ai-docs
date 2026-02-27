@@ -1,6 +1,6 @@
 ---
-title: "Use function calling with Microsoft Foundry agents (temp)"
-description: "Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, TypeScript, or REST and return outputs to the agent. (temp)"
+title: "Use function calling with Microsoft Foundry agents"
+description: "Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, TypeScript, or REST and return outputs to the agent."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-function-calling-new
 ---
 
-# Use function calling with Microsoft Foundry agents (temp)
-
+# Use function calling with Microsoft Foundry agents
 Microsoft Foundry agents support function calling, which lets you extend agents with custom capabilities. Define a function with its name, parameters, and description, and the agent can request your app to call it. Your app executes the function and returns the output. The agent then uses the result to continue the conversation with accurate, real-time data from your systems.
 
 > [!IMPORTANT]

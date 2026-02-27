@@ -1,7 +1,7 @@
 ---
-title: "Data and privacy for custom text classification (temp)"
+title: "Data and privacy for custom text classification"
 titleSuffix: Foundry Tools
-description: "Learn about data and privacy for Custom text classification. (temp)"
+description: "Learn about data and privacy for Custom text classification."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 04/26/2023
 ---
 
-# Data and privacy for Custom text classification (temp)
-
+# Data and privacy for Custom text classification
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides high-level details about how data is processed by custom text classification. Remember that you're responsible for your use and the implementation of this technology, which includes complying with all laws and regulations that apply to you. For example, it's your responsibility to:

@@ -1,6 +1,6 @@
 ---
-title: "How to get started with an AI template (temp)"
-description: "Find, explore, and deploy AI solution templates from the Foundry portal to accelerate your development. (temp)"
+title: "How to get started with an AI template"
+description: "Find, explore, and deploy AI solution templates from the Foundry portal to accelerate your development."
 keywords: ai templates, solution accelerators, foundry templates, code samples
 ms.service: azure-ai-foundry
 ms.custom:
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 #customer intent: As a developer, I want to jump start my journey with an AI template.
 ---
 
-# Get started with an AI template (temp)
-
+# Get started with an AI template
 In this article, you find, explore, and deploy AI solution templates from the Foundry portal.
 
 AI solution templates are prebuilt, task-specific templates that include customizable code samples, preintegrated Azure services, and GitHub-hosted quick-start guides. Use templates to skip boilerplate setup and focus on building solutions for use cases like voice agents, release management, and data unification.

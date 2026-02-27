@@ -1,6 +1,6 @@
 ---
-title: "Optimize model cost and performance (temp)"
-description: "Use Ask AI in Microsoft Foundry to detect cost spikes, switch to cost-efficient models, evaluate quality, and track performance improvements. (temp)"
+title: "Optimize model cost and performance"
+description: "Use Ask AI in Microsoft Foundry to detect cost spikes, switch to cost-efficient models, evaluate quality, and track performance improvements."
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 02/17/2026
@@ -11,8 +11,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Optimize model cost and performance (temp)
-
+# Optimize model cost and performance
 When your model or agent costs start increasing, use **Ask AI** (preview) to quickly diagnose issues, take action, and verify improvements. Ask AI is a built-in chat assistant that you can access from the toolbar in the Microsoft Foundry portal. For more information about Ask AI capabilities and limitations, see [Ask AI for help (preview)](../concepts/ask-ai.md).
 
 In this article, you identify cost spikes, switch to a cost-efficient model, and validate performance improvements by using the Foundry portal.

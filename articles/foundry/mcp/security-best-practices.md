@@ -1,6 +1,6 @@
 ---
-title: "Explore Foundry MCP Server best practices and security guidance (temp)"
-description: "Security guidance for Foundry MCP Server, including identity, RBAC, Conditional Access policies, network isolation, and data residency. (temp)"
+title: "Explore Foundry MCP Server best practices and security guidance"
+description: "Security guidance for Foundry MCP Server, including identity, RBAC, Conditional Access policies, network isolation, and data residency."
 keywords: mcp, foundry mcp server, security, entra id, rbac
 author: sdgilley
 ms.author: sgilley
@@ -11,8 +11,7 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Foundry MCP Server best practices and security guidance (temp)
-
+# Foundry MCP Server best practices and security guidance
 Microsoft Foundry MCP Server (preview) tools automate read and write operations across Foundry resources, including deployments, datasets, evaluations, monitoring, and analytics. This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools.
 
 In this article, you learn about:

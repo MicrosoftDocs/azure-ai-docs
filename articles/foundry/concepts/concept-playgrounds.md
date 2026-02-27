@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry Playgrounds (temp)"
-description: "Learn how to use Microsoft Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment. (temp)"
+title: "Microsoft Foundry Playgrounds"
+description: "Learn how to use Microsoft Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment."
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -17,8 +17,7 @@ ms.custom:
 #CustomerIntent: As a developer, I want to use Microsoft Foundry playgrounds for rapid prototyping and experimentation with AI models and agents so that I can validate ideas, test API behavior, and optimize prompts before writing production code.
 ---
 
-# Microsoft Foundry Playgrounds (temp)
-
+# Microsoft Foundry Playgrounds
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Microsoft Foundry playgrounds provide an on-demand, instant chat environment for rapid prototyping, API exploration, and technical validation. Use playgrounds to experiment with models and validate ideas before you commit a single line of production code.

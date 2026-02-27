@@ -1,6 +1,6 @@
 ---
-title: "Customer Copyright Commitment Required Mitigations (temp)"
-description: "Customer Copyright Commitment Required Mitigations for Azure OpenAI in Foundry Models (temp)"
+title: "Customer Copyright Commitment Required Mitigations"
+description: "Customer Copyright Commitment Required Mitigations for Azure OpenAI in Foundry Models"
 keywords: Code of Conduct for Azure OpenAI Service
 author: mrbullwinkle
 ms.author: mbullwin
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Customer Copyright Commitment Required Mitigations (temp)
-
+# Customer Copyright Commitment Required Mitigations
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 > [!NOTE]

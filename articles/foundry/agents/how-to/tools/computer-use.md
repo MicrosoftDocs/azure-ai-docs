@@ -1,6 +1,6 @@
 ---
-title: "Use the computer use tool for agents (temp)"
-description: "Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, and TypeScript SDK samples for Foundry Agent Service. (temp)"
+title: "Use the computer use tool for agents"
+description: "Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, and TypeScript SDK samples for Foundry Agent Service."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-computer-use
 ---
 
-# Use the computer use tool for agents (Preview) (temp)
-
+# Use the computer use tool for agents (Preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!WARNING]

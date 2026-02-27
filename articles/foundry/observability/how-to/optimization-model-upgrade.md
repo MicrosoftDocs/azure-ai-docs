@@ -1,6 +1,6 @@
 ---
-title: "Upgrade or switch models with Ask AI (temp)"
-description: "Learn how to use Ask AI in the Microsoft Foundry portal to detect deprecated models, evaluate alternatives, upgrade deployments, and update agents to newer model versions. (temp)"
+title: "Upgrade or switch models with Ask AI"
+description: "Learn how to use Ask AI in the Microsoft Foundry portal to detect deprecated models, evaluate alternatives, upgrade deployments, and update agents to newer model versions."
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 02/25/2026
@@ -11,8 +11,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer or AI engineer, I want to identify deprecated or outdated models and upgrade them so that my agents use the best available model version.
 ---
 
-# Upgrade or switch models with Ask AI (preview) (temp)
-
+# Upgrade or switch models with Ask AI (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use Ask AI — the built-in chat assistant in the Microsoft Foundry portal — to detect deprecated or outdated models, compare alternatives, and upgrade deployed models or agents to newer versions. Review upgrade recommendations, evaluate the new model, compare performance, and update your agent — all from the Ask AI chat panel.

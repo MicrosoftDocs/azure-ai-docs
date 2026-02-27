@@ -1,6 +1,6 @@
 ---
-title: "Connect an Azure AI Search index to Foundry agents (temp)"
-description: "Connect Azure AI Search indexes to Foundry agents for grounding responses with citations. Includes Python, C#, TypeScript, and REST samples. (temp)"
+title: "Connect an Azure AI Search index to Foundry agents"
+description: "Connect Azure AI Search indexes to Foundry agents for grounding responses with citations. Includes Python, C#, TypeScript, and REST samples."
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,8 +15,7 @@ zone_pivot_groups: selection-ai-search-tool
 # CustomerIntent: As a developer, I want to connect my Foundry agent to Azure AI Search so that I can ground responses in my proprietary content with citations.
 ---
 
-# Connect an Azure AI Search index to Foundry agents (temp)
-
+# Connect an Azure AI Search index to Foundry agents
 > [!TIP]
 > For a managed knowledge base experience, see [Foundry IQ](../foundry-iq-connect.md). For tool optimization, see [best practices](../../concepts/tool-best-practice.md).
 

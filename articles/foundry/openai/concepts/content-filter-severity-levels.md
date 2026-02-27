@@ -1,6 +1,6 @@
 ---
-title: "Harm categories and severity levels in Microsoft Foundry (temp)"
-description: "Learn about the harm categories and severity levels used by the content safety system in Microsoft Foundry to detect and filter harmful content. (temp)"
+title: "Harm categories and severity levels in Microsoft Foundry"
+description: "Learn about the harm categories and severity levels used by the content safety system in Microsoft Foundry to detect and filter harmful content."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
@@ -15,8 +15,7 @@ ms.custom:
 # customer intent: As a developer, I want to understand the harm categories and severity levels in Microsoft Foundry so that I can properly handle content filtering in my applications.
 ---
 
-# Harm categories and severity levels in Microsoft Foundry (temp)
-
+# Harm categories and severity levels in Microsoft Foundry
 Microsoft Foundry guardrails ensure that AI-generated outputs align with ethical guidelines and safety standards. The content filtering system classifies harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
 
 For an overview of how guardrails work, see [Guardrails and controls overview](../../guardrails/guardrails-overview.md).

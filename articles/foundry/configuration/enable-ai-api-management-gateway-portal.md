@@ -1,6 +1,6 @@
 ---
-title: "Configure AI Gateway in your Foundry resources (temp)"
-description: "Enable AI Gateway with Azure API Management to apply tokens-per-minute limits and token quotas to model deployments in Microsoft Foundry. (temp)"
+title: "Configure AI Gateway in your Foundry resources"
+description: "Enable AI Gateway with Azure API Management to apply tokens-per-minute limits and token quotas to model deployments in Microsoft Foundry."
 #customer intent: As an IT admin, I want to enforce token limits on AI model deployments so that I can prevent excessive usage and align with organizational policies.
 author: jonburchel
 ms.author: jburchel
@@ -12,8 +12,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Configure AI Gateway in your Foundry resources (temp)
-
+# Configure AI Gateway in your Foundry resources
 This article shows you how to enable AI Gateway for a Microsoft Foundry resource using the Foundry portal. AI Gateway uses Azure API Management behind the scenes to provide token limits, quotas, and governance for model deployments.
 
 ## Prerequisites

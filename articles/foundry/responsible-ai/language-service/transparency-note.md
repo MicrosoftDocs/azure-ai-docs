@@ -1,7 +1,7 @@
 ---
-title: "Transparency Note for Azure Language in Foundry Tools (temp)"
+title: "Transparency Note for Azure Language in Foundry Tools"
 titleSuffix: Foundry Tools
-description: "The Transparency note discusses Azure Language in Foundry Tools and the key considerations for making use of this technology responsibly. (temp)"
+description: "The Transparency note discusses Azure Language in Foundry Tools and the key considerations for making use of this technology responsibly."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 04/26/2023
 ---
 
-# Transparency Note for Azure Language in Foundry Tools (temp)
-
+# Transparency Note for Azure Language in Foundry Tools
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

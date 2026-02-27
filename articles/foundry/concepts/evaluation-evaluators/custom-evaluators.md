@@ -1,6 +1,6 @@
 ---
-title: "Custom Evaluators (temp)"
-description: "Learn how to create custom evaluators for your AI applications using code-based or prompt-based approaches. (temp)"
+title: "Custom Evaluators"
+description: "Learn how to create custom evaluators for your AI applications using code-based or prompt-based approaches."
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
@@ -15,8 +15,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Custom evaluators (temp)
-
+# Custom evaluators
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.

@@ -1,6 +1,6 @@
 ---
-title: "Agent development lifecycle (temp)"
-description: "Learn the agent development lifecycle in Microsoft Foundry, from creating and versioning to tracing, evaluation, publishing, and monitoring. (temp)"
+title: "Agent development lifecycle"
+description: "Learn the agent development lifecycle in Microsoft Foundry, from creating and versioning to tracing, evaluation, publishing, and monitoring."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,8 +13,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Agent development lifecycle (temp)
-
+# Agent development lifecycle
 The agent development lifecycle in Microsoft Foundry spans from initial creation through production monitoring. Following this lifecycle helps you build reliable agents, catch issues early, and ship with confidence. Use the Foundry portal or code to build, customize, and test your agent's behavior. Then iterate with tracing, evaluation, and monitoring to improve quality and reliability. When you're ready, publish your agent as an agent application to share it and integrate it into your apps.
 
 This article is for developers who want to build, test, and ship production-ready agents.

@@ -1,7 +1,7 @@
 ---
-title: "Use cases for Speech to text (temp)"
+title: "Use cases for Speech to text"
 titleSuffix: Foundry Tools
-description: "This Transparency Note discusses Speech to text and the key considerations for making use of this technology responsibly. (temp)"
+description: "This Transparency Note discusses Speech to text and the key considerations for making use of this technology responsibly."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 06/30/2021
 ---
 
-# Use cases for Speech to text (temp)
-
+# Use cases for Speech to text
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

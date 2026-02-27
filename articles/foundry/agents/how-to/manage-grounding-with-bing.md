@@ -1,6 +1,6 @@
 ---
-title: "Manage Grounding With Bing Access (temp)"
-description: "Learn how to manage Grounding with Bing in Microsoft Foundry and Azure. (temp)"
+title: "Manage Grounding With Bing Access"
+description: "Learn how to manage Grounding with Bing in Microsoft Foundry and Azure."
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
@@ -9,8 +9,7 @@ ms.topic: overview
 ms.date: 02/17/2026
 ---
 
-# Manage Grounding with Bing in Microsoft Foundry and Azure (temp)
-
+# Manage Grounding with Bing in Microsoft Foundry and Azure
 Grounding with Bing enables agents to retrieve and incorporate real-time public web data into model-generated responses. It supports summarization, question answering, conversational assistance, and other scenarios by using Grounding with Bing Search or Grounding with Bing Custom Search to fill knowledge gaps.
 
 Grounding is available across features in Foundry Agent Service and Azure AI Search. You might need to disable access to these features to meet compliance, privacy, or data governance requirements.

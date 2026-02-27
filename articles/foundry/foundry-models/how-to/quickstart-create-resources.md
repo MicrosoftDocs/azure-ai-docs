@@ -1,7 +1,7 @@
 ---
-title: "Create and configure resources for Microsoft Foundry Models (temp)"
+title: "Create and configure resources for Microsoft Foundry Models"
 titleSuffix: Microsoft Foundry
-description: "Learn how to get your environment ready with the Microsoft Foundry Models (temp)"
+description: "Learn how to get your environment ready with the Microsoft Foundry Models"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to

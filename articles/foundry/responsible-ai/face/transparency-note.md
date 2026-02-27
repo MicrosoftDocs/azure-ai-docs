@@ -1,7 +1,7 @@
 ---
-title: "Use cases for Face (temp)"
+title: "Use cases for Face"
 titleSuffix: Foundry Tools
-description: "Face Responsible AI Basics, use cases, terms (temp)"
+description: "Face Responsible AI Basics, use cases, terms"
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 06/21/2022
 ---
 
-# Use cases for Azure AI Face service (temp)
-
+# Use cases for Azure AI Face service
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

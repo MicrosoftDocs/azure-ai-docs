@@ -1,6 +1,6 @@
 ---
-title: "Use the image generation tool in Foundry Agent Service (preview) (temp)"
-description: "Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output. (temp)"
+title: "Use the image generation tool in Foundry Agent Service (preview)"
+description: "Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ms.author: aashcraft
 zone_pivot_groups: selection-image-generation
 ---
 
-# Use the image generation tool (preview) (temp)
-
+# Use the image generation tool (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!IMPORTANT] 

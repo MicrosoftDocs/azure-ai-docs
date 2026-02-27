@@ -1,6 +1,6 @@
 ---
-title: "Cloud Evaluation with the Microsoft Foundry SDK (temp)"
-description: "Run scalable evaluations for generative AI applications using the Microsoft Foundry SDK. Learn how to integrate evaluations into your development pipeline. (temp)"
+title: "Cloud Evaluation with the Microsoft Foundry SDK"
+description: "Run scalable evaluations for generative AI applications using the Microsoft Foundry SDK. Learn how to integrate evaluations into your development pipeline."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
@@ -15,8 +15,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# Run evaluations in the cloud by using the Microsoft Foundry SDK (temp)
-
+# Run evaluations in the cloud by using the Microsoft Foundry SDK
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset. 

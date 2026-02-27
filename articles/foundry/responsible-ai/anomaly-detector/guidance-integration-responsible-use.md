@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use with Anomaly Detector and Metrics Advisor (temp)"
+title: "Guidance for integration and responsible use with Anomaly Detector and Metrics Advisor"
 titleSuffix: Foundry Tools
-description: "Guidance for how to deploy the Anomaly Detector and Metrics Advisor responsibly, based on the knowledge and understanding from the team that created this product. (temp)"
+description: "Guidance for how to deploy the Anomaly Detector and Metrics Advisor responsibly, based on the knowledge and understanding from the team that created this product."
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: best-practice
 ms.date: 02/21/2024
 ---
 
-# Guidance for integration and responsible use with Anomaly Detector (temp)
-
+# Guidance for integration and responsible use with Anomaly Detector
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft works to help customers responsibly develop and deploy solutions that use Anomaly Detector. Our principled approach upholds personal agency and dignity by considering the AI system's fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations reflect our commitment to developing responsible AI.

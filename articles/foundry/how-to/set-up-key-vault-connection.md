@@ -1,6 +1,6 @@
 ---
-title: "Set up an Azure Key Vault Connection (temp)"
-description: "Learn how to securely connect your Azure Key Vault to Foundry. Follow step-by-step instructions to manage secrets and ensure seamless integration. (temp)"
+title: "Set up an Azure Key Vault Connection"
+description: "Learn how to securely connect your Azure Key Vault to Foundry. Follow step-by-step instructions to manage secrets and ensure seamless integration."
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 # zone_pivot_groups: set-up-key-vault
 ---
 
-# Set up an Azure Key Vault connection in Microsoft Foundry (temp)
-
+# Set up an Azure Key Vault connection in Microsoft Foundry
 If you don't set up a Key Vault connection, Microsoft Foundry stores connection details in a Microsoft-managed Key Vault outside your subscription. To manage your own secrets, connect your Azure Key Vault to Foundry. Before you begin, review the [limitations](#limitations) for Key Vault connections.
 
 Azure Key Vault is a cloud service for securely storing and accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, certificates, or cryptographic keys. For more information, see [About Azure Key Vault](/azure/key-vault/general/overview).

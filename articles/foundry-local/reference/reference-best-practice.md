@@ -1,7 +1,7 @@
 ---
-title: "Best practices and troubleshooting guide for Foundry Local (temp)"
+title: "Best practices and troubleshooting guide for Foundry Local"
 titleSuffix: Foundry Local
-description: "Guidance on best practices and troubleshooting for Foundry Local. (temp)"
+description: "Guidance on best practices and troubleshooting for Foundry Local."
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -14,8 +14,7 @@ ms.reviewer: maanavd
 ai-usage: ai-assisted
 ---
 
-# Best practices and troubleshooting guide for Foundry Local (temp)
-
+# Best practices and troubleshooting guide for Foundry Local
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 This article lists best practices and troubleshooting tips for Foundry Local.
 

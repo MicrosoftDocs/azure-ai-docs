@@ -1,7 +1,7 @@
 ---
-title: "Data and privacy for Question Answering (temp)"
+title: "Data and privacy for Question Answering"
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for question answering. (temp)"
+description: "This document details issues for data, privacy, and security for question answering."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 09/29/2021
 ---
 
-# Data and privacy for question answering (temp)
-
+# Data and privacy for question answering
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides some high level details regarding how data is processed by question answering. Its important to remember that you are responsible for your use and the implementation of this technology, including complying with all applicable laws and regulations that apply to you. For example, it's your responsibility to:

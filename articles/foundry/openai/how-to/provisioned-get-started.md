@@ -1,6 +1,6 @@
 ---
-title: "Get started with provisioned deployments in Microsoft Foundry (temp)"
-description: "Learn how to create and configure provisioned throughput deployments, verify quota, handle high utilization, and run benchmarks in Microsoft Foundry. (temp)"
+title: "Get started with provisioned deployments in Microsoft Foundry"
+description: "Learn how to create and configure provisioned throughput deployments, verify quota, handle high utilization, and run benchmarks in Microsoft Foundry."
 ai-usage: ai-assisted
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -18,8 +18,7 @@ recommendations: false
 #customerIntent: As a developer, I want to create and configure provisioned deployments so I can optimize performance and throughput for my AI applications.
 ---
 
-# Get started with provisioned deployments in Microsoft Foundry (temp)
-
+# Get started with provisioned deployments in Microsoft Foundry
 The following guide walks you through key steps in creating a provisioned deployment with your Microsoft Foundry resource. For more details on the concepts discussed here, see:
 * [Foundry Provisioned Throughput Onboarding Guide](./provisioned-throughput-onboarding.md)
 * [Foundry Provisioned Throughput Concepts](../concepts/provisioned-throughput.md) 

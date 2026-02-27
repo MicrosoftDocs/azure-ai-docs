@@ -1,6 +1,6 @@
 ---
-title: "Build a workflow in Microsoft Foundry (temp)"
-description: "Build workflows in Microsoft Foundry to orchestrate AI agents with visual logic, branching, and Power Fx formulas. Create intelligent automation without writing code. (temp)"
+title: "Build a workflow in Microsoft Foundry"
+description: "Build workflows in Microsoft Foundry to orchestrate AI agents with visual logic, branching, and Power Fx formulas. Create intelligent automation without writing code."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 #customer intent: As a developer, I want to learn how to build a workflow so that I can solve real-world problems collaboratively.
 ---
 
-# Build a workflow in Microsoft Foundry (temp)
-
+# Build a workflow in Microsoft Foundry
 Workflows are UI-based tools in Microsoft Foundry. Use them to create declarative, predefined sequences of actions that orchestrate agents and business logic in a visual builder.
 
 Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multifaceted tasks. By orchestrating multiple agents, each with specialized skills or roles, you can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.

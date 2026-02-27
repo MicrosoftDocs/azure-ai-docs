@@ -1,6 +1,6 @@
 ---
-title: "Image prompt engineering techniques (temp)"
-description: "Learn how to better engineer image prompts for vision-enabled chat models. (temp)"
+title: "Image prompt engineering techniques"
+description: "Learn how to better engineer image prompts for vision-enabled chat models."
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Image prompt engineering techniques (temp)
-
+# Image prompt engineering techniques
 To unlock the full potential of vision-enabled chat models, it's essential to tailor the prompts to your specific needs. Here are some guidelines to enhance the accuracy and efficiency of your prompts.
 
 > [!NOTE]

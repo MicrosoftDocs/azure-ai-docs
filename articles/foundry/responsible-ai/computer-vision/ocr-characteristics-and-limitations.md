@@ -1,7 +1,7 @@
 ---
-title: "Capabilities and limitations of optical character recognition (OCR) - Azure Vision in Foundry Tools (temp)"
+title: "Capabilities and limitations of optical character recognition (OCR) - Azure Vision in Foundry Tools"
 titleSuffix: Foundry Tools
-description: "Characteristics and limitations for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure Vision in Foundry Tools API. (temp)"
+description: "Characteristics and limitations for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure Vision in Foundry Tools API."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 10/15/2025
 ---
 
-# Capabilities and limitations of optical character recognition (temp)
-
+# Capabilities and limitations of optical character recognition
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 In this section, we'll review what accuracy means for OCR and how to assess it for your context.

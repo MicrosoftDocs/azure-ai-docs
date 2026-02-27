@@ -1,6 +1,6 @@
 ---
-title: "System message design for Azure OpenAI (temp)"
-description: "Learn how system messages shape Azure OpenAI chat responses, with best practices for control, safety, and consistency. (temp)"
+title: "System message design for Azure OpenAI"
+description: "Learn how system messages shape Azure OpenAI chat responses, with best practices for control, safety, and consistency."
 author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: azure-ai-foundry
@@ -16,8 +16,7 @@ ms.custom:
 
 ---
 
-# System message design (temp)
-
+# System message design
 System messages help you steer an Azure OpenAI chat model toward the behavior, tone, and output format you want. This article explains what system messages are, how they affect responses, and how to design them for consistency and safety.
 
 ## What this article covers

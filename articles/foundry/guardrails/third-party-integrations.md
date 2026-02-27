@@ -1,6 +1,6 @@
 ---
-title: "Integrate third-party guardrails with Microsoft Foundry (temp)"
-description: "Learn how to connect external safety solutions to AI models and agents in Microsoft Foundry using third-party integrations. (temp)"
+title: "Integrate third-party guardrails with Microsoft Foundry"
+description: "Learn how to connect external safety solutions to AI models and agents in Microsoft Foundry using third-party integrations."
 ms.date: 02/24/2026
 ms.custom: ai-assisted, references_regions
 ms.author: pafarley
@@ -10,8 +10,7 @@ ms.topic: how-to
 
 ---
 
-# Integrate third-party guardrails (temp)
-
+# Integrate third-party guardrails
 Microsoft Foundry supports third-party safety and security integrations. You can connect external solutions to your AI models and agents at runtime to enhance Foundry Guardrails & Controls with best-in-class security capabilities from trusted partners.
 
 ## Prerequisites

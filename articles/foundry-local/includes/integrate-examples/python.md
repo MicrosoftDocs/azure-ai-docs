@@ -39,7 +39,7 @@ Copy-and-paste the following code into a Python file named `app.py`:
 import openai
 from foundry_local import FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded (temp)
+# By using an alias, the most suitable model will be downloaded
 # to your end-user's device.
 alias = "qwen2.5-0.5b"
 

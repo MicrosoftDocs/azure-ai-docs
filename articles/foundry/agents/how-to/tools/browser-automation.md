@@ -1,6 +1,6 @@
 ---
-title: "Automate browser tasks with Foundry agents (temp)"
-description: "Automate web browsing tasks with the Browser Automation tool in Microsoft Foundry agents. Create isolated Playwright sessions for navigation and form filling. (temp)"
+title: "Automate browser tasks with Foundry agents"
+description: "Automate web browsing tasks with the Browser Automation tool in Microsoft Foundry agents. Create isolated Playwright sessions for navigation and form filling."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,8 +15,7 @@ zone_pivot_groups: selection-browser-tool
 #CustomerIntent: As a developer building AI agents, I want to automate web browsing tasks so that my agents can interact with external websites and extract information.
 ---
 
-# Automate browser tasks with the Browser Automation tool (preview) (temp)
-
+# Automate browser tasks with the Browser Automation tool (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 This article explains how to configure and use the Browser Automation tool with Foundry agents to automate web browsing workflows.

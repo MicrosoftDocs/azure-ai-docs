@@ -1,7 +1,7 @@
 ---
-title: "Characteristics and limitations for using custom text classification (temp)"
+title: "Characteristics and limitations for using custom text classification"
 titleSuffix: Foundry Tools
-description: "Learn about characteristics and limitations for using custom text classification. (temp)"
+description: "Learn about characteristics and limitations for using custom text classification."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 04/26/2023
 ---
 
-# Characteristics and limitations for using custom text classification (temp)
-
+# Characteristics and limitations for using custom text classification
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Performance of custom text classification models will vary based on the scenario and input data. The following sections are designed to help you understand key concepts about performance and evaluation of custom text classification models.

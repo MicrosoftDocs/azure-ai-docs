@@ -1,7 +1,7 @@
 ---
-title: "Data, privacy, and security for Azure Translator in Foundry Tools (temp)"
+title: "Data, privacy, and security for Azure Translator in Foundry Tools"
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for Azure Translator in Foundry Tools (temp)"
+description: "This document details issues for data, privacy, and security for Azure Translator in Foundry Tools"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,8 +11,7 @@ ms.date: 05/12/2024
 ---
 
 
-# Data, privacy, and security for Azure Translator in Foundry Tools (temp)
-
+# Data, privacy, and security for Azure Translator in Foundry Tools
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides some high-level details regarding how Azure Translator in Foundry Tools processes data provided by customers.

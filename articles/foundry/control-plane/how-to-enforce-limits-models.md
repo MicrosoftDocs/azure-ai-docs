@@ -1,6 +1,6 @@
 ---
-title: "Enforce Token Limits for Models (temp)"
-description: "Use Foundry Control Plane integration with an AI gateway to apply limits for model inference, including token limits. (temp)"
+title: "Enforce Token Limits for Models"
+description: "Use Foundry Control Plane integration with an AI gateway to apply limits for model inference, including token limits."
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
@@ -11,8 +11,7 @@ ms.date: 01/06/2026
 ai-usage: ai-assisted
 ---
 
-# Enforce token limits for models (temp)
-
+# Enforce token limits for models
 Microsoft Foundry Control Plane enforces tokens-per-minute (TPM) rate limits and total token quotas for model deployments at the project scope. This enforcement prevents runaway token consumption and aligns usage with organizational guardrails. Foundry Control Plane integrates with AI gateways to provide advanced policy enforcement for models.
 
 This article explains how to configure token rate limiting and token quotas.

@@ -1,7 +1,7 @@
 ---
-title: "Data and privacy for custom NER (temp)"
+title: "Data and privacy for custom NER"
 titleSuffix: Foundry Tools
-description: "Data and privacy for custom named entity recognition (temp)"
+description: "Data and privacy for custom named entity recognition"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 09/29/2021
 ---
 
-# Data and privacy for custom named entity recognition (temp)
-
+# Data and privacy for custom named entity recognition
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides some high-level details regarding how data is processed by custom named entity recognition (NER). You're responsible for how you use and implement this technology, including complying with all laws and regulations that apply to you. For example, it's your responsibility to:

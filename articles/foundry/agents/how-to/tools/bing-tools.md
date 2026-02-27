@@ -1,6 +1,6 @@
 ---
-title: "Use Grounding with Bing Search tools with the agents API (temp)"
-description: "Learn how to use Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools to ground agent responses with web data. (temp)"
+title: "Use Grounding with Bing Search tools with the agents API"
+description: "Learn how to use Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools to ground agent responses with web data."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-bing-grounding-new
 ---
 
-# Grounding agents with Bing Search tools (temp)
-
+# Grounding agents with Bing Search tools
 Traditional language models work with a knowledge cutoff. They can't access new information beyond a fixed point in time. By using Grounding with Bing Search and Grounding with Bing Custom Search (preview), your agents can incorporate real-time public web data when generating responses. By using these tools, you can ask questions such as "what is the top AI news today".
 
 The grounding process involves several key steps:

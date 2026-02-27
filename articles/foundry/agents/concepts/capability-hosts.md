@@ -1,6 +1,6 @@
 ---
-title: "Capability hosts for Foundry Agent Service (temp)"
-description: "Learn how capability hosts route agent data to Microsoft-managed or your own Azure resources, and how to configure and troubleshoot them. (temp)"
+title: "Capability hosts for Foundry Agent Service"
+description: "Learn how capability hosts route agent data to Microsoft-managed or your own Azure resources, and how to configure and troubleshoot them."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,8 +16,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Capability hosts (temp)
-
+# Capability hosts
 > [!NOTE]
 > Updating capability hosts is not supported. To modify a capability host, you must delete the existing one and recreate it with the new configuration.
 

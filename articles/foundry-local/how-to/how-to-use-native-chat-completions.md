@@ -1,7 +1,7 @@
 ---
-title: "Use native chat completions (temp)"
+title: "Use native chat completions"
 titleSuffix: Foundry Local
-description: "This article provides instructions on how to use native chat completions API in Foundry Local. (temp)"
+description: "This article provides instructions on how to use native chat completions API in Foundry Local."
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -14,8 +14,7 @@ reviewer: samuel100
 ai-usage: ai-assisted
 ---
     
-# Use Foundry Local native chat completions API (temp)
-
+# Use Foundry Local native chat completions API
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 The native chat completions API enables you to run chat completions directly in-process, without starting a REST web server.

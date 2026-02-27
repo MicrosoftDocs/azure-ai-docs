@@ -54,7 +54,7 @@ The `FoundryLocalManager` class provides methods to manage models, cache, and th
 ```python
 from foundry_local import FoundryLocalManager
 
-# Initialize and optionally bootstrap with a model (temp)
+# Initialize and optionally bootstrap with a model
 manager = FoundryLocalManager(alias_or_model_id=None, bootstrap=True)
 ```
 

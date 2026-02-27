@@ -1,6 +1,6 @@
 ---
-title: "How to use model router for Microsoft Foundry (temp)"
-description: "Learn how to use the model router in Azure OpenAI to select the best model for your task. (temp)"
+title: "How to use model router for Microsoft Foundry"
+description: "Learn how to use the model router in Azure OpenAI to select the best model for your task."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Use model router for Microsoft Foundry (temp)
-
+# Use model router for Microsoft Foundry
 Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md).
 
 Use model router through the Chat Completions API like you'd use a single base model such as GPT-4. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).

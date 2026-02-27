@@ -1,6 +1,6 @@
 ---
-title: "Hosted agents in Foundry Agent Service (preview) (temp)"
-description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability. (temp)"
+title: "Hosted agents in Foundry Agent Service (preview)"
+description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
 ms.date: 02/19/2026
@@ -12,8 +12,7 @@ ms.custom: references_regions, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# What are hosted agents? (temp)
-
+# What are hosted agents?
 When you build agentic applications by using open-source frameworks, you typically manage containerization, web server setup, security integration, memory persistence, infrastructure scaling, data transmission, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
 > [!IMPORTANT]

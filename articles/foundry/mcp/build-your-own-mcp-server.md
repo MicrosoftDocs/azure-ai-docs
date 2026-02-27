@@ -1,7 +1,7 @@
 ---
-title: "Build and register a Model Context Protocol (MCP) server (temp)"
+title: "Build and register a Model Context Protocol (MCP) server"
 ms.reviewer: samuelzhang
-description: "Learn how to build a custom MCP server using Azure Functions, register it in your organizational tool catalog, and connect it to Foundry Agent Service. (temp)"
+description: "Learn how to build a custom MCP server using Azure Functions, register it in your organizational tool catalog, and connect it to Foundry Agent Service."
 keywords: Model Context Protocol, MCP server, Azure Functions, Azure API Center, tool catalog, Foundry Agent Service
 #customer intent: As a developer, I want to build a custom MCP server using Azure Functions so that I can integrate internal APIs with Foundry Agent Service.
 author: jonburchel
@@ -13,8 +13,7 @@ ai-usage: ai-assisted
 ms.custom: ai-assisted
 ---
 
-# Build and register a Model Context Protocol (MCP) server (temp)
-
+# Build and register a Model Context Protocol (MCP) server
 The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) provides a standard interface for AI agents to interact with APIs and external services. When you need to integrate private or internal enterprise systems that don't have existing MCP server implementations, you can build your own custom server. This article shows you how to create a remote MCP server using Azure Functions, register it in a private organizational tool catalog using Azure API Center, and connect it to Foundry Agent Service.
 
 This approach enables you to securely integrate internal APIs and services into the Microsoft Foundry ecosystem, allowing agents to call your enterprise-specific tools through a standardized MCP interface.

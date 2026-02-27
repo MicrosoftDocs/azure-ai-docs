@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Model Retirements (temp)"
-description: "Learn about model deprecations and retirements in Azure OpenAI. (temp)"
+title: "Azure OpenAI in Microsoft Foundry Model Retirements"
+description: "Learn about model deprecations and retirements in Azure OpenAI."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article

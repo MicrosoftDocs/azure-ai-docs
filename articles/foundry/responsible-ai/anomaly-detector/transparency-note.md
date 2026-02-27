@@ -1,7 +1,7 @@
 ---
-title: "Use cases for Anomaly Detector and Metrics Advisor (temp)"
+title: "Use cases for Anomaly Detector and Metrics Advisor"
 titleSuffix: Foundry Tools
-description: "Understanding the use cases of Anomaly Detector and Metrics Advisor (temp)"
+description: "Understanding the use cases of Anomaly Detector and Metrics Advisor"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 02/21/2024
 ---
 
-# Transparency Note for Anomaly Detector (temp)
-
+# Transparency Note for Anomaly Detector
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

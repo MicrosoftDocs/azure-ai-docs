@@ -1,6 +1,6 @@
 ---
-title: "Evaluate your AI agents (temp)"
-description: "Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors. (temp)"
+title: "Evaluate your AI agents"
+description: "Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors."
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.date: 02/06/2026
@@ -11,8 +11,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
 ---
 
-# Evaluate your AI agents (preview) (temp)
-
+# Evaluate your AI agents (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.

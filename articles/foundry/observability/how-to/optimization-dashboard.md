@@ -1,6 +1,6 @@
 ---
-title: "Monitoring dashboard insights in Microsoft Foundry with Ask AI (temp)"
-description: "Discover how to use Ask AI in Microsoft Foundry to interpret your monitoring dashboard and gain actionable insights for better decision-making. (temp)"
+title: "Monitoring dashboard insights in Microsoft Foundry with Ask AI"
+description: "Discover how to use Ask AI in Microsoft Foundry to interpret your monitoring dashboard and gain actionable insights for better decision-making."
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 02/25/2026
@@ -11,8 +11,7 @@ ai-usage: ai-assisted
 ---
  
 
-# Monitoring dashboard insights in Microsoft Foundry with Ask AI (preview) (temp)
-
+# Monitoring dashboard insights in Microsoft Foundry with Ask AI (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 After your agent is in production, set up and view various metrics in the monitoring dashboard or control plane dashboard. Use Ask AI—the built-in chat assistant—to get a summary of your dashboard data and recommendations for next steps without leaving the Foundry portal.

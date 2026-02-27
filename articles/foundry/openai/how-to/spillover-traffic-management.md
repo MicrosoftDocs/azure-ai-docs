@@ -1,6 +1,6 @@
 ---
-title: "Manage traffic with spillover for provisioned deployments (temp)"
-description: "Learn how to manage traffic bursts in Azure OpenAI provisioned deployments using the spillover feature. Optimize performance and reduce disruptions effectively. (temp)"
+title: "Manage traffic with spillover for provisioned deployments"
+description: "Learn how to manage traffic bursts in Azure OpenAI provisioned deployments using the spillover feature. Optimize performance and reduce disruptions effectively."
 #customer intent: As a developer, I want to enable spillover for my provisioned deployments so that I can manage traffic bursts effectively.
 author: msakande
 ms.author: mopeakande
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer, I want to manage traffic bursts on my provisioned deployments by routing overage traffic to standard deployments using spillover.
 ---
 
-# Manage traffic with spillover for provisioned deployments (temp)
-
+# Manage traffic with spillover for provisioned deployments
 This article describes how to manage traffic with spillover for provisioned deployments in Azure OpenAI. Spillover manages traffic fluctuations by routing overage traffic to a corresponding standard deployment. This optional capability can be set for all requests on a deployment or managed on a per-request basis, helping you reduce disruptions during traffic bursts.
 
 ## Prerequisites

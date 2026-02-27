@@ -49,7 +49,7 @@ You can configure the following filter categories in addition to the default har
 | Groundedness | Preview |Off | Completion |Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires: [Document embedding and formatting](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt).|
 | Personally identifiable information (PII) | Preview | Off | Completion | Filters information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information. |
 
-[!INCLUDE [create-content-filter](../../../ai-foundry/includes/create-content-filter.md)]
+[!INCLUDE [create-content-filter](../../../foundry-classic/includes/create-content-filter.md)]
 
 ## Specify a content filtering configuration at request time 
 

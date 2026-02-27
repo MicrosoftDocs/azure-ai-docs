@@ -1,7 +1,7 @@
 ---
-title: "Get started with Foundry Local (temp)"
+title: "Get started with Foundry Local"
 titleSuffix: Foundry Local
-description: "Learn how to install, configure, and run your first AI model with Foundry Local (temp)"
+description: "Learn how to install, configure, and run your first AI model with Foundry Local"
 ms.date: 01/06/2026
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
@@ -24,8 +24,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
-# Get started with Foundry Local (temp)
-
+# Get started with Foundry Local
 [!INCLUDE [foundry-local-preview](./includes/foundry-local-preview.md)]
 
 This guide shows you how to set up Foundry Local to run AI models on your device.

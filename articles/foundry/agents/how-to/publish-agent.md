@@ -1,6 +1,6 @@
 ---
-title: "Publish agents in Microsoft Foundry (temp)"
-description: "Learn how to publish agents in Microsoft Foundry, configure authentication and permissions, and use a stable endpoint to invoke your agent. (temp)"
+title: "Publish agents in Microsoft Foundry"
+description: "Learn how to publish agents in Microsoft Foundry, configure authentication and permissions, and use a stable endpoint to invoke your agent."
 #customer intent: As a developer, I want to publish an agent in Microsoft Foundry so that I can provide a stable endpoint for external consumption.
 author: sdgilley
 ms.author: sgilley
@@ -13,8 +13,7 @@ ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026
 ---
 
-# Publish and share agents in Microsoft Foundry (temp)
-
+# Publish and share agents in Microsoft Foundry
 Publishing promotes an agent from a development asset inside your Foundry project into a managed Azure resource that external consumers can call through a stable endpoint. Think of it as the step that moves your agent from "works in my project" to "ready for others to use."
 
 This article shows you how to publish an agent, configure its authentication and permissions, and update your Agent Application as you roll out new agent versions. After publishing, see the following articles to use your Agent Application:

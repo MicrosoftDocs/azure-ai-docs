@@ -1,6 +1,6 @@
 ---
-title: "What is Foundry Agent Service? (temp)"
-description: "Learn what Foundry Agent Service is, how it works, and how to build production-ready agents in Microsoft Foundry. (temp)"
+title: "What is Foundry Agent Service?"
+description: "Learn what Foundry Agent Service is, how it works, and how to build production-ready agents in Microsoft Foundry."
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -21,8 +21,7 @@ keywords:
     - agent observability
 ---
 
-# What is Foundry Agent Service? (temp)
-
+# What is Foundry Agent Service?
 Most businesses don't want just chatbots. They want automation that's faster and has fewer errors. That desire might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: freeing people and resources to focus on higher-value work by offloading repetitive and predictable tasks.
 
 Large language models (LLMs) introduce a new type of automation with systems that can understand unstructured data, make decisions, and generate content. In practice, businesses can have difficulty moving beyond demos and into production. LLMs can drift, be incorrect, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are hard to trust in real business workflows.

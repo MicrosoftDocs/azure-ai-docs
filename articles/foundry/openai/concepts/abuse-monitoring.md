@@ -1,6 +1,6 @@
 ---
-title: "Azure Direct Models abuse monitoring (temp)"
-description: "Learn about the abuse monitoring capabilities of Azure OpenAI (temp)"
+title: "Azure Direct Models abuse monitoring"
+description: "Learn about the abuse monitoring capabilities of Azure OpenAI"
 author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-foundry
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Abuse monitoring (temp)
-
+# Abuse monitoring
 Azure Direct Models detect and mitigate instances of recurring content and/or behaviors that suggest use of the service in a manner that might violate the [Code of Conduct](https://aka.ms/AI-CoC). Details on how data is handled can be found on the [Data, Privacy, and Security](/azure/ai-foundry/responsible-ai/openai/data-privacy) page. 
 
 ## Components of abuse monitoring

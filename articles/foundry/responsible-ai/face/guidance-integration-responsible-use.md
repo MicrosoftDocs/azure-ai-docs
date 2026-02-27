@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use with Face (temp)"
+title: "Guidance for integration and responsible use with Face"
 titleSuffix: Foundry Tools Face
-description: "Guidance for how to deploy the Face responsibly, based on the knowledge and understanding from the team that created this product. (temp)"
+description: "Guidance for how to deploy the Face responsibly, based on the knowledge and understanding from the team that created this product."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: best-practice
 ms.date: 06/21/2022
 ---
 
-# Guidance for integration and responsible use of Face (temp)
-
+# Guidance for integration and responsible use of Face
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 To help customers responsibly develop and integrate biometric solutions using Face, we are offering guidance for responsible use based on Microsoft’s AI principles of fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability.

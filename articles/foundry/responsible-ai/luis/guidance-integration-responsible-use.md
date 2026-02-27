@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use with Language Understanding (temp)"
+title: "Guidance for integration and responsible use with Language Understanding"
 titleSuffix: Foundry Tools
-description: "Guidance for how to deploy Language Understanding responsibly, based on the knowledge and understanding from the team that created this product. (temp)"
+description: "Guidance for how to deploy Language Understanding responsibly, based on the knowledge and understanding from the team that created this product."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,8 +11,7 @@ ms.subservice: azure-ai-luis
 ms.date: 01/07/2021
 ---
 
-# Guidance for integration and responsible use with Language Understanding (temp)
-
+# Guidance for integration and responsible use with Language Understanding
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft works to help customers responsibly develop and deploy solutions by using Language Understanding (LUIS). Our principled approach upholds personal agency and dignity by considering the AI system's:

@@ -1,6 +1,6 @@
 ---
-title: "Generate synthetic data with Microsoft Foundry (Preview) (temp)"
-description: "Learn how to generate synthetic data using the Microsoft Foundry portal. Create high-quality training datasets for fine-tuning models (Preview). (temp)"
+title: "Generate synthetic data with Microsoft Foundry (Preview)"
+description: "Learn how to generate synthetic data using the Microsoft Foundry portal. Create high-quality training datasets for fine-tuning models (Preview)."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -13,8 +13,7 @@ ms.reviewer: williamliang
 ai-usage: ai-assisted
 ---
 
-# Generate synthetic data for fine-tuning in Microsoft Foundry (Preview) (temp)
-
+# Generate synthetic data for fine-tuning in Microsoft Foundry (Preview)
 Learn to generate synthetic data in Microsoft Foundry for fine-tuning. Synthetic data helps you:
 
 - Create large, diverse datasets when real data is scarce

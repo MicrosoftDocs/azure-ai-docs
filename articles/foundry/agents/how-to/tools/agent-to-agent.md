@@ -1,6 +1,6 @@
 ---
-title: "Add an A2A agent endpoint to Foundry Agent Service (temp)"
-description: "Add an Agent2Agent (A2A) endpoint to Foundry Agent Service for cross-agent communication. Configure connections, authentication, and SDK integration. (temp)"
+title: "Add an A2A agent endpoint to Foundry Agent Service"
+description: "Add an Agent2Agent (A2A) endpoint to Foundry Agent Service for cross-agent communication. Configure connections, authentication, and SDK integration."
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-to-agent
 ---
 
-# Add an A2A agent endpoint to Foundry Agent Service (preview) (temp)
-
+# Add an A2A agent endpoint to Foundry Agent Service (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!NOTE]

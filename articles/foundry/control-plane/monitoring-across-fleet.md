@@ -1,6 +1,6 @@
 ---
-title: "Monitor AI agent fleet health and performance - Microsoft Foundry (temp)"
-description: "Track agent health, compliance, performance trends, and cost efficiency across your AI fleet by using Microsoft Foundry Control Plane monitoring. (temp)"
+title: "Monitor AI agent fleet health and performance - Microsoft Foundry"
+description: "Track agent health, compliance, performance trends, and cost efficiency across your AI fleet by using Microsoft Foundry Control Plane monitoring."
 author: sonalim-0
 ms.author: scottpolly
 ms.reviewer: sonalimalik
@@ -12,8 +12,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a system administrator, I want to access top-level metrics for all registered agents so that I can maintain an overview of the fleet.
 ---
 
-# Monitor agent health and performance across your fleet (temp)
-
+# Monitor agent health and performance across your fleet
 As your organization scales from isolated copilots to autonomous multi-agent fleets, maintaining visibility and control becomes critical. Microsoft Foundry Control Plane provides a unified command center where you can monitor all agents, models, and tools across your enterprise from build to production.
 
 Fleet monitoring serves multiple roles:

@@ -1,7 +1,7 @@
 ---
-title: "Manage Compliance and Security in Microsoft Foundry (temp)"
+title: "Manage Compliance and Security in Microsoft Foundry"
 ms.reviewer: gregharen
-description: "Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM. (temp)"
+description: "Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM."
 author: s-polly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
@@ -13,8 +13,7 @@ ms.custom: dev-focus
 #customer intent: As a developer, I want to ensure compliance and security of my assets within Microsoft Foundry so that I avoid any security and compliance issues.
 ---
 
-# Manage compliance and security in Microsoft Foundry (temp)
-
+# Manage compliance and security in Microsoft Foundry
 Learn how Microsoft Foundry Control Plane helps you manage compliance, enforce guardrail controls, and integrate security tooling such as Microsoft Defender for Cloud across subscriptions.
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]

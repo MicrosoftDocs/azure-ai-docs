@@ -1,6 +1,6 @@
 ---
-title: "Get started with Microsoft Foundry SDKs and Endpoints (temp)"
-description: "This article provides an overview of the Microsoft Foundry SDKs and endpoints and how to get started using them. (temp)"
+title: "Get started with Microsoft Foundry SDKs and Endpoints"
+description: "This article provides an overview of the Microsoft Foundry SDKs and endpoints and how to get started using them."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
@@ -17,8 +17,7 @@ zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: I want to learn how to use the Microsoft Foundry SDK and endpoints to build AI applications on Azure.
 ---
 
-# Microsoft Foundry SDKs and Endpoints (temp)
-
+# Microsoft Foundry SDKs and Endpoints
 A Foundry resource provides unified access to models, agents, and tools. This article explains which SDK and endpoint to use for your scenario.
 
 | SDK | What it's for | Endpoint |

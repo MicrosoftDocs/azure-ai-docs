@@ -1,6 +1,6 @@
 ---
-title: "Register and Manage Custom Agents in Microsoft Foundry Control Plane (temp)"
-description: "Learn how to register a custom agent in Microsoft Foundry Control Plane for management and observability. (temp)"
+title: "Register and Manage Custom Agents in Microsoft Foundry Control Plane"
+description: "Learn how to register a custom agent in Microsoft Foundry Control Plane for management and observability."
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
@@ -12,8 +12,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Register and manage custom agents (temp)
-
+# Register and manage custom agents
 Microsoft Foundry Control Plane provides centralized management and observability for agents running across different platforms and infrastructures. You can register custom agents that run in Azure compute services or other cloud environments to gain visibility into their operations and control their behavior.
 
 This article shows you how to register a custom agent in Foundry Control Plane. You learn how to configure your agent for registration, set up data collection, and use the management capabilities of Foundry Control Plane.

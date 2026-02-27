@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models v1 REST API reference (temp)"
-description: "Learn how to use Azure OpenAI's v1 REST API. (temp)" 
+title: "Azure OpenAI in Microsoft Foundry Models v1 REST API reference"
+description: "Learn how to use Azure OpenAI's v1 REST API." 
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,8 +13,7 @@ ms.custom:
 - classic-and-new
 ---
 
-# Azure OpenAI in Microsoft Foundry Models v1 REST API reference (temp)
-
+# Azure OpenAI in Microsoft Foundry Models v1 REST API reference
 Only a subset of operations are currently supported with the v1 API. To learn more, see the [API version lifecycle guide](./api-version-lifecycle.md).
 
 - [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)

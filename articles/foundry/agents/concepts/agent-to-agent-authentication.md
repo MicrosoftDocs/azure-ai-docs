@@ -1,6 +1,6 @@
 ---
-title: "Agent2Agent (A2A) authentication (temp)"
-description: "Learn about ways of adding authentication to the Agent2Agent tool in the Foundry Agent Service. (temp)"
+title: "Agent2Agent (A2A) authentication"
+description: "Learn about ways of adding authentication to the Agent2Agent tool in the Foundry Agent Service."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,8 +13,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Agent2Agent (A2A) authentication (temp)
-
+# Agent2Agent (A2A) authentication
 The Agent2Agent (A2A) protocol enables your agents to invoke other agents. Most A2A endpoints require authentication to access the endpoint and its underlying service. Configuring authentication ensures that only authorized users can invoke your A2A tools in Foundry Agent Service.
 
 This article explains the authentication methods available for A2A connections and helps you choose the right approach for your scenario.

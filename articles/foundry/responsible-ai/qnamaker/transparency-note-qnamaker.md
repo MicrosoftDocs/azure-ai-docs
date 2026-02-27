@@ -1,7 +1,7 @@
 ---
-title: "Use cases for QnA Maker (temp)"
+title: "Use cases for QnA Maker"
 titleSuffix: Foundry Tools
-description: "Transparency note for QnA Maker. (temp)"
+description: "Transparency note for QnA Maker."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -12,8 +12,7 @@ ms.date: 5/5/2021
 
 ---
 
-# Transparency note and use cases for QnA Maker (temp)
-
+# Transparency note and use cases for QnA Maker
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a transparency note?

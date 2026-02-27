@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use with summarization (temp)"
+title: "Guidance for integration and responsible use with summarization"
 titleSuffix: Foundry Tools
-description: "Guidance for integration and responsible use with summarization (temp)"
+description: "Guidance for integration and responsible use with summarization"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: best-practice
 ms.date: 04/09/2022
 ---
 
-# Guidance for integration and responsible use with summarization (temp)
-
+# Guidance for integration and responsible use with summarization
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft wants to help you develop and deploy solutions that use the summarization feature in a responsible manner. Microsoft takes a principled approach to uphold personal agency and dignity, by considering the following aspects of an AI system: fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations reflect our [commitment to developing Responsible AI](https://www.microsoft.com/ai/responsible-ai?activetab=pivot1%3aprimaryr6).

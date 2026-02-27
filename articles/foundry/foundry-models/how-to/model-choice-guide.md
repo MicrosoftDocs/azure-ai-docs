@@ -1,6 +1,6 @@
 ---
-title: "GPT-5 vs GPT-4.1 - choosing the right model for your use case (temp)"
-description: "Compare GPT-5 and GPT-4.1 to choose the best Azure OpenAI model for your use case, covering reasoning depth, latency, cost, and ideal scenarios for each (temp)"
+title: "GPT-5 vs GPT-4.1 - choosing the right model for your use case"
+description: "Compare GPT-5 and GPT-4.1 to choose the best Azure OpenAI model for your use case, covering reasoning depth, latency, cost, and ideal scenarios for each"
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# GPT-5 vs GPT-4.1: choosing the right model for your use case (temp)
-
+# GPT-5 vs GPT-4.1: choosing the right model for your use case
 GPT-5 is the first model from OpenAI that introduces four adjustable levels of thinking, controlling the amount of time and tokens the model uses when responding to a prompt. When selecting which model to use, or whether to use a reasoning model at all, it is important to consider your application’s priorities.
 
 Scenarios like researching and producing a report involve the collection, processing, and generation of large amounts of data. Customers in these scenarios are typically willing to wait many minutes for a high-quality report to be generated. A reasoning model like GPT-5 with medium or high thinking is great for this use case.

@@ -1,8 +1,8 @@
 ---
-title: "Foundry Agent Service resource and data loss recovery (temp)"
+title: "Foundry Agent Service resource and data loss recovery"
 ms.service: azure-ai-foundry
 ms.reviewer: ckittel
-description: "Recover Foundry Agent Service projects from human or automation errors, accidental deletions, and stateful dependency loss or corruption. (temp)"
+description: "Recover Foundry Agent Service projects from human or automation errors, accidental deletions, and stateful dependency loss or corruption."
 #customer intent: As a developer, I want to recreate a Microsoft Foundry project after accidental deletion so that I can redeploy agents and resume operations.
 author: jonburchel
 ms.author: jburchel
@@ -15,8 +15,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Foundry Agent Service resource and data loss recovery (temp)
-
+# Foundry Agent Service resource and data loss recovery
 This article describes how to recover from human or automation errors that cause Azure resource or data loss for Microsoft Foundry Agent Service projects that use the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). Incidents include accidental deletion of Foundry accounts or projects, deletion of agents or threads, and loss or corruption of state in Azure Cosmos DB, Azure AI Search, or Azure Storage that supports the capability host.
 
 The following table summarizes each recovery scenario, expected recovery time, and the degree of data loss.

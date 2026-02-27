@@ -1,6 +1,6 @@
 ---
-title: "Use the Azure OpenAI Responses API (temp)"
-description: "Learn how to use the Azure OpenAI Responses API to create, retrieve, and delete stateful responses with Python or REST, including streaming and tools. (temp)"
+title: "Use the Azure OpenAI Responses API"
+description: "Learn how to use the Azure OpenAI Responses API to create, retrieve, and delete stateful responses with Python or REST, including streaming and tools."
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -15,8 +15,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Use the Azure OpenAI Responses API (temp)
-
+# Use the Azure OpenAI Responses API
 Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).
 
 ## Prerequisites

@@ -1,6 +1,6 @@
 ---
-title: "Configure Claude Code for Microsoft Foundry (temp)"
-description: "Set up Claude Code CLI and VS Code extension to use Claude models in Microsoft Foundry with enterprise security, authentication, and CI/CD integration. (temp)"
+title: "Configure Claude Code for Microsoft Foundry"
+description: "Set up Claude Code CLI and VS Code extension to use Claude models in Microsoft Foundry with enterprise security, authentication, and CI/CD integration."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer, I want to configure Claude Code, Anthropic's agentic coding tool, to use Microsoft Foundry so I can use enterprise-managed Claude models for AI-assisted coding with proper security and compliance.
 ---
 
-# Configure Claude Code for Microsoft Foundry (temp)
-
+# Configure Claude Code for Microsoft Foundry
 Anthropic's [Claude Code](https://docs.anthropic.com/en/docs/claude-code) is an agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools. It's available as a CLI tool and VS Code extension. When you configure Claude Code with Microsoft Foundry, you run the coding agent on Azure infrastructure while keeping your data inside your compliance boundary. This configuration provides enterprise-grade security, private networking, role-based access control, and cost management.
 
 In this article, you learn how to:

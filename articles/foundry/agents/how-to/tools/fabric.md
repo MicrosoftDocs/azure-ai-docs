@@ -1,6 +1,6 @@
 ---
-title: "Use the Microsoft Fabric data agent with Foundry agents (temp)"
-description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service so your agent can analyze enterprise data by using identity passthrough. (temp)"
+title: "Use the Microsoft Fabric data agent with Foundry agents"
+description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agent Service so your agent can analyze enterprise data by using identity passthrough."
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
@@ -16,8 +16,7 @@ zone_pivot_groups: selection-fabric-tool
 ai-usage: ai-assisted
 ---
 
-# Use the Microsoft Fabric data agent (preview) (temp)
-
+# Use the Microsoft Fabric data agent (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!NOTE]

@@ -1,6 +1,6 @@
 ---
-title: "Safety system messages (temp)"
-description: "Learn how safety system messages (system prompts) guide Azure OpenAI model behavior, improve quality, and reduce risks in Microsoft Foundry. (temp)"
+title: "Safety system messages"
+description: "Learn how safety system messages (system prompts) guide Azure OpenAI model behavior, improve quality, and reduce risks in Microsoft Foundry."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Safety system messages (temp)
-
+# Safety system messages
 Safety system messages help you guide an Azure OpenAI model’s behavior, improve response quality, and reduce the likelihood of harmful outputs. They work best as one layer in a broader safety strategy.
 
 > [!NOTE]

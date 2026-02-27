@@ -1,7 +1,7 @@
 ---
-title: "Data, privacy, and security for Content Understanding (temp)"
+title: "Data, privacy, and security for Content Understanding"
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for Content Understanding. (temp)"
+description: "This document details issues for data, privacy, and security for Content Understanding."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,8 +11,7 @@ ms.date: 11/17/2024
 ai-usage: ai-assisted
 ---
 
-# Data, privacy, and security for Content Understanding (temp) 
-
+# Data, privacy, and security for Content Understanding
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Content Understanding builds upon the functionality of Document Intelligence, Speech to Text, Image Analysis, Face, Video and Azure OpenAI, each designed with compliance, privacy, and security at its core. This combined service processes various types of customer-provided data, such as documents, audio, images, biometric data (face), text, and video to deliver powerful analysis and intelligence capabilities. Importantly, users are responsible for ensuring that their use of this service complies with all applicable laws and regulations in their jurisdiction, including data protection, privacy, and communications laws, as well as any specific requirements around biometric data when leveraging facial recognition features. It's essential to acquire all necessary permissions, licenses, or third-party rights for the content and data submitted for processing. 

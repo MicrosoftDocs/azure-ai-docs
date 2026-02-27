@@ -1,7 +1,7 @@
 ---
-title: "Data and privacy for Anomaly Detector and Metrics Advisor (temp)"
+title: "Data and privacy for Anomaly Detector and Metrics Advisor"
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for Anomaly Detector and Metrics Advisor. (temp)"
+description: "This document details issues for data, privacy, and security for Anomaly Detector and Metrics Advisor."
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 02/21/2024
 ---
 
-# Data and privacy for Anomaly Detector (temp)
-
+# Data and privacy for Anomaly Detector
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 > [!NOTE]

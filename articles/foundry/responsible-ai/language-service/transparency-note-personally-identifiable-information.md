@@ -1,7 +1,7 @@
 ---
-title: "Transparency note - Personally Identifiable Information (PII) feature of Azure Language in Foundry Tools (temp)"
+title: "Transparency note - Personally Identifiable Information (PII) feature of Azure Language in Foundry Tools"
 titleSuffix: Foundry Tools
-description: "The Azure Language Personally Identifiable Information (PII) feature is part of named entity recognition (NER) and it can identify and redact sensitive entities in text that are associated with an individual person such as phone number, email address, mailing address, passport number. (temp)"
+description: "The Azure Language Personally Identifiable Information (PII) feature is part of named entity recognition (NER) and it can identify and redact sensitive entities in text that are associated with an individual person such as phone number, email address, mailing address, passport number."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 11/05/2025
 ---
 
-# Transparency note for Personally Identifiable Information (PII) (temp)
-
+# Transparency note for Personally Identifiable Information (PII)
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a transparency note?

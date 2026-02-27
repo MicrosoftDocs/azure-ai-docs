@@ -1,6 +1,6 @@
 ---
-title: "Add Microsoft Foundry to a network security perimeter (temp)"
-description: "Quickly learn how to associate a Microsoft Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management. (temp)"
+title: "Add Microsoft Foundry to a network security perimeter"
+description: "Quickly learn how to associate a Microsoft Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management."
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: meerakurup
@@ -13,8 +13,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Add Microsoft Foundry to a network security perimeter (temp)
-
+# Add Microsoft Foundry to a network security perimeter
 Use a network security perimeter (NSP) to restrict data-plane access to your Microsoft Foundry resource and group it with other protected PaaS resources. An NSP lets you:
 
 - Enforce inbound and outbound access rules instead of broad public exposure.

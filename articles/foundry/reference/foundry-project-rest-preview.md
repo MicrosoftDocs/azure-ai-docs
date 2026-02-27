@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry Project REST Reference (preview) (temp)"
-description: "Learn how to use Microsoft Foundry Project REST API (preview) (temp)"
+title: "Microsoft Foundry Project REST Reference (preview)"
+description: "Learn how to use Microsoft Foundry Project REST API (preview)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: reference
@@ -9,8 +9,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ---
 
-# Microsoft Foundry Project REST reference (temp)
-
+# Microsoft Foundry Project REST reference
 API Version: 2025-11-15-preview
 
 ## Agents - create agent

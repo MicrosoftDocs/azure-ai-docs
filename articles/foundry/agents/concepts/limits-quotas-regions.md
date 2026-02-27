@@ -1,6 +1,6 @@
 ---
-title: "Quotas and limits for Microsoft Foundry Agent Service (temp)"
-description: "Review default limits for Foundry Agent Service, including file sizes, vector stores, messages, tools, error handling, supported regions, and compatible models. (temp)"
+title: "Quotas and limits for Microsoft Foundry Agent Service"
+description: "Review default limits for Foundry Agent Service, including file sizes, vector stores, messages, tools, error handling, supported regions, and compatible models."
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -12,8 +12,7 @@ ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions
 ai-usage: ai-assisted
 ---
 
-# Foundry Agent Service limits, quotas, and regional support (temp)
-
+# Foundry Agent Service limits, quotas, and regional support
 Foundry Agent Service enforces quotas and limits on agent artifacts, file uploads, messages, and tool registrations. Understanding these limits helps you design applications that scale without hitting service boundaries. This article lists default limits, supported regions, compatible models, and guidance for handling limit errors.
 
 > [!NOTE]

@@ -1,6 +1,6 @@
 ---
-title: "Safety system message templates (temp)"
-description: "Use these safety system message templates as a starting point to reduce harmful and ungrounded outputs in your Azure OpenAI apps. (temp)"
+title: "Safety system message templates"
+description: "Use these safety system message templates as a starting point to reduce harmful and ungrounded outputs in your Azure OpenAI apps."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -16,8 +16,7 @@ keywords: safety system message, system message, system prompt, metaprompt, prom
 
 ---
 
-# Safety system message templates (temp)
-
+# Safety system message templates
 This article contains recommended safety system messages for your generative AI systems to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety system message conceptual guide](system-message.md) to get started.
 
 > [!NOTE]

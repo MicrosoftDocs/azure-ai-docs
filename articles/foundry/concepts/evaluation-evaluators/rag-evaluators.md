@@ -1,6 +1,6 @@
 ---
-title: "Retrieval-Augmented Generation (RAG) Evaluators for Generative AI (temp)"
-description: "Learn about Retrieval-Augmented Generation evaluators for assessing relevance, groundedness, and response completeness in generative AI systems. (temp)"
+title: "Retrieval-Augmented Generation (RAG) Evaluators for Generative AI"
+description: "Learn about Retrieval-Augmented Generation evaluators for assessing relevance, groundedness, and response completeness in generative AI systems."
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
@@ -14,8 +14,7 @@ ms.custom:
   - build-2025
 ---
 
-# Retrieval-Augmented Generation (RAG) evaluators (temp)
-
+# Retrieval-Augmented Generation (RAG) evaluators
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 A Retrieval-Augmented Generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. A user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response.

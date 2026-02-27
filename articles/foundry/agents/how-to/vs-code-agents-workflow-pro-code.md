@@ -1,6 +1,6 @@
 ---
-title: "Create hosted agent workflows in Visual Studio Code (temp)"
-description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension. (temp)"
+title: "Create hosted agent workflows in Visual Studio Code"
+description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension."
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -15,8 +15,7 @@ zone_pivot_groups: ai-foundry-vsc-extension-languages
 #CustomerIntent: As a developer, I want to create and deploy hosted agent workflows in VS Code so that I can build multi-agent solutions without leaving my IDE.
 ---
 
-# Create hosted agent workflows in Visual Studio Code (preview) (temp)
-
+# Create hosted agent workflows in Visual Studio Code (preview)
 Create, test, and deploy [hosted Foundry Agent workflows](../concepts/hosted-agents.md) by using the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry). Hosted workflows let multiple agents collaborate in sequence, each with its own model, tools, and instructions.
 
 Before you start, [build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents) by using the extension. You can then add hosted workflows to that agent.

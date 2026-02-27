@@ -1,18 +1,17 @@
 ---
-title: "What is Microsoft Foundry Control Plane? (temp)"
+title: "What is Microsoft Foundry Control Plane?"
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 02/19/2026
 ms.reviewer: mesameki
 ms.author: scottpolly
 author: mesameki
-description: "Learn how Microsoft Foundry Control Plane provides unified visibility, governance, and control for AI agents, models, and tools across your enterprise. (temp)"
+description: "Learn how Microsoft Foundry Control Plane provides unified visibility, governance, and control for AI agents, models, and tools across your enterprise."
 ai-usage: ai-assisted
 #customer intent: As an enterprise administrator or AI developer, I want to understand what Foundry Control Plane is and how it provides unified visibility across my AI agent fleet so that I can determine if it meets my governance and operational needs.
 ---
 
-# What is Microsoft Foundry Control Plane? (temp)
-
+# What is Microsoft Foundry Control Plane?
 Microsoft Foundry Control Plane is a unified management interface that provides visibility, governance, and control for AI agents, models, and tools across your Foundry enterprise. Foundry Control Plane centralizes management for your AI agent fleet, from build to production.
 
 As your organization evolves from isolated copilots to autonomous multi-agent fleets, you need unified oversight. Foundry Control Plane provides the visibility, governance, and control that you need to scale reliably.

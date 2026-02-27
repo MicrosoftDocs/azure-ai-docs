@@ -1,6 +1,6 @@
 ---
-title: "Migrate to the new Foundry Agent Service (temp)"
-description: "Learn how to migrate from the Assistants API and classic agents to the new Foundry Agent Service, including threads to conversations, runs to responses, and updated SDK patterns. (temp)"
+title: "Migrate to the new Foundry Agent Service"
+description: "Learn how to migrate from the Assistants API and classic agents to the new Foundry Agent Service, including threads to conversations, runs to responses, and updated SDK patterns."
 author: aahill
 ms.author: aahi
 manager: nitinme
@@ -13,8 +13,7 @@ ai-usage: ai-assisted
 #Customer Intent: As a developer, I want to migrate my existing agents or assistants to the new Foundry Agent Service so that I can use the latest API and features.
 ---
 
-# Migrate to the new agents developer experience (temp)
-
+# Migrate to the new agents developer experience
 > [!TIP]
 > A [migration tool](https://aka.ms/agent/migrate/tool) is available to help automate migration from the Assistants API to Agents.
 

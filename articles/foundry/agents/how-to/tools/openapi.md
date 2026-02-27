@@ -1,6 +1,6 @@
 ---
-title: "Connect OpenAPI tools to Microsoft Foundry agents (temp)"
-description: "Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs. (temp)"
+title: "Connect OpenAPI tools to Microsoft Foundry agents"
+description: "Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-openapi-function-new
 ---
 
-# Connect agents to OpenAPI tools (temp)
-
+# Connect agents to OpenAPI tools
 Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifications. Agents that connect to OpenAPI tools can call external services, retrieve real-time data, and extend their capabilities beyond built-in functions.
 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication methods: `anonymous`, `API key`, and `managed identity`. For help choosing an authentication method, see [Choose an authentication method](#choose-an-authentication-method).

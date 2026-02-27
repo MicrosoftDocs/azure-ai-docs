@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry Quickstart (temp)"
-description: "Get started with Microsoft Foundry SDK building AI applications. (temp)" 
+title: "Microsoft Foundry Quickstart"
+description: "Get started with Microsoft Foundry SDK building AI applications." 
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
@@ -21,7 +21,6 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
 ---
 
-# Microsoft Foundry quickstart (temp)
-
+# Microsoft Foundry quickstart
 [!INCLUDE [quickstart-v2-main](../includes/quickstart-v2-main.md)]
 

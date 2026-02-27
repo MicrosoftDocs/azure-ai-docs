@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry Models quotas and limits (temp)"
-description: "Learn about quotas, rate limits, and best practices for Foundry Models, including per-model token and request limits, client timeouts, and how to request increases. (temp)"
+title: "Microsoft Foundry Models quotas and limits"
+description: "Learn about quotas, rate limits, and best practices for Foundry Models, including per-model token and request limits, client timeouts, and how to request increases."
 ai-usage: ai-assisted
 author: msakande
 ms.service: azure-ai-foundry
@@ -15,8 +15,7 @@ ms.reviewer: haakar
 reviewer: haakar
 ---
 
-# Microsoft Foundry Models quotas and limits (temp)
-
+# Microsoft Foundry Models quotas and limits
 This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../openai/quotas-limits.md).
 
 ## Quotas and limits reference

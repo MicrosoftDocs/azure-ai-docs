@@ -1,7 +1,7 @@
 ---
-title: "Catalog API reference (temp)"
+title: "Catalog API reference"
 titleSuffix: Foundry Local
-description: "Complete reference guide for the Foundry Local Model Catalog API. (temp)"
+description: "Complete reference guide for the Foundry Local Model Catalog API."
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -14,8 +14,7 @@ ms.reviewer: maanavd
 ai-usage: ai-assisted
 ---
 
-# Catalog API reference (temp)
-
+# Catalog API reference
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 Foundry Local lets you build and integrate your own catalog service. This article covers:

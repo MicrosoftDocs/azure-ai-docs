@@ -1,6 +1,6 @@
 ---
-title: "Manage agents at scale in Microsoft Foundry Control Plane (temp)"
-description: "Learn how to view your agent inventory, monitor agent health, and perform lifecycle operations by using Microsoft Foundry Control Plane. (temp)"
+title: "Manage agents at scale in Microsoft Foundry Control Plane"
+description: "Learn how to view your agent inventory, monitor agent health, and perform lifecycle operations by using Microsoft Foundry Control Plane."
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
@@ -12,8 +12,7 @@ ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
-# Manage agents in Foundry Control Plane (temp)
-
+# Manage agents in Foundry Control Plane
 Microsoft Foundry Control Plane provides centralized management and observability for agents running across various platforms and infrastructures. Use Control Plane to gain a unified view of agents across your subscription, monitor their health, control their lifecycle, and troubleshoot issues from a single pane of glass.
 
 This article explains how to view your agent inventory, monitor agent health, and perform lifecycle operations by using the Foundry portal.

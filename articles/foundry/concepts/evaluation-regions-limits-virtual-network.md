@@ -1,6 +1,6 @@
 ---
-title: "Rate limits, region support, and enterprise features for evaluation (temp)"
-description: "Learn about region availability, rate limits, virtual network support, and using your own storage account for evaluation in Microsoft Foundry. (temp)"
+title: "Rate limits, region support, and enterprise features for evaluation"
+description: "Learn about region availability, rate limits, virtual network support, and using your own storage account for evaluation in Microsoft Foundry."
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Rate limits, region support, and enterprise features for evaluation (temp)
-
+# Rate limits, region support, and enterprise features for evaluation
 This article provides an overview of which regions support AI-assisted evaluators, the rate limits that apply to evaluation runs, how to configure virtual network support for network isolation, and using your own storage account to run evaluations.
 
 ## Region support

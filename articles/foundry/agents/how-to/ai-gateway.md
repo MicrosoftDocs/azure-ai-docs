@@ -1,6 +1,6 @@
 ---
-title: "Connect an AI gateway to Foundry Agent Service (preview) (temp)"
-description: "Connect and use models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service. (temp)"
+title: "Connect an AI gateway to Foundry Agent Service (preview)"
+description: "Connect and use models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
 ms.date: 02/17/2026
@@ -10,8 +10,7 @@ ms.topic: how-to
 ai-usage: ai-assisted
 ---
 
-# Connect an AI gateway to Foundry Agent Service (preview) (temp)
-
+# Connect an AI gateway to Foundry Agent Service (preview)
 Foundry Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
 > [!IMPORTANT]

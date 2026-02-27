@@ -1,7 +1,7 @@
 ---
-title: "Set Up Tracing for AI Agents in Microsoft Foundry (temp)"
+title: "Set Up Tracing for AI Agents in Microsoft Foundry"
 ms.service: azure-ai-foundry
-description: "Learn how to set up tracing in Microsoft Foundry to debug AI agent runs and monitor behavior by sending telemetry to Application Insights with OpenTelemetry. (temp)"
+description: "Learn how to set up tracing in Microsoft Foundry to debug AI agent runs and monitor behavior by sending telemetry to Application Insights with OpenTelemetry."
 ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
@@ -11,8 +11,7 @@ ms.topic: how-to
 ms.custom: pilot-ai-workflow-jan-2026
 ---
 
-# Set up tracing in Microsoft Foundry (preview) (temp)
-
+# Set up tracing in Microsoft Foundry (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use tracing (preview) to debug your AI agents and monitor their behavior in production. Tracing captures detailed telemetry—including latency, exceptions, prompt content, and retrieval operations—so you can identify and fix issues faster.

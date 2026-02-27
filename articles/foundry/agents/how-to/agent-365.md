@@ -1,6 +1,6 @@
 ---
-title: "Publish a Microsoft Foundry agent to Agent 365 (temp)"
-description: "Publish a Microsoft Foundry hosted agent to Agent 365 by using the FoundryA365 sample, approve it, and optionally connect it to Microsoft Teams. (temp)"
+title: "Publish a Microsoft Foundry agent to Agent 365"
+description: "Publish a Microsoft Foundry hosted agent to Agent 365 by using the FoundryA365 sample, approve it, and optionally connect it to Microsoft Teams."
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -12,8 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Publish an agent as a digital worker in Agent 365 (temp) 
-
+# Publish an agent as a digital worker in Agent 365
 Use this article to publish a Microsoft Foundry hosted agent as a digital worker in Microsoft Agent 365 (A365).
 
 The sample uses the Azure Developer CLI to create the required Azure resources and publish an agent application. It also guides you through admin approval, configuration, and creating instances of your digital worker.

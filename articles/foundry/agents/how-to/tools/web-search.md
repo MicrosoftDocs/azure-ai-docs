@@ -1,6 +1,6 @@
 ---
-title: "Use web search tool in Foundry Agent Service (temp)"
-description: "Use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Includes code examples. (temp)"
+title: "Use web search tool in Foundry Agent Service"
+description: "Use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Includes code examples."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -18,8 +18,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-web-search
 ---
 
-# Web search tool (preview) (temp)
-
+# Web search tool (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 The web search tool in Foundry Agent Service enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations, helping you build agents that provide current, factual information to users.

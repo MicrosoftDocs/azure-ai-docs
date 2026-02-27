@@ -1,7 +1,7 @@
 ---
-title: "Compile Hugging Face models to run on Foundry Local (temp)"
+title: "Compile Hugging Face models to run on Foundry Local"
 titleSuffix: Foundry Local
-description: "Learn how to compile and run Hugging Face models with Foundry Local. (temp)"
+description: "Learn how to compile and run Hugging Face models with Foundry Local."
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -14,8 +14,7 @@ ms.date: 01/06/2026
 ai-usage: ai-assisted
 ---
 
-# Compile Hugging Face models to run on Foundry Local (temp)
-
+# Compile Hugging Face models to run on Foundry Local
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 Foundry Local runs ONNX models on your device. Use [Olive](https://microsoft.github.io/Olive/) to convert and optimize models from Hugging Face (Safetensors or PyTorch) into ONNX so you can run them with Foundry Local.

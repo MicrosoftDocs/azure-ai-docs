@@ -1,7 +1,7 @@
 ---
-title: "Disclosure Design Patterns (temp)"
+title: "Disclosure Design Patterns"
 titleSuffix: Foundry Tools
-description: "Design patterns and best practices for disclosure. (temp)"
+description: "Design patterns and best practices for disclosure."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 11/21/2025
 ---
 
-# Disclosure design patterns for synthetic voices (temp)
-
+# Disclosure design patterns for synthetic voices
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 Now that you've determined the right level of disclosure for your text to speech avatar experience, it's a good time to explore potential design patterns.

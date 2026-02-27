@@ -1,6 +1,6 @@
 ---
-title: "Configure keyless authentication with Microsoft Entra ID (temp)"
-description: "Learn how to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models. Eliminate the need for API keys, enhance security with RBAC, and simplify compliance. (temp)"
+title: "Configure keyless authentication with Microsoft Entra ID"
+description: "Learn how to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models. Eliminate the need for API keys, enhance security with RBAC, and simplify compliance."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -19,8 +19,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer, I want to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models so that I can secure my AI model deployments without relying on API keys and leverage role-based access control for better security and compliance.
 ---
 
-# Configure keyless authentication with Microsoft Entra ID (temp)
-
+# Configure keyless authentication with Microsoft Entra ID
 This article explains how to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models. Keyless authentication enhances security by eliminating the need for API keys, simplifies the user experience with role-based access control (RBAC), and reduces operational complexity while providing robust compliance support.
 
 ## Prerequisites

@@ -1,6 +1,6 @@
 ---
-title:  "Explore available tools and example prompts for Foundry MCP Server (preview) (temp)" 
-description: "Reference guide for all Foundry MCP Server tools, including dataset management, evaluation, model deployment, and monitoring, with example prompts for each tool. (temp)"
+title:  "Explore available tools and example prompts for Foundry MCP Server (preview)" 
+description: "Reference guide for all Foundry MCP Server tools, including dataset management, evaluation, model deployment, and monitoring, with example prompts for each tool."
 keywords: mcp, model context protocol, foundry mcp server
 author: sdgilley
 ms.author: sgilley
@@ -11,8 +11,7 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Available tools and example prompts for Foundry MCP Server (preview) (temp) 
-
+# Available tools and example prompts for Foundry MCP Server (preview)
 Foundry MCP Server exposes a set of tools that let you manage datasets, run evaluations, deploy and monitor models, and more — all through conversational prompts instead of API calls. Use this reference to explore each tool and try the example prompts in your own project.
 
 > [!TIP]

@@ -1,6 +1,6 @@
 ---
-title: "Reinforcement fine-tuning (temp)"
-description: "Learn how to use reinforcement fine-tuning with reasoning models (temp)"
+title: "Reinforcement fine-tuning"
+description: "Learn how to use reinforcement fine-tuning with reasoning models"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -14,8 +14,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Reinforcement fine-tuning (temp)
-
+# Reinforcement fine-tuning
 Reinforcement fine-tuning (RFT) is a technique for improving reasoning models by training them through a reward-based process, rather than relying only on labeled data. RFT helps models develop better reasoning and problem-solving skills, especially in cases where labeled examples are limited or complex behaviors are desired.
 
 > [!NOTE]

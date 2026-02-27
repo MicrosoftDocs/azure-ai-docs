@@ -1,6 +1,6 @@
 ---
-title: "Codex with Azure OpenAI in Microsoft Foundry Models (temp)"
-description: "Learn how to use the Codex CLI and the Codex extension for Visual Studio Code with Azure OpenAI in Microsoft Foundry Models. (temp)"
+title: "Codex with Azure OpenAI in Microsoft Foundry Models"
+description: "Learn how to use the Codex CLI and the Codex extension for Visual Studio Code with Azure OpenAI in Microsoft Foundry Models."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Codex with Azure OpenAI in Microsoft Foundry Models (temp)
-
+# Codex with Azure OpenAI in Microsoft Foundry Models
 OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent that powers ChatGPT’s Codex. You can run this coding agent entirely on Azure infrastructure, while keeping your data inside your compliance boundary with the added advantages of enterprise-grade security, private networking, role-based access control, and predictable cost management. Codex is more than a chat with your code agent – it's an asynchronous coding agent that can be triggered from your terminal, VS Code, or from a GitHub Actions runner. Codex allows you to automatically open pull requests, refactor files, and write tests with the credentials of your Foundry project and Azure OpenAI deployments.
 
 ## Prerequisites

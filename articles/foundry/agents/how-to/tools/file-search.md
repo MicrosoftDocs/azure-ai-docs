@@ -1,6 +1,6 @@
 ---
-title: "File search tool for Microsoft Foundry agents (temp)"
-description: "Configure the file search tool for Microsoft Foundry agents. Upload files, create vector stores, and query documents with Python, C#, and REST examples. (temp)"
+title: "File search tool for Microsoft Foundry agents"
+description: "Configure the file search tool for Microsoft Foundry agents. Upload files, create vector stores, and query documents with Python, C#, and REST examples."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-file-search-upload-new
 ---
 
-# File search tool for agents (temp)
-
+# File search tool for agents
 Use the file search tool to enable Microsoft Foundry agents to search through your documents and retrieve relevant information. File search augments agents with knowledge from outside their model, such as proprietary product information or user-provided documents.
 
 In this article, you learn how to:

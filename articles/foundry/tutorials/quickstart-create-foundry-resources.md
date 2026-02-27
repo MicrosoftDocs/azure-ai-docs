@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Set up Microsoft Foundry resources (temp)"
-description: "Learn how to create a Microsoft Foundry project, deploy a model, and grant access to team members so they can build AI applications. (temp)"
+title: "Quickstart: Set up Microsoft Foundry resources"
+description: "Learn how to create a Microsoft Foundry project, deploy a model, and grant access to team members so they can build AI applications."
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2025
@@ -15,8 +15,7 @@ ai-usage: ai-assisted
 # customer intent: As an admin or team lead, I want to create a Foundry project and deploy a model so my team members can use it to build AI applications.
 ---
 
-# Quickstart: Set up Microsoft Foundry resources (temp)
-
+# Quickstart: Set up Microsoft Foundry resources
 In this quickstart, you create a [Microsoft Foundry](https://ai.azure.com) project and deploy a model. If you're managing a team, you also grant access to team members. After you complete these steps, you or your team can start building AI applications using the deployed model.
 
 > [!TIP]

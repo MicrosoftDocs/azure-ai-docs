@@ -1,7 +1,7 @@
 ---
-title: "Limited Access to Embedded Speech (temp)"
+title: "Limited Access to Embedded Speech"
 titleSuffix: Foundry Tools
-description: "This article explains why embedded Speech is available as Limited Access feature and how to request access. (temp)"
+description: "This article explains why embedded Speech is available as Limited Access feature and how to request access."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 10/27/2022
 ---
 
-# Limited Access to embedded Speech (temp)
-
+# Limited Access to embedded Speech
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 Embedded Speech is designed for on-device speech to text and text to speech scenarios where cloud connectivity is intermittent or unavailable. Microsoft's embedded Speech feature is a Limited Access feature available by registration only, and only for certain use cases.

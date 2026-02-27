@@ -1,6 +1,6 @@
 ---
-title: "Create a project (temp)"
-description: "This article describes how to create a Microsoft Foundry project so you can work with generative AI in the cloud. (temp)"
+title: "Create a project"
+description: "This article describes how to create a Microsoft Foundry project so you can work with generative AI in the cloud."
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
@@ -19,8 +19,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to create a Microsoft Foundry project so I can work with generative AI.
 ---
 
-# Create a project for Microsoft Foundry (temp)
-
+# Create a project for Microsoft Foundry
 This article describes how to create a Foundry project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work—such as agents, evaluations, and files—as you build stateful apps and explore new ideas.
 
 If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.

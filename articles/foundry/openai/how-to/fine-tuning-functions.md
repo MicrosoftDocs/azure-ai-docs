@@ -1,6 +1,6 @@
 ---
-title: "Fine-tuning function calls with Azure OpenAI in Microsoft Foundry Models (temp)"
-description: "Learn how to improve tool calling performance with Azure OpenAI fine-tuning (temp)"
+title: "Fine-tuning function calls with Azure OpenAI in Microsoft Foundry Models"
+description: "Learn how to improve tool calling performance with Azure OpenAI fine-tuning"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Fine-tuning and tool calling (temp)
-
+# Fine-tuning and tool calling
 Models that use the chat completions API support [tool calling](../how-to/function-calling.md). Functions defined in your chat completion calls don't always perform as expected. Fine-tuning your model with tool calling examples can improve model output:
 
 | Benefit | Description |

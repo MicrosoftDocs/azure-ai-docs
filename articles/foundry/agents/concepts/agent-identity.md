@@ -1,6 +1,6 @@
 ---
-title: "Manage agent identities with Microsoft Entra ID (temp)"
-description: "Learn how agent identities and agent identity blueprints work in Microsoft Foundry, including RBAC, authentication for tools, and governance. (temp)"
+title: "Manage agent identities with Microsoft Entra ID"
+description: "Learn how agent identities and agent identity blueprints work in Microsoft Foundry, including RBAC, authentication for tools, and governance."
 #customer intent: As a security administrator, I want to know how an agent identity eliminates the need for passwords and certificates so that I can reduce security risks in my environment.
 author: sdgilley
 ms.author: sgilley
@@ -13,8 +13,7 @@ ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026
 ---
 
-# Agent identity concepts in Microsoft Foundry (temp)
-
+# Agent identity concepts in Microsoft Foundry
 An *agent identity* is a specialized identity type in [Microsoft Entra ID](/entra/fundamentals/what-is-entra) that's designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services. This framework enables agents to securely access resources, interact with users, and communicate with other systems.
 
 Microsoft Foundry automatically provisions and manages agent identities throughout the agent lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.

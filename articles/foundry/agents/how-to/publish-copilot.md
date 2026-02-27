@@ -1,6 +1,6 @@
 ---
-title: "Publish agents to Microsoft 365 Copilot and Microsoft Teams (temp)"
-description: "Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Microsoft Teams by creating an agent application and packaging it for distribution. (temp)"
+title: "Publish agents to Microsoft 365 Copilot and Microsoft Teams"
+description: "Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Microsoft Teams by creating an agent application and packaging it for distribution."
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -12,8 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Publish agents to Microsoft 365 Copilot and Microsoft Teams (temp)
-
+# Publish agents to Microsoft 365 Copilot and Microsoft Teams
 Publishing creates an agent application with a stable endpoint. Once created, the agent application can then be published to Microsoft 365 Copilot and Teams or invoked using the Responses API protocol.
 
 Use this article to publish an agent to Microsoft 365 Copilot and Teams so people can use it in those interfaces.

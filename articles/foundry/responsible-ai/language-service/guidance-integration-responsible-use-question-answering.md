@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use of question answering (temp)"
+title: "Guidance for integration and responsible use of question answering"
 titleSuffix: Foundry Tools
-description: "Guidance for integration and responsible use of question answering (temp)"
+description: "Guidance for integration and responsible use of question answering"
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: best-practice
 ms.date: 09/29/2021
 ---
 
-# Guidance for integration and responsible use of question answering (temp)
-
+# Guidance for integration and responsible use of question answering
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft wants to help you responsibly develop and deploy solutions that use question answering. We're taking a principled approach to upholding personal agency and dignity by considering the AI systems' fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations reflect our commitment to developing Responsible AI.

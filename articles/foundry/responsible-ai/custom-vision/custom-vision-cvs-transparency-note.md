@@ -1,7 +1,7 @@
 ---
-title: "Use cases for Custom Vision (temp)"
+title: "Use cases for Custom Vision"
 titleSuffix: Foundry Tools
-description: "An introduction to Azure AI Custom Vision, and what to consider to use the technology responsibly. (temp)"
+description: "An introduction to Azure AI Custom Vision, and what to consider to use the technology responsibly."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 07/07/2021
 ---
 
-# Use cases for Custom Vision (temp)
-
+# Use cases for Custom Vision
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

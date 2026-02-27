@@ -1,6 +1,6 @@
 ---
-title: "Govern MCP Tools by Using an AI Gateway (temp)"
-description: "Learn how to govern MCP tools by using an AI gateway in Microsoft Foundry. Apply rate limits, IP filters, and routing policies by using Azure API Management. (temp)"
+title: "Govern MCP Tools by Using an AI Gateway"
+description: "Learn how to govern MCP tools by using an AI gateway in Microsoft Foundry. Apply rate limits, IP filters, and routing policies by using Azure API Management."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,8 +13,7 @@ ms.custom: azure-ai-agents,  pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted  
 ---
 
-# Govern MCP tools by using an AI gateway (preview) (temp)
-
+# Govern MCP tools by using an AI gateway (preview)
 Control how your agents access external tools by routing Model Context Protocol (MCP) traffic through an [AI gateway](../../../configuration/enable-ai-api-management-gateway-portal.md) in Microsoft Foundry. An AI gateway provides a single, governed entry point where you can enforce authentication, rate limits, IP restrictions, and audit logging without modifying your MCP servers or agent code.
 
 This feature is in preview. Only new MCP tools created in the Foundry portal that don't use managed OAuth are routed through an AI gateway.

@@ -1,6 +1,6 @@
 ---
-title: "Chat with your Agent Application using the Responses API protocol (temp)"
-description: "Chat with an existing Agent Application using the Responses API protocol (temp)"
+title: "Chat with your Agent Application using the Responses API protocol"
+description: "Chat with an existing Agent Application using the Responses API protocol"
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -12,8 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Invoke your agent application using the responses API protocol (temp)
-
+# Invoke your agent application using the responses API protocol
 After publishing, you can invoke your agent application using the Responses API protocol or the Activity Protocol. The Activity Protocol is used when your agent is published to Microsoft 365 and Teams.
 
 This article focuses on how you invoke your Agent Application using the Responses API protocol. 

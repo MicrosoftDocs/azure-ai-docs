@@ -1,6 +1,6 @@
 ---
-title: "include file (temp)"
-description: "include file (temp)"
+title: "include file"
+description: "include file"
 author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry

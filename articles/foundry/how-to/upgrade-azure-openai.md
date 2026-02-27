@@ -1,6 +1,6 @@
 ---
-title: "Upgrade Azure OpenAI to Microsoft Foundry (temp)" 
-description: "Upgrade your Azure OpenAI resource to Microsoft Foundry to access advanced capabilities including a broader model catalog, agents service, and evaluation tools. Learn how to upgrade seamlessly. (temp)"
+title: "Upgrade Azure OpenAI to Microsoft Foundry" 
+description: "Upgrade your Azure OpenAI resource to Microsoft Foundry to access advanced capabilities including a broader model catalog, agents service, and evaluation tools. Learn how to upgrade seamlessly."
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
@@ -13,8 +13,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Upgrade from Azure OpenAI to Microsoft Foundry (temp)
-
+# Upgrade from Azure OpenAI to Microsoft Foundry
 The Microsoft Foundry resource type provides a superset of capabilities compared to the Azure OpenAI resource type. It gives you access to a broader model catalog, agents service, and evaluation capabilities.
 
 You can upgrade your Azure OpenAI resource to a Foundry resource. You keep your existing Azure OpenAI API endpoint, state of work, and security configurations, and don't need to create a new Foundry resource.

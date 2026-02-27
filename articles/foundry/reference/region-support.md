@@ -1,6 +1,6 @@
 ---
-title: "Feature availability across cloud regions (temp)"
-description: "This article lists Microsoft Foundry feature availability across cloud regions. (temp)"
+title: "Feature availability across cloud regions"
+description: "This article lists Microsoft Foundry feature availability across cloud regions."
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 01/23/2026
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Microsoft Foundry feature availability across cloud regions (temp)
-
+# Microsoft Foundry feature availability across cloud regions
 [!INCLUDE [foundry-link](../includes/foundry-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While Microsoft strives to make all features available in all regions where Microsoft Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Foundry features are available across cloud regions.  
 
 This article gives you:

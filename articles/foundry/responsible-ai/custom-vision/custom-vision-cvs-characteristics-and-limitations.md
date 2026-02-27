@@ -1,7 +1,7 @@
 ---
-title: "Characteristics and limitations for Custom Vision (temp)"
+title: "Characteristics and limitations for Custom Vision"
 titleSuffix: Foundry Tools
-description: "Learn general guidelines for using this image recognition service from Azure. (temp)"
+description: "Learn general guidelines for using this image recognition service from Azure."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,8 +10,7 @@ ms.topic: concept-article
 ms.date: 07/07/2021
 ---
 
-# Characteristics and Limitations of Custom Vision (temp)
-
+# Characteristics and Limitations of Custom Vision
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 The quality of your classifier or object detector model built with Azure AI Custom Vision depends on the amount, quality, and variety of the labeled data you provide when training the model. The quality also depends on how balanced the overall dataset is between classes.

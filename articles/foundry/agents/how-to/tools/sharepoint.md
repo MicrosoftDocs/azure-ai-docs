@@ -1,6 +1,6 @@
 ---
-title: "Use SharePoint content with agent API (temp)"
-description: "Learn how to ground Microsoft Foundry agents with SharePoint content using the agent API. Connect to SharePoint sites or folders, use identity passthrough, and keep enterprise access controls intact. (temp)"
+title: "Use SharePoint content with agent API"
+description: "Learn how to ground Microsoft Foundry agents with SharePoint content using the agent API. Connect to SharePoint sites or folders, use identity passthrough, and keep enterprise access controls intact."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-sharepoint-new
 ---
 
-# Use SharePoint tool with the agent API (preview) (temp)
-
+# Use SharePoint tool with the agent API (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!NOTE]
