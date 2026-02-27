@@ -1,6 +1,6 @@
 items:
 - name: Microsoft Foundry documentation
-  href: ../ai-foundry/index.yml
+  href: ../foundry/index.yml
 - name: Overview
   expanded: true
   items:
