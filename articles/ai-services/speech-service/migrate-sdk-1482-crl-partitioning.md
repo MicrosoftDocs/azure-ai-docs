@@ -1,0 +1,164 @@
+---
+title: Azure AI Speech SDK certificate revocation list (CRL) compatibility update
+description: Learn how the CRL partitioning change affects Azure AI Speech SDK on Linux and Android, and what actions to take before July 1, 2026.
+ms.service: azure-ai-speech
+ms.topic: how-to
+ms.date: 02/26/2026
+ai-usage: ai-assisted
+author: PatrickFarley
+ms.author: pafarley
+#Customer intent: As a developer, I want to understand the Azure AI Speech SDK CRL compatibility change and take the required mitigation steps.
+---
+
+# Azure AI Speech SDK: Certificate Revocation List (CRL) Compatibility Update
+
+> [!IMPORTANT]
+> **Effective date:** July 1, 2026. Action is required before this date to avoid service disruption on Linux and Android platforms.
+
+**Affected platforms:** Linux, Android  
+**Affected SDK versions:** All versions prior to 1.48.2
+
+## Summary
+
+The previous design of the certificate revocation list (CRL) caching feature in Azure AI Speech SDK versions prior to 1.48.2 can cause connection failures to the Azure Speech Service on Linux and Android platforms. This issue is triggered by industry-wide changes to how CRLs are structured. Action is required before July 1, 2026 to avoid service disruption.
+
+## Background
+
+Certificate Authorities (CAs), including Microsoft's Public Key Infrastructure (PKI), are transitioning to **partitioned CRLs** to comply with CA/Browser Forum Baseline Requirements. This is an industry-wide change affecting all publicly trusted CAs.
+
+Previously, each certificate issuer maintained a single CRL. With partitioned CRLs, the same issuer might have multiple CRLs, each covering a subset of certificates. This improves scalability (reducing CRL sizes from 10 MB+ to ~1 KB).
+
+## The issue
+
+The Azure AI Speech SDK (versions prior to 1.48.2) caches CRLs on some platforms using only the certificate issuer name as the cache key. With partitioned CRLs, this causes a cache mismatch:
+
+- When connecting to one Azure region, the SDK downloads and caches the CRL for that region's TLS certificate
+- When connecting to another region (or after certificate rotation), the cached CRL may not match the new certificate's partition
+- OpenSSL rejects the connection with error: `X509_V_ERR_DIFFERENT_CRL_SCOPE` (error code 44)
+
+**This affects you if:**
+- You use the Speech SDK on **Linux or Android**
+- You have **CRL checking enabled** (the default in affected versions)
+- You connect to **multiple Azure regions**, OR
+- Your region's certificate **rotates** (which happens automatically and may assign a different partition)
+
+**This doesn't affect:**
+- Windows deployments
+- iOS or Mac deployments
+- SDK version 1.48.2 or later
+
+## Required action
+
+Take one of the following actions **before July 1, 2026**:
+
+### Option 1: Upgrade to SDK version 1.48.2 or later (recommended)
+
+SDK version 1.48.2 includes a fix to properly handle partitioned CRLs. SDK version 1.48.1 disables CRL revocation checking by default, which also prevents this issue but removes the extra validation layer.
+
+Download the latest SDK: [Azure AI Speech SDK setup](quickstarts/setup-platform.md)
+
+### Option 2: Disable CRL checking
+
+If you can't upgrade immediately, disable CRL checking in your current SDK version.
+
+For configuration instructions, see [How to configure OpenSSL for Linux](how-to-configure-openssl-linux.md).
+
+## Risks of not taking action
+
+If you don't upgrade or disable CRL checking before July 1, 2026:
+
+- **Connection failures** will occur when certificate rotation happens or when connecting across regions
+- Failures will manifest as `WS_OPEN_ERROR_UNDERLYING_IO_OPEN_FAILED` errors
+- **No advance warning** — failures occur immediately upon certificate rotation
+- **Service disruption** until the SDK is upgraded, CRL checking is disabled, or the CRL cache is cleared
+
+## How to identify if you're impacted
+
+### Error symptoms
+
+Connection failures with messages such as:
+```
+Connection failed (no connection to the remote host). Internal error: 1. 
+Error details: Failed with error: WS_OPEN_ERROR_UNDERLYING_IO_OPEN_FAILED
+```
+
+### SDK log indicators
+
+Enable SDK logging to see detailed TLS errors. Look for:
+
+```
+SPX_TRACE_ERROR: AZ_LOG_ERROR: tlsio_openssl.c:1655 Error 44 was unexpected
+SPX_TRACE_ERROR: AZ_LOG_ERROR: tlsio_openssl.c:691 error:0A000086:SSL routines::certificate verify failed
+SPX_TRACE_ERROR: web_socket.cpp:930 WS open operation failed with result=1(WS_OPEN_ERROR_UNDERLYING_IO_OPEN_FAILED)
+```
+(The line numbers in the log messages may vary by SDK version)
+
+**Error 44** (`X509_V_ERR_DIFFERENT_CRL_SCOPE`) is the specific indicator of this CRL partition mismatch issue.
+
+### Confirming the issue
+
+If you see these errors and are:
+- Running on Linux or Android
+- Using SDK version prior to 1.48.2
+- Connecting to multiple regions OR experiencing failures after a period of working connections
+
+Then you're likely affected by this issue.
+
+## Reducing impact duration: Disable disk caching
+
+If you can't upgrade before the deadline or disable CRL checking, you can reduce the duration of impact by **disabling the CRL disk cache**. This limits the problem to in-memory caching only, meaning:
+
+- Impact duration = process lifetime
+- **Restarting your application clears the cache** and restores connectivity (until the next cross-region connection or rotation event)
+
+### How to disable disk caching
+
+Remove or unset the `TMPDIR` or `TMP` environment variables before starting your application. Without these variables, the SDK doesn't persist CRLs to disk.
+
+Alternatively, clear the CRL cache directory manually:
+- Default location: System temp directory (`$TMPDIR` or `$TMP`)
+- Delete cached `.crl` files and restart your application
+
+> [!NOTE]
+> This is a temporary workaround, not a solution. Upgrading to SDK 1.48.2 or later, or disabling CRL checking, is still required.
+
+## Timeline
+
+| Date | Event |
+|------|-------|
+| February 2026 | SDK 1.48.2 released with fix |
+| **July 1, 2026** | **Deadline: Upgrade or disable CRL checking** |
+
+## Frequently asked questions
+
+### Why is this happening?
+
+Certificate Authorities are required to implement partitioned CRLs for compliance with industry standards. This isn't specific to Microsoft — all major CAs are making this change.
+
+### Does this affect Windows?
+
+No. Windows handles certificate validation differently and isn't affected.
+
+### I only use one Azure region. Am I still affected?
+
+Yes. Certificate rotation (which happens automatically) might assign your region's certificate to a different partition, triggering the same failure.
+
+### What if I have CRL checking disabled already?
+
+You aren't affected. No action is required, though upgrading to the latest SDK for other improvements and updates is recommended.
+
+### Is there a security risk to disabling CRL checking?
+
+CRL checking provides an extra layer of certificate validation. For most use cases, the security impact of disabling it is minimal, as other validation mechanisms (certificate chain, expiration) remain active. Consult your security team if you have specific compliance requirements.
+
+### How do I enable SDK logging to diagnose the issue?
+
+See the SDK documentation for enabling diagnostic logging: [Speech SDK logging](how-to-use-logging.md).
+
+## Support
+
+If you have questions or need assistance:
+
+- **Documentation:** [Azure AI Speech Service documentation](/azure/ai-services/speech-service/)
+- **Support:** Open a support ticket through the Azure portal
+- **SDK issues:** [GitHub - Azure Cognitive Services Speech SDK](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues)
