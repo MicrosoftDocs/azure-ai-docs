@@ -68,8 +68,8 @@ productDirectory:
       links:
         - url: ./agents/overview.md
           text: Orchestrate and host AI agents to automate and execute business processes
-        - url: ./agents/quickstart.md
-          text: Create a custom AI agent using Agent Service
+       # - url: ./agents/quickstart.md
+       #   text: Create a custom AI agent using Agent Service
         - url: /azure/developer/ai/get-started-multi-agents
           text: Azure AI app template for agents
         - url: ./concepts/ai-red-teaming-agent.md
@@ -86,7 +86,7 @@ productDirectory:
           text: Trace your application with Microsoft Foundry project library 
         - url: ./observability/how-to/evaluate-agent.md
           text: Evaluate agentic workflows
-        - url: ./how-to/monitor-applications.md
+        - url: ./observability/how-to/how-to-monitor-agents-dashboard
           text: Monitor your generative AI applications
     # Card
     - title: Foundry IQ
