@@ -380,8 +380,6 @@ This section has multiple query examples that illustrate hybrid query patterns.
 
 ### Example: Hybrid search with filter
 
-This example represents the **Precision-first hybrid** pattern.
-
 This example adds a filter, which is applied to the `filterable` nonvector fields of the search index.
 
 ```http
@@ -421,8 +419,6 @@ api-key: {{admin-api-key}}
 **Reference**: [filter](/rest/api/searchservice/documents/search-post#searchrequest) | [vectorFilterMode](/rest/api/searchservice/documents/search-post#vectorfiltermode)
 
 ### Example: Hybrid search with filters targeting vector subqueries (preview)
-
-This example represents the **Precision-first hybrid** pattern with targeted vector filtering.
 
 Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
 
@@ -468,8 +464,6 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
 
 ### Example: Semantic hybrid search
 
-This example represents the **Balanced hybrid** pattern with semantic ranking.
-
 Assuming that you [have semantic ranker](semantic-how-to-enable-disable.md) and your index definition includes a [semantic configuration](semantic-how-to-query-request.md), you can formulate a query that includes vector search and keyword search, with semantic ranking over the merged result set. Optionally, you can add captions and answers. 
 
 Whenever you use semantic ranking with vectors, make sure `k` is set to 50. Semantic ranker uses up to 50 matches as input. Specifying less than 50 deprives the semantic ranking models of necessary inputs.
@@ -514,8 +508,6 @@ api-key: {{admin-api-key}}
 **Reference**: [queryType](/rest/api/searchservice/documents/search-post#querytype) | [semanticConfiguration](/rest/api/searchservice/documents/search-post#searchrequest) | [captions](/rest/api/searchservice/documents/search-post#querycaption) | [answers](/rest/api/searchservice/documents/search-post#queryanswer)
 
 ### Example: Semantic hybrid search with filter
-
-This example represents the **Balanced hybrid** pattern with semantic ranking and filtering.
 
 Here's the last query in the collection. It's the same semantic hybrid query as the previous example, but with a filter.
 
