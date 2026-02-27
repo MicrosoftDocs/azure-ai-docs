@@ -914,7 +914,7 @@ Hosted agents support exposing OpenTelemetry traces, metrics, and logs from unde
 
 If you use the `azd ai agent` CLI extension, Application Insights is automatically provisioned and connected to your Foundry project for you. Your project's managed identity is granted the Azure AI User role on the Foundry resource so that traces are exported to Application Insights.
 
-<!-- CLASSIC-ONLY: If you use the Foundry SDK, you need to perform these steps independently. For more information, see [Enable tracing in your project](../../how-to/develop/trace-application.md#enable-tracing-in-your-project). -->
+If you use the Foundry SDK, you need to perform these steps independently. For more information, see [Enable tracing in your project](../../../foundry-classic/how-to/develop/trace-application.md#enable-tracing-in-your-project).
 
 The hosting adapter provides:
 
@@ -1019,7 +1019,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 
 **Use iterative evaluation**: Regularly evaluate agent versions during development to catch problems early and measure improvements.
 
-<!-- CLASSIC-ONLY: For more information about evaluating agents, see [Evaluate your AI agents](../../how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md). -->
+For more information about evaluating agents, see [Evaluate your AI agents](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
 
 ## Publish hosted agents to channels
 

@@ -16,6 +16,9 @@ items:
     href: ../../../ai-services/recover-purge-resources.md?context=/azure/foundry/context/context
   - name: Upgrade from Azure OpenAI Service
     href: ../../how-to/upgrade-azure-openai.md
+  - name: Migrate from Azure AI Inference SDK to OpenAI SDK
+    href: ../../how-to/model-inference-to-openai-migration.md
+
 # Project Management
 - name: Create and manage projects
   href: ../../how-to/create-projects.md

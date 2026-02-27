@@ -178,7 +178,7 @@ To prevent overuse and ensure fair resource allocation, you can apply [Tokens Pe
 
   - Authentication and RBAC: [Role-based access control in Foundry](../concepts/rbac-foundry.md)
   - Networking: [Use a virtual network with Foundry](../how-to/configure-private-link.md)
-<!-- CLASSIC-ONLY:   - Identity and managed identity: [Configure managed identity in Foundry](../../ai-services/openai/how-to/managed-identity.md) -->
+  - Identity and managed identity: [Configure managed identity in Foundry](../../ai-services/openai/how-to/managed-identity.md)
   - Customer-managed keys (CMK): [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md)
   - Example infrastructure: [templates repository with sample infrastructure templates](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)
   - [Recover or purge deleted Foundry resources](../../ai-services/recover-purge-resources.md?toc=/azure/ai-foundry/toc.json&bc=/azure/ai-foundry/breadcrumb/toc.json)
@@ -189,6 +189,6 @@ To prevent overuse and ensure fair resource allocation, you can apply [Tokens Pe
 
 - Governance
 
-<!-- CLASSIC-ONLY:   - Model access control with Azure Policy: [Control model deployment with built-in policies](../how-to/built-in-policy-model-deployment.md) -->
-<!-- CLASSIC-ONLY:   - Cost management: [Plan and manage costs for Foundry](../how-to/costs-plan-manage.md) -->
-<!-- CLASSIC-ONLY:   - Azure Monitor for usage tracking: [Monitor your Generative AI applications](../how-to/monitor-applications.md) -->
+  - Model access control with Azure Policy: [Control model deployment with built-in policies](../../foundry-classic/how-to/built-in-policy-model-deployment.md)
+  - Cost management: [Plan and manage costs for Foundry](../../foundry-classic/how-to/costs-plan-manage.md)
+  - Azure Monitor for usage tracking: [Monitor your Generative AI applications](../../foundry-classic/how-to/monitor-applications.md)

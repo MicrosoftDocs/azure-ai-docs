@@ -10,6 +10,8 @@ author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ms.custom:
+- classic-and-new
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Azure OpenAI in Microsoft Foundry Models REST API preview reference (classic)

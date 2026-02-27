@@ -16,7 +16,7 @@ reviewer: haakar
 ---
 
 # Microsoft Foundry Models quotas and limits
-<!-- CLASSIC-ONLY: This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../openai/quotas-limits.md). -->
+This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../openai/quotas-limits.md).
 
 ## Quotas and limits reference
 
@@ -40,15 +40,13 @@ The following table lists limits for Foundry Models for the following rates:
 
 | Models                                                                 | Tokens per minute                                   | Requests per minute                                   | Concurrent requests   |
 | ---------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- | -------------------- |
+| Azure OpenAI models                                                    | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). | Varies. See [Azure OpenAI limits](../openai/quotas-limits.md). |
 | - DeepSeek-R1<br />- DeepSeek-V3-0324                                      | 5,000,000                                           | 5,000                                                 | 300                  |
 | - Llama 3.3 70B Instruct<br />- Llama-4-Maverick-17B-128E-Instruct-FP8<br />- Grok 3<br />- Grok 3 mini | 400,000                                             | 1,000                                                 | 300                  |
 | - Flux.2-Pro                                  | not applicable                                      | - Low (Default): 15 <br> - Medium: 30 <br> - High (Enterprise): 100              | not applicable       |
 |- Flux-Pro 1.1 <br />- Flux.1-Kontext Pro                                  | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
 | Rest of models                                                         | 400,000                                             | 1,000                                                 | 300                  |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| Azure OpenAI models                                                    | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). | Varies. See [Azure OpenAI limits](../openai/quotas-limits.md). |
--->
 To increase your quota:
 
 - For Azure OpenAI, use [Foundry Service: Request for Quota Increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) to submit your request. 
@@ -115,5 +113,5 @@ You can modify the [reasoning effort](../openai/how-to/reasoning.md) parameter t
 ## Related content
 
 - [Models available in Foundry Models](./concepts/models-sold-directly-by-azure.md)
-<!-- CLASSIC-ONLY: - [Manage and increase quotas for Foundry resources](../how-to/quota.md) -->
-<!-- CLASSIC-ONLY: - [Quotas and limits in Azure OpenAI](../openai/quotas-limits.md) -->
+- [Manage and increase quotas for Foundry resources](../../foundry-classic/openai/how-to/quota.md)
+- [Quotas and limits in Azure OpenAI](../openai/quotas-limits.md)

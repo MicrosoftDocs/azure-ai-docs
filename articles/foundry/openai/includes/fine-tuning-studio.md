@@ -17,9 +17,9 @@ ms.custom:
 
 - Read the [guide on when to use Azure OpenAI fine-tuning](../concepts/fine-tuning-considerations.md).
 - You need an Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-<!-- CLASSIC-ONLY: - You need an Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. For the list of available models by region and supported functionality, check the [model summary table and region availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). -->
+- You need an Azure OpenAI resource that's located in a region that supports fine-tuning of the Azure OpenAI model. For the list of available models by region and supported functionality, check the [model summary table and region availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 - Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them.
-<!-- CLASSIC-ONLY: - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md). -->
+- If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../../../foundry-classic/openai/how-to/role-based-access-control.md).
 
 ### Supported models
 
@@ -257,7 +257,7 @@ Look for your loss to decrease over time, and your accuracy to increase. If your
 
 When you're satisfied with the metrics from your fine-tuning job, or you just want to move on to inference, you must deploy the model.
 
-<!-- CLASSIC-ONLY: If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=portal) by using a Developer deployment. -->
+If you're deploying for further validation, consider deploying for [testing](../../../foundry-classic/openai/how-to/fine-tune-test.md?tabs=portal) by using a Developer deployment.
 
 If you're ready to deploy for production or you have particular data-residency needs, follow the [deployment guide](../how-to/fine-tuning-deploy.md?tabs=portal).
 
@@ -282,7 +282,7 @@ When you no longer need your custom model, you can delete the deployment and mod
 
 ### Delete your model deployment
 
-<!-- CLASSIC-ONLY: [!INCLUDE [Fine-tuning deletion](fine-tune.md)] -->
+[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
 
 You can delete the deployment for your custom model on the **Deployments** pane in the Foundry portal. Select the deployment to delete, and then select **Delete**.
 

@@ -401,7 +401,7 @@ Use the Responses API if you want to:
 
 Effective prompts produce better images. Describe the subject, visual style, and composition you want. Use action words like "draw," "create," or "edit" to guide the model's output.
 
-<!-- CLASSIC-ONLY: Content filtering can block image generation if the service detects unsafe content in your prompt. For more information, see [Content filter](../../../foundry-models/concepts/content-filter.md). -->
+Content filtering can block image generation if the service detects unsafe content in your prompt. For more information, see [Content filter](../../../../foundry-classic/foundry-models/concepts/content-filter.md).
 
 > [!TIP] 
 > For a thorough look at how you can tweak your text prompts to generate different kinds of images, see [Image prompt engineering techniques](../../../openai/concepts/gpt-4-v-prompt-engineering.md). 
@@ -424,17 +424,15 @@ If you see only text output and no `image_generation_call` item, the request mig
 | Image generation fails | Missing deployment | Verify both the orchestrator model (for example, `gpt-4o`) and `gpt-image-1` deployments exist in the same Foundry project. |
 | Image generation fails | Missing or incorrect header | Verify the header `x-ms-oai-image-generation-deployment` is present on the Responses request and matches your image generation deployment name. |
 | Agent uses wrong deployment | Environment variable misconfiguration | Confirm `FOUNDRY_MODEL_DEPLOYMENT_NAME` is set to your orchestrator deployment name, not the image generation deployment. |
+| Prompt doesn't produce an image | Content filtering blocked the request | Check content filtering logs. See [Content filter](../../../../foundry-classic/foundry-models/concepts/content-filter.md) for guidelines on acceptable prompts. |
 | Tool not available | Regional or model limitation | Confirm the image generation tool is available in your region and with your orchestrator model. See [Best practices for using tools](../../concepts/tool-best-practice.md). |
 | Generated image has low quality | Prompt lacks detail | Provide more specific and detailed prompts describing the desired image style, composition, and elements. |
 | Image generation times out | Large or complex image request | Simplify the prompt or increase timeout settings. Consider breaking complex requests into multiple simpler ones. |
 | Unexpected image content | Ambiguous prompt | Refine your prompt to be more specific. Include negative prompts to exclude unwanted elements. |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| Prompt doesn't produce an image | Content filtering blocked the request | Check content filtering logs. See [Content filter](../../../foundry-models/concepts/content-filter.md) for guidelines on acceptable prompts. |
--->
 ## Related content
 
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
 - [Image generation in Azure OpenAI](../../../openai/how-to/dall-e.md)
 - [Responses API in Azure OpenAI](../../../openai/how-to/responses.md)
-<!-- CLASSIC-ONLY: - [Content filter](../../../foundry-models/concepts/content-filter.md) -->
+- [Content filter](../../../../foundry-classic/foundry-models/concepts/content-filter.md)

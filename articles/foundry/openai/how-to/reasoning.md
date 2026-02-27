@@ -83,7 +83,7 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 **Microsoft Entra ID:**
 
-<!-- CLASSIC-ONLY: If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md). -->
+If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication](../../../foundry-classic/openai/how-to/managed-identity.md).
 
 ```python
 from openai import OpenAI
@@ -304,7 +304,7 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 **Microsoft Entra ID:**
 
-<!-- CLASSIC-ONLY: If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI with Microsoft Entra ID authentication](../how-to/managed-identity.md). -->
+If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI with Microsoft Entra ID authentication](../../../foundry-classic/openai/how-to/managed-identity.md).
 
 ```python
 from openai import OpenAI
@@ -945,6 +945,7 @@ print(response.model_dump_json(indent=2))
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)** | 400,000 <br><br>Input: 272,000 <br> Output: 128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
 | **[Reasoning effort](#reasoning-effort)**<sup>7</sup> | ✅ | ✅ | ✅| ✅<sup>6</sup> | ✅<sup>4</sup> | ✅  | ✅  | ✅  | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Chat Completions API | - | - | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
 | Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
 | Functions/Tools | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
@@ -954,9 +955,6 @@ print(response.model_dump_json(indent=2))
 | [Reasoning summary](#reasoning-summary) |✅ |✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Streaming | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅|
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
--->
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>
 <sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.<br><br>
@@ -988,6 +986,7 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000  | 
 | **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅| ✅ |✅ | ✅ |
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | - | ✅ |
 | Chat Completions API | - | - | ✅ | ✅ | ✅ | ✅ |
 | Responses API | ✅  | ✅  | ✅ | ✅  | ✅ | ✅ |
 | Functions/Tools | ✅ | ✅ |✅ | ✅ | ✅  | ✅  |
@@ -997,9 +996,6 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 | [Reasoning summary](#reasoning-summary) |  ✅ | - | ✅ | ✅ | -  | -  |
 | Streaming <sup>3</sup>  | ✅ | - | ✅ | ✅| ✅ | - |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | - | ✅ |
--->
 <sup>1</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API.<br><br>
 <sup>2</sup> The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o4-mini`, `o3`, `o3-mini`, and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
 <sup>3</sup> Streaming for `o3` is limited access only.

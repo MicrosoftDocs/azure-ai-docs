@@ -20,7 +20,7 @@ recommendations: false
 ---
 
 # What is provisioned throughput for Foundry Models?
-<!-- CLASSIC-ONLY: The Microsoft Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Foundry then allocates the necessary model processing capacity and ensures it's ready for you. Use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek within Foundry Models, with more model families onboarding over time. -->
+The Microsoft Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Foundry then allocates the necessary model processing capacity and ensures it's ready for you. Use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../foundry-classic/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek within Foundry Models, with more model families onboarding over time.
 
 Provisioned throughput provides:
 
@@ -132,9 +132,9 @@ If an acceptable region isn't available to support the desired model, version, a
 
 The following sections explain how to monitor utilization and handle capacity limits.
 
-<!-- CLASSIC-ONLY: ### Monitor capacity -->
+### Monitor capacity
 
-<!-- CLASSIC-ONLY: The [Provisioned-Managed Utilization V2 metric](../how-to/monitor-openai.md#azure-monitor-platform-metrics) in Azure Monitor measures a given deployments utilization on 1-minute increments. All provisioned deployment types are optimized to ensure that accepted calls are processed with a consistent model processing time (actual end-to-end latency is dependent on a call's characteristics).   -->
+The [Provisioned-Managed Utilization V2 metric](../../../foundry-classic/openai/how-to/monitor-openai.md#azure-monitor-platform-metrics) in Azure Monitor measures a given deployments utilization on 1-minute increments. All provisioned deployment types are optimized to ensure that accepted calls are processed with a consistent model processing time (actual end-to-end latency is dependent on a call's characteristics).  
 
 ### Utilization performance
 
@@ -152,7 +152,7 @@ The  `retry-after-ms` and `retry-after` headers in the response tell you the tim
 
 ### Utilization-based request evaluation
 
-<!-- CLASSIC-ONLY: In all provisioned deployment types, each request is evaluated individually according to its prompt size, expected generation size, and model to determine its expected utilization. This behavior is in contrast to standard deployments, which have a [custom rate limiting behavior](../how-to/quota.md) based on the estimated traffic load. For standard deployments, this custom rate limiting behavior can lead to HTTP 429 errors before defined quota values are exceeded if traffic isn't evenly distributed. -->
+In all provisioned deployment types, each request is evaluated individually according to its prompt size, expected generation size, and model to determine its expected utilization. This behavior is in contrast to standard deployments, which have a [custom rate limiting behavior](../../../foundry-classic/openai/how-to/quota.md) based on the estimated traffic load. For standard deployments, this custom rate limiting behavior can lead to HTTP 429 errors before defined quota values are exceeded if traffic isn't evenly distributed.
 
 For provisioned deployments, we use a variation of the leaky bucket algorithm to maintain utilization below 100% while allowing some burstiness in the traffic. The high-level logic is as follows:
 
@@ -246,6 +246,6 @@ This section lists Foundry Models that support the provisioned throughput capabi
 - [Provisioned Throughput Units (PTU) getting started guide](../how-to/provisioned-get-started.md)
 - [Understand deployment types](../../foundry-models/concepts/deployment-types.md)
 - [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md)
-<!-- CLASSIC-ONLY: - [Monitor Azure OpenAI models](../how-to/monitor-openai.md) -->
-<!-- CLASSIC-ONLY: - [Manage quota for Azure OpenAI](../how-to/quota.md) -->
+- [Monitor Azure OpenAI models](../../../foundry-classic/openai/how-to/monitor-openai.md)
+- [Manage quota for Azure OpenAI](../../../foundry-classic/openai/how-to/quota.md)
 - [Save costs with Microsoft Foundry Provisioned Throughput Reservations](/azure/cost-management-billing/reservations/azure-openai)

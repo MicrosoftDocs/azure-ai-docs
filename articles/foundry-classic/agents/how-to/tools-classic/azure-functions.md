@@ -26,7 +26,7 @@ Functions offer several hosting plans. The [Flex Consumption plan](/azure/azure-
 
 ## When to use Azure Functions vs function calling
 
-<!-- NEW-ONLY: While [function calling](function-calling.md) allows you to define tools that run in-process with your agent code, hosting custom tools on Azure Functions provides additional enterprise capabilities when you need: -->
+While [function calling](function-calling.md) allows you to define tools that run in-process with your agent code, hosting custom tools on Azure Functions provides additional enterprise capabilities when you need:
 
 - **Separation of concerns**: Isolate your business logic from agent code, enabling independent development, testing, and deployment cycles.
 - **Centralized management**: Create reusable tools that multiple agents, applications, or teams can consume consistently.

@@ -26,7 +26,7 @@ An embedding is a special format of data representation that can be easily utili
 	- API key.
 	- Model deployment name.
 
-<!-- CLASSIC-ONLY: For more language-specific setup guidance, see [Azure OpenAI supported programming languages](../supported-languages.md). -->
+For more language-specific setup guidance, see [Azure OpenAI supported programming languages](../supported-languages.md).
 
 ## How to get embeddings
 

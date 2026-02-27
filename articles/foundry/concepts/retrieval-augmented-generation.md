@@ -34,7 +34,7 @@ Key concepts for RAG:
 
 - **Grounding data**: Retrieved content you provide to the model to reduce guessing.
 - **Index**: A data structure optimized for retrieval (keyword, semantic, vector, or hybrid search).
-<!-- CLASSIC-ONLY: - **Embeddings**: Numeric representations of content used for vector similarity search. See [Understand embeddings](../openai/concepts/understand-embeddings.md). -->
+- **Embeddings**: Numeric representations of content used for vector similarity search. See [Understand embeddings](../../foundry-classic/openai/concepts/understand-embeddings.md).
 - **System message and prompts**: Instructions that guide how the model uses retrieved content. See [Prompt engineering](../openai/concepts/prompt-engineering.md) and [Safety system messages](../openai/concepts/system-message.md).
 
 ## How does RAG work?
@@ -88,7 +88,7 @@ Foundry supports multiple patterns for working with private data. Choose based o
 
 - **Use RAG** when you need answers grounded in private or frequently changing data.
 - **Use fine-tuning** when you need to change model behavior, style, or task performance, rather than add fresh knowledge.
-<!-- CLASSIC-ONLY: - **Use a managed “use your data” experience** if you want a more guided way to connect, ingest, and chat over your data. See [Azure OpenAI On Your Data](../openai/concepts/use-your-data.md) and [Quickstart: Chat with Azure OpenAI models using your own data](../quickstarts/get-started-code.md). -->
+- **Use a managed “use your data” experience** if you want a more guided way to connect, ingest, and chat over your data. See [Azure OpenAI On Your Data](../../foundry-classic/openai/concepts/use-your-data.md) and [Quickstart: Chat with Azure OpenAI models using your own data](../quickstarts/get-started-code.md).
 - **Use agent tools** when you're building an agent that needs retrieval as a tool. For example, see [File search tool for agents](../agents/how-to/tools/file-search.md).
 ## Getting started with RAG in Foundry
 
@@ -102,7 +102,7 @@ Implementing RAG in Foundry typically follows this workflow:
 
 To get started, choose one of these paths based on your needs:
 
-<!-- CLASSIC-ONLY: - **Guided experience**: Start with [Azure OpenAI On Your Data](../openai/concepts/use-your-data.md), which provides a managed setup for connecting data and chatting over it. See [Quickstart: Chat with Azure OpenAI models using your own data](../quickstarts/get-started-code.md). -->
+- **Guided experience**: Start with [Azure OpenAI On Your Data](../../foundry-classic/openai/concepts/use-your-data.md), which provides a managed setup for connecting data and chatting over it. See [Quickstart: Chat with Azure OpenAI models using your own data](../quickstarts/get-started-code.md).
 - **Agent with retrieval**: If you're building an agent, use retrieval as a tool. See [File search tool for agents](../agents/how-to/tools/file-search.md).
 - **Custom RAG application**: Build a full RAG app with the Foundry SDK for complete control.
 
@@ -110,7 +110,7 @@ To get started, choose one of these paths based on your needs:
 
 RAG systems can expose sensitive content if you don't design access and prompting carefully.
 
-<!-- CLASSIC-ONLY: - **Apply access control at retrieval time**. If you're using Azure AI Search as a data source, you can use document-level access control with security filters. See the [document-level access control](../openai/concepts/use-your-data.md#document-level-access-control) section. -->
+- **Apply access control at retrieval time**. If you're using Azure AI Search as a data source, you can use document-level access control with security filters. See the [document-level access control](../../foundry-classic/openai/concepts/use-your-data.md#document-level-access-control) section.
 - **Prefer Microsoft Entra ID over API keys for production**. API keys are convenient for development but aren't recommended for production scenarios. For Azure AI Search RBAC guidance, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md).
 - **Treat retrieved content as untrusted input**. Your system message and application logic should reduce the risk of prompt injection from documents and retrieved passages. See [Safety system messages](../openai/concepts/system-message.md).
 
@@ -143,7 +143,7 @@ For guidance on evaluating RAG effectiveness, see the tutorials and quickstarts 
 
 ## Related content
 
-<!-- CLASSIC-ONLY: - [Azure OpenAI On Your Data](../openai/concepts/use-your-data.md) -->
+- [Azure OpenAI On Your Data](../../foundry-classic/openai/concepts/use-your-data.md)
 - [File search tool for agents](../agents/how-to/tools/file-search.md)
 - [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval.md)
 - [File search tool for agents](../agents/how-to/tools/file-search.md)

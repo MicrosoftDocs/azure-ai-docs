@@ -16,13 +16,11 @@ ms.date: 01/27/2025
 | Maximum Batch input files - (no expiration)  | 500 |
 | Maximum Batch input files - (expiration set) | 10,000 |
 | Maximum input file size | 200 MB |
+| Maximum input file size - [Bring your own storage (BYOS)](../../../foundry-classic/openai/how-to/batch-blob-storage.md) | 1 GB |
 | Maximum requests per file | 100,000 |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| Maximum input file size - [Bring your own storage (BYOS)](../how-to/batch-blob-storage.md) | 1 GB |
--->
-<!-- > [!NOTE] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY: > Batch file limits don't apply to output files (for example, `result.jsonl`, and `error.jsonl`). To remove batch input file limits, use [Batch with Azure Blob Storage](../../openai/how-to/batch-blob-storage.md). -->
+> [!NOTE]
+> Batch file limits don't apply to output files (for example, `result.jsonl`, and `error.jsonl`). To remove batch input file limits, use [Batch with Azure Blob Storage](../../../foundry-classic/openai/how-to/batch-blob-storage.md).
 
 ## Batch quota
 

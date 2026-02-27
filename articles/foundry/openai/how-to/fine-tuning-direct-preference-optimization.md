@@ -88,6 +88,6 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs'
 
 ## Next steps
 
-<!-- CLASSIC-ONLY: - Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md). -->
+- Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../../../foundry-classic/openai/tutorials/fine-tune.md).
 - Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
-<!-- CLASSIC-ONLY: - Learn more about [Azure OpenAI quotas](../quotas-limits.md) -->
+- Learn more about [Azure OpenAI quotas](../quotas-limits.md)

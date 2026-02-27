@@ -85,7 +85,7 @@ To prepare for model retirements and version upgrades, we recommend that custome
 
 For more information on the model evaluation process, see the [Getting started with model evaluation](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/how-to-evaluate-amp-upgrade-model-versions-in-the-azure-openai/ba-p/4218880) blog post.
 
-<!-- CLASSIC-ONLY: For information on the model upgrade process, see [How to upgrade to a new model or version](./model-versions.md). -->
+For information on the model upgrade process, see [How to upgrade to a new model or version](../../../foundry-classic/openai/concepts/model-versions.md).
 
 For more information on how to manage model upgrades and migrations for provisioned deployments, see [Managing models on provisioned deployment types](../how-to/working-with-models.md#managing-models-on-provisioned-deployment-types).
 

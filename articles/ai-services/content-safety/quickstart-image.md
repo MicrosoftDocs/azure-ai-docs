@@ -2,13 +2,13 @@
 title: "Quickstart: Analyze image content"
 titleSuffix: Azure AI services
 description: Get started using Azure AI Content Safety to analyze image content for objectionable material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023, devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js
 ms.topic: quickstart
 ms.date: 07/14/2025
-ms.author: pafarley
+ms.author: ssalgado
 zone_pivot_groups: programming-languages-content-safety-2
 ---
 

@@ -56,7 +56,7 @@ For the initial v1 Generally Available (GA) API launch, only a subset of the inf
 
 ### v1 API
 
-<!-- CLASSIC-ONLY: [Python v1 examples](./supported-languages.md) -->
+[Python v1 examples](./supported-languages.md)
 
 **API Key**:
 
@@ -131,7 +131,7 @@ print(response.model_dump_json(indent=2))
 
 ### v1 API
 
-<!-- CLASSIC-ONLY: [C# v1 examples](./supported-languages.md) -->
+[C# v1 examples](./supported-languages.md)
 
 **API Key**:
 
@@ -164,7 +164,7 @@ OpenAIClient client = new(
 
 ### v1 API
 
-<!-- CLASSIC-ONLY: [JavaScript v1 examples](./supported-languages.md) -->
+[JavaScript v1 examples](./supported-languages.md)
 
 **API Key**:
 
@@ -197,7 +197,7 @@ const client = new OpenAI({
 
 ### v1 API
 
-<!-- CLASSIC-ONLY: [Go v1 examples](./supported-languages.md) -->
+[Go v1 examples](./supported-languages.md)
 
 **API Key**:
 
@@ -227,7 +227,7 @@ client := openai.NewClient(
 
 # [Java](#tab/Java)
 
-<!-- CLASSIC-ONLY: [Java v1 examples](./supported-languages.md) -->
+[Java v1 examples](./supported-languages.md)
 
 ### v1 API
 
@@ -294,7 +294,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ## Model support
 
-<!-- CLASSIC-ONLY: For Azure OpenAI models we recommend using the [Responses API](./supported-languages.md), however, the v1 API also allows you to make chat completions calls with models from other providers like DeepSeek and Grok which support the OpenAI v1 chat completions syntax. -->
+For Azure OpenAI models we recommend using the [Responses API](./supported-languages.md), however, the v1 API also allows you to make chat completions calls with models from other providers like DeepSeek and Grok which support the OpenAI v1 chat completions syntax.
 
 `base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
 
@@ -613,7 +613,7 @@ The following sections summarize changes between API versions.
 
 ## Next steps
 
-<!-- CLASSIC-ONLY: - [Supported programming languages for the v1 API](./supported-languages.md) -->
+- [Supported programming languages for the v1 API](./supported-languages.md)
 - [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md)
 - [Working with Azure OpenAI models](./how-to/working-with-models.md)
 - [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits)

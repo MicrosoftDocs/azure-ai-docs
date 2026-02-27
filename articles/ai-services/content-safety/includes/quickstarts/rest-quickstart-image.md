@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Analyze image content"
 description: In this quickstart, get started using Azure AI Content Safety to analyze image content for objectionable material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: include
 ms.date: 03/11/2024
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 ## Prerequisites

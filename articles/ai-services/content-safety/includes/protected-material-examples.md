@@ -1,10 +1,10 @@
 ---
 title: "Protected Material Detection examples"
 description: "Details about Protected material detection."
-author: PatrickFarley
+author: ssalgadodev
 ms.date: 05/08/2025
 ms.topic: include
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 [!INCLUDE [code-indexer](code-indexer.md)]

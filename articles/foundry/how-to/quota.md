@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 ---
 
 # Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)
-<!-- CLASSIC-ONLY: Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. Azure assigns quota per subscription, per region, and per model in units of tokens per minute (TPM). Different deployment types, such as Standard and Provisioned, have different quota mechanics. For full details on default limits and quota tiers, see [Azure OpenAI quotas and limits](../openai/quotas-limits.md). -->
+Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. Azure assigns quota per subscription, per region, and per model in units of tokens per minute (TPM). Different deployment types, such as Standard and Provisioned, have different quota mechanics. For full details on default limits and quota tiers, see [Azure OpenAI quotas and limits](../openai/quotas-limits.md).
 
 This article walks through the process of managing quota for your Microsoft Foundry Models deployed in a Foundry project, including how to view current allocations and request increases.
 
@@ -75,8 +75,8 @@ If you encounter issues when viewing or requesting quotas, try these solutions:
 
 ## Related content
 
-<!-- CLASSIC-ONLY: - [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md) -->
-<!-- CLASSIC-ONLY: - [Azure OpenAI quotas and limits](../openai/quotas-limits.md) -->
-<!-- CLASSIC-ONLY: - [Manage Azure OpenAI Service quota](../openai/how-to/quota.md) -->
-<!-- CLASSIC-ONLY: - [Plan to manage costs](./costs-plan-manage.md) -->
+- [Microsoft Foundry Models quotas and limits](../foundry-models/quotas-limits.md)
+- [Azure OpenAI quotas and limits](../openai/quotas-limits.md)
+- [Manage Azure OpenAI Service quota](../../foundry-classic/openai/how-to/quota.md)
+- [Plan to manage costs](../../foundry-classic/how-to/costs-plan-manage.md)
 - [Create a project](../how-to/create-projects.md)

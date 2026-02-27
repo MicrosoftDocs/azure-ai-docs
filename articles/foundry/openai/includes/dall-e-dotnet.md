@@ -20,7 +20,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for C#
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - The [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
-<!-- CLASSIC-ONLY: - An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). -->
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 
 #### Microsoft Entra ID prerequisites
 
@@ -126,8 +126,8 @@ The URL of the generated image is printed to the console.
 <SAS URL>
 ```
 
-<!-- > [!NOTE] (callout removed - content was version-specific) -->
-<!-- CLASSIC-ONLY: > The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../foundry-models/concepts/content-filter.md) article. -->
+> [!NOTE]
+> The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../../foundry-classic/foundry-models/concepts/content-filter.md) article.
 
 ### Clean up resources
 

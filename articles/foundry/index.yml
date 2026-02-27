@@ -92,11 +92,11 @@ productDirectory:
     - title: Foundry IQ
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/foundry-iq.png
       links:
-        - url: /azure/ai-foundry/agents/concepts/what-is-foundry-iq
+        - url: /azure/foundry/agents/concepts/what-is-foundry-iq
           text: What is Foundry IQ?
-        - url: /azure/ai-foundry/agents/concepts/foundry-iq-faq
+        - url: /azure/foundry/agents/concepts/foundry-iq-faq
           text: Frequently asked questions
-        - url: /azure/ai-foundry/agents/how-to/foundry-iq-connect
+        - url: /azure/foundry/agents/how-to/foundry-iq-connect
           text: Connect knowledge base to agents
     
     # Card

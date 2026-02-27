@@ -60,8 +60,8 @@ In this article, you learn how to:
 
 ## Related content
 
-<!-- CLASSIC-ONLY: - [Fine-tuning tutorial (step-by-step)](../tutorials/fine-tune.md) -->
+- [Fine-tuning tutorial (step-by-step)](../../../foundry-classic/openai/tutorials/fine-tune.md)
 - [Model catalog and regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md)
-<!-- CLASSIC-ONLY: - [Quotas and limits](../quotas-limits.md) -->
+- [Quotas and limits](../quotas-limits.md)
 - [View and interpret evaluation results](../../how-to/evaluate-results.md)
-<!-- CLASSIC-ONLY: - [Trace AI application usage (OpenAI SDK)](../../how-to/develop/trace-application.md) -->
+- [Trace AI application usage (OpenAI SDK)](../../../foundry-classic/how-to/develop/trace-application.md)

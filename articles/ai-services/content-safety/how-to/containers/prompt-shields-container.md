@@ -2,12 +2,12 @@
 title: Prompt Shields container - Azure AI Content Safety 
 titleSuffix: Azure AI services
 description: Install and run content safety prompt shields containers with Docker to detect and mitigate user prompt attacks.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 02/05/2026
-ms.author: pafarley
+ms.author: ssalgado
 keywords: on-premises, Docker, container
 ---
 

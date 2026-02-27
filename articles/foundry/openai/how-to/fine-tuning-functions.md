@@ -186,5 +186,5 @@ As with the example before, this example is artificially expanded for readabilit
 ## Next steps
 
 * [Function calling fine-tuning scenarios](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/fine-tuning-with-function-calling-on-azure-openai-service/ba-p/4065968).
-<!-- CLASSIC-ONLY: * Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md). -->
+* Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../../../foundry-classic/openai/tutorials/fine-tune.md).
 * Review fine-tuning [model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).

@@ -1,12 +1,12 @@
 ---
 title: "Storage account access"
 description: Storage account access
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: include
 ms.date: 04/12/2024
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 

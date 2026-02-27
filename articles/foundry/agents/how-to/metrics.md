@@ -23,7 +23,7 @@ Monitoring is available for agents in a [standard agent setup](../concepts/stand
 > [!IMPORTANT]
 > Monitoring support is currently limited to Microsoft Foundry hubs. Foundry projects aren't supported.
 >
-<!-- CLASSIC-ONLY: > To learn about Foundry hubs and projects, see [What is Microsoft Foundry?](../../what-is-foundry.md) and [Migrate from hub-based to Foundry projects](../../how-to/migrate-project.md). -->
+> To learn about Foundry hubs and projects, see [What is Microsoft Foundry?](../../what-is-foundry.md) and [Migrate from hub-based to Foundry projects](../../../foundry-classic/how-to/migrate-project.md).
 
 > [!NOTE]
 > If you're using a Foundry project, use Foundry monitoring instead of Azure Monitor metrics.
@@ -83,7 +83,7 @@ Agent Service shares a subset of metrics with other Foundry components. The foll
 | Tokens | `AgentTotalTokens` | Count | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `ModelName`, `ModelVersion` | PT1M |
 | Tool calls | `AgentToolCalls` | Count | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `ToolName` | PT1M |
 
-<!-- CLASSIC-ONLY: For metric definitions, see [Monitoring data reference](../reference/monitor-service.md). -->
+For metric definitions, see [Monitoring data reference](../../../foundry-classic/agents/reference/monitor-service.md).
 
 ## Analyze monitoring data
 
@@ -159,7 +159,7 @@ To create a metric alert rule:
 
 After you create the rule, it appears in the **Alert rules** list. The rule becomes active immediately and evaluates based on the frequency you configured.
 
-<!-- CLASSIC-ONLY: For application-layer observability, see [Monitor your generative AI applications (preview)](../../how-to/monitor-applications.md). -->
+For application-layer observability, see [Monitor your generative AI applications (preview)](../../../foundry-classic/how-to/monitor-applications.md).
 
 ## Troubleshooting
 
@@ -179,5 +179,5 @@ After you create the rule, it appears in the **Alert rules** list. The rule beco
 ## Next steps
 
 - If you're using a Foundry project, see [Monitor AI Agents with the Agent Monitoring Dashboard (preview)](../../observability/how-to/how-to-monitor-agents-dashboard.md).
-<!-- CLASSIC-ONLY: - For end-to-end debugging, see [Trace and observe AI agents in Foundry (preview)](../../how-to/develop/trace-agents-sdk.md). -->
-<!-- CLASSIC-ONLY: - For metric definitions, see [Monitoring data reference](../reference/monitor-service.md). -->
+- For end-to-end debugging, see [Trace and observe AI agents in Foundry (preview)](../../../foundry-classic/how-to/develop/trace-agents-sdk.md).
+- For metric definitions, see [Monitoring data reference](../../../foundry-classic/agents/reference/monitor-service.md).

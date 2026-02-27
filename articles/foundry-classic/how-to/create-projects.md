@@ -136,7 +136,7 @@ To create a Foundry project:
 
 # [Azure CLI](#tab/azurecli)
 
-<!-- NEW-ONLY: [!INCLUDE [create-project-cli](../includes/create-project-cli.md)] -->
+[!INCLUDE [create-project-cli](../../foundry/includes/create-project-cli.md)]
 
 ---
 

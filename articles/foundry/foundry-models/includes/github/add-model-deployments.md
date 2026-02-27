@@ -31,7 +31,7 @@ You can add all the models you need in the endpoint by using [Microsoft Foundry 
    > [!TIP]
    > Each model can support different deployments types, providing different data residency or throughput guarantees. See [deployment types](../../concepts/deployment-types.md) for more details.
 
-<!-- CLASSIC-ONLY: 7.  Use the **Customize** option if you need to change settings like [content filter](../../../foundry-models/concepts/content-filter.md). -->
+7.  Use the **Customize** option if you need to change settings like [content filter](../../../../foundry-classic/foundry-models/concepts/content-filter.md).
    
    :::image type="content" source="../../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../../media/add-model-deployments/models-deploy-customize.png":::
 

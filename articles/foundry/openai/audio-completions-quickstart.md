@@ -78,11 +78,11 @@ If the generated audio file doesn't play:
 - Verify the format matches what your player supports (wav is widely compatible).
 - For streaming responses, remember that only pcm16 format is supported.
 
-<!-- CLASSIC-ONLY: ### Rate limiting -->
+### Rate limiting
 
-<!-- CLASSIC-ONLY: If you receive a 429 error, you've exceeded the rate limit. Wait and retry, or request a quota increase. For more information about rate limits, see [Azure OpenAI quotas and limits](quotas-limits.md). -->
+If you receive a 429 error, you've exceeded the rate limit. Wait and retry, or request a quota increase. For more information about rate limits, see [Azure OpenAI quotas and limits](quotas-limits.md).
 
 ## Related content
 
 * Learn more about Azure OpenAI [deployment types](../foundry-models/concepts/deployment-types.md).
-<!-- CLASSIC-ONLY: * Learn more about Azure OpenAI [quotas and limits](quotas-limits.md). -->
+* Learn more about Azure OpenAI [quotas and limits](quotas-limits.md).

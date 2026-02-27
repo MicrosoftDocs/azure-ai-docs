@@ -3022,7 +3022,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/how-to/model-inference-to-openai-migration.md",
-      "redirect_url": "/azure/foundry-classic/how-to/model-inference-to-openai-migration",
+      "redirect_url": "/azure/foundry/how-to/model-inference-to-openai-migration",
       "redirect_document_id": false
     },
     {
@@ -3137,7 +3137,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/authoring-reference-preview.md",
-      "redirect_url": "/azure/foundry-classic/openai/authoring-reference-preview",
+      "redirect_url": "/azure/foundry/openai/authoring-reference-preview",
       "redirect_document_id": false
     },
     {
@@ -3682,17 +3682,17 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/reference-preview-latest.md",
-      "redirect_url": "/azure/foundry-classic/openai/reference-preview-latest",
+      "redirect_url": "/azure/foundry/openai/reference-preview-latest",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/reference-preview.md",
-      "redirect_url": "/azure/foundry-classic/openai/reference-preview",
+      "redirect_url": "/azure/foundry/openai/reference-preview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/reference.md",
-      "redirect_url": "/azure/foundry-classic/openai/reference",
+      "redirect_url": "/azure/foundry/openai/reference",
       "redirect_document_id": false
     },
     {

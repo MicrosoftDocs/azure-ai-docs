@@ -336,8 +336,8 @@ Example of explicit recursion:
 ```
 > [!NOTE]
 > Currently structured outputs are not supported with:
-<!-- CLASSIC-ONLY: > - [Bring your own data](../concepts/use-your-data.md) scenarios. -->
-<!-- CLASSIC-ONLY: > - [Assistants](../how-to/assistant.md) or [Foundry Agents Service](../../agents/overview.md). -->
+> - [Bring your own data](../../../foundry-classic/openai/concepts/use-your-data.md) scenarios.
+> - [Assistants](../../../foundry-classic/openai/how-to/assistant.md) or [Foundry Agents Service](../../agents/overview.md).
 > - `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17`.
 
 ## Supported models

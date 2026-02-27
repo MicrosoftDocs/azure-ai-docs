@@ -93,9 +93,9 @@ To run inference on the deployed model, see the following examples:
 
 - To use the **Chat completions API with models sold by partners**, such as the Llama model deployed in this article, see [Model support for chat completions](../../openai/api-version-lifecycle.md#model-support).
 
-<!-- CLASSIC-ONLY: ## Regional availability and quota limits of a model -->
+## Regional availability and quota limits of a model
 
-<!-- CLASSIC-ONLY: For Foundry Models, the default quota varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI in Microsoft Foundry Models quotas and limits](../../openai/quotas-limits.md) and [Microsoft Foundry Models quotas and limits](../quotas-limits.md). -->
+For Foundry Models, the default quota varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI in Microsoft Foundry Models quotas and limits](../../openai/quotas-limits.md) and [Microsoft Foundry Models quotas and limits](../quotas-limits.md).
 
 ## Quota for deploying and running inference on a model
 
@@ -106,22 +106,20 @@ When you reach your quota limit, you can only create new deployments of that mod
 - Request more quota by submitting a [quota increase form](https://aka.ms/oai/stuquotarequest).
 - Adjust the allocated quota on other model deployments in the Foundry portal, to free up tokens for new deployments.
 
-<!-- CLASSIC-ONLY: For more information about quota, see [Microsoft Foundry Models quotas and limits](../quotas-limits.md) and [Manage Azure OpenAI quota](../../openai/how-to/quota.md?tabs=rest). -->
+For more information about quota, see [Microsoft Foundry Models quotas and limits](../quotas-limits.md) and [Manage Azure OpenAI quota](../../../foundry-classic/openai/how-to/quota.md?tabs=rest).
 
 ## Troubleshooting
 
 | Issue | Resolution |
 | --- | --- |
 | Quota exceeded | [Request more quota](https://aka.ms/oai/stuquotarequest) or reallocate TPM from existing deployments. |
+| Region not supported | Check [regional availability](../quotas-limits.md) and deploy in a supported region. |
 | Marketplace subscription error | Verify you have the [required permissions](configure-marketplace.md) to subscribe to Azure Marketplace offerings. |
 | Deployment status shows **Failed** | Confirm that the model is available in your selected region and that you have sufficient quota. |
 
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| Region not supported | Check [regional availability](../quotas-limits.md) and deploy in a supported region. |
--->
 ## Related content
 
 - [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
 - [Deployment types for Foundry Models](../concepts/deployment-types.md)
 - [Deploy models using Azure CLI and Bicep](create-model-deployments.md)
-<!-- CLASSIC-ONLY: - [Azure OpenAI supported programming languages](../../openai/supported-languages.md) -->
+- [Azure OpenAI supported programming languages](../../openai/supported-languages.md)

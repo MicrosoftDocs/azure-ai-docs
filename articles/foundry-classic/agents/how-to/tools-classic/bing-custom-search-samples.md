@@ -22,7 +22,7 @@ zone_pivot_groups: selection-bing-custom-grounding
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-<!-- NEW-ONLY: > 🔍 [View the new Grounding with Bing Search documentation](../../../default/agents/how-to/tools/bing-tools.md). -->
+> 🔍 [View the new Grounding with Bing Search documentation](../../../../foundry/agents/how-to/tools/bing-tools.md).
 
 This article provides step-by-step instructions and code samples for using the Grounding with Bing Custom Search tool in the Foundry Agent Service.
 

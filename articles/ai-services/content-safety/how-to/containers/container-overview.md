@@ -2,12 +2,12 @@
 title: Content safety containers overview - Azure AI Content Safety
 titleSuffix: Azure AI services
 description: Use the Docker containers for the content safety service to perform content safety operations on-premises.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
 ms.date: 09/16/2025
-ms.author: pafarley
+ms.author: ssalgado
 keywords: on-premises, Docker, container
 ---
 

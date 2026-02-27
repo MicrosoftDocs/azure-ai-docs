@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 # Model leaderboards in Microsoft Foundry portal (preview)
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-<!-- CLASSIC-ONLY: Model leaderboards (preview) in Foundry portal help you compare models in the Foundry [model catalog](foundry-models-overview.md) using industry-standard model benchmarks. -->
+Model leaderboards (preview) in Foundry portal help you compare models in the Foundry [model catalog](../../foundry-classic/concepts/foundry-models-overview.md) using industry-standard model benchmarks.
 
 To get started, [compare and select models using the model leaderboard](../how-to/benchmark-model-in-catalog.md) in Foundry portal.
 
@@ -131,10 +131,11 @@ Safety is a complex topic with several dimensions. No single open-source benchma
 
 ## Performance benchmarks of language models
 
-<!-- CLASSIC-ONLY: Performance metrics are aggregated over 14 days using 24 trials per day, with two requests per trial sent at one-hour intervals. Unless otherwise noted, the following default parameters apply to both [serverless API deployments](./foundry-models-overview.md) and [Azure OpenAI](/azure/ai-foundry/openai/overview): -->
+Performance metrics are aggregated over 14 days using 24 trials per day, with two requests per trial sent at one-hour intervals. Unless otherwise noted, the following default parameters apply to both [serverless API deployments](../../foundry-classic/concepts/foundry-models-overview.md) and [Azure OpenAI](/azure/ai-foundry/openai/overview):
 
 | Parameter | Value | Applicable for |
 |--|--|--|
+| Region | East US/East US2 | [serverless API deployments](../../foundry-classic/concepts/foundry-models-overview.md) and [Azure OpenAI](/azure/ai-foundry/openai/overview) |
 | Tokens per minute (TPM) rate limit | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (serverless API deployments) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (serverless API, global, global standard, and so on.) <br> For serverless API deployments, this setting is abstracted. |
 | Number of requests | Two requests in a trial for every hour (24 trials per day) | serverless API deployments, Azure OpenAI |
 | Number of trials/runs | 14 days with 24 trials per day for 336 runs | serverless API deployments, Azure OpenAI |
@@ -143,13 +144,9 @@ Safety is a complex topic with several dimensions. No single open-source benchma
 | Number of concurrent requests | One (requests are sent sequentially one after other) | serverless API deployments, Azure OpenAI |
 | Data | Synthetic (input prompts prepared from static text) | serverless API deployments, Azure OpenAI |
 | Deployment type | serverless API | Applicable only for Azure OpenAI |
+| Streaming | True | Applies to serverless API deployments and Azure OpenAI. For models deployed via [managed compute](../../foundry-classic/concepts/foundry-models-overview.md), or for endpoints when streaming isn't supported TTFT is represented as P50 of latency metric. |
 | SKU | Standard_NC24ads_A100_v4 (24 cores, 220GB RAM, 64GB storage) | Applicable only for Managed Compute (to estimate the cost and performance metrics) |
              
-
-<!-- CLASSIC-ONLY: Table row(s) removed. To restore, update links and uncomment:
-| Region | East US/East US2 | [serverless API deployments](./foundry-models-overview.md) and [Azure OpenAI](/azure/ai-foundry/openai/overview) |
-| Streaming | True | Applies to serverless API deployments and Azure OpenAI. For models deployed via [managed compute](./foundry-models-overview.md), or for endpoints when streaming isn't supported TTFT is represented as P50 of latency metric. |
--->
 The performance of LLMs and SLMs is assessed across the following metrics:
 
 | Metric | Description |
@@ -244,6 +241,6 @@ All benchmarks have inherent limitations that you should consider when interpret
 ## Related content
 
 - [Compare and select models using the model leaderboard in Foundry portal](../how-to/benchmark-model-in-catalog.md)
-<!-- CLASSIC-ONLY: - [Model catalog and collections in Foundry portal](foundry-models-overview.md) -->
+- [Model catalog and collections in Foundry portal](../../foundry-classic/concepts/foundry-models-overview.md)
 - [Evaluate your generative AI apps](../how-to/evaluate-generative-ai-app.md)
-<!-- CLASSIC-ONLY: - [Deploy models with serverless API](../how-to/deploy-models-serverless.md) -->
+- [Deploy models with serverless API](../../foundry-classic/how-to/deploy-models-serverless.md)

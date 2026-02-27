@@ -150,4 +150,4 @@ Images can be excluded from training for several reasons:
 - [Fine-tune a model](fine-tuning.md) — Complete fine-tuning workflow including upload, training, and monitoring.
 - [Deploy a fine-tuned model](fine-tuning-deploy.md) — Deploy your customized model for inference.
 - [Fine-tuning model regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models) — Check which regions support vision fine-tuning.
-<!-- CLASSIC-ONLY: - [Model quotas and limits](../quotas-limits.md) — Review rate limits and quotas for fine-tuned models. -->
+- [Model quotas and limits](../quotas-limits.md) — Review rate limits and quotas for fine-tuned models.

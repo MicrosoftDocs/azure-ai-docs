@@ -10,7 +10,9 @@ author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ms.custom:
+  - classic-and-new
   - ignite-2023
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Azure OpenAI in Microsoft Foundry Models REST API reference (classic)
