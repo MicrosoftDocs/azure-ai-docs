@@ -1,7 +1,7 @@
 ---
-title: What is the Azure AI Face service?
+title: What is the Azure Face service?
 titleSuffix: Foundry Tools
-description: The Azure AI Face service provides AI algorithms that you use to detect, recognize, and analyze human faces in images.
+description: The Azure Face service provides AI algorithms that you use to detect, recognize, and analyze human faces in images.
 author: PatrickFarley
 manager: nitinme
 
@@ -16,9 +16,9 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 #Customer intent: As the developer of an app that deals with images of humans, I want to learn what the Face service does so I can determine if I should use its features.
 ---
 
-# What is the Azure AI Face service?
+# What is the Azure Face service?
 
-The Azure AI Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many scenarios, such as identification, touchless access control, and automatic face blurring for privacy.
+The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many scenarios, such as identification, touchless access control, and automatic face blurring for privacy.
 
 [!INCLUDE [Gate notice](./includes/identity-gate-notice.md)]
 
