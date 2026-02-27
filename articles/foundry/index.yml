@@ -86,7 +86,7 @@ productDirectory:
           text: Trace your application with Microsoft Foundry project library 
         - url: ./observability/how-to/evaluate-agent.md
           text: Evaluate agentic workflows
-        - url: ./observability/how-to/how-to-monitor-agents-dashboard
+        - url: ./observability/how-to/how-to-monitor-agents-dashboard.md
           text: Monitor your generative AI applications
     # Card
     - title: Foundry IQ
