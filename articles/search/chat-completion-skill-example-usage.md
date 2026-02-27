@@ -1,12 +1,12 @@
 ---
-title: Utilize the content generation capabilities of language models as part of content ingestion pipeline
+title: Use language models for content generation in an ingestion pipeline
 titleSuffix: Azure AI Search
 description: Use language models to caption your images and facilitate an image search through your data.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/28/2025
+ms.date: 02/27/2026
 ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp
@@ -17,7 +17,7 @@ ms.custom:
 
 In this article, learn how to generate captions using AI enrichment and a skillset. Images often contain useful information that's relevant in search scenarios. You can [vectorize images](search-get-started-portal-image-search.md) to represent visual content in your search index. Or, you can use [AI enrichment and skillsets](cognitive-search-concept-intro.md) to create and extract searchable *text* from images.
 
-The GenAI Prompt skill (preview) generates a description of each image in your data source and the indexer pushes that description into a search index. To view the descriptions, you can run a query that includes them in the response.
+The Chat Completion skill (preview) can generate a description of each image in your data source, and the indexer pushes that description into a search index. To view the descriptions, run a query that includes them in the response.
 
 ## Prerequisites
 
@@ -27,8 +27,8 @@ To work with image content in a skillset, you need:
 + Files or blobs containing images.
 + Read access to the supported data source. This article uses key-based authentication, but indexers can also connect using the search service identity and Microsoft Entra ID authentication. For role-based access control, assign roles on the data source to allow read access by the service identity. If you're testing on a local development machine, make sure you also have read access on the supported data source.
 + A [search indexer](search-how-to-create-indexers.md), configured for image actions.
-+ A skillset with the new custom genAI prompt skill.
-+ A search index with fields to receive the verbalized text output, plus output field mappings in the indexer that establish association.
++ A skillset with the Chat Completion skill.
++ A search index with fields to receive generated text output, plus output field mappings in the indexer that establish the associations.
 
 Optionally, you can define projections to accept image-analyzed output into a [knowledge store](knowledge-store-concept-intro.md) for data mining scenarios.
 
@@ -132,7 +132,7 @@ As noted, images are extracted during document cracking and then normalized as a
       "context": "/document/normalized_images/*",
       "uri": "https://contoso.openai.azure.com/openai/deployments/contoso-gpt-4o/chat/completions?api-version=2025-01-01-preview",
       "timeout": "PT1M",
-      "apiKey": "<YOUR-API-KEY here>"
+      "apiKey": "<YOUR-API-KEY here>",
       "inputs": [
         {
           "name": "image",
@@ -153,12 +153,12 @@ As noted, images are extracted during document cracking and then normalized as a
             "targetName": "captionedImage"
           } 
         ]
-    },
+    }
 ```
 
-### Example using json schema responses with text inputs
+### Example using JSON schema responses with text inputs
 
-This example illustrates how you can use structured outputs for language models. Note that this capability is mainly supported mostly by OpenAI language models, although that may change in the future.
+This example shows how to use structured outputs for language models. This capability is currently supported mostly by OpenAI language models, although that might change in the future.
 
 ```json
     {
@@ -166,7 +166,7 @@ This example illustrates how you can use structured outputs for language models.
       "context": "/document/content",
       "uri": "https://contoso.openai.azure.com/openai/deployments/contoso-gpt-4o/chat/completions?api-version=2025-01-01-preview",
       "timeout": "PT1M",
-      "apiKey": "<YOUR-API-KEY here>"
+      "apiKey": "<YOUR-API-KEY here>",
       "inputs": [
         {
           "name": "systemMessage",
@@ -195,7 +195,8 @@ This example illustrates how you can use structured outputs for language models.
                 },
                 "required": ["total", "languages"],
                 "additionalProperties": false
-                }
+            }
+        }
       },
       "outputs": [ 
           {
@@ -203,7 +204,7 @@ This example illustrates how you can use structured outputs for language models.
             "targetName": "responseJsonForLanguages"
           } 
         ]
-    },
+    }
 ```
 
 <a name="output-field-mappings"></a>
@@ -216,7 +217,7 @@ Output text is represented as nodes in an internal enriched document tree, and e
 
    In the following fields collection example, *content* is blob content. *Metadata_storage_name* contains the name of the file (set `retrievable` to *true*). *Metadata_storage_path* is the unique path of the blob and is the default document key. *Merged_content* is output from Text Merge (useful when images are embedded). 
 
-    *captionedImage* is the skill outputs and must be a string-type in order to the capture all of the language model output in the search index.
+    *captioned_image* is a skill output and must be a string field to capture all language model output in the search index.
 
     ```json
       "fields": [
