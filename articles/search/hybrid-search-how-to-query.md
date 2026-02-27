@@ -10,7 +10,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/27/2026
 ---
 
 # Create a hybrid query in Azure AI Search
@@ -25,9 +25,6 @@ In this article, learn how to:
 + Optimize query behaviors by controlling inputs (`maxTextRecallSize`)
 
 By the end of this article, you can execute hybrid queries that combine keyword and vector search with optional semantic ranking.
-
-> [!TIP]
-> For immediate code examples, skip to [Set up a hybrid query](#set-up-a-hybrid-query).
 
 ## Prerequisites
 
@@ -48,7 +45,7 @@ By the end of this article, you can execute hybrid queries that combine keyword 
 
 + (Optional) If you want built-in text-to-vector conversion of a query string, [create and assign a vectorizer](vector-search-how-to-configure-vectorizer.md) to vector fields in the search index.
 
-## Choose an API or tool
+## Choose an API, tool, and workable pattern
 
 + Search Explorer in the Azure portal (supports both stable and preview API search syntax) has a JSON view that lets you paste in a hybrid request.
 
@@ -56,7 +53,39 @@ By the end of this article, you can execute hybrid queries that combine keyword 
 
 + [Stable REST APIs](/rest/api/searchservice/documents/search-post) or a recent preview API version if you're using preview features like [maxTextRecallSize and countAndFacetMode(preview)](#set-maxtextrecallsize-and-countandfacetmode).
 
-  For readability, we use REST examples to explain how the APIs work. You can use a REST client like Visual Studio Code with the REST extension to build hybrid queries. You can also use the Azure SDKs. For more information, see [Quickstart: Vector search](search-get-started-vector.md).
+    For readability, we use REST examples to explain how the APIs work. You can use a REST client like Visual Studio Code with the REST extension to build hybrid queries. You can also use the Azure SDKs. For more information, see [Quickstart: Vector search](search-get-started-vector.md).
+
+### Workable hybrid patterns
+
+If you're new to hybrid search, pick one pattern and tune in small steps. Don't start with maximum vector recall, large text recall, and semantic reranking in the same request.
+
++ **Balanced hybrid (default)**: Use this first for most workloads. Start with `k` in the 30 to 50 range, `top` in the 10 to 20 range, and enable semantic ranking only when it improves measured relevance.
+
++ **Recall-first hybrid**: Use this for difficult queries where coverage is the goal. Increase `maxTextRecallSize` gradually and keep vector settings moderate. Expect higher merge cost.
+
++ **Precision-first hybrid**: Use this for low latency at scale. Keep `k` and `top` modest, apply selective filters, and avoid semantic features that don't add value.
+
+### Why overloaded queries throttle
+
+Hybrid queries run text and vector retrieval in parallel and then merge results with RRF. If you increase lexical contribution (for example, by changing hybrid weighting in favor of BM25), you increase the number of text candidates that must be merged with vector candidates. If you combine this with expensive vector settings and semantic reranking, CPU and memory pressure rises quickly.
+
+On smaller capacity configurations, this extra merge and rerank work can cause:
+
++ Higher latency and p95/p99 spikes
++ 429 throttling responses
++ Client-observed dropped or timed-out requests when retry behavior isn't configured
+
+### Tuning order before scaling out
+
+Tune query and vector settings before you add replicas:
+
+1. Reduce expensive vector search settings first.
+    For example, if `efSearch` and `maxConnections` are set aggressively, lower them before scaling out (for example, reduce `efSearch` from around 800 to 128 to 192, and reduce `maxConnections` from 64 to 32).
+1. Limit semantic reranking scope to cases that benefit from it.
+1. Re-test latency and 429 rates under representative load.
+1. Scale replicas only if throttling persists after tuning.
+
+Use this sequence to improve stability first and control cost before you scale.
 
 ## Set up a hybrid query
 
@@ -351,6 +380,8 @@ This section has multiple query examples that illustrate hybrid query patterns.
 
 ### Example: Hybrid search with filter
 
+This example represents the **Precision-first hybrid** pattern.
+
 This example adds a filter, which is applied to the `filterable` nonvector fields of the search index.
 
 ```http
@@ -390,6 +421,8 @@ api-key: {{admin-api-key}}
 **Reference**: [filter](/rest/api/searchservice/documents/search-post#searchrequest) | [vectorFilterMode](/rest/api/searchservice/documents/search-post#vectorfiltermode)
 
 ### Example: Hybrid search with filters targeting vector subqueries (preview)
+
+This example represents the **Precision-first hybrid** pattern with targeted vector filtering.
 
 Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
 
@@ -435,6 +468,8 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
 
 ### Example: Semantic hybrid search
 
+This example represents the **Balanced hybrid** pattern with semantic ranking.
+
 Assuming that you [have semantic ranker](semantic-how-to-enable-disable.md) and your index definition includes a [semantic configuration](semantic-how-to-query-request.md), you can formulate a query that includes vector search and keyword search, with semantic ranking over the merged result set. Optionally, you can add captions and answers. 
 
 Whenever you use semantic ranking with vectors, make sure `k` is set to 50. Semantic ranker uses up to 50 matches as input. Specifying less than 50 deprives the semantic ranking models of necessary inputs.
@@ -479,6 +514,8 @@ api-key: {{admin-api-key}}
 **Reference**: [queryType](/rest/api/searchservice/documents/search-post#querytype) | [semanticConfiguration](/rest/api/searchservice/documents/search-post#searchrequest) | [captions](/rest/api/searchservice/documents/search-post#querycaption) | [answers](/rest/api/searchservice/documents/search-post#queryanswer)
 
 ### Example: Semantic hybrid search with filter
+
+This example represents the **Balanced hybrid** pattern with semantic ranking and filtering.
 
 Here's the last query in the collection. It's the same semantic hybrid query as the previous example, but with a filter.
 
