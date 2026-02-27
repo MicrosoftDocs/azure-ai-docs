@@ -26,7 +26,7 @@ A demo app can help you visualize how an index functions in a client app, but it
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this example, you can use a free service.
 
-+ A [search index](search-what-is-an-index.md) to use as the basis of your generated application. We use the [hotels-sample index](search-get-started-portal) to illustrate the demo app.
++ A [search index](search-what-is-an-index.md) to use as the basis of your generated application. We use the [hotels-sample index](search-get-started-portal.md) to illustrate the demo app.
 
 ## Start the wizard
 
@@ -103,7 +103,7 @@ To finish the wizard and use the demo app:
 
 1. Enter a term in the search box and use the sidebar filters to narrow the results. Select filters to narrow results.
 
-    :::image type="content" source="media/search-create-app-portal/app.png" lightbox="media/search-create-app-portal/run-app.png" alt-text="Screenshot of the search application in a browser window.":::
+    :::image type="content" source="media/search-create-app-portal/app.png" lightbox="media/search-create-app-portal/app.png" alt-text="Screenshot of the search application in a browser window.":::
 
 1. Test suggestions by typing in part of a search term. If you don't see suggested results, check your browser settings or try a different browser. Notice that suggested results are different from autocompletion of a search term. The demo app supports suggested results only.
 
