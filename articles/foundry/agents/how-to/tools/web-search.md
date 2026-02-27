@@ -130,7 +130,7 @@ with (
 
 ### Deep Research with Web Search
 
-The following example shows how to use the `o3-deep-research` model with the web search tool. This approach replaces the deprecated [Deep Research tool](../../../agents/how-to/tools-classic/deep-research.md), enabling multi-step research using public web data directly through the web search tool.
+The following example shows how to use the `o3-deep-research` model with the web search tool. This approach replaces the deprecated [Deep Research tool](../../../../foundry-classic/agents/how-to/tools-classic/deep-research.md), enabling multi-step research using public web data directly through the web search tool.
 
 > [!NOTE]
 > Set the `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variable to your `o3-deep-research` deployment name.
