@@ -24,13 +24,13 @@ Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-fou
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
-- A Foundry agent created in [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
+- A Foundry agent created in [!INCLUDE [foundry-link](../../../../../foundry/includes/foundry-link.md)]. For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
 
 ## Try out Voice Live in the playground
 
 To try out the Voice Live demo, follow these steps:
 
-1. [!INCLUDE [foundry-sign-in](../../../../../ai-foundry/default/includes/foundry-sign-in.md)]
+1. [!INCLUDE [foundry-sign-in](../../../../../foundry/includes/foundry-sign-in.md)]
 
 1. Select **Build** in the upper right menu, and select **Agents** from the left pane. 
 
@@ -59,7 +59,7 @@ To try out the Voice Live demo, follow these steps:
 
 To try out the Voice Live demo, follow these steps:
 
-1. [!INCLUDE [classic-sign-in](../../../../../ai-foundry/includes/classic-sign-in.md)] 
+1. [!INCLUDE [classic-sign-in](../../../../../foundry-classic/includes/classic-sign-in.md)] 
 1. Select **Playgrounds** from the left pane.
 1. In the **Speech playground** tile, select **Try the Speech playground**.
 1. Select **Speech capabilities by scenario** > **Voice Live**.

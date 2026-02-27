@@ -1,5 +1,5 @@
 ---
-title: Azure AI Face API error codes
+title: Azure Face API error codes
 description: Error codes returned from Face API services.
 author: PatrickFarley
 ms.service: azure-ai-vision
@@ -11,7 +11,7 @@ ms.date: 08/21/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
-# Azure AI Face API error codes
+# Azure Face API error codes
 
 
 ## Common error codes

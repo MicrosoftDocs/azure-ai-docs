@@ -3,12 +3,12 @@ title: "Quickstart: Groundedness detection (preview)"
 titleSuffix: Azure AI services
 description: Learn how to detect whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users.
 services: ai-services
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 09/16/2025
-ms.author: pafarley
+ms.author: ssalgado
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 #customer intent: As a developer, I want to learn how to use the groundedness detection API so that I can ensure generated content is aligned with factual references.
 

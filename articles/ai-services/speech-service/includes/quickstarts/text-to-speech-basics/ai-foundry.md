@@ -8,7 +8,7 @@ ms.date: 11/05/2025
 ms.author: pafarley
 ---
 
-In this quickstart, try out the text to speech model from Azure Speech in Foundry Tools, using [!INCLUDE [foundry-link](../../../../../ai-foundry/default/includes/foundry-link.md)]. 
+In this quickstart, try out the text to speech model from Azure Speech in Foundry Tools, using [!INCLUDE [foundry-link](../../../../../foundry/includes/foundry-link.md)]. 
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Try text to speech in the Foundry portal by following these steps:
 #### [Foundry (new) portal](#tab/new-foundry)
 
 
-1. [!INCLUDE [foundry-sign-in](../../../../../ai-foundry/default/includes/foundry-sign-in.md)] 
+1. [!INCLUDE [foundry-sign-in](../../../../../foundry/includes/foundry-sign-in.md)] 
 1. Select **Build** from the top right menu.
 1. Select **Models** on the left pane. 
 1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. Select **Azure Speech - Text to Speech** to open the Text to Speech playground.
@@ -32,11 +32,11 @@ Try text to speech in the Foundry portal by following these steps:
 
 ## Other Foundry (new) features
 
-[!INCLUDE [speech-features-foundry](../../../../../ai-foundry/default/includes/speech-features-foundry.md)]
+[!INCLUDE [speech-features-foundry](../../../../../foundry/includes/speech-features-foundry.md)]
 
 #### [Foundry (classic) portal](#tab/classic-foundry)
 
-1. [!INCLUDE [classic-sign-in](../../../../../ai-foundry/includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../../../foundry-classic/includes/classic-sign-in.md)]
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
 1. Select **Voice gallery**.
