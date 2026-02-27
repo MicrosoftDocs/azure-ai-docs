@@ -14,8 +14,6 @@ ms.custom: azure-ai-agents
 
 # What are tools in Foundry Agent Service? (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >

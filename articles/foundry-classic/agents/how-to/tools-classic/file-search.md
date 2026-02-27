@@ -14,8 +14,6 @@ ms.custom: azure-ai-agents, references_regions
 
 # Foundry Agent Service file search tool (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >

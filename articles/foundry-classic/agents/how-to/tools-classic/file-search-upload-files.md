@@ -15,8 +15,6 @@ ms.custom: azure-ai-agents-code
 
 # How to upload files using the file search tool (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >

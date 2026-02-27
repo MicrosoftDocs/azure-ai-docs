@@ -13,8 +13,6 @@ ms.author: aashcraft
 
 # Connect to Model Context Protocol servers (preview) (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >

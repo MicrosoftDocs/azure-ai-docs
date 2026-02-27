@@ -15,8 +15,6 @@ zone_pivot_groups: selection-fabric-data-agent
 
 # Use the Microsoft Fabric data agent (preview) (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >

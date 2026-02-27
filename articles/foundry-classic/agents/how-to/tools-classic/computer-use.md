@@ -14,8 +14,6 @@ ms.custom: references_regions
 
 # Foundry Agent Service Computer Use Tool (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >

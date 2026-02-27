@@ -14,8 +14,6 @@ ms.custom: azure-ai-agents
 
 # How to use Foundry Agent Service with OpenAPI Specified Tools (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >

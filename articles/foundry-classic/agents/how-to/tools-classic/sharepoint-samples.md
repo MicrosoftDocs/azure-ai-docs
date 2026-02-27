@@ -15,8 +15,6 @@ zone_pivot_groups: selection-agent-sharepoint
 
 # How to use the SharePoint tool (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >

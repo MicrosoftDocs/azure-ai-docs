@@ -16,8 +16,6 @@ zone_pivot_groups: selection-openapi-function
 
 # How to use the OpenAPI spec tool (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
-
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
