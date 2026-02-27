@@ -50,6 +50,8 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 + If the Azure Storage account is behind a firewall, configure it to [allow search service access](search-indexer-howto-access-ip-restricted.md).
 
++ If Azure AI Search is configured to use a customer-managed encryption key (CMK), sensitive information in the debug session is encrypted with that key when data is persisted.
+
 ## Create a debug session
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
