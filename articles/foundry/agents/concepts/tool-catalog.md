@@ -3,7 +3,7 @@ title: "Foundry tool catalog (preview): discover and manage tools"
 description: "Learn how to use the Foundry tool catalog to discover, configure, and manage tools for agents, including MCP servers and custom tools."
 author: aahill
 ms.author: aahi
-ms.date: 01/20/2026
+ms.date: 02/27/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -125,6 +125,7 @@ Foundry Tools contains three sections:
     |Tool  |Description  |
     |---------|---------|
     |[Azure AI Search](../how-to/tools/ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data. |
+    | [Azure Functions](../how-to/tools/azure-functions.md) | Enable agents to call your Azure Functions to perform custom actions and retrieve dynamic data. |
     |[Browser Automation (preview)](../how-to/tools/browser-automation.md)     | Perform real-world browser tasks through natural language prompts. |
     |[Code Interpreter](../how-to/tools/code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment. |
     |[Custom Code Interpreter (preview)](../how-to/tools/custom-code-interpreter.md)     | Use a custom code interpreter MCP server to customize resources, available Python packages, and the Container Apps environment the agent uses. |

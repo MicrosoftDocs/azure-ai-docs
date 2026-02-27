@@ -110,6 +110,8 @@ items:
     href: ../../agents/how-to/tools/agent-to-agent.md
   - name: Agent2Agent (A2A) authentication (preview)
     href: ../../agents/concepts/agent-to-agent-authentication.md
+  - name: Azure Functions
+    href: ../../agents/how-to/tools/azure-functions.md
   - name: OpenAPI tool
     href: ../../agents/how-to/tools/openapi.md
   - name: Function calling
