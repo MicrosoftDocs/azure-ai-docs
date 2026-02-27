@@ -16,7 +16,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 # Face API reference list
 
-Azure AI Face is a cloud-based service that provides algorithms for face detection and recognition. The Face APIs comprise the following categories:
+Azure Face is a cloud-based service that provides algorithms for face detection and recognition. The Face APIs comprise the following categories:
 
 - Face Algorithm APIs: Cover core functions such as [Detection](/rest/api/face/face-detection-operations/detect), [Find Similar](/rest/api/face/face-recognition-operations/find-similar-from-large-face-list), [Verification](/rest/api/face/face-recognition-operations/verify-face-to-face), [Identification](/rest/api/face/face-recognition-operations/identify-from-large-person-group), and [Group](/rest/api/face/face-recognition-operations/group).
 - [DetectLiveness session APIs](/rest/api/face/liveness-session-operations): Used to create and manage a Liveness Detection session. See the [Liveness Detection](/azure/ai-services/computer-vision/tutorials/liveness) tutorial.
