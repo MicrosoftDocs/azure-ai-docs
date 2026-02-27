@@ -15,6 +15,8 @@ ms.author: pafarley
 > [!IMPORTANT]
 > **Effective date:** July 1, 2026. Action is required before this date to avoid service disruption on Linux and Android platforms.
 
+The certificate revocation list (CRL) caching feature in Azure AI Speech SDK versions prior to 1.48.2 can cause connection failures to the Azure Speech Service on Linux and Android platforms. All SDK language bindings that use the native OpenSSL layer on these platforms (C#, C++, Java, Python, and Go) are affected. This issue is triggered by industry-wide changes to how CRLs are structured. Action is required before July 1, 2026 to avoid service disruption.
+
 **Affected platforms:** Linux, Android  
 **Affected SDK versions:** All versions prior to 1.48.2
 
@@ -23,9 +25,14 @@ ms.author: pafarley
 Before you take action, confirm whether this issue applies to you:
 
 - **Platform:** You run the Speech SDK on Linux or Android.
-- **SDK version:** You use a version prior to 1.48.2. Check the version of the Speech SDK package in your dependency manager (for example, NuGet, pip, Maven, or your C++/Go build configuration).
+- **SDK version:** You use a version prior to 1.48.2. Check the version of the Speech SDK package in your dependency manager. For example:
+  - **Python:** `pip show azure-cognitiveservices-speech`
+  - **C#/.NET:** `dotnet list package`
+  - **Java/Maven:** `mvn dependency:tree | grep speechsdk`
+  - **Go:** `go list -m all | grep speechsdk`
 - **CRL checking:** CRL checking is enabled (the default in versions prior to 1.48.1).
-- **Deployment type:** Identify whether your application uses cloud-only, hybrid (cloud + embedded), or embedded-only speech. See [Determine your impact by deployment type](#determine-your-impact-by-deployment-type).
+
+Identify whether your application uses cloud-only, hybrid (cloud + embedded), or embedded-only speech to [determine your impact by deployment type](#determine-your-impact-by-deployment-type).
 
 If all three conditions apply, follow the steps in [Required action](#required-action).
 
@@ -39,6 +46,15 @@ The impact of the CRL partitioning change depends on whether your application co
 | **Hybrid** (cloud with embedded fallback) | Cloud STT/TTS stops working after July 1, 2026 | See [Required action](#required-action) |
 | **Cloud only** | Cloud STT/TTS stops working after July 1, 2026 | See [Required action](#required-action) |
 
+Use this quick decision guide:
+
+1. **Does your app connect to Azure Speech cloud endpoints (STT or TTS)?**
+   - **No** → You use embedded-only speech. **No action needed.**
+   - **Yes** → Continue to step 2.
+1. **Does your app also use embedded speech as a fallback?**
+   - **Yes** → You have a hybrid deployment. Cloud features fail after the deadline, but embedded fallback continues to work. **Action required** for cloud features.
+   - **No** → You have a cloud-only deployment. **All speech calls fail** after the deadline. **Action required.**
+
 ### Embedded-only deployments
 
 If your application uses only embedded (on-device) speech recognition or synthesis and **never connects to Azure Speech cloud endpoints**, you aren't affected by this change. No action is needed.
@@ -47,14 +63,19 @@ If your application uses only embedded (on-device) speech recognition or synthes
 
 When your application is online, it uses cloud speech-to-text (STT) or text-to-speech (TTS). These cloud connections are subject to the CRL partitioning issue. Your embedded fallback continues to work when there's no data signal, but cloud features fail unless you take action.
 
-Determine which scenario applies to you:
+Determine which caching scenario applies to you:
 
-- **CRL disk caching is enabled (default behavior):** The SDK persists CRL data to disk using the system temp directory (`$TMPDIR` or `$TMP`). A stale CRL partition entry in the disk cache can cause persistent connection failures that survive application restarts. To resolve this:
-  1. Follow [Option 1: Upgrade to SDK 1.48.2+](#option-1-upgrade-to-sdk-version-1482-or-later-recommended) (recommended), or
-  1. Follow [Option 2: Disable CRL checking](#option-2-disable-crl-checking).
-  1. If you can't upgrade before the deadline, use the [temporary workaround](#temporary-workaround-clear-the-crl-disk-cache) to clear the CRL disk cache and reduce the duration of impact.
+#### CRL disk caching enabled (default)
 
-- **CRL disk caching isn't enabled** (custom configuration, or `$TMPDIR`/`$TMP` environment variables unset): The SDK still caches CRLs in memory during the process lifetime. Restarting the application clears the in-memory cache, but the issue reoccurs on the next cross-region connection or certificate rotation. Upgrade or disable CRL checking per the [Required action](#required-action) options.
+The SDK persists CRL data to disk using the system temp directory (`$TMPDIR` or `$TMP`). A stale CRL partition entry in the disk cache can cause persistent connection failures that survive application restarts. To resolve this:
+
+1. Follow [Option 1: Upgrade to SDK 1.48.2+](#option-1-upgrade-to-sdk-version-1482-or-later-recommended) (recommended), or
+1. Follow [Option 2: Disable CRL checking](#option-2-disable-crl-checking).
+1. If you can't upgrade before the deadline, use the [temporary workaround](#temporary-workaround-clear-the-crl-disk-cache) to clear the CRL disk cache and reduce the duration of impact.
+
+#### CRL disk caching not enabled
+
+If you use a custom configuration or the `$TMPDIR`/`$TMP` environment variables are unset, the SDK still caches CRLs in memory during the process lifetime. Restarting the application clears the in-memory cache, but the issue reoccurs on the next cross-region connection or certificate rotation. Upgrade or disable CRL checking per the [Required action](#required-action) options.
 
 > [!TIP]
 > Hybrid deployments that fall back to embedded speech when offline continue to work in embedded mode, but cloud-dependent features fail until you apply the fix.
@@ -65,10 +86,6 @@ All cloud STT/TTS calls are affected. The same two scenarios (CRL disk caching e
 
 > [!WARNING]
 > Cloud-only deployments have no fallback. If you don't take action before July 1, 2026, all speech recognition and synthesis calls fail.
-
-## Summary
-
-The previous design of the certificate revocation list (CRL) caching feature in Azure AI Speech SDK versions prior to 1.48.2 can cause connection failures to the Azure Speech Service on Linux and Android platforms. All SDK language bindings that use the native OpenSSL layer on these platforms (C#, C++, Java, Python, and Go) are affected. This issue is triggered by industry-wide changes to how CRLs are structured. Action is required before July 1, 2026 to avoid service disruption.
 
 ## Background
 
@@ -101,7 +118,7 @@ Take one of the following actions **before July 1, 2026**:
 
 ### Option 1: Upgrade to SDK version 1.48.2 or later (recommended)
 
-SDK version 1.48.2 includes a fix to properly handle partitioned CRLs. SDK version 1.48.1 disables CRL revocation checking by default, which also prevents this issue but removes the extra validation layer.
+SDK version 1.48.2 includes a fix to properly handle partitioned CRLs. Speech SDK 1.48.1 and later disable CRL checking by default, which also prevents this issue but removes the extra validation layer.
 
 Download the latest SDK: [Azure AI Speech SDK setup](quickstarts/setup-platform.md)
 
@@ -142,6 +159,11 @@ speechConfig.properties.SetPropertyByString("OPENSSL_DISABLE_CRL_CHECK", "true")
 ```
 
 ---
+
+After setting the property, verify the fix by confirming connections succeed and no CRL-related errors (error 44 or `WS_OPEN_ERROR_UNDERLYING_IO_OPEN_FAILED`) appear in SDK logs.
+
+> [!TIP]
+> If you want to keep CRL checking but tolerate download failures, set `OPENSSL_CONTINUE_ON_CRL_DOWNLOAD_FAILURE` to `"true"` instead. This property allows connections to continue when a CRL can't be retrieved, while still performing CRL validation when CRLs are available.
 
 For more configuration options, see [How to configure OpenSSL for Linux](how-to-configure-openssl-linux.md).
 
@@ -207,9 +229,11 @@ Alternatively, clear the CRL cache directory manually:
 ## Timeline
 
 | Date | Event |
-|------|-------|
+| --- | --- |
+| Now | Review your deployment type and SDK version |
 | February 2026 | SDK 1.48.2 released with fix |
 | **July 1, 2026** | **Deadline: Upgrade or disable CRL checking** |
+| After July 1, 2026 | Unpatched deployments experience connection failures |
 
 ## Frequently asked questions
 
