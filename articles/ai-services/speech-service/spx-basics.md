@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 ms.custom: mode-api
 # Customer intent: As a developer, I want to learn how to use the Azure Speech in Foundry Tools CLI to interact with speech to text, text to speech, and speech translation without writing code.

@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: best-practice
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the microphone array recommendations for the Speech service.
 ---
 
@@ -104,7 +105,7 @@ Hardware components such as PDM-to-TDM conversion should ensure that the dynamic
 
 High-speed USB Audio Class 2.0 should be supported within any audio MCUs in order to provide the necessary bandwidth for up to seven channels at higher sample rates and bit depths.
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Learn more about audio processing](audio-processing-overview.md)
