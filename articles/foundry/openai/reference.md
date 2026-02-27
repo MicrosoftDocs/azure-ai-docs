@@ -14,8 +14,7 @@ ms.custom:
   - ignite-2023
 ---
 
-# Azure OpenAI in Microsoft Foundry Models REST API reference
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# Azure OpenAI in Microsoft Foundry Models REST API reference (temp)
 
 This article provides details on the inference REST API endpoints for Azure OpenAI.
 

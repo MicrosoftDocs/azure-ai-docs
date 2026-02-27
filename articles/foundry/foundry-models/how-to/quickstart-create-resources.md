@@ -15,8 +15,7 @@ ms.reviewer: fasantia
 reviewer: santiagxf
 ---
 
-# Create and configure all the resources for Microsoft Foundry Models
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+# Create and configure all the resources for Microsoft Foundry Models (temp)
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/create-resources/portal.md)]

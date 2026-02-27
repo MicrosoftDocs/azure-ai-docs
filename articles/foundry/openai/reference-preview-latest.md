@@ -13,8 +13,7 @@ ms.custom:
 - classic-and-new
 ---
 
-# Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# Azure OpenAI in Microsoft Foundry Models REST API v1 preview reference (temp)
 
 This article provides details on the inference REST API endpoints for Azure OpenAI.
 
