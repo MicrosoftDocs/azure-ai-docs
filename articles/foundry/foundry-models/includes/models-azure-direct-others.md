@@ -162,7 +162,9 @@ See [this model collection in the Foundry portal](https://ai.azure.com/explore/m
 
 ## xAI models sold directly by Azure
 
-xAI's Grok models in Foundry Models include a diverse set of reasoning and non-reasoning models designed for enterprise use cases such as data extraction, coding, text summarization, and agentic applications. [Registration is required for access to grok-4.1-fast-non-reasoning, grok-code-fast-1, and grok-4](https://aka.ms/xai/grok-4).
+xAI's Grok models in Foundry Models include a diverse set of reasoning and non-reasoning models designed for enterprise use cases such as data extraction, coding, text summarization, and agentic applications.
+
+[Registration is required for access to](https://aka.ms/xai/grok-4): **grok-4.1-fast-non-reasoning**, **grok-code-fast-1**, and **grok-4**.
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
