@@ -1,6 +1,6 @@
 ---
-title: "Customer-Managed Keys (CMKs) for Microsoft Foundry (temp)"
-description: "Learn how to use CMKs for enhanced encryption and data security in Microsoft Foundry. Configure Azure Key Vault integration and meet compliance requirements. (temp)"
+title: "Customer-Managed Keys (CMKs) for Microsoft Foundry"
+description: "Learn how to use CMKs for enhanced encryption and data security in Microsoft Foundry. Configure Azure Key Vault integration and meet compliance requirements."
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Microsoft Foundry.
 ---
 
-# Customer-managed keys (CMKs) for Microsoft Foundry (temp)
-
+# Customer-managed keys (CMKs) for Microsoft Foundry
 Customer-managed key (CMK) encryption in [!INCLUDE [foundry-link](../includes/foundry-link.md)] gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
 
 Microsoft Foundry provides robust encryption capabilities, including the ability to use CMKs stored in Key Vault to help secure your sensitive data. CMK encryption applies to data at rest stored in the Foundry resource's associated storage accounts, including project artifacts, uploaded files, and evaluation data.

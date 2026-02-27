@@ -1,7 +1,6 @@
 ---
-title: Content Safety in Microsoft Foundry portal overview
-titleSuffix: Microsoft Foundry
-description: Learn how to use Azure AI Content Safety in Microsoft Foundry portal to detect harmful user-generated and AI-generated content in applications and services.
+title: "Content Safety in Microsoft Foundry portal overview (classic)"
+description: "Learn how to use Azure AI Content Safety in Microsoft Foundry portal to detect harmful user-generated and AI-generated content in applications and services. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.custom:
@@ -12,7 +11,7 @@ ms.author: pafarley
 author: PatrickFarley
 ---
 
-# Content Safety in the Microsoft Foundry portal
+# Content Safety in the Microsoft Foundry portal (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -44,7 +43,6 @@ Use Azure AI Content Safety for the following scenarios:
 ## Limitations
 
 For supported regions, rate limits, and input requirements for all features, see the [Content Safety service overview](/azure/ai-services/content-safety/overview). For supported languages, see the [Language support](/azure/ai-services/content-safety/language-support) page.
-
 
 ## Next step
 

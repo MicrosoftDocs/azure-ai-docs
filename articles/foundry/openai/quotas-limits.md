@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI in Microsoft Foundry Models Quotas and Limits (temp)"
-description: "This article features detailed descriptions and best practices on the quotas and limits for Azure OpenAI. (temp)"
+title: "Azure OpenAI in Microsoft Foundry Models Quotas and Limits"
+description: "This article features detailed descriptions and best practices on the quotas and limits for Azure OpenAI."
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Azure OpenAI in Microsoft Foundry Models quotas and limits (temp)
-
+# Azure OpenAI in Microsoft Foundry Models quotas and limits
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
 ## Scope of quota

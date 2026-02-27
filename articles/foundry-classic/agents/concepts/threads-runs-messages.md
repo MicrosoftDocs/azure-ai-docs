@@ -1,7 +1,6 @@
 ---
-title: Threads, Runs, and Messages in the Foundry Agent Service
-titleSuffix: Microsoft Foundry
-description: Learn about the components used in the Foundry Agent Service.
+title: "Threads, Runs, and Messages in the Foundry Agent Service (classic)"
+description: "Learn about the components used in the Foundry Agent Service. (classic)"
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -13,7 +12,7 @@ ms.custom: azure-ai-agents, dev-focus
 ai-usage: ai-assisted
 ---
 
-# Threads, runs, and messages in Foundry Agent Service
+# Threads, runs, and messages in Foundry Agent Service (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

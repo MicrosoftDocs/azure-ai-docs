@@ -68,7 +68,7 @@ Images can be passed to models using URLs and including them inside of messages 
 
 Let's consider the following image which can be download [from this source](https://news.microsoft.com/source/wp-content/uploads/2024/04/The-Phi-3-small-language-models-with-big-potential-1-1900x1069.jpg):
 
-:::image type="content" source="../../../../ai-foundry/media/how-to/sdks/small-language-models-chart-example.jpg" alt-text="A chart displaying the relative capabilities between large language models and small language models." lightbox="../../../../ai-foundry/media/how-to/sdks/small-language-models-chart-example.jpg":::
+:::image type="content" source="../../../../foundry-classic/media/how-to/sdks/small-language-models-chart-example.jpg" alt-text="A chart displaying the relative capabilities between large language models and small language models." lightbox="../../../../foundry-classic/media/how-to/sdks/small-language-models-chart-example.jpg":::
 
 You can load the image into a *data URL* as follows:
 

@@ -1,7 +1,6 @@
 ---
-title: 'How to use connected agents'
-titleSuffix: Microsoft Foundry
-description: Learn how to create multi-agentic systems using connected agents in the Foundry Agent Service.
+title: "How to use connected agents (classic)"
+description: "Learn how to create multi-agentic systems using connected agents in the Foundry Agent Service. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -14,12 +13,12 @@ ms.custom: azure-ai-agents-code
 zone_pivot_groups: selection-connected-agents
 ---
 
-# Build collaborative, multi-agent systems with Connected Agents
+# Build collaborative, multi-agent systems with Connected Agents (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 > [!NOTE]
-> This tool is only available in `2025-05-15-preview` API. We highly recommend you to migrate to use the `2025-11-15-preview` API version [workflows](../../default/agents/concepts/workflow.md) for multi-agent orchestration.
+> This tool is only available in `2025-05-15-preview` API. We highly recommend you to migrate to use the `2025-11-15-preview` API version [workflows](../../../foundry/agents/concepts/workflow.md) for multi-agent orchestration.
 
 Connected agents in Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built subagents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
 
@@ -78,12 +77,11 @@ Checks the contract against internal standards or uploaded guidelines to identif
 
 ## Limitations
 
-* Connected agents cannot call local functions using the function calling tool. We recommend using the [OpenAPI tool](tools\openapi-spec.md) or [Azure Functions](tools\azure-functions.md) instead.
+* Connected agents cannot call local functions using the function calling tool. We recommend using the [OpenAPI tool](tools-classic/openapi-spec.md) or [Azure Functions](tools-classic/azure-functions.md) instead.
 *  It is currently not possible to guarantee citations will be passed from connected agents. You can try using prompt engineering combined with different models to try and improve the possibility that citations will be outputted by the main agent, but results are subject to variability.
 * Connected agents have a maximum depth of 2. A parent agent can have multiple subagent siblings, but subagents cannot have their own subagents. Exceeding this depth results in an `Assistant Tool Call Depth Error`. 
 
 :::zone pivot="portal"
-
 
 ## Creating a multi-agent setup
 
@@ -226,7 +224,6 @@ To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefini
 
 :::zone pivot="python"
 
-
 ## Creating a multi-agent setup
 
 To create a multi-agent setup, follow these steps:
@@ -341,10 +338,10 @@ After testing your connected agents, you can publish them to Azure for productio
 * **Routing continues to work**: After publishing, the main agent automatically routes to the published connected agents using their Agent IDs in the `ConnectedAgentToolDefinition`. No code changes are needed.
 * **Identity management**: Published connected agents receive their own Agent Identity. Reconfigure permissions for any Azure resources that your connected agents access, as the shared development identity permissions don't transfer.
 
-For complete publishing instructions, including how to publish agents through the portal or REST API, authentication configuration, and consuming published agents, see [Publish and share agents in Microsoft Foundry](../../default/agents/how-to/publish-agent.md).
+For complete publishing instructions, including how to publish agents through the portal or REST API, authentication configuration, and consuming published agents, see [Publish and share agents in Microsoft Foundry](../../../foundry/agents/how-to/publish-agent.md).
 
 ## Related content
 
-* [Publish and share agents in Microsoft Foundry](../../default/agents/how-to/publish-agent.md)
-* [Agent identity concepts](../../default/agents/concepts/agent-identity.md)
+* [Publish and share agents in Microsoft Foundry](../../../foundry/agents/how-to/publish-agent.md)
+* [Agent identity concepts](../../../foundry/agents/concepts/agent-identity.md)
 * [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)

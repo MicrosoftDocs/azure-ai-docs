@@ -1,7 +1,7 @@
 ---
-title: Transparency note - Health feature of Azure Language in Foundry Tools
+title: "Transparency note - Health feature of Azure Language in Foundry Tools"
 titleSuffix: Foundry Tools
-description: Foundry Tool for language includes a feature that uses natural language processing techniques to find and label valuable health information, such as diagnosis, symptoms, medications and treatments in unstructured text documents.
+description: "Foundry Tool for language includes a feature that uses natural language processing techniques to find and label valuable health information, such as diagnosis, symptoms, medications and treatments in unstructured text documents."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 02/01/2023
 ---
 
 # Transparency note for Text Analytics for health
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a transparency note?

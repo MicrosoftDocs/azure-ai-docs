@@ -1,7 +1,6 @@
 ---
-title: Rerank tool for flows in Microsoft Foundry portal
-titleSuffix: Microsoft Foundry
-description: This article introduces you to the Rerank tool for flows in Microsoft Foundry portal.
+title: "Rerank tool for flows in Microsoft Foundry portal (classic)"
+description: "This article introduces you to the Rerank tool for flows in Microsoft Foundry portal. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.topic: article
@@ -14,8 +13,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-
-# Rerank tool for flows in Microsoft Foundry portal
+# Rerank tool for flows in Microsoft Foundry portal (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -48,7 +46,6 @@ The following input parameters are available:
 | `ranker_parameters` | string  | The type of ranking methods to use.                             |
 | `result_groups`     | object  | The list of document chunks to rerank.                          |
 | `top_k`             | integer | The count of top-scored entities to return. Default value is 3. |
-
 
 ## Outputs
 

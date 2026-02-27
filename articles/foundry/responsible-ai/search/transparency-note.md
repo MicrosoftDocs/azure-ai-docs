@@ -1,7 +1,7 @@
 ---
-title: Azure AI Search transparency note
+title: "Azure AI Search transparency note"
 titleSuffix: Azure AI Search
-description: Azure AI Search basics, use cases, and terms
+description: "Azure AI Search basics, use cases, and terms"
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 05/16/2025
 ---
 
 # Transparency note: Azure AI Search
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

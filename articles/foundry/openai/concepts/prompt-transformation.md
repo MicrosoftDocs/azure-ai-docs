@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI prompt transformation concepts (temp)"
-description: "Learn about the prompt transformation feature in Azure OpenAI DALL-E 3, how it works, and why it's necessary. (temp)"
+title: "Azure OpenAI prompt transformation concepts"
+description: "Learn about the prompt transformation feature in Azure OpenAI DALL-E 3, how it works, and why it's necessary."
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Prompt transformation (temp)
-
+# Prompt transformation
 ## Scope
 
 Prompt transformation (also called *prompt revision*) applies to Azure OpenAI image generation requests that support the `revised_prompt` field, including DALL-E 3 deployments. If your deployment doesn't return `revised_prompt`, prompt transformation isn't available for that model.

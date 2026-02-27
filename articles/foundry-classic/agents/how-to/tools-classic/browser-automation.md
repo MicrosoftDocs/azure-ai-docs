@@ -1,7 +1,6 @@
 ---
-title: Use Browser Automation in Foundry Agent Service
-titleSuffix: Microsoft Foundry
-description: Learn how to automate browser tasks using AI agents in Microsoft Foundry Agent Service. Configure Browser Automation with Playwright Workspaces to perform real-world tasks through natural language.
+title: "Use Browser Automation in Foundry Agent Service (classic)"
+description: "Learn how to automate browser tasks using AI agents in Microsoft Foundry Agent Service. Configure Browser Automation with Playwright Workspaces to perform real-world tasks through natural language. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,12 +12,12 @@ ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 
-# Browser Automation (preview)
+# Browser Automation (preview) (classic)
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Browser Automation documentation](../../../default/agents/how-to/tools/browser-automation.md?view=foundry&preserve-view=true).
+> 🔍 [View the new Browser Automation documentation](../../../../foundry/agents/how-to/tools/browser-automation.md).
 
 > [!WARNING]
 > The Browser Automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. We strongly recommend using the Browser Automation tool on low-privilege virtual machines with no access to sensitive data or critical resources.

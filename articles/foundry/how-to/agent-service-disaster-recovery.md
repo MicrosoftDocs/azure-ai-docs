@@ -1,8 +1,8 @@
 ---
-title: "Foundry Agent Service disaster recovery (temp)"
+title: "Foundry Agent Service disaster recovery"
 ms.service: azure-ai-foundry
 ms.reviewer: ckittel
-description: "Plan disaster recovery for Foundry Agent Service: limitations, readiness checklist, and recovery paths for platform outages and data loss. (temp)"
+description: "Plan disaster recovery for Foundry Agent Service: limitations, readiness checklist, and recovery paths for platform outages and data loss."
 #customer intent: As a developer, I want to automate the redeployment of agent definitions so that I can speed up disaster recovery processes.
 author: jonburchel
 ms.author: jburchel
@@ -15,8 +15,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Foundry Agent Service disaster recovery (temp)
-
+# Foundry Agent Service disaster recovery
 Use this article as the starting point for disaster recovery (DR) planning for Foundry Agent Service in the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). It explains what you can and can't recover, what to prepare before an incident, and where to find recovery procedures for platform outages and resource or data loss.
 
 > [!IMPORTANT]

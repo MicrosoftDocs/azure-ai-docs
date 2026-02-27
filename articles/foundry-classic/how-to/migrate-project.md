@@ -1,6 +1,6 @@
 ---
-title: Migrate From Hub-based to Foundry Projects
-description: Learn how to migrate from existing hub-based projects to new Microsoft Foundry projects to access the latest platform capabilities, unified workflows, and enhanced governance features.
+title: "Migrate From Hub-based to Foundry Projects (classic)"
+description: "Learn how to migrate from existing hub-based projects to new Microsoft Foundry projects to access the latest platform capabilities, unified workflows, and enhanced governance features. (classic)"
 author: sdgilley
 ms.topic: how-to
 ms.date: 12/24/2025
@@ -12,8 +12,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-
-# Migrate from hub-based to Foundry projects
+# Migrate from hub-based to Foundry projects (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -264,8 +263,6 @@ You might want to keep hubs and [!INCLUDE [hub-project-name](../includes/hub-pro
 1. Use alternative methods for resource deletion, since Bicep doesn't support this action.
 
 ---
-
-
 
 ## Learn more
 

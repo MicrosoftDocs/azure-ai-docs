@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry status dashboard (preview) (temp)"
-description: "Use the Microsoft Foundry status dashboard (preview) to monitor service health and incidents. (temp)"
+title: "Microsoft Foundry status dashboard (preview)"
+description: "Use the Microsoft Foundry status dashboard (preview) to monitor service health and incidents."
 ai-usage: ai-assisted
 author: jonburchel
 ms.author: jburchel
@@ -14,8 +14,7 @@ ms.custom:
 # customer intent: As a developer, I want to monitor the status of Microsoft Foundry services so I can stay informed about service health and plan around incidents.
 ---
 
-# Microsoft Foundry status dashboard (temp)
-
+# Microsoft Foundry status dashboard
 The [Microsoft Foundry Status Dashboard](https://status.ai.azure.com/) provides visibility into the health and availability of key Foundry services. It helps customers monitor service status, stay informed about ongoing incidents, and plan around scheduled maintenance windows.
 
 This dashboard is currently in **preview**, and it might not reflect all components or issues.

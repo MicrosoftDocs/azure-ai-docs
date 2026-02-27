@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry fine-tuning considerations (temp)"
-description: "Learn more about what you should take into consideration before fine-tuning with Microsoft Foundry. (temp)"
+title: "Microsoft Foundry fine-tuning considerations"
+description: "Learn more about what you should take into consideration before fine-tuning with Microsoft Foundry."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -14,8 +14,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Microsoft Foundry fine-tuning considerations (temp)
-
+# Microsoft Foundry fine-tuning considerations
 Fine-tuning is the process of taking a pretrained language model and adapting it to perform a specific task or improve its performance on a particular dataset. This involves training the model on a smaller, task-specific dataset while adjusting the model's weights slightly. Fine-tuning leverages the knowledge the model acquired during its initial training on a large, diverse dataset, allowing it to specialize without starting from scratch. This approach is often more efficient than training a new model from scratch; for example, many teams fine-tune with hundreds to thousands of labeled examples instead of retraining on millions of samples. 
 
 ## Key benefits of fine-tuning

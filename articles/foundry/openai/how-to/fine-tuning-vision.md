@@ -1,6 +1,6 @@
 ---
-title: "Vision fine-tuning (temp)"
-description: "Learn how to fine-tune Azure OpenAI GPT-4o and GPT-4.1 models with image inputs, including dataset requirements, image formats, and best practices. (temp)"
+title: "Vision fine-tuning"
+description: "Learn how to fine-tune Azure OpenAI GPT-4o and GPT-4.1 models with image inputs, including dataset requirements, image formats, and best practices."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,8 +13,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ---
 
-# Vision fine-tuning (temp)
-
+# Vision fine-tuning
 Learn how to fine-tune Azure OpenAI models with image data to customize visual understanding for your use case. Vision fine-tuning lets you include image inputs in your training examples, following the same chat completions format used for text fine-tuning.
 
 Images can be provided either as publicly accessible URLs or data URIs containing [base64 encoded images](/azure/ai-foundry/openai/how-to/gpt-with-vision?tabs=rest#call-the-chat-completion-apis).

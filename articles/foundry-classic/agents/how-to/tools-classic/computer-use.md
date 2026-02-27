@@ -1,7 +1,6 @@
 ---
-title: 'How to use Foundry Agent Service Computer Use Tool'
-titleSuffix: Microsoft Foundry
-description: Learn how to use Foundry Agent Service Computer Use Tool
+title: "How to use Foundry Agent Service Computer Use Tool (classic)"
+description: "Learn how to use Foundry Agent Service Computer Use Tool (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,18 +12,15 @@ ms.author: aashcraft
 ms.custom: references_regions
 ---
 
-# Foundry Agent Service Computer Use Tool
+# Foundry Agent Service Computer Use Tool (classic)
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Computer Use documentation](../../../default/agents/how-to/tools/computer-use.md?view=foundry&preserve-view=true).
-
+> 🔍 [View the new Computer Use documentation](../../../../foundry/agents/how-to/tools/computer-use.md).
 
 > [!WARNING]
 > The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
-
-
 
 Use this article to learn how to work with the Computer Use Tool in Foundry Agent Service. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces. With Computer Use, you can create an agent that can handle complex tasks and make decisions by interpreting visual elements and taking action based on on-screen content. 
 

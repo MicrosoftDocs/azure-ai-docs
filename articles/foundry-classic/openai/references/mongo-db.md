@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI on your Mongo DB Atlas data Python & REST API reference
-titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI on your Mongo DB Atlas data with Python & REST API.
+title: "Azure OpenAI on your Mongo DB Atlas data Python & REST API reference (classic)"
+description: "Learn how to use Azure OpenAI on your Mongo DB Atlas data with Python & REST API. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,14 +12,13 @@ recommendations: false
 ms.custom: devx-track-python, ignite-2024
 ---
 
-# Data source - Mongo DB Atlas
+# Data source - Mongo DB Atlas (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
 The configurable options of Mongo DB Atlas when using Azure OpenAI On Your Data. This data source is supported starting in API version `2024-08-01`.
-
 
 |Name | Type | Required | Description |
 |--- | --- | --- | --- |
@@ -89,7 +87,6 @@ Optional settings to control how fields are processed when using a configured Mo
 | `content_fields_separator` | string | False | The separator pattern that content fields should use.|
 
 ## Examples
-
 
 # [Python 1.x](#tab/python)
 

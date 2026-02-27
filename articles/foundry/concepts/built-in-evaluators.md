@@ -1,6 +1,6 @@
 ---
-title: "Built-in Evaluators Reference (temp)"
-description: "Comprehensive reference for all built-in evaluators in Microsoft Foundry (temp)"
+title: "Built-in Evaluators Reference"
+description: "Comprehensive reference for all built-in evaluators in Microsoft Foundry"
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
@@ -11,8 +11,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Built-in evaluators reference (temp)
-
+# Built-in evaluators reference
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Microsoft Foundry provides a comprehensive set of built-in evaluators to assess the quality, safety, and reliability of AI responses throughout the development lifecycle. This reference details all available evaluators, their purposes, required inputs, and guidance on selecting the right evaluator for your use case. You can also create [custom evaluators](./evaluation-evaluators/custom-evaluators.md) tailored to your specific evaluation criteria.

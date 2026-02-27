@@ -1,6 +1,6 @@
 ---
-title: "Use Terraform to create Microsoft Foundry (temp)"
-description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates. (temp)"
+title: "Use Terraform to create Microsoft Foundry"
+description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates."
 ms.topic: how-to
 ms.date: 01/23/2026
 ms.service: azure-ai-foundry
@@ -18,8 +18,7 @@ ai-usage: ai-assisted
 #customer intent: As a Terraform user, I want to see how to configure Microsoft Foundry using Terraform, so I can automate my setup.
 ---
 
-# Use Terraform to manage Microsoft Foundry resources (temp)
-
+# Use Terraform to manage Microsoft Foundry resources
 Use Terraform to automate the creation of [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resources, projects, deployments, and connections.
 
 You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/overview-azapi-provider) or [AzureRM Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account) to manage Foundry resources. The AzAPI provider lets you access all Foundry control plane configurations including preview features. The AzureRM variant is limited to core management capabilities.

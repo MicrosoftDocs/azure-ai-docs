@@ -1,6 +1,6 @@
 ---
-title: "How to use vision-enabled chat models (temp)"
-description: "Learn how to use vision-enabled chat models in Azure OpenAI, including how to call the Chat Completion API and process images. (temp)"
+title: "How to use vision-enabled chat models"
+description: "Learn how to use vision-enabled chat models in Azure OpenAI, including how to call the Chat Completion API and process images."
 author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
 #customer intent: As a developer, I want to learn how to use vision-enabled chat models so that I can integrate image processing capabilities into my applications.
@@ -16,8 +16,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Use vision-enabled chat models (temp)
-
+# Use vision-enabled chat models
 Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are the [o-series reasoning models](./reasoning.md), GPT-5 series, GPT-4.1 series, GPT-4.5, GPT-4o series.
 
 The vision-enabled models can answer general questions about what's present in the images you upload.

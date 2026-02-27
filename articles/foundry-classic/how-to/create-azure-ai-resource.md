@@ -1,7 +1,6 @@
 ---
-title: How to create and manage a Microsoft Foundry hub
-titleSuffix: Microsoft Foundry
-description: Learn how to create and manage a Microsoft Foundry hub from the Azure portal or from the Microsoft Foundry portal. Your developers can then create projects from the hub.
+title: "How to create and manage a Microsoft Foundry hub (classic)"
+description: "Learn how to create and manage a Microsoft Foundry hub from the Azure portal or from the Microsoft Foundry portal. Your developers can then create projects from the hub. (classic)"
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -18,7 +17,9 @@ author: sdgilley
 # Customer Intent: As an admin, I need to create and manage a Microsoft Foundry hub so that my team can use it to create projects for collaboration.
 ---
 
-# How to create and manage a Microsoft Foundry hub
+# How to create and manage a Microsoft Foundry hub (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
@@ -53,7 +54,6 @@ You can create a hub with default settings quickly, then customize settings afte
 
 1. Select the **Inbound Access** and **Outbound Access** tabs to set up network isolation. For more information, see the [network isolation](configure-managed-network.md) article.
 
-
 1. Select the **Encryption** tab to set up data encryption. By default, **Microsoft-managed keys** encrypt data. You can select to **Encrypt data using a customer-managed key**. 
 
 1. Select the **Identity** tab. By default, **System assigned identity** is enabled, but you can switch to **User assigned identity** if existing storage, key vault, and container registry are selected in **Storage**. You can also select whether to use **Credential-based** or **Identity-based** access to the storage account.
@@ -62,7 +62,6 @@ You can create a hub with default settings quickly, then customize settings afte
     > If you select **User assigned identity**, your identity needs to have the `Cognitive Services Contributor` role to successfully create a new hub.
 
 1. Select **Review + create** > **Create**. 
-
 
 ## Manage access control
 
@@ -109,9 +108,7 @@ To update Azure Application Insights from the Azure portal, go to the **Properti
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-manage-update-associated-resources.png" alt-text="Screenshot of the properties page of the hub resource in the Azure portal." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-manage-update-associated-resources.png":::
 
-
 For code examples, see [Add Azure Application Insights and Azure Container Registry](./develop/create-hub-project-sdk.md#update-azure-application-insights-and-azure-container-registry).
-
 
 ### Choose how to store credentials
 

@@ -1,6 +1,6 @@
 ---
-title:  "Prompt engineering techniques | Microsoft Foundry Models (temp)"
-description: "Learn how to use prompt engineering to optimize your work with Azure OpenAI. (temp)"
+title:  "Prompt engineering techniques | Microsoft Foundry Models"
+description: "Learn how to use prompt engineering to optimize your work with Azure OpenAI."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
@@ -16,8 +16,7 @@ recommendations: false
 ai-usage: ai-assisted
 ---
 
-# Prompt engineering techniques (temp)
-
+# Prompt engineering techniques
 These techniques aren't recommended for reasoning models like gpt-5 and o-series models.
 
 Prompt construction can be difficult. In practice, the prompt acts to help the model complete the desired task, but it's more of an art than a science, often requiring experience and intuition to craft a successful prompt. The goal of this article is to help get you started with this learning process. This article attempts to capture general concepts and patterns that apply to all GPT models. However, it's important to understand that each model behaves differently, so the learnings might not apply equally to all models.

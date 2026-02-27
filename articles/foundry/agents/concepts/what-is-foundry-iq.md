@@ -1,7 +1,6 @@
 ---
-title: What is Foundry IQ?
-titleSuffix: Microsoft Foundry
-description: Learn about Foundry IQ, a managed knowledge layer that turns enterprise data into reusable, permission-aware knowledge bases for AI agents.
+title: "What is Foundry IQ?"
+description: "Learn about Foundry IQ, a managed knowledge layer that turns enterprise data into reusable, permission-aware knowledge bases for AI agents."
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
@@ -12,8 +11,7 @@ ai-usage: ai-assisted
 ---
 
 # Foundry IQ (preview)
-
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Agents need context from scattered enterprise content to accurately answer questions. With Foundry IQ, you can create a configurable, multi-source *knowledge base* that provides agents with permission-aware responses based on your organization's data.
 
@@ -53,7 +51,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 
 ### [Portal](#tab/portal)
 
-1. Sign in to the [Microsoft Foundry (new) portal](../../../what-is-foundry.md#microsoft-foundry-portals).
+1. Sign in to the [Microsoft Foundry (new) portal](../../what-is-foundry.md#microsoft-foundry-portals).
 
 1. Create a project or select an existing project.
 

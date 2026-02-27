@@ -1,6 +1,6 @@
 ---
-title: "How to use function calling with Azure OpenAI in Microsoft Foundry Models (temp)"
-description: "Learn how to use function calling with OpenAI models. (temp)"
+title: "How to use function calling with Azure OpenAI in Microsoft Foundry Models"
+description: "Learn how to use function calling with OpenAI models."
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ manager: nitinme
 ai-usage: ai-assisted
 ---
 
-# How to use function calling with Azure OpenAI in Microsoft Foundry Models (temp)
-
+# How to use function calling with Azure OpenAI in Microsoft Foundry Models
 If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines thatodel a function should be called, it responds with a JSON object including the arguments for the function.
 
 The models formulate API calls and structure data outputs, all based on the functions you specify. It's important to note that while the models can generate these calls, it's up to you to execute them, ensuring you remain in control.

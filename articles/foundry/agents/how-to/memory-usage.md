@@ -1,7 +1,6 @@
 ---
-title: Create and Use Memory
-titleSuffix: Microsoft Foundry
-description: Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions.
+title: "Create and Use Memory"
+description: "Learn how to create and manage memory in Foundry Agent Service to enable AI agents to retain context across sessions and personalize user interactions."
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
@@ -14,7 +13,6 @@ ai-usage: ai-assisted
 ---
 
 # Create and use memory in Foundry Agent Service (preview)
-
 > [!IMPORTANT]
 > Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
@@ -35,17 +33,17 @@ This article explains how to create, manage, and use memory stores. For conceptu
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions) configured.
-- [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-5.2`) in your project.
-- [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) with [authorization and permissions](#authorization-and-permissions) configured.
+- [Chat model deployment](../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-5.2`) in your project.
+- [Embedding model deployment](../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - For Python examples:
-  - Python 3.8 or later with a [configured environment](../../../quickstarts/get-started-code.md?tabs=python&view=foundry&preserve-view=true)
+  - Python 3.8 or later with a [configured environment](../../quickstarts/get-started-code.md?tabs=python)
   - Required packages: `pip install "azure-ai-projects>=2.0.0b4"`
 - For REST API examples, Azure CLI authenticated to your subscription.
 
 ### Authorization and permissions
 
-We recommend [role-based access control](../../../concepts/rbac-foundry.md) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
+We recommend [role-based access control](../../concepts/rbac-foundry.md) for production deployments. If roles aren't feasible, skip this section and use key-based authentication instead.
 
 To configure role-based access:
 
@@ -618,7 +616,7 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 ## Related content
 
 - [Python code samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
-- [Memory store REST API reference](../../../reference/foundry-project-rest-preview.md)
+- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
-- [Build an agent with Microsoft Foundry](../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)
+- [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)

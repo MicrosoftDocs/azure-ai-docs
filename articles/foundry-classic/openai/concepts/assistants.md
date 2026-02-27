@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI in Microsoft Foundry Models Assistants API concepts
-titleSuffix: Azure OpenAI
-description: Learn about the concepts behind the Azure OpenAI Assistants API.
+title: "Azure OpenAI in Microsoft Foundry Models Assistants API concepts (classic)"
+description: "Learn about the concepts behind the Azure OpenAI Assistants API. (classic)"
 ms.topic: concept-article
 ms.date: 09/24/2025
 ms.service: azure-ai-foundry
@@ -12,7 +11,7 @@ ms.author: aahi
 recommendations: false
 ---
 
-# Azure OpenAI Assistants API (Preview)
+# Azure OpenAI Assistants API (Preview) (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

@@ -1,7 +1,6 @@
 ---
-title: 'Use the Azure OpenAI web app'
-titleSuffix: Azure OpenAI in Microsoft Foundry Models
-description: Use this article to learn about using the available web app to chat with Azure OpenAI models.
+title: "Use the Azure OpenAI web app (classic)"
+description: "Use this article to learn about using the available web app to chat with Azure OpenAI models. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -12,8 +11,7 @@ ms.date: 09/24/2025
 recommendations: false
 ---
 
-
-# Use the Azure OpenAI web app
+# Use the Azure OpenAI web app (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -322,8 +320,6 @@ When configuring your prompt flow to display citations when integrated this web 
 }
 ```
 
-
-
 2. `reply` consists of a returned string that represents the final natural language to a given user query. Your `reply` must contain references to each of the documents (sources) in the following format: `[doc1], [doc2]`, etc. The web application will parse `reply` and process the references, replacing all instances of `[doc1]` with small superscript numeric indicators that link directly to the ordered `documents` that are returned. Hence, you must prompt your LLM that generates the final natural language to include these references, which should also be passed in your LLM call to ensure that they align correctly. For example: 
 ```text
 system:
@@ -372,7 +368,6 @@ The environment variables to modify are:
 - `PROMPTFLOW_CITATIONS_FIELD_NAME`: The default field name to process the citations output from the Prompt flow request.
     - Data type: text, should be set to `documents`.
 
-
 ## Connecting to other data sources
 
 Other data sources are supported, including:
@@ -383,7 +378,6 @@ Other data sources are supported, including:
 - Azure Machine Learning Index
 
 For further instructions on enabling these data sources, see the [GitHub repository](https://github.com/microsoft/sample-app-aoai-chatGPT).
-
 
 ## Updating the web app to include the latest changes
 

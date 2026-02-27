@@ -1,7 +1,7 @@
 ---
-title: Build and register a Model Context Protocol (MCP) server
+title: "Build and register a Model Context Protocol (MCP) server"
 ms.reviewer: samuelzhang
-description: Learn how to build a custom MCP server using Azure Functions, register it in your organizational tool catalog, and connect it to Foundry Agent Service.
+description: "Learn how to build a custom MCP server using Azure Functions, register it in your organizational tool catalog, and connect it to Foundry Agent Service."
 keywords: Model Context Protocol, MCP server, Azure Functions, Azure API Center, tool catalog, Foundry Agent Service
 #customer intent: As a developer, I want to build a custom MCP server using Azure Functions so that I can integrate internal APIs with Foundry Agent Service.
 author: jonburchel
@@ -14,14 +14,13 @@ ms.custom: ai-assisted
 ---
 
 # Build and register a Model Context Protocol (MCP) server
-
 The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) provides a standard interface for AI agents to interact with APIs and external services. When you need to integrate private or internal enterprise systems that don't have existing MCP server implementations, you can build your own custom server. This article shows you how to create a remote MCP server using Azure Functions, register it in a private organizational tool catalog using Azure API Center, and connect it to Foundry Agent Service.
 
 This approach enables you to securely integrate internal APIs and services into the Microsoft Foundry ecosystem, allowing agents to call your enterprise-specific tools through a standardized MCP interface.
 
 ## Prerequisites
 
-- A Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Agent Service](../../agents/quickstart.md).
+- A Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Agent Service](../../foundry-classic/agents/quickstart.md).
 - An Azure subscription and permissions to create resources. At minimum, you typically need the Contributor role on the target resource group.
 - [Python](https://www.python.org/downloads/) version 3.11 or higher installed on your local development machine.
 - [Azure Functions Core Tools](/azure/azure-functions/functions-run-local?pivots=programming-language-python#install-the-azure-functions-core-tools) version 4.0.7030 or higher.

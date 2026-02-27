@@ -1,6 +1,6 @@
 ---
-title: "Data, privacy, and security for Azure AI Agent Service (temp)"
-description: "This document details issues for data, privacy, and security for Azure AI Agent Service (temp)"
+title: "Data, privacy, and security for Azure AI Agent Service"
+description: "This document details issues for data, privacy, and security for Azure AI Agent Service"
 author: aahill
 ms.author: aahi
 manager: nitinme
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Data, privacy, and security for Azure AI Agent Service (temp)
-
+# Data, privacy, and security for Azure AI Agent Service
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents without needing to manage the underlying compute and storage resources. Azure AI Agent Service integrates **models, tools and technology** and enables you to extend agents with knowledge from connected sources (such as Bing Search, SharePoint, Fabric, Azure Blob storage, and licensed data) and actions using tools such as Azure Logic Apps, Azure Functions, OpenAPI 3.0 specified tools and Code Interpreter

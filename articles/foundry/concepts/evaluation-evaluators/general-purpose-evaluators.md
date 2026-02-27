@@ -1,6 +1,6 @@
 ---
-title: "General Purpose Evaluators for Generative AI (temp)"
-description: "Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation. (temp)"
+title: "General Purpose Evaluators for Generative AI"
+description: "Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation."
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
@@ -14,8 +14,7 @@ ms.custom:
   - build-2025
 ---
 
-# General purpose evaluators (temp)
-
+# General purpose evaluators
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Microsoft Foundry supports evaluating coherence and fluency.

@@ -1,6 +1,6 @@
 ---
-title: "Overview of Responsible AI practices for Azure OpenAI in Foundry Models (temp)"
-description: "RAI overview for Azure OpenAI Service (temp)"
+title: "Overview of Responsible AI practices for Azure OpenAI in Foundry Models"
+description: "RAI overview for Azure OpenAI Service"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Overview of responsible AI practices for Azure OpenAI models (temp) 
-
+# Overview of responsible AI practices for Azure OpenAI models
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Many of the Azure OpenAI models are generative AI models that demonstrate improvements in advanced capabilities such as content and code generation, summarization, and search. With many of these improvements also come increased responsible AI challenges related to harmful content, manipulation, human-like behavior, privacy, and more. For more information about the capabilities, limitations, and appropriate use cases for these models, review the [Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note).  

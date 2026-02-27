@@ -1,6 +1,6 @@
 ---
-title: "Protected Material Detection Filter (temp)"
-description: "Learn about the Protected Material Detection Filter for identifying and flagging known protected text and code content in large language model outputs. (temp)"
+title: "Protected Material Detection Filter"
+description: "Learn about the Protected Material Detection Filter for identifying and flagging known protected text and code content in large language model outputs."
 author: ssalgadodev
 ms.author: ssalgado
 ms.date: 11/05/2025
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Protected material detection filter (temp)
-
+# Protected material detection filter
 The protected material detection filter scans the output of large language models (LLMs) to identify and flag known protected material. It helps organizations prevent the generation of content that closely matches copyrighted text or code.
 
 The protected material text filter flags known text content that large language models might output, such as song lyrics, articles, recipes, and selected web content.

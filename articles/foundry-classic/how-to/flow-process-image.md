@@ -1,7 +1,6 @@
 ---
-title: Process images in prompt flow
-titleSuffix: Microsoft Foundry
-description: Learn how to use images in prompt flow.
+title: "Process images in prompt flow (classic)"
+description: "Learn how to use images in prompt flow. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -16,7 +15,9 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Process images in prompt flow
+# Process images in prompt flow (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 

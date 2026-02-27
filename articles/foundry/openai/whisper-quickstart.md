@@ -1,6 +1,6 @@
 ---
-title: "Speech to text with Whisper (temp)"
-description: "Learn how to use the Azure OpenAI Whisper model for speech to text conversion. (temp)"
+title: "Speech to text with Whisper"
+description: "Learn how to use the Azure OpenAI Whisper model for speech to text conversion."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -16,8 +16,7 @@ zone_pivot_groups: programming-languages-rest-ps-py-js-cs
 ai-usage: ai-assisted
 ---
 
-# Quickstart: Speech to text with the Azure OpenAI Whisper model (temp)
-
+# Quickstart: Speech to text with the Azure OpenAI Whisper model
 In this quickstart, you transcribe speech to text using the [Azure OpenAI Whisper model](../../ai-services/speech-service/whisper-overview.md). The Whisper model can transcribe human speech in numerous languages and translate other languages into English.
 
 > [!TIP]

@@ -1,7 +1,6 @@
 ---
-title: Overview of prompt flow tools in Microsoft Foundry portal
-titleSuffix: Microsoft Foundry
-description: Learn about prompt flow tools that are available in Microsoft Foundry portal.
+title: "Overview of prompt flow tools in Microsoft Foundry portal (classic)"
+description: "Learn about prompt flow tools that are available in Microsoft Foundry portal. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -16,7 +15,9 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Overview of prompt flow tools in Microsoft Foundry portal
+# Overview of prompt flow tools in Microsoft Foundry portal (classic)
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

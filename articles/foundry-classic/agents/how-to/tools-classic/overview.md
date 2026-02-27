@@ -1,7 +1,6 @@
 ---
-title: 'What are tools in Foundry Agent Service'
-titleSuffix: Microsoft Foundry
-description: Learn how to use the various tools available in the Foundry Agent Service.
+title: "What are tools in Foundry Agent Service (classic)"
+description: "Learn how to use the various tools available in the Foundry Agent Service. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,18 +12,17 @@ ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 
-# What are tools in Foundry Agent Service?
+# What are tools in Foundry Agent Service? (classic)
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new tool catalog documentation](../../../default/agents/concepts/tool-catalog.md?view=foundry&preserve-view=true).
+> 🔍 [View the new tool catalog documentation](../../../../foundry/agents/concepts/tool-catalog.md).
 
 To empower your AI agent with grounded data or the capability to take actions and automating workflows, the Foundry Agent Service provides a wide range of built-in tools, such as Grounding with Bing Search, Azure AI Search, Azure Logic Apps, as well as third-party partner tools, such as Tripadvisor. This page is designed to provide an overview of tools provided in the Foundry Agent Service. 
 
 > [!NOTE]
-> The new Microsoft Foundry portal and agents API provide additional tools. See the [tool catalog article](../../../default/agents/concepts/tool-catalog.md) for more information.  
-
+> The new Microsoft Foundry portal and agents API provide additional tools. See the [tool catalog article](../../../../foundry/agents/concepts/tool-catalog.md) for more information.  
 
 ## Knowledge tools
 

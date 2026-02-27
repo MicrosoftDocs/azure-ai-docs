@@ -1,6 +1,6 @@
 ---
-title: "Deep research with the Responses API (temp)"
-description: "Learn how to use Azure OpenAI deep research (temp)"
+title: "Deep research with the Responses API"
+description: "Learn how to use Azure OpenAI deep research"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Deep research (temp)
-
+# Deep research
 The o3-deep-research model is designed for advanced research tasks. It can browse, analyze, and synthesize information from hundreds of sources to produce a comprehensive, citation-rich report. This model uses multi-step reasoning, web search, and remote Model Context Protocol (MCP) servers to gather and process data. It can also run code for complex analysis.
 
 Use deep research when you need:

@@ -1,7 +1,6 @@
 ---
-title: Deploy models with managed compute
-titleSuffix: Microsoft Foundry
-description: "Learn how to deploy large language models using managed compute in Microsoft Foundry. Perform real-time inference for production generative AI applications."
+title: "Deploy models with managed compute (classic)"
+description: "Learn how to deploy large language models using managed compute in Microsoft Foundry. Perform real-time inference for production generative AI applications. (classic)"
 #customer intent: As an Azure AI developer, I want to deploy large language models on managed compute in Microsoft Foundry so that I can enable real-time generative AI applications in production.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -20,7 +19,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As an Azure AI developer, I want to deploy and perform inference on large language models using managed compute in Microsoft Foundry so that I can make models available for real-time generative AI applications in production environments.
 ---
 
-# How to deploy and infer with a managed compute deployment
+# How to deploy and infer with a managed compute deployment (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -42,7 +41,6 @@ In this article, you learn how to deploy models with the managed compute deploym
 
 - For deployments with Python SDK: Python 3.8 or later installed, including the Azure Machine Learning SDK (`azure-ai-ml`) and Azure Identity library (`azure-identity`).
 
-
 ## Find your model in the model catalog
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
@@ -54,7 +52,6 @@ In this article, you learn how to deploy models with the managed compute deploym
     :::image type="content" source="../media/deploy-models-managed/catalog-filter-managed-compute.png" alt-text="Screenshot of the model catalog interface with the Deployment options filter panel open, on the left showing Managed compute selected, and a grid of available model cards displayed on the right." lightbox="../media/deploy-models-managed/catalog-filter-managed-compute.png"::: 
 
 1. Select a model to open its model card. In this article, you use the model `Phi-4`.
-
 
 ::: zone pivot="ai-foundry-portal"
 
@@ -97,10 +94,8 @@ After you create your deployment, follow these steps to consume it:
 
 ::: zone-end
 
-
 ::: zone pivot="python-sdk"
 6. Copy the model ID from the details page of the model you selected. It looks like this for the selected model: `azureml://registries/azureml/models/Phi-4/versions/8`.
-
 
 ## Deploy the model
 
@@ -232,7 +227,6 @@ After you create your deployment, follow these steps to consume it:
 
     **Reference:** [online_endpoints.invoke](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-invoke)
 
-
 ::: zone-end
 
 ## Configure autoscaling
@@ -243,7 +237,6 @@ To configure autoscaling for deployments, follow these steps:
 1. Locate the Azure resource type `Machine learning online deployment` for the model you just deployed in the resource group of the AI project.
 1. Select **Settings** > **Scaling** from the left pane.
 1. Select **Custom autoscale** and configure autoscale settings. For more information on autoscaling, see [Autoscale online endpoints](/azure/machine-learning/how-to-autoscale-endpoints) in the Azure Machine Learning documentation. 
-
 
 ## Delete the deployment
 

@@ -1,6 +1,6 @@
 ---
-title: "Transparency Note for Azure Agent Service (temp)"
-description: "Transparency Note for Azure Agents Service (temp)"
+title: "Transparency Note for Azure Agent Service"
+description: "Transparency Note for Azure Agents Service"
 author: aahill
 ms.author: aahi
 manager: nitinme
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Transparency Note for Azure Agent Service (temp)
-
+# Transparency Note for Azure Agent Service
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?

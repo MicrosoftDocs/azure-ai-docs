@@ -1,7 +1,7 @@
 ---
-title: Data and privacy for Face
+title: "Data and privacy for Face"
 titleSuffix: Foundry Tools
-description: This document details issues for data, privacy, and security for Face
+description: "This document details issues for data, privacy, and security for Face"
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 06/21/2022
 ---
 
 # Data and privacy for Face
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides some high level details regarding how Face processes data provided by customers. Face was designed with compliance, privacy, and security in mind. Biometric identification technologies are intended to process personal data that may be considered sensitive personal information.  Please be aware that the laws governing biometric recognition technologies often vary internationally and domestically, including at the federal, state and local levels.  In addition to regulating allowed use cases, some  jurisdictions impose special legal requirements for the permissions governing collection, transfer, online processing, and storage of biometric data, particularly when used for identification or verification. Before using Face and our Azure services for the collection, transfer, processing and storage of any data subject’s biometric data, you must ensure compliance with the relevant legal requirements that apply to your service application.

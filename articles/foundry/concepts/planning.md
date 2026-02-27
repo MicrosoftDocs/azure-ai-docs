@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry Rollout Across My Organization (temp)"
-description: "Learn how to plan the rollout of Microsoft Foundry across your organization, including environment setup, data isolation, and governance. (temp)"
+title: "Microsoft Foundry Rollout Across My Organization"
+description: "Learn how to plan the rollout of Microsoft Foundry across your organization, including environment setup, data isolation, and governance."
 ms.service: azure-ai-foundry
 author: sdgilley
 ms.topic: concept-article
@@ -13,8 +13,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Microsoft Foundry rollout across my organization (temp)
-
+# Microsoft Foundry rollout across my organization
 This guide outlines key decisions for rolling out Microsoft Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
 
 ## Prerequisites

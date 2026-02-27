@@ -1,7 +1,6 @@
 ---
-title: Use the Browser Automation Tool in Foundry Agent Service
-titleSuffix: Microsoft Foundry
-description: Learn how to use the Browser Automation tool in Foundry Agent Service to automate website tasks with AI agents. Follow the steps and run the sample.
+title: "Use the Browser Automation Tool in Foundry Agent Service (classic)"
+description: "Learn how to use the Browser Automation tool in Foundry Agent Service to automate website tasks with AI agents. Follow the steps and run the sample. (classic)"
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,12 +13,12 @@ ms.custom: azure-ai-agents
 ai-usage: ai-assisted
 ---
 
-# How to use the Browser Automation tool (preview)
+# How to use the Browser Automation tool (preview) (classic)
 
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Browser Automation documentation](../../../default/agents/how-to/tools/browser-automation.md?view=foundry&preserve-view=true).
+> 🔍 [View the new Browser Automation documentation](../../../../foundry/agents/how-to/tools/browser-automation.md).
 
 Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service. Note that Browser Automation is currently a preview feature.
 
@@ -89,7 +88,6 @@ with project_client:
             """,
         tools=browser_automation.definitions,
     )
-
 
     print(f"Created agent, ID: {agent.id}")
 

@@ -1,6 +1,6 @@
 ---
-title: "Deploy models using Azure CLI and Bicep (temp)"
-description: "Learn how to add and configure Microsoft Foundry Models in your Foundry resource for use in inference applications using Azure CLI and Bicep templates. (temp)"
+title: "Deploy models using Azure CLI and Bicep"
+description: "Learn how to add and configure Microsoft Foundry Models in your Foundry resource for use in inference applications using Azure CLI and Bicep templates."
 #customer intent: As an AI practitioner, I want to configure model deployments with Azure CLI or Bicep templates so that I can automate and standardize the deployment process.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -18,8 +18,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer or AI practitioner, I want to deploy Microsoft Foundry Models using Azure CLI and Bicep, so that I can integrate these AI models into my applications and perform inference tasks for my business needs.
 ---
 
-# Deploy models using Azure CLI and Bicep (temp)
-
+# Deploy models using Azure CLI and Bicep
 [!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 In this article, you learn how to add a new model deployment to a Foundry Models endpoint. The deployment is available for inference in your Foundry resource when you specify the deployment name in your requests.

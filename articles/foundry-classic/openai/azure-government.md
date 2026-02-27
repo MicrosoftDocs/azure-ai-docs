@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI in Azure Government
-titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI in the Azure Government cloud.
+title: "Azure OpenAI in Azure Government (classic)"
+description: "Learn how to use Azure OpenAI in the Azure Government cloud. (classic)"
 author: challenp
 ms.author: chaparker
 ms.date: 11/26/2025
@@ -14,7 +13,9 @@ ms.custom:
   - build-2025
 ---
 
-# Azure OpenAI and features in Azure Government
+# Azure OpenAI and features in Azure Government (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 This article highlights the differences when using Azure OpenAI in Azure Government as compared to the commercial cloud offering. Learn more about the Azure OpenAI itself in [Azure OpenAI documentation](/azure/ai-foundry/openai/).
 <br><br>
@@ -101,7 +102,7 @@ The following feature differences exist when comparing Azure OpenAI in Azure Gov
 |--------|--------|
 | Batch Deployments | Not currently supported. |
 | Connect your data | Virtual network and private links are supported. Deployment to a web app or a copilot in Copilot Studio is not supported. |
-| Abuse Monitoring | Not all features of Abuse Monitoring are enabled for Azure OpenAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](./concepts/content-filter.md) remains enabled by default for Azure Government. If modified content filters are required, apply at [https://aka.ms/AOAIGovModifyContentFilter](https://aka.ms/AOAIGovModifyContentFilter)|
+| Abuse Monitoring | Not all features of Abuse Monitoring are enabled for Azure OpenAI in Azure Government. You are responsible for implementing reasonable technical and operational measures to detect and mitigate any use of the service in violation of the Product Terms. [Automated Content Classification and Filtering](../foundry-models/concepts/content-filter.md) remains enabled by default for Azure Government. If modified content filters are required, apply at [https://aka.ms/AOAIGovModifyContentFilter](https://aka.ms/AOAIGovModifyContentFilter)|
 | Data Storage | In Azure Government, there are no Azure OpenAI features currently enabled that store customer data at rest. However, Customer Managed Keys (CMK) can still be enabled in Azure Government to support use of the same policies in Azure Government as in Public cloud. Note also that if Azure OpenAI features that store customer data are enabled in Azure Government in the future, any existing CMK deployment would be applied to that data at that time. Learn more at [Azure OpenAI Data Privacy](/../azure/ai-foundry/responsible-ai/openai/data-privacy).|
 | Compliance | View the current status of Azure OpenAI compliance in Azure Government at [Azure Government Services Audit Scope](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope?branch=pr-en-us-76518#azure-government-services-by-audit-scope)|
 | Service Endpoints | openai.azure.us |

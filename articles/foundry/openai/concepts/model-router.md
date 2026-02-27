@@ -1,6 +1,6 @@
 ---
-title: "Model router for Microsoft Foundry concepts (temp)"
-description: "Learn about the model router feature in Azure OpenAI in Microsoft Foundry Models. (temp)"
+title: "Model router for Microsoft Foundry concepts"
+description: "Learn about the model router feature in Azure OpenAI in Microsoft Foundry Models."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Model router for Microsoft Foundry (temp)
-
+# Model router for Microsoft Foundry
 Model router is a trained language model that intelligently routes your prompts in real time to the most suitable large language model (LLM). You deploy model router like any other Foundry model. Thus, it delivers high performance while saving on costs, reducing latencies, and increasing responsiveness, while maintaining comparable quality, all packaged as a single model deployment.
 
 > [!NOTE]

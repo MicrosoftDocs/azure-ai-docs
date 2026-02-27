@@ -1,7 +1,7 @@
 ---
-title: Use cases for summarization
+title: "Use cases for summarization"
 titleSuffix: Foundry Tools
-description: Summarization is a feature in Azure Language in Foundry Tools that produces a summary by extracting sentences from a document or text conversation. The feature condenses articles, papers, or documents to key sentences.
+description: "Summarization is a feature in Azure Language in Foundry Tools that produces a summary by extracting sentences from a document or text conversation. The feature condenses articles, papers, or documents to key sentences."
 author: laujan
 ms.author: lajanuar
 manager: yabinl
@@ -11,7 +11,6 @@ ms.date: 05/18/2022
 ---
 
 # Transparency note for summarization
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 

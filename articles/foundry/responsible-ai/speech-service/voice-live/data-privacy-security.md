@@ -1,7 +1,7 @@
 ---
-title: Data, privacy, and security for Voice live
+title: "Data, privacy, and security for Voice live"
 titleSuffix: Foundry Tools
-description: This document details issues for data, privacy, and security for Voice live.
+description: "This document details issues for data, privacy, and security for Voice live."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/29/2025
 ---
 
 # Data, privacy, and security for Azure AI Voice Live API
-
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 > [!NOTE]

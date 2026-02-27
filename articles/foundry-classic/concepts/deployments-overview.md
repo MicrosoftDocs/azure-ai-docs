@@ -1,7 +1,6 @@
 ---
-title: Deployment options for Microsoft Foundry Models
-titleSuffix: Microsoft Foundry
-description: Learn about deployment options for Microsoft Foundry Models including standard, serverless API, and managed compute deployments.
+title: "Deployment options for Microsoft Foundry Models (classic)"
+description: "Learn about deployment options for Microsoft Foundry Models including standard, serverless API, and managed compute deployments. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
@@ -12,7 +11,7 @@ manager: nitinme
 #CustomerIntent: As a developer or AI practitioner, I want to understand the different deployment options available for Microsoft Foundry Models so that I can choose the most appropriate deployment method for my specific use case, requirements, and infrastructure needs.
 ---
 
-# Deployment overview for Microsoft Foundry Models
+# Deployment overview for Microsoft Foundry Models (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -82,7 +81,6 @@ Use [Standard deployments in Foundry resources](#standard-deployment-in-foundry-
 <sup>2</sup> A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in serverless deployment. After you delete the endpoint, no further charges accrue.
 
 <sup>3</sup> Billing is on a per-minute basis, depending on the product tier and the number of instances used in the deployment since the moment of creation. After you delete the endpoint, no further charges accrue.
-
 
 ## Related content
 

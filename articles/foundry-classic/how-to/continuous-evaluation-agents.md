@@ -1,7 +1,6 @@
 ---
-title: Continuously Evaluate your AI agents
-titleSuffix: Microsoft Foundry
-description: This article provides instructions on how to continuously evaluate AI agents.
+title: "Continuously Evaluate your AI agents (classic)"
+description: "This article provides instructions on how to continuously evaluate AI agents. (classic)"
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/08/2026
@@ -11,10 +10,12 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# Continuously evaluate your AI agents (preview)
+# Continuously evaluate your AI agents (preview) (classic)
+
+[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 > [!NOTE]
-> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Setup continuous evaluation](../default/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
+> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Setup continuous evaluation](../../foundry/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -34,7 +35,6 @@ Continuous evaluation for Agents provides near real-time observability and monit
 1. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
 
 1. Connect your Application Insights resource to the project.
-
 
 ## Set up continuous evaluations with Azure AI Projects client library
 
@@ -113,7 +113,6 @@ from azure.core.exceptions import HttpResponseError
 from azure.identity import DefaultAzureCredential
 from azure.monitor.query import LogsQueryClient, LogsQueryStatus
 import pandas as pd
-
 
 credential = DefaultAzureCredential()
 client = LogsQueryClient(credential)

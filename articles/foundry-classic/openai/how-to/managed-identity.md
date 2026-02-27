@@ -1,7 +1,6 @@
 ---
-title: How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication
-titleSuffix: Azure OpenAI
-description: Provides guidance on how to set managed identity with Microsoft Entra ID
+title: "How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication (classic)"
+description: "Provides guidance on how to set managed identity with Microsoft Entra ID (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to 
@@ -12,7 +11,7 @@ recommendations: false
 ms.custom: devx-track-azurecli
 ---
 
-# How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication
+# How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -80,7 +79,6 @@ from azure.identity import DefaultAzureCredential
 region = "eastus"
 token_credential = DefaultAzureCredential()
 subscriptionId = "{YOUR-SUBSCRIPTION-ID}" 
-
 
 token = token_credential.get_token('https://management.azure.com/.default')
 headers = {'Authorization': 'Bearer ' + token.token}

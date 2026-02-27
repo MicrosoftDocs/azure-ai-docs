@@ -1,7 +1,7 @@
 ---
-title: "Connect to your own storage (temp)"
+title: "Connect to your own storage"
 ms.reviewer: andyaviles
-description: "Learn how to bring your own storage to Microsoft Foundry for agents, evaluations, datasets, and other capabilities. (temp)"
+description: "Learn how to bring your own storage to Microsoft Foundry for agents, evaluations, datasets, and other capabilities."
 # customer intent: As a developer, I want to set up capability hosts for agents so that I can use my own storage instead of Microsoft-managed storage.
 author: jonburchel
 ms.author: jburchel
@@ -14,8 +14,7 @@ ms.date: 02/24/2026
 ai-usage: ai-assisted
 ---
 
-# Connect to your own storage (temp)
-
+# Connect to your own storage
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Microsoft Foundry brings Agents, Azure OpenAI, Speech, and Language services together under one unified resource type. Bring-your-own-storage (BYOS) lets you route data produced by these capabilities to an Azure Storage account that you own and govern. The configuration patterns align with (and provide backwards compatibility to) earlier standalone Speech and Language resource types.

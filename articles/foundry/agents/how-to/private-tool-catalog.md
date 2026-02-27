@@ -14,15 +14,14 @@ ai-usage: ai-assisted
 ---
 
 # Create a private tool catalog (preview)
-
-[!INCLUDE [preview-feature](../../../openai/includes/preview-feature.md)]
+[!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
 
 Create a private tool catalog so developers in your organization can discover, configure, and use MCP server tools through Foundry Tools. A private tool catalog uses [Azure API Center](/azure/api-center/register-discover-mcp-server) to register organization-scoped tools that only your developers can access.
 
 ## Prerequisites
 
-* A Foundry project. For setup guidance, see [Create projects in Microsoft Foundry](../../../how-to/create-projects.md).
-* Permissions to discover and configure tools in your Foundry project. For more information, see [Role-based access control in Microsoft Foundry](../../../concepts/rbac-foundry.md).
+* A Foundry project. For setup guidance, see [Create projects in Microsoft Foundry](../../how-to/create-projects.md).
+* Permissions to discover and configure tools in your Foundry project. For more information, see [Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry.md).
 * An [Azure API Center](/azure/api-center/set-up-api-center).
 
     > [!NOTE]

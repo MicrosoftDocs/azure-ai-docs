@@ -1,7 +1,6 @@
 ---
-title: Use Foundry Agent Service with OpenAPI Tools
-titleSuffix: Microsoft Foundry
-description: Learn how to configure Azure AI Agents with OpenAPI tools for API integration. Connect external APIs with authentication options including managed identity and API keys.
+title: "Use Foundry Agent Service with OpenAPI Tools (classic)"
+description: "Learn how to configure Azure AI Agents with OpenAPI tools for API integration. Connect external APIs with authentication options including managed identity and API keys. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,12 +12,12 @@ ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 
-# How to use Foundry Agent Service with OpenAPI Specified Tools
+# How to use Foundry Agent Service with OpenAPI Specified Tools (classic)
 
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-> 🔍 [View the new OpenAPI tool documentation](../../../default/agents/how-to/tools/openapi.md?view=foundry&preserve-view=true).
+> 🔍 [View the new OpenAPI tool documentation](../../../../foundry/agents/how-to/tools/openapi.md).
 
 You can now connect your Azure AI Agent to an external API by using an OpenAPI 3.0 specified tool, enabling scalable interoperability with various applications. By using managed identities (Microsoft Entra ID) for authentication, you can securely enable your custom tools to authenticate access and connections. This approach is ideal for integrating with existing infrastructure or web services.
 

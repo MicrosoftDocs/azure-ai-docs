@@ -1,7 +1,6 @@
 ---
-title: Connect Azure Speech in Foundry Tools to an agent
-titleSuffix: Microsoft Foundry
-description: Connect Azure Speech in Foundry Tools to an agent by using an MCP server for speech-to-text and text-to-speech in Foundry Agent Service.
+title: "Connect Azure Speech in Foundry Tools to an agent"
+description: "Connect Azure Speech in Foundry Tools to an agent by using an MCP server for speech-to-text and text-to-speech in Foundry Agent Service."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -12,22 +11,20 @@ ms.author: pafarley
 ms.custom: 
 - azure-ai-agents
 - pilot-ai-workflow-jan-2026
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 keywords: Azure Speech, speech to text, text to speech, MCP, Model Context Protocol, Foundry Agent Service
 ---
 
 # Connect Azure Speech in Foundry Tools to an agent
-
 Azure Speech in Foundry Tools lets your agent convert speech to text and generate speech audio from text. You connect the tool by adding a remote Model Context Protocol (MCP) server to your agent in Foundry Agent Service.
 
 > [!IMPORTANT]
-> The Speech MCP tool doesn't support [Network-secured Microsoft Foundry](../../../../agents/how-to/virtual-networks.md). For more information, see [Connect to Model Context Protocol servers](./model-context-protocol.md).
+> The Speech MCP tool doesn't support [Network-secured Microsoft Foundry](../../../agents/how-to/virtual-networks.md). For more information, see [Connect to Model Context Protocol servers](./model-context-protocol.md).
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry resource](../../../../../ai-services/multi-service-resource.md) created in a [supported region](../../../../../ai-services/speech-service/regions.md). Your Foundry resource includes speech capabilities and is used by the Speech MCP server. The Speech MCP Server is available in all regions where Foundry Agent Service supports [MCP tools](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
+- A [Microsoft Foundry resource](../../../../ai-services/multi-service-resource.md) created in a [supported region](../../../../ai-services/speech-service/regions.md). Your Foundry resource includes speech capabilities and is used by the Speech MCP server. The Speech MCP Server is available in all regions where Foundry Agent Service supports [MCP tools](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
 ## Usage support
 
@@ -58,7 +55,6 @@ Create one or more blob containers to store the input and output audio files.
 1. In the upper-right menu, select **Build**.
 1. In the left pane, select **Agents**, and then select **Create agent**.
 1. Enter a name and description, and then select **Create**.
-
 
 ## Connect the Azure Speech tool to your agent
 
@@ -129,6 +125,5 @@ The output audio is saved as a WAV file in your blob container. An audio link is
 
 - Learn more about MCP connections: [Connect to Model Context Protocol servers](./model-context-protocol.md).
 - Review tool usage guidance: [Tool best practices](../../concepts/tool-best-practice.md).
-
 
 [!INCLUDE [speech-in-foundry](../../../includes/speech-features-foundry.md)]

@@ -1,7 +1,7 @@
 ---
-title: Foundry Local SDK Reference
+title: "Foundry Local SDK Reference"
 titleSuffix: Foundry Local
-description: Reference guide for the Foundry Local SDK.
+description: "Reference guide for the Foundry Local SDK."
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -16,7 +16,6 @@ ai-usage: ai-assisted
 ---
 
 # Foundry Local SDK reference
-
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 

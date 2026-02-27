@@ -1,6 +1,6 @@
 ---
-title: "Prompt Shields in Microsoft Foundry (temp)"
-description: "Learn how Prompt Shields in Microsoft Foundry detect and block user prompt attacks and document attacks on your model deployments and agents. (temp)"
+title: "Prompt Shields in Microsoft Foundry"
+description: "Learn how Prompt Shields in Microsoft Foundry detect and block user prompt attacks and document attacks on your model deployments and agents."
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Prompt Shields in Microsoft Foundry (temp)
-
+# Prompt Shields in Microsoft Foundry
 Prompt Shields detect and prevent attempts to manipulate your model's behavior through adversarial inputs. The feature protects against two types of attacks:
 
 - **User prompt attacks** — Malicious prompts that attempt to bypass system instructions or safety training. Scanned at the **user input** intervention point.

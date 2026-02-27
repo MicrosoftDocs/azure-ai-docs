@@ -1,7 +1,6 @@
 ---
-title: Set up MCP server authentication
-titleSuffix: Microsoft Foundry
-description: Set up authentication for Model Context Protocol (MCP) tools used by agents in Foundry Agent Service.
+title: "Set up MCP server authentication"
+description: "Set up authentication for Model Context Protocol (MCP) tools used by agents in Foundry Agent Service."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,8 +14,7 @@ ai-usage: ai-assisted
 ---
 
 # Set up authentication for Model Context Protocol (MCP) tools (preview)
-
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. Proper authentication ensures your agents can securely connect to MCP servers, invoke their tools, and access protected resources while maintaining appropriate access controls.
 
@@ -34,8 +32,8 @@ In this article, you:
 
 Before you begin, you need:
 
-- Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and a project. If you don't have one, see [Create projects in Foundry](../../../how-to/create-projects.md).
-- Permissions to create project connections and configure agents. For details, see [Role-based access control in the Foundry portal](../../../concepts/rbac-foundry.md).
+- Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and a project. If you don't have one, see [Create projects in Foundry](../../how-to/create-projects.md).
+- Permissions to create project connections and configure agents. For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 - The remote MCP server endpoint URL you want to connect to.
 - Credentials for your selected authentication method:
   - Key-based authentication: an API key, personal access token (PAT), or other token.
@@ -310,5 +308,5 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 
 - [Connect to Model Context Protocol servers](tools/model-context-protocol.md)
 - [Agent identity concepts in Foundry](../concepts/agent-identity.md)
-- [Role-based access control in the Foundry portal](../../../concepts/rbac-foundry.md)
-- [Add a connection in Foundry](../../../how-to/connections-add.md)
+- [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md)
+- [Add a connection in Foundry](../../how-to/connections-add.md)

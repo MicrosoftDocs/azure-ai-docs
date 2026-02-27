@@ -1,7 +1,6 @@
 ---
-title: Get Answers in Chat Playground - Microsoft Foundry Quickstart
-titleSuffix: Microsoft Foundry
-description: Get answers using the chat playground in Microsoft Foundry portal. Learn how to deploy models, ask questions, and get AI responses quickly with this step-by-step tutorial.
+title: "Get Answers in Chat Playground - Microsoft Foundry Quickstart (classic)"
+description: "Get answers using the chat playground in Microsoft Foundry portal. Learn how to deploy models, ask questions, and get AI responses quickly with this step-by-step tutorial. (classic)"
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -16,7 +15,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want use the chat playground in Microsoft Foundry portal so I can work with generative AI.
 ---
 
-# Quickstart: Get answers in the chat playground
+# Quickstart: Get answers in the chat playground (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -42,9 +41,6 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 ## Deploy a model
 
 [!INCLUDE [feature-preview](../includes/first-run-experience-classic.md)]
-
-
-
 
 ## Use the chat playground
 

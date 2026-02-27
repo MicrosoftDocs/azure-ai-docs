@@ -1,7 +1,7 @@
 ---
-title: Foundry Local CLI Reference
+title: "Foundry Local CLI Reference"
 titleSuffix: Foundry Local
-description: Complete reference guide for the Foundry Local command-line interface.
+description: "Complete reference guide for the Foundry Local command-line interface."
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 ---
 
 # Foundry Local CLI reference
-
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 This article provides a comprehensive reference for the Foundry Local command-line interface (CLI). The CLI organizes commands into logical categories to help you manage models, control the service, and maintain your local cache.

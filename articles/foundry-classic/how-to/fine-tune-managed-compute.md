@@ -1,7 +1,6 @@
 ---
-title: Deploy Fine-Tuned Models with Managed Compute in Microsoft Foundry
-titleSuffix: Microsoft Foundry
-description: Deploy fine-tuned models using managed compute in Microsoft Foundry portal. Step-by-step guide to fine-tune, train, and deploy custom models with GPU compute resources.
+title: "Deploy Fine-Tuned Models with Managed Compute in Microsoft Foundry (classic)"
+description: "Deploy fine-tuned models using managed compute in Microsoft Foundry portal. Step-by-step guide to fine-tune, train, and deploy custom models with GPU compute resources. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -18,7 +17,7 @@ ai-usage: ai-assisted
 #customer intent: As a data scientist using a managed compute, I want to learn how to fine-tune models to improve model performance for specific tasks. 
 ---
 
-# Fine-tune models using managed compute (preview)
+# Fine-tune models using managed compute (preview) (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -37,7 +36,6 @@ In this article, you learn how to:
 - Tune hyperparameters safely.
 - Submit and monitor a fine-tune job.
 - Evaluate and deploy the fine-tuned model.
-
 
 ## Prerequisites
 

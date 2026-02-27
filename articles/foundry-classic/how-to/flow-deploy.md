@@ -1,7 +1,6 @@
 ---
-title: Deploy a Flow as a Managed Online Endpoint for Real-Time Inference
-titleSuffix: Microsoft Foundry
-description: Learn how to deploy a flow as a managed online endpoint for real-time inference with Microsoft Foundry.
+title: "Deploy a Flow as a Managed Online Endpoint for Real-Time Inference (classic)"
+description: "Learn how to deploy a flow as a managed online endpoint for real-time inference with Microsoft Foundry. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -18,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Deploy a flow for real-time inference
+# Deploy a flow for real-time inference (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 

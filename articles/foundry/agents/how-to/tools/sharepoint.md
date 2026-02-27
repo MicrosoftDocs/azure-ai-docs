@@ -1,7 +1,6 @@
 ---
-title: Use SharePoint content with agent API
-titleSuffix: Microsoft Foundry
-description: Learn how to ground Microsoft Foundry agents with SharePoint content using the agent API. Connect to SharePoint sites or folders, use identity passthrough, and keep enterprise access controls intact.
+title: "Use SharePoint content with agent API"
+description: "Learn how to ground Microsoft Foundry agents with SharePoint content using the agent API. Connect to SharePoint sites or folders, use identity passthrough, and keep enterprise access controls intact."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -19,8 +18,7 @@ zone_pivot_groups: selection-agent-sharepoint-new
 ---
 
 # Use SharePoint tool with the agent API (preview)
-
-[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!NOTE]
 > - This article describes the Microsoft SharePoint tool for Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/).
@@ -46,7 +44,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 - Eligible license or pay-as-you-go model:
   - Developers and end users have a Microsoft 365 Copilot license, as required by the [Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
   - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
-- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../../concepts/rbac-foundry.md?view=foundry&preserve-view=true).
+- Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
 - Developers and end users have at least `READ` access to the SharePoint site.
 - The latest prerelease package installed:
   - **Python**: `pip install azure-ai-projects --pre`
@@ -57,7 +55,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
   - `SHAREPOINT_PROJECT_CONNECTION_ID`: Your SharePoint connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
   - For REST samples: `API_VERSION`, `AGENT_TOKEN`
-- See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for additional authentication setup details.
+- See the [quickstart](../../../quickstarts/get-started-code.md) for additional authentication setup details.
 
 ## Parameters
 
@@ -68,7 +66,7 @@ The SharePoint tool uses your project connection to determine which SharePoint s
 | `type` | Yes | Use `sharepoint_grounding_preview`. |
 | `sharepoint_grounding_preview.project_connections[].project_connection_id` | Yes | Use the value of `SHAREPOINT_PROJECT_CONNECTION_ID`. |
 
-If you need to create a SharePoint connection for your project, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
+If you need to create a SharePoint connection for your project, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
 ## Code example
 
@@ -634,7 +632,7 @@ SharePoint agent sample completed!
 
 1. Add a SharePoint connection.
 
-   For step-by-step instructions, see [Add a new connection to your project](../../../../how-to/connections-add.md?view=foundry&preserve-view=true).
+   For step-by-step instructions, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
   1. In the SharePoint connection configuration, enter the site URL or folder URL.
 

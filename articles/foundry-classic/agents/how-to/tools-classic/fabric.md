@@ -1,7 +1,6 @@
 ---
-title: "How to use the data agents in Microsoft Fabric with Foundry Agent Service"
-titleSuffix: Microsoft Foundry
-description: Learn how to perform data analytics in Microsoft Foundry Agents using Microsoft Fabric data agent.
+title: "How to use the data agents in Microsoft Fabric with Foundry Agent Service (classic)"
+description: "Learn how to perform data analytics in Microsoft Foundry Agents using Microsoft Fabric data agent. (classic)"
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
@@ -14,12 +13,12 @@ ms.custom:
 zone_pivot_groups: selection-fabric-data-agent
 ---
 
-# Use the Microsoft Fabric data agent (preview)
+# Use the Microsoft Fabric data agent (preview) (classic)
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Fabric data agent documentation](../../../default/agents/how-to/tools/fabric.md?view=foundry&preserve-view=true).
+> 🔍 [View the new Fabric data agent documentation](../../../../foundry/agents/how-to/tools/fabric.md).
 
 Integrate your Microsoft Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 
@@ -43,20 +42,17 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * Your Fabric Data Agent and Foundry Agent need to be in the same tenant.
 
-
 * Your Foundry Project endpoint.
 
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 
-
 * The name of your Microsoft Fabric connection name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
     
     :::image type="content" source="../../media/tools/fabric-connection.png" alt-text="A screenshot showing the SharePoint connection name. " lightbox="../../media/tools/fabric-connection.png":::
 
     Save this endpoint to an environment variable named `FABRIC_CONNECTION_ID`
-
 
 * The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
 
@@ -185,7 +181,6 @@ for msg in messages:
 ```
 
 :::zone-end
-
 
 <!--
 :::zone pivot="csharp"

@@ -1,6 +1,6 @@
 ---
-title: "How to use JSON mode with Azure OpenAI in Microsoft Foundry Models (temp)"
-description: "Learn how to improve your chat completions with Azure OpenAI JSON mode (temp)"
+title: "How to use JSON mode with Azure OpenAI in Microsoft Foundry Models"
+description: "Learn how to improve your chat completions with Azure OpenAI JSON mode"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,8 +16,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Learn how to use JSON mode (temp)
-
+# Learn how to use JSON mode
 JSON mode allows you to set the model's response format to return a valid JSON object as part of a chat completion. While generating valid JSON was possible previously, there could be issues with response consistency that would lead to invalid JSON objects being generated.
 
 JSON mode guarantees valid JSON output, but it doesn't guarantee the output matches a specific schema. If you need schema guarantees, use Structured Outputs.

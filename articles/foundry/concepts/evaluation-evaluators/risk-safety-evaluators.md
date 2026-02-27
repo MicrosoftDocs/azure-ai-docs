@@ -1,6 +1,6 @@
 ---
-title: "Risk and Safety Evaluators for Generative AI (temp)"
-description: "Learn about risk and safety evaluators for generative AI, including tools for assessing content safety, jailbreak vulnerabilities, and code security risks. (temp)"
+title: "Risk and Safety Evaluators for Generative AI"
+description: "Learn about risk and safety evaluators for generative AI, including tools for assessing content safety, jailbreak vulnerabilities, and code security risks."
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
@@ -14,8 +14,7 @@ ms.custom:
   - build-2025
 ---
 
-# Risk and safety evaluators (temp)
-
+# Risk and safety evaluators
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 Risk and safety evaluators draw on insights gained from our previous large language model (LLM) projects such as GitHub Copilot and Bing. This approach ensures a comprehensive approach to evaluating generated responses for risk and safety severity scores.

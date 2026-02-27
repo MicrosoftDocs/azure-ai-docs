@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Create a Guardrail policy"
-description: Learn how to create a guardrail policy for model deployments in Microsoft Foundry so that you can govern the usage of guardrail controls across your subscription.
+description: "Learn how to create a guardrail policy for model deployments in Microsoft Foundry so that you can govern the usage of guardrail controls across your subscription."
 author: gregharen
 ms.author: scottpolly
 ms.reviewer: gregharen
@@ -13,7 +13,6 @@ ai-usage: ai-assisted
 ---
 
 # Quickstart: Create a Guardrail policy
-
 In this quickstart, you create a policy in Microsoft Foundry to govern the use of guardrail controls for model deployments across your subscription.
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
@@ -25,7 +24,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 - The appropriate roles for using Azure Policy to create a policy for your subscription. You can learn more about Azure Policy roles in the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
 
 > [!NOTE]
-> This capability is available only in the [Microsoft Foundry (new) portal](../../what-is-foundry.md#microsoft-foundry-portals).
+> This capability is available only in the [Microsoft Foundry (new) portal](../what-is-foundry.md#microsoft-foundry-portals).
 
 ## Create the guardrail policy
 

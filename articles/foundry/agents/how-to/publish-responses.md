@@ -1,6 +1,6 @@
 ---
-title: Chat with your Agent Application using the Responses API protocol
-description: Chat with an existing Agent Application using the Responses API protocol
+title: "Chat with your Agent Application using the Responses API protocol"
+description: "Chat with an existing Agent Application using the Responses API protocol"
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -13,7 +13,6 @@ ai-usage: ai-assisted
 ---
 
 # Invoke your agent application using the responses API protocol
-
 After publishing, you can invoke your agent application using the Responses API protocol or the Activity Protocol. The Activity Protocol is used when your agent is published to Microsoft 365 and Teams.
 
 This article focuses on how you invoke your Agent Application using the Responses API protocol. 
@@ -22,7 +21,7 @@ This article focuses on how you invoke your Agent Application using the Response
 
 - **Test your agent thoroughly** in the Foundry portal before publishing. Confirm it responds correctly and any tools work as expected.
 - **Publish your agent as an Agent Application**: An Agent Application is a managed Azure resource that wraps your agent with a stable endpoint for external consumption. To publish your agent, see [Publish and share agents in Microsoft Foundry](publish-agent.md).
-- [Azure AI User role](../../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
+- [Azure AI User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
 - **Before running the code sample, ensure you have**:
     - Python 3.8 or later installed
     - [Azure CLI](/cli/azure/install-azure-cli) installed and configured
@@ -34,7 +33,7 @@ This article focuses on how you invoke your Agent Application using the Response
       ```bash
       az login
       ```
-    For more information on setting up your development environment, see [Prepare your development environment](../../../how-to/develop/install-cli-sdk.md).
+    For more information on setting up your development environment, see [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
 ## Use OpenAI client with Agent Applications endpoint
 
@@ -59,12 +58,9 @@ This approach authenticates using Azure credentials and requires the caller to h
 
 ## Limitations
 
-
-
 | Limitation | Description |
 | --- | --- |
 | Stateless Responses API only | Only the stateless Responses API is supported. Other APIs including `/conversations`, `/files`, `/vector_stores`, and `/containers` are inaccessible. |
-
 
 ## Troubleshooting
 
@@ -74,7 +70,6 @@ This approach authenticates using Azure credentials and requires the caller to h
 | `401 Unauthorized` when invoking the endpoint | The access token is missing, expired, or for the wrong resource | Reauthenticate and request a token for `https://ai.azure.com`. |
 | Tool calls fail after publishing | The Agent Application identity doesn’t have the same access as the project identity | Reassign the required RBAC roles to the published agent identity for any downstream Azure resources it must access. |
 | Multi-turn conversations don’t work as expected | Agent Applications don’t store conversation state for you | Store conversation history in your client and send the context as part of your request. |
-
 
 ## FAQs
 

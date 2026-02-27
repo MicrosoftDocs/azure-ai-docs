@@ -1,6 +1,6 @@
 ---
-title: "How to run an evaluation in Azure DevOps (temp)"
-description: "How to run evaluation in Azure DevOps, which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. (temp)" 
+title: "How to run an evaluation in Azure DevOps"
+description: "How to run evaluation in Azure DevOps, which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps." 
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 01/16/2026
@@ -12,8 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# How to run an evaluation in Azure DevOps (preview) (temp)
-
+# How to run an evaluation in Azure DevOps (preview)
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 This [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation) enables offline evaluation of [Microsoft Foundry Agents](../agents/overview.md) within your CI/CD pipelines. It streamlines the offline evaluation process, so you can identify potential problems and make improvements before releasing an update to production.

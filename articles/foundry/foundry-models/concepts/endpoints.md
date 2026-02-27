@@ -1,6 +1,6 @@
 ---
-title: "Endpoints for Microsoft Foundry Models (temp)"
-description: "Learn how to access and use Microsoft Foundry Models endpoints for secure model inference, flexible deployments, and keyless authentication. (temp)"
+title: "Endpoints for Microsoft Foundry Models"
+description: "Learn how to access and use Microsoft Foundry Models endpoints for secure model inference, flexible deployments, and keyless authentication."
 author: msakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -15,8 +15,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer using Microsoft Foundry Models, I want to understand how to access and use Foundry Model endpoints so that I can integrate models into my applications with secure authentication and flexible deployment options.
 ---
 
-# Endpoints for Microsoft Foundry Models (temp)
-
+# Endpoints for Microsoft Foundry Models
 Microsoft Foundry Models enables you to access the most powerful models from leading model providers through a single endpoint and set of credentials. This capability lets you switch between models and use them in your application without changing any code.
 
 This article explains how the Foundry services organize models and how to use the inference endpoint to access them.

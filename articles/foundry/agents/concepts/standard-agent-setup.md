@@ -1,6 +1,6 @@
 ---
-title: "Set up standard agent resources for Foundry Agent Service (temp)"
-description: "Learn how to provision and configure customer-managed Azure resources for Foundry Agent Service standard agent setup with enterprise-grade data isolation. (temp)"
+title: "Set up standard agent resources for Foundry Agent Service"
+description: "Learn how to provision and configure customer-managed Azure resources for Foundry Agent Service standard agent setup with enterprise-grade data isolation."
 manager: nitinme
 author: fosteramanda
 ms.author: fosteramanda
@@ -14,8 +14,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Set up standard agent resources (temp)
-
+# Set up standard agent resources
 Standard agent setup uses customer-managed, single-tenant Azure resources to store agent state and keep all agent data under your control. Use standard setup when you need full data sovereignty, compliance with enterprise security policies, or project-level isolation.
 
 In this setup:

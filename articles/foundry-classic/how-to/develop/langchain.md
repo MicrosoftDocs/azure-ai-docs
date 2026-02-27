@@ -1,7 +1,6 @@
 ---
-title: Develop applications with LangChain and Microsoft Foundry
-titleSuffix: Microsoft Foundry
-description: Learn how to use LangChain with models deployed in Microsoft Foundry to build advanced, intelligent applications.
+title: "Develop applications with LangChain and Microsoft Foundry (classic)"
+description: "Learn how to use LangChain with models deployed in Microsoft Foundry to build advanced, intelligent applications. (classic)"
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
@@ -15,7 +14,7 @@ author: sdgilley
 ai-usage: ai-assisted
 ---
 
-# Develop applications with LangChain and Microsoft Foundry
+# Develop applications with LangChain and Microsoft Foundry (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -25,16 +24,13 @@ LangChain is a developer ecosystem that makes it easier to build reasoning appli
 You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] with LangChain in two ways:
 <!-- ::: moniker-end
 
-::: moniker range="foundry"
-You can use models deployed to [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] with LangChain in two ways:
-::: moniker-end -->
+-->
 
 - **Use the model provider's API:** Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
 
 - **Use the Azure AI Model Inference API:** All models deployed in Microsoft Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of capabilities across most models in the catalog. Because the API is consistent, switching models is as simple as changing the deployment; no code changes are required. For LangChain, also install the `langchain-azure-ai` integration.
 
 [!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
-
 
 This tutorial shows how to use the `langchain-azure-ai` package with LangChain.
 
@@ -51,11 +47,7 @@ To run this tutorial, you need:
     * **Azure AI Developer** to use the model in a hub-based project
 <!-- :::moniker-end
 
-:::moniker range="foundry"
-* Required role: 
-    * **Owner** or **Contributor** on the Foundry resource to deploy models
-    * **Azure AI User** to use the model in a Foundry project
-:::moniker-end -->
+-->
 
 * A model deployment that supports the [Model Inference API](https://aka.ms/azureai/modelinference). This article uses `Mistral-Large-3`.
 
@@ -72,8 +64,6 @@ To run this tutorial, you need:
     pip install -U langchain-azure-ai
     ```
 
-
-
 ## Configure the environment
 
 <!-- ::: moniker range="foundry-classic" -->
@@ -81,9 +71,8 @@ To run this tutorial, you need:
 <!-- ::: moniker-end -->
 
 <!-- ::: moniker range="foundry"
-[!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
+[!INCLUDE [set-endpoint](../../../foundry/includes/set-endpoint.md)]
 ::: moniker-end -->
-
 
 Create a client to connect to the chat model by using the `AzureAIChatCompletionsModel` class.
 
@@ -94,7 +83,6 @@ Create a client to connect to the chat model by using the `AzureAIChatCompletion
 **References:**
 - [LangChain Azure AI integration](https://python.langchain.com/docs/integrations/chat/azure_ai)
 - [Model Inference API overview](../../../ai-foundry/model-inference/overview.md)
-
 
 > [!CAUTION]
 > **Breaking change:** The `model_name` parameter is renamed to `model` in version `0.1.3`.
@@ -215,7 +203,6 @@ In the following example, you create two model clients: one producer and one ver
 **References:**
 - [LangChain Azure AI integration](https://python.langchain.com/docs/integrations/chat/azure_ai)
 
-
 > [!TIP]
 > Review the model card for each model to understand the best use cases.
 
@@ -251,7 +238,6 @@ Invoke the chain by using the `invoke` method:
 **References:**
 - [LangChain Runnables](https://python.langchain.com/docs/concepts/runnable)
 
-
 ## Use embedding models
 
 Create an embeddings client in a similar way. Set the environment variables to point to an embeddings model:
@@ -279,7 +265,6 @@ Use an in-memory vector store:
 **References:**
 - [LangChain Vector Stores](https://python.langchain.com/docs/concepts/vectorstores)
 
-
 Add documents:
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=add_documents)]
@@ -288,7 +273,6 @@ Add documents:
 
 **References:**
 - [LangChain Vector Stores](https://python.langchain.com/docs/concepts/vectorstores)
-
 
 Search by similarity:
 
@@ -329,20 +313,17 @@ First, configure logging to the desired level:
 **References:**
 - [Python logging module](https://docs.python.org/3/library/logging.html)
 
-
 To see request payloads, pass `logging_enable=True` in `client_kwargs` when instantiating the client:
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_client_with_logging)]
 
 **What this snippet does:** Creates a client with logging enabled to capture and display detailed request/response payloads, helpful for debugging API interactions.
 
-
 Use the client as usual in your code.
 
 ## Tracing
 
 Use tracing in Foundry by creating a tracer. Logs are stored in Azure Application Insights and can be queried at any time using Azure Monitor or the Foundry portal. Each AI hub has an associated Azure Application Insights instance.
-
 
 ### Get your instrumentation connection string
 
@@ -386,67 +367,7 @@ You can configure your application to send telemetry to Azure Application Insigh
         application_insights_connection_string = project_client.telemetry.get_application_insights_connection_string()
         ```
 <!-- ::: moniker-end
-::: moniker range="foundry"
-
-::: moniker-end -->
-
-### Configure tracing for Foundry
-
-The following code creates a tracer connected to the Azure Application Insights behind a Foundry project. The `enable_content_recording` parameter is set to `True`, which captures inputs and outputs across the application, including intermediate steps. This feature is helpful when debugging and building applications, but you might want to disable it in production environments. You can also control this feature by using the `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED` environment variable:
-
-```python
-from langchain_azure_ai.callbacks.tracers import AzureAIOpenTelemetryTracer
-
-azure_tracer = AzureAIOpenTelemetryTracer(
-    connection_string=application_insights_connection_string,
-    enable_content_recording=True,
-)
-```
-
-Pass the tracer through `config` in the `invoke` operation:
-
-```python
-chain.invoke({"topic": "living in a foreign country/region"}, config={"callbacks": [azure_tracer]})
-```
-
-To configure the chain itself for tracing, use the `.with_config()` method:
-
-```python
-chain = chain.with_config({"callbacks": [azure_tracer]})
-```
-
-Then use the `invoke()` method as usual:
-
-```python
-chain.invoke({"topic": "living in a foreign country/region"})
-```
-
-### View traces
-
-To see traces:
-
-<!-- ::: moniker range="foundry-classic" -->
-1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
-
-1. Go to the **Tracing** section.
-
-1. Find the trace you created. It might take a few seconds to appear.
-
-    :::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing the trace of a chain." lightbox="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png":::
-
-<!-- ::: moniker-end
-
-::: moniker range="foundry"
-1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
-
-1. Go to the **Tracing** section.
-
-1. Find the trace you created. It might take a couple of seconds for the trace to show.
-::: moniker-end -->
-
-
-
-
+-->
 
 Learn more about [how to visualize and manage traces](./trace-application.md).
 

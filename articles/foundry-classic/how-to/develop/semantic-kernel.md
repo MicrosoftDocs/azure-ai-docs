@@ -1,8 +1,7 @@
 ---
-title: Develop Applications with Semantic Kernel and Microsoft Foundry
-titleSuffix: Microsoft Foundry
+title: "Develop Applications with Semantic Kernel and Microsoft Foundry (classic)"
 ai-usage: ai-assisted
-description: Learn how to Develop applications with Semantic Kernel and Microsoft Foundry with models deployed from the Foundry model catalog.
+description: "Learn how to Develop applications with Semantic Kernel and Microsoft Foundry with models deployed from the Foundry model catalog. (classic)"
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: taochen
@@ -11,7 +10,7 @@ ms.topic: how-to
 ms.service: azure-ai-foundry
 ---
 
-# Develop applications with Semantic Kernel and Microsoft Foundry
+# Develop applications with Semantic Kernel and Microsoft Foundry (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

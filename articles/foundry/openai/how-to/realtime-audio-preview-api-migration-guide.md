@@ -1,6 +1,6 @@
 ---
-title: "Migration from Preview to GA version of Realtime API (temp)"
-description: "Step-by-step guide for migrating from Preview (Beta) to Generally Available version of OpenAI GPT Realtime API protocol. (temp)"
+title: "Migration from Preview to GA version of Realtime API"
+description: "Step-by-step guide for migrating from Preview (Beta) to Generally Available version of OpenAI GPT Realtime API protocol."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -14,8 +14,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Migration from Preview to GA version of Realtime API (temp)
-
+# Migration from Preview to GA version of Realtime API
 The Azure OpenAI GPT Realtime API is now Generally Available (GA). This migration guide helps you update existing applications to use the GA protocol. The GA version introduces changes to SDK usage, endpoint URLs, event names, and session configuration.
 
 **What's changing**: SDK packages, endpoint URL format, event names, and session configuration structure.

@@ -1,7 +1,6 @@
 ---
-title: Understand agent runtime components in Foundry Agent Service
-titleSuffix: Microsoft Foundry
-description: Learn how agents, conversations, and responses work together in Microsoft Foundry Agent Service. Understand state persistence, streaming, and multi-turn interactions.
+title: "Understand agent runtime components in Foundry Agent Service"
+description: "Learn how agents, conversations, and responses work together in Microsoft Foundry Agent Service. Understand state persistence, streaming, and multi-turn interactions."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -14,14 +13,13 @@ ai-usage: ai-assisted
 ---
 
 # Agent runtime components
-
 Agent runtime components are the core objects—agents, conversations, and responses—that power stateful, multi-turn interactions in Microsoft Foundry Agent Service. Together, these components let you generate outputs, persist state across turns, and build conversational applications.
 
 This article explains the roles of an **agent**, **conversation**, and **response**, and how they work together during response generation.
 
 ## Prerequisites
 
-- A [Microsoft Foundry project](../../../how-to/create-projects.md).
+- A [Microsoft Foundry project](../../how-to/create-projects.md).
 - Familiarity with the [agent development lifecycle](./development-lifecycle.md) (optional).
 
 ## How runtime components work together
@@ -87,19 +85,19 @@ You can also generate a response without defining an agent. In this case, you pr
 
 Some response generation modes return results incrementally (streaming) or complete asynchronously (background). In these cases, you typically monitor the response until it finishes and then consume the final output items.
 
-For details about response modes and how to consume outputs, see [Responses API](../../../openai/how-to/responses.md).
+For details about response modes and how to consume outputs, see [Responses API](../../openai/how-to/responses.md).
 
 ## Security and data handling
 
 Because conversations and responses can persist user-provided content and tool outputs, treat runtime data like application data:
 
-- **Avoid storing secrets in prompts or conversation history**. Use connections and managed secret stores instead (for example, [Set up a Key Vault connection](../../../how-to/set-up-key-vault-connection.md)).
+- **Avoid storing secrets in prompts or conversation history**. Use connections and managed secret stores instead (for example, [Set up a Key Vault connection](../../how-to/set-up-key-vault-connection.md)).
 - **Use least privilege for tool access**. When a tool accesses external systems, the agent can potentially read or send data through that tool.
 - **Be careful with non-Microsoft services**. If your agent calls tools backed by non-Microsoft services, some data might flow to those services. For related considerations, see [Discover tools in the Foundry Tools](./tool-catalog.md).
 
 ## Limits and constraints
 
-Limits can depend on the model, region, and the tools you attach (for example, streaming availability and tool support). For current availability and constraints for responses, see [Responses API](../../../openai/how-to/responses.md).
+Limits can depend on the model, region, and the tools you attach (for example, streaming availability and tool support). For current availability and constraints for responses, see [Responses API](../../openai/how-to/responses.md).
 
 ## Related content
 

@@ -1,6 +1,6 @@
 ---
-title: "Understanding deployment types in Microsoft Foundry Models (temp)"
-description: "Compare Microsoft Foundry deployment types including Global Standard, Provisioned, DataZone, and Batch. Learn about data residency, pricing, and when to use each type. (temp)"
+title: "Understanding deployment types in Microsoft Foundry Models"
+description: "Compare Microsoft Foundry deployment types including Global Standard, Provisioned, DataZone, and Batch. Learn about data residency, pricing, and when to use each type."
 ai-usage: ai-assisted
 author: msakande
 ms.service: azure-ai-foundry
@@ -14,8 +14,7 @@ ms.custom:
 
 ---
 
-# Deployment types for Microsoft Foundry Models (temp)
-
+# Deployment types for Microsoft Foundry Models
 When you deploy a model in Microsoft Foundry, you choose a deployment type that determines:
 
 - **Where your data is processed** (global, data zone, or single region)

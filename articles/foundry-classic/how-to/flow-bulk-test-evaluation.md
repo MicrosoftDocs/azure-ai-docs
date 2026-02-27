@@ -1,7 +1,6 @@
 ---
-title: Submit batch run and evaluate a flow
-titleSuffix: Microsoft Foundry
-description: Learn how to submit batch run and use built-in evaluation methods in prompt flow to evaluate how well your flow performs with a large dataset with Microsoft Foundry.
+title: "Submit batch run and evaluate a flow (classic)"
+description: "Learn how to submit batch run and use built-in evaluation methods in prompt flow to evaluate how well your flow performs with a large dataset with Microsoft Foundry. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -17,7 +16,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Submit a batch run and evaluate a flow
+# Submit a batch run and evaluate a flow (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 

@@ -1,7 +1,6 @@
 ---
-title: Monitoring dashboard insights in Microsoft Foundry with Ask AI
-titleSuffix: Microsoft Foundry 
-description: Discover how to use Ask AI in Microsoft Foundry to interpret your monitoring dashboard and gain actionable insights for better decision-making.
+title: "Monitoring dashboard insights in Microsoft Foundry with Ask AI"
+description: "Discover how to use Ask AI in Microsoft Foundry to interpret your monitoring dashboard and gain actionable insights for better decision-making."
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 02/25/2026
@@ -13,8 +12,7 @@ ai-usage: ai-assisted
  
 
 # Monitoring dashboard insights in Microsoft Foundry with Ask AI (preview)
-
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 After your agent is in production, set up and view various metrics in the monitoring dashboard or control plane dashboard. Use Ask AI—the built-in chat assistant—to get a summary of your dashboard data and recommendations for next steps without leaving the Foundry portal.
 
@@ -22,7 +20,7 @@ This article describes the integrated user experience and system behavior for ge
 
 ## Prerequisites
 
-- A [Foundry project](../../../how-to/create-projects.md) with one or more [published agents](../../../agents/overview.md).
+- A [Foundry project](../../how-to/create-projects.md) with one or more [published agents](../../agents/overview.md).
 - Access to **Ask AI** (the chat assistant) in the Foundry portal.
 
 ## Start a chat with Ask AI
@@ -61,5 +59,5 @@ Ask any free-form questions related to your dashboard to get recommended next st
 
 ## Related content
 
-- [Run evaluations in the cloud](../../../how-to/develop/cloud-evaluation.md?view=foundry&preserve-view=true)
+- [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md)
 - [Agent tracing overview](../concepts/trace-agent-concept.md)

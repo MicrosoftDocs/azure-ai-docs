@@ -1,6 +1,6 @@
 ---
-title: "What is Microsoft Foundry? (temp)"
-description: "Microsoft Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way. (temp)"
+title: "What is Microsoft Foundry?"
+description: "Microsoft Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way."
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
@@ -21,8 +21,7 @@ keywords:
 # customer intent: As a developer, I want to understand what Microsoft Foundry is so that I can use it to build AI applications.
 ---
 
-# What is Microsoft Foundry? (temp)
-
+# What is Microsoft Foundry?
 **Microsoft Foundry** is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
 
 Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.

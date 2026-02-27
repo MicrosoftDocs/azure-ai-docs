@@ -1,6 +1,6 @@
 ---
-title: "Direct preference optimization (temp)"
-description: "Learn how to use direct preference optimization technique to fine-tune Azure OpenAI models. (temp)"
+title: "Direct preference optimization"
+description: "Learn how to use direct preference optimization technique to fine-tune Azure OpenAI models."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,8 +13,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ---
 
-# Direct preference optimization (preview) (temp)
-
+# Direct preference optimization (preview)
 Direct preference optimization (DPO) is an alignment technique for large language models, used to adjust model weights based on human preferences. It differs from reinforcement learning from human feedback (RLHF) in that it does not require fitting a reward model and uses simpler binary data preferences for training. It is computationally lighter weight and faster than RLHF, while being equally effective at alignment.
 
 ## Why is DPO useful?

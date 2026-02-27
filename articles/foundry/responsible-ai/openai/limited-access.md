@@ -1,6 +1,6 @@
 ---
-title: "Limited access to Azure OpenAI in Microsoft Foundry Models (temp)"
-description: "This document details the limited access policy for Azure OpenAI (temp)"
+title: "Limited access to Azure OpenAI in Microsoft Foundry Models"
+description: "This document details the limited access policy for Azure OpenAI"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -11,8 +11,7 @@ ms.date: 11/03/2023
 ms.custom:
   - classic-and-new
 ---
-# Limited access for Azure Direct Models (temp)
-
+# Limited access for Azure Direct Models
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 As part of Microsoft's commitment to responsible AI, we have designed and operate Azure Direct Models (as defined in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage)) with the intention of respecting the rights of individuals and society and fostering transparent human-computer interaction. For this reason, certain Azure Direct Models (or versions of them) are designated as Limited Access Services, and access and use are subject to eligibility criteria determined by Microsoft. Unless otherwise indicated in the service, all Azure customers are eligible for access to Azure Direct Models, and all uses consistent with the Product Terms and Code of Conduct are permitted, so customers are not required to submit a registration form unless they are: (a) accessing an Azure Direct Model designated as a Limited Access Service, or (b) requesting approval to modify Guardrails (previously content filters) and/or abuse monitoring for an Azure Direct Model. 

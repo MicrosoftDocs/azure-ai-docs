@@ -1,7 +1,6 @@
 ---
-title: 'How to use the deep research tool'
-titleSuffix: Microsoft Foundry
-description: Find code samples and instructions for using deep research in the Foundry Agent Service.
+title: "How to use the deep research tool (classic)"
+description: "Find code samples and instructions for using deep research in the Foundry Agent Service. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -14,11 +13,11 @@ ms.custom: references_regions
 zone_pivot_groups: selection-deep-research
 ---
 
-# How to use the Deep Research tool
+# How to use the Deep Research tool (classic)
 
 > [!NOTE]
 > * The **parent** Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
-> * This tool is only available in `2025-05-15-preview` API. We highly recommend that you migrate to use the `2025-11-15-preview` API. This enables you to use the `o3-deep-research` model with [web search](../../../default/agents/how-to/tools/web-search.md) or MCP tool.
+> * This tool is only available in `2025-05-15-preview` API. We highly recommend that you migrate to use the `2025-11-15-preview` API. This enables you to use the `o3-deep-research` model with [web search](../../../../foundry/agents/how-to/tools/web-search.md) or MCP tool.
 
 Use this article to learn how to use the Deep Research tool with the Azure AI Projects SDK, including code examples and setup instructions.
 
@@ -184,7 +183,6 @@ client.Administration.DeleteAgent(agentId: agent.Id);
 * The name of your Grounding with Bing Search resource name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Select **Connected resources**, then select your Grounding with Bing Search resource.
     
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
-
 
     Copy the ID, and save it to an environment variable named `AZURE_BING_CONECTION_ID`. 
 
@@ -434,7 +432,6 @@ You can install the package with the following command:
 pip install --pre azure-ai-projects
 ```
 
-
 ```python
 import os, time
 from typing import Optional
@@ -442,7 +439,6 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.agents import AgentsClient
 from azure.ai.agents.models import DeepResearchTool, MessageRole, ThreadMessage
-
 
 def fetch_and_print_new_agent_response(
     thread_id: str,
@@ -463,7 +459,6 @@ def fetch_and_print_new_agent_response(
         print(f"URL Citation: [{ann.url_citation.title}]({ann.url_citation.url})")
 
     return response.id
-
 
 def create_research_summary(
         message : ThreadMessage,
@@ -491,14 +486,12 @@ def create_research_summary(
 
     print(f"Research summary written to '{filepath}'.")
 
-
 project_client = AIProjectClient(
     endpoint=os.environ["PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 
 conn_id = project_client.connections.get(name=os.environ["BING_RESOURCE_NAME"]).id
-
 
 # Initialize a Deep Research tool with Bing Connection ID and Deep Research model deployment name
 deep_research_tool = DeepResearchTool(
@@ -523,7 +516,6 @@ agent = agents_client.create_agent(
 )
 
 # agent = agent_poller.result()  # Wait for completion
-
 
 # [END create_agent_with_deep_research_tool]
 print(f"Created agent, ID: {agent.id}")

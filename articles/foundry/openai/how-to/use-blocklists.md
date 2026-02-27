@@ -1,6 +1,6 @@
 ---
-title: "How to use block lists in Microsoft Foundry models (temp)"
-description: "Learn how to use block lists with Azure OpenAI (temp)"
+title: "How to use block lists in Microsoft Foundry models"
+description: "Learn how to use block lists with Azure OpenAI"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# How to use blocklists in Microsoft Foundry models (temp)
-
+# How to use blocklists in Microsoft Foundry models
 The [configurable Guardrails and controls](/azure/ai-foundry/openai/how-to/content-filters) available in Microsoft Foundry are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case—such as competitor names, internal project names, or domain-specific sensitive terms. For this, you can create custom block lists that automatically filter content containing your specified terms.
 
 In this article, you learn how to:
@@ -287,7 +286,7 @@ curl --location --request DELETE 'https://management.azure.com/subscriptions/{su
 
 #### [Foundry](#tab/foundry)
 
-[!INCLUDE [use-blocklists](../../../ai-foundry/includes/use-blocklists.md)]
+[!INCLUDE [use-blocklists](../../../foundry/includes/use-blocklists.md)]
 
 ---
 

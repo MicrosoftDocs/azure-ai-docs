@@ -1,7 +1,7 @@
 ---
-title: Characteristics and limitations of Pronunciation Assessment
+title: "Characteristics and limitations of Pronunciation Assessment"
 titleSuffix: Foundry Tools
-description: This article provides information on the characteristics and limitations of using Pronunciation Assessment and the considerations you should make for it's responsible use.
+description: "This article provides information on the characteristics and limitations of using Pronunciation Assessment and the considerations you should make for it's responsible use."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 05/17/2021
 ---
 
 # Characteristics and limitations of Pronunciation Assessment
-
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 As a part of the Azure Speech in Foundry Tools service, pronunciation assessment empowers end-to-end education solutions for computer-assisted language learning. Pronunciation Assessment involves multiple criteria to assess learners' performance at multiple levels of detail, with perceptions similar to human judges.

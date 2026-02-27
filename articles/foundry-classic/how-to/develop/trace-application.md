@@ -1,7 +1,6 @@
 ---
-title: View Trace Results for AI Applications using OpenAI SDK
-titleSuffix: Microsoft Foundry
-description: View trace results for AI applications using OpenAI SDK with OpenTelemetry in Microsoft Foundry. See execution traces, diagnose issues, and monitor application performance.
+title: "View Trace Results for AI Applications using OpenAI SDK (classic)"
+description: "View trace results for AI applications using OpenAI SDK with OpenTelemetry in Microsoft Foundry. See execution traces, diagnose issues, and monitor application performance. (classic)"
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
@@ -11,7 +10,7 @@ ms.topic: how-to
 ai-usage: ai-assisted
 ---
 
-# View trace results for AI applications using OpenAI SDK
+# View trace results for AI applications using OpenAI SDK (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

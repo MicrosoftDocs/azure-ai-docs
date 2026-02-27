@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI on your Azure Cosmos DB data Python & REST API reference
-titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI on your Azure Cosmos DB data Python & REST API.
+title: "Azure OpenAI on your Azure Cosmos DB data Python & REST API reference (classic)"
+description: "Learn how to use Azure OpenAI on your Azure Cosmos DB data Python & REST API. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,7 +12,7 @@ recommendations: false
 ms.custom: devx-track-python
 ---
 
-# Data source - Azure Cosmos DB for MongoDB vCore
+# Data source - Azure Cosmos DB for MongoDB vCore (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -49,7 +48,6 @@ The authentication options for Azure OpenAI On Your Data when using a connection
 |--- | --- | --- | --- |
 | `connection_string`|string|True|The connection string to use for authentication.|
 | `type`|string|True| Must be `connection_string`.|
-
 
 ## Deployment name vectorization source
 
@@ -178,7 +176,6 @@ completion = client.chat.completions.create(
 )
 
 print(completion.model_dump_json(indent=2))
-
 
 ```
 

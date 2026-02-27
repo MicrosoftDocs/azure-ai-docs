@@ -1,6 +1,6 @@
 ---
-title: "Azure Marketplace requirements for Foundry Models from partners (temp)"
-description: "Learn about the requirements needed to configure Azure Marketplace access for Microsoft Foundry Models from partners and community and troubleshoot errors. (temp)"
+title: "Azure Marketplace requirements for Foundry Models from partners"
+description: "Learn about the requirements needed to configure Azure Marketplace access for Microsoft Foundry Models from partners and community and troubleshoot errors."
 author: msakande   
 ms.author: mopeakande
 ms.reviewer: ambadal
@@ -16,8 +16,7 @@ ms.custom:
 #CustomerIntent: As an Azure administrator or developer, I want to know the requirements to configure Azure Marketplace access for Microsoft Foundry Models from partners and community to deploy and use these models effectively.
 ---
 
-# Azure Marketplace requirements for Foundry Models from partners (temp)
-
+# Azure Marketplace requirements for Foundry Models from partners
 Certain Microsoft Foundry Models are offered directly by the model provider through the Azure Marketplace. These models belong to the collection of [Foundry Models from partners and community](../concepts/models-from-partners.md). This article explains the requirements to use Azure Marketplace if you plan to use such models in your workloads. [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), like DeepSeek, Black Forest Labs, or Azure OpenAI in Foundry Models, don't have this requirement.
 
 ## Prerequisites

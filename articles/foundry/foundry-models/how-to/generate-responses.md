@@ -1,6 +1,6 @@
 ---
-title: "How to generate text responses with Microsoft Foundry Models (temp)"
-description: "Learn how to generate text responses from Foundry Models, such as Microsoft AI and DeepSeek models, by using the Responses API. (temp)"
+title: "How to generate text responses with Microsoft Foundry Models"
+description: "Learn how to generate text responses from Foundry Models, such as Microsoft AI and DeepSeek models, by using the Responses API."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -15,8 +15,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# How to generate text responses with Microsoft Foundry Models (temp)
-
+# How to generate text responses with Microsoft Foundry Models
 This article explains how to generate text responses for Foundry Models, such as Microsoft AI, DeepSeek, and Grok models, by using the Responses API. For a full list of the Foundry Models that support use of the Responses API, see [Supported Foundry Models](#supported-foundry-models). 
 
 ## Prerequisites

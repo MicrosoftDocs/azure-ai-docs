@@ -1,6 +1,6 @@
 ---
-title: "Model deprecation and retirement for Foundry Models (temp)"
-description: "Learn about model lifecycle stages, deprecation timelines, notifications, and migration steps for Microsoft Foundry Models. (temp)"
+title: "Model deprecation and retirement for Foundry Models"
+description: "Learn about model lifecycle stages, deprecation timelines, notifications, and migration steps for Microsoft Foundry Models."
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -17,8 +17,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Model deprecation and retirement for Microsoft Foundry Models (temp)
-
+# Model deprecation and retirement for Microsoft Foundry Models
 Microsoft Foundry Models are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
 
 This article covers general deprecation and retirement information for Foundry Models. For details specific to Azure OpenAI in Foundry Models, see [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md). 

@@ -1,6 +1,6 @@
 ---
-title: "How to Use Image Generation Models from OpenAI (temp)"
-description: "Learn how to generate and edit images using Azure OpenAI image generation models. Discover configuration options and start creating images today. (temp)"
+title: "How to Use Image Generation Models from OpenAI"
+description: "Learn how to generate and edit images using Azure OpenAI image generation models. Discover configuration options and start creating images today."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Azure OpenAI image generation models (temp)
-
+# Azure OpenAI image generation models
 OpenAI's image generation models create images from user-provided text prompts and optional images. This article explains how to use these models, configure options, and benefit from advanced image generation capabilities in Azure.
 
 You can do image generation via [image generation API](/azure/ai-foundry/openai/dall-e-quickstart) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key). Or you can experiment with image generation in the [Foundry portal](https://ai.azure.com)

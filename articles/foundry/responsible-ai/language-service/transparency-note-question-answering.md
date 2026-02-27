@@ -1,7 +1,7 @@
 ---
-title: Use cases for question answering
+title: "Use cases for question answering"
 titleSuffix: Foundry Tools
-description: Transparency note for question answering.
+description: "Transparency note for question answering."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 09/29/2021
 ---
 
 # Transparency note and use cases for question answering
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a transparency note?

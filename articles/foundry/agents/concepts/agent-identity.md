@@ -1,7 +1,6 @@
 ---
-title: Manage agent identities with Microsoft Entra ID
-titleSuffix: Microsoft Foundry
-description: Learn how agent identities and agent identity blueprints work in Microsoft Foundry, including RBAC, authentication for tools, and governance.
+title: "Manage agent identities with Microsoft Entra ID"
+description: "Learn how agent identities and agent identity blueprints work in Microsoft Foundry, including RBAC, authentication for tools, and governance."
 #customer intent: As a security administrator, I want to know how an agent identity eliminates the need for passwords and certificates so that I can reduce security risks in my environment.
 author: sdgilley
 ms.author: sgilley
@@ -15,7 +14,6 @@ ms.custom: pilot-ai-workflow-jan-2026
 ---
 
 # Agent identity concepts in Microsoft Foundry
-
 An *agent identity* is a specialized identity type in [Microsoft Entra ID](/entra/fundamentals/what-is-entra) that's designed specifically for AI agents. It provides a standardized framework for governing, authenticating, and authorizing AI agents across Microsoft services. This framework enables agents to securely access resources, interact with users, and communicate with other systems.
 
 Microsoft Foundry automatically provisions and manages agent identities throughout the agent lifecycle. This integration simplifies permission management while maintaining security and auditability as agents move from development to production.
@@ -28,7 +26,7 @@ This article explains how agent identities relate to Microsoft Entra ID objects,
 * Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview)
 * Basic knowledge of AI agents and their runtime requirements
 
-For Foundry-specific RBAC roles and scopes, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+For Foundry-specific RBAC roles and scopes, see [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md).
 
 ## How agent identities work in Foundry
 
@@ -242,7 +240,7 @@ Agent identities help you reduce risk by removing the need to embed long-lived c
 These issues commonly cause tool authentication failures when using agent identities:
 
 - **Roles assigned to the wrong identity**: Confirm you granted permissions to the current identity used by the agent (shared project identity for unpublished agents, distinct identity for published agents).
-- **Missing role assignments**: Ensure the agent identity has the required RBAC role on the target resource. For Foundry roles and scopes, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
+- **Missing role assignments**: Ensure the agent identity has the required RBAC role on the target resource. For Foundry roles and scopes, see [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md).
 - **Incorrect audience**: Ensure the audience matches the downstream service you’re calling (for example, `https://storage.azure.com` for Azure Storage).
 
 For tool-specific troubleshooting, see the tool documentation:
@@ -268,5 +266,5 @@ For more information about Microsoft Entra Agent ID features, see [Microsoft Ent
 ## Related content
 
 * [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
-* [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md)
+* [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md)
 * [MCP server authentication](../how-to/mcp-authentication.md)

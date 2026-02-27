@@ -1,6 +1,6 @@
 ---
-title: "Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini (temp)"
-description: "Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models (temp)"
+title: "Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini"
+description: "Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,8 +13,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Azure OpenAI reasoning models (temp)
-
+# Azure OpenAI reasoning models
 Azure OpenAI reasoning models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
 **Key capabilities of reasoning models:**

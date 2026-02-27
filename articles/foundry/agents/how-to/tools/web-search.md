@@ -1,7 +1,6 @@
 ---
-title: Use web search tool in Foundry Agent Service
-titleSuffix: Microsoft Foundry
-description: Use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Includes code examples.
+title: "Use web search tool in Foundry Agent Service"
+description: "Use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Includes code examples."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -20,8 +19,7 @@ zone_pivot_groups: selection-web-search
 ---
 
 # Web search tool (preview)
-
-[!INCLUDE [feature-preview](../../../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 The web search tool in Foundry Agent Service enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations, helping you build agents that provide current, factual information to users.
 
@@ -43,8 +41,8 @@ Java SDK samples are not yet available.
 
 ## Prerequisites
 
-- A [basic or standard agent environment](../../../../agents/environment-setup.md)
-- The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
+- A [basic or standard agent environment](../../../agents/environment-setup.md)
+- The latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
@@ -54,7 +52,7 @@ Java SDK samples are not yet available.
 
 > [!NOTE]
 > - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
-> - You need the latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for details.
+> - You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 
 :::zone pivot="python"
 ### General Web Search
@@ -339,7 +337,6 @@ You can configure web search behavior when you create your agent.
 - `user_location`: Helps web search return results relevant to a user’s geography. Use an approximate location when you want results localized to a country/region/city.
 - `search_context_size`: Controls how much context window space to use for the search. Supported values are `low`, `medium`, and `high`. The default is `medium`.
 
-
 ## Security and privacy considerations
 
 - Treat web search results as untrusted input. Validate and sanitize data before you use it in downstream systems.
@@ -403,4 +400,4 @@ This command enables web search functionality for all accounts in the subscripti
 > [Review tool best practices](../../concepts/tool-best-practice.md)
 
 > [!div class="nextstepaction"]
-> [Set up an agent environment](../../../../agents/environment-setup.md)
+> [Set up an agent environment](../../../agents/environment-setup.md)

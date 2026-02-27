@@ -1,7 +1,6 @@
 ---
-title: 'How to use Azure AI Agents file search'
-titleSuffix: Microsoft Foundry
-description: Learn how to use Agents file search.
+title: "How to use Azure AI Agents file search (classic)"
+description: "Learn how to use Agents file search. (classic)"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,13 +12,12 @@ ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions
 ---
 
-# Foundry Agent Service file search tool
+# Foundry Agent Service file search tool (classic)
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new file search documentation](../../../default/agents/how-to/tools/file-search.md?view=foundry&preserve-view=true).
-
+> 🔍 [View the new file search documentation](../../../../foundry/agents/how-to/tools/file-search.md).
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
@@ -83,14 +81,12 @@ The file search tool implements several retrieval best practices out of the box 
 
 Vector store objects give the file search tool the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and threads. Currently you can attach at most one vector store to an agent and at most one vector store to a thread.
 
-
 Similarly, these files can be removed from a vector store by either:
 
 * Deleting the vector store file object or,
 * By deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
-
 
 ## Ensuring vector store readiness before creating runs
 
@@ -133,7 +129,6 @@ Files can be removed from a vector store by either:
 * Deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
-
 
 ## Remove vector store 
 

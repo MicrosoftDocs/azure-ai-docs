@@ -1,6 +1,6 @@
 ---
-title: "Manage and increase quotas for resources (temp)"
-description: "Learn how to view, manage, and request increases for model deployment quotas in Microsoft Foundry, including token-per-minute and provisioned throughput allocations. (temp)"
+title: "Manage and increase quotas for resources"
+description: "Learn how to view, manage, and request increases for model deployment quotas in Microsoft Foundry, including token-per-minute and provisioned throughput allocations."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -19,8 +19,7 @@ ai-usage: ai-assisted
 # Customer intent: As a Microsoft Foundry user, I want to know how to manage and increase quotas for resources with Microsoft Foundry.
 ---
 
-# Manage and increase quotas for resources with Microsoft Foundry (Foundry projects) (temp)
-
+# Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)
 Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. Azure assigns quota per subscription, per region, and per model in units of tokens per minute (TPM). Different deployment types, such as Standard and Provisioned, have different quota mechanics. For full details on default limits and quota tiers, see [Azure OpenAI quotas and limits](../openai/quotas-limits.md).
 
 This article walks through the process of managing quota for your Microsoft Foundry Models deployed in a Foundry project, including how to view current allocations and request increases.

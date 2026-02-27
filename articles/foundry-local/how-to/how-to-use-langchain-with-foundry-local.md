@@ -1,7 +1,7 @@
 ---
-title: Build a translation app with LangChain
+title: "Build a translation app with LangChain"
 titleSuffix: Foundry Local
-description: Learn how to build a LangChain application using Foundry Local
+description: "Learn how to build a LangChain application using Foundry Local"
 keywords: Foundry Tools, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
@@ -20,7 +20,6 @@ ai-usage: ai-assisted
 ---
 
 # Build a translation app with LangChain
-
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 This article shows you how to build a translation app by using the Foundry Local SDK and [LangChain](https://www.langchain.com/langchain). Use a local model to translate text between languages.

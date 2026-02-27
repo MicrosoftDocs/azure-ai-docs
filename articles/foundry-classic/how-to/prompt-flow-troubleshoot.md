@@ -1,7 +1,6 @@
 ---
-title: Troubleshoot Guidance for Prompt Flow
-titleSuffix: Microsoft Foundry
-description: This article addresses frequently asked questions about prompt flow usage. Learn how to deal with compute session related issues.
+title: "Troubleshoot Guidance for Prompt Flow (classic)"
+description: "This article addresses frequently asked questions about prompt flow usage. Learn how to deal with compute session related issues. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -15,7 +14,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Troubleshoot guidance for prompt flow
+# Troubleshoot guidance for prompt flow (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 

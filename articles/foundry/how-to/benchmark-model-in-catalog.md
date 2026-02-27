@@ -1,6 +1,6 @@
 ---
-title: "Compare models using the model leaderboard (temp)"
-description: "Compare model benchmarks across quality, safety, cost, and throughput using the model leaderboard and side-by-side comparison features in Foundry portal. (temp)"
+title: "Compare models using the model leaderboard"
+description: "Compare model benchmarks across quality, safety, cost, and throughput using the model leaderboard and side-by-side comparison features in Foundry portal."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
@@ -14,8 +14,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# Compare models using the model leaderboard (preview) (temp)
-
+# Compare models using the model leaderboard (preview)
 This article shows you how to streamline model selection in the Foundry [model catalog](../../foundry-classic/concepts/foundry-models-overview.md) by using the model leaderboards (preview) and side-by-side comparison features in Foundry portal. Evaluate model benchmark scores across quality, safety, cost, and throughput to choose the best model for your scenario.
 
 After reading this article, you can identify the best model for your scenario by comparing benchmark scores, viewing trade-off charts, and evaluating models side by side.

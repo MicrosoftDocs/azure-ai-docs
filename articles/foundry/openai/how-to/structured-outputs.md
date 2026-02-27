@@ -1,6 +1,6 @@
 ---
-title: "How to use structured outputs with Azure OpenAI in Microsoft Foundry Models (temp)"
-description: "Learn how to improve your model responses with structured outputs (temp)"
+title: "How to use structured outputs with Azure OpenAI in Microsoft Foundry Models"
+description: "Learn how to improve your model responses with structured outputs"
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,8 +16,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# Structured outputs (temp)
-
+# Structured outputs
 Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This is in contrast to the older [JSON mode](./json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema. Structured outputs are recommended for function calling, extracting structured data, and building complex multi-step workflows.
 
 ::: zone pivot="programming-language-python"

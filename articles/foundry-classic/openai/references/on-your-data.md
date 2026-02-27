@@ -1,7 +1,6 @@
 ---
-title: Azure OpenAI On Your Data Python & REST API reference
-titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI On Your Data Python & REST API.
+title: "Azure OpenAI On Your Data Python & REST API reference (classic)"
+description: "Learn how to use Azure OpenAI On Your Data Python & REST API. (classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,7 +12,7 @@ recommendations: false
 ms.custom: devx-track-python
 ---
 
-# Azure OpenAI On Your Data API Reference
+# Azure OpenAI On Your Data API Reference (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -75,7 +74,6 @@ The response assistant message schema inherits from the chat completions assista
 | `intent` | string | False | The detected intent from the chat history. Passing back the previous intent is no longer needed. Ignore this property. |
 | `all_retrieved_documents` | [Retrieved documents](#retrieved-documents)[] | False | All the retrieved documents. |
 
-
 ## Citation
 
 |Name | Type | Required | Description |
@@ -120,7 +118,6 @@ export ChatCompletionsDeploymentName=turbo
 export SearchEndpoint=https://example.search.windows.net
 export SearchIndex=example-index
 ```
-
 
 # [Python 1.x](#tab/python)
 

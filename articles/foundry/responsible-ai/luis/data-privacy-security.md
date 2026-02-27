@@ -1,7 +1,7 @@
 ---
-title: Data and privacy for Language Understanding (LUIS)
+title: "Data and privacy for Language Understanding (LUIS)"
 titleSuffix: Foundry Tools
-description: This document details issues for data, privacy, and security for Language Understanding (LUIS).
+description: "This document details issues for data, privacy, and security for Language Understanding (LUIS)."
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,6 @@ ms.subservice: azure-ai-luis
 ms.date: 02/08/2024
 ---
 # Data and privacy for Language Understanding
-
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What data does Language Understanding process?

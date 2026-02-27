@@ -1,6 +1,6 @@
 ---
-title: "Built-in policy for model deployment (temp)"
-description: "Manage AI model deployment in Microsoft Foundry portal with built-in Azure Policy definitions. Learn how to govern and manage model deployments effectively. (temp)"
+title: "Built-in policy for model deployment"
+description: "Manage AI model deployment in Microsoft Foundry portal with built-in Azure Policy definitions. Learn how to govern and manage model deployments effectively."
 #customer intent: As an IT admin, I want to control the deployment of AI models in Microsoft Foundry portal so that I can ensure compliance with organizational policies.
 author: jonburchel
 ms.author: jburchel
@@ -14,8 +14,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Built-in policy for model deployment in Microsoft Foundry portal (temp)
-
+# Built-in policy for model deployment in Microsoft Foundry portal
 Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Microsoft Foundry portal. You can use
 these policies to control what models your developers can deploy in the Foundry portal.
 

@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Create a Foundry resource using Bicep (temp)"
-description: "Learn how to use a Bicep file (template) to create a Microsoft Foundry resource in your Azure subscription. (temp)"
+title: "Quickstart: Create a Foundry resource using Bicep"
+description: "Learn how to use a Bicep file (template) to create a Microsoft Foundry resource in your Azure subscription."
 ms.author: sgilley
 author: sdgilley
 reviewer: deeikele
@@ -17,8 +17,7 @@ ai-usage: ai-assisted
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a Foundry resource by using templates.
 ---
 
-# Quickstart: Create a Microsoft Foundry resource using a Bicep file (temp)
-
+# Quickstart: Create a Microsoft Foundry resource using a Bicep file
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resource. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. You use parameters to provide input values when deploying resources by using the file.
 
 ## Prerequisites

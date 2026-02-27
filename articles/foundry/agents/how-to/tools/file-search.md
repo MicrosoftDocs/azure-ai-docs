@@ -1,7 +1,6 @@
 ---
-title: File search tool for Microsoft Foundry agents
-titleSuffix: Microsoft Foundry
-description: Configure the file search tool for Microsoft Foundry agents. Upload files, create vector stores, and query documents with Python, C#, and REST examples.
+title: "File search tool for Microsoft Foundry agents"
+description: "Configure the file search tool for Microsoft Foundry agents. Upload files, create vector stores, and query documents with Python, C#, and REST examples."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -16,7 +15,6 @@ zone_pivot_groups: selection-file-search-upload-new
 ---
 
 # File search tool for agents
-
 Use the file search tool to enable Microsoft Foundry agents to search through your documents and retrieve relevant information. File search augments agents with knowledge from outside their model, such as proprietary product information or user-provided documents.
 
 In this article, you learn how to:
@@ -43,7 +41,7 @@ Java SDK samples are not yet available.
 
 ## Prerequisites
 
-- A [basic or standard agent environment](../../../../agents/environment-setup.md)
+- A [basic or standard agent environment](../../../agents/environment-setup.md)
 - The latest prerelease SDK package:
   - **Python**: `pip install azure-ai-projects python-dotenv --pre`
   - **C#**: `dotnet add package Azure.AI.Projects.OpenAI --prerelease`
@@ -155,7 +153,7 @@ Cleaning up...
 ### References
 
 - Reference: [Azure SDK for Python sample: file search](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/tools/sample_agent_file_search_in_stream.py)
-- Reference: [Agents REST API (preview)](../../../../reference/foundry-project-rest-preview.md)
+- Reference: [Agents REST API (preview)](../../../reference/foundry-project-rest-preview.md)
 :::zone-end
 
 :::zone pivot="csharp"
@@ -439,7 +437,7 @@ main().catch((err) => {
 ### References
 
 - Reference: [Azure SDK for JavaScript sample: file search](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFileSearch.js)
-- Reference: [Agents REST API (preview)](../../../../reference/foundry-project-rest-preview.md)
+- Reference: [Agents REST API (preview)](../../../reference/foundry-project-rest-preview.md)
 
 :::zone-end
 
@@ -561,7 +559,7 @@ curl --request DELETE \
 
 ### References
 
-- Reference: [Agents REST API (preview)](../../../../reference/foundry-project-rest-preview.md)
+- Reference: [Agents REST API (preview)](../../../reference/foundry-project-rest-preview.md)
 :::zone-end
 
 ## Verify file search results
@@ -701,7 +699,7 @@ Keep these limits in mind when you plan your file search integration:
 - File search supports specific file formats and encodings. See [Supported file types](#supported-file-types).
 - Each vector store can hold up to 10,000 files.
 - You can attach at most one vector store to an agent and at most one vector store to a conversation.
-- Features and availability vary by region. See [Azure AI Foundry region support](../../../../reference/region-support.md).
+- Features and availability vary by region. See [Azure AI Foundry region support](../../../reference/region-support.md).
 
 ## Troubleshooting
 

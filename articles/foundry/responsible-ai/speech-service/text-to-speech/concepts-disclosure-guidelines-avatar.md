@@ -1,7 +1,7 @@
 ---
-title: Disclosure design guidelines for avatars
+title: "Disclosure design guidelines for avatars"
 titleSuffix: Foundry Tools
-description: Introduction to disclosure design guidelines and assessing disclosure level for avatars.
+description: "Introduction to disclosure design guidelines and assessing disclosure level for avatars."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 11/16/2023
 ---
 
 # Disclosure design guidelines for avatars
-
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 Learn how to build and maintain trust with customers by being transparent about the synthetic nature of your avatar experience.

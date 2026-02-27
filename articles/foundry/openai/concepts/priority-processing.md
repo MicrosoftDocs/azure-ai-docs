@@ -1,6 +1,6 @@
 ---
-title: "Enable priority processing for Microsoft Foundry Models (preview) (temp)"
-description: "Learn how to enable priority processing for Microsoft Foundry models to achieve low latency and high availability for time-sensitive workloads. (temp)"
+title: "Enable priority processing for Microsoft Foundry Models (preview)"
+description: "Learn how to enable priority processing for Microsoft Foundry models to achieve low latency and high availability for time-sensitive workloads."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -17,8 +17,7 @@ ms.custom:
 #customerIntent: As a developer or data scientist working with latency-sensitive AI applications, I want to understand and implement priority processing for Microsoft Foundry models so that I can achieve predictable low latency and high availability for time-critical workloads without requiring long-term commitments or provisioned capacity.
 ---
 
-# Enable priority processing for Microsoft Foundry models (preview) (temp)
-
+# Enable priority processing for Microsoft Foundry models (preview)
 > [!IMPORTANT]
 > Priority processing is in preview and available by invitation only. [Register here](https://aka.ms/priority-register-interest) to be notified when it becomes more broadly available.
 >

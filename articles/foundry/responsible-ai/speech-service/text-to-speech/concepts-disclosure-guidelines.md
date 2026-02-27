@@ -1,7 +1,7 @@
 ---
-title: Disclosure design guidelines for synthetic voices
+title: "Disclosure design guidelines for synthetic voices"
 titleSuffix: Foundry Tools
-description: Introduction to disclosure design guidelines and assessing disclosure level.
+description: "Introduction to disclosure design guidelines and assessing disclosure level."
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,6 @@ ms.date: 11/21/2025
 ---
 
 # Disclosure design guidelines for synthetic voices
-
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 Learn how to build and maintain trust with customers by being transparent about the synthetic nature of your voice experience.
