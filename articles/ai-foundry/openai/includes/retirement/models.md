@@ -54,23 +54,23 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `gpt-4o-audio-preview` | 2024-12-17 | `Preview` | n/a | 2026-02-02 | `gpt-audio` |
-| `gpt-4o-realtime-preview` | 2024-12-17 | `Preview` | n/a | 2026-02-02 | `gpt-realtime` |
-| `gpt-4o-mini-audio-preview` | 2024-12-17 | `Preview` | n/a | No earlier than February 28, 2026 |  |
-| `gpt-4o-mini-realtime-preview` | 2024-12-17 | `Preview` | n/a | No earlier than February 28, 2026 |  |
-| `gpt-4o-transcribe` | 2025-03-20 | `Preview` | n/a | No earlier than February 28, 2026 |  |
-| `gpt-4o-mini-tts` | 2025-03-20 | `Preview` | n/a | No earlier than February 28, 2026 |  |
-| `gpt-4o-mini-transcribe` | 2025-03-20 | `Preview` | n/a | No earlier than February 28, 2026 |  |
+| `gpt-4o-audio-preview` | 2024-12-17 | `Preview` | n/a | 2026-03-24 | `gpt-audio` |
+| `gpt-4o-realtime-preview` | 2024-12-17 | `Preview` | n/a | 2026-03-24 | `gpt-realtime` |
+| `gpt-4o-mini-audio-preview` | 2024-12-17 | `Preview` | n/a | 2026-03-24 |  |
+| `gpt-4o-mini-realtime-preview` | 2024-12-17 | `Preview` | n/a | 2026-03-24 |  |
+| `gpt-4o-transcribe` | 2025-03-20 | `Preview` | n/a | 2026-06-01 |  |
+| `gpt-4o-mini-tts` | 2025-03-20 | `Preview` | n/a | 2026-06-01 |  |
+| `gpt-4o-mini-transcribe` | 2025-03-20 | `Preview` | n/a | 2026-06-01 |  |
 | `gpt-4o-transcribe-diarize` | 2025-10-15 | `Generally Available` | 2026-10-15 | 2027-04-16 |  |
 | `gpt-audio` | 2025-08-28 | `Generally Available` | 2026-08-28 | 2027-02-28 |  |
 | `gpt-realtime` | 2025-08-28 | `Generally Available` | 2026-08-28 | 2027-02-28 |  |
 | `gpt-audio-mini` | 2025-10-06 | `Generally Available` | 2026-10-06 | 2027-04-07 |  |
-| `tts` | 001 | `Generally Available` | No earlier than February 28, 2026 |  |  |
-| `tts-hd` | 001 | `Generally Available` | No earlier than February 28, 2026 |  |  |
-| `whisper` | 001 | `Generally Available` | No earlier than June 18, 2026 |  |  |
-| `gpt-realtime-mini` | 2025-12-15   | `Generally Available` | n/a | No earlier than December 15, 2026    |       |
-| `gpt-4o-mini-transcribe` | 2025-12-15   | `Generally Available` | n/a | No earlier than December 15, 2026    |       |
-| `gpt-4o-mini-tts` | 2025-12-15   | `Generally Available` | n/a | No earlier than December 15, 2026    |       |
+| `tts` | 001 | `Generally Available` | No earlier than February 28, 2026 | 2026-06-18 |  |
+| `tts-hd` | 001 | `Generally Available` | No earlier than February 28, 2026 | 2026-06-18 |  |
+| `whisper` | 001 | `Generally Available` | No earlier than June 18, 2026 | 2026-06-18 |  |
+| `gpt-realtime-mini` | 2025-12-15   | `Generally Available` | n/a | 2026-12-15    |       |
+| `gpt-4o-mini-transcribe` | 2025-12-15   | `Generally Available` | n/a | 2026-12-15    |       |
+| `gpt-4o-mini-tts` | 2025-12-15   | `Generally Available` | n/a | 2026-12-15    |       |
 |`gpt-realtime-1.5-2026-02-23` | 2026-02-23 | `Generally Available` | n/a | No earlier than February 23, 2027  |       |
 |`gpt-audio-1.5-2026-02-23` |2026-02-23| `Generally Available` | n/a | No earlier than February 23, 2027  |       |
 
