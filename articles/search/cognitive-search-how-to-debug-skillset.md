@@ -72,7 +72,7 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
    :::image type="content" source="media/cognitive-search-debug/copy-blob-url.png" lightbox="media/cognitive-search-debug/copy-blob-url.png" alt-text="Screenshot of the URI property in blob storage." border="true":::
 
-   For a specific document in Azure CosmosDB for NoSQL: provide the document key in the search index for the value, and the ID of the entity in Cosmos DB for the partition key.
+   For a specific document in Azure Cosmos DB for NoSQL: provide the document key in the search index for the value, and the ID of the entity in Cosmos DB for the partition key.
 
    :::image type="content" source="media/cognitive-search-debug/cosmos-db-source.png" lightbox="media/cognitive-search-debug/cosmos-db-source.png" alt-text="Screenshot of the properties in Cosmos DB." border="true":::
 
