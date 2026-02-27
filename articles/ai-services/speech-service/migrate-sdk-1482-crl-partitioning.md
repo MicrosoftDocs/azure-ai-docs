@@ -25,8 +25,46 @@ Before you take action, confirm whether this issue applies to you:
 - **Platform:** You run the Speech SDK on Linux or Android.
 - **SDK version:** You use a version prior to 1.48.2. Check the version of the Speech SDK package in your dependency manager (for example, NuGet, pip, Maven, or your C++/Go build configuration).
 - **CRL checking:** CRL checking is enabled (the default in versions prior to 1.48.1).
+- **Deployment type:** Identify whether your application uses cloud-only, hybrid (cloud + embedded), or embedded-only speech. See [Determine your impact by deployment type](#determine-your-impact-by-deployment-type).
 
 If all three conditions apply, follow the steps in [Required action](#required-action).
+
+## Determine your impact by deployment type
+
+The impact of the CRL partitioning change depends on whether your application connects to Azure Speech cloud endpoints. Use the following table to determine your scenario and required actions.
+
+| Customer type | Impact | Action required |
+| --- | --- | --- |
+| **Embedded only** (no cloud connection) | Not impacted | No action needed |
+| **Hybrid** (cloud with embedded fallback) | Cloud STT/TTS stops working after July 1, 2026 | See [Required action](#required-action) |
+| **Cloud only** | Cloud STT/TTS stops working after July 1, 2026 | See [Required action](#required-action) |
+
+### Embedded-only deployments
+
+If your application uses only embedded (on-device) speech recognition or synthesis and **never connects to Azure Speech cloud endpoints**, you aren't affected by this change. No action is needed.
+
+### Hybrid deployments (cloud with embedded fallback)
+
+When your application is online, it uses cloud speech-to-text (STT) or text-to-speech (TTS). These cloud connections are subject to the CRL partitioning issue. Your embedded fallback continues to work when there's no data signal, but cloud features fail unless you take action.
+
+Determine which scenario applies to you:
+
+- **CRL disk caching is enabled (default behavior):** The SDK persists CRL data to disk using the system temp directory (`$TMPDIR` or `$TMP`). A stale CRL partition entry in the disk cache can cause persistent connection failures that survive application restarts. To resolve this:
+  1. Follow [Option 1: Upgrade to SDK 1.48.2+](#option-1-upgrade-to-sdk-version-1482-or-later-recommended) (recommended), or
+  1. Follow [Option 2: Disable CRL checking](#option-2-disable-crl-checking).
+  1. If you can't upgrade before the deadline, use the [temporary workaround](#temporary-workaround-clear-the-crl-disk-cache) to clear the CRL disk cache and reduce the duration of impact.
+
+- **CRL disk caching isn't enabled** (custom configuration, or `$TMPDIR`/`$TMP` environment variables unset): The SDK still caches CRLs in memory during the process lifetime. Restarting the application clears the in-memory cache, but the issue reoccurs on the next cross-region connection or certificate rotation. Upgrade or disable CRL checking per the [Required action](#required-action) options.
+
+> [!TIP]
+> Hybrid deployments that fall back to embedded speech when offline continue to work in embedded mode, but cloud-dependent features fail until you apply the fix.
+
+### Cloud-only deployments
+
+All cloud STT/TTS calls are affected. The same two scenarios (CRL disk caching enabled or not enabled) described in [Hybrid deployments](#hybrid-deployments-cloud-with-embedded-fallback) apply to cloud-only deployments.
+
+> [!WARNING]
+> Cloud-only deployments have no fallback. If you don't take action before July 1, 2026, all speech recognition and synthesis calls fail.
 
 ## Summary
 
@@ -198,6 +236,10 @@ CRL checking provides an extra layer of certificate validation. For most use cas
 ### How do I enable SDK logging to diagnose the issue?
 
 See the SDK documentation for enabling diagnostic logging: [Speech SDK logging](how-to-use-logging.md).
+
+### I use embedded speech only, with no cloud connection. Am I affected?
+
+No. This issue only affects connections to Azure Speech cloud endpoints. If your application never connects to cloud STT or TTS services, you aren't impacted. For more information, see [Determine your impact by deployment type](#determine-your-impact-by-deployment-type).
 
 ## Support
 
