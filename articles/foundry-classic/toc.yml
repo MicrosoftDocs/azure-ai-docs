@@ -1,0 +1,36 @@
+items:
+- name: Microsoft Foundry (classic) Documentation
+  href: index.yml
+- name: What is Microsoft Foundry (classic)?
+  href: what-is-foundry.md
+- name: Get started
+  expanded: true
+  items:
+    - name: Quickstart
+      href: quickstarts/get-started-code.md  
+    - name: Microsoft Foundry SDKs
+      href: how-to/develop/sdk-overview.md
+    - name: Ask AI
+      href: concepts/ask-ai.md
+- name: Models
+  href: toc-files/models/toc.yml
+- name: Foundry Tools
+  href: toc-files/ai-services-section/toc.yml
+- name: Agent Service
+  href: agents/toc.yml
+- name: Solutions
+  href: toc-files/solutions/toc.yml
+- name: Observability 
+  href: toc-files/observability/toc.yml              
+- name: Optimizations
+  href: toc-files/optimizations/toc.yml
+- name: Setup and configure
+  href: toc-files/setup-management/toc.yml
+- name: Security & governance
+  href: toc-files/security-governance/toc.yml
+- name: Trustworthy AI
+  href: toc-files/trustworthy-ai/toc.yml
+- name: SDK + API reference
+  href: toc-files/sdk-api-reference/toc.yml
+- name: Other resources
+  href: toc-files/other-resources/toc.yml
