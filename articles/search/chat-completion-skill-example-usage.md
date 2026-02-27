@@ -216,64 +216,68 @@ This example shows how to use structured outputs for language models. This capab
 
 Output text is represented as nodes in an internal enriched document tree, and each node must be mapped to fields in a search index, or to projections in a knowledge store, to make the content available in your app.
 
-1. [Create or update a search index](/rest/api/searchservice/indexes/create-or-update) to add fields to accept the skill outputs.
+First, use [Create or Update - Index](/rest/api/searchservice/indexes/create-or-update) to add fields to accept the skill outputs.
 
-  In the following fields collection example, *content* is blob content. *Metadata_storage_name* contains the name of the file (set `retrievable` to *true*). *Metadata_storage_path* is the unique path of the blob and is the default document key. *Merged_content* is output from Text Merge (useful when images are embedded).
+In the following fields collection example:
 
-  *captioned_image* is a skill output and must be a string field to capture all language model output in the search index.
++ `content` is blob content. 
++ `metadata_storage_name` contains the name of the file (set `retrievable` to *true*). 
++ `metadata_storage_path` is the unique path of the blob and is the default document key. 
++ `merged_content` is output from Text Merge (useful when images are embedded).
++ `captioned_image` is a skill output and must be a string field to capture all language model output in the search index.
 
-    ```json
-    "fields": [
-      {
-        "name": "content",
-        "type": "Edm.String",
-        "filterable": false,
-        "retrievable": true,
-        "searchable": true,
-        "sortable": false
-      },
-      {
-        "name": "metadata_storage_name",
-        "type": "Edm.String",
-        "filterable": true,
-        "retrievable": true,
-        "searchable": true,
-        "sortable": false
-      },
-      {
-        "name": "metadata_storage_path",
-        "type": "Edm.String",
-        "filterable": false,
-        "key": true,
-        "retrievable": true,
-        "searchable": false,
-        "sortable": false
-      },
-      {
-        "name": "captioned_image",
-        "type": "Edm.String",
-        "filterable": false,
-        "retrievable": true,
-        "searchable": true,
-        "sortable": false
-      }
-    ]
-    ```
+```json
+"fields": [
+  {
+    "name": "content",
+    "type": "Edm.String",
+    "filterable": false,
+    "retrievable": true,
+    "searchable": true,
+    "sortable": false
+  },
+  {
+    "name": "metadata_storage_name",
+    "type": "Edm.String",
+    "filterable": true,
+    "retrievable": true,
+    "searchable": true,
+    "sortable": false
+  },
+  {
+    "name": "metadata_storage_path",
+    "type": "Edm.String",
+    "filterable": false,
+    "key": true,
+    "retrievable": true,
+    "searchable": false,
+    "sortable": false
+  },
+  {
+    "name": "captioned_image",
+    "type": "Edm.String",
+    "filterable": false,
+    "retrievable": true,
+    "searchable": true,
+    "sortable": false
+  }
+]
+```
 
-1. [Update the indexer](/rest/api/searchservice/indexers/create-or-update) to map skillset output (nodes in an enrichment tree) to index fields.
+Next, use [Update - Indexer](/rest/api/searchservice/indexers/create-or-update) to map skillset output (nodes in an enrichment tree) to index fields.
 
-   Enriched documents are internal. To externalize the nodes in an enriched document tree, set up an output field mapping that specifies which index field receives node content. Enriched data is accessed by your app through an index field. The following example shows a *text* node (OCR output) in an enriched document that's mapped to a *text* field in a search index.
+Enriched documents are internal. To externalize the nodes in an enriched document tree, set up an output field mapping that specifies which index field receives node content. Enriched data is accessed by your app through an index field. The following example shows a *text* node (OCR output) in an enriched document that's mapped to a *text* field in a search index.
 
-   ```json
-   "outputFieldMappings": [
-     {
-       "sourceFieldName": "/document/normalized_images/*/captionedImage",
-       "targetFieldName": "captioned_image"
-     }
-   ]
-   ```
+```json
+"outputFieldMappings": [
+  {
+    "sourceFieldName": "/document/normalized_images/*/captionedImage",
+    "targetFieldName": "captioned_image"
+  }
+]
+```
 
-1. Run the indexer to invoke source document retrieval, image processing via language model captions, and indexing.
+Run the indexer to invoke source document retrieval, image processing via language model captions, and indexing.
 
 ### Verify results
 
