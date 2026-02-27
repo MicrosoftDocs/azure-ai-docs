@@ -13,16 +13,16 @@ ms.custom:
 ---
 # Azure Policy Regulatory Compliance controls for Azure AI Search
 
-If you are using [Azure Policy](/azure/governance/policy/overview) to enforce the recommendations in
+If you're using [Azure Policy](/azure/governance/policy/overview) to enforce the recommendations in
 [Microsoft cloud security benchmark](/azure/security/benchmarks/introduction), then you probably already know
-that you can create policies for identifying and fixing non-compliant services. These policies might
+that you can create policies for identifying and fixing noncompliant services. These policies might
 be custom, or they might be based on built-in definitions that provide compliance criteria and
 appropriate solutions for well-understood best practices.
 
-For Azure AI Search, there is currently one built-definition, listed below, that you can use
+For Azure AI Search, there's currently one built-definition, listed below, that you can use
 in a policy assignment. The built-in is for logging and monitoring. By using this built-in
 definition in a [policy that you create](/azure/governance/policy/assign-policy-portal), the system
-will scan for search services that do not have [resource logging](monitor-azure-cognitive-search.md), and
+scans for search services that don't have [resource logging](monitor-azure-cognitive-search.md), and
 then enable it accordingly.
 
 [Regulatory Compliance in Azure Policy](/azure/governance/policy/concepts/regulatory-compliance)
