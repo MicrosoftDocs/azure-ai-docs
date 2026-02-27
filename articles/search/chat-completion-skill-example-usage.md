@@ -75,7 +75,7 @@ Note that enabling `imageAction` (setting this parameter to other than `none`) w
 
    + `normalizedImageMaxWidth` in pixels. Default is 2,000. Maximum value is 10,000.
 
-   + `normalizedImageMaxHeight` in pixels. Default is 2,000. Maximum value is 10,000. 
+  + `normalizedImageMaxHeight` in pixels. Default is 2,000. Maximum value is 10,000.
 
 ### About normalized images
 
@@ -211,11 +211,11 @@ This example shows how to use structured outputs for language models. This capab
 
 ## Map outputs to search fields
 
-Output text is represented as nodes in an internal enriched document tree, and each node must be mapped to fields in a search index, or to projections in a knowledge store, to make the content available in your app. 
+Output text is represented as nodes in an internal enriched document tree, and each node must be mapped to fields in a search index, or to projections in a knowledge store, to make the content available in your app.
 
-1. [Create or update a search index](/rest/api/searchservice/indexes/create-or-update) to add fields to accept the skill outputs. 
+1. [Create or update a search index](/rest/api/searchservice/indexes/create-or-update) to add fields to accept the skill outputs.
 
-   In the following fields collection example, *content* is blob content. *Metadata_storage_name* contains the name of the file (set `retrievable` to *true*). *Metadata_storage_path* is the unique path of the blob and is the default document key. *Merged_content* is output from Text Merge (useful when images are embedded). 
+  In the following fields collection example, *content* is blob content. *Metadata_storage_name* contains the name of the file (set `retrievable` to *true*). *Metadata_storage_path* is the unique path of the blob and is the default document key. *Merged_content* is output from Text Merge (useful when images are embedded).
 
     *captioned_image* is a skill output and must be a string field to capture all language model output in the search index.
 
@@ -285,6 +285,7 @@ POST /indexes/[index name]/docs/search?api-version=[api-version]
 ```
 
 ## Related content
+
 + [Create indexer (REST)](/rest/api/searchservice/indexers/create)
 + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 + [How to create a skillset](cognitive-search-defining-skillset.md)
