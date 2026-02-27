@@ -1,6 +1,7 @@
 ---
-title: "Create a Microsoft Foundry hub using a Bicep template (classic)"
-description: "Use a Microsoft Bicep template to create a new Microsoft Foundry hub. This template also creates resources required by the hub. (classic)"
+title: Create a Microsoft Foundry hub using a Bicep template
+titleSuffix: Microsoft Foundry
+description: Use a Microsoft Bicep template to create a new Microsoft Foundry hub. This template also creates resources required by the hub.
 ms.service: azure-ai-foundry
 ms.custom: 
   - devx-track-arm-template
@@ -17,9 +18,7 @@ author: sdgilley
 #Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---
 
-# Use an Azure Resource Manager template to create a Microsoft Foundry hub (classic)
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# Use an Azure Resource Manager template to create a Microsoft Foundry hub
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
@@ -95,6 +94,7 @@ bicep build main.bicep
 ```
 
 For more information, see the [Bicep CLI](/azure/azure-resource-manager/bicep/bicep-cli) article.
+
 
 ## Configure the template
 

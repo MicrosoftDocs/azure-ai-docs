@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use with summarization (temp)"
+title: Guidance for integration and responsible use with summarization
 titleSuffix: Foundry Tools
-description: "Guidance for integration and responsible use with summarization (temp)"
+description: Guidance for integration and responsible use with summarization 
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: best-practice
 ms.date: 04/09/2022
 ---
 
-# Guidance for integration and responsible use with summarization (temp)
+# Guidance for integration and responsible use with summarization
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

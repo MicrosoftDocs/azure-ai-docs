@@ -1,7 +1,7 @@
 ---
-title: "Data and privacy for Face (temp)"
+title: Data and privacy for Face
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for Face (temp)"
+description: This document details issues for data, privacy, and security for Face
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 06/21/2022
 ---
 
-# Data and privacy for Face (temp)
+# Data and privacy for Face
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

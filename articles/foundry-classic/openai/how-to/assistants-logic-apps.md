@@ -1,6 +1,7 @@
 ---
-title: "How to use Assistants with Logic apps (classic)"
-description: "Learn how to create helpful AI Assistants with Logic apps. (classic)"
+title: 'How to use Assistants with Logic apps'
+titleSuffix: Azure OpenAI
+description: Learn how to create helpful AI Assistants with Logic apps.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -12,7 +13,7 @@ ms.author: aahi
 recommendations: false
 ---
 
-# Call Azure Logic apps as functions using Azure OpenAI Assistants (classic) 
+# Call Azure Logic apps as functions using Azure OpenAI Assistants 
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -88,6 +89,7 @@ Here are the steps to create a new Logic Apps workflow for function calling.
 
 1. The workflow is now ready. In Foundry, you can import this function using the **Add function** feature in the Assistants playground.
 
+
 ## Import your Logic Apps workflows as functions
 
 Here are the steps to import your Logic Apps workflows as function in the Assistants playground in Foundry:
@@ -101,6 +103,7 @@ Here are the steps to import your Logic Apps workflows as function in the Assist
     > [!NOTE]
     > This list only shows the consumption SKU workflows and with a request trigger.
 
+
     :::image type="content" source="..\media\how-to\assistants\logic-apps\import-logic-apps.png" alt-text="A screenshot showing the menu for adding functions." lightbox="..\media\how-to\assistants\logic-apps\import-logic-apps.png":::
 
 You have now successfully imported your workflow and it is ready to be invoked. The function specification is generated based on the logic apps workflow swagger and includes the schema and description based on what you configured in the request trigger action.
@@ -112,6 +115,7 @@ The workflow now will be invoked by the Azure OpenAI Assistants based on the use
 :::image type="content" source="..\media\how-to\assistants\logic-apps\playground-weather-example.png" alt-text="A screenshot showing a weather prompt example." lightbox="..\media\how-to\assistants\logic-apps\playground-weather-example.png":::
 
 You can confirm the invocation by looking at the logs as well as your [workflow run history](/azure/logic-apps/monitor-logic-apps?tabs=consumption.md#review-workflow-run-history).
+
 
 :::image type="content" source="..\media\how-to\assistants\logic-apps\example-log.png" alt-text="A screenshot showing a logging example." lightbox="..\media\how-to\assistants\logic-apps\example-log.png":::
 

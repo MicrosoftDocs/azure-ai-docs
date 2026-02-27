@@ -1,7 +1,7 @@
 ---
-title: "Use cases for question answering (temp)"
+title: Use cases for question answering
 titleSuffix: Foundry Tools
-description: "Transparency note for question answering. (temp)"
+description: Transparency note for question answering.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 09/29/2021
 ---
 
-# Transparency note and use cases for question answering (temp)
+# Transparency note and use cases for question answering
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

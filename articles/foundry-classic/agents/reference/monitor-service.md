@@ -1,6 +1,6 @@
 ---
-title: "Monitoring data reference for Foundry Agent Service (classic)"
-description: "This article contains important reference material you need when you monitor Foundry Agent Service by using Azure Monitor. (classic)"
+title: Monitoring data reference for Foundry Agent Service
+description: This article contains important reference material you need when you monitor Foundry Agent Service by using Azure Monitor.
 ms.date: 05/05/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
@@ -10,7 +10,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ---
 
-# Foundry Agent Service monitoring data reference (classic)
+# Foundry Agent Service monitoring data reference
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -22,7 +22,7 @@ See [Monitor Foundry Agent Service](../how-to/metrics.md) for details on the dat
 
 Here are the most important metrics we think you should monitor for Agent Service. Later in this article is a longer list of all available metrics which contains more details on metrics in this shorter list. _See the below list for most up to date information. We're working on refreshing the tables in the following sections._
 
-- [Category: Agents](#supported-metrics)
+- [Category: Agents](#category-agents)
 <!-- - Indexed files -->
 
 ## Supported metrics
@@ -31,6 +31,7 @@ This section lists all the automatically collected platform metrics for this ser
 
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
 [!INCLUDE [Microsoft.MachineLearningServices/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-machinelearningservices-workspaces-metrics-include.md)]
+
 
 ## Related content
 

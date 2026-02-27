@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use with Image Analysis (temp)"
+title: Guidance for integration and responsible use with Image Analysis
 titleSuffix: Foundry Tools
-description: "Guidance for how to deploy Image Analysis responsibly, based on the knowledge and understanding from the team that created this product. (temp)"
+description: Guidance for how to deploy Image Analysis responsibly, based on the knowledge and understanding from the team that created this product.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: best-practice
 ms.date: 10/15/2025
 ---
 
-# Guidance for integration and responsible use with Image Analysis (temp)
+# Guidance for integration and responsible use with Image Analysis
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

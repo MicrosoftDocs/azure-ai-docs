@@ -1,6 +1,7 @@
 ---
-title: "Management center overview (classic)"
-description: "The management center in Microsoft Foundry portal provides a centralized hub for governance and management activities. (classic)"
+title: Management center overview
+titleSuffix: Microsoft Foundry
+description: "The management center in Microsoft Foundry portal provides a centralized hub for governance and management activities."
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: aashishb
@@ -14,7 +15,7 @@ ai-usage: ai-assisted
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
 ---
 
-# Management center overview (classic)
+# Management center overview
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -33,6 +34,7 @@ To access the management center, sign in to [Foundry](https://ai.azure.com/?cid=
 
 :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Foundry with the management center selected." :::
 
+
 ## Manage Foundry projects
 
 Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use **All resources** to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the **Project** section (Project = Foundry project) of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)]s on the Foundry resource.
@@ -40,6 +42,7 @@ Use the management center to create and configure [!INCLUDE [FDP](../includes/fd
 :::image type="content" source="../media/management-center/project-management.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/project-management.png":::
 
 For more information, see [Create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](../how-to/create-projects.md).
+
 
 ### Manage Foundry hubs and hub-based projects
 

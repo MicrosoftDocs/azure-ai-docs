@@ -1,7 +1,7 @@
 ---
-title: "Limited Access features of Face (temp)"
+title: Limited Access features of Face
 titleSuffix: Foundry Tools
-description: "Learn about Face features that are in limited access. (temp)"
+description: Learn about Face features that are in limited access.
 ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
@@ -11,7 +11,7 @@ ms.topic: concept-article
 ms.date: 10/15/2025
 ---
 
-# Limited Access to Face API (temp)
+# Limited Access to Face API
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "Explore Foundry MCP Server best practices and security guidance (temp)"
-description: "Security guidance for Foundry MCP Server, including identity, RBAC, Conditional Access policies, network isolation, and data residency. (temp)"
+title: Explore Foundry MCP Server best practices and security guidance
+description: Security guidance for Foundry MCP Server, including identity, RBAC, Conditional Access policies, network isolation, and data residency.
 keywords: mcp, foundry mcp server, security, entra id, rbac
 author: sdgilley
 ms.author: sgilley
@@ -11,7 +11,7 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Foundry MCP Server best practices and security guidance (temp)
+# Foundry MCP Server best practices and security guidance
 
 Microsoft Foundry MCP Server (preview) tools automate read and write operations across Foundry resources, including deployments, datasets, evaluations, monitoring, and analytics. This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools.
 
@@ -23,12 +23,12 @@ In this article, you learn about:
 - Security and governance controls, including identity, RBAC, Conditional Access, network isolation, and data residency
 - Common troubleshooting scenarios
 
-[!INCLUDE [preview-feature](../openai/includes/preview-feature.md)]
+[!INCLUDE [preview-feature](../../openai/includes/preview-feature.md)]
 
 ## Prerequisites
 
 - An Azure account with an active subscription.
-- A [Foundry project](../quickstarts/get-started-code.md) with Contributor or higher role.
+- A [Foundry project](../../quickstarts/get-started-code.md) with Contributor or higher role.
 - To configure Conditional Access policies, you need the [Conditional Access Administrator](/entra/identity/role-based-access-control/permissions-reference#conditional-access-administrator) role in Microsoft Entra ID.
 - [Azure CLI](/cli/azure/install-azure-cli) (required only for the `az ad sp create` command).
 
@@ -149,7 +149,7 @@ Check your permissions in Entra ID and confirm your access token is valid. Sign 
 
 ### Permission errors
 
-Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md).
 
 ### Server connectivity issues
 

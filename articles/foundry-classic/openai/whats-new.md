@@ -1,6 +1,6 @@
 ---
-title: "What's new in Azure OpenAI in Azure AI Foundry Models? (classic)"
-description: "Learn about the latest news and features updates for Azure OpenAI. (classic)"
+title: What's new in Azure OpenAI in Azure AI Foundry Models?
+description: Learn about the latest news and features updates for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
@@ -15,9 +15,7 @@ ms.custom:
   - build-2025
 ---
 
-# What's new in Azure OpenAI in Azure AI Foundry Models (classic)
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# What's new in Azure OpenAI in Azure AI Foundry Models
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
@@ -47,6 +45,7 @@ Key model capabilities:
 
 Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
 
+
 ### Automatic speech recognition (ASR) model update
 
 `gpt-4o-mini-transcribe-2025-12-15`
@@ -70,6 +69,7 @@ Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to
 
 ## October 2025
 
+
 ### Realtime API support for SIP
 
 The Realtime API now supports SIP, enabling telephony connections to realtimeapi. For more information, see the [Realtime SIP documentation](./how-to/realtime-audio-sip.md).
@@ -89,6 +89,7 @@ The `gpt-image-1-mini` model is now available for global deployments. It is a sm
 Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
 
 Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
+
 
 ### PII detection content filter
 
@@ -115,6 +116,7 @@ The Sora model from OpenAI now supports image-to-video generation. You can provi
 
 This Sora model is now available in the Sweden Central region and East US 2.
 
+
 ### Realtime API audio model GA
 
 OpenAI's GPT RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
@@ -129,9 +131,11 @@ Realtime API service improvements:
 - Improved function calling: Enhanced ability to call custom code defined by developers. Async function calling is supported, allowing sessions to continue while a function call is pending.
 - Conversation Mode: Real-world turn-taking behavior for natural interactions. Conversation mode uses VAD to prompt users if no response is detected, improving real-world usability for phone-like interactions.
 
+
 We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Azure AI Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
 
 <!-- and quickstart page: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/realtime-audio-quickstart?tabs=keyless%2Cwindows&pivots=ai-foundry-portal -->
+
 
 <!--
 ### gpt-audio Preview
@@ -157,11 +161,13 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 - `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` don't require registration.
 
+
 ### New version of model-router
 
 - Model router now supports GPT-5 series models.
 
 - Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+
 
 ## July 2025 
 
@@ -175,6 +181,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 - Partial image streaming: The image generation and image edits APIs support partial image streaming, where they return images with partially rendered content throughout the image generation process. Display these images to the user to provide earlier visual feedback and show the progress of the image generation operation. 
 
 ## June 2025
+
 
 ### New models codex-mini & o3-pro released
 
@@ -191,6 +198,7 @@ Follow the [Video generation quickstart](/azure/ai-foundry/openai/video-generati
 ### Spotlighting for prompt shields (preview)
 
 Spotlighting is a sub-feature of prompt shields that enhances protection against indirect (embedded document) attacks by tagging input documents with special formatting to indicate lower trust to the model. For more information, see the [Prompt shields filter](./concepts/content-filter-prompt-shields.md) documentation.
+
 
 ### Model router (preview)
 
@@ -245,7 +253,7 @@ For more information on model capabilities, and region availability see the [mod
 
 :::image type="content" source="./media/computer-use-preview.gif" alt-text="Animated gif of computer-use-preview model integrated with playwright." lightbox="./media/computer-use-preview.gif":::
 
-[Playwright integration demo code](./how-to/responses.md).
+[Playwright integration demo code](./how-to/responses.md#computer-use).
 
 ### Provisioned spillover (preview)
 

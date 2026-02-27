@@ -1,7 +1,7 @@
 ---
-title: "Limited Access to Embedded Speech (temp)"
+title: Limited Access to Embedded Speech
 titleSuffix: Foundry Tools
-description: "This article explains why embedded Speech is available as Limited Access feature and how to request access. (temp)"
+description: This article explains why embedded Speech is available as Limited Access feature and how to request access.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 10/27/2022
 ---
 
-# Limited Access to embedded Speech (temp)
+# Limited Access to embedded Speech
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 

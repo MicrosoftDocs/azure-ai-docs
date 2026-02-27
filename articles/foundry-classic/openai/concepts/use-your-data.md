@@ -1,6 +1,7 @@
 ---
-title: "Using your data with Azure OpenAI in Microsoft Foundry Models (classic)"
-description: "Use this article to learn about using your data for better text generation in Azure OpenAI. (classic)"
+title: 'Using your data with Azure OpenAI in Microsoft Foundry Models'
+titleSuffix: Azure OpenAI
+description: Use this article to learn about using your data for better text generation in Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -12,7 +13,7 @@ recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
 
-# Azure OpenAI On Your Data (classic) 
+# Azure OpenAI On Your Data 
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -42,7 +43,7 @@ Typically, the development process you'd use with Azure OpenAI On Your Data is:
     
     1. **Response generation**: The resulting data is submitted along with other information like the system message to the Large Language Model (LLM) and the response is sent back to the application.
 
-To get started, [connect your data source](../../quickstarts/get-started-code.md) using [Foundry portal](https://ai.azure.com/?cid=learnDocs) and start asking questions and chatting on your data.
+To get started, [connect your data source](../use-your-data-quickstart.md) using [Foundry portal](https://ai.azure.com/?cid=learnDocs) and start asking questions and chatting on your data.
 
 ## Azure Role-based access controls (Azure RBAC) for adding data sources
 
@@ -88,6 +89,7 @@ For some data sources such as uploading files from your local machine (preview) 
 |URL/Web address (preview)        | Web content from the URLs is stored in Azure Blob Storage.         |
 |Azure Blob Storage (preview) | Upload files from Azure Blob Storage to be ingested into an Azure AI Search index.         |
 
+
 :::image type="content" source="../media/use-your-data/azure-databases-and-ai-search.png" lightbox="../media/use-your-data/azure-databases-and-ai-search.png" alt-text="Diagram of vector indexing services.":::
 
 # [Azure AI Search](#tab/ai-search)
@@ -114,6 +116,8 @@ Azure OpenAI On Your Data provides the following search types you can use when y
 
 If you're using your own index, you can customize the [field mapping](#index-field-mapping) when you add your data source to define the fields that will get mapped when answering questions. To customize field mapping, select **Use custom field mapping** on the **Data Source** page when adding your data source.
 
+
+
 > [!IMPORTANT]
 > * [Semantic search](/azure/search/semantic-search-overview#availability-and-pricing) is subject to additional pricing. You need to choose **Basic or higher SKU** to enable semantic search or vector search. See [pricing tier difference](/azure/search/search-sku-tier) and [service limits](/azure/search/search-limits-quotas-capacity) for more information.
 > * To help improve the quality of the information retrieval and model response, we recommend enabling [semantic search](/azure/search/semantic-search-overview) for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
@@ -136,6 +140,7 @@ Azure OpenAI On Your Data has intelligent search enabled for your data. Semantic
 > Document-level access control is supported when you select Azure AI Search as your data source.
 
 Azure OpenAI On Your Data lets you restrict the documents that can be used in responses for different users with Azure AI Search [security filters](/azure/search/search-security-trimming-for-azure-search-with-aad). When you enable document level access, the search results returned from Azure AI Search and used to generate a response are trimmed based on user Microsoft Entra group membership. You can only enable document-level access on existing Azure AI Search indexes. See [Azure OpenAI On Your Data network and access configuration](../how-to/on-your-data-configuration.md#document-level-access-control) for more information.
+
 
 ### Index field mapping 
 
@@ -192,7 +197,7 @@ You might want to use Azure Blob Storage as a data source if you want to connect
 
 To keep your Azure AI Search index up-to-date with your latest data, you can schedule an automatic index refresh rather than manually updating it every time your data is updated. Automatic index refresh is only available when you choose **Azure Blob Storage** as the data source. To enable an automatic index refresh:
 
-1. [Add a data source](../../quickstarts/get-started-code.md) using [Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. [Add a data source](../use-your-data-quickstart.md) using [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Under **Select or add data source** select **Indexer schedule** and choose the refresh cadence you would like to apply.
 
     :::image type="content" source="../media/use-your-data/indexer-schedule.png" alt-text="A screenshot of the indexer schedule in Foundry portal." lightbox="../media/use-your-data/indexer-schedule.png":::
@@ -224,7 +229,7 @@ To modify the schedule, you can use the [Azure portal](https://portal.azure.com/
 
 # [Upload files (preview)](#tab/file-upload)
 
-Using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you can upload files from your machine to try Azure OpenAI On Your Data. You also have the option to create a new Azure Blob Storage account and Azure AI Search resource. The service then stores the files to an Azure storage container and performs ingestion from the container. You can use the [quickstart](../../quickstarts/get-started-code.md) article to learn how to use this data source option.
+Using [Foundry portal](https://ai.azure.com/?cid=learnDocs), you can upload files from your machine to try Azure OpenAI On Your Data. You also have the option to create a new Azure Blob Storage account and Azure AI Search resource. The service then stores the files to an Azure storage container and performs ingestion from the container. You can use the [quickstart](../use-your-data-quickstart.md) article to learn how to use this data source option.
 
 :::image type="content" source="../media/quickstarts/add-your-data-source.png" alt-text="A screenshot showing options for selecting a data source in Foundry portal." lightbox="../media/quickstarts/add-your-data-source.png":::
 
@@ -272,6 +277,7 @@ Using the Elasticsearch data source is a preview feature which is subject to the
 
     You need to enter your [Elasticsearch endpoint](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-request-elasticsearch-endpoint.html) and encoded API key to connect with your Elasticsearch database. Then, click **verify connection**. 
 
+
     :::image type="content" source="../media/use-your-data/connect-elasticsearch.png" alt-text="A screenshot showing the connection screen for Elasticsearch." lightbox="../media/use-your-data/connect-elasticsearch.png":::
 
 1. Select the index you want to connect with. 
@@ -297,6 +303,7 @@ To enable vector search, you need an existing embedding model deployed in your A
 |---------------------|------------------------|---------------------| -------- |
 | *keyword*            | Keyword search                       | No additional pricing.                    |Performs fast and flexible query parsing and matching over searchable fields, using terms or phrases in any supported language, with or without operators.|
 | *vector*            | Vector search       | [Additional pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) on your Azure OpenAI account from calling the embedding model. |Enables you to find documents that are similar to a given query input based on the vector embeddings of the content. |
+
 
 ### Index field mapping 
 
@@ -378,6 +385,7 @@ You can deploy to a copilot in [Copilot Studio](/microsoft-copilot-studio/fundam
 
 A Teams app lets you bring conversational experience to your users in Teams to improve operational efficiency and democratize access of information. This Teams app is configured to users within your Azure account tenant and personal chat (non-group chat) scenarios.
 
+
 **Prerequisites**
 
 - The latest version of [Visual Studio Code](https://code.visualstudio.com/) installed.
@@ -388,6 +396,7 @@ A Teams app lets you bring conversational experience to your users in Teams to i
     - Enable **custom Teams apps** and turn on **custom app uploading** in your account (instructions [here](/microsoftteams/platform/concepts/build-and-test/prepare-your-o365-tenant#enable-custom-teams-apps-and-turn-on-custom-app-uploading))
 - [Azure command-line interface (CLI)](/cli/azure/install-azure-cli) installed. This is a cross-platform command-line tool to connect to Azure and execute administrative commands on Azure resources. For more information on setting up environment variables, see the [Azure SDK documentation](https://github.com/Azure/azure-sdk-for-go/wiki/Set-up-Your-Environment-for-Authentication).
 - Your Azure account has been assigned **Cognitive Services OpenAI user** or **Cognitive Services OpenAI Contributor** role of the Azure OpenAI resource you're using, allowing your account to make Azure OpenAI API calls. For more information, see [Azure OpenAI On Your data configuration](../how-to/on-your-data-configuration.md#using-the-api) and [Add role assignment to an Azure OpenAI resource](/azure/ai-foundry/openai/how-to/role-based-access-control#add-role-assignment-to-an-azure-openai-resource) for instructions on setting this role in the Azure portal. 
+
 
 You can deploy to a standalone Teams app directly from [Foundry portal](https://ai.azure.com/?cid=learnDocs). Follow the steps below: 
 
@@ -465,6 +474,7 @@ A small chunk size like 256 produces more granular chunks. This size also means 
 
 You can modify the following additional settings in the **Data parameters** section in [Foundry portal](https://ai.azure.com/?cid=learnDocs) and [the API](../references/on-your-data.md). You don't need to reingest your data when you update these parameters. 
 
+
 |Parameter name  | Description  |
 |---------|---------|
 | **Limit responses to your data** | This flag configures the chatbot's approach to handling queries unrelated to the data source or when search documents are insufficient for a complete answer. When this setting is disabled, the model supplements its responses with its own knowledge in addition to your documents. When this setting is enabled, the model attempts to only rely on your documents for responses. This is the `inScope` parameter in the API, and set to true by default. |
@@ -511,6 +521,8 @@ Azure OpenAI On Your Data works by sending instructions to a large language mode
 ### Limit responses to your data 
 
 This option encourages the model to respond using your data only, and is selected by default. If you unselect this option, the model might more readily apply its internal knowledge to respond. Determine the correct selection based on your use case and scenario. 
+
+
 
 ### Interacting with the model
 
@@ -641,6 +653,8 @@ The estimates also depend on the nature of the documents and questions being ask
 
 The table above shows the maximum number of tokens that can be used for the [system message](#system-message). To see the maximum tokens for the model response, see the [models article](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-4-and-gpt-4-turbo-models). Additionally, the following also consume tokens:
 
+
+
 * The meta prompt: if you limit responses from the model to the grounding data content (`inScope=True` in the API), the maximum number of tokens higher. Otherwise (for example if `inScope=False`) the maximum is lower. This number is variable depending on the token length of the user question and conversation history. This estimate includes the base prompt and the query rewriting prompts for retrieval.
 * User question and history: Variable but capped at 2,000 tokens.
 * Retrieved documents (chunks): The number of tokens used by the retrieved document chunks depends on multiple factors. The upper bound for this is the number of retrieved document chunks multiplied by the chunk size. It will, however, be truncated based on the tokens available tokens for the specific model being used after counting the rest of fields. 
@@ -661,6 +675,7 @@ class TokenEstimator(object):
       
 token_output = TokenEstimator.estimate_tokens(input_text)
 ```
+
 
 ## Troubleshooting 
 
@@ -704,10 +719,10 @@ Each user message can translate to multiple search queries, all of which get sen
 
 [!INCLUDE [on-your-data-deprecation](../includes/on-your-data-deprecation.md)]
 
-See the [model summary table](../../foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability) for regional availability.
+See the [model summary table](../../foundry-models/concepts/models-sold-directly-by-azure.md?view=foundry&preserve-view=true#model-summary-table-and-region-availability) for regional availability.
 
 ## Next steps
-* [Get started using your data with Azure OpenAI](../../quickstarts/get-started-code.md)
+* [Get started using your data with Azure OpenAI](../use-your-data-quickstart.md)
 
 * [Azure OpenAI On Your Data network and access configuration](../how-to/on-your-data-configuration.md)
 

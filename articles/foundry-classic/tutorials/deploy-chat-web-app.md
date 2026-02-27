@@ -1,6 +1,7 @@
 ---
-title: "Tutorial: Deploy an enterprise chat web app in the Microsoft Foundry portal playground (classic)"
-description: "Use this article to deploy an enterprise chat web app in the Microsoft Foundry portal playground. (classic)"
+title: "Tutorial: Deploy an enterprise chat web app in the Microsoft Foundry portal playground"
+titleSuffix: Microsoft Foundry
+description: Use this article to deploy an enterprise chat web app in the Microsoft Foundry portal playground.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -16,7 +17,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to deploy an enterprise chat web app in the Microsoft Foundry portal playground so that I can use my own data with a large language model.
 ---
 
-# Tutorial: Deploy an enterprise chat web app (classic)
+# Tutorial: Deploy an enterprise chat web app
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -73,6 +74,8 @@ First, identify the resources you need to set up in the Foundry portal.
     > [!TIP]
     > If you don't see **Type** in the table, select **Columns** in the upper right corner and add to or reorder the **Selected columns**.
     > If you have multiple **Azure OpenAI** resources, use the one that contains your deployed chat model.
+
+
 
 1. Search for each of these names in the [Azure portal](https://portal.azure.com). Open each one in a new browser tab so that you can switch between them.
 1. When you're done, you have three new browser tabs open: **Search service**, **Foundry**, and **blobstore Container**. Keep all three tabs open because you switch between them to set up the resources.

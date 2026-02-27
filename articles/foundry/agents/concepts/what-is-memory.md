@@ -1,6 +1,7 @@
 ---
-title: "What is Memory? (temp)"
-description: "Learn what memory is in Microsoft Foundry Agent Service (preview), how it works, and how to use long-term memories safely. (temp)"
+title: What is Memory?
+titleSuffix: Microsoft Foundry
+description: Learn what memory is in Microsoft Foundry Agent Service (preview), how it works, and how to use long-term memories safely.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
@@ -12,7 +13,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Memory in Microsoft Foundry Agent Service (preview) (temp)
+# Memory in Microsoft Foundry Agent Service (preview)
 
 > [!IMPORTANT]
 > Memory (preview) in Foundry Agent Service and the Memory Store API (preview) are licensed to you as part of your Azure subscription and are subject to terms applicable to "Previews" in the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/all) and the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), as well as the Microsoft Generative AI Services Previews terms in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -55,7 +56,7 @@ Here's an example of how memory can improve and personalize interactions between
 >
 > - Use memory for user-specific context that persists over time.
 > - Use a [Foundry IQ](../concepts/what-is-foundry-iq.md) knowledge base to ground your agent on curated organizational content.
-> - Use the [file search tool](../how-to/tools/file-search.md) to search user-provided documents during an interaction.
+> - Use the [file search tool](../how-to/tools/file-search.md?view=foundry&preserve-view=true) to search user-provided documents during an interaction.
 
 ## Memory types
 
@@ -73,6 +74,7 @@ There are two ways to use memory for agent interactions:
 - **Memory search tool:** Attach the memory search tool to a prompt agent to enable reading from and writing to the memory store during conversations. This approach is ideal for most scenarios because it simplifies memory management. For more information, see [Use memories via an agent tool](../how-to/memory-usage.md#use-memories-via-an-agent-tool).
 
 - **Memory store APIs:** Interact directly with the memory store using the low-level APIs. This approach provides more control and flexibility for advanced use cases. For more information, see [Use memories via APIs](../how-to/memory-usage.md#use-memories-via-apis).
+
 
 ## Use cases
 
@@ -102,7 +104,7 @@ When you work with memory in Foundry Agent Service, the large language model (LL
 
 To mitigate security risks, consider these actions:
 
-- **Use [Azure AI Content Safety](https://ai.azure.com/explore/contentsafety) and its [prompt injection detection](../../../ai-services/content-safety/concepts/jailbreak-detection.md):** Validate all prompts entering or leaving the memory system to prevent malicious content.
+- **Use [Azure AI Content Safety](https://ai.azure.com/explore/contentsafety) and its [prompt injection detection](../../../../ai-services/content-safety/concepts/jailbreak-detection.md):** Validate all prompts entering or leaving the memory system to prevent malicious content.
 
 - **Perform attack and adversarial testing:** Regularly stress-test your agent for injection vulnerabilities through controlled adversarial exercises.
 
@@ -110,6 +112,7 @@ To mitigate security risks, consider these actions:
 
 - Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Azure OpenAI models and regions for Foundry Agent Service](../../agents/concepts/limits-quotas-regions.md).
 - You must set the `scope` value explicitly. Automatic population from the user identity specified in the request isn't currently supported.
+
 
 ### Quotas
 
@@ -130,4 +133,4 @@ You're billed for usage of the underlying chat and embedding models you configur
 
 - Follow the end-to-end setup: [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)
 - Confirm model availability: [Azure OpenAI models and regions for Foundry Agent Service](../../agents/concepts/limits-quotas-regions.md)
-- Build a complete agent: [Microsoft Foundry quickstart](../../quickstarts/get-started-code.md)
+- Build a complete agent: [Microsoft Foundry quickstart](../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true)

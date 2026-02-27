@@ -1,7 +1,7 @@
 ---
-title: "Transparency Note for Optical Character Recognition (OCR) - Azure Vision in Foundry Tools (temp)"
+title: Transparency Note for Optical Character Recognition (OCR) - Azure Vision in Foundry Tools
 titleSuffix: Foundry Tools
-description: "Transparency note for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure Vision in Foundry Tools API. (temp)"
+description: Transparency note for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure Vision in Foundry Tools API.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 10/15/2025
 ---
 
-# Transparency note and use cases for optical character recognition (temp)
+# Transparency note and use cases for optical character recognition
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

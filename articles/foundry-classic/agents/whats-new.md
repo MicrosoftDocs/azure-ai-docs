@@ -1,6 +1,7 @@
 ---
-title: "What's new in Foundry Agent Service? (classic)"
-description: "Learn about new feature updates and additions for your AI Agents. (classic)"
+title: What's new in Foundry Agent Service?
+titleSuffix: Microsoft Foundry
+description: Learn about new feature updates and additions for your AI Agents.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -11,7 +12,7 @@ ms.date: 10/08/2025
 ms.custom: azure-ai-agents
 ---
 
-# What's new in Foundry Agent Service (classic)
+# What's new in Foundry Agent Service
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -26,6 +27,7 @@ The Agent Service supports the following [models](./concepts/model-region-suppor
 * gpt-5-mini
 * gpt-5-nano
 * gpt-5-chat
+
 
 ## September 2025
 
@@ -80,7 +82,7 @@ The [Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-co
 
 #### Connected agents
 
-[Connected agents](how-to/connected-agents.md) allow you to create task-specific agents that can interact seamlessly with a primary agent. This feature enables you to build multi-agent systems without the need for external orchestrators.
+[Connected agents](how-to\connected-agents.md) allow you to create task-specific agents that can interact seamlessly with a primary agent. This feature enables you to build multi-agent systems without the need for external orchestrators.
 
 #### Trace agents
 
@@ -88,7 +90,7 @@ Debug and monitor your agents by [tracing agent threads](../how-to/develop/trace
 
 #### Trigger agents using Azure Logic Apps 
 
-[Automatically invoke](how-to/triggers.md) your AI agent when an event occurs, such as receiving a new email, or getting a new customer ticket so that your AI agent can immediately respond to the new event without manual invocation.
+[Automatically invoke](how-to\triggers.md) your AI agent when an event occurs, such as receiving a new email, or getting a new customer ticket so that your AI agent can immediately respond to the new event without manual invocation.
 
 #### New agent tools
 
@@ -110,11 +112,12 @@ See the [Azure monitor](./how-to/metrics.md) and [metrics reference](./reference
 ### BYO thread storage
 The Standard Agent Setup now supports **Bring Your Own (BYO) thread storage using an Azure Cosmos DB for NoSQL account**. This feature ensures all thread messages and conversation history are stored in your own resources. See the [Quickstart](quickstart.md) for more information on how to deploy a Standard agent project.
 
+
 ## March 2025
 
 ### Microsoft Fabric tool
 
-The Microsoft Fabric tool is now available for the Agent Service, allowing users to interact with data you have in Microsoft Fabric through chat and uncover data-driven and actionable insights. See the [how-to article](how-to/tools-classic/fabric.md) for more information.
+The Microsoft Fabric tool is now available for the Agent Service, allowing users to interact with data you have in Microsoft Fabric through chat and uncover data-driven and actionable insights. See the [how-to article](how-to\tools\fabric.md) for more information.
 
 ## February 2025
 
@@ -128,8 +131,8 @@ You can now use the Agent Service in the [Foundry](https://ai.azure.com/?cid=lea
 
 Azure AI Service is now available in preview. The service builds off of the Assistants API in Azure OpenAI, and offers several additional features, such as:
 
-* Several [additional tools](how-to/tools-classic/overview.md) to enhance your AI agents' functionality, such as the ability to use Bing and as a knowledge source and call functions. 
-* The ability to use non Azure OpenAI [models](concepts/model-region-support.md): 
+* Several [additional tools](how-to\tools\overview.md) to enhance your AI agents' functionality, such as the ability to use Bing and as a knowledge source and call functions. 
+* The ability to use non Azure OpenAI [models](concepts\model-region-support.md): 
     * Llama 3.1-70B-instruct
     * Mistral-large-2407    
     * Cohere command R+

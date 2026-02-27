@@ -1,7 +1,7 @@
 ---
-title: "Data and privacy for conversational language understanding (temp)"
+title: Data and privacy for conversational language understanding
 titleSuffix: Foundry Tools
-description: "This article explains issues for data, privacy, and security for conversational language understanding. (temp)"
+description: This article explains issues for data, privacy, and security for conversational language understanding.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -9,7 +9,7 @@ ms.service: azure-ai-language
 ms.topic: concept-article
 ms.date: 09/15/2021
 ---
-# Data and privacy for conversational language understanding (temp)
+# Data and privacy for conversational language understanding
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

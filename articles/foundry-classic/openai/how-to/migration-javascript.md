@@ -1,6 +1,7 @@
 ---
-title: "How to migrate to OpenAI JavaScript v4.x (classic)"
-description: "Learn about migrating to the latest release of the OpenAI JavaScript library with Azure OpenAI. (classic)"
+title: How to migrate to OpenAI JavaScript v4.x
+titleSuffix: Azure OpenAI in Microsoft Foundry Models
+description: Learn about migrating to the latest release of the OpenAI JavaScript library with Azure OpenAI.
 author: mrbullwinkle 
 ms.author: mbullwin 
 ms.service: azure-ai-foundry
@@ -11,7 +12,7 @@ ms.date: 11/26/2025
 manager: nitinme
 ---
 
-# Migrating to the OpenAI JavaScript API library 4.x (classic)
+# Migrating to the OpenAI JavaScript API library 4.x
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -134,6 +135,8 @@ const stream = await client.streamChatCompletions(deploymentName, messages, { ma
 
 ---
 
+
+
 ### Azure On Your Data
 
 # [OpenAI JavaScript (new)](#tab/javascript-new)
@@ -206,6 +209,8 @@ const result = await client.getAudioTranscription(deploymentName, audio);
 
 ---
 
+
+
 - The `getAudioTranscription` method has been replaced with the `audio.transcriptions.create` method.
 - The `AzureOpenAI` has to be constructed with the `deployment` option set to the deployment name in order to use audio operations such as `audio.transcriptions.create`.
 - The `model` property is required to be set in the options object but its value isn't used in the operation so feel free to set it to any value.
@@ -235,6 +240,7 @@ const result = await client.getAudioTranslation(deploymentName, audio);
 ```
 
 ---
+
 
 - The `getAudioTranslation` method has been replaced with the `audio.translations.create` method.
 - All other changes are the same as in the audio transcription example.
@@ -269,6 +275,8 @@ const assistantResponse = await assistantsClient.createAssistant(options);
 
 ---
 
+
+
 - The `createAssistant` method has been replaced with the `beta.assistants.create` method
 
 #### Thread creation
@@ -288,6 +296,8 @@ const assistantThread = await assistantsClient.createThread();
 ```
 
 ---
+
+
 
 - The `createThread` method has been replaced with the `beta.threads.create` method
 
@@ -318,6 +328,7 @@ const threadResponse = await assistantsClient.createMessage(
 ```
 
 ---
+
 
 - The `createMessage` method has been replaced with the `beta.threads.messages.create` method.
 - The message specification has been moved from a parameter list to an object.
@@ -360,6 +371,8 @@ do {
 
 ---
 
+
+
 - The `createRun` method has been replaced with the `beta.threads.runs.create` and `createAndPoll` methods.
 - The `createAndPoll` method is used to create a run and poll it until it is in a terminal state.
 
@@ -391,6 +404,7 @@ for (const runMessageDatum of runMessages.data) {
 
 ---
 
+
 ### Embeddings
 
 The following example shows how to migrate the `getEmbeddings` method call.
@@ -408,6 +422,7 @@ const embeddings = await client.getEmbeddings(deploymentName, input);
 ```
 
 ---
+
 
 - The `getEmbeddings` method has been replaced with the `embeddings.create` method.
 - The `input` parameter is now passed in the options object with the `input` property.
@@ -430,6 +445,8 @@ const results = await client.getImages(deploymentName, prompt, { n, size });
 ```
 
 ---
+
+
 
 - The `getImages` method has been replaced with the `images.generate` method.
 - The `prompt` parameter is now passed in the options object with the `prompt` property.
@@ -479,6 +496,7 @@ for (const choice of results.choices) {
 ```
 
 ---
+
 
 - Camel case properties have been replaced with snake case properties.
 - `"@azure/openai/types"` is imported which adds Azure-specific definitions (for example, content_filter_results) to the client types, see the [Azure types](#azure-types) section for more information.

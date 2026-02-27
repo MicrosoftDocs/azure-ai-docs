@@ -1,6 +1,7 @@
 ---
-title: "Connect Agents to Foundry IQ Knowledge Bases (temp)"
-description: "Connect Foundry Agent Service to a Foundry IQ knowledge base (Azure AI Search) for grounded retrieval and citation-backed responses. (temp)"
+title: Connect Agents to Foundry IQ Knowledge Bases
+titleSuffix: Microsoft Foundry
+description: Connect Foundry Agent Service to a Foundry IQ knowledge base (Azure AI Search) for grounded retrieval and citation-backed responses.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
@@ -12,9 +13,9 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Connect a Foundry IQ knowledge base to Foundry Agent Service (temp)
+# Connect a Foundry IQ knowledge base to Foundry Agent Service
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 In this article, you learn how to connect a knowledge base in Foundry IQ to an agent in Foundry Agent Service. The connection uses the [Model Context Protocol (MCP)](./tools/model-context-protocol.md) to facilitate tool calls. When invoked by the agent, the knowledge base orchestrates the following operations:
 
@@ -36,7 +37,7 @@ For an end-to-end example of integrating Azure AI Search and Foundry Agent Servi
 ## Prerequisites
 
 - An [Azure AI Search service](/azure/search/search-create-service-portal) with a [knowledge base](/azure/search/agentic-retrieval-how-to-create-knowledge-base) containing one or more [knowledge sources](/azure/search/agentic-knowledge-source-overview).
-- A [Microsoft Foundry project](../../how-to/create-projects.md) with an [LLM deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
+- A [Microsoft Foundry project](../../../how-to/create-projects.md) with an [LLM deployment](../../../foundry-models/how-to/create-model-deployments.md), such as `gpt-4.1-mini`.
 - [Authentication and permissions](#authentication-and-permissions) on your search service and project.
 - The latest preview Python SDK (version 2.0.0b4 or later) or the 2025-11-01-preview REST API version.
 

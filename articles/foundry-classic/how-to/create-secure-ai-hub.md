@@ -1,7 +1,8 @@
 ---
 
-title: "Create a secure hub (classic)"
-description: "Create a Microsoft Foundry hub inside a managed virtual network. The managed virtual network secures access to managed resources such as computes. (classic)"
+title: Create a secure hub
+titleSuffix: Microsoft Foundry
+description: Create a Microsoft Foundry hub inside a managed virtual network. The managed virtual network secures access to managed resources such as computes.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -17,9 +18,7 @@ author: sdgilley
 
 ---
 
-# How to create a secure Microsoft Foundry hub and project with a managed virtual network (classic)
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# How to create a secure Microsoft Foundry hub and project with a managed virtual network
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 

@@ -1,7 +1,7 @@
 ---
-title: "Characteristics and limitations of QnA Maker (temp)"
+title: Characteristics and limitations of QnA Maker
 titleSuffix: Foundry Tools
-description: "Characteristics and limitations of QnA Maker (temp)"
+description: Characteristics and limitations of QnA Maker
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -11,7 +11,7 @@ ms.subservice: azure-ai-qna-maker
 ms.date: 02/25/2021
 ---
 
-# Characteristics and limitations of QnA Maker (temp)
+# Characteristics and limitations of QnA Maker
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

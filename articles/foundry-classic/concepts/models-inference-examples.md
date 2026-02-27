@@ -1,6 +1,7 @@
 ---
-title: "Serverless API inference examples for Foundry Models (classic)"
-description: "Inference examples for Foundry Models that support deployment to serverless APIs in Microsoft Foundry. (classic)"
+title: Serverless API inference examples for Foundry Models
+titleSuffix: Microsoft Foundry
+description: Inference examples for Foundry Models that support deployment to serverless APIs in Microsoft Foundry.
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
@@ -15,7 +16,7 @@ ms.custom:
   - build-2025
 ---
 
-# Serverless API inference examples for Foundry Models (classic)
+# Serverless API inference examples for Foundry Models
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -24,6 +25,7 @@ The Foundry model catalog offers a large selection of Microsoft Foundry Models f
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
 To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../foundry-models/concepts/models-sold-directly-by-azure.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Foundry portal](https://ai.azure.com/explore/models).
+
 
 ## Cohere
 
@@ -54,9 +56,11 @@ The following table provides links to examples of how to use Cohere models.
 | Use Cohere Command R/R+ to answer questions from data in AI search vector index - Cohere SDK | `cohere`, `azure_search_documents` | [cohere-aisearch-rag.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/cohere-aisearch-rag.ipynb) |
 | Command R+ tool/function calling, using LangChain | `cohere`, `langchain`, `langchain_cohere` | [command_tools-langchain.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/cohere/command_tools-langchain.ipynb) |
 
+
 ### Cohere rerank
 
 To perform inferencing with Cohere rerank models, you're required to use Cohere's custom rerank APIs. For more information on the Cohere rerank model and its capabilities, see [Cohere rerank](../foundry-models/concepts/models-sold-directly-by-azure.md).
+
 
 #### Pricing for Cohere rerank models
 
@@ -68,11 +72,13 @@ See the [Cohere model collection in Foundry portal](https://ai.azure.com/explore
 
 The following table provides links to examples of how to use Jais models.
 
+
 | Description                               | Language          | Sample                                                          |    
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|    
 | Azure AI Inference package for C#         | C#                | [Link](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Inference/samples)   |      
 | Azure AI Inference package for JavaScript | JavaScript        | [Link](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples)  |    
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  |
+
 
 ## DeepSeek
 
@@ -88,6 +94,7 @@ The following table provides links to examples of how to use DeepSeek models.
 | Azure AI Inference package for C#         | C#                | [Link](https://aka.ms/azsdk/azure-ai-inference/csharp/samples)  |    
 | Azure AI Inference package for Java       | Java              | [Link](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples)  |
 
+
 ## Meta
 
 Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range is scale to include:
@@ -96,6 +103,7 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 - Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
 - High-performant models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
 - High-performant natively multimodal models, Llama 4 Scout and Llama 4 Maverick, leverage a mixture-of-experts architecture to offer industry-leading performance in text and image understanding.
+
 
 The following table provides links to examples of how to use Meta Llama models.
 
@@ -126,7 +134,9 @@ The following table provides links to examples of how to use Microsoft models.
 | LangChain                                 | Python            | [Link](https://aka.ms/azureai/langchain)           |    
 | Llama-Index                               | Python            | [Link](https://aka.ms/azureai/llamaindex)             |  
 
+
 See [the Microsoft model collection in Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
+
 
 ## Mistral AI
 
@@ -134,6 +144,7 @@ Mistral AI offers two categories of models, namely:
 
 - _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, Mistral Medium 3 (25.05), and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
 - _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01(that are available to download and run on self-hosted managed endpoints).
+
 
 The following table provides links to examples of how to use Mistral models.
    
@@ -210,6 +221,7 @@ Gretel Navigator employs a compound AI architecture specifically engineered for 
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
 | Azure AI Inference package for JavaScript | JavaScript        | [Link](https://aka.ms/azsdk/azure-ai-inference/javascript/samples)  |
 | Azure AI Inference package for Python     | Python            | [Link](https://aka.ms/azsdk/azure-ai-inference/python/samples)  | 
+
 
 ## Related content
 

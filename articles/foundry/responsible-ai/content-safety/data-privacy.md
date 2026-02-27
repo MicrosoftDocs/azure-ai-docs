@@ -1,7 +1,7 @@
 ---
-title: "Data, privacy, and security for AI Content Safety (temp)"
+title: Data, privacy, and security for AI Content Safety
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for Azure AI Content Safety. (temp)"
+description: This document details issues for data, privacy, and security for Azure AI Content Safety.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,7 @@ ms.date: 05/15/2023
 ---
 
 
-# Data, privacy, and security for Azure AI Content Safety (temp)
+# Data, privacy, and security for Azure AI Content Safety
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

@@ -1,6 +1,7 @@
 ---
-title: "Manage hosted agent lifecycle (temp)"
-description: "Start, stop, update, and delete hosted agent deployments using the Azure CLI or Python SDK. (temp)"
+title: Manage hosted agent lifecycle
+titleSuffix: Microsoft Foundry
+description: Start, stop, update, and delete hosted agent deployments using the Azure CLI or Python SDK.
 author: aahill
 ms.author: aahi
 ms.date: 02/19/2026
@@ -11,7 +12,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
-# Manage hosted agent lifecycle (temp)
+# Manage hosted agent lifecycle
 
 This article shows you how to manage hosted agent deployments in Foundry Agent Service. After you deploy a hosted agent, you can start, stop, update, and delete it as your needs change.
 
@@ -273,4 +274,4 @@ You can also test agents in the agent playground UI in the Foundry portal.
 - [What are hosted agents?](../concepts/hosted-agents.md)
 - [Deploy a hosted agent](deploy-hosted-agent.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
-- [Evaluate your AI agents locally](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md)
+- [Evaluate your AI agents locally](../../../how-to/develop/agent-evaluate-sdk.md)

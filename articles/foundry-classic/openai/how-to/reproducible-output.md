@@ -1,6 +1,7 @@
 ---
-title: "How to generate reproducible output with Azure OpenAI in Microsoft Foundry Models (classic)"
-description: "Learn how to generate reproducible output (preview) with Azure OpenAI. (classic)"
+title: 'How to generate reproducible output with Azure OpenAI in Microsoft Foundry Models'
+titleSuffix: Azure OpenAI
+description: Learn how to generate reproducible output (preview) with Azure OpenAI.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,7 +14,7 @@ recommendations: false
 
 ---
 
-# Learn how to use reproducible output (preview) (classic)
+# Learn how to use reproducible output (preview)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -132,6 +133,7 @@ client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
 )
+
 
 for i in range(3):
   print(f'Story Version {i + 1}\n---')

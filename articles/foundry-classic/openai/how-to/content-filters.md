@@ -1,6 +1,7 @@
 ---
-title: "Configure content filters (classic)"
-description: "Learn how to use and configure the content filters that come with Microsoft Foundry, including getting approval for gated modifications. (classic)"
+title: 'Configure content filters'
+titleSuffix: Azure OpenAI
+description: Learn how to use and configure the content filters that come with Microsoft Foundry, including getting approval for gated modifications.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -13,13 +14,13 @@ ms.custom: FY25Q1-Linter
 # customer intent: As a developer, I want to learn how to configure content filters with Microsoft Foundry so that I can ensure that my applications comply with our Code of Conduct.
 ---
 
-# Configure content filters (classic)
+# Configure content filters
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 The content filtering system integrated into Microsoft Foundry runs alongside the core models, including image generation models. It uses an ensemble of multi-class classification models to detect four categories of harmful content (violence, hate, sexual, and self-harm) at four severity levels respectively (safe, low, medium, and high), and optional binary classifiers for detecting jailbreak risk, existing text, and code in public repositories. 
 
-The default content filtering configuration is set to filter at the medium severity threshold for all four content harms categories for both prompts and completions. That means that content that is detected at severity level medium or high is filtered, while content detected at severity level low or safe is not filtered by the content filters. Learn more about content categories, severity levels, and the behavior of the content filtering system [here](../../foundry-models/concepts/content-filter.md). 
+The default content filtering configuration is set to filter at the medium severity threshold for all four content harms categories for both prompts and completions. That means that content that is detected at severity level medium or high is filtered, while content detected at severity level low or safe is not filtered by the content filters. Learn more about content categories, severity levels, and the behavior of the content filtering system [here](../concepts/content-filter.md). 
 
 Prompt shields and protected text and code models are optional and on by default. For prompt shields and protected material text and code models, the configurability feature allows all customers to turn the models on and off. The models are by default on and can be turned off per your scenario. Some models are required to be on for certain scenarios to retain coverage under the [Customer Copyright Commitment](/azure/ai-foundry/responsible-ai/openai/customer-copyright-commitment).
 
@@ -48,6 +49,7 @@ You can configure the following filter categories in addition to the default har
 | Protected material - text | GA| On | Completion | Identifies and blocks known text content from being displayed in the model output (for example, song lyrics, recipes, and selected web content).  |
 | Groundedness | Preview |Off | Completion |Detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungroundedness refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires: [Document embedding and formatting](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#embedding-documents-in-your-prompt).|
 | Personally identifiable information (PII) | Preview | Off | Completion | Filters information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information. |
+
 
 [!INCLUDE [create-content-filter](../../../ai-foundry/includes/create-content-filter.md)]
 
@@ -107,6 +109,6 @@ We recommend informing your content filtering configuration decisions through an
 ## Related content
 
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
-- Read more about [content filtering categories and severity levels](../../foundry-models/concepts/content-filter.md) with Foundry.
+- Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Foundry.
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../concepts/red-teaming.md).
 - Learn how to [configure content filters using the API](/rest/api/aiservices/accountmanagement/rai-policies/create-or-update)

@@ -1,7 +1,7 @@
 ---
-title: "Characteristics and limitations of question answering (temp)"
+title: Characteristics and limitations of question answering
 titleSuffix: Foundry Tools
-description: "Characteristics and limitations of question answering (temp)"
+description: Characteristics and limitations of question answering
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 09/29/2021
 ---
 
-# Characteristics and limitations of question answering (temp)
+# Characteristics and limitations of question answering
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

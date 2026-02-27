@@ -1,6 +1,7 @@
 ---
-title: "Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal (classic)"
-description: "This article introduces you to the Azure OpenAI GPT-4 Turbo with Vision tool for flows in Microsoft Foundry portal. (classic)"
+title: Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the Azure OpenAI GPT-4 Turbo with Vision tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -15,7 +16,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal (classic)
+# Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

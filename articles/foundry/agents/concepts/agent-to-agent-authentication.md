@@ -1,6 +1,7 @@
 ---
-title: "Agent2Agent (A2A) authentication (temp)"
-description: "Learn about ways of adding authentication to the Agent2Agent tool in the Foundry Agent Service. (temp)"
+title: Agent2Agent (A2A) authentication
+titleSuffix: Microsoft Foundry
+description: Learn about ways of adding authentication to the Agent2Agent tool in the Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,7 +14,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Agent2Agent (A2A) authentication (temp)
+# Agent2Agent (A2A) authentication
 
 The Agent2Agent (A2A) protocol enables your agents to invoke other agents. Most A2A endpoints require authentication to access the endpoint and its underlying service. Configuring authentication ensures that only authorized users can invoke your A2A tools in Foundry Agent Service.
 
@@ -30,8 +31,8 @@ In general, there are two authentication scenarios:
 
 Before you choose an authentication method, you need:
 
-- Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and a project. If you don't have one, see [Create projects in Foundry](../../how-to/create-projects.md).
-- The **Azure AI User** role or higher on your project. This role grants permissions to create project connections and configure agents. For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
+- Access to the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and a project. If you don't have one, see [Create projects in Foundry](../../../how-to/create-projects.md).
+- The **Azure AI User** role or higher on your project. This role grants permissions to create project connections and configure agents. For details, see [Role-based access control in the Foundry portal](../../../concepts/rbac-foundry.md).
 - The A2A endpoint URL you want to connect to. Contact the endpoint publisher to confirm which authentication methods the endpoint supports.
 - Credentials for your selected authentication method:
   - **Key-based**: An API key, personal access token (PAT), or other secret token from the endpoint publisher.
@@ -191,7 +192,7 @@ Follow these steps to configure authentication for an A2A connection:
    - **OAuth**: Determine whether managed OAuth is available, or gather your custom OAuth app registration details.
 
 1. **Create a project connection** in the Foundry portal. The connection stores the A2A endpoint URL, authentication method, and credentials.
-   - For general connection guidance, see [Add a new connection to your project](../../how-to/connections-add.md).
+   - For general connection guidance, see [Add a new connection to your project](../../../how-to/connections-add.md).
    - For A2A-specific configuration, see [Add an A2A agent endpoint to Foundry Agent Service](../how-to/tools/agent-to-agent.md).
 
 1. **Configure role assignments** (Microsoft Entra ID authentication only). Assign the required roles to the agent identity or project managed identity on the underlying service.
@@ -238,5 +239,5 @@ Use the following table to diagnose and resolve common authentication issues:
 
 - [Add an A2A agent endpoint to Foundry Agent Service](../how-to/tools/agent-to-agent.md): Step-by-step guide to configure an A2A tool for your agent.
 - [Agent identity concepts in Microsoft Foundry](agent-identity.md): Learn how agent identities work and their lifecycle.
-- [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md): Understand the roles and permissions available in Foundry.
-- [Add a new connection to your project](../../how-to/connections-add.md): General guidance for creating project connections.
+- [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md): Understand the roles and permissions available in Foundry.
+- [Add a new connection to your project](../../../how-to/connections-add.md): General guidance for creating project connections.

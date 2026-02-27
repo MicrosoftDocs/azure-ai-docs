@@ -1,6 +1,7 @@
 ---
-title: "Part 1: Set up project and development environment to build a custom knowledge retrieval (RAG) app (classic)"
-description:  "Build a custom chat app using the Microsoft Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you need for parts 2 and 3. (classic)"
+title: "Part 1: Set up project and development environment to build a custom knowledge retrieval (RAG) app"
+titleSuffix: Microsoft Foundry
+description:  Build a custom chat app using the Microsoft Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you need for parts 2 and 3.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
@@ -17,7 +18,7 @@ author: sdgilley
 #customer intent: As a developer, I want to create a project and set up my development environment to build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK.
 ---
 
-# Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK (classic)
+# Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Microsoft Foundry SDK
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -39,6 +40,7 @@ If you completed other tutorials or quickstarts, you might have already created 
 
 * An Azure account with an active subscription and **Owner** or **Contributor** role assigned. If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * **Microsoft Foundry**: Owner or Contributor role to create a project.
+
 
 ## Create a hub-based project
 
@@ -103,6 +105,7 @@ In the Foundry portal, check for an Azure AI Search connected resource.
     > For this tutorial, **API key** is acceptable if you want to proceed quickly. Switch to Entra ID before deploying to production.
 
 1. Select **Add connection**.  
+
 
 ## Create a new Python environment
 
@@ -172,6 +175,7 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.AI
 
 > [!NOTE]
 > This script also uses a package you haven't installed yet, `azure.monitor.opentelemetry`.  You'll install this package in the next part of the tutorial series.
+
 
 ## Clean up resources
 

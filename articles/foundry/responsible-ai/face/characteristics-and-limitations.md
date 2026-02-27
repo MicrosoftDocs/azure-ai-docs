@@ -1,7 +1,7 @@
 ---
-title: "Characteristics, limitations, and how to measure accuracy when using the face service (temp)"
+title: Characteristics, limitations, and how to measure accuracy when using the face service
 titleSuffix: Foundry Tools
-description: "Characteristics, Accuracy, and limitations when using the face service. Learn how to benchmark and measure accuracy when using the face service. (temp)"
+description: Characteristics, Accuracy, and limitations when using the face service. Learn how to benchmark and measure accuracy when using the face service.  
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 06/21/2022
 ---
 
-# Characteristics, limitations, and best practices for improving accuracy (temp)
+# Characteristics, limitations, and best practices for improving accuracy
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

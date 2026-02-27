@@ -1,6 +1,7 @@
 ---
-title: "Quickstart: Set up Microsoft Foundry resources (temp)"
-description: "Learn how to create a Microsoft Foundry project, deploy a model, and grant access to team members so they can build AI applications. (temp)"
+title: "Quickstart: Set up Microsoft Foundry resources"
+titleSuffix: Microsoft Foundry
+description: Learn how to create a Microsoft Foundry project, deploy a model, and grant access to team members so they can build AI applications.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2025
@@ -15,20 +16,20 @@ ai-usage: ai-assisted
 # customer intent: As an admin or team lead, I want to create a Foundry project and deploy a model so my team members can use it to build AI applications.
 ---
 
-# Quickstart: Set up Microsoft Foundry resources (temp)
+# Quickstart: Set up Microsoft Foundry resources
 
 In this quickstart, you create a [Microsoft Foundry](https://ai.azure.com) project and deploy a model. If you're managing a team, you also grant access to team members. After you complete these steps, you or your team can start building AI applications using the deployed model.
 
 > [!TIP]
-> This quickstart shows you how to create resources to build an agent with a basic setup. For more advanced scenarios that use your own resources, see [Set up your environment for agent development](../agents/environment-setup.md).
+> This quickstart shows you how to create resources to build an agent with a basic setup. For more advanced scenarios that use your own resources, see [Set up your environment for agent development](../../agents/environment-setup.md).
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 - If you're creating the project for yourself: 
-    - [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+    - [!INCLUDE [rbac-create](../../includes/rbac-create.md)]
 - If you're creating the project for a team: 
-    - [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
+    - [!INCLUDE [rbac-assign-roles](../../includes/rbac-assign-roles.md)]
     - A list of user email addresses or Microsoft Entra security group IDs for team members who need access.
 
 Select your preferred method by using the following tabs:
@@ -123,7 +124,7 @@ You need your project endpoint to connect from code. If you're administering thi
 
 ## For administrators - grant access
 
-If you're administering a team, assign the **Azure AI User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md)
+If you're administering a team, assign the **Azure AI User** role to team members so they can use the project and deployed models. This role provides the minimum permissions needed to build and test AI applications. For other roles you might need to assign, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)
 
 # [Azure CLI](#tab/azurecli)
 
@@ -140,6 +141,7 @@ If you're administering a team, assign the **Azure AI User** role to team member
 Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears under **Build** > **Models**.
 
 If the team member can't access the project, verify that the role assignment completed successfully. Check that you used the correct email address or security group ID. Make sure the team member's Azure account is in the same Microsoft Entra tenant.
+
 
 ## Clean up resources
 
@@ -160,5 +162,6 @@ In the [Azure portal](https://portal.azure.com), find and select your resource g
 ## Next step
  
 > [!div class="nextstepaction"]
-> [Microsoft Foundry quickstart](../quickstarts/get-started-code.md)
+> [Microsoft Foundry quickstart](../../quickstarts/get-started-code.md)
+
 

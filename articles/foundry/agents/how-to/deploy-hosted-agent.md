@@ -1,6 +1,7 @@
 ---
-title: "Deploy a hosted agent (temp)"
-description: "Deploy your containerized agent code to Foundry Agent Service using the Azure Developer CLI or Python SDK. (temp)"
+title: Deploy a hosted agent
+titleSuffix: Microsoft Foundry
+description: Deploy your containerized agent code to Foundry Agent Service using the Azure Developer CLI or Python SDK.
 author: aahill
 ms.author: aahi
 ms.date: 02/19/2026
@@ -12,13 +13,13 @@ ms.custom: references_regions
 ai-usage: ai-assisted
 ---
 
-# Deploy a hosted agent (temp)
+# Deploy a hosted agent
 
 This article shows you how to deploy a containerized agent to Foundry Agent Service. Use hosted agents when you need to run custom agent code built with frameworks like LangGraph, Microsoft Agent Framework, or your own implementation.
 
 ## Prerequisites
 
-* A [Microsoft Foundry project](../../how-to/create-projects.md)
+* A [Microsoft Foundry project](../../../how-to/create-projects.md)
 * [Python 3.10 or later](https://www.python.org/downloads/) for SDK-based development
 * [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later
 * [Docker Desktop](https://docs.docker.com/get-docker/) installed for local container development
@@ -35,7 +36,7 @@ You need one of the following role combinations depending on your deployment sce
 | Deploy to existing project with new resources | **Azure AI Owner** on Foundry + **Contributor** on subscription |
 | Deploy to fully configured project | **Reader** on account + **Azure AI User** on project |
 
-For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
+For more information, see [Authentication and authorization](../../../concepts/authentication-authorization-foundry.md).
 
 ## Package and test your agent locally
 

@@ -1,6 +1,7 @@
 ---
-title: "How to use image-to-text models in the model catalog (classic)"
-description: "Learn how to use image-to-text models from the Foundry model catalog. (classic)"
+title: How to use image-to-text models in the model catalog
+titleSuffix: Microsoft Foundry
+description: Learn how to use image-to-text models from the Foundry model catalog.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -13,7 +14,7 @@ manager: nitinme
 ms.custom: references_regions, tool_generated
 ---
 
-# How to use image-to-text models in the model catalog (classic)
+# How to use image-to-text models in the model catalog
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -142,6 +143,8 @@ Some image-to-text models only support specific data formats. Mistral OCR 25.03,
 | Model | Supported | Not supported |
 | :---- | ----- | ----- |
 | Mistral OCR 25.03 | base64 encoded image data  | document url, image url |
+
+
 
 ## Related content
 

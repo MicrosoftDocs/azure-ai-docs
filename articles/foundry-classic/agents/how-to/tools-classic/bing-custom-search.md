@@ -1,6 +1,7 @@
 ---
-title: "How to use Custom Bing Search with Foundry Agent Service (classic)"
-description: "Learn how to ground Azure AI Agents using Custom Bing Search results. (classic)"
+title: 'How to use Custom Bing Search with Foundry Agent Service'
+titleSuffix: Azure OpenAI
+description: Learn how to ground Azure AI Agents using Custom Bing Search results.
 ai-usage: ai-assisted
 services: cognitive-services
 manager: nitinme
@@ -13,12 +14,12 @@ ms.author: aashcraft
 ms.custom: azure-ai-agents
 ---
 
-# Grounding with Bing Custom Search (preview) (classic)
+# Grounding with Bing Custom Search (preview)
 
 > [!NOTE]
 > This article refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Grounding with Bing Search documentation](../../../../foundry/agents/how-to/tools/bing-tools.md).
+> 🔍 [View the new Grounding with Bing Search documentation](../../../default/agents/how-to/tools/bing-tools.md).
 
 Grounding with Bing Custom Search tool allows your Azure AI Agents to search within a configurable set of public web domains. It allows you to define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing. You need to first create a Grounding with Bing Custom Search resource in Azure portal. 
 
@@ -64,6 +65,7 @@ Transactions with your Grounding with Bing resource are counted by the number of
 
 1. Create a Grounding with Bing Custom Search resource in the [Azure portal](https://portal.azure.com/#create/Microsoft.BingGroundingCustomSearch). You need to have **Owner** or **Contributor** role in your subscription or resource group to create it. Make sure you create this Grounding with Bing Custom Search resource in the same resource group as your Azure AI Agent, AI Project, and other resources. 
 
+
 1. After you have created a Grounding with Bing Custom Search resource, you can create a configuration instance.  
 
     1. Go to the Grounding with Bing Custom Search resource created 
@@ -90,9 +92,11 @@ When you create or update a configuration, enter the following information:
 
     1. Blocked domains to exclude from the search space. 
 
+
 1. Determine if you want to include subpages. A subpage slice specifies a domain path. Bing searches all content found at and below the path. You can specify a maximum of two subfolders in the path. For example, `www.microsoft.com/windows/`. 
 
 1. Adjust ranking if needed. 
+
 
 1. Navigate to the **Agents** screen for your agent in the [Foundry portal](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
 
@@ -115,6 +119,7 @@ Grounding with Bing Custom Search is a powerful tool that allows you to select a
 1. If you own a public site that you want to include in the search but Bing hasn't indexed, see the [Bing webmaster documentation](https://www.bing.com/webmaster/help/webmaster-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date. 
 
 1. You can only block certain domains and perform a search against the rest of the Web (a competitor’s site, for example). 
+
 
 ## Optional parameters
 

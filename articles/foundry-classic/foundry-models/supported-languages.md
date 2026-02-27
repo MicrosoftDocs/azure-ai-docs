@@ -1,6 +1,7 @@
 ---
-title: "Supported programming languages for models in Microsoft Foundry Models (classic)"
-description: "Learn how to choose the right programming languages and SDKs for deploying and using models in Microsoft Foundry Models. (classic)"
+title: Supported programming languages for models in Microsoft Foundry Models
+titleSuffix: Microsoft Foundry
+description: Learn how to choose the right programming languages and SDKs for deploying and using models in Microsoft Foundry Models.
 author: msakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -15,7 +16,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer building AI applications with Microsoft Foundry Models, I want to know which programming languages and SDKs are supported for Microsoft Foundry Models so that I can choose the right tools for my application development.
 ---
 
-# Supported programming languages for Azure AI Inference SDK (classic)
+# Supported programming languages for Azure AI Inference SDK
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -36,6 +37,7 @@ The Azure AI Inference package allows you to consume all models deployed to the 
 | JavaScript | [Reference](/javascript/api/@azure-rest/ai-inference) | [@azure/ai-inference (npm)](https://www.npmjs.com/package/@azure/ai-inference) | [JavaScript examples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) |
 | Python     | [Reference](https://aka.ms/azsdk/azure-ai-inference/python/reference) | [azure-ai-inference (PyPi)](https://pypi.org/project/azure-ai-inference/) | [Python examples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-inference/samples) |
 
+
 ## Integrations
 
 | Framework   | Language   | Documentation | Package | Examples |
@@ -44,6 +46,7 @@ The Azure AI Inference package allows you to consume all models deployed to the 
 | Llama-Index | Python     | [Reference](https://aka.ms/azsdk/azure-ai-inference/python/reference) | [llama-index-llms-azure-inference (PyPi)](https://pypi.org/project/llama-index-llms-azure-inference/) <br /> [llama-index-embeddings-azure-inference (PyPi)](https://pypi.org/project/llama-index-embeddings-azure-inference/) | [Python examples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/llama-index) |
 | Semantic Kernel | Python     | [Reference](/semantic-kernel/overview) | [semantic-kernel[azure] (PyPi)](https://pypi.org/project/semantic-kernel/) | [Python examples](../../ai-studio/how-to/develop/semantic-kernel.md) |
 | AutoGen     | Python     | [Reference](https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.models.azure.html#autogen_ext.models.azure.AzureAIChatCompletionClient)  | [autogen-ext[azure] (PyPi)](https://pypi.org/project/autogen-ext/) | [Quickstart](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/quickstart.html) |
+
 
 ## Limitations
 

@@ -1,6 +1,7 @@
 ---
-title: "Guardrails & controls for Models Sold Directly by Azure (classic)" 
-description: "Learn about content safety for models deployed using serverless API deployments, using Microsoft Foundry. (classic)"
+title: Guardrails & controls for Models Sold Directly by Azure 
+titleSuffix: Microsoft Foundry
+description: Learn about content safety for models deployed using serverless API deployments, using Microsoft Foundry.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -13,13 +14,14 @@ reviewer: ositanachi
 ms.custom: 
 ---
 
-# Guardrails & controls for Models Sold Directly by Azure (classic) 
+# Guardrails & controls for Models Sold Directly by Azure 
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, learn about content safety capabilities for models from the model catalog deployed using serverless API deployments.
+
 
 ## Content filter defaults
 

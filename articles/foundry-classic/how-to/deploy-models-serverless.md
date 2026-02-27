@@ -1,6 +1,7 @@
 ---
-title: "Deploy models as serverless API deployments (classic)"
-description: "Learn to deploy models as serverless API deployments, using Microsoft Foundry. (classic)"
+title: Deploy models as serverless API deployments
+titleSuffix: Microsoft Foundry
+description: Learn to deploy models as serverless API deployments, using Microsoft Foundry.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -14,7 +15,7 @@ ms.custom: build-2024, serverless, devx-track-azurecli, ignite-2024
 zone_pivot_groups: azure-ai-serverless-deployment
 ---
 
-# Deploy models as serverless API deployments (classic)
+# Deploy models as serverless API deployments
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -54,7 +55,7 @@ Although serverless API deployment is one option for deploying Foundry Models, w
 
 1. Select **Use this model** to open the _Serverless API deployment_ window where you can view the *Pricing and terms* tab.
 
-1. In the deployment wizard, name the deployment. The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering, see [Content filtering in Foundry portal](../foundry-models/concepts/content-filter.md).
+1. In the deployment wizard, name the deployment. The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering, see [Content filtering in Foundry portal](../concepts/content-filtering.md).
     
     :::image type="content" source="../media/deploy-models-serverless/deepseek-deployment-wizard.png" alt-text="Screenshot showing the deployment wizard for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/deepseek-deployment-wizard.png":::
     
@@ -72,6 +73,7 @@ Although serverless API deployment is one option for deploying Foundry Models, w
 For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through Azure Marketplace are available for deployment to serverless API deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume serverless API deployment from a different project](deploy-models-serverless-connect.md).
+
 
 1. On the model's **Details** page, select **Use this model** to open the Serverless API deployment window. In the Serverless API deployment window, the **Azure Marketplace Terms** link provides more information about the terms of use. The **Pricing and terms** tab also provides pricing details for the selected model.
 
@@ -94,7 +96,7 @@ Furthermore, models offered through Azure Marketplace are available for deployme
     1. You see all the offerings to which you're currently subscribed.
     1. Select any resource to see the details.
 
-1. In the deployment wizard, name the deployment. The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering, see [Content filtering in Foundry portal](../foundry-models/concepts/content-filter.md).
+1. In the deployment wizard, name the deployment. The **Content filter (preview)** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering, see [Content filtering in Foundry portal](../concepts/content-filtering.md).
     :::image type="content" source="../media/deploy-models-serverless/deploy-with-content-filter.png" alt-text="Screenshot of the deployment wizard showing the content filter enabled." lightbox="../media/deploy-models-serverless/deploy-with-content-filter.png":::
 
 ---
@@ -123,6 +125,7 @@ In this section, you create an endpoint for your model.
 Models deployed in Azure Machine Learning and Foundry in serverless API deployments support the [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
+
 
 ## Delete endpoints and subscriptions
 
@@ -267,6 +270,7 @@ Models deployed in Azure Machine Learning and Foundry in serverless API deployme
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
 
+
 ## Delete endpoints and subscriptions
 
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
@@ -286,6 +290,7 @@ az ml marketplace-subscription delete \
 ```
 
 ::: zone-end
+
 
 ::: zone pivot="python-sdk"
 
@@ -417,11 +422,13 @@ In this section, you create an endpoint for your model. Name the endpoint **Deep
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
+
 ## Use the serverless API deployment
 
 Models deployed in Azure Machine Learning and Foundry in serverless API deployments support the [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
+
 
 ## Delete endpoints and subscriptions
 
@@ -439,6 +446,7 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
 
 ::: zone-end
 
+
 ::: zone pivot="programming-language-bicep"
 
 - To work with Foundry, install the Azure CLI as described at [Azure CLI](/cli/azure/).
@@ -449,6 +457,7 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
     RESOURCE_GROUP="serverless-models-dev"
     LOCATION="eastus2" 
     ```  
+
 
 ## Find your model in the model catalog
 
@@ -582,11 +591,13 @@ In this section, you create an endpoint for your model. Name the endpoint **myse
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
+
 ## Use the serverless API deployment
 
 Models deployed in Azure Machine Learning and Foundry in serverless API deployments support the [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
+
 
 ## Delete endpoints and subscriptions
 
@@ -600,6 +611,7 @@ az resource delete --name <resource-name>
 
 ::: zone-end
 
+
 ## Cost and quota considerations for Foundry Models deployed as a serverless API deployment
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. Additionally, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
@@ -607,6 +619,7 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 - You can find pricing information for [Models Sold Directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md), on the *Pricing and terms* tab of the _Serverless API deployment_ window.
 
 - [Models from Partners and Community](../foundry-models/concepts/models-sold-directly-by-azure.md) are offered through Azure Marketplace and integrated with Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+
 
 ## Permissions required to subscribe to model offerings
 
@@ -628,6 +641,8 @@ Azure role-based access controls (Azure RBAC) are used to grant access to operat
   - `Microsoft.MachineLearningServices/workspaces/serverlessEndpoints/*`
 
 For more information on permissions, see [Role-based access control in Foundry portal](../concepts/rbac-foundry.md).
+
+
 
 ## Related content
 

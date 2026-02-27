@@ -1,6 +1,7 @@
 ---
-title: "Quickstart: Deploy your first hosted agent (temp)"
-description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the VS Code Foundry extension or Azure Developer CLI. (temp)"
+title: "Quickstart: Deploy your first hosted agent"
+titleSuffix: Microsoft Foundry
+description: Learn how to deploy a containerized AI agent to Foundry Agent Service using the VS Code Foundry extension or Azure Developer CLI.
 author: aahill
 ms.author: aahi
 ms.date: 01/26/2026
@@ -12,7 +13,7 @@ ms.custom: mode-other
 ai-usage: ai-assisted
 ---
 
-# Quickstart: Deploy your first hosted agent using Azure Developer CLI (temp)
+# Quickstart: Deploy your first hosted agent using Azure Developer CLI
 
 In this quickstart, you deploy a containerized AI agent with Foundry tools to Foundry Agent Service. The sample agent uses web search and optionally MCP tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground.
 
@@ -30,7 +31,7 @@ In this quickstart, you deploy a containerized AI agent with Foundry tools to Fo
 Before you begin, you need:
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/)
-* A [Microsoft Foundry project](../../tutorials/quickstart-create-foundry-resources.md) with:
+* A [Microsoft Foundry project](../../../default/tutorials/quickstart-create-foundry-resources.md) with:
   * An Azure OpenAI model deployment (for example `gpt-5`)
     * This example uses `gpt-5`, you may need to use another model (such as `gpt-4.1`) depending on your [quotas and limits](../concepts/limits-quotas-regions.md#quotas-and-limits-for-models).
   * (Optional) An [MCP tool](../how-to/tools/model-context-protocol.md), if you have one you want to use.
@@ -329,7 +330,7 @@ In this quickstart, you:
 
 ## Deploy your first hosted agent using VS Code 
 
-Use the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) to deploy your agent code to Foundry from the IDE which just a few clicks. See the [VS Code extension documentation](../how-to/vs-code-agents-workflow-pro-code.md?tabs=windows-powershell&pivots=python) for more information.
+Use the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) to deploy your agent code to Foundry from the IDE which just a few clicks. See the [VS Code extension documentation](../how-to/vs-code-agents-workflow-pro-code.md?view=foundry&preserve-view=true&tabs=windows-powershell&pivots=python) for more information.
 
 ## Next steps
 

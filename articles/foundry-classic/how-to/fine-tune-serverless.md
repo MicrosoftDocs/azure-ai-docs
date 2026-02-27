@@ -1,6 +1,7 @@
 ---
-title: "Deploy Fine-Tuned Models with Serverless API in Microsoft Foundry (classic)"
-description: "Deploy fine-tuned models using serverless API in Microsoft Foundry. Learn how to fine-tune, train, and deploy custom large language models with cost-effective serverless options. (classic)"
+title: Deploy Fine-Tuned Models with Serverless API in Microsoft Foundry
+titleSuffix: Microsoft Foundry
+description: Deploy fine-tuned models using serverless API in Microsoft Foundry. Learn how to fine-tune, train, and deploy custom large language models with cost-effective serverless options.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -15,7 +16,7 @@ zone_pivot_groups: azure-ai-model-fine-tune
 ai-usage: ai-assisted
 ---
 
-# Fine-tune models by using serverless API deployments in Microsoft Foundry (classic)
+# Fine-tune models by using serverless API deployments in Microsoft Foundry
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -444,6 +445,7 @@ normalized_model_name = model_name.replace(".", "-")
 
 from azure.ai.ml.entities import MarketplaceSubscription
 
+
 subscription_name = f"{normalized_model_name}-sub"
 
 marketplace_subscription = MarketplaceSubscription(
@@ -738,7 +740,7 @@ Serverless API deployment models are protected by Azure AI Content Safety. When 
 
 With Azure AI Content Safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
-To learn more about Azure AI Content Safety, see [Content filtering in Foundry portal](../foundry-models/concepts/content-filter.md).
+To learn more about Azure AI Content Safety, see [Content filtering in Foundry portal](../concepts/content-filtering.md).
 
 ## Related content
 

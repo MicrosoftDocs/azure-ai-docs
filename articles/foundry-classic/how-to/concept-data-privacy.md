@@ -1,6 +1,7 @@
 ---
-title: "Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)"
-description: "Get details about how data that customers provide is processed, used, and stored when a user deploys a model from the model catalog. (classic)"
+title: Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: Get details about how data that customers provide is processed, used, and stored when a user deploys a model from the model catalog.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom: references_regions, build-2024
@@ -12,7 +13,7 @@ manager: nitinme
 author: ssalgadodev
 #Customer intent: As a data scientist, I want to learn about data privacy and security for use of models in the model catalog.
 ---
-# Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)
+# Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -43,7 +44,7 @@ Although containers for **Models Sold Directly by Azure** are scanned for vulner
 
 ## Generation of inferencing outputs as a serverless API deployment
 
-When you deploy a model from the model catalog (base or fine-tuned) by using serverless API deployments with serverless pay per token offer for inferencing, an API is provisioned. The API gives you access to the model that the Azure Machine Learning service hosts and manages. Learn more about serverless API deployments in [Model catalog and collections](../concepts/foundry-models-overview.md).
+When you deploy a model from the model catalog (base or fine-tuned) by using serverless API deployments with serverless pay per token offer for inferencing, an API is provisioned. The API gives you access to the model that the Azure Machine Learning service hosts and manages. Learn more about serverless API deployments in [Model catalog and collections](./model-catalog-overview.md).
 
 The model processes your input prompts and generates outputs based on its functionality, as described in the model details. Your use of the model (along with the provider's accountability for the model and its outputs) is subject to the license terms for the model. Microsoft provides and manages the hosting infrastructure and API endpoint. The models hosted in this *serverless API deployment* scenario are subject to Azure data, privacy, and security commitments. [Learn more about Azure compliance offerings applicable to Foundry](https://servicetrust.microsoft.com/DocumentPage/7adf2d9e-d7b5-4e71-bad8-713e6a183cf3).
 

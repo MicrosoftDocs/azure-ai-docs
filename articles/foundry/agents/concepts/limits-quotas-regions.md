@@ -1,6 +1,7 @@
 ---
-title: "Quotas and limits for Microsoft Foundry Agent Service (temp)"
-description: "Review default limits for Foundry Agent Service, including file sizes, vector stores, messages, tools, error handling, supported regions, and compatible models. (temp)"
+title: Quotas and limits for Microsoft Foundry Agent Service
+titleSuffix: Microsoft Foundry
+description: Review default limits for Foundry Agent Service, including file sizes, vector stores, messages, tools, error handling, supported regions, and compatible models.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -9,10 +10,11 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
 ms.date: 02/12/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions
+monikerRange: 'foundry'
 ai-usage: ai-assisted
 ---
 
-# Foundry Agent Service limits, quotas, and regional support (temp)
+# Foundry Agent Service limits, quotas, and regional support
 
 Foundry Agent Service enforces quotas and limits on agent artifacts, file uploads, messages, and tool registrations. Understanding these limits helps you design applications that scale without hitting service boundaries. This article lists default limits, supported regions, compatible models, and guidance for handling limit errors.
 
@@ -22,7 +24,7 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 ## Prerequisites
 
 - An Azure subscription.
-- A [Microsoft Foundry project](../../how-to/create-projects.md).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md).
 - A deployed model compatible with Agent Service. Model and region availability can vary.
 
 ## Supported regions
@@ -54,13 +56,13 @@ Foundry Agent Service is available in the following Azure regions:
 
 ## Azure OpenAI model support
 
-Foundry Agent Service is compatible with current Azure OpenAI models. For a complete list of supported models and their availability by region, see [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+Foundry Agent Service is compatible with current Azure OpenAI models. For a complete list of supported models and their availability by region, see [Foundry Models sold directly by Azure](../../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 ## Other model collections
 
 In addition to Azure OpenAI models, Agent Service supports models from the Foundry model catalog. These models are deployed and managed through Foundry and follow separate quotas. The following models are available for your agents to use.
 
-[!INCLUDE [agent-service-models-support-list](../../agents/includes/agent-service-models-support-list.md)]
+[!INCLUDE [agent-service-models-support-list](../../../agents/includes/agent-service-models-support-list.md)]
 
 > [!TIP]
 > Model availability can change over time. To verify what you can deploy for your project and region, use the Foundry portal model experience.
@@ -70,7 +72,7 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 ### A model or version isn't available in your region
 
 - Confirm you selected the right tab for your deployment type (global standard vs. provisioned).
-- Try a different region that supports the model and version. See the [model and region support table](../../agents/concepts/limits-quotas-regions.md).
+- Try a different region that supports the model and version. See the [model and region support table](../../../default/agents/concepts/limits-quotas-regions.md).
 - If you're using gpt-5 models, [registration](https://aka.ms/openai/gpt-5/2025-08-07) is required. Access is granted according to Microsoft's eligibility criteria.
 
 ### A tool isn't available in your region
@@ -82,13 +84,13 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 ### Provisioned throughput deployment fails
 
 - Confirm you have enough PTUs available in the region.
-- Review [Provisioned throughput](../../openai/concepts/provisioned-throughput.md) and [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md).
+- Review [Provisioned throughput](../../../openai/concepts/provisioned-throughput.md) and [Spillover traffic management](../../../openai/how-to/spillover-traffic-management.md).
 
 ### Agent receives rate-limit (429) errors
 
 - Implement exponential backoff with jitter in your application retry logic.
 - For sustained high-throughput workloads, consider provisioned throughput deployments.
-- Review [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for your deployment's tokens-per-minute and requests-per-minute caps.
+- Review [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md) for your deployment's tokens-per-minute and requests-per-minute caps.
 
 ## Quotas and limits
 
@@ -113,7 +115,7 @@ The following table lists default limits enforced by the Agent Service. These li
 | Maximum size of `text` content per message | 1,500,000 characters |
 | Maximum number of tools registered per agent | 128 |
 
-The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../../openai/quotas-limits.md) for model-specific rate limits.
+The Agent Service limits in this table are fixed and apply uniformly across all subscription types. Agent Service doesn't impose separate rate limits on API calls. Rate limiting is applied at the model deployment level. See [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md) for model-specific rate limits.
 
 ## Limit error reference
 
@@ -147,7 +149,7 @@ Use the following practices to reduce limit-related failures:
 - **Avoid very large messages.** Put long content in uploaded files and query it by using file search.
 - **Plan for long conversations.** Treat threads as session state and rotate to new threads when conversations become very long.
 - **Register only required tools.** Remove unused tools from agent definitions.
-- **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../agents/how-to/metrics.md) to identify growth before you hit limits.
+- **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../../agents/how-to/metrics.md) to identify growth before you hit limits.
 
 ## Quotas and limits for models
 
@@ -155,16 +157,16 @@ Agents follow the quotas and rate limits for the model deployments they use.
 
 For current model quotas and limits, see:
 
-- [Azure OpenAI quotas and limits](../../openai/quotas-limits.md).
-- [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md).
+- [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md).
+- [Microsoft Foundry Models quotas and limits](../../../foundry-models/quotas-limits.md).
 
-To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../../../foundry-classic/openai/how-to/quota.md).
+To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../../../how-to/quota.md).
 
 ## Request a limit increase
 
 The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
 
-- **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../../foundry-classic/openai/how-to/quota.md).
+- **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../../how-to/quota.md).
 - **Agent Service limits.** The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints by using the best practices described earlier.
 
 ## Related content
@@ -172,6 +174,6 @@ The limits in this article are default values for Foundry Agent Service. If your
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
 - [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
-- [Monitor Foundry Agent Service](../../agents/how-to/metrics.md)
-- [Azure OpenAI quotas and limits](../../openai/quotas-limits.md)
-- [Manage and increase quotas for resources with Microsoft Foundry](../../../foundry-classic/openai/how-to/quota.md)
+- [Monitor Foundry Agent Service](../../../agents/how-to/metrics.md)
+- [Azure OpenAI quotas and limits](../../../openai/quotas-limits.md)
+- [Manage and increase quotas for resources with Microsoft Foundry](../../../how-to/quota.md)

@@ -1,6 +1,7 @@
 ---
-title: "Control model deployment with custom policies (classic)"
-description: "Learn how to use custom Azure Policies to control Microsoft Foundry and Azure OpenAI in Foundry Models deployment with Microsoft Foundry. (classic)"
+title: Control model deployment with custom policies
+titleSuffix: Microsoft Foundry
+description: "Learn how to use custom Azure Policies to control Microsoft Foundry and Azure OpenAI in Foundry Models deployment with Microsoft Foundry."
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
@@ -13,7 +14,7 @@ ms.custom: [dev-focus]
 ai-usage: ai-assisted
 ---
 
-# Control model deployment with custom policies (classic)
+# Control model deployment with custom policies
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -170,6 +171,7 @@ Follow these steps to create and assign an example custom policy to control mode
 10. Select the **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
 
 11. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't in the list of allowed models.
+
 
 ## Verify policy assignment
 

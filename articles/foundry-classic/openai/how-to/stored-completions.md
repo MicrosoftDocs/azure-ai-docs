@@ -1,6 +1,7 @@
 ---
-title: "How to use Azure OpenAI in Microsoft Foundry Models stored completions & distillation (classic)"
-description: "Learn how to use stored completions & distillation with Azure OpenAI (classic)"
+title: 'How to use Azure OpenAI in Microsoft Foundry Models stored completions & distillation'
+titleSuffix: Azure OpenAI
+description: Learn how to use stored completions & distillation with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -12,7 +13,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Azure OpenAI stored completions & distillation (preview) (classic)
+# Azure OpenAI stored completions & distillation (preview)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -59,6 +60,7 @@ completion = client.chat.completions.create(
 )
 
 print(completion.choices[0].message)
+
 
 ```
 

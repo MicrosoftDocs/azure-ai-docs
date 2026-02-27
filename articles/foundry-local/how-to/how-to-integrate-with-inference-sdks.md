@@ -1,7 +1,7 @@
 ---
-title: "Integrate with inference SDKs (temp)"
+title: Integrate with inference SDKs
 titleSuffix: Foundry Local
-description: "This article provides instructions on how to integrate Foundry Local with common Inferencing SDKs. (temp)"
+description: This article provides instructions on how to integrate Foundry Local with common Inferencing SDKs.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -15,7 +15,7 @@ reviewer: samuel100
 ai-usage: ai-assisted
 ---
 
-# Integrate inference SDKs with Foundry Local (temp)
+# Integrate inference SDKs with Foundry Local
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 

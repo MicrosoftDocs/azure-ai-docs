@@ -1,6 +1,7 @@
 ---
-title: "Manage Grounding With Bing Access (temp)"
-description: "Learn how to manage Grounding with Bing in Microsoft Foundry and Azure. (temp)"
+title: Manage Grounding With Bing Access
+titleSuffix: Microsoft Foundry
+description: Learn how to manage Grounding with Bing in Microsoft Foundry and Azure.
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: magottei
@@ -9,7 +10,7 @@ ms.topic: overview
 ms.date: 02/17/2026
 ---
 
-# Manage Grounding with Bing in Microsoft Foundry and Azure (temp)
+# Manage Grounding with Bing in Microsoft Foundry and Azure
 
 Grounding with Bing enables agents to retrieve and incorporate real-time public web data into model-generated responses. It supports summarization, question answering, conversational assistance, and other scenarios by using Grounding with Bing Search or Grounding with Bing Custom Search to fill knowledge gaps.
 
@@ -31,7 +32,7 @@ You can disable the web search tool for all accounts in a subscription. For more
 
 ## Disable web knowledge
 
-You can disable Web Knowledge Source access for all search services in a subscription. For more information, see [Disable use of Web Knowledge Source](../../../search/agentic-knowledge-source-how-to-web-manage.md#disable-use-of-web-knowledge-source).
+You can disable Web Knowledge Source access for all search services in a subscription. For more information, see [Disable use of Web Knowledge Source](../../../../search/agentic-knowledge-source-how-to-web-manage.md#disable-use-of-web-knowledge-source).
 
 > [!TIP]
 > To reenable access after disabling it, follow the steps in the linked articles to reverse the policy, setting, or feature registration.
@@ -40,4 +41,4 @@ You can disable Web Knowledge Source access for all search services in a subscri
 
 + [Grounding with Bing Search tools for agents](./tools/bing-tools.md)
 + [Web search tool (preview)](../how-to/tools/web-search.md)
-+ [Create a Web Knowledge Source resource](../../../search/agentic-knowledge-source-how-to-web.md)
++ [Create a Web Knowledge Source resource](../../../../search/agentic-knowledge-source-how-to-web.md)

@@ -1,6 +1,6 @@
 ---
-title: "Guardrail annotations (classic)" 
-description: "Learn about annotations for content filtering in Azure OpenAI, including severity levels and optional models. (classic)"
+title: Guardrail annotations 
+description: Learn about annotations for content filtering in Azure OpenAI, including severity levels and optional models.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -11,7 +11,7 @@ ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
-# Guardrail annotations (classic)
+# Guardrail annotations
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -428,6 +428,7 @@ violence  : @{filtered=False; severity=safe}
 ---
 
 For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](../reference.md). Annotations are returned for all scenarios when using any preview API version starting from `2023-06-01-preview`, as well as the GA API version `2024-02-01`.
+
 
 <!--
 ### Example scenario: An input prompt containing content that is classified at a filtered category and severity level is sent to the completions API

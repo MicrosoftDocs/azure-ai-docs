@@ -1,7 +1,7 @@
 ---
-title: "Microsoft Translator Pro Transparency Note (temp)"
+title: Microsoft Translator Pro Transparency Note
 titleSuffix: Foundry Tools
-description: "Microsoft Translator Pro responsible AI Basics, use cases, terms (temp)"
+description: Microsoft Translator Pro responsible AI Basics, use cases, terms
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 01/21/2024
 ---
 
-# Microsoft Translator Pro Transparency Note (temp)
+# Microsoft Translator Pro Transparency Note
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

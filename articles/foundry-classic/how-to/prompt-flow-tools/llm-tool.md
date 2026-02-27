@@ -1,6 +1,7 @@
 ---
-title: "LLM tool for flows in Microsoft Foundry portal (classic)"
-description: "This article introduces you to the large language model (LLM) tool for flows in Microsoft Foundry portal. (classic)"
+title: LLM tool for flows in Microsoft Foundry portal
+titleSuffix: Microsoft Foundry
+description: This article introduces you to the large language model (LLM) tool for flows in Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
@@ -16,7 +17,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 ms.update-cycle: 180-days
 ---
 
-# LLM tool for flows in Microsoft Foundry portal (classic)
+# LLM tool for flows in Microsoft Foundry portal
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 

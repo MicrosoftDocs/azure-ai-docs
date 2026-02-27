@@ -1,6 +1,7 @@
 ---
-title: "Enforce Token Limits for Models (temp)"
-description: "Use Foundry Control Plane integration with an AI gateway to apply limits for model inference, including token limits. (temp)"
+title: Enforce Token Limits for Models
+titleSuffix: Microsoft Foundry
+description: Use Foundry Control Plane integration with an AI gateway to apply limits for model inference, including token limits.
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
@@ -11,7 +12,7 @@ ms.date: 01/06/2026
 ai-usage: ai-assisted
 ---
 
-# Enforce token limits for models (temp)
+# Enforce token limits for models
 
 Microsoft Foundry Control Plane enforces tokens-per-minute (TPM) rate limits and total token quotas for model deployments at the project scope. This enforcement prevents runaway token consumption and aligns usage with organizational guardrails. Foundry Control Plane integrates with AI gateways to provide advanced policy enforcement for models.
 
@@ -19,7 +20,7 @@ This article explains how to configure token rate limiting and token quotas.
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
 - A Foundry resource with an AI gateway configured. [Learn more about how to enable an AI gateway for a Foundry resource](../configuration/enable-ai-api-management-gateway-portal.md).
 
@@ -108,4 +109,4 @@ If the admin console is slow, retry after a brief interval.
 - [What is Azure API Management?](/azure/api-management/api-management-key-concepts)
 - [Limit large language model API token usage](/azure/api-management/llm-token-limit-policy)
 - [How to use role-based access control in Azure API Management](/azure/api-management/api-management-role-based-access-control)
-- [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md)
+- [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)

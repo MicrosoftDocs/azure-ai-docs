@@ -1,6 +1,7 @@
 ---
-title: "Build and Consume Vector Indexes (classic)"
-description: "Learn how to create and use a vector index for performing retrieval-augmented generation (RAG) by using Microsoft Foundry portal. (classic)"
+title: Build and Consume Vector Indexes
+titleSuffix: Microsoft Foundry
+description: Learn how to create and use a vector index for performing retrieval-augmented generation (RAG) by using Microsoft Foundry portal.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -15,7 +16,7 @@ manager: nitinme
 author: ssalgadodev
 ---
 
-# Build and consume vector indexes in Microsoft Foundry portal (classic)
+# Build and consume vector indexes in Microsoft Foundry portal
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -96,6 +97,7 @@ A vector index isn't required for RAG, but a vector query can match on semantica
 1. Select the **mlindex_content** value box, and select your index from the value section. After completing this step, enter the queries and **query_types** to be performed against the index.
 
    :::image type="content" source="../media/index-retrieve/configure-index-lookup-tool.png" alt-text="Screenshot of the prompt flow node to configure index lookup." lightbox="../media/index-retrieve/configure-index-lookup-tool.png":::
+
 
 ## Related content
 

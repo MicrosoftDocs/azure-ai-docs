@@ -1,7 +1,7 @@
 ---
-title: "Data, privacy, and security for Speech to text (temp)"
+title: Data, privacy, and security for Speech to text
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for a Speech to text. (temp)"
+description: This document details issues for data, privacy, and security for a Speech to text.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 06/30/2021
 ---
 
-# Data and Privacy for Speech to text (temp)
+# Data and Privacy for Speech to text
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 

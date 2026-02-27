@@ -1,6 +1,6 @@
 ---
-title: "Manage Azure OpenAI in Microsoft Foundry Models quota (classic)"
-description: "Learn how to use Azure OpenAI to control your deployments rate limits. (classic)"
+title: Manage Azure OpenAI in Microsoft Foundry Models quota
+description: Learn how to use Azure OpenAI to control your deployments rate limits.
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -10,7 +10,7 @@ ms.date: 11/26/2025
 ms.author: mbullwin
 ---
 
-# Manage Azure OpenAI in Microsoft Foundry Models quota (classic)
+# Manage Azure OpenAI in Microsoft Foundry Models quota
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -128,6 +128,7 @@ You may encounter a 429 error (“Too Many Requests”) when your usage exceeds 
 1. **Rate Limit Exceeded**. This is the most common situation when you've received 429 responses. It means your requests exceeded the rate limit for your current quota. In this case, you can request a quota increase using the provided link in the error message.
 2. **System is experiencing high demand and cannot process your request**. The system is under high demand and cannot process your request due to capacity or latency limits. In this case, you can retry after the suggested time. Please note that Standard offer has no latency SLA and may experience variable latency if you exceed the [Usage tier](/azure/ai-foundry/openai/quotas-limits?tabs=REST#usage-tiers). If you are looking for improved reliability or lower latency, consider upgrading to the Premium offer (Provisioned throughput) for better predictability. 
 
+
 ## Automate deployment
 
 This section contains brief example templates to help get you started programmatically creating deployments that use quota to set TPM rate limits. With the introduction of quota you must use API version `2023-05-01` for resource management related activities. This API version is only for managing your resources, and doesn't impact the API version used for inferencing calls like completions, chat completions, embedding, image generation, etc.
@@ -173,7 +174,7 @@ curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-0
 ```
 
 > [!NOTE]
-> There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token). You can use this token as your temporary authorization token for API testing.
+> There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account?view=azure-cli-latest#az-account-get-access-token&preserve-view=true). You can use this token as your temporary authorization token for API testing.
 
 For more information, see the REST API reference documentation for [usages](/rest/api/aiservices/accountmanagement/usages/list?branch=main&tabs=HTTP) and [deployment](/rest/api/aiservices/accountmanagement/deployments/create-or-update).
 
@@ -241,7 +242,7 @@ az cognitiveservices account deployment create -g test-resource-group -n test-re
 
 ### Usage
 
-To [query your quota usage](/cli/azure/cognitiveservices/usage?view=azure-cli-latest) in a given region, for a specific subscription
+To [query your quota usage](/cli/azure/cognitiveservices/usage?view=azure-cli-latest&preserve-view=true) in a given region, for a specific subscription
 
 ```azurecli
 az cognitiveservices usage list --location
@@ -255,7 +256,7 @@ az cognitiveservices usage list -l eastus
 
 This command runs in the context of the currently active subscription for Azure CLI. Use `az-account-set --subscription` to [modify the active subscription](/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription).
 
-For more information, see the [Azure CLI reference documentation](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest)
+For more information, see the [Azure CLI reference documentation](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest&preserve-view=true)
 
 # [Azure PowerShell](#tab/powershell)
 
@@ -428,6 +429,7 @@ resource "azurerm_cognitive_account" "TERRAFORM-AOAI-TEST-ACCOUNT" {
   sku_name              = "S0"
   custom_subdomain_name = "terraform-test-account-"
   }
+
 
 # 
 # AzAPI is used to create the deployment so that the TPM limit and model versions can be set

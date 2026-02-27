@@ -1,6 +1,7 @@
 ---
-title: "Grounding with Bing Search code samples (classic)"
-description: "Find code samples to ground Azure AI Agents using Bing Search results. (classic)"
+title: 'Grounding with Bing Search code samples'
+titleSuffix: Microsoft Foundry
+description: Find code samples to ground Azure AI Agents using Bing Search results.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,13 +14,13 @@ zone_pivot_groups: selection-bing-grounding-code
 ms.custom: azure-ai-agents-code
 ---
 
-# How to use Grounding with Bing Search (classic)
+# How to use Grounding with Bing Search
 
 > [!NOTE]
 > - This document refers to the classic version of the agents API. 
-> - We recommend customers to start with new [Web Search tool (preview)](../../../../foundry/agents/how-to/tools/web-search.md) with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more [here](../../../../foundry/agents/how-to/tools/web-overview.md)
+> - We recommend customers to start with new [Web Search tool (preview)](../../../default/agents/how-to/tools/web-search.md) with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more [here](../../../default/agents/how-to/tools/web-overview.md)
 > 
-> 🔍 [View the new Grounding with Bing Search documentation](../../../../foundry/agents/how-to/tools/bing-tools.md).
+> 🔍 [View the new Grounding with Bing Search documentation](../../../default/agents/how-to/tools/bing-tools.md).
 
 Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
 
@@ -74,6 +75,7 @@ project_client = AIProjectClient(
 )
 ```
 
+
 ## Create an agent with the Grounding with Bing search tool enabled
 
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
@@ -114,6 +116,7 @@ print(f"Created message, ID: {message['id']}")
 ## Create a run and check the output
 
 Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+
 
 ```python
 # Create and process an agent run
@@ -161,6 +164,7 @@ for step in run_steps:
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```
+
 
 ::: zone-end
  
@@ -343,6 +347,7 @@ const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 ```
 
+
 ## Create an agent with the Grounding with Bing search tool enabled
 
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Foundry portal](https://ai.azure.com/?cid=learnDocs).
@@ -382,6 +387,7 @@ console.log(`Created message, message ID : ${message.id}`);
 
 Create a run and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
 
+
 ```javascript
 
 // Create and process agent run in thread with tools
@@ -417,12 +423,14 @@ if (!firstMessage.done && firstMessage.value) {
 
 ::: zone-end
 
+
 ::: zone pivot="rest"
 
 >[!IMPORTANT]
 > 1. This REST API enables developers to invoke the Grounding with Bing Search tool through the Foundry Agent Service. It doesn't send calls to the Grounding with Bing Search API directly. 
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`.
+
 
 ## Create an agent with the Grounding with Bing search tool enabled
 

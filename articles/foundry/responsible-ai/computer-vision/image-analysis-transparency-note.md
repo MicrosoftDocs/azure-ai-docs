@@ -1,7 +1,7 @@
 ---
-title: "Transparency Note and use cases for Image Analysis (temp)"
+title: Transparency Note and use cases for Image Analysis
 titleSuffix: Foundry Tools
-description: "This article explains Image Analysis Responsible AI basics, use cases, and terms. (temp)"
+description: This article explains Image Analysis Responsible AI basics, use cases, and terms.
 ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
@@ -11,7 +11,7 @@ ms.topic: concept-article
 ms.date: 10/15/2025
 ---
 
-# Transparency note: Image Analysis (temp)
+# Transparency note: Image Analysis
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

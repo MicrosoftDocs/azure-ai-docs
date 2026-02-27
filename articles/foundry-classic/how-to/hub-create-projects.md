@@ -1,6 +1,7 @@
 ---
-title: "Create a hub project (classic)"
-description: "Learn how to create a hub-based project in Microsoft Foundry. (classic)"
+title: Create a hub project
+titleSuffix: Microsoft Foundry
+description: Learn how to create a hub-based project in Microsoft Foundry.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
@@ -14,9 +15,7 @@ ms.custom:
 ai-usage: ai-assisted
 ---
 
-# Create a hub project for Microsoft Foundry (classic)
-
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+# Create a hub project for Microsoft Foundry
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
@@ -53,6 +52,7 @@ Choose a method:
 
 ---
 
+
 ## Set up your environment
 
 # [Foundry portal](#tab/portal)
@@ -72,6 +72,7 @@ for hub in hubs:
 ```
 
 If you receive an authentication error, ensure your Azure credentials are configured (run `az login` or set up your credentials via the Azure Identity SDK). If you receive a permission error, check that you have the Contributor role on the subscription or resource group.
+
 
 # [Azure CLI](#tab/cli)
 
@@ -103,6 +104,7 @@ If you receive an authentication error, ensure your Azure credentials are config
 
 ```python
 from azure.ai.ml.entities import Project
+
 
 my_project_name = "myexampleproject"  # Project names must be lowercase, 3–64 chars, alphanumeric with hyphens
 my_display_name = "My Example Project"

@@ -1,7 +1,7 @@
 ---
-title: "Azure Translator in Foundry Tools Transparency Note (temp)"
+title: Azure Translator in Foundry Tools Transparency Note
 titleSuffix: Foundry Tools
-description: "Azure Translator in Foundry Tools Responsible AI Basics, use cases, terms (temp)"
+description: Azure Translator in Foundry Tools Responsible AI Basics, use cases, terms
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 05/12/2024
 ---
 
-# Azure Translator in Foundry Tools Transparency Note (temp)
+# Azure Translator in Foundry Tools Transparency Note
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

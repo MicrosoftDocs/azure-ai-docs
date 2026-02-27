@@ -1,6 +1,7 @@
 ---
-title: "How to use the Computer Use Tool (classic)"
-description: "Find code samples and instructions for using the Computer Use model in the Foundry Agent Service. (classic)"
+title: 'How to use the Computer Use Tool'
+titleSuffix: Microsoft Foundry
+description: Find code samples and instructions for using the Computer Use model in the Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -11,12 +12,15 @@ author: alvinashcraft
 ms.author: aashcraft
 ---
 
-# How to use the Computer Use Tool (classic)
+# How to use the Computer Use Tool
 
 > [!NOTE]
 > This document refers to the classic version of the agents API. 
 >
-> 🔍 [View the new Computer Use documentation](../../../../foundry/agents/how-to/tools/computer-use.md).
+> 🔍 [View the new Computer Use documentation](../../../default/agents/how-to/tools/computer-use.md?view=foundry&preserve-view=true).
+
+
+
 
 Use this article to learn how to use the Computer Use tool with the Azure AI Projects SDK.
 

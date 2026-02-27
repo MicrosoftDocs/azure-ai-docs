@@ -1,7 +1,7 @@
 ---
-title: "Guidance for integration and responsible use with Custom Vision (temp)"
+title: Guidance for integration and responsible use with Custom Vision
 titleSuffix: Foundry Tools
-description: "Guidance for how to deploy Custom Vision responsibly, based on the knowledge and understanding from the team that created this product. (temp)"
+description: Guidance for how to deploy Custom Vision responsibly, based on the knowledge and understanding from the team that created this product.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: best-practice
 ms.date: 07/07/2021
 ---
 
-# Guidance for integration and responsible use with Custom Vision (temp)
+# Guidance for integration and responsible use with Custom Vision
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

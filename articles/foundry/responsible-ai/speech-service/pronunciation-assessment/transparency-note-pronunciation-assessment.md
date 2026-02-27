@@ -1,7 +1,7 @@
 ---
-title: "Transparency note and use cases for Pronunciation Assessment (temp)"
+title: Transparency note and use cases for Pronunciation Assessment
 titleSuffix: Foundry Tools
-description: "This Transparency Note discusses Pronunciation Assessment and the key considerations for making use of this technology responsibly. (temp)"
+description: This Transparency Note discusses Pronunciation Assessment and the key considerations for making use of this technology responsibly.
 author: PatrickFarley
 ms.author: pafarley 
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.date: 05/17/2021
 ---
 
-# Transparency Note (temp)
+# Transparency Note
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 

@@ -1,6 +1,7 @@
 ---
-title: "Vision-enabled chat model concepts (classic)"
-description: "Learn concepts for using images in your AI model chats, with GPT-4 Turbo with Vision and other models. (classic)"
+title: Vision-enabled chat model concepts
+titleSuffix: Azure OpenAI
+description: Learn concepts for using images in your AI model chats, with GPT-4 Turbo with Vision and other models.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
@@ -8,13 +9,15 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article 
 ms.date: 01/30/2026
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
+
 
 ---
 
-# Vision-enabled chat model concepts (classic)
+# Vision-enabled chat model concepts
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
@@ -23,6 +26,7 @@ To try out vision-enabled chat models, see the [quickstart](/azure/ai-foundry/op
 ## Vision-enabled chats
 
 The vision-enabled models answer general questions about what's present in the images you upload.
+
 
 ## Input limitations
 
@@ -46,6 +50,7 @@ Base Pricing for GPT-4 Turbo with Vision is:
 - Output: $0.03 per 1000 tokens
 
 See the [Tokens section of the overview](/azure/ai-foundry/openai/overview#tokens) for information on how text and images translate to tokens.
+
 
 ### Example image price calculation
 

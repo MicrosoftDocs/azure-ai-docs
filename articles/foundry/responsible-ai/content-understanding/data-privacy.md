@@ -1,7 +1,7 @@
 ---
-title: "Data, privacy, and security for Content Understanding (temp)"
+title: Data, privacy, and security for Content Understanding
 titleSuffix: Foundry Tools
-description: "This document details issues for data, privacy, and security for Content Understanding. (temp)"
+description: This document details issues for data, privacy, and security for Content Understanding.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
@@ -11,7 +11,7 @@ ms.date: 11/17/2024
 ai-usage: ai-assisted
 ---
 
-# Data, privacy, and security for Content Understanding (temp) 
+# Data, privacy, and security for Content Understanding 
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 

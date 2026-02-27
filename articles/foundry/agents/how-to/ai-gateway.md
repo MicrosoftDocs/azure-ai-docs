@@ -1,6 +1,7 @@
 ---
-title: "Connect an AI gateway to Foundry Agent Service (preview) (temp)"
-description: "Connect and use models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service. (temp)"
+title: Connect an AI gateway to Foundry Agent Service (preview)
+titleSuffix: Microsoft Foundry
+description: "Connect and use models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
 ms.date: 02/17/2026
@@ -10,7 +11,7 @@ ms.topic: how-to
 ai-usage: ai-assisted
 ---
 
-# Connect an AI gateway to Foundry Agent Service (preview) (temp)
+# Connect an AI gateway to Foundry Agent Service (preview)
 
 Foundry Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
@@ -31,10 +32,10 @@ In this article, you create a gateway connection to your AI model endpoint, depl
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-- A [Microsoft Foundry project](../../how-to/create-projects.md).
+- A [Microsoft Foundry project](../../../how-to/create-projects.md).
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.67 or later.
 - [Python 3.10 or later](https://www.python.org/downloads/).
-- The `azure-ai-projects` SDK package (version 2.0.0b3 or later). For installation steps, see the [quickstart](../../quickstarts/get-started-code.md).
+- The `azure-ai-projects` SDK package (version 2.0.0b3 or later). For installation steps, see the [quickstart](../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
 - Access credentials for your enterprise AI gateway (for example, an API Management subscription key or an API key for another non-Azure AI model gateway).
 
 ### Required permissions
@@ -165,9 +166,9 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 
 ## Related content
 
-- [Foundry Agent Service overview](../../agents/overview.md)
-- [Agent environment setup](../../agents/environment-setup.md)
-- [Create a Foundry project](../../how-to/create-projects.md)
+- [Foundry Agent Service overview](../../../agents/overview.md)
+- [Agent environment setup](../../../agents/environment-setup.md)
+- [Create a Foundry project](../../../how-to/create-projects.md)
 - [Agent SDK samples on GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents)
 - [APIM and model gateway integration guide](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
 - [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal)

@@ -1,6 +1,7 @@
 ---
-title: "How to use Logic Apps with Foundry Agent Service (classic)"
-description: "Learn how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails. (classic)"
+title: 'How to use Logic Apps with Foundry Agent Service'
+titleSuffix: Microsoft Foundry
+description: Learn how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,7 +14,7 @@ zone_pivot_groups: selection-logic-apps
 ms.custom: azure-ai-agents
 ---
 
-# How to use Logic Apps with Foundry Agent Service (classic)
+# How to use Logic Apps with Foundry Agent Service
 
 [!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
 
@@ -30,6 +31,7 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
    - `resource_group_name`: The name of your resource group.
 
 :::zone pivot="portal"
+
 
 ## Add a Logic Apps workflow to an agent using the Microsoft Foundry portal
 
@@ -51,6 +53,7 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
 
     :::image type="content" source="../../media/tools/add-logic-apps.png" alt-text="A screenshot showing the screen to add Logic Apps." lightbox="../../media/tools/add-logic-apps.png":::
 
+
 :::zone-end
 
 :::zone pivot="python"
@@ -58,6 +61,7 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
 ## Create a project client
 
 Create a client object to connect to your AI project and other resources.
+
 
 ```python
 import os

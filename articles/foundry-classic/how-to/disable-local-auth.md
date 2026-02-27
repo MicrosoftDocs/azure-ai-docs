@@ -1,6 +1,7 @@
 ---
-title: "Disable Shared Key Access to the Hub Storage Account (classic)"
-description: "Disable shared-key access to the default storage account used by your Microsoft Foundry hub and projects. (classic)"
+title: Disable Shared Key Access to the Hub Storage Account
+titleSuffix: Microsoft Foundry
+description: Disable shared-key access to the default storage account used by your Microsoft Foundry hub and projects.
 ai-usage: ai-assisted
 ms.author: jburchel 
 author: jonburchel 
@@ -14,12 +15,12 @@ ms.reviewer: meerakurup
 #customer intent: As an admin, I want to disable shared-key access to my resources to improve security.
 ---
 
-# Disable shared-key access for your hub's storage account (preview) (classic)
+# Disable shared-key access for your hub's storage account (preview)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 > [!NOTE]
-> The information in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-foundry.md#types-of-projects).
+> The information in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-foundry.md?view=foundry-classic&preserve-view=true#types-of-projects).
 
 A [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub defaults to use a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 

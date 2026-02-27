@@ -1,6 +1,7 @@
 ---
-title: "Quickstart - Create a new Foundry Agent Service project (classic)"
-description: "Use this guide to start using Foundry Agent Service. (classic)"
+title: Quickstart - Create a new Foundry Agent Service project
+titleSuffix: Microsoft Foundry
+description: Use this guide to start using Foundry Agent Service.
 author: aahill
 ms.author: aahi
 manager: nitinme
@@ -14,12 +15,12 @@ ms.custom:
 zone_pivot_groups: agents-quickstart
 ---
 
-# Quickstart: Create a new agent (classic)
+# Quickstart: Create a new agent
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 > [!NOTE]
-> This quickstart is for the previous version of agents. See the [**quickstart for Microsoft Foundry**](../quickstarts/get-started-code.md) to use the new version of the API.
+> This quickstart is for the previous version of agents. See the [**quickstart for Microsoft Foundry**](../quickstarts/get-started-code.md?view=foundry&preserve-view=true) to use the new version of the API.
 
 Foundry Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 

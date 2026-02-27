@@ -1,6 +1,7 @@
 ---
-title: "Evaluation Cluster Analysis (temp)" 
-description: "Learn how to run and interact with an evaluation cluster analysis. (temp)" 
+title: Evaluation Cluster Analysis 
+titleSuffix: Microsoft Foundry 
+description: Learn how to run and interact with an evaluation cluster analysis. 
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 02/25/2026
@@ -10,9 +11,9 @@ author: lgayhardt
 ai-usage: ai-assisted 
 ---
 
-# Evaluation cluster analysis (preview) (temp)
+# Evaluation cluster analysis (preview)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 After you run one or more evaluation runs, you can generate an evaluation cluster analysis to understand your evaluation results. This analysis provides an intuitive way to identify the top patterns and errors in your evaluation runs, along with recommended next steps to improve evaluator scores.
 
@@ -20,8 +21,8 @@ This article explains how to generate and interact with an evaluation cluster an
 
 ## Prerequisites
 
-- A [Foundry project](../../how-to/create-projects.md).
-- One or more [completed evaluation runs](../../how-to/develop/cloud-evaluation.md).
+- A [Foundry project](../../../how-to/create-projects.md).
+- One or more [completed evaluation runs](../../../how-to/develop/cloud-evaluation.md).
 
 ## Generate an evaluation cluster analysis
 
@@ -135,4 +136,4 @@ Use the insights discovered here to:
 
 ## Related content
 
-- [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
+- [See evaluation results in the Foundry portal](../../../how-to/evaluate-results.md?view=foundry&preserve-view=true)
