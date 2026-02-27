@@ -1,0 +1,171 @@
+### YamlMime:Landing
+
+title: Microsoft Foundry Classic documentation
+summary: Use Microsoft Foundry (classic) for legacy hub-based project workflows and management of resources outside a project. For net-new implementations, use Microsoft Foundry (new) for the latest project experience and capabilities.
+
+metadata:
+  title: Microsoft Foundry Classic documentation
+  description: Use Microsoft Foundry (classic) for legacy hub-based project workflows and management of resources outside a project. For net-new implementations, use Microsoft Foundry (new) for the latest project experience and capabilities.
+  author: sdgilley
+  ms.author: sgilley
+  manager: mcleans
+  ms.date: 02/11/2026
+  ms.service: azure-ai-foundry
+  ms.topic: landing-page
+  ms.custom:
+    - build-2025
+    - build-aifnd
+
+landingContent:
+  - title: Get started
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Microsoft Foundry (classic)?
+            url: ./what-is-foundry.md
+          - text: Explore Microsoft Foundry Models
+            url: ./concepts/foundry-models-overview.md
+          - text: Responsible use of AI
+            url: responsible-use-of-ai-overview.md
+      - linkListType: quickstart
+        links:
+          - text: Quickstart for Foundry 
+            url: ./quickstarts/get-started-code.md
+          - text: Upgrade from GitHub Models
+            url: ./foundry-models/how-to/quickstart-github-models.md
+
+  - title: Microsoft Foundry Models
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Foundry Models sold directly by Azure
+            url: foundry-models/concepts/models-sold-directly-by-azure.md
+          - text: Azure OpenAI in Foundry Models
+            url: ../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md
+          - text: Deployment types
+            url: foundry-models/concepts/deployment-types.md
+      - linkListType: tutorial
+        links:
+          - text: Get started with DeepSeek-R1
+            url: foundry-models/tutorials/get-started-deepseek-r1.md
+          - text: Learn how to fine-tune models
+            url: ./concepts/fine-tuning-overview.md
+
+  - title: Foundry Agent Service
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Orchestrate and host AI agents
+            url: ../ai-services/agents/overview.md
+          - text: AI Red Teaming Agent (preview)
+            url: ./concepts/ai-red-teaming-agent.md
+      - linkListType: quickstart
+        links:
+          - text: Create a custom AI agent
+            url: ../ai-services/agents/quickstart.md
+          - text: Azure AI app template for agents
+            url: /azure/developer/ai/get-started-multi-agents
+
+  - title: Protect and govern
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Trustworthy AI
+            url: responsible-use-of-ai-overview.md
+          - text: What is Content Safety?
+            url: ../ai-services/content-safety/overview.md
+      - linkListType: how-to-guide
+        links:
+          - text: Trace your application
+            url: ./how-to/develop/trace-application.md
+          - text: Evaluate agentic workflows
+            url: ./how-to/develop/agent-evaluate-sdk.md
+          - text: Monitor your generative AI applications
+            url: ./how-to/monitor-applications.md
+
+  - title: Foundry Tools
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: Speech
+            url: ../ai-services/speech-service/index.yml
+          - text: Vision
+            url: ../ai-services/computer-vision/index.yml
+          - text: Translator
+            url: ../ai-services/translator/index.yml
+          - text: Language
+            url: ../ai-services/language-service/index.yml
+          - text: Document Intelligence
+            url: ../ai-services/document-intelligence/index.yml
+          - text: Content Understanding
+            url: ../ai-services/content-understanding/index.yml
+
+  - title: Foundry IQ
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: What is Foundry IQ?
+            url: /azure/ai-foundry/agents/concepts/what-is-foundry-iq
+          - text: Frequently asked questions
+            url: /azure/ai-foundry/agents/concepts/foundry-iq-faq
+      - linkListType: how-to-guide
+        links:
+          - text: Connect knowledge base to agents
+            url: /azure/ai-foundry/agents/how-to/foundry-iq-connect
+
+
+  - title: SDKs
+    linkLists:
+      - linkListType: download
+        links:
+          - text: Python SDK
+            url: ./how-to/develop/sdk-overview.md?pivots=programming-language-python
+          - text: C# SDK
+            url: ./how-to/develop/sdk-overview.md?pivots=programming-language-csharp
+          - text: JavaScript SDK
+            url: ./how-to/develop/sdk-overview.md?pivots=programming-language-javascript
+          - text: Java SDK
+            url: ./how-to/develop/sdk-overview.md?pivots=programming-language-java
+
+  - title: Explore Microsoft Foundry
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: Microsoft Foundry (new) documentation 
+            url: ../foundry/index.yml
+          - text: Microsoft Foundry portal
+            url: https://ai.azure.com/
+          - text: Microsoft Foundry SDKs
+            url: ./how-to/develop/sdk-overview.md
+          - text: Microsoft Foundry labs
+            url: https://ai.azure.com/labs
+          - text: GitHub Models
+            url: https://github.com/marketplace/models
+          - text: Visual Studio Code extension
+            url: https://aka.ms/azureaifoundry/vscode
+
+  - title: Azure Machine Learning
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Learn how to train models
+            url: /azure/machine-learning/concept-train-machine-learning-model
+          - text: Orchestrate workflows with pipelines
+            url: /azure/machine-learning/concept-ml-pipelines
+          - text: What is automated machine learning (AutoML)?
+            url: /azure/machine-learning/concept-automated-ml
+  
+  - title: Training & certification
+    linkLists:
+      - linkListType: learn
+        links:
+          - text: AI learning and community hub
+            url: /ai/
+          - text: Develop generative AI apps in Microsoft Foundry
+            url: /training/paths/create-custom-copilots-ai-studio/
+          - text: Identify principles and practices for responsible AI
+            url: /training/paths/responsible-ai-business-principles/
+          - text: AI Learning paths and modules
+            url: /training/browse/?resource_type=learning%20path&expanded=data-ai&subjects=artificial-intelligence
+          - text: AI Engineer career path
+            url: /training/career-paths/ai-engineer

@@ -205,7 +205,7 @@ Standard billing is available only to users whose Azure subscription belongs to 
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
-[!INCLUDE [content-safety-serverless-models](../ai-foundry/includes/content-safety-serverless-models.md)]
+[!INCLUDE [content-safety-serverless-models](../foundry-classic/includes/content-safety-serverless-models.md)]
 
 ### Network isolation for models deployed via standard deployments
 

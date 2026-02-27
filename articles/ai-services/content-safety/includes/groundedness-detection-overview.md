@@ -1,11 +1,11 @@
 ---
 title: "Groundedness detection overview"
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: include
 ms.date: 02/18/2026
-ms.author: pafarley
+ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 

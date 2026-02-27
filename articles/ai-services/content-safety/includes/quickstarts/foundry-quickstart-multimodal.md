@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Analyze multimodal content with the AI Foundry portal"
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 07/28/2025
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 ## Prerequisites

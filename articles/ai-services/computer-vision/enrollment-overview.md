@@ -16,7 +16,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 # Best practices for adding users to a Face service
 
-In order to use the Azure AI Face API for face verification or identification, you need to enroll faces into a **LargePersonGroup** or similar [data structure](/azure/ai-services/computer-vision/concept-face-recognition-data-structures). This deep-dive demonstrates best practices for gathering meaningful consent from users and example logic to create high-quality enrollments that optimize recognition accuracy. 
+In order to use the Azure Face API for face verification or identification, you need to enroll faces into a **LargePersonGroup** or similar [data structure](/azure/ai-services/computer-vision/concept-face-recognition-data-structures). This deep-dive demonstrates best practices for gathering meaningful consent from users and example logic to create high-quality enrollments that optimize recognition accuracy. 
 
 ## Meaningful consent 
 

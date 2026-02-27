@@ -20,7 +20,7 @@ In this quickstart, you try real-time speech to text in [Microsoft Foundry](http
 
 #### [Foundry (new) portal](#tab/new-foundry)
 
-1. [!INCLUDE [foundry-sign-in](../../../../../ai-foundry/default/includes/foundry-sign-in.md)]
+1. [!INCLUDE [foundry-sign-in](../../../../../foundry/includes/foundry-sign-in.md)]
 1. Select **Build** from the top right menu.
 1. Select **Models** on the left pane. 
 1. The **AI Services** tab shows the Foundry models that can be used out of the box in the Foundry portal. Select **Azure Speech - Speech to text** to open the Speech to Text playground.
@@ -32,11 +32,11 @@ In this quickstart, you try real-time speech to text in [Microsoft Foundry](http
 ## Other Foundry (new) features
 
 
-[!INCLUDE [speech-features-foundry](../../../../../ai-foundry/default/includes/speech-features-foundry.md)]
+[!INCLUDE [speech-features-foundry](../../../../../foundry/includes/speech-features-foundry.md)]
 
 #### [Foundry (classic) portal](#tab/classic-foundry)
 
-1. [!INCLUDE [classic-sign-in](../../../../../ai-foundry/includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../../../foundry-classic/includes/classic-sign-in.md)]
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
     :::image type="content" source="../../../../../ai-services/media/ai-foundry/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="../../../../../ai-services/media/ai-foundry/azure-ai-services-playgrounds.png":::

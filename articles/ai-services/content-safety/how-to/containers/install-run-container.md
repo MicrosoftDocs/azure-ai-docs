@@ -2,12 +2,12 @@
 title: Install and run content safety containers with Docker - Content Safety service
 titleSuffix: Azure AI Foundry Tools
 description: Use the content safety containers with Docker to perform content safety check on-premises.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ms.date: 09/16/2025
-ms.author: pafarley
+ms.author: ssalgado
 keywords: on-premises, Docker, container
 ---
 

@@ -3,12 +3,12 @@ title: "Protected material detection in Azure AI Content Safety"
 titleSuffix: Azure AI services
 description: Learn about Protected material detection and the related flags that the Azure AI Content Safety service returns.
 services: cognitive-services
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: concept-article
 ms.date: 09/02/2025
-ms.author: pafarley
+ms.author: ssalgado
 keywords: 
 ---
 

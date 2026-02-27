@@ -1,10 +1,10 @@
 ---
 title: "Prompt Shield Attack Info"
 description: "Details about the types of input attacks detected by Prompt Shields and their classifications."
-author: PatrickFarley
+author: ssalgadodev
 ms.date: 11/21/2025
 ms.topic: include
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 
