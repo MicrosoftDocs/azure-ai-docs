@@ -48,7 +48,7 @@ We provide SDKs in multiple languages to simplify integration with your frontend
 > Each frontend SDK requires access to a gated asset to successfully compile. See the following instructions to set up this access.
 
 For Swift iOS:
-- Artifacts: [Azure AI Face UI SDK for iOS](https://github.com/Azure/AzureAIVisionFaceUI)
+- Artifacts: [Azure Face UI SDK for iOS](https://github.com/Azure/AzureAIVisionFaceUI)
 - API reference: [AzureAIVisionFaceUI Reference](https://azure.github.io/azure-sdk-for-ios/AzureAIVisionFaceUI/index.html)
 - Sample: [iOS sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme) 
 
@@ -63,7 +63,7 @@ For JavaScript Web:
 - Sample: [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
 - Framework Support: Works with popular frameworks such as React (including Next.js), Vue.js, and Angular.
 
-Once integrated into your frontend application, the SDK starts the camera, guides the user to adjust their position, composes the liveness payload, and sends it to the Azure AI Face service for processing.
+Once integrated into your frontend application, the SDK starts the camera, guides the user to adjust their position, composes the liveness payload, and sends it to the Azure Face service for processing.
 
 Monitor the repository’s [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) for new SDK version updates and enable automated dependency update alerts—such as GitHub Dependabot (for GitHub repos) or Renovate (GitHub, GitLab, Bitbucket, Azure Repos).
 
@@ -71,11 +71,11 @@ Monitor the repository’s [Releases section](https://github.com/Azure-Samples/a
 
 The following steps describe the liveness orchestration process:  
 
-:::image type="content" source="../media/liveness/liveness-diagram.jpg" alt-text="Diagram of the liveness workflow in Azure AI Face." lightbox="../media/liveness/liveness-diagram.jpg":::
+:::image type="content" source="../media/liveness/liveness-diagram.jpg" alt-text="Diagram of the liveness workflow in Azure Face." lightbox="../media/liveness/liveness-diagram.jpg":::
 
 1. The frontend application starts the liveness check and notifies the app server. 
 
-1. The app server creates a new liveness session with Azure AI Face Service. The service creates a liveness session and responds with a session authorization token. For more information about each request parameter involved in creating a liveness session, see [Liveness Create Session Operation](https://aka.ms/face-api-reference-createlivenesssession).
+1. The app server creates a new liveness session with Azure Face Service. The service creates a liveness session and responds with a session authorization token. For more information about each request parameter involved in creating a liveness session, see [Liveness Create Session Operation](https://aka.ms/face-api-reference-createlivenesssession).
 
     #### [C#](#tab/csharp)
     ```csharp
@@ -531,7 +531,7 @@ The following steps describe the liveness orchestration process:
 
 Combining face verification with liveness detection enables biometric verification of a particular person of interest with an added guarantee that the person is physically present in the system. 
 
-:::image type="content" source="../media/liveness/liveness-verify-diagram.jpg" alt-text="Diagram of the liveness-with-face-verification workflow of Azure AI Face." lightbox="../media/liveness/liveness-verify-diagram.jpg":::
+:::image type="content" source="../media/liveness/liveness-verify-diagram.jpg" alt-text="Diagram of the liveness-with-face-verification workflow of Azure Face." lightbox="../media/liveness/liveness-verify-diagram.jpg":::
 
 Integrating liveness detection with verification involves two parts:
 

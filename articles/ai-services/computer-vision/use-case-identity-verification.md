@@ -1,7 +1,7 @@
 ---
 title: "Overview: Verification with Face"
 titleSuffix: Foundry Tools
-description: Provide the best-in-class face verification experience in your business solution using Azure AI Face service. You can verify a user's face against a government-issued ID card like a passport or driver's license.
+description: Provide the best-in-class face verification experience in your business solution using Azure Face service. You can verify a user's face against a government-issued ID card like a passport or driver's license.
 author: PatrickFarley
 manager: nitinme
 
@@ -15,7 +15,7 @@ ms.author: pafarley
 
 # Overview: Verification with Face 
 
-Azure AI Face service lets you provide the best-in-class face verification experience in your business solution. Use verification to grant access to digital or physical services or recover an account. For example, you can verify a user's face against a government-issued ID card like a passport or driver's license. Specific access scenarios include opening a new account, verifying a user, or proctoring an online assessment. Verification can be done when a person is onboarded to your service and repeated when they access a digital or physical service.
+Azure Face service lets you provide the best-in-class face verification experience in your business solution. Use verification to grant access to digital or physical services or recover an account. For example, you can verify a user's face against a government-issued ID card like a passport or driver's license. Specific access scenarios include opening a new account, verifying a user, or proctoring an online assessment. Verification can be done when a person is onboarded to your service and repeated when they access a digital or physical service.
 
 :::image type="content" source="media/use-cases/face-recognition.png" alt-text="Photo of a person holding a phone up to his face to take a picture":::
 

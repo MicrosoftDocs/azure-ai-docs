@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 01/16/2026
+ms.date: 02/26/2026
 ms.custom:
   - references_regions
 ---
@@ -90,7 +90,7 @@ Configure the [required roles](#required-roles) and [conditional roles](#conditi
 
 Azure AI Search and Azure Storage are required for all multimodal search scenarios.
 
-### [**Azure AI Search**](#tab/search-perms)
+### [**Azure AI Search**](#tab/search)
 
 Azure AI Search provides the multimodal pipeline. Configure access for yourself and your search service to read data, run the pipeline, and interact with other Azure resources.
 
@@ -108,7 +108,7 @@ On your Azure AI Search service:
 
    + **Search Index Data Reader**
 
-### [**Azure Storage**](#tab/storage-perms)
+### [**Azure Storage**](#tab/storage)
 
 Azure Storage is both the data source for your documents and the destination for extracted images. Your search service requires access to the storage containers you create in the next section.
 
@@ -122,15 +122,15 @@ On your Azure Storage account:
 
 The following tabs cover all wizard-compatible resources for multimodal search. Select only the tabs that apply to your chosen [extraction method](#supported-extraction-methods) and [embedding method](#supported-embedding-methods).
 
-### [**Azure AI multi-service**](#tab/multi-service-perms)
+### [**Azure AI multi-service**](#tab/multi-service)
 
-A multi-service account provides access to multiple Azure AI services, including [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview) for content extraction and [Azure Vision](/azure/ai-services/computer-vision/overview) for content embedding. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
+A multi-service account provides access to multiple Azure services, including [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview) for content extraction and [Azure Vision](/azure/ai-services/computer-vision/overview) for content embedding. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
 On your multi-service account:
 
 + Assign **Cognitive Services User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-### [**Microsoft Foundry**](#tab/foundry-perms)
+### [**Microsoft Foundry**](#tab/foundry)
 
 > [!NOTE]
 > If you're using a hub-based project, skip this step. Hub-based projects support API keys instead of managed identities for authentication.
@@ -141,7 +141,7 @@ On the parent resource of your Microsoft Foundry project:
 
 + Assign **Azure AI Project Manager** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-### [**Azure OpenAI**](#tab/openai-perms)
+### [**Azure OpenAI**](#tab/openai)
 
 Azure OpenAI provides LLMs for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
 
@@ -222,9 +222,9 @@ The default method calls the [Document Extraction skill](cognitive-search-skill-
 
 To use the Document Extraction skill:
 
-1. On the **Content extraction** page, select **Default**.
+1. On the **Content extraction** page, leave **Default** selected.
 
-   :::image type="content" source="media/search-get-started-portal-images/extract-your-content-doc-extraction.png" alt-text="Screenshot of the wizard page with the default method selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-your-content-doc-extraction.png":::
+   :::image type="content" source="media/search-get-started-portal-images/extract-content-default.png" alt-text="Screenshot of the wizard page with the default method selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-content-default.png":::
 
 1. Select **Next**.
 
@@ -234,9 +234,9 @@ Your multi-service account provides access to [Azure Document Intelligence](/azu
 
 To use the Document Layout skill:
 
-1. On the **Content extraction** page, select **AI Document Intelligence**.
+1. On the **Content extraction** page, select **Azure Document Intelligence in Foundry Tools**.
 
-   :::image type="content" source="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png" alt-text="Screenshot of the wizard page with Azure Document Intelligence selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png":::
+   :::image type="content" source="media/search-get-started-portal-images/extract-content-doc-intelligence.png" alt-text="Screenshot of the wizard page with Azure Document Intelligence selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-content-doc-intelligence.png":::
 
 1. Select your Azure subscription and multi-service account.
 
@@ -244,7 +244,7 @@ To use the Document Layout skill:
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
-   :::image type="content" source="media/search-get-started-portal-images/doc-intelligence-options.png" alt-text="Screenshot of the wizard page with configuration options for Azure Document Intelligence selected." border="true" lightbox="media/search-get-started-portal-images/doc-intelligence-options.png":::
+   :::image type="content" source="media/search-get-started-portal-images/extract-content-doc-intelligence-options.png" alt-text="Screenshot of the wizard page with configuration options for Azure Document Intelligence selected." border="true" lightbox="media/search-get-started-portal-images/extract-content-doc-intelligence-options.png":::
 
 1. Select **Next**.
 
@@ -270,7 +270,7 @@ To use the skills for image verbalization:
 
 1. On the **Image Verbalization** tab:
 
-   1. For the kind, select your LLM provider: **Azure OpenAI** or **Azure AI Foundry**.
+   1. For the kind, select your LLM provider: **Azure OpenAI** or **Microsoft Foundry**.
 
    1. Select your Azure subscription, resource, and LLM deployment.
 
@@ -282,7 +282,7 @@ To use the skills for image verbalization:
 
 1. On the **Text Vectorization** tab:
 
-   1. For the kind, select your model provider: **Azure OpenAI**, **Azure AI Foundry**, or **AI Vision vectorization**.
+   1. For the kind, select your model provider: **Azure OpenAI**, **Microsoft Foundry**, or **Azure Vision in Foundry Tools**.
 
    1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
@@ -306,7 +306,7 @@ To use the skills for multimodal embeddings:
 
    :::image type="content" source="media/search-get-started-portal-images/multimodal-embedding-tile.png" alt-text="Screenshot of the Multimodal Embedding tile in the wizard." border="true" lightbox="media/search-get-started-portal-images/multimodal-embedding-tile.png":::
 
-1. For the kind, select your model provider: **Azure AI Foundry** or **AI Vision vectorization**.
+1. For the kind, select your model provider: **Microsoft Foundry** or **Azure Vision in Foundry Tools**.
 
 1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
@@ -397,23 +397,16 @@ To finish the wizard:
 
 1. Select **Create**.
 
+### Wizard-created objects
+
 When the wizard completes the configuration, it creates the following objects:
 
-+ An indexer that drives the indexing pipeline.
-
-+ A data source connection to Azure Blob Storage.
-
-+ An index with text fields, vector fields, vectorizers, vector profiles, and vector algorithms. During the wizard workflow, you can't modify the default index. Indexes conform to the [2024-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) so that you can use preview features.
-
-+ A skillset with the following skills:
-
-  + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) extracts text and images from source documents. The [Text Split skill](cognitive-search-skill-textsplit.md) accompanies the Document Extraction skill for data chunking, while the Document Layout skill has built-in chunking.
-
-  + The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images in natural language. If you're using direct multimodal embeddings, this skill is absent.
-
-  + The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called once for text vectorization and once for image vectorization.
-
-  + The [Shaper skill](cognitive-search-skill-shaper.md) enriches the output with metadata and creates new images with contextual information.
+| Object | Description |
+|--|--|
+| Data source | Represents a connection to Azure Blob Storage. |
+| Index | Contains text fields, vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) so that you can use preview features. |
+| Skillset | Contains the following skills:<br><ul><li>The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) extracts text and images from source documents. The [Text Split skill](cognitive-search-skill-textsplit.md) accompanies the Document Extraction skill for data chunking, while the Document Layout skill has built-in chunking.</li><li>The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images in natural language. If you're using direct multimodal embeddings, this skill is absent.</li><li>The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called once for text vectorization and once for image vectorization.</li><li>The [Shaper skill](cognitive-search-skill-shaper.md) enriches the output with metadata and creates new images with contextual information.</li></ul> |
+| Indexer | Drives the indexing pipeline, with field mappings and output field mappings (if applicable). |
 
 > [!TIP]
 > Wizard-created objects have configurable JSON definitions. To view or modify these definitions, select **Search management** from the left pane, where you can view your indexes, indexers, data sources, and skillsets.
@@ -473,9 +466,4 @@ To query your multimodal index:
 
 ## Next steps
 
-This quickstart introduced you to the **Import data (new)** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
-
-+ [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
-+ [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
-+ [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md)
-+ [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)
+This quickstart introduced you to the **Import data (new)** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the [Multimodal tutorial](tutorial-multimodal.md).

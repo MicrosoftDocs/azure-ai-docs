@@ -246,7 +246,7 @@ PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegro
 
 ## Configure confidential computing
 
-[Confidential computing](search-security-overview.md#data-in-use) is an optional compute type for data-in-use protection. When configured, your search service is deployed on confidential VMs (DCasv5 or DCesv5) instead of standard VMs. This compute type also incurs a 10% surcharge for billable tiers. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/).
+[Confidential computing](search-security-best-practices.md#optional-enable-confidential-computing) is an optional compute type for data-in-use protection. When configured, your search service is deployed on confidential VMs (DCasv5 or DCesv5) instead of standard VMs. This compute type also incurs a 10% surcharge for billable tiers. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/).
 
 For daily usage, confidential computing isn't necessary. We only recommend this compute type for stringent regulatory, compliance, or security requirements. For more information, see [Confidential computing use cases](/azure/confidential-computing/use-cases-scenarios).
 

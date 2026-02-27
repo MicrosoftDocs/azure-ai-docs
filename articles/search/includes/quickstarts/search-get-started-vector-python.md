@@ -78,7 +78,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 ## Run the code
 
-1. Run the `Install packages and set variables` cell to load environment variables and verify the package installation.
+1. Run the `Install packages and set variables` cell to install the required packages and load environment variables.
 
 1. Run the remaining cells sequentially to create a vector index, upload documents, and run different types of vector queries.
 

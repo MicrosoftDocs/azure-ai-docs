@@ -1,7 +1,7 @@
 ---
 title: "Example: Add faces to a PersonGroup - Face"
 titleSuffix: Foundry Tools
-description: This guide demonstrates how to add a large number of persons and faces to a PersonGroup object with the Azure AI Face service.
+description: This guide demonstrates how to add a large number of persons and faces to a PersonGroup object with the Azure Face service.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
