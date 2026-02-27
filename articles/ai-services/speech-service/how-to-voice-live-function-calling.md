@@ -1255,6 +1255,6 @@ public sealed class FunctionCallingClient
 
 ## Related content
 
-- Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
-- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
-- See the [Voice live API reference](./voice-live-api-reference.md)
+- Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
+- Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
+- See the [Voice Live API reference](./voice-live-api-reference.md)
