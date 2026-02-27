@@ -18,9 +18,19 @@ ms.author: pafarley
 **Affected platforms:** Linux, Android  
 **Affected SDK versions:** All versions prior to 1.48.2
 
+## Prerequisites
+
+Before you take action, confirm whether this issue applies to you:
+
+- **Platform:** You run the Speech SDK on Linux or Android.
+- **SDK version:** You use a version prior to 1.48.2. Check the version of the Speech SDK package in your dependency manager (for example, NuGet, pip, Maven, or your C++/Go build configuration).
+- **CRL checking:** CRL checking is enabled (the default in versions prior to 1.48.1).
+
+If all three conditions apply, follow the steps in [Required action](#required-action).
+
 ## Summary
 
-The previous design of the certificate revocation list (CRL) caching feature in Azure AI Speech SDK versions prior to 1.48.2 can cause connection failures to the Azure Speech Service on Linux and Android platforms. This issue is triggered by industry-wide changes to how CRLs are structured. Action is required before July 1, 2026 to avoid service disruption.
+The previous design of the certificate revocation list (CRL) caching feature in Azure AI Speech SDK versions prior to 1.48.2 can cause connection failures to the Azure Speech Service on Linux and Android platforms. All SDK language bindings that use the native OpenSSL layer on these platforms (C#, C++, Java, Python, and Go) are affected. This issue is triggered by industry-wide changes to how CRLs are structured. Action is required before July 1, 2026 to avoid service disruption.
 
 ## Background
 
@@ -57,11 +67,45 @@ SDK version 1.48.2 includes a fix to properly handle partitioned CRLs. SDK versi
 
 Download the latest SDK: [Azure AI Speech SDK setup](quickstarts/setup-platform.md)
 
+After upgrading, verify the fix by monitoring your application logs for the absence of error 44 (`X509_V_ERR_DIFFERENT_CRL_SCOPE`) during connections. If you connect to multiple Azure regions, test cross-region connections to confirm the issue is resolved.
+
 ### Option 2: Disable CRL checking
 
-If you can't upgrade immediately, disable CRL checking in your current SDK version.
+If you can't upgrade immediately, disable CRL checking in your current SDK version. Set the `OPENSSL_DISABLE_CRL_CHECK` property to `"true"` on your `SpeechConfig` object:
 
-For configuration instructions, see [How to configure OpenSSL for Linux](how-to-configure-openssl-linux.md).
+#### [C#](#tab/csharp)
+
+```csharp
+config.SetProperty("OPENSSL_DISABLE_CRL_CHECK", "true");
+```
+
+#### [C++](#tab/cpp)
+
+```cpp
+config->SetProperty("OPENSSL_DISABLE_CRL_CHECK", "true");
+```
+
+#### [Java](#tab/java)
+
+```java
+config.setProperty("OPENSSL_DISABLE_CRL_CHECK", "true");
+```
+
+#### [Python](#tab/python)
+
+```python
+speech_config.set_property_by_name("OPENSSL_DISABLE_CRL_CHECK", "true")
+```
+
+#### [Go](#tab/go)
+
+```go
+speechConfig.properties.SetPropertyByString("OPENSSL_DISABLE_CRL_CHECK", "true")
+```
+
+---
+
+For more configuration options, see [How to configure OpenSSL for Linux](how-to-configure-openssl-linux.md).
 
 ## Risks of not taking action
 
@@ -104,7 +148,7 @@ If you see these errors and are:
 
 Then you're likely affected by this issue.
 
-## Reducing impact duration: Disable disk caching
+## Temporary workaround: Clear the CRL disk cache
 
 If you can't upgrade before the deadline or disable CRL checking, you can reduce the duration of impact by **disabling the CRL disk cache**. This limits the problem to in-memory caching only, meaning:
 
@@ -162,3 +206,10 @@ If you have questions or need assistance:
 - **Documentation:** [Azure AI Speech Service documentation](/azure/ai-services/speech-service/)
 - **Support:** Open a support ticket through the Azure portal
 - **SDK issues:** [GitHub - Azure Cognitive Services Speech SDK](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues)
+
+## Related content
+
+- [Speech SDK release notes](releasenotes.md)
+- [How to configure OpenSSL for Linux](how-to-configure-openssl-linux.md)
+- [Azure AI Speech SDK setup](quickstarts/setup-platform.md)
+- [Speech SDK logging](how-to-use-logging.md)
