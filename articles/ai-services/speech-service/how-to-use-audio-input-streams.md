@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
@@ -17,11 +17,11 @@ ms.custom: devx-track-csharp
 
 The Speech SDK provides a way to stream audio into the recognizer as an alternative to microphone or file input.
 
-This guide describes how to use audio input streams. It also describes some of the requirements and limitations of the audio input stream.
+This guide describes how to use an audio input stream. It also describes some of the requirements and limitations of the audio input stream.
 
-See more examples of speech to text recognition with audio input stream on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs).
+See more examples of speech to text recognition with an audio input stream on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs).
 
-## Identify the format of the audio stream
+## Identify the format of the audio input stream
 
 Identify the format of the audio stream. 
 

@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Speech Synthesis Markup Language (SSML) document structure.
 ---
@@ -122,7 +122,7 @@ Here's the syntax for the `speak` element:
 
 The `speak` element must contain at least one [voice element](speech-synthesis-markup-voice.md#use-voice-elements).
 
-### speak examples
+### Speak examples
 
 The supported values for attributes of the `speak` element were [described previously](#speak-root-element). 
 
@@ -186,9 +186,9 @@ Usage of the `mstts:silence` element's attributes are described in the following
 | Attribute | Description | Required or optional |
 | ---------- | ---------- | ---------- |
 | `type` | Specifies where and how to add silence. The following silence types are supported:<br/><ul><li>`Leading` – Extra silence at the beginning of the text. The value that you set is added to the natural silence before the start of text.</li><li>`Leading-exact` – Silence at the beginning of the text. The value is an absolute silence length.</li><li>`Tailing` – Extra silence at the end of text. The value that you set is added to the natural silence after the last word.</li><li>`Tailing-exact` – Silence at the end of the text. The value is an absolute silence length.</li><li>`Sentenceboundary` – Extra silence between adjacent sentences. The actual silence length for this type includes the natural silence after the last word in the previous sentence, the value you set for this type, and the natural silence before the starting word in the next sentence.</li><li>`Sentenceboundary-exact` – Silence between adjacent sentences. The value is an absolute silence length.</li><li>`Comma-exact` – Silence at the comma in half-width or full-width format. The value is an absolute silence length.</li><li>`Semicolon-exact` – Silence at the semicolon in half-width or full-width format. The value is an absolute silence length.</li><li>`Enumerationcomma-exact` – Silence at the enumeration comma in full-width format. The value is an absolute silence length.</li></ul><br/>An absolute silence type (with the `-exact` suffix) replaces any otherwise natural leading or trailing silence. Absolute silence types take precedence over the corresponding non-absolute type. For example, if you set both `Leading` and `Leading-exact` types, the `Leading-exact` type takes effect. The [WordBoundary event](how-to-speech-synthesis.md#subscribe-to-synthesizer-events) takes precedence over punctuation-related silence settings including `Comma-exact`, `Semicolon-exact`, or `Enumerationcomma-exact`. When you use both the `WordBoundary` event and punctuation-related silence settings, the punctuation-related silence settings don't take effect.| Required |
-| `Value`   | The duration of a pause in seconds (such as `2s`) or milliseconds (such as `500ms`). Valid values range from 0 to 20000 milliseconds. If you set a value greater than the supported maximum, the service uses `20000ms`.| Required |
+| `value`   | The duration of a pause in seconds (such as `2s`) or milliseconds (such as `500ms`). Valid values range from 0 to 20000 milliseconds. If you set a value greater than the supported maximum, the service uses `20000ms`.| Required |
 
-###  mstts silence examples
+###  MSTTS silence examples
 
 The supported values for attributes of the `mstts:silence` element were [described previously](#add-silence).
 

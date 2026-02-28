@@ -6,15 +6,16 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 ms.custom: mode-api
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn how to run batch operations with the Speech CLI.
 ---
 
 # Run batch operations with the Speech CLI
 
-Common tasks when using the Speech service, are batch operations. In this article, you learn how to do batch speech to text (speech recognition), batch text to speech (speech synthesis) with the Speech CLI. Specifically, you learn how to:
+Common tasks when using the Speech service are batch operations. In this article, you learn how to do batch speech to text (speech recognition), batch text to speech (speech synthesis) with the Speech CLI. Specifically, you learn how to:
 
 * Run batch speech recognition on a directory of audio files
 * Run batch speech synthesis by iterating over a `.tsv` file
