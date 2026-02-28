@@ -9,12 +9,14 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 10/28/2024
+ms.date: 02/28/2026
 ms.custom:
   - ignite-2023
   - build-2024
   - sfi-image-nochange
+  - dev-focus
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Submit a batch run to evaluate a flow
@@ -72,7 +74,7 @@ To submit a batch run, you select the dataset to test your flow with. You can al
 
    :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-input-mapping.png" alt-text="Screenshot of evaluation input mapping." lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-input-mapping.png":::
 
-1. Some evaluation methods require Large Language Models (LLMs) like GPT-4 or GPT-3, or need other connections to consume credentials or keys. For those methods, you must enter the connection data in the **Connection** section at the bottom of this screen to be able to use the evaluation flow. For more information, see [Set up a connection](get-started-prompt-flow.md#set-up-a-connection).
+1. Some evaluation methods require Large Language Models (LLMs) like GPT-4 or GPT-3.5, or need other connections to consume credentials or keys. For those methods, you must enter the connection data in the **Connection** section at the bottom of this screen to be able to use the evaluation flow. For more information, see [Set up a connection](get-started-prompt-flow.md#set-up-a-connection).
 
    :::image type="content" source="./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-connection.png" alt-text="Screenshot of connection where you can configure the connection for evaluation method. " lightbox = "./media/how-to-bulk-test-evaluate-flow/batch-run-evaluation-connection.png":::
 
@@ -161,17 +163,19 @@ Azure Machine Learning prompt flow provides several built-in evaluation methods 
 | QnA F1 Scores Evaluation | F1 score | Measures the ratio of the number of shared words between the model prediction and the ground truth | No | question, answer, ground truth (context not needed) | In the range [0, 1] |
 | QnA Ada Similarity Evaluation | Ada Similarity | Computes sentence (document) level embeddings using Ada embeddings API for both ground truth and prediction, then computes cosine similarity between them (one floating point number) | Yes | question, answer, ground truth (context not needed) | In the range [0, 1] |
 
+For the latest evaluator options, including NLP-based and safety metrics, see [Built-in evaluators](/azure/ai-foundry/concepts/built-in-evaluators).
+
 ## Improve flow performance
 
 If your run fails, check the output and log data and debug any flow failure. To fix the flow or improve performance, try modifying the flow prompt, system message, flow parameters, or flow logic.
 
 ### Prompt engineering
 
-Prompt construction can be difficult. To learn about prompt construction concepts, see [Overview of prompts](/ai-builder/prompts-overview). To learn how to construct a prompt that can help achieve your goals, see [Prompt engineering techniques](/azure/cognitive-services/openai/concepts/prompt-engineering).
+Prompt construction can be difficult. To learn how to construct a prompt that can help achieve your goals, see [Prompt engineering techniques](/azure/ai-foundry/openai/concepts/prompt-engineering).
 
 ### System message
 
-You can use the system message, sometimes referred to as a metaprompt or [system prompt](/azure/cognitive-services/openai/concepts/advanced-prompt-engineering), to guide an AI system's behavior and improve system performance. To learn how to improve your flow performance with system messages, see [System messages step-by-step authoring](/azure/cognitive-services/openai/concepts/system-message#step-by-step-authoring-best-practices).
+You can use the system message, sometimes referred to as a metaprompt or [system prompt](/azure/ai-foundry/openai/concepts/advanced-prompt-engineering), to guide an AI system's behavior and improve system performance. To learn how to improve your flow performance with system messages, see [System message design](/azure/ai-foundry/openai/concepts/advanced-prompt-engineering) and [Safety system messages](/azure/ai-foundry/openai/concepts/system-message).
 
 ### Golden datasets
 
