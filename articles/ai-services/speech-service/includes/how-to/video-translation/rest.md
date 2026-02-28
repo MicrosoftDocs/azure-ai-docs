@@ -52,7 +52,7 @@ To create a video translation, you need to construct an HTTP PUT request path an
 - Specify `subtitleMaxCharCountPerSegment`: The maximum number of characters allowed per subtitle segment. This is an optional parameter, and you can set it to 30 if you're unsure.
 - Specify `exportSubtitleInVideo`: A boolean value indicating whether to export subtitles in the video. This is an optional parameter, and you can set it to `true` if you want to include subtitles in the video.
 - Specify `autoCreateFirstIteration`: A boolean value indicating whether to automatically create the first iteration when creating a translation. This is recommended for better performance. When set to `true`, the translation process starts immediately without requiring a separate create iteration call.
-- Specify `firstIterationInput`: When `autoCreateFirstIteration` is set to `true`, you can specify the input parameters for the first iteration, such as `subtitleMaxCharCountPerSegment`, `exportSubtitleInVideo`, and `webvttFile`. This is optional.
+- Specify `firstIterationInput`: When `autoCreateFirstIteration` is set to `true`, you can specify the input parameters for the first iteration, such as `enableVideoSpeedAdjustment`, `subtitleFontSize`, and `webvttFile`. This is optional.
 - Specify the `videoFileUrl`: The URL of the video file you want to translate. The video must be in .mp4 format, less than 5 GB, and shorter than 4 hours. You can upload the video to Azure Blob Storage and use the Blob URL. For testing purposes, you can use the sample video file provided by Microsoft at [https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 
 For authentication and authorization, you need to include the following headers and path IDs in your request:
@@ -74,8 +74,8 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" -H "Operati
     "enableLipSync": false,
     "autoCreateFirstIteration": true,
     "firstIterationInput": {
-      "subtitleMaxCharCountPerSegment": 30,
-      "exportSubtitleInVideo": true
+      "enableOcrCorrectionFromSubtitle": true,
+      "subtitleFontSize": 10
     },
     "videoFileUrl": "https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4"
   }
@@ -99,8 +99,8 @@ You should receive a response body in the following format:
     "enableLipSync": false,
     "autoCreateFirstIteration": true,
     "firstIterationInput": {
-      "subtitleMaxCharCountPerSegment": 30,
-      "exportSubtitleInVideo": true
+      "enableOcrCorrectionFromSubtitle": true,
+      "subtitleFontSize": 10
     }
   },
   "status": "NotStarted",
