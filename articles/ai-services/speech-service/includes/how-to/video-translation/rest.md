@@ -27,15 +27,14 @@ The video translation REST API facilitates seamless video translation integratio
 ## Workflow
 
 Here are the steps to get a translated video using the REST API:
-1. [Create a translation object](#step-1-create-a-translation). Check the status of the operation periodically until it reaches `Succeeded` or `Failed`.
-1. [Create an iteration](#step-2-create-an-iteration) to start the translation process. Check the status of the iteration operation periodically until it reaches `Succeeded` or `Failed`.
-1. [Download](#step-3-download-the-translated-video-and-subtitles) the translated video and subtitles.
-1. Optionally, [create additional iterations](#step-4-create-additional-iterations-optional) to improve the translation quality.
+1. [Create a translation and auto-create first iteration](#step-1-create-a-translation-and-auto-create-first-iteration). Check the status of the operation periodically until it reaches `Succeeded` or `Failed`.
+1. [Download](#step-2-download-the-translated-video-and-subtitles) the translated video and subtitles.
+1. Optionally, [create additional iterations](#step-3-create-additional-iterations-optional) to improve the translation quality.
 
-## Step 1: Create a translation
+## Step 1: Create a translation and auto-create first iteration
 
 > [!IMPORTANT]
-> Creating a translation as described in this section doesn't initiate the translation process. You can start translating the video by [creating an iteration](#step-2-create-an-iteration). Translations and iterations created through the REST API aren't synchronized to the portal, and vice versa.
+> When `autoCreateFirstIteration` is set to `true` (recommended), creating a translation automatically initiates the translation process with the first iteration. Translations and iterations created through the REST API aren't synchronized to the portal, and vice versa.
 
 To create a video translation, you need to construct an HTTP PUT request path and body according to the following instructions: 
 
@@ -83,7 +82,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" -H "Operati
 ```
 
 > [!IMPORTANT]
-> If you try to use an existing translation ID with different settings, the API will return an error. The translation ID must be unique for each translation. You can make changes to an existing translation by [creating an iteration](#step-2-create-an-iteration).
+> If you try to use an existing translation ID with different settings, the API will return an error. The translation ID must be unique for each translation. You can make changes to an existing translation by [creating additional iterations](#step-3-create-additional-iterations-optional).
 
 You should receive a response body in the following format:
 
@@ -118,50 +117,7 @@ You should receive a response body in the following format:
 
 You can use the operation ID that you specified and use the [Get operation by operation ID](#get-operation-by-operation-id) API periodically until the returned status is `Succeeded` or `Failed`. This operation allows you to monitor the progress of your creating the iteration process. The status property should progress from `NotStarted` to `Running`, and finally to `Succeeded` or `Failed`. 
 
-## Step 2: Create an iteration
-
-To start translating your video or update an iteration for an existing translation, you need to construct an HTTP PUT request path and body according to the following instructions:
-
-- Set the required input: Include details like `speakerCount`, `subtitleMaxCharCountPerSegment`,`exportSubtitleInVideo`, or `webvttFile`. No subtitles are embedded in the output video by default. When creating an iteration, if you already specified the optional parameters `speakerCount`, `subtitleMaxCharCountPerSegment`, and `exportSubtitleInVideo` during the creation of translation, you don't need to specify them again. The values inherit from translation settings. Once these parameters are defined when creating an iteration, the new values override the original settings.
-- Specify `adjustWebvttAlignment`: When providing a WebVTT file, the system automatically adjusts segment offset and duration for better alignment by default (`true`). Set this property to `false` if you don't want segment timing to change during translation.
-- Optionally, you can specify a WebVTT file with subtitles for your original video. The `webvttFile` input parameter isn't required when creating the first iteration. However, [starting from the second iteration](#step-4-create-additional-iterations-optional), you must specify the `webvttFile` parameter in the iteration process.
-
-For authentication and authorization, you need to include the following headers and path IDs in your request:
-- Set the `Operation-Id` header: The `Operation-Id` must be unique for each operation, such as creating each iteration. Replace `Your-Operation-Id` with a unique ID for this operation.
-- Replace `Your-Translation-Id` in the path. Use the same translation ID that you specified when you [created the translation](#step-1-create-a-translation). The translation ID remains unchanged.
-- Specify a new `iterationId` in the path. The iteration ID must be unique for each operation. Replace `Your-Iteration-Id-1` with an iteration ID of your choice.
-- Replace `YourSpeechResourceKey` with your Speech resource key and replace `YourSpeechResourceRegion` with your Speech resource region. 
-
-```azurecli-interactive
-curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" \
--H "Operation-Id: Your-Operation-Id" \
--H "Content-Type: application/json" \
--d '{
-  "input": {
-    "subtitleMaxCharCountPerSegment": 30,
-    "exportSubtitleInVideo": true
-  }
-}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-1?api-version=2026-03-01"
-```
-
-You should receive a response body in the following format:
-
-```json
-{
-  "input": {
-    "subtitleMaxCharCountPerSegment": 30,
-    "exportSubtitleInVideo": true
-  },
-  "status": "NotStarted",
-  "lastActionDateTime": "2026-02-06T19:15:38.722Z",
-  "id": "Your-Iteration-Id",
-  "createdDateTime": "2026-02-06T19:15:38.722Z"
-}
-```
-
-You can use the operation ID that you specified and use the [Get operation by operation ID](#get-operation-by-operation-id) API periodically until the returned status is `Succeeded` or `Failed`. This operation allows you to monitor the progress of your creating the iteration process. The status property should progress from `NotStarted` to `Running`, and finally to `Succeeded` or `Failed`. 
-
-## Step 3: Download the translated video and subtitles
+## Step 2: Download the translated video and subtitles
 
 You can download the translated video and subtitles once the iteration status is `Succeeded`. The translated video and subtitles are available in the response body of the [Get an iteration by iteration ID](/rest/api/aiservices/videotranslation/iteration-operations/get-iteration) API.
 
@@ -545,7 +501,7 @@ The WebVTT file with JSON properties contains metadata about the translation pro
 - `translatedText`: This property contains the translated text in the target language. It represents the text that will be synthesized in the translated video. If you only make changes to `translatedText`, the system will use the updated translatedText for synthesis.
 
 
-## Step 4: Create additional iterations (optional)
+## Step 3: Create additional iterations (optional)
 
 You can create additional iterations to improve the translation quality. The process is similar to creating the first iteration. 
 
@@ -559,7 +515,7 @@ To start translating your video or update an iteration for an existing translati
 
 For authentication and authorization, you need to include the following headers and path IDs in your request:
 - Set the `Operation-Id` header: The `Operation-Id` must be unique for each operation, such as creating each iteration. Replace `Your-Operation-Id` with a unique ID for this operation.
-- Replace `Your-Translation-Id` in the path. Use the same translation ID that you specified when you [created the translation](#step-1-create-a-translation). The translation ID remains unchanged.
+- Replace `Your-Translation-Id` in the path. Use the same translation ID that you specified when you [created the translation](#step-1-create-a-translation-and-auto-create-first-iteration). The translation ID remains unchanged.
 - Specify a new `iterationId` in the path. The iteration ID must be unique for each operation. Replace `Your-Iteration-Id-2` with an iteration ID of your choice.
 - Replace `YourSpeechResourceKey` with your Speech resource key and replace `YourSpeechResourceRegion` with your Speech resource region. 
 
