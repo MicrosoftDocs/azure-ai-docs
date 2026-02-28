@@ -37,7 +37,7 @@ Use this article to find step-by-step instructions and code samples for using th
 
 * Your Microsoft Foundry Project endpoint.
 
-    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+    [!INCLUDE [endpoint-string-portal](../../../../foundry/agents/includes/endpoint-string-portal.md)]
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 

@@ -78,25 +78,25 @@ Follow the instructions in this section to get started with the Realtime API via
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [JavaScript quickstart](../includes/realtime-javascript.md)]
+[!INCLUDE [JavaScript quickstart](../../../foundry/openai/includes/realtime-javascript.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Python quickstart](../includes/realtime-python.md)]
+[!INCLUDE [Python quickstart](../../../foundry/openai/includes/realtime-python.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-typescript"
 
-[!INCLUDE [TypeScript quickstart](../includes/realtime-typescript.md)]
+[!INCLUDE [TypeScript quickstart](../../../foundry/openai/includes/realtime-typescript.md)]
 
 ::: zone-end
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Microsoft Foundry portal quickstart](../includes/realtime-portal.md)]
+[!INCLUDE [Microsoft Foundry portal quickstart](../../../foundry/openai/includes/realtime-portal.md)]
 
 ::: zone-end
 

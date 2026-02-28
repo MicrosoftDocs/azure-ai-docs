@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [Feature preview](../../foundry-models/includes/feature-preview.md)]
+[!INCLUDE [Feature preview](../../../foundry/foundry-models/includes/feature-preview.md)]
 
 This article explains how to use Azure Monitor metrics and logs to track availability, performance, and usage for model deployments in Foundry Models. Azure Monitor automatically collects and aggregates metrics and logs from your Foundry Models deployments, so you can view real-time performance data and set up alerts for issues.
 

@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 In this article, learn how to install and use the [Microsoft Foundry](../../what-is-foundry.md) for Visual Studio Code extension. Create projects, deploy models from the Foundry model catalog, and interact with model playgrounds from within VS Code.
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 ## Prerequisites
 

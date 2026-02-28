@@ -38,7 +38,7 @@ In this article, you use Terraform to create a [Microsoft Foundry](https://ai.az
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 
 - **Azure role:** Owner or Contributor on the Azure subscription. This role is required to create resource groups, storage accounts, key vaults, and Foundry resources.
 

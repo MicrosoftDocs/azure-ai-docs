@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 Learn how to fine-tune and deploy models using managed compute in Microsoft Foundry. Adjust training parameters (learning rate, batch size, epochs) to optimize performance.
 
@@ -47,7 +47,7 @@ In this article, you learn how to:
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 
 1. If you're not already in your project, select it. 
 1. Select **Fine-tuning** from the left pane.

@@ -26,7 +26,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md)] to:
+In this quickstart, you use [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)] to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -38,12 +38,12 @@ In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md
 The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
 > [!TIP]
-> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
+> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../../foundry/includes/fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../../foundry/includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+- [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
+- [!INCLUDE [rbac-create](../../foundry/includes/rbac-create.md)]
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](../how-to/develop/install-cli-sdk.md).
 
 > [!IMPORTANT]
@@ -65,7 +65,7 @@ The Microsoft Foundry SDK is available in multiple languages, including Python, 
     pip install openai azure-identity azure-ai-projects==1.0.0
     ```
 
-1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. [!INCLUDE [find-endpoint](../../foundry/includes/find-endpoint.md)]
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
 Follow along below or get the code:
@@ -78,7 +78,7 @@ Follow along below or get the code:
 
     [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages.md)]
 
-1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. [!INCLUDE [find-endpoint](../../foundry/includes/find-endpoint.md)]
 
 1. Set these environment variables to use in your scripts.  The `AZURE_AI_ENDPOINT` is the project endpoint you copied earlier.  Remove everything after `.com/` in that endpoint to form `AZURE_AI_INFERENCE`.
 
@@ -98,7 +98,7 @@ Follow along below or get the code:
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/typescript/quickstart/package.json).
 1. Install packages with `npm install`
-1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. [!INCLUDE [find-endpoint](../../foundry/includes/find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples-classic/typescript/quickstart/.env.template":::
@@ -112,7 +112,7 @@ Follow along below or get the code:
 
 # [Java](#tab/java)
 
-1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. [!INCLUDE [find-endpoint](../../foundry/includes/find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
     ```txt
@@ -273,7 +273,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 ## Clean up resources
 
-[!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
+[!INCLUDE [clean-up-resources](../../foundry/includes/clean-up-resources.md)]
 
 ## Related content
 

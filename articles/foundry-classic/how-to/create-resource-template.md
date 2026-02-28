@@ -26,7 +26,7 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
 ## Prerequisites
 
-[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+[!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 
 - A copy of the files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
 
@@ -47,7 +47,7 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
     ---
 
 - The Bicep command-line tools. To install the Bicep CLI, see [Install the Bicep CLI](/azure/azure-resource-manager/bicep/install).
-- [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
+- [!INCLUDE [rbac-assign-roles](../../foundry/includes/rbac-assign-roles.md)]
 
 ## Deploy the Bicep file
 

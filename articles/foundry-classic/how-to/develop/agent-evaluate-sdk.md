@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 AI agents are powerful productivity assistants that create workflows for business needs. However, observability is challenging because of their complex interaction patterns. In this article, you learn how to evaluate Microsoft Foundry agents or other agents using built-in evaluators.
 

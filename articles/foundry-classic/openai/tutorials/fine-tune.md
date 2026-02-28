@@ -51,7 +51,7 @@ This tutorial provides examples of some of the latest OpenAI features include se
 pip install openai requests tiktoken numpy
 ```
 
-[!INCLUDE [get-key-endpoint](../includes/get-key-endpoint.md)]
+[!INCLUDE [get-key-endpoint](../../../foundry/openai/includes/get-key-endpoint.md)]
 
 ### Environment variables
 
@@ -697,7 +697,7 @@ Alternatively, you can deploy your fine-tuned model using any of the other commo
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that is referenced in your code when making chat completion calls. |
 | fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It looks like `gpt-4o-mini-2024-07-18.ft-0e208cf33a6a466994aff31a08aba678`. You need to add that value to the deploy_data json. |
 
-[!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
+[!INCLUDE [Fine-tuning deletion](../../../foundry/openai/includes/fine-tune.md)]
 
 ```python
 # Deploy fine-tuned model

@@ -9,7 +9,7 @@ ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-[!INCLUDE [Header](intro.md)]
+[!INCLUDE [Header](../../../../foundry/foundry-models/includes/create-resources/intro.md)]
 
 ## Create the resources
 

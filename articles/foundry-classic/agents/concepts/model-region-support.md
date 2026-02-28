@@ -163,13 +163,13 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 
 In addition to Azure OpenAI models, you can use models sold directly by Azure. These models offer specialized capabilities for specific use cases, such as deterministic reasoning or high-throughput generation.
 
-[!INCLUDE [agent-service-models-support-list](../includes/agent-service-models-support-list.md)]
+[!INCLUDE [agent-service-models-support-list](../../../foundry/agents/includes/agent-service-models-support-list.md)]
 
 ## View all agent-supported models in the Foundry portal
 
 To see a full list of the supported models in the Foundry portal:
 
-1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../foundry/includes/classic-sign-in.md)]
 1. Go to the **Model catalog**.
 1. Filter the models by **Capabilities** and select **Agent supported**.
 

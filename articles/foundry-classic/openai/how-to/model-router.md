@@ -27,7 +27,7 @@ Use model router through the Chat Completions API like you'd use a single base m
 
 > [!TIP]
 > The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation]() to see the latest features.
-[!INCLUDE [model-router-supported](../includes/model-router-supported.md)]
+[!INCLUDE [model-router-supported](../../../foundry/openai/includes/model-router-supported.md)]
 
 ## Deploy a model router model
 

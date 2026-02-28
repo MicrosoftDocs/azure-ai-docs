@@ -20,11 +20,11 @@ In this article, you learn how to create the following [Microsoft Foundry](https
 - A Foundry connection
 
 > [!NOTE]
-> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** doesn't use a hub. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
+> A hub is used only for a **[!INCLUDE [hub](../../../foundry/includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../../foundry/includes/fdp-project-name.md)]** doesn't use a hub. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../../foundry/includes/azure-subscription.md)]
 - **RBAC roles**: You must have the **Contributor** or **Owner** role on your Azure subscription or resource group to create a hub. If you're creating a connection to existing resources, ensure you have **Contributor** access to those resources as well.
 - **For Python SDK**: [Azure Machine Learning Python SDK (v2.0 or later)](https://pypi.org/project/azure-ai-ml/), [Azure Identity Python SDK](https://pypi.org/project/azure-identity/), and Python 3.8 or later.
 - **For Azure CLI**: [Azure CLI](/cli/azure/install-azure-cli) and [Azure Machine Learning extension](/azure/machine-learning/how-to-configure-cli).

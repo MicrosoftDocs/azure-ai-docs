@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](../../../foundry/responsible-ai/includes/non-english-translation.md)]
 
 This article provides details regarding how data provided by you to Azure Direct Models in Microsoft Foundry are processed, used, and stored. Azure Direct Model means an AI model designated and deployed as an “Azure Direct Model” in Foundry, and includes Azure OpenAI models. Azure Direct Models store and process data to provide the service and to monitor for uses that violate the applicable product terms. Please also see [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by Azure Direct Models. Foundry is an Azure service; [learn more](/compliance/regulatory/offering-home) about applicable Azure compliance offerings. 
 

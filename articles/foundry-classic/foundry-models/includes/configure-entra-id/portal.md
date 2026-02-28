@@ -73,9 +73,9 @@ Key-based access is still possible for users who already have keys available to 
 
 After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. This example shows how to use a chat completions model:
 
-[!INCLUDE [code](../code-create-chat-client-entra.md)]
+[!INCLUDE [code](../../../../foundry/foundry-models/includes/code-create-chat-client-entra.md)]
 
-[!INCLUDE [about-credentials](about-credentials.md)]
+[!INCLUDE [about-credentials](../../../../foundry/foundry-models/includes/configure-entra-id/about-credentials.md)]
 
 ## Use Microsoft Entra ID in your project
 

@@ -17,7 +17,7 @@ ms.custom:
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 In this article, learn about content safety capabilities for models from the model catalog deployed using serverless API deployments.
 

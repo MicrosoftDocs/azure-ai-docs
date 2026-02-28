@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 This GitHub Action enables offline evaluation of AI models and agents within your CI/CD pipelines. It streamlines the evaluation process, so you can assess model performance and make informed decisions before deploying to production.
 
