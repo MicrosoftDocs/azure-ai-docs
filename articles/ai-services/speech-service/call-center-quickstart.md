@@ -5,7 +5,7 @@ description: In this quickstart, you perform sentiment analysis and conversation
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: jagoerge

@@ -5,7 +5,7 @@ description: Learn how to use the batch synthesis API for asynchronous synthesis
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom:
@@ -50,7 +50,7 @@ To submit a batch synthesis request, construct the HTTP PUT request path and bod
 > [!NOTE]
 > The maximum JSON payload size that's accepted is 2 megabytes.
 
-Set the required `YourSynthesisId` in path. The `YourSynthesisId` must be unique. It must be 3-64 long, contains only numbers, letters, hyphens, underscores and dots, starts and ends with a letter or number.
+Set the required `YourSynthesisId` in path. The `YourSynthesisId` must be unique. It must be 3-64 characters long, contain only numbers, letters, hyphens, underscores, and dots, and start and end with a letter or number.
 
 Make an HTTP PUT request using the URI as shown in the following example. Replace `YourSpeechKey` with your Speech resource key, replace `YourSpeechRegion` with your Speech resource region, and set the request body properties as previously described.
 

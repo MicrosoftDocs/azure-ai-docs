@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 04/14/2025
+ms.date: 02/27/2026
 ---
 
 # Content metadata properties used in Azure AI Search

@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to migrate code from v3 text to speech REST API to custom voice REST API in the Speech service.
 ---
@@ -27,14 +27,13 @@ This article retains information about the v3 text to speech REST API for refere
 
 **Resume endpoint:** Use the custom voice API [resume endpoint](./professional-voice-deploy-endpoint.md?pivots=rest-api#resume-an-endpoint) operation to suspend an endpoint. The v3 text to speech REST API [resume endpoint operation](#resume-endpoint) is retiring.
 
-## Reference documentation for v3 text to speech REST API (retiring)
 
-### Suspend and resume endpoint via REST API
+## Suspend and resume endpoint via REST API
 
 This section shows you how to [get](#get-endpoint), [suspend](#suspend-endpoint), or [resume](#resume-endpoint) a custom voice endpoint via REST API.
 
 
-#### Get endpoint
+### Get endpoint
 
 Get the endpoint by endpoint ID. The operation returns details about an endpoint such as model ID, project ID, and status.  
 
@@ -54,7 +53,7 @@ The possible `status` property values are:
 > [!Tip]
 > If the status is `Failed` or `Disabled`, check `properties.error` for a detailed error message. However, there won't be error details if the status is `Disabled` due to a successful suspend operation. 
 
-##### Get endpoint example
+#### Get endpoint example
 
 For information about endpoint ID, region, and Speech resource key parameters, see [request parameters](#request-parameters).
 
@@ -99,7 +98,7 @@ Response body example:
 }
 ```
 
-#### Suspend endpoint
+### Suspend endpoint
 
 You can suspend an endpoint to limit spend and conserve resources that aren't in use. You aren't charged while the endpoint is suspended. When you resume an endpoint, you can use the same endpoint URL in your application to synthesize speech. 
 
@@ -107,7 +106,7 @@ You suspend an endpoint with its unique deployment ID. The endpoint status must 
 
 Use the [get endpoint](#get-endpoint) operation to poll and track the status progression from `Succeeded`, to `Disabling`, and finally to `Disabled`. 
 
-##### Suspend endpoint example
+#### Suspend endpoint example
 
 For information about endpoint ID, region, and Speech resource key parameters, see [request parameters](#request-parameters).
 
@@ -135,7 +134,7 @@ Status code: 202 Accepted
 
 For more information, see [response headers](#response-headers).
 
-#### Resume endpoint
+### Resume endpoint
 
 When you resume an endpoint, you can use the same endpoint URL that you used before it was suspended. 
 
@@ -143,7 +142,7 @@ You resume an endpoint with its unique deployment ID. The endpoint status must b
 
 Use the [get endpoint](#get-endpoint) operation to poll and track the status progression from `Disabled`, to `Running`, and finally to `Succeeded`. If the resume operation failed, the endpoint status is `Disabled`. 
 
-##### Resume endpoint example
+#### Resume endpoint example
 
 For information about endpoint ID, region, and Speech resource key parameters, see [request parameters](#request-parameters).
 
@@ -170,9 +169,9 @@ Status code: 202 Accepted
 
 For more information, see [response headers](#response-headers).
 
-#### Parameters and response codes
+### Parameters and response codes
 
-##### Request parameters
+#### Request parameters
 
 You use these request parameters with calls to the REST API. 
 
@@ -182,7 +181,7 @@ You use these request parameters with calls to the REST API.
 | `YourEndpointId` | Path   | `True` | string | The identifier of the endpoint. |
 | `Ocp-Apim-Subscription-Key` | Header | `True` | string | The Speech resource key the endpoint is associated with. |
 
-##### Response headers
+#### Response headers
 
 Status code: 202 Accepted
 
@@ -191,7 +190,7 @@ Status code: 202 Accepted
 | `Location` | string | The location of the endpoint that can be used as the full URL to get endpoint. |
 | `Retry-After` | string | The total seconds of recommended interval to retry to get endpoint status.       |
 
-##### HTTP status codes
+#### HTTP status codes
 
 The HTTP status code for each response indicates success or common errors.
 
