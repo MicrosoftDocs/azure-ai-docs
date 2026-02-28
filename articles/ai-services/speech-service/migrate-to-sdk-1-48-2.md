@@ -43,8 +43,8 @@ The impact of the CRL partitioning change depends on whether your application co
 | Customer type | Impact | Action required |
 | --- | --- | --- |
 | **Embedded only** (no cloud connection) | Not impacted | No action needed |
-| **Hybrid** (cloud with embedded fallback) | Cloud STT/TTS stops working after July 1, 2026 | See [Required action](#required-action) |
-| **Cloud only** | Cloud STT/TTS stops working after July 1, 2026 | See [Required action](#required-action) |
+| **Hybrid** (cloud with embedded fallback) | Cloud STT/TTS can fail after certificate renewal | See [Required action](#required-action) |
+| **Cloud only** | Cloud STT/TTS can fail after certificate renewal | See [Required action](#required-action) |
 
 Use this quick decision guide:
 
@@ -52,8 +52,8 @@ Use this quick decision guide:
    - **No** → You use embedded-only speech. **No action needed.**
    - **Yes** → Continue to step 2.
 1. **Does your app also use embedded speech as a fallback?**
-   - **Yes** → You have a hybrid deployment. Cloud features fail after the deadline, but embedded fallback continues to work. **Action required** for cloud features.
-   - **No** → You have a cloud-only deployment. **All speech calls fail** after the deadline. **Action required.**
+   - **Yes** → You have a hybrid deployment. Cloud features can fail after certificate renewal, but embedded fallback continues to work. **Action required** for cloud features.
+   - **No** → You have a cloud-only deployment. **Speech calls can fail** after certificate renewal with no fallback. **Action required.**
 
 ### Embedded-only deployments
 
@@ -85,7 +85,7 @@ If you use a custom configuration or the `$TMPDIR`/`$TMP` environment variables 
 All cloud STT/TTS calls are affected. The same two scenarios (CRL disk caching enabled or not enabled) described in [Hybrid deployments](#hybrid-deployments-cloud-with-embedded-fallback) apply to cloud-only deployments.
 
 > [!WARNING]
-> Cloud-only deployments have no fallback. If you don't take action before July 1, 2026, all speech recognition and synthesis calls fail.
+> Cloud-only deployments have no fallback. After certificate renewal begins using partitioned CRLs, speech recognition and synthesis calls can fail if you haven't applied the fix. The exact timing depends on when your region's TLS certificates are renewed, but you should take action before July 1, 2026 to avoid any risk of disruption.
 
 ## Background
 
@@ -171,10 +171,10 @@ For more configuration options, see [How to configure OpenSSL for Linux](how-to-
 
 If you don't upgrade or disable CRL checking before July 1, 2026:
 
-- **Connection failures** will occur when certificate rotation happens or when connecting across regions
-- Failures will manifest as `WS_OPEN_ERROR_UNDERLYING_IO_OPEN_FAILED` errors
-- **No advance warning** — failures occur immediately upon certificate rotation
-- **Service disruption** until the SDK is upgraded, CRL checking is disabled, or the CRL cache is cleared
+- **Connection failures** can occur when certificate rotation assigns a different CRL partition, or when connecting across regions
+- Failures manifest as `WS_OPEN_ERROR_UNDERLYING_IO_OPEN_FAILED` errors
+- **No advance warning** — the exact timing depends on when your region's TLS certificates are renewed
+- **Service disruption** continues until the SDK is upgraded, CRL checking is disabled, or the CRL cache is cleared
 
 ## How to identify if you're impacted
 
@@ -233,7 +233,7 @@ Alternatively, clear the CRL cache directory manually:
 | Now | Review your deployment type and SDK version |
 | February 2026 | SDK 1.48.2 released with fix |
 | **July 1, 2026** | **Deadline: Upgrade or disable CRL checking** |
-| After July 1, 2026 | Unpatched deployments experience connection failures |
+| After July 1, 2026 | Unpatched deployments can experience connection failures as certificates are renewed |
 
 ## Frequently asked questions
 
