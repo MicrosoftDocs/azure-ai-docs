@@ -51,6 +51,8 @@ To create a video translation, you need to construct an HTTP PUT request path an
 - Specify `speakerCount`: The number of speakers in the video. This is an optional parameter, and you can set it to 1 if you're unsure.
 - Specify `subtitleMaxCharCountPerSegment`: The maximum number of characters allowed per subtitle segment. This is an optional parameter, and you can set it to 30 if you're unsure.
 - Specify `exportSubtitleInVideo`: A boolean value indicating whether to export subtitles in the video. This is an optional parameter, and you can set it to `true` if you want to include subtitles in the video.
+- Specify `autoCreateFirstIteration`: A boolean value indicating whether to automatically create the first iteration when creating a translation. This is recommended for better performance. When set to `true`, the translation process starts immediately without requiring a separate create iteration call.
+- Specify `firstIterationInput`: When `autoCreateFirstIteration` is set to `true`, you can specify the input parameters for the first iteration, such as `subtitleMaxCharCountPerSegment`, `exportSubtitleInVideo`, and `webvttFile`. This is optional.
 - Specify the `videoFileUrl`: The URL of the video file you want to translate. The video must be in .mp4 format, less than 5 GB, and shorter than 4 hours. You can upload the video to Azure Blob Storage and use the Blob URL. For testing purposes, you can use the sample video file provided by Microsoft at [https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 
 For authentication and authorization, you need to include the following headers and path IDs in your request:
@@ -70,9 +72,14 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" -H "Operati
     "subtitleMaxCharCountPerSegment": 50,
     "exportSubtitleInVideo": false,
     "enableLipSync": false,
+    "autoCreateFirstIteration": true,
+    "firstIterationInput": {
+      "subtitleMaxCharCountPerSegment": 30,
+      "exportSubtitleInVideo": true
+    },
     "videoFileUrl": "https://ai.azure.com/speechassetscache/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4"
   }
-}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2025-05-20"
+}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2026-03-01"
 ```
 
 > [!IMPORTANT]
@@ -89,16 +96,25 @@ You should receive a response body in the following format:
     "speakerCount": 1,
     "subtitleMaxCharCountPerSegment": 50,
     "exportSubtitleInVideo": false,
-    "enableLipSync": false
+    "enableLipSync": false,
+    "autoCreateFirstIteration": true,
+    "firstIterationInput": {
+      "subtitleMaxCharCountPerSegment": 30,
+      "exportSubtitleInVideo": true
+    }
   },
   "status": "NotStarted",
-  "lastActionDateTime": "2025-03-06T19:13:35.669Z",
+  "lastActionDateTime": "2026-02-06T19:13:35.669Z",
   "id": "Your-Translation-Id",
   "displayName": "My translation object",
   "description": "My translation object for video translation iterations",
-  "createdDateTime": "2025-03-06T19:13:35.669Z"
+  "createdDateTime": "2026-02-06T19:13:35.669Z",
+  "expiresDateTime": "2026-03-09T19:13:35.669Z"
 }
 ```
+
+> [!NOTE]
+> Starting from API version 2026-03-01, translations include an `expiresDateTime` property indicating data retention duration. For translations created with API version 2026-03-01 and later, the data retention duration is 31 days. For translations created with API version 2025-05-20 and earlier, the data retention duration is 300 days.
 
 You can use the operation ID that you specified and use the [Get operation by operation ID](#get-operation-by-operation-id) API periodically until the returned status is `Succeeded` or `Failed`. This operation allows you to monitor the progress of your creating the iteration process. The status property should progress from `NotStarted` to `Running`, and finally to `Succeeded` or `Failed`. 
 
@@ -106,7 +122,8 @@ You can use the operation ID that you specified and use the [Get operation by op
 
 To start translating your video or update an iteration for an existing translation, you need to construct an HTTP PUT request path and body according to the following instructions:
 
-- Set the required input: Include details like `speakerCount`, `subtitleMaxCharCountPerSegment`,`exportSubtitleInVideo`, or `webvttFile`. No subtitles are embedded in the output video by default. When creating an iteration, if you already specified the optional parameters `speakerCount`, `subtitleMaxCharCountPerSegment`, and `exportSubtitleInVideo` during the creation of translation, you don’t need to specify them again. The values inherit from translation settings. Once these parameters are defined when creating an iteration, the new values override the original settings. 
+- Set the required input: Include details like `speakerCount`, `subtitleMaxCharCountPerSegment`,`exportSubtitleInVideo`, or `webvttFile`. No subtitles are embedded in the output video by default. When creating an iteration, if you already specified the optional parameters `speakerCount`, `subtitleMaxCharCountPerSegment`, and `exportSubtitleInVideo` during the creation of translation, you don't need to specify them again. The values inherit from translation settings. Once these parameters are defined when creating an iteration, the new values override the original settings.
+- Specify `adjustWebvttAlignment`: When providing a WebVTT file, the system automatically adjusts segment offset and duration for better alignment by default (`true`). Set this property to `false` if you don't want segment timing to change during translation.
 - Optionally, you can specify a WebVTT file with subtitles for your original video. The `webvttFile` input parameter isn't required when creating the first iteration. However, [starting from the second iteration](#step-4-create-additional-iterations-optional), you must specify the `webvttFile` parameter in the iteration process.
 
 For authentication and authorization, you need to include the following headers and path IDs in your request:
@@ -124,7 +141,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" \
     "subtitleMaxCharCountPerSegment": 30,
     "exportSubtitleInVideo": true
   }
-}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-1?api-version=2025-05-20"
+}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-1?api-version=2026-03-01"
 ```
 
 You should receive a response body in the following format:
@@ -136,9 +153,9 @@ You should receive a response body in the following format:
     "exportSubtitleInVideo": true
   },
   "status": "NotStarted",
-  "lastActionDateTime": "2025-03-06T19:15:38.722Z",
+  "lastActionDateTime": "2026-02-06T19:15:38.722Z",
   "id": "Your-Iteration-Id",
-  "createdDateTime": "2025-03-06T19:15:38.722Z"
+  "createdDateTime": "2026-02-06T19:15:38.722Z"
 }
 ```
 
@@ -151,7 +168,7 @@ You can download the translated video and subtitles once the iteration status is
 To retrieve details of a specific iteration by its ID, use the HTTP GET request. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, `Your-Translation-Id` with the translation ID you want to check,  and `Your-Iteration-Id` with the iteration ID you want to check.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id?api-version=2025-05-20"  
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id?api-version=2026-03-01"  
 ```
 
 You should receive a response body in the following format:
@@ -170,9 +187,9 @@ You should receive a response body in the following format:
     "metadataJsonWebvttFileUrl": "https://cvoiceprodeus.blob.core.windows.net/YourMetadataJsonWebvttFileUrl",
   },
   "status": "Succeeded",
-  "lastActionDateTime": "2025-03-06T19:17:06.270Z",
+  "lastActionDateTime": "2026-02-06T19:17:06.270Z",
   "id": "Your-Iteration-Id-7",
-  "createdDateTime": "2025-03-06T19:15:38.723Z"
+  "createdDateTime": "2026-02-06T19:15:38.723Z"
 }
 ```
 
@@ -536,7 +553,8 @@ The `webvttFile` parameter isn't required when creating the first iteration. How
 
 To start translating your video or update an iteration for an existing translation, you need to construct an HTTP PUT request path and body according to the following instructions:
 
-- Specify the required `webvttFile` input parameter. The `webvttFile` parameter is required starting from the second iteration. You need to [download the most recent webvtt file](#download-from-the-result-urls), make the desired edits, and then upload it to your Azure Blob storage. You need to specify the Blob URL. The subtitle file can be in WebVTT or JSON format. 
+- Specify the required `webvttFile` input parameter. The `webvttFile` parameter is required starting from the second iteration. You need to [download the most recent webvtt file](#download-from-the-result-urls), make the desired edits, and then upload it to your Azure Blob storage. You need to specify the Blob URL. The subtitle file can be in WebVTT or JSON format.
+- Specify `adjustWebvttAlignment`: When providing a WebVTT file, the system automatically adjusts segment offset and duration for better alignment by default (`true`). Set this property to `false` if you don't want segment timing to change during translation. 
 - Optionally, you can specify new settings for the new iteration, such as `speakerCount`, `subtitleMaxCharCountPerSegment`, and `exportSubtitleInVideo`.
 
 For authentication and authorization, you need to include the following headers and path IDs in your request:
@@ -555,7 +573,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" \
       "url": "https://YourBlobStorageUrl/YourWebVTTFile.vtt"
     }
   }
-}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-2?api-version=2025-05-20"
+}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-2?api-version=2026-03-01"
 ```
 
 You should receive a response body in the following format:
@@ -568,9 +586,9 @@ You should receive a response body in the following format:
     }
   },
   "status": "NotStarted",
-  "lastActionDateTime": "2025-03-06T19:15:38.722Z",
+  "lastActionDateTime": "2026-02-06T19:15:38.722Z",
   "id": "Your-Iteration-Id-2",
-  "createdDateTime": "2025-03-06T19:15:38.722Z"
+  "createdDateTime": "2026-02-06T19:15:38.722Z"
 }
 ```
 
@@ -584,7 +602,7 @@ Check the status of an operation using its operation ID. The operation ID is uni
 - Replace `YourSpeechResourceKey` with your Speech resource key and replace `YourSpeechResourceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/operations/Your-Operation-Id-1?api-version=2025-05-20" 
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/operations/Your-Operation-Id-1?api-version=2026-03-01" 
 ```
 
 You should receive a response body in the following format:
@@ -600,10 +618,13 @@ You should receive a response body in the following format:
 
 Remove a specific translation identified by `translationId`. This operation also removes all iterations associated with this translation. 
 
-Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to delete. If not deleted manually, the service retains the translation history for up to 31 days.
+Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to delete.
+
+> [!NOTE]
+> Starting from API version 2026-03-01, data retention is enabled. For translations created with API version 2026-03-01 and later, the data retention duration is 31 days. For translations created with API version 2025-05-20 and earlier, the data retention duration is 300 days. If not deleted manually, the service automatically retains the translation history according to these retention policies.
 
 ```azurecli-interactive
-curl -v -X DELETE -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2025-05-20" 
+curl -v -X DELETE -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2026-03-01" 
 ```
 
 The response headers include `HTTP/1.1 204 No Content` if the delete request was successful.
@@ -632,7 +653,7 @@ This section provides examples for other video translation API calls that aren't
 To list all video translations that are uploaded and processed in your resource account, make an HTTP GET request as shown in the following example. Replace `YourSpeechResourceKey` with your Speech resource key and replace `YourSpeechResourceRegion` with your Speech resource region.   
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations?api-version=2025-05-20"
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations?api-version=2026-03-01"
 ```
 
 ### Get a translation by translation ID
@@ -640,7 +661,7 @@ curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://Yo
 This operation retrieves detailed information about a specific translation, identified by its unique `translationId`. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to check.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2025-05-20" 
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2026-03-01" 
 ```
 
 ### List iterations
@@ -648,7 +669,7 @@ curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://Yo
 List all iterations for a specific translation. This request lists all iterations without detailed information. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to check.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations?api-version=2025-05-20"  
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations?api-version=2026-03-01"  
 ```
 
 ## HTTP status codes
