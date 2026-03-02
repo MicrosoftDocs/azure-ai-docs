@@ -22,7 +22,7 @@ You need only your Immersive Reader resource **subdomain**. Save the subdomain v
 
 Sign in to Azure so that `DefaultAzureCredential` can discover your credentials during local development:
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli)
 
 ```azurecli
 az login
@@ -40,7 +40,7 @@ Secure the **GetTokenAndSubdomain** API endpoint behind some form of authenticat
 
 Create a new ASP.NET Core MVC web application.
 
-# [.NET CLI](#tab/dotnet-cli)
+# [.NET CLI](#tab/cli)
 
 ```dotnetcli
 dotnet new mvc -n QuickstartSampleWebApp
@@ -174,7 +174,7 @@ namespace QuickstartSampleWebApp.Controllers
 
 2. Start the app.
 
-# [.NET CLI](#tab/dotnet-cli)
+# [.NET CLI](#tab/cli)
 
 ```dotnetcli
 dotnet run
