@@ -44,6 +44,7 @@ Azure OpenAI provides customers with a fully managed Foundry Tool that lets deve
 | GPT-5 | ✅ | ✅ |  |
 | GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
+| GPT-Realtime series | ✅ | ✅ | ✅ |
 | o1 series | ✅ | ✅ |  |
 | o3/o3-pro | ✅ | ✅| | 
 | o3-mini |✅  |  |  |
