@@ -79,7 +79,7 @@ You can add the Microsoft Fabric tool to an agent programmatically using the cod
 
 1. Navigate to the **Agents** screen for your agent in [Foundry](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
    
-    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
+    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
 1. Select **Microsoft Fabric** and follow the prompts to add the tool. You can add only one per agent.
 
@@ -89,7 +89,7 @@ You can add the Microsoft Fabric tool to an agent programmatically using the cod
 
    1. Then, you can add both to your connection. Make sure you have checked `is secret` for both of them
    
-        :::image type="content" source="../../media\tools\fabric-foundry.png" alt-text="A screenshot showing the fabric connection in the Foundry portal." lightbox="../../media\tools\fabric-foundry.png":::
+        :::image type="content" source="../../media/tools/fabric-foundry.png" alt-text="A screenshot showing the fabric connection in the Foundry portal." lightbox="../../media/tools/fabric-foundry.png":::
 
 :::zone-end
 
