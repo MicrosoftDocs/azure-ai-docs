@@ -44,7 +44,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * Your Foundry Project endpoint.
 
-    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+    [!INCLUDE [endpoint-string-portal](../../../../foundry/agents/includes/endpoint-string-portal.md)]
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 
@@ -56,7 +56,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
 
-    :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
+    :::image type="content" source="../../../../foundry/agents/media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the Foundry portal." lightbox="../../../../foundry/agents/media/tools/model-deployment-portal.png":::
     
     Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 

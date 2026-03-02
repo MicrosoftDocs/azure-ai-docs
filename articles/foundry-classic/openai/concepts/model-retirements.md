@@ -100,7 +100,7 @@ For more information on how to manage model upgrades and migrations for provisio
 
 These models are currently available for use in Azure OpenAI.
 
-[!INCLUDE [Model retirement table](../includes/retirement/models.md)]
+[!INCLUDE [Model retirement table](../../../foundry/openai/includes/retirement/models.md)]
 
 ## Retirement and deprecation history
 

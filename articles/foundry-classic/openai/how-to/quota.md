@@ -67,7 +67,7 @@ Post deployment you can adjust your TPM allocation by selecting and editing your
 
 ## Request more quota
 
-[!INCLUDE [quota-increase-request](../includes/quota-increase-request.md)]
+[!INCLUDE [quota-increase-request](../../../foundry/openai/includes/quota-increase-request.md)]
 
 ## Model specific settings
 

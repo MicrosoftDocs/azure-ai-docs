@@ -52,7 +52,7 @@ Recommended order of operations to avoid unwanted charges:
 
 Unlike the Tokens Per Minute (TPM) quota used by other Foundry offerings, PTUs are model-independent. The PTUs might be used to deploy any supported models hosted and sold directly by Microsoft in the region.
 
-:::image type="content" source="../media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../media/provisioned/model-independent-quota.png":::
+:::image type="content" source="../../../foundry/openai/media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../../../foundry/openai/media/provisioned/model-independent-quota.png":::
 
 Quota for provisioned deployments shows up in Foundry as the following deployment types: [global provisioned](../../foundry-models/concepts/deployment-types.md#global-provisioned), [data zone provisioned](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned) and [regional provisioned](../../foundry-models/concepts/deployment-types.md#regional-provisioned).
 
@@ -77,7 +77,7 @@ If a deployment exists for a partial hour, it will receive a prorated charge bas
 
 If the deployment size is changed, the costs of the deployment will adjust to match the new number of PTUs.  
 
-:::image type="content" source="../media/provisioned/hourly-billing.png" alt-text="A diagram showing hourly billing." lightbox="../media/provisioned/hourly-billing.png":::
+:::image type="content" source="../../../foundry/openai/media/provisioned/hourly-billing.png" alt-text="A diagram showing hourly billing." lightbox="../../../foundry/openai/media/provisioned/hourly-billing.png":::
 
 Paying for regional provisioned, data zone provisioned, and global provisioned deployments on an hourly basis is ideal for short-term deployment scenarios.  For example: Quality and performance benchmarking of new models, or temporarily increasing PTU capacity to cover an event such as a hackathon.  
 

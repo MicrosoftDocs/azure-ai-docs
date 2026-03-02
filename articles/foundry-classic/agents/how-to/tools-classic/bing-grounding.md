@@ -103,7 +103,7 @@ run_steps_data = run_steps['data']
 print(f"Last run step detail: {run_steps_data}")
 ```
 
-:::image type="content" source="../../media\tools\bing\website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../media\tools\bing\website-citations.png":::
+:::image type="content" source="../../../../foundry/agents/media/tools/bing/website-citations.png" alt-text="A screenshot showing citations for Bing search results." lightbox="../../../../foundry/agents/media/tools/bing/website-citations.png":::
 
 ## Next steps
 

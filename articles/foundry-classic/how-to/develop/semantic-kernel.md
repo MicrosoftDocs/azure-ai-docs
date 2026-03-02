@@ -16,11 +16,11 @@ ms.service: azure-ai-foundry
 
 In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Foundry model catalog in Microsoft Foundry portal.
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../../foundry/includes/azure-subscription.md)]
 
 - A Foundry project as explained at [Create a project in Foundry portal](../create-projects.md).
 
@@ -47,7 +47,7 @@ To use language models deployed in Foundry portal, you need the endpoint and cre
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. Sign in to [!INCLUDE [classic-link](../../includes/classic-link.md)].
+1. Sign in to [!INCLUDE [classic-link](../../../foundry/includes/classic-link.md)].
 1. Open the project where the model is deployed, if it isn't already open.
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
 1. Copy the endpoint URL and the key.

@@ -27,7 +27,7 @@ Use this article to find step-by-step instructions and code samples for using th
 * The requirements in the [Browser Automation overview](./browser-automation.md#setup).
 * Your Microsoft Foundry Project endpoint.
     
-  [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+  [!INCLUDE [endpoint-string-portal](../../../../foundry/agents/includes/endpoint-string-portal.md)]
 
   Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 
@@ -47,7 +47,7 @@ Use this article to find step-by-step instructions and code samples for using th
   -->
   Save this name to an environment variable named `AZURE_PLAYWRIGHT_CONNECTION_NAME`.
 
-* [!INCLUDE [model-name-portal](../../includes/model-name-portal.md)]
+* [!INCLUDE [model-name-portal](../../../../foundry/agents/includes/model-name-portal.md)]
 
   Save this name to an environment variable named `MODEL_DEPLOYMENT_NAME`.
 

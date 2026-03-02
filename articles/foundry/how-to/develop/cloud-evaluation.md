@@ -71,7 +71,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b1" azure-identity openai
+pip install --pre "azure-ai-projects>=2.0.0b4"
 ```
 
 ```python
