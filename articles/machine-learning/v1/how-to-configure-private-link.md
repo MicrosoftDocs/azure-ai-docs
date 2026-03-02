@@ -6,11 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.custom: UpdateFrequency5, devx-track-azurecli, sdkv1
+ms.custom: UpdateFrequency5, devx-track-azurecli, sdkv1, dev-focus
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: shshubhe
-ms.date: 07/26/2024
+ms.date: 02/28/2026
+ai-usage: ai-assisted
 ---
 
 # Configure a private endpoint for an Azure Machine Learning workspace with SDK and CLI v1
@@ -20,6 +21,9 @@ ms.date: 07/26/2024
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 [!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
+
+> [!IMPORTANT]
+> For updated instructions using CLI v2 and Python SDK v2, see [Configure a private endpoint for an Azure Machine Learning workspace](../how-to-configure-private-link.md).
 
 In this document, you learn how to configure a private endpoint for your Azure Machine Learning workspace. For information on creating a virtual network for Azure Machine Learning, see [Virtual network isolation and privacy overview](../how-to-network-security-overview.md).
 
@@ -119,7 +123,7 @@ Use one of the following methods to add a private endpoint to an existing worksp
 
 > [!WARNING]
 >
-> If you have any existing compute targets associated with this workspace, and they are not behind the same virtual network tha the private endpoint is created in, they will not work.
+> If you have any existing compute targets associated with this workspace, and they are not behind the same virtual network that the private endpoint is created in, they will not work.
 
 # [Python](#tab/python)
 
@@ -196,8 +200,8 @@ To enable public access, use the following steps:
 
 > [!TIP]
 > There are two possible properties that you can configure:
-> * `allow_public_access_when_behind_vnet` - used by the Python SDK and CLI v2
-> * `public_network_access` - used by the Python SDK and CLI v2
+> * `allow_public_access_when_behind_vnet` - used by the Python SDK v1
+> * `public_network_access` - used by the CLI and Python SDK v2
 > Each property overrides the other. For example, setting `public_network_access` will override any previous setting to `allow_public_access_when_behind_vnet`.
 >
 > Microsoft recommends using `public_network_access` to enable or disable public access to a workspace.
@@ -276,10 +280,15 @@ If you want to create an isolated Azure Kubernetes Service used by the workspace
 1. Add a new private endpoint to your workspace. This private endpoint should exist in the client VNet and have private DNS zone integration enabled.
 1. Attach the AKS cluster to the Azure Machine Learning workspace. For more information, see [Create and attach an Azure Kubernetes Service cluster](how-to-create-attach-kubernetes.md#attach-an-existing-aks-cluster).
 
+> [!NOTE]
+> The legacy `AksCompute` target is a v1-only construct and receives no new features. In v2, AKS integration uses `KubernetesCompute`. For more information, see [Introduction to Kubernetes compute target](../how-to-attach-kubernetes-anywhere.md#comparison-of-kubernetescompute-and-legacy-akscompute-targets).
+
 :::image type="content" source="../media/how-to-configure-private-link/multiple-private-endpoint-workspace-aks.png" alt-text="Diagram of isolated AKS VNet.":::
 
 ## Next steps
 
+* For updated instructions using CLI v2 and Python SDK v2, see [Configure a private endpoint for an Azure Machine Learning workspace](../how-to-configure-private-link.md).
+* For information on migrating from v1 to v2, see [Upgrade to v2](../how-to-migrate-from-v1.md).
 * For more information on securing your Azure Machine Learning workspace, see the [Virtual network isolation and privacy overview](../how-to-network-security-overview.md) article.
 
 * If you plan on using a custom DNS solution in your virtual network, see [how to use a workspace with a custom DNS server](../how-to-custom-dns.md).

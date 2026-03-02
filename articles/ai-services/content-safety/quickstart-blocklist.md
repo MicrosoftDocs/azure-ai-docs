@@ -2,13 +2,13 @@
 title: "Quickstart: Use a text blocklist"
 titleSuffix: Azure AI services
 description: Get started using a text blocklist to detect harmful content in text.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: devx-track-python, devx-track-dotnet
 ms.topic: quickstart
 ms.date: 09/16/2025
-ms.author: pafarley
+ms.author: ssalgado
 zone_pivot_groups: programming-languages-content-safety-3
 ai-usage: ai-assisted
 ---
@@ -75,8 +75,8 @@ Get started using Azure AI Content Safety to create a custom text blocklist and 
 
 If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
-- [Azure portal](https://learn.microsoft.com/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-portal)
-- [Azure CLI](https://learn.microsoft.com/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-cli)
+- [Azure portal](/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-portal)
+- [Azure CLI](/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-cli)
 
 
 ## Next step

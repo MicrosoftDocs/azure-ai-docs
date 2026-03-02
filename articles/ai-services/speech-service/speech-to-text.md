@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 02/06/2026
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the speech to text feature of the Speech service.
 ---
@@ -32,7 +32,6 @@ Real-time speech to text transcribes audio as it's recognized from a microphone 
 - Transcribing spoken words into written text for documentation purposes. 
 - Enabling interactive voice response systems to transcribe user queries and commands. 
 
-Real-time speech to text can be accessed via the Speech SDK, Speech CLI, and REST API, allowing integration into various applications and workflows. 
 Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), and [Speech to text REST API for short audio](rest-speech-to-text-short.md). 
 
 ## Fast transcription

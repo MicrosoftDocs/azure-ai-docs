@@ -6,12 +6,12 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: troubleshooting
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to troubleshoot issues with the Speech SDK.
 ---
 
-# How to troubleshoot Speech SDK issues
+# Troubleshoot Speech SDK issues
 
 This article provides information to help you solve issues you might encounter when you use the Speech SDK.
 

@@ -27,7 +27,7 @@ Try text to speech avatar in the Foundry portal by following these steps.
 
 #### [Foundry (new) portal](#tab/new-foundry)
 
-1. [!INCLUDE [foundry-sign-in](../../../ai-foundry/default/includes/foundry-sign-in.md)]
+1. [!INCLUDE [foundry-sign-in](../../../foundry/includes/foundry-sign-in.md)]
 1. Select **Build** from the top right menu.
 1. Select **Models** on the left pane.
 1. The **AI Services** tab shows the Azure AI models that you can use out of the box in the Foundry portal. Select **Azure Speech - Text to Speech Avatar** to open the Text to Speech Avatar playground.
@@ -38,11 +38,11 @@ Try text to speech avatar in the Foundry portal by following these steps.
 
 ## Other Foundry (new) features
 
-[!INCLUDE [speech-features-foundry](../../../ai-foundry/default/includes/speech-features-foundry.md)]
+[!INCLUDE [speech-features-foundry](../../../foundry/includes/speech-features-foundry.md)]
 
 #### [Foundry (classic) portal](#tab/classic-foundry)
 
-1. [!INCLUDE [classic-sign-in](../../../ai-foundry/includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../foundry/includes/classic-sign-in.md)]
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 1. Select **Text to speech avatar**.
 1. Select an avatar from the avatar list, and select background, language, and voice.

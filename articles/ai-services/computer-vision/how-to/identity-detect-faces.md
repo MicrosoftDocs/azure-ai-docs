@@ -26,7 +26,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 This guide demonstrates how to use the face detection API to extract attributes from a given image. You'll learn the different ways to configure the behavior of this API to meet your needs.
 
-The code snippets in this guide are written in C# by using the Azure AI Face client library. The same functionality is available through the [REST API](/rest/api/face/face-detection-operations/detect).
+The code snippets in this guide are written in C# by using the Azure Face client library. The same functionality is available through the [REST API](/rest/api/face/face-detection-operations/detect).
 
 
 ## Prerequisites

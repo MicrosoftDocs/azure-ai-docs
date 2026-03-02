@@ -9,11 +9,12 @@ ms.topic: concept-article
 ms.author: scottpolly
 ms.reviewer: sooryar
 author: CESARDELATORRE
-ms.date: 03/15/2022
-ms.custom: UpdateFrequency5, automl
+ms.date: 02/28/2026
+ms.custom: UpdateFrequency5, automl, dev-focus
+ai-usage: ai-assisted
 ---
 
-# Automated machine learning (AutoML)?
+# Automated machine learning (AutoML)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
@@ -169,6 +170,9 @@ Learn how to [set up AutoML training for NLP models (v1)](../how-to-auto-train-n
 
 ## How automated ML works
 
+> [!TIP]
+> For the current recommended approach using SDK v2, see [Set up AutoML training for tabular data with the Azure Machine Learning CLI and Python SDK](/azure/machine-learning/how-to-configure-auto-train). To migrate from SDK v1 to v2, see [Upgrade AutoML to SDK v2](/azure/machine-learning/migrate-to-v2-execution-automl).
+
 During training, Azure Machine Learning creates a number of pipelines in parallel that try different algorithms and parameters for you. The service iterates through ML algorithms paired with feature selections, where each iteration produces a model with a training score. The higher the score, the better the model is considered to "fit" your data.  It will stop once it hits the exit criteria defined in the experiment. 
 
 Using **Azure Machine Learning**, you can design and run your automated ML training experiments with these steps:
@@ -301,7 +305,7 @@ With Azure Machine Learning, you can use automated ML to build a Python model an
 
 See how to convert to ONNX format [in this Jupyter notebook example](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/classification-bank-marketing-all-features). Learn which [algorithms are supported in ONNX (v1)](../how-to-configure-auto-train.md#supported-algorithms).
 
-The ONNX runtime also supports C#, so you can use the model built automatically in your C# apps without any need for recoding or any of the network latencies that REST endpoints introduce. Learn more about [using an AutoML ONNX model in a .NET application with ML.NET](../how-to-use-automl-onnx-model-dotnet.md) and [inferencing ONNX models with the ONNX runtime C# API](https://onnxruntime.ai/docs/api/csharp-api.html). 
+The ONNX runtime also supports C#, so you can use the model built automatically in your C# apps without any need for recoding or any of the network latencies that REST endpoints introduce. Learn more about [using an AutoML ONNX model in a .NET application with ML.NET](../how-to-use-automl-onnx-model-dotnet.md) and [inferencing ONNX models with the ONNX runtime C# API](https://onnxruntime.ai/docs/api/csharp/api). 
 
 ## Next steps
 
@@ -336,6 +340,5 @@ Review detailed code examples and use cases in the [GitHub notebook repository f
 Deepen your expertise of SDK design patterns and class specifications with the [AutoML class reference documentation](/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig). 
 
 > [!Note]
-> Automated machine learning capabilities are also available in other Microsoft solutions such as, 
-[ML.NET](/dotnet/machine-learning/automl-overview), 
-[HDInsight](/azure/hdinsight/spark/apache-spark-run-machine-learning-automl), [Power BI](/power-bi/service-machine-learning-automated) and [SQL Server](https://cloudblogs.microsoft.com/sqlserver/2019/01/09/how-to-automate-machine-learning-on-sql-server-2019-big-data-clusters/)
+> Automated machine learning capabilities are also available in other Microsoft solutions such as,
+> [ML.NET](/dotnet/machine-learning/automl-overview) and [Power BI](/power-bi/service-machine-learning-automated).
