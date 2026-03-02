@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 12/05/2025
+ms.date: 03/02/2026
 ms.custom:
   - mode-ui
   - ignite-2023
@@ -43,7 +43,7 @@ To monitor the progress of the indexer:
 
    It can take a few minutes for the results to update. You should see the newly created indexer with a status of **In progress** or **Success**. The list also shows the number of documents indexed.
 
-## Check search index results
+## Check index results
 
 1. From the left pane, select **Indexes**.
 
@@ -57,7 +57,7 @@ To monitor the progress of the indexer:
 
    :::image type="content" source="media/search-get-started-portal/index-schema-definition.png" alt-text="Screenshot that shows the schema definition for an index in the Azure AI Search service in the Azure portal." lightbox="media/search-get-started-portal/index-schema-definition.png":::
 
-## Add or change fields
+## Add or change index fields
 
 On the **Fields** tab, you can create a field by selecting **Add field** and specifying a name, [supported data type](/rest/api/searchservice/supported-data-types), and attributes.
 
@@ -65,7 +65,7 @@ Changing existing fields is more difficult. Existing fields have a physical repr
 
 Review the index definition options to understand what you can and can't edit during index design. If an option appears dimmed, you can't modify or delete it.
 
-## Query with Search explorer
+## Query the index
 
 You now have a search index that can be queried using [**Search explorer**](search-explorer.md), which sends REST calls that conform to [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true). This tool supports [simple query syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) and [full Lucene query syntax](/rest/api/searchservice/lucene-query-syntax-in-azure-search) for keyword search.
 
@@ -83,12 +83,10 @@ To query your search index:
 
    :::image type="content" source="media/search-get-started-portal/search-explorer-change-view.png" alt-text="Screenshot of the JSON view selector." lightbox="media/search-get-started-portal/search-explorer-change-view.png":::
 
-## Example queries for hotels-sample index
+1. Run the following query examples to see how filtering and query syntax work.
 
-The following examples assume the JSON view and the latest preview REST API version.
-
-> [!TIP]
-> The JSON view supports intellisense for parameter name completion. Place your cursor inside the JSON view and enter a space character to see a list of all query parameters. You can also enter a letter, like `s`, to see only the query parameters that begin with that letter.
+   > [!TIP]
+   > The JSON view supports intellisense for parameter name completion. Place your cursor inside the JSON view and enter a space character to see a list of all query parameters. You can also enter a letter, like `s`, to see only the query parameters that begin with that letter.
 >
 > Intellisense doesn't exclude invalid parameters, so use your best judgment.
 

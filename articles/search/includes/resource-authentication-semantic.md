@@ -1,0 +1,23 @@
+---
+author: haileytap
+ms.author: haileytapia
+ms.service: azure-ai-search
+ms.topic: include
+ms.date: 01/29/2026
+# Use this file for the semantic ranking quickstart. For other scenarios, use resource-authentication.md.
+---
+
+Before you begin, make sure you have permissions to access content and operations in Azure AI Search. This quickstart uses Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](../search-security-api-keys.md) instead.
+
+To configure the recommended role-based access:
+
+1. [Enable role-based access](../search-security-enable-roles.md) for your search service.
+
+1. [Assign the following roles](../search-security-rbac.md) to your user account.
+
+    + **Search Service Contributor**
+
+    + **Search Index Data Reader**
+
+> [!NOTE]
+> Unlike other quickstarts that create and load an index, this quickstart assumes an existing index with data, so you don't need the **Search Index Data Contributor** role.
