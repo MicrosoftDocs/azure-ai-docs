@@ -3,8 +3,7 @@ title: Configure logging
 titleSuffix: Azure AI Search
 description: Set up diagnostic logging to collect information about indexing and query processing in Azure AI Search resource logs.
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/08/2025

@@ -3,8 +3,7 @@ title: Add semantic ranking
 titleSuffix: Azure AI Search
 description: Set a semantic query type to attach the deep learning models of semantic ranker.
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

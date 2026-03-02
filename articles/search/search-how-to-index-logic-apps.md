@@ -2,8 +2,7 @@
 title: Connect to Azure Logic Apps
 titleSuffix: Azure AI Search
 description: Use an Azure Logic Apps workflow for automated indexing in Azure AI Search.
-author: HeidiSteen
-ms.author: heidist
+
 manager: nitinme
 ms.date: 01/23/2026
 ms.service: azure-ai-search

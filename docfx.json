@@ -363,7 +363,7 @@
         "articles/ai-services/translator/**/*.md": "laujan",
         "articles/open-datasets/**/*.md": "shubhirajMsft",
         "articles/open-datasets/**/*.yml": "shubhirajMsft",
-        "articles/search/*.md": "HeidiSteen"
+        "articles/search/*.md": "haileytap"
       },
       "featureFlags": {
         "articles/**/*.md": [
@@ -456,7 +456,7 @@
         "articles/ai-services/translator/**/*.md": "lajanuar",
         "articles/open-datasets/**/*.md": "samkemp",
         "articles/open-datasets/**/*.yml": "samkemp",
-        "articles/search/*.md": "heidist"
+        "articles/search/*.md": "haileytapia"
       },
       "ms.collection": {
         "articles/search/**/*.md": "ce-skilling-ai-copilot",
