@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -25,7 +25,7 @@ Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifi
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 > [!NOTE]
 > For Java, use the `com.azure:azure-ai-agents` package for OpenAPI agent tools. The `com.azure:azure-ai-projects` package doesn't currently expose OpenAPI agent tool types.
@@ -40,10 +40,10 @@ Before you begin, make sure you have:
 - An AI model deployed in your project.
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - SDK installed for your preferred language:
-  - Python: `azure-ai-projects` (latest prerelease version)
-  - C#: `Azure.AI.Projects.OpenAI`
+  - Python: `azure-ai-projects`
+  - C#: `Azure.AI.Projects.OpenAI` (prerelease)
   - TypeScript/JavaScript: `@azure/ai-projects`
-  - Java: `com.azure:azure-ai-agents`
+  - Java: `com.azure:azure-ai-agents` (prerelease)
 
 ### Environment variables
 
@@ -73,7 +73,7 @@ Before you begin, make sure you have:
 ## Code example
 
 > [!NOTE]
-> - You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> - You need the latest SDK package. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 > - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 > [!IMPORTANT]

@@ -4,7 +4,7 @@ description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agen
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -32,7 +32,7 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -85,7 +85,7 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 ## Code example
 
 > [!NOTE]
-> - To run this code, you need the latest prerelease package. For more information, see [Get ready to code](../../../quickstarts/get-started-code.md).
+> - The Python, JavaScript, and REST samples use generally available (GA) packages. The C# and Java samples require prerelease packages. For more information, see [Get ready to code](../../../quickstarts/get-started-code.md).
 > - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
@@ -451,6 +451,86 @@ main().catch((err) => {
 - A line confirming agent creation.
 - A line that starts with `Response output:` followed by the response text.
 - A final confirmation that the agent was deleted.
+:::zone-end
+
+:::zone pivot="java"
+
+## Use Microsoft Fabric in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with Microsoft Fabric
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.MicrosoftFabricPreviewTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class FabricToolExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create Microsoft Fabric tool
+        // The Fabric connection is configured in the Foundry portal
+        MicrosoftFabricPreviewTool fabricTool = new MicrosoftFabricPreviewTool();
+
+        // Create agent with Fabric tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a data assistant that can query Microsoft Fabric data.")
+            .setTools(Collections.singletonList(fabricTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("fabric-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("Query the latest sales data from Microsoft Fabric")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
 :::zone-end
 
 :::zone pivot="rest"

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026
@@ -35,17 +35,16 @@ In this article, you learn how to:
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-Java SDK samples are not yet available.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md)
-- The latest prerelease SDK package:
-  - **Python**: `pip install azure-ai-projects python-dotenv --pre`
-  - **C#**: `dotnet add package Azure.AI.Projects.OpenAI --prerelease`
-  - **TypeScript**: `npm install @azure/ai-projects @azure/identity dotenv`
+- The SDK package for your language:
+  - **Python**: `azure-ai-projects` (latest)
+  - **.NET**: `Azure.AI.Projects.OpenAI` (prerelease)
+  - **TypeScript**: `@azure/ai-projects` (latest)
+  - **Java**: `azure-ai-agents` (prerelease)
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
 - **Azure AI Owner** role on your Foundry resource (required for creating agent resources)
 - Environment variables configured: `FOUNDRY_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
@@ -438,6 +437,90 @@ main().catch((err) => {
 
 - Reference: [Azure SDK for JavaScript sample: file search](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFileSearch.js)
 - Reference: [Agents REST API (preview)](../../../reference/foundry-project-rest-preview.md)
+
+:::zone-end
+
+:::zone pivot="java"
+
+## Use file search in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with file search
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.FileSearchTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+public class FileSearchExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create file search tool with vector store IDs
+        FileSearchTool fileSearchTool = new FileSearchTool(
+            Arrays.asList("<your-vector-store-id>")
+        );
+
+        // Create agent with file search tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a helpful assistant that can search through files to answer questions.")
+            .setTools(Collections.singletonList(fileSearchTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("file-search-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("What information is in the uploaded files?")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
+For more examples including file upload and vector store creation, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
 
 :::zone-end
 

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -41,9 +41,7 @@ The grounding process involves several key steps:
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-Java SDK samples are not yet available.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -55,10 +53,11 @@ Before you begin, make sure you have:
   - **Azure AI Project Manager** role to create project connections in Foundry. For more information, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
 - A Foundry project created with a configured endpoint.
 - An AI model deployed in your project.
-- SDK installed for your preferred language:
-  - Python: `azure-ai-projects` (latest prerelease version)
-  - C#: `Azure.AI.Projects.OpenAI`
+- SDK installed for your preferred language. C# and Java require the prerelease version:
+  - Python: `azure-ai-projects`
+  - C#: `Azure.AI.Projects.OpenAI` (prerelease)
   - TypeScript/JavaScript: `@azure/ai-projects`
+  - Java: `com.azure:azure-ai-agents:2.0.0-beta.1`
 - Environment variables set up:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
@@ -112,8 +111,8 @@ If you already have a project connection ID for the Bing resource you want to us
 ## Code examples
 
 > [!NOTE]
-> - You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
-> - For SDK samples, use the project connection name. For REST samples, use the project connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
+> - You need the latest SDK package. C# and Java require the prerelease version. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> - For SDK samples, use the project connection name. For REST samples, use the project connection ID in the format`/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
 
@@ -1077,9 +1076,89 @@ Bing Custom Search agent sample completed!
 
 :::zone-end
 
+:::zone pivot="java"
+
+## Use Bing grounding in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with Bing grounding
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.BingGroundingTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class BingGroundingExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create Bing grounding tool
+        // The Bing connection is configured in the Foundry portal
+        BingGroundingTool bingTool = new BingGroundingTool();
+
+        // Create agent with Bing grounding tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a helpful assistant. Use Bing to find up-to-date information.")
+            .setTools(Collections.singletonList(bingTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("bing-grounding-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("What are the latest developments in AI?")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
+:::zone-end
+
 ## How it works
 
-The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."* Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave. 
+The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."*Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave. 
 
 When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing search query (which is [visible to developers](#how-to-display-search-results)). 
 Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output. 

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -28,10 +28,7 @@ You can run agents with function tools in the Microsoft Foundry portal. However,
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-> [!NOTE]
-> The Java SDK does not currently support function calling with the new agent APIs (`azure-ai-projects` package). Java support is available for the classic agent APIs only. For Java function calling examples with classic agents, see the [classic agent documentation](../../../../foundry-classic/agents/how-to/tools-classic/function-calling.md).
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -39,10 +36,11 @@ Before you start, make sure you have:
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - A Foundry project and a deployed model.
-- The latest prerelease SDK package for your language:
-  - Python: `azure-ai-projects>=2.0.0b4`
+- The SDK package for your language:
+  - Python: `azure-ai-projects` (latest)
   - .NET: `Azure.AI.Projects.OpenAI` (prerelease)
-  - TypeScript: `@azure/ai-projects` (latest beta)
+  - TypeScript: `@azure/ai-projects` (latest)
+  - Java: `azure-ai-agents` (prerelease)
   
   For installation and authentication steps, see the [quickstart](../../../quickstarts/get-started-code.md).
 
@@ -91,7 +89,7 @@ Function calling follows this pattern:
 1. **Get the final response** — The agent uses your function output to complete its response.
 
 > [!NOTE]
-> You need the latest prerelease package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+> You need the latest SDK package. The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 :::zone pivot="python"
 
@@ -659,6 +657,99 @@ Your horoscope for Aquarius: Next Tuesday you will befriend a baby otter.
 Cleaning up resources...
 Agent deleted
 ```
+
+:::zone-end
+
+:::zone pivot="java"
+
+## Use function calling in a Java agent
+
+### Set up
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with function tools
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.FunctionTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.BinaryData;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+public class FunctionCallingExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Define function parameters
+        Map<String, BinaryData> parameters = new HashMap<>();
+        parameters.put("type", BinaryData.fromString("\"object\""));
+        parameters.put("properties", BinaryData.fromString(
+            "{\"location\":{\"type\":\"string\",\"description\":\"The city and state, e.g. Seattle, WA\"},"
+            + "\"unit\":{\"type\":\"string\",\"enum\":[\"celsius\",\"fahrenheit\"]}}"));
+        parameters.put("required", BinaryData.fromString("[\"location\"]"));
+
+        FunctionTool weatherFunction = new FunctionTool("get_weather", parameters, true);
+
+        // Create agent with function tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a weather assistant. Use the get_weather function to retrieve weather information.")
+            .setTools(Arrays.asList(weatherFunction));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("function-calling-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response - the agent will call the function
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("What is the weather in Seattle?")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
+For the complete function calling loop that handles the tool call and submits results back to the agent, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
 
 :::zone-end
 

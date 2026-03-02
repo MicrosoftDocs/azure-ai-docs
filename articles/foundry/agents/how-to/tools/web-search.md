@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -35,14 +35,12 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-Java SDK samples are not yet available.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md)
-- The latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
+- The latest SDK package. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
@@ -52,7 +50,7 @@ Java SDK samples are not yet available.
 
 > [!NOTE]
 > - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
-> - You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> - You need the latest SDK package. The .NET and Java SDKs are currently in preview.
 
 :::zone pivot="python"
 ### General Web Search
@@ -326,6 +324,85 @@ Conversation deleted
 Agent deleted
 Web search sample completed!
 ```
+:::zone-end
+
+:::zone pivot="java"
+
+## Use web search in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with web search
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.WebSearchPreviewTool;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class WebSearchExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create web search tool
+        WebSearchPreviewTool webSearchTool = new WebSearchPreviewTool();
+
+        // Create agent with web search tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a helpful assistant that can search the web for current information.")
+            .setTools(Collections.singletonList(webSearchTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("web-search-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("What are the latest trends in renewable energy?")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
 :::zone-end
 
 ## Configure the web search tool

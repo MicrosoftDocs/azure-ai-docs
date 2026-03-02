@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -35,10 +35,7 @@ The following table shows SDK and setup support for MCP connections. ✔️ (GA)
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-> [!NOTE]
-> The Java SDK does not currently support MCP tools with the new agent APIs (`azure-ai-projects` package). MCP integration is available through Python, C#, TypeScript, and REST API only.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -46,7 +43,7 @@ Before you begin, ensure you have:
 
 - An Azure subscription with an active Microsoft Foundry project.
 - Azure role-based access control (RBAC): Contributor or Owner role on the Foundry project.
-- The latest prerelease SDK package for your language. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
+- The latest SDK package for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
@@ -89,7 +86,7 @@ When you use MCP servers, follow these practices:
 
 ## Create an agent in Python with the MCP tool
 
-Use the following code sample to create an agent and call the function. You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+Use the following code sample to create an agent and call the function. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 
 :::zone pivot="python"
 
@@ -824,6 +821,85 @@ Conversation deleted
 Agent deleted
 MCP with project connection sample completed!
 ```
+:::zone-end
+
+:::zone pivot="java"
+
+## Use MCP tools in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with MCP tool
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.McpTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class McpToolExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create MCP tool
+        McpTool mcpTool = new McpTool();
+
+        // Create agent with MCP tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a helpful assistant that can use MCP tools.")
+            .setTools(Collections.singletonList(mcpTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("mcp-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("Use the available MCP tools to help me")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
 :::zone-end
 
 :::zone pivot="rest"

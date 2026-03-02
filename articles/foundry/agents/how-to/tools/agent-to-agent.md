@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -33,10 +33,7 @@ The following table shows SDK and setup support. ✔️ (GA) indicates general a
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-> [!NOTE]
-> The Java SDK does not currently support A2A tools with the new agent APIs (`azure-ai-projects` package). A2A integration is available through Python, C#, TypeScript, and REST API only.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -44,9 +41,10 @@ The following table shows SDK and setup support. ✔️ (GA) indicates general a
 - A model deployment (for example, gpt-4) in your Foundry project.
 - Required Azure role: On the Foundry resource, **Contributor** or **Owner** for management and **Azure AI User** for building an agent.
 - SDK installation:
-  - Python: `pip install azure-ai-projects[agents]` (latest prerelease)
-  - C#: `Azure.AI.Projects` NuGet package
-  - TypeScript: `@azure/ai-projects` npm package
+  - Python (GA): `pip install azure-ai-projects[agents]`
+  - C# (Preview): `Azure.AI.Projects` prerelease NuGet package
+  - TypeScript (GA): `@azure/ai-projects` npm package
+  - Java (Preview): `com.azure:azure-ai-agents:2.0.0-beta.1` Maven dependency
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
@@ -116,7 +114,7 @@ If this code runs without errors, your credentials and A2A connection are config
 ## Code example
 
 > [!NOTE]
-> You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 
 :::zone pivot="python"
 ## Create an agent with the A2A tool
@@ -567,6 +565,85 @@ main().catch((err) => {
 ### Expected output
 
 The console displays streamed response text as the A2A agent processes the request. You see the follow-up response ID, text deltas printed to stdout, and completion messages. The agent version is deleted after the interaction completes.
+:::zone-end
+
+:::zone pivot="java"
+
+## Use agent-to-agent communication in Java
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create agents with agent-to-agent tool
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.A2APreviewTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class AgentToAgentExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create agent-to-agent tool
+        A2APreviewTool a2aTool = new A2APreviewTool();
+
+        // Create agent with agent-to-agent tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a coordinator agent that can communicate with other agents.")
+            .setTools(Collections.singletonList(a2aTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("a2a-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("Coordinate with the other agents to complete this task")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
 :::zone-end
 
 ## Troubleshooting

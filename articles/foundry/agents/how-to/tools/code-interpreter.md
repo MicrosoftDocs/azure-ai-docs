@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026
@@ -31,12 +31,12 @@ When enabled, your agent can write and run Python code iteratively to solve data
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | - | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - Basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md) for details.
-- Latest prerelease SDK package installed (`azure-ai-projects>=2.0.0b4` for Python). See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
+- Latest SDK package installed for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
 - Azure AI model deployment configured in your project.
 - For file operations: CSV or other supported files to upload for analysis.
 
@@ -48,7 +48,7 @@ When enabled, your agent can write and run Python code iteratively to solve data
 The following samples demonstrate how to create an agent with Code Interpreter enabled, upload a file for analysis, and download the generated output.
 
 > [!NOTE]
-> You need the latest prerelease package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+> You need the latest SDK package. The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 :::zone pivot="python"
 ## Sample of using agent with code interpreter tool in Python SDK
@@ -385,6 +385,131 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 
 :::zone-end
 
+:::zone pivot="java"
+
+## Use code interpreter in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with code interpreter
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.CodeInterpreterTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class CodeInterpreterExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create code interpreter tool
+        CodeInterpreterTool codeInterpreter = new CodeInterpreterTool();
+
+        // Create agent with code interpreter
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a math tutor. Write and run code to answer math questions.")
+            .setTools(Collections.singletonList(codeInterpreter));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("code-interpreter-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("I need to solve the equation 3x + 11 = 14. Can you help me?")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
+For more examples including file upload and analysis, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
+
+:::zone-end
+
+:::zone pivot="rest"
+
+## Use code interpreter with the REST API
+
+### Create an agent with code interpreter
+
+```bash
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "name": "code-interpreter-agent",
+    "definition": {
+      "kind": "prompt",
+      "model": "<MODEL_DEPLOYMENT>",
+      "instructions": "You are a math tutor. Write and run code to answer math questions.",
+      "tools": [
+        {"type": "code_interpreter", "container": {"type": "auto"}}
+      ]
+    }
+  }'
+```
+
+### Generate a response
+
+```bash
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent_reference": {"type": "agent_reference", "name": "code-interpreter-agent"},
+    "input": "I need to solve the equation 3x + 11 = 14. Can you help me?"
+  }'
+```
+
+### Clean up
+
+```bash
+curl -X DELETE "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/code-interpreter-agent?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+:::zone-end
+
 ## Check regional and model availability
 
 Tool availability varies by region and model.
@@ -422,12 +547,6 @@ For the current list of supported regions and models for Code Interpreter, see [
 |`.xlsx`|`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`|
 |`.xml`|`application/xml` or `text/xml`|
 |`.zip`|`application/zip`|
-
-## Java SDK limitations
-
-The Code Interpreter tool is not currently supported in the Java SDK for Foundry agents. If you need Code Interpreter functionality in a Java application, use the REST API directly or consider using another supported SDK (Python, C#, or TypeScript/JavaScript).
-
-For the latest SDK support status, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 ## Troubleshooting
 

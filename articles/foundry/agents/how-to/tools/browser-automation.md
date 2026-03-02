@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -35,10 +35,7 @@ By using [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-worksp
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-> [!NOTE]
-> The Java SDK does not currently support the Browser Automation tool. If you need browser automation in a Java application, use the REST API directly.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## How it works
 
@@ -75,11 +72,7 @@ For Python examples, install the required packages:
 pip install azure-ai-projects python-dotenv
 ```
 
-For the latest features, you might need the prerelease version:
-
-```bash
-pip install azure-ai-projects --pre --upgrade
-```
+The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 ### Environment variables
 
@@ -126,7 +119,7 @@ After the connection is created, you can view the **Project connection ID** on t
 After you run a sample, verify the tool was called by using tracing in Microsoft Foundry. For guidance on validating tool invocation, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md). If you use streaming, you can also look for `browser_automation_preview_call` events.
 
 > [!NOTE]
-> - You need the latest prerelease package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+> - The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 > - This article assumes you already created the Playwright workspace connection. See the prerequisites section.
 
 :::zone pivot="python"
@@ -498,6 +491,85 @@ This example creates an agent version with the Browser Automation tool enabled, 
 ### Expected output
 
 You see an "Agent created ..." message, streaming text output, and optionally, browser call details when the tool is invoked. The output varies based on the website content and model behavior.
+:::zone-end
+
+:::zone pivot="java"
+
+## Use browser automation in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with browser automation
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.BrowserAutomationPreviewTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class BrowserAutomationExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create browser automation tool
+        BrowserAutomationPreviewTool browserTool = new BrowserAutomationPreviewTool();
+
+        // Create agent with browser automation tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a helpful assistant that can interact with web pages.")
+            .setTools(Collections.singletonList(browserTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("browser-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("Navigate to microsoft.com and summarize the main content")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
 :::zone-end
 
 ## Limitations

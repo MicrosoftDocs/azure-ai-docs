@@ -8,7 +8,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-image-generation
@@ -29,10 +29,7 @@ The **image generation tool** in Microsoft Foundry Agent Service generates image
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-> [!NOTE]
-> The Java SDK does not currently support the Image Generation tool. If you need image generation in a Java application, use the REST API directly.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -59,7 +56,7 @@ Set these environment variables for the samples:
 
 ## Code examples
 
-Before you start, install the `azure-ai-projects` package (version 2.0.0b4 or later). For package installation instructions, see the [quickstart](../../../quickstarts/get-started-code.md).
+Before you start, install the latest SDK package. The .NET and Java SDKs are currently in preview. For package installation instructions, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 :::zone pivot="python"
 ## Create an agent with the image generation tool
@@ -363,6 +360,85 @@ Image downloaded and saved to: /path/to/microsoft.png
 Cleaning up resources...
 Agent deleted
 ```
+:::zone-end
+
+:::zone pivot="java"
+
+## Use image generation in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with image generation
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.ImageGenTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class ImageGenerationExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create image generation tool
+        ImageGenTool imageGenTool = new ImageGenTool();
+
+        // Create agent with image generation tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a creative assistant that can generate images based on descriptions.")
+            .setTools(Collections.singletonList(imageGenTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("image-gen-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("Generate an image of a sunset over a mountain range")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
 :::zone-end
 
 ## When to use the image generation tool

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -27,19 +27,18 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-Java SDK samples are coming soon.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 *Estimated setup time: 15-30 minutes if you have an existing search index*
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
-- The latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
-  - **Python**: `pip install azure-ai-projects --pre`
+- Install the SDK package for your preferred language. C# and Java require the prerelease version. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+  - **Python**: `pip install azure-ai-projects`
   - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
   - **JavaScript/TypeScript**: `npm install @azure/ai-projects`
+  - **Java**: Add the `com.azure:azure-ai-agents:2.0.0-beta.1` dependency to your `pom.xml`
 - An Azure subscription and Microsoft Foundry project with:
   - Project endpoint
   - Model deployment name
@@ -77,7 +76,7 @@ Java SDK samples are coming soon.
 ## Code example
 
 > [!NOTE]
-> - You need the latest prerelease package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+> - You need the latest SDK package. C# and Java require the prerelease version. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 > - If you're using the REST or TypeScript sample, the connection ID is in the format `/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{connectionName}}`.
 > - If you're using the Python or C# sample, you can provide the connection name and retrieve the connection ID with the SDK.
 
@@ -635,6 +634,86 @@ main().catch((err) => {
 ### Expected outcome
 
 The application creates an agent with Azure AI Search capabilities, prompts for user input, queries the search index, and streams the response with real-time delta updates. Console output includes the agent ID, streaming text deltas, URL citations with indices, and confirmation of successful agent deletion. The agent provides answers grounded in the indexed content with proper citations.
+:::zone-end
+
+:::zone pivot="java"
+
+## Use Azure AI Search in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with Azure AI Search
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.AzureAISearchTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class AzureAISearchExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create Azure AI Search tool
+        // The connection is configured in the Foundry portal
+        AzureAISearchTool aiSearchTool = new AzureAISearchTool();
+
+        // Create agent with AI Search tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a helpful assistant that can search through indexed documents.")
+            .setTools(Collections.singletonList(aiSearchTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("ai-search-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("Search for information about Azure AI services")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
 :::zone-end
 
 ## Limitations

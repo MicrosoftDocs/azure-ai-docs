@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -37,7 +37,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -46,10 +46,11 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
   - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 - Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
 - Developers and end users have at least `READ` access to the SharePoint site.
-- The latest prerelease package installed:
-  - **Python**: `pip install azure-ai-projects --pre`
-  - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
+- The required SDK package installed:
+  - **Python**: `pip install azure-ai-projects`
+  - **C# (Preview)**: Install the `Azure.AI.Projects` NuGet package (prerelease)
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
+  - **Java (Preview)**: Add `com.azure:azure-ai-agents:2.0.0-beta.1` to your `pom.xml`
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
@@ -610,6 +611,86 @@ Cleaning up resources...
 Agent deleted
 
 SharePoint agent sample completed!
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+## Use SharePoint grounding in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_AGENTS_MODEL` — A deployed model name.
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with SharePoint grounding
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.SharepointPreviewTool;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class SharePointGroundingExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create SharePoint grounding tool
+        // The SharePoint connection is configured in the Foundry portal
+        SharepointPreviewTool sharepointTool = new SharepointPreviewTool();
+
+        // Create agent with SharePoint tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a helpful assistant that can search through SharePoint documents.")
+            .setTools(Collections.singletonList(sharepointTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("sharepoint-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("Find the latest project documentation in SharePoint")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
 ```
 
 :::zone-end

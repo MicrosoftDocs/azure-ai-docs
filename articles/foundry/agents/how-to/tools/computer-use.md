@@ -1,12 +1,12 @@
 ---
 title: "Use the computer use tool for agents"
-description: "Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, and TypeScript SDK samples for Foundry Agent Service."
+description: "Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, TypeScript, Java SDK, and REST API samples for Foundry Agent Service."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/02/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: references_regions, dev-focus, pilot-ai-workflow-jan-2026
@@ -30,19 +30,17 @@ This guide shows how to integrate the computer use tool into an application loop
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | - | ✔️ | ✔️ |
-
-> [!NOTE]
-> The Java SDK and REST API do not currently support the Computer Use tool. Use the Python, C#, or TypeScript/JavaScript SDKs.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
-- The latest prerelease SDK package:
-  - **Python**: `azure-ai-projects>=2.0.0b4`, `python-dotenv`
+- The latest SDK package:
+  - **Python**: `azure-ai-projects`, `python-dotenv`
   - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
-  - **TypeScript**: `@azure/ai-projects` v2-beta, `@azure/identity`
+  - **TypeScript**: `@azure/ai-projects`, `@azure/identity`
+  - **Java**: `azure-ai-agents` (prerelease)
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
 - A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
 
@@ -103,7 +101,7 @@ After Microsoft grants access, you need to create a deployment for the model.
 > [!WARNING] 
 > Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-To run this code, you need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
+You need the latest SDK package. The .NET and Java SDKs are currently in preview.
 
 :::zone pivot="python"
 ### Screenshot initialization for computer use tool execution
@@ -662,6 +660,149 @@ Cleaning up...
 Agent deleted
 Computer Use Agent sample completed!
 ```
+:::zone-end
+
+:::zone pivot="java"
+
+## Use computer use in a Java agent
+
+Set the following environment variables:
+
+- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
+- `AZURE_COMPUTER_USE_MODEL_DEPLOYMENT_NAME` — The computer-use-preview model deployment name (defaults to `computer-use-preview`).
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create a computer use agent
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.ComputerEnvironment;
+import com.azure.ai.agents.models.ComputerUsePreviewTool;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class ComputerUseExample {
+    public static void main(String[] args) {
+        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get(
+            "AZURE_COMPUTER_USE_MODEL_DEPLOYMENT_NAME", "computer-use-preview");
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(endpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create computer use tool
+        ComputerUsePreviewTool tool = new ComputerUsePreviewTool(
+            ComputerEnvironment.WINDOWS,
+            1024,
+            768
+        );
+
+        // Create agent with computer use tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("You are a computer automation assistant.")
+            .setTools(Collections.singletonList(tool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("computer-use-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response with initial screenshot
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("Open the browser and navigate to microsoft.com")
+                .build());
+
+        System.out.println("Response: " + response.output());
+
+        // The response will contain computer_call items with actions
+        // to execute. Process each action, take screenshots, and
+        // send results back using responsesClient.createWithAgent()
+        // with the previousResponseId and computer call output.
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
+For a complete computer use loop with screenshot handling, see the [ComputerUseSync.java sample](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/java/com/azure/ai/agents/tools/ComputerUseSync.java).
+
+:::zone-end
+
+:::zone pivot="rest"
+
+## Use computer use with the REST API
+
+### Create an agent with computer use
+
+```bash
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "name": "computer-use-agent",
+    "definition": {
+      "kind": "prompt",
+      "model": "computer-use-preview",
+      "instructions": "You are a computer automation assistant.",
+      "tools": [
+        {
+          "type": "computer_use_preview",
+          "environment": "windows",
+          "display_width": 1024,
+          "display_height": 768
+        }
+      ]
+    }
+  }'
+```
+
+### Generate a response
+
+```bash
+curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent_reference": {"type": "agent_reference", "name": "computer-use-agent"},
+    "input": "Open the browser and navigate to microsoft.com"
+  }'
+```
+
+The response includes `computer_call` output items with actions to execute. Process each action, capture screenshots, and send results back using the responses endpoint with `previous_response_id`.
+
+### Clean up
+
+```bash
+curl -X DELETE "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/computer-use-agent?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
 :::zone-end
 
 ## What you can do with the computer use tool
