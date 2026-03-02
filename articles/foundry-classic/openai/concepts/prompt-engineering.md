@@ -114,7 +114,7 @@ Supporting content is information that the model can utilize to influence the ou
 
 The techniques in this section will teach you strategies for increasing the accuracy and grounding of responses you generate with a Large Language Model (LLM). It is, however, important to remember that even when using prompt engineering effectively you still need to validate the responses the models generate. Just because a carefully crafted prompt worked well for a particular scenario doesn't necessarily mean it will generalize more broadly to certain use cases. Understanding the [limitations of LLMs](/azure/ai-foundry/responsible-ai/openai/transparency-note#limitations), is just as important as understanding how to leverage their strengths.
 
-[!INCLUDE [Prompt Chat Completion](../includes/prompt-chat-completion.md)]
+[!INCLUDE [Prompt Chat Completion](../../../foundry/openai/includes/prompt-chat-completion.md)]
 
 ## Best practices
 

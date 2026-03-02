@@ -44,7 +44,7 @@ curl "https://raw.githubusercontent.com/Azure-Samples/Azure-OpenAI-Docs-Samples/
  > [!NOTE]
  > Microsoft Entra ID based authentication is currently not supported for embeddings with the v1 API.
 
-[!INCLUDE [get-key-endpoint](../includes/get-key-endpoint.md)]
+[!INCLUDE [get-key-endpoint](../../../foundry/openai/includes/get-key-endpoint.md)]
 
 ### Environment variables
 

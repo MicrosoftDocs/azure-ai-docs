@@ -37,7 +37,7 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [structured-outputs-rest](../includes/structured-outputs-rest.md)]
+[!INCLUDE [structured-outputs-rest](../../../foundry/openai/includes/structured-outputs-rest.md)]
 
 ::: zone-end
 

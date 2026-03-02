@@ -301,7 +301,7 @@ az cognitiveservices account deployment create
 
 ---
 
-[!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
+[!INCLUDE [Fine-tuning deletion](../../../foundry/openai/includes/fine-tune.md)]
 
 ## Use your deployed fine-tuned model
 

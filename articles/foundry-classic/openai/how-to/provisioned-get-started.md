@@ -68,7 +68,7 @@ Use the Azure portal to [create a resource](./create-resource.md) in a region 
 
 Once you have verified your quota, you can create a deployment. Navigate to Foundry model catalog to discover the models with provisioned deployment options. 
 
-1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../foundry/includes/classic-sign-in.md)]
 1. Choose the subscription that was enabled for provisioned deployments & select the desired resource in a region where you have the quota. 
 1. You can select models by filtering **Direct from Azure** in the model collections filter. Those are models held and served by Azure directly and support provisioned throughput deployment option. 
 1. Select the model that you want to deploy and check the model details in the model card.

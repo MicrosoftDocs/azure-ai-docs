@@ -19,7 +19,7 @@ reviewer: santiagxf
 
 If you already have an AI project in Microsoft Foundry, the model catalog deploys models from partner model providers as stand-alone endpoints in your project by default. Each model deployment has its own set of URI and credentials to access it. On the other hand, Azure OpenAI models are deployed to the Foundry resource or to the Azure OpenAI in Foundry Models resource.
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 You can change this behavior and deploy both types of models to Foundry resources. Once configured, *deployments of models as serverless API deployments happen to the connected Foundry resource* instead to the project itself, giving you a single set of endpoint and credentials to access all the models deployed in Foundry. You can manage models from Azure OpenAI and partner model providers in the same way.
 
@@ -116,7 +116,7 @@ You can use any of the supported SDKs to get predictions out from the endpoint. 
 
 For more information and examples, see [Supported programming languages for Azure AI Inference SDK](../supported-languages.md). The following example shows how to use the Azure AI Inference package with the newly deployed model:
 
-[!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../../foundry/foundry-models/includes/code-create-chat-client.md)]
 
 Generate your first chat completion:
 

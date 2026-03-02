@@ -46,11 +46,11 @@ Use the following code to answer the math question `I need to solve the equation
 
 `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
-[!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
+[!INCLUDE [endpoint-string-portal](../../../foundry/agents/includes/endpoint-string-portal.md)]
 
 Set this endpoint as an environment variable named `PROJECT_ENDPOINT` in a `.env` file.
 
-[!INCLUDE [model-name-portal](model-name-portal.md)]
+[!INCLUDE [model-name-portal](../../../foundry/agents/includes/model-name-portal.md)]
 
 Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 

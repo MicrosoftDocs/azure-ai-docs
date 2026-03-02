@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 > [!TIP]
 > An alternate hub-focused version of this article is available: [How to configure a private link for a Microsoft Foundry hub](hub-configure-private-link.md).
 
-When you use a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 
+When you use a [!INCLUDE [fdp-projects](../../foundry/includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 
 
 ## Prerequisites
 

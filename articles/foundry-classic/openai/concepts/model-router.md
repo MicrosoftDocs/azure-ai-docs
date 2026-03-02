@@ -48,7 +48,7 @@ Each version of model router is associated with a specific set of underlying mod
 
 If you select **Auto-update** at the deployment step (see [Model updates](../how-to/working-with-models.md#model-updates)), then your model router model automatically updates when new versions become available. When that happens, the set of underlying models also changes, which could affect the overall performance of the model and costs.
 
-[!INCLUDE [model-router-supported](../includes/model-router-supported.md)]
+[!INCLUDE [model-router-supported](../../../foundry/openai/includes/model-router-supported.md)]
 
 ## Limitations
 

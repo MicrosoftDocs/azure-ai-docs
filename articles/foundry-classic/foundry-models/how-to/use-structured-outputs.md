@@ -17,31 +17,31 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [python](../../foundry-models/includes/use-structured-outputs/python.md)]
+[!INCLUDE [python](../../../foundry/foundry-models/includes/use-structured-outputs/python.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [javascript](../../foundry-models/includes/use-structured-outputs/javascript.md)]
+[!INCLUDE [javascript](../../../foundry/foundry-models/includes/use-structured-outputs/javascript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [java](../../foundry-models/includes/use-structured-outputs/java.md)]
+[!INCLUDE [java](../../../foundry/foundry-models/includes/use-structured-outputs/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [csharp](../../foundry-models/includes/use-structured-outputs/csharp.md)]
+[!INCLUDE [csharp](../../../foundry/foundry-models/includes/use-structured-outputs/csharp.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [rest](../../foundry-models/includes/use-structured-outputs/rest.md)]
+[!INCLUDE [rest](../../../foundry/foundry-models/includes/use-structured-outputs/rest.md)]
 ::: zone-end
 
 ## Related content

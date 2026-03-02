@@ -45,7 +45,7 @@ To try out the Voice Live demo, follow these steps:
 
 To try out the Voice Live demo, follow these steps:
 
-1. [!INCLUDE [classic-sign-in](../../../../../foundry-classic/includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../../../foundry/includes/classic-sign-in.md)]
 1. Select **Playgrounds** from the left pane.
 1. In the **Speech playground** tile, select **Try the Speech playground**.
 1. Select **Speech capabilities by scenario** > **Voice Live**.

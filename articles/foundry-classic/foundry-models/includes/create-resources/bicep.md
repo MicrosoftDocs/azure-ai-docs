@@ -9,7 +9,7 @@ ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-[!INCLUDE [Header](intro.md)]
+[!INCLUDE [Header](../../../../foundry/foundry-models/includes/create-resources/intro.md)]
 
 * Install the [Azure CLI](/cli/azure/).
 
@@ -31,7 +31,7 @@ The files for this example are in:
 cd azureai-model-inference-bicep/infra
 ```
 
-[!INCLUDE [marketplace-rbac](../configure-marketplace/rbac.md)]
+[!INCLUDE [marketplace-rbac](../../../../foundry/foundry-models/includes/configure-marketplace/rbac.md)]
 
 ## Create the resources
 

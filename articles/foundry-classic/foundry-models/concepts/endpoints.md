@@ -24,7 +24,7 @@ Microsoft Foundry Models enables you to access the most powerful models from lea
 
 This article explains how the Foundry services organize models and how to use the inference endpoint to access them.
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 ## Deployments
 
@@ -70,7 +70,7 @@ The inference endpoint routes requests to a specific deployment by matching the 
 
 For example, if you create a deployment named `Mistral-large`, you can invoke that deployment as follows:
 
-[!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../../foundry/foundry-models/includes/code-create-chat-client.md)]
 
 For a chat model, you can create a request as follows:
 
@@ -88,9 +88,9 @@ Azure OpenAI endpoints, usually of the form `https://<resource-name>.openai.azur
 
 Each deployment has a URL that's formed by concatenating the **Azure OpenAI** base URL and the route `/deployments/<model-deployment-name>`.
 
-[!INCLUDE [code-create-openai-client](../includes/code-create-openai-client.md)]
+[!INCLUDE [code-create-openai-client](../../../foundry/foundry-models/includes/code-create-openai-client.md)]
 
-[!INCLUDE [code-create-openai-chat-completion](../includes/code-create-openai-chat-completion.md)]
+[!INCLUDE [code-create-openai-chat-completion](../../../foundry/foundry-models/includes/code-create-openai-chat-completion.md)]
 
 For more information about how to use the **Azure OpenAI endpoint**, see [Azure OpenAI in Foundry Models documentation](models-sold-directly-by-azure.md).
 
@@ -100,7 +100,7 @@ Models deployed to Foundry Models in Foundry Tools support keyless authorization
 
 To use keyless authentication, [configure your resource and grant access to users](../how-to/configure-entra-id.md) to perform inference. After you configure the resource and grant access, authenticate as follows:
 
-[!INCLUDE [code-create-chat-client-entra](../../foundry-models/includes/code-create-chat-client-entra.md)]
+[!INCLUDE [code-create-chat-client-entra](../../../foundry/foundry-models/includes/code-create-chat-client-entra.md)]
 
 ## Limitations
 

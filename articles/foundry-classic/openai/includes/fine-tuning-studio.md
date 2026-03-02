@@ -282,7 +282,7 @@ When you no longer need your custom model, you can delete the deployment and mod
 
 ### Delete your model deployment
 
-[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
+[!INCLUDE [Fine-tuning deletion](../../../foundry/openai/includes/fine-tune.md)]
 
 You can delete the deployment for your custom model on the **Deployments** pane in the Foundry portal. Select the deployment to delete, and then select **Delete**.
 
