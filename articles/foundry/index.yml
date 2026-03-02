@@ -105,8 +105,6 @@ productDirectory:
       links:
         - url: ../ai-services/speech-service/index.yml
           text: Speech
-        - url: ../ai-services/computer-vision/index.yml
-          text: Vision
         - url: ../ai-services/translator/index.yml
           text: Translator
         - url: ../ai-services/language-service/index.yml
