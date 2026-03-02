@@ -6,9 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 02/26/2026
-ms.custom:
-  - references_regions
+ms.date: 03/02/2026
 ---
 
 # Quickstart: Multimodal search in the Azure portal
@@ -24,7 +22,7 @@ This quickstart uses a multimodal PDF from the [azure-search-sample-data](https:
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](search-create-service-portal.md). We recommend the Basic tier or higher.
++ An [Azure AI Search service](search-create-service-portal.md). We recommend the Basic tier or higher for managed identity support and higher limits.
 
 + An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage or Azure Data Lake Storage Gen2 (storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold.
 
@@ -53,7 +51,7 @@ For content embedding, choose one of the following methods:
 
 + **Multimodal embeddings:** Uses an embedding model to directly vectorize both text and images.
 
-The portal supports the following models for each method. Deployment instructions are provided in a [later section](#deploy-models).
+The portal supports the following models for each method. Deployment instructions are provided in a [later section](#prepare-models).
 
 | Provider | Models for image verbalization | Models for multimodal embeddings |
 |--|--|--|
@@ -78,11 +76,11 @@ If private endpoints are already present and you can't disable them, the alterna
 
 ### Check for space
 
-If you're starting with the free service, you're limited to three indexes, three data sources, three skillsets, and three indexers. Make sure you have room for extra items before you begin. This quickstart creates one of each object.
+If you're starting with a free search service, you're limited to three indexes, data sources, skillsets, and indexers. Basic limits you to 15. This quickstart creates one of each object, so make sure you have room for extra items before you begin.
 
 ## Configure access
 
-Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
+Before you begin, make sure you have permissions to access content and operations. This quickstart uses Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](search-security-api-keys.md) instead.
 
 Configure the [required roles](#required-roles) and [conditional roles](#conditional-roles) identified in this section.
 
@@ -114,21 +112,21 @@ Azure Storage is both the data source for your documents and the destination for
 
 On your Azure Storage account:
 
-+ Assign **Storage Blob Data Contributor** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
++ Assign **Storage Blob Data Contributor** to the managed identity of your search service.
 
 ---
 
 ### Conditional roles
 
-The following tabs cover all wizard-compatible resources for multimodal search. Select only the tabs that apply to your chosen [extraction method](#supported-extraction-methods) and [embedding method](#supported-embedding-methods).
+The following tabs cover wizard-compatible resources for multimodal search. Select only the tabs that apply to your chosen [extraction method](#supported-extraction-methods) and [embedding method](#supported-embedding-methods).
 
 ### [**Azure AI multi-service**](#tab/multi-service)
 
-A multi-service account provides access to multiple Azure services, including [Azure Document Intelligence](/azure/ai-services/document-intelligence/overview) for content extraction and [Azure Vision](/azure/ai-services/computer-vision/overview) for content embedding. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
+A multi-service account provides access to multiple Azure services, including Azure Document Intelligence for content extraction and Azure Vision for content embedding. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) and [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
 On your multi-service account:
 
-+ Assign **Cognitive Services User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
++ Assign **Cognitive Services User** to the managed identity of your search service.
 
 ### [**Microsoft Foundry**](#tab/foundry)
 
@@ -139,7 +137,7 @@ The Microsoft Foundry model catalog provides LLMs for image verbalization and em
 
 On the parent resource of your Microsoft Foundry project:
 
-+ Assign **Azure AI Project Manager** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
++ Assign **Azure AI Project Manager** to the managed identity of your search service.
 
 ### [**Azure OpenAI**](#tab/openai)
 
@@ -147,7 +145,7 @@ Azure OpenAI provides LLMs for image verbalization and embedding models for text
 
 On your Azure OpenAI resource:
 
-+ Assign **Cognitive Services OpenAI User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
++ Assign **Cognitive Services OpenAI User** to the managed identity of your search service.
 
 ---
 
@@ -165,7 +163,7 @@ To prepare the sample data for this quickstart:
 
 1. Create another container to store images extracted from the PDF.
 
-## Deploy models
+## Prepare models
 
 > [!NOTE]
 > If you're using Azure Vision, skip this step. The multimodal embeddings are built into your multi-service account and don't require model deployment.
