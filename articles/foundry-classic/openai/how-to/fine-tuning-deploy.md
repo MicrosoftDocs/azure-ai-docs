@@ -35,7 +35,7 @@ To deploy your custom model, select the custom model to deploy, and then select 
 
 The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model.
 
-:::image type="content" source="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png" alt-text="Screenshot that shows how to deploy a custom model in Foundry portal." lightbox="../media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png" alt-text="Screenshot that shows how to deploy a custom model in Foundry portal." lightbox="../../../foundry/openai/media/fine-tuning/fine-tuning-deploy/deploy-dialogue.png":::
 
 You can monitor the progress of your deployment on the **Deployments** pane in Foundry portal.
 
@@ -309,7 +309,7 @@ az cognitiveservices account deployment create
 
 After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
 
-:::image type="content" source="../media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Foundry portal, with sections highlighted." lightbox="../media/quickstarts/playground-load-new.png":::
+:::image type="content" source="../../../foundry/openai/media/quickstarts/playground-load-new.png" alt-text="Screenshot of the Playground pane in Foundry portal, with sections highlighted." lightbox="../../../foundry/openai/media/quickstarts/playground-load-new.png":::
 
 ## [Python](#tab/python)
 
@@ -385,7 +385,7 @@ Global standard deployments are available from all Azure OpenAI regions for the 
 * GPT-4o
 * GPT-4o-mini
 
-:::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../../../foundry/openai/media/fine-tuning/global-standard.png":::
 
 ### Developer Tier
 

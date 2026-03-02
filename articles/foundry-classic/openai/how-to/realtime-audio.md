@@ -225,7 +225,7 @@ The session relies on caller-initiated [`input_audio_buffer.commit`](../realtime
 - The server responds by sending the [`input_audio_buffer.committed`](../realtime-audio-reference.md#realtimeservereventinputaudiobuffercommitted) event.
 - The server responds by sending the [`conversation.item.created`](../realtime-audio-reference.md#realtimeservereventconversationitemcreated) event.
 
-:::image type="content" source="../media/how-to/real-time/input-audio-buffer-client-managed.png" alt-text="Diagram of the Realtime API input audio sequence without server decision mode." lightbox="../media/how-to/real-time/input-audio-buffer-client-managed.png":::
+:::image type="content" source="../../../foundry/openai/media/how-to/real-time/input-audio-buffer-client-managed.png" alt-text="Diagram of the Realtime API input audio sequence without server decision mode." lightbox="../../../foundry/openai/media/how-to/real-time/input-audio-buffer-client-managed.png":::
 
 <!--
 sequenceDiagram
@@ -251,7 +251,7 @@ In this case, the server evaluates user audio from the client (as sent via [`inp
 - The server commits the input audio buffer by sending the [`input_audio_buffer.committed`](../realtime-audio-reference.md#realtimeservereventinputaudiobuffercommitted) event.
 - The server sends the [`conversation.item.created`](../realtime-audio-reference.md#realtimeservereventconversationitemcreated) event with the user message item created from the audio buffer.
 
-:::image type="content" source="../media/how-to/real-time/input-audio-buffer-server-vad.png" alt-text="Diagram of the real time API input audio sequence with server decision mode." lightbox="../media/how-to/real-time/input-audio-buffer-server-vad.png":::
+:::image type="content" source="../../../foundry/openai/media/how-to/real-time/input-audio-buffer-server-vad.png" alt-text="Diagram of the real time API input audio sequence with server decision mode." lightbox="../../../foundry/openai/media/how-to/real-time/input-audio-buffer-server-vad.png":::
 
 <!-- 
 sequenceDiagram
@@ -308,7 +308,7 @@ Optionally, the client can truncate or delete items in the conversation:
 - The client deletes an item in the conversation with a [`conversation.item.delete`](../realtime-audio-reference.md#realtimeclienteventconversationitemdelete) event.
 - The server [`conversation.item.deleted`](../realtime-audio-reference.md#realtimeservereventconversationitemdeleted) event is returned to sync the client and server state.
 
-:::image type="content" source="../media/how-to/real-time/conversation-item-sequence.png" alt-text="Diagram of the real-time API conversation item sequence." lightbox="../media/how-to/real-time/conversation-item-sequence.png":::
+:::image type="content" source="../../../foundry/openai/media/how-to/real-time/conversation-item-sequence.png" alt-text="Diagram of the real-time API conversation item sequence." lightbox="../../../foundry/openai/media/how-to/real-time/conversation-item-sequence.png":::
 
 <!-- 
 sequenceDiagram

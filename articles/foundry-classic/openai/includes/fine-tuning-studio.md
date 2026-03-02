@@ -101,15 +101,15 @@ The Foundry portal provides the **Create a fine-tuned model** dialog so that you
 
 1. Go to **Tools** > **Fine-tuning**, and then select **Fine-tune model**.
 
-   :::image type="content" source="../media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows selections for creating a custom model in the Foundry portal." lightbox="../media/fine-tuning/studio-create-custom-model.png":::
+   :::image type="content" source="../../../foundry/openai/media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows selections for creating a custom model in the Foundry portal." lightbox="../../../foundry/openai/media/fine-tuning/studio-create-custom-model.png":::
 
 1. Select a model to fine-tune, and then select **Next**.
 
-   :::image type="content" source="../media/fine-tuning/studio-model-selection.png" alt-text="Screenshot of model selection in the Foundry portal.":::
+   :::image type="content" source="../../../foundry/openai/media/fine-tuning/studio-model-selection.png" alt-text="Screenshot of model selection in the Foundry portal.":::
 
    The **Create a fine-tuned model** dialog appears.
 
-   :::image type="content" source="../media/fine-tuning/studio-create-fine-tuned-model.png" alt-text="Screenshot of the dialog for creating a fine-tuned model." lightbox="../media/fine-tuning/studio-create-fine-tuned-model.png":::
+   :::image type="content" source="../../../foundry/openai/media/fine-tuning/studio-create-fine-tuned-model.png" alt-text="Screenshot of the dialog for creating a fine-tuned model." lightbox="../../../foundry/openai/media/fine-tuning/studio-create-fine-tuned-model.png":::
 
 ### Choose your training method
 
@@ -150,7 +150,7 @@ The next step is to either choose existing prepared training data or upload new 
 
 The **Training data** dialog displays any existing, previously uploaded datasets. It also provides options to upload new training data.
 
-:::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the pane for training data in the Foundry portal":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the pane for training data in the Foundry portal":::
 
 - If your training data is already uploaded to the service, select **Files from Connected AI resource**. Then select the file from the dropdown list.
 
@@ -167,7 +167,7 @@ If you have a validation dataset, select **Add training data**. You can either c
 
 The **Validation data** dialog displays any existing, previously uploaded training and validation datasets. It also provides options for uploading new validation data.
 
-:::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the pane for validation data in the Foundry portal.":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the pane for validation data in the Foundry portal.":::
 
 - If your validation data is already uploaded to the service, select **Choose dataset**. Then select the file from the dropdown list.
 
@@ -188,7 +188,7 @@ You can provide an optional *seed* and tune additional hyperparameters.
 
 A seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results but might differ in rare cases. If you don't specify a seed, one is randomly generated for you.
 
-:::image type="content" source="../media/fine-tuning/studio-create-hyperparams.png" alt-text="Screenshot of the area for configuring a seed and hyperparameters in the Foundry portal.":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/studio-create-hyperparams.png" alt-text="Screenshot of the area for configuring a seed and hyperparameters in the Foundry portal.":::
 
 The following hyperparameters are available for tuning via the Foundry portal:
 
@@ -202,7 +202,7 @@ The following hyperparameters are available for tuning via the Foundry portal:
 
 To save time, you can optionally enable automatic deployment for your resulting model. If training finishes successfully, the model is deployed according to the selected [deployment type](../../foundry-models/concepts/deployment-types.md). The deployment name is based on the unique name generated for your custom model and the optional suffix that you might have provided earlier.
 
-:::image type="content" source="../media/fine-tuning/studio-create-auto-deploy.png" alt-text="Screenshot of the toggle for automatic deployment in the Foundry portal.":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/studio-create-auto-deploy.png" alt-text="Screenshot of the toggle for automatic deployment in the Foundry portal.":::
 
 > [!NOTE]
 > Only Global Standard and Developer deployments are currently supported for automatic deployment. Neither of these options provides [data residency](https://aka.ms/data-residency). For more information, consult the [documentation for deployment types](../../foundry-models/concepts/deployment-types.md).
@@ -231,7 +231,7 @@ You can also review the results files while training runs, to get a peek at the 
 
 During the training, you can view the metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel that the model isn't learning at the right pace. When you pause a training job, a deployable checkpoint is created after safety evaluations are complete. This checkpoint is available for you to deploy and use for inference, or you can resume the job to complete it. The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state.
 
-:::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
+:::image type="content" source="../../../foundry/openai/media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of reinforcement fine-tuning with a running job." lightbox="../../../foundry/openai/media/how-to/reinforcement-fine-tuning/pause.png":::
 
 ## Analyze your custom model
 
@@ -274,7 +274,7 @@ After you create a fine-tuned model, you might want to continue to refine the mo
 
 To perform fine-tuning on a model that you previously fine-tuned, you use the same process described in [Create a fine-tuned model](#create-a-fine-tuned-model). But instead of specifying the name of a generic base model, you specify your already fine-tuned model. A custom fine-tuned model looks like `gpt-4o-2024-08-06.ft-d93dda6110004b4da3472d96f4dd4777-ft`.
 
-:::image type="content" source="../media/fine-tuning/studio-continuous.png" alt-text="Screenshot of the interface for creating a custom model, with a fine-tuned model highlighted." lightbox="../media/fine-tuning/studio-continuous.png":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/studio-continuous.png" alt-text="Screenshot of the interface for creating a custom model, with a fine-tuned model highlighted." lightbox="../../../foundry/openai/media/fine-tuning/studio-continuous.png":::
 
 ## Clean up your deployments, custom models, and training files
 

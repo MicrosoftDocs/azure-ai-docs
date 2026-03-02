@@ -117,7 +117,7 @@ To view the volume of requests processed by standard processing versus priority 
 1. Select **Add filter** to select the standard deployment for which priority processing requests were processed.
 1. Select **Apply splitting** to split the values by **ServiceTierRequest** and **ServiceTierResponse**.
 
-:::image type="content" source="../media/priority-processing/azure-monitor-priority-processsing-utilization.png" alt-text="Screenshot of the priority processing utilization on the resource's metrics page in the Azure portal." lightbox="../media/priority-processing/azure-monitor-priority-processsing-utilization.png":::
+:::image type="content" source="../../../foundry/openai/media/priority-processing/azure-monitor-priority-processsing-utilization.png" alt-text="Screenshot of the priority processing utilization on the resource's metrics page in the Azure portal." lightbox="../../../foundry/openai/media/priority-processing/azure-monitor-priority-processsing-utilization.png":::
 
 For more information about monitoring your deployments, see [Monitor Azure OpenAI](../how-to/monitor-openai.md).
 
@@ -129,7 +129,7 @@ You can see a breakdown of costs for priority and standard requests in the Azure
 1. (Optional) Filter by resource.
 1. To filter by deployment name: Add a filter for billing **Tag** > select **deployment** as the value, then choose your deployment name.
 
-:::image type="content" source="../media/priority-processing/cost-analysis-priority-processing.png" alt-text="Screenshot of the priority processing utilization on the resource's cost analysis page in the Azure portal." lightbox="../media/priority-processing/cost-analysis-priority-processing.png":::
+:::image type="content" source="../../../foundry/openai/media/priority-processing/cost-analysis-priority-processing.png" alt-text="Screenshot of the priority processing utilization on the resource's cost analysis page in the Azure portal." lightbox="../../../foundry/openai/media/priority-processing/cost-analysis-priority-processing.png":::
 
 For information about pricing for priority processing, see the [Azure OpenAI Service pricing overview](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 

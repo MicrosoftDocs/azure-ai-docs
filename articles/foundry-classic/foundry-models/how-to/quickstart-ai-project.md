@@ -64,7 +64,7 @@ To configure the project to use the Foundry Models capability in Foundry, follow
 
 1. Under **Included capabilities**, ensure you select **Azure AI Inference**. The **Azure AI model inference endpoint** URI is displayed along with the credentials to get access to it.
 
-    :::image type="content" source="../media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../media/quickstart-ai-project/overview-endpoint-and-key.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../../../foundry/foundry-models/media/quickstart-ai-project/overview-endpoint-and-key.png":::
 
     > [!TIP]
     > Each Foundry resource has a single **Azure AI model inference endpoint** that can be used to access any model deployment on it. The same endpoint serves multiple models depending on which ones are configured. To learn how the endpoint works, see [Azure OpenAI inference endpoint](../concepts/endpoints.md).
@@ -79,7 +79,7 @@ For each model you want to deploy under Foundry Models, follow these steps:
 
 1. Scroll to the model you're interested in and select it.
 
-    :::image type="content" source="../media/add-model-deployments/models-search-and-deploy.gif" alt-text="Animation showing how to search models in the model catalog and select one for viewing its details." lightbox="../media/add-model-deployments/models-search-and-deploy.gif":::
+    :::image type="content" source="../../../foundry/foundry-models/media/add-model-deployments/models-search-and-deploy.gif" alt-text="Animation showing how to search models in the model catalog and select one for viewing its details." lightbox="../../../foundry/foundry-models/media/add-model-deployments/models-search-and-deploy.gif":::
 
 1. You can review the details of the model in the model card.
 
@@ -87,13 +87,13 @@ For each model you want to deploy under Foundry Models, follow these steps:
 
 1. For model providers that require more contract terms, you're asked to accept those terms by selecting **Agree and proceed**.
 
-    :::image type="content" source="../media/add-model-deployments/models-deploy-agree.png" alt-text="Screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../media/add-model-deployments/models-deploy-agree.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/add-model-deployments/models-deploy-agree.png" alt-text="Screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../../../foundry/foundry-models/media/add-model-deployments/models-deploy-agree.png":::
 
 1. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. It allows you to configure specific names for your models when you attach specific configurations. For instance, `o1-preview-safe` for a model with a strict content filter.
 
 1. We automatically select a Foundry connection depending on your project because you turned on the feature **Deploy models to Azure AI model inference service**. Select **Customize** to change the connection based on your needs. If you're deploying under the **serverless API** deployment type, the models need to be available in the region of the Foundry resource.
 
-    :::image type="content" source="../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../media/add-model-deployments/models-deploy-customize.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../../../foundry/foundry-models/media/add-model-deployments/models-deploy-customize.png":::
 
 1. Select **Deploy**.
 
@@ -101,7 +101,7 @@ For each model you want to deploy under Foundry Models, follow these steps:
 
 1. You can view all the models available under the resource by going to **Models + endpoints** section and locating the group for the connection to your resource:
 
-    :::image type="content" source="../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../../../foundry/foundry-models/media/quickstart-ai-project/endpoints-ai-services-connection.png":::
 
 ### Upgrade your code with the new endpoint
 

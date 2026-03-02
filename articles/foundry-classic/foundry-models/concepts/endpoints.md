@@ -84,7 +84,7 @@ The **Azure OpenAI API** exposes the full capabilities of OpenAI models and supp
 
 Azure OpenAI endpoints, usually of the form `https://<resource-name>.openai.azure.com`, work at the deployment level and each deployment has its own associated URL. However, you can use the same authentication mechanism to consume the deployments. For more information, see the reference page for [Azure OpenAI API](../../openai/reference.md).
 
-:::image type="content" source="../media/endpoint/endpoint-openai.png" alt-text="An illustration showing how Azure OpenAI deployments contain a single URL for each deployment." lightbox="../media/endpoint/endpoint-openai.png":::
+:::image type="content" source="../../../foundry/foundry-models/media/endpoint/endpoint-openai.png" alt-text="An illustration showing how Azure OpenAI deployments contain a single URL for each deployment." lightbox="../../../foundry/foundry-models/media/endpoint/endpoint-openai.png":::
 
 Each deployment has a URL that's formed by concatenating the **Azure OpenAI** base URL and the route `/deployments/<model-deployment-name>`.
 

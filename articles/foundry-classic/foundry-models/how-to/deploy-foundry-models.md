@@ -65,7 +65,7 @@ Deploy a model by following these steps in the Foundry portal:
 
 1. The Foundry portal automatically selects the Foundry resource associated with your project as the **Connected AI resource**. Select **Customize** to change the connection if needed. If you're deploying under the **Serverless API** deployment type, the project and resource must be in one of the supported regions of deployment for the model.
    
-   :::image type="content" source="../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../media/add-model-deployments/models-deploy-customize.png":::
+   :::image type="content" source="../../../foundry/foundry-models/media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../../../foundry/foundry-models/media/add-model-deployments/models-deploy-customize.png":::
 
 1. Select **Deploy**. The model's deployment details page opens up while the deployment is being created.
 

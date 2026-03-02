@@ -78,7 +78,7 @@ At the end of this measurement stage, you should have a defined measurement appr
 
 Mitigating harms presented by large language models such as the Azure OpenAI models requires an iterative, layered approach that includes experimentation and continual measurement. We recommend developing a mitigation plan that encompasses four layers of mitigations for the harms you identified in the earlier stages of this process:
 
-![Diagram of Mitigation Layers.](./media/mitigation-layers.png)
+![Diagram of Mitigation Layers.](../../../foundry/responsible-ai/openai/media/mitigation-layers.png)
 
 1. At the **model level**, understand the model(s) you use and what fine-tuning steps the model developers take to align the model toward its intended uses and to reduce the risk of potentially harmful uses and outcomes.
    1. For example, developers use reinforcement learning methods as a responsible AI tool to better align GPT-4 toward the designers' intended goals.

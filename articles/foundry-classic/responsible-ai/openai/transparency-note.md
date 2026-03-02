@@ -221,7 +221,7 @@ The main capabilities of the Azure OpenAI image generation APIs are:
 
     | **Example text prompt** | **Example generated image** |
     |---|---|
-    | "Watercolor painting of the Seattle skyline" | ![Watercolor painting of the Seattle skyline](./media/generated-seattle.png) |
+    | "Watercolor painting of the Seattle skyline" | ![Watercolor painting of the Seattle skyline](../../../foundry/responsible-ai/openai/media/generated-seattle.png) |
 
     > [!TIP]
     > Public figures who wish for their depiction not to be generated can opt out by emailing [support@openai.com](mailto:support@openai.com).
@@ -237,7 +237,7 @@ The main capabilities of the Azure OpenAI image generation APIs are:
 
     | **Example text prompt** | **Example generated image without prompt transformation** | **Example generated image with prompt transformation** |
     |---|---|---|
-    |"Watercolor painting of the Seattle skyline" | ![Watercolor painting of the Seattle skyline (simple).](./media/generated-seattle.png) | ![Watercolor painting of the Seattle skyline, with more detail and structure.](./media/generated-seattle-prompt-transformed.png) |
+    |"Watercolor painting of the Seattle skyline" | ![Watercolor painting of the Seattle skyline (simple).](../../../foundry/responsible-ai/openai/media/generated-seattle.png) | ![Watercolor painting of the Seattle skyline, with more detail and structure.](../../../foundry/responsible-ai/openai/media/generated-seattle-prompt-transformed.png) |
 
 - **Image-to-image**: For GPT-image-1 models: The model takes in an image and text prompt and returns a new or altered image based on the text instructions.
 
@@ -251,8 +251,8 @@ The Azure Vision in Foundry Tools Service provides Video enhancement for GPT-4 T
 
 | **Example prompt** | **Example completion** |
 |---|---|
-| "What is this used for?"<br><br> :::image type="content" source="media/tomatoes.png" alt-text="Photo of tomatoes."::: |These are tomatoes. They are commonly used as a food ingredient in various dishes, both raw and cooked. Tomatoes can be used in salads, sandwiches, sauces, soups, juices, and many other culinary applications. They are also known for their rich nutritional content, including vitamins, minerals, and antioxidants. |
-|How can I use<br> :::image type="content" source="media/tomatoes.png" alt-text="Same photo of tomatoes.":::<br>to make this?<br> :::image type="content" source="media/soup.png" alt-text="Photo of tomato soup."::: | You can use tomatoes to make tomato soup by following these general steps: <br>Ingredients: <ul><li>Tomatoes </li><li>Onion</li><li>Garlic</li><li> Olive oil or butter</li><li> Chicken or vegetable broth</li><li> Salt</li><li> Pepper</li><li> Optional: herbs like basil, oregano, or thyme </li></ul> <br>Instructions: <ol><li>Preparation:<ul><li> Wash the tomatoes thoroughly. </li><li>Cut the tomatoes into halves or quarters. </li><li>Peel and chop onions and garlic… </li></ul></li></ol>|
+| "What is this used for?"<br><br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/tomatoes.png" alt-text="Photo of tomatoes."::: |These are tomatoes. They are commonly used as a food ingredient in various dishes, both raw and cooked. Tomatoes can be used in salads, sandwiches, sauces, soups, juices, and many other culinary applications. They are also known for their rich nutritional content, including vitamins, minerals, and antioxidants. |
+|How can I use<br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/tomatoes.png" alt-text="Same photo of tomatoes.":::<br>to make this?<br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/soup.png" alt-text="Photo of tomato soup."::: | You can use tomatoes to make tomato soup by following these general steps: <br>Ingredients: <ul><li>Tomatoes </li><li>Onion</li><li>Garlic</li><li> Olive oil or butter</li><li> Chicken or vegetable broth</li><li> Salt</li><li> Pepper</li><li> Optional: herbs like basil, oregano, or thyme </li></ul> <br>Instructions: <ol><li>Preparation:<ul><li> Wash the tomatoes thoroughly. </li><li>Cut the tomatoes into halves or quarters. </li><li>Peel and chop onions and garlic… </li></ul></li></ol>|
 
 ### Computer Use in Azure OpenAI Service (Preview)
 

@@ -125,7 +125,7 @@ Reference:
      1. Select a model (for example, GPT-5).
      1. You find publisher name on the model card as shown in the following screenshot. For example, in this case it's `OpenAI`.
 
-        :::image type="content" source="media/model-deployment-policy/gpt-5-model-card.png" alt-text="Screenshot of model catalog showing a model card with the publisher name highlighted.":::
+        :::image type="content" source="../../foundry/how-to/media/model-deployment-policy/gpt-5-model-card.png" alt-text="Screenshot of model catalog showing a model card with the publisher name highlighted.":::
 
    - **Allowed Asset Ids**: Enter a list of model asset IDs in quotes, separated by commas.
 

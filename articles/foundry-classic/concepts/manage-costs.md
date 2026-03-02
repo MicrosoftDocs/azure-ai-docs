@@ -167,11 +167,11 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 
 1. View the cost overview. Optionally, add filters (deployment tags, user-defined tags) to segment costs by model deployment:
 
-   :::image type="content" source="../media/manage-costs/cost-overview-deployment-tags.png" alt-text="Screenshot of cost overview showing deployment-level tags filter." lightbox="../media/manage-costs/cost-overview-deployment-tags.png":::
+   :::image type="content" source="../../foundry/media/manage-costs/cost-overview-deployment-tags.png" alt-text="Screenshot of cost overview showing deployment-level tags filter." lightbox="../../foundry/media/manage-costs/cost-overview-deployment-tags.png":::
 
 1. Select **Costs by resource** > **Resources** to see your Foundry resource cost split across model deployments:
 
-   :::image type="content" source="../media/manage-costs/azure-foundry-cost-split.png" alt-text="Screenshot of split of Foundry resource cost across model deployments." lightbox="../media/manage-costs/azure-foundry-cost-split.png":::
+   :::image type="content" source="../../foundry/media/manage-costs/azure-foundry-cost-split.png" alt-text="Screenshot of split of Foundry resource cost across model deployments." lightbox="../../foundry/media/manage-costs/azure-foundry-cost-split.png":::
 
 ### Understand cost breakdown by meter
 
@@ -187,13 +187,13 @@ Use the **Cost Analysis** tool to view costs grouped by billing meter:
 
 1. Modify **Group by** to **Meter**. You can now see that for this particular resource group, the source of the costs comes from different model series.
 
-   :::image type="content" source="../foundry-models/media/manage-cost/cost-by-meter.png" alt-text="Screenshot of how to see the cost by each meter in the resource group." lightbox="../foundry-models/media/manage-cost/cost-by-meter.png":::
+   :::image type="content" source="../../foundry/foundry-models/media/manage-cost/cost-by-meter.png" alt-text="Screenshot of how to see the cost by each meter in the resource group." lightbox="../../foundry/foundry-models/media/manage-cost/cost-by-meter.png":::
 
 #### Models sold directly by Azure
 
 Models sold directly by Azure (including Azure OpenAI) are charged directly. They appear as billing meters under each Foundry resource. Microsoft handles this billing directly. When you inspect your bill, you see billing meters that account for inputs and outputs for each consumed model.
 
-:::image type="content" source="../foundry-models/media/manage-cost/cost-by-meter-1p.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry resource is deployed, highlighting the meters for Azure OpenAI and Phi models. Cost is group by meter." lightbox="../foundry-models/media/manage-cost/cost-by-meter-1p.png":::
+:::image type="content" source="../../foundry/foundry-models/media/manage-cost/cost-by-meter-1p.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry resource is deployed, highlighting the meters for Azure OpenAI and Phi models. Cost is group by meter." lightbox="../../foundry/foundry-models/media/manage-cost/cost-by-meter-1p.png":::
 
 #### Models from partners and community
 
@@ -209,7 +209,7 @@ You can get more detailed billing information by grouping costs by resource:
 
 1. In **Cost Analysis**, select **View** > **Cost by resource**.
 
-   :::image type="content" source="../foundry-models/media/manage-cost/cost-by-resource.png" alt-text="Screenshot of how to see the cost by each resource in the resource group." lightbox="../foundry-models/media/manage-cost/cost-by-resource.png":::
+   :::image type="content" source="../../foundry/foundry-models/media/manage-cost/cost-by-resource.png" alt-text="Screenshot of how to see the cost by each resource in the resource group." lightbox="../../foundry/foundry-models/media/manage-cost/cost-by-resource.png":::
 
 1. Now you can see the resources generating each of the billing meters. To understand the breakdown of what makes up that cost, it can help to modify **Group by** to **Meter** and switching the chart type to **Line**.
 
@@ -217,7 +217,7 @@ You can get more detailed billing information by grouping costs by resource:
 
 1. Some providers' models are displayed as meters under Global resources. The word *Global* **isn't** related to the SKU of the model deployment (for instance, *Global standard*). If you have multiple Foundry Tool resources, your bill contains one entry **for each model for each Foundry Tool resource**. The resource meters have the format *[model-name]-[GUID]* where *[GUID]* is an identifier unique an associated with a given Foundry Tools resource. You notice billing meters accounting for inputs and outputs for each model you consumed.
 
-   :::image type="content" source="../foundry-models/media/manage-cost/cost-by-resource-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry Tools resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by resource." lightbox="../foundry-models/media/manage-cost/cost-by-resource-saas.png":::
+   :::image type="content" source="../../foundry/foundry-models/media/manage-cost/cost-by-resource-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry Tools resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by resource." lightbox="../../foundry/foundry-models/media/manage-cost/cost-by-resource-saas.png":::
 
 It's important to understand scope when you evaluate costs associated with Foundry Tools. If your resources are part of the same resource group, you can scope Cost Analysis at that level to understand the effect on costs. If your resources are spread across multiple resource groups, you can scope to the subscription level.
 
@@ -230,15 +230,15 @@ Here's an example of how to use the **Cost analysis tool** to see your accumulat
 1. On the left, select **Reporting + analytics** > **Cost analysis**.
 1. On the **All views** tab, select **Accumulated costs**.
 
-:::image type="content" source="../openai/media/manage-costs/cost-analyzer.png" alt-text="Screenshot of cost analysis dashboard showing how to access accumulated costs." lightbox="../openai/media/manage-costs/cost-analyzer.png":::
+:::image type="content" source="../../foundry/openai/media/manage-costs/cost-analyzer.png" alt-text="Screenshot of cost analysis dashboard showing how to access accumulated costs." lightbox="../../foundry/openai/media/manage-costs/cost-analyzer.png":::
 
 The cost analysis dashboard shows the accumulated costs that are analyzed depending on what you specified for **Scope**.
 
-:::image type="content" source="../openai/media/manage-costs/subscription.png" alt-text="Screenshot of cost analysis dashboard with scope set to subscription." lightbox="../openai/media/manage-costs/subscription.png":::
+:::image type="content" source="../../foundry/openai/media/manage-costs/subscription.png" alt-text="Screenshot of cost analysis dashboard with scope set to subscription." lightbox="../../foundry/openai/media/manage-costs/subscription.png":::
 
 If you try to add a filter by service, you can't find Azure OpenAI in the list. This situation occurs because Azure OpenAI has commonality with a subset of Foundry Tools where the service level filter is **Cognitive Services**. If you want to see all Azure OpenAI resources across a subscription without any other type of Foundry Tool resources, instead scope to **Service tier: Azure OpenAI**:
 
-:::image type="content" source="../openai/media/manage-costs/service-tier.png" alt-text="Screenshot of cost analysis dashboard with service tier highlighted." lightbox="../openai/media/manage-costs/service-tier.png":::
+:::image type="content" source="../../foundry/openai/media/manage-costs/service-tier.png" alt-text="Screenshot of cost analysis dashboard with service tier highlighted." lightbox="../../foundry/openai/media/manage-costs/service-tier.png":::
 
 ### Monitor costs for models in Azure Marketplace
 

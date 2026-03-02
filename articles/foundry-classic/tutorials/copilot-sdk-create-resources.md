@@ -55,7 +55,7 @@ These steps deploy a model to a real-time endpoint from the Foundry portal [mode
 1. On the left pane, select **Model catalog**.
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
 
-    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
+    :::image type="content" source="../../foundry/media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../../foundry/media/tutorials/chat/select-model.png":::
 
 1. On the model details page, select **Use this model**.
 

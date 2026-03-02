@@ -25,7 +25,7 @@ To work with a model, you first deploy it into a project.
 
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
 
-    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
+    :::image type="content" source="../../foundry/media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../../foundry/media/tutorials/chat/select-model.png":::
 
 1. On the model details page, select **Use this model**.
 
