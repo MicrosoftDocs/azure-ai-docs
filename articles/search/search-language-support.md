@@ -2,8 +2,6 @@
 title: Multi-language indexing for non-English search queries
 titleSuffix: Azure AI Search
 description: Create an index that supports multi-language content and then create queries scoped to that content.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

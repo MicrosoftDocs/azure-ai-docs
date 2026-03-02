@@ -5,7 +5,6 @@ ms.date: 07/25/2025
 ms.update-cycle: 365-days
 ms.custom: horz-monitor
 ms.topic: concept-article
-
 ms.service: azure-ai-search
 ---
 

@@ -2,8 +2,6 @@
 title: Search index overview
 titleSuffix: Azure AI Search
 description: Explains index content, construction, physical expression, and schema.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

@@ -2,8 +2,6 @@
 title: Configure semantic ranker
 titleSuffix: Azure AI Search
 description: Add a semantic configuration to a search index.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

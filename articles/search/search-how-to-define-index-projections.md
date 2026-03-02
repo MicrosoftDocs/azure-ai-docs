@@ -2,7 +2,6 @@
 title: Define index projections
 titleSuffix: Azure AI Search
 description: Index projections specify how parent-child content is mapped to fields in a search index when you use integrated vectorization for data chunking.
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

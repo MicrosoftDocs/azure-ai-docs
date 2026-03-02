@@ -2,8 +2,6 @@
 title: 'Tutorial: Multimodal Chunking and Embedding'
 titleSuffix: Azure AI Search
 description: Learn how to extract, chunk, index, and search multimodal content using an indexer and skills.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

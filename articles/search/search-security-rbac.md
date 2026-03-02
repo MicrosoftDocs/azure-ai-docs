@@ -2,8 +2,6 @@
 title: Connect using Azure roles
 titleSuffix: Azure AI Search
 description: Use Azure role-based access control for granular permissions on service administration and content tasks.
-
-manager: nitinme
 ms.date: 01/20/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
