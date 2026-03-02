@@ -27,7 +27,7 @@ If you're in the Foundry portal, you can navigate to the Foundry resource page i
 
 1. On the **Connection details** section, under **Resource**, select the name of the Azure resource. This action opens the resource in the Azure portal.
 
-   :::image type="content" source="../../media/configure-entra-id/locate-resource-ai-services.png" alt-text="Screenshot showing the resource to which we configure Microsoft Entra ID." lightbox="../../media/configure-entra-id/locate-resource-ai-services.png":::
+   :::image type="content" source="../../../../foundry/foundry-models/media/configure-entra-id/locate-resource-ai-services.png" alt-text="Screenshot showing the resource to which we configure Microsoft Entra ID." lightbox="../../../../foundry/foundry-models/media/configure-entra-id/locate-resource-ai-services.png":::
 
 #### Configure Microsoft Entra ID from the resource page
 
@@ -35,20 +35,20 @@ If you're in the Foundry portal, you can navigate to the Foundry resource page i
  
 1. In the left pane, select **Access control (IAM)**, and then select **Add** > **Add role assignment**.
 
-   :::image type="content" source="../../media/configure-entra-id/resource-aim.png" alt-text="Screenshot showing how to add a role assignment in the Access control section of the resource in the Azure portal." lightbox="../../media/configure-entra-id/resource-aim.png":::
+   :::image type="content" source="../../../../foundry/foundry-models/media/configure-entra-id/resource-aim.png" alt-text="Screenshot showing how to add a role assignment in the Access control section of the resource in the Azure portal." lightbox="../../../../foundry/foundry-models/media/configure-entra-id/resource-aim.png":::
 
    > [!TIP]
    > Use the **View my access** option to verify which roles are already assigned to you.
 
 1. In **Job function roles**, type **Cognitive Services User**.
 
-   :::image type="content" source="../../media/configure-entra-id/cognitive-services-user.png" alt-text="Screenshot showing how to select the Cognitive Services User role assignment." lightbox="../../media/configure-entra-id/cognitive-services-user.png":::
+   :::image type="content" source="../../../../foundry/foundry-models/media/configure-entra-id/cognitive-services-user.png" alt-text="Screenshot showing how to select the Cognitive Services User role assignment." lightbox="../../../../foundry/foundry-models/media/configure-entra-id/cognitive-services-user.png":::
 
 1. Select the role and select **Next**.
 
 1. On **Members**, select the user or group you want to grant access to. Use security groups whenever possible because they're easier to manage and maintain.
 
-   :::image type="content" source="../../media/configure-entra-id/select-user.png" alt-text="Screenshot showing how to select the user to whom assign the role." lightbox="../../media/configure-entra-id/select-user.png":::
+   :::image type="content" source="../../../../foundry/foundry-models/media/configure-entra-id/select-user.png" alt-text="Screenshot showing how to select the user to whom assign the role." lightbox="../../../../foundry/foundry-models/media/configure-entra-id/select-user.png":::
 
 1. Select **Next** and finish the wizard.
 
@@ -73,9 +73,9 @@ Key-based access is still possible for users who already have keys available to 
 
 After you configure Microsoft Entra ID in your resource, update your code to use it when you consume the inference endpoint. This example shows how to use a chat completions model:
 
-[!INCLUDE [code](../code-create-chat-client-entra.md)]
+[!INCLUDE [code](../../../../foundry/foundry-models/includes/code-create-chat-client-entra.md)]
 
-[!INCLUDE [about-credentials](about-credentials.md)]
+[!INCLUDE [about-credentials](../../../../foundry/foundry-models/includes/configure-entra-id/about-credentials.md)]
 
 ## Use Microsoft Entra ID in your project
 

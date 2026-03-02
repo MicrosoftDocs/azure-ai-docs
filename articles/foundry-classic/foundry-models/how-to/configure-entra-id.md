@@ -84,11 +84,11 @@ For more context on how roles work with Azure resources, see [Understand roles i
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../../foundry-models/includes/configure-entra-id/cli.md)]
+[!INCLUDE [cli](../../../foundry/foundry-models/includes/configure-entra-id/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../../foundry-models/includes/configure-entra-id/bicep.md)]
+[!INCLUDE [bicep](../../../foundry/foundry-models/includes/configure-entra-id/bicep.md)]
 ::: zone-end
 
 ## Understand roles in the context of resource in Azure
@@ -110,7 +110,7 @@ In Azure, Microsoft Entra ID always performs administration operations. Roles li
 
 ## Troubleshooting
 
-[!INCLUDE [troubleshooting](../includes/configure-entra-id/troubleshooting.md)]
+[!INCLUDE [troubleshooting](../../../foundry/foundry-models/includes/configure-entra-id/troubleshooting.md)]
 
 ## Next step
 

@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 Microsoft Foundry provides a comprehensive set of built-in evaluators to assess the quality, safety, and reliability of AI responses throughout the development lifecycle. This reference details all available evaluators, their purposes, required inputs, and guidance on selecting the right evaluator for your use case. You can also create [custom evaluators](./evaluation-evaluators/custom-evaluators.md) tailored to your specific evaluation criteria.
 

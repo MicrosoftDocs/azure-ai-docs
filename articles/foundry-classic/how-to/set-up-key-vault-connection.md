@@ -51,7 +51,7 @@ If you bring your own Azure Key Vault, review these limitations:
 
 Create a connection to Azure Key Vault in the Foundry (classic) portal.
 
-1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 1. Select or create your project. 
 1. Select **Management center** in the lower left pane. You might need to scroll to find it.
 

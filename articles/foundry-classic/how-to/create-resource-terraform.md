@@ -42,9 +42,9 @@ The following table shows which actions each provider supports:
 
 ## Prerequisites
 
-[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+[!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 
-- [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+- [!INCLUDE [rbac-create](../../foundry/includes/rbac-create.md)]
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 
 ## Create a basic Foundry configuration

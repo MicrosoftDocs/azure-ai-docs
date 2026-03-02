@@ -20,7 +20,7 @@ author: sdgilley
 In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the model catalog in Microsoft Foundry.
 
 <!-- ::: moniker range="foundry-classic" -->
-You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] with LlamaIndex in two ways:
+You can use models deployed to [!INCLUDE [classic-link](../../../foundry/includes/classic-link.md)] with LlamaIndex in two ways:
 <!-- ::: moniker-end
 
 -->
@@ -31,13 +31,13 @@ You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-l
 
 In this example, you work with the **Model Inference API**.
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 ## Prerequisites
 
 To run this tutorial, you need:
 
-* [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+* [!INCLUDE [azure-subscription](../../../foundry/includes/azure-subscription.md)]
 * A [Foundry project](../create-projects.md).
 
 <!-- :::moniker range="foundry-classic" -->

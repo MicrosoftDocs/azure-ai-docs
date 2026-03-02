@@ -42,7 +42,7 @@ If you completed other tutorials or quickstarts, you might have already created 
 
 ## Create a hub-based project
 
-[!INCLUDE [create-hub-project-simple](../includes/create-hub-project-simple.md)]
+[!INCLUDE [create-hub-project-simple](../../foundry/includes/create-hub-project-simple.md)]
 
 ## Deploy models
 
@@ -55,7 +55,7 @@ These steps deploy a model to a real-time endpoint from the Foundry portal [mode
 1. On the left pane, select **Model catalog**.
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
 
-    :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
+    :::image type="content" source="../../foundry/media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../../foundry/media/tutorials/chat/select-model.png":::
 
 1. On the model details page, select **Use this model**.
 
@@ -108,7 +108,7 @@ In the Foundry portal, check for an Azure AI Search connected resource.
 
 In the IDE of your choice, create a new folder for your project.  Open a terminal window in that folder.
 
-[!INCLUDE [Install Python](../includes/install-python.md)]
+[!INCLUDE [Install Python](../../foundry/includes/install-python.md)]
 
 ## Install packages
 
@@ -132,7 +132,7 @@ Install the required packages.
 
 ## Install the Azure CLI and sign in 
 
-[!INCLUDE [Install the Azure CLI](../includes/install-cli.md)]
+[!INCLUDE [Install the Azure CLI](../../foundry/includes/install-cli.md)]
 
 Keep this terminal window open to run your python scripts from here as well, now that you signed in.
 

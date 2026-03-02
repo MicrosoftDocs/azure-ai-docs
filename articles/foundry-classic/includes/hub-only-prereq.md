@@ -13,5 +13,5 @@ ms.custom: include
 
 [!INCLUDE [uses-hub-only](uses-hub-only.md)]
 
-- [!INCLUDE [azure-subscription](azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 - If you don't have one, [create a hub-based project](../how-to/hub-create-projects.md).

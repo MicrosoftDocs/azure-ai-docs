@@ -191,19 +191,19 @@ All deployments perform the same inference operations, but the billing, scale, a
 
 ### Global Standard model availability
 
-[!INCLUDE [global-standard](model-matrix/global-standard.md)]
+[!INCLUDE [global-standard](../../../foundry/foundry-models/includes/model-matrix/global-standard.md)]
 
 # [Global Provisioned managed](#tab/global-ptum)
 
 ### Global Provisioned managed model availability
 
-[!INCLUDE [global-provisioned-managed](model-matrix/global-provisioned-managed.md)]
+[!INCLUDE [global-provisioned-managed](../../../foundry/foundry-models/includes/model-matrix/global-provisioned-managed.md)]
 
 # [Data Zone Standard](#tab/data-zone-standard)
 
 ### Data Zone Standard model availability
 
-[!INCLUDE [data-zone-standard](model-matrix/data-zone-standard.md)]
+[!INCLUDE [data-zone-standard](../../../foundry/foundry-models/includes/model-matrix/data-zone-standard.md)]
 
 ---
 

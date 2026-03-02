@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 All models deployed to Microsoft Foundry Models support the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) and its associated family of SDKs.
 

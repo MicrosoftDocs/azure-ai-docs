@@ -36,16 +36,16 @@ If your organization requires customized Azure configurations like alternative n
 
 ## Prerequisites
 
-* [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+* [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 
-* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+* [!INCLUDE [rbac-create](../../foundry/includes/rbac-create.md)]
 
     If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
 * Use the following tabs to select the method you want to use to create a Foundry project:
 
     # [Foundry portal](#tab/foundry)
     
-    - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+    - [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
     
     # [Python SDK](#tab/python)
     
@@ -108,7 +108,7 @@ To create a Foundry project, follow these steps:
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 
-1. [!INCLUDE [create-project-access](../includes/create-project-access.md)]
+1. [!INCLUDE [create-project-access](../../foundry/includes/create-project-access.md)]
 
 1. Select **Foundry resource**, and then select **Next**.
 1. Provide a name for your project and select **Create**. Or see the next section for advanced options.

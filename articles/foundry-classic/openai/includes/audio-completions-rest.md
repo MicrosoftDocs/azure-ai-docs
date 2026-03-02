@@ -10,7 +10,7 @@ ms.date: 1/21/2025
 
 [REST API Spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/stable/2024-10-21/inference.json) |
 
-[!INCLUDE [Audio completions introduction](audio-completions-intro.md)]
+[!INCLUDE [Audio completions introduction](../../../foundry/openai/includes/audio-completions-intro.md)]
 
 ## Prerequisites
 
@@ -78,7 +78,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-authentication.md)]
+[!INCLUDE [resource authentication](../../../foundry/openai/includes/resource-authentication.md)]
 
 
 ## Generate audio from text input

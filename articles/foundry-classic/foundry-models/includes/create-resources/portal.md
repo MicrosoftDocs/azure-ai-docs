@@ -9,7 +9,7 @@ ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-[!INCLUDE [Header](intro.md)]
+[!INCLUDE [Header](../../../../foundry/foundry-models/includes/create-resources/intro.md)]
 
 ## Create the resources
 
@@ -27,7 +27,7 @@ To create a project with a Microsoft Foundry (formerly known Azure AI Services) 
 
 6. The wizard updates with details about the resources that are going to be created. Select **Azure resources to be created** to see the details.
 
-    :::image type="content" source="../../media/create-resources/create-project-with-hub-details.png" alt-text="Screenshot showing the details of the project and hub to be created." lightbox="../../media/create-resources/create-project-with-hub-details.png":::    
+    :::image type="content" source="../../../../foundry/foundry-models/media/create-resources/create-project-with-hub-details.png" alt-text="Screenshot showing the details of the project and hub to be created." lightbox="../../../../foundry/foundry-models/media/create-resources/create-project-with-hub-details.png":::    
 
 7. You can see that the following resources are created:
 

@@ -29,11 +29,11 @@ In this quickstart, you learn how to:
 - Interpret model responses and recognize limitations.
 - Add safety system messages to ensure responsible AI use.
 
-For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-foundry.md#types-of-projects).
+For this quickstart, you can use either a [!INCLUDE [hub](../../foundry/includes/hub-project-name.md)] or a [!INCLUDE [fdp](../../foundry/includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-foundry.md#types-of-projects).
 
 ## Prerequisites
 
-* [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+* [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 * The following Azure RBAC roles are required. To verify your role, see [Manage access control](../how-to/create-azure-ai-resource.md#manage-access-control).
     * **Owner** on the subscription to create a project and assign roles.
     * **Azure AI User** on the project to deploy models (assigned automatically when you create the project as Owner of the subscription).
