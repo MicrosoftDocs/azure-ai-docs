@@ -28,15 +28,15 @@ Use this article to find step-by-step instructions and code samples for using Op
 1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). In the **Agents** screen or **Agent playground**, select your agent.
 1. Scroll down the **Setup** pane to **action**. Then select **Add**.
 
-    :::image type="content" source="../../media\tools\action-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media\tools\action-tools.png":::
+    :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media/tools/action-tools.png":::
    
 1. Select **OpenAPI 3.0 specified tool**.
 
-    :::image type="content" source="../../media\tools\action-tools-list.png" alt-text="A screenshot showing the available action tools in the Foundry portal." lightbox="../../media\tools\action-tools-list.png":::
+    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available action tools in the Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
    
 1. Give your tool a name (required) and a description (optional). The description is used by the model to decide when and how to use the tool.
 
-   :::image type="content" source="../../media\tools\open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Foundry portal." lightbox="../../media\tools\open-api-details.png":::
+   :::image type="content" source="../../media/tools/open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Foundry portal." lightbox="../../media/tools/open-api-details.png":::
 
 1. Select **Next** and select your authentication method.
    1. If you choose `connection`, select the [custom connection](./openapi-spec.md#authenticate-with-api-key) with an API key.
