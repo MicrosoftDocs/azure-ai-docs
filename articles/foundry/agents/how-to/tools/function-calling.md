@@ -205,6 +205,11 @@ Final input:
 In this example, you use local functions with agents. Use the functions to give the Agent specific information in response to a user question. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 class FunctionCallingDemo
 {
     // Define three functions:
@@ -501,6 +506,29 @@ The response contains a function call item that you need to process:
 
 After you process the function call and provide the output back to the agent, the final response includes the weather information in natural language.
 
+### Submit function call output
+
+After processing the function call locally, submit the result back to the agent:
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent": {"type": "agent_reference", "name": "<AGENT_NAME>-function-calling"},
+    "conversation": "<CONVERSATION_ID>",
+    "input": [
+      {
+        "type": "function_call_output",
+        "call_id": "<CALL_ID>",
+        "output": "{\"temperature\": \"30\", \"unit\": \"c\", \"description\": \"Sunny\"}"
+      }
+    ]
+  }'
+```
+
+Replace `<CALL_ID>` with the `call_id` value from the function call in the previous response. The agent uses the function output to generate a natural language answer.
+
 :::zone-end
 
 :::zone pivot="typescript"
@@ -668,8 +696,8 @@ Agent deleted
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
 
 Add the dependency to your `pom.xml`:
 
@@ -703,8 +731,8 @@ import java.util.Map;
 
 public class FunctionCallingExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())

@@ -50,7 +50,6 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
   - Your model deployment name: `FOUNDRY_MODEL_DEPLOYMENT_NAME`.
   - Your Fabric connection ID (project connection ID): `FABRIC_PROJECT_CONNECTION_ID`.
 - For the REST sample, also set:
-  - `API_VERSION`.
   - `AGENT_TOKEN` (a bearer token). You can get a temporary token with Azure CLI:
 
     ```azurecli
@@ -459,8 +458,9 @@ main().catch((err) => {
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `FABRIC_PROJECT_CONNECTION_ID` — The ID of the Microsoft Fabric connection in your Foundry project.
 
 Add the dependency to your `pom.xml`:
 
@@ -480,19 +480,23 @@ import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.FabricDataAgentToolParameters;
 import com.azure.ai.agents.models.MicrosoftFabricPreviewTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.ToolProjectConnection;
 import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
 import java.util.Collections;
+import java.util.List;
 
 public class FabricToolExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        String fabricConnectionId = Configuration.getGlobalConfiguration().get("FABRIC_PROJECT_CONNECTION_ID");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -501,9 +505,13 @@ public class FabricToolExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create Microsoft Fabric tool
-        // The Fabric connection is configured in the Foundry portal
-        MicrosoftFabricPreviewTool fabricTool = new MicrosoftFabricPreviewTool();
+        // Create Microsoft Fabric tool with connection configuration
+        MicrosoftFabricPreviewTool fabricTool = new MicrosoftFabricPreviewTool(
+            new FabricDataAgentToolParameters()
+                .setProjectConnections(List.of(
+                    new ToolProjectConnection(fabricConnectionId)
+                ))
+        );
 
         // Create agent with Fabric tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
@@ -535,6 +543,12 @@ public class FabricToolExample {
 
 :::zone pivot="rest"
 The following example shows how to call the Foundry Agent REST API by using the Fabric data agent tool.
+
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
 
 > [!IMPORTANT]
 > `AGENT_TOKEN` is a credential. Keep it secret and avoid checking it into source control.

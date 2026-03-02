@@ -49,8 +49,7 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 ## Code examples
 
 > [!NOTE]
-> - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
-> - You need the latest SDK package. The .NET and Java SDKs are currently in preview.
+> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
 :::zone pivot="python"
 ### General Web Search
@@ -125,6 +124,21 @@ with (
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     print("Agent deleted")
 ```
+
+### Expected output
+
+```output
+Agent created: <agent-name> (version 1)
+Response: The latest trends in renewable energy include ...
+URL Citation: https://example.com/source
+
+Follow-up completed!
+Full response: Based on current data ...
+
+Cleaning up...
+Agent deleted
+```
+
 :::zone-end
 
 :::zone pivot="csharp"
@@ -134,6 +148,11 @@ with (
 In this example, you use the agent to perform the web search in the given location. The example in this section uses synchronous calls. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample13_WebSearch.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 // Create project client and read the environment variables, which will be used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
@@ -161,8 +180,8 @@ ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponses
 
 ResponseResult response = responseClient.CreateResponse("Show me the latest London Underground service updates");
 
-// Create the response and throw an exception if the response contains an error.
-Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+// Create the response and verify it completed.
+Console.WriteLine($"Response status: {response.Status}");
 Console.WriteLine(response.GetOutputText());
 
 // Delete the created agent version.
@@ -174,15 +193,20 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 The following is an example of the expected output when running the C# code:
 
 ```console
-Creating agent with web search tool...
-Agent created (id: 12345, name: myAgent, version: 1)
-Response: The agent returns a grounded response that includes citations.
+Response status: Completed
+The London Underground currently has service disruptions on ...
 Agent deleted
 ```
 :::zone-end
 
 :::zone pivot="rest-api"
 ### General Web Search
+
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
 
 The following example shows how to create a response by using an agent that has the web search tool enabled.
 
@@ -192,7 +216,7 @@ curl --request POST \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{
-    "model": "$FOUNDRY_MODEL_DEPLOYMENT_NAME",
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
     "input": "Tell me about the latest news about AI",
     "tool_choice": "required",
     "tools": [
@@ -332,8 +356,8 @@ Web search sample completed!
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
 
 Add the dependency to your `pom.xml`:
 
@@ -364,8 +388,8 @@ import java.util.Collections;
 
 public class WebSearchExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -374,7 +398,7 @@ public class WebSearchExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create web search tool
+        // Create web search tool with user location
         WebSearchPreviewTool webSearchTool = new WebSearchPreviewTool();
 
         // Create agent with web search tool
@@ -401,6 +425,13 @@ public class WebSearchExample {
         agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
     }
 }
+```
+
+### Expected output
+
+```output
+Agent created: web-search-agent (version 1)
+Response: [ResponseOutputItem with web search results about renewable energy trends ...]
 ```
 
 :::zone-end

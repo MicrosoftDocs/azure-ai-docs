@@ -244,6 +244,11 @@ Agent deleted
 The following example shows how to use the GitHub MCP server as a tool for an agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 // Create project client and read the environment variables that are used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
@@ -388,6 +393,11 @@ Before running the sample:
 ### Code sample to create the agent
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 // Create project client and read the environment variables to be used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
@@ -829,8 +839,9 @@ MCP with project connection sample completed!
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `MCP_PROJECT_CONNECTION_ID` — The ID of the MCP connection in your Foundry project (optional, for authenticated servers).
 
 Add the dependency to your `pom.xml`:
 
@@ -852,6 +863,7 @@ import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.McpTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
@@ -861,8 +873,9 @@ import java.util.Collections;
 
 public class McpToolExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        String mcpConnectionId = Configuration.getGlobalConfiguration().get("MCP_PROJECT_CONNECTION_ID");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -871,8 +884,11 @@ public class McpToolExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create MCP tool
-        McpTool mcpTool = new McpTool();
+        // Create MCP tool with server label, URL, connection, and approval mode
+        McpTool mcpTool = new McpTool("api-specs")
+            .setServerUrl("https://gitmcp.io/Azure/azure-rest-api-specs")
+            .setProjectConnectionId(mcpConnectionId)
+            .setRequireApproval(BinaryData.fromString("\"always\""));
 
         // Create agent with MCP tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
@@ -889,7 +905,7 @@ public class McpToolExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Use the available MCP tools to help me")
+                .input("Summarize the Azure REST API specifications")
                 .build());
 
         System.out.println("Response: " + response.output());
@@ -898,6 +914,13 @@ public class McpToolExample {
         agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
     }
 }
+```
+
+### Expected output
+
+```output
+Agent created: mcp-agent (version 1)
+Response: [ResponseOutputItem containing MCP tool results ...]
 ```
 
 :::zone-end
@@ -912,6 +935,7 @@ The following examples show how to create an agent with the MCP tool and call it
 Set these environment variables:
 
 - `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
 - `AGENT_TOKEN`: A bearer token for Foundry.
 - `MCP_PROJECT_CONNECTION_NAME` (optional): Your MCP project connection name.
 
@@ -940,7 +964,7 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
     "description": "MCP agent",
     "definition": {
       "kind": "prompt",
-      "model": "<MODEL_DEPLOYMENT>",
+      "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
       "instructions": "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
       "tools": [
         {
@@ -1025,7 +1049,7 @@ The following steps outline how to connect to a remote MCP server from Foundry A
       - `{"always":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that require approval.
   1. `project_connection_id`: The project connection ID that stores authentication and other connection details for the MCP server.
 1. If the model tries to invoke a tool in your MCP server with approval required, you get a response output item type as `mcp_approval_request`. In the response output item, you can get more details on which tool in the MCP server is called and arguments to be passed. Review the tool and arguments so that you can make an informed decision for approval.
-1. Submit your approval to the agent by using `response_id` and setting `approve` to `true`.
+1. Submit your approval to the agent by using `previous_response_id` and setting `approve` to `true`.
 
 ## Known limitations
 

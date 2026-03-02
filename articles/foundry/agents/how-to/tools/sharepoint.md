@@ -26,10 +26,10 @@ zone_pivot_groups: selection-agent-sharepoint-new
 
 Use the SharePoint tool (preview) for SharePoint grounding in Microsoft Foundry Agent Service by retrieving content from a SharePoint site or folder (for example, `contoso.sharepoint.com/sites/policies`). When a user asks a question, the agent can invoke the SharePoint tool to retrieve relevant text from documents the user can access. The agent then generates a response based on that retrieved content.
 
-> [!NOTE]
-> SharePoint tool access requires either a Microsoft 365 Copilot license or an enabled pay-as-you-go model. See [Prerequisites](#prerequisites) for details.
-
 This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissions continue to apply to every request. For details on the underlying Microsoft 365 Copilot Retrieval API integration, see [How it works](#how-it-works).
+
+> [!IMPORTANT]
+> Before you start: The SharePoint tool requires user identity authentication (no app-only/service principal), your SharePoint site and Foundry agent must be in the same tenant, and only one SharePoint tool per agent is supported. The tool doesn't work when the agent is published to Microsoft Teams. See [Limitations](#limitations) for the full list.
 
 ### Usage support
 
@@ -55,7 +55,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
   - `SHAREPOINT_PROJECT_CONNECTION_ID`: Your SharePoint connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
-  - For REST samples: `API_VERSION`, `AGENT_TOKEN`
+  - For REST samples: `AGENT_TOKEN`
 - See the [quickstart](../../../quickstarts/get-started-code.md) for additional authentication setup details.
 
 ## Parameters
@@ -332,7 +332,7 @@ foreach (ResponseItem item in response.OutputItems)
 }
 
 // Print the Agent output and add the annotation at the end.
-Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+Console.WriteLine($"Response status: {response.Status}");
 Console.WriteLine($"{response.GetOutputText()}{annotation}");
 
 // After the sample is completed, delete the Agent we have created.
@@ -365,6 +365,12 @@ The output includes the agent's response grounded in SharePoint content, with a 
 
 :::zone pivot="rest"
 ## Sample for use of an Agent with SharePoint
+
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
 
 The following sample demonstrates how to create an Agent that uses the SharePoint tool to ground responses with content from a SharePoint site.
 
@@ -621,8 +627,9 @@ SharePoint agent sample completed!
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `SHAREPOINT_PROJECT_CONNECTION_ID` — The ID of the SharePoint connection in your Foundry project.
 
 Add the dependency to your `pom.xml`:
 
@@ -643,18 +650,22 @@ import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.SharepointGroundingToolParameters;
 import com.azure.ai.agents.models.SharepointPreviewTool;
+import com.azure.ai.agents.models.ToolProjectConnection;
 import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
 import java.util.Collections;
+import java.util.List;
 
 public class SharePointGroundingExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        String sharepointConnectionId = Configuration.getGlobalConfiguration().get("SHAREPOINT_PROJECT_CONNECTION_ID");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -663,9 +674,13 @@ public class SharePointGroundingExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create SharePoint grounding tool
-        // The SharePoint connection is configured in the Foundry portal
-        SharepointPreviewTool sharepointTool = new SharepointPreviewTool();
+        // Create SharePoint grounding tool with connection configuration
+        SharepointPreviewTool sharepointTool = new SharepointPreviewTool(
+            new SharepointGroundingToolParameters()
+                .setProjectConnections(List.of(
+                    new ToolProjectConnection(sharepointConnectionId)
+                ))
+        );
 
         // Create agent with SharePoint tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)

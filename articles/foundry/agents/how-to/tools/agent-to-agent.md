@@ -198,6 +198,11 @@ The agent responds with information about the secondary agent's capabilities, de
 This example creates an agent that can call a remote A2A endpoint. For the connection setup steps, see [Create an A2A connection](#create-an-a2a-connection).
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 // Create an Agent client and read the environment variables, which will be used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
@@ -433,11 +438,17 @@ curl --request PUT \
 
 ## Add A2A tool to Foundry Agent Service
 
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
+
 ### Create an agent version with the A2A tool
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=v1 \\
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H 'Content-Type: application/json' \
   -d '{
@@ -573,8 +584,9 @@ The console displays streamed response text as the A2A agent processes the reque
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `A2A_PROJECT_CONNECTION_ID` — The ID of the A2A connection in your Foundry project.
 
 Add the dependency to your `pom.xml`:
 
@@ -605,8 +617,9 @@ import java.util.Collections;
 
 public class AgentToAgentExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        String a2aConnectionId = Configuration.getGlobalConfiguration().get("A2A_PROJECT_CONNECTION_ID");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -615,8 +628,9 @@ public class AgentToAgentExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create agent-to-agent tool
-        A2APreviewTool a2aTool = new A2APreviewTool();
+        // Create agent-to-agent tool with connection ID
+        A2APreviewTool a2aTool = new A2APreviewTool()
+            .setProjectConnectionId(a2aConnectionId);
 
         // Create agent with agent-to-agent tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
@@ -633,7 +647,7 @@ public class AgentToAgentExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Coordinate with the other agents to complete this task")
+                .input("What can the secondary agent do?")
                 .build());
 
         System.out.println("Response: " + response.output());

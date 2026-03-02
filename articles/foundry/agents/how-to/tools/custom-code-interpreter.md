@@ -332,6 +332,13 @@ Agent deleted
 
 ### Prerequisites
 
+Set the following environment variables:
+
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `MCP_SERVER_URL` — The URL of the custom code interpreter MCP server.
+- `MCP_PROJECT_CONNECTION_ID` — The project connection ID for the MCP server.
+
 Add the dependency to your `pom.xml`:
 
 ```xml
@@ -362,8 +369,8 @@ import java.util.Collections;
 
 public class CustomCodeInterpreterExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
         String mcpServerUrl = Configuration.getGlobalConfiguration().get("MCP_SERVER_URL");
         String connectionId = Configuration.getGlobalConfiguration().get("MCP_PROJECT_CONNECTION_ID");
 

@@ -170,6 +170,11 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 The following C# sample shows how to create an agent with the code interpreter tool and use it to generate a bar chart. The agent writes and executes Python code (using matplotlib) in a sandboxed container. For asynchronous usage, refer to the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample7_CodeInterpreter.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 // Create project client and read the environment variables.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
@@ -396,8 +401,8 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
 
 Add the dependency to your `pom.xml`:
 
@@ -428,8 +433,8 @@ import java.util.Collections;
 
 public class CodeInterpreterChartExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())

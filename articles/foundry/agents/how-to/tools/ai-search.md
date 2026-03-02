@@ -642,8 +642,10 @@ The application creates an agent with Azure AI Search capabilities, prompts for 
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `AZURE_AI_SEARCH_CONNECTION_ID` — The ID of the Azure AI Search connection in your Foundry project.
+- `AI_SEARCH_INDEX_NAME` — The name of the search index to query.
 
 Add the dependency to your `pom.xml`:
 
@@ -663,7 +665,10 @@ import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.AISearchIndexResource;
+import com.azure.ai.agents.models.AzureAISearchQueryType;
 import com.azure.ai.agents.models.AzureAISearchTool;
+import com.azure.ai.agents.models.AzureAISearchToolResource;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -671,11 +676,14 @@ import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
 import java.util.Collections;
+import java.util.List;
 
 public class AzureAISearchExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        String connectionId = Configuration.getGlobalConfiguration().get("AZURE_AI_SEARCH_CONNECTION_ID");
+        String indexName = Configuration.getGlobalConfiguration().get("AI_SEARCH_INDEX_NAME");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -684,13 +692,20 @@ public class AzureAISearchExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create Azure AI Search tool
-        // The connection is configured in the Foundry portal
-        AzureAISearchTool aiSearchTool = new AzureAISearchTool();
+        // Create Azure AI Search tool with index configuration
+        AzureAISearchTool aiSearchTool = new AzureAISearchTool(
+            new AzureAISearchToolResource(List.of(
+                new AISearchIndexResource()
+                    .setProjectConnectionId(connectionId)
+                    .setIndexName(indexName)
+                    .setQueryType(AzureAISearchQueryType.SIMPLE)
+            ))
+        );
 
         // Create agent with AI Search tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
-            .setInstructions("You are a helpful assistant that can search through indexed documents.")
+            .setInstructions("You are a helpful assistant that can search through indexed documents. "
+                + "Always provide citations for answers using the tool.")
             .setTools(Collections.singletonList(aiSearchTool));
 
         AgentVersionDetails agent = agentsClient.createAgentVersion("ai-search-agent", agentDefinition);

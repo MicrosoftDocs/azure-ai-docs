@@ -1082,8 +1082,9 @@ Bing Custom Search agent sample completed!
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `BING_PROJECT_CONNECTION_ID` — The ID of the Bing connection in your Foundry project.
 
 Add the dependency to your `pom.xml`:
 
@@ -1103,6 +1104,8 @@ import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.BingGroundingSearchConfiguration;
+import com.azure.ai.agents.models.BingGroundingSearchToolParameters;
 import com.azure.ai.agents.models.BingGroundingTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.core.util.Configuration;
@@ -1111,11 +1114,13 @@ import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
 import java.util.Collections;
+import java.util.List;
 
 public class BingGroundingExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        String bingConnectionId = Configuration.getGlobalConfiguration().get("BING_PROJECT_CONNECTION_ID");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -1124,9 +1129,12 @@ public class BingGroundingExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create Bing grounding tool
-        // The Bing connection is configured in the Foundry portal
-        BingGroundingTool bingTool = new BingGroundingTool();
+        // Create Bing grounding tool with connection configuration
+        BingGroundingTool bingTool = new BingGroundingTool(
+            new BingGroundingSearchToolParameters(List.of(
+                new BingGroundingSearchConfiguration(bingConnectionId)
+            ))
+        );
 
         // Create agent with Bing grounding tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)

@@ -237,6 +237,11 @@ Before running this sample, complete the setup steps in [Set up Browser Automati
 The following C# example demonstrates how to create an AI agent with Browser Automation capabilities by using the `BrowserAutomationAgentTool` and synchronous Azure AI Projects client. The agent can navigate to websites, interact with web elements, and perform tasks such as searching for stock prices. The example uses synchronous programming model for simplicity. For an asynchronous version, see the [Sample for use of BrowserAutomationAgentTool and Agents](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample23_BrowserAutomationTool.md) sample in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 // Create the Agent client and read the required environment variables.
 // Note that Browser automation operations can take longer than usual
 // and require the request timeout to be at least 5 minutes.
@@ -323,6 +328,12 @@ You see streaming progress messages, such as text deltas, and a completed respon
 :::zone-end
 
 :::zone pivot="rest"
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
+
 The following cURL sample demonstrates how to create an agent with Browser Automation tool and perform web browsing tasks using REST API.
 
 ```bash
@@ -499,8 +510,9 @@ You see an "Agent created ..." message, streaming text output, and optionally, b
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID` — The resource ID of the Playwright workspace connection.
 
 Add the dependency to your `pom.xml`:
 
@@ -521,6 +533,8 @@ import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.BrowserAutomationPreviewTool;
+import com.azure.ai.agents.models.BrowserAutomationToolConnectionParameters;
+import com.azure.ai.agents.models.BrowserAutomationToolParameters;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -531,8 +545,9 @@ import java.util.Collections;
 
 public class BrowserAutomationExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        String connectionId = Configuration.getGlobalConfiguration().get("BROWSER_AUTOMATION_PROJECT_CONNECTION_ID");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -541,8 +556,12 @@ public class BrowserAutomationExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create browser automation tool
-        BrowserAutomationPreviewTool browserTool = new BrowserAutomationPreviewTool();
+        // Create browser automation tool with connection configuration
+        BrowserAutomationPreviewTool browserTool = new BrowserAutomationPreviewTool(
+            new BrowserAutomationToolParameters(
+                new BrowserAutomationToolConnectionParameters(connectionId)
+            )
+        );
 
         // Create agent with browser automation tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)

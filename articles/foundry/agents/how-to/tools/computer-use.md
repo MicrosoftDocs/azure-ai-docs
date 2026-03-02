@@ -292,6 +292,12 @@ Agent deleted
 The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using System.Runtime.CompilerServices;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 class ComputerUseDemo
 {
     
@@ -668,8 +674,8 @@ Computer Use Agent sample completed!
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_COMPUTER_USE_MODEL_DEPLOYMENT_NAME` — The computer-use-preview model deployment name (defaults to `computer-use-preview`).
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — The computer-use-preview model deployment name (defaults to `computer-use-preview`).
 
 Add the dependency to your `pom.xml`:
 
@@ -701,9 +707,9 @@ import java.util.Collections;
 
 public class ComputerUseExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
         String model = Configuration.getGlobalConfiguration().get(
-            "AZURE_COMPUTER_USE_MODEL_DEPLOYMENT_NAME", "computer-use-preview");
+            "FOUNDRY_MODEL_DEPLOYMENT_NAME", "computer-use-preview");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -758,10 +764,16 @@ For a complete computer use loop with screenshot handling, see the [ComputerUseS
 
 ## Use computer use with the REST API
 
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
+
 ### Create an agent with computer use
 
 ```bash
-curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
@@ -785,7 +797,7 @@ curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
 ### Generate a response
 
 ```bash
-curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
@@ -796,10 +808,36 @@ curl -X POST "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
 
 The response includes `computer_call` output items with actions to execute. Process each action, capture screenshots, and send results back using the responses endpoint with `previous_response_id`.
 
+### Submit action results with screenshot
+
+After executing the computer action (for example, click or type), capture a screenshot and send it back:
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent_reference": {"type": "agent_reference", "name": "computer-use-agent"},
+    "previous_response_id": "<RESPONSE_ID>",
+    "input": [
+      {
+        "type": "computer_call_output",
+        "call_id": "<CALL_ID>",
+        "output": {
+          "type": "computer_screenshot",
+          "image_url": "data:image/png;base64,<BASE64_SCREENSHOT>"
+        }
+      }
+    ]
+  }'
+```
+
+Replace `<RESPONSE_ID>`, `<CALL_ID>`, and `<BASE64_SCREENSHOT>` with values from the previous response. Repeat this cycle until the model returns a text response instead of a `computer_call`.
+
 ### Clean up
 
 ```bash
-curl -X DELETE "$AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/computer-use-agent?api-version=v1" \
+curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/computer-use-agent?api-version=v1" \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 

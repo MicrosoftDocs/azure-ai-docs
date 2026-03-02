@@ -47,7 +47,7 @@ In this article, you learn how to:
   - **Java**: `azure-ai-agents` (prerelease)
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
 - **Azure AI Owner** role on your Foundry resource (required for creating agent resources)
-- Environment variables configured: `FOUNDRY_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Environment variables configured: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 
 ## Code examples
 
@@ -161,6 +161,11 @@ Cleaning up...
 In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search.  The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample8_FileSearch.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 // Create project client and read the environment variables, which is used in the next steps.
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
@@ -222,6 +227,13 @@ The code for 'banana' is 673457. I couldn't find any documented code for 'orange
 In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search. The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample11_FileSearch_Streaming.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+using OpenAI.Files;
+using OpenAI.VectorStores;
+
 class FileSearchStreamingDemo
 {
     // Create a helper method ParseResponse to format streaming response output.
@@ -433,6 +445,18 @@ main().catch((err) => {
 });
 ```
 
+### Expected output
+
+```output
+Vector store created: vs_<id>
+File uploaded: file-<id>
+Agent created: <agent-name> (version 1)
+Stream response created with ID: resp_<id>
+The uploaded document contains information about ...
+Agent deleted
+Vector store deleted
+```
+
 ### References
 
 - Reference: [Azure SDK for JavaScript sample: file search](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFileSearch.js)
@@ -446,8 +470,9 @@ main().catch((err) => {
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `VECTOR_STORE_ID` — The ID of the vector store to search.
 
 Add the dependency to your `pom.xml`:
 
@@ -479,8 +504,9 @@ import java.util.Collections;
 
 public class FileSearchExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        String vectorStoreId = Configuration.getGlobalConfiguration().get("VECTOR_STORE_ID");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -491,7 +517,7 @@ public class FileSearchExample {
 
         // Create file search tool with vector store IDs
         FileSearchTool fileSearchTool = new FileSearchTool(
-            Arrays.asList("<your-vector-store-id>")
+            Arrays.asList(vectorStoreId)
         );
 
         // Create agent with file search tool
@@ -518,6 +544,13 @@ public class FileSearchExample {
         agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
     }
 }
+```
+
+### Expected output
+
+```output
+Agent created: file-search-agent (version 1)
+Response: [ResponseOutputItem containing file search results ...]
 ```
 
 For more examples including file upload and vector store creation, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
@@ -554,7 +587,7 @@ curl --request POST \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my_vector_store",
-    "file_ids": ["{{filesUpload.id}}"]
+    "file_ids": ["'$FILE_ID'"]
   }'
 ```
 
@@ -569,11 +602,11 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
     "description": "Agent with file search",
     "definition": {
       "kind": "prompt",
-      "model": "<MODEL_DEPLOYMENT>",
+      "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
       "tools": [
         {
           "type": "file_search",
-          "vector_store_ids": ["{{vectorStore.id}}"],
+          "vector_store_ids": ["'$VECTOR_STORE_ID'"],
           "max_num_results": 20
         }
       ],
@@ -596,7 +629,7 @@ curl --request POST \
   },
   "metadata": {
     "test_response": "file_search_enabled",
-    "vector_store_id": "{{vectorStore.id}}"
+    "vector_store_id": "'$VECTOR_STORE_ID'"
   },
   "input": [{
     "type": "message",
@@ -627,7 +660,7 @@ Delete the vector store.
 
 ```bash
 curl --request DELETE \
-  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/vector_stores/$VECTORSTORE_ID \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/vector_stores/$VECTOR_STORE_ID \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 

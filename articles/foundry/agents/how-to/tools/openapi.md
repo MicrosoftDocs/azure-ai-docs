@@ -1,6 +1,6 @@
 ---
 title: "Connect OpenAPI tools to Microsoft Foundry agents"
-description: "Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs."
+description: "Connect OpenAPI 3.0 and 3.1 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -15,7 +15,7 @@ zone_pivot_groups: selection-openapi-function-new
 ---
 
 # Connect agents to OpenAPI tools
-Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifications. Agents that connect to OpenAPI tools can call external services, retrieve real-time data, and extend their capabilities beyond built-in functions.
+Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 and 3.1 specifications. Agents that connect to OpenAPI tools can call external services, retrieve real-time data, and extend their capabilities beyond built-in functions.
 
 [OpenAPI specifications](https://spec.openapis.org/oas/latest.html) define a standard way to describe HTTP APIs so you can integrate existing services with your agents. Microsoft Foundry supports three authentication methods: `anonymous`, `API key`, and `managed identity`. For help choosing an authentication method, see [Choose an authentication method](#choose-an-authentication-method).
 
@@ -53,11 +53,11 @@ Before you begin, make sure you have:
 | `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your deployed model name. |
 | `OPENAPI_PROJECT_CONNECTION_NAME` | (For API key auth) Your project connection name for the OpenAPI service. |
 
-- OpenAPI 3.0 specification file that meets these requirements:
+- OpenAPI 3.0 or 3.1 specification file that meets these requirements:
   - Each function must have an `operationId` (required for the OpenAPI tool).
   - `operationId` should only contain letters, `-`, and `_`.
   - Use descriptive names to help models efficiently decide which function to use.
-  - Supported content type: "application/json", "application/json-patch+json"
+  - Supported request body content types: `application/json`, `application/json-patch+json`
 - For managed identity authentication: Reader role or higher on target service resources.
 - For API key/token authentication: a project connection configured with your API key or token. See [Add a new connection to your project](../../../how-to/connections-add.md).
 
@@ -67,7 +67,7 @@ Before you begin, make sure you have:
 ## Understand limitations
 
 - Your OpenAPI spec must include `operationId` for each operation, and `operationId` can include only letters, `-`, and `_`.
-- Supported content types: `application/json`, `application/json-patch+json`.
+- Supported request body content types: `application/json`, `application/json-patch+json`.
 - For API key authentication, use one API key security scheme per OpenAPI tool. If you need multiple security schemes, create multiple OpenAPI tools.
 
 ## Code example
@@ -190,8 +190,8 @@ with (
     openapi_key_auth_tool={
         "type": "openapi",
         "openapi":{
-            "name": "TOOL_NAME",
-            "spec": SPEC_NAME,  # Must include securitySchemes and security sections
+            "name": "get_weather",
+            "spec": openapi_weather,  # Must include securitySchemes and security sections
             "auth": {
                 "type": "project_connection",
                 "security_scheme": {
@@ -205,13 +205,13 @@ with (
     openapi_mi_auth_tool={
         "type": "openapi",
         "openapi":{
-            "name": "TOOL_NAME",
-            "description": "",
-            "spec": SPEC_NAME,
+            "name": "get_weather",
+            "description": "Retrieve weather information for a location.",
+            "spec": openapi_weather,
             "auth": {
                 "type": "managed_identity",
                 "security_scheme": {
-                    "audience": ""  #audience to the service, such as https://ai.azure.com
+                    "audience": "https://your-api.example.com"  # Audience URI of the target service
                 }
             },
         }
@@ -279,6 +279,13 @@ Agent deleted
 This example demonstrates how to use services described by an [OpenAPI specification](https://spec.openapis.org/oas/latest.html) by using an agent. It uses the [wttr.in](https://wttr.in/:help) service to get weather and its specification file [weather_openapi.json](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/tests/Samples/weather_openapi.json). This example uses synchronous methods of the Azure AI Projects client library. For an example that uses asynchronous methods, see the [sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample21_OpenAPI.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using System.IO;
+using System.Runtime.CompilerServices;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 class OpenAPIDemo
 {
     // Utility method to get the OpenAPI specification file from the Assets folder.
@@ -299,7 +306,7 @@ class OpenAPIDemo
         string filePath = GetFile();
         OpenAPIFunctionDefinition toolDefinition = new(
             name: "get_weather",
-            spec: BinaryData.FromBytes(BinaryData.FromBytes(File.ReadAllBytes(filePath))),
+            spec: BinaryData.FromBytes(File.ReadAllBytes(filePath)),
             auth: new OpenAPIAnonymousAuthenticationDetails()
         );
         toolDefinition.Description = "Retrieve weather information for a location.";
@@ -384,7 +391,7 @@ class OpenAPIConnectedDemo
         AIProjectConnection tripadvisorConnection = projectClient.Connections.GetConnection("tripadvisor");
         OpenAPIFunctionDefinition toolDefinition = new(
             name: "tripadvisor",
-            spec: BinaryData.FromBytes(BinaryData.FromBytes(File.ReadAllBytes(filePath))),
+            spec: BinaryData.FromBytes(File.ReadAllBytes(filePath)),
             auth: new OpenAPIProjectConnectionAuthenticationDetails(new OpenAPIProjectConnectionSecurityScheme(
                 projectConnectionId: tripadvisorConnection.Id
             ))
@@ -467,7 +474,7 @@ Here are 5 top hotels in Paris, France:
 
 ## Create a Java agent with OpenAPI tool capabilities
 
-This Java example creates an agent with an OpenAPI tool by using `com.azure:azure-ai-agents` and a local OpenAPI 3.0 spec file. The sample uses anonymous authentication and calls a public API endpoint.
+This Java example creates an agent with an OpenAPI tool by using `com.azure:azure-ai-agents` and a local OpenAPI spec file. The sample uses anonymous authentication and calls a public API endpoint.
 
 ```java
 import com.azure.ai.agents.AgentsClient;
@@ -482,6 +489,7 @@ import com.azure.ai.agents.models.OpenApiAnonymousAuthDetails;
 import com.azure.ai.agents.models.OpenApiFunctionDefinition;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.core.util.BinaryData;
+import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.json.JsonProviders;
 import com.azure.json.JsonReader;
@@ -497,20 +505,13 @@ import java.util.Arrays;
 
 public class OpenApiAgentJavaSample {
     public static void main(String[] args) throws Exception {
-        String endpoint = System.getenv("FOUNDRY_PROJECT_ENDPOINT");
-        if (endpoint == null || endpoint.isBlank()) {
-            endpoint = System.getenv("PROJECT_ENDPOINT");
-        }
-
-        String model = System.getenv("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        if (model == null || model.isBlank()) {
-            model = System.getenv("MODEL_DEPLOYMENT_NAME");
-        }
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .endpoint(endpoint)
             .credential(new DefaultAzureCredentialBuilder().build())
-            .serviceVersion(AgentsServiceVersion.V2025_11_15_PREVIEW);
+            .serviceVersion(AgentsServiceVersion.V2025_11_15_PREVIEW); // Pin to the preview API version supported by azure-ai-agents 2.0.0-beta.1
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -578,8 +579,8 @@ This Java example creates an agent with an OpenAPI tool and runs a conversation-
 
 ### Required inputs
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`) and `FOUNDRY_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`)
-- Local file: `openapi_spec.json` (OpenAPI 3.0 specification)
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL_DEPLOYMENT_NAME`
+- Local file: `openapi_spec.json` (OpenAPI 3.0 or 3.1 specification)
 
 ### Expected output
 
@@ -600,6 +601,12 @@ Agent deleted
 
 :::zone pivot="rest"
 The following examples show how to call an OpenAPI tool by using the REST API.
+
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
 
 ### Anonymous authentication
 
@@ -1214,7 +1221,7 @@ TripAdvisor OpenAPI agent sample completed!
 - Connection not found: Verify `TRIPADVISOR_PROJECT_CONNECTION_ID` is correct and connection exists.
 - `AuthenticationException`: Invalid API key in project connection.
 - **API key not injected in requests**: Your OpenAPI spec must include proper `securitySchemes` (under `components`) and `security` sections. The key name in `securitySchemes` must match the key in your project connection.
-- `Content type is not supported`: Currently, only these two content types are supported: `application/json` and `application/json-patch+json`.
+- `Content type is not supported`: Currently, only these two request body content types are supported: `application/json` and `application/json-patch+json`. Response content types aren't restricted.
 :::zone-end
 
 ## Security and data considerations
@@ -1282,7 +1289,7 @@ By using API key authentication, you can authenticate your OpenAPI spec by using
 You can use token-based authentication (for example, a Bearer token) with the same `project_connection` auth type used for API keys. The key difference is how you configure both the OpenAPI spec and the project connection.
 
 Your OpenAPI spec will look like this:
-```json
+```yaml
   BearerAuth:
     type: http
     scheme: bearer

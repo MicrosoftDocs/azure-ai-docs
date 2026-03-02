@@ -119,6 +119,11 @@ with (
 In this example, you generate an image based on a simple prompt. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample2_Image_Generation.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
 // Read the environment variables
 var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
@@ -210,6 +215,12 @@ Agent deleted
 :::zone pivot="rest-api"
 ## Create an agent with the image generation tool
 
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
+
 The following example creates an agent that uses the image generation tool.
 
 ```bash
@@ -257,6 +268,48 @@ curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
     "stream": false
   }'
 ```
+
+### Expected output
+
+The response JSON includes an `image_generation_call` output item with a `result` field containing base64-encoded image data:
+
+```json
+{
+  "id": "resp_<id>",
+  "status": "completed",
+  "output": [
+    {
+      "type": "image_generation_call",
+      "result": "<base64-encoded-image-data>",
+      "status": "completed"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "Here is the image of a sunset over a mountain lake."
+        }
+      ]
+    }
+  ]
+}
+```
+
+To extract and save the image, pipe the response through `jq` and `base64`:
+
+```bash
+RESPONSE=$(curl -s -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "x-ms-oai-image-generation-deployment: $IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME" \
+  -d '{ ... }')
+
+echo "$RESPONSE" | jq -r '.output[] | select(.type=="image_generation_call") | .result' \
+  | base64 --decode > generated_image.png
+```
+
 :::zone-end
 
 :::zone pivot="typescript"
@@ -368,8 +421,9 @@ Agent deleted
 
 Set the following environment variables:
 
-- `AZURE_AGENTS_ENDPOINT` — Your project endpoint.
-- `AZURE_AGENTS_MODEL` — A deployed model name.
+- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
+- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
+- `IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME` — The deployed image generation model name (for example, `gpt-image-1`).
 
 Add the dependency to your `pom.xml`:
 
@@ -390,6 +444,9 @@ import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.ImageGenTool;
+import com.azure.ai.agents.models.ImageGenToolModel;
+import com.azure.ai.agents.models.ImageGenToolQuality;
+import com.azure.ai.agents.models.ImageGenToolSize;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -400,8 +457,9 @@ import java.util.Collections;
 
 public class ImageGenerationExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
+        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        String imageModel = Configuration.getGlobalConfiguration().get("IMAGE_GENERATION_MODEL_DEPLOYMENT_NAME");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
@@ -410,8 +468,11 @@ public class ImageGenerationExample {
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
-        // Create image generation tool
-        ImageGenTool imageGenTool = new ImageGenTool();
+        // Create image generation tool with model, quality, and size
+        ImageGenTool imageGenTool = new ImageGenTool()
+            .setModel(ImageGenToolModel.fromString(imageModel))
+            .setQuality(ImageGenToolQuality.LOW)
+            .setSize(ImageGenToolSize.fromString("1024x1024"));
 
         // Create agent with image generation tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
@@ -431,12 +492,26 @@ public class ImageGenerationExample {
                 .input("Generate an image of a sunset over a mountain range")
                 .build());
 
-        System.out.println("Response: " + response.output());
+        // The response output includes image_generation_call items with base64-encoded image data.
+        // Extract and save the image using the response output items.
+        System.out.println("Response status: " + response.status().map(Object::toString).orElse("unknown"));
+        System.out.println("Output items: " + response.output().size());
 
         // Clean up
         agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
     }
 }
+```
+
+> [!NOTE]
+> The `response.output()` list contains `image_generation_call` items with base64-encoded image data in the `result` field. Use `java.util.Base64.getDecoder().decode()` to convert the result to bytes and write them to a file.
+
+### Expected output
+
+```output
+Agent created: image-gen-agent (version 1)
+Response status: completed
+Output items: 2
 ```
 
 :::zone-end
