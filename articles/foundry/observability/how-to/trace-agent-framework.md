@@ -184,21 +184,21 @@ def get_weather(city: str) -> str:
 #### LangChain v1: Use runtime context and define a user-info tool
 
 ```python
-from langgraph.runtime import get_runtime
 from langchain_core.runnables import RunnableConfig
 
 @tool
 def get_user_info(config: RunnableConfig) -> str:
     """Retrieve user information based on user ID."""
-    runtime = get_runtime(UserContext)
-    user_id = runtime.context.user_id
+    user_id = config.get("configurable", {}).get(
+        "user_id", "default"
+    )
     return USER_LOCATION[user_id]
 ```
 
 #### LangChain v1: Create the agent
 
 ```python
-from langchain.agents import create_agent
+from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import InMemorySaver
 from dataclasses import dataclass
 
@@ -209,7 +209,7 @@ class WeatherResponse:
 
 checkpointer = InMemorySaver()
 
-agent = create_agent(
+agent = create_react_agent(
     model=model,
     prompt=system_prompt,
     tools=[get_user_info, get_weather],

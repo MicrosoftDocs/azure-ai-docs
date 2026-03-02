@@ -60,7 +60,7 @@ Start with server-side traces. Foundry logs traces for common agent and workflow
 Install OpenTelemetry and the Azure SDK tracing plugin using:
 
 ```bash
-pip install azure-ai-projects azure-identity opentelemetry-sdk azure-core-tracing-opentelemetry
+pip install "azure-ai-projects>=2.0.0b4" --pre azure-identity opentelemetry-sdk azure-core-tracing-opentelemetry
 ```
 
 > [!IMPORTANT]

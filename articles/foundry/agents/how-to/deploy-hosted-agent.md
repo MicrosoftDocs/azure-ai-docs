@@ -48,7 +48,7 @@ The hosting adapter starts a local web server that exposes your agent as a REST 
 @baseUrl = http://localhost:8088
 
 POST {{baseUrl}}/responses
-Content-Type: application/json.
+Content-Type: application/json
 {
     "input": {
         "messages": [
