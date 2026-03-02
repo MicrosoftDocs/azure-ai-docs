@@ -181,7 +181,7 @@ For provisioned deployments, we use a variation of the leaky bucket algorithm to
 > [!NOTE]
 > Calls are accepted until utilization reaches 100%. Bursts just over 100% might be permitted in short periods, but over time, your traffic is capped at 100% utilization.
 
-:::image type="content" source="../media/provisioned/utilization.jpg" alt-text="Diagram of the leaky bucket algorithm for provisioned throughput utilization showing how incoming requests add to utilization while capacity drains based on deployed PTU count." lightbox="../media/provisioned/utilization.jpg":::
+:::image type="content" source="../../../foundry/openai/media/provisioned/utilization.jpg" alt-text="Diagram of the leaky bucket algorithm for provisioned throughput utilization showing how incoming requests add to utilization while capacity drains based on deployed PTU count." lightbox="../../../foundry/openai/media/provisioned/utilization.jpg":::
 
 #### Concurrent call limits
 

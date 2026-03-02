@@ -53,7 +53,7 @@ The diagram below illustrates how your data is processed. This diagram covers se
 1. How Foundry creates a fine-tuned (custom) model with your uploaded data. 
 1. How Foundry and Microsoft personnel analyze prompts and completions (text and image) for harmful content and for patterns suggesting the use of the service in a manner that violates the Code of Conduct or other applicable product terms. 
 
-:::image type="content" source="media\flow-3.png" alt-text="Data flow diagram for the service." lightbox="media\flow-3.png":::
+:::image type="content" source="../../../foundry/responsible-ai/openai/media/flow-3.png" alt-text="Data flow diagram for the service." lightbox="../../../foundry/responsible-ai/openai/media/flow-3.png":::
 
 As depicted in the diagram above, managed customers may [apply to modify abuse monitoring](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOE9MUTFMUlpBNk5IQlZWWkcyUEpWWEhGOCQlQCN0PWcu). 
 
@@ -132,7 +132,7 @@ There are two ways for customers, once approved to turn off abuse monitoring, to
 1. Go to the resource Overview page
 2. Click on the **JSON view** link on the top right corner as shown in the image below.
 
-    ![Logging status json view in the Azure portal.](media/logging-status-verification.png)
+    ![Logging status json view in the Azure portal.](../../../foundry/responsible-ai/openai/media/logging-status-verification.png)
 
 There will be a value in the Capabilities list called "ContentLogging" which will appear and be set to FALSE when logging for abuse monitoring is off.
 

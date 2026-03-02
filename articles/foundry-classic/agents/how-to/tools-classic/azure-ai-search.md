@@ -77,7 +77,7 @@ Select the tab for your desired authentication method.
     
     1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
 
-        :::image type="content" source="../../media/tools/ai-search\connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search\connection-endpoint.png":::
+        :::image type="content" source="../../../../foundry/agents/media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../../../foundry/agents/media/tools/ai-search/connection-endpoint.png":::
 
 1. To get the API key:
 
@@ -85,7 +85,7 @@ Select the tab for your desired authentication method.
 
     1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
 
-        :::image type="content" source="../../media/tools/ai-search\azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search\azure-portal.png":::
+        :::image type="content" source="../../../../foundry/agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../foundry/agents/media/tools/ai-search/azure-portal.png":::
 
     1. Make a note of one of the keys under **Manage admin keys**.
 
@@ -99,7 +99,7 @@ Select the tab for your desired authentication method.
     
     1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
 
-        :::image type="content" source="../../media/tools/ai-search\connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search\connection-endpoint.png":::
+        :::image type="content" source="../../../../foundry/agents/media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../../../foundry/agents/media/tools/ai-search/connection-endpoint.png":::
 
 1. To enable RBAC:
 
@@ -107,7 +107,7 @@ Select the tab for your desired authentication method.
 
     1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
 
-        :::image type="content" source="../../media/tools/ai-search\azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search\azure-portal.png":::
+        :::image type="content" source="../../../../foundry/agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../foundry/agents/media/tools/ai-search/azure-portal.png":::
 
 1. To assign the necessary roles:
 

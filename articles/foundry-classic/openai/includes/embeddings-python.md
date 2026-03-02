@@ -103,7 +103,7 @@ df
 
 **Output:**
 
-:::image type="content" source="../media/tutorials/initial-dataframe.png" alt-text="Screenshot of the initial DataFrame table results from the csv file." lightbox="../media/tutorials/initial-dataframe.png":::
+:::image type="content" source="../../../foundry/openai/media/tutorials/initial-dataframe.png" alt-text="Screenshot of the initial DataFrame table results from the csv file." lightbox="../../../foundry/openai/media/tutorials/initial-dataframe.png":::
 
 The initial table has more columns than we need we'll create a new smaller DataFrame called `df_bills` which will contain only the columns for `text`, `summary`, and `title`.
 
@@ -114,7 +114,7 @@ df_bills
 
 **Output:**
 
-:::image type="content" source="../media/tutorials/cleanup-dataframe.png" alt-text="Screenshot of the smaller DataFrame table results with only text, summary, and title columns displayed." lightbox="../media/tutorials/cleanup-dataframe.png":::
+:::image type="content" source="../../../foundry/openai/media/tutorials/cleanup-dataframe.png" alt-text="Screenshot of the smaller DataFrame table results with only text, summary, and title columns displayed." lightbox="../../../foundry/openai/media/tutorials/cleanup-dataframe.png":::
 
 Next we'll perform some light data cleaning by removing redundant whitespace and cleaning up the punctuation to prepare the data for tokenization.
 
@@ -160,7 +160,7 @@ df_bills
 
 **Output:**
 
-:::image type="content" source="../media/tutorials/tokens-dataframe.png" alt-text="Screenshot of the DataFrame with a new column called n_tokens." lightbox="../media/tutorials/tokens-dataframe.png":::
+:::image type="content" source="../../../foundry/openai/media/tutorials/tokens-dataframe.png" alt-text="Screenshot of the DataFrame with a new column called n_tokens." lightbox="../../../foundry/openai/media/tutorials/tokens-dataframe.png":::
 
 To understand the n_tokens column a little more as well how text ultimately is tokenized, it can be helpful to run the following code:
 
@@ -255,7 +255,7 @@ df_bills
 
 **Output:**
 
-:::image type="content" source="../media/tutorials/embed-text-documents.png" alt-text="Screenshot of the formatted results from df_bills command." lightbox="../media/tutorials/embed-text-documents.png":::
+:::image type="content" source="../../../foundry/openai/media/tutorials/embed-text-documents.png" alt-text="Screenshot of the formatted results from df_bills command." lightbox="../../../foundry/openai/media/tutorials/embed-text-documents.png":::
 
 As we run the search code block below, we'll embed the search query *"Can I get information on cable company tax revenue?"* with the same **text-embedding-ada-002 (Version 2)** model. Next we'll find the closest bill embedding to the newly embedded text from our query ranked by [cosine similarity](../concepts/understand-embeddings.md).
 
@@ -286,7 +286,7 @@ res = search_docs(df_bills, "Can I get information on cable company tax revenue?
 
 **Output**:
 
-:::image type="content" source="../media/tutorials/query-result.png" alt-text="Screenshot of the formatted results of res once the search query has been run." lightbox="../media/tutorials/query-result.png":::
+:::image type="content" source="../../../foundry/openai/media/tutorials/query-result.png" alt-text="Screenshot of the formatted results of res once the search query has been run." lightbox="../../../foundry/openai/media/tutorials/query-result.png":::
 
 Finally, we'll show the top result from document search based on user query against the entire knowledge base. This returns the top result of the "Taxpayer's Right to View Act of 1993." This document has a cosine similarity score of 0.76 between the query and the document:
 

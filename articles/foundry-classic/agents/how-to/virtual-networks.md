@@ -148,7 +148,7 @@ After the template deployment finishes, verify that all resources are configured
 
 ## Architecture diagram
 
-:::image type="content" source="../media/private-network-isolation.png" alt-text="Diagram showing the virtual network architecture for Foundry Agent Service private networking, including the agent subnet, private endpoint subnet, and private DNS zones.":::
+:::image type="content" source="../../../foundry/agents/media/private-network-isolation.png" alt-text="Diagram showing the virtual network architecture for Foundry Agent Service private networking, including the agent subnet, private endpoint subnet, and private DNS zones.":::
 
 ## Review the provisioned networking resources
 

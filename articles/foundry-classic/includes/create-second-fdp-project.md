@@ -19,7 +19,7 @@ ms.custom:
 
 Create multiple [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s on an existing `Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a preconfigured environment.
 
-:::image type="content" source="../media/how-to/projects/projects-multi-setup.png" alt-text="Diagram shows how a team could share resource access with multiple projects on a Foundry resource.":::
+:::image type="content" source="../../foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram shows how a team could share resource access with multiple projects on a Foundry resource.":::
 
 [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s as Azure child resources may get assigned their own access controls, but share common settings such as network security, deployments, and Azure tool integration from their parent resource.
 

@@ -104,7 +104,7 @@ To fine-tune an Azure OpenAI model in an existing Foundry project, follow these 
 
 1. On the collapsible left menu, select **Fine-tuning**. Then select **+ Fine-tune model**.
 
-    :::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-new.png" alt-text="Screenshot of the option to start creating a new fine-tuned model." lightbox="../media/fine-tuning/ai-foundry/fine-tune-new.png":::
+    :::image type="content" source="../../../foundry/openai/media/fine-tuning/ai-foundry/fine-tune-new.png" alt-text="Screenshot of the option to start creating a new fine-tuned model." lightbox="../../../foundry/openai/media/fine-tuning/ai-foundry/fine-tune-new.png":::
 
 1. Select a base model to fine-tune. Your choice influences both the performance and the cost of your model. The example in this article uses the gpt-35-turbo model. Then select **Confirm**.
 
@@ -116,13 +116,13 @@ To fine-tune an Azure OpenAI model in an existing Foundry project, follow these 
 
 1. Select **Next**.
 
-:::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-basic-settings.png" alt-text="Screenshot of basic settings for fine-tuning a model." lightbox="../media/fine-tuning/ai-foundry/fine-tune-basic-settings.png":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/ai-foundry/fine-tune-basic-settings.png" alt-text="Screenshot of basic settings for fine-tuning a model." lightbox="../../../foundry/openai/media/fine-tuning/ai-foundry/fine-tune-basic-settings.png":::
 
 ### Choose your training data
 
 The next step is to either choose existing prepared training data or upload new prepared training data to use when you're customizing your model. The **Training data** pane displays any existing, previously uploaded datasets. It also provides options to upload new training data.
 
-:::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-training-data-local.png" alt-text="Screenshot of the pane for selecting training data in the Foundry portal." lightbox="../media/fine-tuning/ai-foundry/fine-tune-training-data-local.png":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/ai-foundry/fine-tune-training-data-local.png" alt-text="Screenshot of the pane for selecting training data in the Foundry portal." lightbox="../../../foundry/openai/media/fine-tuning/ai-foundry/fine-tune-training-data-local.png":::
 
 - If your training data is already in your project, select **Data in Foundry**. Then select the file from the dropdown list.
 
@@ -136,7 +136,7 @@ For large data files, we recommend that you import from Azure Blob Storage. Larg
 
 After you upload files, a preview of your training data appears. Select **Next** to continue.
 
-:::image type="content" source="../media/fine-tuning/ai-foundry/fine-tune-training-data-preview.png" alt-text="Screenshot of a training data preview." lightbox="../media/fine-tuning/ai-foundry/fine-tune-training-data-preview.png":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/ai-foundry/fine-tune-training-data-preview.png" alt-text="Screenshot of a training data preview." lightbox="../../../foundry/openai/media/fine-tuning/ai-foundry/fine-tune-training-data-preview.png":::
 
 ### Choose your validation data
 
@@ -174,7 +174,7 @@ When each training epoch finishes, a checkpoint is generated. A checkpoint is a 
 
 Checkpoints can be particularly useful, because they might provide snapshots prior to overfitting. When a fine-tuning job finishes, you have the three most recent versions of the model available to deploy.
 
-:::image type="content" source="../media/fine-tuning/checkpoints.png" alt-text="Screenshot of a list of checkpoints." lightbox="../media/fine-tuning/checkpoints.png":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/checkpoints.png" alt-text="Screenshot of a list of checkpoints." lightbox="../../../foundry/openai/media/fine-tuning/checkpoints.png":::
 
 ## Pause and resume
 
@@ -184,7 +184,7 @@ You can also review the results files while training runs, to get a peek at the 
 
 During the training, you can view the logs and metrics and pause the job as needed. Pausing can be useful if metrics aren't converging or if you feel that the model isn't learning at the right pace. When you pause a training job, a deployable checkpoint is created after safety evaluations are complete. This checkpoint is available for you to deploy and use for inference, or you can resume the job to complete it. The pause operation is applicable only for jobs that are trained for at least one step and are in a **Running** state.
 
-:::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
+:::image type="content" source="../../../foundry/openai/media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of reinforcement fine-tuning with a running job." lightbox="../../../foundry/openai/media/how-to/reinforcement-fine-tuning/pause.png":::
 
 ## Analyze your fine-tuned model
 
@@ -204,7 +204,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 
 You can also view the data in your `results.csv` file as plots in the Foundry portal, on the **Monitoring** tab of your fine-tuned model. When you select the link for your trained model, two charts appear: loss and token accuracy. If you provided validation data, both datasets appear on the same plot.
 
-:::image type="content" source="../media/fine-tuning/metrics.png" alt-text="Screenshot of a metrics chart." lightbox="../media/fine-tuning/metrics.png":::
+:::image type="content" source="../../../foundry/openai/media/fine-tuning/metrics.png" alt-text="Screenshot of a metrics chart." lightbox="../../../foundry/openai/media/fine-tuning/metrics.png":::
 
 Look for your loss to decrease over time, and your accuracy to increase. If your training and validation data diverge, you might be overfitting. Try training with fewer epochs or a smaller learning-rate multiplier.
 

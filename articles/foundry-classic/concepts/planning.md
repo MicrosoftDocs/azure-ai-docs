@@ -51,7 +51,7 @@ To accelerate adoption while maintaining oversight, Contoso Enterprise IT aims t
 
 The Foundry resource defines the scope for configuring, securing, and monitoring your team's environment. It's available in the Foundry portal and through Azure APIs. Projects are like folders to organize your work within this resource context. Projects also control access and permissions to Foundry developer APIs and tools.
 
-:::image type="content" source="../media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Foundry resource.":::
+:::image type="content" source="../../foundry/media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Foundry resource.":::
 
 To ensure consistency, scalability, and governance across teams, consider the following environment setup practices when rolling out Foundry:
 
@@ -133,7 +133,7 @@ Create connections at the **Foundry resource level** for shared services like Az
 
 Configure connection authentication to use either shared access tokens, such as Microsoft Entra ID managed identities or API keys, for simplified management and onboarding, or user tokens via Entra ID passthrough, which offer greater control when accessing sensitive data sources.
 
-:::image type="content" source="../media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Foundry project connectivity and integration with other Azure services.":::
+:::image type="content" source="../../foundry/media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Foundry project connectivity and integration with other Azure services.":::
 
 ### Example: Contoso's connectivity strategy
 
