@@ -1,25 +1,38 @@
 ---
-author: sharmas
+author: alexwolfmsft
 manager: nitinme
 ms.service: azure-ai-immersive-reader
 ms.topic: include
 ms.date: 03/02/2026
-ms.author: sharmas
+ms.author: alexwolf
 ---
 
 ## Prerequisites
 
 * An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An Immersive Reader resource configured for Microsoft Entra authentication. Follow [these instructions](../../how-to-create-immersive-reader.md) to get set up. Save the output of your session into a text file so you can configure the environment properties.
-* [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload, or the [.NET SDK](https://dotnet.microsoft.com/download) and an IDE such as [Visual Studio Code](https://code.visualstudio.com).
-* [Git](https://git-scm.com).
-* Clone the [Immersive Reader SDK](https://github.com/microsoft/immersive-reader-sdk) from GitHub.
+* [.NET SDK](https://dotnet.microsoft.com/download) installed.
+* [Visual Studio Code](https://code.visualstudio.com) or [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload installed.
 
-## Configure authentication credentials
+## Configure authentication
 
 This guide uses [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential) from the `Azure.Identity` library to authenticate with the Immersive Reader service. No client secret is required in your code. Locally, `DefaultAzureCredential` uses your signed-in Azure CLI or Visual Studio credentials. When deployed to Azure, it automatically uses the managed identity assigned to your app.
 
 You need only your Immersive Reader resource **subdomain**. Save the subdomain value from when you created your Immersive Reader resource.
+
+Sign in to Azure so that `DefaultAzureCredential` can discover your credentials during local development:
+
+# [Azure CLI](#tab/azure-cli)
+
+```azurecli
+az login
+```
+
+# [Visual Studio](#tab/visual-studio)
+
+Select **Tools** > **Options** > **Azure Service Authentication** and sign in with the account that has access to your Immersive Reader resource.
+
+---
 
 Secure the **GetTokenAndSubdomain** API endpoint behind some form of authentication, such as [OAuth](https://oauth.net/2/). Authentication prevents unauthorized users from obtaining tokens to use against your Immersive Reader service and billing. That work is beyond the scope of this tutorial.
 
@@ -161,17 +174,17 @@ namespace QuickstartSampleWebApp.Controllers
 
 2. Start the app.
 
-   # [.NET CLI](#tab/dotnet-cli)
+# [.NET CLI](#tab/dotnet-cli)
 
-   ```dotnetcli
-   dotnet run
-   ```
+```dotnetcli
+dotnet run
+```
 
-   # [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
-   Select **Debug** > **Start Debugging**.
+Select **Debug** > **Start Debugging**.
 
-   ---
+---
 
 3. Open your browser and go to `https://localhost:5001`. You should see the sample content on the page. Select the **Immersive Reader** button to launch the Immersive Reader with your content.
 
