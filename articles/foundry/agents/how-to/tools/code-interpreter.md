@@ -221,7 +221,7 @@ Here is the bar chart showing quarterly revenue for 2025. The chart displays Q1 
 Agent deleted
 ```
 
-The agent creates a Code Interpreter session, writes Python code using matplotlib to generate the bar chart, executes the code in a sandboxed environment, and returns the chart as a generated file. For an example that uploads a CSV file and downloads the generated chart, see the [Python](#tab/python) or [TypeScript](#tab/typescript) samples in this article.
+The agent creates a Code Interpreter session, writes Python code using matplotlib to generate the bar chart, executes the code in a sandboxed environment, and returns the chart as a generated file. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article.
 
 :::zone-end
 
@@ -481,7 +481,7 @@ Response: Here is the bar chart showing quarterly revenue for 2025 with Q1 ($2.1
 Agent deleted
 ```
 
-The agent creates a Code Interpreter session, writes Python code using matplotlib to generate the chart, and executes the code in a sandboxed environment. For an example that uploads a CSV file and downloads the generated chart, see the [Python](#tab/python) or [TypeScript](#tab/typescript) samples in this article. For more examples, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
+The agent creates a Code Interpreter session, writes Python code using matplotlib to generate the chart, and executes the code in a sandboxed environment. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article. For more examples, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
 
 :::zone-end
 
