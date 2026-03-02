@@ -21,18 +21,18 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [portal](../../foundry-models/includes/configure-content-filters/portal.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../../foundry-models/includes/configure-content-filters/cli.md)]
+[!INCLUDE [cli](../../../foundry/foundry-models/includes/configure-content-filters/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../../foundry-models/includes/configure-content-filters/bicep.md)]
+[!INCLUDE [bicep](../../../foundry/foundry-models/includes/configure-content-filters/bicep.md)]
 ::: zone-end
 
 ## Related content

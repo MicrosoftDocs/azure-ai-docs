@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 To maintain business continuity and prepare for disaster recovery with [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs), plan ahead. Because Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
 
@@ -31,7 +31,7 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > Foundry itself doesn't provide automatic failover or disaster recovery.
 
 > [!NOTE]
-> The information in this article only applies to **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For disaster recovery for **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**, see [Disaster recovery for Foundry projects and Agent Service](agent-service-disaster-recovery.md).
+> The information in this article only applies to **[!INCLUDE [hub](../../foundry/includes/hub-project-name.md)]**. For disaster recovery for **[!INCLUDE [fdp](../../foundry/includes/fdp-project-name.md)]**, see [Disaster recovery for Foundry projects and Agent Service](agent-service-disaster-recovery.md).
 
 ## Understand Azure services for Foundry
 

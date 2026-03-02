@@ -27,7 +27,7 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 * Your Microsoft Foundry Project endpoint.
 
     
-    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+    [!INCLUDE [endpoint-string-portal](../../../../foundry/agents/includes/endpoint-string-portal.md)]
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 

@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](../../../foundry/responsible-ai/includes/non-english-translation.md)]
 
 ## What is a transparency note?
 
@@ -397,7 +397,7 @@ We encourage customers to use the Azure OpenAI GPT-4, o-series, GPT-3, Codex, an
 - **Carefully consider use cases in high stakes domains or industry:**  Examples include but are not limited to healthcare, medicine, finance, or legal.
 - **Carefully consider well-scoped chatbot scenarios.**  Limiting the use of the service in chatbots to a narrow domain reduces the risk of generating unintended or undesirable responses.
 - **Carefully consider all generative use cases.**  Content generation scenarios may be more likely to produce unintended outputs and these scenarios require careful consideration and mitigations.
-- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../../../foundry/responsible-ai/includes/regulatory-considerations.md)]
 
 When choosing a use case for Computer Use, users should factor in the following considerations in addition to those listed above: 
 - Avoid scenarios where actions are irreversible or highly consequential: These include, but are not limited to, the ability to send an email (such as to the wrong recipient), ability to modify or delete files that are important to you, ability to make financial transactions or directly interacting with outside services, sharing sensitive information publicly, granting access to critical systems, or executing commands that could alter system functionality or security. 
@@ -475,7 +475,7 @@ We encourage customers to use the Azure OpenAI DALL·E 2, DALL·E 3, GPT-4 Turbo
 - **Carefully consider scenarios that involve generating media in the style of known artists with published works.** For example, there could be scenarios in which users distribute generated content that is in a style of an artist who maintains intellectual property (IP) rights in original art. Cases like these could have legal consequences or consequential impacts on opportunities for artists. Consider creating a process for artists to limit the creation of images associated with their names in your product or service.
 - **Carefully consider scenarios that involve generating images that include real people.** Content that includes images of real people could be misused in a way that negatively affects life opportunities or legal status, as well as public perception and trust. Exercise caution when generating images of real people, living or dead, or of similar likeness.
 - **Carefully consider all use cases in high-stakes domains or industry:** Examples include but are not limited to healthcare, education, finance, and legal.
-- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../../../foundry/responsible-ai/includes/regulatory-considerations.md)]
 
 When choosing a use case for Computer Use, users should factor in the following considerations in addition to those listed above: 
 
@@ -515,7 +515,7 @@ We encourage customers to use the GPT realtime models and Whisper models in Azur
 - **Avoid scenarios in which the use or misuse of the system could have a consequential impact on life opportunities or legal status.** Examples include scenarios in which the AI system could affect an individual's legal status, legal rights, or their access to credit, education, employment, healthcare, housing, insurance, social welfare benefits, services, opportunities, or the terms on which these items are available. 
 - **Carefully consider all use cases in high-stakes domains or industries:** Examples include but are not limited to healthcare, education, finance, and legal.
 - **Whisper in Azure Speech service:** The OpenAI Whisper model is also available within Azure Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diarization, customization, or processing multiple audio files per request.
-- [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
+- [!INCLUDE [regulatory-considerations](../../../foundry/responsible-ai/includes/regulatory-considerations.md)]
 
 ---
 

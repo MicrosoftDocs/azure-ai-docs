@@ -229,19 +229,19 @@ This section lists Foundry Models that support the provisioned throughput capabi
 
 #### Global provisioned throughput model availability
 
-[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+[!INCLUDE [Provisioned Managed Global](../../../foundry/openai/includes/model-matrix/provisioned-global.md)]
 
 # [Data Zone Provisioned Throughput](#tab/datazone-provisioned-managed)
 
 #### Data zone provisioned throughput model availability
 
-[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
+[!INCLUDE [Global data zone provisioned managed](../../../foundry/openai/includes/model-matrix/datazone-provisioned-managed.md)]
 
 # [Regional Provisioned Throughput](#tab/provisioned)
 
 #### Regional provisioned throughput deployment model availability
 
-[!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
+[!INCLUDE [Provisioned](../../../foundry/openai/includes/model-matrix/provisioned-models.md)]
 
 ---
 

@@ -41,11 +41,11 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 [!INCLUDE [connection-string-deprecation](connection-string-deprecation.md)]
 
-[!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
+[!INCLUDE [endpoint-string-portal](../../../foundry/agents/includes/endpoint-string-portal.md)]
 
 Set this endpoint in an environment variable named `ProjectEndpoint`.
 
-[!INCLUDE [model-name-portal](model-name-portal.md)]
+[!INCLUDE [model-name-portal](../../../foundry/agents/includes/model-name-portal.md)]
 
 Save the name of your model deployment name as an environment variable named `ModelDeploymentName`. 
 

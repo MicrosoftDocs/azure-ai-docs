@@ -23,7 +23,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Foundry](includes/audio-completions-foundry.md)]
+[!INCLUDE [Foundry](../../foundry/openai/includes/audio-completions-foundry.md)]
 
 ::: zone-end
 

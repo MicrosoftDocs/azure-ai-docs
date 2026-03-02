@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](../../../foundry/responsible-ai/includes/non-english-translation.md)]
 
 ## What is a Transparency Note?
 

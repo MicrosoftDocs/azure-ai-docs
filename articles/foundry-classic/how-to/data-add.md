@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 This article describes how to create and manage data in Microsoft Foundry hub-based projects. You learn how to connect to your project, create data assets that reference files and folders in Azure Storage, and manage those assets through versioning, tagging, and archiving.
 

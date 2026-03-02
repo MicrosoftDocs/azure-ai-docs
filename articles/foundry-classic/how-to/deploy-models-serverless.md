@@ -18,7 +18,7 @@ zone_pivot_groups: azure-ai-serverless-deployment
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 In this article, you learn how to deploy a Microsoft Foundry Model as a serverless API deployment. [Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as a serverless API deployment. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription. 
 
@@ -30,7 +30,7 @@ Although serverless API deployment is one option for deploying Foundry Models, w
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](hub-create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](../../foundry/includes/hub-project-name.md)]](hub-create-projects.md).
 
 - Ensure that the **Deploy models to Foundry resources** (preview) feature is turned off in the Foundry portal. When this feature is on, serverless API deployments aren't available from the portal.
 

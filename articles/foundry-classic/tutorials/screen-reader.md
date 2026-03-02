@@ -24,14 +24,14 @@ This article is for people who use screen readers such as [Microsoft's Narrator]
 
 ## Get oriented in Foundry portal 
 
-Most [!INCLUDE [classic-link](../includes/classic-link.md)] (classic) pages have the following landmark structure: 
+Most [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)] (classic) pages have the following landmark structure: 
 
 - Banner (has Foundry app title, settings, and profile information)
     - Sometimes has a breadcrumb navigation element 
 - Navigation - Three different states:
     - Outside a project - there's no left navigation until you're in a project. The page is divided into sections. Once you have projects, the top section is a list of recent projects.
     - In a project - the left navigation is the same for all parts of a project until you move to the **Management center**.
-    - The Management center left navigation has two sections. In a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)], the sections are for the **resource** the project is in, then a section for the **project** itself. In a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], the sections are for the **hub** the project is in, then a section for the **project** itself.
+    - The Management center left navigation has two sections. In a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)], the sections are for the **resource** the project is in, then a section for the **project** itself. In a [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)], the sections are for the **hub** the project is in, then a section for the **project** itself.
 
 For efficient navigation, you can use landmarks to move between these sections on the page.
 
@@ -73,7 +73,7 @@ For more information about the navigation, see [What is Foundry](../what-is-foun
 ## Projects 
 
 To work in the Foundry portal, first [create a project](../how-to/create-projects.md): 
-1. In [!INCLUDE [classic-link](../includes/classic-link.md)], select **Foundry** from the top breadcrumbs.
+1. In [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)], select **Foundry** from the top breadcrumbs.
 1. Press <kbd>Tab</kbd> until you hear *Create an agent*, then select this button. This action creates a project for use with an agent.
 1. Enter the information requested in the **Create a project** dialog. 
 1. When the project is ready, you're prompted to select a model to use for your agent.
@@ -81,7 +81,7 @@ To work in the Foundry portal, first [create a project](../how-to/create-project
 
 If you already have some projects, you can also create a new project without creating an agent.
 
-1. In [!INCLUDE [classic-link](../includes/classic-link.md)], select **Foundry** from the top breadcrumbs.
+1. In [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)], select **Foundry** from the top breadcrumbs.
 1. Press <kbd>Tab</kbd> until you hear *Create new*. This path creates a project but doesn't deploy a model.
 1. When the project is created, you are in the project home page.
 
@@ -104,12 +104,12 @@ The chat session pane is where you can chat with the model and test out your ass
 
 Foundry has two different project types—see [What is Foundry?](../what-is-foundry.md#types-of-projects). The **Type** column in the **All resources** view shows the project type. In the recent resources picker, the type appears on a second line under the project name.
 
-- Look for either **(Foundry)** or **Foundry project** for a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]. 
-- Look for **(Hub)** for a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+- Look for either **(Foundry)** or **Foundry project** for a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]. 
+- Look for **(Hub)** for a [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)].
 
 ## Using prompt flow 
 
-Prompt flow is available only in a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
+Prompt flow is available only in a [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]. 
 
 Prompt flow is a tool that creates executable flows by linking LLMs, prompts, and Python tools through a visualized graph. Use prompt flow to prototype, experiment, and iterate on your AI applications before you deploy them. 
 

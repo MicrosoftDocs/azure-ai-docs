@@ -43,7 +43,7 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 
 :::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot that shows the Keys and Endpoint page for an Azure OpenAI resource in the Azure portal." lightbox="../media/quickstarts/endpoint.png":::
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+[!INCLUDE [environment-variables](../../../foundry/openai/includes/environment-variables.md)]
 
 ### Install the Python SDK
 

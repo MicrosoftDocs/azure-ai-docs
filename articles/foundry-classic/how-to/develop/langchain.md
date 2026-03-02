@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 LangChain is a developer ecosystem that makes it easier to build reasoning applications. It includes multiple components, and most of them can be used independently, so you can pick and choose the pieces you need.
 
 <!-- ::: moniker range="foundry-classic" -->
-You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] with LangChain in two ways:
+You can use models deployed to [!INCLUDE [classic-link](../../../foundry/includes/classic-link.md)] with LangChain in two ways:
 <!-- ::: moniker-end
 
 -->
@@ -30,7 +30,7 @@ You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-l
 
 - **Use the Azure AI Model Inference API:** All models deployed in Microsoft Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of capabilities across most models in the catalog. Because the API is consistent, switching models is as simple as changing the deployment; no code changes are required. For LangChain, also install the `langchain-azure-ai` integration.
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 This tutorial shows how to use the `langchain-azure-ai` package with LangChain.
 
@@ -38,7 +38,7 @@ This tutorial shows how to use the `langchain-azure-ai` package with LangChain.
 
 To run this tutorial, you need:
 
-* [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+* [!INCLUDE [azure-subscription](../../../foundry/includes/azure-subscription.md)]
 
 <!-- :::moniker range="foundry-classic" -->
 * Required role: 

@@ -75,7 +75,7 @@ You can complete the upgrade through the Foundry (classic) portal, Azure portal,
 
 # [Foundry portal](#tab/portal)
 
-1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 1. Select your Azure OpenAI resource.
 1. On the overview page, find the banner **Want to try the latest industry models and Agents?** and select **Get started**.
 1. Enter a name for your first project. A project is a folder to organize your work in Foundry. Your first 'default' project is backward compatible with your previous work in Azure OpenAI.

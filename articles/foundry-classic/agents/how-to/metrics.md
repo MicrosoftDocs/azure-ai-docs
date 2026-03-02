@@ -22,7 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 Monitoring is available for agents in a [standard agent setup](../concepts/standard-agent-setup.md).
 
-[!INCLUDE [Feature preview](../../openai/includes/preview-feature.md)]
+[!INCLUDE [Feature preview](../../../foundry/openai/includes/preview-feature.md)]
 
 > [!IMPORTANT]
 > Monitoring support is currently limited to Microsoft Foundry hubs. Foundry projects aren't supported.

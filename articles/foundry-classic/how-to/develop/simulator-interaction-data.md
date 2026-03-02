@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 > [!NOTE]
 > The Azure AI Evaluation SDK replaces the retired Evaluate with the prompt flow SDK.

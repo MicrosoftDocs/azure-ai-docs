@@ -98,7 +98,7 @@ In general, doubling the dataset size can lead to a linear increase in model qua
 
 To fine-tune an Azure OpenAI model in an existing Foundry project, follow these steps:
 
-1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../foundry/includes/classic-sign-in.md)]
 
 1. Select your project. If you don't have a project already, first [create a project](../../../ai-foundry/how-to/create-projects.md).
 
@@ -229,7 +229,7 @@ When you no longer need your fine-tuned model, you can delete the deployment and
 
 ### Delete your fine-tuned model deployment
 
-[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
+[!INCLUDE [Fine-tuning deletion](../../../foundry/openai/includes/fine-tune.md)]
 
 You can delete the deployment for your fine-tuned model on the **Deployments** pane in the Foundry portal. Select the deployment to delete, and then select **Delete**.
 
