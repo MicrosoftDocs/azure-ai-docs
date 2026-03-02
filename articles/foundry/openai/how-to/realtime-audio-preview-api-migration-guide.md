@@ -172,11 +172,11 @@ wss://<resource>.openai.azure.com/openai/v1/realtime
 
 **Symptom**: .NET application throws errors when attempting to use GA protocol.
 
-**Cause**: GA protocol requires OpenAI .NET SDK version later than 2.8.0.
+**Cause**: GA protocol requires OpenAI .NET SDK version 2.9.0 or later.
 
-**Solution**: Update your .NET SDK package to version 2.1.0 or later using:
+**Solution**: Update your .NET SDK package to version 2.9.0 or later using:
 ```bash
-dotnet add package OpenAI --version 2.1.0
+dotnet add package OpenAI --version 2.9.0
 ```
 
 ## Verification checklist
@@ -184,7 +184,7 @@ dotnet add package OpenAI --version 2.1.0
 Use this checklist to verify your migration is complete:
 
 > [!div class="checklist"]
-> * SDK updated to GA-compatible version (Python ≥1.54.0, JavaScript ≥4.77.0, .NET >2.8.0)
+> * SDK updated to GA-compatible version (Python ≥1.54.0, JavaScript ≥4.77.0, .NET ≥2.9.0)
 > * Endpoint URLs changed to `/openai/v1/realtime` format
 > * `api-version` query parameter removed from endpoint URLs
 > * Event names updated (`response.text.delta` → `response.output_text.delta`, etc.)
