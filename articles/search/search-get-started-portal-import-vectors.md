@@ -68,10 +68,6 @@ For this quickstart, all of the preceding resources must have public access enab
 
 If private endpoints are already present and you can't disable them, the alternative option is to run the respective end-to-end flow from a script or program on a virtual machine. The virtual machine must be on the same virtual network as the private endpoint. Here's a [Python code sample](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/integrated-vectorization) for integrated vectorization. The same [GitHub repo](https://github.com/Azure/azure-search-vector-samples/tree/main) has samples in other programming languages.
 
-### Check for space
-
-If you're starting with a free search service, you're limited to three indexes, data sources, skillsets, and indexers. Basic limits you to 15. This quickstart creates one of each object, so make sure you have room for extra items before you begin.
-
 ## Configure access
 
 Before you begin, make sure you have permissions to access content and operations. This quickstart uses Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](search-security-api-keys.md) instead.
@@ -122,14 +118,13 @@ On your OneLake workspace:
 
 1. Select **Contributor**.
 
-### [**Azure AI multi-service**](#tab/vision-access)
+### [**Azure OpenAI**](#tab/aoai-access)
 
-An Azure AI multi-service account provides access to multiple Azure services, including Azure Vision for multimodal embeddings. Your search service requires access to call the [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
+Azure OpenAI provides embedding models for text vectorization. Your search service requires access to call the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
 
-On your multi-service account:
+On your Azure OpenAI resource:
 
-+ Assign **Cognitive Services User** to the managed identity of your search service.
-
++ Assign **Cognitive Services OpenAI User** to the managed identity of your search service.
 
 ### [**Microsoft Foundry**](#tab/foundry-access)
 
@@ -142,13 +137,13 @@ On the parent resource of your Microsoft Foundry project:
 
 + Assign **Azure AI Project Manager** to the managed identity of your search service.
 
-### [**Azure OpenAI**](#tab/aoai-access)
+### [**Azure AI multi-service**](#tab/vision-access)
 
-Azure OpenAI provides embedding models for text vectorization. Your search service requires access to call the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
+An Azure AI multi-service account provides access to multiple Azure services, including Azure Vision for multimodal embeddings. Your search service requires access to call the [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
-On your Azure OpenAI resource:
+On your multi-service account:
 
-+ Assign **Cognitive Services OpenAI User** to the managed identity of your search service.
++ Assign **Cognitive Services User** to the managed identity of your search service.
 
 ---
 
