@@ -21,7 +21,7 @@ To review and query the hotels-sample index before semantic ranking:
 
 1. Select **Semantic configurations** to verify the index doesn't have a semantic configuration.
 
-   :::image type="content" source="../../media/search-get-started-semantic/no-semantic-configuration.png" alt-text="Screenshot of an empty semantic configuration page in the Azure portal.":::
+   :::image type="content" source="../../media/search-get-started-semantic/no-semantic-configuration.png" alt-text="Screenshot of an empty semantic configuration page in the Azure portal." lightbox="media/search-get-started-semantic/no-semantic-configuration.png":::
 
 1. Select **Search explorer**, and then select **View** > **JSON view**.
 
@@ -34,8 +34,6 @@ To review and query the hotels-sample index before semantic ranking:
       "count": true
     }
     ```
-
-   :::image type="content" source="../../media/search-get-started-semantic/search-explorer-simple-query.png" alt-text="Screenshot of a query in Search Explorer in the portal.":::
 
 1. Select **Search** to run the query.
 

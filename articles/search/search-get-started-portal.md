@@ -151,7 +151,13 @@ To configure the index for the query examples in this quickstart:
 
 ### Skip advanced settings
 
-The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart. Skip this step by selecting **Next**.
+The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart.
+
+To skip advanced settings:
+
+1. Deselect the **Enable semantic ranker** checkbox.
+
+1. Select **Next**.
 
 ## Finish the wizard
 

@@ -10,9 +10,9 @@ ms.date: 03/02/2026
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and run semantic queries.
+In this quickstart, you use the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and query the index.
 
-Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for text that's informational or descriptive.
+Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement.  Semantic ranking is most effective for informational or descriptive text.
 
 > [!TIP]
 > Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-ranking) on GitHub.
@@ -60,7 +60,7 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
     code .
     ```
 
-1. In `BuildIndex/Program.cs`, replace the placeholder value for `searchServiceName` with the URL you obtained in [Get endpoint](#get-endpoint).
+1. In `BuildIndex/Program.cs`, replace the placeholder value for `endpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
 
 1. Repeat the previous step for `QueryIndex/Program.cs`.
 
@@ -74,19 +74,19 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 1. Run the first project to update the index with a semantic configuration.
 
-    ```console
+    ```bash
     dotnet run --project BuildIndex
     ```
 
 1. Run the second project to query the index. Press **Enter** between queries to see the progression from simple query to semantic query with captions and answers.
 
-    ```console
+    ```bash
     dotnet run --project QueryIndex
     ```
 
 ### Output
 
-The first project updates the hotels-sample index with a semantic configuration. Output includes confirmation of the semantic configuration.
+The first project updates the hotels-sample index with a semantic configuration. The output includes confirmation of the semantic configuration.
 
 ```output
 Here's a list of all indexes on the search service. You should see hotels-sample:
@@ -97,74 +97,91 @@ Index updated successfully.
 Here is the revised index definition:
 {
   "Name": "hotels-sample",
-  ...
+  ... // Trimmed for brevity
   "SemanticSearch": {
     "DefaultConfigurationName": "semantic-config",
     "Configurations": [
+      {
+        "Name": "hotels-sample-semantic-configuration",
+        ... // Trimmed for brevity
+      },
       {
         "Name": "semantic-config",
         "PrioritizedFields": {
           "TitleField": {
             "FieldName": "HotelName"
           },
-          "PrioritizedContentFields": [
+          "ContentFields": [
             {
               "FieldName": "Description"
             }
           ],
-          "PrioritizedKeywordsFields": [
+          "KeywordsFields": [
             {
               "FieldName": "Tags"
             }
           ]
-        }
+        },
+        "RankingOrder": {}
       }
     ]
   }
 }
 ```
 
-The second project runs queries. Press Enter between queries to see the progression from simple query to semantic query with captions and answers.
+The second project runs four queries. The output includes the search results with relevance scores, captions, and answers.
 
 ```output
 Query 1: Simple query using the search string 'walking distance to live music'.
 HotelId: 2
 HotelName: Old Century Hotel
-Description: The hotel is situated in a nineteenth century plaza...
-@search.score: 5.5153193
+Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+@search.score: 5.004435
 ----------------------------------------
 HotelId: 24
 HotelName: Uptown Chic Hotel
-Description: Chic hotel near the city...
-@search.score: 5.074317
+Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
+@search.score: 4.555706
 ----------------------------------------
+... // Trimmed for brevity
+Press Enter to continue to the next query...
+
 
 Query 2: Semantic query (no captions, no answers) for 'walking distance to live music'.
 HotelId: 24
 HotelName: Uptown Chic Hotel
-Description: Chic hotel near the city...
-@search.score: 5.074317
+Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
+@search.score: 4.555706
 @search.rerankerScore: 2.613231658935547
 ----------------------------------------
+HotelId: 2
+HotelName: Old Century Hotel
+Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+@search.score: 5.004435
+@search.rerankerScore: 2.271434783935547
+----------------------------------------
+... // Trimmed for brevity
+Press Enter to continue to the next query...
+
 
 Query 3: Semantic query with captions.
-Caption: Chic hotel near the city. High-rise hotel in downtown,
-within walking distance to<em> theaters, </em>art galleries...
+Caption: Chic hotel near the city. High-rise hotel in downtown, within walking distance to<em> theaters, </em>art galleries, restaurants and shops. Visit<em> Seattle Art Museum </em>by day, and then head over to<em> Benaroya Hall </em>to catch the evening's concert performance.
 HotelId: 24
 HotelName: Uptown Chic Hotel
+Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
+@search.score: 4.555706
 @search.rerankerScore: 2.613231658935547
 ----------------------------------------
+... // Trimmed for brevity
+Press Enter to continue to the next query...
 
-Query 4: Semantic query with a verbatim answer for 'what's a good
-hotel for people who like to read'.
+
+Query 4: Semantic query with a verbatim answer from the Description field for 'what's a good hotel for people who like to read'.
 Extractive Answers:
-  Nature is Home on the beach. Explore the shore by day, and then
-come home to our shared living space to relax around a stone
-fireplace, sip something warm, and explore the<em> library </em>by
-night...
+  Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the<em> library </em>by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.
+----------------------------------------
+... // Trimmed for brevity
 ```
-
-Recall that answers are *verbatim content* pulled from your index and might be missing phrases that a user would expect to see. To get *composed answers* as generated by a chat completion model, consider using a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
 
 ## Understand the code
 
@@ -173,11 +190,11 @@ Recall that answers are *verbatim content* pulled from your index and might be m
 Now that you've run the code, let's break down the key steps:
 
 1. [Update the index with a semantic configuration](#update-the-index-with-a-semantic-configuration)
-1. [Run semantic queries](#run-semantic-queries)
+1. [Query the index](#query-the-index)
 
 ### Update the index with a semantic configuration
 
-The following code in `BuildIndex/Program.cs` adds a semantic configuration to the existing index:
+The following code in `BuildIndex/Program.cs` adds a semantic configuration to the existing index. This operation doesn't delete any search documents, and your index remains operational after the configuration is added.
 
 ```csharp
 static void AddSemanticConfiguration(
@@ -220,14 +237,66 @@ static void AddSemanticConfiguration(
 Key takeaways:
 
 + A semantic configuration specifies the fields used for semantic ranking.
++ Semantic configurations can be added to existing indexes without rebuilding.
 + `TitleField` sets the field that represents the document title.
 + `ContentFields` sets the fields containing the main content.
 + `KeywordsFields` sets the fields containing keywords or tags.
-+ Semantic configurations can be added to existing indexes without rebuilding.
 
-### Run semantic queries
+### Query the index
 
-The following code in `QueryIndex/Program.cs` runs a semantic query with captions:
+The `QueryIndex` project runs four queries in sequence, progressing from a simple keyword search to semantic ranking with captions and answers.
+
+#### Simple query
+
+The first query is a simple keyword search that doesn't use semantic ranking. This query serves as a baseline for comparing results with and without semantic reranking.
+
+```csharp
+await RunQuery(client, searchText, new SearchOptions
+{
+    Size = 5,
+    QueryType = SearchQueryType.Simple,
+    IncludeTotalCount = true,
+    Select = { "HotelId", "HotelName", "Description" }
+});
+```
+
+Key takeaways:
+
++ `SearchQueryType.Simple` uses the default BM25 ranking algorithm.
++ Results are ranked by keyword relevance (`@search.score`) only.
+
+#### Semantic query (no captions, no answers)
+
+The next query adds semantic ranking with no captions or answers. The following code shows the minimum requirement for invoking semantic ranking.
+
+```csharp
+var semanticOptions = new SearchOptions
+{
+    Size = 5,
+    QueryType = SearchQueryType.Semantic,
+    SemanticSearch = new SemanticSearchOptions
+    {
+        SemanticConfigurationName = "semantic-config"
+    },
+    IncludeTotalCount = true,
+    Select =
+    {
+        "HotelId", "HotelName", "Description"
+    }
+};
+await RunQuery(client, searchText, semanticOptions);
+```
+
+Key takeaways:
+
++ `SearchQueryType.Semantic` enables semantic ranking on the query.
++ `SemanticConfigurationName` specifies which semantic configuration to use.
++ `@search.rerankerScore` indicates semantic relevance (higher is better).
++ The initial results from the term query are rescored using semantic ranking models. For this dataset and query, the effects of semantic ranking are more pronounced in the lower-ranked results.
+
+#### Semantic query with captions
+
+The following code adds captions to extract the most relevant passages from each result, with hit highlighting applied to the important terms and phrases.
 
 ```csharp
 var captionsOptions = new SearchOptions
@@ -257,14 +326,14 @@ await RunQuery(
 
 Key takeaways:
 
-+ `QueryType.Semantic` enables semantic ranking.
-+ `SemanticConfigurationName` specifies which semantic configuration to use.
-+ `QueryCaption` enables extractive captions with highlighting.
-+ The `@search.rerankerScore` indicates semantic relevance (higher is better).
++ `QueryCaption` enables extractive captions from the content fields.
++ Captions surface the most relevant passages and add `<em>` tags around important terms.
 
-#### Semantic answers
+#### Semantic query with answers
 
-The following code demonstrates semantic answers for question-like queries:
+The final query adds semantic answers. This query uses a different search string (`searchText2`) — a question rather than a keyword phrase — because semantic answers work best when the input resembles a question. The answer is extracted verbatim from your content, not composed like what you might expect from a chat completion model.
+
+The question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. The question in this example is designed to get a response so that you can see the syntax. If answers aren't useful for your scenario, omit `QueryAnswer` from your code. For composed answers, consider [RAG patterns](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
 
 ```csharp
 var answersOptions = new SearchOptions
@@ -291,6 +360,4 @@ await RunQuery(
 Key takeaways:
 
 + `QueryAnswer` enables extractive answers for question-like queries.
-+ Answers are verbatim content extracted from your index.
-+ Answers require a strong alignment between the question and content.
-+ For composed answers, consider [RAG patterns](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
++ Answers are verbatim content extracted from your index, not generated text.

@@ -8,9 +8,9 @@ ms.date: 03/02/2026
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use the [Azure AI Search client library for Java](/java/api/overview/azure/search-documents-readme) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and run semantic queries.
+In this quickstart, you use the [Azure AI Search client library for Java](/java/api/overview/azure/search-documents-readme) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and query the index.
 
-Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for text that's informational or descriptive.
+Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement.  Semantic ranking is most effective for informational or descriptive text.
 
 > [!TIP]
 > Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-semantic-ranking) on GitHub.
@@ -25,7 +25,7 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 + [Java 21 (LTS)](/java/openjdk/install) and [Maven](https://maven.apache.org/download.cgi).
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with Java extensions, or [IntelliJ IDEA](https://www.jetbrains.com/idea/).
++ [Visual Studio Code](https://code.visualstudio.com/download).
 
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
 
@@ -76,84 +76,128 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 ## Run the code
 
-Run each class in sequence to see the full progression from index settings to semantic queries.
-
 1. Get the existing index settings.
 
-    ```console
-    mvn compile exec:java \
-        -Dexec.mainClass="com.azure.search.quickstart.GetIndexSettings"
+    ```bash
+    mvn compile exec:java "-Dexec.mainClass=com.azure.search.quickstart.GetIndexSettings"
     ```
-
-   Output is the name of the index, list of fields, and a statement indicating whether a semantic configuration exists. For the purposes of this quickstart, the message should say "No semantic configuration exists for this index".
 
 1. Update the index with a semantic configuration.
 
-    ```console
-    mvn compile exec:java \
-        -Dexec.mainClass="com.azure.search.quickstart.UpdateIndexSettings"
+    ```bash
+    mvn compile exec:java "-Dexec.mainClass=com.azure.search.quickstart.UpdateIndexSettings"
     ```
-
-   Output is the semantic configuration you just added.
 
 1. Run a semantic query.
 
-    ```console
-    mvn compile exec:java \
-        -Dexec.mainClass="com.azure.search.quickstart.SemanticQuery"
+    ```bash
+    mvn compile exec:java "-Dexec.mainClass=com.azure.search.quickstart.SemanticQuery"
     ```
-
-   Output consists of 13 documents, ordered by the reranker score.
 
 1. Run a semantic query with captions.
 
-    ```console
-    mvn compile exec:java \
-        -Dexec.mainClass="com.azure.search.quickstart.SemanticQueryWithCaptions"
+    ```bash
+    mvn compile exec:java "-Dexec.mainClass=com.azure.search.quickstart.SemanticQueryWithCaptions"
     ```
-
-   Output includes a new caption element alongside search fields.
 
 1. Run a semantic query with answers.
 
-    ```console
-    mvn compile exec:java \
-        -Dexec.mainClass="com.azure.search.quickstart.SemanticAnswer"
+    ```bash
+    mvn compile exec:java "-Dexec.mainClass=com.azure.search.quickstart.SemanticAnswer"
     ```
 
 ### Output
 
-Output from the captions query includes extractive captions with hit highlighting. Captions are the most relevant passages in a result. If your index includes larger text, a caption is helpful for extracting the most interesting sentences.
+Output from `GetIndexSettings` is the name of the index, its fields, and the semantic configurations. Before adding a new configuration, the index has only the default one.
+
+```output
+Index name: hotels-sample
+Number of fields: 23
+Field: HotelId, Type: Edm.String, Searchable: true
+Field: HotelName, Type: Edm.String, Searchable: true
+Field: Description, Type: Edm.String, Searchable: true
+// Trimmed for brevity
+Semantic search configurations: 1
+Configuration name: hotels-sample-semantic-configuration
+```
+
+Output from `UpdateIndexSettings` lists all semantic configurations on the index, including the one the code added, followed by a success message.
+
+```output
+// Trimmed for brevity
+Configuration name: semantic-config
+Title field: HotelName
+Keywords fields: Tags
+Content fields: Description
+----------------------------------------
+Semantic configuration updated successfully.
+```
+
+Output from `SemanticQuery` returns all matching documents, ordered by the reranker score. The first few results are shown here.
+
+```output
+Search result #1:
+  Re-ranker Score: 2.61
+  HotelId: 24
+  HotelName: Uptown Chic Hotel
+  Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
+
+Search result #2:
+  Re-ranker Score: 2.27
+  HotelId: 2
+  HotelName: Old Century Hotel
+  Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+
+Search result #3:
+  Re-ranker Score: 1.99
+  HotelId: 4
+  HotelName: Sublime Palace Hotel
+  Description: Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
+// Trimmed for brevity
+```
+
+Output from `SemanticQueryWithCaptions` adds a caption element with hit highlighting alongside search fields. Captions are the most relevant passages in a result. If your index includes larger text, captions help extract the most interesting sentences.
 
 ```output
 Search result #1:
   Re-ranker Score: 2.61
   HotelName: Uptown Chic Hotel
-  Description: Chic hotel near the city. High-rise hotel in
-  downtown, within walking distance to theaters, art galleries,
-  restaurants and shops. Visit Seattle Art Museum by day, and then
-  head over to Benaroya Hall to catch the evening's concert
-  performance.
+  Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
 
-  Caption with highlights: Chic hotel near the city. High-rise
-  hotel in downtown, within walking distance to<em> theaters,
-  </em>art galleries, restaurants and shops. Visit<em> Seattle Art
-  Museum </em>by day, and then head over to<em> Benaroya Hall
-  </em>to catch the evening's concert performance.
+  Caption with highlights: Chic hotel near the city. High-rise hotel in downtown, within walking distance to<em> theaters, </em>art galleries, restaurants and shops. Visit<em> Seattle Art Museum </em>by day, and then head over to<em> Benaroya Hall </em>to catch the evening's concert performance.
+------------------------------------------------------------
+Search result #2:
+  Re-ranker Score: 2.27
+  HotelName: Old Century Hotel
+  Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+
+  Caption text: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live.
+------------------------------------------------------------
+// Trimmed for brevity
 ```
 
-Output from the answers query includes a semantic answer (verbatim content) pulled from one of the results that best matches the question.
+Output from `SemanticAnswer` includes a semantic answer pulled from one of the results that best matches the question, followed by search results with captions.
 
 ```output
-Semantic Answer: Nature is Home on the beach. Explore the shore by
-day, and then come home to our shared living space to relax around
-a stone fireplace, sip something warm, and explore the<em> library
-</em>by night. Save up to 30 percent. Valid Now through the end of
-the year. Restrictions and blackouts may apply.
+Semantic answer result #1:
+Semantic Answer: Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the<em> library </em>by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.
 Semantic Answer Score: 0.98
-```
 
-Recall that answers are *verbatim content* pulled from your index and might be missing phrases that a user would expect to see. To get *composed answers* as generated by a chat completion model, consider using a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
+Search Results:
+
+Search result #1:
+Re-ranker Score: 2.12
+Hotel: Stay-Kay City Hotel
+Description: This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
+Caption: This classic hotel is<em> fully-refurbished </em>and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
+
+Search result #2:
+Re-ranker Score: 2.07
+Hotel: Double Sanctuary Resort
+Description: 5 star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso in room.
+Caption: <em>5 star Luxury Hotel </em>-<em> Biggest </em>Rooms in the city. #1 Hotel in the area listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso in room.
+// Trimmed for brevity
+```
 
 ## Understand the code
 
@@ -163,7 +207,7 @@ Now that you've run the code, let's break down the key steps:
 
 1. [Configuration and authentication](#configuration-and-authentication)
 1. [Update the index with a semantic configuration](#update-the-index-with-a-semantic-configuration)
-1. [Run semantic queries](#run-semantic-queries)
+1. [Query the index](#query-the-index)
 
 ### Configuration and authentication
 
@@ -289,7 +333,7 @@ Key takeaways:
 
 + `createOrUpdateIndex` pushes the updated schema to the search service without rebuilding the index or deleting documents.
 
-### Run semantic queries
+### Query the index
 
 Once the index has a semantic configuration, you can run queries that include semantic parameters. This code shows the minimum requirement for invoking semantic ranking.
 
@@ -400,9 +444,9 @@ Key takeaways:
 
 #### Semantic answers
 
-This code returns semantic answers for question-like queries. Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it doesn't include composed content like what you might expect from a chat completion model.
+This code returns semantic answers for question-like queries. Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it doesn't include composed content like what you might expect from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `setQueryAnswer` from your code.
 
-To produce a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer.
+To produce a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
 
 ```java
 import com.azure.search.documents.models
