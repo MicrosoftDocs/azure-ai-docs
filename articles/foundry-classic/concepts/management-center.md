@@ -20,12 +20,12 @@ ai-usage: ai-assisted
 
 The management center is part of the Microsoft Foundry portal that streamlines governance and management activities. From the management center, you can manage:
 
-- Foundry hubs and [!INCLUDE [hub](../../foundry/includes/hub-project-name.md)]s
+- Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s
 - Azure AI [!INCLUDE [FDP](../../foundry/includes/fdp-project-name.md)]s
 - Quotas for models and virtual machines (VMs)
 
     > [!NOTE]
-    > VMs and VM quotas are only available for [!INCLUDE [hub](../../foundry/includes/hub-project-name.md)]s.
+    > VMs and VM quotas are only available for [!INCLUDE [hub](../includes/hub-project-name.md)]s.
 
 - User management and role assignment
 
@@ -43,9 +43,9 @@ For more information, see [Create a [!INCLUDE [fdp-project-name](../../foundry/i
 
 ### Manage Foundry hubs and hub-based projects
 
-You can also manage [!INCLUDE [hub](../../foundry/includes/hub-project-name.md)]s from the management center. The management center lists them in the **All resources** section. When you select a hub, the portal displays it in the left menu.
+You can also manage [!INCLUDE [hub](../includes/hub-project-name.md)]s from the management center. The management center lists them in the **All resources** section. When you select a hub, the portal displays it in the left menu.
 
-For more information, see [Create a [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]](../how-to/hub-create-projects.md).
+For more information, see [Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/hub-create-projects.md).
 
 ## Manage resource utilization
 

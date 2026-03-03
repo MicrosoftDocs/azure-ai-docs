@@ -33,7 +33,7 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > Foundry itself doesn't provide automatic failover or disaster recovery.
 
 > [!NOTE]
-> The information in this article applies only to **[!INCLUDE [fdp](../../foundry/includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../../foundry/includes/hub-project-name.md)]**, see [Disaster recovery for Foundry hubs](hub-disaster-recovery.md).
+> The information in this article applies only to **[!INCLUDE [fdp](../../foundry/includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Foundry hubs](hub-disaster-recovery.md).
 ## Prerequisites
 
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).

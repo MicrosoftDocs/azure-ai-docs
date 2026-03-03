@@ -15,7 +15,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [intro](intro.md)]
 
-[!INCLUDE [how-to-prerequisites-python](../../../../foundry/foundry-models/includes/how-to-prerequisites-python.md)]
+[!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
 
 * Initialize a client to consume the model:
 

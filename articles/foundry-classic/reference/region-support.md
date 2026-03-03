@@ -22,7 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 ## Foundry projects
 
-Foundry is currently available in the following Azure regions. You can [create either a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)] or [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)] in Foundry](../how-to/create-projects.md) in these regions.
+Foundry is currently available in the following Azure regions. You can [create either a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)] or [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] in Foundry](../how-to/create-projects.md) in these regions.
 
 :::row:::
     :::column:::

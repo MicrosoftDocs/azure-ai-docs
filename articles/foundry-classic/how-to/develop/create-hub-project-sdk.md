@@ -20,7 +20,7 @@ In this article, you learn how to create the following [Microsoft Foundry](https
 - A Foundry connection
 
 > [!NOTE]
-> A hub is used only for a **[!INCLUDE [hub](../../../foundry/includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../../foundry/includes/fdp-project-name.md)]** doesn't use a hub. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
+> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../../foundry/includes/fdp-project-name.md)]** doesn't use a hub. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
 
 ## Prerequisites
 
