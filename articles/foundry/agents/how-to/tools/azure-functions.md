@@ -76,7 +76,7 @@ from azure.ai.projects.models import (
     PromptAgentDefinition,
 )
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
 with (
     DefaultAzureCredential() as credential,
@@ -116,7 +116,7 @@ with (
     agent = project_client.agents.create_version(
         agent_name="azure-function-agent-get-weather",
         definition=PromptAgentDefinition(
-            model=os.environ["MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful support agent. Answer the user's questions to the best of your ability.",
             tools=[tool],
         ),
@@ -165,8 +165,8 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-var projectEndpoint = Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 var storageQueueUri = Environment.GetEnvironmentVariable("STORAGE_QUEUE_URI");
 
 AIProjectClient projectClient = new(
@@ -367,8 +367,8 @@ import { AIProjectClient } from "@azure/ai-projects";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "";
 const storageQueueEndpoint = process.env["STORAGE_QUEUE_SERVICE_ENDPOINT"] || "";
 const inputQueueName = process.env["STORAGE_INPUT_QUEUE_NAME"] || "input";
 const outputQueueName = process.env["STORAGE_OUTPUT_QUEUE_NAME"] || "output";
@@ -455,7 +455,7 @@ Create an agent version by using the Azure Function tool definition.
 
 ```bash
 curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/azure-function-agent-get-weather/versions?api-version=$API_VERSION \
+  --url $FOUNDRY_PROJECT_ENDPOINT/agents/azure-function-agent-get-weather/versions?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -506,7 +506,7 @@ Create a response that uses the agent version to get weather information.
 
 ```bash
 curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+  --url $FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
