@@ -22,7 +22,7 @@ highlightedContent:
     - title: What is Microsoft Foundry?
       itemType: overview
       url: ./what-is-foundry.md
-    - title: Explore Microsoft Foundry Models
+    - title: Explore Foundry Models
       itemType: concept
       url: ./foundry-models/concepts/models-from-partners.md
     - title: Upgrade from GitHub Models
