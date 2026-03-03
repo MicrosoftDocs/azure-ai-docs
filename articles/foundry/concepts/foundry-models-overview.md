@@ -60,7 +60,7 @@ Characteristics of models sold directly by Azure:
 - Model documentation and transparency reports provide customer visibility to model risks, mitigations, and limitations. 
 - Enterprise-grade scalability, reliability, and security. 
 
-Some of these models also offer fungible provisioned throughput, meaning you can flexibly use your quota and reservations across any of these models.
+Some of these models also offer fungible provisioned throughput, meaning you can flexibly use your quota and reservations across any of these models. To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
 
 ## Models from partners and community
 
@@ -124,7 +124,7 @@ Some of the details available in the **model card** are:
 
 ## Model deployment options: managed compute and serverless deployments 
 
-The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md).
+The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md). To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
 
 The deployment options and features available for each model vary, as described in the following table:
 
@@ -248,3 +248,4 @@ AI models evolve fast, and when a new version or a new model with updated capabi
 ## Related content
 
 - [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md)
+- [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md)
