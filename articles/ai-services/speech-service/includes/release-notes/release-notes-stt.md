@@ -157,9 +157,9 @@ Fast transcription is now generally available via [speech to text REST API versi
 
 Significant improvements have been made the recognition quality of short Spanish terms via the `es-US` bilingual models. The model is bilingual and also supports English. The quality of English recognition is also improved.
 
-#### Video translation
+#### Video translation (Preview)
 
-The video translation API is now available. For more information, see the [How to use video translation](../../video-translation-get-started.md?pivots=rest-api).
+The video translation API is now available in public preview. For more information, see the [How to use video translation](../../video-translation-get-started.md?pivots=rest-api).
 
 ### September 2024 release
 
@@ -243,9 +243,9 @@ The Speech to text REST API version 3.2 is now generally available. For more inf
 
 ### May 2024 release
 
-#### Video translation
+#### Video translation (Preview)
 
-Video translation is now available. Video translation is a feature in Azure Speech in Foundry Tools that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more. For more information, see the [video translation overview](../../video-translation-overview.md).
+Video translation is now available in public preview. Video translation is a feature in Azure Speech in Foundry Tools that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more. For more information, see the [video translation overview](../../video-translation-overview.md).
 
 #### Pronunciation Assessment
 
