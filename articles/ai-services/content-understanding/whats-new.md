@@ -5,7 +5,7 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 01/29/2026
+ms.date: 03/03/2026
 ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
@@ -20,6 +20,23 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 
 > [!NOTE]
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
+
+## March 2026
+
+**Official Azure SDK client libraries are now Generally Available**
+
+Native SDK client libraries for Content Understanding are now available for Python, .NET, Java, and JavaScript/TypeScript — all targeting the `2025-11-01` GA API version. The SDKs provide strongly-typed models, built-in long-running operation polling, Azure authentication integration, automatic retries, and full consistency with the [Azure SDK design guidelines](https://azure.github.io/azure-sdk/). For production applications, we recommend using the official SDKs over raw REST calls.
+
+| Language | Package | SDK Samples | Install | SDK Repo |
+|----------|---------|-------------|---------|----------|
+| Python | [`azure-ai-contentunderstanding`](https://pypi.org/project/azure-ai-contentunderstanding/) | [samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples) | `pip install azure-ai-contentunderstanding` | [azure-sdk-for-python](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding) |
+| .NET | [`Azure.AI.ContentUnderstanding`](https://www.nuget.org/packages/Azure.AI.ContentUnderstanding) | [samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples) | `dotnet add package Azure.AI.ContentUnderstanding` | [azure-sdk-for-net](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding) |
+| Java | [`azure-ai-contentunderstanding`](https://central.sonatype.com/artifact/com.azure/azure-ai-contentunderstanding) | [samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples) | See [Maven Central](https://central.sonatype.com/artifact/com.azure/azure-ai-contentunderstanding) | [azure-sdk-for-java](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding) |
+| JavaScript | [`@azure/ai-content-understanding`](https://www.npmjs.com/package/@azure/ai-content-understanding) | [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript) | `npm install @azure/ai-content-understanding` | [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding) |
+| TypeScript | [`@azure/ai-content-understanding`](https://www.npmjs.com/package/@azure/ai-content-understanding) | [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/typescript) | `npm install @azure/ai-content-understanding` | [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding) |
+
+> [!TIP]
+> Get started with the [SDK quickstart](quickstart/use-sdk.md). For REST API usage, see the [REST API quickstart](quickstart/use-rest-api.md).
 
 ## January 2026
 
