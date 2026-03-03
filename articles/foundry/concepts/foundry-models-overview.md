@@ -67,7 +67,7 @@ These models constitute the vast majority of the Foundry Models and are provided
 
 Anthropic includes Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To learn more about privacy, see [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../responsible-ai/claude-models/data-privacy.md) and [Anthropic privacy policy](https://aka.ms/anthropic_privacy). For terms of service, see [Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
 
-Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [Deploy open models with Microsoft Foundry](../how-to/deploy-models-managed.md).
+Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [How to deploy and infer with a managed compute deployment (classic)](../../foundry-classic/how-to/deploy-models-managed.md).
 
 Characteristics of Models from Partners and Community: 
 * Developed and supported by external partners and community contributors 
@@ -123,7 +123,7 @@ Some of the details available in the **model card** are:
 
 ## Model deployment options: managed compute and serverless deployments 
 
-The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Learn more about data processing with the deployment options](../how-to/concept-data-privacy.md).
+The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md).
 
 The deployment options and features available for each model vary, as described in the following table:
 
@@ -134,15 +134,15 @@ Features | Managed compute | Serverless deployment
 Deployment experience and billing | Model weights are deployed to dedicated virtual machines with managed compute. A managed compute, which can have one or more deployments, makes available a REST API for inference. You're billed for the virtual machine core hours the deployments use. | Access models through a deployment that provisions an API. The API provides access to the model that Microsoft hosts and manages for inference. You're billed for inputs and outputs to the APIs, typically in tokens. Pricing information is provided before you deploy.
 API authentication | Keys and Microsoft Entra authentication. | Keys and Microsoft Entra authentication.
 Content safety | Use Azure AI Content Safety service APIs. | Azure AI Content Safety filters are available integrated with inference APIs. Azure AI Content Safety filters are billed separately.
-Network isolation | [Configure managed networks for Foundry hubs](../how-to/configure-managed-network.md).  | Managed networks follow the public network access (PNA) flag setting for your Foundry resource. For more information, see the [Network isolation for models deployed via serverless deployments](#network-isolation-for-models-deployed-via-serverless-deployments) section later in this article.
+Network isolation | [Configure a managed network for Microsoft Foundry hubs (classic)](../../foundry-classic/how-to/configure-managed-network.md).  | Managed networks follow the public network access (PNA) flag setting for your Foundry resource. For more information, see the [Network isolation for models deployed via serverless deployments](#network-isolation-for-models-deployed-via-serverless-deployments) section later in this article.
 
-:::image type="content" source="../media/explore/platform-service-cycle.png" alt-text="Screenshot of a diagram showing the service cycle differences between managed compute deployments and serverless deployments in Microsoft Foundry Models." lightbox="../media/explore/platform-service-cycle.png":::
+:::image type="content" source="../../foundry-classic/media/explore/platform-service-cycle.png" alt-text="Screenshot of a diagram showing the service cycle differences between managed compute deployments and serverless deployments in Microsoft Foundry Models." lightbox="../../foundry-classic/media/explore/platform-service-cycle.png":::
 
 ## Managed compute
 
 The capability to deploy models as managed compute builds on platform capabilities of Azure Machine Learning to enable seamless integration of the wide collection of models in the model catalog across the entire life cycle of large language model (LLM) operations.
 
-:::image type="content" source="../media/explore/llmops-life-cycle.png" alt-text="Screenshot of a diagram showing the life cycle of large language model (LLM) operations with managed compute." lightbox="../media/explore/llmops-life-cycle.png":::
+:::image type="content" source="../../foundry-classic/media/explore/llmops-life-cycle.png" alt-text="Screenshot of a diagram showing the life cycle of large language model (LLM) operations with managed compute." lightbox="../../foundry-classic/media/explore/llmops-life-cycle.png":::
 
 ### Availability of models for deployment as managed compute  
 
@@ -173,7 +173,7 @@ The [Azure AI Content Safety](../../ai-services/content-safety/overview.md) serv
 
 Refer to [this notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/inference/text-generation/llama-safe-online-deployment.ipynb) for reference integration with Azure AI Content Safety for Llama 2. Or use the Content Safety (Text) tool in prompt flow to pass responses from the model to Azure AI Content Safety for screening. You're billed separately for such use, as described in [Azure AI Content Safety pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/).
 
-## Billing for serverless deployments
+## Serverless deployments
 
 Serverless deployments provide a way to consume Foundry Models as APIs without hosting them on your subscription. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the setup experience.
 
@@ -183,9 +183,9 @@ Models that are available for serverless deployments are offered by the model pr
 * Makes the inference APIs available.
 * Acts as the data processor for prompts submitted and content output for serverless deployments.
 
-:::image type="content" source="../media/explore/model-publisher-cycle.png" alt-text="Screenshot of a diagram showing the model publisher service cycle for serverless deployments of Microsoft Foundry Models." lightbox="../media/explore/model-publisher-cycle.png":::
+:::image type="content" source="../../foundry-classic/media/explore/model-publisher-cycle.png" alt-text="Screenshot of a diagram showing the model publisher service cycle for serverless deployments of Microsoft Foundry Models." lightbox="../../foundry-classic/media/explore/model-publisher-cycle.png":::
 
-### Billing
+### Billing for serverless deployments
 
 The discovery, subscription, and consumption experience for models deployed as serverless deployments is in Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is available during deployment.
 
@@ -195,15 +195,15 @@ Models from Microsoft are billed via Azure meters as First Party Consumption Ser
 
 ### Fine-tuning models
 
-Certain models also support fine-tuning. For these models, you can use managed compute or serverless deployments fine-tuning to tailor the models by using data that you provide. For more information, see the [fine-tuning overview](../concepts/fine-tuning-overview.md).
+Certain models also support fine-tuning. For these models, you can use managed compute or serverless deployments fine-tuning to tailor the models by using data that you provide. For more information, see [Fine-tune models with Microsoft Foundry (classic)](../../foundry-classic/concepts/fine-tuning-overview.md).
 
 ### RAG with models deployed as serverless deployments
 
-In the Foundry portal, use vector indexes and retrieval-augmented generation (RAG). Use models that can be deployed via serverless deployments to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Foundry portal](../how-to/index-add.md).
+In the Foundry portal, use vector indexes and retrieval-augmented generation (RAG). Use models that can be deployed via serverless deployments to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/index-add.md).
 
 ### Regional availability of offers and models
 
-Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country or region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless deployments | Foundry](../how-to/deploy-models-serverless-availability.md) for detailed information.
+Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country or region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless deployments (classic)](../../foundry-classic/how-to/deploy-models-serverless-availability.md) for detailed information.
 
 ### Content safety for models deployed via serverless deployments
 
