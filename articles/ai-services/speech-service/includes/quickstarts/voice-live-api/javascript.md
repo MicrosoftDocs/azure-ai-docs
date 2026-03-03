@@ -807,9 +807,9 @@ Press Ctrl+C to exit
 🤖 Assistant text:	Hello! How can I assist you today?
 🎤 Listening...
 🤔 Processing...
-👤 You said:	What's the capital of France?
+👤 You said:	What's the capital/major city of France?
 🎤 Ready for next input...
-🤖 Assistant text:	The capital of France is Paris. It's one of the most visited cities in the world, known for landmarks like the Eiffel Tower, the Louvre museum, and Notre-Dame Cathedral. Is there anything else you'd like to know?
+🤖 Assistant text:	The capital/major city of France is Paris. It's one of the most visited cities in the world, known for landmarks like the Eiffel Tower, the Louvre museum, and Notre-Dame Cathedral. Is there anything else you'd like to know?
 
 👋 Voice assistant shut down. Goodbye!
 ```
@@ -824,7 +824,7 @@ Voice Type: azure-standard
 
 User Input:	Hello.
 Assistant Text Response:	Hello! How can I assist you today?
-User Input:	What's the capital of France?
+User Input:	What's the capital/major city of France?
 Assistant Text Response:	The capital of France is Paris...
 ```
 
