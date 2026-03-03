@@ -10,6 +10,8 @@ items:
     href: ../../foundry-models/concepts/deployment-types.md
   - name: Upgrade GitHub Models to Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
+  - name:  Import custom models (preview)
+    href: ../../foundry-models/concepts/import-custom-models.md 
 
 # Model Support
 - name: Model support
