@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/30/2026
+ms.date: 03/02/2026
 ---
 
 This quickstart modifies an existing index to include a semantic configuration. We recommend the hotels-sample-index, which you can create in minutes using an Azure portal wizard.

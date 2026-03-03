@@ -4,7 +4,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include
-ms.date: 01/30/2026
+ms.date: 03/02/2026
 ai-usage: ai-assisted
 ---
 

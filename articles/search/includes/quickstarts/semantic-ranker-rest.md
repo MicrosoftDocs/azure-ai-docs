@@ -4,7 +4,7 @@ author: heidisteen
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/30/2026
+ms.date: 03/02/2026
 ai-usage: ai-assisted
 ---
 
@@ -77,7 +77,7 @@ You can add a semantic configuration to an existing index with no rebuild requir
 
 1. In both `.rest` files, replace the placeholder value for `@personalAccessToken` with the token you obtained.
 
-## Run the requests
+## Run the code
 
 Send each request in sequence to see the full progression from index verification to semantic queries. Select **Send Request** above each HTTP request block in the `.rest` files.
 
@@ -145,7 +145,7 @@ Send each request in sequence to see the full progression from index verificatio
 
 1. **Run a semantic query with answers.** Send the final request for a question-like query with extractive answers.
 
-### Output
+### Understand the code
 
 Output from the captions query adds `@search.captions` to each result. Captions are the most relevant passages in a result. If your index includes larger text, a caption is helpful for extracting the most interesting sentences.
 
