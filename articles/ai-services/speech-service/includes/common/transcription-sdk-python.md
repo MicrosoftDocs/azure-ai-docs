@@ -182,13 +182,131 @@ Detailed phrases:
 
 ## Request configuration options
 
-TBD 
-Here are some property options to configure a transcription when you call the [Transcriptions - Transcribe](/rest/api/speechtotext/transcriptions/transcribe) operation.
+Use `TranscriptionOptions` to customize transcription behavior. The following sections describe each supported configuration and show how to apply it.
 
-| Property | Description | Required or optional |
-|----------|-------------|----------------------|
-| `channels` | The list of zero-based indices of the channels to be transcribed separately. Up to two channels are supported unless diarization is enabled. By default, the fast transcription API merges all input channels into a single channel and then performs the transcription. If this isn't desirable, channels can be transcribed independently without merging.<br/><br/>If you want to transcribe the channels from a stereo audio file separately, you need to specify `[0,1]`, `[0]`, or `[1]`. Otherwise, stereo audio is merged to mono and only a single channel is transcribed.<br/><br/>If the audio is stereo and diarization is enabled, then you can't set the `channels` property to `[0,1]`. The Speech service doesn't support diarization of multiple channels.<br/><br/>For mono audio, the `channels` property is ignored, and the audio is always transcribed as a single channel.| Optional |
-| `diarization` | The diarization configuration. Diarization is the process of recognizing and separating multiple speakers in one audio channel. For example, specify `"diarization": {"maxSpeakers": 2, "enabled": true}`. Then the transcription file contains `speaker` entries (such as `"speaker": 0` or `"speaker": 1`) for each transcribed phrase. | Optional |
-| `locales` | The list of locales that should match the expected locale of the audio data to transcribe.<br/><br/>If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency. If a single locale is specified, that locale is used for transcription.<br/><br/>But if you're not sure about the locale, you can specify multiple locales to use language identification. Language identification might be more accurate with a more precise list of candidate locales.<br/><br/>If you don't specify any locale, then the Speech service will use the latest multi-lingual model to identify the locale and transcribe continuously.<br/><br/> You can get the latest supported languages via the [Transcriptions - List Supported Locales](/rest/api/speechtotext/transcriptions/list-supported-locales) REST API (API version 2024-11-15 or later). For more information about locales, see the [Speech service language support](../../language-support.md?tabs=stt) documentation.| Optional but recommended if you know the expected locale. |
-| `phraseList` |Phrase list is a list of words or phrases provided ahead of time to help improve their recognition. Adding a phrase to a phrase list increases its importance, thus making it more likely to be recognized. For example, specify `phraseList":{"phrases":["Contoso","Jessie","Rehaan"]}`. Phrase List is supported via API version 2025-10-15. For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md#implement-phrase-list-in-fast-transcription). | Optional |
-| `profanityFilterMode` |Specifies how to handle profanity in recognition results. Accepted values are `None` to disable profanity filtering, `Masked` to replace profanity with asterisks, `Removed` to remove all profanity from the result, or `Tags` to add profanity tags. The default value is `Masked`. | Optional |
+### Multi-language detection
+
+Pass multiple locale candidates to `locales` to enable language identification across languages. The service detects which language is spoken and labels each phrase with the detected locale. Omit `locales` entirely to let the service auto-detect all languages without a candidate list.
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.transcription import TranscriptionClient
+from azure.ai.transcription.models import TranscriptionContent, TranscriptionOptions
+
+client = TranscriptionClient(
+    endpoint=endpoint, credential=AzureKeyCredential(api_key)
+)
+
+with open(audio_file_path, "rb") as audio_file:
+    # Provide candidate locales — the service selects the best match per phrase
+    options = TranscriptionOptions(locales=["en-US", "es-ES", "fr-FR", "de-DE"])
+    result = client.transcribe(TranscriptionContent(definition=options, audio=audio_file))
+
+    for phrase in result.phrases:
+        locale = phrase.locale if phrase.locale else "detected"
+        print(f"[{locale}] {phrase.text}")
+```
+
+Reference: [`TranscriptionOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions)
+
+### Speaker diarization
+
+Diarization detects and labels different speakers in a single audio channel. Create a `TranscriptionDiarizationOptions` object with the maximum expected number of speakers (2–35) and pass it to `TranscriptionOptions`. Each phrase in the result includes a `speaker` identifier.
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.transcription import TranscriptionClient
+from azure.ai.transcription.models import (
+    TranscriptionContent,
+    TranscriptionOptions,
+    TranscriptionDiarizationOptions,
+)
+
+client = TranscriptionClient(
+    endpoint=endpoint, credential=AzureKeyCredential(api_key)
+)
+
+with open(audio_file_path, "rb") as audio_file:
+    diarization_options = TranscriptionDiarizationOptions(
+        max_speakers=5  # Hint for maximum number of speakers (2-35)
+    )
+    options = TranscriptionOptions(
+        locales=["en-US"], diarization_options=diarization_options
+    )
+    result = client.transcribe(TranscriptionContent(definition=options, audio=audio_file))
+
+    for phrase in result.phrases:
+        speaker = phrase.speaker if phrase.speaker is not None else "Unknown"
+        print(f"Speaker {speaker} [{phrase.offset_milliseconds}ms]: {phrase.text}")
+```
+
+> [!NOTE]
+> Diarization is only supported on single-channel (mono) audio. If your audio
+> is stereo, don't set the `channels` property to `[0, 1]` when diarization
+> is enabled.
+
+Reference: [`TranscriptionDiarizationOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptiondiarizationoptions), [`TranscriptionOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions)
+
+### Phrase list
+
+A phrase list boosts recognition accuracy for domain-specific terms, proper nouns, and uncommon words. Set `biasing_weight` between `1.0` and `20.0` to control how strongly the phrases are favored (higher values increase the bias).
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.transcription import TranscriptionClient
+from azure.ai.transcription.models import (
+    TranscriptionContent,
+    TranscriptionOptions,
+    PhraseListProperties,
+)
+
+client = TranscriptionClient(
+    endpoint=endpoint, credential=AzureKeyCredential(api_key)
+)
+
+with open(audio_file_path, "rb") as audio_file:
+    phrase_list = PhraseListProperties(
+        phrases=["Contoso", "Jessie", "Rehaan"],
+        biasing_weight=5.0,  # Weight between 1.0 and 20.0
+    )
+    options = TranscriptionOptions(locales=["en-US"], phrase_list=phrase_list)
+    result = client.transcribe(TranscriptionContent(definition=options, audio=audio_file))
+
+    print(result.combined_phrases[0].text)
+```
+
+For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md#implement-phrase-list-in-fast-transcription).
+
+Reference: [`PhraseListProperties`](/python/api/azure-ai-transcription/azure.ai.transcription.models.phraselistproperties), [`TranscriptionOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions)
+
+### Profanity filtering
+
+Control how profanity appears in transcription output using the `profanity_filter_mode` parameter. The following modes are available:
+
+| Mode | Behavior |
+|------|----------|
+| `"None"` | Profanity passes through unchanged. |
+| `"Masked"` | Profanity is replaced with asterisks (default). |
+| `"Removed"` | Profanity is removed from the output entirely. |
+| `"Tags"` | Profanity is wrapped in `<profanity>` XML tags. |
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.transcription import TranscriptionClient
+from azure.ai.transcription.models import TranscriptionContent, TranscriptionOptions
+
+client = TranscriptionClient(
+    endpoint=endpoint, credential=AzureKeyCredential(api_key)
+)
+
+with open(audio_file_path, "rb") as audio_file:
+    options = TranscriptionOptions(
+        locales=["en-US"],
+        profanity_filter_mode="Masked"  # Options: "None", "Removed", "Masked", "Tags"
+    )
+    result = client.transcribe(TranscriptionContent(definition=options, audio=audio_file))
+
+    print(result.combined_phrases[0].text)
+```
+
+Reference: [`TranscriptionOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions)
