@@ -70,7 +70,7 @@ The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-project
 
 ## Types of projects
 
-Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](../foundry/includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](../foundry/../foundry/includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](../foundry/../foundry/includes/fdp-project-name.md)].
+Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](../foundry/includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](../foundry/includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)].
 
 - [!INCLUDE [fdp-description](includes/fdp-description.md)]
 
@@ -84,7 +84,7 @@ Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](
 - Use a [!INCLUDE [hub-project-name](../foundry/includes/hub-project-name.md)] when you need features that aren't available in a [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)]. See the following table for more on feature availability.
 
 > [!NOTE]
-> New agents and model-centric capabilities are only available on [!INCLUDE [fdp-project-name](../foundry/../foundry/includes/fdp-project-name.md)]s, including access to the Foundry API and Foundry Agent Service in general availability. To migrate your [!INCLUDE [hub-project-name](../foundry/includes/hub-project-name.md)] to a [!INCLUDE [fdp-project-name](../foundry/../foundry/includes/fdp-project-name.md)], see [Migrate from hub-based to Foundry projects](how-to/migrate-project.md).
+> New agents and model-centric capabilities are only available on [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)]s, including access to the Foundry API and Foundry Agent Service in general availability. To migrate your [!INCLUDE [hub-project-name](../foundry/includes/hub-project-name.md)] to a [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)], see [Migrate from hub-based to Foundry projects](how-to/migrate-project.md).
 
 This table summarizes features available in the two project types:  
 

@@ -28,11 +28,11 @@ ai-usage: ai-assisted
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../../../foundry/foundry-models/includes/configure-content-filters/cli.md)]
+[!INCLUDE [cli](../includes/configure-content-filters/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../../../foundry/foundry-models/includes/configure-content-filters/bicep.md)]
+[!INCLUDE [bicep](../includes/configure-content-filters/bicep.md)]
 ::: zone-end
 
 ## Related content
