@@ -206,7 +206,5 @@ The following operations can appear in a resource log.
 
 ## Related content
 
-- [Monitor Azure AI Search](monitor-azure-cognitive-search.md)
-- [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource)
-- [Troubleshoot storage and metric discrepancies](troubleshoot-storage-metrics.md)
-
+- See [Monitor Azure AI Search](monitor-azure-cognitive-search.md) for a description of monitoring Azure AI Search.
+- See [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource) for details on monitoring Azure resources.

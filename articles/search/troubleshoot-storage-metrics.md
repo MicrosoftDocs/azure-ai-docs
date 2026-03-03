@@ -66,7 +66,7 @@ To determine if a discrepancy is real or a timing artifact, capture values from 
 1. Call [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics) and [GET Index Statistics](/rest/api/searchservice/indexes/get-statistics) within the same five-minute window.
 1. Repeat sampling on a fixed cadence, such as every 20 to 30 minutes.
 1. Compare at least three consecutive windows before you conclude that values aren't converging.
-1. Evaluate `vectorIndexSize` separately from `storageSize` because they track different physical structures.
+1. Evaluate `storageSize` separately from `vectorIndexSize` because they track different physical structures.
 
 ## When is a discrepancy expected vs. an actual defect?
 
@@ -76,7 +76,7 @@ Most discrepancies are expected and resolve without intervention. If the defect 
 
 - You recently performed heavy indexing, updates, or deletions, and values are still converging.
 - Portal and API values differ, but the gap narrows across repeated samples.
-- `vectorIndexSize` and `storageSize` don't match, which is by design because they measure different things.
+- `storageSize` and `vectorIndexSize` don't match, which is by design because they measure different things.
 
 ### Possible defect
 
