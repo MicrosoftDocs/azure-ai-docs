@@ -12,6 +12,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ---
 
 # Set up tracing in Microsoft Foundry (preview)
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use tracing (preview) to debug your AI agents and monitor their behavior in production. Tracing captures detailed telemetry—including latency, exceptions, prompt content, and retrieval operations—so you can identify and fix issues faster.
@@ -28,10 +29,13 @@ Foundry stores traces in [Azure Application Insights](/azure/azure-monitor/app/a
 
 1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 1. Open your Foundry project.
-1. In the left navigation, select **Tracing**.
-1. Create or connect an Application Insights resource:
+1. In the left navigation, select **Agents**.
+1. At the top, select **Traces**.
+1. On the right, select **Connect**, to create or connect an Application Insights resource:
    - To connect an existing resource, select the resource and then select **Connect**.
    - To create a new resource, select **Create new** and complete the wizard.
+
+:::image type="content" source="../../media/observability/tracing/traces-connect.png" alt-text="Screenshot of the the Agents tab showing traces and the connect button." lightbox="../../media/observability/tracing/traces-connect.pn":::
 
    A confirmation message appears when the connection succeeds.
 
