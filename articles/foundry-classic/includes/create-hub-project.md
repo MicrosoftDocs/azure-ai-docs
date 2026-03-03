@@ -16,7 +16,7 @@ Or, if you want to customize a new hub, follow the steps in the next section bef
 
 ### Customize the hub
 
-A [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)] exists inside a hub. A hub allows you to share configurations like data connections with all projects, and to centrally manage security settings and spend. If you're part of a team, hubs are shared across other team members in your subscription. For more information about the relationship between hubs and projects, see the [hubs and projects overview](../concepts/ai-resources.md) documentation.
+A [!INCLUDE [hub-project-name](hub-project-name.md)] exists inside a hub. A hub allows you to share configurations like data connections with all projects, and to centrally manage security settings and spend. If you're part of a team, hubs are shared across other team members in your subscription. For more information about the relationship between hubs and projects, see the [hubs and projects overview](../concepts/ai-resources.md) documentation.
 
 When you create a new hub, you must have **Owner** or **Contributor** permissions on the selected resource group. If you're part of a team and don't have these permissions, your administrator should create a hub for you.
 

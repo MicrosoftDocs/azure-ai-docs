@@ -31,7 +31,7 @@ Most [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)] (classic)
 - Navigation - Three different states:
     - Outside a project - there's no left navigation until you're in a project. The page is divided into sections. Once you have projects, the top section is a list of recent projects.
     - In a project - the left navigation is the same for all parts of a project until you move to the **Management center**.
-    - The Management center left navigation has two sections. In a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)], the sections are for the **resource** the project is in, then a section for the **project** itself. In a [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)], the sections are for the **hub** the project is in, then a section for the **project** itself.
+    - The Management center left navigation has two sections. In a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)], the sections are for the **resource** the project is in, then a section for the **project** itself. In a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], the sections are for the **hub** the project is in, then a section for the **project** itself.
 
 For efficient navigation, you can use landmarks to move between these sections on the page.
 
@@ -105,11 +105,11 @@ The chat session pane is where you can chat with the model and test out your ass
 Foundry has two different project types—see [What is Foundry?](../what-is-foundry.md#types-of-projects). The **Type** column in the **All resources** view shows the project type. In the recent resources picker, the type appears on a second line under the project name.
 
 - Look for either **(Foundry)** or **Foundry project** for a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]. 
-- Look for **(Hub)** for a [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)].
+- Look for **(Hub)** for a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 ## Using prompt flow 
 
-Prompt flow is available only in a [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]. 
+Prompt flow is available only in a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
 
 Prompt flow is a tool that creates executable flows by linking LLMs, prompts, and Python tools through a visualized graph. Use prompt flow to prototype, experiment, and iterate on your AI applications before you deploy them. 
 

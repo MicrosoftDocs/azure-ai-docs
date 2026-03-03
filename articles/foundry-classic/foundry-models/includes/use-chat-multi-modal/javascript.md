@@ -21,9 +21,9 @@ This article explains how to use chat completions API with _multimodal_ models d
 
 To use chat completion models in your application, you need:
 
-[!INCLUDE [how-to-prerequisites](../../../../foundry/foundry-models/includes/how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-[!INCLUDE [how-to-prerequisites-javascript](../../../../foundry/foundry-models/includes/how-to-prerequisites-javascript.md)]
+[!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
 * A chat completions model deployment with support for **audio and images**. If you don't have one, see [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 

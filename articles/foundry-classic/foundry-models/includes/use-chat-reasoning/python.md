@@ -20,7 +20,7 @@ This article explains how to use the reasoning capabilities of chat completions 
 
 To complete this tutorial, you need:
 
-[!INCLUDE [how-to-prerequisites](../../../../foundry/foundry-models/includes/how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
 [!INCLUDE [how-to-prerequisites-openai-python](../how-to-prerequisites-openai-python.md)]
 
