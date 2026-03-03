@@ -26,7 +26,7 @@ Use this article to learn how to use the Computer Use tool with the Azure AI Pro
 * Your Microsoft Foundry Project endpoint.
 
     
-    [!INCLUDE [endpoint-string-portal](../../../../foundry/agents/includes/endpoint-string-portal.md)]
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 

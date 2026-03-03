@@ -108,7 +108,7 @@ To create a Foundry project, follow these steps:
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 
-1. [!INCLUDE [create-project-access](../../foundry/includes/create-project-access.md)]
+1. [!INCLUDE [create-project-access](../includes/create-project-access.md)]
 
 1. Select **Foundry resource**, and then select **Next**.
 1. Provide a name for your project and select **Create**. Or see the next section for advanced options.

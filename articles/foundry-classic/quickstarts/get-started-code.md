@@ -38,7 +38,7 @@ In this quickstart, you use [!INCLUDE [classic-link](../../foundry/includes/clas
 The Microsoft Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
 > [!TIP]
-> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../../foundry/includes/fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../../foundry/includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
+> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../../foundry/includes/fdp-project-name.md)]**. See [Quickstart: Get started with Microsoft Foundry (Hub projects)](hub-get-started-code.md) if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-foundry.md#which-type-of-project-do-i-need)
 
 ## Prerequisites
 
